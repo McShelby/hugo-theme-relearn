@@ -14,6 +14,7 @@
     <link href="/css/hybrid.css" rel="stylesheet">
     <link href="/css/featherlight.min.css" rel="stylesheet">
     <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/hugo-theme.css" rel="stylesheet">
     <style type="text/css">:root #header + #content > #left > #rlblock_left
 {display:none !important;}</style>
   </head>
@@ -29,6 +30,7 @@
               <i class="fa fa-2x fa-bars"></i>
             </a>
             <div id="top-bar">
+
               {{ if and .IsPage .Site.Params.editURL }}
                 {{ $File := .File }}
                 {{ $Site := .Site }}
@@ -41,8 +43,10 @@
               </div>
                 {{ end }}
               {{ end }}
-
               <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                {{ if and (not .Params.chapter) (.Params.toc) }}
+                <span id="toc-menu"><a href=""><i class="fa fa-ellipsis-v"></i></a></span>
+                {{ end }}
                 {{ $type := .Type }}
                 {{ $relLink := .RelPermalink }}
                 {{ range $name , $value := .Site.Sections }}
@@ -55,6 +59,9 @@
                 {{ end }}
                 {{ with .Title }}<span itemprop="title"> {{ . }}</span>{{ end }}
               </div>
+              {{ if .Params.toc }}
+                  {{ partial "toc.html" . }}
+              {{ end }}
 
             </div>
             {{ if .Params.chapter }}
