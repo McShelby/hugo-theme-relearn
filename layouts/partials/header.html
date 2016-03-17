@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+    {{ .Hugo.Generator }}
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+{{ .Scratch.Add "title" "" }}{{ if isset .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
+    <title>Hugo - {{ .Scratch.Get "title" }}</title>
+    <link href="/css/nucleus.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/hybrid.css" rel="stylesheet">
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+{display:none !important;}</style>
+
+  </head>
+
+  <body>
+
+<!------->
+
+<body class="searchbox-hidden " data-url="/">
+
+    {{ partial "menu.html" . }}
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+            <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+              <i class="fa fa-2x fa-bars"></i>
+            </a>
+            <div id="top-bar">
+              <div id="top-github-link">
+                  <a class="github-link" href="https://github.com/getgrav/grav-learn/blob/develop/pages/01.basics/chapter.md">
+                    <i class="fa fa-github-square"></i>
+                    edit this page
+                  </a>
+              </div>
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <span itemprop="title">Basics</span>
+              </div>
+            </div>
+            {{ if .Params.chapter }}
+              <div id="chapter">
+            {{ end }}
+    	        <div id="body-inner">
+                {{ if not .Params.chapter }}
+                <h1>{{.Title}}</h1>
+                {{ end }}
