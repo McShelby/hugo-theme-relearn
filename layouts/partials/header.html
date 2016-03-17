@@ -34,15 +34,33 @@
               <i class="fa fa-2x fa-bars"></i>
             </a>
             <div id="top-bar">
+              {{ if and .IsPage .Site.Params.editURL }}
+                {{ $File := .File }}
+                {{ $Site := .Site }}
+                {{with $File.Path }}
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/getgrav/grav-learn/blob/develop/pages/01.basics/chapter.md">
+                  <a class="github-link" href="{{ $Site.Params.editURL }}{{ $File.Dir }}{{ $File.LogicalName }}" target="blank">
                     <i class="fa fa-github-square"></i>
                     edit this page
                   </a>
               </div>
+                {{ end }}
+              {{ end }}
+
               <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                <span itemprop="title">Basics</span>
+                {{ $type := .Type }}
+                {{ $relLink := .RelPermalink }}
+                {{ range $name , $value := .Site.Sections }}
+                  {{ if eq $name $type }}
+                    {{ $first := (index $value 0).Page }}
+                    {{ if ne $first.RelPermalink $relLink }}
+                <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+                {{ with .Title }}<span itemprop="title"> {{ . }}</span>{{ end }}
               </div>
+
             </div>
             {{ if .Params.chapter }}
               <div id="chapter">
