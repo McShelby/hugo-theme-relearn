@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    {{ partial "meta.html" . }}
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+{{ .Scratch.Add "title" "" }}{{ if isset .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
+    <title>{{ .Scratch.Get "title" }}</title>
+    {{ partial "head_includes.html" . }}
+    <style type="text/css">
+    :root #header + #content > #left > #rlblock_left {display:none !important;}
+</style>
+  </head>
+  <body>
+    <body class="" data-url="/">
+
+          <section id="body" style="margin-left:0px;">
+          <div id="overlay"></div>
+
+          <div class="padding highlightable">
+            <h1>Customize your own home page</h1>
+            <p style="text-align: center">
+              The site is working but you should overwrite this index.html with your own.
+              If you want to redirect You may want to redirect to the first document page.
+            </p>
+          </div>
+        </section>
+  </body>
+</html>

@@ -62,37 +62,3 @@ $('#toc-menu').hover(function() {
 $('.progress').hover(function() {
 	$('.progress').stop(true, false, true).fadeToggle(300);
 });
-
-// Calculate each progress section
-/*
-$(window).scroll(function (){
-  $("#body-inner h2").each(function(i){
-      //console.log($(this));
-      var this_top = $(this).offset().top;
-      var height = $(this).height();
-      var this_bottom = this_top + height;
-      var percent = 0;
-
-      // Scrolled within current section
-      if (top >= this_top && top <= this_bottom) {
-          percent = ((top - this_top) / (height - wrapper_height)) * 100;
-          if (percent >= 100) {
-              percent = 100;
-          //$(".progress .wrapper .bar:eq("+i+") i").css("color", "#fff");
-          console.log("aaa");
-          }
-          else {
-              //$(".progress .wrapper .bar:eq("+i+") i").css("color", "#36a7f3");
-              console.log("bb");
-          }
-      }
-      else if (top > this_bottom) {
-          percent = 100;
-          //$(".progress .wrapper .bar:eq("+i+") i").css("color", "#fff");
-          console.log("ccc");
-      }
-      //console.log(i);
-      //$(".progress .wrapper .bar:eq("+i+") span").css("width", percent + "%");
-      //console.log("ddd");
-  });
-});*/
