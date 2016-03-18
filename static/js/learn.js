@@ -127,7 +127,6 @@ jQuery(document).ready(function() {
         var input = jQuery(this),
             value = input.val(),
             items = jQuery('[data-nav-id]');
-        console.log(input, value, items);
         items.removeClass('search-match');
         if (!value.length) {
             $('ul.topics').removeClass('searched');
