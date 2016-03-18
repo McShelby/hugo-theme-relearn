@@ -62,3 +62,5 @@ $('#toc-menu').hover(function() {
 $('.progress').hover(function() {
 	$('.progress').stop(true, false, true).fadeToggle(300);
 });
+
+$("#top-bar").stick_in_parent();
