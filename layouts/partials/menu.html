@@ -10,49 +10,45 @@
       </div>
       {{ end }}
     </div>
-  </div>
+</div>
 
 
-  <div class="scroll-wrapper scrollbar-inner" style="position: relative;">
-    <div class="scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px">
-      <div class="highlightable">
-        <ul class="topics">
-          {{ $page := . }}
-          {{ range $key , $value := .Site.Sections }}
-          {{ if ne $key "" }}
-          {{ $first := (index $value 0).Page }}
+  <div class="highlightable">
+    <ul class="topics">
+      {{ $page := . }}
+      {{ range $key , $value := .Site.Sections }}
+      {{ if ne $key "" }}
+      {{ $first := (index $value 0).Page }}
 
-          <li class="dd-item {{ if eq $page.RelPermalink $first.RelPermalink }}active{{ end }} {{if in $page.RelPermalink $first.RelPermalink }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
-            <a href="{{ $first.RelPermalink }}">
-              <span>
-                {{ if isset $first.Params "icon" }}
-                  {{ printf $first.Params.icon | safeHTML }}
-                {{ end }}
-                 {{ $first.Title }}
-               </span>
-            </a>
-            {{ if gt .Pages.Len 1}}
-            <ul>
-              {{ range $k, $p := .Pages }}
-              {{ if gt $k 0 }}
-                <li class="dd-item {{ if eq $page.RelPermalink $p.RelPermalink }}active{{ end }}" data-nav-id="{{ $p.RelPermalink }}">
-                  <a href="{{ $p.RelPermalink }}">
-                    <span>{{ $p.Title }}</span>
-                  </a>
-                </li>
-              {{ end }}
-              {{ end }}
-            </ul>
+      <li class="dd-item {{ if eq $page.RelPermalink $first.RelPermalink }}active{{ end }} {{if in $page.RelPermalink $first.RelPermalink }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
+        <a href="{{ $first.RelPermalink }}">
+          <span>
+            {{ if isset $first.Params "icon" }}
+              {{ printf $first.Params.icon | safeHTML }}
             {{ end }}
-          </li>
+             {{ $first.Title }}
+           </span>
+        </a>
+        {{ if gt .Pages.Len 1}}
+        <ul>
+          {{ range $k, $p := .Pages }}
+          {{ if gt $k 0 }}
+            <li class="dd-item {{ if eq $page.RelPermalink $p.RelPermalink }}active{{ end }}" data-nav-id="{{ $p.RelPermalink }}">
+              <a href="{{ $p.RelPermalink }}">
+                <span>{{ $p.Title }}</span>
+              </a>
+            </li>
           {{ end }}
           {{ end }}
         </ul>
-        <hr>
-        <section id="footer">
-          <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
-        </section>
-      </div>
-    </div>
+        {{ end }}
+      </li>
+      {{ end }}
+      {{ end }}
+    </ul>
+    <hr>
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+    </section>
   </div>
 </nav>

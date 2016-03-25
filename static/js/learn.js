@@ -27,6 +27,7 @@ function getScrollBarWidth() {
 
 function setMenuHeight() {
     $('#sidebar .highlightable').height($('#sidebar').innerHeight() - $('#header-wrapper').height() - 40);
+    $('#sidebar .highlightable').perfectScrollbar('update');
 }
 
 function fallbackMessage(action) {
@@ -83,7 +84,7 @@ $(window).resize(function() {
 
 jQuery(document).ready(function() {
     var sidebarStatus = searchStatus = 'open';
-
+    $('#sidebar .highlightable').perfectScrollbar();
     // set the menu height
     setMenuHeight();
 
@@ -93,8 +94,6 @@ jQuery(document).ready(function() {
 
         return false;
     });
-
-    jQuery('.scrollbar-inner').scrollbar();
 
     jQuery('[data-sidebar-toggle]').on('click', function() {
         jQuery(document.body).toggleClass('sidebar-hidden');
