@@ -13,11 +13,8 @@
         <div id="overlay"></div>
 
         <div class="padding highlightable">
-            <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-              <i class="fa fa-2x fa-bars"></i>
-            </a>
-            <div id="top-bar">
 
+            <div id="top-bar">
               {{ if and .IsPage .Site.Params.editURL }}
                 {{ $File := .File }}
                 {{ $Site := .Site }}
@@ -31,6 +28,11 @@
                 {{ end }}
               {{ end }}
               <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
                 {{ if and (not .Params.chapter) (.Params.toc) }}
                 <span id="toc-menu"><a href=""><i class="fa fa-ellipsis-v"></i></a></span>
                 {{ end }}
