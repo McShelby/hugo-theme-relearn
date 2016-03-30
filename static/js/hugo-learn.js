@@ -55,4 +55,31 @@ images.each(function(index){
   }
 });
 
+// Stick the top to the top of the screen when  scrolling
 $("#top-bar").stick_in_parent();
+
+
+jQuery(document).ready(function() {
+  // Add link button for every
+  var text, clip = new Clipboard('.anchor');
+  $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
+    var element = $(this);
+    var url = document.location.origin + document.location.pathname;
+    var link = url + "#"+element[0].id;
+    console.log(link);
+    return " <span class='anchor' data-clipboard-text='"+link+"'>" +
+      "<i class='fa fa-link fa-lg'></i>" +
+      "</span>"
+    ;
+  });
+
+  $(".anchor").on('mouseleave', function(e) {
+    $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+  });
+
+  clip.on('success', function(e) {
+      e.clearSelection();
+      $(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-s');
+  });
+
+});
