@@ -6,9 +6,27 @@
     {{ partial "favicon.html" . }}
 {{ .Scratch.Add "title" "" }}{{ if isset .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
     <title>{{ .Scratch.Get "title" }}</title>
-    {{ partial "head_includes.html" . }}
+    {{ partial "style.html" . }}
+    <link href="/css/nucleus.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/hybrid.css" rel="stylesheet">
+    <link href="/css/featherlight.min.css" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/hugo-theme.css" rel="stylesheet">
     <style type="text/css">
-    :root #header + #content > #left > #rlblock_left {display:none !important;}
+    :root #header + #content > #left > #rlblock_left {
+      display:none !important;
+    }
+
+    p,li,ul {
+      text-align: center
+    }
+
+    ul
+    {
+        list-style-type: none;
+    }
 </style>
   </head>
   <body>
@@ -19,10 +37,15 @@
 
           <div class="padding highlightable">
             <h1>Customize your own home page</h1>
-            <p style="text-align: center">
-              The site is working but you should overwrite this index.html with your own.
-              If you want to redirect You may want to redirect to the first document page.
+            <p>
+              The site is working, change the URL in your browser to get to any custom page. But, don't forget to <a href="https://gohugo.io/themes/customizing/">overwrite this index.html</a> with your own. You typically have 3 choices :
             </p>
+            <ul>
+              <li><b>1. </b> Create an overview page for your project</li>
+              <li><b>2. </b> Create an empty html page with this code in the head tag to redirect to one of your documentation page : <code>&lt;meta http-equiv="refresh" content="0; url=http://example.com/"/&gt;</code> </li>
+              <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
+            </ul>
+            <p><i class="fa fa-heart fa-4x"></i></p>
           </div>
         </section>
   </body>

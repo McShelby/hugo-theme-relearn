@@ -231,7 +231,7 @@ jQuery(document).ready(function() {
     $('#top-bar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn)').addClass('highlight');
 
-    $('#toc-menu a').hover(function() {
+    $('#toc-menu').hover(function() {
         $('.progress').stop(true, false, true).fadeToggle(100);
     });
 

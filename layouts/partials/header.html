@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    {{ .Hugo.Generator }}
     {{ partial "meta.html" . }}
     {{ partial "favicon.html" . }}
     {{ .Scratch.Add "title" "" }}{{ if isset .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
     <title>{{ .Scratch.Get "title" }}</title>
-    {{ partial "head_includes.html" . }}
+    <link href="/css/nucleus.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/hybrid.css" rel="stylesheet">
+    <link href="/css/featherlight.min.css" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/hugo-theme.css" rel="stylesheet">
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    {{ partial "style.html" . }}
   </head>
   <body class="" data-url="/">
     {{ partial "menu.html" . }}
@@ -34,7 +46,7 @@
                       </a>
                   </span>
                 {{ if and (not .Params.chapter) (.Params.toc) }}
-                <span id="toc-menu"><a href=""><i class="fa fa-ellipsis-v"></i></a></span>
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 {{ end }}
                 {{ $type := .Type }}
                 {{ $relLink := .RelPermalink }}
