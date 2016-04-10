@@ -2,7 +2,7 @@
 
 This repository contains a theme for [Hugo](https://gohugo.io/), based on great [Grav Learn Theme](http://learn.getgrav.org/).
 
-Visit the [theme documentation](https://matcornic.github.io/hugo-learn-doc) to see what is going on. It is actually built with this theme.
+Visit the [theme documentation](https://matcornic.github.io/hugo-learn-doc/basics/what-is-this-hugo-theme/) to see what is going on. It is actually built with this theme.
 
 # Main functionalities
 
