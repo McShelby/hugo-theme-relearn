@@ -66,7 +66,6 @@ jQuery(document).ready(function() {
     var element = $(this);
     var url = document.location.origin + document.location.pathname;
     var link = url + "#"+element[0].id;
-    console.log(link);
     return " <span class='anchor' data-clipboard-text='"+link+"'>" +
       "<i class='fa fa-link fa-lg'></i>" +
       "</span>"
