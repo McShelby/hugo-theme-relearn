@@ -27,7 +27,9 @@
               {{ printf $first.Params.icon | safeHTML }}
             {{ end }}
              {{ $first.Title }}
+             {{ if .Site.Params.showVisitedLinks}}
               <i class="fa fa-check read-icon"></i>
+             {{ end }}
            </span>
         </a>
         {{ if gt .Pages.Len 1}}
@@ -36,7 +38,7 @@
           {{ if gt $k 0 }}
             <li class="dd-item {{ if eq $page.RelPermalink $p.RelPermalink }}active{{ end }}" data-nav-id="{{ $p.RelPermalink }}">
               <a href="{{ $p.RelPermalink }}">
-                <span>{{ $p.Title }}  <i class="fa fa-check read-icon"></i></span>
+                <span>{{ $p.Title }}    {{ if .Site.Params.showVisitedLinks}} <i class="fa fa-check read-icon">  {{ end }} </i></span>
               </a>
             </li>
           {{ end }}
@@ -48,7 +50,9 @@
       {{ end }}
     </ul>
     <hr>
+     {{ if .Site.Params.showVisitedLinks}} 
      <a class="padding" href="#" data-clear-history-toggle=""><i class="fa fa-fw fa-history"></i> Clear History</a>
+     {{ end }} 
     <section id="footer">
       <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
     </section>
