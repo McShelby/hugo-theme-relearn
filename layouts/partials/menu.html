@@ -27,7 +27,7 @@
               {{ printf $first.Params.icon | safeHTML }}
             {{ end }}
              {{ $first.Title }}
-             {{ if .Site.Params.showVisitedLinks}}
+            {{ if $page.Site.Params.showVisitedLinks}} 
               <i class="fa fa-check read-icon"></i>
              {{ end }}
            </span>
@@ -38,7 +38,7 @@
           {{ if gt $k 0 }}
             <li class="dd-item {{ if eq $page.RelPermalink $p.RelPermalink }}active{{ end }}" data-nav-id="{{ $p.RelPermalink }}">
               <a href="{{ $p.RelPermalink }}">
-                <span>{{ $p.Title }}    {{ if .Site.Params.showVisitedLinks}} <i class="fa fa-check read-icon">  {{ end }} </i></span>
+                <span>{{ $p.Title }}    {{ if $page.Site.Params.showVisitedLinks}}  <i class="fa fa-check read-icon">  {{ end }} </i></span>
               </a>
             </li>
           {{ end }}
