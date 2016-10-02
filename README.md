@@ -25,7 +25,7 @@ $ git clone https://github.com/matcornic/hugo-theme-learn.git
 
 # TODO
 
-- Handling more than 2 levels in documentation.
-- Search in site
-- Handling videos
-- Add optional button to create doc issue (like github)
+- [Handling more than 2 levels in documentation](https://github.com/matcornic/hugo-theme-learn/issues/11)
+- [Search in site](https://github.com/matcornic/hugo-theme-learn/issues/12)
+- [Handling videos](https://github.com/matcornic/hugo-theme-learn/issues/13)
+- [Add optional button to create doc issue (like github)](https://github.com/matcornic/hugo-theme-learn/issues/14)
