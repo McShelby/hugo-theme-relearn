@@ -11,7 +11,7 @@ $ cd themes
 $ git clone https://github.com/matcornic/hugo-theme-learn.git
 ```
 
-![Overview](images/tn.png)
+![Overview](https://github.com/matcornic/hugo-theme-learn/raw/master/images/tn.png)
 
 # Main functionalities
 
