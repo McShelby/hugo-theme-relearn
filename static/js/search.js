@@ -69,7 +69,7 @@ $( document ).ready(function() {
                 indexOfIndex = uri.length;
             }
             var href = uri.substring(uri.indexOf("/"), indexOfIndex);
-            suggestion.href = href;
+            suggestion.href = baseurl + href;
 
 
             var query = $("#search-by").val();
