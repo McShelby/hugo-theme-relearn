@@ -4,7 +4,7 @@ This repository contains a theme for [Hugo](https://gohugo.io/), based on great 
 
 Visit the [theme documentation](https://matcornic.github.io/hugo-learn-doc/basics/what-is-this-hugo-theme/) to see what is going on. It is actually built with this theme.
 
-### Installation
+## Installation
 Navigate to your themes folder in your Hugo site and use the following commands:
 ```
 $ cd themes
@@ -12,6 +12,10 @@ $ git clone https://github.com/matcornic/hugo-theme-learn.git
 ```
 
 ![Overview](https://github.com/matcornic/hugo-theme-learn/raw/master/images/tn.png)
+
+## Usage
+
+- [Visit the documentation](https://matcornic.github.io/hugo-learn-doc/basics/what-is-this-hugo-theme/)
 
 # Main functionalities
 
