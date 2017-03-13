@@ -1,17 +1,27 @@
 
-      {{ if eq .Kind "section" }}
+      {{ $isChapter := or (eq .Kind "section") (.Params.chapter)}}
+      {{ if $isChapter }}
         </div> <!-- end chapter-->
       {{ end }}
       </div>
     </div>
 
     {{ $.Scratch.Set "_sectionpages" (slice) }}
-    {{ range $sname, $spages := .Site.Sections }}
-      {{ $.Scratch.Add "_sectionpages" ($.Site.GetPage "section" $sname) }}
+    {{ if $.Site.Params.menu }}
+      {{ range $sname := $.Site.Params.menu }}
+        {{ $.Scratch.Add "_sectionpages" ($.Site.GetPage "section" $sname) }}
+      {{ end }}
+    {{ else }}
+      {{ range $sname, $spages := .Site.Sections }}
+        {{ $.Scratch.Add "_sectionpages" ($.Site.GetPage "section" $sname) }}
+      {{ end }}
+      {{ $.Scratch.Set "_sectionpages" (sort ($.Scratch.Get "_sectionpages") "Weight") }}
     {{ end }}
     {{ $.Scratch.Set "_allpages" (slice) }}
-    {{ range sort ($.Scratch.Get "_sectionpages") "Weight" }}
-      {{ $.Scratch.Add "_allpages" . }}
+    {{ range $.Scratch.Get "_sectionpages" }}
+      {{ if .Content }}
+        {{ $.Scratch.Add "_allpages" . }}
+      {{ end }}
       {{ range index $.Site.Sections .Section }}
         {{ $.Scratch.Add "_allpages" .Page }}
       {{ end }}
