@@ -6,6 +6,7 @@
       </div>
     </div>
 
+    {{ if $.Site.Params.autoNav }}
     {{ $.Scratch.Set "_sectionpages" (slice) }}
     {{ if $.Site.Params.menu }}
       {{ range $sname := $.Site.Params.menu }}
@@ -26,11 +27,14 @@
         {{ $.Scratch.Add "_allpages" .Page }}
       {{ end }}
     {{ end }}
-    {{ $allpages := $.Scratch.Get "_allpages" }}
+    {{ end }}
 
     <div id="navigation">
+        {{ if $.Site.Params.autoNav }}
+        {{ $allpages := $.Scratch.Get "_allpages" }}
         {{ range $index, $element := $allpages }}
-          {{if eq $element.UniqueID $.UniqueID }}
+          {{ $uniqueid := ($.Scratch.Get "uniqueId" | default $.UniqueID ) }}
+          {{if eq $element.UniqueID $uniqueid }}
             {{ if not (isset $.Params "prev") }}
               {{ with index $allpages (sub $index 1) }}
                 <a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ .URL }}"> <i class="fa fa-chevron-left"></i></a>
@@ -42,6 +46,7 @@
               {{ end }}
             {{ end }}
           {{ end }}
+        {{ end }}
         {{ end }}
         {{ with .Params.prev }}<a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ . }}"> <i class="fa fa-chevron-left"></i></a>{{ end }}
         {{ with .Params.next }}<a class="nav nav-next" href="{{ $.Site.BaseURL }}{{ . }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>{{ end }}

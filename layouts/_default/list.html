@@ -4,6 +4,7 @@
 {{ else }}
 {{ with (index (index .Site.Sections .Section) 0)  }}
 {{ .Page.Content }}
+{{ $.Scratch.Set "uniqueId" .Page.UniqueID }}
 {{ end }}
 {{ end }}
 {{ partial "footer.html" . }}
