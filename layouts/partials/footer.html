@@ -5,10 +5,46 @@
       </div>
     </div>
 
+    {{ with .Site.Params.menu }}
+      {{ range $index, $element := . }}
+        {{ with index $.Site.Params.menu (sub $index 1)}}
+          {{ $prev := index (last 1 (index $.Site.Sections .)) 0 }}
+          {{ $.Scratch.SetInMap $element "prev" $prev }}
+        {{ end }}
+        {{ with index $.Site.Params.menu (add $index 1)}}
+          {{ $next := index (first 1 (index $.Site.Sections .)) 0 }}
+          {{ $.Scratch.SetInMap $element "next" $next }}
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{ range $key, $section := $.Site.Sections }}
+        {{ with $prevSec := $.Scratch.Get "prevIter"}}
+          {{ with index $.Site.Sections . }}
+            {{ $.Scratch.SetInMap $key "prev" (index (last 1 .) 0) }}
+            {{ $.Scratch.SetInMap $prevSec "next" (index (first 1 $section) 0) }}
+          {{ end }}
+        {{ end }}
+        {{ $.Scratch.Set "prevIter" $key }}
+      {{ end }}
+    {{ end }}
     <div id="navigation">
-        {{ $Site := .Site }}
-        {{ with .Params.prev }}<a class="nav nav-prev" href="{{ $Site.BaseURL }}{{ . }}"> <i class="fa fa-chevron-left"></i></a>{{ end }}
-        {{ with .Params.next }}<a class="nav nav-next" href="{{ $Site.BaseURL }}{{ . }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>{{ end }}
+        {{ $secpages := sort (where .Site.RegularPages "Section" .Section) "Weight" }}
+        {{ range $index, $element := $secpages }}
+          {{if eq $element.UniqueID $.UniqueID }}
+            {{ if not (isset $.Params "prev") }}
+              {{ with index $secpages (sub $index 1) | default ($.Scratch.Get $.Section).prev.Page}}
+                <a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ .URL }}"> <i class="fa fa-chevron-left"></i></a>
+              {{ end }}
+            {{ end }}
+            {{ if not (isset $.Params "next") }}
+              {{ with index $secpages (add $index 1) | default ($.Scratch.Get $.Section).next.Page}}
+                <a class="nav nav-next" href="{{ $.Site.BaseURL }}{{ .URL }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ with .Params.prev }}<a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ . }}"> <i class="fa fa-chevron-left"></i></a>{{ end }}
+        {{ with .Params.next }}<a class="nav nav-next" href="{{ $.Site.BaseURL }}{{ . }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>{{ end }}
     </div>
 
     </section>
