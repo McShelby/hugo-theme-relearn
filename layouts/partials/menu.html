@@ -12,27 +12,34 @@
   <div class="highlightable">
     <ul class="topics">
       {{ $page := . }}
-      {{ $.Scratch.Set "_pages" (slice) }}
-      {{ range $key, $value := .Site.Sections }}
-        {{ $.Scratch.Add "_pages" ($.Site.GetPage "section" $key) }}
-      {{ end }}
-      {{ $.Scratch.Set "menuItems" (slice)}}
-      {{ range $key, $value := sort ($.Scratch.Get "_pages") "Weight" }}
-        {{ $.Scratch.Add "menuItems" $value.Section }}
+      {{ if $.Site.Params.menu }}
+        {{ $.Scratch.Set "menuItems" $.Site.Params.menu }}
+      {{ else }}
+        {{ $.Scratch.Set "_pages" (slice) }}
+        {{ range $key, $value := .Site.Sections }}
+          {{ $.Scratch.Add "_pages" ($.Site.GetPage "section" $key) }}
+        {{ end }}
+        {{ $.Scratch.Set "menuItems" (slice)}}
+        {{ range $key, $value := sort ($.Scratch.Get "_pages") "Weight" }}
+          {{ $.Scratch.Add "menuItems" $value.Section }}
+        {{ end }}
       {{ end }}
       {{ $menuItems := $.Scratch.Get "menuItems" }}
       {{ range $i, $key := $menuItems }}
       {{ if ne $key "" }}
 
       {{ $value := (index $page.Site.Sections $key) }}
+      {{ $.Scratch.Set "_value" $value }}
       {{ with $index := $.Site.GetPage "section" $key }}
-        {{ if .Title }}
+        {{ if .Content }}
           {{ $.Scratch.Set "first" $index }}
         {{ else }}
-          {{ $.Scratch.Set (index $value 0).Page }}
+          {{ $.Scratch.Set "first" (index $value 0).Page }}
+          {{ $.Scratch.Set "_value" (after 1 $value) }}
         {{ end }}
       {{ end }}
       {{ $first := $.Scratch.Get "first" }}
+      {{ $value := $.Scratch.Get "_value" }}
 
       <li class="dd-item {{ if eq $page.RelPermalink $first.RelPermalink }}active{{ end }} {{if in $page.RelPermalink $first.RelPermalink }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
         <a href="{{ $first.RelPermalink }}">
