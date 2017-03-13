@@ -47,7 +47,7 @@
                         <i class="fa fa-bars"></i>
                       </a>
                   </span>
-                {{ if and (not .Params.chapter) (.Params.toc) }}
+                {{ if and (ne .Kind "section") (.Params.toc) }}
                 <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 {{ end }}
                 {{ $type := .Type }}
@@ -67,10 +67,10 @@
               {{ end }}
 
             </div>
-            {{ if .Params.chapter }}
+            {{ if eq .Kind "section" }}
               <div id="chapter">
             {{ end }}
-    	        <div id="body-inner">
-                {{ if not .Params.chapter }}
+              <div id="body-inner">
+                {{ if ne .Kind "section" }}
                 <h1>{{.Title}}</h1>
                 {{ end }}
