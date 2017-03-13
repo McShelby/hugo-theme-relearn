@@ -1,5 +1,9 @@
-{{ if .Content }}
 {{ partial "header.html" . }}
+{{ if .Content }}
 {{ .Content }}
-{{ partial "footer.html" . }}
+{{ else }}
+{{ with (index (index .Site.Sections .Section) 0)  }}
+{{ .Page.Content }}
 {{ end }}
+{{ end }}
+{{ partial "footer.html" . }}
