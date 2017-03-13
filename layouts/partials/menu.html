@@ -26,11 +26,7 @@
 
       {{ $value := (index $page.Site.Sections $key) }}
       {{ with $index := $.Site.GetPage "section" $key }}
-        {{ if .Title }}
-          {{ $.Scratch.Set "first" $index }}
-        {{ else }}
-          {{ $.Scratch.Set (index $value 0).Page }}
-        {{ end }}
+        {{ $.Scratch.Set "first" $index }}
       {{ end }}
       {{ $first := $.Scratch.Get "first" }}
 
