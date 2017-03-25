@@ -22,6 +22,7 @@
     {{ partial "style.html" . }}
   </head>
   <body class="" data-url="{{ .RelPermalink }}">
+    {{ $isChapter := or (eq .Kind "section") (.Params.chapter)}}
     {{ partial "menu.html" . }}
         <section id="body">
         <div id="overlay"></div>
@@ -47,7 +48,7 @@
                         <i class="fa fa-bars"></i>
                       </a>
                   </span>
-                {{ if and (not .Params.chapter) (.Params.toc) }}
+                {{ if and (not $isChapter) (.Params.toc) }}
                 <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 {{ end }}
                 {{ $type := .Type }}
@@ -67,10 +68,10 @@
               {{ end }}
 
             </div>
-            {{ if .Params.chapter }}
+            {{ if $isChapter }}
               <div id="chapter">
             {{ end }}
-    	        <div id="body-inner">
-                {{ if not .Params.chapter }}
+              <div id="body-inner">
+                {{ if not $isChapter }}
                 <h1>{{.Title}}</h1>
                 {{ end }}
