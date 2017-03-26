@@ -37,12 +37,12 @@
           {{if eq $element.UniqueID $uniqueid }}
             {{ if not (isset $.Params "prev") }}
               {{ with index $allpages (sub $index 1) }}
-                <a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ .URL }}"> <i class="fa fa-chevron-left"></i></a>
+                <a class="nav nav-prev" href="{{ .URL }}"> <i class="fa fa-chevron-left"></i></a>
               {{ end }}
             {{ end }}
             {{ if not (isset $.Params "next") }}
               {{ with index $allpages (add $index 1) }}
-                <a class="nav nav-next" href="{{ $.Site.BaseURL }}{{ .URL }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+                <a class="nav nav-next" href="{{ .URL }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
               {{ end }}
             {{ end }}
           {{ end }}
