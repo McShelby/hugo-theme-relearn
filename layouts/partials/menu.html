@@ -35,7 +35,11 @@
           {{ $.Scratch.Set "first" $index }}
         {{ else }}
           {{ $.Scratch.Set "first" (index $value 0).Page }}
-          {{ $.Scratch.Set "_value" (after 1 $value) }}
+          {{ if gt $value.Len 1 }}
+            {{ $.Scratch.Set "_value" (after 1 $value) }}
+          {{ else }}
+            {{ $.Scratch.Set "_value" nil }}
+          {{ end }}
         {{ end }}
       {{ end }}
       {{ $first := $.Scratch.Get "first" }}
