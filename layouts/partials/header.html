@@ -51,17 +51,19 @@
                 {{ if and (not $isChapter) (.Params.toc) }}
                 <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 {{ end }}
-                {{ $section := index .Site.Sections .Section }}
-                {{ $sectionPage := $.Site.GetPage "section" $.Section }}
-                {{ if $sectionPage.Content }}
-                  {{ $first := $.Site.GetPage "section" $.Section }}
-                  {{ if ne $first.UniqueID $.UniqueID }}
-              <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
-                  {{ end }}
-                {{ else if gt $section.Len 0 }}
-                  {{ $first := (index $section 0).Page }}
-                  {{ if ne $first.UniqueID $.UniqueID }}
-              <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
+                {{ if ne $.Section "" }}
+                  {{ $section := index $.Site.Sections $.Section }}
+                  {{ $sectionPage := $.Site.GetPage "section" $.Section }}
+                  {{ if $sectionPage.Content }}
+                    {{ $first := $.Site.GetPage "section" $.Section }}
+                    {{ if ne $first.UniqueID $.UniqueID }}
+                <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
+                    {{ end }}
+                  {{ else if gt $section.Len 0 }}
+                    {{ $first := (index $section 0).Page }}
+                    {{ if ne $first.UniqueID $.UniqueID }}
+                <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
+                    {{ end }}
                   {{ end }}
                 {{ end }}
                 {{ with .Title }}<span itemprop="title"> {{ . }}</span>{{ end }}
