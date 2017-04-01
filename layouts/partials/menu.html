@@ -11,55 +11,64 @@
 
   <div class="highlightable">
     <ul class="topics">
-      {{ $page := . }}
-      {{ if .Site.Params.menu }}
-        {{ $.Scratch.Set "menuItems" (slice) }}
-        {{ range $i, $key := .Site.Params.menu }}
-          {{ if isset $page.Site.Sections $key }}
-            {{ $.Scratch.Add "menuItems" $key }}
-          {{ else }}
-            <li class="dd-item"><div class="notices warning"><p>
-            {{ printf "Unknown section '%s' found in site menu" $key }}
-            </p></div></li>
+      {{ if $.Site.Params.menu }}
+        {{ $.Scratch.Set "menuItems" $.Site.Params.menu }}
+      {{ else }}
+        {{ $.Scratch.Set "_pages" (slice) }}
+        {{ range $key, $value := .Site.Sections }}
+          {{ $sectionPage := $.Site.GetPage "section" $key }}
+          {{ if $sectionPage.Content }}
+            {{ $.Scratch.Add "_pages" $sectionPage }}
+          {{ else if gt $value.Len 0 }}
+            {{ $.Scratch.Add "_pages" (index $value 0).Page }}
           {{ end }}
         {{ end }}
-      {{ else }}
-        {{ $.Scratch.Set "menuItems" .Site.Sections }}
+        {{ $.Scratch.Set "menuItems" (slice)}}
+        {{ range $key, $value := sort ($.Scratch.Get "_pages") "Weight" }}
+          {{ $.Scratch.Add "menuItems" $value.Section }}
+        {{ end }}
       {{ end }}
       {{ $menuItems := $.Scratch.Get "menuItems" }}
       {{ range $i, $key := $menuItems }}
       {{ if ne $key "" }}
 
-      {{ if not $.Site.Params.menu }}
-        {{ $.Scratch.Set "currentItem" (index $page.Site.Sections $i) }}
-      {{ else }}
-        {{ $.Scratch.Set "currentItem" (index $page.Site.Sections $key) }}
+      {{ $value := (index $.Site.Sections $key) }}
+      {{ $.Scratch.Set "_value" $value }}
+      {{ with $index := $.Site.GetPage "section" $key }}
+        {{ if .Content }}
+          {{ $.Scratch.Set "first" $index }}
+        {{ else if gt $value.Len 0}}
+          {{ $.Scratch.Set "first" (index $value 0).Page }}
+          {{ if gt $value.Len 1 }}
+            {{ $.Scratch.Set "_value" (after 1 $value) }}
+          {{ else }}
+            {{ $.Scratch.Set "_value" nil }}
+          {{ end }}
+        {{ end }}
       {{ end }}
-      {{ $value := $.Scratch.Get "currentItem" }}
-      {{ $first := (index $value 0).Page }}
+      {{ $first := $.Scratch.Get "first" }}
+      {{ $value := $.Scratch.Get "_value" }}
 
-      <li class="dd-item {{ if eq $page.RelPermalink $first.RelPermalink }}active{{ end }} {{if in $page.RelPermalink $first.RelPermalink }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
+      <li class="dd-item {{ if eq $.UniqueID $first.UniqueID }}active{{ end }} {{if eq $.Section $first.Section }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
         <a href="{{ $first.RelPermalink }}">
           <span>
             {{ if isset $first.Params "icon" }}
               {{ printf $first.Params.icon | safeHTML }}
             {{ end }}
              {{ $first.Title }}
-            {{ if $page.Site.Params.showVisitedLinks}}
+            {{ if $.Site.Params.showVisitedLinks}}
               <i class="fa fa-check read-icon"></i>
              {{ end }}
            </span>
         </a>
-        {{ if gt $value.Len 1}}
+        {{ if gt $value.Len 0}}
         <ul>
           {{ range $k, $p := $value }}
-          {{ if gt $k 0 }}
-            <li class="dd-item {{ if eq $page.RelPermalink $p.Page.RelPermalink }}active{{ end }}" data-nav-id="{{ $p.Page.RelPermalink }}">
+            <li class="dd-item {{ if eq $.UniqueID $p.Page.UniqueID }}active{{ end }}" data-nav-id="{{ $p.Page.RelPermalink }}">
               <a href="{{ $p.Page.RelPermalink }}">
-                <span>{{ $p.Page.Title }}    {{ if $page.Site.Params.showVisitedLinks}}  <i class="fa fa-check read-icon">  {{ end }} </i></span>
+                <span>{{ $p.Page.Title }}    {{ if $.Site.Params.showVisitedLinks}}  <i class="fa fa-check read-icon">  {{ end }} </i></span>
               </a>
             </li>
-          {{ end }}
           {{ end }}
         </ul>
         {{ end }}

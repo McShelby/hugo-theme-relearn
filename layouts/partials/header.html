@@ -22,6 +22,7 @@
     {{ partial "style.html" . }}
   </head>
   <body class="" data-url="{{ .RelPermalink }}">
+    {{ $isChapter := .Params.chapter | default (eq .Kind "section")}}
     {{ partial "menu.html" . }}
         <section id="body">
         <div id="overlay"></div>
@@ -47,15 +48,20 @@
                         <i class="fa fa-bars"></i>
                       </a>
                   </span>
-                {{ if and (not .Params.chapter) (.Params.toc) }}
+                {{ if and (not $isChapter) (.Params.toc) }}
                 <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 {{ end }}
-                {{ $type := .Type }}
-                {{ $relLink := .RelPermalink }}
-                {{ range $name , $value := .Site.Sections }}
-                  {{ if eq $name $type }}
-                    {{ $first := (index $value 0).Page }}
-                    {{ if ne $first.RelPermalink $relLink }}
+                {{ if ne $.Section "" }}
+                  {{ $section := index $.Site.Sections $.Section }}
+                  {{ $sectionPage := $.Site.GetPage "section" $.Section }}
+                  {{ if $sectionPage.Content }}
+                    {{ $first := $.Site.GetPage "section" $.Section }}
+                    {{ if ne $first.UniqueID $.UniqueID }}
+                <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
+                    {{ end }}
+                  {{ else if gt $section.Len 0 }}
+                    {{ $first := (index $section 0).Page }}
+                    {{ if ne $first.UniqueID $.UniqueID }}
                 <a href="{{ $first.RelPermalink }}" itemprop="url"><span itemprop="title">{{ $first.Title }}</span></a> <i class="fa fa-angle-right"></i>
                     {{ end }}
                   {{ end }}
@@ -67,10 +73,10 @@
               {{ end }}
 
             </div>
-            {{ if .Params.chapter }}
+            {{ if $isChapter }}
               <div id="chapter">
             {{ end }}
-    	        <div id="body-inner">
-                {{ if not .Params.chapter }}
+              <div id="body-inner">
+                {{ if not $isChapter }}
                 <h1>{{.Title}}</h1>
                 {{ end }}
