@@ -11,6 +11,8 @@ $ cd themes
 $ git clone https://github.com/matcornic/hugo-theme-learn.git
 ```
 
+Check that your Hugo version is minimum `0.19` with `hugo version`.
+
 ![Overview](https://github.com/matcornic/hugo-theme-learn/raw/master/images/tn.png)
 
 ## Usage
