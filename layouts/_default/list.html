@@ -1,10 +1,13 @@
-{{ partial "header.html" . }}
 {{ if .Content }}
+{{ partial "header.html" . }}
 {{ .Content }}
-{{ else }}
-{{ with (index (index .Site.Sections .Section) 0)  }}
-{{ .Page.Content }}
-{{ $.Scratch.Set "uniqueId" .Page.UniqueID }}
-{{ end }}
-{{ end }}
 {{ partial "footer.html" . }}
+{{ else }}
+{{ with (index (index .Site.Sections .Section) 0) }}
+{{ with .Page }}
+{{ partial "header.html" . }}
+{{ .Content }}
+{{ partial "footer.html" . }}
+{{ end }}
+{{ end }}
+{{ end }}

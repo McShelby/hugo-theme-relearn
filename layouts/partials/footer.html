@@ -1,5 +1,5 @@
 
-      {{ $isChapter := or (eq .Kind "section") (.Params.chapter)}}
+      {{ $isChapter := .Params.chapter | default (eq .Kind "section")}}
       {{ if $isChapter }}
         </div> <!-- end chapter-->
       {{ end }}
@@ -33,23 +33,22 @@
         {{ if $.Site.Params.autoNav }}
         {{ $allpages := $.Scratch.Get "_allpages" }}
         {{ range $index, $element := $allpages }}
-          {{ $uniqueid := ($.Scratch.Get "uniqueId" | default $.UniqueID ) }}
-          {{if eq $element.UniqueID $uniqueid }}
+          {{if eq $element.UniqueID $.UniqueID }}
             {{ if not (isset $.Params "prev") }}
               {{ with index $allpages (sub $index 1) }}
-                <a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ .URL }}"> <i class="fa fa-chevron-left"></i></a>
+                <a class="nav nav-prev" href="{{ .URL }}"> <i class="fa fa-chevron-left"></i></a>
               {{ end }}
             {{ end }}
             {{ if not (isset $.Params "next") }}
               {{ with index $allpages (add $index 1) }}
-                <a class="nav nav-next" href="{{ $.Site.BaseURL }}{{ .URL }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+                <a class="nav nav-next" href="{{ .URL }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
               {{ end }}
             {{ end }}
           {{ end }}
         {{ end }}
         {{ end }}
-        {{ with .Params.prev }}<a class="nav nav-prev" href="{{ $.Site.BaseURL }}{{ . }}"> <i class="fa fa-chevron-left"></i></a>{{ end }}
-        {{ with .Params.next }}<a class="nav nav-next" href="{{ $.Site.BaseURL }}{{ . }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>{{ end }}
+        {{ with .Params.prev }}<a class="nav nav-prev" href="{{ . | relURL }}"> <i class="fa fa-chevron-left"></i></a>{{ end }}
+        {{ with .Params.next }}<a class="nav nav-next" href="{{ . | relURL }}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>{{ end }}
     </div>
 
     </section>

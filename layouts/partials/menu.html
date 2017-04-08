@@ -11,13 +11,17 @@
 
   <div class="highlightable">
     <ul class="topics">
-      {{ $page := . }}
       {{ if $.Site.Params.menu }}
         {{ $.Scratch.Set "menuItems" $.Site.Params.menu }}
       {{ else }}
         {{ $.Scratch.Set "_pages" (slice) }}
         {{ range $key, $value := .Site.Sections }}
-          {{ $.Scratch.Add "_pages" ($.Site.GetPage "section" $key) }}
+          {{ $sectionPage := $.Site.GetPage "section" $key }}
+          {{ if $sectionPage.Content }}
+            {{ $.Scratch.Add "_pages" $sectionPage }}
+          {{ else if gt $value.Len 0 }}
+            {{ $.Scratch.Add "_pages" (index $value 0).Page }}
+          {{ end }}
         {{ end }}
         {{ $.Scratch.Set "menuItems" (slice)}}
         {{ range $key, $value := sort ($.Scratch.Get "_pages") "Weight" }}
@@ -28,27 +32,31 @@
       {{ range $i, $key := $menuItems }}
       {{ if ne $key "" }}
 
-      {{ $value := (index $page.Site.Sections $key) }}
+      {{ $value := (index $.Site.Sections $key) }}
       {{ $.Scratch.Set "_value" $value }}
       {{ with $index := $.Site.GetPage "section" $key }}
         {{ if .Content }}
           {{ $.Scratch.Set "first" $index }}
-        {{ else }}
+        {{ else if gt $value.Len 0}}
           {{ $.Scratch.Set "first" (index $value 0).Page }}
-          {{ $.Scratch.Set "_value" (after 1 $value) }}
+          {{ if gt $value.Len 1 }}
+            {{ $.Scratch.Set "_value" (after 1 $value) }}
+          {{ else }}
+            {{ $.Scratch.Set "_value" nil }}
+          {{ end }}
         {{ end }}
       {{ end }}
       {{ $first := $.Scratch.Get "first" }}
       {{ $value := $.Scratch.Get "_value" }}
 
-      <li class="dd-item {{ if eq $page.RelPermalink $first.RelPermalink }}active{{ end }} {{if in $page.RelPermalink $first.RelPermalink }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
+      <li class="dd-item {{ if eq $.UniqueID $first.UniqueID }}active{{ end }} {{if eq $.Section $first.Section }}parent{{ end }}" data-nav-id="{{ $first.RelPermalink }}">
         <a href="{{ $first.RelPermalink }}">
           <span>
             {{ if isset $first.Params "icon" }}
               {{ printf $first.Params.icon | safeHTML }}
             {{ end }}
              {{ $first.Title }}
-            {{ if $page.Site.Params.showVisitedLinks}}
+            {{ if $.Site.Params.showVisitedLinks}}
               <i class="fa fa-check read-icon"></i>
              {{ end }}
            </span>
@@ -56,9 +64,9 @@
         {{ if gt $value.Len 0}}
         <ul>
           {{ range $k, $p := $value }}
-            <li class="dd-item {{ if eq $page.RelPermalink $p.Page.RelPermalink }}active{{ end }}" data-nav-id="{{ $p.Page.RelPermalink }}">
+            <li class="dd-item {{ if eq $.UniqueID $p.Page.UniqueID }}active{{ end }}" data-nav-id="{{ $p.Page.RelPermalink }}">
               <a href="{{ $p.Page.RelPermalink }}">
-                <span>{{ $p.Page.Title }}    {{ if $page.Site.Params.showVisitedLinks}}  <i class="fa fa-check read-icon">  {{ end }} </i></span>
+                <span>{{ $p.Page.Title }}    {{ if $.Site.Params.showVisitedLinks}}  <i class="fa fa-check read-icon">  {{ end }} </i></span>
               </a>
             </li>
           {{ end }}
