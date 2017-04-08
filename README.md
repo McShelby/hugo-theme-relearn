@@ -33,3 +33,14 @@ $ git clone https://github.com/matcornic/hugo-theme-learn.git
 - [Handling more than 2 levels in documentation](https://github.com/matcornic/hugo-theme-learn/issues/11)
 - [Handling videos](https://github.com/matcornic/hugo-theme-learn/issues/13)
 - [Add optional button to create doc issue (like github)](https://github.com/matcornic/hugo-theme-learn/issues/14)
+
+# Troubleshooting
+
+Changes have been made for automatically creating previous and next arrows. These changes restructured the theme and you might have compatibility problems when updating to the latest version of the theme. Please read [PR#36](https://github.com/matcornic/hugo-theme-learn/pull/36) to update your documentation with latest guidelines.
+
+If you don't want to update your documentation, use the git tag `1.0.0` 
+
+```shell
+cd themes/hugo-theme-learn
+git checkout tags/1.0.0
+```
