@@ -29,6 +29,7 @@ Check that your Hugo version is minimum `0.19` with `hugo version`.
 - Automatic table of contents
 - Create buttons (typically used to provide a link to a demo)
 - Search using `lunr` index
+- Automatic next/prev buttons to navigate through pages
 
 # TODO
 
