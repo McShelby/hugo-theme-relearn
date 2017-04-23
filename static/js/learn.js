@@ -139,20 +139,7 @@ jQuery(document).ready(function() {
         $(".highlightable").unhighlight({ element: 'mark' }).highlight(value, { element: 'mark' });
 
         if (ajax && ajax.abort) ajax.abort();
-        ajax = jQuery.ajax({
-            url: input.data('search-input') + ':' + value
-        }).done(function(data) {
-            if (data && data.results && data.results.length) {
-                items.css('display', 'none');
-                $('ul.topics').addClass('searched');
-                data.results.forEach(function(navitem) {
-                    jQuery('[data-nav-id="' + navitem + '"]').css('display', 'block').addClass('search-match');
-                    jQuery('[data-nav-id="' + navitem + '"]').parents('li').css('display', 'block');
-                });
-            }
-            ;
-
-        });
+        
         jQuery('[data-search-clear]').on('click', function() {
             jQuery('[data-search-input]').val('').trigger('input');
             sessionStorage.removeItem('search-input');
