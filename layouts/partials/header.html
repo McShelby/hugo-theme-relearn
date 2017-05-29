@@ -27,9 +27,10 @@
         <section id="body">
         <div id="overlay"></div>
 
-        <div class="padding highlightable">
-
-            <div id="top-bar">
+        <div class="padding highlightable sticky-parent">
+            
+            <div class="sticky-spacer">
+              <div id="top-bar">
               {{ if and .IsPage .Site.Params.editURL }}
                 {{ $File := .File }}
                 {{ $Site := .Site }}
@@ -71,6 +72,7 @@
               {{ if .Params.toc }}
                   {{ partial "toc.html" . }}
               {{ end }}
+            </div>
 
             </div>
             {{ if $isChapter }}
