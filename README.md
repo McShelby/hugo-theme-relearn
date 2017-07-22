@@ -11,7 +11,11 @@ $ cd themes
 $ git clone https://github.com/matcornic/hugo-theme-learn.git
 ```
 
-Check that your Hugo version is minimum `0.19` with `hugo version`.
+Check that your Hugo version is between `0.19` and `0.21` with `hugo version`. 
+
+> From `0.22`, Hugo team introduced a long awaited feature: [nested sections](https://github.com/gohugoio/hugo/issues/465). As Hugo team deleted some functions on which this theme was based on, **this theme fails with current Hugo version**. A complete rewrite is needed and is [currently under construction](https://github.com/matcornic/hugo-theme-learn/issues/51). Be aware that this new version will possibly make breaking changes.
+
+> Until the v2 is not out yet, feel free to check [Docdock](https://github.com/vjeantet/hugo-theme-docdock), a great fork of hugo-learn-theme by [@vjeantet](https://github.com/vjeantet) that works and embraces latest features of Hugo!
 
 ![Overview](https://github.com/matcornic/hugo-theme-learn/raw/master/images/tn.png)
 
