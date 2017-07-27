@@ -1,7 +1,9 @@
 ---
-title: "Some Title"
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
 weight: 5
-toc: true
+draft: true
 ---
 
-Lorem Ipsum
+Lorem Ipsum.
+Notice `draft` is set to true.

@@ -1,11 +1,19 @@
 var lunrIndex, pagesIndex;
 
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
 // Initialize lunrjs using our generated index file
 function initLunr() {
+    if (!endsWith(baseurl,"/")){
+        baseurl = baseurl+'/'
+    };
+
     // First retrieve the index file
-    $.getJSON(baseurl + "/json/search.json")
+    $.getJSON(baseurl +"index.json")
         .done(function(index) {
-            pagesIndex = index;
+            pagesIndex =   index;
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
             lunrIndex = new lunr.Index
@@ -60,17 +68,12 @@ $( document ).ready(function() {
             return true;
         },
         set: function (value) {
-            location.href=value.href;
+            location.href=value.uri;
         },
         render: function (li, suggestion) {
             var uri = suggestion.uri.substring(1,suggestion.uri.length);
-            var indexOfIndex = uri.lastIndexOf("/index");
-            if (indexOfIndex == -1) {
-                indexOfIndex = uri.length;
-            }
-            var href = uri.substring(uri.indexOf("/"), indexOfIndex);
-            suggestion.href = baseurl + href;
 
+            suggestion.href = baseurl + uri;
 
             var query = $("#search-by").val();
             var numWords = 2;
