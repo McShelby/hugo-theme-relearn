@@ -9,21 +9,4 @@
 	{{end}}
 </footer>
 
-
-{{if not .Content }}
-	{{ $paginator := .Paginator }}
-
-	<div class="extra-pagination inner">
-	{{ partial "pagination.html" $paginator }}
-	</div>
-
-	{{ range $index, $page := $paginator.Pages }}
-	   {{ .Render "li" }}
-	{{ end }}
-
-	<div style="margin-bottom:2rem"></div>
-
-	{{ partial "pagination.html" $paginator }}
-{{end}}
-
 {{ partial "footer.html" . }}
