@@ -1,16 +1,15 @@
-- internationalisation -> DOING
-    - Messages: OK
-    - Se renseigner pour changer le site selon la locale : TODO
-    - Selon réponse précédente, peut-être ajouter un bouton pour changer de langue : TODO
-- dernier ménage de vieux truc inutiles -> TODO
 - sticky bar -> TODO
 - récriture doc -> TODO
     - créer une section Showcase
-
 - refaire la possibilité d'overrider le style/script/etc -> TODO
 - créer des thèmes de base -> TODO
 - ajouter Travis pour tester le thème quotidiennement avec les nouvelles versions de Hugo -> TODO
+- corriger slider menu qui ne fonctionne plus -> TODO
+- Update font awesome -> TODO
 
+- internationalisation -> OK
+    - Messages: OK
+    - Ajouter un bouton pour changer de langue : OK
 - netlify -> OK
 - home page -> OK
 - réintégrer la doc dans le même repo -> OK

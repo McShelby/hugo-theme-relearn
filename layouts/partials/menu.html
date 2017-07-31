@@ -25,10 +25,49 @@
         {{end}} 
     </ul>
     <hr/>
-    {{ if $showvisitedlinks}}
-        <a class="padding" href="#" data-clear-history-toggle=""><i class="fa fa-fw fa-history"></i> {{T "Clear-History"}}</a>
-    {{ end }}
-    
+
+    <section id="prefooter">
+      <ul>
+      {{ if .Site.IsMultiLingual }}
+        <li>
+          <a class="padding">
+            <i class="fa fa-fw fa-language"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          {{ $siteLanguages := .Site.Languages}}
+          {{ $pageLang := .Page.Lang}}
+          {{ range .Page.AllTranslations }}
+              {{ $translation := .}}
+              {{ range $siteLanguages }}
+                  {{ if eq $translation.Lang .Lang }}
+                    {{ $selected := false }}
+                    {{ if eq $pageLang .Lang}}
+                      <option id="{{ $translation.Language }}" value="{{ $translation.URL }}" selected>{{ .LanguageName }}</option>
+                    {{ else }}
+                      <option id="{{ $translation.Language }}" value="{{ $translation.URL }}">{{ .LanguageName }}</option>
+                    {{ end }}
+                  {{ end }}
+              {{ end }}
+          {{ end }}
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      {{end}} 
+      
+      {{ if $showvisitedlinks}}
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fa fa-fw fa-history"></i> {{T "Clear-History"}}</a></li>         
+      {{ end }}
+      </ul>
+    </section>
     <section id="footer">
       {{ partial "menu-footer.html" . }}
     </section>
