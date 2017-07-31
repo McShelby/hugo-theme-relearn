@@ -24,9 +24,9 @@
           {{end}}
         {{end}} 
     </ul>
-    <hr/>
-
+    {{ if or .Site.IsMultiLingual $showvisitedlinks }}
     <section id="prefooter">
+      <hr/>
       <ul>
       {{ if .Site.IsMultiLingual }}
         <li>
@@ -68,6 +68,7 @@
       {{ end }}
       </ul>
     </section>
+    {{ end }}
     <section id="footer">
       {{ partial "menu-footer.html" . }}
     </section>
@@ -87,12 +88,10 @@
         {{if .Params.alwaysopen}}parent{{end}}
         ">
       <a href="{{ .RelPermalink}}">
-        <span>
-            {{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}
-            {{ if $showvisitedlinks}}
-              <i class="fa fa-check read-icon"></i>
-            {{ end }}
-        </span>
+          {{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}
+          {{ if $showvisitedlinks}}
+            <i class="fa fa-check read-icon"></i>
+          {{ end }}
       </a>
       {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
       {{ if ne $numberOfPages 0 }}
@@ -125,9 +124,8 @@
     {{ if not .Params.Hidden }}
       <li data-nav-id="{{.URL}}" title="{{.Title}}" class="dd-item {{if eq .UniqueID $currentNode.UniqueID}}active{{end}}">
         <a href="{{ .RelPermalink}}">
-        <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}
+        {{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}
         {{ if $showvisitedlinks}}<i class="fa fa-check read-icon"></i>{{end}}
-        </span> 
         </a>
     </li>
      {{ end }}
