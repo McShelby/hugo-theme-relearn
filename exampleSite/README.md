@@ -2,11 +2,11 @@
 - récriture doc -> TODO
     - créer une section Showcase
 - refaire la possibilité d'overrider le style/script/etc -> TODO
-- créer des thèmes de base -> TODO
-- ajouter Travis pour tester le thème quotidiennement avec les nouvelles versions de Hugo -> TODO
+- créer des jolis thèmes de base (avec des noms) -> TODO
 - corriger slider menu qui ne fonctionne plus -> TODO
-- Update font awesome -> TODO
+- ajouter Travis pour tester le thème quotidiennement avec les nouvelles versions de Hugo -> TODO
 
+- Update font awesome -> OK
 - internationalisation -> OK
     - Messages: OK
     - Ajouter un bouton pour changer de langue : OK
