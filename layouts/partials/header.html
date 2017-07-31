@@ -22,6 +22,11 @@
       :root #header + #content > #left > #rlblock_left{ 
           display:none !important;
       }
+      {{ if .Site.Params.disableInlineCopyToClipBoard }}
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      {{ end }}
     </style>
     {{ partial "style.html" . }}
   </head>
