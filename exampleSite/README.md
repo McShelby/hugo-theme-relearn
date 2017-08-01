@@ -1,10 +1,11 @@
-- sticky bar -> TODO
 - récriture doc -> TODO
     - créer une section Showcase
-- refaire la possibilité d'overrider le style/script/etc -> TODO
 - créer des jolis thèmes de base (avec des noms) -> TODO
 - ajouter les attachments -> TODO
+- ajouter les childs -> TODO
 
+- refaire la possibilité d'overrider le style/script/etc -> OK
+- sticky bar -> OK
 - ajouter Travis pour tester le thème quotidiennement avec les nouvelles versions de Hugo -> OK
 - #54 -> OK
 - corriger slider menu qui ne fonctionne plus -> OK

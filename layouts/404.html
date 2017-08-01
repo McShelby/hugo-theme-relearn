@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8"> {{ partial "meta.html" . }} {{ partial "favicon.html" . }} {{ .Scratch.Add "title" "" }}{{ if eq .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
   <title>{{ .Scratch.Get "title" }}</title>
-  {{ partial "style.html" . }}
   
   <link href="{{"css/nucleus.css" | relLangURL}}{{ if not .Site.Params.disableAssetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
   <link href="{{"css/font-awesome.min.css" | relLangURL}}{{ if not .Site.Params.disableAssetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -27,7 +26,8 @@
     ul {
       list-style-type: none;
     }
-  </style>
+</style>
+{{ partial "custom-header.html" . }}
 </head>
 
 <body>

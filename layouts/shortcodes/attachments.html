@@ -1,6 +1,6 @@
-<section class="attachments">
+<section class="attachments {{ with .Get "style"}}{{.}}{{ end }}">
 	<label>
-		<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+		<i class="fa fa-paperclip" aria-hidden="true"></i>
 		{{with .Get "title"}}{{.}}{{else}}{{T "Attachments-label"}}{{end}}
 	</label>
 	{{if eq .Page.File.BaseFileName "index"}}
@@ -8,6 +8,7 @@
 	{{else}}
 		{{$.Scratch.Add "filesName" (printf "%s.files" .Page.File.BaseFileName)}}
 	{{end}}
+	<div class="attachments-files">
 	{{ range (readDir (printf "./content/%s%s" .Page.File.Dir ($.Scratch.Get "filesName")) ) }}
 		{{ $fileDir := replace $.Page.File.Dir "\\" "/" }}
 		{{if ($.Get "pattern")}}
@@ -28,6 +29,7 @@
 			</li>
 		{{end}}
 	{{end}}
+	<div>
+	{{.Inner}}
 </section>
 
-{{.Inner}}

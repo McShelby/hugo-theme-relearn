@@ -12,6 +12,14 @@ To avoid this limitations, Hugo created [shortcodes](https://gohugo.io/extras/sh
 
 **Hugo-theme-learn** provides multiple shortcodes on top of existing ones.
 
+## Attachments
+
+{{% attachments style="info" /%}}
+{{% attachments style="warning" /%}}
+{{% attachments style="note" /%}}
+{{% attachments style="tip" /%}}
+{{% attachments /%}}
+
 ## Notice
 
 The notice shortcode shows 4 types of disclaimers to help you structure your page.
