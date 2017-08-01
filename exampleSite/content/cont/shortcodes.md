@@ -14,10 +14,10 @@ To avoid this limitations, Hugo created [shortcodes](https://gohugo.io/extras/sh
 
 ## Attachments
 
-{{% attachments style="info" /%}}
-{{% attachments style="warning" /%}}
-{{% attachments style="note" /%}}
-{{% attachments style="tip" /%}}
+{{% attachments style="orange" /%}}
+{{% attachments style="grey" /%}}
+{{% attachments style="blue" /%}}
+{{% attachments style="green" /%}}
 {{% attachments /%}}
 
 ## Notice
