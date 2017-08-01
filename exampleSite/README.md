@@ -1,9 +1,9 @@
 - récriture doc -> TODO
     - créer une section Showcase
 - créer des jolis thèmes de base (avec des noms) -> TODO
-- ajouter les attachments -> TODO
 - ajouter les childs -> TODO
 
+- ajouter les attachments -> OK
 - refaire la possibilité d'overrider le style/script/etc -> OK
 - sticky bar -> OK
 - ajouter Travis pour tester le thème quotidiennement avec les nouvelles versions de Hugo -> OK

@@ -4,6 +4,26 @@ title: Pages
 weight: 5
 ---
 
+	{{%/* children  */%}}
+
+{{%children %}}
+
+	{{%/* children description="true"   */%}}
+
+{{%children description="true"   %}}
+
+	{{%/* children depth="3" showhidden="true" */%}}
+
+{{% children depth="3" showhidden="true" %}}
+
+	{{%/* children style="h2" depth="3" description="true" */%}}
+
+{{% children style="h2" depth="3" description="true" %}}
+
+	{{%/* children style="div" depth="999" */%}}
+
+{{% children style="div" depth="999" %}}
+
 In **Hugo**, pages are the core of your site. Once it is configure, pages are definitely the added value to your documentation site.
 
 ## Folders
