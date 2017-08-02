@@ -24,6 +24,19 @@
           {{end}}
         {{end}} 
     </ul>
+
+    {{with .Site.Menus.shortcuts}}
+      <section id="shortcuts">
+        <ul>
+          {{ range sort . "Weight"}}
+              <li class="" role=""> 
+                  <a class="padding" href="{{.URL}}">{{.Pre}}{{safeHTML .Name}}{{.Post}}</a>  
+              </li>
+          {{end}}
+        </ul>
+      </section>
+    {{end}}
+
     {{ if or .Site.IsMultiLingual $showvisitedlinks }}
     <section id="prefooter">
       <hr/>
