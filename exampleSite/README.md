@@ -1,12 +1,13 @@
 - récriture doc -> TODO
     - créer une section Showcase
-    - corriger le multilangue pour la recherche et les autres ressources statiques
+
 - créer des jolis thèmes de base (avec des noms ou au moins de meilleures couleurs) -> DOING
     - Thème blue : OK
 - Menus déroulants icone -> TODO
 - Comprendre le pbm de Travis -> TODO
     - Peut-être passer à autre chose
 
+- corriger le multilangue pour la recherche et les autres ressources statiques : OK
 - Section "MORE" -> OK
 - ajouter les childs -> OK
 - ajouter les attachments -> OK
