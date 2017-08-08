@@ -2,9 +2,8 @@
     - créer une section Showcase
 - créer des jolis thèmes de base (avec des noms ou au moins de meilleures couleurs) -> DOING
     - Thème blue : OK
-    - Thème red: TODO
-    - Theme green: TODO
-    - Theme orange: TODO
+    - Thème red: OK
+    - Theme green: OK
 - Menus déroulants icone -> TODO
 
 
