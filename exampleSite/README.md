@@ -1,12 +1,14 @@
 - récriture doc -> TODO
     - créer une section Showcase
-
 - créer des jolis thèmes de base (avec des noms ou au moins de meilleures couleurs) -> DOING
     - Thème blue : OK
+    - Thème red: TODO
+    - Theme green: TODO
+    - Theme orange: TODO
 - Menus déroulants icone -> TODO
-- Comprendre le pbm de Travis -> TODO
-    - Peut-être passer à autre chose
 
+
+- Passer a Wercker -> OK
 - corriger le multilangue pour la recherche et les autres ressources statiques : OK
 - Section "MORE" -> OK
 - ajouter les childs -> OK
