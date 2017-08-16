@@ -2,4 +2,4 @@
 title: "Learn Theme for Hugo"
 ---
 
-# Hugo learn theme
+# Thème Hugo learn

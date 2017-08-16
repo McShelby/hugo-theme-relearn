@@ -7,7 +7,7 @@ Using the command: `hugo new [relative new content path]`, you can start a conte
 
 It is pre-configured skeleton pages with default front matter. Please refer to the documentation for types of page to understand the differences.
 
-## Chapter
+## Chapter {#archetypes-chapter}
 
 To create a Chapter page, run the following commands
 
