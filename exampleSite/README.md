@@ -1,12 +1,11 @@
 - récriture doc -> TODO
     - créer une section Showcase
+- Menus déroulants icone -> TODO
+
 - créer des jolis thèmes de base (avec des noms ou au moins de meilleures couleurs) -> DOING
     - Thème blue : OK
     - Thème red: OK
     - Theme green: OK
-- Menus déroulants icone -> TODO
-
-
 - Passer a Wercker -> OK
 - corriger le multilangue pour la recherche et les autres ressources statiques : OK
 - Section "MORE" -> OK

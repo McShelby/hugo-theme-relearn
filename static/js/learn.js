@@ -164,7 +164,13 @@ jQuery(document).ready(function() {
         $('[data-search-input]').val(searchValue);
         $('[data-search-input]').trigger('input');
         var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
-        searchedElem && searchedElem.scrollIntoView();
+        if (searchedElem) {
+            searchedElem.scrollIntoView(true);
+            var scrolledY = window.scrollY;
+            if(scrolledY){
+                window.scroll(0, scrolledY - 125);
+            }
+        }
     }
 
     // clipboard
