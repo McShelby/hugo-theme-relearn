@@ -50,4 +50,4 @@ For both solutions, the documentation is available at https://github.com/matcorn
 
 ## Credits
 
-Many thanks to @vjeantet for the fork [docdock](https://github.com/vjeantet/hugo-theme-docdock). The v2 of this theme is mainly based on his work !
+Many thanks to [@vjeantet](https://github.com/vjeantet/) for the fork [docdock](https://github.com/vjeantet/hugo-theme-docdock). The v2 of this theme is mainly based on his work !
