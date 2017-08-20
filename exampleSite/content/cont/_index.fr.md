@@ -5,7 +5,7 @@ chapter: true
 pre: "<b>2. </b>"
 ---
 
-### Chapter 1
+### Chapitre 1
 
 # Contenu
 
