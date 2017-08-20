@@ -1,6 +1,6 @@
 ---
 title: Archetypes
-weight: 20
+weight: 10
 ---
 
 Using the command: `hugo new [relative new content path]`, you can start a content file with the date and title automatically set. While this is a welcome feature, active writers need more : [archetypes](https://gohugo.io/content/archetypes/).
@@ -17,19 +17,21 @@ hugo new --kind chapter <name>/_index.md
 
 It will create a page with predefined Front-Matter:
 
-    ---
-    date: 2016-04-10T23:17:49+02:00
-    icon: <b>X. </b>
-    title: index
-    weight: 0
-    ---
+```markdown
++++
+title = "{{ replace .TranslationBaseName "-" " " | title }}"
+date = {{ .Date }}
+weight = 5
+chapter = true
+pre = "<b>X. </b>"
++++
 
-    ### Chapter X
+### Chapter X
 
-    # Some Chapter title
+# Some Chapter title
 
-    Lorem ipsum
-
+Lorem Ipsum.
+```
 
 ## Default
 
@@ -37,20 +39,19 @@ To create a default page, run either one of the following commands
 
 ```
 # Either
-hugo new <chapter>/<name>/index.md
+hugo new <chapter>/<name>/_index.md
 # Or
 hugo new <chapter>/<name>.md
 ```
 
 It will create a page with predefined Front-Matter:
 
-    ---
-    date: 2016-04-09T17:51:50+02:00
-    title: index
-    toc: true
-    weight: 5
-    ---
+```markdown
++++
+title = "{{ replace .TranslationBaseName "-" " " | title }}"
+date =  {{ .Date }}
+weight = 5
++++
 
-    Lorem Ipsum
-
-*Don't forget that Hugo-theme-learn supports only one level under a chapter*
+Lorem Ipsum.
+```

@@ -1,7 +1,7 @@
 ---
 date: 2016-04-09T16:50:16+02:00
 title: Markdown syntax
-weight: 10
+weight: 15
 ---
 
 {{% notice note %}}
@@ -593,7 +593,7 @@ Content for chapter one.
 **NOTE** that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.
 
 
-## Images
+## Images {#images}
 Images have a similar syntax to links but include a preceding exclamation point.
 
 ```markdown

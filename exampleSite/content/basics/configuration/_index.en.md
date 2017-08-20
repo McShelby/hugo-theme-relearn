@@ -31,6 +31,8 @@ Note that some of these parameters are explained in details in other sections of
   disableInlineCopyToClipBoard = false
   # A title for shortcuts in menu is set by default. Set this to true to disable it. 
   disableShortcutsTitle = false
+  # When using mulitlingual website, disable the switch language button.
+  disableLanguageSwitchingButton = false
   # Order sections in menu by "weight" or "title". Default to "weight"
   ordersectionsby = "weight"
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
@@ -67,7 +69,7 @@ This theme defines the following partials :
 - *favicon*: the favicon
 - *logo*: the logo, on top left hand corner.
 - *meta*: HTML meta tags, if you want to change default behavior
-- *menu*: left menu
+- *menu*: left menu. _Not meant to be overridden_
 - *menu-footer*: footer of the the left menu
 - *search*: search box
 - *toc*: table of contents
@@ -91,7 +93,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 ```
 
-### Change default colors
+### Change default colors {#theme-variant}
 
 **Hugo Learn theme** let you choose between 3 native color scheme variants, but feel free to add one yourself ! Default color scheme is based on [Grav Learn Theme](https://learn.getgrav.org/).
 
