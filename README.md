@@ -47,3 +47,7 @@ git checkout tags/1.1.0
 ```
 
 For both solutions, the documentation is available at https://github.com/matcornic/hugo-theme-learn/releases/download/1.1.0/hugo-learn-doc-1.1.0.zip
+
+## Credits
+
+Many thanks to @vjeantet for the fork [docdock](https://github.com/vjeantet/hugo-theme-docdock). The v2 of this theme is mainly based on his work !
