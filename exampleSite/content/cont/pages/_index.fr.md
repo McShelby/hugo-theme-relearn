@@ -1,6 +1,6 @@
 ---
 date: 2016-04-09T16:50:16+02:00
-title: Organization des pages
+title: Organisation des pages
 weight: 5
 ---
 
