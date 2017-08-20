@@ -4,7 +4,7 @@ title: Multi-langue et i18n
 weight: 30
 ---
 
-**Learne** est complètement compatible avec le mode multi-langue d'Hugo.
+**Learn** est complètement compatible avec le mode multi-langue d'Hugo.
 
 Il fournit :
 
