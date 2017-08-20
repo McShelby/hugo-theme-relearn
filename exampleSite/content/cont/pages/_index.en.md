@@ -62,6 +62,8 @@ pre = "<b>1. </b>"
 Discover what this Hugo theme is all about and the core-concepts behind it.
 ```
 
+To tell **Hugo-theme-learn** to consider a page as a chapter, set `chapter=true` in the Front Matter of the page.
+
 A **Default** page is any other content page.
 
 ![Default page](/cont/pages/images/pages-default.png?width=50%)
@@ -83,9 +85,7 @@ Hugo provides a `new` command to create a new website.
 hugo new site <new_project>
 ```
 
-To tell **Hugo-theme-learn** to consider a page as a chapter, set `chapter=true` in the Front Matter of the page.
-
-**Hugo-theme-learn** provides [archetypes]({{< relref "cont/archetypes.md" >}}) to help you create this kind of pages.
+**Hugo-theme-learn** provides [archetypes]({{< relref "cont/archetypes.fr.md" >}}) to help you create this kind of pages.
 
 ## Front Matter configuration
 

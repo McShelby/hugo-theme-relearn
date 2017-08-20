@@ -29,6 +29,8 @@ Currently, it support two implementations for pages
     >      * files
     >          * attachment.pdf
 
+Be aware that if you use a multilingual website, you will need to have as many folders as languages.
+
 That's all !
 
 ### Parameters

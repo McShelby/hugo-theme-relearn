@@ -24,7 +24,7 @@ Note that some of these parameters are explained in details in other sections of
   showVisitedLinks = false
   # Disable search function. It will hide search bar
   disableSearch = false
-  # Javadcript and CSS cache are automatically busted when new version of site is generated. 
+  # Javascript and CSS cache are automatically busted when new version of site is generated. 
   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
   disableAssetsBusting = false
   # Set this to true to disable copy-to-clipboard button for inline code.
@@ -62,14 +62,14 @@ In `themes/hugo-theme-learn/layouts/partials/`, you will find all the partials d
 
 This theme defines the following partials :
 
-- *header*: the header of the content page (contains the breadcrumbs). _Not meant to be overridden_
-- *custom-header*: custom headers in page. Meant to be overridden when adding CSS imports. Don't forget to include `style` HTML tag directive in your file
-- *footer*: the footer of the content page (contains the arrows). _Not meant to be overridden_
-- *custom-footer*:  custom footer in page. Meant to be overridden when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file
+- *header*: the header of the content page (contains the breadcrumbs). _Not meant to be overwritten_
+- *custom-header*: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file
+- *footer*: the footer of the content page (contains the arrows). _Not meant to be overwritten_
+- *custom-footer*:  custom footer in page. Meant to be overwritten when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file
 - *favicon*: the favicon
 - *logo*: the logo, on top left hand corner.
 - *meta*: HTML meta tags, if you want to change default behavior
-- *menu*: left menu. _Not meant to be overridden_
+- *menu*: left menu. _Not meant to be overwritten_
 - *menu-footer*: footer of the the left menu
 - *search*: search box
 - *toc*: table of contents

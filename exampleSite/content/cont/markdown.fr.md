@@ -1,12 +1,13 @@
 ---
 date: 2016-04-09T16:50:16+02:00
-title: Markdown syntax
+title: Syntaxe Markdown
 weight: 15
 ---
 
 {{% notice note %}}
-This page is a shameful copy of the great [Grav original page](http://learn.getgrav.org/content/markdown).
-Only difference is information about image customization ([resizing]({{< relref "#resizing-image" >}}), [add CSS classes]({{< relref "#add-css-classes" >}})...)
+Cette page est une copie de la [doc de Grav](http://learn.getgrav.org/content/markdown).
+La seule différence porte sur la personalisation des images ([taille]({{< relref "#resizing-image" >}}), [ajout de classes CSS]({{< relref "#add-css-classes" >}})...)
+Pour des raisons évidentes, cette page n'a pas été traduites en français 😁
 {{% /notice%}}
 
 Let's face it: Writing content for the Web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.

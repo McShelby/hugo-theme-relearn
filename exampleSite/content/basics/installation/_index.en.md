@@ -82,7 +82,7 @@ Go to `http://localhost:1313`
 You should notice three things:
 
 1. You have a left **Basics** menu, containing two submenus with names equals to `title` properties in previously created files.
-2. The main content of the page explains you to add a new `_index.md` file at the root of the `content` folder. Do it and you have your homepage.
+2. The home page explains you to how to customize it. Follow the instructions.
 3. With `hugo serve` command, the page refresh as soon as you save a file. Neat !
 
 ## Build the website

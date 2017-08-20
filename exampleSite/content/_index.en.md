@@ -17,12 +17,12 @@ This theme is a partial porting of the [Learn theme](http://learn.getgrav.org/) 
 * [Multilingual mode]({{%relref "cont/i18n/_index.md" %}})
 * **Unlimited menu levels**
 * **Automatic next/prev buttons to navigate through menu entries**
-* [Image resizing, shadow...]({{%relref "cont/markdown.md#images" %}})
-* [Attachments files]({{%relref "shortcodes/attachments.md" %}})
+* [Image resizing, shadow...]({{%relref "cont/markdown.en.md#images" %}})
+* [Attachments files]({{%relref "shortcodes/attachments.en.md" %}})
 * [List child pages]({{%relref "shortcodes/children/_index.md" %}})
-* [Mermaid diagram]({{%relref "shortcodes/mermaid.md" %}}) (flowchart, sequence, gantt)
+* [Mermaid diagram]({{%relref "shortcodes/mermaid.en.md" %}}) (flowchart, sequence, gantt)
 * [Customizable look and feel and themes variants]({{%relref "basics/configuration/_index.md"%}})
-* [Buttons]({{%relref "shortcodes/button.md" %}}), [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice.md" %}}), [Expand]({{%relref "shortcodes/expand.md" %}})
+* [Buttons]({{%relref "shortcodes/button.en.md" %}}), [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice.en.md" %}}), [Expand]({{%relref "shortcodes/expand.en.md" %}})
 
 ![Screenshot](https://github.com/matcornic/hugo-theme-learn/raw/master/images/screenshot.png?width=40pc&classes=shadow)
 

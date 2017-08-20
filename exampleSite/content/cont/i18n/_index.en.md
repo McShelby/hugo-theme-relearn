@@ -55,7 +55,7 @@ Be aware that only translated pages are displayed in menu. It's not replaced wit
 Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-content) Front Matter parameter to translate urls too.
 {{% /notice %}}
 
-## Override translation strings
+## Overwrite translation strings
 
 Translations strings are used for common default values used in the theme (*Edit this page* button, *Search placeholder* and so on). Translations are available in french and english but you may use another language or want to override default values.
 
@@ -74,3 +74,5 @@ Just set `disableLanguageSwitchingButton=true` in your `config.toml`
   # When using mulitlingual website, disable the switch language button.
   disableLanguageSwitchingButton = true
 ```
+
+![I18n menu](/cont/i18n/images/i18n-menu.gif)
