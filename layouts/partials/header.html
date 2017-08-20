@@ -41,36 +41,38 @@
         <div id="overlay"></div>
         <div class="padding highlightable sticky-parent">
               {{if not .IsHome}}
-              <div id="top-bar">
-              {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
-                {{ $File := .File }}
-                {{ $Site := .Site }}
-                {{with $File.Path }}
-                <div id="top-github-link">
-                  <a class="github-link" href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
-                    <i class="fa fa-code-fork"></i>
-                    {{T "Edit-this-page"}}
-                  </a>
-                </div>
+              <div class="sticky-spacer">
+                <div id="top-bar">
+                {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
+                  {{ $File := .File }}
+                  {{ $Site := .Site }}
+                  {{with $File.Path }}
+                  <div id="top-github-link">
+                    <a class="github-link" href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
+                      <i class="fa fa-code-fork"></i>
+                      {{T "Edit-this-page"}}
+                    </a>
+                  </div>
+                  {{ end }}
                 {{ end }}
-              {{ end }}
-              {{$toc := (and (not .Params.disableToc) (not .Params.chapter))}}
-              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                  <span id="sidebar-toggle-span">
-                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                        <i class="fa fa-bars"></i>
-                      </a>
+                {{$toc := (and (not .Params.disableToc) (not .Params.chapter))}}
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  {{ if $toc }}
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  {{ end }}
+                  <span class="links">
+                    {{ template "breadcrumb" dict "page" . "value" .Title }}   
                   </span>
+                </div>
                 {{ if $toc }}
-                <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                    {{ partial "toc.html" . }}
                 {{ end }}
-                <span class="links">
-                  {{ template "breadcrumb" dict "page" . "value" .Title }}   
-                </span>
               </div>
-              {{ if $toc }}
-                  {{ partial "toc.html" . }}
-              {{ end }}
             </div>
             {{ end }}
 
