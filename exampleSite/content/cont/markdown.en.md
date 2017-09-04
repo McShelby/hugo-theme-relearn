@@ -626,10 +626,10 @@ With a reference later in the document defining the URL location:
 Add HTTP parameters `width` and/or `height` to the link image to resize the image. Values are CSS values (default is `auto`).
 
 ```markdown
-![Minion](http://octodex.github.com/images/minion.png?width=20%)
+![Minion](http://octodex.github.com/images/minion.png?width=20pc)
 ```
 
-![Minion](http://octodex.github.com/images/minion.png?width=20%)
+![Minion](http://octodex.github.com/images/minion.png?width=20pc)
 
 ```markdown
 ![Minion](http://octodex.github.com/images/minion.png?height=50px)
@@ -650,14 +650,14 @@ Add a HTTP `classes` parameter to the link image to add CSS classes. `shadow`and
 ```markdown
 ![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?classes=shadow)
 ```
-![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?width=40%&classes=shadow)
+![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=shadow)
 
 ```markdown
 ![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?classes=border)
 ```
-![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?width=40%&classes=border)
+![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=border)
 
 ```markdown
 ![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?classes=border,shadow)
 ```
-![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?width=40%&classes=border,shadow)
+![stormtroopocat](http://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=border,shadow)

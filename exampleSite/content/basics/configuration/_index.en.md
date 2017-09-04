@@ -105,7 +105,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = "red"
 ```
 
-![Red variant](/basics/configuration/images/red-variant.png?width=60%)
+![Red variant](/basics/configuration/images/red-variant.png?width=60pc)
 
 #### Blue variant
 
@@ -115,7 +115,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = "blue"
 ```
 
-![Blue variant](/basics/configuration/images/blue-variant.png?width=60%)
+![Blue variant](/basics/configuration/images/blue-variant.png?width=60pc)
 
 #### Green variant
 
@@ -125,7 +125,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = "green"
 ```
 
-![Green variant](/basics/configuration/images/green-variant.png?width=60%)
+![Green variant](/basics/configuration/images/green-variant.png?width=60pc)
 
 #### 'Yours‘ variant
 
