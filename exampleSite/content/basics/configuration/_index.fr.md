@@ -39,7 +39,7 @@ Notez que certains de ces paramètres sont expliqués en détails dans d'autres 
   themeVariant = ""
 ```
 
-## Activer la recherche
+## Activer la recherche {#activer-recherche}
 
 Si ce n'est pas déjà présent, ajoutez les lignes suivantes dans le fichier `config.toml`.
 
