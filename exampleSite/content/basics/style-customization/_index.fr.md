@@ -53,7 +53,7 @@ Si vous avez besoin de changer ce comportement par défaut, créer un nouveau fi
   themeVariant = "red"
 ```
 
-![Variante rouge](/basics/configuration/images/red-variant.png?width=60pc)
+![Variante rouge](/basics/style-customization/images/red-variant.png?width=60pc)
 
 ### Variante bleue
 
@@ -63,7 +63,7 @@ Si vous avez besoin de changer ce comportement par défaut, créer un nouveau fi
   themeVariant = "blue"
 ```
 
-![Variante bleue](/basics/configuration/images/blue-variant.png?width=60pc)
+![Variante bleue](/basics/style-customization/images/blue-variant.png?width=60pc)
 
 ### Variante verte
 
@@ -73,7 +73,7 @@ Si vous avez besoin de changer ce comportement par défaut, créer un nouveau fi
   themeVariant = "green"
 ```
 
-![Variante verte](/basics/configuration/images/green-variant.png?width=60pc)
+![Variante verte](/basics/style-customization/images/green-variant.png?width=60pc)
 
 ### Votre variante
 
