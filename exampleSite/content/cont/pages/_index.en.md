@@ -98,6 +98,8 @@ Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-ma
 # Table of content (toc) is enabled by default. Set this parameter to true to disable it.
 # Note: Toc is always disabled for chapter pages
 disableToc = "false"
+# If set, this will be used for the page's menu entry (instead of the `title` attribute)
+menuTitle = ""
 # The title of the page in menu will be prefixed by this HTML content
 pre = ""
 # The title of the page in menu will be postfixed by this HTML content
@@ -136,6 +138,22 @@ The simplest way is to set `weight` parameter to a number.
 +++
 title = "My page"
 weight = 5
++++
+```
+
+### Using a custom title for menu entries
+
+By default, **Hugo-theme-learn** will use a page's `title` attribute for the menu item (or `linkTitle` if defined).
+
+But a page's title has to be descriptive on its own while the menu is a hierarchy.  
+We've added the `menuTitle` parameter for that purpose:
+
+For example (for a page named `content/install/linux.md`): 
+
+```toml
++++
+title = "Install on Linux"
+menuTitle = "Linux"
 +++
 ```
 
