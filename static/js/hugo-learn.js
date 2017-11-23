@@ -56,9 +56,8 @@ images.each(function(index){
 });
 
 // Stick the top to the top of the screen when  scrolling
-$("#top-bar").stick_in_parent( {
- parent: ".sticky-parent",
- spacer: ".sticky-spacer",
+$(document).ready(function(){
+  $("#top-bar").sticky({topSpacing:0, zIndex: 1000});
 });
 
 
