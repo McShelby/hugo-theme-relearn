@@ -51,4 +51,4 @@ home = [ "HTML", "RSS", "JSON"]
 Learn theme uses the last improvement available in hugo version 20+ to generate a json index file ready to be consumed by lunr.js javascript search engine.
 
 > Hugo generate lunrjs index.json at the root of public folder. 
-> When you build the site with hugo server, hugo generates it internally and of course it don’t show up in the filesystem
+> When you build the site with `hugo server`, hugo generates it internally and of course it doesn’t show up in the filesystem
