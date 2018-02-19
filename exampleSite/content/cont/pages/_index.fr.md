@@ -118,7 +118,7 @@ Dans le Front Matter, ajouter un paramètre `pre` pour insérer du code HTML qui
 ```toml
 +++
 title = "Repo Github"
-pre = "<i class='fa fa-github'></i> "
+pre = "<i class='fab fa-github'></i> "
 +++
 ```
 
