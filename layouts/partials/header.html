@@ -62,11 +62,15 @@
                           <i class="fa fa-bars"></i>
                         </a>
                     </span>
-                  {{ if $toc }}
-                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
-                  {{ end }}
+					  {{ if $toc }}
+					  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+					  {{ end }}
                   <span class="links">
-                    {{ template "breadcrumb" dict "page" . "value" .Title }}   
+				 {{if ne .Site.Params.disableBreadcrumb true}}
+                    {{ template "breadcrumb" dict "page" . "value" .Title }}
+                 {{ else }}
+                 	{{ .Title }} 
+                 {{ end }}
                   </span>
                 </div>
                 {{ if $toc }}
