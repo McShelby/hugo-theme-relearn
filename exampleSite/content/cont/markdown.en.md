@@ -33,7 +33,7 @@ Grav ships with built-in support for [Markdown](http://daringfireball.net/projec
 Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:
 
 {{% notice info %}}
-<i class="fa fa-bookmark"></i> Bookmark this page for easy future reference!
+<i class="fas fa-bookmark"></i> Bookmark this page for easy future reference!
 {{% /notice %}}
 
 ## Headings
