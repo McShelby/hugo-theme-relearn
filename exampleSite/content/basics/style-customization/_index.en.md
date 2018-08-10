@@ -33,7 +33,7 @@ The size of the logo will adapt automatically
 
 ## Change the favicon
 
-If your favicon is a png, just drop off your image in your local `static/images/` folder and names it `favicon.png`
+If your favicon is a png, just drop off your image in your local `static/images/` folder and name it `favicon.png`
 
 If you need to change this default behavior, create a new file in `layouts/partials/` named `favicon.html`. Then write something like this:
 
