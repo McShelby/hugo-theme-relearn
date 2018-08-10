@@ -29,6 +29,7 @@ $ git clone https://github.com/matcornic/hugo-theme-learn.git
 Check that your Hugo version is minimum `0.25` with `hugo version`.
 
 ![Overview](https://github.com/matcornic/hugo-theme-learn/raw/master/images/tn.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatcornic%2Fhugo-theme-learn.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatcornic%2Fhugo-theme-learn?ref=badge_shield)
 
 ## Usage
 
@@ -51,3 +52,7 @@ For both solutions, the documentation is available at https://github.com/matcorn
 ## Credits
 
 Many thanks to [@vjeantet](https://github.com/vjeantet/) for the fork [docdock](https://github.com/vjeantet/hugo-theme-docdock). The v2 of this theme is mainly based on his work !
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatcornic%2Fhugo-theme-learn.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatcornic%2Fhugo-theme-learn?ref=badge_large)
