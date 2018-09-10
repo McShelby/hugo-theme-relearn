@@ -25,7 +25,7 @@ Ce thème définit les *partials* suivant :
 ## Changer le logo
 
 Créez un nouveau fichier dans `layouts/partials/`, nommé `logo.html`. Puis, écrivez le code HTML voulu.
-Vous pourriez utiliser une balise HTML `img` et référencer une image créée dans le dossier *static*, voire même y coller un cod SVG !
+Vous pourriez utiliser une balise HTML `img` et référencer une image créée dans le dossier *static*, voire même y coller un code SVG !
 
 {{% notice note %}}
 La taille du logo va s'adapter automatiquement
