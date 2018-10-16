@@ -4,7 +4,7 @@
 	{{ .Content }}
 {{end}}
 
-{{ if eq .Kind "taxonomy" }}
+{{ if or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") }}
 <ul>
 	{{ range .Pages }}
 		<li><a href="{{.URL}}">{{.Title}}</a></li>
