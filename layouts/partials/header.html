@@ -75,13 +75,20 @@
               </div>
             </div>
             {{ end }}
-
+        <div id="head-tags">
+        {{ partial "tags.html" . }}
+        </div>
         {{ if .Params.chapter }}
           <div id="chapter">
         {{ end }}
         <div id="body-inner">
           {{if and (not .IsHome) (not .Params.chapter) }}
-            <h1>{{.Title}}</h1>
+            <h1>
+              {{ if eq .Kind "taxonomy" }}
+                {{.Kind}} :
+              {{ end }}
+              {{.Title}}
+            </h1>
           {{end}}
 
         {{define "breadcrumb"}}
@@ -93,3 +100,4 @@
             {{.value|safeHTML}}
           {{end}}
         {{end}}
+

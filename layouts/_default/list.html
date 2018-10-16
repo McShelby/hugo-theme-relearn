@@ -1,6 +1,16 @@
 {{ partial "header.html" . }}
 
-{{ .Content }}
+{{ if eq .Kind "section" }}
+	{{ .Content }}
+{{end}}
+
+{{ if eq .Kind "taxonomy" }}
+<ul>
+	{{ range .Pages }}
+		<li><a href="{{.URL}}">{{.Title}}</a></li>
+	{{ end }}
+</ul>
+{{end}}
 
 <footer class=" footline" >
 	{{with .Params.LastModifierDisplayName}}
