@@ -33,6 +33,10 @@ Note that some of these parameters are explained in details in other sections of
   disableShortcutsTitle = false
   # When using mulitlingual website, disable the switch language button.
   disableLanguageSwitchingButton = false
+  # Hide breadcrumbs in the header and only show the current page title
+  disableBreadcrumb = true
+  # Hide Next and Previous page buttons normally displayed full height beside content
+  disableNextPrev = true
   # Order sections in menu by "weight" or "title". Default to "weight"
   ordersectionsby = "weight"
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
