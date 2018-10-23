@@ -66,7 +66,12 @@
                   <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
                   {{ end }}
                   <span class="links">
-                    {{ template "breadcrumb" dict "page" . "value" .Title }}   
+                 {{$showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb))}}
+                 {{if $showBreadcrumb}}
+                    {{ template "breadcrumb" dict "page" . "value" .Title }}
+                 {{ else }}
+                   {{ .Title }} 
+                 {{ end }}
                   </span>
                 </div>
                 {{ if $toc }}
