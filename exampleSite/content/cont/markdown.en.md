@@ -174,6 +174,7 @@ HTML:
 ```
 
 ## Blockquotes
+
 For quoting blocks of content from another source within your document.
 
 Add `>` before any text you want to quote.
@@ -197,19 +198,20 @@ and this HTML:
 Blockquotes can also be nested:
 
 ```markdown
-> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue.
-Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
->> Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor
-odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
+>
+> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+>
+> Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
 ```
 
 Renders to:
 
-> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue.
-Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
->> Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor
-odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
-
+> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
+>
+> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+>
+> Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
 
 ## Notices
 
