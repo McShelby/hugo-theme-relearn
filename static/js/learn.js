@@ -223,6 +223,13 @@ jQuery(document).ready(function() {
         });
     });
 
+    jQuery('input').keydown(function (e) {
+         //  left and right arrow keys
+         if (e.which == '37' || e.which == '39') {
+             e.stopPropagation();
+         }
+     });
+    
     jQuery(document).keydown(function(e) {
       // prev links - left arrow key
       if(e.which == '37') {
