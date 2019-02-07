@@ -181,7 +181,7 @@ jQuery(document).ready(function() {
 
         if (text.length > 5) {
             if (!clipInit) {
-                var text, clip = new Clipboard('.copy-to-clipboard', {
+                var text, clip = new ClipboardJS('.copy-to-clipboard', {
                     text: function(trigger) {
                         text = $(trigger).prev('code').text();
                         return text.replace(/^\$\s/gm, '');
