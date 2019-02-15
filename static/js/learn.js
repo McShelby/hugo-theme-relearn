@@ -223,7 +223,7 @@ jQuery(document).ready(function() {
         });
     });
 
-    jQuery('input').keydown(function (e) {
+    jQuery('input, textarea').keydown(function (e) {
          //  left and right arrow keys
          if (e.which == '37' || e.which == '39') {
              e.stopPropagation();
