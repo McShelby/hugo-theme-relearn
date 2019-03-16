@@ -5,11 +5,11 @@ weight: 40
 tags: ["documentation", "tutorial"]
 ---
 
-*Learn theme* support one default taxonomy of gohugo : the *tag* feature.
+*Learn theme* support one default taxonomy of gohugo: the *tag* feature.
 
 ## Configuration 
 
-Just add tags to any page : 
+Just add tags to any page: 
 
 ```markdown
 ---
@@ -23,7 +23,7 @@ tags: ["tutorial", "theme"]
 ## Behavior
 
 
-The tags are displayed at the top of the page, in the order wich they are enterted.
+The tags are displayed at the top of the page, in their insertion order.
 
 Each tag is a link to a *Taxonomy* page displaying all the articles with the given tag. 
 
