@@ -17,25 +17,25 @@ function initLunr() {
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
             lunrIndex = lunr(function() {
-				this.ref("uri");
-				this.field('title', {
-					boost: 15
-				});
-				this.field('tags', {
-					boost: 10
-				});
-				this.field("content", {
-					boost: 5
-				});
+                this.ref("uri");
+                this.field('title', {
+		    boost: 15
+                });
+                this.field('tags', {
+		    boost: 10
+                });
+                this.field("content", {
+		    boost: 5
+                });
 				
-				this.pipeline.remove(lunr.stemmer);
-				this.searchPipeline.remove(lunr.stemmer);
+                this.pipeline.remove(lunr.stemmer);
+                this.searchPipeline.remove(lunr.stemmer);
 				
-				// Feed lunr with each file and let lunr actually index them
-				pagesIndex.forEach(function(page) {
-					this.add(page);
-				}, this);
-			})
+                // Feed lunr with each file and let lunr actually index them
+                pagesIndex.forEach(function(page) {
+		    this.add(page);
+                }, this);
+            })
         })
         .fail(function(jqxhr, textStatus, error) {
             var err = textStatus + ", " + error;
