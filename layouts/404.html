@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"> {{ partial "meta.html" . }} {{ partial "favicon.html" . }} {{ .Scratch.Add "title" "" }}{{ if eq .Site.Data.titles .Title }}{{ .Scratch.Set "title" (index .Site.Data.titles .Title).title }}{{ else }}{{ .Scratch.Set "title" .Title}}{{end}}
   <title>{{ .Scratch.Get "title" }}</title>
-  
+
    {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
     <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -35,8 +35,6 @@
 {{ partial "custom-header.html" . }}
 </head>
 
-<body>
-
   <body class="" data-url="/">
 
     <section id="body" style="margin-left:0px;">
@@ -49,7 +47,7 @@
           <p>{{T "message-404"}}</p>
           <p></p>
           <p><a href='{{ "" | relLangURL }}'>{{T "Go-to-homepage"}}</a></p>
-          <p><img src='{{ "/images/gopher-404.jpg" | relURL }}' style="width:50%" alt="Page not found!"></img></p>
+          <p><img src='{{ "/images/gopher-404.jpg" | relURL }}' style="width:50%" alt="Page not found!"></p>
         </div>
       </div>
 
