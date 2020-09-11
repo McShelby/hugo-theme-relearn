@@ -31,6 +31,10 @@ Notez que certains de ces paramètres sont expliqués en détails dans d'autres 
   disableInlineCopyToClipBoard = false
   # Un titre est défini par défaut lorsque vous utilisez un raccourci dans le menu. Utilisez ce paramètre pour le cacher.
   disableShortcutsTitle = false
+  # Si défini à true, empêche Hugo d'inclure le module "mermaid" s'il n'est pas nécessaire (réduira les temps de chargement et le trafic)
+  disableMermaid = false
+  # Spécifie l'emplacement distant du mermaid js
+  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
   # Quand vous utilisez un site multi-langue, utilisez ce paramètre pour désactiver le bouton de changement de langue.
   disableLanguageSwitchingButton = false
   # Ordonne les sections dans menu par poids ("weight") ou titre ("title"). Défaut à "weight"
@@ -54,3 +58,14 @@ Le thème *Learn* utilise les dernières améliorations d'Hugo pour générer un
 
 > Hugo génère lunrjs index.json à la racine du dossier `public`.
 > Quand vous générez le site avec `hugo server`, Hugo génère le fichier en mémoire, il n'est donc pas disponible sur le disque.
+
+## Mermaid
+
+Les paramètres de configuration du mermaid peuvent également être définis sur une page spécifique. Dans ce cas, le paramètre global sera écrasé par le paramètre local.
+
+> Exemple:
+>
+> Mermaid est globalement handicapé. Par défaut, elle ne sera chargée par aucune page.  
+> À la page "Architecture", vous avez besoin d'un diagramme de classe. Vous pouvez régler les paramètres de mermaid localement pour ne charger que la sirène sur cette page (pas sur les autres).
+
+Vous pouvez également désactiver mermaid pour des pages spécifiques tout en l'activant globalement.

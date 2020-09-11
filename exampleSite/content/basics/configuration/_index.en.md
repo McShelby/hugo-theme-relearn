@@ -35,6 +35,10 @@ Note that some of these parameters are explained in details in other sections of
   disableLanguageSwitchingButton = false
   # Hide breadcrumbs in the header and only show the current page title
   disableBreadcrumb = true
+  # If set to true, prevents Hugo from including the mermaid module if not needed (will reduce load times and traffic)
+  disableMermaid = false
+  # Specifies the remote location of the mermaid js
+  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
   # Hide Next and Previous page buttons normally displayed full height beside content
   disableNextPrev = true
   # Order sections in menu by "weight" or "title". Default to "weight"
@@ -60,3 +64,14 @@ Learn theme uses the last improvement available in hugo version 20+ to generate 
 
 > Hugo generate lunrjs index.json at the root of public folder.
 > When you build the site with `hugo server`, hugo generates it internally and of course it doesn’t show up in the filesystem
+
+## Mermaid
+
+The mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one.
+
+> Example:
+>
+> Mermaid is globally disabled. By default it won't be loaded by any page.  
+> On page "Architecture" you need a class diagram. You can set the mermaid parameters locally to only load mermaid on this page (not on the others).
+
+You also can disable mermaid for specific pages while globally enabled.
