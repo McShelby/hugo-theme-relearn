@@ -43,6 +43,8 @@ Note that some of these parameters are explained in details in other sections of
   themeVariant = ""
   # Provide a list of custom css files to load relative from the `static/` folder in the site root.
   custom_css = ["css/foo.css", "css/bar.css"]
+  # Change the title separator. Default to "::".
+  titleSeparator = "-"
 ```
 
 ## Activate search
