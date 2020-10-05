@@ -68,6 +68,16 @@ body {
 #body a.highlight:hover:after, #body a.highlight:focus:after {
     width: 100%;
 }
+@media print {
+  #body #body-inner a {
+    /* in print we want to distinguish links in our content from
+    normal text even if printed black/white;
+    don't use a.highlight in selector to also get links that are
+    put as HTML into markdown */
+    text-decoration-line: underline;
+  }
+}
+
 .progress {
     position:absolute;
     background-color: rgba(246, 246, 246, 0.97);
