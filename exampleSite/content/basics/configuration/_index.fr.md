@@ -31,6 +31,9 @@ Notez que certains de ces paramètres sont expliqués en détails dans d'autres 
   disableInlineCopyToClipBoard = false
   # Un titre est défini par défaut lorsque vous utilisez un raccourci dans le menu. Utilisez ce paramètre pour le cacher.
   disableShortcutsTitle = false
+  # S'il est réglé sur faux, un bouton Accueil apparaîtra sous la barre de recherche dans le menu.
+  # Il redirige vers la page d'accueil de la langue actuelle si cela est spécifié. (La valeur par défaut est "/")
+  disableLandingPageButton = true
   # Si défini à true, empêche Hugo d'inclure le module "mermaid" s'il n'est pas nécessaire (réduira les temps de chargement et le trafic)
   disableMermaid = false
   # Spécifie l'emplacement distant du mermaid js
@@ -69,3 +72,39 @@ Les paramètres de configuration du mermaid peuvent également être définis su
 > À la page "Architecture", vous avez besoin d'un diagramme de classe. Vous pouvez régler les paramètres de mermaid localement pour ne charger que la sirène sur cette page (pas sur les autres).
 
 Vous pouvez également désactiver mermaid pour des pages spécifiques tout en l'activant globalement.
+<<<<<<< HEAD
+
+## Configuration du bouton Accueil
+
+Si l'option `disableLandingPage` est définie sur `false`, un bouton
+"Accueil" apparaîtra dans le menu de gauche. C'est une alternative pour cliquer
+sur le logo. Pour modifier le vous devrez configurer deux paramètres pour les
+langues définies :
+
+```toml
+[Lanugages]
+[Lanugages.en]
+...
+landingPageURL = "/en"
+landingPageName = "<i class='fas fa-home'></i> Redirect to Home"
+...
+[Lanugages.fr]
+...
+landingPageURL = "/fr"
+landingPageName = "<i class='fas fa-home'></i> Accueil"
+...
+```
+
+Si ces paramètres ne sont pas configurés pour une langue spécifique, ils
+obtiendront leur valeurs par défaut:
+
+```toml
+landingPageURL = "/"
+landingPageName = "<i class='fas fa-home'></i> Home"
+```
+
+Le bouton d'accueil va ressembler à ceci:
+
+![Default Home Button](/en/basics/configuration/images/home_button_defaults.jpg?width=100%)
+=======
+>>>>>>> 023fe7ef2b4c45fe66ac932d9e25d09f30b74a4e
