@@ -2,7 +2,7 @@
 
 This repository contains a theme for [Hugo](https://gohugo.io/).
 
-Visit the [theme documentation](https://relearn.netlify.com/en/) to see what is going on. It is actually built with this theme.
+Visit the [theme documentation](https://relearn.netlify.com/) to see what is going on. It is actually built with this theme.
 
 [![wercker status](https://app.wercker.com/status/233466a2be73fcea400e7dc02ef6adf9/s/master "wercker status")](https://app.wercker.com/project/byKey/233466a2be73fcea400e7dc02ef6adf9)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMcShelby%2Fhugo-theme-relearn.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMcShelby%2Fhugo-theme-relearn?ref=badge_shield)
@@ -35,7 +35,7 @@ Check that your Hugo version is minimum `0.25` with `hugo version`.
 
 ## Usage
 
-- [Visit the documentation](https://relearn.netlify.com/en/)
+- [Visit the documentation](https://relearn.netlify.com/)
 
 ## Credits
 
