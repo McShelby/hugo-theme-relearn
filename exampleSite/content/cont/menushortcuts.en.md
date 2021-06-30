@@ -15,7 +15,7 @@ Example from the current website:
     [[menu.shortcuts]] 
     name = "<i class='fab fa-github'></i> Github repo"
     identifier = "ds"
-    url = "https://github.com/matcornic/hugo-theme-learn"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
     [[menu.shortcuts]]
@@ -53,14 +53,14 @@ Example from the current website:
 
     [Languages]
     [Languages.en]
-    title = "Documentation for Hugo Learn Theme"
+    title = "Documentation for Hugo Relearn Theme"
     weight = 1
     languageName = "English"
 
     [[Languages.en.menu.shortcuts]] 
     name = "<i class='fab fa-github'></i> Github repo"
     identifier = "ds"
-    url = "https://github.com/matcornic/hugo-theme-learn"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
     [[Languages.en.menu.shortcuts]]
@@ -80,14 +80,14 @@ Example from the current website:
     weight = 30
 
     [Languages.fr]
-    title = "Documentation du thème Hugo Learn"
+    title = "Documentation du thème Hugo Relearn"
     weight = 2
     languageName = "Français"
 
     [[Languages.fr.menu.shortcuts]]
     name = "<i class='fab fa-github'></i> Repo Github"
     identifier = "ds"
-    url = "https://github.com/matcornic/hugo-theme-learn"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
     [[Languages.fr.menu.shortcuts]]

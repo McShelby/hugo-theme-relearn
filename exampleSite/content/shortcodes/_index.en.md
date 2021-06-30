@@ -11,6 +11,6 @@ But this happens to be a bad idea. Everyone uses Markdown because it's pure and 
 
 To avoid this limitations, Hugo created [shortcodes](https://gohugo.io/extras/shortcodes/). A shortcode is a simple snippet inside a page.
 
-**Hugo-theme-learn** provides multiple shortcodes on top of existing ones.
+**Hugo-theme-relearn** provides multiple shortcodes on top of existing ones.
 
 {{%children style="h2" description="true" %}}

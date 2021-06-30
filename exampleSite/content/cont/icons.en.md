@@ -3,7 +3,7 @@ title: Icons and logos
 weight: 27
 ---
 
-The Learn theme for Hugo loads the [**Font Awesome**](https://fontawesome.com) library, allowing you to easily display any icon or logo available in the Font Awesome free collection.
+The Relearn theme for Hugo loads the [**Font Awesome**](https://fontawesome.com) library, allowing you to easily display any icon or logo available in the Font Awesome free collection.
 
 ## Finding an icon
 
@@ -22,12 +22,12 @@ The HTML to include the heart icon is:
 Paste the `<i>` HTML into markup and Font Awesome will load the relevant icon.
 
 ```
-Built with <i class="fas fa-heart"></i> from Grav and Hugo
+Built with <i class="fas fa-heart"></i> from Relearn and Hugo
 ```
 
 Which appears as
 
-Built with <i class="fas fa-heart"></i> from Grav and Hugo
+Built with <i class="fas fa-heart"></i> from Relearn and Hugo
 
 ## Customising icons
 

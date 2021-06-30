@@ -6,7 +6,7 @@ weight: 20
 
 ## Global site parameters
 
-On top of [Hugo global configuration](https://gohugo.io/overview/configuration/), **Hugo-theme-learn** lets you define the following parameters in your `config.toml` (here, values are default).
+On top of [Hugo global configuration](https://gohugo.io/overview/configuration/), **Hugo-theme-relearn** lets you define the following parameters in your `config.toml` (here, values are default).
 
 Note that some of these parameters are explained in details in other sections of this documentation.
 
@@ -63,7 +63,7 @@ If not already present, add the follow lines in the same `config.toml` file.
 home = [ "HTML", "RSS", "JSON"]
 ```
 
-Learn theme uses the last improvement available in hugo version 20+ to generate a json index file ready to be consumed by lunr.js javascript search engine.
+Relearn theme uses the last improvement available in hugo version 20+ to generate a json index file ready to be consumed by lunr.js javascript search engine.
 
 > Hugo generate lunrjs index.json at the root of public folder.
 > When you build the site with `hugo server`, hugo generates it internally and of course it doesn’t show up in the filesystem

@@ -4,9 +4,9 @@ title: Style customization
 weight: 25
 ---
 
-**Hugo-theme-learn** has been built to be as configurable as possible by defining multiple [partials](https://gohugo.io/templates/partials/)
+**Hugo-theme-relearn** has been built to be as configurable as possible by defining multiple [partials](https://gohugo.io/templates/partials/)
 
-In `themes/hugo-theme-learn/layouts/partials/`, you will find all the partials defined for this theme. If you need to overwrite something, don't change the code directly. Instead [follow this page](https://gohugo.io/themes/customizing/). You'd create a new partial in the `layouts/partials` folder of your local project. This partial will have the priority.
+In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials defined for this theme. If you need to overwrite something, don't change the code directly. Instead [follow this page](https://gohugo.io/themes/customizing/). You'd create a new partial in the `layouts/partials` folder of your local project. This partial will have the priority.
 
 This theme defines the following partials :
 
@@ -43,7 +43,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ## Change default colors {#theme-variant}
 
-**Hugo Learn theme** let you choose between 3 native color scheme variants, but feel free to add one yourself ! Default color scheme is based on [Grav Learn Theme](https://learn.getgrav.org/).
+**Hugo Relearn theme** let you choose between 3 native color scheme variants, but feel free to add one yourself!
 
 ### Red variant
 

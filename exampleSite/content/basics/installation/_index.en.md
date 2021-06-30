@@ -15,11 +15,11 @@ hugo new site <new_project>
 
 ## Install the theme
 
-Install the **Hugo-theme-learn** theme by following [this documentation](https://gohugo.io/getting-started/quick-start/#step-3-add-a-theme)
+Install the **Hugo-theme-relearn** theme by following [this documentation](https://gohugo.io/getting-started/quick-start/#step-3-add-a-theme)
 
-This theme's repository is: https://github.com/matcornic/hugo-theme-learn.git
+This theme's repository is: https://github.com/McShelby/hugo-theme-relearn.git
 
-Alternatively, you can [download the theme as .zip](https://github.com/matcornic/hugo-theme-learn/archive/master.zip) file and extract it in the `themes` directory
+Alternatively, you can [download the theme as .zip](https://github.com/McShelby/hugo-theme-relearn/archive/master.zip) file and extract it in the `themes` directory
 
 ## Basic configuration
 
@@ -27,7 +27,7 @@ When building the website, you can set a theme by using `--theme` option. Howeve
 
 ```toml
 # Change the default theme to be use when building the site with Hugo
-theme = "hugo-theme-learn"
+theme = "hugo-theme-relearn"
 
 # For search functionality
 [outputs]
@@ -50,7 +50,7 @@ renders as
 
 ![A Chapter](/en/basics/installation/images/chapter.png?classes=shadow&width=60pc)
 
-**Hugo-theme-learn** provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command
+**Hugo-theme-relearn** provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command
 
 ```
 hugo new --kind chapter basics/_index.md

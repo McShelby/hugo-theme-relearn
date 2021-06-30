@@ -5,7 +5,7 @@ weight: 40
 tags: ["documentation", "tutorial"]
 ---
 
-*Learn theme* support one default taxonomy of gohugo: the *tag* feature.
+*Relearn theme* support one default taxonomy of gohugo: the *tag* feature.
 
 ## Configuration 
 

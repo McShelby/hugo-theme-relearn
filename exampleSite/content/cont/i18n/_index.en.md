@@ -4,7 +4,7 @@ title: Multilingual and i18n
 weight: 30
 ---
 
-**Learn theme** is fully compatible with Hugo multilingual mode.
+**Relearn theme** is fully compatible with Hugo multilingual mode.
 
 It provides:
 
@@ -28,12 +28,12 @@ defaultContentLanguageInSubdir= true
 
 [Languages]
 [Languages.en]
-title = "Documentation for Hugo Learn Theme"
+title = "Documentation for Hugo Relearn Theme"
 weight = 1
 languageName = "English"
 
 [Languages.fr]
-title = "Documentation du thème Hugo Learn"
+title = "Documentation du thème Hugo Relearn"
 weight = 2
 languageName = "Français"
 ```
@@ -59,9 +59,9 @@ Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-con
 
 Translations strings are used for common default values used in the theme (*Edit this page* button, *Search placeholder* and so on). Translations are available in french and english but you may use another language or want to override default values.
 
-To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-learn/i18n/en.toml` 
+To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-relearn/i18n/en.toml` 
 
-By the way, as these translations could be used by other people, please take the time to propose a translation by [making a PR](https://github.com/matcornic/hugo-theme-learn/pulls) to the theme ! 
+By the way, as these translations could be used by other people, please take the time to propose a translation by [making a PR](https://github.com/McShelby/hugo-theme-relearn/pulls) to the theme ! 
 
 ## Disable language switching
 

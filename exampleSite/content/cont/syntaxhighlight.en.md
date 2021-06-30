@@ -4,7 +4,7 @@ title: Code highlighting
 weight: 16
 ---
 
-Learn theme uses [highlight.js](https://highlightjs.org/) to provide code syntax highlighting.
+Relearn theme uses [highlight.js](https://highlightjs.org/) to provide code syntax highlighting.
 
 ## Markdown syntax
 
@@ -48,7 +48,7 @@ Renders to:
 
 ## Supported languages
 
-Learn theme ships with its own version of highlight.js to support offline browsing. The included package supports 38 common languages, as described on the [highlight.js download page](https://highlightjs.org/download/).
+Relearn theme ships with its own version of highlight.js to support offline browsing. The included package supports 38 common languages, as described on the [highlight.js download page](https://highlightjs.org/download/).
 
 ## Identifying failed language detection
 
@@ -80,7 +80,7 @@ Inside the zip archive downloaded from highlight.js extract the file named `high
 static/js/highlight.pack.js
 ```
 
-**Do not** replace the existing file at `themes/hugo-theme-learn/static/js/highlight.pack.js`.
+**Do not** replace the existing file at `themes/hugo-theme-relearn/static/js/highlight.pack.js`.
 
 Including the file in the correct path will override the theme default highlight.pack.js and prevent issues caused in the future if the theme default file is updated.
 
