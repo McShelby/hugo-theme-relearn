@@ -4,8 +4,7 @@ This repository contains a theme for [Hugo](https://gohugo.io/).
 
 Visit the [theme documentation](https://relearn.netlify.com/) to see what is going on. It is actually built with this theme.
 
-[![wercker status](https://app.wercker.com/status/233466a2be73fcea400e7dc02ef6adf9/s/master "wercker status")](https://app.wercker.com/project/byKey/233466a2be73fcea400e7dc02ef6adf9)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMcShelby%2Fhugo-theme-relearn.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMcShelby%2Fhugo-theme-relearn?ref=badge_shield)
+[![wercker status](https://app.wercker.com/status/062e9604da64b79944d87434cb63fa53/s/master "wercker status")](https://app.wercker.com/project/byKey/062e9604da64b79944d87434cb63fa53)
 
 ## Main features
 
