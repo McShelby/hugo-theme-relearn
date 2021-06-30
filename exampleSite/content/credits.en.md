@@ -9,7 +9,7 @@ Thanks to them <i class="fas fa-heart"></i> for making Open Source Software a be
 
 {{% ghcontributors "https://api.github.com/repos/McShelby/hugo-theme-relearn/contributors?per_page=100" %}}
 
-And a special thanks to [@vjeantet](https://github.com/vjeantet) for his work on [docdock](https://github.com/vjeantet/hugo-theme-docdock), a fork of hugo-theme-relearn. v2.0.0 of this theme is inspired by his work.
+And a special thanks to [@matcornic](https://github.com/matcornic) for his work on [learn](https://github.com/matcornic/hugo-theme-learn) and [@vjeantet](https://github.com/vjeantet) for his work on [docdock](https://github.com/vjeantet/hugo-theme-docdock), which hugo-theme-relearn is based on.
 
 ## Packages and libraries
 * [mermaid](https://knsv.github.io/mermaid) - generation of diagram and flowchart from text in a similar manner as markdown
