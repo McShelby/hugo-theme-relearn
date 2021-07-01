@@ -4,7 +4,7 @@ A theme for [Hugo](https://gohugo.io/).
 
 [![wercker status](https://app.wercker.com/status/062e9604da64b79944d87434cb63fa53/s/main "wercker status")](https://app.wercker.com/project/byKey/062e9604da64b79944d87434cb63fa53)
 
-![Overview](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/tn.png)
+![Overview](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/screenshot.png)
 
 ## Main features
 
@@ -18,7 +18,6 @@ A theme for [Hugo](https://gohugo.io/).
 - Mermaid diagram (flowchart, sequence, gantt)
 - Customizable look and feel and themes variants
 - Buttons, Tip/Note/Info/Warning boxes, Expand, Tabs
-- and many more...
 
 Visit the [documentation](https://relearn.netlify.app/) for a demo.
 

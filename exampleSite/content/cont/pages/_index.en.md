@@ -121,7 +121,7 @@ In the page frontmatter, add a `pre` param to insert any HTML code before the me
 
 ```toml
 +++
-title = "Github repo"
+title = "GitHub repo"
 pre = "<i class='fab fa-github'></i> "
 +++
 ```

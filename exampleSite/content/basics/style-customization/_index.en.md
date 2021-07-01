@@ -43,13 +43,23 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ## Change default colors {#theme-variant}
 
-**Hugo Relearn theme** let you choose between 3 native color scheme variants, but feel free to add one yourself!
+**Hugo Relearn theme** let you choose between some predefined color scheme variants, but feel free to add one yourself!
+
+### Standard variant
+
+```toml
+[params]
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
+  themeVariant = ""
+```
+
+![Red variant](images/standard-variant.png?width=60pc)
 
 ### Red variant
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
   themeVariant = "red"
 ```
 
@@ -59,7 +69,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
   themeVariant = "blue"
 ```
 
@@ -69,7 +79,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
   themeVariant = "green"
 ```
 
