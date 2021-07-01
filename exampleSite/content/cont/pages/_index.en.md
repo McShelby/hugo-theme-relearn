@@ -85,7 +85,7 @@ Hugo provides a `new` command to create a new website.
 hugo new site <new_project>
 ```
 
-**Hugo-theme-relearn** provides [archetypes]({{< relref "cont/archetypes.en.md" >}}) to help you create this kind of pages.
+**Hugo-theme-relearn** provides [archetypes]({{%relref "cont/archetypes.en.md" %}}) to help you create this kind of pages.
 
 ## Front Matter configuration
 

@@ -429,7 +429,7 @@ HTML:
 
 GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first code "fence", ` ```js `, and syntax highlighting will automatically be applied in the rendered HTML.
 
-See [Code Highlighting]({{< ref "syntaxhighlight.md" >}}) for additional documentation.
+See [Code Highlighting]({{% relref "syntaxhighlight.md" %}}) for additional documentation.
 
 For example, to apply syntax highlighting to JavaScript code:
 
