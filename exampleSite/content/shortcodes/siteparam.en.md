@@ -9,7 +9,7 @@ For instance, in this current site, the `editURL` variable is used in `config.to
 
 ```toml
 [params]
-  editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/master/exampleSite/content/"
+  editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
 ```
 
 Use the `siteparam` shortcode to display its value.

@@ -19,7 +19,7 @@ Install the **Hugo-theme-relearn** theme by following [this documentation](https
 
 This theme's repository is: https://github.com/McShelby/hugo-theme-relearn.git
 
-Alternatively, you can [download the theme as .zip](https://github.com/McShelby/hugo-theme-relearn/archive/master.zip) file and extract it in the `themes` directory
+Alternatively, you can [download the theme as .zip](https://github.com/McShelby/hugo-theme-relearn/archive/main.zip) file and extract it in the `themes` directory
 
 ## Basic configuration
 
