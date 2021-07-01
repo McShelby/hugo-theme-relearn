@@ -48,11 +48,19 @@ Special thanks to [@matcornic](https://github.com/matcornic) for his work on [le
 
 ## Releasing
 
-Somewhat work-in-progress steps to release with [gren](https://github.com/github-tools/github-release-notes)
+We are using [gren](https://github.com/github-tools/github-release-notes) to generate the changelog and releasenotes automatically.
 
-- Check all MRs assigned to the milestone are closed or pushed back to another release
+In the latest gren release (0.17.3) is a bug in the date generation. Therefore we are using a historical but correct version directly thru `npx`.
+
+Once:
+
+- Generate API Token as described in grens [README.md](https://github.com/github-tools/github-release-notes)
+- On Windows do `setx GREN_GITHUB_TOKEN <API TOKEN>` and restart your shell
+
+Per release:
+
+- Close all issues of the milestone or push them back to an open milestone
 - Close the milestone
-- Check merged MRs on the milestone have a tag (Bug, Enhancement, etc.)
 - Tag and push the repo
 
   ```shell
@@ -63,10 +71,9 @@ Somewhat work-in-progress steps to release with [gren](https://github.com/github
 - Generate CHANGELOG.md with _gren_
 
   ```shell
-  gren changelog  --override --generate --tags=all
+  npx github-release-notes@0.17.1 changelog --tags=all --generate --override
   ```
 
-- Fix the date for the current release in CHANGELOG.md
 - Add the changelog to git and update the tag
 
   ```shell
@@ -80,5 +87,5 @@ Somewhat work-in-progress steps to release with [gren](https://github.com/github
 - Generate release with _gren_
 
   ```shell
-  gren release -t <tag>
+  npx github-release-notes@0.17.1 release --tags <tag>
   ```

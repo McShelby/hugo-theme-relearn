@@ -1,25 +1,22 @@
 ---
-  dataSource: "prs"
-  prefix: "v"
-  onlyMilestones: false
+  dataSource: "milestones"
+  onlyMilestones: true
+  milestoneMatch: "{{tag_name}}"
   changelogFilename: "CHANGELOG.md"
-  includeMessages: "all"
-  ignoreIssuesWith:
-    - "support"
+  ignore-tags-with:
+    - "Relearn"
   ignoreLabels:
+    - "documentation"
     - "duplicate"
     - "invalid"
+    - "support"
     - "wontfix"
   groupBy:
-    New features:
-      - "feature"
     Bug Fixes:
       - "bug"
-    Enhancements:
-      - "enhancement"
-    Internationalisation:
-      - "i18n"
-    Theme Meta:
-      - "meta"
+    New features:
+      - "feature"
+    Maintenance:
+      - "task"
     Uncategorised:
       - "closed"
