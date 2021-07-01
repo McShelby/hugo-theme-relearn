@@ -43,7 +43,9 @@ Check that your Hugo version is minimum `0.25` with `hugo version`.
 
 ## Credits
 
-Many thanks to [@matcornic](https://github.com/matcornic) for his work on [learn](https://github.com/matcornic/hugo-theme-learn) and [@vjeantet](https://github.com/vjeantet) for his work on [docdock](https://github.com/vjeantet/hugo-theme-docdock), which hugo-theme-relearn is based on.
+Many thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
+
+Special thanks to [@matcornic](https://github.com/matcornic) for his work on [learn](https://github.com/matcornic/hugo-theme-learn) and [@vjeantet](https://github.com/vjeantet) for his work on [docdock](https://github.com/vjeantet/hugo-theme-docdock), which hugo-theme-relearn is based on.
 
 ## Releasing
 
