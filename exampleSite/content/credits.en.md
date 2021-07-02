@@ -14,6 +14,7 @@ Special thanks to [@matcornic](https://github.com/matcornic) for his work on [le
 * [mermaid](https://mermaid-js.github.io/mermaid) - generation of diagram and flowchart from text in a similar manner as markdown
 * [font awesome](http://fontawesome.io/) - the iconic font and CSS framework
 * [jQuery](https://jquery.com) - The Write Less, Do More, JavaScript Library
+* [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - enable pan and zoom in mermaid graphs
 * [lunr](https://lunrjs.com) - Lunr enables you to provide a great search experience without the need for external, server-side, search services...
 * [horsey](https://bevacqua.github.io/horsey/) - Progressive and customizable autocomplete component
 * [clipboard.js](https://zenorocha.github.io/clipboard.js) - copy text to clipboard

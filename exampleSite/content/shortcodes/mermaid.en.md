@@ -7,6 +7,8 @@ description : "Generation of diagram and flowchart from text in a similar manner
 
 Just insert your mermaid code in the `mermaid` shortcode and that's it.
 
+You can pan and zoom the generated graphs.
+
 ## Examples
 
 ### Flowchart example
