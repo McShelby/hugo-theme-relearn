@@ -43,7 +43,7 @@ Note that some of these parameters are explained in details in other sections of
   # Specifies the remote location of the mermaid js
   customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
   # Initialization parameter for mermaid, see mermaid documentation
-  mermaidInitialize = "{ \"startOnLoad\": true }"
+  mermaidInitialize = "{ \"theme\": \"default\" }"
   # Hide Next and Previous page buttons normally displayed full height beside content
   disableNextPrev = true
   # Order sections in menu by "weight" or "title". Default to "weight"
