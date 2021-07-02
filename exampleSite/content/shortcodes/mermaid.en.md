@@ -187,24 +187,22 @@ stateDiagram-v2
 
 ## Configuration
 
-By default, mermaid is configured with default settings. You can customize mermaids default settings for all of your files thru a JSON object in your `config.toml` or override these settings sidewise thru your pages frontmatter.
+Mermaid is configured with default settings. You can customize mermaids default settings for all of your files thru a JSON object in your `config.toml` or override these settings sidewise thru your pages frontmatter.
 
 This JSON object is forwarded into mermaids `mermaid.initialize()` function.
 
 See [mermaid documentation](http://mermaid-js.github.io/mermaid/getting-started/Setup.html#mermaidapi-configuration-defaults) for all allowed settings.
 
-### Allow HTML in graphs
-
-By default newer versions of mermaid disallow HTML in graphs if you are using default settings. To enable this, set the following line in your `config.toml`
+### Example
 
 ````toml
 [params]
-  mermaidInitialize = "{ \"securityLevel\": \"loose\", \"startOnLoad\": true }"
+  mermaidInitialize = "{ \"theme\": \"dark\" }"
 ````
 
 or pages frontmatter
 ````toml
 +++
-mermaidInitialize = "{ \"securityLevel\": \"loose\", \"startOnLoad\": true }"
+mermaidInitialize = "{ \"theme\": \"dark\" }"
 +++
 ````
