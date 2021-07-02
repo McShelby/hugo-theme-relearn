@@ -159,48 +159,6 @@ classDiagram
   Class08 <--> C2: Cool label
 {{</mermaid>}}
 
-### Git example
-
-    {{</* mermaid */>}}
-    gitGraph:
-    options
-    {
-      "nodeSpacing": 150,
-      "nodeRadius": 10
-    }
-    end
-      commit
-      branch newbranch
-      checkout newbranch
-      commit
-      commit
-      checkout main
-      commit
-      commit
-      merge newbranch
-    {{</* /mermaid*/>}}
-
-renders as
-
-{{<mermaid>}}
-gitGraph:
-options
-{
-  "nodeSpacing": 150,
-  "nodeRadius": 10
-}
-end
-  commit
-  branch newbranch
-  checkout newbranch
-  commit
-  commit
-  checkout main
-  commit
-  commit
-  merge newbranch
-{{</mermaid>}}
-
 ### State Diagrams
 
     {{</* mermaid */>}}
