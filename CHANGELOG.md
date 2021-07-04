@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 (04/07/2021)
+
+### Maintenance
+
+- [**task**] theme: prepare for new hugo theme registration [#13](https://github.com/McShelby/hugo-theme-relearn/issues/13)
+
+---
+
 ## 1.1.0 (02/07/2021)
 
 ### Bug Fixes
