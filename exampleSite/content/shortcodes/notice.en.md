@@ -35,7 +35,7 @@ You can add:
 > the possiblities are endless
 {{% /notice %}}
 
-{{% expand Code %}}
+{{% expand "Show markup" %}}
 ````
 {{%/* notice note */%}}
 A **notice** disclaimer
@@ -79,7 +79,7 @@ You can add:
 > the possiblities are endless
 {{% /notice %}}
 
-{{% expand Code %}}
+{{% expand "Show markup" %}}
 ````
 {{%/* notice info */%}}
 An **information** disclaimer
@@ -123,7 +123,7 @@ You can add:
 > the possiblities are endless
 {{% /notice %}}
 
-{{% expand Code %}}
+{{% expand "Show markup" %}}
 ````
 {{%/* notice tip */%}}
 A **tip** disclaimer
@@ -167,7 +167,7 @@ You can add:
 > the possiblities are endless
 {{% /notice %}}
 
-{{% expand Code %}}
+{{% expand "Show markup" %}}
 ````
 {{%/* notice warning */%}}
 A **warning** disclaimer
