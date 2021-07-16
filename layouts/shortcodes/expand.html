@@ -1,11 +1,11 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 <div class="expand">
     <a class="expand-label" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-        <i class="fas fa-chevron-right"></i>
+        <i class="fas fa-chevron-{{ if eq (.Get 1) "true" }}down{{else}}right{{end}}"></i>
         {{$expandMessage := T "Expand-title"}}
     	{{.Get 0 | default $expandMessage}}
     </a>
-    <div class="expand-content" style="display: none;">
+    <div class="expand-content" style="display: {{ if eq (.Get 1) "true" }}block{{else}}none{{end}};">
         {{.Inner | safeHTML}}
     </div>
 </div>

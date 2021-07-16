@@ -8,25 +8,26 @@ The Expand shortcode displays an expandable/collapsible section of text on your 
 ## Usage
 
 ````
-{{%/*expand "Does this relearn theme rock?" */%}}
+{{%/* expand "Does this relearn theme rock?" { "true" | "false" } */%}}
 Yes!
-{{%/* /expand*/%}}
+{{%/* /expand */%}}
 ````
 
-This shortcode takes one optional parameter to define the text that appears next to the expand/collapse icon. The default text is *"Expand me..."*.
+The first optional parameter defines the text that appears next to the expand/collapse icon. The default text is `"Expand me..."`.
 
+The second optional parameter controls if the block is initially shown as expanded (`"true"`) or collapsed (`"false"`). The default ist `"false"`.
 ## Examples
 
-### Default text
+### All defaults
 
-{{%expand%}}
+{{% expand %}}
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-{{% /expand%}}
+{{% /expand %}}
 
 {{% expand "Show markup" %}}
 ````
@@ -39,11 +40,35 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 {{%/* /expand */%}}
 ````
-{{% /expand%}}
+{{% /expand %}}
+
+### Initially expanded
+
+{{% expand "Expand me..." "true" %}}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+{{% /expand %}}
+
+{{% expand "Show markup" %}}
+````
+{{%/* expand "Expand me..." "true" */%}}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+{{%/* /expand */%}}
+````
+{{% /expand %}}
 
 ### Arbitrary text
 
-{{%expand "Show me endless possibilities" %}}
+{{% expand "Show me endless possibilities" %}}
 Some expandable text.
 
 You can add:
@@ -83,5 +108,4 @@ You can add:
 > the possiblities are endless
 {{%/* /expand */%}}
 ````
-{{% /expand%}}
-
+{{% /expand %}}
