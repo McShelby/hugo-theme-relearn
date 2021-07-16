@@ -1,66 +1,191 @@
 ---
 title: Notice
-description : "Disclaimers to help you structure your page"
+description: "Disclaimers to help you structure your page"
 ---
 
-The notice shortcode shows 4 types of disclaimers to help you structure your page.
+The notice shortcode shows four types of disclaimers to help you structure your page.
 
+## Usage
+
+````
+{{%/* notice [ note | info | tip | warning ] */%}}
+Some markup
+{{%/* /notice */%}}
+````
+
+## Examples
 ### Note
 
-```
-{{%/* notice note */%}}
-A notice disclaimer
-
-With multiple paragraphs
-{{%/* /notice */%}}
-```
-
-renders as
-
 {{% notice note %}}
-A notice disclaimer
+A **notice** disclaimer
 
-With multiple paragraphs
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
 {{% /notice %}}
+
+{{% expand Code %}}
+````
+{{%/* notice note */%}}
+A **notice** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
+{{%/* /notice */%}}
+````
+{{% /expand %}}
 
 ### Info
 
-```
-{{%/* notice info */%}}
-An information disclaimer
-{{%/* /notice */%}}
-```
-
-renders as
-
 {{% notice info %}}
-An information disclaimer
+An **information** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
 {{% /notice %}}
+
+{{% expand Code %}}
+````
+{{%/* notice info */%}}
+An **information** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
+{{%/* /notice */%}}
+````
+{{% /expand %}}
 
 ### Tip
 
-```
-{{%/* notice tip */%}}
-A tip disclaimer
-{{%/* /notice */%}}
-```
-
-renders as
-
 {{% notice tip %}}
-A tip disclaimer
+A **tip** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
 {{% /notice %}}
+
+{{% expand Code %}}
+````
+{{%/* notice tip */%}}
+A **tip** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
+{{%/* /notice */%}}
+````
+{{% /expand %}}
 
 ### Warning
 
-```
-{{%/* notice warning */%}}
-A warning disclaimer
-{{%/* /notice */%}}
-```
-
-renders as
-
 {{% notice warning %}}
-A warning disclaimer
+A **warning** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
 {{% /notice %}}
+
+{{% expand Code %}}
+````
+{{%/* notice warning */%}}
+A **warning** disclaimer
+
+You can add:
+
+- multiple paragraphs
+- bullet point lists
+- *emphasized*, **bold** and even ***bold emphasized*** text
+- [links](https://example.com)
+- other shortcodes besides `notice`
+- etc.
+
+```
+...and even source code
+```
+
+> the possiblities are endless
+{{%/* /notice */%}}
+````
+{{% /expand %}}
