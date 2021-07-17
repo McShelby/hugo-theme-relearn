@@ -1,9 +1,8 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<section class="attachments {{ with .Get "style"}}{{.}}{{ end }}">
-	<label>
-		<i class="fas fa-paperclip" aria-hidden="true"></i>
-		{{with .Get "title"}}{{.}}{{else}}{{T "Attachments-label"}}{{end}}
-	</label>
+{{ $style := .Get "style" | default "neutral" }}
+{{ $title := .Get "title" | default ("Attachments-label" | T) }}
+<section class="attachments {{ $style }}">
+	<div class="label">{{ $title }}</div>
 	{{if eq .Page.File.BaseFileName "index"}}
 		{{$.Scratch.Add "filesName" "files"}}
 	{{else}}
@@ -33,4 +32,3 @@
 	</div>
 	{{.Inner}}
 </section>
-
