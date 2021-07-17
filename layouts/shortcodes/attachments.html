@@ -3,32 +3,34 @@
 {{ $title := .Get "title" | default ("Attachments-label" | T) }}
 <section class="attachments {{ $style }}">
 	<div class="label">{{ $title }}</div>
-	{{if eq .Page.File.BaseFileName "index"}}
-		{{$.Scratch.Add "filesName" "files"}}
-	{{else}}
-		{{$.Scratch.Add "filesName" (printf "%s.files" .Page.File.BaseFileName)}}
-	{{end}}
 	<div class="attachments-files">
-	{{ range (readDir (printf "./content/%s%s" .Page.File.Dir ($.Scratch.Get "filesName")) ) }}
-		{{ $fileDir := replace $.Page.File.Dir "\\" "/" }}
-		{{if ($.Get "pattern")}}
-			{{if (findRE ($.Get "pattern") .Name)}}
+		{{- $filesName := "files" }}
+		{{- if ne .Page.File.BaseFileName "index" }}
+			{{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
+		{{- end}}
+
+		{{- $fileDir := replace .Page.File.Dir "\\" "/" }}
+		{{- $pattern := .Get "pattern" | default "" }}
+		{{- range (readDir (printf "content/%s%s" .Page.File.Dir $filesName) ) }}
+			{{- if findRE $pattern .Name}}
+				{{- $size := .Size }}
+				{{- $unit := "Byte-symbol" }}
+				{{- if ge $size 1024 }}
+					{{- $size = div $size 1024 }}
+					{{- $unit = "Kilobyte-symbol" }}
+				{{- end }}
+				{{- if ge $size 1024 }}
+					{{- $size = div $size 1024 }}
+					{{- $unit = "Megabyte-symbol" }}
+				{{- end }}
+				{{- $unitsymbol := $unit | T }}
+
 				<li>
-					<a href="{{ (printf "%s%s/%s" $fileDir ($.Scratch.Get "filesName") .Name) | relURL }}" >
-						{{.Name}}
-					</a>
-					({{div .Size 1024 }} {{T "BinaryPrefix-kilobyte"}})
+					<a href="{{ (printf "%s%s/%s" $fileDir $filesName .Name) | relLangURL }}">{{.Name}}</a>
+					({{$size}} {{$unitsymbol}})
 				</li>
-			{{end}}
-		{{else}}
-			<li>
-				<a href="{{ (printf "%s%s/%s" $fileDir ($.Scratch.Get "filesName") .Name) | relURL }}" >
-					{{.Name}}
-				</a>
-				({{div .Size 1024 }} {{T "BinaryPrefix-kilobyte"}})
-			</li>
-		{{end}}
-	{{end}}
+			{{- end }}
+		{{- end }}
 	</div>
-	{{.Inner}}
+	{{- .Inner }}
 </section>
