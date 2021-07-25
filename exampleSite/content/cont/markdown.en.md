@@ -25,7 +25,7 @@ John Gruber, the author of Markdown, puts it like this:
 Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:
 
 {{% notice info %}}
-<i class="fas fa-bookmark"></i> Bookmark this page for easy future reference!
+<i class="fas fa-bookmark"></i> Bookmark this page and the [official Commonmark reference](https://commonmark.org/help/) for easy future reference!
 {{% /notice %}}
 
 ## Headings
@@ -85,19 +85,15 @@ This is a comment
 
 ## Horizontal Rules
 
-The HTML `<hr>` element is for creating a "thematic break" between paragraph-level elements. In markdown, you can create a `<hr>` with any of the following:
-
-* `___`: three consecutive underscores
-* `---`: three consecutive dashes
-* `***`: three consecutive asterisks
+The HTML `<hr>` element is for creating a "thematic break" between paragraph-level elements. In markdown, you can create a `<hr>` with `---` - three consecutive dashes
 
 renders to:
 
-___
+---
 
-## Body Copy
+## Paragraphs
 
-Body copy written as normal, plain text will be wrapped with `<p></p>` tags in the rendered HTML.
+Any text not starting with a special sign is written as normal, plain text and will be wrapped within `<p></p>` tags in the rendered HTML.
 
 So this body copy:
 
@@ -111,7 +107,7 @@ renders to this HTML:
 <p>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.</p>
 ```
 
-## Emphasis
+## Text Markers
 
 ### Bold
 
@@ -214,12 +210,6 @@ Renders to:
 > > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 >
 > Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
-
-## Notices
-
-{{% notice note %}}
-Here is some important information: Stay hydrated!
-{{% /notice %}}
 
 ## Lists
 
@@ -427,7 +417,7 @@ HTML:
 
 ### Syntax highlighting
 
-GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first code "fence", ` ```js `, and syntax highlighting will automatically be applied in the rendered HTML.
+GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, usually you simply add the file extension of the language you want to use directly after the first code "fence", ` ```js `, and syntax highlighting will automatically be applied in the rendered HTML.
 
 See [Code Highlighting]({{% relref "syntaxhighlight.md" %}}) for additional documentation.
 
@@ -632,7 +622,11 @@ With a reference later in the document defining the URL location:
 
     [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
-### Resizing image
+### Further image formatting
+
+The Hugo markdown parser supports additional non-standard functionality.
+
+#### Resizing image
 
 Add HTTP parameters `width` and/or `height` to the link image to resize the image. Values are CSS values (default is `auto`).
 
@@ -654,7 +648,7 @@ Add HTTP parameters `width` and/or `height` to the link image to resize the imag
 
 ![Minion](https://octodex.github.com/images/minion.png?height=50px&width=300px)
 
-### Add CSS classes
+#### Add CSS classes
 
 Add a HTTP `classes` parameter to the link image to add CSS classes. `shadow`and `border` are available but you could define other ones.
 
@@ -676,7 +670,7 @@ Add a HTTP `classes` parameter to the link image to add CSS classes. `shadow`and
 
 ![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=border,shadow)
 
-### Lightbox
+#### Lightbox
 
 Add a HTTP `featherlight` parameter to the link image to disable lightbox. By default lightbox is enabled using the featherlight.js plugin. You can disable this by defining `featherlight` to `false`.
 
