@@ -683,3 +683,5 @@ Add a HTTP `featherlight` parameter to the link image to disable lightbox. By de
 ```markdown
 ![Minion](https://octodex.github.com/images/minion.png?featherlight=false)
 ```
+
+![Minion](https://octodex.github.com/images/minion.png?featherlight=false)
