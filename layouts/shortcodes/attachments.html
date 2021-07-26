@@ -1,6 +1,7 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 {{ $style := .Get "style" | default "neutral" }}
 {{ $title := .Get "title" | default ("Attachments-label" | T) }}
+{{ $sort := .Get "sort" | default "asc" }}
 <section class="attachments {{ $style }}">
 	<div class="label">{{ $title }}</div>
 	<div class="attachments-files">
@@ -11,7 +12,7 @@
 
 		{{- $fileDir := replace .Page.File.Dir "\\" "/" }}
 		{{- $pattern := .Get "pattern" | default "" }}
-		{{- range (readDir (printf "content/%s%s" .Page.File.Dir $filesName) ) }}
+		{{- range sort (readDir (printf "content/%s%s" .Page.File.Dir $filesName) ) "Name" $sort }}
 			{{- if findRE $pattern .Name}}
 				{{- $size := .Size }}
 				{{- $unit := "Byte-symbol" }}

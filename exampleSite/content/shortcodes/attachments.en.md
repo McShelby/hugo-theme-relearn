@@ -38,7 +38,8 @@ That's all!
 | Parameter | Default | Description |
 |:--|:--|:--|
 | title | "Attachments" | List's title  |
-| style | "" | Choose between "orange", "grey", "blue" and "green" for nice style |
+| sort  | "asc" | Sorting the output in `asc`ending or `desc`ending order |
+| style | "" | Choose between `orange`, `grey`, `blue` and `green` for nice style |
 | pattern | ".*" | A regular expressions, used to filter the attachments by file name. <br/><br/>The **pattern** parameter value must be [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).
 
 For example:
@@ -49,7 +50,6 @@ For example:
 ### Examples
 
 #### List of attachments ending in pdf or mp4
-
 
     {{%/*attachments title="Related files" pattern=".*(pdf|mp4)"/*/%}}
 
