@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.2.0 (26/07/2021)
+
+### Bug Fixes
+
+- [**bug**] dependency: upgrade jquery to 3.6.0 [#30](https://github.com/McShelby/hugo-theme-relearn/issues/30)
+- [**bug**] attachments: support i18n for attachment size [#21](https://github.com/McShelby/hugo-theme-relearn/issues/21)
+- [**bug**] notice: support i18n for box labels [#16](https://github.com/McShelby/hugo-theme-relearn/issues/16)
+- [**bug**] notice: support multiple blocks in one box [#15](https://github.com/McShelby/hugo-theme-relearn/issues/15)
+
+### New features
+
+- [**feature**] theme: adjust copy-to-clipboard [#29](https://github.com/McShelby/hugo-theme-relearn/issues/29)
+- [**feature**] attachments: adjust style with notice boxes [#28](https://github.com/McShelby/hugo-theme-relearn/issues/28)
+- [**feature**] theme: adjust blockquote contrast [#27](https://github.com/McShelby/hugo-theme-relearn/issues/27)
+- [**feature**] expand: add option to open on page load [#25](https://github.com/McShelby/hugo-theme-relearn/issues/25)
+- [**feature**] expand: rework styling [#24](https://github.com/McShelby/hugo-theme-relearn/issues/24)
+- [**feature**] attachments: sort output [#23](https://github.com/McShelby/hugo-theme-relearn/issues/23)
+- [**feature**] notice: make restyling of notice boxes more robust [#20](https://github.com/McShelby/hugo-theme-relearn/issues/20)
+- [**feature**] notice: fix contrast issues [#19](https://github.com/McShelby/hugo-theme-relearn/issues/19)
+- [**feature**] notice: align box colors to common standards [#18](https://github.com/McShelby/hugo-theme-relearn/issues/18)
+- [**feature**] notice: use distinct icons for notice box type [#17](https://github.com/McShelby/hugo-theme-relearn/issues/17)
+
+---
+
 ## 1.1.1 (04/07/2021)
 
 ### Maintenance
