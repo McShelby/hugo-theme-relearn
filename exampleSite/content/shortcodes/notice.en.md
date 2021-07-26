@@ -23,7 +23,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -44,7 +44,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -67,7 +67,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -88,7 +88,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -111,7 +111,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -132,7 +132,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -155,7 +155,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
@@ -176,7 +176,7 @@ You can add:
 
 - multiple paragraphs
 - bullet point lists
-- *emphasized*, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
 - other shortcodes besides `notice`
 - etc.
