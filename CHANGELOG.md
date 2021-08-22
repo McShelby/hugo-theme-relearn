@@ -1,15 +1,8 @@
 # Changelog
 
-## 1.2.0 (26/07/2021)
+## 1.2.0 (2021-07-26)
 
-### Bug Fixes
-
-- [**bug**] dependency: upgrade jquery to 3.6.0 [#30](https://github.com/McShelby/hugo-theme-relearn/issues/30)
-- [**bug**] attachments: support i18n for attachment size [#21](https://github.com/McShelby/hugo-theme-relearn/issues/21)
-- [**bug**] notice: support i18n for box labels [#16](https://github.com/McShelby/hugo-theme-relearn/issues/16)
-- [**bug**] notice: support multiple blocks in one box [#15](https://github.com/McShelby/hugo-theme-relearn/issues/15)
-
-### New features
+### Enhancements
 
 - [**feature**] theme: adjust copy-to-clipboard [#29](https://github.com/McShelby/hugo-theme-relearn/issues/29)
 - [**feature**] attachments: adjust style with notice boxes [#28](https://github.com/McShelby/hugo-theme-relearn/issues/28)
@@ -22,9 +15,16 @@
 - [**feature**] notice: align box colors to common standards [#18](https://github.com/McShelby/hugo-theme-relearn/issues/18)
 - [**feature**] notice: use distinct icons for notice box type [#17](https://github.com/McShelby/hugo-theme-relearn/issues/17)
 
+### Bug Fixes
+
+- [**bug**] dependency: upgrade jquery to 3.6.0 [#30](https://github.com/McShelby/hugo-theme-relearn/issues/30)
+- [**bug**] attachments: support i18n for attachment size [#21](https://github.com/McShelby/hugo-theme-relearn/issues/21)
+- [**bug**] notice: support i18n for box labels [#16](https://github.com/McShelby/hugo-theme-relearn/issues/16)
+- [**bug**] notice: support multiple blocks in one box [#15](https://github.com/McShelby/hugo-theme-relearn/issues/15)
+
 ---
 
-## 1.1.1 (04/07/2021)
+## 1.1.1 (2021-07-04)
 
 ### Maintenance
 
@@ -32,7 +32,11 @@
 
 ---
 
-## 1.1.0 (02/07/2021)
+## 1.1.0 (2021-07-02)
+
+### Enhancements
+
+- [**feature**] mermaid: expose options in config.toml [#4](https://github.com/McShelby/hugo-theme-relearn/issues/4)
 
 ### Bug Fixes
 
@@ -42,17 +46,13 @@
 - [**bug**] mermaid: code fences not always rendered [#6](https://github.com/McShelby/hugo-theme-relearn/issues/6)
 - [**bug**] mermaid: search term on load may bomb chart [#5](https://github.com/McShelby/hugo-theme-relearn/issues/5)
 
-### New features
-
-- [**feature**] mermaid: expose options in config.toml [#4](https://github.com/McShelby/hugo-theme-relearn/issues/4)
-
 ### Maintenance
 
 - [**task**] mermaid: update to 8.10.2 [#7](https://github.com/McShelby/hugo-theme-relearn/issues/7)
 
 ---
 
-## 1.0.1 (01/07/2021)
+## 1.0.1 (2021-07-01)
 
 ### Maintenance
 
@@ -60,7 +60,7 @@
 
 ---
 
-## 1.0.0 (01/07/2021)
+## 1.0.0 (2021-07-01)
 
 ### Maintenance
 
