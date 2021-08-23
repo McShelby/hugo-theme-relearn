@@ -1,10 +1,14 @@
 # Hugo Relearn Theme
 
-A theme for [Hugo](https://gohugo.io/).
-
-[![wercker status](https://app.wercker.com/status/062e9604da64b79944d87434cb63fa53/s/main "wercker status")](https://app.wercker.com/project/byKey/062e9604da64b79944d87434cb63fa53)
+A documentation theme for [Hugo](https://gohugo.io/).
 
 ![Overview](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/screenshot.png)
+
+## Motivation
+
+The theme initially was a fork of [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features.
+
+As far as possible the theme tries to be a drop-in replacement for hugo-theme-learn. The documentation provides instructions on how to achieve the best compatiblity while still benefitting from bug fixes and new features.
 
 ## Main features
 
@@ -19,33 +23,24 @@ A theme for [Hugo](https://gohugo.io/).
 - Customizable look and feel and themes variants
 - Buttons, Tip/Note/Info/Warning boxes, Expand, Tabs
 
-Visit the [documentation](https://relearn.netlify.app/) for a demo.
-
 ## Installation
 
-Navigate to your themes folder in your Hugo site and use the following commands:
-
-```shell
-cd themes/
-git clone https://github.com/McShelby/hugo-theme-relearn.git
-```
-
-Check that your Hugo version is minimum `0.25` with `hugo version`.
+Visit the [installation instructions](https://relearn.netlify.app/basics/installation) to learn how to setup the theme in your Hugo installation.
 
 ## Usage
 
-- [Visit the documentation](https://relearn.netlify.app/)
+Visit the [documentation](https://relearn.netlify.app/) to learn about all available features and how to use them.
 
 ## Changelog
 
-[The changelog can be seen here.](https://github.com/McShelby/hugo-theme-relearn/blob/main/CHANGELOG.md)
+See the [changelog](https://github.com/McShelby/hugo-theme-relearn/blob/main/CHANGELOG.md) for a complete list of releases.
 
 ## License
 
-[MIT licensed.](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE)
+This project is licensed under the [MIT License](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE).
 
 ## Credits
 
-Many thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
+Special thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
 
-Special thanks to [@matcornic](https://github.com/matcornic) for his work on [learn](https://github.com/matcornic/hugo-theme-learn) and [@vjeantet](https://github.com/vjeantet) for his work on [docdock](https://github.com/vjeantet/hugo-theme-docdock), which hugo-theme-relearn is based on.
+Many thanks to [@matcornic](https://github.com/matcornic) for his work on [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn).
