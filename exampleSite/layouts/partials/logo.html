@@ -6,7 +6,7 @@
     font-weight: bold;
     margin-top: -2px;
   "
-  href='{{ (cond (and (ne .Site.Params.landingPageURL nil) (.Site.IsMultiLingual)) .Site.Params.landingPageURL "/") }}'>
+  href="{{ .Site.Params.landingPageURL | default "/" | relLangURL }}">
   <svg
   style="
     height: 65px;
