@@ -1,5 +1,3 @@
-# Changelog
-
 ## 1.2.0 (2021-07-26)
 
 ### Enhancements

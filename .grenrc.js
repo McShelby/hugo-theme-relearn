@@ -1,5 +1,5 @@
 module.exports = {
-  changelogFilename: "CHANGELOG.md",
+  changelogFilename: "exampleSite/content/basics/CHANGELOG.md",
   dataSource: "milestones",
   groupBy: {
     "Enhancements": [
@@ -30,6 +30,7 @@ module.exports = {
   milestoneMatch: "{{tag_name}}",
   onlyMilestones: true,
   template: {
+    changelogTitle: "",
     group: "\n### {{heading}}\n",
     release: ({ body, date, release }) => `## ${release} (` + date.replace( /(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1' ) + `)\n${body}`,
   },

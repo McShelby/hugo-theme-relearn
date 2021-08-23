@@ -27,7 +27,7 @@ We are using [gren](https://github.com/github-tools/github-release-notes) to gen
 - Add the changelog to git and update the tag
 
   ```shell
-  git add CHANGELOG.md
+  git add exampleSite/content/basics/CHANGELOG.md
   git commit --message "Ship tag <tag>"
   git push origin main
   git tag --message "" --force <tag>
