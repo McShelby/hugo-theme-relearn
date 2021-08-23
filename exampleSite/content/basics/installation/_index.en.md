@@ -43,10 +43,10 @@ Chapters are pages that contain other child pages. It has a special layout style
 
 # Basics
 
-Discover what this Hugo theme is all about and the core concepts behind it.
+Discover what this H(tugo theme is all about and the core concepts behind it.
 ```
 
-renders as 
+renders as
 
 ![A Chapter](images/chapter.png?classes=shadow&width=60pc)
 
@@ -69,7 +69,7 @@ hugo new basics/first-content.md
 hugo new basics/second-content/_index.md
 ```
 
-Feel free to edit thoses files by adding some sample content and replacing the `title` value in the beginning of the files. 
+Feel free to edit those files by adding some sample content and replacing the `title` value in the beginning of the files.
 
 ## Launching the website locally
 

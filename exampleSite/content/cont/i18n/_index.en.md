@@ -8,7 +8,7 @@ weight: 30
 
 It provides:
 
-- Translation strings for default values (English and French). Feel free to contribute !
+- Translation strings for default values (English and French). Feel free to contribute!
 - Automatic menu generation from multilingual content
 - In-browser language switching
 
@@ -59,13 +59,13 @@ Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-con
 
 Translations strings are used for common default values used in the theme (*Edit this page* button, *Search placeholder* and so on). Translations are available in french and english but you may use another language or want to override default values.
 
-To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-relearn/i18n/en.toml` 
+To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-relearn/i18n/en.toml`
 
-By the way, as these translations could be used by other people, please take the time to propose a translation by [making a PR](https://github.com/McShelby/hugo-theme-relearn/pulls) to the theme ! 
+By the way, as these translations could be used by other people, please take the time to propose a translation by [making a PR](https://github.com/McShelby/hugo-theme-relearn/pulls) to the theme!
 
 ## Disable language switching
 
-Switching the language in the browser is a great feature, but for some reasons you may want to disable it. 
+Switching the language in the browser is a great feature, but for some reasons you may want to disable it.
 
 Just set `disableLanguageSwitchingButton=true` in your `config.toml`
 

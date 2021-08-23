@@ -95,7 +95,7 @@ Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-ma
 
 ```toml
 +++
-# Table of content (toc) is enabled by default. Set this parameter to true to disable it.
+# Table of contents (toc) is enabled by default. Set this parameter to true to disable it.
 # Note: Toc is always disabled for chapter pages
 disableToc = "false"
 # If set, this will be used for the page's menu entry (instead of the `title` attribute)

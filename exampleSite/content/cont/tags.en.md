@@ -5,18 +5,18 @@ weight: 40
 tags: ["documentation", "tutorial"]
 ---
 
-*Relearn theme* support one default taxonomy of gohugo: the *tag* feature.
+*Relearn theme* supports one default taxonomy of Hugo: the *tag* feature.
 
-## Configuration 
+## Configuration
 
-Just add tags to any page: 
+Just add tags to any page:
 
 ```markdown
 ---
 date: 2018-11-29T08:41:44+01:00
 title: Theme tutorial
 weight: 15
-tags: ["tutorial", "theme"] 
+tags: ["tutorial", "theme"]
 ---
 ```
 
@@ -25,7 +25,7 @@ tags: ["tutorial", "theme"]
 
 The tags are displayed at the top of the page, in their insertion order.
 
-Each tag is a link to a *Taxonomy* page displaying all the articles with the given tag. 
+Each tag is a link to a *Taxonomy* page displaying all the articles with the given tag.
 
 ## List all the tags
 

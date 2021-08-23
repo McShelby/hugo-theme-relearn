@@ -25,7 +25,7 @@ This theme defines the following partials :
 ## Change the logo
 
 Create a new file in `layouts/partials/` named `logo.html`. Then write any HTML you want.
-You could use an `img` HTML tag and reference an image created under the *static* folder, or you could paste a SVG definition !
+You could use an `img` HTML tag and reference an image created under the *static* folder, or you could paste a SVG definition!
 
 {{% notice note %}}
 The size of the logo will adapt automatically
@@ -92,7 +92,6 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
 ```css
 
 :root{
-    
     --MAIN-TEXT-color:#323232; /* Color of text by default */
     --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5 */
     --MAIN-LINK-color:#1C90F3; /* Color of links */
@@ -100,7 +99,7 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
     --MAIN-ANCHOR-color: #1C90F3; /* color of anchors on titles */
 
     --MENU-HEADER-BG-color:#1C90F3; /* Background color of menu header */
-    --MENU-HEADER-BORDER-color:#33a1ff; /*Color of menu header border */ 
+    --MENU-HEADER-BORDER-color:#33a1ff; /*Color of menu header border */
 
     --MENU-SEARCH-BG-color:#167ad0; /* Search field background color (by default borders + icons) */
     --MENU-SEARCH-BOX-color: #33a1ff; /* Override search field border color */
@@ -115,7 +114,6 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
 
     --MENU-VISITED-color: #33a1ff; /* Color of 'page visited' icons in menu */
     --MENU-SECTION-HR-color: #20272b; /* Color of <hr> separator in menu */
-    
 }
 
 body {
@@ -195,7 +193,7 @@ a:hover {
 }
 ```
 
-Then, set the `themeVariant` value with the name of your custom theme file. That's it !
+Then, set the `themeVariant` value with the name of your custom theme file. That's it!
 
 ```toml
 [params]

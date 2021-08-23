@@ -12,7 +12,7 @@ Edit the website configuration `config.toml` and add a `[[menu.shortcuts]]` entr
 
 Example from the current website:
 
-    [[menu.shortcuts]] 
+    [[menu.shortcuts]]
     name = "<i class='fab fa-github'></i> Github repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
@@ -34,8 +34,8 @@ Example from the current website:
     url = "/credits"
     weight = 30
 
-By default, shortcuts are preceded by a title. This title can be disabled by setting `disableShortcutsTitle=true`. 
-However, if you want to keep the title but change its value, it can be overriden by changing your local i18n translation string configuration. 
+By default, shortcuts are preceded by a title. This title can be disabled by setting `disableShortcutsTitle=true`.
+However, if you want to keep the title but change its value, it can be overriden by changing your local i18n translation string configuration.
 
 For example, in your local `i18n/en.toml` file, add the following content
 
@@ -46,7 +46,7 @@ Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo i18n tran
 
 ## Configuration for Multilingual mode {#i18n}
 
-When using a multilingual website, you can set different menus for each language. In the `config.toml` file, prefix your menu configuration by `Languages.<language-id>`. 
+When using a multilingual website, you can set different menus for each language. In the `config.toml` file, prefix your menu configuration by `Languages.<language-id>`.
 
 
 Example from the current website:
@@ -57,7 +57,7 @@ Example from the current website:
     weight = 1
     languageName = "English"
 
-    [[Languages.en.menu.shortcuts]] 
+    [[Languages.en.menu.shortcuts]]
     name = "<i class='fab fa-github'></i> Github repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"

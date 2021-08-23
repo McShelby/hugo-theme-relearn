@@ -112,8 +112,8 @@ Hello = World
 
 {{% notice warning %}}
 When using tab views with different content sets, make sure to use a common `groupId` for equal sets but distinct
-`groupId` for different sets. The `groupId` defaults to `'default'`.  
-**Take this into account across the whole site!**  
+`groupId` for different sets. The `groupId` defaults to `'default'`.
+**Take this into account across the whole site!**
 The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came
  from the `'default'` group on a different page then all tabs will be empty at first.
 {{% /notice %}}

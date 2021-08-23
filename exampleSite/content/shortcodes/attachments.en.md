@@ -68,7 +68,7 @@ renders as
 
     {{%/*attachments style="grey" /*/%}}
 
-renders as 
+renders as
 
 {{% attachments style="grey" /%}}
 
@@ -77,7 +77,7 @@ renders as
 renders as
 
 {{% attachments style="blue" /%}}
-    
+
     {{%/*attachments style="green" /*/%}}
 
 renders as

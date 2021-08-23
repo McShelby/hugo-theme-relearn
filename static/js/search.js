@@ -27,10 +27,10 @@ function initLunr() {
                 this.field("content", {
 		    boost: 5
                 });
-				
+
                 this.pipeline.remove(lunr.stemmer);
                 this.searchPipeline.remove(lunr.stemmer);
-				
+
                 // Feed lunr with each file and let lunr actually index them
                 pagesIndex.forEach(function(page) {
 		    this.add(page);
