@@ -33,7 +33,7 @@ Visit the [documentation](https://relearn.netlify.app/) to learn about all avail
 
 ## Changelog
 
-See the [changelog](https://github.com/McShelby/hugo-theme-relearn/blob/main/CHANGELOG.md) for a complete list of releases.
+See the [changelog](https://relearn.netlify.app/basics/history) for a complete list of releases.
 
 ## License
 
