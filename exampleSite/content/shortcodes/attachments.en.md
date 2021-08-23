@@ -51,7 +51,9 @@ For example:
 
 #### List of attachments ending in pdf or mp4
 
-    {{%/*attachments title="Related files" pattern=".*(pdf|mp4)"/*/%}}
+````go
+{{%/*attachments title="Related files" pattern=".*(pdf|mp4)"/*/%}}
+````
 
 renders as
 
@@ -59,26 +61,33 @@ renders as
 
 #### Colored styled box
 
-    {{%/*attachments style="orange" /*/%}}
+````go
+{{%/*attachments style="orange" /*/%}}
+````
 
 renders as
 
 {{% attachments style="orange" /%}}
 
-
-    {{%/*attachments style="grey" /*/%}}
+````go
+{{%/*attachments style="grey" /*/%}}
+````
 
 renders as
 
 {{% attachments style="grey" /%}}
 
-    {{%/*attachments style="blue" /*/%}}
+````go
+{{%/*attachments style="blue" /*/%}}
+````
 
 renders as
 
 {{% attachments style="blue" /%}}
 
-    {{%/*attachments style="green" /*/%}}
+````go
+{{%/*attachments style="green" /*/%}}
+````
 
 renders as
 
