@@ -4,7 +4,7 @@ title: Code highlighting
 weight: 16
 ---
 
-Relearn theme uses [Hugos build in syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/) for code.
+Relearn theme uses [Hugo's built-in syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/) for code.
 
 ## Markdown syntax
 
@@ -48,7 +48,7 @@ Renders to:
 
 ## Supported languages
 
-Hugo comes with a [remarkable list](https://gohugo.io/content-management/syntax-highlighting/) of supported languages.
+Hugo comes with a [remarkable list](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages) of supported languages.
 
 ## Configuration
 

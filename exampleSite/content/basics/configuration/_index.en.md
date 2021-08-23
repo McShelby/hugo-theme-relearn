@@ -83,7 +83,7 @@ You also can disable mermaid for specific pages while globally enabled.
 
 ## Home Button Configuration
 
-If the `disableLandingPage` option is set to `false`, a Home button will appear
+If the `disableLandingPageButton` option is set to `false`, a Home button will appear
 on the left menu. It is an alternative for clicking on the logo. To edit the
 appearance, you will have to configure two parameters for the defined languages:
 

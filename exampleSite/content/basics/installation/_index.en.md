@@ -43,7 +43,7 @@ Chapters are pages that contain other child pages. It has a special layout style
 
 # Basics
 
-Discover what this H(tugo theme is all about and the core concepts behind it.
+Discover what this Hugo theme is all about and the core concepts behind it.
 ```
 
 renders as
