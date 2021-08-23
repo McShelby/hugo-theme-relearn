@@ -14,6 +14,7 @@ Some markup
 ````
 
 ## Examples
+
 ### Note
 
 {{% notice note %}}
