@@ -90,7 +90,6 @@ If you need to change this default behavior, create a new file in `layouts/parti
 First, create a new CSS file in your local `static/css` folder prefixed by `theme` (e.g. with _mine_ theme `static/css/theme-mine.css`). Copy the following content and modify colors in CSS variables.
 
 ```css
-
 :root{
     --MAIN-TEXT-color:#323232; /* Color of text by default */
     --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5 */
@@ -105,7 +104,7 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
     --MENU-SEARCH-BOX-color: #33a1ff; /* Override search field border color */
     --MENU-SEARCH-BOX-ICONS-color: #a1d2fd; /* Override search field icons color */
 
-    --MENU-SECTIONS-ACTIVE-BG-color:#20272b; /* Background color of the active section and its childs */
+    --MENU-SECTIONS-ACTIVE-BG-color:#20272b; /* Background color of the active section and its children */
     --MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
     --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
     --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
@@ -142,7 +141,7 @@ a:hover {
 }
 
 #sidebar ul li.visited > a .read-icon {
-	color: var(--MENU-VISITED-color);
+    color: var(--MENU-VISITED-color);
 }
 
 #body a.highlight:after {
@@ -157,7 +156,7 @@ a:hover {
     background-color: var(--MAIN-LINK-HOVER-color);
 }
 #sidebar {
-	background-color: var(--MENU-SECTIONS-BG-color);
+    background-color: var(--MENU-SECTIONS-BG-color);
 }
 #sidebar #header-wrapper {
     background: var(--MENU-HEADER-BG-color);
@@ -165,7 +164,7 @@ a:hover {
     border-color: var(--MENU-HEADER-BORDER-color);
 }
 #sidebar .searchbox {
-	border-color: var(--MENU-SEARCH-BOX-color);
+    border-color: var(--MENU-SEARCH-BOX-color);
     background: var(--MENU-SEARCH-BG-color);
 }
 #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {

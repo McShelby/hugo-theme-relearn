@@ -22,7 +22,6 @@ tags: ["tutorial", "theme"]
 
 ## Behavior
 
-
 The tags are displayed at the top of the page, in their insertion order.
 
 Each tag is a link to a *Taxonomy* page displaying all the articles with the given tag.

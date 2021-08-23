@@ -207,7 +207,6 @@ $(window).resize(function() {
 
 })(jQuery, 'smartresize');
 
-
 jQuery(function() {
     restoreTabSelections();
     initMermaid();
