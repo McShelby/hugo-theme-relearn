@@ -7,7 +7,7 @@ You can add:
 - other shortcodes besides `expand`
 - etc.
 
-```
+```plaintext
 ...and even source code
 ```
 

@@ -14,7 +14,7 @@ For instance, in this current site, the `editURL` variable is used in `config.to
 
 Use the `siteparam` shortcode to display its value.
 
-```
+```go
 `editURL` Value : {{%/* siteparam "editURL" */%}}
 ```
 

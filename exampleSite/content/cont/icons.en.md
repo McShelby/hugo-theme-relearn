@@ -13,7 +13,7 @@ Once on the Font Awesome page for a specific icon, for example the page for the 
 
 The HTML to include the heart icon is:
 
-```
+```html
 <i class="fas fa-heart"></i>
 ```
 
@@ -21,7 +21,7 @@ The HTML to include the heart icon is:
 
 Paste the `<i>` HTML into markup and Font Awesome will load the relevant icon.
 
-```
+```html
 Built with <i class="fas fa-heart"></i> by Relearn and Hugo
 ```
 

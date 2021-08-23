@@ -9,7 +9,7 @@ The following steps are here to help you initialize your new website. If you don
 
 Hugo provides a `new` command to create a new website.
 
-```
+```shell
 hugo new site <new_project>
 ```
 
@@ -38,7 +38,7 @@ home = [ "HTML", "RSS", "JSON"]
 
 Chapters are pages that contain other child pages. It has a special layout style and usually just contains a _chapter name_, the _title_ and a _brief abstract_ of the section.
 
-```
+```markdown
 ### Chapter 1
 
 # Basics
@@ -52,7 +52,7 @@ renders as
 
 **Hugo-theme-relearn** provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command
 
-```
+```shell
 hugo new --kind chapter basics/_index.md
 ```
 
@@ -64,7 +64,7 @@ By default all chapters and pages are created as a draft. If you want to render 
 
 Then, create content pages inside the previously created chapter. Here are two ways to create content in the chapter:
 
-```
+```shell
 hugo new basics/first-content.md
 hugo new basics/second-content/_index.md
 ```
@@ -75,7 +75,7 @@ Feel free to edit thoses files by adding some sample content and replacing the `
 
 Launch by using the following command:
 
-```
+```shell
 hugo serve
 ```
 
@@ -91,7 +91,7 @@ You should notice three things:
 
 When your site is ready to deploy, run the following command:
 
-```
+```shell
 hugo
 ```
 

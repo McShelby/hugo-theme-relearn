@@ -403,9 +403,11 @@ HTML:
 
 Use "fences"  ```` ``` ```` to block in multiple lines of code.
 
-```markdown
+````plaintext
+```
 Sample text here...
 ```
+````
 
 HTML:
 
@@ -423,28 +425,28 @@ See [Code Highlighting]({{% relref "syntaxhighlight.md" %}}) for additional docu
 
 For example, to apply syntax highlighting to JavaScript code:
 
-```plaintext
-    ```js
-    grunt.initConfig({
-      assemble: {
-        options: {
-          assets: 'docs/assets',
-          data: 'src/data/*.{json,yml}',
-          helpers: 'src/custom-helpers.js',
-          partials: ['src/partials/**/*.{hbs,md}']
-        },
-        pages: {
-          options: {
-            layout: 'default.hbs'
-          },
-          files: {
-            './': ['src/templates/pages/index.hbs']
-          }
-        }
+````plaintext
+```js
+grunt.initConfig({
+  assemble: {
+    options: {
+      assets: 'docs/assets',
+      data: 'src/data/*.{json,yml}',
+      helpers: 'src/custom-helpers.js',
+      partials: ['src/partials/**/*.{hbs,md}']
+    },
+    pages: {
+      options: {
+        layout: 'default.hbs'
+      },
+      files: {
+        './': ['src/templates/pages/index.hbs']
       }
-    };
-    ```
+    }
+  }
+};
 ```
+````
 
 Renders to:
 

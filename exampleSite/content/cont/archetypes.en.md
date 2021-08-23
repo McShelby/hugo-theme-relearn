@@ -11,13 +11,13 @@ It is pre-configured skeleton pages with default front matter. Please refer to t
 
 To create a Chapter page, run the following commands
 
-```
+```shell
 hugo new --kind chapter <name>/_index.md
 ```
 
 It will create a page with predefined Front-Matter:
 
-```markdown
+```toml
 +++
 title = "{{ replace .Name "-" " " | title }}"
 date = {{ .Date }}
@@ -35,18 +35,21 @@ Lorem Ipsum.
 
 ## Default
 
-To create a default page, run either one of the following commands
+To create a default page, run either one of the following commands either
 
-```
-# Either
+```shell
 hugo new <chapter>/<name>/_index.md
-# Or
+```
+
+or
+
+```shell
 hugo new <chapter>/<name>.md
 ```
 
 It will create a page with predefined Front-Matter:
 
-```markdown
+```toml
 +++
 title = "{{ replace .Name "-" " " | title }}"
 date =  {{ .Date }}

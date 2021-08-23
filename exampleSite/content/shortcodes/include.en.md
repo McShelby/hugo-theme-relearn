@@ -7,7 +7,7 @@ The include shortcode includes other files from your project inside of the curre
 
 ## Usage
 
-````
+````go
 {{%/* include "<file>" */%}}
 ````
 
@@ -18,7 +18,7 @@ The include shortcode includes other files from your project inside of the curre
 {{% include "shortcodes/INCLUDE_ME.md" %}}
 
 {{% expand "Show markup" %}}
-````
+````go
 {{%/* include "shortcodes/INCLUDE_ME.md" */%}}
 ````
 {{% /expand %}}

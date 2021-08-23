@@ -7,7 +7,7 @@ The Expand shortcode displays an expandable/collapsible section of text on your 
 
 ## Usage
 
-````
+````go
 {{%/* expand "Does this relearn theme rock?" { "true" | "false" } */%}}
 Yes!
 {{%/* /expand */%}}
@@ -25,7 +25,7 @@ Yes, you did it!
 {{% /expand %}}
 
 {{% expand "Show markup" "true" %}}
-````
+````go
 {{%/* expand */%}}
 Yes, you did it!
 {{%/* /expand */%}}
@@ -39,7 +39,7 @@ No need to press you!
 {{% /expand %}}
 
 {{% expand "Show markup" "true" %}}
-````
+````go
 {{%/* expand "Expand me..." "true" */%}}
 No need to press you!
 {{%/* /expand */%}}
@@ -60,7 +60,7 @@ You can add:
 - other shortcodes besides `expand`
 - etc.
 
-```
+```plaintext
 ...and even source code
 ```
 
@@ -68,7 +68,7 @@ You can add:
 {{% /expand %}}
 
 {{% expand "Show markup" %}}
-````
+````go
 {{%/* expand "Show me endless possibilities" */%}}
 Some expandable text.
 
@@ -81,7 +81,7 @@ You can add:
 - other shortcodes besides `expand`
 - etc.
 
-```
+```plaintext
 ...and even source code
 ```
 
