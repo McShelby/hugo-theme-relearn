@@ -3,35 +3,35 @@
 {{ $title := .Get "title" | default ("Attachments-label" | T) }}
 {{ $sort := .Get "sort" | default "asc" }}
 <section class="attachments {{ $style }}">
-	<div class="label">{{ $title }}</div>
-	<div class="attachments-files">
-		{{- $filesName := "files" }}
-		{{- if ne .Page.File.BaseFileName "index" }}
-			{{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
-		{{- end}}
+    <div class="label">{{ $title }}</div>
+    <div class="attachments-files">
+        {{- $filesName := "files" }}
+        {{- if ne .Page.File.BaseFileName "index" }}
+            {{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
+        {{- end}}
 
-		{{- $fileDir := replace .Page.File.Dir "\\" "/" }}
-		{{- $pattern := .Get "pattern" | default "" }}
-		{{- range sort (readDir (printf "content/%s%s" .Page.File.Dir $filesName) ) "Name" $sort }}
-			{{- if findRE $pattern .Name}}
-				{{- $size := .Size }}
-				{{- $unit := "Byte-symbol" }}
-				{{- if ge $size 1024 }}
-					{{- $size = div $size 1024 }}
-					{{- $unit = "Kilobyte-symbol" }}
-				{{- end }}
-				{{- if ge $size 1024 }}
-					{{- $size = div $size 1024 }}
-					{{- $unit = "Megabyte-symbol" }}
-				{{- end }}
-				{{- $unitsymbol := $unit | T }}
+        {{- $fileDir := replace .Page.File.Dir "\\" "/" }}
+        {{- $pattern := .Get "pattern" | default "" }}
+        {{- range sort (readDir (printf "content/%s%s" .Page.File.Dir $filesName) ) "Name" $sort }}
+            {{- if findRE $pattern .Name}}
+                {{- $size := .Size }}
+                {{- $unit := "Byte-symbol" }}
+                {{- if ge $size 1024 }}
+                    {{- $size = div $size 1024 }}
+                    {{- $unit = "Kilobyte-symbol" }}
+                {{- end }}
+                {{- if ge $size 1024 }}
+                    {{- $size = div $size 1024 }}
+                    {{- $unit = "Megabyte-symbol" }}
+                {{- end }}
+                {{- $unitsymbol := $unit | T }}
 
-				<li>
-					<a href="{{ (printf "%s%s/%s" $fileDir $filesName .Name) | relLangURL }}">{{.Name}}</a>
-					({{$size}} {{$unitsymbol}})
-				</li>
-			{{- end }}
-		{{- end }}
-	</div>
-	{{- .Inner }}
+                <li>
+                    <a href="{{ (printf "%s%s/%s" $fileDir $filesName .Name) | relLangURL }}">{{.Name}}</a>
+                    ({{$size}} {{$unitsymbol}})
+                </li>
+            {{- end }}
+        {{- end }}
+    </div>
+    {{- .Inner }}
 </section>
