@@ -1,6 +1,7 @@
 +++
 title = "page 2"
 description = ""
+alwaysopen = false
 +++
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

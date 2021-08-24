@@ -102,6 +102,8 @@ Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-ma
 disableToc = "false"
 # If set, this will be used for the page's menu entry (instead of the `title` attribute)
 menuTitle = ""
+# If set, this will explicitly override common rules for the expand state of a page's menu entry
+alwaysopen = true
 # The title of the page in menu will be prefixed by this HTML content
 pre = ""
 # The title of the page in menu will be postfixed by this HTML content
@@ -159,6 +161,20 @@ menuTitle = "Linux"
 +++
 ```
 
+### Override expand state rules for menu entries
+
+You can change how the theme expands menu entries on the side of the content with the `alwaysopen` setting on a per page basis. If `alwaysopen=false` for any given entry, its children will not be shown in the menu as long as it is not necessary for the sake of navigation.
+
+The theme generates the menu based on the following rules:
+
+- all parent entries of the active page including their siblings are shown regardless of any settings
+- immediate children entries of the active page are shown regardless of any settings
+- if not overridden, all other first level entries behave like they would have been given `alwaysopen=false`
+- if not overridden, all other entries of levels besides the first behave like they would have been given `alwaysopen=true`
+- all visible entries show their immediate children entries if `alwaysopen=true`; this proceeds recursivley
+- all remaining entries are not shown
+
+You can see this feature in action on the example page for [children shortcode]({{< relref "shortcodes/children" >}}) and its children pages.
 ## Homepage
 
 To configure your home page, you basically have three choices:

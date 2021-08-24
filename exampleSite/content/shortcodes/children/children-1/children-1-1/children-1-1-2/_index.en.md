@@ -1,7 +1,6 @@
 +++
-title = "page 1"
+title = "page 1-1-2"
 description = "This is a demo child page"
-alwaysopen = false
 +++
 
 This is a demo child page

@@ -1,6 +1,7 @@
 ---
 title : Children
 description : List the child pages of a page
+alwaysopen : false
 ---
 
 Use the children shortcode to list the child pages of a page and the further descendants (children's children). By default, the shortcode displays links to the child pages.
