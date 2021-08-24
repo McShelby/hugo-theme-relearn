@@ -7,10 +7,10 @@
 <script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
 <script type="text/javascript">
-    {{ if .Site.IsMultiLingual }}
-        var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
-    {{ else }}
-        var baseurl = "{{.Site.BaseURL}}";
-    {{ end }}
+    // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+    // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+    var index_url={{"index.json" | relLangURL}};
+    var root_url="/";
+    var baseUri=root_url.replace(/\/$/, '');
 </script>
 <script type="text/javascript" src="{{"js/search.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>

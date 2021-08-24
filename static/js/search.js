@@ -6,12 +6,8 @@ function endsWith(str, suffix) {
 
 // Initialize lunrjs using our generated index file
 function initLunr() {
-    if (!endsWith(baseurl,"/")){
-        baseurl = baseurl+'/'
-    };
-
     // First retrieve the index file
-    $.getJSON(baseurl +"index.json")
+    $.getJSON(index_url)
         .done(function(index) {
             pagesIndex = index;
             // Set up lunrjs by declaring the fields we use
@@ -82,7 +78,7 @@ $( document ).ready(function() {
             divsuggestion.className = "autocomplete-suggestion";
             divsuggestion.setAttribute("data-term", term);
             divsuggestion.setAttribute("data-title", item.title);
-            divsuggestion.setAttribute("data-uri", item.uri);
+            divsuggestion.setAttribute("data-uri", baseUri + item.uri);
             divsuggestion.setAttribute("data-context", item.context);
             divsuggestion.innerText = '» ' + item.title;
             divsuggestion.appendChild(divcontext);
