@@ -1,8 +1,7 @@
----
-date: 2016-04-09T16:50:16+02:00
-title: Pages organization
-weight: 5
----
++++
+title = "Pages organization"
+weight = 5
++++
 
 In **Hugo**, pages are the core of your site. Once it is configured, pages are definitely the added value to your documentation site.
 
@@ -51,10 +50,10 @@ You can define any HTML as prefix for the menu. In the example below, it's just 
 
 ```markdown
 +++
-title = "Basics"
 chapter = true
-weight = 5
 pre = "<b>1. </b>"
+title = "Basics"
+weight = 5
 +++
 
 ### Chapter 1
@@ -91,7 +90,7 @@ hugo new site <new_project>
 
 ## Front Matter configuration
 
-Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-matter/) in *yaml*, *toml* or *json*.
+Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
 
 **Hugo-theme-relearn** uses the following parameters on top of Hugo ones :
 

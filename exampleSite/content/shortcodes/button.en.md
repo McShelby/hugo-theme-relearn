@@ -1,7 +1,7 @@
----
-title: Button
-description : "Nice buttons on your page."
----
++++
+description = "Nice buttons on your page."
+title = "Button"
++++
 
 A button is a just a clickable button with optional icon.
 

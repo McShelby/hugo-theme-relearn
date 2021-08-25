@@ -1,9 +1,8 @@
----
-date: 2018-11-29T08:41:44+01:00
-title: Tags
-weight: 40
-tags: ["documentation", "tutorial"]
----
++++
+tags = ["documentation", "tutorial"]
+title = "Tags"
+weight = 40
++++
 
 *Relearn theme* supports one default taxonomy of Hugo: the *tag* feature.
 
@@ -11,13 +10,12 @@ tags: ["documentation", "tutorial"]
 
 Just add tags to any page:
 
-```markdown
----
-date: 2018-11-29T08:41:44+01:00
-title: Theme tutorial
-weight: 15
-tags: ["tutorial", "theme"]
----
+```toml
++++
+tags = ["tutorial", "theme"]
+title = "Theme tutorial"
+weight = 15
++++
 ```
 
 ## Behavior

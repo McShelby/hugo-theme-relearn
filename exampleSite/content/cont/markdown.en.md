@@ -1,8 +1,7 @@
----
-date: 2016-04-09T16:50:16+02:00
-title: Markdown syntax
-weight: 15
----
++++
+title = "Markdown syntax"
+weight = 15
++++
 
 Let's face it: Writing content for the Web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.
 

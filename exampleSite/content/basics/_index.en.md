@@ -1,9 +1,9 @@
----
-title: Basics
-weight: 5
-pre: "<b>1. </b>"
-chapter: true
----
++++
+chapter = true
+pre = "<b>1. </b>"
+title = "Basics"
+weight = 5
++++
 
 ### Chapter 1
 

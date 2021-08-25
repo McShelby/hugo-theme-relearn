@@ -1,8 +1,7 @@
----
-date: 2016-04-09T16:50:16+02:00
-title: Multilingual and i18n
-weight: 30
----
++++
+title = "Multilingual and i18n"
+weight = 30
++++
 
 **Relearn theme** is fully compatible with Hugo multilingual mode.
 

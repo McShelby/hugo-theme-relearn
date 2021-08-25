@@ -1,8 +1,7 @@
----
-date: 2020-06-01T13:31:12+01:00
-title: Code highlighting
-weight: 16
----
++++
+title = "Code highlighting"
+weight = 16
++++
 
 Relearn theme uses [Hugo's built-in syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/) for code.
 

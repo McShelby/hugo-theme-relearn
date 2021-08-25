@@ -1,7 +1,7 @@
----
-title: Notice
-description: "Disclaimers to help you structure your page"
----
++++
+description = "Disclaimers to help you structure your page"
+title = "Notice"
++++
 
 The notice shortcode shows four types of disclaimers to help you structure your page.
 

@@ -1,8 +1,7 @@
----
-date: 2016-04-09T16:50:16+02:00
-title: Customization
-weight: 25
----
++++
+title = "Customization"
+weight = 25
++++
 
 **Hugo-theme-relearn** has been built to be as configurable as possible by defining multiple [partials](https://gohugo.io/templates/partials/)
 

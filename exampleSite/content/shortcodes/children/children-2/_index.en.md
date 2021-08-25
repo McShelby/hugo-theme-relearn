@@ -1,7 +1,7 @@
 +++
-title = "page 2"
-description = ""
 alwaysopen = false
+description = ""
+title = "page 2"
 +++
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

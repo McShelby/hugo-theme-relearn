@@ -1,9 +1,8 @@
----
-date: 2016-04-09T16:50:16+02:00
-title: Shortcodes
-pre: "<b>3. </b>"
-weight: 15
----
++++
+pre = "<b>3. </b>"
+title = "Shortcodes"
+weight = 15
++++
 
 Hugo uses Markdown for its simple content format. However, there are a lot of things that Markdown doesn’t support well. You could use pure HTML to expand possibilities.
 

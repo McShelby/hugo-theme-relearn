@@ -1,7 +1,7 @@
----
-title: Tabbed views
-description : "Synchronize selection of content in different tabbed views"
----
++++
+description = "Synchronize selection of content in different tabbed views"
+title = "Tabbed views"
++++
 
 Choose which content to see across the page. Very handy for providing code
 snippets for multiple languages or providing configuration in different formats.

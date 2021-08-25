@@ -1,7 +1,7 @@
----
-title: Archetypes
-weight: 10
----
++++
+title = "Archetypes"
+weight = 10
++++
 
 Using the command: `hugo new [relative new content path]`, you can start a content file with the date and title automatically set. While this is a welcome feature, active writers need more: [archetypes](https://gohugo.io/content/archetypes/).
 
@@ -19,11 +19,10 @@ It will create a page with predefined Front-Matter:
 
 ```toml
 +++
-title = "{{ replace .Name "-" " " | title }}"
-date = {{ .Date }}
-weight = 5
 chapter = true
 pre = "<b>X. </b>"
+title = "{{ replace .Name "-" " " | title }}"
+weight = 5
 +++
 
 ### Chapter X
@@ -52,7 +51,6 @@ It will create a page with predefined Front-Matter:
 ```toml
 +++
 title = "{{ replace .Name "-" " " | title }}"
-date =  {{ .Date }}
 weight = 5
 +++
 

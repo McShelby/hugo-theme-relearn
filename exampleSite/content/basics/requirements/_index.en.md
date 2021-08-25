@@ -1,8 +1,8 @@
----
-title: Requirements
-weight: 10
-disableToc: true
----
++++
+disableToc = true
+title = "Requirements"
+weight = 10
++++
 
 Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.
 

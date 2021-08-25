@@ -1,7 +1,7 @@
----
-title : Expand
-description : "Displays an expandable/collapsible section of text on your page"
----
++++
+description = "Displays an expandable/collapsible section of text on your page"
+title = "Expand"
++++
 
 The Expand shortcode displays an expandable/collapsible section of text on your page.
 

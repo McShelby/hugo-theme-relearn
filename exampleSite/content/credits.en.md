@@ -1,7 +1,7 @@
----
-title: Credits
-disableToc: true
----
++++
+disableToc = true
+title = "Credits"
++++
 
 ## Contributors
 
