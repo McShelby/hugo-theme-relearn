@@ -1,8 +1,7 @@
 +++
 chapter = true
-pre = "<b>3. </b>"
 title = "Shortcodes"
-weight = 15
+weight = 3
 +++
 
 ### Chapter 3
