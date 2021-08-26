@@ -38,7 +38,7 @@
 
 {{ define "childs" }}
 	{{ range .menu }}
-		{{ if and .Params.hidden (not $.showhidden) }}
+        {{ if and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
 		{{else}}
 			{{if not .IsHome}}
 				{{if hasPrefix $.style "h"}}
