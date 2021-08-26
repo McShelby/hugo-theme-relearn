@@ -47,7 +47,8 @@ function initLunr() {
  */
 function search(queryTerm) {
     // Find the item in our index corresponding to the lunr one to have more info
-    return lunrIndex.search(queryTerm+"^100"+" "+queryTerm+"*^10"+" "+"*"+queryTerm+"^10"+" "+queryTerm+"~2^1").map(function(result) {
+    var searchTerm = queryTerm.match(/\w+/g).map(word => word+"^100"+" "+word+"*^10"+" "+"*"+word+"^10"+" "+word+"~2^1").join(" ");
+    return lunrIndex.search(searchTerm).map(function(result) {
             return pagesIndex.filter(function(page) {
                 return page.uri === result.ref;
             })[0];
@@ -69,7 +70,7 @@ $( document ).ready(function() {
             var numContextWords = 2;
             var text = item.content.match(
                 "(?:\\s?(?:[\\w]+)\\s?){0,"+numContextWords+"}" +
-                    term+"(?:\\s?(?:[\\w]+)\\s?){0,"+numContextWords+"}");
+                    term.trim()+"(?:\\s?(?:[\\w]+)\\s?){0,"+numContextWords+"}");
             item.context = text;
             var divcontext = document.createElement("div");
             divcontext.className = "context";
@@ -89,4 +90,9 @@ $( document ).ready(function() {
             location.href = item.getAttribute('data-uri');
         }
     });
+
+    // JavaScript-autoComplete only registers the focus event when minChars is 0 which doesn't make sense, let's do it ourselves
+    // https://github.com/Pixabay/JavaScript-autoComplete/blob/master/auto-complete.js#L191
+    var selector = $("#search-by").get(0);
+    $(selector).focus(selector.focusHandler);
 });
