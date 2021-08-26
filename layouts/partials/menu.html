@@ -105,11 +105,11 @@
 {{ $alwaysopen := .alwaysopen }}
 {{ with $currentNode.File }}{{ $currentFileUniqueID = .UniqueID }}{{ end }}
   {{with .sect}}
-		{{ $page_hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+		{{ $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
     {{if .IsSection }}
       {{safeHTML .Params.head}}
       {{ $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
-      <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}{{if $page_hidden}} hidden{{end}}">
+      <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}{{if $hidden}} hidden{{end}}">
         <a href="{{.RelPermalink}}">
           {{ partial "menu-pre.html" . }}{{or .Params.menuTitle .LinkTitle .Title}}{{ partial "menu-post.html" . }}
           {{ if $showvisitedlinks}}<i class="fas fa-check read-icon"></i>{{end}}
