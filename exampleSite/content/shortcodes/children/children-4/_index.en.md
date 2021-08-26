@@ -1,8 +1,8 @@
 +++
 alwaysopen = false
-description = "This is a demo child page"
+description = "This is a hidden demo child page"
 hidden = true
-title = "page 4"
+title = "page 4 (hidden)"
 +++
 
-This is a demo child page, not displayed in the menu
+This is a **hidden** demo child page. This page and all its children are hidden in the menu, arrow navigation and children shortcode as long as you aren't viewing this page or its children directly.

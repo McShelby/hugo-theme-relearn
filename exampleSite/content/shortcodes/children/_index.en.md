@@ -33,10 +33,10 @@ Use the children shortcode to list the child pages of a page and the further des
 {{%children description="true" %}}
 
 ````go
-{{%/* children depth="3" showhidden="true" */%}}
+{{%/* children depth="999" showhidden="true" */%}}
 ````
 
-{{% children depth="3" showhidden="true" %}}
+{{% children depth="999" showhidden="true" %}}
 
 ````go
 {{%/* children containerstyle="div" style="h2" depth="3" description="true" */%}}

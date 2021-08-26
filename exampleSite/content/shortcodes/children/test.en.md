@@ -1,6 +1,6 @@
 +++
-description = "This is a page test"
-title = "page test"
+description = "This is a plain page test"
+title = "plain page test"
 +++
 
-This is a test demo child page
+This is a plain demo child page.
