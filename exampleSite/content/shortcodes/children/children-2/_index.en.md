@@ -1,6 +1,7 @@
 +++
 alwaysopen = false
 title = "page 2"
+weight = 20
 +++
 
 This is a demo child page with no description.
