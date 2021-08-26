@@ -34,9 +34,15 @@
                 {{end}}
                 {{ $pages := ($currentNode.Scratch.Get "pages") }}
 
-                {{ range $pages.ByWeight  }}
-                    {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
-                {{end}}
+                {{if eq .Site.Params.ordersectionsby "title"}}
+                    {{ range $pages.ByTitle  }}
+                        {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
+                    {{end}}
+                {{else}}
+                    {{ range $pages.ByWeight  }}
+                        {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
+                    {{end}}
+                {{ end }}
             {{ end }}
         {{ end }}
 
