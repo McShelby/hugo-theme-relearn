@@ -108,40 +108,43 @@
     {{if and .IsSection (or (and (not .Params.hidden) (ne .Title "")) $.showhidden )}}
       {{safeHTML .Params.head}}
       {{ $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
-      <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{else if .IsAncestor $currentNode }} parent{{else if $currentAlwaysopen}} parent{{end}}">
+      <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item
+        {{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}
+        {{if .IsAncestor $currentNode }} parent{{end}}
+        {{if $currentAlwaysopen}} alwaysopen{{end}}
+      ">
         <a href="{{.RelPermalink}}">
           {{ partial "menu-pre.html" . }}{{or .Params.menuTitle .LinkTitle .Title}}{{ partial "menu-post.html" . }}
           {{ if $showvisitedlinks}}<i class="fas fa-check read-icon"></i>{{end}}
         </a>
-        {{ $numberOfPages := (add (len (where (where .Pages "Params.hidden" "ne" true ) "Title" "ne" "" )) (len (where (where .Sections "Params.hidden" "ne" true ) "Title" "ne" "" )) ) }}
-        {{ if ne $numberOfPages 0 }}
-          <ul>
-            {{ $currentNode.Scratch.Set "pages" .Pages }}
-            {{ if .Sections}}
-              {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
-            {{end}}
-            {{ $pages := ($currentNode.Scratch.Get "pages") }}
+        <ul>
+          {{ $currentNode.Scratch.Set "pages" .Pages }}
+          {{ if .Sections}}
+            {{ $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
+          {{end}}
+          {{ $pages := ($currentNode.Scratch.Get "pages") }}
 
-            {{if eq .Site.Params.ordersectionsby "title"}}
-              {{ range $pages.ByTitle }}
-                {{ if and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
-                {{else}}
-                  {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
-                {{end}}
-              {{ end }}
-            {{else}}
-              {{ range $pages.ByWeight }}
+          {{if eq .Site.Params.ordersectionsby "title"}}
+            {{ range $pages.ByTitle }}
               {{ if and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
               {{else}}
-                  {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
-                {{end}}
-              {{ end }}
-            {{end}}
-          </ul>
-        {{ end }}
+                {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
+              {{end}}
+            {{ end }}
+          {{else}}
+            {{ range $pages.ByWeight }}
+            {{ if and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+            {{else}}
+                {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
+              {{end}}
+            {{ end }}
+          {{end}}
+        </ul>
       </li>
     {{else if and (not .Params.hidden) (ne .Title "") }}
-      <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}">
+      <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item
+        {{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}
+      ">
         <a href="{{ .RelPermalink}}">
           {{ partial "menu-pre.html" . }}{{or .Params.menuTitle .LinkTitle .Title}}{{ partial "menu-post.html" . }}
           {{ if $showvisitedlinks}}<i class="fas fa-check read-icon"></i>{{end}}
