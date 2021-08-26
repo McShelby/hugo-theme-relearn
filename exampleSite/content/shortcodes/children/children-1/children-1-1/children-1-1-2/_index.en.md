@@ -1,6 +1,6 @@
 +++
-description = "This is a non-hidden demo child page of a hidden parent page"
+description = "This is a demo child page"
 title = "page 1-1-2"
 +++
 
-This is a **non-hidden** demo child page of a hidden parent page.
+This is a plain demo child page.
