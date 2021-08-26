@@ -38,8 +38,8 @@
 
 {{ define "childs" }}
 	{{ range .menu }}
-        {{ if and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
-		{{else}}
+		{{ $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+        {{ if not $hidden }}
 			{{if not .IsHome}}
 				{{if hasPrefix $.style "h"}}
 					{{$num := sub ( int (trim $.style "h") ) 1 }}

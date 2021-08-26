@@ -1,5 +1,6 @@
 +++
 chapter = true
+hidden = true
 title = "This could be yours"
 weight = 4
 +++
