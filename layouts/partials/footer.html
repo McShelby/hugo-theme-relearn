@@ -9,50 +9,62 @@
         <!-- Next prev page -->
         {{ $currentNode := . }}
 
-        {{ template "menu-nextprev" dict "menu" .Site.Home "currentnode" $currentNode }}
+        {{ $currentNode.Scratch.Set "selfFound" nil }}
+        {{ $currentNode.Scratch.Set "prevPage" nil }}
+        {{ $currentNode.Scratch.Set "nextPage" nil }}
+        {{ template "menu-nextprev" dict "menu" .Site.Home "currentnode" $currentNode "hidden" false }}
 
         {{ define "menu-nextprev" }}
-            {{$currentNode := .currentnode }}
-       		{{ $hidden := or (.menu.Params.hidden) (eq .menu.Title "") }}
+            {{ $currentNode := .currentnode }}
+            {{ $isSelf := eq $currentNode.RelPermalink .menu.RelPermalink }}
+            {{ $isDescendant := and (not $isSelf) (.menu.IsDescendant $currentNode) }}
+            {{ $isAncestor := and (not $isSelf) (.menu.IsAncestor $currentNode) }}
+            {{ $isOther := and (not $isDescendant) (not $isSelf) (not $isAncestor) }}
+
+            {{ if $isSelf }}
+                {{ $currentNode.Scratch.Set "selfFound" true }}
+            {{end}}
+            {{ $isSelfFound := eq ($currentNode.Scratch.Get "selfFound") true }}
+            {{ $isPreSelf := and (not $isSelfFound) (not $isSelf) }}
+            {{ $isPostSelf := and ($isSelfFound) (not $isSelf) }}
+
+            {{ $page_hidden := or (.menu.Params.hidden) (eq .menu.Title "") }}
+            {{ $hidden := or (and $page_hidden (not $isAncestor) (not $isSelf) ) (and .hidden (or $isPreSelf $isPostSelf $isDescendant) ) }}
+
             {{ if not $hidden }}
-                {{if hasPrefix $currentNode.RelPermalink .menu.RelPermalink }}
-                    {{ $currentNode.Scratch.Set "NextPageOK" "OK" }}
-                    {{ $currentNode.Scratch.Set "prevPage" ($currentNode.Scratch.Get "prevPageTmp") }}
-                {{else}}
-                    {{if eq ($currentNode.Scratch.Get "NextPageOK") "OK"}}
-                        {{ $currentNode.Scratch.Set "NextPageOK" nil }}
-                        {{ $currentNode.Scratch.Set "nextPage" .menu }}
-                    {{end}}
+                {{if and $isPreSelf (or $isOther $isAncestor ) }}
+                    {{ $currentNode.Scratch.Set "prevPage" .menu }}
+                {{else if and $isPostSelf (or $isOther $isDescendant) (eq ($currentNode.Scratch.Get "nextPage") nil) }}
+                    {{ $currentNode.Scratch.Set "nextPage" .menu }}
                 {{end}}
-                {{ $currentNode.Scratch.Set "prevPageTmp" .menu }}
+            {{ end }}
 
-                {{ $currentNode.Scratch.Set "pages" .menu.Pages }}
-                {{ if .menu.IsHome}}
-                    {{ $currentNode.Scratch.Set "pages" .menu.Sections }}
-                {{ else if .menu.Sections}}
-                    {{ $currentNode.Scratch.Set "pages" (.menu.Pages | union .menu.Sections) }}
+            {{ $currentNode.Scratch.Set "pages" .menu.Pages }}
+            {{ if .menu.IsHome}}
+                {{ $currentNode.Scratch.Set "pages" .menu.Sections }}
+            {{ else if .menu.Sections}}
+                {{ $currentNode.Scratch.Set "pages" (.menu.Pages | union .menu.Sections) }}
+            {{end}}
+            {{ $pages := ($currentNode.Scratch.Get "pages") }}
+
+            {{if eq .Site.Params.ordersectionsby "title"}}
+                {{ range $pages.ByTitle  }}
+                    {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode "hidden" $hidden }}
                 {{end}}
-                {{ $pages := ($currentNode.Scratch.Get "pages") }}
-
-                {{if eq .Site.Params.ordersectionsby "title"}}
-                    {{ range $pages.ByTitle  }}
-                        {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
-                    {{end}}
-                {{else}}
-                    {{ range $pages.ByWeight  }}
-                        {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode }}
-                    {{end}}
-                {{ end }}
+            {{else}}
+                {{ range $pages.ByWeight  }}
+                    {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode "hidden" $hidden }}
+                {{end}}
             {{ end }}
         {{ end }}
 
         {{$showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev))}}
         {{if $showPrevNext}}
             {{with ($.Scratch.Get "prevPage")}}
-                <a class="nav nav-prev" href="{{.RelPermalink}}" title="{{.Title}}"> <i class="fa fa-chevron-left"></i></a>
+                <a class="nav nav-prev" href="{{.RelPermalink}}" title="{{.Title}}"><i class="fa fa-chevron-left"></i></a>
             {{end}}
             {{with ($.Scratch.Get "nextPage")}}
-                <a class="nav nav-next" href="{{.RelPermalink}}" title="{{.Title}}" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+                <a class="nav nav-next" href="{{.RelPermalink}}" title="{{.Title}}"><i class="fa fa-chevron-right"></i></a>
             {{end}}
         {{end}}
     </div>
