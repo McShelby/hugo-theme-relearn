@@ -608,11 +608,23 @@ code.copy-to-clipboard-inline {
     border-top-right-radius: 0;
     border-right-width: 0;
 }
+@media print {
+    code.copy-to-clipboard-inline {
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        border-right-width: 1px;
+    }
+}
 pre {
     padding: 1rem;
     border: 0;
     border-radius: 2px;
     line-height: 1.15;
+}
+@media print {
+    pre {
+        border: 1px solid #ccc;
+    }
 }
 pre code {
     background-color: inherit;
@@ -1044,6 +1056,11 @@ td {
     font-family: "Consolas", menlo, monospace;
     font-size: 92%;
     padding-left: 22px;
+}
+@media print {
+    .copy-to-clipboard {
+        display: none;
+    }
 }
 .copy-to-clipboard:hover {
     background-color: #FCEBB4;
