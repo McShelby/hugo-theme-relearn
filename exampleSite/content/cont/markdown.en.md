@@ -531,6 +531,16 @@ Adding a colon on the right side of the dashes below any heading will right alig
 | engine | engine to be used for processing templates. Handlebars is the default. |
 | ext    | extension to be used for dest files. |
 
+### Two tables adjacent
+
+| Option | Description |
+| ------ | ----------- |
+| ext    | extension to be used for dest files. |
+
+| Option | Description |
+| ------ | ----------- |
+| ext    | extension to be used for dest files. |
+
 ## Links
 
 ### Basic link
