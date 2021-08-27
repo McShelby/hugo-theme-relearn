@@ -647,6 +647,8 @@ Add HTTP parameters `width` and/or `height` to the link image to resize the imag
 
 ![Minion](https://octodex.github.com/images/minion.png?width=20pc)
 
+![stormtroopocat](https://octodex.github.com/images/stormtroopocat.png?width=20pc)
+
 ```markdown
 ![Minion](https://octodex.github.com/images/minion.png?height=50px)
 ```
