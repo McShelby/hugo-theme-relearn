@@ -39,7 +39,7 @@ See the [changelog](https://relearn.netlify.app/basics/history) for a complete l
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE).
+This theme is licensed under the [MIT License](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE).
 
 ## Credits
 

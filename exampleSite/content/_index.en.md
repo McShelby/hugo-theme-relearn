@@ -29,18 +29,22 @@ The theme initially was a fork of the great [hugo-theme-learn](https://github.co
 
 ![Screenshot](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/screenshot.png?width=40pc&classes=shadow)
 
-## Contribute to this documentation
+## Getting support
 
-Feel free to update this content, just click the **Edit this page** link displayed on top right of each page, and pullrequest it.
+To get support, feel free to open a new [discussion topic](https://github.com/McShelby/hugo-theme-relearn/discussions) or [issue](https://github.com/McShelby/hugo-theme-relearn/issues) in the official repository on GitHub.
 
-{{% notice note %}}
-Your modification will be deployed automatically when merged.
-{{% /notice %}}
+## Become a contributor
 
-## Documentation website
+Feel free to update this documentation by just clicking the **Edit this page** link displayed on top right of each page. Your changes will be deployed automatically once they were reviewed.
 
-This current documentation has been statically generated with Hugo with a simple command : `hugo -t hugo-theme-relearn`. The source code is [available on GitHub](https://github.com/McShelby/hugo-theme-relearn).
+You are most welcome to contribute bugfixes or even new features to the source code by making pull requests to the [official repository](https://github.com/McShelby/hugo-theme-relearn) via GitHub.
 
-{{% notice info %}}
-Automatically published and hosted thanks to [Netlify](https://www.netlify.com/). Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)
-{{% /notice %}}
+## License
+
+This theme is licensed under the [MIT License](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE).
+
+## Credits
+
+Special thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
+
+Many thanks to [@matcornic](https://github.com/matcornic) for his work on [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn).
