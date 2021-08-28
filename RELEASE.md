@@ -21,7 +21,7 @@ We are using [gren](https://github.com/github-tools/github-release-notes) to gen
 - Regenerate CHANGELOG.md with _gren_
 
   ```shell
-  npx github-release-notes changelog --generate --override --tags=all
+  npx github-release-notes@0.17.1 changelog --generate --override --tags=all
   ```
 
 - Add the changelog to git and update the tag
@@ -37,5 +37,5 @@ We are using [gren](https://github.com/github-tools/github-release-notes) to gen
 - Generate release with _gren_
 
   ```shell
-  npx github-release-notes release --tags <tag>
+  npx github-release-notes@0.17.1 release --tags <tag>
   ```
