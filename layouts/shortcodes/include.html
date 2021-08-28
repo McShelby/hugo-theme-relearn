@@ -1,2 +1,6 @@
 {{ $file := .Get 0 }}
-{{ $file | readFile | safeHTML }}
+{{ $showFirstHeading := .Get 1 | default true }}
+<div class="include{{if not $showFirstHeading }} hide-first-heading{{end}}">
+
+  {{ $file | readFile | safeHTML }}
+</div>

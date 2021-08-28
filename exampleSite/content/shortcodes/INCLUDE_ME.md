@@ -4,7 +4,7 @@ You can add:
 - bullet point lists
 - _emphasized_, **bold** and even **_bold emphasized_** text
 - [links](https://example.com)
-- other shortcodes besides `expand`
+- other shortcodes besides `include`
 - etc.
 
 ```plaintext

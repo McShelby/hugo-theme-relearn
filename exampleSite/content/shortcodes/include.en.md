@@ -8,8 +8,12 @@ The include shortcode includes other files from your project inside of the curre
 ## Usage
 
 ````go
-{{%/* include "<file>" */%}}
+{{%/* include "<file>" { "true" | "false" } */%}}
 ````
+
+The first parameter is the path to the file to be included.
+
+If the file's content will be displayed as HTML, the second optional parameter controls if the first heading of the included file should be displayed ("true")- which is the default - or be hidden.
 
 ## Examples
 

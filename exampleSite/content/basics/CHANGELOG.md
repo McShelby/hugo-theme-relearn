@@ -1,3 +1,5 @@
+# Changelog
+
 ## 1.2.0 (2021-07-26)
 
 ### Enhancements
@@ -15,10 +17,13 @@
 
 ### Bug Fixes
 
-- [**bug**] dependency: upgrade jquery to 3.6.0 [#30](https://github.com/McShelby/hugo-theme-relearn/issues/30)
 - [**bug**] attachments: support i18n for attachment size [#21](https://github.com/McShelby/hugo-theme-relearn/issues/21)
 - [**bug**] notice: support i18n for box labels [#16](https://github.com/McShelby/hugo-theme-relearn/issues/16)
 - [**bug**] notice: support multiple blocks in one box [#15](https://github.com/McShelby/hugo-theme-relearn/issues/15)
+
+### Maintenance
+
+- [**task**] dependency: upgrade jquery to 3.6.0 [#30](https://github.com/McShelby/hugo-theme-relearn/issues/30)
 
 ---
 
