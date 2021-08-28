@@ -45,6 +45,4 @@ This theme is licensed under the [MIT License](https://github.com/McShelby/hugo-
 
 ## Credits
 
-Special thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
-
-Many thanks to [@matcornic](https://github.com/matcornic) for his work on [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn).
+This theme would not be possible without the work of many others. See the [credits]({{%relref "credits.md" %}}) for a detailed list.
