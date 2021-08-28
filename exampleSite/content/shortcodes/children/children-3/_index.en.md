@@ -6,3 +6,7 @@ weight = 30
 +++
 
 This is a demo child page.
+
+## Subpages of this page
+
+{{% children showhidden="true" %}}

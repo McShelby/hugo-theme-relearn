@@ -4,3 +4,7 @@ title = "page 1-1-2"
 +++
 
 This is a plain demo child page.
+
+## Subpages of this page
+
+{{% children showhidden="true" %}}
