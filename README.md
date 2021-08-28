@@ -1,14 +1,12 @@
 # Hugo Relearn Theme
 
-A documentation theme for [Hugo](https://gohugo.io/).
+A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
 ![Overview](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/screenshot.png)
 
 ## Motivation
 
-The theme initially was a fork of [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features.
-
-As far as possible the theme tries to be a drop-in replacement for hugo-theme-learn. The documentation provides instructions on how to achieve the best compatiblity while still benefitting from bug fixes and new features.
+The theme initially was a fork of the great[hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for hugo-theme-learn.
 
 ## Main features
 
@@ -20,8 +18,12 @@ As far as possible the theme tries to be a drop-in replacement for hugo-theme-le
 - Attachments files
 - List child pages
 - Mermaid diagram (flowchart, sequence, gantt)
-- Customizable look and feel and themes variants
-- Buttons, Tip/Note/Info/Warning boxes, Expand, Tabs
+- Customizable look and feel and theme variants
+- Buttons
+- Tip/Note/Info/Warning boxes
+- Expand
+- Tabs
+- File inclusion
 
 ## Installation
 
