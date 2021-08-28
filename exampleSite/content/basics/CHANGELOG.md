@@ -1,11 +1,45 @@
 # Changelog
 
+## 2.0.0 (2021-08-28)
+
+### Enhancements
+
+- [**feature**] tabs: enhance styling [#65](https://github.com/McShelby/hugo-theme-relearn/issues/65)
+- [**feature**] theme: improve readability [#64](https://github.com/McShelby/hugo-theme-relearn/issues/64)
+- [**feature**] menu: show hidden pages if accessed directly [#60](https://github.com/McShelby/hugo-theme-relearn/issues/60)
+- [**feature**] theme: treat pages without title as hidden [#59](https://github.com/McShelby/hugo-theme-relearn/issues/59)
+- [**feature**] search: show search results if field gains focus [#58](https://github.com/McShelby/hugo-theme-relearn/issues/58)
+- [**feature**] theme: add partial templates for pre/post menu entries [#56](https://github.com/McShelby/hugo-theme-relearn/issues/56)
+- [**feature**] theme: make chapter archetype more readable [#55](https://github.com/McShelby/hugo-theme-relearn/issues/55)
+- [**feature**] children: add parameter for container style [#53](https://github.com/McShelby/hugo-theme-relearn/issues/53)
+- [**feature**] theme: make content a template [#50](https://github.com/McShelby/hugo-theme-relearn/issues/50)
+- [**feature**] menu: control menu expansion with alwaysopen parameter [#49](https://github.com/McShelby/hugo-theme-relearn/issues/49)
+- [**feature**] include: new shortcode to include other files [#43](https://github.com/McShelby/hugo-theme-relearn/issues/43)
+- [**feature**] theme: provide compatiblity settings [#41](https://github.com/McShelby/hugo-theme-relearn/issues/41)
+- [**feature**] theme: adjust print styles [#35](https://github.com/McShelby/hugo-theme-relearn/issues/35)
+- [**feature**] code highligher: switch to standard hugo highlighter [#32](https://github.com/McShelby/hugo-theme-relearn/issues/32)
+
+### Bug Fixes
+
+- [**bug**] arrow-nav: default sorting ignores ordersectionsby [#63](https://github.com/McShelby/hugo-theme-relearn/issues/63)
+- [**bug**] children: default sorting ignores ordersectionsby [#62](https://github.com/McShelby/hugo-theme-relearn/issues/62)
+- [**bug**] arrow-nav: fix broken links on (and below) hidden pages [#61](https://github.com/McShelby/hugo-theme-relearn/issues/61)
+- [**bug**] theme: remove superflous singular taxonomy from taxonomy title [#46](https://github.com/McShelby/hugo-theme-relearn/issues/46)
+- [**bug**] theme: missing --MENU-HOME-LINK-HOVER-color in documentation [#45](https://github.com/McShelby/hugo-theme-relearn/issues/45)
+- [**bug**] theme: fix home link when base URL has some path [#44](https://github.com/McShelby/hugo-theme-relearn/issues/44)
+
+### Maintenance
+
+- [**task**] docs: include changelog in exampleSite [#33](https://github.com/McShelby/hugo-theme-relearn/issues/33)
+
+---
+
 ## 1.2.0 (2021-07-26)
 
 ### Enhancements
 
 - [**feature**] theme: adjust copy-to-clipboard [#29](https://github.com/McShelby/hugo-theme-relearn/issues/29)
-- [**feature**] attachments: adjust style with notice boxes [#28](https://github.com/McShelby/hugo-theme-relearn/issues/28)
+- [**feature**] attachments: adjust style between notice boxes and attachments [#28](https://github.com/McShelby/hugo-theme-relearn/issues/28)
 - [**feature**] theme: adjust blockquote contrast [#27](https://github.com/McShelby/hugo-theme-relearn/issues/27)
 - [**feature**] expand: add option to open on page load [#25](https://github.com/McShelby/hugo-theme-relearn/issues/25)
 - [**feature**] expand: rework styling [#24](https://github.com/McShelby/hugo-theme-relearn/issues/24)
