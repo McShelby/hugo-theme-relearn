@@ -46,7 +46,7 @@ function search(queryTerm) {
     // Find the item in our index corresponding to the lunr one to have more info
     var searchTerm = queryTerm.match(/\w+/g).map(word => word + '^100' + ' ' + word + '*^10' + ' ' + '*' + word + '^10' + ' ' + word + '~2^1').join(' ');
     return lunrIndex.search(searchTerm).map(function(result) {
-        return { index: result.ref };
+        return { index: result.ref, matches: Object.keys(result.matchData.metadata) };
     });
 }
 
@@ -64,10 +64,10 @@ $(function() {
         renderItem: function(item, term) {
             var page = pagesIndex[item.index];
             var numContextWords = 2;
-            var text = page.content.match(
-                '(?:\\s?(?:[\\w]+)\\s?){0,' + numContextWords + '}' +
-                term.trim() + '(?:\\s?(?:[\\w]+)\\s?){0,' + numContextWords + '}');
-            var context = text;
+            var contextPattern = '(?:\\S+ +){0,' + numContextWords + '}\\S*\\b(?:' +
+                item.matches.map(match => match.replace(/\W/g, '\\$&')).join('|') +
+                ')\\b\\S*(?: +\\S+){0,' + numContextWords + '}';
+            var context = page.content.match(new RegExp(contextPattern, 'i'));
             var divcontext = document.createElement('div');
             divcontext.className = 'context';
             divcontext.innerText = (context || '');
