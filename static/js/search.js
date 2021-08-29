@@ -9,7 +9,7 @@ function initLunr() {
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
             lunrIndex = lunr(function() {
-                this.ref('uri');
+                this.ref('index');
                 this.field('title', {
                     boost: 15
                 });
@@ -24,7 +24,8 @@ function initLunr() {
                 this.searchPipeline.remove(lunr.stemmer);
 
                 // Feed lunr with each file and let lunr actually index them
-                pagesIndex.forEach(function(page) {
+                pagesIndex.forEach(function(page, idx) {
+                    page.index = idx;
                     this.add(page);
                 }, this);
             })
@@ -45,9 +46,7 @@ function search(queryTerm) {
     // Find the item in our index corresponding to the lunr one to have more info
     var searchTerm = queryTerm.match(/\w+/g).map(word => word + '^100' + ' ' + word + '*^10' + ' ' + '*' + word + '^10' + ' ' + word + '~2^1').join(' ');
     return lunrIndex.search(searchTerm).map(function(result) {
-        return pagesIndex.filter(function(page) {
-            return page.uri === result.ref;
-        })[0];
+        return { index: result.ref };
     });
 }
 
@@ -63,21 +62,22 @@ $(function() {
         },
         /* renderItem displays individual search results */
         renderItem: function(item, term) {
+            var page = pagesIndex[item.index];
             var numContextWords = 2;
-            var text = item.content.match(
+            var text = page.content.match(
                 '(?:\\s?(?:[\\w]+)\\s?){0,' + numContextWords + '}' +
                 term.trim() + '(?:\\s?(?:[\\w]+)\\s?){0,' + numContextWords + '}');
-            item.context = text;
+            var context = text;
             var divcontext = document.createElement('div');
             divcontext.className = 'context';
-            divcontext.innerText = (item.context || '');
+            divcontext.innerText = (context || '');
             var divsuggestion = document.createElement('div');
             divsuggestion.className = 'autocomplete-suggestion';
             divsuggestion.setAttribute('data-term', term);
-            divsuggestion.setAttribute('data-title', item.title);
-            divsuggestion.setAttribute('data-uri', baseUri + item.uri);
-            divsuggestion.setAttribute('data-context', item.context);
-            divsuggestion.innerText = '» ' + item.title;
+            divsuggestion.setAttribute('data-title', page.title);
+            divsuggestion.setAttribute('data-uri', baseUri + page.uri);
+            divsuggestion.setAttribute('data-context', context);
+            divsuggestion.innerText = '» ' + page.title;
             divsuggestion.appendChild(divcontext);
             return divsuggestion.outerHTML;
         },
