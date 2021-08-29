@@ -39,15 +39,25 @@ function initLunr() {
 /**
  * Trigger a search in lunr and transform the result
  *
- * @param  {String} query
+ * @param  {String} term
  * @return {Array}  results
  */
-function search(queryTerm) {
+function search(term) {
     // Find the item in our index corresponding to the lunr one to have more info
-    var searchTerm = queryTerm.match(/\w+/g).map(word => word + '^100' + ' ' + word + '*^10' + ' ' + '*' + word + '^10' + ' ' + word + '~2^1').join(' ');
-    return lunrIndex.search(searchTerm).map(function(result) {
-        return { index: result.ref, matches: Object.keys(result.matchData.metadata) };
+    // Remove Lunr special search characters: https://lunrjs.com/guides/searching.html
+    var searchTerm = lunr.tokenizer(term.replace(/[*:^~+-]/, ' ')).flatMap(token => searchPatterns(token.str)).join(' ');
+    return !searchTerm ? [] : lunrIndex.search(searchTerm).map(function(result) {
+        return { index: result.ref, matches: Object.keys(result.matchData.metadata) }
     });
+}
+
+function searchPatterns(word) {
+    return [
+        word + '^100',
+        word + '*^10',
+        '*' + word + '^10',
+        word + '~' + Math.floor(word.length / 4) + '^1' // allow 1 in 4 letters to have a typo
+    ];
 }
 
 // Let's get started
