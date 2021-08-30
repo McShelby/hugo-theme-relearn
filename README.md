@@ -37,6 +37,10 @@ Visit the [documentation](https://relearn.netlify.app/) to learn about all avail
 
 See the [changelog](https://relearn.netlify.app/basics/history) for a complete list of releases.
 
+## Contribution
+
+You are most welcome to contribute to the source code but please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/CONTRIBUTING.md) first.
+
 ## License
 
 This theme is licensed under the [MIT License](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE).
