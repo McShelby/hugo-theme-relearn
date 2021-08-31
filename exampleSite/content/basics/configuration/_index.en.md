@@ -23,6 +23,8 @@ Note that some of these parameters are explained in details in other sections of
   showVisitedLinks = false
   # Disable search function. It will hide search bar
   disableSearch = false
+  # Make hidden pages searchable
+  searchHiddenPages = false
   # Javascript and CSS cache are automatically busted when new version of site is generated.
   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
   disableAssetsBusting = false
