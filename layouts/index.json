@@ -1,6 +1,6 @@
 {{- $pages := slice }}
 {{- range .Site.Pages }}
-{{- if or (ne (.Scratch.Get "relearnIsHiddenTree") true) (ne .Site.Params.disableSearchHiddenPages true) }}
+{{- if or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) }}
 {{- $pages = $pages | append (dict "uri" .RelPermalink "title" .Title "tags" .Params.tags "description" .Description "content" (.Plain | htmlUnescape)) }}
 {{- end }}
 {{- end }}
