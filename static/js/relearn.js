@@ -276,18 +276,22 @@ jQuery(function() {
             $('ul.topics').removeClass('searched');
             items.css('display', 'block');
             sessionStorage.removeItem('search-value');
+            $("mark").parents(".expand-marked").removeClass("expand-marked");
             $(".highlightable").unhighlight({ element: 'mark' })
             return;
         }
 
         sessionStorage.setItem('search-value', value);
+        $("mark").parents(".expand-marked").removeClass("expand-marked");
         $(".highlightable").unhighlight({ element: 'mark' }).highlight(value, { element: 'mark' });
+        $("mark").parents(".expand").addClass("expand-marked");
 
         if (ajax && ajax.abort) ajax.abort();
 
         jQuery('[data-search-clear]').on('click', function() {
             jQuery('[data-search-input]').val('').trigger('input');
             sessionStorage.removeItem('search-input');
+            $("mark").parents(".expand-marked").removeClass("expand-marked");
             $(".highlightable").unhighlight({ element: 'mark' })
         });
     });
@@ -314,6 +318,7 @@ jQuery(function() {
     }
 
     $(".highlightable").highlight(sessionStorage.getItem('search-value'), { element: 'mark' });
+    $("mark").parents(".expand").addClass("expand-marked");
 
     // clipboard
     var clipInit = false;

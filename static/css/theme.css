@@ -1134,9 +1134,37 @@ option {
     cursor: pointer;
 }
 
-.expand-label i{
-    font-size: x-small;
-    width: 8px;
+.expand-label > .fas {
+    font-size: .8rem;
+    width: .6rem;
+}
+
+/* expander collapsed, default */
+.expand > .expand-label > .fa-chevron-down {
+    display: none;
+}
+.expand > .expand-label > .fa-chevron-right {
+    display: inline-block;
+}
+
+/* expander expanded, controlled by expand.html */
+.expand.expand-expanded > .expand-label > .fa-chevron-down {
+    display: inline-block;
+}
+.expand.expand-expanded > .expand-label > .fa-chevron-right {
+    display: none;
+}
+
+/* expander expand collapsed marked, must override logic of expand.html, controlled by relearn.js */
+.expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-down {
+    display: inline-block;
+}
+.expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-right {
+    display: none;
+}
+.expand:not(.expand-expanded).expand-marked > .expand-content {
+    /* this will disable jquery's animation */
+    display: block !important;
 }
 
 @media print {
