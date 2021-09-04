@@ -111,6 +111,17 @@ function initMermaid() {
     }
 }
 
+function scrollToActiveMenu() {
+    window.setTimeout(function(){
+        var e = $("#sidebar ul.topics li.active")[0];
+        if( e.scrollIntoView ){
+            e.scrollIntoView({
+                block: 'center',
+            });
+        }
+    }, 200);
+}
+
 // Get Parameters from some url
 var getUrlParameter = function getUrlParameter(sPageURL) {
     var url = sPageURL.split('?');
@@ -210,6 +221,7 @@ $(window).resize(function() {
 jQuery(function() {
     restoreTabSelections();
     initMermaid();
+    scrollToActiveMenu();
 
     jQuery('#sidebar .category-icon').on('click', function() {
         $( this ).toggleClass("fa-angle-down fa-angle-right") ;
