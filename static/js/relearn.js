@@ -114,7 +114,7 @@ function initMermaid() {
 function scrollToActiveMenu() {
     window.setTimeout(function(){
         var e = $("#sidebar ul.topics li.active")[0];
-        if( e.scrollIntoView ){
+        if( e && e.scrollIntoView ){
             e.scrollIntoView({
                 block: 'center',
             });
