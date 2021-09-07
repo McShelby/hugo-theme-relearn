@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.1.0 (2021-09-07)
+
+### Enhancements
+
+- [**feature**] search: open expand if it contains search term [#80](https://github.com/McShelby/hugo-theme-relearn/issues/80)
+- [**feature**] menu: scroll active item into view [#79](https://github.com/McShelby/hugo-theme-relearn/issues/79)
+- [**feature**] search: disable search in hidden pages [#76](https://github.com/McShelby/hugo-theme-relearn/issues/76)
+- [**feature**] search: improve readablility of index.json [#75](https://github.com/McShelby/hugo-theme-relearn/issues/75)
+- [**feature**] search: increase performance [#74](https://github.com/McShelby/hugo-theme-relearn/issues/74)
+- [**feature**] search: improve search context preview [#73](https://github.com/McShelby/hugo-theme-relearn/issues/73)
+
+### Bug Fixes
+
+- [**bug**] search: hide non-site content [#81](https://github.com/McShelby/hugo-theme-relearn/issues/81)
+- [**bug**] menu: always hide hidden sub pages [#77](https://github.com/McShelby/hugo-theme-relearn/issues/77)
+
+---
+
 ## 2.0.0 (2021-08-28)
 
 ### Enhancements
