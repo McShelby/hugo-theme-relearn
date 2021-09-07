@@ -6,7 +6,7 @@ A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
 ## Motivation
 
-The theme initially was a fork of the great[hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for hugo-theme-learn.
+The theme initially was a fork of the great [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for hugo-theme-learn.
 
 ## Main features
 
