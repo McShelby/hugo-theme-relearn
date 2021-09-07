@@ -9,6 +9,7 @@ In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials
 
 This theme defines the following partials :
 
+- *content*: the content page itself. This can be overridden if you wan't to display page's meta data above or below the content.
 - *header*: the header of the content page (contains the breadcrumbs). _Not meant to be overwritten_
 - *custom-header*: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file
 - *footer*: the footer of the content page (contains the arrows). _Not meant to be overwritten_
@@ -17,6 +18,8 @@ This theme defines the following partials :
 - *logo*: the logo, on top left hand corner.
 - *meta*: HTML meta tags, if you want to change default behavior
 - *menu*: left menu. _Not meant to be overwritten_
+- *menu-pre*: side-wide configuration to prepend to menu items. If you override this, it is your responsiblity to take the page's `pre` setting into account.
+- *menu-post*: side-wide configuration to append to menu items. If you override this, it is your responsiblity to take the page's `post` setting into account.
 - *menu-footer*: footer of the the left menu
 - *search*: search box
 - *toc*: table of contents
@@ -84,7 +87,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ![Green variant](images/green-variant.png?width=60pc)
 
-### 'Yours‘ variant
+### 'Mine‘ variant
 
 First, create a new CSS file in your local `static/css` folder prefixed by `theme` (e.g. with _mine_ theme `static/css/theme-mine.css`). Copy the following content and modify colors in CSS variables.
 
