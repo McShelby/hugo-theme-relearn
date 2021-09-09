@@ -527,7 +527,12 @@ jQuery(function() {
 
     // loop through the sessionStorage and see if something should be marked as visited
     for (var url in sessionStorage) {
-        if (sessionStorage.getItem(url) == 1) jQuery('[data-nav-id="' + url + '"]').addClass('visited');
+        if (sessionStorage.getItem(url) == 1){
+            // in case we have `relativeURLs=true` we have to strip the
+            // relative path to root
+            url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
+            jQuery('[data-nav-id="' + url + '"]').addClass('visited');
+        }
     }
 });
 
