@@ -108,19 +108,13 @@
           {{ if $parent }}
             {{ template "breadcrumb" dict "page" $parent "depth" $depth }}
           {{end}}
+          <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
+            <meta itemprop="position" content="{{ $depth }}" />
+            <a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}>
+              <span itemprop="name">{{ .page.Title }}</span>
+            </a>
+          </li>
           {{ if .depth }}
-            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-              <meta itemprop="position" content="{{ $depth }}" />
-              <a itemprop="item" href="{{ .page.RelPermalink }}">
-                <span itemprop="name">{{ .page.Title }}</span>
-              </a>
-            </li> > 
-          {{else}}
-            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-              <meta itemprop="position" content="{{ $depth }}" />
-              <data itemprop="item" value="{{ .page.RelPermalink }}">
-                <span itemprop="name">{{ .page.Title }}</span>
-              </data>
-            </li>
+            > 
           {{end}}
         {{end}}
