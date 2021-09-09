@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ hugo.Generator -}}
-    {{- partial "meta.html" . }}
+    {{ partial "meta.html" . }}
     {{ partial "favicon.html" . }}
     <title>{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
 
@@ -59,24 +59,27 @@
                   {{ end }}
                 {{ end }}
                 {{$toc := (and (not .Params.disableToc) (not .Params.chapter))}}
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <div id="breadcrumbs">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
                         </a>
                     </span>
                   {{ if $toc }}
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                    <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
                   {{ end }}
-                  <span class="links">
-                 {{$showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb))}}
-                 {{if $showBreadcrumb}}
-                    {{ template "breadcrumb" dict "page" . "value" .Title }}
-                 {{ else }}
-                   {{ .Title }}
-                 {{ end }}
-                  </span>
-                </div>
+                  {{$showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb))}}
+                  {{if $showBreadcrumb}}
+                    <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+                      <meta itemprop="itemListOrder" content="Descending" />
+                      {{ template "breadcrumb" dict "page" . "depth" 0 }}
+                    </ol>
+                  {{ else }}
+                    <span class="links">
+                    {{ .Title }}
+                    </span>
+                  {{ end }}
+                  </div>
                 {{ if $toc }}
                     {{ partial "toc.html" . }}
                 {{ end }}
@@ -101,10 +104,23 @@
 
         {{define "breadcrumb"}}
           {{$parent := .page.Parent }}
+          {{$depth := add .depth 1 }}
           {{ if $parent }}
-            {{ $value := (printf "<a href='%s'>%s</a> > %s" $parent.RelPermalink $parent.Title .value) }}
-            {{ template "breadcrumb" dict "page" $parent "value" $value }}
+            {{ template "breadcrumb" dict "page" $parent "depth" $depth }}
+          {{end}}
+          {{ if .depth }}
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
+              <meta itemprop="position" content="{{ $depth }}" />
+              <a itemprop="item" href="{{ .page.RelPermalink }}">
+                <span itemprop="name">{{ .page.Title }}</span>
+              </a>
+            </li> > 
           {{else}}
-            {{.value|safeHTML}}
+            <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
+              <meta itemprop="position" content="{{ $depth }}" />
+              <span itemprop="item">
+                <span itemprop="name">{{ .page.Title }}</span>
+              </span>
+            </li>
           {{end}}
         {{end}}
