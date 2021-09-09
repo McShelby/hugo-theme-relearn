@@ -1,2 +1,8 @@
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
-{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+{{- partial "page-meta.go" . }}
+{{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+{{- end }}
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+{{- with .Site.Params.author }}
+    <meta name="author" content="{{ . }}">
+{{- end }}

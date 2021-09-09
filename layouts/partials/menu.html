@@ -105,7 +105,7 @@
 {{ $alwaysopen := .alwaysopen }}
 {{ with $currentNode.File }}{{ $currentFileUniqueID = .UniqueID }}{{ end }}
   {{with .sect}}
-		{{ $hidden := and (eq (.Scratch.Get "relearnIsHiddenStem") true) (not $.showhidden) (not (.IsAncestor $currentNode))}}
+		{{ $hidden := and (eq (.Scratch.Get "relearnIsHiddenFromCurrent") true) (not $.showhidden) (not (.IsAncestor $currentNode))}}
     {{if $hidden }}
     {{else if .IsSection }}
       {{safeHTML .Params.head}}
