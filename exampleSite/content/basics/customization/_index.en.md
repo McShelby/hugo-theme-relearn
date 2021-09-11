@@ -3,7 +3,7 @@ title = "Customization"
 weight = 25
 +++
 
-**Hugo-theme-relearn** has been built to be as configurable as possible by defining multiple [partials](https://gohugo.io/templates/partials/)
+The Relearn theme has been built to be as configurable as possible by defining multiple [partials](https://gohugo.io/templates/partials/)
 
 In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials defined for this theme. If you need to overwrite something, don't change the code directly. Instead [follow this page](https://gohugo.io/themes/customizing/). You'd create a new partial in the `layouts/partials` folder of your local project. This partial will have the priority.
 
@@ -45,7 +45,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ## Change default colors {#theme-variant}
 
-**Hugo Relearn theme** let you choose between some predefined color scheme variants, but feel free to add one yourself!
+The Relearn theme let you choose between some predefined color scheme variants, but feel free to add one yourself!
 
 ### Standard variant
 
@@ -55,7 +55,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = ""
 ```
 
-![Red variant](images/standard-variant.png?width=60pc)
+![Red variant](/basics/customization/images/standard-variant.png?width=60pc)
 
 ### Red variant
 
@@ -65,7 +65,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = "red"
 ```
 
-![Red variant](images/red-variant.png?width=60pc)
+![Red variant](/basics/customization/images/red-variant.png?width=60pc)
 
 ### Blue variant
 
@@ -75,7 +75,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = "blue"
 ```
 
-![Blue variant](images/blue-variant.png?width=60pc)
+![Blue variant](/basics/customization/images/blue-variant.png?width=60pc)
 
 ### Green variant
 
@@ -85,7 +85,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
   themeVariant = "green"
 ```
 
-![Green variant](images/green-variant.png?width=60pc)
+![Green variant](/basics/customization/images/green-variant.png?width=60pc)
 
 ### 'Mine‘ variant
 

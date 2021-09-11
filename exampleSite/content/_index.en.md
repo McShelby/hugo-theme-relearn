@@ -4,28 +4,28 @@ title = "Relearn Theme for Hugo"
 
 # Hugo Relearn Theme
 
-[Hugo-theme-relearn](http://github.com/McShelby/hugo-theme-relearn) is a theme for [Hugo](https://gohugo.io/), a static website generator written in Go. Where Hugo is often used for blogs, this theme is designed with documentation in mind.
+The [Relearn theme](http://github.com/McShelby/hugo-theme-relearn) is a theme for [Hugo](https://gohugo.io/), a static website generator written in Go. Where Hugo is often used for blogs, this theme is designed with documentation in mind.
 
 {{% notice info %}}
-The theme initially was a fork of the great [hugo-theme-learn](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for hugo-theme-learn.
+The theme initially was a fork of the great [Learn theme](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for Learn theme.
 {{% /notice %}}
 
 ## Main features
 
 * [Automatic Search]({{%relref "basics/configuration/_index.md#activate-search" %}})
-* [Multilingual mode]({{%relref "cont/i18n/_index.md" %}})
+* [Multilingual mode]({{%relref "cont/i18n" %}})
 * Unlimited menu levels
 * Automatic next/prev buttons to navigate through menu entries
-* [Image resizing, shadow...]({{%relref "cont/markdown.en.md#images" %}})
-* [Attachments files]({{%relref "shortcodes/attachments.en.md" %}})
-* [List child pages]({{%relref "shortcodes/children/_index.md" %}})
-* [Mermaid diagram]({{%relref "shortcodes/mermaid.en.md" %}}) (flowchart, sequence, gantt)
-* [Customizable look and feel and theme variants]({{%relref "basics/customization/_index.md"%}})
-* [Buttons]({{%relref "shortcodes/button.en.md" %}})
-* [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice.en.md" %}})
-* [Expand]({{%relref "shortcodes/expand.en.md" %}})
-* [Tabs]({{%relref "shortcodes/tabs.en.md" %}})
-* [File inclusion]({{%relref "shortcodes/include.en.md" %}})
+* [Image resizing, shadow...]({{%relref "cont/markdown#images" %}})
+* [Attachments files]({{%relref "shortcodes/attachments" %}})
+* [List child pages]({{%relref "shortcodes/children" %}})
+* [Mermaid diagram]({{%relref "shortcodes/mermaid" %}}) (flowchart, sequence, gantt)
+* [Customizable look and feel and theme variants]({{%relref "basics/customization"%}})
+* [Buttons]({{%relref "shortcodes/button" %}})
+* [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice" %}})
+* [Expand]({{%relref "shortcodes/expand" %}})
+* [Tabs]({{%relref "shortcodes/tabs" %}})
+* [File inclusion]({{%relref "shortcodes/include" %}})
 
 ![Screenshot](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/screenshot.png?width=40pc&classes=shadow)
 
@@ -45,4 +45,4 @@ This theme is licensed under the [MIT License](https://github.com/McShelby/hugo-
 
 ## Credits
 
-This theme would not be possible without the work of many others. See the [credits]({{%relref "credits.md" %}}) for a detailed list.
+This theme would not be possible without the work of many others. See the [credits]({{%relref "credits" %}}) for a detailed list.

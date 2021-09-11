@@ -10,7 +10,7 @@ Let's face it: Writing content for the Web is tiresome. WYSIWYG editors help all
 Some of the key benefits are:
 
 1. Markdown is simple to learn, with minimal extra characters so it's also quicker to write content.
-2. Less chance of errors when writing in markdown.
+2. Less chance of errors when writing in Markdown.
 3. Produces valid XHTML output.
 4. Keeps the content and the visual display separate, so you cannot mess up the look of your site.
 5. Write in any text editor or Markdown application you like.
@@ -84,7 +84,7 @@ This is a comment
 
 ## Horizontal Rules
 
-The HTML `<hr>` element is for creating a "thematic break" between paragraph-level elements. In markdown, you can create a `<hr>` with `---` - three consecutive dashes
+The HTML `<hr>` element is for creating a "thematic break" between paragraph-level elements. In Markdown, you can create a `<hr>` with `---` - three consecutive dashes
 
 renders to:
 
@@ -420,7 +420,7 @@ HTML:
 
 GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, usually you simply add the file extension of the language you want to use directly after the first code "fence", ` ```js `, and syntax highlighting will automatically be applied in the rendered HTML.
 
-See [Code Highlighting]({{% relref "syntaxhighlight.md" %}}) for additional documentation.
+See [Code Highlighting]({{% relref "syntaxhighlight" %}}) for additional documentation.
 
 For example, to apply syntax highlighting to JavaScript code:
 
@@ -635,7 +635,7 @@ With a reference later in the document defining the URL location:
 
 ### Further image formatting
 
-The Hugo markdown parser supports additional non-standard functionality.
+The Hugo Markdown parser supports additional non-standard functionality.
 
 #### Resizing image
 

@@ -3,9 +3,9 @@ title = "Migration"
 weight = 17
 +++
 
-If you are upgrading from a previous version of the theme or even from the hugo-theme-learn, you may have to change a few things in your own installation.
+If you are upgrading from a previous version of the theme or even from the Learn theme, you may have to change a few things in your own installation.
 
-For a detailed list of changes, the [history page]({{%relref "basics/history" %}}).
+For a detailed list of changes, see the [history page]({{%relref "basics/history" %}}).
 
 ## From this theme
 

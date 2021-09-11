@@ -41,12 +41,12 @@ content
 
 ## Types
 
-**Hugo-theme-relearn** defines two types of pages. *Default* and *Chapter*. Both can be used at any level of the documentation, the only difference being layout display.
+The Relearn theme defines two types of pages. *Default* and *Chapter*. Both can be used at any level of the documentation, the only difference being layout display.
 
 A **Chapter** displays a page meant to be used as introduction for a set of child pages. Commonly, it contains a simple title and a catch line to define content that can be found under it.
 You can define any HTML as prefix for the menu. In the example below, it's just a number but that could be an [icon](https://fortawesome.github.io/Font-Awesome/).
 
-![Chapter page](images/pages-chapter.png?width=50pc)
+![Chapter page](/cont/pages/images/pages-chapter.png?width=50pc)
 
 ```markdown
 +++
@@ -63,11 +63,11 @@ weight = 5
 Discover what this Hugo theme is all about and the core-concepts behind it.
 ```
 
-To tell **Hugo-theme-relearn** to consider a page as a chapter, set `chapter=true` in the Front Matter of the page.
+To tell the Relearn theme to consider a page as a chapter, set `chapter=true` in the Front Matter of the page.
 
 A **Default** page is any other content page.
 
-![Default page](images/pages-default.png?width=50pc)
+![Default page](/cont/pages/images/pages-default.png?width=50pc)
 
 ```toml
 +++
@@ -86,13 +86,13 @@ Hugo provides a `new` command to create a new website.
 hugo new site <new_project>
 ```
 
-**Hugo-theme-relearn** provides [archetypes]({{%relref "cont/archetypes.en.md" %}}) to help you create this kind of pages.
+The Relearn theme provides [archetypes]({{%relref "cont/archetypes" %}}) to help you create this kind of pages.
 
 ## Front Matter configuration
 
 Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
 
-**Hugo-theme-relearn** uses the following parameters on top of Hugo ones :
+The Relearn theme uses the following parameters on top of Hugo ones :
 
 ```toml
 +++
@@ -120,7 +120,7 @@ LastModifierEmail = ""
 
 ### Add icon to a menu entry
 
-In the page frontmatter, add a `pre` param to insert any HTML code before the menu label. The example below uses the Github icon.
+In the page frontmatter, add a `pre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
 
 ```toml
 +++
@@ -129,7 +129,7 @@ pre = "<i class='fab fa-github'></i> "
 +++
 ```
 
-![Title with icon](images/frontmatter-icon.png)
+![Title with icon](/cont/pages/images/frontmatter-icon.png)
 
 ### Ordering sibling menu/page entries
 
@@ -146,7 +146,7 @@ weight = 5
 
 ### Using a custom title for menu entries
 
-By default, **Hugo-theme-relearn** will use a page's `title` attribute for the menu item (or `linkTitle` if defined).
+By default, the Relearn theme will use a page's `title` attribute for the menu item (or `linkTitle` if defined).
 
 But a page's title has to be descriptive on its own while the menu is a hierarchy.
 We've added the `menuTitle` parameter for that purpose:
@@ -174,9 +174,10 @@ The theme generates the menu based on the following rules:
 - all remaining entries are not shown
 
 You can see this feature in action on the example page for [children shortcode]({{< relref "shortcodes/children" >}}) and its children pages.
-## Homepage
 
-To configure your home page, you basically have three choices:
+## Your Page
+
+To configure your page, you basically have three choices:
 
 1. Create an `_index.md` document in `content` folder and fill the file with *Markdown content*
 2. Create an `index.html` file in the `static` folder and fill the file with *HTML content*

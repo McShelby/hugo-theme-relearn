@@ -3,27 +3,25 @@ title = "Multilingual and i18n"
 weight = 30
 +++
 
-**Relearn theme** is fully compatible with Hugo multilingual mode.
+The Relearn theme is fully compatible with Hugo multilingual mode.
 
 It provides:
 
-- Translation strings for default values (English and French). Feel free to contribute!
+- Translation strings for default values (English, Arabic, Dutch, Piratized English, German, Hindi, Indonesian, Japanese, Piratized English, Portuguese, Russian, Simplified Chinese, Spanish, Turkish). Feel free to contribute!
 - Automatic menu generation from multilingual content
 - In-browser language switching
 
-![I18n menu](images/i18n-menu.gif)
+![I18n menu](/cont/i18n/images/i18n-menu.gif)
 
 ## Basic configuration
 
 After learning [how Hugo handle multilingual websites](https://gohugo.io/content-management/multilingual), define your languages in your `config.toml` file.
 
-For example with current French and English website.
+For example with current English and Piratized English website.
 
 ```toml
 # English is the default language
 defaultContentLanguage = "en"
-# Force to have /en/my-page and /fr/my-page routes, even for default language.
-defaultContentLanguageInSubdir= true
 
 [Languages]
 [Languages.en]
@@ -31,20 +29,20 @@ title = "Documentation for Hugo Relearn Theme"
 weight = 1
 languageName = "English"
 
-[Languages.fr]
-title = "Documentation du thème Hugo Relearn"
+[Languages.en-pir]
+title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
 weight = 2
-languageName = "Français"
+languageName = "Arrr! Pirrrates"
 ```
 
 Then, for each new page, append the *id* of the language to the file.
 
 - Single file `my-page.md` is split in two files:
-    - in English: `my-page.en.md`
-    - in French: `my-page.fr.md`
+    - in English: `my-page.md`
+    - in Piratized English: `my-page.en-pir.md`
 - Single file `_index.md` is split in two files:
-    - in English: `_index.en.md`
-    - in French: `_index.fr.md`
+    - in English: `_index.md`
+    - in Piratized English: `_index.en-pir.md`
 
 {{% notice info %}}
 Be aware that only translated pages are displayed in menu. It's not replaced with default language content.
@@ -56,11 +54,9 @@ Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-con
 
 ## Overwrite translation strings
 
-Translations strings are used for common default values used in the theme (*Edit this page* button, *Search placeholder* and so on). Translations are available in french and english but you may use another language or want to override default values.
+Translations strings are used for common default values used in the theme (*Edit this page* button, *Search placeholder* and so on). Translations are available in English and Piratized English but you may use another language or want to override default values.
 
 To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-relearn/i18n/en.toml`
-
-By the way, as these translations could be used by other people, please take the time to propose a translation by [making a PR](https://github.com/McShelby/hugo-theme-relearn/pulls) to the theme!
 
 ## Disable language switching
 
@@ -73,5 +69,3 @@ Just set `disableLanguageSwitchingButton=true` in your `config.toml`
   # When using mulitlingual website, disable the switch language button.
   disableLanguageSwitchingButton = true
 ```
-
-![I18n menu](images/i18n-menu.gif)

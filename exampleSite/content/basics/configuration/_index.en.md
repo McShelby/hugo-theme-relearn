@@ -5,7 +5,7 @@ weight = 20
 
 ## Global site parameters
 
-On top of [Hugo global configuration](https://gohugo.io/overview/configuration/), **Hugo-theme-relearn** lets you define the following parameters in your `config.toml` (here, values are default).
+On top of [Hugo global configuration](https://gohugo.io/overview/configuration/), the Relearn theme lets you define the following parameters in your `config.toml` (here, values are default).
 
 Note that some of these parameters are explained in details in other sections of this documentation.
 
@@ -41,11 +41,11 @@ Note that some of these parameters are explained in details in other sections of
   disableLanguageSwitchingButton = false
   # Hide breadcrumbs in the header and only show the current page title
   disableBreadcrumb = true
-  # If set to true, prevents Hugo from including the mermaid module if not needed (will reduce load times and traffic)
+  # If set to true, prevents Hugo from including the Mermaid module if not needed (will reduce load times and traffic)
   disableMermaid = false
-  # Specifies the remote location of the mermaid js
+  # Specifies the remote location of the Mermaid js
   customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
-  # Initialization parameter for mermaid, see mermaid documentation
+  # Initialization parameter for Mermaid, see Mermaid documentation
   mermaidInitialize = "{ \"theme\": \"default\" }"
   # Hide Next and Previous page buttons normally displayed full height beside content
   disableNextPrev = true
@@ -75,14 +75,14 @@ Relearn theme uses the last improvement available in hugo version 20+ to generat
 
 ## Mermaid
 
-The mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [mermaid]({{< relref "shortcodes/mermaid.md" >}}) for additional documentation.
+The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid.md" >}}) for additional documentation.
 
 > Example:
 >
 > Mermaid is globally disabled. By default it won't be loaded by any page.
-> On page "Architecture" you need a class diagram. You can set the mermaid parameters locally to only load mermaid on this page (not on the others).
+> On page "Architecture" you need a class diagram. You can set the Mermaid parameters locally to only load mermaid on this page (not on the others).
 
-You also can disable mermaid for specific pages while globally enabled.
+You also can disable Mermaid for specific pages while globally enabled.
 
 ## Home Button Configuration
 
@@ -95,12 +95,12 @@ appearance, you will have to configure two parameters for the defined languages:
 [Lanugages.en]
 ...
 landingPageURL = "/en"
-landingPageName = "<i class='fas fa-home'></i> Redirect to Home"
+landingPageName = "<i class='fas fa-home'></i> Home"
 ...
-[Lanugages.fr]
+[Lanugages.en-pir]
 ...
-landingPageURL = "/fr"
-landingPageName = "<i class='fas fa-home'></i> Accueil"
+landingPageURL = "/en-pir"
+landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
 ...
 ```
 
@@ -114,4 +114,4 @@ landingPageName = "<i class='fas fa-home'></i> Home"
 
 The home button is going to look like this:
 
-![Default Home Button](images/home_button_defaults.png?width=100%)
+![Default Home Button](/basics/configuration/images/home_button_defaults.png?width=100%)

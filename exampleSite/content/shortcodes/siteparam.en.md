@@ -1,5 +1,5 @@
 +++
-description = "Get value of site params variables in your page."
+description = "Get value of site params variables in your page"
 title = "Site param"
 +++
 

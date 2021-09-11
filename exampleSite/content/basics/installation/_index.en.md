@@ -15,7 +15,7 @@ hugo new site <new_project>
 
 ## Install the theme
 
-Install the **Hugo-theme-relearn** theme by following [this documentation](https://gohugo.io/getting-started/quick-start/#step-3-add-a-theme)
+Install the Relearn theme by following [this documentation](https://gohugo.io/getting-started/quick-start/#step-3-add-a-theme)
 
 This theme's repository is: https://github.com/McShelby/hugo-theme-relearn.git
 
@@ -48,9 +48,9 @@ Discover what this Hugo theme is all about and the core concepts behind it.
 
 renders as
 
-![A Chapter](images/chapter.png?classes=shadow&width=60pc)
+![A Chapter](/basics/installation/images/chapter.png?classes=shadow&width=60pc)
 
-**Hugo-theme-relearn** provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command
+The Relearn theme provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command
 
 ```shell
 hugo new --kind chapter basics/_index.md
@@ -98,5 +98,5 @@ hugo
 A `public` folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.
 
 {{% notice note %}}
-This website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)). Alternatively, you can use [Github pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
+This website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)). Alternatively, you can use [GitHub pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
 {{% /notice %}}

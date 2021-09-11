@@ -1,5 +1,5 @@
 +++
-description = "Generation of diagram and flowchart from text in a similar manner as markdown"
+description = "Generation of diagram and flowchart from text in a similar manner as Markdown"
 title = "Mermaid"
 +++
 
@@ -7,7 +7,7 @@ title = "Mermaid"
 
 ## Usage
 
-Just insert your mermaid code in the `mermaid` shortcode like this:
+Just insert your Mermaid code in the `mermaid` shortcode like this:
 
 ````go
 {{</* mermaid [ align=(left|right|center|justify) ] */>}}
@@ -92,7 +92,7 @@ sequenceDiagram
 {{< mermaid >}}
 gantt
         dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to mermaid
+        title Adding GANTT diagram functionality to Mermaid
         section A section
         Completed task            :done,    des1, 2014-01-06,2014-01-08
         Active task               :active,  des2, 2014-01-09, 3d
@@ -104,7 +104,7 @@ gantt
         Create tests for parser             :crit, active, 3d
         Future task in critical line        :crit, 5d
         Create tests for renderer           :2d
-        Add to mermaid                      :1d
+        Add to Mermaid                      :1d
 {{< /mermaid >}}
 
 {{% expand "Show markup" "true" %}}
@@ -112,7 +112,7 @@ gantt
 {{</* mermaid */>}}
 gantt
         dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to mermaid
+        title Adding GANTT diagram functionality to Mermaid
         section A section
         Completed task            :done,    des1, 2014-01-06,2014-01-08
         Active task               :active,  des2, 2014-01-09, 3d
@@ -124,7 +124,7 @@ gantt
         Create tests for parser             :crit, active, 3d
         Future task in critical line        :crit, 5d
         Create tests for renderer           :2d
-        Add to mermaid                      :1d
+        Add to Mermaid                      :1d
 {{</* /mermaid */>}}
 ````
 {{% /expand %}}
@@ -199,11 +199,11 @@ stateDiagram-v2
 
 ## Configuration
 
-Mermaid is configured with default settings. You can customize mermaids default settings for all of your files thru a JSON object in your `config.toml` or override these settings sidewise thru your pages frontmatter.
+Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files thru a JSON object in your `config.toml` or override these settings sidewise thru your pages frontmatter.
 
-This JSON object is forwarded into mermaids `mermaid.initialize()` function.
+This JSON object is forwarded into Mermaid's `mermaid.initialize()` function.
 
-See [mermaid documentation](http://mermaid-js.github.io/mermaid/getting-started/Setup.html#mermaidapi-configuration-defaults) for all allowed settings.
+See [Mermaid documentation](http://mermaid-js.github.io/mermaid/getting-started/Setup.html#mermaidapi-configuration-defaults) for all allowed settings.
 
 ### Example
 

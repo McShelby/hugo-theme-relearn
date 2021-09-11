@@ -4,7 +4,7 @@ title = "Tags"
 weight = 40
 +++
 
-*Relearn theme* supports one default taxonomy of Hugo: the *tag* feature.
+The Relearn theme supports one default taxonomy of Hugo: the *tag* feature.
 
 ## Configuration
 

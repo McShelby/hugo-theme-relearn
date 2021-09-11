@@ -1,5 +1,5 @@
 +++
-description = "The Attachments shortcode displays a list of files attached to a page."
+description = "The Attachments shortcode displays a list of files attached to a page"
 title = "Attachments"
 +++
 
@@ -12,7 +12,7 @@ The Attachments shortcode displays a list of files attached to a page.
 The shortcurt lists files found in a **specific folder**.
 Currently, it support two implementations for pages
 
-1. If your page is a markdown file, attachements must be placed in a **folder** named like your page and ending with **.files**.
+1. If your page is a Markdown file, attachements must be placed in a **folder** named like your page and ending with **.files**.
 
     > * content
     >   * _index.md

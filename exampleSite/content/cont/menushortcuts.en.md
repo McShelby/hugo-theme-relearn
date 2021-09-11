@@ -13,7 +13,7 @@ Example from the current website:
 
 ````toml
 [[menu.shortcuts]]
-name = "<i class='fab fa-github'></i> Github repo"
+name = "<i class='fab fa-github'></i> GitHub repo"
 identifier = "ds"
 url = "https://github.com/McShelby/hugo-theme-relearn"
 weight = 10
@@ -61,7 +61,7 @@ weight = 1
 languageName = "English"
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-github'></i> Github repo"
+name = "<i class='fab fa-github'></i> GitHub repo"
 identifier = "ds"
 url = "https://github.com/McShelby/hugo-theme-relearn"
 weight = 10
@@ -82,30 +82,30 @@ name = "<i class='fas fa-bullhorn'></i> Credits"
 url = "/credits"
 weight = 30
 
-[Languages.fr]
-title = "Documentation du thème Hugo Relearn"
+[Languages.en-pir]
+title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
 weight = 2
-languageName = "Français"
+languageName = "Arrr! Pirrrates"
 
-[[Languages.fr.menu.shortcuts]]
-name = "<i class='fab fa-github'></i> Repo Github"
+[[Languages.en-pir.menu.shortcuts]]
+name = "<i class='fab fa-github'></i> GitHub repo"
 identifier = "ds"
 url = "https://github.com/McShelby/hugo-theme-relearn"
 weight = 10
 
-[[Languages.fr.menu.shortcuts]]
-name = "<i class='fas fa-camera'></i> Vitrine"
+[[Languages.en-pir.menu.shortcuts]]
+name = "<i class='fas fa-camera'></i> Showcases"
 url = "/showcase"
 weight = 11
 
-[[Languages.fr.menu.shortcuts]]
-name = "<i class='fas fa-bookmark'></i> Documentation Hugo"
+[[Languages.en-pir.menu.shortcuts]]
+name = "<i class='fas fa-bookmark'></i> Cap'n Hugo Documentat'n"
 identifier = "hugodoc"
 url = "https://gohugo.io/"
 weight = 20
 
-[[Languages.fr.menu.shortcuts]]
-name = "<i class='fas fa-bullhorn'></i> Crédits"
+[[Languages.en-pir.menu.shortcuts]]
+name = "<i class='fas fa-bullhorn'></i> Crrredits"
 url = "/credits"
 weight = 30
 ````

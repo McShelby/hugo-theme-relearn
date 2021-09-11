@@ -1,5 +1,5 @@
 +++
-description = "Nice buttons on your page."
+description = "Nice buttons on your page"
 title = "Button"
 +++
 
