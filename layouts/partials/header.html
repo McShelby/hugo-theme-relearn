@@ -106,9 +106,6 @@
     <meta itemprop="position" content="{{ $depth }}" />
     <a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}>
       <span itemprop="name">{{ .page.Title }}</span>
-    </a>
+    </a>{{- if .depth }} > {{- end }}
   </li>
-  {{- if .depth }}
-    > 
-  {{- end }}
 {{- end }}
