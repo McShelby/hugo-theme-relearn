@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ hugo.Generator -}}
-    {{ partial "meta.html" . }}
+    {{- partial "meta.html" . }}
     {{ partial "favicon.html" . }}
     <title>{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
 
-    {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+    {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
     <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/featherlight.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -17,104 +17,98 @@
     <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/tabs.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/hugo-theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    {{with .Site.Params.themeVariant}}
+    {{- with .Site.Params.themeVariant }}
     <link href="{{(printf "css/theme-%s.css" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    {{end}}
-    {{ range .Site.Params.custom_css -}}
+    {{- end }}
+    {{- range .Site.Params.custom_css }}
     <link href="{{(printf "%s" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
-
     <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-
     <style>
       :root #header + #content > #left > #rlblock_left{
-          display:none !important;
+        display:none !important;
       }
-      {{ if .Site.Params.disableInlineCopyToClipBoard }}
+      {{- if .Site.Params.disableInlineCopyToClipBoard }}
         :not(pre) > code + span.copy-to-clipboard {
             display: none;
         }
-      {{ end }}
+      {{- end }}
     </style>
-    {{ partial "custom-header.html" . }}
+    {{- partial "custom-header.html" . }}
   </head>
   <body class="" data-url="{{ .RelPermalink }}">
-    {{ partial "menu.html" . }}
-        <section id="body">
-        <div id="overlay"></div>
-        <div class="padding highlightable">
-              {{if not .IsHome}}
-              <div>
-                <div id="top-bar">
-                {{ if and (or .IsPage .IsSection) .Site.Params.editURL }}
-                  {{ $File := .File }}
-                  {{ $Site := .Site }}
-                  {{with $File.Path }}
-                  <div id="top-github-link">
-                    <a class="github-link" title='{{T "Edit-this-page"}}' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
-                      <i class="fas fa-code-branch"></i>
-                      <span id="top-github-link-text">{{T "Edit-this-page"}}</span>
-                    </a>
-                  </div>
-                  {{ end }}
-                {{ end }}
-                {{$toc := (and (not .Params.disableToc) (not .Params.chapter))}}
-                  <div id="breadcrumbs">
-                    <span id="sidebar-toggle-span">
-                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                          <i class="fas fa-bars"></i>
-                        </a>
-                    </span>
-                  {{ if $toc }}
-                    <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  {{ end }}
-                  {{$showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb))}}
-                  {{if $showBreadcrumb}}
-                    <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
-                      <meta itemprop="itemListOrder" content="Descending" />
-                      {{ template "breadcrumb" dict "page" . "depth" 0 }}
-                    </ol>
-                  {{ else }}
-                    <span class="links">
-                    {{ .Title }}
-                    </span>
-                  {{ end }}
-                  </div>
-                {{ if $toc }}
-                    {{ partial "toc.html" . }}
-                {{ end }}
-              </div>
+    {{- partial "menu.html" . }}
+    <section id="body">
+      <div id="overlay"></div>
+      <div class="padding highlightable">
+        {{- if not .IsHome }}
+        <div>
+          <div id="top-bar">
+          {{- if and (or .IsPage .IsSection) .Site.Params.editURL }}
+            {{- $File := .File }}
+            {{- $Site := .Site }}
+            {{- with $File.Path }}
+            <div id="top-github-link">
+              <a class="github-link" title='{{ T "Edit-this-page" }}' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
+                <i class="fas fa-code-branch"></i>
+                <span id="top-github-link-text">{{T "Edit-this-page"}}</span>
+              </a>
             </div>
-            {{ end }}
-        <div id="head-tags">
-        {{ partial "tags.html" . }}
+            {{- end }}
+          {{- end }}
+          {{- $toc := (and (not .Params.disableToc) (not .Params.chapter)) }}
+            <div id="breadcrumbs">
+              <span id="sidebar-toggle-span">
+                <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                  <i class="fas fa-bars"></i>
+                </a>
+              </span>
+            {{- if $toc }}
+              <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+            {{- end }}
+            {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
+            {{- if $showBreadcrumb }}
+              <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <meta itemprop="itemListOrder" content="Descending" />
+                {{- template "breadcrumb" dict "page" . "depth" 0 }}
+              </ol>
+            {{- else }}
+              <span class="links">
+                {{ .Title }}
+              </span>
+            {{- end }}
+            </div>
+          {{- if $toc }}
+            {{- partial "toc.html" . }}
+          {{- end }}
         </div>
-        {{ if .Params.chapter }}
-          <div id="chapter">
-        {{ end }}
-        <div id="body-inner">
-          {{if and (not .IsHome) (not .Params.chapter) }}
-            <h1>
-              {{ if eq .Kind "term" }}
-                {{.Data.Singular}} ::
-              {{ end }}
-              {{.Title}}
-            </h1>
-          {{end}}
-
-        {{define "breadcrumb"}}
-          {{$parent := .page.Parent }}
-          {{$depth := add .depth 1 }}
-          {{ if $parent }}
-            {{ template "breadcrumb" dict "page" $parent "depth" $depth }}
-          {{end}}
-          <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-            <meta itemprop="position" content="{{ $depth }}" />
-            <a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}>
-              <span itemprop="name">{{ .page.Title }}</span>
-            </a>
-          </li>
-          {{ if .depth }}
-            > 
-          {{end}}
-        {{end}}
+      </div>
+      {{- end }}
+      <div id="head-tags">
+{{- partial "tags.html" . }}
+      </div>
+    {{- if .Params.chapter }}
+      <div id="chapter">
+    {{- end }}
+      <div id="body-inner">
+      {{- if and (not .IsHome) (not .Params.chapter) }}
+        <h1>
+          {{ if eq .Kind "term" }}{{ .Data.Singular }} :: {{ end }}{{ .Title }}
+        </h1>
+      {{- end }}
+{{- define "breadcrumb" }}
+  {{- $parent := .page.Parent }}
+  {{- $depth := add .depth 1 }}
+  {{- if $parent }}
+    {{- template "breadcrumb" dict "page" $parent "depth" $depth }}
+  {{- end }}
+  <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
+    <meta itemprop="position" content="{{ $depth }}" />
+    <a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}>
+      <span itemprop="name">{{ .page.Title }}</span>
+    </a>
+  </li>
+  {{- if .depth }}
+    > 
+  {{- end }}
+{{- end }}

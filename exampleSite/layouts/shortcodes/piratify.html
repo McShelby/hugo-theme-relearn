@@ -1,6 +1,6 @@
-{{ $langsrc := .Get 1 | default "en" }}
-{{ $langtrg := .Page.Language.Lang }}
-{{ $words := dict
+{{- $langsrc := .Get 1 | default "en" }}
+{{- $langtrg := .Page.Language.Lang }}
+{{- $words := dict
 	"Hugo" "Cap'n Hugo"
 	"Info" "Ahoi"
 	"Note" "Avast"
@@ -60,8 +60,7 @@
 	"Relearn" "Relearrrn"
 	"Learn" "Learrrn"
 }}
-
-{{ $specials := dict
+{{- $specials := dict
 	"(\\w)ing([\\s\\n<.,;?!:])" "'n"
 	"(\\w)ings([\\s\\n<.,;?!:])" "'ns"
 	"(\\w)tion([\\s\\n<.,;?!:])" "t'n"
@@ -73,29 +72,26 @@
 	"(\\w)(?:[aeiou])nizes([\\s\\n<.,;?!:])" "'nizes"
 	"(.)=\"/([^\".]*?\")" (printf "=\"/%s/" $langtrg)
 }}
-
-{{ $fix := dict
+{{- $fix := dict
 	"warn'n" "warning"
 	"sect'n" "section"
 	"n Cap'n" "n"
 	"Documentat'n fer Cap'n Hugo Relearrrn Theme" "Documentation for Hugo Relearn Theme"
 	"Avast right o' John" "Note right of John"
 }}
-
-{{ $c := "" }}
-{{ range .Page.Translations }}
-	{{ if eq .Language.Lang $langsrc }}
-		{{/* $file | readFile | safeHTML */}}
-		{{ $c = .Content }}
-		{{ range $from, $to := $words }}
-			{{ $c = replaceRE (printf "([\\s\\n>])%s([\\s\\n<.,;?!:])" $from) (printf "${1}%s${2}" $to) $c }}
-		{{ end }}
-		{{ range $from, $to := $specials }}
-			{{ $c = replaceRE $from (printf "${1}%s${2}" $to) $c }}
-		{{ end }}
-		{{ range $from, $to := $fix }}
+{{- $c := "" }}
+{{- range .Page.Translations }}
+	{{- if eq .Language.Lang $langsrc }}
+		{{- $c = .Content }}
+		{{- range $from, $to := $words }}
+			{{- $c = replaceRE (printf "([\\s\\n>])%s([\\s\\n<.,;?!:])" $from) (printf "${1}%s${2}" $to) $c }}
+		{{- end }}
+		{{- range $from, $to := $specials }}
+			{{- $c = replaceRE $from (printf "${1}%s${2}" $to) $c }}
+		{{- end }}
+		{{- range $from, $to := $fix }}
 			{{ $c = replace $c $from $to }}
-		{{ end }}
-	{{ end }}
-{{ end }}
-{{ $c | safeHTML }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- $c | safeHTML }}
