@@ -81,31 +81,25 @@
           {{- if $toc }}
             {{- partial "toc.html" . }}
           {{- end }}
+          </div>
         </div>
-      </div>
       {{- end }}
-      <div id="head-tags">
+        <div id="head-tags">
 {{- partial "tags.html" . }}
-      </div>
-    {{- if .Params.chapter }}
-      <div id="chapter">
-    {{- end }}
-      <main id="body-inner">
-      {{- if and (not .IsHome) (not .Params.chapter) }}
-        <h1>
-          {{ if eq .Kind "term" }}{{ .Data.Singular }} :: {{ end }}{{ .Title }}
-        </h1>
+        </div>
+      {{- if .Params.chapter }}
+       <div id="chapter">
       {{- end }}
+        <main id="body-inner">
+      {{- if and (not .IsHome) (not .Params.chapter) }}
+          <h1>{{ if eq .Kind "term" }}{{ .Data.Singular }} :: {{ end }}{{ .Title }}</h1>
+      {{- end }}
+
 {{- define "breadcrumb" }}
   {{- $parent := .page.Parent }}
   {{- $depth := add .depth 1 }}
   {{- if $parent }}
     {{- template "breadcrumb" dict "page" $parent "depth" $depth }}
   {{- end }}
-                <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">
-                  <meta itemprop="position" content="{{ $depth }}" />
-                  <a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}>
-                    <span itemprop="name">{{ .page.Title }}</span>
-                  </a>{{- if .depth }} > {{- end }}
-                </li>
+                <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="{{ $depth }}" /><a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}><span itemprop="name">{{ .page.Title }}</span></a>{{ if .depth }} > {{ end }}</li>
 {{- end }}
