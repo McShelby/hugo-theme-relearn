@@ -34,7 +34,7 @@
         {{- $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle }}
         {{- with .Site.Menus.shortcuts }}
         <div id="shortcuts">
-          <h3>{{ if not $disableShortcutsTitle }}{{ T "Shortcuts-Title" }}{{ end }}</h3>
+          <div class="nav-title">{{ if not $disableShortcutsTitle }}{{ T "Shortcuts-Title" }}{{ end }}</div>
           <ul>
             {{- range sort . "Weight" }}
             <li>{{ .Pre }}<a class="padding" href="{{ .URL | absLangURL }}">{{ safeHTML .Name }}</a>{{ .Post }}</li>
