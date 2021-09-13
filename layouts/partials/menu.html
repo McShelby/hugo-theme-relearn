@@ -37,9 +37,7 @@
           <h3>{{ if not $disableShortcutsTitle }}{{ T "Shortcuts-Title" }}{{ end }}</h3>
           <ul>
             {{- range sort . "Weight" }}
-            <li>
-              {{ .Pre }}<a class="padding" href="{{ .URL | absLangURL }}">{{ safeHTML .Name }}</a>{{ .Post }}
-            </li>
+            <li>{{ .Pre }}<a class="padding" href="{{ .URL | absLangURL }}">{{ safeHTML .Name }}</a>{{ .Post }}</li>
             {{- end }}
           </ul>
         </section>
@@ -75,7 +73,7 @@
                     width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
                     <g>
                       <g id="arrow-drop-down">
-                        <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                        <polygon points="0,63.75 127.5,191.25 255,63.75" />
                       </g>
                     </g>
                   </svg>
@@ -107,12 +105,9 @@
         {{- else if .IsSection }}
           {{- safeHTML .Params.head }}
           {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
-          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">
-            <a href="{{.RelPermalink}}">
-              {{ partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
-              {{ if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}
-            </a>
-            <ul>
+          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><a href="{{.RelPermalink}}">
+              {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
+              {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul>
               {{- $currentNode.Scratch.Set "pages" .Pages }}
               {{- if .Sections}}
                 {{- $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
@@ -126,16 +121,11 @@
                 {{- range $pages.ByWeight }}
                 {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
                 {{- end }}
-              {{- end }}
-            </ul>
-          </li>
+              {{- end }}</ul></li>
         {{- else }}
-          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}">
-            <a href="{{.RelPermalink}}">
-              {{ partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
-              {{ if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}
-            </a>
-          </li>
+          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}"><a href="{{.RelPermalink}}">
+              {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
+              {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
         {{- end }}
       {{- end }}
     {{- end }}
