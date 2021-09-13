@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.3.0 (2021-09-13)
+
+### Bug Fixes
+
+- [**bug**] theme: fix usage of <section> [#88](https://github.com/McShelby/hugo-theme-relearn/issues/88)
+
+### Maintenance
+
+- [**task**] theme: ensure IE11 compatiblity [#89](https://github.com/McShelby/hugo-theme-relearn/issues/89)
+- [**task**] docs: Arrr! showcase multilang featurrre [#87](https://github.com/McShelby/hugo-theme-relearn/issues/87)
+
+---
+
 ## 2.2.0 (2021-09-10)
 
 ### Enhancements
