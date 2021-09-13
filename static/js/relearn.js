@@ -520,7 +520,7 @@ jQuery(function() {
     });
 
     $('a[rel="lightbox"]').featherlight({
-        root: 'section#body'
+        root: 'div#body'
     });
 
     sessionStorage.setItem(jQuery('body').data('url'), 1);

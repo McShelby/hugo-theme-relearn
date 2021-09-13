@@ -11,13 +11,13 @@
         {{- end }}
       </div>
       {{- if not .Site.Params.disableLandingPageButton }}
-      <section id="homelinks">
+      <div id="homelinks">
         <ul>
           <li>
               <a class="padding" href="{{ .Site.Params.landingPageURL | default "/" | relLangURL }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a>
           </li>
         </ul>
-      </section>
+      </div>
       {{- end }}
       <div class="highlightable">
         <ul class="topics">
@@ -33,18 +33,18 @@
         </ul>
         {{- $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle }}
         {{- with .Site.Menus.shortcuts }}
-        <section id="shortcuts">
+        <div id="shortcuts">
           <h3>{{ if not $disableShortcutsTitle }}{{ T "Shortcuts-Title" }}{{ end }}</h3>
           <ul>
             {{- range sort . "Weight" }}
             <li>{{ .Pre }}<a class="padding" href="{{ .URL | absLangURL }}">{{ safeHTML .Name }}</a>{{ .Post }}</li>
             {{- end }}
           </ul>
-        </section>
+        </div>
         {{- end }}
 
         {{- if or .Site.IsMultiLingual $showvisitedlinks }}
-        <section id="prefooter">
+        <div id="prefooter">
           <hr/>
           <ul>
             {{- if and .Site.IsMultiLingual (not .Site.Params.DisableLanguageSwitchingButton) }}
@@ -86,11 +86,11 @@
             <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> {{ T "Clear-History" }}</a></li>
             {{- end }}
           </ul>
-        </section>
+        </div>
         {{- end }}
-        <section id="footer">
+        <div id="footer">
           {{- partial "menu-footer.html" . }}
-        </section>
+        </div>
       </div>
     </nav>
     {{- define "section-tree-nav" }}
