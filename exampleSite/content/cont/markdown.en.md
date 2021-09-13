@@ -352,17 +352,17 @@ Renders to:
 Wrap inline snippets of code with `` ` ``.
 
 ```markdown
-In this example, `<section></section>` should be wrapped as **code**.
+In this example, `<div></div>` should be wrapped as **code**.
 ```
 
 Renders to:
 
-In this example, `<section></section>` should be wrapped as **code**.
+In this example, `<div></div>` should be wrapped as **code**.
 
 HTML:
 
 ```html
-<p>In this example, <code>&lt;section&gt;&lt;/section&gt;</code> should be wrapped as <strong>code</strong>.</p>
+<p>In this example, <code>&lt;div&gt;&lt;/div&gt;</code> should be wrapped as <strong>code</strong>.</p>
 ```
 
 ### Indented code
