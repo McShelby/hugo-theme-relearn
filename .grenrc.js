@@ -5,7 +5,7 @@ module.exports = {
     "Enhancements": [
       "feature",
     ],
-    "Bug Fixes": [
+    "Fixes": [
       "bug"
     ],
     "Maintenance": [

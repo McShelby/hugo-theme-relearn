@@ -2,9 +2,9 @@
 
 ## 2.3.0 (2021-09-13)
 
-### Bug Fixes
+### Fixes
 
-- [**bug**] theme: fix usage of <section> [#88](https://github.com/McShelby/hugo-theme-relearn/issues/88)
+- [**bug**] theme: fix usage of section element [#88](https://github.com/McShelby/hugo-theme-relearn/issues/88)
 
 ### Maintenance
 
@@ -19,7 +19,7 @@
 
 - [**feature**] sitemap: hide hidden pages from sitemap and SEO indexing [#85](https://github.com/McShelby/hugo-theme-relearn/issues/85)
 
-### Bug Fixes
+### Fixes
 
 - [**bug**] theme: fix showVisitedLinks in case Hugo is configured to modify relative URLs [#86](https://github.com/McShelby/hugo-theme-relearn/issues/86)
 
@@ -40,7 +40,7 @@
 - [**feature**] search: increase performance [#74](https://github.com/McShelby/hugo-theme-relearn/issues/74)
 - [**feature**] search: improve search context preview [#73](https://github.com/McShelby/hugo-theme-relearn/issues/73)
 
-### Bug Fixes
+### Fixes
 
 - [**bug**] search: hide non-site content [#81](https://github.com/McShelby/hugo-theme-relearn/issues/81)
 - [**bug**] menu: always hide hidden sub pages [#77](https://github.com/McShelby/hugo-theme-relearn/issues/77)
@@ -65,7 +65,7 @@
 - [**feature**] theme: adjust print styles [#35](https://github.com/McShelby/hugo-theme-relearn/issues/35)
 - [**feature**] code highligher: switch to standard hugo highlighter [#32](https://github.com/McShelby/hugo-theme-relearn/issues/32)
 
-### Bug Fixes
+### Fixes
 
 - [**bug**] arrow-nav: default sorting ignores ordersectionsby [#63](https://github.com/McShelby/hugo-theme-relearn/issues/63)
 - [**bug**] children: default sorting ignores ordersectionsby [#62](https://github.com/McShelby/hugo-theme-relearn/issues/62)
@@ -95,7 +95,7 @@
 - [**feature**] notice: align box colors to common standards [#18](https://github.com/McShelby/hugo-theme-relearn/issues/18)
 - [**feature**] notice: use distinct icons for notice box type [#17](https://github.com/McShelby/hugo-theme-relearn/issues/17)
 
-### Bug Fixes
+### Fixes
 
 - [**bug**] attachments: support i18n for attachment size [#21](https://github.com/McShelby/hugo-theme-relearn/issues/21)
 - [**bug**] notice: support i18n for box labels [#16](https://github.com/McShelby/hugo-theme-relearn/issues/16)
@@ -121,7 +121,7 @@
 
 - [**feature**] mermaid: expose options in config.toml [#4](https://github.com/McShelby/hugo-theme-relearn/issues/4)
 
-### Bug Fixes
+### Fixes
 
 - [**bug**] mermaid: config option for CDN url not used [#12](https://github.com/McShelby/hugo-theme-relearn/issues/12)
 - [**bug**] mermaid: only highlight text in HTML elements [#10](https://github.com/McShelby/hugo-theme-relearn/issues/10)
