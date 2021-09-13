@@ -104,7 +104,7 @@ function initMermaid() {
         $(element).parent().replaceWith('<div class="mermaid" align="center">' + content + '</div>');
     });
 
-    if (mermaid) {
+    if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( {}, mermaid.mermaidAPI.getSiteConfig(), { startOnLoad: true } ) );
         mermaid.contentLoaded();
         $(".mermaid svg").svgPanZoom({})
@@ -538,7 +538,7 @@ jQuery(function() {
 
 jQuery.extend({
     highlight: function(node, re, nodeName, className) {
-        if (node.nodeType === 3 && node.parentElement.namespaceURI == 'http://www.w3.org/1999/xhtml') { // text nodes
+        if (node.nodeType === 3 && node.parentElement && node.parentElement.namespaceURI == 'http://www.w3.org/1999/xhtml') { // text nodes
             var match = node.data.match(re);
             if (match) {
                 var highlight = document.createElement(nodeName || 'span');

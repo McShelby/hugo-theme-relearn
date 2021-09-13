@@ -45,7 +45,7 @@ function initLunr() {
 function search(term) {
     // Find the item in our index corresponding to the lunr one to have more info
     // Remove Lunr special search characters: https://lunrjs.com/guides/searching.html
-    var searchTerm = lunr.tokenizer(term.replace(/[*:^~+-]/, ' ')).flatMap(token => searchPatterns(token.str)).join(' ');
+    var searchTerm = lunr.tokenizer(term.replace(/[*:^~+-]/, ' ')).reduce( function(a,token){return a.concat(searchPatterns(token.str))}, []).join(' ');
     return !searchTerm ? [] : lunrIndex.search(searchTerm).map(function(result) {
         return { index: result.ref, matches: Object.keys(result.matchData.metadata) }
     });
@@ -75,7 +75,7 @@ $(function() {
             var page = pagesIndex[item.index];
             var numContextWords = 2;
             var contextPattern = '(?:\\S+ +){0,' + numContextWords + '}\\S*\\b(?:' +
-                item.matches.map(match => match.replace(/\W/g, '\\$&')).join('|') +
+                item.matches.map( function(match){return match.replace(/\W/g, '\\$&')} ).join('|') +
                 ')\\b\\S*(?: +\\S+){0,' + numContextWords + '}';
             var context = page.content.match(new RegExp(contextPattern, 'i'));
             var divcontext = document.createElement('div');

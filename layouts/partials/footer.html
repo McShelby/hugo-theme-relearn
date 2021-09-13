@@ -42,7 +42,7 @@
       {{- $.Scratch.Set "mermaidInitialize" "{ \"startOnLoad\": true }" }}
   {{- end }}
     <script>
-      if (mermaid) {
+      if (typeof mermaid != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}), { startOnLoad: false } ) );
       }
     </script>
