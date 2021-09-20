@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.2 (2021-09-20)
+*No changelog for this release.*
+
+---
+
 ## 2.3.1 (2021-09-20)
 
 ### Fixes
