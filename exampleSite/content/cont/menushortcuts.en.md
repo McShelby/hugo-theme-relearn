@@ -82,29 +82,29 @@ name = "<i class='fas fa-bullhorn'></i> Credits"
 url = "/credits"
 weight = 30
 
-[Languages.en-pir]
+[Languages.pir]
 title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
 weight = 2
 languageName = "Arrr! Pirrrates"
 
-[[Languages.en-pir.menu.shortcuts]]
+[[Languages.pir.menu.shortcuts]]
 name = "<i class='fab fa-github'></i> GitHub repo"
 identifier = "ds"
 url = "https://github.com/McShelby/hugo-theme-relearn"
 weight = 10
 
-[[Languages.en-pir.menu.shortcuts]]
+[[Languages.pir.menu.shortcuts]]
 name = "<i class='fas fa-camera'></i> Showcases"
 url = "/showcase"
 weight = 11
 
-[[Languages.en-pir.menu.shortcuts]]
+[[Languages.pir.menu.shortcuts]]
 name = "<i class='fas fa-bookmark'></i> Cap'n Hugo Documentat'n"
 identifier = "hugodoc"
 url = "https://gohugo.io/"
 weight = 20
 
-[[Languages.en-pir.menu.shortcuts]]
+[[Languages.pir.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Crrredits"
 url = "/credits"
 weight = 30

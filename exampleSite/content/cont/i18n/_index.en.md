@@ -29,7 +29,7 @@ title = "Documentation for Hugo Relearn Theme"
 weight = 1
 languageName = "English"
 
-[Languages.en-pir]
+[Languages.pir]
 title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
 weight = 2
 languageName = "Arrr! Pirrrates"
@@ -39,10 +39,10 @@ Then, for each new page, append the *id* of the language to the file.
 
 - Single file `my-page.md` is split in two files:
     - in English: `my-page.md`
-    - in Piratized English: `my-page.en-pir.md`
+    - in Piratized English: `my-page.pir.md`
 - Single file `_index.md` is split in two files:
     - in English: `_index.md`
-    - in Piratized English: `_index.en-pir.md`
+    - in Piratized English: `_index.pir.md`
 
 {{% notice info %}}
 Be aware that only translated pages are displayed in menu. It's not replaced with default language content.

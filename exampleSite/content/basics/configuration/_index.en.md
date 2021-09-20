@@ -97,9 +97,9 @@ appearance, you will have to configure two parameters for the defined languages:
 landingPageURL = "/en"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ...
-[Lanugages.en-pir]
+[Lanugages.pir]
 ...
-landingPageURL = "/en-pir"
+landingPageURL = "/pir"
 landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
 ...
 ```
