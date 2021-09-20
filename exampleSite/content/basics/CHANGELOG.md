@@ -1,7 +1,10 @@
 # Changelog
 
 ## 2.3.2 (2021-09-20)
-*No changelog for this release.*
+
+### Fixes
+
+- [**bug**] docs: rename history pirate translation [#91](https://github.com/McShelby/hugo-theme-relearn/issues/91)
 
 ---
 
