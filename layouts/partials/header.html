@@ -42,46 +42,44 @@
       <div id="overlay"></div>
       <div class="padding highlightable">
         {{- if not .IsHome }}
-        <div>
-          <div id="top-bar">
-          {{- if and (or .IsPage .IsSection) .Site.Params.editURL }}
-            {{- $File := .File }}
-            {{- $Site := .Site }}
-            {{- with $File.Path }}
-            <div id="top-github-link">
-              <a class="github-link" title='{{ T "Edit-this-page" }}' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
-                <i class="fas fa-code-branch"></i>
-                <span id="top-github-link-text">{{T "Edit-this-page"}}</span>
-              </a>
-            </div>
-            {{- end }}
+        <div id="top-bar">
+        {{- if and (or .IsPage .IsSection) .Site.Params.editURL }}
+          {{- $File := .File }}
+          {{- $Site := .Site }}
+          {{- with $File.Path }}
+          <div id="top-github-link">
+            <a class="github-link" title='{{ T "Edit-this-page" }}' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
+              <i class="fas fa-code-branch"></i>
+              <span id="top-github-link-text">{{T "Edit-this-page"}}</span>
+            </a>
+          </div>
           {{- end }}
-          {{- $toc := (and (not .Params.disableToc) (not .Params.chapter)) }}
-            <div id="breadcrumbs">
-              <span id="sidebar-toggle-span">
-                <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                  <i class="fas fa-bars"></i>
-                </a>
-              </span>
-            {{- if $toc }}
-              <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-            {{- end }}
-            {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
-            {{- if $showBreadcrumb }}
-              <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
-                <meta itemprop="itemListOrder" content="Descending" />
-                {{- template "breadcrumb" dict "page" . "depth" 0 }}
-              </ol>
-            {{- else }}
-              <span class="links">
-                {{ .Title }}
-              </span>
-            {{- end }}
-            </div>
+        {{- end }}
+        {{- $toc := (and (not .Params.disableToc) (not .Params.chapter)) }}
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                <i class="fas fa-bars"></i>
+              </a>
+            </span>
           {{- if $toc }}
-            {{- partial "toc.html" . }}
+            <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+          {{- end }}
+          {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
+          {{- if $showBreadcrumb }}
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              {{- template "breadcrumb" dict "page" . "depth" 0 }}
+            </ol>
+          {{- else }}
+            <span class="links">
+              {{ .Title }}
+            </span>
           {{- end }}
           </div>
+        {{- if $toc }}
+          {{- partial "toc.html" . }}
+        {{- end }}
         </div>
       {{- end }}
         <div id="head-tags">

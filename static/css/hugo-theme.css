@@ -269,18 +269,21 @@ figcaption h4 {
   }
 }
 
-.is-sticky #top-bar {
+#top-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+#top-bar.is-sticky {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
+
 @media print {
-  /* the header is sticky which is not suited for print;
-  because there are inline styles set, we have to use !important here
-  to remove those styles in print;
-  chrome will repeat the header otherwise if you've already
-  scrolled the page before printing */
-  .is-sticky #top-bar{
-    position: inherit !important; /* IE11 doesn't know "initial" here */
-    width: inherit !important;
+  /* the header is sticky which is not suitable for print; */
+  #top-bar{
     box-shadow: initial;
+    position: inherit; /* IE11 doesn't know "initial" here */
   }
 }
