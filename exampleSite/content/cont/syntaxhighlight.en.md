@@ -49,12 +49,13 @@ Renders to:
 
 Hugo comes with a [remarkable list](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages) of supported languages.
 
-## Configuration
+## Recommended configuration
 
 You can choose a color theme from the [list of supported themes](https://xyproto.github.io/splash/docs/all.html) and add it in your `config.toml`
 
 ````toml
 [markup]
   [markup.highlight]
-    style = "monokai"
+    style = "monokai"   # choose a color theme or create your own
+    guessSyntax = true  # avoid unstyled code if no language was given
 ````
