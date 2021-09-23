@@ -56,6 +56,6 @@ You can choose a color theme from the [list of supported themes](https://xyproto
 ````toml
 [markup]
   [markup.highlight]
-    style = "monokai"   # choose a color theme or create your own
-    guessSyntax = true  # avoid unstyled code if no language was given
+    style = "base16-snazzy" # choose a color theme or create your own
+    guessSyntax = true      # avoid unstyled code if no language was given
 ````
