@@ -1,6 +1,10 @@
 {{- partial "page-meta.go" . }}
 {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+{{- else }}
+    {{- range .AlternativeOutputFormats }}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{- end }}
 {{- end }}
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
 {{- with .Site.Params.author }}
