@@ -21,13 +21,14 @@
       {{- end }}
       <div class="highlightable">
         <ul class="topics">
+          {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
           {{- if eq .Site.Params.ordersectionsby "title" }}
             {{- range .Site.Home.Sections.ByTitle }}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" false }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}
           {{- else }}
             {{- range .Site.Home.Sections.ByWeight }}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" false }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}
           {{- end }}
         </ul>
@@ -113,13 +114,14 @@
                 {{- $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
               {{- end }}
               {{- $pages := ($currentNode.Scratch.Get "pages") }}
+              {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
               {{- if eq .Site.Params.ordersectionsby "title" }}
                 {{- range $pages.ByTitle }}
-                  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
+                  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
                 {{- end }}
               {{- else }}
                 {{- range $pages.ByWeight }}
-                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" true}}
+                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
                 {{- end }}
               {{- end }}</ul></li>
         {{- else }}
