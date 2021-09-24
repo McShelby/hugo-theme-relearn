@@ -6,7 +6,9 @@
         {{- if or (eq .Kind "taxonomy") (eq .Kind "term") }}
           <ul>
           {{- range .Pages }}
+            {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
             <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{- end }}
           {{- end }}
           </ul>
         {{- end }}

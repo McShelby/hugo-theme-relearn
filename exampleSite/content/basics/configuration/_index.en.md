@@ -31,6 +31,8 @@ Note that some of these parameters are explained in details in other sections of
   disableSearchHiddenPages = false
   # Disables hidden pages from showing up in the sitemap and on Google (et all), otherwise they may be indexed by search engines
   disableSeoHiddenPages = false
+  # Disables hidden pages from showing up on the tags page although the tag term will be displayed even if all pages are hidden
+  disableTagHiddenPages = false
   # Javascript and CSS cache are automatically busted when new version of site is generated.
   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
   disableAssetsBusting = false

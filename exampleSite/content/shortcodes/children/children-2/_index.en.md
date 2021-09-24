@@ -1,5 +1,6 @@
 +++
 alwaysopen = false
+tags = ["children", "non-hidden"]
 title = "page 2"
 weight = 20
 +++
