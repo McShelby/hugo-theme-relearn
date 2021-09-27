@@ -42,7 +42,9 @@
 	{{- end }}
 	{{- $pages := ($currentNode.Scratch.Get "relearnSubPages") }}
 
-	{{- if eq .Site.Params.ordersectionsby "title"}}
+	{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
+	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
+	{{- if eq $currentOrdersectionsby "title"}}
 		{{- range $pages.ByTitle  }}
 			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current }}
 		{{- end}}

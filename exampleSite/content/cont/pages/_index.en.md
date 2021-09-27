@@ -103,6 +103,8 @@ disableToc = "false"
 menuTitle = ""
 # If set, this will explicitly override common rules for the expand state of a page's menu entry
 alwaysopen = true
+# If set, this will explicitly override common rules for the sorting order of a page's submenu entries
+ordersectionsby = "title"
 # The title of the page in menu will be prefixed by this HTML content
 pre = ""
 # The title of the page in menu will be postfixed by this HTML content

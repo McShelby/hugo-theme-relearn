@@ -55,7 +55,8 @@ Note that some of these parameters are explained in details in other sections of
   mermaidInitialize = "{ \"theme\": \"default\" }"
   # Hide Next and Previous page buttons normally displayed full height beside content
   disableNextPrev = true
-  # Order sections in menu by "weight" or "title". Default to "weight"
+  # Order sections in menu by "weight" or "title". Default to "weight";
+  # this can be overridden in the pages frontmatter
   ordersectionsby = "weight"
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = ""
