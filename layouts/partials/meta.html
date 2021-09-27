@@ -3,8 +3,17 @@
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 {{- else }}
     {{- range .AlternativeOutputFormats }}
+    {{- if ne .Name "JSON" }}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{- end }}
+    {{- end }}
+{{- end }}
+{{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
+{{- range .AlternativeOutputFormats }}
+{{- if eq .Name "JSON" }}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{- end }}
+{{- end }}
 {{- end }}
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
 {{- with .Site.Params.author }}
