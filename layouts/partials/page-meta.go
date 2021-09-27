@@ -2,6 +2,7 @@
 {{- $currentNode.Scratch.Set "relearnIsSelfFound" nil }}
 {{- $currentNode.Scratch.Set "relearnPrevPage" nil }}
 {{- $currentNode.Scratch.Set "relearnNextPage" nil }}
+{{- $currentNode.Scratch.Set "relearnSubPages" nil }}
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
@@ -34,11 +35,11 @@
 	{{- end }}
 
 	{{- $currentNode.Scratch.Set "relearnSubPages" .node.Pages }}
-	{{- if .node.IsHome}}
+	{{- if .node.IsHome }}
 		{{- $currentNode.Scratch.Set "relearnSubPages" .node.Sections }}
-	{{- else if .node.Sections}}
+	{{- else if .node.Sections }}
 		{{- $currentNode.Scratch.Set "relearnSubPages" (.node.Pages | union .node.Sections) }}
-	{{- end}}
+	{{- end }}
 	{{- $pages := ($currentNode.Scratch.Get "relearnSubPages") }}
 
 	{{- if eq .Site.Params.ordersectionsby "title"}}

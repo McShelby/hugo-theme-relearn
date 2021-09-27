@@ -109,11 +109,12 @@
           <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><a href="{{.RelPermalink}}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul>
-              {{- $currentNode.Scratch.Set "pages" .Pages }}
-              {{- if .Sections}}
-                {{- $currentNode.Scratch.Set "pages" (.Pages | union .Sections) }}
+              {{- $pages := .Pages }}
+              {{- if .Page.IsHome }}
+                {{- $pages = .Sections }}
+              {{- else if .Page.Sections}}
+                {{- $pages = (.Pages | union .Sections) }}
               {{- end }}
-              {{- $pages := ($currentNode.Scratch.Get "pages") }}
               {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
               {{- if eq .Site.Params.ordersectionsby "title" }}
                 {{- range $pages.ByTitle }}

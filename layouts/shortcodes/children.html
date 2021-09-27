@@ -7,19 +7,12 @@
 {{- $containerstyle :=  .Get "containerstyle" | default "ul" }}
 
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
-	{{- .Scratch.Set "pages" .Page.Pages }}
-
+	{{- $pages := .Page.Pages }}
 	{{- if .Page.IsHome }}
-		<!-- Add pages that are in root dir -->
-		{{- $rootPage := where .Page.Pages "Dir" "" }}
-		{{- .Scratch.Set "pages" (.Page.Sections | union $rootPage)}}
-	{{- else }}
-		{{- if .Page.Sections}}
-			{{- .Scratch.Set "pages" (.Page.Pages | union .Page.Sections) }}
-		{{- end }}
+		{{- $pages = .Page.Sections }}
+	{{- else if .Page.Sections}}
+		{{- $pages = (.Page.Pages | union .Page.Sections) }}
 	{{- end }}
-
-	{{- $pages := (.Scratch.Get "pages") }}
 
 	{{- if eq $sortTerm "weight" }}
 		{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm }}
@@ -69,13 +62,12 @@
 {{- (printf "<%s>" $.containerstyle)|safeHTML }}
 				{{- end }}
 
-				{{- if .Sections }}
-					{{- .Scratch.Set "pages" (.Pages | union .Sections) }}
-				{{- else }}
-					{{- .Scratch.Set "pages" .Pages }}
+				{{- $pages := .Page.Pages }}
+				{{- if .Page.IsHome }}
+					{{- $pages = .Page.Sections }}
+				{{- else if .Page.Sections}}
+					{{- $pages = (.Page.Pages | union .Page.Sections) }}
 				{{- end }}
-
-				{{- $pages := (.Scratch.Get "pages") }}
 
 				{{- if eq $.sortTerm "weight" }}
 					{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm }}
