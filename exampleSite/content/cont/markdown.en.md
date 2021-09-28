@@ -321,7 +321,9 @@ And this HTML:
 </ol>
 ```
 
-**TIP**: If you just use `1.` for each number, Markdown will automatically number each item. For example:
+{{% notice tip %}}
+If you just use `1.` for each number, Markdown will automatically number each item. For example:
+{{% /notice %}}
 
 ```markdown
 1. Lorem ipsum dolor sit amet
