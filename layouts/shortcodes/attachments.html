@@ -10,9 +10,12 @@
     {{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
   {{- end}}
 
-  {{- $fileDir := replace .Page.File.Dir "\\" "/" }}
+  {{- $fileLink := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir }}
+  {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}
+  {{- $fileDir := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir  }}
+  {{- $fileDir = replace $fileDir "\\" "/" }}
   {{- $pattern := .Get "pattern" | default "" }}
-  {{- range sort (readDir (printf "content/%s%s" .Page.File.Dir $filesName) ) "Name" $sort }}
+  {{- range sort (readDir (printf "%s%s" $fileDir $filesName) ) "Name" $sort }}
     {{- if findRE $pattern .Name}}
       {{- $size := .Size }}
       {{- $unit := "Byte-symbol" }}
@@ -25,7 +28,7 @@
         {{- $unit = "Megabyte-symbol" }}
       {{- end }}
       {{- $unitsymbol := $unit | T }}
-    <li><a href="{{ (printf "%s%s/%s" $fileDir $filesName .Name) | relLangURL }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
+    <li><a href="{{ (printf "%s%s/%s" $fileLink $filesName .Name) | relURL }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
     {{- end }}
   {{- end }}
   </ul>
