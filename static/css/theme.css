@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-/* Tags */
 @import "tags.css";
+@import "tabs.css";
 
 #top-github-link, #body #breadcrumbs {
     position: relative;
@@ -333,11 +333,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
         display: table;
     }
 }
-@media print {
-    #body #navigation {
-        display: none;
-    }
-}
 #body .nav {
     position: fixed;
     top: 0;
@@ -425,12 +420,6 @@ body {
     font-weight: 300;
     line-height: 1.6;
     font-size: 18px !important;
-}
-@media print {
-    html,
-    body #body{
-        font-size: 8.9pt;
-    }
 }
 h2, h3, h4, h5, h6 {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
@@ -636,13 +625,6 @@ code.copy-to-clipboard-inline {
     border-top-right-radius: 0;
     border-right-width: 0;
 }
-@media print {
-    code.copy-to-clipboard-inline {
-        border-bottom-right-radius: 2px;
-        border-top-right-radius: 2px;
-        border-right-width: 1px;
-    }
-}
 pre {
     border: 0;
     border-radius: 2px;
@@ -650,11 +632,6 @@ pre {
 	color-adjust: economy;
     line-height: 1.15;
     padding: 1rem;
-}
-@media print {
-    pre {
-        border: 1px solid #ccc;
-    }
 }
 pre code {
     background-color: inherit;
@@ -874,26 +851,11 @@ td {
     height: 0;
     min-height: 3rem;
 }
-@media print {
-    #body #top-bar{
-        background-color: #fff; /* avoid background bleeding*/
-        border-bottom: 1px solid #ddd;
-        border-radius: 0;
-        padding-left: 0; /* for print, we want to align with the footer to ease the layout */
-        color: #777;
-    }
-}
 #top-github-link {
     position: relative;
     z-index: 1;
     float: right;
     display: block;
-}
-@media print {
-    /* we don't need this while printing */
-    #top-github-link {
-        display: none;
-    }
 }
 #body #breadcrumbs {
     height: auto;
@@ -914,6 +876,7 @@ td {
     display: inline;
     padding: 0 0.1rem;
 }
+
 #body #breadcrumbs .links * {
     display: inline-block;
     padding: 0;
@@ -980,11 +943,6 @@ a[aria-disabled="true"] {
     font-family: "Consolas", menlo, monospace;
     font-size: 92%;
     padding-left: 22px;
-}
-@media print {
-    .copy-to-clipboard {
-        display: none;
-    }
 }
 .copy-to-clipboard:hover {
     background-color: #FCEBB4;
@@ -1101,17 +1059,6 @@ option {
     margin-top: 2rem;
 }
 
-@media print {
-    /* in print mode show footer line to signal reader
-    the end of document */
-    .footline {
-        border-top: 1px solid #ddd;
-        color: #777;
-        margin-top: 1.5rem;
-        padding-top: .75rem;
-    }
-}
-
 .mermaid {
     margin-bottom: 1.7rem;
     margin-top: 1.7rem;
@@ -1142,4 +1089,253 @@ option {
 .include.hide-first-heading h4 + h6:first-of-type,
 .include.hide-first-heading h5 + h6:first-of-type {
     display: block;
+}
+
+/* Table of contents */
+
+.progress ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 15px;
+}
+
+#TableOfContents {
+    font-size: 13px !important;
+    max-height: 85vh;
+    overflow: auto;
+    padding: 15px 5px !important;
+}
+
+#TableOfContents > ul > li > a {
+  font-weight: bold;
+}
+
+body {
+    font-size: 16px !important;
+    color: #323232 !important;
+}
+
+#body a.highlight, #body a.highlight:hover, #body a.highlight:focus {
+    text-decoration: none;
+    outline: none;
+    outline: 0;
+}
+#body a.highlight {
+    line-height: 1.1;
+    display: inline-block;
+}
+#body a.highlight:after {
+    display: block;
+    content: "";
+    height: 1px;
+    width: 0%;
+    background-color: #0082a7; /*#CE3B2F*/
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+#body a.highlight:hover:after, #body a.highlight:focus:after {
+    width: 100%;
+}
+
+.progress {
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
+    position:absolute;
+    background-color: rgba(246, 246, 246, 0.97);
+    width: auto;
+    border: thin solid #ECECEC;
+    display:none;
+    z-index:200;
+}
+
+#toc-menu {
+  border-right: thin solid #DAD8D8 !important;
+  padding-right: 1rem !important;
+  margin-right: 0.5rem !important;
+}
+
+#sidebar-toggle-span {
+  border-right: thin solid #DAD8D8 !important;
+  padding-right: 0.5rem !important;
+  margin-right: 1rem !important;
+}
+
+.btn {
+  display: inline-block !important;
+  padding: 6px 12px !important;
+  margin-bottom: 0 !important;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  line-height: 1.42857143 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+  -ms-touch-action: manipulation !important;
+      touch-action: manipulation !important;
+  cursor: pointer !important;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+      -ms-user-select: none !important;
+          user-select: none !important;
+  background-image: none !important;
+  border: 1px solid transparent !important;
+  border-radius: 4px !important;
+  -webkit-transition: all 0.15s !important;
+     -moz-transition: all 0.15s !important;
+          transition: all 0.15s !important;
+}
+.btn:focus {
+  /*outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;*/
+  outline: none !important;
+}
+.btn:hover,
+.btn:focus {
+  color: #2b2b2b !important;
+  text-decoration: none !important;
+}
+
+.btn-default {
+  color: #333 !important;
+  background-color: #fff !important;
+  border-color: #ccc !important;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active {
+  color: #fff !important;
+  background-color: #9e9e9e !important;
+  border-color: #9e9e9e !important;
+}
+.btn-default:active {
+  background-image: none !important;
+}
+
+/* anchors */
+.anchor {
+  color: #00bdf3;
+  font-size: 0.5em;
+  cursor:pointer;
+  visibility:hidden;
+  margin-left: 0.5em;
+    position: absolute;
+    margin-top:0.1em;
+}
+
+h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
+  visibility:visible;
+}
+
+/* Redfines headers style */
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-weight: inherit;
+}
+
+#body h2 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-top: 2rem;
+}
+
+#body h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-top: 2rem;
+}
+
+#body h4 {
+  font-size: 1.85rem;
+  font-weight: 200;
+  margin-top: 2rem;
+}
+
+#body h5 {
+  font-size: 1.6rem;
+  font-weight: 200;
+  margin-top: 2rem;
+}
+
+#body h6 {
+  font-size: 1.3rem;
+  font-weight: 200;
+  margin-top: 2rem;
+}
+
+#body h1 + h2,
+#body h1 + h3,
+#body h1 + h4,
+#body h1 + h5,
+#body h1 + h6,
+#body h2 + h3,
+#body h2 + h4,
+#body h2 + h5,
+#body h2 + h6,
+#body h3 + h4,
+#body h3 + h5,
+#body h3 + h6,
+#body h4 + h5,
+#body h4 + h6,
+#body h5 + h6 {
+    margin-top: 1rem;
+}
+
+.select-style {
+    border: 0;
+    width: 150px;
+    border-radius: 0px;
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.select-style svg {
+    fill: #ccc;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    margin: auto;
+}
+
+.select-style svg:hover {
+  fill: #e6e6e6;
+}
+
+.select-style select {
+    padding: 0;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    margin: auto;
+    margin-left: 0px;
+    margin-right: -20px;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.select-style :hover {
+    cursor:  pointer;
+}
+
+@media only all and (max-width: 47.938em) {
+  #breadcrumbs .links, #top-github-link-text {
+      display: none;
+  }
+}
+
+#top-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+#top-bar.is-sticky {
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
