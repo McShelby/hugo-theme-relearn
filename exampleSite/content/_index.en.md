@@ -12,6 +12,10 @@ The theme initially was a fork of the great [Learn theme](https://github.com/mat
 
 ## Main features
 
+{{% notice tip %}}
+See [what's new]({{% relref "basics/migration" %}}) within the latest update.
+{{% /notice %}}
+
 * [Automatic Search]({{%relref "basics/configuration/_index.md#activate-search" %}})
 * [Multilingual mode]({{%relref "cont/i18n" %}})
 * Unlimited menu levels
