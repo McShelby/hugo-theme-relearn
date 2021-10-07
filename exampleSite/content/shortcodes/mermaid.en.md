@@ -18,7 +18,7 @@ classDiagram
 
 You can set an optional `align` attribute which defaults to `center`.
 
-If you don't need alignment you can use the alternative syntax using code fences:
+If you don't need alignment you can use the alternative syntax using code fences if you have turned off `guessSyntax` for the `markup.highlight` setting (see below):
 
 ````plaintext
 ```mermaid
@@ -171,7 +171,7 @@ classDiagram
 
 ### State
 
-{{< mermaid >}}
+````mermaid
 stateDiagram-v2
   open: Open Door
   closed: Closed Door
@@ -180,11 +180,11 @@ stateDiagram-v2
   closed --> locked: Lock
   locked --> closed: Unlock
   closed --> open: Open
-{{< /mermaid >}}
+````
 
 {{% expand "Show markup" "true" %}}
 ````go
-{{</* mermaid */>}}
+```mermaid
 stateDiagram-v2
     open: Open Door
     closed: Closed Door
@@ -193,7 +193,7 @@ stateDiagram-v2
     closed --> locked: Lock
     locked --> closed: Unlock
     closed --> open: Open
-{{</* /mermaid */>}}
+```
 ````
 {{% /expand %}}
 
@@ -205,11 +205,17 @@ This JSON object is forwarded into Mermaid's `mermaid.initialize()` function.
 
 See [Mermaid documentation](http://mermaid-js.github.io/mermaid/getting-started/Setup.html#mermaidapi-configuration-defaults) for all allowed settings.
 
+Also, if you want to use mermaid codefences, you have to turn off `guessSyntax` for the `markup.highlight` setting.
+
 ### Example
 
 ````toml
 [params]
   mermaidInitialize = "{ \"theme\": \"dark\" }"
+
+[markup]
+  [markup.highlight]
+    guessSyntax = false     # if set to true, avoid unstyled code if no language was given but mermaid code fences will not work anymore
 ````
 
 or pages frontmatter

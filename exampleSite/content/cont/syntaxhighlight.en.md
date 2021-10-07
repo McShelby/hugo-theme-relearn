@@ -57,5 +57,5 @@ You can choose a color theme from the [list of supported themes](https://xyproto
 [markup]
   [markup.highlight]
     style = "base16-snazzy" # choose a color theme or create your own
-    guessSyntax = true      # avoid unstyled code if no language was given
+    guessSyntax = false     # if set to true, avoid unstyled code if no language was given but mermaid code fences will not work anymore
 ````
