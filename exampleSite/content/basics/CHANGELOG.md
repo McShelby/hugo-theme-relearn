@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.1 (2021-10-07)
+
+### Fixes
+
+- [**bug**] theme: remove runtime styles from print [#111](https://github.com/McShelby/hugo-theme-relearn/issues/111)
+
+---
+
 ## 2.4.0 (2021-10-07)
 
 ### Enhancements
