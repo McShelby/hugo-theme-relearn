@@ -2,5 +2,6 @@
 {{- $showFirstHeading := .Get 1 | default true }}
 {{- if not $showFirstHeading }}<div class="include hide-first-heading">{{ end }}
 
-{{ $file | readFile | safeHTML -}}
+{{ $file | readFile | safeHTML }}
+
 {{- if not $showFirstHeading }}</div>{{ end }}
