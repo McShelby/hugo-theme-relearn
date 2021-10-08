@@ -9,7 +9,7 @@ The following steps are here to help you initialize your new website. If you don
 
 Hugo provides a `new` command to create a new website.
 
-```shell
+```
 hugo new site <new_project>
 ```
 
