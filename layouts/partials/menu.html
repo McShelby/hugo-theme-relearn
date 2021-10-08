@@ -40,7 +40,7 @@
           <div class="nav-title">{{ if not $disableShortcutsTitle }}{{ T "Shortcuts-Title" }}{{ end }}</div>
           <ul>
             {{- range sort . "Weight" }}
-            <li>{{ .Pre }}<a class="padding" href="{{ .URL | absLangURL }}">{{ safeHTML .Name }}</a>{{ .Post }}</li>
+            <li>{{ .Pre }}<a class="padding" href="{{ .URL | relLangURL }}">{{ safeHTML .Name }}</a>{{ .Post }}</li>
             {{- end }}
           </ul>
         </div>
