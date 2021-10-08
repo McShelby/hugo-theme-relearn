@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.5.0 (2021-10-08)
+
+### Enhancements
+
+- [**feature**] syntax highlight: provide default colors for unknown languages [#113](https://github.com/McShelby/hugo-theme-relearn/issues/113)
+
+### Fixes
+
+- [**bug**] security: fix XSS for malicioius URLs [#114](https://github.com/McShelby/hugo-theme-relearn/issues/114)
+- [**bug**] menu: write correct local shortcut links [#112](https://github.com/McShelby/hugo-theme-relearn/issues/112)
+
+---
+
 ## 2.4.1 (2021-10-07)
 
 ### Fixes
