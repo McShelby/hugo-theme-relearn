@@ -148,7 +148,8 @@ images.wrap(function(){
     // IF featherlight is false, do not use feather light
     if (f != 'false') {
         if (!image.parent("a").length) {
-            return "<a href='" + image[0].src + "' data-featherlight='image'></a>";
+            var html = $( "<a>" ).attr("href", image[0].src).attr("data-featherlight", "image").get(0).outerHTML;
+            return html;
         }
     }
 });
