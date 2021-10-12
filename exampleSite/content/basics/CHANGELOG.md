@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.5.1 (2021-10-12)
+
+### Fixes
+
+- [**bug**] security: fix XSS for malicioius image URLs [#117](https://github.com/McShelby/hugo-theme-relearn/issues/117)
+
+---
+
 ## 2.5.0 (2021-10-08)
 
 ### Enhancements
