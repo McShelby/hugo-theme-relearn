@@ -55,18 +55,17 @@
               <a class="padding">
                 <i class="fas fa-language fa-fw"></i>
                 <div class="select-style">
-                  <select id="select-language" onchange="location = this.value;">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
                     {{- $siteLanguages := .Site.Languages }}
                     {{- $pageLang := .Page.Lang }}
                     {{- range .Page.AllTranslations }}
                       {{- $translation := . }}
                       {{- range $siteLanguages }}
                         {{- if eq $translation.Lang .Lang }}
-                          {{- $selected := false }}
                           {{- if eq $pageLang .Lang }}
-                    <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" selected>{{ .LanguageName }}</option>
+                    <option id="{{ $translation.Language }}" value="{{ $translation.RelPermalink }}" selected>{{ .LanguageName }}</option>
                           {{- else }}
-                    <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}">{{ .LanguageName }}</option>
+                    <option id="{{ $translation.Language }}" value="{{ $translation.RelPermalink }}">{{ .LanguageName }}</option>
                           {{- end }}
                         {{- end }}
                       {{- end }}

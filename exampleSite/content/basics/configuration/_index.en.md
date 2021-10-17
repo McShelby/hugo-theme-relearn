@@ -66,6 +66,17 @@ Note that some of these parameters are explained in details in other sections of
   titleSeparator = "-"
 ```
 
+## A word on running your site in a subfolder
+
+The theme runs best if your site is installed in the root of your webserver. If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
+
+````toml
+baseURL = "https://example.com/mysite/"
+canonifyURLs = true
+````
+
+Without `canonifyURLs=true` URLs in sublemental pages (like `sitemap.xml`, `rss.xml`) will be generated falsly while your HTML files will still work. See https://github.com/gohugoio/hugo/issues/5226.
+
 ## Activate search
 
 If not already present, add the follow lines in the same `config.toml` file.
@@ -101,12 +112,12 @@ appearance, you will have to configure two parameters for the defined languages:
 [Lanugages]
 [Lanugages.en]
 ...
-landingPageURL = "/en"
+landingPageURL = "/"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ...
 [Lanugages.pir]
 ...
-landingPageURL = "/pir"
+landingPageURL = "/pir/"
 landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
 ...
 ```
