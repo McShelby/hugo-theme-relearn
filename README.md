@@ -27,15 +27,15 @@ The theme initially was a fork of the great [Learn theme](https://github.com/mat
 
 ## Installation
 
-Visit the [installation instructions](https://relearn.netlify.app/basics/installation) to learn how to setup the theme in your Hugo installation.
+Visit the [installation instructions](https://mcshelby.github.io/hugo-theme-relearn/basics/installation) to learn how to setup the theme in your Hugo installation.
 
 ## Usage
 
-Visit the [documentation](https://relearn.netlify.app/) to learn about all available features and how to use them.
+Visit the [documentation](https://mcshelby.github.io/hugo-theme-relearn/) to learn about all available features and how to use them.
 
 ## Changelog
 
-See the [changelog](https://relearn.netlify.app/basics/history) for a complete list of releases.
+See the [changelog](https://mcshelby.github.io/hugo-theme-relearn/basics/history) for a complete list of releases.
 
 ## Contribution
 
