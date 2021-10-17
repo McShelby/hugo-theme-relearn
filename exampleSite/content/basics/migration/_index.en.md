@@ -13,6 +13,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 2.6.0
+
+- **New**: Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation]({{% relref "basics/configuration/#a-word-on-running-your-site-in-a-subfolder" %}}) for a detailed example.
+
+---
+
 ## 2.5.0
 
 - **Change**: Add new colors `--MAIN-CODE-color` and `--MAIN-CODE-BG-color` for syntax highlightning fallback in your stylesheet in case `guessSyntax=true` is set. Ideally they are set to the same values as the ones from your chosen chroma style.
