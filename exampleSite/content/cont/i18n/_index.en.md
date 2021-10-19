@@ -66,6 +66,6 @@ Just set `disableLanguageSwitchingButton=true` in your `config.toml`
 
 ```toml
 [params]
-  # When using mulitlingual website, disable the switch language button.
+  # When you do not using multilingual website, disable the switch language button.
   disableLanguageSwitchingButton = true
 ```
