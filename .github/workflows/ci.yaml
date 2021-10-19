@@ -26,7 +26,7 @@ jobs:
         run: hugo --minify --source exampleSite --destination ../public --cleanDestinationDir --gc --baseURL https://mcshelby.github.io/hugo-theme-relearn/
 
       - name: Deploy site
-        if: github.event_name == 'workflow_dispatch' or (github.event_name == 'push' and github.ref == 'refs/heads/main')
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
