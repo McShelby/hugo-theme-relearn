@@ -39,7 +39,7 @@ See the [changelog](https://mcshelby.github.io/hugo-theme-relearn/basics/history
 
 ## Contribution
 
-You are most welcome to contribute to the source code but please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/CONTRIBUTING.md) first.
+You are most welcome to contribute to the source code but please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/contributing.md) first.
 
 ## License
 
