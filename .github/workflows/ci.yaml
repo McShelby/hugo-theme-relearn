@@ -1,0 +1,33 @@
+name: Deploy GitHub Pages
+
+on:
+  push: # Build on all pushes but only deploy for main branch
+  pull_request: # Build on all PRs regardless what branch
+  workflow_dispatch: # Allow this task to be manually started (you'll never know)
+
+jobs:
+  ci:
+    name: Run CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          # extended: true
+
+      - name: Build site
+        run: hugo --minify --source exampleSite --destination ../public --cleanDestinationDir --gc --baseURL https://mcshelby.github.io/hugo-theme-relearn/
+
+      - name: Deploy site
+        if: github.event_name == 'workflow_dispatch' or (github.event_name == 'push' and github.ref == 'refs/heads/main')
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
