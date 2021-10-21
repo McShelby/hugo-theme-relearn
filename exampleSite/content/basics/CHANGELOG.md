@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.6.0 (2021-10-21)
+
+### Fixes
+
+- [**bug**] theme: generate correct links if theme served from subdirectory [#120](https://github.com/McShelby/hugo-theme-relearn/issues/120)
+
+---
+
 ## 2.5.1 (2021-10-12)
 
 ### Fixes
@@ -83,7 +91,7 @@
 
 ---
 
-## 2.2.0 (2021-09-10)
+## 2.2.0 (2021-09-09)
 
 ### Enhancements
 
