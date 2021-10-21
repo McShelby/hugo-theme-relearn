@@ -1,0 +1,122 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      milestone:
+        description: 'Milestone for this release'
+        required: true
+
+jobs:
+  release_state:
+    name: Get tag and milestone state
+    runs-on: ubuntu-latest
+    env:
+      MILESTONE: ${{ github.event.inputs.milestone }} # To avoid code injection
+    outputs:
+      has_closed_issues: ${{ fromJSON(steps.closed_issues.outputs.data).search.issueCount > 0 }}
+      has_open_issues: ${{ fromJSON(steps.open_issues.outputs.data).search.issueCount > 0 }}
+      has_unique_tag: ${{ steps.unique_tag.outcome == 'failure' }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get closed issues for milestone
+        id: closed_issues
+        uses: octokit/graphql-action@v2.x
+        with:
+          query: |
+            query {
+              search(first: 1, type: ISSUE, query: "user:${{ github.repository_owner }} repo:${{ github.event.repository.name }} milestone:${{ env.MILESTONE }} state:closed") {
+                issueCount
+              }
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get open issues for milestone
+        id: open_issues
+        uses: octokit/graphql-action@v2.x
+        with:
+          query: |
+            query {
+              search(first: 1, type: ISSUE, query: "user:${{ github.repository_owner }} repo:${{ github.event.repository.name }} milestone:${{ env.MILESTONE }} state:open") {
+                issueCount
+              }
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get tag uniqueness
+        id: unique_tag
+        continue-on-error: true
+        run: git rev-parse "$MILESTONE" --
+
+  release_log:
+    name: Log tag and milestone state
+    needs: release_state
+    runs-on: ubuntu-latest
+    env:
+      MILESTONE: ${{ github.event.inputs.milestone }} # To avoid code injection
+    steps:
+      - run: "echo has unique tag   : ${{ needs.release_state.outputs.has_unique_tag }}"
+      - run: "echo has closed issues: ${{ needs.release_state.outputs.has_closed_issues }}"
+      - run: "echo has open issues  : ${{ needs.release_state.outputs.has_open_issues }}"
+
+  release:
+    name: Create release
+    needs: release_state
+    if: needs.release_state.outputs.has_closed_issues == 'true' && needs.release_state.outputs.has_open_issues == 'false' && needs.release_state.outputs.has_unique_tag == 'true'
+    runs-on: ubuntu-latest
+    env:
+      MILESTONE: ${{ github.event.inputs.milestone }} # To avoid code injection
+      GREN_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Setup git env
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: Close milestone
+        uses: Akkjon/close-milestone@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          milestone_name: ${{ env.MILESTONE }}
+
+      - name: Create provisionary tag
+        run: git tag --message "" "$MILESTONE"
+
+      - name: Push provisionary tag
+        run: git push origin "$MILESTONE"
+
+      - name: Update changelog
+        run: npx github-release-notes@0.17.1 changelog --generate --override --tags=all
+
+      - name: Stage changelog
+        run: git add *
+
+      - name: Commit changelog
+        run: git commit --message "Ship tag $MILESTONE"
+
+      - name: Push changelog
+        run: git push origin main
+
+      - name: Create final tag
+        run: git tag --force --message "" "$MILESTONE"
+
+      - name: Push final tag
+        run: git push --force origin "$MILESTONE"
+
+      - name: Publish release
+        run: npx github-release-notes@0.17.1 release --tags "$MILESTONE"
