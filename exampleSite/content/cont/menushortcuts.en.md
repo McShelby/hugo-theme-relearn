@@ -13,26 +13,31 @@ Example from the current website:
 
 ````toml
 [[menu.shortcuts]]
-name = "<i class='fab fa-github'></i> GitHub repo"
+name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
 identifier = "ds"
 url = "https://github.com/McShelby/hugo-theme-relearn"
 weight = 10
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-camera'></i> Showcases"
-url = "/showcase"
+name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+url = "/showcase/"
 weight = 11
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-bookmark'></i> Hugo Documentation"
+name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
 identifier = "hugodoc"
 url = "https://gohugo.io/"
 weight = 20
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-bullhorn'></i> Credits"
-url = "/credits"
+name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+url = "/credits/"
 weight = 30
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-tags'></i> Tags"
+url = "/tags/"
+weight = 40
 ````
 
 By default, shortcuts are preceded by a title. This title can be disabled by setting `disableShortcutsTitle=true`.
@@ -55,59 +60,73 @@ Example from the current website:
 
 ````toml
 [Languages]
-[Languages.en]
-title = "Documentation for Hugo Relearn Theme"
-weight = 1
-languageName = "English"
+  [Languages.en]
+    title = "Documentation for Hugo Relearn Theme"
+    weight = 1
+    languageName = "English"
+    landingPageURL = "/"
+    landingPageName = "<i class='fas fa-home'></i> Home"
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-github'></i> GitHub repo"
-identifier = "ds"
-url = "https://github.com/McShelby/hugo-theme-relearn"
-weight = 10
+  [[Languages.en.menu.shortcuts]]
+    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    identifier = "ds"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
+    weight = 10
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-camera'></i> Showcases"
-url = "/showcase"
-weight = 11
+  [[Languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+    url = "/showcase/"
+    weight = 11
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-bookmark'></i> Hugo Documentation"
-identifier = "hugodoc"
-url = "https://gohugo.io/"
-weight = 20
+  [[Languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
+    identifier = "hugodoc"
+    url = "https://gohugo.io/"
+    weight = 20
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-bullhorn'></i> Credits"
-url = "/credits"
-weight = 30
+  [[Languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+    url = "/credits/"
+    weight = 30
 
-[Languages.pir]
-title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
-weight = 2
-languageName = "Arrr! Pirrrates"
+  [[Languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-tags'></i> Tags"
+    url = "/tags/"
+    weight = 40
 
-[[Languages.pir.menu.shortcuts]]
-name = "<i class='fab fa-github'></i> GitHub repo"
-identifier = "ds"
-url = "https://github.com/McShelby/hugo-theme-relearn"
-weight = 10
+  [Languages.pir]
+    title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
+    weight = 1
+    languageName = "Arrr! Pirrrates"
+    landingPageURL = "/pir/"
+    landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
 
-[[Languages.pir.menu.shortcuts]]
-name = "<i class='fas fa-camera'></i> Showcases"
-url = "/showcase"
-weight = 11
+  [[Languages.pir.menu.shortcuts]]
+    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    identifier = "ds"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
+    weight = 10
 
-[[Languages.pir.menu.shortcuts]]
-name = "<i class='fas fa-bookmark'></i> Cap'n Hugo Documentat'n"
-identifier = "hugodoc"
-url = "https://gohugo.io/"
-weight = 20
+  [[Languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+    url = "/showcase/"
+    weight = 11
 
-[[Languages.pir.menu.shortcuts]]
-name = "<i class='fas fa-bullhorn'></i> Crrredits"
-url = "/credits"
-weight = 30
+  [[Languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-bookmark'></i> Cap'n Hugo Documentat'n"
+    identifier = "hugodoc"
+    url = "https://gohugo.io/"
+    weight = 20
+
+  [[Languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
+    url = "/credits/"
+    weight = 30
+
+  [[Languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
+    url = "/tags/"
+    weight = 40
 ````
 
 Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multilingual menus](https://gohugo.io/content-management/multilingual/#menus)
