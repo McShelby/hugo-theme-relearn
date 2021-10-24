@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.0 (2021-10-24)
+
+### Enhancements
+
+- [**feature**] Support Custom Notice Titles [#124](https://github.com/McShelby/hugo-theme-relearn/issues/124)
+
+---
+
 ## 2.6.0 (2021-10-21)
 
 ### Fixes
