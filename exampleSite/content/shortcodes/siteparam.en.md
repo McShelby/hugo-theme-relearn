@@ -8,7 +8,7 @@ The `siteparam` shortcode is used to help you print values of site params.
 ## Usage
 
 ````go
-{{%/* siteparam <string */%}}
+{{%/* siteparam <string> */%}}
 ````
 
 The first required parameter is the name of the site param to be displayed.
