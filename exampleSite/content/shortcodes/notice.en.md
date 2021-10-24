@@ -8,10 +8,14 @@ The notice shortcode shows four types of disclaimers to help you structure your 
 ## Usage
 
 ````go
-{{%/* notice [ note | info | tip | warning ] */%}}
+{{%/* notice [ note | info | tip | warning ] [?string] */%}}
 Some markup
 {{%/* /notice */%}}
 ````
+
+The first parameter is required and indicates the type of notice.
+
+The second parameter is optional. If provided, it will be used as the title of the notice. If not provided, then the type of notice will be used as the title. For example, the title of a warning notice will be "Warning".
 
 ## Examples
 
@@ -190,3 +194,17 @@ You can add:
 {{%/* /notice */%}}
 ````
 {{% /expand %}}
+
+### Notice with Custom Title
+
+You can customize the title of the notice by passing it as a second parameter.
+
+````go
+{{%/* notice note "Pay Attention to this Note!" */%}}
+The title is now the parameter that was provided.
+{{%/* /notice */%}}
+````
+
+{{% notice note "Pay Attention to this Note!" %}}
+The title is now the parameter that was provided.
+{{% /notice %}}
