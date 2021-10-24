@@ -10,13 +10,13 @@ title = "Mermaid"
 Just insert your Mermaid code in the `mermaid` shortcode like this:
 
 ````go
-{{</* mermaid [ align=(left|right|center|justify) ] */>}}
+{{</* mermaid [ align=("left"|"right"|"center"|"justify") ] */>}}
 classDiagram
     Person *-- Dog
 {{</* /mermaid */>}}
 ````
 
-You can set an optional `align` attribute which defaults to `center`.
+You can set an optional `align` attribute which defaults to `"center"`.
 
 If you don't need alignment you can use the alternative syntax using code fences if you have turned off `guessSyntax` for the `markup.highlight` setting (see below):
 

@@ -8,7 +8,7 @@ The notice shortcode shows four types of disclaimers to help you structure your 
 ## Usage
 
 ````go
-{{%/* notice [ note | info | tip | warning ] [?string] */%}}
+{{%/* notice ( note | info | tip | warning ) [ <string> ] */%}}
 Some markup
 {{%/* /notice */%}}
 ````
@@ -199,12 +199,14 @@ You can add:
 
 You can customize the title of the notice by passing it as a second parameter.
 
+{{% notice note "Pay Attention to this Note!" %}}
+The title is now the parameter that was provided.
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
 ````go
 {{%/* notice note "Pay Attention to this Note!" */%}}
 The title is now the parameter that was provided.
 {{%/* /notice */%}}
 ````
-
-{{% notice note "Pay Attention to this Note!" %}}
-The title is now the parameter that was provided.
-{{% /notice %}}
+{{% /expand %}}

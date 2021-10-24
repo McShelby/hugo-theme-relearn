@@ -8,7 +8,7 @@ The Expand shortcode displays an expandable/collapsible section of text on your 
 ## Usage
 
 ````go
-{{%/* expand "Does this Relearn theme rock?" { "true" | "false" } */%}}
+{{%/* expand [ <string> [ "true" | "false" ] ] */%}}
 Yes!
 {{%/* /expand */%}}
 ````
