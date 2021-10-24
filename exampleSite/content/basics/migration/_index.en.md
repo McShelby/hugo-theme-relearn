@@ -13,6 +13,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 2.7.0
+
+- **New**: Optional second parameter for [`notice`]({{% relref "shortcodes/notice" %}}) shortcode to set title in box header.
 ## 2.6.0
 
 - **New**: Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation]({{% relref "basics/configuration/#a-word-on-running-your-site-in-a-subfolder" %}}) for a detailed example.
