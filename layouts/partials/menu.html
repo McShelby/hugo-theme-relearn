@@ -96,11 +96,10 @@
       </div>
     </nav>
     {{- define "section-tree-nav" }}
-    {{- $showvisitedlinks := .showvisitedlinks }}
-    {{- $currentNode := .currentnode }}
-    {{- $currentFileUniqueID := "" }}
-    {{- $alwaysopen := .alwaysopen }}
-    {{- with $currentNode.File }}{{ $currentFileUniqueID = .UniqueID }}{{ end }}
+      {{- $showvisitedlinks := .showvisitedlinks }}
+      {{- $currentNode := .currentnode }}
+      {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
+      {{- $alwaysopen := .alwaysopen }}
       {{- with .sect }}
         {{- $hidden := and (eq (.Scratch.Get "relearnIsHiddenFromCurrent") true) (not $.showhidden) (not (.IsAncestor $currentNode)) }}
         {{- if $hidden }}
@@ -109,7 +108,7 @@
           {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
           {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
           {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
-          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><a href="{{.RelPermalink}}">
+          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .RelPermalink $currentFileRelPermalink}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><a href="{{.RelPermalink}}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul>
               {{- $pages := .Pages }}
@@ -129,7 +128,7 @@
                 {{- end }}
               {{- end }}</ul></li>
         {{- else }}
-          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .File.UniqueID $currentFileUniqueID}} active{{end}}"><a href="{{.RelPermalink}}">
+          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .RelPermalink $currentFileRelPermalink}} active{{end}}"><a href="{{.RelPermalink}}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
         {{- end }}
