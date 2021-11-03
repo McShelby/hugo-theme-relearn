@@ -11,3 +11,6 @@ title = "Showcase"
 
 #### [inteliver](https://docs.inteliver.com) by Amir Lavasani
 ![docs.inteliver.com image](/images/showcase/inteliver_docs.png?width=50pc)
+
+#### [BITS](https://bits-training.de/) by Dr. Lutz Gollan
+![bits-training.de image](/images/showcase/bits-training.jpg?width=50pc)
