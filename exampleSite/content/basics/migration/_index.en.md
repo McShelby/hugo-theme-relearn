@@ -16,6 +16,7 @@ This document shows you what's new in the latest release. For a detailed list of
 ## 2.8.0
 
 - **New**: The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box]({{% relref "basics/customization/#change-the-favicon" %}}). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
+- **New**: Parameter "disableToc" in config.toml in section [params]. Now you can disable the TOC feature globally for all Pages if you don't want use it.
 
 ## 2.7.0
 
