@@ -104,7 +104,7 @@ function initMermaid() {
         $(element).parent().replaceWith('<div class="mermaid" align="center">' + content + '</div>');
     });
 
-    if (typeof mermaid != 'undefined') {
+    if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( {}, mermaid.mermaidAPI.getSiteConfig(), { startOnLoad: true } ) );
         mermaid.contentLoaded();
         $(".mermaid svg").svgPanZoom({})
