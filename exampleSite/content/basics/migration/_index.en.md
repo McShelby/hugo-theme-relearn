@@ -1,4 +1,5 @@
 +++
+disableToc = false
 title = "What's new"
 weight = 2
 +++
@@ -16,11 +17,17 @@ This document shows you what's new in the latest release. For a detailed list of
 ## 2.8.0
 
 - **New**: The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box]({{% relref "basics/customization/#change-the-favicon" %}}). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
-- **New**: Parameter "disableToc" in config.toml in section [params]. Now you can disable the TOC feature globally for all Pages if you don't want use it.
+
+- **New**: You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `config.toml`. For an example see [the example configuration]({{%relref "basics/configuration/#global-site-parameters" %}}).
+
+---
 
 ## 2.7.0
 
 - **New**: Optional second parameter for [`notice`]({{% relref "shortcodes/notice" %}}) shortcode to set title in box header.
+
+---
+
 ## 2.6.0
 
 - **New**: Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation]({{% relref "basics/configuration/#a-word-on-running-your-site-in-a-subfolder" %}}) for a detailed example.

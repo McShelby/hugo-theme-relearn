@@ -55,7 +55,9 @@
           </div>
           {{- end }}
         {{- end }}
-        {{- $toc := (and (not .Params.disableToc) (not .Site.Params.disableToc) (not .Params.chapter)) }}
+        {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
+        {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
+        {{- $toc := (and (not $currentDisableToc) (not .Params.chapter)) }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
               <a href="#" id="sidebar-toggle" data-sidebar-toggle="">

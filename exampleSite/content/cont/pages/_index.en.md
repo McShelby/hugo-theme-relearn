@@ -98,7 +98,7 @@ The Relearn theme uses the following parameters on top of Hugo ones :
 +++
 # Table of contents (toc) is enabled by default. Set this parameter to true to disable it.
 # Note: Toc is always disabled for chapter pages
-disableToc = "false"
+disableToc = false
 # If set, this will be used for the page's menu entry (instead of the `title` attribute)
 menuTitle = ""
 # If set, this will explicitly override common rules for the expand state of a page's menu entry

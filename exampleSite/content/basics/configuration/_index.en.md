@@ -47,8 +47,8 @@ Note that some of these parameters are explained in details in other sections of
   disableLanguageSwitchingButton = false
   # Hide breadcrumbs in the header and only show the current page title
   disableBreadcrumb = true
-  # Hide table of contens menu in the header of all pages
-  disableToc = true
+  # If set to true, hide table of contents menu in the header of all pages
+  disableToc = false
   # If set to true, prevents Hugo from including the Mermaid module if not needed (will reduce load times and traffic)
   disableMermaid = false
   # Specifies the remote location of the Mermaid js

@@ -1,4 +1,5 @@
 +++
+disableToc = false
 title = "History"
 weight = 30
 +++
