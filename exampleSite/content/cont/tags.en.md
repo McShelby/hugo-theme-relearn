@@ -2,6 +2,7 @@
 tags = ["documentation", "tutorial"]
 title = "Tags"
 weight = 40
+icon = "tag"
 +++
 
 The Relearn theme supports one default taxonomy of Hugo: the *tag* feature.

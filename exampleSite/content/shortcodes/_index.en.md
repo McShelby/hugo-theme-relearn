@@ -2,6 +2,7 @@
 chapter = true
 title = "Shortcodes"
 weight = 3
+icon = "external-link-alt"
 +++
 
 ### Chapter 3

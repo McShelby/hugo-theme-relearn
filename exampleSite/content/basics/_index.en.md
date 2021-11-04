@@ -2,6 +2,7 @@
 chapter = true
 title = "Basics"
 weight = 1
+icon = "comment"
 +++
 
 ### Chapter 1

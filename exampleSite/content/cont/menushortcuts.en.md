@@ -1,6 +1,7 @@
 +++
 title = "Menu extra shortcuts"
 weight = 25
+icon = "plane-departure"
 +++
 
 You can define additional menu entries or shortcuts in the navigation menu without any link to content.

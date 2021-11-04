@@ -6,3 +6,8 @@
 {{- end }}
 </div>
 {{- end }}
+{{- if not .IsHome }}
+{{- if or .Params.icon .CurrentSection.Params.icon .Parent.Params.icon .FirstSection.Params.icon }}
+<div id="site-icon" class="{{ if .IsPage }}site-icon-page{{ else }}site-icon-list{{ end }}"><i class="fas fa-{{ or .Params.icon .CurrentSection.Params.icon .Parent.Params.icon .FirstSection.Params.icon }}"></i></div>
+{{- end }}
+{{- end }}

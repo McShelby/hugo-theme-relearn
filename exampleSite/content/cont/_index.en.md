@@ -2,6 +2,7 @@
 chapter = true
 title = "Content"
 weight = 2
+icon = "file-alt"
 +++
 
 ### Chapter 2
