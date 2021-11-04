@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.8.1 (2021-11-04)
+
+### Fixes
+
+- [**bug**] search: don't break JS in multilang setup if search is disabled [#140](https://github.com/McShelby/hugo-theme-relearn/issues/140)
+
+---
+
 ## 2.8.0 (2021-11-03)
 
 ### Enhancements
