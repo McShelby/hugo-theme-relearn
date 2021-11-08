@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.8.2 (2021-11-08)
+
+### Fixes
+
+- [**bug**] mermaid: always load javascript to avoid break if code fences are used [#142](https://github.com/McShelby/hugo-theme-relearn/issues/142)
+
+---
+
 ## 2.8.1 (2021-11-04)
 
 ### Fixes
@@ -31,7 +39,7 @@
 
 ### Enhancements
 
-- [**feature**] Support Custom Notice Titles [#124](https://github.com/McShelby/hugo-theme-relearn/issues/124)
+- [**feature**] notice: support ccustom titles [#124](https://github.com/McShelby/hugo-theme-relearn/issues/124)
 
 ---
 
