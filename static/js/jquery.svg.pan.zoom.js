@@ -4,6 +4,8 @@
 Base: jQuery SVG Pan Zoom v1.0.3, October 2015 (labeled v1.0.2, June 2015)
 McShelby.hugo-theme-relearn:
 Change 1: OnMouseUp restore image cursor (not document cursor)
+Change 2: add PR #18
+
 
 Author: Daniel Hoffmann Bernardes (daniel.hoffmann.bernardes@gmail.com)
 
@@ -488,7 +490,7 @@ Copyright (C) 2014 Daniel Hoffmann Bernardes, Ícaro Technologies
             x: viewBox.x + viewBox.width / 2,
             y: viewBox.y + viewBox.height / 2
           };
-          this.setViewBox(center.x - newWidth / 2, center.y - newWidth / 2, newWidth, newHeight, animationTime);
+          this.setViewBox(center.x - newWidth / 2, center.y - newHeight / 2, newWidth, newHeight, animationTime);
         };
         opts.setCenter = function(x, y, animationTime) {
           if (animationTime == null) {
