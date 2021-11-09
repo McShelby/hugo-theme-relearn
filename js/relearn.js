@@ -107,7 +107,7 @@ function initMermaid() {
     if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( {}, mermaid.mermaidAPI.getSiteConfig(), { startOnLoad: true } ) );
         mermaid.contentLoaded();
-        $(".mermaid svg").svgPanZoom({})
+        $(".mermaid svg").svgPanZoom({});
     }
 }
 
