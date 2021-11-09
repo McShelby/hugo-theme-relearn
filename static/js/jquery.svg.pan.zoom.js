@@ -5,6 +5,7 @@ Base: jQuery SVG Pan Zoom v1.0.3, October 2015 (labeled v1.0.2, June 2015)
 McShelby.hugo-theme-relearn:
 Change 1: OnMouseUp restore image cursor (not document cursor)
 Change 2: add PR #18
+Change 3: remove default limits enlargement of 15% as image can not be restored to initial size by zooming out only
 
 
 Author: Daniel Hoffmann Bernardes (daniel.hoffmann.bernardes@gmail.com)
@@ -370,10 +371,10 @@ Copyright (C) 2014 Daniel Hoffmann Bernardes, Ícaro Technologies
           horizontalSizeIncrement = viewBox.width * 0.15;
           verticalSizeIncrement = viewBox.height * 0.15;
           opts.limits = {
-            x: viewBox.x - horizontalSizeIncrement,
-            y: viewBox.y - verticalSizeIncrement,
-            x2: viewBox.x + viewBox.width + horizontalSizeIncrement,
-            y2: viewBox.y + viewBox.height + verticalSizeIncrement
+            x: viewBox.x,
+            y: viewBox.y,
+            x2: viewBox.x + viewBox.width,
+            y2: viewBox.y + viewBox.height
           };
         }
         opts.reset = function() {
