@@ -6,6 +6,6 @@ weight = 2
 
 ### Chapter 2
 
-# Content
+# Content {#content}
 
 Find out how to create and organize your content quickly and intuitively.

@@ -5,7 +5,7 @@ weight = 25
 
 You can define additional menu entries or shortcuts in the navigation menu without any link to content.
 
-## Basic configuration
+## Basic configuration {#basic-config}
 
 Edit the website configuration `config.toml` and add a `[[menu.shortcuts]]` entry for each link your want to add.
 

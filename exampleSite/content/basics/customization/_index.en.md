@@ -59,7 +59,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ![Red variant](/basics/customization/images/standard-variant.png?width=60pc)
 
-### Red variant
+### Red variant {#red-variant}
 
 ```toml
 [params]
