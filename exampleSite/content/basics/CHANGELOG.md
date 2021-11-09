@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.8.3 (2021-11-09)
+
+### Fixes
+
+- [**bug**] mermaid: let zoom reset to initial size [#145](https://github.com/McShelby/hugo-theme-relearn/issues/145)
+- [**bug**] mermaid: remove whitespace from big graphs [#143](https://github.com/McShelby/hugo-theme-relearn/issues/143)
+
+---
+
 ## 2.8.2 (2021-11-08)
 
 ### Fixes
