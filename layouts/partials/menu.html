@@ -106,7 +106,8 @@
       {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
       {{- $alwaysopen := .alwaysopen }}
       {{- with .sect }}
-        {{- $hidden := and (eq (.Scratch.Get "relearnIsHiddenFromCurrent") true) (not $.showhidden) (not (.IsAncestor $currentNode)) }}
+        {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
+        {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not (.IsAncestor $currentNode)) }}
         {{- if $hidden }}
         {{- else if .IsSection }}
           {{- safeHTML .Params.head }}
