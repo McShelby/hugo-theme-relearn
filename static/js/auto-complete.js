@@ -1,5 +1,7 @@
 /*
     JavaScript autoComplete v1.0.4
+		#46 - positioning
+		#75 - complete
     Copyright (c) 2014 Simon Steinberger / Pixabay
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
     License: http://www.opensource.org/licenses/mit-license.php
@@ -37,6 +39,7 @@ var autoComplete = (function(){
             offsetTop: 1,
             cache: 1,
             menuClass: '',
+            selectorToInsert: 0,
             renderItem: function (item, search){
                 // escape special characters
                 search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -61,10 +64,25 @@ var autoComplete = (function(){
             that.cache = {};
             that.last_val = '';
 
-            that.updateSC = function(resize, next){
+			var parentElement;
+            if (typeof o.selectorToInsert === "string" && document.querySelector(o.selectorToInsert) instanceof HTMLElement) {
+				parentElement = document.querySelector(o.selectorToInsert);
+			}
+			that.updateSC = function(resize, next){
                 var rect = that.getBoundingClientRect();
-                that.sc.style.left = Math.round(rect.left + (window.pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft) + 'px';
-                that.sc.style.top = Math.round(rect.bottom + (window.pageYOffset || document.documentElement.scrollTop) + o.offsetTop) + 'px';
+				var parentOffsetLeft = 0;
+                var parentOffsetTop = 0;
+                var pageXOffset = 0;
+                var pageYOffset = 0;
+                if (parentElement != false) {
+                    parentOffsetLeft = parentElement.getBoundingClientRect().left;
+                    parentOffsetTop = parentElement.getBoundingClientRect().top;
+                } else {
+                    pageXOffset = window.pageXOffset;
+                    pageYOffset = window.pageYOffset;
+                }
+                that.sc.style.left = Math.round(rect.left + (pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft - parentOffsetLeft) + 'px';
+                that.sc.style.top = Math.round(rect.bottom + (pageYOffset || document.documentElement.scrollTop) + o.offsetTop - parentOffsetTop) + 'px';
                 that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
                 if (!resize) {
                     that.sc.style.display = 'block';
@@ -82,7 +100,12 @@ var autoComplete = (function(){
                 }
             }
             addEvent(window, 'resize', that.updateSC);
-            document.body.appendChild(that.sc);
+
+            if (typeof o.selectorToInsert === "string" && document.querySelector(o.selectorToInsert) instanceof HTMLElement) {
+                document.querySelector(o.selectorToInsert).appendChild(that.sc);
+            } else {
+                document.body.appendChild(that.sc);
+            }
 
             live('autocomplete-suggestion', 'mouseleave', function(e){
                 var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
@@ -204,7 +227,16 @@ var autoComplete = (function(){
                     that.setAttribute('autocomplete', that.autocompleteAttr);
                 else
                     that.removeAttribute('autocomplete');
-                document.body.removeChild(that.sc);
+                try {
+                    if (o.selectorToInsert && document.querySelector(o.selectorToInsert).contains(that.sc)) {
+                        document.querySelector(o.selectorToInsert).removeChild(that.sc);
+                    } else {
+                        document.body.removeChild(that.sc);
+                    }
+                } catch (error) {
+                    console.log('Destroying error: can\'t find target selector', error);
+                    throw error;
+                }
                 that = null;
             }
         };
