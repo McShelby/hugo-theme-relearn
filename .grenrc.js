@@ -16,10 +16,12 @@ module.exports = {
     ],
   },
   ignoreLabels: [
+    "hugo",
+  ],
+  ignoreIssuesWith: [
     "discussion",
     "documentation",
     "duplicate",
-    "hugo",
     "invalid",
     "support",
     "wontfix",
