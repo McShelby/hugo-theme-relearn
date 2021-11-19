@@ -14,6 +14,43 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+
+## 2.9.0
+
+- **Breaking**: This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard complient and exchanging this theme in your project to some other theme will be effortless.
+
+  In a standard complient form you must not link to the `*.md` file but to its logical name. You'll see, referencing other pages becomes much easier. All three types result in the same reference:
+
+  | Type          | Non-Standard                     | Standard               |
+  | ------------- | -------------------------------- | ---------------------- |
+  | Branch bundle | `basics/configuration/_index.md` | `basics/configuration` |
+  | Leaf bundle   | `basics/configuration/index.md`  | `basics/configuration` |
+  | Page          | `basics/configuration.md`        | `basics/configuration` |
+
+  If you've linked from a page of one language to a page of another language, conversion is a bit more difficult but [Hugo got you covered](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) as well.
+
+  Also, the old themes implementation allowed refs to non-existing content. This will cause Hugos implementation to show the error below and abort the generation. If your project relies on this old behavior, you can [reconfigure the error handling](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) of Hugos implementation.
+
+  In the best case your usage of the old implementation is already standard complient and you don't need to change anything. You'll notice this very easily once you've started `hugo server` after an upgrade and no errors are written to the console.
+
+  You may see errors on the console after the update in the form:
+
+  ````sh
+  ERROR 2021/11/19 22:29:10 [en] REF_NOT_FOUND: Ref "basics/configuration/_index.md": "hugo-theme-relearn\exampleSite\content\_index.en.md:19:22": page not found
+  ````
+
+  In this case, you must apply one of two options:
+
+  1. Copy the old implementation files `theme/hugo-theme-relearn/layouts/shortcode/ref.html` and `theme/hugo-theme-relearn/layouts/shortcode/relref.html` to your own projects `layouts/shortcode/ref.html` and `layouts/shortcode/relref.html` respectively. **This is not recommended** as your project will still rely on non-standard behavior afterwards.
+
+  2. Start up a text editor with regular expression support for search and replace. Apply the following conversions in the given order on all `*.md` files. **This is the recommended choice**.
+
+    | Type          | Search                      | Replace by |
+    | ------------- | ----------------------------| -----------|
+    | Branch bundle | `(ref\s+"[^"]*)_index\.md"` | `$1"`      |
+    | Leaf bundle   | `(ref\s+"[^"]*)index\.md"`  | `$1"`      |
+    | Page          | `(ref\s+"[^"]*)\.md"`       | `$1"`      |
+
 ## 2.8.0
 
 - **Change**: Although never officially documented, this release removes the font `Novacento`/`Novecento` from the release. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for czech.

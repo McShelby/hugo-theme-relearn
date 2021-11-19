@@ -16,7 +16,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 {{% /notice %}}
 
-* [Automatic Search]({{%relref "basics/configuration/_index.md#activate-search" %}})
+* [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
 * [Multilingual mode]({{%relref "cont/i18n" %}})
 * Unlimited menu levels
 * Automatic next/prev buttons to navigate through menu entries
