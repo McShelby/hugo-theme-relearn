@@ -4,7 +4,7 @@
 
 ### Fixes
 
-- [**bug**] relref: fix inconsistent behaviour  [#156](https://github.com/McShelby/hugo-theme-relearn/issues/156)
+- [**bug**][**breaking**] relref: fix inconsistent behaviour  [#156](https://github.com/McShelby/hugo-theme-relearn/issues/156)
 - [**bug**] search: make dropdown stick to search field when scrolling [#155](https://github.com/McShelby/hugo-theme-relearn/issues/155)
 - [**bug**] menu: align long text properly [#154](https://github.com/McShelby/hugo-theme-relearn/issues/154)
 - [**bug**] copyToClipBoard: add missing right border for inline code if `disableInlineCopyToClipBoard=true` [#153](https://github.com/McShelby/hugo-theme-relearn/issues/153)
