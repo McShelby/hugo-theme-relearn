@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.9.0 (2021-11-19)
+
+### Fixes
+
+- [**bug**] relref: fix inconsistent behaviour  [#156](https://github.com/McShelby/hugo-theme-relearn/issues/156)
+- [**bug**] search: make dropdown stick to search field when scrolling [#155](https://github.com/McShelby/hugo-theme-relearn/issues/155)
+- [**bug**] menu: align long text properly [#154](https://github.com/McShelby/hugo-theme-relearn/issues/154)
+- [**bug**] copyToClipBoard: add missing right border for inline code if `disableInlineCopyToClipBoard=true` [#153](https://github.com/McShelby/hugo-theme-relearn/issues/153)
+- [**bug**] menu: show hidden sibling pages reliably [#152](https://github.com/McShelby/hugo-theme-relearn/issues/152)
+- [**bug**] menu: bring active item in sight for large menus [#149](https://github.com/McShelby/hugo-theme-relearn/issues/149)
+
+---
+
 ## 2.8.3 (2021-11-09)
 
 ### Fixes
@@ -31,7 +44,7 @@
 
 - [**feature**] toc: make disableTOC globally available via config.toml [#133](https://github.com/McShelby/hugo-theme-relearn/issues/133)
 - [**feature**] mermaid: only load javascript if necessary [#95](https://github.com/McShelby/hugo-theme-relearn/issues/95)
-- [**feature**] theme: switch font [#83](https://github.com/McShelby/hugo-theme-relearn/issues/83)
+- [**feature**][**change**] theme: switch font [#83](https://github.com/McShelby/hugo-theme-relearn/issues/83)
 - [**feature**] theme: make favicon configurable [#2](https://github.com/McShelby/hugo-theme-relearn/issues/2)
 
 ### Fixes
@@ -48,7 +61,7 @@
 
 ### Enhancements
 
-- [**feature**] notice: support ccustom titles [#124](https://github.com/McShelby/hugo-theme-relearn/issues/124)
+- [**feature**] notice: support custom titles [#124](https://github.com/McShelby/hugo-theme-relearn/issues/124)
 
 ---
 
@@ -72,7 +85,7 @@
 
 ### Enhancements
 
-- [**feature**] syntax highlight: provide default colors for unknown languages [#113](https://github.com/McShelby/hugo-theme-relearn/issues/113)
+- [**feature**][**change**] syntax highlight: provide default colors for unknown languages [#113](https://github.com/McShelby/hugo-theme-relearn/issues/113)
 
 ### Fixes
 
@@ -94,7 +107,7 @@
 ### Enhancements
 
 - [**feature**] lang: add vietnamese translation [#109](https://github.com/McShelby/hugo-theme-relearn/issues/109)
-- [**feature**] theme: simplify stylesheet for color variants [#107](https://github.com/McShelby/hugo-theme-relearn/issues/107)
+- [**feature**][**change**] theme: simplify stylesheet for color variants [#107](https://github.com/McShelby/hugo-theme-relearn/issues/107)
 - [**feature**] hidden pages: remove from RSS feed, JSON, taxonomy etc [#102](https://github.com/McShelby/hugo-theme-relearn/issues/102)
 - [**feature**] theme: announce alternative content in header [#101](https://github.com/McShelby/hugo-theme-relearn/issues/101)
 - [**feature**] menu: frontmatter option to change sort predicate [#98](https://github.com/McShelby/hugo-theme-relearn/issues/98)
@@ -172,7 +185,7 @@
 
 ### Fixes
 
-- [**bug**] search: hide non-site content [#81](https://github.com/McShelby/hugo-theme-relearn/issues/81)
+- [**bug**][**change**] search: hide non-site content [#81](https://github.com/McShelby/hugo-theme-relearn/issues/81)
 - [**bug**] menu: always hide hidden sub pages [#77](https://github.com/McShelby/hugo-theme-relearn/issues/77)
 
 ---
@@ -184,7 +197,7 @@
 - [**feature**] tabs: enhance styling [#65](https://github.com/McShelby/hugo-theme-relearn/issues/65)
 - [**feature**] theme: improve readability [#64](https://github.com/McShelby/hugo-theme-relearn/issues/64)
 - [**feature**] menu: show hidden pages if accessed directly [#60](https://github.com/McShelby/hugo-theme-relearn/issues/60)
-- [**feature**] theme: treat pages without title as hidden [#59](https://github.com/McShelby/hugo-theme-relearn/issues/59)
+- [**feature**][**change**] theme: treat pages without title as hidden [#59](https://github.com/McShelby/hugo-theme-relearn/issues/59)
 - [**feature**] search: show search results if field gains focus [#58](https://github.com/McShelby/hugo-theme-relearn/issues/58)
 - [**feature**] theme: add partial templates for pre/post menu entries [#56](https://github.com/McShelby/hugo-theme-relearn/issues/56)
 - [**feature**] theme: make chapter archetype more readable [#55](https://github.com/McShelby/hugo-theme-relearn/issues/55)
@@ -193,15 +206,15 @@
 - [**feature**] menu: control menu expansion with alwaysopen parameter [#49](https://github.com/McShelby/hugo-theme-relearn/issues/49)
 - [**feature**] include: new shortcode to include other files [#43](https://github.com/McShelby/hugo-theme-relearn/issues/43)
 - [**feature**] theme: adjust print styles [#35](https://github.com/McShelby/hugo-theme-relearn/issues/35)
-- [**feature**] code highligher: switch to standard hugo highlighter [#32](https://github.com/McShelby/hugo-theme-relearn/issues/32)
+- [**feature**][**change**] code highligher: switch to standard hugo highlighter [#32](https://github.com/McShelby/hugo-theme-relearn/issues/32)
 
 ### Fixes
 
-- [**bug**] arrow-nav: default sorting ignores ordersectionsby [#63](https://github.com/McShelby/hugo-theme-relearn/issues/63)
-- [**bug**] children: default sorting ignores ordersectionsby [#62](https://github.com/McShelby/hugo-theme-relearn/issues/62)
-- [**bug**] arrow-nav: fix broken links on (and below) hidden pages [#61](https://github.com/McShelby/hugo-theme-relearn/issues/61)
+- [**bug**][**change**] arrow-nav: default sorting ignores ordersectionsby [#63](https://github.com/McShelby/hugo-theme-relearn/issues/63)
+- [**bug**][**change**] children: default sorting ignores ordersectionsby [#62](https://github.com/McShelby/hugo-theme-relearn/issues/62)
+- [**bug**][**change**] arrow-nav: fix broken links on (and below) hidden pages [#61](https://github.com/McShelby/hugo-theme-relearn/issues/61)
 - [**bug**] theme: remove superflous singular taxonomy from taxonomy title [#46](https://github.com/McShelby/hugo-theme-relearn/issues/46)
-- [**bug**] theme: missing --MENU-HOME-LINK-HOVER-color in documentation [#45](https://github.com/McShelby/hugo-theme-relearn/issues/45)
+- [**bug**][**change**] theme: missing --MENU-HOME-LINK-HOVER-color in documentation [#45](https://github.com/McShelby/hugo-theme-relearn/issues/45)
 - [**bug**] theme: fix home link when base URL has some path [#44](https://github.com/McShelby/hugo-theme-relearn/issues/44)
 
 ### Maintenance
