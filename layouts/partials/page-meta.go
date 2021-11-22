@@ -25,9 +25,9 @@
 	{{- $hidden_stem:= or $hidden_node .hiddenstem }}
 	{{- $hidden_current_stem:= or $hidden_node .hiddencurrent }}
 	{{- $hidden_from_current := or (and $hidden_node (not $isAncestor) (not $isSelf) ) (and .hiddencurrent (or $isPreSelf $isPostSelf $isDescendant) ) }}
-	{{- $currentNode.Scratch.Set "relearnIsHiddenNode" (merge ($currentNode.Scratch.Get "relearnIsHiddenNode") (dict .node.RelPermalink $hidden_node) ) }}
-	{{- $currentNode.Scratch.Set "relearnIsHiddenStem" (merge ($currentNode.Scratch.Get "relearnIsHiddenStem") (dict .node.RelPermalink $hidden_stem) ) }}
-	{{- $currentNode.Scratch.Set "relearnIsHiddenFrom" (merge ($currentNode.Scratch.Get "relearnIsHiddenFrom") (dict .node.RelPermalink $hidden_current_stem) ) }}
+	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenNode" .node.RelPermalink $hidden_node }}
+	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenStem" .node.RelPermalink $hidden_stem }}
+	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenFrom" .node.RelPermalink $hidden_current_stem }}
 
 	{{- if not $hidden_from_current }}
 		{{- if $isPreSelf }}
