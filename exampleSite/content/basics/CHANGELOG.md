@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.1 (2021-11-22)
+
+### Fixes
+
+- [**bug**] menu: fix significantly low performance for collecting of meta info [#157](https://github.com/McShelby/hugo-theme-relearn/issues/157)
+
+---
+
 ## 2.9.0 (2021-11-19)
 
 ### Fixes
