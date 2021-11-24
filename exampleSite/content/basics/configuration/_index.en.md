@@ -111,13 +111,13 @@ on the left menu. It is an alternative for clicking on the logo. To edit the
 appearance, you will have to configure two parameters for the defined languages:
 
 ```toml
-[Lanugages]
-[Lanugages.en]
+[Languages]
+[Languages.en]
 ...
 landingPageURL = "/"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ...
-[Lanugages.pir]
+[Languages.pir]
 ...
 landingPageURL = "/pir/"
 landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
