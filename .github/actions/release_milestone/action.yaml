@@ -41,6 +41,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
+        echo "$MILESTONE" > layouts/partials/version.html
         npx github-release-notes@0.17.1 changelog --generate --override --tags=all
         git add *
         git commit --message "Ship tag $MILESTONE"
