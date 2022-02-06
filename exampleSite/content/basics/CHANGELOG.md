@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.4 (2022-02-06)
+
+### Fixes
+
+- [**bug**] exampleSite: official documentation broken [#168](https://github.com/McShelby/hugo-theme-relearn/issues/168)
+
+---
+
 ## 2.9.3 (2022-02-06)
 
 ### Fixes
