@@ -20,7 +20,7 @@ weight = 10
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-url = "/showcase/"
+url = "showcase/"
 weight = 11
 
 [[menu.shortcuts]]
@@ -31,12 +31,12 @@ weight = 20
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-url = "/credits/"
+url = "credits/"
 weight = 30
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-tags'></i> Tags"
-url = "/tags/"
+url = "tags/"
 weight = 40
 ````
 
@@ -75,7 +75,7 @@ Example from the current website:
 
   [[Languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-    url = "/showcase/"
+    url = "showcase/"
     weight = 11
 
   [[Languages.en.menu.shortcuts]]
@@ -86,12 +86,12 @@ Example from the current website:
 
   [[Languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-    url = "/credits/"
+    url = "credits/"
     weight = 30
 
   [[Languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-tags'></i> Tags"
-    url = "/tags/"
+    url = "tags/"
     weight = 40
 
   [Languages.pir]
@@ -109,7 +109,7 @@ Example from the current website:
 
   [[Languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-    url = "/showcase/"
+    url = "showcase/"
     weight = 11
 
   [[Languages.pir.menu.shortcuts]]
@@ -120,12 +120,12 @@ Example from the current website:
 
   [[Languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
-    url = "/credits/"
+    url = "credits/"
     weight = 30
 
   [[Languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
-    url = "/tags/"
+    url = "tags/"
     weight = 40
 ````
 
