@@ -1,24 +1,15 @@
-{{- $ver := partial "version.html" }}
-{{- $ver = replaceRE "\\s*(\\S*)" "${1}" $ver }}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ hugo.Generator }}
+    {{- $ver := partial "version.html" }}
+    {{- $ver = replaceRE "\\s*(\\S*)" "${1}" $ver }}
     <meta name="generator" content="Relearn {{ $ver }}">
-{{- partial "page-meta.go" . }}
-{{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
+    {{- partial "page-meta.go" . }}
+    {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-{{- else }}
-    {{- range .AlternativeOutputFormats }}
-    {{- if ne .Name "JSON" }}
-    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | relURL }}" title="{{ $.Site.Title | safeHTML }}" />
     {{- end }}
-    {{- end }}
-{{- end }}
-{{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
-{{- range .AlternativeOutputFormats }}
-{{- if eq .Name "JSON" }}
-    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | relURL }}" title="{{ $.Site.Title | safeHTML }}" />
-{{- end }}
-{{- end }}
-{{- end }}
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
-{{- with .Site.Params.author }}
+    {{- with .Site.Params.author }}
     <meta name="author" content="{{ . }}">
-{{- end }}
+    {{- end }}

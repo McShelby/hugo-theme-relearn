@@ -1,44 +1,27 @@
 <!DOCTYPE html>
 <html lang="{{ .Page.Language | default "en" }}" class="js csstransforms3d">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{ hugo.Generator -}}
     {{- partial "meta.html" . }}
-    {{ partial "favicon.html" . }}
     <title>{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
 
-    {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
-    <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/featherlight.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    {{- with .Site.Params.themeVariant }}
-    <link href="{{(printf "css/theme-%s.css" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
+    {{- else }}
+        {{- range .AlternativeOutputFormats }}
+            {{- if ne .Name "JSON" }}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | relURL }}" title="{{ $.Site.Title | safeHTML }}" />
+            {{- end }}
+        {{- end }}
     {{- end }}
-    <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
-    {{- range .Site.Params.custom_css }}
-    <link href="{{(printf "%s" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    {{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
+        {{- range .AlternativeOutputFormats }}
+            {{- if eq .Name "JSON" }}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | relURL }}" title="{{ $.Site.Title | safeHTML }}" />
+            {{- end }}
+        {{- end }}
     {{- end }}
-    <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <style>
-      :root #header + #content > #left > #rlblock_left{
-        display:none !important;
-      }
-    {{- if .Site.Params.disableInlineCopyToClipBoard }}
-      :not(pre) > code.copy-to-clipboard-inline + span.copy-to-clipboard {
-          display: none;
-      }
-      :not(pre) > code.copy-to-clipboard-inline {
-          border-bottom-right-radius: 2px;
-          border-top-right-radius: 2px;
-          border-right-width: 1px;
-      }
-    {{- end }}
-    </style>
+
+    {{- partial "favicon.html" . }}
+    {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
   </head>
   <body class="" data-url="{{ .RelPermalink }}">
