@@ -45,8 +45,8 @@
 	"load" "board"
 	"Loaded" "Boarded"
 	"loaded" "boarded"
-	"Content" "Rambling"
-	"content" "rambling"
+	"Content" "Rrrambling"
+	"content" "rrrambling"
 	"icon" "ay'con"
 	"Icon" "Ay'con"
 	"icons" "ay'cons"
@@ -61,7 +61,7 @@
 	"pages" "planks"
 	"Relearn" "Relearrrn"
 	"Learn" "Learrrn"
-}}
+-}}
 {{- $specials := dict
 	"(\\w)ing([\\s\\n<.,;?!:])" "'n"
 	"(\\w)ings([\\s\\n<.,;?!:])" "'ns"
@@ -73,14 +73,14 @@
 	"(\\w)(?:[aeiou])nize([\\s\\n<.,;?!:])" "'nize"
 	"(\\w)(?:[aeiou])nizes([\\s\\n<.,;?!:])" "'nizes"
 	(printf "(.)=\"%s([^\"]*?\")" $baseURLpath)  (printf "=\"%s%s/" $baseURLpath $langtrg)
-}}
+-}}
 {{- $fix := dict
 	"warn'n" "warning"
 	"sect'n" "section"
 	"n Cap'n" "n"
 	"Documentat'n fer Cap'n Hugo Relearrrn Theme" "Documentation for Hugo Relearn Theme"
 	"Avast right o' John" "Note right of John"
-}}
+-}}
 {{- $c := "" }}
 {{- range .Page.Translations }}
 	{{- if eq .Language.Lang $langsrc }}
@@ -93,10 +93,17 @@
 			{{- $c = replaceRE $from (printf "${1}%s${2}" $to) $c }}
 		{{- end }}
 		{{- range $from, $to := $fix }}
-			{{ $c = replace $c $from $to }}
+			{{- $c = replace $c $from $to }}
 		{{- end }}
 		{{- $c = replaceRE "(src|href)=\"(images/[^\"]*?\")" (printf "${1}=\"%s${2}" $l) $c }}
 		{{- $c = replaceRE "(src|href)=\"([^\"]*?)/pir/([^\"]*?.files/[^\"]*?\")" "${1}=\"${2}/${3}" $c }}
 	{{- end }}
 {{- end }}
-{{- $c | safeHTML }}
+{{- $style := "warning" }}
+{{- $title := "Arrr" }}
+<div class="notices {{ $style }}">
+    <div class="label">{{ $title }}</div>
+    <p>Fello' pirrates, be awarrre some featurrres may not work fer us in this trrranslat'n. Like table of rrramblings and stuff.</p>
+</div>
+
+{{ $c | safeHTML }}
