@@ -11,7 +11,7 @@ It provides:
 - Automatic menu generation from multilingual content
 - In-browser language switching
 
-![I18n menu](/cont/i18n/images/i18n-menu.gif)
+![I18n menu](images/i18n-menu.gif)
 
 ## Basic configuration
 

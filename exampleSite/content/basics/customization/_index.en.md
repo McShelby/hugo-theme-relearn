@@ -57,7 +57,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
   themeVariant = ""
 ```
 
-![Red variant](/basics/customization/images/standard-variant.png?width=60pc)
+![Red variant](images/standard-variant.png?width=60pc)
 
 ### Red variant
 
@@ -67,7 +67,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
   themeVariant = "red"
 ```
 
-![Red variant](/basics/customization/images/red-variant.png?width=60pc)
+![Red variant](images/red-variant.png?width=60pc)
 
 ### Blue variant
 
@@ -77,7 +77,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
   themeVariant = "blue"
 ```
 
-![Blue variant](/basics/customization/images/blue-variant.png?width=60pc)
+![Blue variant](images/blue-variant.png?width=60pc)
 
 ### Green variant
 
@@ -87,7 +87,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
   themeVariant = "green"
 ```
 
-![Green variant](/basics/customization/images/green-variant.png?width=60pc)
+![Green variant](images/green-variant.png?width=60pc)
 
 ### 'Mine‘ variant
 
