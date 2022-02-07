@@ -6,7 +6,7 @@
 {{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}
-{{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false }}
+{{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" .Site.Params.ordersectionsby }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
 	{{- $isSelf := eq $currentNode.RelPermalink .node.RelPermalink }}
@@ -45,15 +45,17 @@
 	{{- end }}
 	{{- $pages := ($currentNode.Scratch.Get "relearnSubPages") }}
 
-	{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
+	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
 	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
+	## {{ .defaultOrdersectionsby}} {{ $currentOrdersectionsby }}
+
 	{{- if eq $currentOrdersectionsby "title"}}
 		{{- range $pages.ByTitle  }}
-			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current }}
+			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
 		{{- end}}
 	{{- else}}
 		{{- range $pages.ByWeight  }}
-			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current }}
+			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
 		{{- end}}
 	{{- end }}
 {{- end }}
