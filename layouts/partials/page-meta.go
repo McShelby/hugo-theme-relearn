@@ -47,7 +47,6 @@
 
 	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
 	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
-	## {{ .defaultOrdersectionsby}} {{ $currentOrdersectionsby }}
 
 	{{- if eq $currentOrdersectionsby "title"}}
 		{{- range $pages.ByTitle  }}
