@@ -1,10 +1,18 @@
 # Changelog
 
+## 2.9.5 (2022-02-07)
+
+### Fixes
+
+- [**bug**] menu: let arrow navigation respect ordersectionsby configuration [#170](https://github.com/McShelby/hugo-theme-relearn/issues/170)
+
+---
+
 ## 2.9.4 (2022-02-06)
 
 ### Fixes
 
-- [**bug**] exampleSite: official documentation broken [#168](https://github.com/McShelby/hugo-theme-relearn/issues/168)
+- [**bug**] exampleSite: fix links in official documentation [#168](https://github.com/McShelby/hugo-theme-relearn/issues/168)
 
 ---
 
