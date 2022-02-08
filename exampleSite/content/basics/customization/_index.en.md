@@ -101,6 +101,7 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
     --MAIN-LINK-HOVER-color: #167ad0; /* Color of hovered links */
     --MAIN-ANCHOR-color: #1C90F3; /* color of anchors on titles */
 
+    /* adjusted to monokai chroma style */
     --MAIN-CODE-color: #e2e4e5; /* fallback color for code text */
     --MAIN-CODE-BG-color: #282a36; /* fallback color for code background */
 
