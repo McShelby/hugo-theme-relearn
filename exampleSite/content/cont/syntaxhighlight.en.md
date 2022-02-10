@@ -56,6 +56,11 @@ You can choose a color theme from the [list of supported themes](https://xyproto
 ````toml
 [markup]
   [markup.highlight]
-    style = "base16-snazzy" # choose a color theme or create your own
-    guessSyntax = false     # if set to true, avoid unstyled code if no language was given but mermaid code fences will not work anymore
+    # if set to `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
+    # setting for your site
+    guessSyntax = false
+
+    # choose a color theme or create your own
+    style = "base16-snazzy"
 ````

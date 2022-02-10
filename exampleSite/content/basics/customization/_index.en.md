@@ -95,35 +95,41 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
 
 ```css
 :root {
-    --MAIN-TEXT-color: #323232; /* Color of text by default */
-    --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5-h6 */
-    --MAIN-LINK-color: #1C90F3; /* Color of links */
-    --MAIN-LINK-HOVER-color: #167ad0; /* Color of hovered links */
-    --MAIN-ANCHOR-color: #1C90F3; /* color of anchors on titles */
+    --MAIN-TEXT-color: #101010; /* Color of text by default */
+    --MAIN-TITLES-TEXT-color: #444753; /* Color of titles h2-h3-h4-h5-h6 */
+    --MAIN-LINK-color: #486ac9; /* Color of links */
+    --MAIN-LINK-HOVER-color: #134fbf; /* Color of hovered links */
+    --MAIN-ANCHOR-color: #486ac9; /* color of anchors on titles */
+    --MAIN-BG-color: #ffffff; /* color of text by default */
 
-    /* adjusted to monokai chroma style */
-    --MAIN-CODE-color: #e2e4e5; /* fallback color for code text */
-    --MAIN-CODE-BG-color: #282a36; /* fallback color for code background */
+    /* adjusted to relearn-light chroma style */
+    --CODE-BLOCK-color: #000000; /* fallback color for block code text */
+    --CODE-BLOCK-BG-color: #f8f8f8; /* fallback color for block code background */
+    --CODE-BLOCK-BORDER-color: #d8d8d8; /* color of block code border */
+
+    --CODE-INLINE-color: #5e5e5e; /* color for inline code text */
+    --CODE-INLINE-BG-color: #fffae9; /* color for inline code background */
+    --CODE-INLINE-BORDER-color: #f8e8c8; /* color of inline code border */
 
     --MENU-HOME-LINK-color: #323232; /* Color of the home button text */
-    --MENU-HOME-LINK-HOVER-color: #5e5e5e; /* Color of the hovered home button text */
+    --MENU-HOME-LINK-HOVER-color: #808080; /* Color of the hovered home button text */
 
-    --MENU-HEADER-BG-color: #1C90F3; /* Background color of menu header */
-    --MENU-HEADER-BORDER-color: #33a1ff; /*Color of menu header border */
+    --MENU-HEADER-BG-color: #7dc903; /* Background color of menu header */
+    --MENU-HEADER-BORDER-color: #7dc903; /*Color of menu header border */
 
-    --MENU-SEARCH-BG-color: #167ad0; /* Search field background color (by default borders + icons) */
-    --MENU-SEARCH-BOX-color: #33a1ff; /* Override search field border color */
-    --MENU-SEARCH-BOX-ICONS-color: #a1d2fd; /* Override search field icons color */
+    --MENU-SEARCH-color: #efefef; /* Color of search field text */
+    --MENU-SEARCH-BG-color: #3d414d; /* Search field background color (by default borders + icons) */
+    --MENU-SEARCH-BOX-color: #efefef; /* Override search field border color */
 
-    --MENU-SECTIONS-ACTIVE-BG-color: #20272b; /* Background color of the active section and its children */
-    --MENU-SECTIONS-BG-color: #252c31; /* Background color of other sections */
-    --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
-    --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
-    --MENU-SECTION-ACTIVE-CATEGORY-color: #777; /* Color of active category text */
-    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #fff; /* Color of background for the active category (only) */
+    --MENU-SECTIONS-ACTIVE-BG-color: #202028; /* Background color of the active section and its children */
+    --MENU-SECTIONS-BG-color: #282830; /* Background color of other sections */
+    --MENU-SECTIONS-LINK-color: #bababa; /* Color of links in menu */
+    --MENU-SECTIONS-LINK-HOVER-color: #ffffff;  /* Color of links in menu, when hovered */
+    --MENU-SECTION-ACTIVE-CATEGORY-color: #444444; /* Color of active category text */
+    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #ffffff; /* Color of background for the active category (only) */
 
-    --MENU-VISITED-color: #33a1ff; /* Color of 'page visited' icons in menu */
-    --MENU-SECTION-HR-color: #20272b; /* Color of <hr> separator in menu */
+    --MENU-VISITED-color: #506397; /* Color of 'page visited' icons in menu */
+    --MENU-SECTION-HR-color: #282830; /* Color of <hr> separator in menu */
 }
 ```
 

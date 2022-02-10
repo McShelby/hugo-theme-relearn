@@ -195,17 +195,17 @@ You can add:
 ````
 {{% /expand %}}
 
-### Notice with Custom Title
+### Notice with custom title and default color
 
 You can customize the title of the notice by passing it as a second parameter.
 
-{{% notice note "Pay Attention to this Note!" %}}
+{{% notice default "Pay Attention to this Note!" %}}
 The title is now the parameter that was provided.
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
 ````go
-{{%/* notice note "Pay Attention to this Note!" */%}}
+{{%/* notice default "Pay Attention to this Note!" */%}}
 The title is now the parameter that was provided.
 {{%/* /notice */%}}
 ````

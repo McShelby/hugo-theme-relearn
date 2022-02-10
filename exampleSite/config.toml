@@ -19,20 +19,48 @@ themesdir = "../.."
   disableLandingPageButton = true
   disableMermaid = false
   titleSeparator = "::"
-  themeVariant = "relearn"
+  themeVariant = "relearn-light"
   disableSeoHiddenPages = true
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"] # add JSON to the home page to support lunr search
+  # add JSON to the home page to support lunr search; This is a mandatory setting
+  # for the search functionality
+  home = ["HTML", "RSS", "JSON"]
 
 [markup]
   [markup.highlight]
-    style = "tango" # choose a color theme or create your own
-    guessSyntax = false     # if set to true, avoid unstyled code if no language was given but mermaid code fences will not work anymore
+    # if set to `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
+    # setting for your site
+    guessSyntax = false
 
-[markup.goldmark.renderer]
-  unsafe= true
+    # here in this showcase we use our own modified chroma syntax highlightning style
+    # which is imported in theme-relearn-light.css / theme-relearn-dark.css;
+    # if you want to use a predefined style instead:
+    # - remove the following `noClasses`
+    # - set the following `style` to a predefined style name
+    # - remove the `@import` of the self-defined chroma stylesheet from your CSS files
+    #   (here eg.: theme-relearn-light.css / theme-relearn-dark.css)
+    noClasses = false
+    # style = "base16-snazzy"
 
+  [markup.goldmark.renderer]
+    # activated for this showcase to use HTML and JavaScript; decide on your own needs;
+    # if in doubt, remove this line
+    unsafe = true
+
+# allows `hugo server` to display this showcase in IE11; this is used for testing, as we
+# are still supporting IE11 - although with degraded experience; if you don't care about
+# `hugo server` or browsers of ancient times, fell free to remove this whole block
+[server]
+  [[server.headers]]
+    for = "**.html"
+    [server.headers.values]
+       X-UA-Compatible = "IE=edge"
+
+# showcase of the menu shortcuts; you can use relative URLs linking
+# to your content or use fully-quallified URLs to link outside of
+# your project
 [Languages]
   [Languages.en]
     title = "Documentation for Hugo Relearn Theme"
@@ -68,6 +96,11 @@ themesdir = "../.."
     url = "tags/"
     weight = 40
 
+  # this ourrr way t' showcase th' multilang settings by
+  # doing autotrrranlat'n of th' english content; we are
+  # lazy and don't supporrt furrrther trrranslations; arrr,
+  # don't take it t' serrrious, fello'; it's prrretty hacky and:
+  # NOT MEANT FOR PRRRODUCTION! ARRR!
   [Languages.pir]
     title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
     weight = 1

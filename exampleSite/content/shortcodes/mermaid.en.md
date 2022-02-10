@@ -215,7 +215,10 @@ Also, if you want to use mermaid codefences, you have to turn off `guessSyntax` 
 
 [markup]
   [markup.highlight]
-    guessSyntax = false     # if set to true, avoid unstyled code if no language was given but mermaid code fences will not work anymore
+    # if set to `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
+    # setting for your site
+    guessSyntax = false
 ````
 
 or pages frontmatter
