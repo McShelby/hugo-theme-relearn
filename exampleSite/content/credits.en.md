@@ -23,5 +23,4 @@ Many thanks to [@matcornic](https://github.com/matcornic) for his work on the [L
 
 * [gren](https://github.com/github-tools/github-release-notes) - Releasenotes generator
 * [Hugo](https://gohugo.io/) - Static site generator
-* [Netlify](https://www.netlify.com) - Continuous deployement and hosting of this documentation
-* [Wercker](https://app.wercker.com) - Continous testing
+* [GitHub](https://github.com) - Continuous deployement, testing and hosting of this project and its documentation
