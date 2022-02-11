@@ -63,3 +63,15 @@ runs:
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         npx github-release-notes@0.17.1 release --tags "$MILESTONE"
+
+    - name: Update version number to mark non-release version
+      shell: bash
+      env:
+        MILESTONE: ${{ inputs.milestone }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
+      run: |
+        echo "$MILESTONE+next" > layouts/partials/version.html
+        git add *
+        git commit --message "Ship tag $MILESTONE"
+        git push origin main
