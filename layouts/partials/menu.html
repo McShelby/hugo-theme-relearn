@@ -52,12 +52,17 @@
           </ul>
         </div>
         {{- end }}
-
-        {{- if or .Site.IsMultiLingual $showvisitedlinks }}
+        <div class="footermargin"></div>
+        {{- $showlangswitch := and .Site.IsMultiLingual (not .Site.Params.disableLanguageSwitchingButton) }}
+        {{- $footer := partial "menu-footer.html" . }}
+        {{- $showfooter := not (eq 0 (int (len $footer | plainify))) }}
+        {{- if or $showlangswitch $showvisitedlinks $showfooter }}
+        <hr/>
+        {{- end }}
+        {{- if or $showlangswitch $showvisitedlinks }}
         <div id="prefooter">
-          <hr/>
           <ul>
-            {{- if and .Site.IsMultiLingual (not .Site.Params.DisableLanguageSwitchingButton) }}
+            {{- if $showlangswitch }}
             <li>
               <a class="padding">
                 <i class="fas fa-language fa-fw"></i>
@@ -90,16 +95,17 @@
               </a>
             </li>
             {{- end }}
-
             {{- if $showvisitedlinks }}
             <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> {{ T "Clear-History" }}</a></li>
             {{- end }}
           </ul>
         </div>
         {{- end }}
+        {{- if $showfooter }}
         <div id="footer">
-          {{- partial "menu-footer.html" . }}
+          {{- $footer }}
         </div>
+        {{- end }}
       </div>
     </nav>
     {{- define "section-tree-nav" }}
