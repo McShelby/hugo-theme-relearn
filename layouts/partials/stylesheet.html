@@ -18,8 +18,17 @@
       // we need to define this script in the head to avoid flickering an
       // page load if the user has selected a non default variant
       var theme = window.localStorage.getItem( 'theme' );
-      changeTheme( theme, true );
-
+      changeTheme( theme );
+      function getTheme(){
+        var link = document.querySelector( '#variant-style' );
+        var path = link.getAttribute( 'href' );
+        var theme = path.match(/^.*\/theme-(.*?)\.css.*$/)[ 1 ];
+        return theme;
+      }
+      function markTheme( theme ){
+        var select = document.querySelector( '#select-theme' );
+        select.value = theme;
+      }
       function changeTheme( theme, noanimation ){
         if( !theme ){
           return;
@@ -28,24 +37,9 @@
         var old_path = link.getAttribute( 'href' );
         var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + theme + '$2' );
         if( old_path != new_path ){
-          var animations = document.querySelectorAll( '.default-animation' );
-          if( noanimation ){
-            animations.forEach( function( e ){
-              e.classList.remove( 'default-animation' );
-            });
-          }
           window.localStorage.setItem( 'theme', theme );
           link.setAttribute( 'href', new_path );
-          var select = document.querySelector( '#select-theme' );
-          select.value = theme;
-          // we have to wait to reset the animation style
-          if( noanimation ){
-            setTimeout( function(){
-              animations.forEach( function( e ){
-                e.classList.add( 'default-animation' );
-              });
-            }, 525 );
-          }
+          markTheme( theme );
           // remove selection, because if some uses an arrow navigation
           // by pressing the left or right cursor key, we will automatically
           // select a different style
