@@ -9,8 +9,8 @@
     <nav id="sidebar" class="default-animation {{ if $.Site.Params.showVisitedLinks }}showVisitedLinks{{ end }}">
       {{- $currentNode := . }}
       {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
-      <div id="header-wrapper">
-        <div id="header">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
 {{ partial "logo.html" . }}
         </div>
         {{- if not .Site.Params.disableSearch }}
@@ -18,7 +18,7 @@
         {{- end }}
       </div>
       {{- if not .Site.Params.disableLandingPageButton }}
-      <div id="homelinks">
+      <div id="homelinks" class="default-animation">
         <ul>
           <li>
               <a class="padding" href="{{ .Site.Params.landingPageURL | default "/" | relLangURL }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a>
