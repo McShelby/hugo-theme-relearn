@@ -21,21 +21,28 @@
       changeTheme( theme );
       function getTheme(){
         var link = document.querySelector( '#variant-style' );
+        if( !link ){
+          return;
+        }
         var path = link.getAttribute( 'href' );
         var theme = path.match(/^.*\/theme-(.*?)\.css.*$/)[ 1 ];
         return theme;
       }
       function markTheme( theme ){
         var select = document.querySelector( '#select-theme' );
-        if( select ){
-          select.value = theme;
+        if( !select ){
+          return;
         }
+        select.value = theme;
       }
       function changeTheme( theme, noanimation ){
         if( !theme ){
           return;
         }
         var link = document.querySelector( '#variant-style' );
+        if( !link ){
+          return;
+        }
         var old_path = link.getAttribute( 'href' );
         var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + theme + '$2' );
         if( old_path != new_path ){
