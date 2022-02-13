@@ -35,7 +35,15 @@
         }
         select.value = theme;
       }
-      function changeTheme( theme, noanimation ){
+      function changeTheme( theme ){
+        {{- $quotedthemevariants := slice }}
+        {{- range $themevariants }}
+          {{- $quotedthemevariants = $quotedthemevariants | append (printf "\"%s\"" .) }}
+        {{- end }}
+        var themes = [ {{ delimit $quotedthemevariants ", " | safeJS }} ];
+        if( !themes.find( function(e){ return e==theme; } ) ){
+          theme = themes.length ? themes[ 0 ] : null;
+        }
         if( !theme ){
           return;
         }
