@@ -20,7 +20,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and *Clear history* functionality).
 
-- **New**: You can also set multiple variants. In this case, the first variant is the default choosen on first view and a theme selector will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
+- **New**: You can now set multiple color variants. In this case, the first variant is the default, choosen on first view and a theme selector will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
 
 ## 2.9.0
 
