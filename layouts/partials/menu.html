@@ -6,7 +6,7 @@
       var root_url="/";
       var baseUri=root_url.replace(/\/$/, '');
     </script>
-    <nav id="sidebar" class="{{ if $.Site.Params.showVisitedLinks }}showVisitedLinks{{ end }}">
+    <nav id="sidebar" class="default-animation {{ if $.Site.Params.showVisitedLinks }}showVisitedLinks{{ end }}">
       {{- $currentNode := . }}
       {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
       <div id="header-wrapper">
@@ -54,12 +54,14 @@
         {{- end }}
         <div class="footermargin"></div>
         {{- $showlangswitch := and .Site.IsMultiLingual (not .Site.Params.disableLanguageSwitchingButton) }}
+        {{- $themevariants := slice | append .Site.Params.themeVariant }}
+        {{- $showthemeswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len $footer | plainify))) }}
         {{- if or $showlangswitch $showvisitedlinks $showfooter }}
         <hr/>
         {{- end }}
-        {{- if or $showlangswitch $showvisitedlinks }}
+        {{- if or $showlangswitch $showthemeswitch $showvisitedlinks }}
         <div id="prefooter">
           <ul>
             {{- if $showlangswitch }}
@@ -80,6 +82,28 @@
                     <option id="{{ $translation.Language }}" value="{{ $translation.RelPermalink }}">{{ .LanguageName }}</option>
                           {{- end }}
                         {{- end }}
+                      {{- end }}
+                    {{- end }}
+                  </select>
+                </div>
+              </a>
+            </li>
+            {{- end }}
+            {{- if $showthemeswitch }}
+            <li>
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <div class="select-style">
+                  <select id="select-theme" onchange="changeTheme( this.value );">
+                    {{- $firsttheme := true }}
+                    {{- range $themevariants }}
+                      {{- $themevariant := . }}
+                      {{- $themename := replaceRE "[-_]+" " " $themevariant }}
+                      {{- if $firsttheme }}
+                        {{- $firsttheme = false }}
+                    <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $themename }}</option>
+                      {{- else }}
+                    <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $themename }}</option>
                       {{- end }}
                     {{- end }}
                   </select>

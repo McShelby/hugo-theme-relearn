@@ -60,7 +60,7 @@ Note that some of these parameters are explained in details in other sections of
   # Order sections in menu by "weight" or "title". Default to "weight";
   # this can be overridden in the pages frontmatter
   ordersectionsby = "weight"
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = ""
   # Provide a list of custom css files to load relative from the `static/` folder in the site root.
   custom_css = ["css/foo.css", "css/bar.css"]

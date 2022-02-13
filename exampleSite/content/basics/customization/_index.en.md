@@ -53,7 +53,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = ""
 ```
 
@@ -63,7 +63,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = "red"
 ```
 
@@ -73,7 +73,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = "blue"
 ```
 
@@ -83,7 +83,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = "green"
 ```
 
@@ -137,6 +137,17 @@ Then, set the `themeVariant` value with the name of your custom theme file. That
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  # Change default color scheme with a variant one. Can be "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = "mine"
 ```
+
+### Multiple variants
+
+You can also set multiple variants. In this case, the first variant is the default choosen on first view and a theme selector will be shown in the menu footer.
+
+```toml
+[params]
+  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green"  or an array like [ "blue", "green" ].
+  themeVariant = [ "red", "blue ]
+```
+

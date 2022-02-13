@@ -1,3 +1,41 @@
+var theme = window.localStorage.getItem( 'theme' );
+changeTheme( theme, true );
+
+function changeTheme( theme, noanimation ){
+    if( !theme ){
+        return;
+    }
+    var link = document.querySelector( '#variant-style' );
+    var old_path = link.getAttribute( 'href' );
+    var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + theme + '$2' );
+    if( old_path != new_path ){
+        var animations = document.querySelectorAll( '.default-animation' );
+        if( noanimation ){
+            animations.forEach( function( e ){
+                e.classList.remove( 'default-animation' );
+            });
+        }
+        window.localStorage.setItem( 'theme', theme );
+        link.setAttribute( 'href', new_path );
+        var select = document.querySelector( '#select-theme' );
+        select.value = theme;
+        // we have to wait to reset the animation style
+        if( noanimation ){
+            setTimeout( function(){
+                animations.forEach( function( e ){
+                    e.classList.add( 'default-animation' );
+                });
+            }, 525 );
+        }
+        // remove selection, because if some uses an arrow navigation
+        // by pressing the left or right cursor key, we will automatically
+        // select a different style
+        if( document.activeElement ){
+            document.activeElement.blur();
+        }
+    }
+}
+
 // Scrollbar Width function
 function getScrollBarWidth() {
     var inner = document.createElement('p');
