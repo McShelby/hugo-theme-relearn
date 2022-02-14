@@ -26,7 +26,7 @@
         </ul>
       </div>
       {{- end }}
-      <div class="highlightable">
+      <div id="content-wrapper" class="highlightable">
         <ul class="topics">
           {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
           {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
@@ -59,7 +59,7 @@
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len $footer | plainify))) }}
         {{- if or $showlangswitch $showvisitedlinks $showfooter }}
-        <hr/>
+        <hr class="default-animation"/>
         {{- end }}
         {{- if or $showlangswitch $showthemeswitch $showvisitedlinks }}
         <div id="prefooter">
