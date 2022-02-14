@@ -170,3 +170,7 @@ You can also set multiple variants. In this case, the first variant is the defau
   # Change default color scheme with a variant one.
   themeVariant = [ "relearn-light", "relearn-dark" ]
 ```
+
+{{% notice tip %}}
+If you want to switch the syntax highlightning theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/),  and `@import` this stylesheet in your color variant stylesheet. For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
+{{% /notice %}}
