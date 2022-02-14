@@ -9,16 +9,16 @@
     <meta name="author" content="Sören Weber">
     <title>What&#39;s new :: Documentation for Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/basics/migration/index.xml" title="Documentation for Hugo Relearn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1644867287" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1644867287" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1644867287" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1644867287" rel="stylesheet" media="print">
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1644873607" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1644873607" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1644873607" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1644873607" rel="stylesheet" media="print">
     <style>
     </style>
     <script>
@@ -69,7 +69,7 @@
         }
       }
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1644867287"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1644873607"></script>
   </head>
   <body class="default-animation" data-url="/hugo-theme-relearn/basics/migration/">
     <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
@@ -112,9 +112,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1644867287"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1644867287"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1644867287"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1644873607"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1644873607"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1644873607"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -285,11 +285,24 @@
 <h2 id="300">3.0.0</h2>
 <ul>
 <li>
-<p><strong>Breaking</strong>: We made changes to the menu footer. If you have your <code>menu-footer.html</code> partial overridden, you may have to provide additional styling in your partial. For a reference take a look into the <code>menu-footer.html</code> partial that is coming with the exampleSite.</p>
+<p><strong>Breaking</strong>: We made changes to the menu footer. If you have your <code>menu-footer.html</code> <a href="/hugo-theme-relearn/basics/customization/">partial overridden</a>, you may have to provide additional styling in your partial. For a reference take a look into the <code>menu-footer.html</code> partial that is coming with the exampleSite.</p>
 <p>This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and <em>Clear history</em> functionality).</p>
 </li>
 <li>
-<p><strong>New</strong>: You can now set multiple color variants. In this case, the first variant is the default, choosen on first view and a theme selector will be shown in the menu footer. See the <a href="/hugo-theme-relearn/basics/customization/#multiple-variants">documentation</a> for configuration.</p>
+<p><strong>Breaking</strong>: We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light greem menu header) as used in the official documentation.</p>
+<p>This change will only affect your installation if you&rsquo;ve not set the <code>themeVariant</code> parameter in your <code>config.toml</code>. <a href="/hugo-theme-relearn/basics/customization/#learn-variant">If you still want to use the Learn color variant</a>, you have to explicitly set <code>themeVariant=&quot;learn&quot;</code> in your <code>config.toml</code>.</p>
+<p>Note, that this will also affect your site if viewed with Internet Explorer 11 and can not reconfigured as it does not support CSS variables.</p>
+</li>
+<li>
+<p><strong>Change</strong>: Due to a bug, that we couldn&rsquo;t fix in a general manner for all configurations, we decided to remove <code>--MENU-SEARCH-BOX-ICONS-color</code>.</p>
+</li>
+<li>
+<p><strong>New</strong>: With this release we have introduced a lot more color variables you can use in <a href="/hugo-theme-relearn/basics/customization/#mine-variant">your color variants</a>. Your old variants will still work and don&rsquo;t need to be changed as apropriate default values are used by the theme. Nevertheless, the new colors allow for much more customization.</p>
+<p>This feature was implemented to let the theme support dark color variants.</p>
+</li>
+<li>
+<p><strong>New</strong>: You can now configure multiple color variants in your <code>config.toml</code>. In this case, the first variant is the default, choosen on first view and a theme switch will be shown in the menu footer. See the <a href="/hugo-theme-relearn/basics/customization/#multiple-variants">documentation</a> for configuration.</p>
+<p>Note, that the new theme switch will not work with Internet Explorer 11 as it does not support CSS variables.</p>
 </li>
 </ul>
 <h2 id="290">2.9.0</h2>
@@ -390,7 +403,7 @@
 <hr>
 <h2 id="250">2.5.0</h2>
 <ul>
-<li><strong>Change</strong>: Add new colors <code>--MAIN-CODE-color</code> and <code>--MAIN-CODE-BG-color</code> for syntax highlightning fallback in your stylesheet in case <code>guessSyntax=true</code> is set. Ideally they are set to the same values as the ones from your chosen chroma style.</li>
+<li><strong>Change</strong>: Add new colors <code>--CODE-BLOCK-color</code> and <code>--CODE-BLOCK-BG-color</code> for a fallback of syntax highlightning in case <code>guessSyntax=true</code> is set. Ideally they are set to the same values as the ones from your chosen chroma style.</li>
 </ul>
 <hr>
 <h2 id="240">2.4.0</h2>
@@ -420,7 +433,7 @@
 <h2 id="210">2.1.0</h2>
 <ul>
 <li>
-<p><strong>Change</strong>: In case the site&rsquo;s structure contains addional *.md files not part of the site (eg files that are meant to be included by site pages - see CHANGELOG.md in exampleSite), they will now be ignored by the search.</p>
+<p><strong>Change</strong>: In case the site&rsquo;s structure contains addional *.md files not part of the site (eg files that are meant to be included by site pages - see <code>CHANGELOG.md</code> in the exampleSite), they will now be ignored by the search.</p>
 </li>
 <li>
 <p><strong>New</strong>: Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting <code>disableSearchHiddenPages=true</code> in your <code>config.toml</code>.</p>
@@ -489,18 +502,18 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1644867287"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1644867287"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1644867287"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1644867287"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1644867287"></script>
-    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1644867287"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1644867287"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1644873607"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1644873607"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1644873607"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1644873607"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1644873607"></script>
+    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1644873607"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1644873607"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
       }
     </script>
-    <script src="/hugo-theme-relearn/js/relearn.js?1644867287"></script>
+    <script src="/hugo-theme-relearn/js/relearn.js?1644873607"></script>
   </body>
 </html>
