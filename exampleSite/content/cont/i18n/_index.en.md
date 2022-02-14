@@ -54,7 +54,7 @@ Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-con
 
 ## Overwrite translation strings
 
-Translations strings are used for common default values used in the theme (*Edit this page* button, *Search placeholder* and so on). Translations are available in English and Piratized English but you may use another language or want to override default values.
+Translations strings are used for common default values used in the theme (*Edit* button, *Search placeholder* and so on). Translations are available in English and Piratized English but you may use another language or want to override default values.
 
 To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-relearn/i18n/en.toml`
 
