@@ -60,8 +60,8 @@ Note that some of these parameters are explained in details in other sections of
   # Order sections in menu by "weight" or "title". Default to "weight";
   # this can be overridden in the pages frontmatter
   ordersectionsby = "weight"
-  # Change default color scheme with a variant one. Can be "red", "blue", "green" or an array like [ "blue", "green" ].
-  themeVariant = ""
+  # Change default color scheme with a variant one. Eg. can be "red", "blue", "green" or an array like [ "blue", "green" ].
+  themeVariant = "relearn-light"
   # Provide a list of custom css files to load relative from the `static/` folder in the site root.
   custom_css = ["css/foo.css", "css/bar.css"]
   # Change the title separator. Default to "::".

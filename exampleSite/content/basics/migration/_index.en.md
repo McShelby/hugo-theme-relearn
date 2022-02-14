@@ -16,11 +16,25 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 3.0.0
 
-- **Breaking**: We made changes to the menu footer. If you have your `menu-footer.html` partial overridden, you may have to provide additional styling in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
+- **Breaking**: We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to provide additional styling in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
   This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and *Clear history* functionality).
 
-- **New**: You can now set multiple color variants. In this case, the first variant is the default, choosen on first view and a theme selector will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
+- **Breaking**: We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light greem menu header) as used in the official documentation.
+
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant]({{%relref "basics/customization/#learn-variant" %}}), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
+
+  Note, that this will also affect your site if viewed with Internet Explorer 11 and can not reconfigured as it does not support CSS variables.
+
+- **Change**: Due to a bug, that we couldn't fix in a general manner for all configurations, we decided to remove `--MENU-SEARCH-BOX-ICONS-color`.
+
+- **New**: With this release we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#mine-variant" %}}). Your old variants will still work and don't need to be changed as apropriate default values are used by the theme. Nevertheless, the new colors allow for much more customization.
+
+  This feature was implemented to let the theme support dark color variants.
+
+- **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default, choosen on first view and a theme switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
+
+  Note, that the new theme switch will not work with Internet Explorer 11 as it does not support CSS variables.
 
 ## 2.9.0
 
@@ -108,7 +122,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.1.0
 
-- **Change**: In case the site's structure contains addional *.md files not part of the site (eg files that are meant to be included by site pages - see CHANGELOG.md in exampleSite), they will now be ignored by the search.
+- **Change**: In case the site's structure contains addional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
 
 - **New**: Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages=true` in your `config.toml`.
 

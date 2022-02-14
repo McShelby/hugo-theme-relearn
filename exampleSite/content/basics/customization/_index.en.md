@@ -9,20 +9,20 @@ In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials
 
 This theme defines the following partials :
 
-- *content*: the content page itself. This can be overridden if you wan't to display page's meta data above or below the content.
-- *header*: the header of the content page (contains the breadcrumbs). _Not meant to be overwritten_
-- *custom-header*: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file
-- *footer*: the footer of the content page (contains the arrows). _Not meant to be overwritten_
-- *custom-footer*:  custom footer in page. Meant to be overwritten when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file
-- *favicon*: the favicon
-- *logo*: the logo, on top left hand corner.
-- *meta*: HTML meta tags, if you want to change default behavior
-- *menu*: left menu. _Not meant to be overwritten_
-- *menu-pre*: side-wide configuration to prepend to menu items. If you override this, it is your responsiblity to take the page's `pre` setting into account.
-- *menu-post*: side-wide configuration to append to menu items. If you override this, it is your responsiblity to take the page's `post` setting into account.
-- *menu-footer*: footer of the the left menu
-- *search*: search box
-- *toc*: table of contents
+- `content.html`: the content page itself. This can be overridden if you wan't to display page's meta data above or below the content.
+- `header.html`: the header of the content page (contains the breadcrumbs). _Not meant to be overwritten_
+- `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file
+- `footer.html`: the footer of the content page (contains the arrows). _Not meant to be overwritten_
+- `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file
+- `favicon.html`: the favicon
+- `logo.html`: the logo, on top left hand corner
+- `meta.html`: HTML meta tags, if you want to change default behavior
+- `menu.html`: left menu. _Not meant to be overwritten_
+- `menu-pre.html`: side-wide configuration to prepend to menu items. If you override this, it is your responsiblity to take the page's `pre` setting into account.
+- `menu-post.html`: side-wide configuration to append to menu items. If you override this, it is your responsiblity to take the page's `post` setting into account.
+- `menu-footer.html`: footer of the the left menu
+- `search.html`: search box. _Not meant to be overwritten_
+- `toc.html`: table of contents
 
 ## Change the logo
 
@@ -53,17 +53,37 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
-  themeVariant = ""
+  # Change default color scheme with a variant one.
+  themeVariant = "" # or themeVariant = "relearn" or themeVariant = "relearn-light"
 ```
 
-![Red variant](images/standard-variant.png?width=60pc)
+![Standard variant](images/standard-variant.png?width=60pc)
+
+### Standard dark variant
+
+```toml
+[params]
+  # Change default color scheme with a variant one.
+  themeVariant = "relearn-dark"
+```
+
+![Dark variant](images/standard-dark-variant.png?width=60pc)
+
+### Learn variant
+
+```toml
+[params]
+  # Change default color scheme with a variant one.
+  themeVariant = "learn"
+```
+
+![Learn variant](images/learn-variant.png?width=60pc)
 
 ### Red variant
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
+  # Change default color scheme with a variant one.
   themeVariant = "red"
 ```
 
@@ -73,7 +93,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
+  # Change default color scheme with a variant one.
   themeVariant = "blue"
 ```
 
@@ -83,7 +103,7 @@ The Relearn theme let you choose between some predefined color scheme variants, 
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green" or an array like [ "blue", "green" ].
+  # Change default color scheme with a variant one.
   themeVariant = "green"
 ```
 
@@ -137,17 +157,16 @@ Then, set the `themeVariant` value with the name of your custom theme file. That
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green" or an array like [ "blue", "green" ].
+  # Change default color scheme with a variant one.
   themeVariant = "mine"
 ```
 
 ### Multiple variants
 
-You can also set multiple variants. In this case, the first variant is the default choosen on first view and a theme selector will be shown in the menu footer.
+You can also set multiple variants. In this case, the first variant is the default choosen on first view and a theme switch will be shown in the menu footer.
 
 ```toml
 [params]
-  # Change default color scheme with a variant one. Can be empty, "red", "blue", "green"  or an array like [ "blue", "green" ].
-  themeVariant = [ "red", "blue ]
+  # Change default color scheme with a variant one.
+  themeVariant = [ "relearn-light", "relearn-dark" ]
 ```
-
