@@ -96,7 +96,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.5.0
 
-- **Change**: Add new colors `--MAIN-CODE-color` and `--MAIN-CODE-BG-color` for syntax highlightning fallback in your stylesheet in case `guessSyntax=true` is set. Ideally they are set to the same values as the ones from your chosen chroma style.
+- **Change**: Add new colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` for a fallback of syntax highlightning in case `guessSyntax=true` is set. Ideally they are set to the same values as the ones from your chosen chroma style.
 
 ---
 
