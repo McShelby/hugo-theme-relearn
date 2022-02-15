@@ -57,7 +57,7 @@
         {{- $themevariants := slice | append .Site.Params.themeVariant }}
         {{- $showthemeswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
-        {{- $showfooter := not (eq 0 (int (len $footer | plainify))) }}
+        {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
         {{- if or $showlangswitch $showvisitedlinks $showfooter }}
         <hr class="default-animation"/>
         {{- end }}

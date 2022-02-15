@@ -44,7 +44,8 @@
         {{- end }}
         {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
         {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
-        {{- $toc := (and (not $currentDisableToc) (not .Params.chapter)) }}
+        {{- $hastoc := not (eq 0 (int (len (.TableOfContents | plainify)))) }}
+        {{- $toc := (and $hastoc (not $currentDisableToc) (not .Params.chapter)) }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
               <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }}' data-sidebar-toggle="">
