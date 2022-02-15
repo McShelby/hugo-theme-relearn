@@ -24,15 +24,15 @@ This document shows you what's new in the latest release. For a detailed list of
 
   This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant]({{%relref "basics/customization/#learn-variant" %}}), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
 
-  Note, that this will also affect your site if viewed with Internet Explorer 11 and can not reconfigured as it does not support CSS variables.
+  Note, that this will also affect your site if viewed with Internet Explorer 11 and can not be reconfigured as it does not support CSS variables.
 
-- **Change**: Due to a bug, that we couldn't fix in a general manner for all configurations, we decided to remove `--MENU-SEARCH-BOX-ICONS-color`.
+- **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to remove `--MENU-SEARCH-BOX-ICONS-color`.
 
-- **New**: With this release we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#mine-variant" %}}). Your old variants will still work and don't need to be changed as apropriate default values are used by the theme. Nevertheless, the new colors allow for much more customization.
+- **New**: With this release we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#mine-variant" %}}). Your old variants will still work and don't need to be changed as apropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
-  This feature was implemented to let the theme support dark color variants.
+  This feature was implemented to allow dark mode color variants.
 
-- **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default, choosen on first view and a theme switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
+- **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a theme switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
 
   Note, that the new theme switch will not work with Internet Explorer 11 as it does not support CSS variables.
 
@@ -74,7 +74,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.8.0
 
-- **Change**: Although never officially documented, this release removes the font `Novacento`/`Novecento` from the release. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for czech.
+- **Change**: Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for czech.
 
 - **New**: The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box]({{% relref "basics/customization/#change-the-favicon" %}}). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
@@ -96,7 +96,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.5.0
 
-- **Change**: Add new colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` for a fallback of syntax highlightning in case `guessSyntax=true` is set. Ideally they are set to the same values as the ones from your chosen chroma style.
+- **Change**: New colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` were added to provide a fallback for Hugos syntax highlightning in case `guessSyntax=true` is set. Ideally the colors are set to the same values as the ones from your chosen chroma style.
 
 ---
 
@@ -134,7 +134,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.0.0
 
-- **Change**: Syntaxhighlightning was switched to [built in Hugo mechanism](https://gohugo.io/content-management/syntax-highlighting/). You may need to configure a new stylesheet or decide to roll you own as describedd on in the Hugo documentation
+- **Change**: Syntaxhighlightning was switched to the [built in Hugo mechanism](https://gohugo.io/content-management/syntax-highlighting/). You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation
 
 - **Change**: In the predefined stylesheets there was a typo and `--MENU-HOME-LINK-HOVERED-color` must be changed to `--MENU-HOME-LINK-HOVER-color`.
 
