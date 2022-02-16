@@ -149,7 +149,19 @@ First, create a new CSS file in your local `static/css` folder prefixed by `them
     --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #ffffff; /* Color of background for the active category (only) */
 
     --MENU-VISITED-color: #506397; /* Color of 'page visited' icons in menu */
-    --MENU-SECTION-HR-color: #282830; /* Color of <hr> separator in menu */
+    --MENU-SECTION-HR-color: #606060; /* Color of <hr> separator in menu */
+
+    /* base styling for boxes */
+    --BOX-CAPTION-color: rgba( 255, 255, 255, 1 ); /* color of the title text */
+    --BOX-BG-color: rgba( 255, 255, 255, .833 ); /* color of the content background */
+    --BOX-TEXT-color: rgba( 16, 16, 16, 1 ); /* fixed color of the content text */
+
+    /* optional base colors for colored boxes as in attachments and notice shortcode */
+    --BOX-BLUE-color: rgba( 48, 117, 229, 1 );
+    --BOX-GREEN-color: rgba( 42, 178, 24, 1 );
+    --BOX-GREY-color: rgba( 128, 128, 128, 1 );
+    --BOX-ORANGE-color: rgba( 237, 153, 9, 1 );
+    --BOX-RED-color: rgba( 224, 62, 62, 1 );
 }
 ```
 

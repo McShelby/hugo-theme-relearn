@@ -1,7 +1,9 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
 {{- $style := .Get 0 }}
 {{- $title := .Get 1 | default ($style | T) }}
-<div class="notices {{ $style }}">
-    <div class="label">{{ $title }}</div>
-{{ .Inner -}}
+<div class="box notices {{ $style }}">
+    <div class="box-label">{{ $title }}</div>
+    <div class="box-content">
+{{ .Inner }}
+    </div>
 </div>
