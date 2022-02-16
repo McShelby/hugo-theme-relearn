@@ -364,7 +364,7 @@ jQuery(function() {
             }
 
             code.addClass('copy-to-clipboard-inline');
-            code.after('<span class="copy-to-clipboard" title="Copy to clipboard" />');
+            code.after('<span class="copy-to-clipboard" title="Copy to clipboard"><i class="fas fa-copy"></i>');
             code.next('.copy-to-clipboard').on('mouseleave', function() {
                 $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
             });
