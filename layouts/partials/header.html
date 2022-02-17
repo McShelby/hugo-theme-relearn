@@ -91,13 +91,13 @@
           {{- partial "toc.html" . }}
         {{- end }}
         </div></div>
-        <div id="head-tags">
-{{- partial "tags.html" . }}
-        </div>
       {{- if .Params.chapter }}
        <div id="chapter">
       {{- end }}
         <main id="body-inner">
+          <div id="head-tags">
+{{- partial "tags.html" . }}
+          </div>
       {{- if and (not .IsHome) (not .Params.chapter) }}
           <h1>{{ if eq .Kind "term" }}{{ .Data.Singular }} :: {{ end }}{{ .Title }}</h1>
       {{- end }}
