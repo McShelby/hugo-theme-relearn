@@ -20,7 +20,7 @@ weight = 10
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-url = "showcase/"
+url = "more/showcase/"
 weight = 11
 
 [[menu.shortcuts]]
@@ -75,7 +75,7 @@ Example from the current website:
 
   [[Languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-    url = "showcase/"
+    url = "more/showcase/"
     weight = 11
 
   [[Languages.en.menu.shortcuts]]
@@ -109,7 +109,7 @@ Example from the current website:
 
   [[Languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-    url = "showcase/"
+    url = "more/showcase/"
     weight = 11
 
   [[Languages.pir.menu.shortcuts]]
