@@ -338,22 +338,21 @@ jQuery(function() {
 
         if (text.length > 5) {
             if (!clipInit) {
-                var text, clip = new ClipboardJS('.copy-to-clipboard', {
+                var clip = new ClipboardJS('.copy-to-clipboard-button', {
                     text: function(trigger) {
-                        text = $(trigger).prev('code').text();
+                        var text = $(trigger).prev('code').text();
                         return text.replace(/^\$\s/gm, '');
                     }
                 });
 
-                var inPre;
                 clip.on('success', function(e) {
                     e.clearSelection();
-                    inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                 });
 
                 clip.on('error', function(e) {
-                    inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                     $(document).one('copy', function(){
                         $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
@@ -363,9 +362,12 @@ jQuery(function() {
                 clipInit = true;
             }
 
-            code.addClass('copy-to-clipboard-inline');
-            code.after('<span class="copy-to-clipboard" title="Copy to clipboard"><i class="fas fa-copy"></i>');
-            code.next('.copy-to-clipboard').on('mouseleave', function() {
+            var parent = code.parent();
+            code.addClass('copy-to-clipboard-code');
+            code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
+            code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            code.after('<span class="copy-to-clipboard-button" title="Copy to clipboard"><i class="fas fa-copy"></i>');
+            code.next('.copy-to-clipboard-button').on('mouseleave', function() {
                 $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
             });
         }
