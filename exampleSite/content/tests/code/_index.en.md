@@ -30,8 +30,7 @@ Code fences without any selected language
 }
 ````
 
-<pre><code>
-{
+<pre><code>{
   "well": "some JSON in HTML elements here"
 }
 </code></pre>

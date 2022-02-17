@@ -348,14 +348,14 @@ jQuery(function() {
                 clip.on('success', function(e) {
                     e.clearSelection();
                     var inPre = $(e.trigger).parent().parent().prop('tagName') == 'PRE';
-                    $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                 });
 
                 clip.on('error', function(e) {
                     var inPre = $(e.trigger).parent().parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                     $(document).one('copy', function(){
-                        $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                        $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                     });
                 });
 
@@ -366,7 +366,7 @@ jQuery(function() {
             code.addClass('copy-to-clipboard-code');
             code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
             code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
-            code.after('<span class="copy-to-clipboard-button" title="Copy to clipboard"><i class="fas fa-copy"></i>');
+            code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
             code.next('.copy-to-clipboard-button').on('mouseleave', function() {
                 $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
             });
@@ -513,7 +513,7 @@ jQuery(function() {
         var element = $(this);
         var url = encodeURI(document.location.origin + document.location.pathname);
         var link = url + "#"+element[0].id;
-        var html = " " + $( "<span>" ).addClass("anchor").attr("data-clipboard-text", link).append("<i class='fas fa-link fa-lg'></i>").get(0).outerHTML;
+        var html = " " + $( '<span>' ).addClass("anchor").attr("title", window.T_Copy_link_to_clipboard).attr("data-clipboard-text", link).append("<i class='fas fa-link fa-lg'></i>").get(0).outerHTML;
         return html;
     });
 
@@ -522,8 +522,8 @@ jQuery(function() {
     });
 
     clip.on('success', function(e) {
-            e.clearSelection();
-            $(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-s');
+        e.clearSelection();
+        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
     });
 
     $('a[rel="lightbox"]').featherlight({
