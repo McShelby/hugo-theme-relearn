@@ -353,77 +353,28 @@ th {
 }
 
 #body .padding {
-    padding: 3rem 6rem;
+    padding: 0;
+}
+#body-inner {
+    padding: 0 3rem 4rem 3rem;
 }
 @media only all and (max-width: 59.938em) {
     #body .padding {
         position: static;
-        padding: 15px 3rem;
+    }
+    #body-inner {
+        padding: 0 2rem 15px 2rem;
     }
 }
 @media only all and (max-width: 47.938em) {
-    #body .padding {
-        padding: 5px 1rem;
+    #body-inner {
+        padding: 0 1rem 5px 1rem;
     }
 }
 
 #body h1 + hr {
     margin-bottom: 2rem;
     margin-top: -1rem;
-}
-
-@media only all and (max-width: 59.938em) {
-    #body #navigation {
-        display: table;
-        margin-right: 0 !important;
-        position: static;
-        width: 100%;
-    }
-}
-
-#body .nav {
-    bottom: 0;
-    cursor: pointer;
-    display: table;
-    font-size: 50px;
-    height: 100%;
-    position: fixed;
-    text-align: center;
-    top: 0;
-    width: 4rem;
-}
-#body .nav > i {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-}
-@media only all and (max-width: 59.938em) {
-    #body .nav {
-        display: table-cell;
-        height: 100px;
-        line-height: 100px;
-        padding-top: 0;
-        position: static;
-        text-align: center;
-        top: auto;
-        width: 50%;
-    }
-    #body .nav > i {
-        display: inline-block;
-    }
-}
-
-#body .nav:hover {
-    background-color: rgba( 134, 134, 134, .066 );
-}
-
-#body .nav.nav-pref {
-    left: 0;
-}
-
-#body .nav.nav-next {
-    margin-right: 0px;
-    right: 0;
 }
 
 /* we limit width if we have large screens */
@@ -935,25 +886,38 @@ td {
 
 #top-bar > div {
     background-color: rgba( 134, 134, 134, .066 );
-    padding: 0 1rem;
     height: 100%;
 }
 
-#top-bar.is-sticky {
-    box-shadow: 1px 2px 5px 1px rgba( 134, 134, 134, .2 );
-}
-
+.navigation,
 #top-github-link {
     display: block;
     float: right;
     z-index: 1;
 }
 
-#top-github-link,
-#body #breadcrumbs {
+.nav,
+.github-link {
+    border-left: thin solid rgba( 134, 134, 134, .333 );
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+span.nav i{
+    color: rgba( 134, 134, 134, .333 );
+}
+
+.navigation,
+#top-github-link {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+
+#toc-menu,
+#sidebar-toggle-span {
+  border-right: thin solid rgba( 134, 134, 134, .333 );
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #body #breadcrumbs {
@@ -963,29 +927,33 @@ td {
     line-height: 1.4;
     margin-bottom: 0;
     overflow: hidden;
-    padding-left: 0;
+    position: relative;
     text-overflow: ellipsis;
+    top: 50%;
+    transform: translateY(-50%);
     white-space: nowrap;
-    width: 70%;
+    width: calc(100% - 4*3.25rem);
 }
 
 #sidebar-toggle-span {
     display: none;
 }
-
+.progress {
+    left: 1rem;
+    top: 1rem;
+}
 @media only all and (max-width: 47.938em) {
     #sidebar-toggle-span {
         display: inline;
     }
-}
-
-#body #breadcrumbs span {
-    padding: 0 0.1rem;
+    .progress {
+        left: 4.25rem;
+    }
 }
 
 #body #breadcrumbs .links {
     display: inline;
-    padding: 0 0.1rem;
+    padding: 0 .75rem;
 }
 
 #body #breadcrumbs .links * {
@@ -1042,7 +1010,7 @@ a[aria-disabled="true"] {
         position: absolute;
         right: 0;
         top: 0;
-        z-index: 10;
+        z-index: 1000;
     }
 }
 
@@ -1224,6 +1192,7 @@ option {
     width: 100%;
 }
 
+#body .navigation a.highlight:after,
 #body #sidebar-toggle-span a.highlight:after,
 #body #top-github-link a.highlight:after {
     background-color: transparent;
@@ -1260,18 +1229,6 @@ option {
 
 #TableOfContents > ul > li > a {
     font-weight: 500;
-}
-
-#toc-menu {
-  border-right: thin solid rgba( 134, 134, 134, .333 );
-  margin-right: 0.5rem !important;
-  padding-right: 1rem !important;
-}
-
-#sidebar-toggle-span {
-  border-right: thin solid rgba( 134, 134, 134, .333 );
-  margin-right: 1rem !important;
-  padding-right: 0.5rem !important;
 }
 
 .btn {
