@@ -85,9 +85,15 @@
 
 {{- define "breadcrumb" }}
   {{- $parent := .page.Parent }}
-  {{- $depth := add .depth 1 }}
+  {{- $ispublished := gt (int (len .page.Permalink)) 0 }}
+  {{- $depth := .depth }}
+  {{- if $ispublished }}
+    {{- $depth = add $depth 1 }}
+  {{- end }}
   {{- if $parent }}
     {{- template "breadcrumb" dict "page" $parent "depth" $depth }}
   {{- end }}
+  {{- if $ispublished }}
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="{{ $depth }}" /><a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}><span itemprop="name">{{ .page.Title }}</span></a>{{ if .depth }} > {{ end }}</li>
+  {{- end }}
 {{- end }}

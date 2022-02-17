@@ -1,8 +1,8 @@
 +++
 title = "Morrre"
 [_build]
-  render = "always"
+  render = "never"
   list = "never"
-  publishResources = true
+  publishResources = false
 +++
 {{< piratify >}}

@@ -1,9 +1,9 @@
 +++
 title = "More"
 [_build]
-  render = "always"
+  render = "never"
   list = "never"
-  publishResources = true
+  publishResources = false
 +++
 
 {{%children containerstyle="div" style="h2" description="true" %}}
