@@ -347,12 +347,12 @@ jQuery(function() {
 
                 clip.on('success', function(e) {
                     e.clearSelection();
-                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                    var inPre = $(e.trigger).parent().parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                 });
 
                 clip.on('error', function(e) {
-                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                    var inPre = $(e.trigger).parent().parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                     $(document).one('copy', function(){
                         $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
