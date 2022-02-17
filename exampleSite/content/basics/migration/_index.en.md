@@ -28,9 +28,11 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to remove `--MENU-SEARCH-BOX-ICONS-color`.
 
-- **New**: With this release we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#mine-variant" %}}). Your old variants will still work and don't need to be changed as apropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+- **New**: With this release you are now capable to define your own *dark mode* variants.
 
-  This feature was implemented to allow dark mode color variants.
+  To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#mine-variant" %}}). Your old variants will still work and don't need to be changed as apropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+
+  To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
 
 - **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a theme switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
 

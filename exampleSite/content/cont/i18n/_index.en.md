@@ -7,7 +7,7 @@ The Relearn theme is fully compatible with Hugo multilingual mode.
 
 It provides:
 
-- Translation strings for default values (English, Arabic, Dutch, Piratized English, German, Hindi, Indonesian, Japanese, Piratized English, Portuguese, Russian, Simplified Chinese, Spanish, Turkish). Feel free to contribute!
+- Translation strings for default values (English, Piratized English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Portuguese, Russian, Spanish, Vietnamese, Turkish). Feel free to contribute!
 - Automatic menu generation from multilingual content
 - In-browser language switching
 
