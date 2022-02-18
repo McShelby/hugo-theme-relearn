@@ -31,7 +31,7 @@ weight = 20
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-url = "credits/"
+url = "more/credits/"
 weight = 30
 
 [[menu.shortcuts]]
@@ -86,7 +86,7 @@ Example from the current website:
 
   [[Languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-    url = "credits/"
+    url = "more/credits/"
     weight = 30
 
   [[Languages.en.menu.shortcuts]]
@@ -120,7 +120,7 @@ Example from the current website:
 
   [[Languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
-    url = "credits/"
+    url = "more/credits/"
     weight = 30
 
   [[Languages.pir.menu.shortcuts]]

@@ -1,10 +1,6 @@
 +++
 disableToc = true
 title = "Showcase"
-[_build]
-  render = "always"
-  list = "never"
-  publishResources = true
 +++
 
 ## [GoboLinux Wiki](https://wiki.gobolinux.org/) by GoboLinux.org

@@ -32,8 +32,13 @@
         <div id="top-bar"><div>
         {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
         {{- if $showPrevNext }}
+          {{- $parent := .Parent }}
+          {{- $ispublished := true }}
+          {{- if $parent }}
+            {{- $ispublished = gt (int (len $parent.Permalink)) 0 }}
+          {{- end }}
           <div class="navigation">
-          {{- if ($.Scratch.Get "relearnNextPage") }}
+          {{- if and $ispublished ($.Scratch.Get "relearnNextPage") }}
             {{- with ($.Scratch.Get "relearnNextPage") }}
               <a class="nav nav-next" href="{{.RelPermalink}}" title="{{.Title}}"><i class="fas fa-chevron-right fa-fw"></i></a>
             {{- end }}
@@ -42,7 +47,7 @@
           {{- end }}
           </div>
           <div class="navigation">
-          {{- if ($.Scratch.Get "relearnPrevPage") }}
+          {{- if and $ispublished ($.Scratch.Get "relearnPrevPage") }}
             {{- with ($.Scratch.Get "relearnPrevPage") }}
               <a class="nav nav-prev" href="{{.RelPermalink}}" title="{{.Title}}"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end}}
