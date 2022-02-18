@@ -8,17 +8,17 @@
     <meta name="description" content="Generation of diagram and flowchart from text in a similar manner as Markdown">
     <meta name="author" content="Sören Weber">
     <title>Mermaid :: Documentation for Hugo Relearn Theme</title>
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645167344" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1645167344" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1645167344" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645167344" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1645167344" rel="stylesheet" media="print">
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645228023" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1645228023" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1645228023" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645228023" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/print.css?1645228023" rel="stylesheet" media="print">
     <style>
     </style>
     <script>
@@ -26,13 +26,21 @@
       // on page load if the user has selected a non default variant
       var theme = window.localStorage.getItem( 'theme' );
       changeTheme( theme );
+      function parseTheme( s ){
+        if( !s || !s.match ){
+          return '';
+        }
+        var matches = s.match(/^.*\/theme-(.*?)\.css.*$/);
+        var theme = matches && matches.length == 2 ? matches[ 1 ] : '';
+        return theme;
+      }
       function getTheme(){
         var link = document.querySelector( '#variant-style' );
         if( !link ){
           return;
         }
         var path = link.getAttribute( 'href' );
-        var theme = path.match(/^.*\/theme-(.*?)\.css.*$/)[ 1 ];
+        var theme = parseTheme( path );
         return theme;
       }
       function markTheme( theme ){
@@ -69,7 +77,7 @@
         }
       }
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1645167344"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1645228023"></script>
   </head>
   <body class="default-animation" data-url="/hugo-theme-relearn/shortcodes/mermaid/">
     <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
@@ -112,9 +120,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1645167344"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1645167344"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1645167344"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1645228023"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1645228023"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1645228023"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -521,16 +529,16 @@ classDiagram
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645167344"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645167344"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645167344"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645167344"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645167344"></script>
-    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645167344"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645167344"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645228023"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645228023"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645228023"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645228023"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645228023"></script>
+    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645228023"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645228023"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"startOnLoad\": true }"), { startOnLoad: false } ) );
+        mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"securityLevel\": \"loose\"}"), { startOnLoad: false } ) );
       }
     </script>
     <script>
@@ -539,6 +547,6 @@ classDiagram
       window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
       window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
     </script>
-    <script src="/hugo-theme-relearn/js/relearn.js?1645167344"></script>
+    <script src="/hugo-theme-relearn/js/relearn.js?1645228023"></script>
   </body>
 </html>
