@@ -32,13 +32,21 @@
       {{ "// on page load if the user has selected a non default variant" | safeJS }}
       var theme = window.localStorage.getItem( 'theme' );
       changeTheme( theme );
+      function parseTheme( s ){
+        if( !s || !s.match ){
+          return '';
+        }
+        var matches = s.match(/^.*\/theme-(.*?)\.css.*$/);
+        var theme = matches && matches.length == 2 ? matches[ 1 ] : '';
+        return theme;
+      }
       function getTheme(){
         var link = document.querySelector( '#variant-style' );
         if( !link ){
           return;
         }
         var path = link.getAttribute( 'href' );
-        var theme = path.match(/^.*\/theme-(.*?)\.css.*$/)[ 1 ];
+        var theme = parseTheme( path );
         return theme;
       }
       function markTheme( theme ){
