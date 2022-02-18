@@ -180,9 +180,9 @@ var variables = [
   { name: 'TAG-BG-color',          group: 'content', fallback: 'MENU-HEADER-BG-color' },
 
 
-  { name: 'MAIN-TITLES-color',       group: 'headings',  default: '#444753' },
+  { name: 'MAIN-TITLES-TEXT-color',  group: 'headings',  default: '#444753' },
   { name: 'MAIN-TITLES-H1-color',    group: 'headings', fallback: 'MAIN-TEXT-color' },
-  { name: 'MAIN-TITLES-H2-color',    group: 'headings', fallback: 'MAIN-TITLES-color' },
+  { name: 'MAIN-TITLES-H2-color',    group: 'headings', fallback: 'MAIN-TITLES-TEXT-color' },
   { name: 'MAIN-TITLES-H3-color',    group: 'headings', fallback: 'MAIN-TITLES-H2-color' },
   { name: 'MAIN-TITLES-H4-color',    group: 'headings', fallback: 'MAIN-TITLES-H3-color' },
   { name: 'MAIN-TITLES-H5-color',    group: 'headings', fallback: 'MAIN-TITLES-H4-color' },
