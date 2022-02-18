@@ -15,6 +15,9 @@
     {{- range .Site.Params.custom_css }}
     <link href="{{(printf "%s" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
+    {{- if .Site.Params.collapsibleMenu }}
+    <link href="{{"css/collapsible-menu.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    {{- end }}
     <style>
     {{- if .Site.Params.disableInlineCopyToClipBoard }}
       :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {

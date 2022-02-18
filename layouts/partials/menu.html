@@ -27,7 +27,8 @@
       </div>
       {{- end }}
       <div id="content-wrapper" class="highlightable">
-        <ul class="topics">
+        {{- $collapsibleMenu := .Site.Params.collapsibleMenu | default false }}
+        <ul class="topics{{ if .Site.Params.CollapsibleMenu }} collapsible-menu{{ end }}">
           {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
           {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
           {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
@@ -143,7 +144,10 @@
           {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
           {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
           {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
-          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .RelPermalink $currentFileRelPermalink}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><a href="{{.RelPermalink}}">
+          {{- $collapsibleMenu := .Site.Params.collapsibleMenu | default false }}
+          {{ $numberOfPages := (add (len ( where .Pages "Params.hidden" "ne" true )) (len ( where .Sections "Params.hidden" "ne" true ))) }}
+          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if eq .RelPermalink $currentFileRelPermalink}} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">
+          {{ if and $collapsibleMenu (ne $numberOfPages 0) }}<input type="checkbox" id="section-{{ md5 .Page }}" class="toggle" {{ if .IsAncestor $currentNode }}checked{{ end }} /><label for="section-{{ md5 .Page }}" class="flex justify-between"></label>{{ end }}<a href="{{.RelPermalink}}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul>
               {{- $pages := .Pages }}
