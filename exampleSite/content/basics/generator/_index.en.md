@@ -127,6 +127,9 @@ function generateGraph(){
     if( e.fallback ){
       g_edges += '  ' + e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name+';\n';
     }
+    else{
+      g_edges += '  ' +e.name+':::'+e.name+';\n';
+    }
     g_handler += '  click '+e.name+' changeColor\n';
   });
 
@@ -163,7 +166,6 @@ function generateGraph(){
            g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
     '    end\n' +
     '  end\n' +
-    '  class MENU-SECTIONS-BG-color menu\n' +
        g_edges +
        g_handler;
 
