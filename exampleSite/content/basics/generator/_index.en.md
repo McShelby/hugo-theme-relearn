@@ -155,57 +155,60 @@ function generateGraphStyles(){
   styleGroup( '#menusections', 'MENU-SECTIONS-ACTIVE-BG-color' )
 }
 
+function generateEdge( e ){
+  var edge = '';
+  if( e.fallback ){
+    edge += e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name;
+  }
+  else{
+    edge += e.name+':::'+e.name;
+  }
+  return edge;
+}
+
 function generateGraph(){
   var g_groups = {};
-  var g_edges = '';
   var g_handler = '';
 
   variables.forEach( function( e ){
     var group = e.group || ' ';
-    g_groups[ group ] = ( g_groups[ group ] || [] ).concat( e.name );
-    if( e.fallback ){
-      g_edges += '  ' + e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name+';\n';
-    }
-    else{
-      g_edges += '  ' +e.name+':::'+e.name+';\n';
-    }
+    g_groups[ group ] = ( g_groups[ group ] || [] ).concat( e );
     g_handler += '  click '+e.name+' changeColor\n';
   });
 
   var graph =
-    'flowchart RL\n' +
+    'flowchart LR\n' +
     '  subgraph menu["menu"]\n' +
     '    direction TB\n' +
     '    subgraph menuheader["header"]\n' +
     '      direction LR\n' +
-           g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph menusections["sections"]\n' +
     '      direction LR\n' +
-           g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '  end\n' +
     '  subgraph maincontent["content"]\n' +
     '    direction TB\n' +
-         g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + e + '\n'; }, '' ) +
+         g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + generateEdge( e ) + '\n'; }, '' ) +
     '    subgraph mainheadings["headings"]\n' +
     '      direction LR\n' +
-           g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph inlinecode["inline code"]\n' +
     '      direction LR\n' +
-           g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph blockcode["code blocks"]\n' +
     '      direction LR\n' +
-           g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph coloredboxes["colored boxes"]\n' +
     '      direction LR\n' +
-           g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '  end\n' +
-       g_edges +
        g_handler;
 
   console.log( graph );
@@ -220,7 +223,6 @@ var variables = [
   { name: 'MAIN-ANCHOR-color',     group: 'content', fallback: 'MAIN-LINK-color' },
   { name: 'MAIN-BG-color',         group: 'content',  default: '#ffffff' },
   { name: 'TAG-BG-color',          group: 'content', fallback: 'MENU-HEADER-BG-color' },
-
 
   { name: 'MAIN-TITLES-TEXT-color',  group: 'headings',  default: '#444753' },
   { name: 'MAIN-TITLES-H1-color',    group: 'headings', fallback: 'MAIN-TEXT-color' },
