@@ -18,6 +18,8 @@ This is best seen in the `neon` variant with the differnet headings colors. Ther
 
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
 
+<a id="vardownload" class="btn btn-default">Download color variant</a>
+
 <script>
 function initGraph(){
   var graphDefinition = generateGraph();
@@ -30,7 +32,31 @@ function initGraph(){
       generateGraphStyles();
     }
   }, 100 );
+
+  var btn = document.querySelector( '#vardownload' );
+  btn.addEventListener('click', getStylesheet);
 };
+
+function download(data, mimetype, filename){
+    // Creating a Blob for having a csv file format
+    // and passing the data with type
+    const blob = new Blob([data], { type: mimetype });
+    // Creating an object for downloading url
+    const url = window.URL.createObjectURL(blob);
+    // Creating an anchor(a) tag of HTML
+    const a = document.createElement('a');
+    // Passing the blob downloading url
+    a.setAttribute('href', url);
+    // Setting the anchor tag attribute for downloading
+    // and passing the download file name
+    a.setAttribute('download', filename);
+    // Performing a download with click
+    a.click();
+}
+
+function getStylesheet(){
+  download( generateStylesheet(), 'text/css', 'theme-' + themename + '.css' );
+}
 
 function adjustCSSRules(selector, props, sheets){
   // get stylesheet(s)
@@ -61,6 +87,10 @@ function adjustCSSRules(selector, props, sheets){
   }
 }
 
+function getColorValue( c ){
+  return getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ).trim();
+}
+
 function changeColor( c ){
   var style = null;
   var theme = getTheme();
@@ -82,7 +112,7 @@ function changeColor( c ){
   }
 
   var r = document.querySelector( ':root' );
-  var v = getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ).trim();
+  var v = getColorValue( c );
   var n = prompt( '--'+c, v ).trim();
   if( n ){
     r = style.quer
@@ -91,6 +121,15 @@ function changeColor( c ){
   else{
     style.removeProperty( '--'+c );
   }
+}
+
+function generateStylesheet(){
+  var style =
+    '/* ' + themename + ' */\n' +
+    ':root {\n' +
+      variables.reduce( function( a, e ){ return a + '  --' + e.name + ': ' + getColorValue(e.name) + ';\n'; }, '' ) +
+    '}\n';
+  return style;
 }
 
 function styleGroup( selector, colorvar ){
@@ -173,6 +212,7 @@ function generateGraph(){
   return graph;
 }
 
+var themename = 'my-variant';
 var variables = [
   { name: 'MAIN-TEXT-color',       group: 'content',  default: '#101010' },
   { name: 'MAIN-LINK-color',       group: 'content',  default: '#486ac9' },
