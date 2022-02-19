@@ -9,17 +9,17 @@
     <meta name="author" content="Sören Weber">
     <title>Stylesheet generator :: Documentation for Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/basics/generator/index.xml" title="Documentation for Hugo Relearn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645287238" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1645287238" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1645287238" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645287238" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1645287238" rel="stylesheet" media="print">
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645312237" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1645312237" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1645312237" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645312237" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/print.css?1645312237" rel="stylesheet" media="print">
     <style>
     </style>
     <script>
@@ -78,7 +78,7 @@
         }
       }
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1645287238"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1645312237"></script>
   </head>
   <body class="default-animation" data-url="/hugo-theme-relearn/basics/generator/">
     <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
@@ -121,9 +121,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1645287238"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1645287238"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1645287238"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1645312237"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1645312237"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1645312237"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -425,57 +425,60 @@ function generateGraphStyles(){
   styleGroup( '#menusections', 'MENU-SECTIONS-ACTIVE-BG-color' )
 }
 
+function generateEdge( e ){
+  var edge = '';
+  if( e.fallback ){
+    edge += e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name;
+  }
+  else{
+    edge += e.name+':::'+e.name;
+  }
+  return edge;
+}
+
 function generateGraph(){
   var g_groups = {};
-  var g_edges = '';
   var g_handler = '';
 
   variables.forEach( function( e ){
     var group = e.group || ' ';
-    g_groups[ group ] = ( g_groups[ group ] || [] ).concat( e.name );
-    if( e.fallback ){
-      g_edges += '  ' + e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name+';\n';
-    }
-    else{
-      g_edges += '  ' +e.name+':::'+e.name+';\n';
-    }
+    g_groups[ group ] = ( g_groups[ group ] || [] ).concat( e );
     g_handler += '  click '+e.name+' changeColor\n';
   });
 
   var graph =
-    'flowchart RL\n' +
+    'flowchart LR\n' +
     '  subgraph menu["menu"]\n' +
     '    direction TB\n' +
     '    subgraph menuheader["header"]\n' +
     '      direction LR\n' +
-           g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph menusections["sections"]\n' +
     '      direction LR\n' +
-           g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '  end\n' +
     '  subgraph maincontent["content"]\n' +
     '    direction TB\n' +
-         g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + e + '\n'; }, '' ) +
+         g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + generateEdge( e ) + '\n'; }, '' ) +
     '    subgraph mainheadings["headings"]\n' +
     '      direction LR\n' +
-           g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph inlinecode["inline code"]\n' +
     '      direction LR\n' +
-           g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph blockcode["code blocks"]\n' +
     '      direction LR\n' +
-           g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '    subgraph coloredboxes["colored boxes"]\n' +
     '      direction LR\n' +
-           g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + e + '\n'; }, '' ) +
+           g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
     '    end\n' +
     '  end\n' +
-       g_edges +
        g_handler;
 
   console.log( graph );
@@ -490,7 +493,6 @@ var variables = [
   { name: 'MAIN-ANCHOR-color',     group: 'content', fallback: 'MAIN-LINK-color' },
   { name: 'MAIN-BG-color',         group: 'content',  default: '#ffffff' },
   { name: 'TAG-BG-color',          group: 'content', fallback: 'MENU-HEADER-BG-color' },
-
 
   { name: 'MAIN-TITLES-TEXT-color',  group: 'headings',  default: '#444753' },
   { name: 'MAIN-TITLES-H1-color',    group: 'headings', fallback: 'MAIN-TEXT-color' },
@@ -566,13 +568,13 @@ initGraph();
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645287238"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645287238"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645287238"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645287238"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645287238"></script>
-    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645287238"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645287238"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645312237"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645312237"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645312237"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645312237"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645312237"></script>
+    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645312237"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645312237"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"securityLevel\": \"loose\"}"), { startOnLoad: false } ) );
@@ -584,6 +586,6 @@ initGraph();
       window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
       window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
     </script>
-    <script src="/hugo-theme-relearn/js/relearn.js?1645287238"></script>
+    <script src="/hugo-theme-relearn/js/relearn.js?1645312237"></script>
   </body>
 </html>
