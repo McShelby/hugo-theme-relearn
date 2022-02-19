@@ -9,17 +9,17 @@
     <meta name="author" content="Sören Weber">
     <title>Stylesheet generrrat&#39;r :: Documentat&#39;n fer Cap&#39;n Hugo Relearrrn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/pir/basics/generator/index.xml" title="Documentat&#39;n fer Cap&#39;n Hugo Relearrrn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645230306" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1645230306" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1645230306" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645230306" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1645230306" rel="stylesheet" media="print">
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645276907" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1645276907" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1645276907" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645276907" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/print.css?1645276907" rel="stylesheet" media="print">
     <style>
     </style>
     <script>
@@ -31,7 +31,7 @@
         if( !s || !s.match ){
           return '';
         }
-        var matches = s.match(/^.*\/theme-(.*?)\.css.*$/);
+        var matches = s.match(/^.*\/?theme-(.*?)\.css.*$/);
         var theme = matches && matches.length == 2 ? matches[ 1 ] : '';
         return theme;
       }
@@ -78,7 +78,7 @@
         }
       }
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1645230306"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1645276907"></script>
   </head>
   <body class="default-animation" data-url="/hugo-theme-relearn/pir/basics/generator/">
     <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
@@ -121,9 +121,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Searrrch...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1645230306"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1645230306"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1645230306"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1645276907"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1645276907"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1645276907"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -287,6 +287,7 @@
 <p>This be best seen 'n th' <code>neon</code> variant wit' th' differnet head'ns colors. There, colors fer th' head'n <code>h1</code>, <code>h2</code>, <code>h3</code> an' <code>h4</code> be explicitly set. <code>h5</code> be not set an' inherits its value from <code>h4</code>. <code>h6</code> be also not set an' inherits its value from <code>h5</code>.</p>
 <h2 id="variant-generator">Variant generator</h2>
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
+<p><a id="vardownload" class="btn btn-default">Download color variant</a></p>
 <script>
 funct'n initGraph(){
   var graphDefinit'n = generateGraph();
@@ -299,7 +300,31 @@ funct'n initGraph(){
       generateGraphStyles();
     }
   }, 100 );
+
+  var btn = document.querySelector( '#vardownload' );
+  btn.addEventListener('click', getStylesheet);
 };
+
+funct'n download(data, mimetype, filename){
+    // Creat'n a Blob fer hav'n a csv file format
+    // an' pass'n th' data wit' type
+    const blob = new Blob([data], { type: mimetype });
+    // Creat'n an object fer download'n url
+    const url = window.URL.createObjectURL(blob);
+    // Creat'n an anchor(a) tag o' HTML
+    const a = document.createElement('a');
+    // Pass'n th' blob download'n url
+    a.setAttribute('href', url);
+    // Sett'n th' anchor tag attribute fer download'n
+    // an' pass'n th' download file name
+    a.setAttribute('download', filename);
+    // Perform'n a download wit' click
+    a.click();
+}
+
+funct'n getStylesheet(){
+  download( generateStylesheet(), 'text/css', 'theme-' + themename + '.css' );
+}
 
 funct'n adjustCSSRules(selector, props, sheets){
   // get stylesheet(s)
@@ -330,6 +355,10 @@ funct'n adjustCSSRules(selector, props, sheets){
   }
 }
 
+funct'n getColorValue( c ){
+  return getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ).trim();
+}
+
 funct'n changeColor( c ){
   var style = null;
   var theme = getTheme();
@@ -351,7 +380,7 @@ funct'n changeColor( c ){
   }
 
   var r = document.querySelector( ':root' );
-  var v = getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ).trim();
+  var v = getColorValue( c );
   var n = prompt( '--'+c, v ).trim();
   if( n ){
     r = style.quer
@@ -360,6 +389,15 @@ funct'n changeColor( c ){
   else{
     style.removeProperty( '--'+c );
   }
+}
+
+funct'n generateStylesheet(){
+  var style =
+    '/* ' + themename + ' */\n' +
+    ':root {\n' +
+      variables.reduce( function( a, e ){ return a + '  --' + e.name + ': ' + getColorValue(e.name) + ';\n'; }, '' ) +
+    '}\n';
+  return style;
 }
 
 funct'n styleGroup( selector, colorvar ){
@@ -442,6 +480,7 @@ funct'n generateGraph(){
   return graph;
 }
 
+var themename = 'my-variant';
 var variables = [
   { name: 'MAIN-TEXT-color',       group: 'content',  default: '#101010' },
   { name: 'MAIN-LINK-color',       group: 'content',  default: '#486ac9' },
@@ -526,13 +565,13 @@ initGraph();
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645230306"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645230306"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645230306"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645230306"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645230306"></script>
-    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645230306"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645230306"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645276907"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645276907"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645276907"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645276907"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645276907"></script>
+    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645276907"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645276907"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"securityLevel\": \"loose\"}"), { startOnLoad: false } ) );
@@ -544,6 +583,6 @@ initGraph();
       window.T_Copy_link_to_clipboard = 'Copy link t\u0027 clipboard';
       window.T_Link_copied_to_clipboard = 'Copied link t\u0027 clipboard!';
     </script>
-    <script src="/hugo-theme-relearn/js/relearn.js?1645230306"></script>
+    <script src="/hugo-theme-relearn/js/relearn.js?1645276907"></script>
   </body>
 </html>
