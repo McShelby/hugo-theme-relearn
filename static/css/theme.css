@@ -1133,7 +1133,7 @@ option {
     display: none;
 }
 
-/* expander expand collapsed marked, must override logic of expand.html, controlled by relearn.js */
+/* expander expand collapsed marked, must override logic of expand.html, controlled by theme.js */
 .expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-down {
     display: inline-block;
 }
@@ -1307,7 +1307,7 @@ option {
 
 /* anchors */
 .anchor {
-  color: #486ac9; /* var(--MAIN-ANCHOR-color) */
+  color: #134fbf; /* var(--MAIN-ANCHOR-color) */
   cursor: pointer;
   font-size: .5em;
   margin-left: .66em;
@@ -1441,10 +1441,14 @@ h6 a {
   }
 }
 
-/* turn off animiation in IE because this causes the menu
-to move in from the left on every page load */
 @media all and (-ms-high-contrast:none) {
+    /* turn off animiation in IE because this causes the menu
+    to move in from the left on every page load */
     .default-animation{
         transition: none;
+    }
+    /* turn off variant selector as it uses modern stuff */
+    #select-variant-container{
+        display: none;
     }
 }

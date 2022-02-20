@@ -65,7 +65,7 @@
         <div id="prefooter">
           <ul>
             {{- if $showlangswitch }}
-            <li>
+            <li id="select-language-container">
               <a class="padding select-container">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
@@ -92,12 +92,12 @@
             </li>
             {{- end }}
             {{- if $showthemeswitch }}
-            <li>
+            <li id="select-variant-container">
               <a class="padding select-container">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
-                  <select id="select-theme" onchange="changeTheme( this.value );">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
                     {{- $firsttheme := true }}
                     {{- range $themevariants }}
                       {{- $themevariant := . }}
@@ -113,7 +113,7 @@
                 </div>
                 <div class="select-clear"></div>
               </a>
-              <script>markTheme( getTheme() );</script>
+              <script>variants.markSelectedVariant( variants.getVariant() );</script>
             </li>
             {{- end }}
             {{- if $showvisitedlinks }}
