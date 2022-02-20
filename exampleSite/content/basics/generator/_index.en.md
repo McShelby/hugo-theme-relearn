@@ -38,19 +38,11 @@ function initGraph(){
 };
 
 function download(data, mimetype, filename){
-    // Creating a Blob for having a csv file format
-    // and passing the data with type
-    const blob = new Blob([data], { type: mimetype });
-    // Creating an object for downloading url
-    const url = window.URL.createObjectURL(blob);
-    // Creating an anchor(a) tag of HTML
-    const a = document.createElement('a');
-    // Passing the blob downloading url
+    var blob = new Blob([data], { type: mimetype });
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
     a.setAttribute('href', url);
-    // Setting the anchor tag attribute for downloading
-    // and passing the download file name
     a.setAttribute('download', filename);
-    // Performing a download with click
     a.click();
 }
 
@@ -87,8 +79,17 @@ function adjustCSSRules(selector, props, sheets){
   }
 }
 
+function normalizeColor( c ){
+  c = c.trim();
+  c = c.replace( /\s*\(\s*/, "( " );
+  c = c.replace( /\s*\)\s*/, " )" );
+  c = c.replace( /\s*,\s*/, ", " );
+  c = c.replace( /0*\./, "." );
+  c = c.replace( / +/, " " );
+  return c;
+}
 function getColorValue( c ){
-  return getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ).trim();
+  return normalizeColor( getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ) );
 }
 
 function changeColor( c ){
@@ -123,11 +124,29 @@ function changeColor( c ){
   }
 }
 
+function generateColorVariable( e ){
+  var v = '';
+  var gen = true;
+  if( e.fallback ){
+    f = variables.find( function( x ){
+      return x.name == e.fallback;
+    });
+    gen = getColorValue(f.name) != getColorValue(e.name);
+  }
+  else if( e.default ){
+    gen = e.default != getColorValue(e.name);
+  }
+  if( gen ){
+    v += '  --' + e.name + ': ' + getColorValue(e.name) + ';\n';
+  }
+  return v;
+}
+
 function generateStylesheet(){
   var style =
     '/* ' + themename + ' */\n' +
     ':root {\n' +
-      variables.reduce( function( a, e ){ return a + '  --' + e.name + ': ' + getColorValue(e.name) + ';\n'; }, '' ) +
+      variables.reduce( function( a, e ){ return a + generateColorVariable( e ); }, '' ) +
     '}\n';
   return style;
 }
@@ -144,7 +163,6 @@ function generateGraphStyles(){
   variables.forEach( function( e ){
     styleGroup( '.'+e.name, e.name );
   });
-  //styleGroup( '.root', 'MAIN-TEXT-color' )
   styleGroup( '#maincontent', 'MAIN-BG-color' )
   styleGroup( '#mainheadings', 'MAIN-BG-color' )
   styleGroup( '#inlinecode', 'CODE-INLINE-BG-color' )
@@ -281,7 +299,7 @@ var variables = [
   { name: 'BOX-ORANGE-TEXT-color',             group: 'colored boxes', fallback: 'BOX-TEXT-color' },
   { name: 'BOX-NOTE-TEXT-color',               group: 'colored boxes', fallback: 'BOX-ORANGE-TEXT-color' },
 
-  { name: 'BOX-RED-color',                     group: 'colored boxes',  default: 'rgba( 237, 153, 9, 1 )' },
+  { name: 'BOX-RED-color',                     group: 'colored boxes',  default: 'rgba( 224, 62, 62, 1 )' },
   { name: 'BOX-WARNING-color',                 group: 'colored boxes', fallback: 'BOX-RED-color' },
   { name: 'BOX-RED-TEXT-color',                group: 'colored boxes', fallback: 'BOX-TEXT-color' },
   { name: 'BOX-WARNING-TEXT-color',            group: 'colored boxes', fallback: 'BOX-RED-TEXT-color' },
