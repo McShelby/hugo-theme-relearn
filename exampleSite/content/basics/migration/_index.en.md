@@ -34,6 +34,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
 
+- **New**: To make the creation of new variants easier for you, we've added a new interactive [theme variant generator]({{%relref "basics/generator" %}}).
+
 - **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a theme switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
 
   Note, that the new theme switch will not work with Internet Explorer 11 as it does not support CSS variables.

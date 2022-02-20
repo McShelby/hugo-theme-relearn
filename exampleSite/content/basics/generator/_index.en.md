@@ -1,7 +1,6 @@
 +++
 title = "Stylesheet generator"
 weight = 26
-hidden = true
 +++
 
 This interactive tool may help you to generate your own color variant stylesheet.
@@ -12,8 +11,9 @@ The graph is interactive and reflect the current colors. You can click on any of
 
 The arrowed lines reflect how colors are inherited thru different parts of the theme if the descendent isn't overwritten. If you want to delete a color and let it inherit from its parent, just delete the value from the input field.
 
-This is best seen in the `neon` variant with the differnet headings colors. There, colors for the heading `h1`, `h2`, `h3` and `h4` are explicitly set. `h5` is not set and inherits its value from `h4`. `h6` is also not set and inherits its value from `h5`.
+To better understand this select the `neon` variant and modify the differnet heading colors. There, colors for the heading `h2`, `h3` and `h4` are explicitly set. `h5` is not set and inherits its value from `h4`. `h6` is also not set and inherits its value from `h5`.
 
+Once you are satisfied, you can download the new variants file and install it in your site.
 ## Variant generator
 
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
