@@ -316,7 +316,7 @@ var variants = {
 		{ name: 'MAIN-BG-color',                         group: 'content',        default: '#ffffff',                     tooltip: 'background color of content', },
 		{ name: 'TAG-BG-color',                          group: 'content',       fallback: 'MENU-HEADER-BG-color',        tooltip: 'tag color', },
 
-		{ name: 'MAIN-TITLES-TEXT-color',                group: 'headings',       default: '#444753',                     tooltip: 'text color of h2-h6 titles and transparent box titles', },
+		{ name: 'MAIN-TITLES-TEXT-color',                group: 'headings',       default: '#4a4a4a',                     tooltip: 'text color of h2-h6 titles and transparent box titles', },
 		{ name: 'MAIN-TITLES-H1-color',                  group: 'headings',      fallback: 'MAIN-TEXT-color',             tooltip: 'text color of h1 titles', },
 		{ name: 'MAIN-TITLES-H2-color',                  group: 'headings',      fallback: 'MAIN-TITLES-TEXT-color',      tooltip: 'text color of h2-h6 titles', },
 		{ name: 'MAIN-TITLES-H3-color',                  group: 'headings',      fallback: 'MAIN-TITLES-H2-color',        tooltip: 'text color of h3-h6 titles', },
