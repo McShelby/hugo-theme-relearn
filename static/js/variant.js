@@ -248,13 +248,21 @@ var variants = {
 		this.styleGraphGroup( '#menusections', 'MENU-SECTIONS-ACTIVE-BG-color' )
 	},
 
-	generateGraphEdge: function( e ){
+	generateGraphGroupedEdge: function( e ){
 		var edge = '';
-		if( e.fallback ){
+		if( e.fallback && e.group == this.findColor( e.fallback ).group ){
 			edge += e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name;
 		}
 		else{
 			edge += e.name+':::'+e.name;
+		}
+		return edge;
+	},
+
+	generateGraphVarGroupedEdge: function( e ){
+		var edge = '';
+		if( e.fallback && e.group != this.findColor( e.fallback ).group ){
+			edge += e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name;
 		}
 		return edge;
 	},
@@ -275,33 +283,34 @@ var variants = {
 			'    direction TB\n' +
 			'    subgraph menuheader["header"]\n' +
 			'      direction LR\n' +
-					g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'    subgraph menusections["sections"]\n' +
 			'      direction LR\n' +
-					g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'  end\n' +
 			'  subgraph maincontent["content"]\n' +
 			'    direction TB\n' +
-					g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    subgraph mainheadings["headings"]\n' +
 			'      direction LR\n' +
-					g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'    subgraph inlinecode["inline code"]\n' +
 			'      direction LR\n' +
-					g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'    subgraph blockcode["code blocks"]\n' +
 			'      direction LR\n' +
-					g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'    subgraph coloredboxes["colored boxes"]\n' +
 			'      direction LR\n' +
-					g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphEdge( e ) + '\n'; }.bind( this ), '' ) +
+					g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'  end\n' +
+				this.variantvariables.reduce( function( a, e ){ return a + '  ' + this.generateGraphVarGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			g_handler;
 
 		console.log( graph );
