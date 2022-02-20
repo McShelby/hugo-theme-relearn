@@ -207,6 +207,10 @@ See [Mermaid documentation](http://mermaid-js.github.io/mermaid/getting-started/
 
 Also, if you want to use mermaid codefences, you have to turn off `guessSyntax` for the `markup.highlight` setting.
 
+{{% notice warning %}}
+Due to limitations with [Mermaid](https://github.com/mermaid-js/mermaid/issues/1846), it is currently not possible to use Mermaid code fences in an initially collapsed `expand` shortcode. This is a know issue and [can't be fixed by this theme](https://github.com/McShelby/hugo-theme-relearn/issues/187).
+{{% /notice %}}
+
 ### Example
 
 ````toml
