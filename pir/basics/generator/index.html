@@ -9,76 +9,24 @@
     <meta name="author" content="Sören Weber">
     <title>Stylesheet generrrat&#39;r :: Documentat&#39;n fer Cap&#39;n Hugo Relearrrn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/pir/basics/generator/index.xml" title="Documentat&#39;n fer Cap&#39;n Hugo Relearrrn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645374820" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1645374820" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1645374820" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645374820" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1645374820" rel="stylesheet" media="print">
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1645397928" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1645397928" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1645397928" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1645397928" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/print.css?1645397928" rel="stylesheet" media="print">
     <style>
     </style>
+    <script src="/hugo-theme-relearn/js/variant.js?1645397928"></script>
     <script>
-      // we need to define this script in the head to avoid flickering
-      // on page load if the user has selected a non default variant
-      var theme = window.localStorage.getItem( 'theme' );
-      changeTheme( theme );
-      function parseTheme( s ){
-        if( !s || !s.match ){
-          return '';
-        }
-        var matches = s.match(/^.*\/?theme-([^\/]*?)\.css.*$/);
-        var theme = matches && matches.length == 2 ? matches[ 1 ] : '';
-        return theme;
-      }
-      function getTheme(){
-        var link = document.querySelector( '#variant-style' );
-        if( !link ){
-          return;
-        }
-        var path = link.getAttribute( 'href' );
-        var theme = parseTheme( path );
-        return theme;
-      }
-      function markTheme( theme ){
-        var select = document.querySelector( '#select-theme' );
-        if( !select ){
-          return;
-        }
-        select.value = theme;
-      }
-      function changeTheme( theme ){
-        var themes = [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ];
-        if( themes.indexOf( theme ) < 0 ){
-          theme = themes.length ? themes[ 0 ] : null;
-        }
-        if( !theme ){
-          return;
-        }
-        var link = document.querySelector( '#variant-style' );
-        if( !link ){
-          return;
-        }
-        var old_path = link.getAttribute( 'href' );
-        var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + theme + '$2' );
-        if( old_path != new_path ){
-          window.localStorage.setItem( 'theme', theme );
-          link.setAttribute( 'href', new_path );
-          markTheme( theme );
-          // remove selection, because if some uses an arrow navigation
-          // by pressing the left or right cursor key, we will automatically
-          // select a different style
-          if( document.activeElement ){
-            document.activeElement.blur();
-          }
-        }
-      }
+      variants.init( [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1645374820"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1645397928"></script>
   </head>
   <body class="default-animation" data-url="/hugo-theme-relearn/pir/basics/generator/">
     <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
@@ -121,9 +69,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Searrrch...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1645374820"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1645374820"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1645374820"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1645397928"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1645397928"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1645397928"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -179,7 +127,7 @@
         <hr class="default-animation"/>
         <div id="prefooter">
           <ul>
-            <li>
+            <li id="select-language-container">
               <a class="padding select-container">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
@@ -192,12 +140,12 @@
                 <div class="select-clear"></div>
               </a>
             </li>
-            <li>
+            <li id="select-variant-container">
               <a class="padding select-container">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
-                  <select id="select-theme" onchange="changeTheme( this.value );">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
                     <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
                     <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
                     <option id="learn" value="learn">Learn</option>
@@ -209,7 +157,7 @@
                 </div>
                 <div class="select-clear"></div>
               </a>
-              <script>markTheme( getTheme() );</script>
+              <script>variants.markSelectedVariant( variants.getVariant() );</script>
             </li>
             <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear Historrry</a></li>
           </ul>
@@ -287,293 +235,9 @@
 <p>This be best seen 'n th' <code>neon</code> variant wit' th' differnet head'ns colors. There, colors fer th' head'n <code>h1</code>, <code>h2</code>, <code>h3</code> an' <code>h4</code> be explicitly set. <code>h5</code> be not set an' inherits its value from <code>h4</code>. <code>h6</code> be also not set an' inherits its value from <code>h5</code>.</p>
 <h2 id="variant-generator">Variant generator</h2>
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
-<p><a id="vardownload" class="btn btn-default">Download color variant</a></p>
+<p><a class="vardownload btn btn-default">Download color variant</a></p>
 <script>
-funct'n initGraph(){
-  var graphDefinit'n = generateGraph();
-  var element = document.querySelector( '#vargenerator' );
-  element.innerHTML = graphDefinit'n;
-
-  var interval_id = setInterval( function(){
-    if( document.querySelectorAll( '#vargenerator.mermaid > svg' ).length ){
-      clearInterval( interval_id );
-      generateGraphStyles();
-    }
-  }, 100 );
-
-  var btn = document.querySelector( '#vardownload' );
-  btn.addEventListener('click', getStylesheet);
-};
-
-funct'n download(data, mimetype, filename){
-    var blob = new Blob([data], { type: mimetype });
-    var url = window.URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', filename);
-    a.click();
-}
-
-funct'n getStylesheet(){
-  download( generateStylesheet(), 'text/css', 'theme-' + themename + '.css' );
-}
-
-funct'n adjustCSSRules(selector, props, sheets){
-  // get stylesheet(s)
-  if (!sheets) sheets = [...document.styleSheets];
-  else if (sheets.sup){    // sheets be a str'n
-    let absoluteURL = new URL(sheets, document.baseURI).href;
-    sheets = [...document.styleSheets].filter(i => i.href == absoluteURL);
-  }
-  else sheets = [sheets];  // sheets be a stylesheet
-
-  // CSS (& HTML) reduce spaces 'n selector t' one.
-  selector = selector.replace(/\s+/g, ' ');
-  const findRule = s => [...s.cssRules].reverse().find(i => i.selectorText == selector)
-  let rule = sheets.map(findRule).filter(i=>i).pop()
-
-  const propsArr = props.sup
-    ? props.split(/\s*;\s*/).map(i => i.split(/\s*:\s*/)) // from str'n
-    : Object.entries(props);                              // from Object
-
-  if (rule) fer (let [prop, val] o' propsArr){
-    // rule.style[prop] = val; be against th' spec, an' does not support !important.
-    rule.style.setProperty(prop, ...val.split(/ *!(?=important)/));
-  }
-  else {
-    sheet = sheets.pop();
-    if (!props.sup) props = propsArr.reduce((str, [k, v]) => `${str}; ${k}: ${v}`, '');
-    sheet.insertRule(`${selector} { ${props} }`, sheet.cssRules.length);
-  }
-}
-
-funct'n normalizeColor( c ){
-  c = c.trim();
-  c = c.replace( /\s*\(\s*/, "( " );
-  c = c.replace( /\s*\)\s*/, " )" );
-  c = c.replace( /\s*,\s*/, ", " );
-  c = c.replace( /0*\./, "." );
-  c = c.replace( / +/, " " );
-  return c;
-}
-funct'n getColorValue( c ){
-  return normalizeColor( getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ) );
-}
-
-funct'n changeColor( c ){
-  var style = null;
-  var theme = getTheme();
-  for( var n = 0; n < document.styleSheets.length; ++n ){
-    if( theme = parseTheme( document.styleSheets[n].href ) ){
-      var s = document.styleSheets[n];
-      for( var m = 0; m < s.rules.length; ++m ){
-        if( s.rules[m].selectorText == ':root' ){
-          style = s.rules[m].style;
-          break;
-        }
-      }
-      break;
-    }
-  }
-  if( !style ){
-    alert( 'Theme stylesheet fer theme "' + theme + '" not set or found' );
-    return;
-  }
-
-  var r = document.querySelector( ':root' );
-  var v = getColorValue( c );
-  var n = prompt( '--'+c, v ).trim();
-  if( n ){
-    r = style.quer
-    style.setProperty( '--'+c, n );
-  }
-  else{
-    style.removeProperty( '--'+c );
-  }
-}
-
-funct'n generateColorVariable( e ){
-  var v = '';
-  var gen = true;
-  if( e.fallback ){
-    f = variables.find( function( x ){
-      return x.name == e.fallback;
-    });
-    gen = getColorValue(f.name) != getColorValue(e.name);
-  }
-  else if( e.default ){
-    gen = e.default != getColorValue(e.name);
-  }
-  if( gen ){
-    v += '  --' + e.name + ': ' + getColorValue(e.name) + ';\n';
-  }
-  return v;
-}
-
-funct'n generateStylesheet(){
-  var style =
-    '/* ' + themename + ' */\n' +
-    ':root {\n' +
-      variables.reduce( function( a, e ){ return a + generateColorVariable( e ); }, '' ) +
-    '}\n';
-  return style;
-}
-
-funct'n styleGroup( selector, colorvar ){
-  adjustCSSRules( '#body svg '+selector+' > rect', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
-  adjustCSSRules( '#body svg '+selector+' > .label .nodeLabel', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
-  adjustCSSRules( '#body svg '+selector+' > .cluster-label .nodeLabel', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
-//  adjustCSSRules( '#body svg '+selector+' rect', 'stroke: #80808080;' );
-  adjustCSSRules( '#body svg '+selector+' .nodeLabel', 'filter: grayscale(1) invert(1) contrast(10000);' );
-}
-
-funct'n generateGraphStyles(){
-  variables.forEach( function( e ){
-    styleGroup( '.'+e.name, e.name );
-  });
-  styleGroup( '#maincontent', 'MAIN-BG-color' )
-  styleGroup( '#mainheadings', 'MAIN-BG-color' )
-  styleGroup( '#inlinecode', 'CODE-INLINE-BG-color' )
-  styleGroup( '#blockcode', 'CODE-BLOCK-BG-color' )
-  styleGroup( '#coloredboxes', 'BOX-BG-color' );
-  styleGroup( '#menu', 'MENU-SECTIONS-BG-color' )
-  styleGroup( '#menuheader', 'MENU-HEADER-BG-color' )
-  styleGroup( '#menusections', 'MENU-SECTIONS-ACTIVE-BG-color' )
-}
-
-funct'n generateEdge( e ){
-  var edge = '';
-  if( e.fallback ){
-    edge += e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name;
-  }
-  else{
-    edge += e.name+':::'+e.name;
-  }
-  return edge;
-}
-
-funct'n generateGraph(){
-  var g_groups = {};
-  var g_handler = '';
-
-  variables.forEach( function( e ){
-    var group = e.group || ' ';
-    g_groups[ group ] = ( g_groups[ group ] || [] ).concat( e );
-    g_handler += '  click '+e.name+' changeColor\n';
-  });
-
-  var graph =
-    'flowchart LR\n' +
-    '  subgraph menu["menu"]\n' +
-    '    direct'n TB\n' +
-    '    subgraph menuheader["header"]\n' +
-    '      direct'n LR\n' +
-           g_groups[ 'header' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    end\n' +
-    '    subgraph menusections["sections"]\n' +
-    '      direct'n LR\n' +
-           g_groups[ 'sections' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    end\n' +
-    '  end\n' +
-    '  subgraph maincontent["content"]\n' +
-    '    direct'n TB\n' +
-         g_groups[ 'content' ].reduce( function( a, e ){ return a + '    ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    subgraph mainheadings["headings"]\n' +
-    '      direct'n LR\n' +
-           g_groups[ 'headings' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    end\n' +
-    '    subgraph inlinecode["inline code"]\n' +
-    '      direct'n LR\n' +
-           g_groups[ 'inline code' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    end\n' +
-    '    subgraph blockcode["code blocks"]\n' +
-    '      direct'n LR\n' +
-           g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    end\n' +
-    '    subgraph coloredboxes["colored boxes"]\n' +
-    '      direct'n LR\n' +
-           g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + generateEdge( e ) + '\n'; }, '' ) +
-    '    end\n' +
-    '  end\n' +
-       g_handler;
-
-  console.log( graph );
-  return graph;
-}
-
-var themename = 'my-variant';
-var variables = [
-  { name: 'MAIN-TEXT-color',       group: 'content',  default: '#101010' },
-  { name: 'MAIN-LINK-color',       group: 'content',  default: '#486ac9' },
-  { name: 'MAIN-LINK-HOVER-color', group: 'content', fallback: 'MAIN-LINK-color' },
-  { name: 'MAIN-ANCHOR-color',     group: 'content', fallback: 'MAIN-LINK-color' },
-  { name: 'MAIN-BG-color',         group: 'content',  default: '#ffffff' },
-  { name: 'TAG-BG-color',          group: 'content', fallback: 'MENU-HEADER-BG-color' },
-
-  { name: 'MAIN-TITLES-TEXT-color',  group: 'headings',  default: '#444753' },
-  { name: 'MAIN-TITLES-H1-color',    group: 'headings', fallback: 'MAIN-TEXT-color' },
-  { name: 'MAIN-TITLES-H2-color',    group: 'headings', fallback: 'MAIN-TITLES-TEXT-color' },
-  { name: 'MAIN-TITLES-H3-color',    group: 'headings', fallback: 'MAIN-TITLES-H2-color' },
-  { name: 'MAIN-TITLES-H4-color',    group: 'headings', fallback: 'MAIN-TITLES-H3-color' },
-  { name: 'MAIN-TITLES-H5-color',    group: 'headings', fallback: 'MAIN-TITLES-H4-color' },
-  { name: 'MAIN-TITLES-H6-color',    group: 'headings', fallback: 'MAIN-TITLES-H5-color' },
-
-  { name: 'CODE-BLOCK-color',        group: 'code blocks',  default: '#000000' },
-  { name: 'CODE-BLOCK-BG-color',     group: 'code blocks',  default: '#f8f8f8' },
-  { name: 'CODE-BLOCK-BORDER-color', group: 'code blocks', fallback: 'CODE-BLOCK-BG-color' },
-
-  { name: 'CODE-INLINE-color',        group: 'inline code',  default: '#5e5e5e' },
-  { name: 'CODE-INLINE-BG-color',     group: 'inline code',  default: '#fffae9' },
-  { name: 'CODE-INLINE-BORDER-color', group: 'inline code', fallback: 'CODE-INLINE-BG-color' },
-
-  { name: 'MENU-HEADER-BG-color',       group: 'header',  default: '#7dc903' },
-  { name: 'MENU-HEADER-BORDER-color',   group: 'header', fallback: 'MENU-HEADER-BG-color' },
-  { name: 'MENU-HOME-LINK-color',       group: 'header',  default: '#323232' },
-  { name: 'MENU-HOME-LINK-HOVER-color', group: 'header',  default: '#808080' },
-  { name: 'MENU-SEARCH-color',          group: 'header',  default: '#e0e0e0' },
-  { name: 'MENU-SEARCH-BG-color',       group: 'header',  default: '#323232' },
-  { name: 'MENU-SEARCH-BOX-color',      group: 'header', fallback: 'MENU-SEARCH-BG-color' },
-
-  { name: 'MENU-SECTIONS-BG-color',                group: 'sections',  default: '#282830' },
-  { name: 'MENU-SECTIONS-ACTIVE-BG-color',         group: 'sections',  default: '#202028' },
-  { name: 'MENU-SECTION-ACTIVE-CATEGORY-color',    group: 'sections',  default: '#444444' },
-  { name: 'MENU-SECTION-ACTIVE-CATEGORY-BG-color', group: 'sections', fallback: 'MAIN-BG-color' },
-  { name: 'MENU-SECTIONS-LINK-color',              group: 'sections',  default: '#bababa' },
-  { name: 'MENU-SECTIONS-LINK-HOVER-color',        group: 'sections', fallback: 'MENU-SECTIONS-LINK-color' },
-  { name: 'MENU-VISITED-color',                    group: 'sections',  default: '#506397' },
-  { name: 'MENU-SECTION-HR-color',                 group: 'sections',  default: '#606060' },
-
-  { name: 'BOX-CAPTION-color',                 group: 'colored boxes',  default: 'rgba( 255, 255, 255, 1 )' },
-  { name: 'BOX-BG-color',                      group: 'colored boxes',  default: 'rgba( 255, 255, 255, .833 )' },
-  { name: 'BOX-TEXT-color',                    group: 'colored boxes',  default: 'rgba( 16, 16, 16, 1 )' },
-
-  { name: 'BOX-BLUE-color',                    group: 'colored boxes',  default: 'rgba( 48, 117, 229, 1 )' },
-  { name: 'BOX-INFO-color',                    group: 'colored boxes', fallback: 'BOX-BLUE-color' },
-  { name: 'BOX-BLUE-TEXT-color',               group: 'colored boxes', fallback: 'BOX-TEXT-color' },
-  { name: 'BOX-INFO-TEXT-color',               group: 'colored boxes', fallback: 'BOX-BLUE-TEXT-color' },
-
-  { name: 'BOX-GREEN-color',                   group: 'colored boxes',  default: 'rgba( 42, 178, 24, 1 )' },
-  { name: 'BOX-TIP-color',                     group: 'colored boxes', fallback: 'BOX-GREEN-color' },
-  { name: 'BOX-GREEN-TEXT-color',              group: 'colored boxes', fallback: 'BOX-TEXT-color' },
-  { name: 'BOX-TIP-TEXT-color',                group: 'colored boxes', fallback: 'BOX-GREEN-TEXT-color' },
-
-  { name: 'BOX-GREY-color',                    group: 'colored boxes',  default: 'rgba( 128, 128, 128, 1 )' },
-  { name: 'BOX-NEUTRAL-color',                 group: 'colored boxes', fallback: 'BOX-GREY-color' },
-  { name: 'BOX-GREY-TEXT-color',               group: 'colored boxes', fallback: 'BOX-TEXT-color' },
-  { name: 'BOX-NEUTRAL-TEXT-color',            group: 'colored boxes', fallback: 'BOX-GREY-TEXT-color' },
-
-  { name: 'BOX-ORANGE-color',                  group: 'colored boxes',  default: 'rgba( 237, 153, 9, 1 )' },
-  { name: 'BOX-NOTE-color',                    group: 'colored boxes', fallback: 'BOX-ORANGE-color' },
-  { name: 'BOX-ORANGE-TEXT-color',             group: 'colored boxes', fallback: 'BOX-TEXT-color' },
-  { name: 'BOX-NOTE-TEXT-color',               group: 'colored boxes', fallback: 'BOX-ORANGE-TEXT-color' },
-
-  { name: 'BOX-RED-color',                     group: 'colored boxes',  default: 'rgba( 224, 62, 62, 1 )' },
-  { name: 'BOX-WARNING-color',                 group: 'colored boxes', fallback: 'BOX-RED-color' },
-  { name: 'BOX-RED-TEXT-color',                group: 'colored boxes', fallback: 'BOX-TEXT-color' },
-  { name: 'BOX-WARNING-TEXT-color',            group: 'colored boxes', fallback: 'BOX-RED-TEXT-color' },
-];
-
-initGraph();
+variants.generator( '#vargenerator', '.vardownload' );
 </script>
 
 
@@ -585,13 +249,13 @@ initGraph();
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645374820"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645374820"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645374820"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645374820"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645374820"></script>
-    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645374820"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645374820"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1645397928"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1645397928"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.jquery.min.js?1645397928"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1645397928"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1645397928"></script>
+    <script src="/hugo-theme-relearn/js/modernizr.custom-3.6.0.js?1645397928"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1645397928"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"securityLevel\": \"loose\"}"), { startOnLoad: false } ) );
@@ -603,6 +267,6 @@ initGraph();
       window.T_Copy_link_to_clipboard = 'Copy link t\u0027 clipboard';
       window.T_Link_copied_to_clipboard = 'Copied link t\u0027 clipboard!';
     </script>
-    <script src="/hugo-theme-relearn/js/relearn.js?1645374820"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1645397928"></script>
   </body>
 </html>
