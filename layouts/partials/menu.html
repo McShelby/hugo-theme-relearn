@@ -101,12 +101,12 @@
                     {{- $firsttheme := true }}
                     {{- range $themevariants }}
                       {{- $themevariant := . }}
-                      {{- $themename := replaceRE "[-_]+" " " $themevariant }}
+                      {{- $variantname := replaceRE "[-_]+" " " $themevariant }}
                       {{- if $firsttheme }}
                         {{- $firsttheme = false }}
-                    <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $themename | title }}</option>
+                    <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
                       {{- else }}
-                    <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $themename | title }}</option>
+                    <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
                       {{- end }}
                     {{- end }}
                   </select>
