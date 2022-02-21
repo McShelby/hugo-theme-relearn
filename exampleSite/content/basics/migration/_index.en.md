@@ -16,7 +16,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 3.0.0
 
-- **Breaking**: We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to provide additional styling in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
+- **Breaking**: We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
   This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and *Clear history* functionality).
 
