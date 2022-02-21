@@ -127,10 +127,10 @@ var variants = {
 	resetVariant: function(){
 		var variantbase = window.localStorage.getItem( 'customvariantbase' );
 		if( variantbase && confirm( 'You have made changes to your custom variant. Are you sure you want to reset all changes?' ) ){
-			this.removeCustomVariantOption();
-			this.changeVariant( variantbase );
 			window.localStorage.removeItem( 'customvariantbase' );
 			window.localStorage.removeItem( 'customvariant' );
+			this.removeCustomVariantOption();
+			this.changeVariant( variantbase );
 		}
 	},
 
