@@ -3,7 +3,7 @@
 var variants = {
 	variant: '',
 	variants: [],
-	customvariant: 'my-variant',
+	customvariantname: 'my-custom-variant',
 
 	init: function( variants ){
 		this.variants = variants;
@@ -11,18 +11,9 @@ var variants = {
 		this.changeVariant( variant );
 		document.addEventListener( 'readystatechange', function(){
 			if( document.readyState == 'interactive' ){
-				this.markSelectedVariant( this.getVariant() );
+				this.markSelectedVariant();
 			}
 		}.bind( this ) );
-	},
-
-	parseVariantnameFromFilename: function ( s ){
-		if( !s || !s.match ){
-			return '';
-		}
-		var matches = s.match(/^.*\/?theme-([^\/]*?)\.css.*$/);
-		var variant = matches && matches.length == 2 ? matches[ 1 ] : '';
-		return variant;
 	},
 
 	getVariant: function(){
@@ -34,12 +25,14 @@ var variants = {
 		window.localStorage.setItem( 'variant', variant );
 	},
 
-	markSelectedVariant: function( variant ){
+	markSelectedVariant: function(){
+		var variant = this.getVariant();
 		var select = document.querySelector( '#select-variant' );
 		if( !select ){
 			return;
 		}
-		if( select.value != variant ){
+		this.addCustomVariantOption();
+		if( variant && select.value != variant ){
 			select.value = variant;
 		}
 		// remove selection, because if some uses an arrow navigation"
@@ -50,59 +43,153 @@ var variants = {
 		}
 	},
 
-	generateVariantPath( old_path ){
-		var variant = this.getVariant();
+	generateVariantPath( variant, old_path ){
 		var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + variant + '$2' );
 		return new_path;
 	},
 
-	changeVariant: function( variant ){
-		if( this.variants.indexOf( variant ) < 0 ){
-			variant = this.variants.length ? this.variants[ 0 ] : '';
+	addCustomVariantOption: function(){
+		var variantbase = window.localStorage.getItem( 'customvariantbase' );
+		if( this.variants.indexOf( variantbase ) < 0 ){
+			variantbase = '';
 		}
-		this.setVariant( variant );
-		if( !variant ){
+		if( !window.localStorage.getItem( 'customvariant' ) ){
+			variantbase = '';
+		}
+		if( !variantbase ){
 			return;
 		}
-		var link = document.querySelector( '#variant-style' );
-		if( !link ){
+		var select = document.querySelector( '#select-variant' );
+		if( !select ){
 			return;
 		}
-		var old_path = link.getAttribute( 'href' );
-		var new_path = this.generateVariantPath( old_path );
-		if( old_path != new_path ){
-			link.setAttribute( 'href', new_path );
-			this.markSelectedVariant( variant );
+		var option = document.querySelector( '#' + this.customvariantname );
+		if( !option ){
+			option = document.createElement( 'option' );
+			option.id = this.customvariantname;
+			option.value = this.customvariantname;
+			option.text = this.customvariantname.replace( /-/g, ' ' ).replace(/\w\S*/g, (w) => (w.replace(/^\w/g, (c) => c.toUpperCase())));
+			select.appendChild( option );
+			document.querySelectorAll( '.footerVariantSwitch' ).forEach( function( e ){
+				e.classList.add( 'showVariantSwitch' );
+			});
 		}
 	},
 
+	removeCustomVariantOption: function(){
+		var option = document.querySelector( '#' + this.customvariantname );
+		if( option ){
+			option.remove();
+		}
+		if( this.variants.length <= 1 ){
+			document.querySelectorAll( '.footerVariantSwitch' ).forEach( function( e ){
+				e.classList.remove( 'showVariantSwitch' );
+			});
+		}
+	},
+
+	saveCustomVariant: function(){
+		if( this.getVariant() != this.customvariantname ){
+			window.localStorage.setItem( 'customvariantbase', this.getVariant() );
+		}
+		window.localStorage.setItem( 'customvariant', this.generateStylesheet() );
+		this.setVariant( this.customvariantname );
+		this.markSelectedVariant();
+	},
+
+	loadCustomVariant: function(){
+		var stylesheet = window.localStorage.getItem( 'customvariant' );
+
+		// temp styles to document
+		var head = document.querySelector( 'head' );
+		var style = document.createElement( 'style' );
+		style.id = 'custom-variant-style';
+		style.appendChild( document.createTextNode( stylesheet ) );
+		head.appendChild( style );
+
+		var interval_id = setInterval( function(){
+			if( this.findLoadedStylesheet( 'variant-style' ) ){
+				clearInterval( interval_id );
+				// save the styles to the current variant stylesheet
+				this.variantvariables.forEach( function( e ){
+					this.changeColor( e.name, true );
+				}.bind( this ) );
+
+				// remove temp styles
+				style.remove();
+
+				this.saveCustomVariant();
+			}
+		}.bind( this ), 25 );
+
+	},
+
 	resetVariant: function(){
+		var variantbase = window.localStorage.getItem( 'customvariantbase' );
+		if( variantbase && confirm( 'You have made changes to your custom variant. Are you sure you want to reset all changes?' ) ){
+			this.removeCustomVariantOption();
+			this.changeVariant( variantbase );
+			window.localStorage.removeItem( 'customvariantbase' );
+			window.localStorage.removeItem( 'customvariant' );
+		}
+	},
+
+	switchStylesheet: function( variant, without_check ){
 		var link = document.querySelector( '#variant-style' );
 		if( !link ){
 			return;
 		}
 		var old_path = link.getAttribute( 'href' );
-		var new_path = this.generateVariantPath( old_path );
+		var new_path = this.generateVariantPath( variant, old_path );
 		link.setAttribute( 'href', new_path );
+	},
+
+	changeVariant: function( variant ){
+		if( variant == this.customvariantname ){
+			var variantbase = window.localStorage.getItem( 'customvariantbase' );
+			if( this.variants.indexOf( variantbase ) < 0 ){
+				variant = '';
+			}
+			if( !window.localStorage.getItem( 'customvariant' ) ){
+				variant = '';
+			}
+			this.setVariant( variant );
+			if( !variant ){
+				return;
+			}
+			this.switchStylesheet( variantbase );
+			this.loadCustomVariant();
+		}
+		else{
+			if( this.variants.indexOf( variant ) < 0 ){
+				variant = this.variants.length ? this.variants[ 0 ] : '';
+			}
+			this.setVariant( variant );
+			if( !variant ){
+				return;
+			}
+			this.switchStylesheet( variant );
+			this.markSelectedVariant();
+		}
 	},
 
 	generator: function( vargenerator, vardownload, varreset ){
 		var graphDefinition = this.generateGraph();
-		var element = document.querySelector( vargenerator );
-		element.innerHTML = graphDefinition;
+		var graphs = document.querySelectorAll( vargenerator );
+		graphs.forEach( function( e ){ e.innerHTML = graphDefinition; });
 
 		var interval_id = setInterval( function(){
 			if( document.querySelectorAll( vargenerator + '.mermaid > svg' ).length ){
 				clearInterval( interval_id );
 				this.styleGraph();
 			}
-		}.bind( this ), 100 );
+		}.bind( this ), 25 );
 
-		var download = document.querySelector( vardownload );
-		download.addEventListener('click', this.getStylesheet.bind( this ) );
+		var downloads = document.querySelectorAll( vardownload );
+		downloads.forEach( function( e ){ e.addEventListener('click', this.getStylesheet.bind( this )); }.bind( this ) );
 
-		var reset = document.querySelector( varreset );
-		reset.addEventListener('click', this.resetVariant.bind( this ) );
+		var resets = document.querySelectorAll( varreset );
+		resets.forEach( function( e ){ e.addEventListener('click', this.resetVariant.bind( this )); }.bind( this ) );
 	},
 
 	download: function(data, mimetype, filename){
@@ -115,7 +202,7 @@ var variants = {
 	},
 
 	getStylesheet: function(){
-		this.download( this.generateStylesheet(), 'text/css', 'theme-' + this.customvariant + '.css' );
+		this.download( this.generateStylesheet(), 'text/css', 'theme-' + this.customvariantname + '.css' );
 	},
 
 	adjustCSSRules: function(selector, props, sheets){
@@ -164,28 +251,33 @@ var variants = {
 		return this.normalizeColor( getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-'+c ) );
 	},
 
-	changeColor: function( c ){
+	findLoadedStylesheet: function( id ){
 		var style = null;
-		var variant = this.variant;
 		for( var n = 0; n < document.styleSheets.length; ++n ){
-			if( variant = this.parseVariantnameFromFilename( document.styleSheets[n].href ) ){
-			var s = document.styleSheets[n];
-			for( var m = 0; m < s.rules.length; ++m ){
-				if( s.rules[m].selectorText == ':root' ){
-					style = s.rules[m].style;
-					break;
+			if( document.styleSheets[n].ownerNode.id == id ){
+				var s = document.styleSheets[n];
+				for( var m = 0; m < s.rules.length; ++m ){
+					if( s.rules[m].selectorText == ':root' ){
+						style = s.rules[m].style;
+						break;
+					}
 				}
-			}
-			break;
+				break;
 			}
 		}
-		if( !style ){
-			alert( 'Theme stylesheet for variant "' + variant + '" not set or found' );
-			return;
+		return style;
+	},
+
+	changeColor: function( c, without_prompt ){
+		without_prompt = without_prompt || false;
+		var read_style = this.findLoadedStylesheet( 'custom-variant-style' );
+		var write_style = this.findLoadedStylesheet( 'variant-style' );
+		if( !read_style ){
+			read_style = write_style;
 		}
 
 		var e = this.findColor( c );
-		var p = this.normalizeColor( style.getPropertyValue( '--'+c ) ).replace( '--INTERNAL-', '--' );
+		var p = this.normalizeColor( read_style.getPropertyValue( '--'+c ) ).replace( '--INTERNAL-', '--' );
 		var f = this.getColorValue( e.fallback );
 
 		var v = this.getColorValue( e.name );
@@ -196,21 +288,35 @@ var variants = {
 			v = p;
 		}
 
-		var t = c + '\n\n' + e.tooltip + '\n';
-		if( e.fallback ){
-			t += '\nInherits value "' + f + '" from ' + e.fallback + ' if not set\n';
+		var n = '';
+		if( without_prompt ){
+			n = v;
 		}
-		if( e.default ){
-			t += '\nDefaults to value "' + this.normalizeColor(e.default) + '" if not set\n';
+		else{
+			var t = c + '\n\n' + e.tooltip + '\n';
+			if( e.fallback ){
+				t += '\nInherits value "' + f + '" from ' + e.fallback + ' if not set\n';
+			}
+			if( e.default ){
+				t += '\nDefaults to value "' + this.normalizeColor(e.default) + '" if not set\n';
+			}
+			n = prompt( t, v );
 		}
 
-		var n = prompt( t, v );
 		if( n ){
 			n = this.normalizeColor( n ).replace( '--INTERNAL-', '--' ).replace( '--', '--INTERNAL-' );
-			style.setProperty( '--'+c, n );
+			if( without_prompt || n != v ){
+				write_style.setProperty( '--'+c, n );
+			}
+			if( !without_prompt ){
+				this.saveCustomVariant();
+			}
 		}
 		else if( n !== null){
-			style.removeProperty( '--'+c );
+			write_style.removeProperty( '--'+c );
+			if( !without_prompt ){
+				this.saveCustomVariant();
+			}
 		}
 	},
 
@@ -239,7 +345,7 @@ var variants = {
 
 	generateStylesheet: function(){
 		var style =
-			'/* ' + this.customvariant + ' */\n' +
+			'/* ' + this.customvariantname + ' */\n' +
 			':root {\n' +
 			this.variantvariables.sort( function( l, r ){ return l.name.localeCompare(r.name); } ).reduce( function( a, e ){ return a + this.generateColorVariable( e ); }.bind( this ), '' ) +
 			'}\n';
