@@ -42,6 +42,18 @@ var variants = {
 		if( select.value != variant ){
 			select.value = variant;
 		}
+		// remove selection, because if some uses an arrow navigation"
+		// by pressing the left or right cursor key, we will automatically
+		// select a different style
+		if( document.activeElement ){
+			document.activeElement.blur();
+		}
+	},
+
+	generateVariantPath( old_path ){
+		var variant = this.getVariant();
+		var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + variant + '$2' );
+		return new_path;
 	},
 
 	changeVariant: function( variant ){
@@ -57,20 +69,24 @@ var variants = {
 			return;
 		}
 		var old_path = link.getAttribute( 'href' );
-		var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + variant + '$2' );
+		var new_path = this.generateVariantPath( old_path );
 		if( old_path != new_path ){
 			link.setAttribute( 'href', new_path );
 			this.markSelectedVariant( variant );
-			// remove selection, because if some uses an arrow navigation"
-			// by pressing the left or right cursor key, we will automatically
-			// select a different style
-			if( document.activeElement ){
-				document.activeElement.blur();
-			}
 		}
 	},
 
-	generator: function( vargenerator, vardownload ){
+	resetVariant: function(){
+		var link = document.querySelector( '#variant-style' );
+		if( !link ){
+			return;
+		}
+		var old_path = link.getAttribute( 'href' );
+		var new_path = this.generateVariantPath( old_path );
+		link.setAttribute( 'href', new_path );
+	},
+
+	generator: function( vargenerator, vardownload, varreset ){
 		var graphDefinition = this.generateGraph();
 		var element = document.querySelector( vargenerator );
 		element.innerHTML = graphDefinition;
@@ -82,8 +98,11 @@ var variants = {
 			}
 		}.bind( this ), 100 );
 
-		var btn = document.querySelector( vardownload );
-		btn.addEventListener('click', this.getStylesheet.bind( this ) );
+		var download = document.querySelector( vardownload );
+		download.addEventListener('click', this.getStylesheet.bind( this ) );
+
+		var reset = document.querySelector( varreset );
+		reset.addEventListener('click', this.resetVariant.bind( this ) );
 	},
 
 	download: function(data, mimetype, filename){
@@ -238,14 +257,14 @@ var variants = {
 		this.variantvariables.forEach( function( e ){
 			this.styleGraphGroup( '.'+e.name, e.name );
 		}.bind( this ) );
-		this.styleGraphGroup( '#maincontent', 'MAIN-BG-color' )
-		this.styleGraphGroup( '#mainheadings', 'MAIN-BG-color' )
-		this.styleGraphGroup( '#inlinecode', 'CODE-INLINE-BG-color' )
-		this.styleGraphGroup( '#blockcode', 'CODE-BLOCK-BG-color' )
+		this.styleGraphGroup( '#maincontent', 'MAIN-BG-color' );
+		this.styleGraphGroup( '#mainheadings', 'MAIN-BG-color' );
+		this.styleGraphGroup( '#inlinecode', 'CODE-INLINE-BG-color' );
+		this.styleGraphGroup( '#blockcode', 'CODE-BLOCK-BG-color' );
 		this.styleGraphGroup( '#coloredboxes', 'BOX-BG-color' );
-		this.styleGraphGroup( '#menu', 'MENU-SECTIONS-BG-color' )
-		this.styleGraphGroup( '#menuheader', 'MENU-HEADER-BG-color' )
-		this.styleGraphGroup( '#menusections', 'MENU-SECTIONS-ACTIVE-BG-color' )
+		this.styleGraphGroup( '#menu', 'MENU-SECTIONS-BG-color' );
+		this.styleGraphGroup( '#menuheader', 'MENU-HEADER-BG-color' );
+		this.styleGraphGroup( '#menusections', 'MENU-SECTIONS-ACTIVE-BG-color' );
 	},
 
 	generateGraphGroupedEdge: function( e ){
@@ -262,7 +281,7 @@ var variants = {
 	generateGraphVarGroupedEdge: function( e ){
 		var edge = '';
 		if( e.fallback && e.group != this.findColor( e.fallback ).group ){
-			edge += e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name;
+			edge += '  ' + e.fallback+':::'+e.fallback+' --> '+e.name+':::'+e.name + '\n';
 		}
 		return edge;
 	},
@@ -310,7 +329,7 @@ var variants = {
 					g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
 			'  end\n' +
-				this.variantvariables.reduce( function( a, e ){ return a + '  ' + this.generateGraphVarGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
+				this.variantvariables.reduce( function( a, e ){ return a + this.generateGraphVarGroupedEdge( e ); }.bind( this ), '' ) +
 			g_handler;
 
 		console.log( graph );
