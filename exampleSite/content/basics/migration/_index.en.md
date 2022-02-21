@@ -24,7 +24,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant]({{%relref "basics/customization/#learn-variant" %}}), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
 
-  Note, that this will also affect your site if viewed with Internet Explorer 11 and can not be reconfigured as it does not support CSS variables.
+  Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
 - **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to remove `--MENU-SEARCH-BOX-ICONS-color`.
 
@@ -36,9 +36,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: To make the creation of new variants easier for you, we've added a new interactive [theme variant generator]({{%relref "basics/generator" %}}).
 
-- **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a theme switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
+- **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
 
-  Note, that the new theme switch will not work with Internet Explorer 11 as it does not support CSS variables.
+  Note, that the new variant switch will not work with Internet Explorer 11 as it does not support CSS variables.
 
 ## 2.9.0
 

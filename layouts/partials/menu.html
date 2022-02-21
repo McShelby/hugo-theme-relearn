@@ -52,26 +52,22 @@
           </ul>
         </div>
         {{- end }}
-        <div class="footermargin"></div>
-        {{- $showlangswitch := and .Site.IsMultiLingual (not .Site.Params.disableLanguageSwitchingButton) }}
-        {{- $themevariants := slice | append .Site.Params.themeVariant }}
-        {{- $showthemeswitch := gt (int (len $themevariants)) 1 }}
+        {{- $siteLanguages := .Site.Languages }}
+        {{- $showlangswitch := and .Site.IsMultiLingual (not .Site.Params.disableLanguageSwitchingButton) (gt (int (len $siteLanguages)) 1) }}
+        {{- $themevariants := slice | append (.Site.Params.themeVariant | default "relearn-light" ) }}
+        {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
-        {{- if or $showlangswitch $showvisitedlinks $showfooter }}
-        <hr class="default-animation"/>
-        {{- end }}
-        {{- if or $showlangswitch $showthemeswitch $showvisitedlinks }}
-        <div id="prefooter">
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
           <ul>
-            {{- if $showlangswitch }}
-            <li id="select-language-container">
+            <li id="select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
               <a class="padding select-container">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
                   <select id="select-language" onchange="location = baseUri + this.value;">
-                    {{- $siteLanguages := .Site.Languages }}
                     {{- $pageLang := .Page.Lang }}
                     {{- range .Page.AllTranslations }}
                       {{- $translation := . }}
@@ -90,20 +86,18 @@
                 <div class="select-clear"></div>
               </a>
             </li>
-            {{- end }}
-            {{- if $showthemeswitch }}
-            <li id="select-variant-container">
+            <li id="select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
               <a class="padding select-container">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
                   <select id="select-variant" onchange="variants.changeVariant( this.value );">
-                    {{- $firsttheme := true }}
+                    {{- $firstvariant := true }}
                     {{- range $themevariants }}
                       {{- $themevariant := . }}
                       {{- $variantname := replaceRE "[-_]+" " " $themevariant }}
-                      {{- if $firsttheme }}
-                        {{- $firsttheme = false }}
+                      {{- if $firstvariant }}
+                        {{- $firstvariant = false }}
                     <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
                       {{- else }}
                     <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
@@ -113,20 +107,14 @@
                 </div>
                 <div class="select-clear"></div>
               </a>
-              <script>variants.markSelectedVariant( variants.getVariant() );</script>
+              <script>variants.markSelectedVariant();</script>
             </li>
-            {{- end }}
-            {{- if $showvisitedlinks }}
-            <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> {{ T "Clear-History" }}</a></li>
-            {{- end }}
+            <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> {{ T "Clear-History" }}</a></li>
           </ul>
         </div>
-        {{- end }}
-        {{- if $showfooter }}
-        <div id="footer">
+        <div id="footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
           {{- $footer }}
         </div>
-        {{- end }}
       </div>
     </nav>
     {{- define "section-tree-nav" }}

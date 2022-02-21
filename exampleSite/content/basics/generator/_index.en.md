@@ -13,15 +13,18 @@ The arrowed lines reflect how colors are inherited thru different parts of the t
 
 To better understand this select the `neon` variant and modify the differnet heading colors. There, colors for the heading `h2`, `h3` and `h4` are explicitly set. `h5` is not set and inherits its value from `h4`. `h6` is also not set and inherits its value from `h5`.
 
+Once you've changed a color, the theme selector will show a "My custom variant" entry and your changes are stored. You can change pages and even close the browser without losing your changes.
+
 Once you are satisfied, you can download the new variants file and install it in your site.
 
 {{% notice note %}}
-You need to define at least one `themeVariant` in your `config.toml` to modify and download the styles.
-
 This only works in modern browsers.
 {{% /notice %}}
 
 ## Variant generator
+
+<a class="vardownload btn btn-default">Download color variant</a>
+<a class="varreset btn btn-default">Reset variant</a>
 
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
 

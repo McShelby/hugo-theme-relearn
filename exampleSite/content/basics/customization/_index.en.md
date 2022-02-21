@@ -168,7 +168,7 @@ Then, set the `themeVariant` value with the name of your custom theme file. That
 
 ### Multiple variants
 
-You can also set multiple variants. In this case, the first variant is the default choosen on first view and a theme switch will be shown in the menu footer.
+You can also set multiple variants. In this case, the first variant is the default choosen on first view and a variant switch will be shown in the menu footer.
 
 ```toml
 [params]
