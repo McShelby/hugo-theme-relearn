@@ -47,4 +47,4 @@ This theme is licensed under the [MIT License](https://github.com/McShelby/hugo-
 
 ## Credits
 
-This theme would not be possible without the work of many others. See the [credits]({{%relref "credits" %}}) for a detailed list.
+This theme would not be possible without the work of many others. See the [credits]({{%relref "more/credits" %}}) for a detailed list.

@@ -45,126 +45,22 @@ If you need to change this default behavior, create a new file in `layouts/parti
 <link rel="icon" href="/images/favicon.bmp" type="image/bmp" />
 ```
 
-## Change default colors {#theme-variant}
+## Change the colors {#theme-variant}
 
-The Relearn theme let you choose between some predefined color scheme variants, but feel free to add one yourself!
+The Relearn theme lets you choose between some predefined color variants, but feel free to add one yourself!
 
-### Standard variant
+You can preview the shipped variants by changing them in the variant selector at the bottom of the menu.
 
-```toml
-[params]
-  # Change default color scheme with a variant one.
-  themeVariant = "" # or themeVariant = "relearn" or themeVariant = "relearn-light"
-```
+### Single variant
 
-![Standard variant](images/standard-variant.png?width=60pc)
-
-### Standard dark variant
+Set the `themeVariant` value with the name of your theme file. That's it!
 
 ```toml
 [params]
-  # Change default color scheme with a variant one.
-  themeVariant = "relearn-dark"
+  themeVariant = "relearn-light"
 ```
 
-![Dark variant](images/standard-dark-variant.png?width=60pc)
-
-### Learn variant
-
-```toml
-[params]
-  # Change default color scheme with a variant one.
-  themeVariant = "learn"
-```
-
-![Learn variant](images/learn-variant.png?width=60pc)
-
-### Red variant
-
-```toml
-[params]
-  # Change default color scheme with a variant one.
-  themeVariant = "red"
-```
-
-![Red variant](images/red-variant.png?width=60pc)
-
-### Blue variant
-
-```toml
-[params]
-  # Change default color scheme with a variant one.
-  themeVariant = "blue"
-```
-
-![Blue variant](images/blue-variant.png?width=60pc)
-
-### Green variant
-
-```toml
-[params]
-  # Change default color scheme with a variant one.
-  themeVariant = "green"
-```
-
-![Green variant](images/green-variant.png?width=60pc)
-
-### 'Mine‘ variant
-
-First, create a new CSS file in your local `static/css` folder prefixed by `theme` (e.g. with _mine_ theme `static/css/theme-mine.css`). Copy the following content and modify colors in CSS variables.
-
-```css
-:root {
-    --MAIN-TEXT-color: #101010; /* Color of text by default */
-    --MAIN-TITLES-TEXT-color: #444753; /* Color of titles h2-h3-h4-h5-h6 */
-    --MAIN-LINK-color: #486ac9; /* Color of links */
-    --MAIN-LINK-HOVER-color: #134fbf; /* Color of hovered links */
-    --MAIN-ANCHOR-color: #486ac9; /* color of anchors on titles */
-    --MAIN-BG-color: #ffffff; /* color of text by default */
-
-    /* adjusted to relearn-light chroma style */
-    --CODE-BLOCK-color: #000000; /* fallback color for block code text */
-    --CODE-BLOCK-BG-color: #f8f8f8; /* fallback color for block code background */
-    --CODE-BLOCK-BORDER-color: #d8d8d8; /* color of block code border */
-
-    --CODE-INLINE-color: #5e5e5e; /* color for inline code text */
-    --CODE-INLINE-BG-color: #fffae9; /* color for inline code background */
-    --CODE-INLINE-BORDER-color: #f8e8c8; /* color of inline code border */
-
-    --MENU-HOME-LINK-color: #323232; /* Color of the home button text */
-    --MENU-HOME-LINK-HOVER-color: #808080; /* Color of the hovered home button text */
-
-    --MENU-HEADER-BG-color: #7dc903; /* Background color of menu header */
-    --MENU-HEADER-BORDER-color: #7dc903; /*Color of menu header border */
-
-    --MENU-SEARCH-color: #efefef; /* Color of search field text */
-    --MENU-SEARCH-BG-color: #3d414d; /* Search field background color (by default borders + icons) */
-    --MENU-SEARCH-BOX-color: #efefef; /* Override search field border color */
-
-    --MENU-SECTIONS-ACTIVE-BG-color: #202028; /* Background color of the active section and its children */
-    --MENU-SECTIONS-BG-color: #282830; /* Background color of other sections */
-    --MENU-SECTIONS-LINK-color: #bababa; /* Color of links in menu */
-    --MENU-SECTIONS-LINK-HOVER-color: #ffffff;  /* Color of links in menu, when hovered */
-    --MENU-SECTION-ACTIVE-CATEGORY-color: #444444; /* Color of active category text */
-    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #ffffff; /* Color of background for the active category (only) */
-
-    --MENU-VISITED-color: #506397; /* Color of 'page visited' icons in menu */
-    --MENU-SECTION-HR-color: #606060; /* Color of <hr> separator in menu */
-
-    /* base styling for boxes */
-    --BOX-CAPTION-color: rgba( 255, 255, 255, 1 ); /* color of the title text */
-    --BOX-BG-color: rgba( 255, 255, 255, .833 ); /* color of the content background */
-    --BOX-TEXT-color: rgba( 16, 16, 16, 1 ); /* fixed color of the content text */
-}
-```
-
-Then, set the `themeVariant` value with the name of your custom theme file. That's it!
-
-```toml
-[params]
-  # Change default color scheme with a variant one.
-  themeVariant = "mine"
-```
+In the above exaple your theme file has to be named `theme-relearn-light.css`
 
 ### Multiple variants
 
@@ -177,5 +73,9 @@ You can also set multiple variants. In this case, the first variant is the defau
 ```
 
 {{% notice tip %}}
-If you want to switch the syntax highlightning theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/),  and `@import` this stylesheet in your color variant stylesheet. For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
+If you want to switch the syntax highlightning theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/), and `@import` this stylesheet in your color variant stylesheet. For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
 {{% /notice %}}
+
+### Roll your own
+
+If you are not happy with the shipped variants you can either copy one of the shipped files, edit them in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).

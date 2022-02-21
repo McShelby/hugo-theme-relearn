@@ -20,9 +20,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
   This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and *Clear history* functionality).
 
-- **Breaking**: We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light greem menu header) as used in the official documentation.
+- **Breaking**: We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
-  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant]({{%relref "basics/customization/#learn-variant" %}}), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant]({{%relref "basics/customization/#theme-variant" %}}), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
@@ -30,15 +30,15 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: With this release you are now capable to define your own *dark mode* variants.
 
-  To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#mine-variant" %}}). Your old variants will still work and don't need to be changed as apropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+  To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#theme-variant" %}}). Your old variants will still work and don't need to be changed as apropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
   To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
 
-- **New**: To make the creation of new variants easier for you, we've added a new interactive [theme variant generator]({{%relref "basics/generator" %}}).
+- **New**: To make the creation of new variants easier for you, we've added a new interactive [theme variant generator]({{%relref "basics/generator" %}}). This feature will not work with Internet Explorer 11.
 
 - **New**: You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
 
-  Note, that the new variant switch will not work with Internet Explorer 11 as it does not support CSS variables.
+  Note, that the new variant switch will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant switcher will not be displayed with Internet Explorer 11.
 
 ## 2.9.0
 
@@ -106,7 +106,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.4.0
 
-- **Change**: Creation of customized stylesheets was simplified down to only contain the CSS variables. Everything else can and should be deleted from your custom stylesheet to assure everything works fine. For the predefined stylesheet variants, this change is already included. The [documentation]({{%relref "basics/customization/#mine-variant" %}}) was adjusted accordingly.
+- **Change**: Creation of customized stylesheets was simplified down to only contain the CSS variables. Everything else can and should be deleted from your custom stylesheet to assure everything works fine. For the predefined stylesheet variants, this change is already included.
 
 - **New**: Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `config.toml`.
 
