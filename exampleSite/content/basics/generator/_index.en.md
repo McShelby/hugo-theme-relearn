@@ -26,7 +26,8 @@ This only works in modern browsers.
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
 
 <a class="vardownload btn btn-default">Download color variant</a>
+<a class="varreset btn btn-default">Reset variant</a>
 
 <script>
-variants.generator( '#vargenerator', '.vardownload' );
+variants.generator( '#vargenerator', '.vardownload', '.varreset' );
 </script>
