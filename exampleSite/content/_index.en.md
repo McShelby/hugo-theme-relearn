@@ -24,7 +24,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 * [Attachments files]({{%relref "shortcodes/attachments" %}})
 * [List child pages]({{%relref "shortcodes/children" %}})
 * [Mermaid diagram]({{%relref "shortcodes/mermaid" %}}) (flowchart, sequence, gantt)
-* [Customizable look and feel and theme variants]({{%relref "basics/customization"%}})
+* [Customizable look and feel and light or dark theme variants]({{%relref "basics/customization"%}})
 * [Buttons]({{%relref "shortcodes/button" %}})
 * [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice" %}})
 * [Expand]({{%relref "shortcodes/expand" %}})

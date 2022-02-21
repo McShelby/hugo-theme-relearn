@@ -47,7 +47,7 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ## Change the colors {#theme-variant}
 
-The Relearn theme lets you choose between some predefined color variants, but feel free to add one yourself!
+The Relearn theme lets you choose between some predefined color variants in light or dark mode, but feel free to add one yourself!
 
 You can preview the shipped variants by changing them in the variant selector at the bottom of the menu.
 
