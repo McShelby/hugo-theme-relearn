@@ -241,11 +241,11 @@ var variants = {
 			return c;
 		}
 		c = c.trim();
-		c = c.replace( /\s*\(\s*/, "( " );
-		c = c.replace( /\s*\)\s*/, " )" );
-		c = c.replace( /\s*,\s*/, ", " );
-		c = c.replace( /0*\./, "." );
-		c = c.replace( / +/, " " );
+		c = c.replace( /\s*\(\s*/g, "( " );
+		c = c.replace( /\s*\)\s*/g, " )" );
+		c = c.replace( /\s*,\s*/g, ", " );
+		c = c.replace( /0*\./g, "." );
+		c = c.replace( / +/g, " " );
 		return c;
 	},
 
@@ -466,7 +466,7 @@ var variants = {
 
 		{ name: 'CODE-INLINE-color',                     group: 'inline code',    default: '#5e5e5e',                     tooltip: 'text color of inline code', },
 		{ name: 'CODE-INLINE-BG-color',                  group: 'inline code',    default: '#fffae9',                     tooltip: 'background color of inline code', },
-		{ name: 'CODE-INLINE-BORDER-color',              group: 'inline code',   fallback: 'CODE-INLINE-BG-color',        tooltip: 'border color of inline code', },
+		{ name: 'CODE-INLINE-BORDER-color',              group: 'inline code',    default: '#fbf0cb',                     tooltip: 'border color of inline code', },
 
 		{ name: 'MENU-HEADER-BG-color',                  group: 'header',         default: '#7dc903',                     tooltip: 'background color of menu header', },
 		{ name: 'MENU-HEADER-BORDER-color',              group: 'header',        fallback: 'MENU-HEADER-BG-color',        tooltip: 'separator color of menu header', },
@@ -513,5 +513,5 @@ var variants = {
 		{ name: 'BOX-WARNING-color',                     group: 'colored boxes', fallback: 'BOX-RED-color',               tooltip: 'background color of warning boxes', },
 		{ name: 'BOX-RED-TEXT-color',                    group: 'colored boxes', fallback: 'BOX-TEXT-color',              tooltip: 'text color of red boxes', },
 		{ name: 'BOX-WARNING-TEXT-color',                group: 'colored boxes', fallback: 'BOX-RED-TEXT-color',          tooltip: 'text color of warning boxes', },
-		],
+	],
 };

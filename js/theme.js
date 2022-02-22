@@ -341,18 +341,23 @@ jQuery(function() {
                 var clip = new ClipboardJS('.copy-to-clipboard-button', {
                     text: function(trigger) {
                         var text = $(trigger).prev('code').text();
+                        // remove a trailing line break, this may most likely
+                        // come from the browser / Hugo transformation
+                        text = text.replace(/\n$/, '');
+                        // removes leading $ signs from text in an assumption
+                        // that this has to be the unix prompt marker - weird
                         return text.replace(/^\$\s/gm, '');
                     }
                 });
 
                 clip.on('success', function(e) {
                     e.clearSelection();
-                    var inPre = $(e.trigger).parent().parent().prop('tagName') == 'PRE';
+                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                 });
 
                 clip.on('error', function(e) {
-                    var inPre = $(e.trigger).parent().parent().prop('tagName') == 'PRE';
+                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                     $(document).one('copy', function(){
                         $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
@@ -363,9 +368,15 @@ jQuery(function() {
             }
 
             var parent = code.parent();
+            var inPre = parent.prop('tagName') == 'PRE';
             code.addClass('copy-to-clipboard-code');
-            code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
-            code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            if( inPre ){
+                parent.addClass( 'copy-to-clipboard' );
+            }
+            else{
+                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
+                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            }
             code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
             code.next('.copy-to-clipboard-button').on('mouseleave', function() {
                 $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
