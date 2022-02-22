@@ -130,7 +130,9 @@ var variants = {
 			window.localStorage.removeItem( 'customvariantbase' );
 			window.localStorage.removeItem( 'customvariant' );
 			this.removeCustomVariantOption();
-			this.changeVariant( variantbase );
+			if( this.getVariant() == variantbase ){
+				this.changeVariant( variantbase );
+			}
 		}
 	},
 
