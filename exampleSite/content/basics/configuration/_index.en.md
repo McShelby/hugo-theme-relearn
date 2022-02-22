@@ -134,4 +134,4 @@ landingPageName = "<i class='fas fa-home'></i> Home"
 
 The home button is going to look like this:
 
-![Default Home Button](images/home_button_defaults.png?width=100%)
+![Default Home Button](images/home_button_defaults.png?classes=shadow&width=300px)
