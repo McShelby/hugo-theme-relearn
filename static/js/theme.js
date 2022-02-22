@@ -368,9 +368,15 @@ jQuery(function() {
             }
 
             var parent = code.parent();
+            var inPre = parent.prop('tagName') == 'PRE';
             code.addClass('copy-to-clipboard-code');
-            code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
-            code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            if( inPre ){
+                parent.addClass( 'copy-to-clipboard' );
+            }
+            else{
+                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
+                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            }
             code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
             code.next('.copy-to-clipboard-button').on('mouseleave', function() {
                 $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
