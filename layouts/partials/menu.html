@@ -6,9 +6,9 @@
       var root_url="/";
       var baseUri=root_url.replace(/\/$/, '');
     </script>
-    <nav id="sidebar" class="default-animation {{ if $.Site.Params.showVisitedLinks }}showVisitedLinks{{ end }}">
+    {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
+    <nav id="sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
       {{- $currentNode := . }}
-      {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
       <div id="header-wrapper" class="default-animation">
         <div id="header" class="default-animation">
 {{ partial "logo.html" . }}
