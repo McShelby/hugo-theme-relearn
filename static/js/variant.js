@@ -241,11 +241,11 @@ var variants = {
 			return c;
 		}
 		c = c.trim();
-		c = c.replace( /\s*\(\s*/, "( " );
-		c = c.replace( /\s*\)\s*/, " )" );
-		c = c.replace( /\s*,\s*/, ", " );
-		c = c.replace( /0*\./, "." );
-		c = c.replace( / +/, " " );
+		c = c.replace( /\s*\(\s*/g, "( " );
+		c = c.replace( /\s*\)\s*/g, " )" );
+		c = c.replace( /\s*,\s*/g, ", " );
+		c = c.replace( /0*\./g, "." );
+		c = c.replace( / +/g, " " );
 		return c;
 	},
 
