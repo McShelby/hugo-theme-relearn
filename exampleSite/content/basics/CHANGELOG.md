@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.1 (2022-02-23)
+
+### Enhancements
+
+- [**feature**] children: set containerstyle automatically according to style [#192](https://github.com/McShelby/hugo-theme-relearn/issues/192)
+
+### Fixes
+
+- [**bug**] theme: revert fontawsome to version 5 for IE11 compat [#191](https://github.com/McShelby/hugo-theme-relearn/issues/191)
+
+---
+
 ## 3.0.0 (2022-02-22)
 
 ### Enhancements
