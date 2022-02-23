@@ -5,6 +5,9 @@
 {{- $withDescription :=  .Get "description" | default false }}
 {{- $sortTerm :=  .Get "sort" | lower }}
 {{- $containerstyle :=  .Get "containerstyle" | default "ul" }}
+{{- if( and (not (eq $style "li") ) (eq $containerstyle "ul" ) ) }}
+	{{- $containerstyle = "div" }}
+{{- end }}
 
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
 	{{- $pages := .Page.Pages }}
