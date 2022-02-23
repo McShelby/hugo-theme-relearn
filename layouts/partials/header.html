@@ -59,12 +59,14 @@
         {{- if .Site.Params.editURL }}
           {{- $File := .File }}
           {{- $Site := .Site }}
-          {{- with $File.Path }}
+          {{- if $File }}
+            {{- with $File.Path }}
           <div id="top-github-link">
             <a class="github-link" title='{{ T "Edit-this-page" }}' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
               <i class="fas fa-pen fa-fw"></i>
             </a>
           </div>
+            {{- end }}
           {{- end }}
         {{- end }}
         {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
