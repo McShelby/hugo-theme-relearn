@@ -104,7 +104,7 @@
 {{- partial "tags.html" . }}
           </div>
       {{- if and (not .IsHome) (not .Params.chapter) }}
-          <h1>{{ if eq .Kind "term" }}{{ .Data.Singular }} :: {{ end }}{{ .Title }}</h1>
+          <h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} :: {{ end }}{{ .Title }}</h1>
       {{- end }}
 
 {{- define "breadcrumb" }}
