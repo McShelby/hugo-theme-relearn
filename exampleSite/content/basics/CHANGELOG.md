@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.2 (2022-02-23)
+
+### Enhancements
+
+- [**feature**] tags: sort by name [#193](https://github.com/McShelby/hugo-theme-relearn/issues/193)
+
+---
+
 ## 3.0.1 (2022-02-23)
 
 ### Enhancements
