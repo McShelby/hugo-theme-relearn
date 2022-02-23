@@ -7,7 +7,7 @@
           <ul>
           {{- range .Data.Terms.Alphabetical }}
             {{- if and .Page.Title (or (ne (.Page.Scratch.Get "relearnIsHiddenStem") true) (ne .Page.Site.Params.disableTagHiddenPages true) ) }}
-            <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+            <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ len .Pages }})</li>
             {{- end }}
           {{- else }}
             {{- range sort .Pages "Title" }}
