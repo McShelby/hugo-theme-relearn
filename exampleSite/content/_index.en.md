@@ -1,5 +1,5 @@
 +++
-title = "Relearn Theme for Hugo"
+title = "Hugo Relearn Theme"
 +++
 
 # Hugo Relearn Theme

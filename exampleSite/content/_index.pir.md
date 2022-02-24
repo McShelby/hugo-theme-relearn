@@ -1,4 +1,4 @@
 +++
-title = "Relearrrn Theme fer Cap'n Hugo"
+title = "Cap'n Hugo Relearrrn Theme"
 +++
 {{< piratify >}}

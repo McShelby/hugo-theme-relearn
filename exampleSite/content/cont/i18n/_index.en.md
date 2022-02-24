@@ -25,12 +25,12 @@ defaultContentLanguage = "en"
 
 [Languages]
 [Languages.en]
-title = "Documentation for Hugo Relearn Theme"
+title = "Hugo Relearn Theme"
 weight = 1
 languageName = "English"
 
 [Languages.pir]
-title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
+title = "Cap'n Hugo Relearrrn Theme"
 weight = 2
 languageName = "Arrr! Pirrrates"
 ```
