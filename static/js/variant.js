@@ -195,6 +195,7 @@ var variants = {
 	},
 
 	download: function(data, mimetype, filename){
+		console.log( data );
 		var blob = new Blob([data], { type: mimetype });
 		var url = window.URL.createObjectURL(blob);
 		var a = document.createElement('a');
