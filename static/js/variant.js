@@ -474,7 +474,7 @@ var variants = {
 		{ name: 'MENU-HOME-LINK-HOVER-color',            group: 'header',         default: '#808080',                     tooltip: 'hoverd home button color if configured', },
 		{ name: 'MENU-SEARCH-color',                     group: 'header',         default: '#e0e0e0',                     tooltip: 'text and icon color of search box', },
 		{ name: 'MENU-SEARCH-BG-color',                  group: 'header',         default: '#323232',                     tooltip: 'background color of search box', },
-		{ name: 'MENU-SEARCH-BOX-color',                 group: 'header',        fallback: 'MENU-SEARCH-BG-color',        tooltip: 'border color of search box', },
+		{ name: 'MENU-SEARCH-BORDER-color',              group: 'header',        fallback: 'MENU-SEARCH-BG-color',        tooltip: 'border color of search box', },
 
 		{ name: 'MENU-SECTIONS-BG-color',                group: 'sections',       default: '#282828',                     tooltip: 'background of the menu; this is NOT just a color value but can be a complete CSS background definition including gradients, etc.', },
 		{ name: 'MENU-SECTIONS-ACTIVE-BG-color',         group: 'sections',       default: 'rgba( 0, 0, 0, .166 )',       tooltip: 'background color of the active menu section', },
