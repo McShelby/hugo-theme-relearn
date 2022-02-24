@@ -43,7 +43,7 @@ var variants = {
 		}
 	},
 
-	generateVariantPath( variant, old_path ){
+	generateVariantPath: function( variant, old_path ){
 		var new_path = old_path.replace( /^(.*\/theme-).*?(\.css.*)$/, '$1' + variant + '$2' );
 		return new_path;
 	},
@@ -68,7 +68,7 @@ var variants = {
 			option = document.createElement( 'option' );
 			option.id = this.customvariantname;
 			option.value = this.customvariantname;
-			option.text = this.customvariantname.replace( /-/g, ' ' ).replace(/\w\S*/g, (w) => (w.replace(/^\w/g, (c) => c.toUpperCase())));
+			option.text = this.customvariantname.replace( /-/g, ' ' ).replace(/\w\S*/g, function(w){ return w.replace(/^\w/g, function(c){ return c.toUpperCase(); }); });
 			select.appendChild( option );
 			document.querySelectorAll( '.footerVariantSwitch' ).forEach( function( e ){
 				e.classList.add( 'showVariantSwitch' );
