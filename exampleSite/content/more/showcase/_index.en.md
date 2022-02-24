@@ -2,7 +2,7 @@
 title = "Showcase"
 +++
 
-## [GoboLinux Wiki](https://wiki.gobolinux.org/) by GoboLinux.org
+## [GoboLinux Wiki](https://wiki.gobolinux.org/) by NEONsys
 
 ![GoboLinux image](images/gobolinux.png?width=60pc&classes=shadow)
 ## [BITS](https://bits-training.de/training/) by Dr. Lutz Gollan
