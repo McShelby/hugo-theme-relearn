@@ -105,14 +105,15 @@ th {
 }
 
 #header-wrapper {
-    background-color: #7dc903; /* var(--MENU-HEADER-BG-color) */
+    /* initially use section background to avoid flickering on load when a
+    non default variant is active */
+    background-color: rgba( 0, 0, 0, 0 ); /* var(--MENU-SECTIONS-BG-color) */
     color: #e0e0e0; /* var(--MENU-SEARCH-color) */
     text-align: center;
-    border-bottom: 4px solid #7dc903; /* var(--MENU-HEADER-BORDER-color) */
+    border-bottom: 4px solid rgba( 0, 0, 0, 0 );  /* var(--MENU-SECTIONS-BG-color) */
     padding: 1rem;
     position: relative;
 }
-
 #header a {
     display: inline-block;
 }
@@ -1490,6 +1491,13 @@ h6 a {
     .default-animation{
         transition: none;
     }
+
+    /* our silly dinosaur browser wants to have the real colors */
+    #header-wrapper {
+        background-color: #7dc903; /* var(--MENU-HEADER-BG-color) */
+        border-bottom: 4px solid #7dc903; /* var(--MENU-HEADER-BORDER-color) */
+    }
+
     /* clears the 'X' from Internet Explorer's search input */
     input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
     input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
@@ -1499,7 +1507,6 @@ h6 a {
     .showVariantSwitch{
         display: getamodernbrowser;
     }
-
     /* dumb IE11 doesn't understand initial, so we force a fallback here */
     .showLangSwitch,
     .showVisitedLinks,
