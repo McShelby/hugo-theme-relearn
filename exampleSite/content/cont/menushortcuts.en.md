@@ -61,7 +61,7 @@ Example from the current website:
 ````toml
 [Languages]
   [Languages.en]
-    title = "Documentation for Hugo Relearn Theme"
+    title = "Hugo Relearn Theme"
     weight = 1
     languageName = "English"
     landingPageURL = "/"
@@ -95,7 +95,7 @@ Example from the current website:
     weight = 40
 
   [Languages.pir]
-    title = "Documentat'n fer Cap'n Hugo Relearrrn Theme"
+    title = "Cap'n Hugo Relearrrn Theme"
     weight = 1
     languageName = "Arrr! Pirrrates"
     landingPageURL = "/pir/"
