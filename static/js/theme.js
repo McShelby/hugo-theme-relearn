@@ -336,12 +336,6 @@ jQuery(function() {
     initArrowNav();
     scrollToActiveMenu();
 
-    jQuery('#sidebar .category-icon').on('click', function() {
-        $( this ).toggleClass("fa-angle-down fa-angle-right") ;
-        $( this ).parent().parent().children('ul').toggle() ;
-        return false;
-    });
-
     var sidebarStatus = 'open';
     ps = new PerfectScrollbar('#sidebar .highlightable');
     setMenuHeight();
