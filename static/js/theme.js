@@ -1,35 +1,3 @@
-// Scrollbar Width function
-function getScrollBarWidth() {
-    var inner = document.createElement('p');
-    inner.style.width = "100%";
-    inner.style.height = "200px";
-
-    var outer = document.createElement('div');
-    outer.style.position = "absolute";
-    outer.style.top = "0px";
-    outer.style.left = "0px";
-    outer.style.visibility = "hidden";
-    outer.style.width = "200px";
-    outer.style.height = "150px";
-    outer.style.overflow = "hidden";
-    outer.appendChild(inner);
-
-    document.body.appendChild(outer);
-    var w1 = inner.offsetWidth;
-    outer.style.overflow = 'scroll';
-    var w2 = inner.offsetWidth;
-    if (w1 == w2) w2 = outer.clientWidth;
-
-    document.body.removeChild(outer);
-
-    return (w1 - w2);
-};
-
-function setMenuHeight() {
-    $('#sidebar .highlightable').height($('#sidebar').innerHeight() - $('#header-wrapper').height() - 40);
-    ps && ps.update();
-}
-
 function switchTab(tabGroup, tabId) {
     allTabItems = jQuery("[data-tab-group='"+tabGroup+"']");
     targetTabItems = jQuery("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
@@ -79,6 +47,104 @@ function restoreTabSelections() {
           switchTab(tabGroup, tabItem);
         });
     }
+}
+
+function initStickyHeader(){
+    var markSticky = function(){
+        // add marker when not in top position; allows users
+        // to change styles (eg. add a dropshadow)
+        if ($(this).scrollTop() == 0) {
+            $('#top-bar').removeClass("is-sticky");
+        }
+        else {
+            $('#top-bar').addClass("is-sticky");
+        }
+    };
+    markSticky();
+    $(window).scroll( markSticky );
+
+    /**
+    * Fix anchor scrolling that hides behind sticky top nav bar
+    * Courtesy of https://stackoverflow.com/a/13067009/28106
+    *
+    * We could use pure css for this if only heading anchors were
+    * involved, but this works for any anchor, including footnotes
+    **/
+     (function (document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+            ANCHOR_REGEX: /^#[^ ]+$/,
+            OFFSET_HEIGHT_PX: 50,
+
+            /**
+             * Establish events, and fix initial scroll position if a hash is provided.
+             */
+            init: function () {
+                this.scrollToCurrent();
+                $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
+                $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
+            },
+
+            /**
+             * Return the offset amount to deduct from the normal scroll position.
+             * Modify as appropriate to allow for dynamic calculations
+             */
+            getFixedOffset: function () {
+                return this.OFFSET_HEIGHT_PX;
+            },
+
+            /**
+             * If the provided href is an anchor which resolves to an element on the
+             * page, scroll to it.
+             * @param  {String} href
+             * @return {Boolean} - Was the href an anchor.
+             */
+            scrollIfAnchor: function (href, pushToHistory) {
+                var match, anchorOffset;
+
+                if (!this.ANCHOR_REGEX.test(href)) {
+                    return false;
+                }
+
+                match = document.getElementById(href.slice(1));
+
+                if (match) {
+                    anchorOffset = $(match).offset().top - this.getFixedOffset();
+                    $('html, body').animate({ scrollTop: anchorOffset });
+
+                    // Add the state to history as-per normal anchor links
+                    if (HISTORY_SUPPORT && pushToHistory) {
+                        history.pushState({}, document.title, location.pathname + href);
+                    }
+                }
+
+                return !!match;
+            },
+
+            /**
+             * Attempt to scroll to the current location's hash.
+             */
+            scrollToCurrent: function (e) {
+                if (this.scrollIfAnchor(window.location.hash) && e) {
+                    e.preventDefault();
+                }
+            },
+
+            /**
+             * If the click event's target was an anchor, fix the scroll position.
+             */
+            delegateAnchors: function (e) {
+                var elem = e.target;
+
+                if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
+                    e.preventDefault();
+                }
+            }
+        };
+
+        $(document).ready($.proxy(anchorScrolls, 'init'));
+    })(window.document, window.history, window.location);
 }
 
 function initMermaid() {
@@ -210,6 +276,97 @@ function initArrowNav(){
     });
 }
 
+function initMenuScrollbar(){
+    var setMenuHeight = function (){
+        $('#sidebar .highlightable').height($('#sidebar').innerHeight() - $('#header-wrapper').height() - 40);
+        ps && ps.update();
+    };
+
+    var ps = new PerfectScrollbar('#sidebar .highlightable');
+    setMenuHeight();
+
+    // to inform scrollbar of resizing
+    $(window).resize(function() {
+        setMenuHeight();
+    });
+}
+
+function initLightbox(){
+    // wrap image inside a lightbox (to get a full size view in a popup)
+    var images = $("main#body-inner img").not(".inline");
+    images.wrap(function(){
+        var image =$(this);
+        var o = getUrlParameter(image[0].src);
+        var f = o['featherlight'];
+        // IF featherlight is false, do not use feather light
+        if (f != 'false') {
+            if (!image.parent("a").length) {
+                var html = $( "<a>" ).attr("href", image[0].src).attr("data-featherlight", "image").get(0).outerHTML;
+                return html;
+            }
+        }
+    });
+
+    $('a[rel="lightbox"]').featherlight({
+        root: 'div#body'
+    });
+}
+
+function initImageStyles(){
+    // change image styles, depending on parameters set to the image
+    var images = $("main#body-inner img").not(".inline");
+    images.each(function(index){
+        var image = $(this)
+        var o = getUrlParameter(image[0].src);
+        if (typeof o !== "undefined") {
+            var h = o["height"];
+            var w = o["width"];
+            var c = o["classes"];
+            image.css("width", function() {
+                if (typeof w !== "undefined") {
+                    return w;
+                } else {
+                    return "auto";
+                }
+            });
+            image.css("height", function() {
+                if (typeof h !== "undefined") {
+                    return h;
+                } else {
+                    return "auto";
+                }
+            });
+            if (typeof c !== "undefined") {
+                var classes = c.split(',');
+                for (i = 0; i < classes.length; i++) {
+                    image.addClass(classes[i]);
+                }
+            }
+        }
+    });
+}
+
+function initToc(){
+    var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+    if (touchsupport){
+        $('#toc-menu').click(function() {
+            $('.progress').stop(true, false, true).fadeToggle(100);
+        });
+        $('.progress').click(function() {
+            $('.progress').stop(true, false, true).fadeToggle(100);
+        });
+    }
+    else{
+        $('#toc-menu').hover(function() {
+            $('.progress').stop(true, false, true).fadeToggle(100);
+        });
+
+        $('.progress').hover(function() {
+            $('.progress').stop(true, false, true).fadeToggle(100);
+        });
+    }
+}
+
 function scrollToActiveMenu() {
     window.setTimeout(function(){
         var e = $("#sidebar ul.topics li.active a")[0];
@@ -237,67 +394,6 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
     return obj;
 };
 
-// Execute actions on images generated from Markdown pages
-var images = $("main#body-inner img").not(".inline");
-// Wrap image inside a featherlight (to get a full size view in a popup)
-images.wrap(function(){
-    var image =$(this);
-    var o = getUrlParameter(image[0].src);
-    var f = o['featherlight'];
-    // IF featherlight is false, do not use feather light
-    if (f != 'false') {
-        if (!image.parent("a").length) {
-            var html = $( "<a>" ).attr("href", image[0].src).attr("data-featherlight", "image").get(0).outerHTML;
-            return html;
-        }
-    }
-});
-
-// Change styles, depending on parameters set to the image
-images.each(function(index){
-    var image = $(this)
-    var o = getUrlParameter(image[0].src);
-    if (typeof o !== "undefined") {
-        var h = o["height"];
-        var w = o["width"];
-        var c = o["classes"];
-        image.css("width", function() {
-            if (typeof w !== "undefined") {
-                return w;
-            } else {
-                return "auto";
-            }
-        });
-        image.css("height", function() {
-            if (typeof h !== "undefined") {
-                return h;
-            } else {
-                return "auto";
-            }
-        });
-        if (typeof c !== "undefined") {
-            var classes = c.split(',');
-            for (i = 0; i < classes.length; i++) {
-                image.addClass(classes[i]);
-            }
-        }
-    }
-});
-
-// for the window resize
-$(window).resize(function() {
-    setMenuHeight();
-});
-// for the sticky header
-$(window).scroll(function() {
-    // add shadow when not in top position
-    if ($(this).scrollTop() == 0) {
-        $('#top-bar').removeClass("is-sticky");
-    }
-    else {
-        $('#top-bar').addClass("is-sticky");
-    }
-});
 // debouncing function from John Hann
 // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
 (function($, sr) {
@@ -327,19 +423,20 @@ $(window).scroll(function() {
 
 })(jQuery, 'smartresize');
 
-var ps = null;
 jQuery(function() {
     restoreTabSelections();
+    initStickyHeader();
     initMermaid();
     initAnchorClipboard();
     initCodeClipboard();
     initArrowNav();
+    initMenuScrollbar();
+    initLightbox();
+    initImageStyles();
+    initToc();
     scrollToActiveMenu();
 
     var sidebarStatus = 'open';
-    ps = new PerfectScrollbar('#sidebar .highlightable');
-    setMenuHeight();
-
     jQuery('#overlay').on('click', function() {
         jQuery(document.body).toggleClass('sidebar-hidden');
         sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
@@ -411,112 +508,6 @@ jQuery(function() {
 
     $('#top-bar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
-
-    var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
-    if (!touchsupport){ // browser doesn't support touch
-        $('#toc-menu').hover(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-
-        $('.progress').hover(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-    }
-    if (touchsupport){ // browser does support touch
-        $('#toc-menu').click(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-        $('.progress').click(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-    }
-
-    /**
-    * Fix anchor scrolling that hides behind top nav bar
-    * Courtesy of https://stackoverflow.com/a/13067009/28106
-    *
-    * We could use pure css for this if only heading anchors were
-    * involved, but this works for any anchor, including footnotes
-    **/
-    (function (document, history, location) {
-        var HISTORY_SUPPORT = !!(history && history.pushState);
-
-        var anchorScrolls = {
-            ANCHOR_REGEX: /^#[^ ]+$/,
-            OFFSET_HEIGHT_PX: 50,
-
-            /**
-             * Establish events, and fix initial scroll position if a hash is provided.
-             */
-            init: function () {
-                this.scrollToCurrent();
-                $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
-                $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
-            },
-
-            /**
-             * Return the offset amount to deduct from the normal scroll position.
-             * Modify as appropriate to allow for dynamic calculations
-             */
-            getFixedOffset: function () {
-                return this.OFFSET_HEIGHT_PX;
-            },
-
-            /**
-             * If the provided href is an anchor which resolves to an element on the
-             * page, scroll to it.
-             * @param  {String} href
-             * @return {Boolean} - Was the href an anchor.
-             */
-            scrollIfAnchor: function (href, pushToHistory) {
-                var match, anchorOffset;
-
-                if (!this.ANCHOR_REGEX.test(href)) {
-                    return false;
-                }
-
-                match = document.getElementById(href.slice(1));
-
-                if (match) {
-                    anchorOffset = $(match).offset().top - this.getFixedOffset();
-                    $('html, body').animate({ scrollTop: anchorOffset });
-
-                    // Add the state to history as-per normal anchor links
-                    if (HISTORY_SUPPORT && pushToHistory) {
-                        history.pushState({}, document.title, location.pathname + href);
-                    }
-                }
-
-                return !!match;
-            },
-
-            /**
-             * Attempt to scroll to the current location's hash.
-             */
-            scrollToCurrent: function (e) {
-                if (this.scrollIfAnchor(window.location.hash) && e) {
-                    e.preventDefault();
-                }
-            },
-
-            /**
-             * If the click event's target was an anchor, fix the scroll position.
-             */
-            delegateAnchors: function (e) {
-                var elem = e.target;
-
-                if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
-                    e.preventDefault();
-                }
-            }
-        };
-
-        $(document).ready($.proxy(anchorScrolls, 'init'));
-    })(window.document, window.history, window.location);
-
-    $('a[rel="lightbox"]').featherlight({
-        root: 'div#body'
-    });
 
     sessionStorage.setItem(jQuery('body').data('url'), 1);
 
