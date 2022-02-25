@@ -240,7 +240,7 @@ jQuery(function() {
         return false;
     });
 
-    var sidebarStatus = searchStatus = 'open';
+    var sidebarStatus = 'open';
     ps = new PerfectScrollbar('#sidebar .highlightable');
     setMenuHeight();
 
@@ -257,20 +257,6 @@ jQuery(function() {
     jQuery('[data-clear-history-toggle]').on('click', function() {
         sessionStorage.clear();
         location.reload();
-        return false;
-    });
-    jQuery('[data-search-toggle]').on('click', function() {
-        if (sidebarStatus == 'closed') {
-            jQuery('[data-sidebar-toggle]').trigger('click');
-            jQuery(document.body).removeClass('searchbox-hidden');
-            searchStatus = 'open';
-
-            return false;
-        }
-
-        jQuery(document.body).toggleClass('searchbox-hidden');
-        searchStatus = (jQuery(document.body).hasClass('searchbox-hidden') ? 'closed' : 'open');
-
         return false;
     });
 
@@ -312,7 +298,6 @@ jQuery(function() {
 
     if (sessionStorage.getItem('search-value')) {
         var searchValue = sessionStorage.getItem('search-value')
-        $(document.body).removeClass('searchbox-hidden');
         $('[data-search-input]').val(searchValue);
         $('[data-search-input]').trigger('input');
         var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
