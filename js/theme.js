@@ -27,7 +27,7 @@ function getScrollBarWidth() {
 
 function setMenuHeight() {
     $('#sidebar .highlightable').height($('#sidebar').innerHeight() - $('#header-wrapper').height() - 40);
-    $('#sidebar .highlightable').perfectScrollbar('update');
+    ps && ps.update();
 }
 
 function fallbackMessage(action) {
@@ -228,6 +228,7 @@ $(window).scroll(function() {
 
 })(jQuery, 'smartresize');
 
+var ps = null;
 jQuery(function() {
     restoreTabSelections();
     initMermaid();
@@ -240,20 +241,17 @@ jQuery(function() {
     });
 
     var sidebarStatus = searchStatus = 'open';
-    $('#sidebar .highlightable').perfectScrollbar();
+    ps = new PerfectScrollbar('#sidebar .highlightable');
     setMenuHeight();
 
     jQuery('#overlay').on('click', function() {
         jQuery(document.body).toggleClass('sidebar-hidden');
         sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
-
         return false;
     });
-
     jQuery('[data-sidebar-toggle]').on('click', function() {
         jQuery(document.body).toggleClass('sidebar-hidden');
         sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
-
         return false;
     });
     jQuery('[data-clear-history-toggle]').on('click', function() {
