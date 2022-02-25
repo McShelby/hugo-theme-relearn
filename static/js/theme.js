@@ -30,23 +30,6 @@ function setMenuHeight() {
     ps && ps.update();
 }
 
-function fallbackMessage(action) {
-    var actionMsg = '';
-    var actionKey = (action === 'cut' ? 'X' : 'C');
-
-    if (/iPhone|iPad/i.test(navigator.userAgent)) {
-        actionMsg = 'No support :(';
-    }
-    else if (/Mac/i.test(navigator.userAgent)) {
-        actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
-    }
-    else {
-        actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
-    }
-
-    return actionMsg;
-}
-
 function switchTab(tabGroup, tabId) {
     allTabItems = jQuery("[data-tab-group='"+tabGroup+"']");
     targetTabItems = jQuery("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
@@ -109,6 +92,122 @@ function initMermaid() {
         mermaid.contentLoaded();
         $(".mermaid svg").svgPanZoom({});
     }
+}
+
+function initAnchorClipboard(){
+    var clip = new ClipboardJS('.anchor');
+    $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
+        var element = $(this);
+        var url = encodeURI(document.location.origin + document.location.pathname);
+        var link = url + "#"+element[0].id;
+        var html = " " + $( '<span>' ).addClass("anchor").attr("title", window.T_Copy_link_to_clipboard).attr("data-clipboard-text", link).append("<i class='fas fa-link fa-lg'></i>").get(0).outerHTML;
+        return html;
+    });
+
+    $(".anchor").on('mouseleave', function(e) {
+        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+    });
+
+    clip.on('success', function(e) {
+        e.clearSelection();
+        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
+    });
+}
+
+function initCodeClipboard(){
+    function fallbackMessage(action) {
+        var actionMsg = '';
+        var actionKey = (action === 'cut' ? 'X' : 'C');
+
+        if (/iPhone|iPad/i.test(navigator.userAgent)) {
+            actionMsg = 'No support :(';
+        }
+        else if (/Mac/i.test(navigator.userAgent)) {
+            actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
+        }
+        else {
+            actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+        }
+
+        return actionMsg;
+    }
+
+    $('code').each(function() {
+        var code = $(this),
+            text = code.text();
+
+        if (text.length > 5) {
+            var clip = new ClipboardJS('.copy-to-clipboard-button', {
+                text: function(trigger) {
+                    var text = $(trigger).prev('code').text();
+                    // remove a trailing line break, this may most likely
+                    // come from the browser / Hugo transformation
+                    text = text.replace(/\n$/, '');
+                    // removes leading $ signs from text in an assumption
+                    // that this has to be the unix prompt marker - weird
+                    return text.replace(/^\$\s/gm, '');
+                }
+            });
+
+            clip.on('success', function(e) {
+                e.clearSelection();
+                var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+            });
+
+            clip.on('error', function(e) {
+                var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                $(document).one('copy', function(){
+                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                });
+            });
+
+            var parent = code.parent();
+            var inPre = parent.prop('tagName') == 'PRE';
+            code.addClass('copy-to-clipboard-code');
+            if( inPre ){
+                parent.addClass( 'copy-to-clipboard' );
+            }
+            else{
+                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
+                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            }
+            code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
+            code.next('.copy-to-clipboard-button').on('mouseleave', function() {
+                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+            });
+        }
+    });
+}
+
+function initArrowNav(){
+    // button navigation
+    jQuery(function() {
+        jQuery('a.nav-prev').click(function(){
+            location.href = jQuery(this).attr('href');
+        });
+        jQuery('a.nav-next').click(function() {
+            location.href = jQuery(this).attr('href');
+        });
+    });
+
+    // keyboard navigation
+    jQuery(document).keydown(function(e) {
+      if(e.which == '37') {
+        jQuery('a.nav-prev').click();
+      }
+      if(e.which == '39') {
+        jQuery('a.nav-next').click();
+      }
+    });
+
+    // avoid keyboard navigation for input fields
+    jQuery('input, textarea').keydown(function (e) {
+        if (e.which == '37' || e.which == '39') {
+            e.stopPropagation();
+        }
+    });
 }
 
 function scrollToActiveMenu() {
@@ -232,6 +331,9 @@ var ps = null;
 jQuery(function() {
     restoreTabSelections();
     initMermaid();
+    initAnchorClipboard();
+    initCodeClipboard();
+    initArrowNav();
     scrollToActiveMenu();
 
     jQuery('#sidebar .category-icon').on('click', function() {
@@ -312,89 +414,6 @@ jQuery(function() {
 
     $(".highlightable").highlight(sessionStorage.getItem('search-value'), { element: 'mark' });
     $("mark").parents(".expand").addClass("expand-marked");
-
-    // clipboard
-    var clipInit = false;
-    $('code').each(function() {
-        var code = $(this),
-            text = code.text();
-
-        if (text.length > 5) {
-            if (!clipInit) {
-                var clip = new ClipboardJS('.copy-to-clipboard-button', {
-                    text: function(trigger) {
-                        var text = $(trigger).prev('code').text();
-                        // remove a trailing line break, this may most likely
-                        // come from the browser / Hugo transformation
-                        text = text.replace(/\n$/, '');
-                        // removes leading $ signs from text in an assumption
-                        // that this has to be the unix prompt marker - weird
-                        return text.replace(/^\$\s/gm, '');
-                    }
-                });
-
-                clip.on('success', function(e) {
-                    e.clearSelection();
-                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                });
-
-                clip.on('error', function(e) {
-                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                    $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                    $(document).one('copy', function(){
-                        $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                    });
-                });
-
-                clipInit = true;
-            }
-
-            var parent = code.parent();
-            var inPre = parent.prop('tagName') == 'PRE';
-            code.addClass('copy-to-clipboard-code');
-            if( inPre ){
-                parent.addClass( 'copy-to-clipboard' );
-            }
-            else{
-                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
-                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
-            }
-            code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
-            code.next('.copy-to-clipboard-button').on('mouseleave', function() {
-                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
-            });
-        }
-    });
-
-    // allow keyboard control for prev/next links
-    jQuery(function() {
-        jQuery('a.nav-prev').click(function(){
-            location.href = jQuery(this).attr('href');
-        });
-        jQuery('a.nav-next').click(function() {
-            location.href = jQuery(this).attr('href');
-        });
-    });
-
-    jQuery('input, textarea').keydown(function (e) {
-         //  left and right arrow keys
-         if (e.which == '37' || e.which == '39') {
-             e.stopPropagation();
-         }
-     });
-
-    jQuery(document).keydown(function(e) {
-      // prev links - left arrow key
-      if(e.which == '37') {
-        jQuery('a.nav-prev').click();
-      }
-
-      // next links - right arrow key
-      if(e.which == '39') {
-        jQuery('a.nav-next').click();
-      }
-    });
 
     $('#top-bar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
@@ -500,25 +519,6 @@ jQuery(function() {
 
         $(document).ready($.proxy(anchorScrolls, 'init'));
     })(window.document, window.history, window.location);
-
-    // Add link button for every
-    var text, clip = new ClipboardJS('.anchor');
-    $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
-        var element = $(this);
-        var url = encodeURI(document.location.origin + document.location.pathname);
-        var link = url + "#"+element[0].id;
-        var html = " " + $( '<span>' ).addClass("anchor").attr("title", window.T_Copy_link_to_clipboard).attr("data-clipboard-text", link).append("<i class='fas fa-link fa-lg'></i>").get(0).outerHTML;
-        return html;
-    });
-
-    $(".anchor").on('mouseleave', function(e) {
-        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
-    });
-
-    clip.on('success', function(e) {
-        e.clearSelection();
-        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
-    });
 
     $('a[rel="lightbox"]').featherlight({
         root: 'div#body'
