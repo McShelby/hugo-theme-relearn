@@ -278,12 +278,10 @@ function initArrowNav(){
 
 function initMenuScrollbar(){
     var setMenuHeight = function (){
-        $('#sidebar .highlightable').height($('#sidebar').innerHeight() - $('#header-wrapper').height() - 40);
         ps && ps.update();
     };
 
     var ps = new PerfectScrollbar('#sidebar .highlightable');
-    setMenuHeight();
 
     // to inform scrollbar of resizing
     $(window).resize(function() {
