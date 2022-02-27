@@ -281,7 +281,7 @@ function initMenuScrollbar(){
         ps && ps.update();
     };
 
-    var ps = new PerfectScrollbar('#sidebar .highlightable');
+    var ps = new PerfectScrollbar('#content-wrapper');
 
     // to inform scrollbar of resizing
     $(window).resize(function() {

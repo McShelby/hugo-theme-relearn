@@ -28,8 +28,8 @@
     {{- partial "menu.html" . }}
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
-      <div class="padding highlightable">
-        <div id="top-bar"><div>
+      <div id="top-bar" class="highlightable">
+        <div>
         {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
         {{- if $showPrevNext }}
           {{- $parent := .Parent }}
@@ -97,13 +97,14 @@
         {{- if $toc }}
           {{- partial "toc.html" . }}
         {{- end }}
-        </div></div>
-        <main id="body-inner"{{if .Params.chapter}} class="chapter"{{end}}>
-          <div id="head-tags">
+        </div>
+      </div>
+      <main id="body-inner" class="highlightable {{if .Params.chapter}} chapter{{end}}">
+        <div id="head-tags">
 {{- partial "tags.html" . }}
-          </div>
+        </div>
       {{- if and (not .IsHome) (not .Params.chapter) }}
-          <h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
+        <h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
       {{- end }}
 
 {{- define "breadcrumb" }}
