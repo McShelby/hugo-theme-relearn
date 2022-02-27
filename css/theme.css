@@ -52,16 +52,16 @@ body {
     line-height: 1.574;
 }
 
-body #chapter h1 {
+body #body-inner.chapter h1 {
     font-size: 3.5rem;
 }
 @media only all and (min-width: 48em) and (max-width: 59.938em) {
-    body #chapter h1 {
+    body #body-inner.chapter h1 {
         font-size: 3rem;
     }
 }
 @media only all and (max-width: 47.938em) {
-    body #chapter h1 {
+    body #body-inner.chapter h1 {
         font-size: 2rem;
     }
 }
@@ -359,16 +359,10 @@ th {
     vertical-align: bottom;
 }
 
-#body .padding {
-    padding: 0;
-}
 #body-inner {
     padding: 0 3rem 4rem 3rem;
 }
 @media only all and (max-width: 59.938em) {
-    #body .padding {
-        position: static;
-    }
     #body-inner {
         padding: 0 2rem 15px 2rem;
     }
@@ -392,29 +386,23 @@ th {
   }
 }
 
-#chapter {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    padding: 2rem 0;
+#body-inner.chapter {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 9rem;
 }
 
-#chapter #body-inner {
-    max-width: 80%;
-}
-
-#chapter #body-inner h3:first-of-type {
+#body-inner.chapter h3:first-of-type {
     font-weight: 200;
     text-align: center;
 }
 
-#chapter h1 {
+#body-inner.chapter h1 {
     border-bottom: 4px solid rgba( 134, 134, 134, .125 );
     font-size: 5rem;
 }
 
-#chapter p {
+#body-inner.chapter p {
     font-size: 1.2rem;
     text-align: justify;
 }
@@ -914,7 +902,7 @@ td {
     top: 50%;
 }
 
-.highlightable {
+#sidebar .highlightable {
     padding: 1rem 0 1rem;
     position: relative;
 }
@@ -923,15 +911,11 @@ td {
     overflow: visible;
 }
 
-.lightbox-active #body .padding {
-    overflow: visible;
-}
-
 .featherlight img {
     margin: 0 !important;
 }
 
-#top-bar {
+#topbar {
     background-color: #ffffff; /* var(--MAIN-BG-color) */
     border-radius: 2px;
     height: 0;
@@ -941,7 +925,7 @@ td {
     z-index: 999;
 }
 
-#top-bar > div {
+#topbar > div {
     background-color: rgba( 134, 134, 134, .066 );
     height: 100%;
 }
@@ -1072,7 +1056,7 @@ a[aria-disabled="true"] {
         margin-left: 230px;
         overflow: hidden;
     }
-    .sidebar-hidden #overlay {
+    .sidebar-hidden #sidebar-overlay {
         background-color: rgba(134, 134, 134, 0.5);
         bottom: 0;
         cursor: pointer;
