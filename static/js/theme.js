@@ -54,10 +54,10 @@ function initStickyHeader(){
         // add marker when not in top position; allows users
         // to change styles (eg. add a dropshadow)
         if ($(this).scrollTop() == 0) {
-            $('#top-bar').removeClass("is-sticky");
+            $('#topbar').removeClass("is-sticky");
         }
         else {
-            $('#top-bar').addClass("is-sticky");
+            $('#topbar').addClass("is-sticky");
         }
     };
     markSticky();
@@ -504,7 +504,7 @@ jQuery(function() {
     $(".highlightable").highlight(sessionStorage.getItem('search-value'), { element: 'mark' });
     $("mark").parents(".expand").addClass("expand-marked");
 
-    $('#top-bar a:not(:has(img)):not(.btn)').addClass('highlight');
+    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
 
     sessionStorage.setItem(jQuery('body').data('url'), 1);
