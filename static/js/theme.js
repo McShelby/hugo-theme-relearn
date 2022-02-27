@@ -435,7 +435,7 @@ jQuery(function() {
     scrollToActiveMenu();
 
     var sidebarStatus = 'open';
-    jQuery('#overlay').on('click', function() {
+    jQuery('#sidebar-overlay').on('click', function() {
         jQuery(document.body).toggleClass('sidebar-hidden');
         sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
         return false;
