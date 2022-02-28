@@ -25,10 +25,10 @@
     {{- partial "custom-header.html" . }}
   </head>
   <body class="default-animation" data-url="{{ .RelPermalink }}">
-    {{- partial "menu.html" . }}
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
-      <div id="topbar" class="highlightable">
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
         <div>
         {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
         {{- if $showPrevNext }}
@@ -75,12 +75,10 @@
         {{- $toc := (and $hastoc (not $currentDisableToc) (not .Params.chapter)) }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
-              <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }}' data-sidebar-toggle="">
-                <i class="fas fa-bars fa-fw"></i>
-              </a>
+              <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }}'><i class="fas fa-bars fa-fw"></i></a>
             </span>
           {{- if $toc }}
-            <span id="toc-menu"><i class="fas fa-list-alt fa-fw"></i></span>
+            <span id="toc-menu" title='{{ T "Toc-toggle" }}'><i class="fas fa-list-alt fa-fw"></i></span>
           {{- end }}
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
@@ -98,13 +96,14 @@
           {{- partial "toc.html" . }}
         {{- end }}
         </div>
-      </div>
+      </nav>
       <main id="body-inner" class="highlightable {{if .Params.chapter}} chapter{{end}}">
-        <div id="head-tags">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
 {{- partial "tags.html" . }}
-        </div>
+          </div>
       {{- if and (not .IsHome) (not .Params.chapter) }}
-        <h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
+          <h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
       {{- end }}
 
 {{- define "breadcrumb" }}

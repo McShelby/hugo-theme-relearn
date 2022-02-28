@@ -1,3 +1,10 @@
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+if( !isIE ){
+    // we don't support sidebar flyout in IE
+    document.querySelector( 'body' ).classList.add( 'mobile-support' );
+}
+var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+
 function switchTab(tabGroup, tabId) {
     allTabItems = jQuery("[data-tab-group='"+tabGroup+"']");
     targetTabItems = jQuery("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
@@ -47,104 +54,6 @@ function restoreTabSelections() {
           switchTab(tabGroup, tabItem);
         });
     }
-}
-
-function initStickyHeader(){
-    var markSticky = function(){
-        // add marker when not in top position; allows users
-        // to change styles (eg. add a dropshadow)
-        if ($(this).scrollTop() == 0) {
-            $('#topbar').removeClass("is-sticky");
-        }
-        else {
-            $('#topbar').addClass("is-sticky");
-        }
-    };
-    markSticky();
-    $(window).scroll( markSticky );
-
-    /**
-    * Fix anchor scrolling that hides behind sticky top nav bar
-    * Courtesy of https://stackoverflow.com/a/13067009/28106
-    *
-    * We could use pure css for this if only heading anchors were
-    * involved, but this works for any anchor, including footnotes
-    **/
-     (function (document, history, location) {
-        var HISTORY_SUPPORT = !!(history && history.pushState);
-
-        var anchorScrolls = {
-            ANCHOR_REGEX: /^#[^ ]+$/,
-            OFFSET_HEIGHT_PX: 50,
-
-            /**
-             * Establish events, and fix initial scroll position if a hash is provided.
-             */
-            init: function () {
-                this.scrollToCurrent();
-                $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
-                $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
-            },
-
-            /**
-             * Return the offset amount to deduct from the normal scroll position.
-             * Modify as appropriate to allow for dynamic calculations
-             */
-            getFixedOffset: function () {
-                return this.OFFSET_HEIGHT_PX;
-            },
-
-            /**
-             * If the provided href is an anchor which resolves to an element on the
-             * page, scroll to it.
-             * @param  {String} href
-             * @return {Boolean} - Was the href an anchor.
-             */
-            scrollIfAnchor: function (href, pushToHistory) {
-                var match, anchorOffset;
-
-                if (!this.ANCHOR_REGEX.test(href)) {
-                    return false;
-                }
-
-                match = document.getElementById(href.slice(1));
-
-                if (match) {
-                    anchorOffset = $(match).offset().top - this.getFixedOffset();
-                    $('html, body').animate({ scrollTop: anchorOffset });
-
-                    // Add the state to history as-per normal anchor links
-                    if (HISTORY_SUPPORT && pushToHistory) {
-                        history.pushState({}, document.title, location.pathname + href);
-                    }
-                }
-
-                return !!match;
-            },
-
-            /**
-             * Attempt to scroll to the current location's hash.
-             */
-            scrollToCurrent: function (e) {
-                if (this.scrollIfAnchor(window.location.hash) && e) {
-                    e.preventDefault();
-                }
-            },
-
-            /**
-             * If the click event's target was an anchor, fix the scroll position.
-             */
-            delegateAnchors: function (e) {
-                var elem = e.target;
-
-                if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
-                    e.preventDefault();
-                }
-            }
-        };
-
-        $(document).ready($.proxy(anchorScrolls, 'init'));
-    })(window.document, window.history, window.location);
 }
 
 function initMermaid() {
@@ -277,15 +186,56 @@ function initArrowNav(){
 }
 
 function initMenuScrollbar(){
-    var setMenuHeight = function (){
-        ps && ps.update();
-    };
-
-    var ps = new PerfectScrollbar('#content-wrapper');
-
-    // to inform scrollbar of resizing
-    $(window).resize(function() {
-        setMenuHeight();
+    var content = '#body-inner';
+    if( isIE ){
+        // IE can not display the topbar as sticky; so we let
+        // the whole body scroll instead of just the content
+        content = '#body';
+    }
+    var autofocus = false;
+    document.addEventListener('keydown', function(){
+        // for initial keyboard scrolling support, no element
+        // may be hovered, but we still want to react on
+        // cursor/page up/down. because we can't hack
+        // the scrollbars implementation, we try to trick
+        // it and give focus to the scrollbar - only
+        // to just remove the focus right after scrolling
+        // happend
+        var p = document.querySelector(content).matches(':hover');
+        var m = document.querySelector('#content-wrapper').matches(':hover');
+        if( !p && !m ){
+            // only do this hack if none of our scrollbars
+            // is hovered
+            autofocus = true;
+            // if we are showing the sidebar as a flyout we
+            // want to scroll the content-wrapper, otherwise we want
+            // to scroll the body
+            var n = document.querySelector('body').matches('.sidebar-flyout');
+            if( n ){
+                psm.scrollbarY.focus();
+            }
+            else{
+                psc.scrollbarY.focus();
+            }
+        }
+    });
+    // scrollbars will install their own keyboard handlers
+    // that need to be executed inbetween our own handlers
+    var psm = new PerfectScrollbar('#content-wrapper');
+    var psc = new PerfectScrollbar(content);
+    window.addEventListener('resize', function(){
+        psm && psm.update();
+        psc && psc.update();
+    });
+    document.addEventListener('keydown', function(){
+        // if we facked initial scrolling, we want to
+        // remove the focus to not leave visual markers on
+        // the scrollbar
+        if( autofocus ){
+            psc.scrollbarY.blur();
+            psm.scrollbarY.blur();
+            autofocus = false;
+        }
     });
 }
 
@@ -345,24 +295,75 @@ function initImageStyles(){
 }
 
 function initToc(){
-    var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
-    if (touchsupport){
-        $('#toc-menu').click(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-        $('.progress').click(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
+    function showNav(){
+        var b = document.querySelector( 'body' );
+        b.classList.toggle( 'sidebar-flyout' );
+        var n = b.matches('.sidebar-flyout');
+        if( n ){
+            b.classList.remove( 'toc-flyout' );
+        }
     }
-    else{
-        $('#toc-menu').hover(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
+    function showToc(){
+        var b = document.querySelector( 'body' );
+        b.classList.toggle( 'toc-flyout' );
+    }
 
-        $('.progress').hover(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
+    document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
+    document.querySelector( '#sidebar-toggle' ).addEventListener( 'click', showNav );
+    document.querySelector( '#toc-overlay' ).addEventListener( 'click', showToc );
+    var t = document.querySelector( '#toc-menu' );
+    var p = document.querySelector( '.progress' );
+    if( t && p ){
+        // we may not have a toc
+        t.addEventListener( 'click', showToc );
+        p.addEventListener( 'click', showToc );
     }
+}
+
+function initSwipeHandler(){
+    if( !touchsupport ){
+        return;
+    }
+
+    var startx = null;
+    var starty = null;
+    var handleStartX = function(evt) {
+        startx = evt.touches[0].clientX;
+        starty = evt.touches[0].clientY;
+        return false;
+    };
+    var handleMoveX = function(evt) {
+        if( startx !== null ){
+            var diffx = startx - evt.touches[0].clientX;
+            var diffy = starty - evt.touches[0].clientY || .1 ;
+            if( diffx / Math.abs( diffy ) < 2 ){
+                // detect mostly vertical swipes and reset our starting pos
+                // to not detect a horizontal move if vertical swipe is unprecise
+                startx = evt.touches[0].clientX;
+            }
+            else if( diffx > 30 ){
+                startx = null;
+                starty = null;
+                jQuery(document.body).toggleClass('sidebar-flyout');
+            }
+        }
+        return false;
+    };
+    var handleEndX = function(evt) {
+        startx = null;
+        starty = null;
+        return false;
+    };
+
+    document.querySelector( '#sidebar-overlay' ).addEventListener("touchstart", handleStartX, false);
+    document.querySelector( '#sidebar' ).addEventListener("touchstart", handleStartX, false);
+    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
+    document.querySelector( '#sidebar-overlay' ).addEventListener("touchmove", handleMoveX, false);
+    document.querySelector( '#sidebar' ).addEventListener("touchmove", handleMoveX, false);
+    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX); }, false);
+    document.querySelector( '#sidebar-overlay' ).addEventListener("touchend", handleEndX, false);
+    document.querySelector( '#sidebar' ).addEventListener("touchend", handleEndX, false);
+    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
 }
 
 function scrollToActiveMenu() {
@@ -373,7 +374,7 @@ function scrollToActiveMenu() {
                 block: 'center',
             });
         }
-    }, 200);
+    }, 10);
 }
 
 // Get Parameters from some url
@@ -422,29 +423,18 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 })(jQuery, 'smartresize');
 
 jQuery(function() {
-    restoreTabSelections();
-    initStickyHeader();
-    initMermaid();
-    initAnchorClipboard();
-    initCodeClipboard();
     initArrowNav();
+    initMermaid();
     initMenuScrollbar();
+    scrollToActiveMenu();
     initLightbox();
     initImageStyles();
     initToc();
-    scrollToActiveMenu();
+    initAnchorClipboard();
+    initCodeClipboard();
+    restoreTabSelections();
+    initSwipeHandler();
 
-    var sidebarStatus = 'open';
-    jQuery('#sidebar-overlay').on('click', function() {
-        jQuery(document.body).toggleClass('sidebar-hidden');
-        sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
-        return false;
-    });
-    jQuery('[data-sidebar-toggle]').on('click', function() {
-        jQuery(document.body).toggleClass('sidebar-hidden');
-        sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
-        return false;
-    });
     jQuery('[data-clear-history-toggle]').on('click', function() {
         sessionStorage.clear();
         location.reload();

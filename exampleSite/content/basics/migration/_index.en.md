@@ -40,6 +40,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Note, that the new variant switch will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant switcher will not be displayed with Internet Explorer 11.
 
+---
+
 ## 2.9.0
 
 - **Breaking**: This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard complient and exchanging this theme in your project to some other theme will be effortless.
@@ -75,6 +77,8 @@ This document shows you what's new in the latest release. For a detailed list of
     | Branch bundle | `(ref\s+"[^"]*)/_index\.md"` | `$1"`      |
     | Leaf bundle   | `(ref\s+"[^"]*)/index\.md"`  | `$1"`      |
     | Page          | `(ref\s+"[^"]*)\.md"`        | `$1"`      |
+
+---
 
 ## 2.8.0
 
