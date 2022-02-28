@@ -46,10 +46,13 @@
 body {
     background-color: #ffffff; /* var(--MAIN-BG-color) */
     color: #101010; /* var(--MAIN-TEXT-color) */
+	display: flex;
+	flex-direction: row-reverse; /* IE11 to allow body to have initial focus for PS */
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-size: 16.25px;
     font-weight: 300;
     line-height: 1.574;
+    overflow: hidden; /* to avoid browser scrollbar to flicker before we create our own */
 }
 
 body #body-inner.chapter h1 {
@@ -93,24 +96,27 @@ th {
 
 #sidebar {
     background: #282828; /* var(--MENU-SECTIONS-BG-color) */
-    bottom: 0;
     display: flex;
     flex-direction: column;
     font-size: 15.25px;
+    height: 100vh;
     left: 0;
     line-height: 1.574;
+    min-height: 100vh;
+    min-width: 300px;
+    max-width: 300px;
     position: fixed;
-    top: 0;
     width: 300px;
+    z-index: 310;
 }
 
 #header-wrapper {
     /* initially use section background to avoid flickering on load when a
     non default variant is active */
     background-color: rgba( 0, 0, 0, 0 ); /* var(--MENU-SECTIONS-BG-color) */
+    border-bottom: 4px solid rgba( 0, 0, 0, 0 );  /* var(--MENU-SECTIONS-BG-color) */
     color: #e0e0e0; /* var(--MENU-SEARCH-color) */
     text-align: center;
-    border-bottom: 4px solid rgba( 0, 0, 0, 0 );  /* var(--MENU-SECTIONS-BG-color) */
     padding: 1rem;
     position: relative;
 }
@@ -166,9 +172,11 @@ th {
 
 #content-wrapper {
     display: flex;
-    flex: 1;
-    flex-direction: column;
+	flex-direction: column;
+	flex: 1; /* fill rest of vertical space */
     overflow: hidden;
+	position: relative; /* PS */
+	z-index: 410;
 }
 
 #sidebar a {
@@ -330,9 +338,17 @@ th {
 }
 
 #body {
-    margin-left: 300px;
-    min-height: 100%;
-    position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	margin-left: 300px;
+	min-height: 100vh;
+	min-width: calc( 100vw - 300px);
+	max-width: calc( 100vw - 300px);
+	overflow-wrap: break-word; /* avoid x-scrolling of body if it is to large to fit */
+	position: relative; /* PS */
+	width: calc( 100vw - 300px);
+	z-index: 300;
 }
 
 #body img,
@@ -360,7 +376,11 @@ th {
 }
 
 #body-inner {
+    display: flex;
+    flex: 1; /* fill rest of vertical space */
+    flex-direction: column;
     padding: 0 3rem 4rem 3rem;
+    position: relative; /* PS */
 }
 @media only all and (max-width: 59.938em) {
     #body-inner {
@@ -390,6 +410,16 @@ th {
     margin-left: auto;
     margin-right: auto;
     padding: 2rem 9rem;
+}
+@media only all and (max-width: 59.938em) {
+    #body-inner.chapter {
+        padding: 15px 4rem 15px 4rem;
+    }
+}
+@media only all and (max-width: 47.938em) {
+    #body-inner.chapter {
+        padding: 5px 2rem 5px 2rem;
+    }
 }
 
 #body-inner.chapter h3:first-of-type {
@@ -786,7 +816,7 @@ td {
     text-transform: none;
     white-space: pre;
     word-wrap: break-word;
-    z-index: 1000000;
+    z-index: 450;
 }
 
 .tooltipped:before {
@@ -798,7 +828,7 @@ td {
     pointer-events: none;
     position: absolute;
     width: 0;
-    z-index: 1000001;
+    z-index: 460;
 }
 
 .tooltipped:hover:before,
@@ -918,11 +948,9 @@ td {
 #topbar {
     background-color: #ffffff; /* var(--MAIN-BG-color) */
     border-radius: 2px;
-    height: 0;
     min-height: 3rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+	position: relative;
+	z-index: 480;
 }
 
 #topbar > div {
@@ -934,7 +962,6 @@ td {
 #top-github-link {
     display: block;
     float: right;
-    z-index: 1;
 }
 
 .nav,
@@ -985,11 +1012,12 @@ span.nav i{
     display: none;
 }
 .progress {
+    display: none;
     left: 1rem;
     top: 1rem;
 }
 @media only all and (max-width: 47.938em) {
-    #sidebar-toggle-span {
+    .mobile-support #sidebar-toggle-span {
         display: inline;
     }
     .progress {
@@ -1031,32 +1059,43 @@ a[aria-disabled="true"] {
 
 @media only all and (max-width: 59.938em) {
     #sidebar {
-        width: 230px;
+		min-width: 230px;
+		max-width: 230px;
+		width: 230px;
     }
     #body {
-        margin-left: 230px;
+		margin-left: 230px;
+		min-width: calc( 100vw - 230px);
+		max-width: calc( 100vw - 230px);
+		width: calc( 100vw - 230px);
     }
 }
 @media only all and (max-width: 47.938em) {
-    #sidebar {
+	/* we don't support sidebar flyout in IE */
+    .mobile-support #sidebar {
         left: -230px;
-        width: 230px;
     }
-    #body {
+    .mobile-support #navshow{
+        display: inline;
+    }
+    .mobile-support #body {
         margin-left: 0;
-        width: 100%;
+		min-width: 100vw;
+		max-width: 100vw;
+		width: 100vw;
     }
-    .sidebar-hidden {
+    .mobile-support.sidebar-flyout {
         overflow: hidden;
     }
-    .sidebar-hidden #sidebar {
+    .mobile-support.sidebar-flyout #sidebar {
         left: 0;
+		z-index: 400;
     }
-    .sidebar-hidden #body {
+    .mobile-support.sidebar-flyout #body {
         margin-left: 230px;
         overflow: hidden;
     }
-    .sidebar-hidden #sidebar-overlay {
+	.mobile-support.sidebar-flyout #sidebar-overlay{
         background-color: rgba(134, 134, 134, 0.5);
         bottom: 0;
         cursor: pointer;
@@ -1064,8 +1103,9 @@ a[aria-disabled="true"] {
         position: absolute;
         right: 0;
         top: 0;
-        z-index: 1000;
-    }
+        z-index: 500;
+	}
+
 }
 
 .copy-to-clipboard-button {
@@ -1253,14 +1293,24 @@ option {
 
 /* Table of contents */
 
-.progress {
+.toc-flyout #toc-overlay{
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 470;
+}
+
+.toc-flyout .progress {
     background-color: #ffffff; /* var(--MAIN-BG-color) */
     border: thin solid rgba( 134, 134, 134, .166 );
     box-shadow: 1px 2px 5px 1px rgba( 134, 134, 134, .2 );
-    display: none;
+    display: block;
     position: absolute;
     width: auto;
-    z-index: 200;
+    z-index: 490;
 }
 
 .progress .wrapper {
@@ -1510,6 +1560,11 @@ h6 a {
     .showFooter {
         display: block;
     }
+
+    /* IE can not display the topbar as sticky, so revert the style */
+    #body-inner{
+		display: block;
+	}
 }
 
 /* clears the 'X' from Chrome's search input */
