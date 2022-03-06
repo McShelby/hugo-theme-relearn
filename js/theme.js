@@ -5,6 +5,8 @@ if( !isIE ){
 }
 var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 
+var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
+
 function switchTab(tabGroup, tabId) {
     allTabItems = jQuery("[data-tab-group='"+tabGroup+"']");
     targetTabItems = jQuery("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
@@ -178,7 +180,7 @@ function initArrowNav(){
     });
 
     // avoid keyboard navigation for input fields
-    jQuery('input, textarea').keydown(function (e) {
+    jQuery(formelements).keydown(function (e) {
         if (e.which == '37' || e.which == '39') {
             e.stopPropagation();
         }
@@ -193,7 +195,7 @@ function initMenuScrollbar(){
         content = '#body';
     }
     var autofocus = false;
-    document.addEventListener('keydown', function(){
+    document.addEventListener('keydown', function(event){
         // for initial keyboard scrolling support, no element
         // may be hovered, but we still want to react on
         // cursor/page up/down. because we can't hack
@@ -203,7 +205,8 @@ function initMenuScrollbar(){
         // happend
         var p = document.querySelector(content).matches(':hover');
         var m = document.querySelector('#content-wrapper').matches(':hover');
-        if( !p && !m ){
+        var f = event.target.matches( formelements );
+        if( !p && !m && !f ){
             // only do this hack if none of our scrollbars
             // is hovered
             autofocus = true;
