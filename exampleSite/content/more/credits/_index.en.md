@@ -19,7 +19,6 @@ Many thanks to [@matcornic](https://github.com/matcornic) for his work on the [L
 * [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - A jQuery plugin to enable pan and zoom in SVG images
 * [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
 * [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
-* [Modernizr](https://modernizr.com) - A JavaScript toolkit that tells you what features the user’s browser has to offer
 * [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
 
 ## Tooling
