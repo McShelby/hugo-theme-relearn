@@ -11,16 +11,19 @@ Many thanks to [@matcornic](https://github.com/matcornic) for his work on the [L
 
 ## Packages and libraries
 
-* [Mermaid](https://mermaid-js.github.io/mermaid) - generation of diagram and flowchart from text in a similar manner as Markdown
-* [font awesome](http://fontawesome.io/) - the iconic font and CSS framework
-* [jQuery](https://jquery.com) - The Write Less, Do More, JavaScript Library
-* [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - enable pan and zoom in Mermaid graphs
-* [lunr](https://lunrjs.com) - Lunr enables you to provide a great search experience without the need for external, server-side, search services...
-* [clipboard.js](https://zenorocha.github.io/clipboard.js) - copy text to clipboard
-* [modernizr](https://modernizr.com) - A JavaScript toolkit that allows web developers to use new CSS3 and HTML5 features while maintaining a fine level of control over browsers that don't support
+* [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
+* [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard
+* [Featherlight](https://noelboss.github.io/featherlight) - A lightweight jQuery lightbox plugin
+* [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
+* [jQuery](https://jquery.com) - The "Write less, do more" JavaScript library
+* [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - A jQuery plugin to enable pan and zoom in SVG images
+* [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
+* [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
+* [Modernizr](https://modernizr.com) - A JavaScript toolkit that tells you what features the user’s browser has to offer
+* [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
 
 ## Tooling
 
-* [gren](https://github.com/github-tools/github-release-notes) - Releasenotes generator
-* [Hugo](https://gohugo.io/) - Static site generator
-* [GitHub](https://github.com) - Continuous deployement, testing and hosting of this project and its documentation
+* [GitHub](https://github.com) - Continuous deployement, testing and hosting of this project's sources and its documentation
+* [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
+* [Hugo](https://gohugo.io/) - The static site generator of your choice
