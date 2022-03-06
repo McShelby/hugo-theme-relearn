@@ -7,7 +7,9 @@ title = "Credits"
 
 Special thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
 
-Many thanks to [@matcornic](https://github.com/matcornic) for his work on the [Learn theme](https://github.com/matcornic/hugo-theme-learn).
+Many thanks to [Mathieu Cornic](https://github.com/matcornic) for his work on porting the [Learn theme](https://github.com/matcornic/hugo-theme-learn) to Hugo.
+
+Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav.
 
 ## Packages and libraries
 
