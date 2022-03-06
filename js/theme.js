@@ -344,7 +344,7 @@ function initSwipeHandler(){
             else if( diffx > 30 ){
                 startx = null;
                 starty = null;
-                jQuery(document.body).toggleClass('sidebar-flyout');
+                document.querySelector( 'body' ).classList.toggle( 'sidebar-flyout' );
             }
         }
         return false;
