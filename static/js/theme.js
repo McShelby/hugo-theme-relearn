@@ -31,21 +31,21 @@ function switchTab(tabGroup, tabId) {
 
       // Store the selection to make it persistent
       if(window.localStorage){
-          var selectionsJSON = window.localStorage.getItem("tabSelections");
+          var selectionsJSON = window.localStorage.getItem(baseUriFull+"tab-selections");
           if(selectionsJSON){
             var tabSelections = JSON.parse(selectionsJSON);
           }else{
             var tabSelections = {};
           }
           tabSelections[tabGroup] = tabId;
-          window.localStorage.setItem("tabSelections", JSON.stringify(tabSelections));
+          window.localStorage.setItem(baseUriFull+"tab-selections", JSON.stringify(tabSelections));
       }
     }
 }
 
 function restoreTabSelections() {
     if(window.localStorage){
-        var selectionsJSON = window.localStorage.getItem("tabSelections");
+        var selectionsJSON = window.localStorage.getItem(baseUriFull+"tab-selections");
         if(selectionsJSON){
           var tabSelections = JSON.parse(selectionsJSON);
         }else{
@@ -439,7 +439,11 @@ jQuery(function() {
     initSwipeHandler();
 
     jQuery('[data-clear-history-toggle]').on('click', function() {
-        sessionStorage.clear();
+        for( var item in sessionStorage ){
+          if( item.substring( 0, baseUriFull.length ) === baseUriFull ){
+            sessionStorage.removeItem( item );
+          }
+        }
         location.reload();
         return false;
     });
@@ -453,13 +457,13 @@ jQuery(function() {
         if (!value.length) {
             $('ul.topics').removeClass('searched');
             items.css('display', 'block');
-            sessionStorage.removeItem('search-value');
+            sessionStorage.removeItem(baseUriFull+'search-value');
             $("mark").parents(".expand-marked").removeClass("expand-marked");
             $(".highlightable").unhighlight({ element: 'mark' })
             return;
         }
 
-        sessionStorage.setItem('search-value', value);
+        sessionStorage.setItem(baseUriFull+'search-value', value);
         $("mark").parents(".expand-marked").removeClass("expand-marked");
         $(".highlightable").unhighlight({ element: 'mark' }).highlight(value, { element: 'mark' });
         $("mark").parents(".expand").addClass("expand-marked");
@@ -468,7 +472,7 @@ jQuery(function() {
 
         jQuery('[data-search-clear]').on('click', function() {
             jQuery('[data-search-input]').val('').trigger('input');
-            sessionStorage.removeItem('search-input');
+            sessionStorage.removeItem(baseUriFull+'search-input');
             $("mark").parents(".expand-marked").removeClass("expand-marked");
             $(".highlightable").unhighlight({ element: 'mark' })
         });
@@ -480,8 +484,8 @@ jQuery(function() {
         };
     });
 
-    if (sessionStorage.getItem('search-value')) {
-        var searchValue = sessionStorage.getItem('search-value')
+    if (sessionStorage.getItem(baseUriFull+'search-value')) {
+        var searchValue = sessionStorage.getItem(baseUriFull+'search-value')
         $('[data-search-input]').val(searchValue);
         $('[data-search-input]').trigger('input');
         var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
@@ -494,17 +498,19 @@ jQuery(function() {
         }
     }
 
-    $(".highlightable").highlight(sessionStorage.getItem('search-value'), { element: 'mark' });
+    $(".highlightable").highlight(sessionStorage.getItem(baseUriFull+'search-value'), { element: 'mark' });
     $("mark").parents(".expand").addClass("expand-marked");
 
     $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
 
-    sessionStorage.setItem(jQuery('body').data('url'), 1);
+    var visitedItem = baseUriFull + 'visited-url/'
+    sessionStorage.setItem(visitedItem+jQuery('body').data('url'), 1);
 
     // loop through the sessionStorage and see if something should be marked as visited
-    for (var url in sessionStorage) {
-        if (sessionStorage.getItem(url) == 1){
+    for( var item in sessionStorage ){
+        if( item.substring( 0, visitedItem.length ) === visitedItem && sessionStorage.getItem( item ) == 1 ){
+            var url = item.substring( visitedItem.length );
             // in case we have `relativeURLs=true` we have to strip the
             // relative path to root
             url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
