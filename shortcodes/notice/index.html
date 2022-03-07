@@ -8,24 +8,34 @@
     <meta name="description" content="Disclaimers to help you structure your page">
     <meta name="author" content="Sören Weber">
     <title>Notice :: Hugo Relearn Theme</title>
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1646590220" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1646590220" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1646590220" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1646590220" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1646590220" rel="stylesheet" media="print">
-    <style>
-    </style>
-    <script src="/hugo-theme-relearn/js/variant.js?1646590220"></script>
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1646690153" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1646690153" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1646690153" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1646690153" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/print.css?1646690153" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1646690153"></script>
     <script>
-      variants.init( [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ] );
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/hugo-theme-relearn/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
+      variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1646590220"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1646690153"></script>
   </head>
   <body class="default-animation" data-url="/hugo-theme-relearn/shortcodes/notice/">
     <div id="body" class="default-animation">
@@ -34,10 +44,10 @@
       <nav id="topbar" class="highlightable">
         <div>
           <div class="navigation">
-              <a class="nav nav-next" href="/hugo-theme-relearn/shortcodes/siteparam/" title="Site param"><i class="fas fa-chevron-right fa-fw"></i></a>
+             <a class="nav nav-next" href="/hugo-theme-relearn/shortcodes/siteparam/" title="Site param"><i class="fas fa-chevron-right fa-fw"></i></a>
           </div>
           <div class="navigation">
-              <a class="nav nav-prev" href="/hugo-theme-relearn/shortcodes/mermaid/" title="Mermaid"><i class="fas fa-chevron-left fa-fw"></i></a>
+             <a class="nav nav-prev" href="/hugo-theme-relearn/shortcodes/mermaid/" title="Mermaid"><i class="fas fa-chevron-left fa-fw"></i></a>
           </div>
           <div id="top-github-link">
             <a class="github-link" title='Edit' href="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/shortcodes/notice.en.md" target="blank">
@@ -56,8 +66,8 @@
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/hugo-theme-relearn/shortcodes/notice/" aria-disabled="true"><span itemprop="name">Notice</span></a></li>
             </ol>
           </div>
-            <div class="progress">
-              <div class="wrapper">
+          <div class="progress">
+            <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
     <li><a href="#usage">Usage</a></li>
@@ -67,13 +77,13 @@
         <li><a href="#info">Info</a></li>
         <li><a href="#tip">Tip</a></li>
         <li><a href="#warning">Warning</a></li>
-        <li><a href="#notice-with-custom-title-and-default-color">Notice with custom title and default color</a></li>
+        <li><a href="#notice-with-default-color-custom-title-and-icon">Notice with default color, custom title and icon</a></li>
       </ul>
     </li>
   </ul>
 </nav>
-              </div>
             </div>
+          </div>
         </div>
       </nav>
       <main id="body-inner" class="highlightable ">
@@ -84,16 +94,17 @@
 
 <p>The notice shortcode shows four types of disclaimers to help you structure your page.</p>
 <h2 id="usage">Usage</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nf">notice</span> <span class="p">(</span> <span class="nx">note</span> <span class="p">|</span> <span class="nx">info</span> <span class="p">|</span> <span class="nx">tip</span> <span class="p">|</span> <span class="nx">warning</span> <span class="p">)</span> <span class="p">[</span> <span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">]</span> <span class="o">%</span><span class="p">}}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nf">notice</span> <span class="p">(</span> <span class="nx">note</span> <span class="p">|</span> <span class="nx">info</span> <span class="p">|</span> <span class="nx">tip</span> <span class="p">|</span> <span class="nx">warning</span> <span class="p">)</span> <span class="p">[</span> <span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">[</span> <span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">]</span> <span class="p">]</span> <span class="o">%</span><span class="p">}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">Some</span> <span class="nx">markup</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">notice</span> <span class="o">%</span><span class="p">}}</span>
 </span></span></code></pre></div><p>The first parameter is required and indicates the type of notice.</p>
 <p>The second parameter is optional. If provided, it will be used as the title of the notice. If not provided, then the type of notice will be used as the title. For example, the title of a warning notice will be &ldquo;Warning&rdquo;.</p>
+<p>The third parameter is optional. If provided, it will set the icon of near the title. For the standard types of notices, this is automatically determined but can be overridden with this parameter. If you want no icon at all, you have to set this parameter to <code>&quot; &quot;</code> (a non empty string filled with spaces).</p>
 <h2 id="examples">Examples</h2>
 <h3 id="note">Note</h3>
 
 <div class="box notices note">
-    <div class="box-label">Note</div>
+    <div class="box-label"><i class="fas fa-exclamation-circle fa-fw"></i> Note</div>
     <div class="box-content">
 <p>A <strong>notice</strong> disclaimer</p>
 <p>You can add:</p>
@@ -144,7 +155,7 @@
 <h3 id="info">Info</h3>
 
 <div class="box notices info">
-    <div class="box-label">Info</div>
+    <div class="box-label"><i class="fas fa-info-circle fa-fw"></i> Info</div>
     <div class="box-content">
 <p>An <strong>information</strong> disclaimer</p>
 <p>You can add:</p>
@@ -195,7 +206,7 @@
 <h3 id="tip">Tip</h3>
 
 <div class="box notices tip">
-    <div class="box-label">Tip</div>
+    <div class="box-label"><i class="fas fa-lightbulb fa-fw"></i> Tip</div>
     <div class="box-content">
 <p>A <strong>tip</strong> disclaimer</p>
 <p>You can add:</p>
@@ -246,7 +257,7 @@
 <h3 id="warning">Warning</h3>
 
 <div class="box notices warning">
-    <div class="box-label">Warning</div>
+    <div class="box-label"><i class="fas fa-exclamation-triangle fa-fw"></i> Warning</div>
     <div class="box-content">
 <p>A <strong>warning</strong> disclaimer</p>
 <p>You can add:</p>
@@ -294,11 +305,11 @@
 </span></span></code></pre></div>
     </div>
 </div>
-<h3 id="notice-with-custom-title-and-default-color">Notice with custom title and default color</h3>
+<h3 id="notice-with-default-color-custom-title-and-icon">Notice with default color, custom title and icon</h3>
 <p>You can customize the title of the notice by passing it as a second parameter.</p>
 
 <div class="box notices default">
-    <div class="box-label">Pay Attention to this Note!</div>
+    <div class="box-label"><i class="fas fa-skull-crossbones fa-fw"></i> Pay Attention to this Note!</div>
     <div class="box-content">
 <p>The title is now the parameter that was provided.</p>
 
@@ -312,7 +323,7 @@
         Show markup
     </a>
     <div class="expand-content" style="display: none;">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">notice</span> <span class="k">default</span> <span class="s">&#34;Pay Attention to this Note!&#34;</span> <span class="o">%</span><span class="p">}}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">notice</span> <span class="k">default</span> <span class="s">&#34;Pay Attention to this Note!&#34;</span> <span class="s">&#34;skull-crossbones&#34;</span> <span class="o">%</span><span class="p">}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">The</span> <span class="nx">title</span> <span class="nx">is</span> <span class="nx">now</span> <span class="nx">the</span> <span class="nx">parameter</span> <span class="nx">that</span> <span class="nx">was</span> <span class="nx">provided</span><span class="p">.</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">notice</span> <span class="o">%</span><span class="p">}}</span>
 </span></span></code></pre></div>
@@ -323,13 +334,6 @@
         </div>
       </main>
     </div>
-    <!-- hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic: -->
-    <!-- https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72 -->
-    <script>
-      var index_url="/hugo-theme-relearn/index.json";
-      var root_url="/";
-      var baseUri=root_url.replace(/\/$/, '');
-    </script>
     <aside id="sidebar" class="default-animation showVisitedLinks">
       <div id="header-wrapper" class="default-animation">
         <div id="header" class="default-animation">
@@ -374,7 +378,7 @@
               }
             }
             @media all and (-ms-high-contrast:none) {
-               
+              /* IE11s understanding of positioning is weird at best */
               a#logo {
                 margin-top: -58px;
               }
@@ -398,9 +402,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1646590220"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1646590220"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1646590220"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1646690153"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1646690153"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1646690153"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -515,22 +519,16 @@
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1646590220"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1646590220"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1646590220"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1646590220"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1646590220"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1646690153"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1646690153"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1646690153"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1646690153"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1646690153"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"securityLevel\": \"loose\"}"), { startOnLoad: false } ) );
       }
     </script>
-    <script>
-      window.T_Copy_to_clipboard = 'Copy to clipboard';
-      window.T_Copied_to_clipboard = 'Copied to clipboard!';
-      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
-      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
-    </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1646590220"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1646690153"></script>
   </body>
 </html>

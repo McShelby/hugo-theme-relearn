@@ -7,7 +7,7 @@ var variants = {
 
 	init: function( variants ){
 		this.variants = variants;
-		var variant = window.localStorage.getItem( 'variant' ) || ( this.variants.length ? this.variants[0] : '' );
+		var variant = window.localStorage.getItem( baseUriFull+'variant' ) || ( this.variants.length ? this.variants[0] : '' );
 		this.changeVariant( variant );
 		document.addEventListener( 'readystatechange', function(){
 			if( document.readyState == 'interactive' ){
@@ -22,7 +22,7 @@ var variants = {
 
 	setVariant: function( variant ){
 		this.variant = variant;
-		window.localStorage.setItem( 'variant', variant );
+		window.localStorage.setItem( baseUriFull+'variant', variant );
 	},
 
 	markSelectedVariant: function(){
@@ -49,11 +49,11 @@ var variants = {
 	},
 
 	addCustomVariantOption: function(){
-		var variantbase = window.localStorage.getItem( 'customvariantbase' );
+		var variantbase = window.localStorage.getItem( baseUriFull+'customvariantbase' );
 		if( this.variants.indexOf( variantbase ) < 0 ){
 			variantbase = '';
 		}
-		if( !window.localStorage.getItem( 'customvariant' ) ){
+		if( !window.localStorage.getItem( baseUriFull+'customvariant' ) ){
 			variantbase = '';
 		}
 		if( !variantbase ){
@@ -90,15 +90,15 @@ var variants = {
 
 	saveCustomVariant: function(){
 		if( this.getVariant() != this.customvariantname ){
-			window.localStorage.setItem( 'customvariantbase', this.getVariant() );
+			window.localStorage.setItem( baseUriFull+'customvariantbase', this.getVariant() );
 		}
-		window.localStorage.setItem( 'customvariant', this.generateStylesheet() );
+		window.localStorage.setItem( baseUriFull+'customvariant', this.generateStylesheet() );
 		this.setVariant( this.customvariantname );
 		this.markSelectedVariant();
 	},
 
 	loadCustomVariant: function(){
-		var stylesheet = window.localStorage.getItem( 'customvariant' );
+		var stylesheet = window.localStorage.getItem( baseUriFull+'customvariant' );
 
 		// temp styles to document
 		var head = document.querySelector( 'head' );
@@ -125,10 +125,10 @@ var variants = {
 	},
 
 	resetVariant: function(){
-		var variantbase = window.localStorage.getItem( 'customvariantbase' );
+		var variantbase = window.localStorage.getItem( baseUriFull+'customvariantbase' );
 		if( variantbase && confirm( 'You have made changes to your custom variant. Are you sure you want to reset all changes?' ) ){
-			window.localStorage.removeItem( 'customvariantbase' );
-			window.localStorage.removeItem( 'customvariant' );
+			window.localStorage.removeItem( baseUriFull+'customvariantbase' );
+			window.localStorage.removeItem( baseUriFull+'customvariant' );
 			this.removeCustomVariantOption();
 			if( this.getVariant() == this.customvariantname ){
 				this.changeVariant( variantbase );
@@ -148,11 +148,11 @@ var variants = {
 
 	changeVariant: function( variant ){
 		if( variant == this.customvariantname ){
-			var variantbase = window.localStorage.getItem( 'customvariantbase' );
+			var variantbase = window.localStorage.getItem( baseUriFull+'customvariantbase' );
 			if( this.variants.indexOf( variantbase ) < 0 ){
 				variant = '';
 			}
-			if( !window.localStorage.getItem( 'customvariant' ) ){
+			if( !window.localStorage.getItem( baseUriFull+'customvariant' ) ){
 				variant = '';
 			}
 			this.setVariant( variant );
