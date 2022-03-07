@@ -37,7 +37,8 @@ That's all!
 
 | Parameter | Default | Description |
 |:--|:--|:--|
-| title | "Attachments" | List's title  |
+| title | "Attachments" | List's title |
+| icon | "paperclip" | Sets the icon near the title; if you want no icon at all, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | sort  | "asc" | Sorting the output in `asc`ending or `desc`ending order |
 | style | "" | Choose between `orange`, `grey`, `blue` and `green` for nice style |
 | pattern | ".*" | A regular expressions, used to filter the attachments by file name. <br/><br/>The **pattern** parameter value must be [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).

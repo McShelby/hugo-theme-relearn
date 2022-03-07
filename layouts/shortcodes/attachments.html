@@ -2,8 +2,13 @@
 {{- $style := .Get "style" | default "transparent" }}
 {{- $title := .Get "title" | default ("Attachments-label" | T) }}
 {{- $sort := .Get "sort" | default "asc" }}
+{{- $icon := .Get "icon" | default "" }}
+{{- if and (not $icon) (eq (len $icon) 0) }}
+  {{- $icon = "paperclip" }}
+{{- end }}
+{{- $icon = trim $icon " " }}
 <div class="box attachments {{ $style }}">
-  <div class="box-label">{{ $title }}</div>
+  <div class="box-label">{{ if $icon }}<i class="fas fa-{{ $icon }} fa-fw"></i> {{ end }}{{ $title }}</div>
   <ul class="box-content attachments-files">
   {{- $filesName := "files" }}
   {{- if ne .Page.File.BaseFileName "index" }}
