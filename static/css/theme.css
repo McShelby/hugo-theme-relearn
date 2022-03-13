@@ -43,6 +43,11 @@
     font-display: swap;
 }
 
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
     background-color: #ffffff; /* var(--MAIN-BG-color) */
     color: #101010; /* var(--MAIN-TEXT-color) */
@@ -51,8 +56,11 @@ body {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     font-size: 16.25px;
     font-weight: 300;
+    height: 100vh;
+    justify-content: flex-end;
     line-height: 1.574;
     overflow: hidden; /* to avoid browser scrollbar to flicker before we create our own */
+    width: 100vw;
 }
 
 body #body-inner.chapter h1 {
@@ -97,7 +105,10 @@ th {
 #sidebar {
     background: #282828; /* var(--MENU-SECTIONS-BG-color) */
     display: flex;
+    flex-basis: auto;
     flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
     font-size: 15.25px;
     height: 100vh;
     left: 0;
@@ -339,7 +350,10 @@ th {
 
 #body {
     display: flex;
+    flex-basis: 100%;
     flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
     height: 100vh;
     margin-left: 300px;
     min-height: 100vh;
@@ -944,6 +958,9 @@ span.nav i{
     transform: translateY(-50%);
 }
 
+#toc-menu{
+    cursor: pointer;
+}
 #toc-menu,
 #sidebar-toggle-span {
     border-right: thin solid rgba( 134, 134, 134, .333 );
@@ -975,7 +992,6 @@ span.nav i{
     display: none;
 }
 .progress {
-    display: none;
     left: 1rem;
     top: 1rem;
 }
@@ -1266,14 +1282,23 @@ option {
     z-index: 470;
 }
 
-.toc-flyout .progress {
+.progress {
     background-color: #ffffff; /* var(--MAIN-BG-color) */
-    border: thin solid rgba( 134, 134, 134, .166 );
+    border: 0px solid rgba( 134, 134, 134, .166 );
     box-shadow: 1px 2px 5px 1px rgba( 134, 134, 134, .2 );
-    display: block;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
     position: absolute;
-    width: auto;
+    width: 0;
     z-index: 490;
+}
+
+.toc-flyout .progress {
+    border-width: 1px;
+    height: auto;
+    opacity: 1;
+    width: auto;
 }
 
 .progress .wrapper {
@@ -1521,11 +1546,6 @@ h6 a {
     .showLangSwitch,
     .showVisitedLinks,
     .showFooter {
-        display: block;
-    }
-
-    /* IE can not display the topbar as sticky, so revert the style */
-    #body-inner{
         display: block;
     }
 }
