@@ -1,6 +1,9 @@
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
-if( !isIE ){
+if( isIE ){
     // we don't support sidebar flyout in IE
+    document.querySelector( 'body' ).classList.remove( 'mobile-support' );
+}
+else{
     document.querySelector( 'body' ).classList.add( 'mobile-support' );
 }
 var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
