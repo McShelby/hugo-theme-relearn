@@ -14,6 +14,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 3.1.0
+
+- **New**: [`attachment`]({{% relref "shortcodes/attachments" %}}) and [`notice`]({{% relref "shortcodes/notice" %}}) shortcodes have a new parameter to override the default icon. Allowed values are all [Font Awesome 5 Free](https://fontawesome.com/v5/search?m=free) icons.
+
 ## 3.0.0
 
 - **Breaking**: We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
@@ -26,7 +30,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
-- **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to remove `--MENU-SEARCH-BOX-ICONS-color`.
+- **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to removed `--MENU-SEARCH-BOX-ICONS-color` and introduced `--MENU-SEARCH-color` instead. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
+
+- **Change**: For consistency reasons, we renamed `--MENU-SEARCH-BOX-color` to `--MENU-SEARCH-BORDER-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 
 - **New**: With this release you are now capable to define your own *dark mode* variants.
 
@@ -144,9 +150,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Change**: Syntaxhighlightning was switched to the [built in Hugo mechanism](https://gohugo.io/content-management/syntax-highlighting/). You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation
 
-- **Change**: In the predefined stylesheets there was a typo and `--MENU-HOME-LINK-HOVERED-color` must be changed to `--MENU-HOME-LINK-HOVER-color`.
+- **Change**: In the predefined stylesheets there was a typo and `--MENU-HOME-LINK-HOVERED-color` must be changed to `--MENU-HOME-LINK-HOVER-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 
-- **Change**: `--MENU-HOME-LINK-color` and `--MENU-HOME-LINK-HOVER-color` were missing in the documentation. You should add them to your custom stylesheets.
+- **Change**: `--MENU-HOME-LINK-color` and `--MENU-HOME-LINK-HOVER-color` were missing in the documentation. You should add them to your custom stylesheets if you want to override the defaults.
 
 - **Change**: Arrow navigation and `children` shortcode were ignoring setting for `ordersectionsby`. This is now changed and may result in different sorting order of your sub pages.
 

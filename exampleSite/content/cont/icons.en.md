@@ -7,9 +7,9 @@ The Relearn theme for Hugo loads the [**Font Awesome**](https://fontawesome.com)
 
 ## Finding an icon
 
-Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/icons?d=gallery&m=free). Notice that the **free** filter is enabled, as only the free icons are available by default.
+Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/v5/search?m=free). Notice that the **free** filter is enabled, as only the free icons are available by default.
 
-Once on the Font Awesome page for a specific icon, for example the page for the [heart](https://fontawesome.com/icons/heart?style=solid), copy the HTML reference and paste into the Markdown content.
+Once on the Font Awesome page for a specific icon, for example the page for the [heart](https://fontawesome.com/v5/icons/heart?s=solid), copy the HTML reference and paste into the Markdown content.
 
 The HTML to include the heart icon is:
 
@@ -33,7 +33,7 @@ Built with <i class="fas fa-heart"></i> by Relearn and Hugo
 
 Font Awesome provides many ways to modify the icon
 
-* Change colour (by default the icon will inherit the parent colour)
+* Change color (by default the icon will inherit the parent color)
 * Increase or decrease size
 * Rotate
 * Combine with other icons

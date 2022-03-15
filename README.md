@@ -18,7 +18,8 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Attachments files
 - List child pages
 - Mermaid diagram (flowchart, sequence, gantt)
-- Customizable look and feel and theme variants
+- Customizable look and feel
+- Light, dark and various other predefined color variants
 - Buttons
 - Tip/Note/Info/Warning boxes
 - Expand
