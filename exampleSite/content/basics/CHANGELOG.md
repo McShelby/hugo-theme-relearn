@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.1.0 (2022-03-15)
+
+### Enhancements
+
+- [**feature**] notice: add icon parameter [#212](https://github.com/McShelby/hugo-theme-relearn/issues/212)
+- [**feature**] mobile: remove breadcrumb ellipsis [#211](https://github.com/McShelby/hugo-theme-relearn/issues/211)
+
+### Fixes
+
+- [**bug**] theme: make storage of multiple Hugo sites on same server distinct [#214](https://github.com/McShelby/hugo-theme-relearn/issues/214)
+- [**bug**] variant: switch breadcrumb color in Chrome [#213](https://github.com/McShelby/hugo-theme-relearn/issues/213)
+- [**bug**] mobile: improve behavior of sidebar menu [#210](https://github.com/McShelby/hugo-theme-relearn/issues/210)
+
+---
+
 ## 3.0.4 (2022-02-24)
 
 ### Enhancements
@@ -131,7 +146,7 @@
 
 ### Fixes
 
-- [**bug**][**breaking**] relref: fix inconsistent behaviour  [#156](https://github.com/McShelby/hugo-theme-relearn/issues/156)
+- [**bug**][**breaking**] relref: fix inconsistent behavior [#156](https://github.com/McShelby/hugo-theme-relearn/issues/156)
 - [**bug**] search: make dropdown stick to search field when scrolling [#155](https://github.com/McShelby/hugo-theme-relearn/issues/155)
 - [**bug**] menu: align long text properly [#154](https://github.com/McShelby/hugo-theme-relearn/issues/154)
 - [**bug**] copyToClipBoard: add missing right border for inline code if `disableInlineCopyToClipBoard=true` [#153](https://github.com/McShelby/hugo-theme-relearn/issues/153)
