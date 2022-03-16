@@ -11,7 +11,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 ## Main features
 
 - Automatic Search
-- Multilingual mode
+- Multilingual mode for English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Spanish, Vietnamese, Turkish
 - Unlimited menu levels
 - Automatic next/prev buttons to navigate through menu entries
 - Image resizing, shadow…
@@ -19,13 +19,12 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - List child pages
 - Mermaid diagram (flowchart, sequence, gantt)
 - Customizable look and feel
-- Light, dark and various other predefined color variants
+- Predefined (light, dark) and customizable color variants
 - Buttons
 - Tip/Note/Info/Warning boxes
 - Expand
 - Tabs
 - File inclusion
-
 ## Installation
 
 Visit the [installation instructions](https://mcshelby.github.io/hugo-theme-relearn/basics/installation) to learn how to setup the theme in your Hugo installation.

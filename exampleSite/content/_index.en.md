@@ -17,7 +17,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 {{% /notice %}}
 
 * [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
-* [Multilingual mode]({{%relref "cont/i18n" %}})
+* [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Spanish, Vietnamese, Turkish
 * Unlimited menu levels
 * Automatic next/prev buttons to navigate through menu entries
 * [Image resizing, shadow...]({{%relref "cont/markdown#images" %}})
