@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.1 (2022-03-16)
+
+### Enhancements
+
+- [**feature**] Language Support for Korean [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
+
+---
+
 ## 3.1.0 (2022-03-15)
 
 ### Enhancements
