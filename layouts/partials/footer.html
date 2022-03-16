@@ -10,9 +10,9 @@
 {{- partial "menu.html" . }}
     <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-{{- if (or (and (ne .Params.disableMermaid nil) (not .Params.disableMermaid)) (not .Site.Params.disableMermaid)) }}
+{{- if (or (.Page.Store.Get "hasMermaid") (and (ne .Params.disableMermaid nil) (not .Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) ) }}
+    <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
   {{- if isset .Params "custommermaidurl" }}
     <script src="{{ .Params.customMermaidURL }}"></script>
   {{- else if isset .Site.Params "custommermaidurl" }}
@@ -21,11 +21,11 @@
     <script src="{{"js/mermaid.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
   {{- end }}
   {{- if isset .Params "mermaidinitialize" }}
-      {{- $.Scratch.Set "mermaidInitialize" .Params.mermaidInitialize }}
+    {{- $.Scratch.Set "mermaidInitialize" .Params.mermaidInitialize }}
   {{- else if isset .Site.Params "mermaidinitialize" }}
-      {{- $.Scratch.Set "mermaidInitialize" .Site.Params.mermaidInitialize }}
+    {{- $.Scratch.Set "mermaidInitialize" .Site.Params.mermaidInitialize }}
   {{- else }}
-      {{- $.Scratch.Set "mermaidInitialize" "{ \"startOnLoad\": true }" }}
+    {{- $.Scratch.Set "mermaidInitialize" "{ \"startOnLoad\": true }" }}
   {{- end }}
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {

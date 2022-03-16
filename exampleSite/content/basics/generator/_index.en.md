@@ -1,4 +1,5 @@
 +++
+disableMermaid = false
 title = "Stylesheet generator"
 weight = 26
 +++

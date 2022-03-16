@@ -49,7 +49,7 @@ Note that some of these parameters are explained in details in other sections of
   disableBreadcrumb = true
   # If set to true, hide table of contents menu in the header of all pages
   disableToc = false
-  # If set to true, prevents Hugo from including the Mermaid module if not needed (will reduce load times and traffic)
+  # If set to false, load the Mermaid module on every page regardless if a Mermaid shortcode or Mermaid codefence is present
   disableMermaid = false
   # Specifies the remote location of the Mermaid js
   customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
