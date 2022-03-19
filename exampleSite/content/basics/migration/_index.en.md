@@ -21,6 +21,9 @@ This document shows you what's new in the latest release. For a detailed list of
   The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your frontmatter to force the library to be loaded. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for an example.
 
   **This change requires at least Hugo 0.93.0 to be used**. The minimum requirement will be reported during build on the console if not met.
+
+- **New**: Additional color variant variable `--MERMAID-theme` to set the variant's Mermaid theme. This causes the Mermaid theme to switch with the color variant if it defers from the setting of the formerly selected color variant.
+
 ---
 
 ## 3.1.0

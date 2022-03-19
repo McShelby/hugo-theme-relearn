@@ -35,6 +35,46 @@ var variants = {
 		if( variant && select.value != variant ){
 			select.value = variant;
 		}
+		setTimeout( function(){
+			if( typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined' && document.querySelector( '.mermaid > svg' ) ){
+				var is_intialized = false;
+				var theme = this.getColorValue( 'MERMAID-theme' );
+				document.querySelectorAll( '.mermaid-container' ).forEach( function( e ){
+					var element = e.querySelector( '.mermaid' );
+					var code = e.querySelector( '.mermaid-code' );
+					var content = this.decodeHTML( code.innerHTML );
+
+					var d = /^(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
+					var m = d.exec( content );
+					var dir = {};
+					if( m && m.length == 3 ){
+						dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
+						content = content.substring( d.lastIndex );
+					}
+
+					if( !dir.relearn_initialized ){
+						return;
+					}
+					is_initialized = true;
+					if( dir.relearn_user_theme ){
+						return;
+					}
+
+					if( dir.theme != theme ){
+						dir.theme = theme;
+						content = '%%{init: ' + JSON.stringify( dir ) + '}%%\n' + content;
+						element.removeAttribute('data-processed');
+						element.innerHTML = content;
+						code.innerHTML = content;
+					}
+				}.bind( this ) );
+				if( is_initialized ){
+					mermaid.init();
+					$(".mermaid svg").svgPanZoom({});
+				}
+			}
+		}.bind( this ), 25 );
+
 		// remove selection, because if some uses an arrow navigation"
 		// by pressing the left or right cursor key, we will automatically
 		// select a different style
@@ -202,6 +242,12 @@ var variants = {
 		a.setAttribute('href', url);
 		a.setAttribute('download', filename);
 		a.click();
+	},
+
+	decodeHTML: function( html ){
+		var txt = document.createElement( 'textarea' );
+		txt.innerHTML = html;
+		return txt.value;
 	},
 
 	getStylesheet: function(){
@@ -468,6 +514,8 @@ var variants = {
 		{ name: 'CODE-INLINE-color',                     group: 'inline code',    default: '#5e5e5e',                     tooltip: 'text color of inline code', },
 		{ name: 'CODE-INLINE-BG-color',                  group: 'inline code',    default: '#fffae9',                     tooltip: 'background color of inline code', },
 		{ name: 'CODE-INLINE-BORDER-color',              group: 'inline code',    default: '#fbf0cb',                     tooltip: 'border color of inline code', },
+
+		{ name: 'MERMAID-theme',                         group: 'mermaid',        default: 'default',                     tooltip: 'name of the default mermaid theme for this variant, can be overridden in config.toml', },
 
 		{ name: 'MENU-HEADER-BG-color',                  group: 'header',         default: '#7dc903',                     tooltip: 'background color of menu header', },
 		{ name: 'MENU-HEADER-BORDER-color',              group: 'header',        fallback: 'MENU-HEADER-BG-color',        tooltip: 'separator color of menu header', },

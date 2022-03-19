@@ -25,11 +25,16 @@
   {{- else if isset .Site.Params "mermaidinitialize" }}
     {{- $.Scratch.Set "mermaidInitialize" .Site.Params.mermaidInitialize }}
   {{- else }}
-    {{- $.Scratch.Set "mermaidInitialize" "{ \"startOnLoad\": true }" }}
+    {{- $.Scratch.Set "mermaidInitialize" "{}" }}
   {{- end }}
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}), { startOnLoad: false } ) );
+        var config = JSON.parse({{ $.Scratch.Get "mermaidInitialize" }});
+        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
+        if( config.theme ){
+          var write_style = variants.findLoadedStylesheet( 'variant-style' );
+          write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+        }
       }
     </script>
 {{- end }}

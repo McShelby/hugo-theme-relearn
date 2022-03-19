@@ -5,6 +5,10 @@ title = "Mermaid"
 
 [Mermaid](https://mermaidjs.github.io/) is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.
 
+{{% notice warning %}}
+Due to limitations with [Mermaid](https://github.com/mermaid-js/mermaid/issues/1846), it is currently not possible to use Mermaid code fences in an initially collapsed `expand` shortcode. This is a know issue and [can't be fixed by this theme](https://github.com/McShelby/hugo-theme-relearn/issues/187).
+{{% /notice %}}
+
 ## Usage
 
 Just insert your Mermaid code in the `mermaid` shortcode like this:
@@ -34,6 +38,7 @@ The generated graphs can be be panned by dragging them and zoomed by using the m
 ### Flowchart
 
 {{< mermaid align="left" >}}
+%%{init:{"theme":"forest"}}%%
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{<strong>Decision</strong>}
@@ -44,6 +49,7 @@ graph LR;
 {{% expand "Show markup" "true" %}}
 ````go
 {{</* mermaid align="left" */>}}
+%%{init:{"theme":"forest"}}%%
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{<strong>Decision</strong>}
@@ -199,16 +205,16 @@ stateDiagram-v2
 
 ## Configuration
 
-Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files thru a JSON object in your `config.toml` or override these settings sidewise thru your pages frontmatter.
+Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files thru a JSON object in your `config.toml`, override these settings per page thru your pages frontmatter or override these setting per diagramm thru [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives).
 
-This JSON object is forwarded into Mermaid's `mermaid.initialize()` function.
+The JSON object of your `config.toml` / frontmatter is forwarded into Mermaid's `mermaid.initialize()` function.
 
-See [Mermaid documentation](http://mermaid-js.github.io/mermaid/getting-started/Setup.html#mermaidapi-configuration-defaults) for all allowed settings.
+See [Mermaid documentation](http://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
 
-Also, if you want to use mermaid codefences, you have to turn off `guessSyntax` for the `markup.highlight` setting.
+The `theme` setting is somewhat special as it can be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `config.toml`, frontmatter or diagram directives.
 
-{{% notice warning %}}
-Due to limitations with [Mermaid](https://github.com/mermaid-js/mermaid/issues/1846), it is currently not possible to use Mermaid code fences in an initially collapsed `expand` shortcode. This is a know issue and [can't be fixed by this theme](https://github.com/McShelby/hugo-theme-relearn/issues/187).
+{{% notice note %}}
+If you want to use mermaid codefences, you have to turn off `guessSyntax` for the `markup.highlight` setting.
 {{% /notice %}}
 
 ### Example
