@@ -8,18 +8,18 @@
     <meta name="description" content="Generation of diagram and flowchart from text in a similar manner as Markdown">
     <meta name="author" content="Sören Weber">
     <title>Mermaid :: Hugo Relearn Theme</title>
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1647717448" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1647717448" rel="stylesheet">
-    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1647717448" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1647717448" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1647717448" rel="stylesheet" media="print">
-    <script src="/hugo-theme-relearn/js/variant.js?1647717448"></script>
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1647717563" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1647717563" rel="stylesheet">
+    <link id="variant-style" href="/hugo-theme-relearn/css/theme-relearn-light.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1647717563" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1647717563" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/print.css?1647717563" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1647717563"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -35,7 +35,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1647717448"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1647717563"></script>
   </head>
   <body class="mobile-support" data-url="/hugo-theme-relearn/shortcodes/mermaid/">
     <div id="body" class="default-animation">
@@ -98,6 +98,14 @@
           <h1>Mermaid</h1>
 
 <p><a href="https://mermaidjs.github.io/">Mermaid</a> is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.</p>
+
+<div class="box notices warning">
+    <div class="box-label"><i class="fas fa-exclamation-triangle fa-fw"></i> Warning</div>
+    <div class="box-content">
+<p>Due to limitations with <a href="https://github.com/mermaid-js/mermaid/issues/1846">Mermaid</a>, it is currently not possible to use Mermaid code fences in an initially collapsed <code>expand</code> shortcode. This is a know issue and <a href="https://github.com/McShelby/hugo-theme-relearn/issues/187">can&rsquo;t be fixed by this theme</a>.</p>
+
+    </div>
+</div>
 <h2 id="usage">Usage</h2>
 <p>Just insert your Mermaid code in the <code>mermaid</code> shortcode like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">[</span> <span class="nx">align</span><span class="p">=(</span><span class="s">&#34;left&#34;</span><span class="p">|</span><span class="s">&#34;right&#34;</span><span class="p">|</span><span class="s">&#34;center&#34;</span><span class="p">|</span><span class="s">&#34;justify&#34;</span><span class="p">)</span> <span class="p">]</span> <span class="p">&gt;}}</span>
@@ -115,6 +123,7 @@
 <h3 id="flowchart">Flowchart</h3>
 
 <div class="mermaid" align="left">
+%%{init:{"theme":"forest"}}%%
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{<strong>Decision</strong>}
@@ -130,6 +139,7 @@ graph LR;
     </a>
     <div class="expand-content" style="display: block;">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="nx">align</span><span class="p">=</span><span class="s">&#34;left&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="o">%%</span><span class="p">{</span><span class="nx">init</span><span class="p">:{</span><span class="s">&#34;theme&#34;</span><span class="p">:</span><span class="s">&#34;forest&#34;</span><span class="p">}}</span><span class="o">%%</span>
 </span></span><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">LR</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">A</span><span class="p">[</span><span class="nx">Hard</span> <span class="nx">edge</span><span class="p">]</span> <span class="o">--</span><span class="p">&gt;|</span><span class="nx">Link</span> <span class="nx">text</span><span class="p">|</span> <span class="nf">B</span><span class="p">(</span><span class="nx">Round</span> <span class="nx">edge</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">B</span> <span class="o">--</span><span class="p">&gt;</span> <span class="nx">C</span><span class="p">{&lt;</span><span class="nx">strong</span><span class="p">&gt;</span><span class="nx">Decision</span><span class="p">&lt;</span><span class="o">/</span><span class="nx">strong</span><span class="p">&gt;}</span>
@@ -271,7 +281,7 @@ classDiagram
     </div>
 </div>
 <h3 id="state">State</h3>
-<div class="mermaid">stateDiagram-v2
+<div class="mermaid" align="center">stateDiagram-v2
   open: Open Door
   closed: Closed Door
   locked: Locked Door
@@ -301,15 +311,15 @@ classDiagram
     </div>
 </div>
 <h2 id="configuration">Configuration</h2>
-<p>Mermaid is configured with default settings. You can customize Mermaid&rsquo;s default settings for all of your files thru a JSON object in your <code>config.toml</code> or override these settings sidewise thru your pages frontmatter.</p>
-<p>This JSON object is forwarded into Mermaid&rsquo;s <code>mermaid.initialize()</code> function.</p>
-<p>See <a href="http://mermaid-js.github.io/mermaid/getting-started/Setup.html#mermaidapi-configuration-defaults">Mermaid documentation</a> for all allowed settings.</p>
-<p>Also, if you want to use mermaid codefences, you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting.</p>
+<p>Mermaid is configured with default settings. You can customize Mermaid&rsquo;s default settings for all of your files thru a JSON object in your <code>config.toml</code>, override these settings per page thru your pages frontmatter or override these setting per diagramm thru <a href="https://mermaid-js.github.io/mermaid/#/directives?id=directives">diagram directives</a>.</p>
+<p>The JSON object of your <code>config.toml</code> / frontmatter is forwarded into Mermaid&rsquo;s <code>mermaid.initialize()</code> function.</p>
+<p>See <a href="http://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults">Mermaid documentation</a> for all allowed settings.</p>
+<p>The <code>theme</code> setting is somewhat special as it can be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in <code>config.toml</code>, frontmatter or diagram directives.</p>
 
-<div class="box notices warning">
-    <div class="box-label"><i class="fas fa-exclamation-triangle fa-fw"></i> Warning</div>
+<div class="box notices note">
+    <div class="box-label"><i class="fas fa-exclamation-circle fa-fw"></i> Note</div>
     <div class="box-content">
-<p>Due to limitations with <a href="https://github.com/mermaid-js/mermaid/issues/1846">Mermaid</a>, it is currently not possible to use Mermaid code fences in an initially collapsed <code>expand</code> shortcode. This is a know issue and <a href="https://github.com/McShelby/hugo-theme-relearn/issues/187">can&rsquo;t be fixed by this theme</a>.</p>
+<p>If you want to use mermaid codefences, you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting.</p>
 
     </div>
 </div>
@@ -400,9 +410,9 @@ classDiagram
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1647717448"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1647717448"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1647717448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1647717563"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1647717563"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1647717563"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -513,20 +523,25 @@ classDiagram
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1647717448"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1647717563"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1647717448"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1647717448"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1647717448"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1647717448"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1647717448"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1647717563"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1647717563"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1647717563"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1647717563"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1647717563"></script>
     <script>
       if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.mermaidAPI.initialize( Object.assign( { "securityLevel": "antiscript" }, JSON.parse("{ \"securityLevel\": \"loose\"}"), { startOnLoad: false } ) );
+        var config = JSON.parse("{ \"securityLevel\": \"loose\" }");
+        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
+        if( config.theme ){
+          var write_style = variants.findLoadedStylesheet( 'variant-style' );
+          write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+        }
       }
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1647717448"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1647717563"></script>
   </body>
 </html>

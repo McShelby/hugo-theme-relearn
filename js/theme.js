@@ -62,14 +62,34 @@ function restoreTabSelections() {
 }
 
 function initMermaid() {
-    $('code.language-mermaid').each(function(index, element) {
-        var content = $(element).html().replace(/&amp;/g, '&');
-        $(element).parent().replaceWith('<div class="mermaid" align="center">' + content + '</div>');
-    });
-
     if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.mermaidAPI.initialize( Object.assign( {}, mermaid.mermaidAPI.getSiteConfig(), { startOnLoad: true } ) );
-        mermaid.contentLoaded();
+        document.querySelectorAll('.mermaid').forEach( function( element ){
+            var content = element.innerHTML.replace(/&amp;/g, '&').trim();
+
+            var d = /^(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
+            var m = d.exec( content );
+            var dir = {};
+            if( m && m.length == 3 ){
+                dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
+                content = content.substring( d.lastIndex );
+            }
+
+            if( dir.theme ){
+                dir.relearn_user_theme = true;
+            }
+            if( !dir.relearn_user_theme ){
+                dir.theme = getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-MERMAID-theme' ).replace( /\s/g, "" );
+            }
+            dir.relearn_initialized = true;
+            content = '%%{init: ' + JSON.stringify( dir ) + '}%%\n' + content;
+
+            element.innerHTML = content;
+            var new_element = document.createElement( 'div' );
+            new_element.classList.add( 'mermaid-container' );
+            new_element.innerHTML = '<div class="mermaid-code">' + content + '</div>' + element.outerHTML;
+            element.parentNode.replaceChild( new_element, element );
+        });
+        mermaid.init();
         $(".mermaid svg").svgPanZoom({});
     }
 }
