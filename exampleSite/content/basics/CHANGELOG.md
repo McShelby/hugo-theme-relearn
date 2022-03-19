@@ -1,10 +1,23 @@
 # Changelog
 
+## 3.2.0 (2022-03-19)
+
+### Enhancements
+
+- [**feature**] mermaid: support differing themes for color variant switch [#219](https://github.com/McShelby/hugo-theme-relearn/issues/219)
+- [**feature**] mermaid: load javascript on demand [#218](https://github.com/McShelby/hugo-theme-relearn/issues/218)
+
+### Maintenance
+
+- [**task**] mermaid: update to 8.14.0 [#220](https://github.com/McShelby/hugo-theme-relearn/issues/220)
+
+---
+
 ## 3.1.1 (2022-03-16)
 
 ### Enhancements
 
-- [**feature**] Language Support for Korean [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
+- [**feature**] language: support for korean [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
 
 ---
 
