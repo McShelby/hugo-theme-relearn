@@ -95,19 +95,22 @@ function initMermaid() {
 }
 
 function initAnchorClipboard(){
-    var clip = new ClipboardJS('.anchor');
-    $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
-        var element = $(this);
+    document.querySelectorAll( 'h1~h2,h1~h3,h1~h4,h1~h5,h1~h6').forEach( function( element ){
         var url = encodeURI(document.location.origin + document.location.pathname);
-        var link = url + "#"+element[0].id;
-        var html = " " + $( '<span>' ).addClass("anchor").attr("title", window.T_Copy_link_to_clipboard).attr("data-clipboard-text", link).append("<i class='fas fa-link fa-lg'></i>").get(0).outerHTML;
-        return html;
+        var link = url + "#"+element.id;
+        var new_element = document.createElement( 'span' );
+        new_element.classList.add( 'anchor' );
+        new_element.setAttribute( 'title', window.T_Copy_link_to_clipboard );
+        new_element.setAttribute( 'data-clipboard-text', link );
+        new_element.innerHTML = '<i class="fas fa-link fa-lg"></i>';
+        element.append( new_element );
     });
 
     $(".anchor").on('mouseleave', function(e) {
         $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
     });
 
+    var clip = new ClipboardJS('.anchor');
     clip.on('success', function(e) {
         e.clearSelection();
         $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
