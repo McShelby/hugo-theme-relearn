@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.2.1 (2022-03-25)
+
+### Fixes
+
+- [**bug**] print: fix minor inconsistencies [#225](https://github.com/McShelby/hugo-theme-relearn/issues/225)
+- [**bug**] print: show more than just the title page [#224](https://github.com/McShelby/hugo-theme-relearn/issues/224)
+- [**bug**] theme: align content scrollbar to the right on big screens [#223](https://github.com/McShelby/hugo-theme-relearn/issues/223)
+
+---
+
 ## 3.2.0 (2022-03-19)
 
 ### Enhancements
