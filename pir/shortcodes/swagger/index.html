@@ -5,10 +5,9 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.96.0" />
     <meta name="generator" content="Relearn 3.2.1&#43;tip">
-    <meta name="description" content="Documentation for Hugo Relearn Theme">
+    <meta name="description" content="Adds UI fer yer Swaggerrr / OpenAPI files">
     <meta name="author" content="Sören Weber">
-    <title>Rambl&#39;n :: Cap&#39;n Hugo Relearrrn Theme</title>
-    <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/pir/cont/index.xml" title="Cap&#39;n Hugo Relearrrn Theme" />
+    <title>Swaggerrr :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1648412733" type="image/svg+xml">
     <link href="/hugo-theme-relearn/css/nucleus.css?1648412733" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1648412733" rel="stylesheet">
@@ -38,20 +37,20 @@
     </script>
     <script src="/hugo-theme-relearn/js/jquery.min.js?1648412733"></script>
   </head>
-  <body class="mobile-support" data-url="/hugo-theme-relearn/pir/cont/">
+  <body class="mobile-support" data-url="/hugo-theme-relearn/pir/shortcodes/swagger/">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
       <nav id="topbar" class="highlightable">
         <div>
           <div class="navigation">
-             <a class="nav nav-next" href="/hugo-theme-relearn/pir/cont/pages/" title="Planks orrrganizat&#39;n"><i class="fas fa-chevron-right fa-fw"></i></a>
+             <a class="nav nav-next" href="/hugo-theme-relearn/pir/shortcodes/tabs/" title="Tabbed views"><i class="fas fa-chevron-right fa-fw"></i></a>
           </div>
           <div class="navigation">
-             <a class="nav nav-prev" href="/hugo-theme-relearn/pir/basics/history/" title="Historrry"><i class="fas fa-chevron-left fa-fw"></i></a>
+             <a class="nav nav-prev" href="/hugo-theme-relearn/pir/shortcodes/siteparam/" title="Ship param"><i class="fas fa-chevron-left fa-fw"></i></a>
           </div>
           <div id="top-github-link">
-            <a class="github-link" title='Edit' href="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/cont/_index.pir.md" target="blank">
+            <a class="github-link" title='Edit' href="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/shortcodes/swagger.pir.md" target="blank">
               <i class="fas fa-pen fa-fw"></i>
             </a>
           </div>
@@ -61,16 +60,18 @@
             </span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <meta itemprop="itemListOrder" content="Descending" />
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/hugo-theme-relearn/pir/"><span itemprop="name">Cap&#39;n Hugo Relearrrn Theme</span></a> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/hugo-theme-relearn/pir/cont/" aria-disabled="true"><span itemprop="name">Rambl&#39;n</span></a></li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="/hugo-theme-relearn/pir/"><span itemprop="name">Cap&#39;n Hugo Relearrrn Theme</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/hugo-theme-relearn/pir/shortcodes/"><span itemprop="name">Shorrrtcodes</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/hugo-theme-relearn/pir/shortcodes/swagger/" aria-disabled="true"><span itemprop="name">Swaggerrr</span></a></li>
             </ol>
           </div>
         </div>
       </nav>
-      <main id="body-inner" class="highlightable  chapter">
+      <main id="body-inner" class="highlightable ">
         <div class="flex-block-wrapper">
           <div id="head-tags">
           </div>
+          <h1>Swaggerrr</h1>
 
 
 <div class="box notices warning">
@@ -80,9 +81,41 @@
 	</div>
 </div>
 
-<h3 id="chapter-2">Chapter 2</h3>
-<h1 id="content">Rrrambl'n</h1>
-<p>Find out how t' create an' org'nize yer rrrambl'n quickly an' intuitively.</p>
+<p>This shorrrtcode uses th' <a href="https://mrin9.github.io/RapiDoc">RapiDoc</a> library t' display yer OpenAPI Specificat'ns.</p>
+
+<div class="box notices note">
+    <div class="box-label"><i class="fas fa-exclamation-circle fa-fw"></i> Avast</div>
+    <div class="box-content">
+<p>This only works 'n modern browsers.</p>
+
+    </div>
+</div>
+<h2 id="configuration">Configurat'n</h2>
+<p>Swagger be configured wit' default sett'ns. Ye can cust'mize Swagger&rsquo;s default sett'ns fer all o' yer files thru a JSON object 'n yer <code>config.toml</code> or override these sett'ns per plank thru yer planks frontmatter.</p>
+<p>Th' JSON object o' yer <code>config.toml</code> / frontmatter be forwarded into Swagger&rsquo;s initializat'n. At th' moment, only th' <code>theme</code> sett'n be supported.</p>
+<p>Th' <code>theme</code> sett'n can also be set by yer used color variant. This will be th' sitewide default an' can - again - be overridden by yer sett'ns 'n <code>config.toml</code> or frontmatter.</p>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">swaggerInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;theme\&#34;: \&#34;dark\&#34; }&#34;</span>
+</span></span></code></pre></div><h2 id="usage">Usage</h2>
+<p>Just insert yer Merrrmaid code 'n th' <code>mermaid</code> shorrrtcode like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">swagger</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://petstore3.swagger.io/api/v3/openapi.json&#34;</span> <span class="p">&gt;}}</span>
+</span></span></code></pre></div><p>Th' <code>src</code> parameter be mandatory an' can be either an absolute URL or a relative one point'n into yer Cap'n Hugo file system.</p>
+<h2 id="example-1">Example</h2>
+
+<rapi-doc
+  allow-spec-file-download="true"
+  default-schema-tab="example"
+  font-size="largest"
+  layout="column"
+  load-fonts="false"
+  render-style="view"
+  schema-description-expanded="true"
+  schema-style="table"
+  show-header="false"
+  spec-url = "https://petstore3.swagger.io/api/v3/openapi.json"
+  sort-tags="true"
+></rapi-doc>
 
           <footer class="footline">
           </footer>
@@ -171,7 +204,7 @@
           <li data-nav-id="/hugo-theme-relearn/pir/basics/customization/" title="Customizat&#39;n" class="dd-item alwaysopen"><a href="/hugo-theme-relearn/pir/basics/customization/">Customizat&#39;n<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/hugo-theme-relearn/pir/basics/generator/" title="Stylesheet generrrat&#39;r" class="dd-item alwaysopen"><a href="/hugo-theme-relearn/pir/basics/generator/">Stylesheet generrrat&#39;r<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/hugo-theme-relearn/pir/basics/history/" title="Historrry" class="dd-item alwaysopen"><a href="/hugo-theme-relearn/pir/basics/history/">Historrry<i class="fas fa-check read-icon"></i></a><ul></ul></li></ul></li>
-          <li data-nav-id="/hugo-theme-relearn/pir/cont/" title="Rambl&#39;n" class="dd-item active parent"><a href="/hugo-theme-relearn/pir/cont/"><b>2.</b> Rambl&#39;n<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/hugo-theme-relearn/pir/cont/" title="Rambl&#39;n" class="dd-item"><a href="/hugo-theme-relearn/pir/cont/"><b>2.</b> Rambl&#39;n<i class="fas fa-check read-icon"></i></a><ul>
           <li data-nav-id="/hugo-theme-relearn/pir/cont/pages/" title="Planks orrrganizat&#39;n" class="dd-item alwaysopen"><a href="/hugo-theme-relearn/pir/cont/pages/">Planks orrrganizat&#39;n<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/hugo-theme-relearn/pir/cont/archetypes/" title="Arrrchetypes" class="dd-item"><a href="/hugo-theme-relearn/pir/cont/archetypes/">Arrrchetypes<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/cont/markdown/" title="Marrrkdown rules" class="dd-item"><a href="/hugo-theme-relearn/pir/cont/markdown/">Marrrkdown rules<i class="fas fa-check read-icon"></i></a></li>
@@ -180,7 +213,7 @@
           <li data-nav-id="/hugo-theme-relearn/pir/cont/icons/" title="Ay&#39;cons an&#39; logos" class="dd-item"><a href="/hugo-theme-relearn/pir/cont/icons/">Ay&#39;cons an&#39; logos<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/cont/i18n/" title="Multilingual an&#39; i18n" class="dd-item alwaysopen"><a href="/hugo-theme-relearn/pir/cont/i18n/">Multilingual an&#39; i18n<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/hugo-theme-relearn/pir/cont/tags/" title="Tags" class="dd-item"><a href="/hugo-theme-relearn/pir/cont/tags/">Tags<i class="fas fa-check read-icon"></i></a></li></ul></li>
-          <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/" title="Shorrrtcodes" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/"><b>3.</b> Shorrrtcodes<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/" title="Shorrrtcodes" class="dd-item parent"><a href="/hugo-theme-relearn/pir/shortcodes/"><b>3.</b> Shorrrtcodes<i class="fas fa-check read-icon"></i></a><ul>
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/attachments/" title="Attachments" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/attachments/">Attachments<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/button/" title="Button" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/button/">Button<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/children/" title="Children" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/children/">Children<i class="fas fa-check read-icon"></i></a><ul>
@@ -199,7 +232,7 @@
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/mermaid/" title="Merrrmaid" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/mermaid/">Merrrmaid<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/notice/" title="Notice" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/notice/">Notice<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/siteparam/" title="Ship param" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/siteparam/">Ship param<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/swagger/" title="Swaggerrr" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/swagger/">Swaggerrr<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/swagger/" title="Swaggerrr" class="dd-item active"><a href="/hugo-theme-relearn/pir/shortcodes/swagger/">Swaggerrr<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/pir/shortcodes/tabs/" title="Tabbed views" class="dd-item"><a href="/hugo-theme-relearn/pir/shortcodes/tabs/">Tabbed views<i class="fas fa-check read-icon"></i></a></li></ul></li>
         </ul>
         <div id="shortcuts">
@@ -222,8 +255,8 @@
                 <span>&nbsp;</span>
                 <div class="select-style">
                   <select id="select-language" onchange="location = baseUri + this.value;">
-                    <option id="en" value="/hugo-theme-relearn/cont/">English</option>
-                    <option id="pir" value="/hugo-theme-relearn/pir/cont/" selected>Arrr! ☠ Pirrrates ☠</option>
+                    <option id="en" value="/hugo-theme-relearn/shortcodes/swagger/">English</option>
+                    <option id="pir" value="/hugo-theme-relearn/pir/shortcodes/swagger/" selected>Arrr! ☠ Pirrrates ☠</option>
                   </select>
                 </div>
                 <div class="select-clear"></div>
