@@ -36,45 +36,11 @@ var variants = {
 			select.value = variant;
 		}
 		setTimeout( function(){
-			if( typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined' && document.querySelector( '.mermaid > svg' ) ){
-				var is_intialized = false;
-				var theme = this.getColorValue( 'MERMAID-theme' );
-				document.querySelectorAll( '.mermaid-container' ).forEach( function( e ){
-					var element = e.querySelector( '.mermaid' );
-					var code = e.querySelector( '.mermaid-code' );
-					var content = this.decodeHTML( code.innerHTML );
-
-					var d = /^(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
-					var m = d.exec( content );
-					var dir = {};
-					if( m && m.length == 3 ){
-						dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
-						content = content.substring( d.lastIndex );
-					}
-
-					if( !dir.relearn_initialized ){
-						return;
-					}
-					is_initialized = true;
-					if( dir.relearn_user_theme ){
-						return;
-					}
-
-					if( dir.theme != theme ){
-						dir.theme = theme;
-						content = '%%{init: ' + JSON.stringify( dir ) + '}%%\n' + content;
-						element.removeAttribute('data-processed');
-						element.innerHTML = content;
-						code.innerHTML = content;
-					}
-				}.bind( this ) );
-				if( is_initialized ){
-					mermaid.init();
-					$(".mermaid svg").svgPanZoom({});
-				}
+			if( window.theme ){
+				initMermaid( true );
+				initSwagger( true );
 			}
 		}.bind( this ), 25 );
-
 		// remove selection, because if some uses an arrow navigation"
 		// by pressing the left or right cursor key, we will automatically
 		// select a different style
@@ -244,12 +210,6 @@ var variants = {
 		a.click();
 	},
 
-	decodeHTML: function( html ){
-		var txt = document.createElement( 'textarea' );
-		txt.innerHTML = html;
-		return txt.value;
-	},
-
 	getStylesheet: function(){
 		this.download( this.generateStylesheet(), 'text/css', 'theme-' + this.customvariantname + '.css' );
 	},
@@ -416,6 +376,7 @@ var variants = {
 		this.styleGraphGroup( '#mainheadings', 'MAIN-BG-color' );
 		this.styleGraphGroup( '#inlinecode', 'CODE-INLINE-BG-color' );
 		this.styleGraphGroup( '#blockcode', 'CODE-BLOCK-BG-color' );
+		this.styleGraphGroup( '#thirdparty', 'MAIN-BG-color' );
 		this.styleGraphGroup( '#coloredboxes', 'BOX-BG-color' );
 		this.styleGraphGroup( '#menu', 'MENU-SECTIONS-BG-color' );
 		this.styleGraphGroup( '#menuheader', 'MENU-HEADER-BG-color' );
@@ -479,6 +440,10 @@ var variants = {
 			'      direction LR\n' +
 					g_groups[ 'code blocks' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
 			'    end\n' +
+			'    subgraph thirdparty["3rd party"]\n' +
+			'      direction LR\n' +
+					g_groups[ '3rd party' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
+			'    end\n' +
 			'    subgraph coloredboxes["colored boxes"]\n' +
 			'      direction LR\n' +
 					g_groups[ 'colored boxes' ].reduce( function( a, e ){ return a + '      ' + this.generateGraphGroupedEdge( e ) + '\n'; }.bind( this ), '' ) +
@@ -515,7 +480,8 @@ var variants = {
 		{ name: 'CODE-INLINE-BG-color',                  group: 'inline code',    default: '#fffae9',                     tooltip: 'background color of inline code', },
 		{ name: 'CODE-INLINE-BORDER-color',              group: 'inline code',    default: '#fbf0cb',                     tooltip: 'border color of inline code', },
 
-		{ name: 'MERMAID-theme',                         group: 'mermaid',        default: 'default',                     tooltip: 'name of the default mermaid theme for this variant, can be overridden in config.toml', },
+		{ name: 'MERMAID-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Mermaid theme for this variant, can be overridden in config.toml', },
+		{ name: 'SWAGGER-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Swagger theme for this variant, can be overridden in config.toml', },
 
 		{ name: 'MENU-HEADER-BG-color',                  group: 'header',         default: '#7dc903',                     tooltip: 'background color of menu header', },
 		{ name: 'MENU-HEADER-BORDER-color',              group: 'header',        fallback: 'MENU-HEADER-BG-color',        tooltip: 'separator color of menu header', },

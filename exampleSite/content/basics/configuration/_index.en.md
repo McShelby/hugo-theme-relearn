@@ -52,9 +52,13 @@ Note that some of these parameters are explained in details in other sections of
   # If set to false, load the Mermaid module on every page regardless if a Mermaid shortcode or Mermaid codefence is present
   disableMermaid = false
   # Specifies the remote location of the Mermaid js
-  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
+  customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
   # Initialization parameter for Mermaid, see Mermaid documentation
   mermaidInitialize = "{ \"theme\": \"default\" }"
+  # Specifies the remote location of the RapiDoc js
+  customSwaggerURL = ""https://unpkg.com/rapidoc/dist/rapidoc-min.js"
+  # Initialization parameter for Swagger, see RapiDoc documentation
+  swaggerInitialize = "{ \"theme\": \"light\" }"
   # Hide Next and Previous page buttons normally displayed full height beside content
   disableNextPrev = true
   # Order sections in menu by "weight" or "title". Default to "weight";

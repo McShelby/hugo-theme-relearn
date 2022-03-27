@@ -28,14 +28,41 @@
     {{- $.Scratch.Set "mermaidInitialize" "{}" }}
   {{- end }}
     <script>
-      if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        var config = JSON.parse({{ $.Scratch.Get "mermaidInitialize" }});
-        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
-        if( config.theme ){
-          var write_style = variants.findLoadedStylesheet( 'variant-style' );
-          write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+      function useMermaid( config ){
+        if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
+          mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
+          if( config.theme ){
+            var write_style = variants.findLoadedStylesheet( 'variant-style' );
+            write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+          }
         }
       }
+      useMermaid( JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}) );
+    </script>
+{{- end }}
+{{- if (or (.Page.Store.Get "hasSwagger") (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) ) }}
+  {{- if isset .Params "customswaggerurl" }}
+    <script src="{{ .Params.customSwaggerURL }}"></script>
+  {{- else if isset .Site.Params "customswaggerurl" }}
+    <script src="{{ .Site.Params.customSwaggerURL }}"></script>
+  {{- else }}
+    <script src="{{ "/js/rapidoc-min.js" | relURL }}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+  {{- end }}
+  {{- if isset .Params "swaggerinitialize" }}
+    {{- $.Scratch.Set "swaggerInitialize" .Params.swaggerInitialize }}
+  {{- else if isset .Site.Params "swaggerinitialize" }}
+    {{- $.Scratch.Set "swaggerInitialize" .Site.Params.swaggerInitialize }}
+  {{- else }}
+    {{- $.Scratch.Set "swaggerInitialize" "{}" }}
+  {{- end }}
+    <script>
+      function useSwagger( config ){
+        if( config.theme ){
+          var write_style = variants.findLoadedStylesheet( 'variant-style' );
+          write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
+        }
+      }
+      useSwagger( JSON.parse({{ $.Scratch.Get "swaggerInitialize" }}) );
     </script>
 {{- end }}
     <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>

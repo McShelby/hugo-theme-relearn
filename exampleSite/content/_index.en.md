@@ -24,6 +24,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 * [Attachments files]({{%relref "shortcodes/attachments" %}})
 * [List child pages]({{%relref "shortcodes/children" %}})
 * [Mermaid diagram]({{%relref "shortcodes/mermaid" %}}) (flowchart, sequence, gantt)
+* [Swagger UI]({{%relref "shortcodes/swagger" %}}) for OpenAPI Specifications
 * [Customizable look and feel]({{%relref "basics/customization"%}})
 * [Predefined (light, dark) and customizable color variants]({{%relref "basics/generator" %}})
 * [Buttons]({{%relref "shortcodes/button" %}})

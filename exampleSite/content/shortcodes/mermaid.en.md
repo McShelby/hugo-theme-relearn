@@ -211,7 +211,7 @@ The JSON object of your `config.toml` / frontmatter is forwarded into Mermaid's 
 
 See [Mermaid documentation](http://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
 
-The `theme` setting is somewhat special as it can be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `config.toml`, frontmatter or diagram directives.
+The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `config.toml`, frontmatter or diagram directives.
 
 {{% notice note %}}
 If you want to use mermaid codefences, you have to turn off `guessSyntax` for the `markup.highlight` setting.

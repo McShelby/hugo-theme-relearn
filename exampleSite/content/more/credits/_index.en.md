@@ -22,6 +22,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 * [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
 * [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
 * [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
+* [RapiDoc](https://mrin9.github.io/RapiDoc) - Create beautiful, customizable, interactive API documentation from OpenAPI Specifications
 
 ## Tooling
 

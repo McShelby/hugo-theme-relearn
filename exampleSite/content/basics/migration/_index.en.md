@@ -14,6 +14,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 3.3.0
+
+- **New**: The new shortcode `swagger` is available to include a UI for REST OpenAPI Specifications. See the [`documentation`]({{% relref "shortcodes/swagger" %}}) for available features.
+
+---
+
 ## 3.2.0
 
 - **Change**: In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.

@@ -1,3 +1,4 @@
+var theme = true;
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
 if( isIE ){
     // we don't support sidebar flyout in IE
@@ -61,37 +62,108 @@ function restoreTabSelections() {
     }
 }
 
-function initMermaid() {
-    if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
+function initMermaid( update ) {
+    // we are either in update or initialization mode;
+    // during initialization, we want to edit the DOM;
+    // during update we only want to execute if something chanegd
+    var decodeHTML = function( html ){
+        var txt = document.createElement( 'textarea' );
+        txt.innerHTML = html;
+        return txt.value;
+    };
+
+    var parseGraph = function( graph ){
+        var d = /^\s*(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
+        var m = d.exec( graph );
+        var dir = {};
+        var content = graph;
+        if( m && m.length == 3 ){
+            dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
+            content = graph.substring( d.lastIndex );
+        }
+        return { dir: dir, content: content };
+    };
+
+    var serializeGraph = function( graph ){
+        return '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n' + graph.content;
+    };
+
+    var init_func = function(){
+        state.is_initialized = true;
+        var is_initialized = false;
+        var theme = variants.getColorValue( 'MERMAID-theme' );
         document.querySelectorAll('.mermaid').forEach( function( element ){
-            var content = element.innerHTML.replace(/&amp;/g, '&').trim();
+            var parse = parseGraph( decodeHTML( element.innerHTML ) );
 
-            var d = /^(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
-            var m = d.exec( content );
-            var dir = {};
-            if( m && m.length == 3 ){
-                dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
-                content = content.substring( d.lastIndex );
+            if( parse.dir.theme ){
+                parse.dir.relearn_user_theme = true;
             }
+            if( !parse.dir.relearn_user_theme ){
+                parse.dir.theme = theme;
+            }
+            is_initialized = true;
 
-            if( dir.theme ){
-                dir.relearn_user_theme = true;
-            }
-            if( !dir.relearn_user_theme ){
-                dir.theme = getComputedStyle( document.documentElement ).getPropertyValue( '--INTERNAL-MERMAID-theme' ).replace( /\s/g, "" );
-            }
-            dir.relearn_initialized = true;
-            content = '%%{init: ' + JSON.stringify( dir ) + '}%%\n' + content;
-
-            element.innerHTML = content;
+            var graph = serializeGraph( parse );
+            element.innerHTML = graph;
             var new_element = document.createElement( 'div' );
             new_element.classList.add( 'mermaid-container' );
-            new_element.innerHTML = '<div class="mermaid-code">' + content + '</div>' + element.outerHTML;
+            new_element.innerHTML = '<div class="mermaid-code">' + graph + '</div>' + element.outerHTML;
             element.parentNode.replaceChild( new_element, element );
         });
+        return is_initialized;
+    }
+
+    var update_func = function(){
+        var is_initialized = false;
+        var theme = variants.getColorValue( 'MERMAID-theme' );
+        document.querySelectorAll( '.mermaid-container' ).forEach( function( e ){
+            var element = e.querySelector( '.mermaid' );
+            var code = e.querySelector( '.mermaid-code' );
+            var parse = parseGraph( decodeHTML( code.innerHTML ) );
+
+            if( parse.dir.relearn_user_theme ){
+                return;
+            }
+            if( parse.dir.theme == theme ){
+                return;
+            }
+            is_initialized = true;
+
+            parse.dir.theme = theme;
+            var graph = serializeGraph( parse );
+            element.removeAttribute('data-processed');
+            element.innerHTML = graph;
+            code.innerHTML = graph;
+        });
+        return is_initialized;
+    };
+
+    var state = this;
+    if( update && !state.is_initialized ){
+        return;
+    }
+    if( typeof variants == 'undefined' ){
+        return;
+    }
+    if( typeof mermaid == 'undefined' || typeof mermaid.mermaidAPI == 'undefined' ){
+        return;
+    }
+
+    var is_initialized = ( update ? update_func() : init_func() );
+    if( is_initialized ){
         mermaid.init();
         $(".mermaid svg").svgPanZoom({});
     }
+}
+
+function initSwagger( update ){
+    if( typeof variants == 'undefined' ){
+        return;
+    }
+    var theme = variants.getColorValue( 'SWAGGER-theme' );
+    document.querySelectorAll( 'rapi-doc' ).forEach( function( e ){
+        e.setAttribute( 'theme', theme );
+    });
 }
 
 function initAnchorClipboard(){
@@ -454,6 +526,7 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 jQuery(function() {
     initArrowNav();
     initMermaid();
+    initSwagger();
     initMenuScrollbar();
     scrollToActiveMenu();
     initLightbox();

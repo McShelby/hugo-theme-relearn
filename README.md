@@ -18,6 +18,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Attachments files
 - List child pages
 - Mermaid diagram (flowchart, sequence, gantt)
+- Swagger UI for OpenAPI Specifications
 - Customizable look and feel
 - Predefined (light, dark) and customizable color variants
 - Buttons
