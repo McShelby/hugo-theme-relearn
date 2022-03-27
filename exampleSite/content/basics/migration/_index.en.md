@@ -16,6 +16,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 3.3.0
 
+- **New**: Introduction of new CSS variables to set the font. The theme distinguishs between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
+
 - **New**: The new shortcode `swagger` is available to include a UI for REST OpenAPI Specifications. See the [`documentation`]({{% relref "shortcodes/swagger" %}}) for available features.
 
 ---
