@@ -160,9 +160,18 @@ function initSwagger( update ){
     if( typeof variants == 'undefined' ){
         return;
     }
-    var theme = variants.getColorValue( 'SWAGGER-theme' );
+    var attrs = [
+        [ 'bg-color', variants.getColorValue( 'MAIN-BG-color' ) ],
+        [ 'mono-font', variants.getColorValue( 'CODE-font' ) ],
+        [ 'primary-color', variants.getColorValue( 'TAG-BG-color' ) ],
+        [ 'regular-font', variants.getColorValue( 'MAIN-font' ) ],
+        [ 'text-color', variants.getColorValue( 'MAIN-TEXT-color' ) ],
+        [ 'theme', variants.getColorValue( 'SWAGGER-theme' ) ],
+    ];
     document.querySelectorAll( 'rapi-doc' ).forEach( function( e ){
-        e.setAttribute( 'theme', theme );
+        attrs.forEach( function( attr ){
+            e.setAttribute( attr[0], attr[1] );
+        });
     });
 }
 
