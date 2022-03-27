@@ -26,14 +26,20 @@ The `theme` setting can also be set by your used color variant. This will be the
 
 ## Usage
 
-Just insert your Mermaid code in the `mermaid` shortcode like this:
+Just insert give the URL to your OpenAPI Specification like this:
 
 ````go
 {{</* swagger src="https://petstore3.swagger.io/api/v3/openapi.json" */>}}
 ````
 
-The `src` parameter is mandatory and can be either an absolute URL or a relative one pointing into your Hugo file system.
+If your page is a leaf or branch bundle, you can also use relative URLs:
+
+````go
+{{</* swagger src="petstore.json" */>}}
+````
+
+The `src` parameter is mandatory and can be either an absolute or a relative URL.
 
 ## Example
 
-{{< swagger src="https://petstore3.swagger.io/api/v3/openapi.json" >}}
+{{< swagger src="petstore.json" >}}

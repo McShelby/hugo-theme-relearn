@@ -1,4 +1,9 @@
 {{- $original := .Get "src" }}
+{{- with .Page.Resources.Match $original }}
+	{{- range . }}
+		{{- $original = .RelPermalink }}
+	{{- end }}
+{{- end }}
 <rapi-doc
   allow-spec-file-download="true"
   default-schema-tab="example"
@@ -9,7 +14,7 @@
   schema-description-expanded="true"
   schema-style="table"
   show-header="false"
-  spec-url = "{{ $original | relURL }}"
+  spec-url="{{ $original | relURL }}"
   sort-tags="true"
 ></rapi-doc>
 {{- .Page.Store.Set "hasSwagger" true }}
