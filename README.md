@@ -10,6 +10,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 
 ## Main features
 
+- Usable offline, no external dependencies
 - Automatic Search
 - Multilingual mode for English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Spanish, Vietnamese, Turkish
 - Unlimited menu levels

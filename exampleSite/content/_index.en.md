@@ -16,6 +16,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 {{% /notice %}}
 
+* Usable offline, no external dependencies
 * [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
 * [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Spanish, Vietnamese, Turkish
 * Unlimited menu levels

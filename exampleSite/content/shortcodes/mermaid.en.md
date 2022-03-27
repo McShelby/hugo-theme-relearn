@@ -5,6 +5,10 @@ title = "Mermaid"
 
 [Mermaid](https://mermaidjs.github.io/) is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.
 
+{{% notice note %}}
+This only works in modern browsers.
+{{% /notice %}}
+
 {{% notice warning %}}
 Due to limitations with [Mermaid](https://github.com/mermaid-js/mermaid/issues/1846), it is currently not possible to use Mermaid code fences in an initially collapsed `expand` shortcode. This is a know issue and [can't be fixed by this theme](https://github.com/McShelby/hugo-theme-relearn/issues/187).
 {{% /notice %}}
