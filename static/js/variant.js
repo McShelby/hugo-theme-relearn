@@ -4,6 +4,7 @@ var variants = {
 	variant: '',
 	variants: [],
 	customvariantname: 'my-custom-variant',
+	isstylesheetloaded: true,
 
 	init: function( variants ){
 		this.variants = variants;
@@ -25,6 +26,10 @@ var variants = {
 		window.localStorage.setItem( baseUriFull+'variant', variant );
 	},
 
+	isVariantLoaded: function(){
+		return window.theme && this.isstylesheetloaded;
+	},
+
 	markSelectedVariant: function(){
 		var variant = this.getVariant();
 		var select = document.querySelector( '#select-variant' );
@@ -35,8 +40,9 @@ var variants = {
 		if( variant && select.value != variant ){
 			select.value = variant;
 		}
-		setTimeout( function(){
-			if( window.theme ){
+		var interval_id = setInterval( function(){
+			if( this.isVariantLoaded() ){
+				clearInterval( interval_id );
 				initMermaid( true );
 				initSwagger( true );
 			}
@@ -127,7 +133,6 @@ var variants = {
 				this.saveCustomVariant();
 			}
 		}.bind( this ), 25 );
-
 	},
 
 	resetVariant: function(){
@@ -142,6 +147,10 @@ var variants = {
 		}
 	},
 
+	onLoadStylesheet: function(){
+		variants.isstylesheetloaded = true;
+	},
+
 	switchStylesheet: function( variant, without_check ){
 		var link = document.querySelector( '#variant-style' );
 		if( !link ){
@@ -149,7 +158,15 @@ var variants = {
 		}
 		var old_path = link.getAttribute( 'href' );
 		var new_path = this.generateVariantPath( variant, old_path );
-		link.setAttribute( 'href', new_path );
+		this.isstylesheetloaded = false;
+
+		// Chrome needs a new element to trigger the load callback again
+		var new_link = document.createElement( 'link' );
+		new_link.id = 'variant-style';
+		new_link.rel = 'stylesheet';
+		new_link.onload = this.onLoadStylesheet;
+		new_link.setAttribute( 'href', new_path );
+		link.parentNode.replaceChild( new_link, link );
 	},
 
 	changeVariant: function( variant ){
