@@ -9,21 +9,21 @@ In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials
 
 This theme defines the following partials :
 
-- `content.html`: the content page itself. This can be overridden if you wan't to display page's meta data above or below the content.
-- `header.html`: the header of the content page (contains the breadcrumbs). _Not meant to be overwritten_
-- `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file
-- `footer.html`: the footer of the content page (contains the arrows). _Not meant to be overwritten_
-- `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file
+- `header.html`: the header of the page. _Not meant to be overwritten_
+- `footer.html`: the footer of the page._Not meant to be overwritten_
+- `menu.html`: left menu. _Not meant to be overwritten_
+- `search.html`: search box. _Not meant to be overwritten_
+- `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file.
+- `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file.
 - `favicon.html`: the favicon
 - `logo.html`: the logo, on top left hand corner
 - `meta.html`: HTML meta tags, if you want to change default behavior
-- `menu.html`: left menu. _Not meant to be overwritten_
 - `menu-pre.html`: side-wide configuration to prepend to menu items. If you override this, it is your responsiblity to take the page's `pre` setting into account.
 - `menu-post.html`: side-wide configuration to append to menu items. If you override this, it is your responsiblity to take the page's `post` setting into account.
 - `menu-footer.html`: footer of the the left menu
-- `search.html`: search box. _Not meant to be overwritten_
 - `toc.html`: table of contents
-
+- `content.html`: the content page itself. This can be overridden if you wan't to display page's meta data above or below the content.
+- `content-footer`: footer below the content, has a default implementation but you can overwrite it if you don't like it.
 ## Change the logo
 
 Create a new file in `layouts/partials/` named `logo.html`. Then write any HTML you want.

@@ -14,6 +14,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 3.4.0
+
+- **Breaking**: If you had previously overwritten the `custom-footer.html` partial to add visual elements below the content of your page, you have to move this content to the new partial `content-footer.html`. `custom-footer.html` was never meant to contain HTML other than additional styles and JavaScript.
+
+---
+
 ## 3.3.0
 
 - **New**: Introduction of new CSS variables to set the font. The theme distinguishs between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
