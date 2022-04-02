@@ -1,21 +1,4 @@
+{{- .Scratch.Set "relearnOutputFormat" "HTML" }}
 {{- partial "header.html" . }}
-{{- if eq .Kind "section" }}
-
-{{ partial "content.html" . }}
-{{- end }}
-        {{- if or (eq .Kind "taxonomy") (eq .Kind "term") }}
-          <ul>
-          {{- range .Data.Terms.Alphabetical }}
-            {{- if and .Page.Title (or (ne (.Page.Scratch.Get "relearnIsHiddenStem") true) (ne .Page.Site.Params.disableTagHiddenPages true) ) }}
-            <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ len .Pages }})</li>
-            {{- end }}
-          {{- else }}
-            {{- range sort .Pages "Title" }}
-              {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-              {{- end }}
-            {{- end }}
-          {{- end }}
-          </ul>
-        {{- end }}
+{{- partial "content-screen.html" . }}
 {{- partial "footer.html" . }}

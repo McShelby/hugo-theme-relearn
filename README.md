@@ -12,6 +12,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 
 - Usable offline, no external dependencies
 - Automatic Search
+- Print whole chapters or even the complete site
 - Multilingual mode for English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Spanish, Vietnamese, Turkish
 - Unlimited menu levels
 - Automatic next/prev buttons to navigate through menu entries

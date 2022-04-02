@@ -1,6 +1,4 @@
-          <footer class="footline">
-{{- partial "content-footer.html" . }}
-          </footer>
+
         </div>
       </main><!-- #body-inner -->
 {{- partial "custom-comments.html" . }}
@@ -9,7 +7,8 @@
     <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-{{- if (or (.Page.Store.Get "hasMermaid") (and (ne .Params.disableMermaid nil) (not .Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) ) }}
+{{- $wantsMermaid := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasMermaid")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasMermaid")) }}
+{{- if (or $wantsMermaid (and (ne .Params.disableMermaid nil) (not .Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) ) }}
     <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
   {{- if isset .Params "custommermaidurl" }}
     <script src="{{ .Params.customMermaidURL }}"></script>
@@ -38,7 +37,8 @@
       useMermaid( JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}) );
     </script>
 {{- end }}
-{{- if (or (.Page.Store.Get "hasSwagger") (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) ) }}
+{{- $wantsSwagger := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasSwagger")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasSwagger")) }}
+{{- if (or $wantsSwagger (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) ) }}
   {{- if isset .Params "customswaggerurl" }}
     <script src="{{ .Params.customSwaggerURL }}"></script>
   {{- else if isset .Site.Params "customswaggerurl" }}

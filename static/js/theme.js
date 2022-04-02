@@ -7,6 +7,8 @@ if( isIE ){
 else{
     document.querySelector( 'body' ).classList.add( 'mobile-support' );
 }
+var isPrint = document.querySelector( 'body' ).classList.contains( 'print' );
+
 var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 
 var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
@@ -295,6 +297,10 @@ function initArrowNav(){
 }
 
 function initMenuScrollbar(){
+    if( isPrint ){
+        return;
+    }
+
     var content = '#body-inner';
     if( isIE ){
         // IE can not display the topbar as sticky; so we let

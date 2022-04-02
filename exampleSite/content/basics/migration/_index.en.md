@@ -18,6 +18,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Breaking**: If you had previously overwritten the `custom-footer.html` partial to add visual elements below the content of your page, you have to move this content to the new partial `content-footer.html`. `custom-footer.html` was never meant to contain HTML other than additional styles and JavaScript.
 
+- **New**: You can activate [print support]({{%relref "basics/configuration#activate-print-support" %}}) in your `config.toml` to add the capability to print whole chapters or even the complete site.
+
 ---
 
 ## 3.3.0

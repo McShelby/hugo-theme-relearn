@@ -18,6 +18,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 
 * Usable offline, no external dependencies
 * [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
+* [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
 * [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Portuguese, Russian, Spanish, Vietnamese, Turkish
 * Unlimited menu levels
 * Automatic next/prev buttons to navigate through menu entries

@@ -89,13 +89,30 @@ If not already present, add the follow lines in the same `config.toml` file.
 
 ```toml
 [outputs]
-home = [ "HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON"]
 ```
 
 Relearn theme uses the last improvement available in hugo version 20+ to generate a json index file ready to be consumed by lunr.js javascript search engine.
 
 > Hugo generate lunrjs index.json at the root of public folder.
 > When you build the site with `hugo server`, hugo generates it internally and of course it doesn’t show up in the filesystem
+
+## Activate print support
+
+You can activate print support to add the capability to print whole chapters or even the complete site. Just add the `PRINT` output format to your home, section and page in your `config.toml` as seen below:
+
+```toml
+[outputs]
+  home = ["HTML", "RSS", "PRINT", "JSON"]
+  section = ["HTML", "RSS", "PRINT"]
+  page = ["HTML", "RSS", "PRINT"]
+```
+
+This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
+
+{{% notice note %}}
+While colors of your chosen color variant are reset to the theme's light standard values for printing, this does not apply for Mermaid diagrams and Swagger/OpenAPI Specification. Those will still use the colors of your chosen color variant which may cause a non coherent look on paper.
+{{% /notice %}}
 
 ## Mermaid
 
