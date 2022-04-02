@@ -1,3 +1,5 @@
+@import "theme-relearn-light.css";
+
 #sidebar {
     display: none;
 }
@@ -36,6 +38,7 @@ pre {
     color: #777;
 }
 .navigation,
+#top-print-link,
 #top-github-link {
     /* we don't need this while printing */
     display: none;
@@ -45,6 +48,7 @@ pre {
 }
 #body #breadcrumbs .links {
     overflow-x: hidden;
+    visibility: visible;
 }
 .copy-to-clipboard-button {
     display: none;
@@ -77,11 +81,23 @@ body,
 #body-inner {
     overflow: visible !important; /* turn off limitations for perfect scrollbar */
 }
-#body-inner.chapter h1 {
+#body #body-inner {
+    /* reset paddings for chapters in screen */
+    padding: 0 3rem 4rem 3rem;
+}
+
+#body #body-inner h1 {
     border-bottom: 1px solid #ddd;
     margin-bottom: 2rem;
     padding-bottom: .75rem;
 }
+#body-inner .chapter h3:first-of-type {
+    margin-top: 2rem;
+}
+#body-inner .chapter p {
+    font-size: 1rem;
+}
+
 .footline {
     /* in print mode show footer line to signal reader the end of document */
     border-top: 1px solid #ddd;
@@ -103,7 +119,7 @@ body,
     /* we don't need this while printing */
     display: none;
 }
-#sidebar-toggle-span {
+#body #sidebar-toggle-span {
     /* we don't need this while printing */
     display: none;
 }
@@ -153,4 +169,11 @@ rapi-doc{
 }
 #body .tab-nav-button:not(.active) {
     opacity: 1;
+}
+
+article {
+    break-before: page;
+}
+#body-inner article:first-of-type {
+    break-before: avoid;
 }

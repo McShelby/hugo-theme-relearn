@@ -9,18 +9,18 @@
     <meta name="author" content="Sören Weber">
     <title>What&#39;s new :: Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/basics/migration/index.xml" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1648664863" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1648664863" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/variant.css?1648664863" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1648664863" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/print.css?1648664863" rel="stylesheet" media="print">
-    <script src="/hugo-theme-relearn/js/variant.js?1648664863"></script>
+    <link rel="alternate" type="text/html" href="/hugo-theme-relearn/basics/migration/_print/" title="Hugo Relearn Theme" />
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1648906211" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1648906211" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/variant.css?1648906211" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1648906211" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1648906211"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -36,7 +36,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1648664863"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1648906211"></script>
   </head>
   <body class="mobile-support" data-url="/hugo-theme-relearn/basics/migration/">
     <div id="body" class="default-animation">
@@ -49,6 +49,11 @@
           </div>
           <div class="navigation">
              <a class="nav nav-prev" href="/hugo-theme-relearn/basics/" title="Basics"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="top-print-link">
+            <a class="print-link" title='Print whole chapter' href="/hugo-theme-relearn/basics/migration/_print/">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
           </div>
           <div id="top-github-link">
             <a class="github-link" title='Edit' href="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/basics/migration/_index.en.md" target="blank">
@@ -93,12 +98,13 @@
           </div>
         </div>
       </nav>
-      <main id="body-inner" class="highlightable ">
+      <main id="body-inner" class="highlightable">
         <div class="flex-block-wrapper">
           <div id="head-tags">
           </div>
-          <h1>What&#39;s new</h1>
+          <article>
 
+<h1>What&#39;s new</h1>
 <p>This document shows you what&rsquo;s new in the latest release. For a detailed list of changes, see the <a href="/hugo-theme-relearn/basics/history/">history page</a>.</p>
 <p><strong>Breaking</strong>: A change that requires action by you after upgrading to assure the site is still functional.</p>
 <p><strong>Change</strong>: A change in default behavior. This may requires action by you / may or may not be revertable by configuration.</p>
@@ -106,7 +112,12 @@
 <hr>
 <h2 id="340">3.4.0</h2>
 <ul>
-<li><strong>Breaking</strong>: If you had previously overwritten the <code>custom-footer.html</code> partial to add visual elements below the content of your page, you have to move this content to the new partial <code>content-footer.html</code>. <code>custom-footer.html</code> was never meant to contain HTML other than additional styles and JavaScript.</li>
+<li>
+<p><strong>Breaking</strong>: If you had previously overwritten the <code>custom-footer.html</code> partial to add visual elements below the content of your page, you have to move this content to the new partial <code>content-footer.html</code>. <code>custom-footer.html</code> was never meant to contain HTML other than additional styles and JavaScript.</p>
+</li>
+<li>
+<p><strong>New</strong>: You can activate <a href="/hugo-theme-relearn/basics/configuration/#activate-print-support">print support</a> in your <code>config.toml</code> to add the capability to print whole chapters or even the complete site.</p>
+</li>
 </ul>
 <hr>
 <h2 id="330">3.3.0</h2>
@@ -352,8 +363,10 @@
 <ul>
 <li><strong>New</strong>: <a href="/hugo-theme-relearn/shortcodes/mermaid/#configuration"><code>Mermaid</code></a> config options can be set in <code>config.toml</code>.</li>
 </ul>
-          <footer class="footline">
-          </footer>
+
+            <footer class="footline">
+            </footer>
+          </article>
         </div>
       </main>
     </div>
@@ -425,9 +438,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1648664863"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1648664863"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1648664863"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1648906211"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1648906211"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1648906211"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -539,13 +552,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1648664863"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1648906211"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1648664863"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1648664863"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1648664863"></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1648664863"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1648906211"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1648906211"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1648906211"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1648906211"></script>
   </body>
 </html>
