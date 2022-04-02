@@ -484,10 +484,24 @@ function initSwipeHandler(){
 
 function scrollToActiveMenu() {
     window.setTimeout(function(){
-        var e = $("#sidebar ul.topics li.active a")[0];
+        var e = document.querySelector( '#sidebar ul.topics li.active a' );
         if( e && e.scrollIntoView ){
             e.scrollIntoView({
                 block: 'center',
+            });
+        }
+    }, 10);
+}
+
+function scrollToFragment() {
+    if( !window.location.hash || window.location.hash.length <= 1 ){
+        return;
+    }
+    window.setTimeout(function(){
+        var e = document.querySelector( window.location.hash );
+        if( e && e.scrollIntoView ){
+            e.scrollIntoView({
+                block: 'start',
             });
         }
     }, 10);
@@ -544,6 +558,7 @@ jQuery(function() {
     initSwagger();
     initMenuScrollbar();
     scrollToActiveMenu();
+    scrollToFragment();
     initLightbox();
     initImageStyles();
     initToc();
