@@ -537,7 +537,7 @@ var variants = {
 		{ name: 'CODE-font',                             group: 'content',        default: '"Consolas", menlo, monospace', tooltip: 'text font of code', },
 
 		{ name: 'MERMAID-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Mermaid theme for this variant, can be overridden in config.toml', },
-		{ name: 'SWAGGER-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Swagger theme for this variant, can be overridden in config.toml', },
+		{ name: 'SWAGGER-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the default Swagger theme for this variant, can be overridden in config.toml', },
 
 		{ name: 'MENU-HEADER-BG-color',                  group: 'header',         default: '#7dc903',                     tooltip: 'background color of menu header', },
 		{ name: 'MENU-HEADER-BORDER-color',              group: 'header',        fallback: 'MENU-HEADER-BG-color',        tooltip: 'separator color of menu header', },
