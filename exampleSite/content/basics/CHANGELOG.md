@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.4.0 (2022-04-03)
+
+### Enhancements
+
+- [**feature**] i18n: add traditional chinese [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
+- [**feature**] menu : expand/collapse menu items without navigation [#231](https://github.com/McShelby/hugo-theme-relearn/issues/231)
+- [**feature**] print: add option to print whole chapter [#230](https://github.com/McShelby/hugo-theme-relearn/issues/230)
+- [**feature**] theme: apply user supplied content footer below content [#229](https://github.com/McShelby/hugo-theme-relearn/issues/229)
+
+### Fixes
+
+- [**bug**] theme: scroll to heading on initial load [#232](https://github.com/McShelby/hugo-theme-relearn/issues/232)
+
+---
+
 ## 3.3.0 (2022-03-28)
 
 ### Enhancements
