@@ -314,11 +314,6 @@ function initMenuScrollbar(){
     }
 
     var content = '#body-inner';
-    if( isIE ){
-        // IE can not display the topbar as sticky; so we let
-        // the whole body scroll instead of just the content
-        content = '#body';
-    }
     var autofocus = false;
     document.addEventListener('keydown', function(event){
         // for initial keyboard scrolling support, no element
