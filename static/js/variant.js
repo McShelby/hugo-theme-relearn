@@ -1,3 +1,6 @@
+// MDN Array.from Polyfill; Production steps of ECMA-262, Edition 6, 22.1.2.1
+Array.from||(Array.from=function(){var r;try{r=Symbol.iterator?Symbol.iterator:"Symbol(Symbol.iterator)"}catch(t){r="Symbol(Symbol.iterator)"}var t=Object.prototype.toString,n=function(r){return"function"==typeof r||"[object Function]"===t.call(r)},o=Math.pow(2,53)-1,e=function(r){var t=function(r){var t=Number(r);return isNaN(t)?0:0!==t&&isFinite(t)?(t>0?1:-1)*Math.floor(Math.abs(t)):t}(r);return Math.min(Math.max(t,0),o)},a=function(t,n){var o=t&&n[r]();return function(r){return t?o.next():n[r]}},i=function(r,t,n,o,e,a){for(var i=0;i<n||e;){var u=o(i),f=e?u.value:u;if(e&&u.done)return t;t[i]=a?void 0===r?a(f,i):a.call(r,f,i):f,i+=1}if(e)throw new TypeError("Array.from: provided arrayLike or iterator has length more then 2 ** 52 - 1");return t.length=n,t};return function(t){var o=this,u=Object(t),f=n(u[r]);if(null==t&&!f)throw new TypeError("Array.from requires an array-like object or iterator - not null or undefined");var l,c=arguments.length>1?arguments[1]:void 0;if(void 0!==c){if(!n(c))throw new TypeError("Array.from: when provided, the second argument must be a function");arguments.length>2&&(l=arguments[2])}var y=e(u.length),h=n(o)?Object(new o(y)):new Array(y);return i(l,h,y,a(f,u),f,c)}}());
+
 // we need to load this script in the html head to avoid flickering
 // on page load if the user has selected a non default variant
 function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -239,7 +242,7 @@ var variants = {
 
 	adjustCSSRules: function(selector, props, sheets) {
     // get stylesheet(s)
-    if (!sheets) sheets = [].concat(document.styleSheets);else if (sheets.sup) {
+    if (!sheets) sheets = [].concat(Array.from(document.styleSheets));else if (sheets.sup) {
       // sheets is a string
       var absoluteURL = new URL(sheets, document.baseURI).href;
       sheets = [].concat(document.styleSheets).filter(function (i) {
