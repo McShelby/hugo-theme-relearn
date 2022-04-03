@@ -164,7 +164,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.3.0
 
-- **New**: Showcase multilanguage features by provding a documentation translation "fer us pirrrates". There will be no other translation besides the original English one and the Pirates one due to maintenance constraints.
+- **New**: Showcase multilanguage features by provding a documentation translation "fer us pirrrates". There will be no other translations besides the original English one and the Pirates one due to maintenance constraints.
 
 ---
 
