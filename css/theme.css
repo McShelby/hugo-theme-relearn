@@ -190,23 +190,19 @@ th {
     z-index: 410;
 }
 
+#sidebar .collapsible-menu label:after,
 #sidebar a {
     color: #bababa; /* var(--MENU-SECTIONS-LINK-color) */
 }
 
 #sidebar select:hover,
+#sidebar .collapsible-menu label:hover:after,
 #sidebar a:hover {
     color: #ffffff; /* var(--MENU-SECTIONS-LINK-HOVER-color) */
 }
 
 #sidebar a.padding {
     padding: 0 1rem;
-}
-
-#sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 #sidebar ul.topics {
@@ -219,6 +215,10 @@ th {
 
 #sidebar ul.topics ul {
     display: none;
+}
+
+#sidebar ul.topics li {
+    position: relative;
 }
 
 #sidebar ul.topics > li > ul > li:last-child {
@@ -235,6 +235,12 @@ th {
     display: block;
 }
 
+#sidebar ul.topics input.toggle,
+#sidebar ul.topics label {
+    display: none;
+}
+
+#sidebar ul.topics > li > label,
 #sidebar ul.topics > li > a {
     font-size: 1.1rem;
     line-height: 2rem;
@@ -249,21 +255,33 @@ th {
     margin-top: 9px;
 }
 
-#sidebar ul.topics > li.parent {
-    background-color: rgba( 0, 0, 0, .166 ); /* var(--MENU-SECTIONS-ACTIVE-BG-color) */
+#sidebar ul.topics > li {
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
-#sidebar ul li.active > a {
-    background-color: #ffffff; /* var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color) */
-    color: #444444; /* var(--MENU-SECTION-ACTIVE-CATEGORY-color) */
+#sidebar ul.topics > li.parent {
+    background-color: rgba( 0, 0, 0, .166 ); /* var(--MENU-SECTIONS-ACTIVE-BG-color) */
+}
+
+#sidebar ul.topics li > a {
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+#sidebar ul.topics li.active > a {
+    background-color: #ffffff; /* var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color) */
+    color: #444444; /* var(--MENU-SECTION-ACTIVE-CATEGORY-color) */
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #sidebar ul li {
@@ -296,12 +314,6 @@ th {
 
 #sidebar ul.topics > li > a .read-icon {
     margin-top: 9px;
-}
-
-#sidebar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 #sidebar #shortcuts li {
@@ -1573,3 +1585,39 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+#sidebar ul.collapsible-menu input.toggle {
+	cursor: pointer;
+    display: block;
+	left: -1rem;
+	opacity: 0;
+    overflow: hidden;
+	position: absolute;
+	top: 0;
+}
+
+#sidebar ul.collapsible-menu label {
+    cursor: pointer;
+    display: inline;
+    height: 1rem;
+    left: 0;
+    margin-top: .25em;
+	position: absolute;
+    width: 1rem;
+}
+
+#sidebar .collapsible-menu input.toggle + label:after {
+    content: "▸";
+}
+
+#sidebar .collapsible-menu input.toggle:checked + label:after {
+    content: "▾";
+}
+
+#sidebar .collapsible-menu input.toggle + label + a + ul {
+    display: none;
+}
+
+#sidebar .collapsible-menu input.toggle:checked + label + a + ul {
+	display: inline;
+}
