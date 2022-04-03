@@ -1,8 +1,8 @@
-{{- $isActive := .IsHome }}
 {{- $currentNode := . }}
+{{- $isActive := .IsHome }}
+{{- $pages := .Site.Home.Sections }}
 {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
-{{- $pages := .Site.Home.Sections }}
 {{- if $isActive }}
   {{- template "section-print" dict "sect" . "currentnode" $currentNode  }}
   {{- if or .IsHome .Params.chapter $pages }}
@@ -24,24 +24,24 @@
   {{- end }}
 {{- end }}
 {{- define "section-tree-print" }}
-  {{- $isActive := .isActive }}
   {{- $currentNode := .currentnode }}
+  {{- $isActive := .isActive }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
   {{- with .sect }}
     {{- $currentIsActive := eq .RelPermalink $currentFileRelPermalink }}
     {{- $isActive = or $currentIsActive $isActive }}
+    {{- $pages := .Pages }}
+    {{- if .Page.IsHome }}
+      {{- $pages = .Sections }}
+    {{- else if .Page.Sections}}
+      {{- $pages = (.Pages | union .Sections) }}
+    {{- end }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not (.IsAncestor $currentNode)) }}
     {{- if $hidden }}
     {{- else if or .IsSection .IsHome }}
       {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
       {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
-      {{- $pages := .Pages }}
-      {{- if .Page.IsHome }}
-        {{- $pages = .Sections }}
-      {{- else if .Page.Sections}}
-        {{- $pages = (.Pages | union .Sections) }}
-      {{- end }}
       {{- if $isActive }}
         {{- template "section-print" dict "sect" . "currentnode" $currentNode  }}
         {{- if or .IsHome .Params.chapter $pages }}

@@ -1,5 +1,5 @@
 +++
-alwaysopen = false
+alwaysopen = true
 description = "This is a demo child page"
 tags = ["children", "non-hidden"]
 title = "page 1-1"

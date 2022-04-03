@@ -339,10 +339,6 @@ function initMenuScrollbar(){
     // that need to be executed inbetween our own handlers
     var psm = new PerfectScrollbar('#content-wrapper');
     var psc = new PerfectScrollbar(content);
-    window.addEventListener('resize', function(){
-        psm && psm.update();
-        psc && psc.update();
-    });
     document.addEventListener('keydown', function(){
         // if we facked initial scrolling, we want to
         // remove the focus to not leave visual markers on
@@ -352,6 +348,19 @@ function initMenuScrollbar(){
             psm.scrollbarY.blur();
             autofocus = false;
         }
+    });
+    // on resize, we have to redraw the scrollbars to let new height
+    // affect their size
+    window.addEventListener('resize', function(){
+        psm && psm.update();
+        psc && psc.update();
+    });
+    // now that we may have collapsible menus, we need to call a resize
+    // for the menu scrollbar if sections are expanded/collapsed
+    document.querySelectorAll('#sidebar .collapsible-menu input.toggle').forEach( function(e){
+        e.addEventListener('change', function(){
+            psm && psm.update();
+        });
     });
 }
 

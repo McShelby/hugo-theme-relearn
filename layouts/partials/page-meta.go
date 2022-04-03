@@ -3,9 +3,9 @@
 {{- $currentNode.Scratch.Delete "relearnPrevPage"     }}
 {{- $currentNode.Scratch.Delete "relearnNextPage"     }}
 {{- $currentNode.Scratch.Delete "relearnSubPages"     }}
-{{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}
-{{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}
-{{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}
+{{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}{{/* the node itself is flagged as hidden */}}
+{{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}{{/* the node or one of its parents is flagged as hidden */}}
+{{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}{{/* the node is hidden from the current page */}}
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" .Site.Params.ordersectionsby }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
