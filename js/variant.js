@@ -1,5 +1,14 @@
+// MDN Array.from Polyfill; Production steps of ECMA-262, Edition 6, 22.1.2.1
+Array.from||(Array.from=function(){var r;try{r=Symbol.iterator?Symbol.iterator:"Symbol(Symbol.iterator)"}catch(t){r="Symbol(Symbol.iterator)"}var t=Object.prototype.toString,n=function(r){return"function"==typeof r||"[object Function]"===t.call(r)},o=Math.pow(2,53)-1,e=function(r){var t=function(r){var t=Number(r);return isNaN(t)?0:0!==t&&isFinite(t)?(t>0?1:-1)*Math.floor(Math.abs(t)):t}(r);return Math.min(Math.max(t,0),o)},a=function(t,n){var o=t&&n[r]();return function(r){return t?o.next():n[r]}},i=function(r,t,n,o,e,a){for(var i=0;i<n||e;){var u=o(i),f=e?u.value:u;if(e&&u.done)return t;t[i]=a?void 0===r?a(f,i):a.call(r,f,i):f,i+=1}if(e)throw new TypeError("Array.from: provided arrayLike or iterator has length more then 2 ** 52 - 1");return t.length=n,t};return function(t){var o=this,u=Object(t),f=n(u[r]);if(null==t&&!f)throw new TypeError("Array.from requires an array-like object or iterator - not null or undefined");var l,c=arguments.length>1?arguments[1]:void 0;if(void 0!==c){if(!n(c))throw new TypeError("Array.from: when provided, the second argument must be a function");arguments.length>2&&(l=arguments[2])}var y=e(u.length),h=n(o)?Object(new o(y)):new Array(y);return i(l,h,y,a(f,u),f,c)}}());
+
 // we need to load this script in the html head to avoid flickering
 // on page load if the user has selected a non default variant
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 var variants = {
 	variant: '',
 	variants: [],
@@ -231,34 +240,52 @@ var variants = {
 		this.download( this.generateStylesheet(), 'text/css', 'theme-' + this.customvariantname + '.css' );
 	},
 
-	adjustCSSRules: function(selector, props, sheets){
-		// get stylesheet(s)
-		if (!sheets) sheets = [...document.styleSheets];
-		else if (sheets.sup){    // sheets is a string
-			let absoluteURL = new URL(sheets, document.baseURI).href;
-			sheets = [...document.styleSheets].filter(i => i.href == absoluteURL);
-		}
-		else sheets = [sheets];  // sheets is a stylesheet
+	adjustCSSRules: function(selector, props, sheets) {
+    // get stylesheet(s)
+    if (!sheets) sheets = [].concat(Array.from(document.styleSheets));else if (sheets.sup) {
+      // sheets is a string
+      var absoluteURL = new URL(sheets, document.baseURI).href;
+      sheets = [].concat(document.styleSheets).filter(function (i) {
+        return i.href == absoluteURL;
+      });
+    } else sheets = [sheets]; // sheets is a stylesheet
+    // CSS (& HTML) reduce spaces in selector to one.
 
-		// CSS (& HTML) reduce spaces in selector to one.
-		selector = selector.replace(/\s+/g, ' ');
-		const findRule = s => [...s.cssRules].reverse().find(i => i.selectorText == selector)
-		let rule = sheets.map(findRule).filter(i=>i).pop()
+    selector = selector.replace(/\s+/g, ' ');
 
-		const propsArr = props.sup
-			? props.split(/\s*;\s*/).map(i => i.split(/\s*:\s*/)) // from string
-			: Object.entries(props);                              // from Object
+    var findRule = function findRule(s) {
+      return [].concat(s.cssRules).reverse().find(function (i) {
+        return i.selectorText == selector;
+      });
+    };
 
-		if (rule) for (let [prop, val] of propsArr){
-			// rule.style[prop] = val; is against the spec, and does not support !important.
-			rule.style.setProperty(prop, ...val.split(/ *!(?=important)/));
-		}
-		else {
-			sheet = sheets.pop();
-			if (!props.sup) props = propsArr.reduce((str, [k, v]) => `${str}; ${k}: ${v}`, '');
-			sheet.insertRule(`${selector} { ${props} }`, sheet.cssRules.length);
-		}
-	},
+    var rule = sheets.map(findRule).filter(function (i) {
+      return i;
+    }).pop();
+    var propsArr = props.sup ? props.split(/\s*;\s*/).map(function (i) {
+      return i.split(/\s*:\s*/);
+    }) // from string
+    : Object.entries(props); // from Object
+
+    if (rule) {
+      for (var _iterator = _createForOfIteratorHelperLoose(propsArr), _step; !(_step = _iterator()).done;) {
+        var _rule$style;
+        var _step$value = _step.value,
+            prop = _step$value[0],
+            val = _step$value[1];
+        // rule.style[prop] = val; is against the spec, and does not support !important.
+        (_rule$style = rule.style).setProperty.apply(_rule$style, [prop].concat(val.split(/ *!(?=important)/)));
+      }
+    } else {
+      sheet = sheets.pop();
+      if (!props.sup) props = propsArr.reduce(function (str, _ref) {
+        var k = _ref[0],
+            v = _ref[1];
+        return str + "; " + k + ": " + v;
+      }, '');
+      sheet.insertRule(selector + " { " + props + " }", sheet.cssRules.length);
+    }
+  },
 
 	normalizeColor: function( c ){
 		if( !c || !c.trim ){
@@ -510,7 +537,7 @@ var variants = {
 		{ name: 'CODE-font',                             group: 'content',        default: '"Consolas", menlo, monospace', tooltip: 'text font of code', },
 
 		{ name: 'MERMAID-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Mermaid theme for this variant, can be overridden in config.toml', },
-		{ name: 'SWAGGER-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Swagger theme for this variant, can be overridden in config.toml', },
+		{ name: 'SWAGGER-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the default Swagger theme for this variant, can be overridden in config.toml', },
 
 		{ name: 'MENU-HEADER-BG-color',                  group: 'header',         default: '#7dc903',                     tooltip: 'background color of menu header', },
 		{ name: 'MENU-HEADER-BORDER-color',              group: 'header',        fallback: 'MENU-HEADER-BG-color',        tooltip: 'separator color of menu header', },
