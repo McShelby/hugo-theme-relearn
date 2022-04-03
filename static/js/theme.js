@@ -3,6 +3,18 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 if( isIE ){
     // we don't support sidebar flyout in IE
     document.querySelector( 'body' ).classList.remove( 'mobile-support' );
+    // polyfill this rotten piece of sh...oftware
+    if( typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype.forEach ){
+        NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+    if (!String.prototype.startsWith) {
+        Object.defineProperty(String.prototype, 'startsWith', {
+            value: function(search, rawPos) {
+                var pos = rawPos > 0 ? rawPos|0 : 0;
+                return this.substring(pos, pos + search.length) === search;
+            }
+        });
+    }
 }
 else{
     document.querySelector( 'body' ).classList.add( 'mobile-support' );
@@ -186,7 +198,7 @@ function initAnchorClipboard(){
         new_element.setAttribute( 'title', window.T_Copy_link_to_clipboard );
         new_element.setAttribute( 'data-clipboard-text', link );
         new_element.innerHTML = '<i class="fas fa-link fa-lg"></i>';
-        element.append( new_element );
+        element.appendChild( new_element );
     });
 
     $(".anchor").on('mouseleave', function(e) {

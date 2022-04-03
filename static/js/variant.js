@@ -1,5 +1,11 @@
 // we need to load this script in the html head to avoid flickering
 // on page load if the user has selected a non default variant
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 var variants = {
 	variant: '',
 	variants: [],
@@ -231,34 +237,52 @@ var variants = {
 		this.download( this.generateStylesheet(), 'text/css', 'theme-' + this.customvariantname + '.css' );
 	},
 
-	adjustCSSRules: function(selector, props, sheets){
-		// get stylesheet(s)
-		if (!sheets) sheets = [...document.styleSheets];
-		else if (sheets.sup){    // sheets is a string
-			let absoluteURL = new URL(sheets, document.baseURI).href;
-			sheets = [...document.styleSheets].filter(i => i.href == absoluteURL);
-		}
-		else sheets = [sheets];  // sheets is a stylesheet
+	adjustCSSRules: function(selector, props, sheets) {
+    // get stylesheet(s)
+    if (!sheets) sheets = [].concat(document.styleSheets);else if (sheets.sup) {
+      // sheets is a string
+      var absoluteURL = new URL(sheets, document.baseURI).href;
+      sheets = [].concat(document.styleSheets).filter(function (i) {
+        return i.href == absoluteURL;
+      });
+    } else sheets = [sheets]; // sheets is a stylesheet
+    // CSS (& HTML) reduce spaces in selector to one.
 
-		// CSS (& HTML) reduce spaces in selector to one.
-		selector = selector.replace(/\s+/g, ' ');
-		const findRule = s => [...s.cssRules].reverse().find(i => i.selectorText == selector)
-		let rule = sheets.map(findRule).filter(i=>i).pop()
+    selector = selector.replace(/\s+/g, ' ');
 
-		const propsArr = props.sup
-			? props.split(/\s*;\s*/).map(i => i.split(/\s*:\s*/)) // from string
-			: Object.entries(props);                              // from Object
+    var findRule = function findRule(s) {
+      return [].concat(s.cssRules).reverse().find(function (i) {
+        return i.selectorText == selector;
+      });
+    };
 
-		if (rule) for (let [prop, val] of propsArr){
-			// rule.style[prop] = val; is against the spec, and does not support !important.
-			rule.style.setProperty(prop, ...val.split(/ *!(?=important)/));
-		}
-		else {
-			sheet = sheets.pop();
-			if (!props.sup) props = propsArr.reduce((str, [k, v]) => `${str}; ${k}: ${v}`, '');
-			sheet.insertRule(`${selector} { ${props} }`, sheet.cssRules.length);
-		}
-	},
+    var rule = sheets.map(findRule).filter(function (i) {
+      return i;
+    }).pop();
+    var propsArr = props.sup ? props.split(/\s*;\s*/).map(function (i) {
+      return i.split(/\s*:\s*/);
+    }) // from string
+    : Object.entries(props); // from Object
+
+    if (rule) {
+      for (var _iterator = _createForOfIteratorHelperLoose(propsArr), _step; !(_step = _iterator()).done;) {
+        var _rule$style;
+        var _step$value = _step.value,
+            prop = _step$value[0],
+            val = _step$value[1];
+        // rule.style[prop] = val; is against the spec, and does not support !important.
+        (_rule$style = rule.style).setProperty.apply(_rule$style, [prop].concat(val.split(/ *!(?=important)/)));
+      }
+    } else {
+      sheet = sheets.pop();
+      if (!props.sup) props = propsArr.reduce(function (str, _ref) {
+        var k = _ref[0],
+            v = _ref[1];
+        return str + "; " + k + ": " + v;
+      }, '');
+      sheet.insertRule(selector + " { " + props + " }", sheet.cssRules.length);
+    }
+  },
 
 	normalizeColor: function( c ){
 		if( !c || !c.trim ){
