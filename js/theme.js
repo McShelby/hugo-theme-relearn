@@ -3,18 +3,6 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 if( isIE ){
     // we don't support sidebar flyout in IE
     document.querySelector( 'body' ).classList.remove( 'mobile-support' );
-    // polyfill this rotten piece of sh...oftware
-    if( typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype.forEach ){
-        NodeList.prototype.forEach = Array.prototype.forEach;
-    }
-    if (!String.prototype.startsWith) {
-        Object.defineProperty(String.prototype, 'startsWith', {
-            value: function(search, rawPos) {
-                var pos = rawPos > 0 ? rawPos|0 : 0;
-                return this.substring(pos, pos + search.length) === search;
-            }
-        });
-    }
 }
 else{
     document.querySelector( 'body' ).classList.add( 'mobile-support' );
@@ -314,11 +302,6 @@ function initMenuScrollbar(){
     }
 
     var content = '#body-inner';
-    if( isIE ){
-        // IE can not display the topbar as sticky; so we let
-        // the whole body scroll instead of just the content
-        content = '#body';
-    }
     var autofocus = false;
     document.addEventListener('keydown', function(event){
         // for initial keyboard scrolling support, no element
