@@ -22,6 +22,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: You can activate [print support]({{%relref "basics/configuration#activate-print-support" %}}) in your `config.toml` to add the capability to print whole chapters or even the complete site.
 
+- **New**: Translation for Traditional Chinese.
+
 ---
 
 ## 3.3.0
