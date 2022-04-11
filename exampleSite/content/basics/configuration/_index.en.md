@@ -55,6 +55,8 @@ Note that some of these parameters are explained in details in other sections of
   customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
   # Initialization parameter for Mermaid, see Mermaid documentation
   mermaidInitialize = "{ \"theme\": \"default\" }"
+  # If set to false, load the Swagger module on every page regardless if a Swagger shortcode is present
+  disableSwagger = false
   # Specifies the remote location of the RapiDoc js
   customSwaggerURL = ""https://unpkg.com/rapidoc/dist/rapidoc-min.js"
   # Initialization parameter for Swagger, see RapiDoc documentation
