@@ -16,24 +16,30 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 {{% /notice %}}
 
-* Usable offline, no external dependencies
-* [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
-* [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
-* [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
-* Unlimited menu levels
-* Automatic next/prev buttons to navigate through menu entries
-* [Image resizing, shadow...]({{%relref "cont/markdown#images" %}})
-* [Attachments files]({{%relref "shortcodes/attachments" %}})
-* [List child pages]({{%relref "shortcodes/children" %}})
-* [Mermaid diagram]({{%relref "shortcodes/mermaid" %}}) (flowchart, sequence, gantt)
-* [Swagger UI]({{%relref "shortcodes/swagger" %}}) for OpenAPI Specifications
-* [Customizable look and feel]({{%relref "basics/customization"%}})
-* [Predefined (light, dark) and customizable color variants]({{%relref "basics/generator" %}})
-* [Buttons]({{%relref "shortcodes/button" %}})
-* [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice" %}})
-* [Expand]({{%relref "shortcodes/expand" %}})
-* [Tabs]({{%relref "shortcodes/tabs" %}})
-* [File inclusion]({{%relref "shortcodes/include" %}})
+- Usable offline, no external dependencies
+- Support for Internet Explorer 11
+- Responsive design
+- Configurable hidden pages
+- Automatic next/prev buttons to navigate through menu entries
+- [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
+- [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
+- [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+- [Unrestricted menu configuration]({{%relref "cont/menushortcuts" %}}) relating to amount of items and level of nesting
+- [Font Awesome icons]({{%relref "cont/icons" %}})
+- [Tagging support]({{%relref "cont/tags" %}})
+- [Image resizing, shadow...]({{%relref "cont/markdown#images" %}})
+- [Syntax highlighting]({{%relref "cont/syntaxhighlight" %}})
+- [Attachments files]({{%relref "shortcodes/attachments" %}})
+- [List child pages]({{%relref "shortcodes/children" %}})
+- [Mermaid diagrams]({{%relref "shortcodes/mermaid" %}}) for flowcharts, sequences, gantts, pie, etc.
+- [Swagger UI]({{%relref "shortcodes/swagger" %}}) for OpenAPI Specifications
+- [Customizable look and feel]({{%relref "basics/customization"%}})
+- [Predefined (light, dark) and customizable color variants]({{%relref "basics/generator" %}})
+- [Buttons]({{%relref "shortcodes/button" %}})
+- [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice" %}})
+- [Expand]({{%relref "shortcodes/expand" %}})
+- [Tabs]({{%relref "shortcodes/tabs" %}})
+- [File inclusion]({{%relref "shortcodes/include" %}})
 
 ## Getting support
 

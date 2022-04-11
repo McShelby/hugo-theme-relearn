@@ -11,15 +11,21 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 ## Main features
 
 - Usable offline, no external dependencies
+- Support for Internet Explorer 11
+- Responsive design
+- Configurable hidden pages
+- Automatic next/prev buttons to navigate through menu entries
 - Automatic Search
 - Print whole chapters or even the complete site
 - Multilingual mode for English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
-- Unlimited menu levels
-- Automatic next/prev buttons to navigate through menu entries
+- Unrestricted menu configuration relating to amount of items and level of nesting
+- Font Awesome icons
+- Tagging support
 - Image resizing, shadow…
+- Syntax highlighting
 - Attachments files
 - List child pages
-- Mermaid diagram (flowchart, sequence, gantt)
+- Mermaid diagrams for flowcharts, sequences, gantts, pie, etc.
 - Swagger UI for OpenAPI Specifications
 - Customizable look and feel
 - Predefined (light, dark) and customizable color variants
