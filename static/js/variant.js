@@ -415,7 +415,7 @@ var variants = {
 		var style =
 			'/* ' + this.customvariantname + ' */\n' +
 			':root {\n' +
-			this.variantvariables.sort( function( l, r ){ return l.name.localeCompare(r.name); } ).reduce( function( a, e ){ return a + this.generateColorVariable( e, read_style ); }.bind( this ), '' ) +
+			this.variantvariables.reduce( function( a, e ){ return a + this.generateColorVariable( e, read_style ); }.bind( this ), '' ) +
 			'}\n';
 		console.log( style );
 		return style;
@@ -517,7 +517,7 @@ var variants = {
 	},
 
 	variantvariables: [
-		{ name: 'PRIMARY-color',                         group: 'content',        default: '#7dc903',                     tooltip: 'brand primary color', },
+		{ name: 'PRIMARY-color',                         group: 'content',       fallback: 'MENU-HEADER-BG-color',        tooltip: 'brand primary color', },
 		{ name: 'SECONDARY-color',                       group: 'content',       fallback: 'MAIN-LINK-color',             tooltip: 'brand secondary color', },
 
 		{ name: 'MAIN-TEXT-color',                       group: 'content',        default: '#101010',                     tooltip: 'text color of content and h1 titles', },
