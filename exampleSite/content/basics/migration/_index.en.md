@@ -14,6 +14,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 3.5.0
+
+- **New**: New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
+
+---
+
 ## 3.4.0
 
 - **Breaking**: If you had previously overwritten the `custom-footer.html` partial to add visual elements below the content of your page, you have to move this content to the new partial `content-footer.html`. `custom-footer.html` was never meant to contain HTML other than additional styles and JavaScript.
