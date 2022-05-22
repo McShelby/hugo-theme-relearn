@@ -1,9 +1,14 @@
 :root {
+    /* initially use section background to avoid flickering on load when a non default variant is active;
+    this is only possible because every color variant defines this variable, otherwise we would have been lost */
+    --INTERNAL-PRIMARY-color: var(--PRIMARY-color, var(--MENU-HEADER-BG-color, rgba( 0, 0, 0, 0 ))); /* not --INTERNAL-MENU-HEADER-BG-color */
+    --INTERNAL-SECONDARY-color: var(--SECONDARY-color, var(--MAIN-LINK-color, #486ac9)); /* not --INTERNAL-MAIN-LINK-color */
+
     --INTERNAL-MAIN-TEXT-color: var(--MAIN-TEXT-color, #101010);
     --INTERNAL-MAIN-TITLES-TEXT-color: var(--MAIN-TITLES-TEXT-color, #4a4a4a);
-    --INTERNAL-MAIN-LINK-color: var(--MAIN-LINK-color, #486ac9);
+    --INTERNAL-MAIN-LINK-color: var(--MAIN-LINK-color, var(--SECONDARY-color, #486ac9)); /* not --INTERNAL-SECONDARY-color */
     --INTERNAL-MAIN-LINK-HOVER-color: var(--MAIN-LINK-HOVER-color, var(--INTERNAL-MAIN-LINK-color));
-    --INTERNAL-MAIN-ANCHOR-color: var(--MAIN-ANCHOR-color, var(--INTERNAL-MAIN-LINK-HOVER-color));
+    --INTERNAL-MAIN-ANCHOR-color: var(--MAIN-ANCHOR-color, var(--INTERNAL-MAIN-LINK-color));
     --INTERNAL-MAIN-BG-color: var(--MAIN-BG-color, #ffffff);
 
     --INTERNAL-MAIN-TITLES-H1-color: var(--MAIN-TITLES-H1-color, var(--INTERNAL-MAIN-TEXT-color));
@@ -36,11 +41,9 @@
     --INTERNAL-MERMAID-theme: var(--CONFIG-MERMAID-theme, var(--MERMAID-theme, default));
     --INTERNAL-SWAGGER-theme: var(--CONFIG-SWAGGER-theme, var(--SWAGGER-theme, light));
 
-    --INTERNAL-TAG-BG-color: var(--TAG-BG-color, var(--INTERNAL-MENU-HEADER-BG-color));
+    --INTERNAL-TAG-BG-color: var(--TAG-BG-color, var(--INTERNAL-PRIMARY-color));
 
-    /* initially use section background to avoid flickering on load when a non default variant is active;
-    this is only possible because every color variant defines this variable, otherwise we would have been lost */
-    --INTERNAL-MENU-HEADER-BG-color: var(--MENU-HEADER-BG-color, rgba( 0, 0, 0, 0 ));
+    --INTERNAL-MENU-HEADER-BG-color: var(--MENU-HEADER-BG-color, var(--PRIMARY-color, rgba( 0, 0, 0, 0 ))); /* not --INTERNAL-PRIMARY-color */
     --INTERNAL-MENU-HEADER-BORDER-color: var(--MENU-HEADER-BORDER-color, var(--INTERNAL-MENU-HEADER-BG-color));
 
     --INTERNAL-MENU-HOME-LINK-color: var(--MENU-HOME-LINK-color, #323232);
@@ -57,7 +60,7 @@
     --INTERNAL-MENU-SECTION-ACTIVE-CATEGORY-color: var(--MENU-SECTION-ACTIVE-CATEGORY-color, #444444);
     --INTERNAL-MENU-SECTION-ACTIVE-CATEGORY-BG-color: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color, var(--INTERNAL-MAIN-BG-color));
 
-    --INTERNAL-MENU-VISITED-color: var(--MENU-VISITED-color, #506397);
+    --INTERNAL-MENU-VISITED-color: var(--MENU-VISITED-color, var(--INTERNAL-SECONDARY-color));
     --INTERNAL-MENU-SECTION-HR-color: var(--MENU-SECTION-HR-color, #606060);
 
     --INTERNAL-BOX-CAPTION-color: var(--BOX-CAPTION-color, rgba( 255, 255, 255, 1 ));
