@@ -118,7 +118,7 @@ While colors of your chosen color variant are reset to the theme's light standar
 
 ## Mermaid
 
-The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid.md" >}}) for additional documentation.
+The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid" >}}) for additional documentation.
 
 > Example:
 >
