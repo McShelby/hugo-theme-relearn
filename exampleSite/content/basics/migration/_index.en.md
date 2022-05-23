@@ -14,7 +14,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 3.5.0
+## 4.0.0
+
+- **Breaking**: The `custom_css` config parameter was removed from the configuration. If used in an existing installation, it can be achieved by overriding the `custom-header.html` template in a much more generic manner.
+
 
 - **New**: New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
 
