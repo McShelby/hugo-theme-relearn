@@ -3,75 +3,59 @@ description = "Disclaimers to help you structure your page"
 title = "Notice"
 +++
 
-The notice shortcode shows four types of disclaimers to help you structure your page.
+The notice shortcode shows various types of disclaimers with adjustable title and icon to help you structure your page.
+
+{{% notice style="primary" title="There may be pirates" icon="skull-crossbones" %}}
+It is all about the boxes.
+{{% /notice %}}
 
 ## Usage
 
+While the examples are using named parameter you are free to use positional aswell.
+
+{{< tabs >}}
+{{% tab name="named" %}}
+
 ````go
-{{%/* notice ( note | info | tip | warning ) [ <string> [ <string> ] ] */%}}
-Some markup
+{{%/* notice style="primary" title="There may be pirates" icon="skull-crossbones" */%}}
+It is all about the boxes.
 {{%/* /notice */%}}
 ````
 
-The first parameter is required and indicates the type of notice.
+{{% /tab %}}
+{{% tab name="positional" %}}
 
-The second parameter is optional. If provided, it will be used as the title of the notice. If not provided, then the type of notice will be used as the title. For example, the title of a warning notice will be "Warning".
+````go
+{{%/* notice primary "There may be pirates" "skull-crossbones" */%}}
+It is all about the boxes.
+{{%/* /notice */%}}
+````
 
-The third parameter is optional. If provided, it will set the icon of near the title. For the standard types of notices, this is automatically determined but can be overridden with this parameter. If you want no icon at all, you have to set this parameter to `" "` (a non empty string filled with spaces).
+{{% /tab %}}
+{{< /tabs >}}
+
+### Parameter
+
+| Name      | Position | Optional  | Default   | Notes       |
+|:----------|:---------|:----------|:----------|:------------|
+| **style** | 1        | yes       | `default` | The color scheme used to highlight the box content.<br/><br/>- by severity: `info`, `note`, `tip`, `warning`<br/>- by brand color: `primary`, `secondary`<br/>- by color: `blue`, `green`, `grey`, `orange`, `red`<br/>- by special color: `default`, `transparent` |
+| **title** | 2        | yes       | see notes | Arbitray text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br/><br/>- for severity styles: the matching title for the severity<br/>- for all other colors: no title<br/><br/>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**  | 3        | yes       | see notes | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br/><br/>- for severity styles: a nice matching icon for the severity<br/>- for all other colors: no icon<br/><br/>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+
 ## Examples
 
-### Note
+### By Severity
 
-{{% notice note %}}
-A **notice** disclaimer
+#### Info with markup
 
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
-{{% /notice %}}
-
-{{% expand "Show markup" %}}
-````go
-{{%/* notice note */%}}
-A **notice** disclaimer
-
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
-{{%/* /notice */%}}
-````
-{{% /expand %}}
-
-### Info
-
-{{% notice info %}}
+{{% notice style="info" %}}
 An **information** disclaimer
 
 You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
+- _emphasized_, **bold** and even **_bold emphasized_** text
 - [links](https://example.com)
 - etc.
 
@@ -83,8 +67,9 @@ You can add standard markdown syntax:
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
+
 ````go
-{{%/* notice info */%}}
+{{%/* notice style="info" */%}}
 An **information** disclaimer
 
 You can add standard markdown syntax:
@@ -102,104 +87,234 @@ You can add standard markdown syntax:
 > the possiblities are endless (almost - including other shortcodes may or may not work)
 {{%/* /notice */%}}
 ````
+
 {{% /expand %}}
 
-### Tip
+#### Note
 
-{{% notice tip %}}
-A **tip** disclaimer
-
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
+{{% notice style="note" %}}
+A **notice** disclaimer
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
+
 ````go
-{{%/* notice tip */%}}
-A **tip** disclaimer
-
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
+{{%/* notice style="note" */%}}
+A **notice** disclaimer
 {{%/* /notice */%}}
 ````
+
 {{% /expand %}}
 
-### Warning
+#### Tip
 
-{{% notice warning %}}
-A **warning** disclaimer
-
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
+{{% notice style="tip" %}}
+A **tip** disclaimer
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
+
 ````go
-{{%/* notice warning */%}}
-A **warning** disclaimer
-
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
-{{%/* /notice */%}}
+{{%/* notice style="tip" */%}}
+A **tip** disclaimer
 ````
+
 {{% /expand %}}
 
-### Notice with default color, custom title and icon
+#### Warning
 
-You can customize the title of the notice by passing it as a second parameter.
+{{% notice style="warning" %}}
+A **warning** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="warning" */%}}
+A **warning** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Warning with non-default title and icon
+
+{{% notice style="warning" title="Here are dragons" icon="dragon" %}}
+A **warning** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="warning" title="Here are dragons" icon="dragon" */%}}
+A **warning** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Warning without a title and icon
+
+{{% notice style="warning" title=" " icon=" " %}}
+A **warning** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="warning" title=" " icon=" " */%}}
+A **warning** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+### By Brand Colors
+
+#### Primary with title only
+
+{{% notice style="primary" title="Primary" %}}
+A **primary** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="primary" title="Primary" */%}}
+A **primary** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Secondary with icon only
+
+{{% notice style="secondary" icon="stopwatch" %}}
+A **secondary** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="secondary" icon="stopwatch" */%}}
+A **secondary** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+### By Color
+
+#### Blue without a title and icon
+
+{{% notice style="blue" %}}
+A **blue** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="blue" */%}}
+A **blue** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Green with title only
+
+{{% notice style="green" title="Green" %}}
+A **green** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="green" title="Green" */%}}
+A **green** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Grey with icon only
+
+{{% notice style="grey" icon="bug" %}}
+A **grey** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="grey" icon="bug" */%}}
+A **grey** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Orange with title and icon
+
+{{% notice style="orange" title="Orange" icon="bug" %}}
+A **orange** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="orange" title="Orange" icon="bug" */%}}
+A **orange** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+#### Red
+
+{{% notice style="red" %}}
+A **red** disclaimer
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="red" */%}}
+A **red** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% /expand %}}
+
+### By Special Color
+
+#### Default with title and icon
 
 {{% notice default "Pay Attention to this Note!" "skull-crossbones" %}}
-The title is now the parameter that was provided.
+Some serious information.
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
+
 ````go
-{{%/* notice default "Pay Attention to this Note!" "skull-crossbones" */%}}
-The title is now the parameter that was provided.
+{{%/* notice style="default" title"Pay Attention to this Note!" icon="skull-crossbones" */%}}
+Some serious information.
 {{%/* /notice */%}}
 ````
+
+{{% /expand %}}
+
+#### Transparent with title and icon
+
+{{% notice style="transparent" title="Pay Attention to this Note!" icon="skull-crossbones" %}}
+Some serious information.
+{{% /notice %}}
+
+{{% expand "Show markup" %}}
+
+````go
+{{%/* notice style="transparent" title"Pay Attention to this Note!" icon="skull-crossbones" */%}}
+Some serious information.
+{{%/* /notice */%}}
+````
+
 {{% /expand %}}
