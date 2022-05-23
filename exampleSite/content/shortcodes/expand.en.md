@@ -52,44 +52,42 @@ No need to press you!
 
 ### Arbitrary text
 
-{{% expand "Show me endless possibilities" %}}
+{{% expand "Show me almost endless possibilities" %}}
 Some expandable text.
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even **_bold emphasized_** text
 - [links](https://example.com)
-- other shortcodes besides `expand`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{% /expand %}}
 
 {{% expand "Show markup" %}}
 ````go
-{{%/* expand "Show me endless possibilities" */%}}
+{{%/* expand "Show me almost endless possibilities" */%}}
 Some expandable text.
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even **_bold emphasized_** text
 - [links](https://example.com)
-- other shortcodes besides `expand`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{%/* /expand */%}}
 ````
 {{% /expand %}}

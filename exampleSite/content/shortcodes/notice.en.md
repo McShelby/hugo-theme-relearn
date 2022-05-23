@@ -25,20 +25,19 @@ The third parameter is optional. If provided, it will set the icon of near the t
 {{% notice note %}}
 A **notice** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
@@ -46,20 +45,19 @@ You can add:
 {{%/* notice note */%}}
 A **notice** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{%/* /notice */%}}
 ````
 {{% /expand %}}
@@ -69,20 +67,19 @@ You can add:
 {{% notice info %}}
 An **information** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
@@ -90,20 +87,19 @@ You can add:
 {{%/* notice info */%}}
 An **information** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{%/* /notice */%}}
 ````
 {{% /expand %}}
@@ -113,20 +109,19 @@ You can add:
 {{% notice tip %}}
 A **tip** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
@@ -134,20 +129,19 @@ You can add:
 {{%/* notice tip */%}}
 A **tip** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{%/* /notice */%}}
 ````
 {{% /expand %}}
@@ -157,20 +151,19 @@ You can add:
 {{% notice warning %}}
 A **warning** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{% /notice %}}
 
 {{% expand "Show markup" %}}
@@ -178,20 +171,19 @@ You can add:
 {{%/* notice warning */%}}
 A **warning** disclaimer
 
-You can add:
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even ***bold emphasized*** text
 - [links](https://example.com)
-- other shortcodes besides `notice`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{%/* /notice */%}}
 ````
 {{% /expand %}}
