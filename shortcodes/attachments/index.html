@@ -5,22 +5,22 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.99.1" />
     <meta name="generator" content="Relearn 3.4.1&#43;tip">
-    <meta name="description" content="The Attachments shortcode displays a list of files attached to a page">
+    <meta name="description" content="List of files attached to a page">
     <meta name="author" content="Sören Weber">
     <title>Attachments :: Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/shortcodes/attachments/index.xml" title="Hugo Relearn Theme" />
     <link rel="alternate" type="text/html" href="/hugo-theme-relearn/_print/shortcodes/attachments/" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1653345525" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1653345525" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/variant.css?1653345525" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1653345525" rel="stylesheet" media="print">
-    <script src="/hugo-theme-relearn/js/variant.js?1653345525"></script>
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1653514262" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1653514262" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/variant.css?1653514262" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1653514262" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1653514262"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -36,7 +36,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1653345525"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1653514262"></script>
   </head>
   <body class="mobile-support" data-url="/hugo-theme-relearn/shortcodes/attachments/">
     <div id="body" class="default-animation">
@@ -78,8 +78,14 @@
   <ul>
     <li><a href="#usage">Usage</a>
       <ul>
-        <li><a href="#parameters">Parameters</a></li>
-        <li><a href="#examples">Examples</a></li>
+        <li><a href="#parameter">Parameter</a></li>
+      </ul>
+    </li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#custom-title-list-of-attachments-ending-in-pdf-or-mp4">Custom title, list of attachments ending in pdf or mp4</a></li>
+        <li><a href="#colored-styled-box-descending-sort-order">Colored styled box, descending sort order</a></li>
+        <li><a href="#style-and-icons">Style and icons</a></li>
       </ul>
     </li>
   </ul>
@@ -95,7 +101,7 @@
           <article>
 
 <h1>Attachments</h1>
-<p>The Attachments shortcode displays a list of files attached to a page.</p>
+<p>The <code>attachments</code> shortcode displays a list of files attached to a page with adjustable color, title and icon.</p>
 
 <div class="box attachments transparent">
   <div class="box-label"><i class="fas fa-paperclip fa-fw"></i> Attachments</div>
@@ -108,10 +114,10 @@
     <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/movieselectricsheep-flock-244-32500-2.mp4">movieselectricsheep-flock-244-32500-2.mp4</a> (340 KB)</li>
   </ul>
 </div>
-
 <h2 id="usage">Usage</h2>
-<p>The shortcurt lists files found in a <strong>specific folder</strong>.
-Currently, it support two implementations for pages</p>
+<p>The shortcurt lists files found in a <strong>specific folder</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">attachments</span> <span class="o">/%</span><span class="p">}}</span>
+</span></span></code></pre></div><p>Currently, it support two implementations for pages</p>
 <ol>
 <li>
 <p>If your page is a Markdown file, attachements must be placed in a <strong>folder</strong> named like your page and ending with <strong>.files</strong>.</p>
@@ -155,53 +161,51 @@ Currently, it support two implementations for pages</p>
 </li>
 </ol>
 <p>Be aware that if you use a multilingual website, you will need to have as many folders as languages.</p>
-<p>That&rsquo;s all!</p>
-<h3 id="parameters">Parameters</h3>
+<h3 id="parameter">Parameter</h3>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Optional</th>
 <th style="text-align:left">Default</th>
-<th style="text-align:left">Description</th>
+<th style="text-align:left">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">title</td>
-<td style="text-align:left">&ldquo;Attachments&rdquo;</td>
-<td style="text-align:left">List&rsquo;s title</td>
+<td style="text-align:left"><strong>style</strong></td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left"><code>transparent</code></td>
+<td style="text-align:left">The color scheme used to highlight the box content.<br/><br/>- by severity: <code>info</code>, <code>note</code>, <code>tip</code>, <code>warning</code><br/>- by brand color: <code>primary</code>, <code>secondary</code><br/>- by color: <code>blue</code>, <code>green</code>, <code>grey</code>, <code>orange</code>, <code>red</code><br/>- by special color: <code>default</code>, <code>transparent</code></td>
 </tr>
 <tr>
-<td style="text-align:left">icon</td>
-<td style="text-align:left">&ldquo;paperclip&rdquo;</td>
-<td style="text-align:left">Sets the icon near the title; if you want no icon at all, you have to set this parameter to <code>&quot; &quot;</code> (a non empty string filled with spaces)</td>
+<td style="text-align:left"><strong>title</strong></td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">see notes</td>
+<td style="text-align:left">Arbitray text for the box title. Depending on the <strong>style</strong> there may be a default title. Any given value will overwrite the default.<br/><br/>- for severity styles: the matching title for the severity<br/>- for all other colors: <code>Attachments</code><br/><br/>If you want no title, you have to set this parameter to <code>&quot; &quot;</code> (a non empty string filled with spaces)</td>
 </tr>
 <tr>
-<td style="text-align:left">sort</td>
-<td style="text-align:left">&ldquo;asc&rdquo;</td>
-<td style="text-align:left">Sorting the output in <code>asc</code>ending or <code>desc</code>ending order</td>
+<td style="text-align:left"><strong>icon</strong></td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">see notes</td>
+<td style="text-align:left"><a href="/hugo-theme-relearn/cont/icons/#finding-an-icon">Font Awesome icon name</a> set to the left of the title. Depending on the <strong>style</strong> there may be a default icon. Any given value will overwrite the default.<br/><br/>- for severity styles: a nice matching icon for the severity<br/>- for all other colors: <code>paperclip</code><br/><br/>If you want no icon, you have to set this parameter to <code>&quot; &quot;</code> (a non empty string filled with spaces)</td>
 </tr>
 <tr>
-<td style="text-align:left">style</td>
-<td style="text-align:left">&quot;&quot;</td>
-<td style="text-align:left">Choose between <code>orange</code>, <code>grey</code>, <code>blue</code> and <code>green</code> for nice style</td>
+<td style="text-align:left"><strong>sort</strong></td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left"><code>asc</code></td>
+<td style="text-align:left">Sorting the output in <code>asc</code>ending or <code>desc</code>ending order.</td>
 </tr>
 <tr>
-<td style="text-align:left">pattern</td>
-<td style="text-align:left">&ldquo;.*&rdquo;</td>
-<td style="text-align:left">A regular expressions, used to filter the attachments by file name. <br/><br/>The <strong>pattern</strong> parameter value must be <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>.</td>
+<td style="text-align:left"><strong>pattern</strong></td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left"><code>.*</code></td>
+<td style="text-align:left">A <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, used to filter the attachments by file name. For example:<br/><br/>- to match a file suffix of &lsquo;jpg&rsquo;, use <code>.*jpg</code> (not <code>*.jpg</code>)<br/>- to match file names ending in <code>jpg</code> or <code>png</code>, use <code>.*(jpg|png)</code></td>
 </tr>
 </tbody>
 </table>
-<p>For example:</p>
-<ul>
-<li>To match a file suffix of &lsquo;jpg&rsquo;, use *<em>.<em>jpg</em></em> (not *.jpg).</li>
-<li>To match file names ending in &lsquo;jpg&rsquo; or &lsquo;png&rsquo;, use <strong>.*(jpg|png)</strong></li>
-</ul>
-<h3 id="examples">Examples</h3>
-<h4 id="list-of-attachments-ending-in-pdf-or-mp4">List of attachments ending in pdf or mp4</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span><span class="nx">attachments</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;Related files&#34;</span> <span class="nx">pattern</span><span class="p">=</span><span class="s">&#34;.*(pdf|mp4)&#34;</span><span class="o">/%</span><span class="p">}}</span>
-</span></span></code></pre></div><p>renders as</p>
+<h2 id="examples">Examples</h2>
+<h3 id="custom-title-list-of-attachments-ending-in-pdf-or-mp4">Custom title, list of attachments ending in pdf or mp4</h3>
 
 <div class="box attachments transparent">
   <div class="box-label"><i class="fas fa-paperclip fa-fw"></i> Related files</div>
@@ -212,67 +216,44 @@ Currently, it support two implementations for pages</p>
   </ul>
 </div>
 
-<h4 id="colored-styled-box">Colored styled box</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span><span class="nx">attachments</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;orange&#34;</span> <span class="o">/%</span><span class="p">}}</span>
-</span></span></code></pre></div><p>renders as</p>
+<div class="expand">
+    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-chevron-right"></i>
+        Show markup
+    </a>
+    <div class="expand-content" style="display: none;">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">attachments</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;Related files&#34;</span> <span class="nx">pattern</span><span class="p">=</span><span class="s">&#34;.*(pdf|mp4)&#34;</span> <span class="o">/%</span><span class="p">}}</span>
+</span></span></code></pre></div>
+    </div>
+</div>
+<h3 id="colored-styled-box-descending-sort-order">Colored styled box, descending sort order</h3>
 
 <div class="box attachments orange">
   <div class="box-label"><i class="fas fa-paperclip fa-fw"></i> Attachments</div>
   <ul class="box-content attachments-files">
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/adivorciarsetoca00cape.pdf">adivorciarsetoca00cape.pdf</a> (361 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/BachGavotteShort.mp3">BachGavotteShort.mp3</a> (357 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/Carroll_AliceAuPaysDesMerveilles.pdf">Carroll_AliceAuPaysDesMerveilles.pdf</a> (175 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.png">hugo.png</a> (17 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.txt">hugo.txt</a> (20 B)</li>
     <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/movieselectricsheep-flock-244-32500-2.mp4">movieselectricsheep-flock-244-32500-2.mp4</a> (340 KB)</li>
+    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.txt">hugo.txt</a> (20 B)</li>
+    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.png">hugo.png</a> (17 KB)</li>
+    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/Carroll_AliceAuPaysDesMerveilles.pdf">Carroll_AliceAuPaysDesMerveilles.pdf</a> (175 KB)</li>
+    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/BachGavotteShort.mp3">BachGavotteShort.mp3</a> (357 KB)</li>
+    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/adivorciarsetoca00cape.pdf">adivorciarsetoca00cape.pdf</a> (361 KB)</li>
   </ul>
 </div>
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span><span class="nx">attachments</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;grey&#34;</span> <span class="o">/%</span><span class="p">}}</span>
-</span></span></code></pre></div><p>renders as</p>
-
-<div class="box attachments grey">
-  <div class="box-label"><i class="fas fa-paperclip fa-fw"></i> Attachments</div>
-  <ul class="box-content attachments-files">
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/adivorciarsetoca00cape.pdf">adivorciarsetoca00cape.pdf</a> (361 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/BachGavotteShort.mp3">BachGavotteShort.mp3</a> (357 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/Carroll_AliceAuPaysDesMerveilles.pdf">Carroll_AliceAuPaysDesMerveilles.pdf</a> (175 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.png">hugo.png</a> (17 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.txt">hugo.txt</a> (20 B)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/movieselectricsheep-flock-244-32500-2.mp4">movieselectricsheep-flock-244-32500-2.mp4</a> (340 KB)</li>
-  </ul>
+<div class="expand">
+    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-chevron-right"></i>
+        Show markup
+    </a>
+    <div class="expand-content" style="display: none;">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">attachments</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;orange&#34;</span> <span class="nx">sort</span><span class="p">=</span><span class="s">&#34;desc&#34;</span> <span class="o">/%</span><span class="p">}}</span>
+</span></span></code></pre></div>
+    </div>
 </div>
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span><span class="nx">attachments</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;blue&#34;</span> <span class="o">/%</span><span class="p">}}</span>
-</span></span></code></pre></div><p>renders as</p>
-
-<div class="box attachments blue">
-  <div class="box-label"><i class="fas fa-paperclip fa-fw"></i> Attachments</div>
-  <ul class="box-content attachments-files">
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/adivorciarsetoca00cape.pdf">adivorciarsetoca00cape.pdf</a> (361 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/BachGavotteShort.mp3">BachGavotteShort.mp3</a> (357 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/Carroll_AliceAuPaysDesMerveilles.pdf">Carroll_AliceAuPaysDesMerveilles.pdf</a> (175 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.png">hugo.png</a> (17 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.txt">hugo.txt</a> (20 B)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/movieselectricsheep-flock-244-32500-2.mp4">movieselectricsheep-flock-244-32500-2.mp4</a> (340 KB)</li>
-  </ul>
-</div>
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span><span class="nx">attachments</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;green&#34;</span> <span class="o">/%</span><span class="p">}}</span>
-</span></span></code></pre></div><p>renders as</p>
-
-<div class="box attachments green">
-  <div class="box-label"><i class="fas fa-paperclip fa-fw"></i> Attachments</div>
-  <ul class="box-content attachments-files">
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/adivorciarsetoca00cape.pdf">adivorciarsetoca00cape.pdf</a> (361 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/BachGavotteShort.mp3">BachGavotteShort.mp3</a> (357 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/Carroll_AliceAuPaysDesMerveilles.pdf">Carroll_AliceAuPaysDesMerveilles.pdf</a> (175 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.png">hugo.png</a> (17 KB)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/hugo.txt">hugo.txt</a> (20 B)</li>
-    <li><a href="/hugo-theme-relearn/shortcodes/attachments.en.files/movieselectricsheep-flock-244-32500-2.mp4">movieselectricsheep-flock-244-32500-2.mp4</a> (340 KB)</li>
-  </ul>
-</div>
-
+<h3 id="style-and-icons">Style and icons</h3>
+<p>For further examples for <strong>style</strong>, <strong>title</strong> and <strong>icon</strong>, see the <a href="/hugo-theme-relearn/shortcodes/notice/"><code>notice</code> shortcode</a> documentation. The parameter are working the same way for both shortcodes, besides having different defaults.</p>
 
             <footer class="footline">
             </footer>
@@ -348,9 +329,9 @@ Currently, it support two implementations for pages</p>
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1653345525"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1653345525"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1653345525"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1653514262"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1653514262"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1653514262"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -462,13 +443,13 @@ Currently, it support two implementations for pages</p>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1653345525"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1653514262"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1653345525"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1653345525"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1653345525"></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1653345525"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1653514262"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1653514262"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1653514262"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1653514262"></script>
   </body>
 </html>
