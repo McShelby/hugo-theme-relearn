@@ -3,7 +3,7 @@ description = "Disclaimers to help you structure your page"
 title = "Notice"
 +++
 
-The notice shortcode shows various types of disclaimers with adjustable title and icon to help you structure your page.
+The `notice` shortcode shows various types of disclaimers with adjustable color, title and icon to help you structure your page.
 
 {{% notice style="primary" title="There may be pirates" icon="skull-crossbones" %}}
 It is all about the boxes.
