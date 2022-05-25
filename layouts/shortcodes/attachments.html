@@ -1,20 +1,23 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
 {{- $style := .Get "style" | default "transparent" }}
 {{- $title := .Get "title" | default ("Attachments-label" | T) }}
-{{- $sort := .Get "sort" | default "asc" }}
 {{- $icon := .Get "icon" | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
   {{- $icon = "paperclip" }}
+  {{- if eq $style "info" }}{{ $icon = default "info-circle" }}{{ end }}
+  {{- if eq $style "warning" }}{{ $icon = default "exclamation-triangle" }}{{ end }}
+  {{- if eq $style "note" }}{{ $icon = default "exclamation-circle" }}{{ end }}
+  {{- if eq $style "tip" }}{{ $icon = default "lightbulb " }}{{ end }}
 {{- end }}
 {{- $icon = trim $icon " " }}
+{{- $sort := .Get "sort" | default "asc" }}
 <div class="box attachments {{ $style }}">
   <div class="box-label">{{ if $icon }}<i class="fas fa-{{ $icon }} fa-fw"></i> {{ end }}{{ $title }}</div>
   <ul class="box-content attachments-files">
   {{- $filesName := "files" }}
   {{- if ne .Page.File.BaseFileName "index" }}
     {{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
-  {{- end}}
-
+  {{- end }}
   {{- $fileLink := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir }}
   {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}
   {{- $fileDir := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir  }}
