@@ -1,6 +1,6 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
 {{- $style := .Get "style" | default "transparent" }}
-{{- $title := .Get "title" | default ("Attachments-label" | T) }}
+{{- $title := .Get "title" | default ($style | T) | default ("Attachments-label" | T) }}
 {{- $icon := .Get "icon" | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
   {{- $icon = "paperclip" }}
@@ -11,6 +11,7 @@
 {{- end }}
 {{- $icon = trim $icon " " }}
 {{- $sort := .Get "sort" | default "asc" }}
+{{- $pattern := .Get "pattern" | default "" }}
 <div class="box attachments {{ $style }}">
   <div class="box-label">{{ if $icon }}<i class="fas fa-{{ $icon }} fa-fw"></i> {{ end }}{{ $title }}</div>
   <ul class="box-content attachments-files">
@@ -22,7 +23,6 @@
   {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}
   {{- $fileDir := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir  }}
   {{- $fileDir = replace $fileDir "\\" "/" }}
-  {{- $pattern := .Get "pattern" | default "" }}
   {{- range sort (readDir (printf "%s%s" $fileDir $filesName) ) "Name" $sort }}
     {{- if findRE $pattern .Name}}
       {{- $size := .Size }}

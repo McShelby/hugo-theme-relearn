@@ -62,14 +62,14 @@ Be aware that if you use a multilingual website, you will need to have as many f
 
 {{% /expand %}}
 
-### Colored styled box, descending sort order
+### Info styled box, descending sort order
 
-{{% attachments style="orange" sort="desc" /%}}
+{{% attachments style="info" sort="desc" /%}}
 
 {{% expand "Show markup" %}}
 
 ````go
-{{%/* attachments style="orange" sort="desc" /*/%}}
+{{%/* attachments style="info" sort="desc" /*/%}}
 ````
 
 {{% /expand %}}
