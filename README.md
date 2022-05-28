@@ -17,7 +17,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Automatic next/prev buttons to navigate through menu entries
 - Automatic Search
 - Print whole chapters or even the complete site
-- Multilingual mode for English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+- Multilingual mode for English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
 - Unrestricted menu configuration relating to amount of items and level of nesting
 - Font Awesome icons
 - Tagging support
