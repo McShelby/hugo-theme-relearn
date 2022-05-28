@@ -523,7 +523,6 @@ var variants = {
 		{ name: 'MAIN-TEXT-color',                       group: 'content',        default: '#101010',                     tooltip: 'text color of content and h1 titles', },
 		{ name: 'MAIN-LINK-color',                       group: 'content',       fallback: 'SECONDARY-color',             tooltip: 'link color of content', },
 		{ name: 'MAIN-LINK-HOVER-color',                 group: 'content',       fallback: 'MAIN-LINK-color',             tooltip: 'hoverd link color of content', },
-		{ name: 'MAIN-ANCHOR-color',                     group: 'content',       fallback: 'MAIN-LINK-color',             tooltip: 'anchor color of titles', },
 		{ name: 'MAIN-BG-color',                         group: 'content',        default: '#ffffff',                     tooltip: 'background color of content', },
 		{ name: 'TAG-BG-color',                          group: 'content',       fallback: 'PRIMARY-color',               tooltip: 'tag color', },
 
