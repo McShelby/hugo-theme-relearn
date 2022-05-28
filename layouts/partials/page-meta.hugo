@@ -6,6 +6,14 @@
 {{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}{{/* the node itself is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}{{/* the node or one of its parents is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}{{/* the node is hidden from the current page */}}
+{{- $wantsMermaid := or (and (ne $currentNode.Params.disableMermaid nil) (not $currentNode.Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) }}
+{{- if $wantsMermaid }}
+	{{- $currentNode.Page.Store.Set "htmlHasMermaid" true }}
+{{- end }}
+{{- $wantsSwagger := or (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) }}
+{{- if $wantsSwagger }}
+	{{- $currentNode.Page.Store.Set "htmlHasSwagger" true }}
+{{- end }}
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" .Site.Params.ordersectionsby }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}

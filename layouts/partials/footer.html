@@ -8,7 +8,7 @@
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
 {{- $wantsMermaid := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasMermaid")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasMermaid")) }}
-{{- if (or $wantsMermaid (and (ne .Params.disableMermaid nil) (not .Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) ) }}
+{{- if $wantsMermaid }}
     <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
   {{- if isset .Params "custommermaidurl" }}
     <script src="{{ .Params.customMermaidURL }}"></script>
@@ -38,7 +38,7 @@
     </script>
 {{- end }}
 {{- $wantsSwagger := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasSwagger")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasSwagger")) }}
-{{- if (or $wantsSwagger (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) ) }}
+{{- if $wantsSwagger }}
   {{- if isset .Params "customswaggerurl" }}
     <script src="{{ .Params.customSwaggerURL }}"></script>
   {{- else if isset .Site.Params "customswaggerurl" }}
