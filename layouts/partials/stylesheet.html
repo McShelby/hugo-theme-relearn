@@ -9,6 +9,7 @@
     {{- with index $themevariants 0 }}
     <link href="{{(printf "css/theme-%s.css" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="variant-style">
     {{- end }}
+    <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"{{ if ne (.Scratch.Get "relearnOutputFormat") "PRINT" }} media="print"{{ end }}>
     {{- if .Site.Params.disableInlineCopyToClipBoard }}
