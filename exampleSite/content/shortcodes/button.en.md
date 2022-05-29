@@ -5,7 +5,9 @@ title = "Button"
 
 The `button` shortcode displays a clickable button with adjustable color, title and icon.
 
-{{% button href="https://gohugo.io/" icon="download" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" icon="download" icon-position="right" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" style="default" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" icon="dragon" style="warning" %}}Get Hugo{{% /button %}}
 
 ## Usage
 
