@@ -13,7 +13,7 @@ It is all about the boxes.
 
 While the examples are using named parameter you are free to use positional aswell.
 
-{{< tabs >}}
+{{< tabs groupId="shortcode-parameter">}}
 {{% tab name="named" %}}
 
 ````go

@@ -30,7 +30,7 @@ echo "Hello World!"
 
 Renders as:
 
-{{< tabs >}}
+{{< tabs groupId="tabs-example-language" >}}
 {{% tab name="python" %}}
 ```python
 print("Hello World!")
@@ -50,7 +50,7 @@ echo "Hello World!"
 
 Tab views with the same tabs that belong to the same group sychronize their selection:
 
-{{< tabs >}}
+{{< tabs groupId="tabs-example-language" >}}
 {{% tab name="python" %}}
 ```python
 print("Hello World!")
@@ -94,7 +94,7 @@ Hello = World
 
 Renders as:
 
-{{< tabs groupId="config" >}}
+{{< tabs groupId="tabs-example-config" >}}
 {{% tab name="json" %}}
 ```json
 {
