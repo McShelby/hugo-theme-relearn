@@ -24,13 +24,13 @@ This only works in modern browsers.
 
 ## Variant generator
 
-<a class="vardownload btn btn-default">Download color variant</a>
-<a class="varreset btn btn-default">Reset variant</a>
+<a class="vardownload btn primary">Download color variant</a>
+<a class="varreset btn warning">Reset variant</a>
 
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
 
-<a class="vardownload btn btn-default">Download color variant</a>
-<a class="varreset btn btn-default">Reset variant</a>
+<a class="vardownload btn primary">Download color variant</a>
+<a class="varreset btn warning">Reset variant</a>
 
 <script>
 variants.generator( '#vargenerator', '.vardownload', '.varreset' );
