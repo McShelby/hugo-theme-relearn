@@ -1,5 +1,31 @@
 # Changelog
 
+## 4.0.0 (2022-06-05)
+
+### Enhancements
+
+- [**feature**] shortcodes: add named parameter if missing [#260](https://github.com/McShelby/hugo-theme-relearn/issues/260)
+- [**feature**][**breaking**] theme: remove --MAIN-ANCHOR-color from stylesheet [#256](https://github.com/McShelby/hugo-theme-relearn/issues/256)
+- [**feature**] i18n: add italian translation [#254](https://github.com/McShelby/hugo-theme-relearn/issues/254)
+- [**feature**] attachments: support for brand colors [#252](https://github.com/McShelby/hugo-theme-relearn/issues/252)
+- [**feature**] notice: support for brand colors [#251](https://github.com/McShelby/hugo-theme-relearn/issues/251)
+- [**feature**][**breaking**] config: remove custom_css [#248](https://github.com/McShelby/hugo-theme-relearn/issues/248)
+- [**feature**] theme: use proper file extension for page-meta.go [#246](https://github.com/McShelby/hugo-theme-relearn/issues/246)
+- [**feature**] variant: add support for brand color variables [#239](https://github.com/McShelby/hugo-theme-relearn/issues/239)
+- [**feature**] i18n: add polish translation [#237](https://github.com/McShelby/hugo-theme-relearn/issues/237)
+
+### Fixes
+
+- [**bug**] shortcodes: accept boolean parameters if given as string [#261](https://github.com/McShelby/hugo-theme-relearn/issues/261)
+- [**bug**] print: adjust button and tab size [#259](https://github.com/McShelby/hugo-theme-relearn/issues/259)
+- [**bug**] print: show Mermaid if requested in frontmatter [#255](https://github.com/McShelby/hugo-theme-relearn/issues/255)
+- [**bug**] Scrollbar slider is too thin [#244](https://github.com/McShelby/hugo-theme-relearn/issues/244)
+- [**bug**] Scrollbar broken on mobile [#243](https://github.com/McShelby/hugo-theme-relearn/issues/243)
+- [**bug**] theme: let browser scroll page on CTRL+f  [#242](https://github.com/McShelby/hugo-theme-relearn/issues/242)
+- [**bug**] theme: fix display of tooltip for heading anchor  [#241](https://github.com/McShelby/hugo-theme-relearn/issues/241)
+
+---
+
 ## 3.4.1 (2022-04-03)
 
 ### Fixes
@@ -12,10 +38,10 @@
 
 ### Enhancements
 
-- [**feature**] i18n: add traditional chinese [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
+- [**feature**] i18n: add traditional chinese translation [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
 - [**feature**] menu: expand/collapse menu items without navigation [#231](https://github.com/McShelby/hugo-theme-relearn/issues/231)
 - [**feature**] print: add option to print whole chapter [#230](https://github.com/McShelby/hugo-theme-relearn/issues/230)
-- [**feature**] theme: apply user supplied content footer below content [#229](https://github.com/McShelby/hugo-theme-relearn/issues/229)
+- [**feature**][**breaking**] theme: apply user supplied content footer below content [#229](https://github.com/McShelby/hugo-theme-relearn/issues/229)
 
 ### Fixes
 
@@ -50,7 +76,7 @@
 
 ### Enhancements
 
-- [**feature**] mermaid: support differing themes for color variant switch [#219](https://github.com/McShelby/hugo-theme-relearn/issues/219)
+- [**feature**][**change**] mermaid: support differing themes for color variant switch [#219](https://github.com/McShelby/hugo-theme-relearn/issues/219)
 - [**feature**] mermaid: load javascript on demand [#218](https://github.com/McShelby/hugo-theme-relearn/issues/218)
 
 ### Maintenance
@@ -63,7 +89,7 @@
 
 ### Enhancements
 
-- [**feature**] language: support for korean [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
+- [**feature**] i18n: add korean translation [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
 
 ---
 
@@ -87,7 +113,7 @@
 ### Enhancements
 
 - [**feature**] theme: improve font loading [#201](https://github.com/McShelby/hugo-theme-relearn/issues/201)
-- [**feature**] variant: fix inconsistent color variable naming  [#200](https://github.com/McShelby/hugo-theme-relearn/issues/200)
+- [**feature**][**change**] variant: fix inconsistent color variable naming  [#200](https://github.com/McShelby/hugo-theme-relearn/issues/200)
 
 ### Fixes
 
