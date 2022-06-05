@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.1 (2022-06-05)
+
+### Fixes
+
+- [**bug**] theme: let browser scroll page on CTRL+f  [#242](https://github.com/McShelby/hugo-theme-relearn/issues/242)
+
+---
+
 ## 4.0.0 (2022-06-05)
 
 ### Enhancements
@@ -19,9 +27,8 @@
 - [**bug**] shortcodes: accept boolean parameters if given as string [#261](https://github.com/McShelby/hugo-theme-relearn/issues/261)
 - [**bug**] print: adjust button and tab size [#259](https://github.com/McShelby/hugo-theme-relearn/issues/259)
 - [**bug**] print: show Mermaid if requested in frontmatter [#255](https://github.com/McShelby/hugo-theme-relearn/issues/255)
-- [**bug**] Scrollbar slider is too thin [#244](https://github.com/McShelby/hugo-theme-relearn/issues/244)
-- [**bug**] Scrollbar broken on mobile [#243](https://github.com/McShelby/hugo-theme-relearn/issues/243)
-- [**bug**] theme: let browser scroll page on CTRL+f  [#242](https://github.com/McShelby/hugo-theme-relearn/issues/242)
+- [**bug**] theme: adjust thin scrollbar slider [#244](https://github.com/McShelby/hugo-theme-relearn/issues/244)
+- [**bug**] mobile: fix broken scrollbar [#243](https://github.com/McShelby/hugo-theme-relearn/issues/243)
 - [**bug**] theme: fix display of tooltip for heading anchor  [#241](https://github.com/McShelby/hugo-theme-relearn/issues/241)
 
 ---
