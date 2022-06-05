@@ -1,12 +1,28 @@
 +++
-description = "Synchronize selection of content in different tabbed views"
+description = "Show content in tabbed views"
 title = "Tabbed views"
 +++
 
-Choose which content to see across the page. Very handy for providing code
-snippets for multiple languages or providing configuration in different formats.
+The `tabs` shortcode displays arbitrary content in unlimited number of tabs. This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
 
-## Code example
+{{< tabs groupId="tabs-example-language" >}}
+{{% tab name="python" %}}
+
+```python
+print("Hello World!")
+```
+
+{{% /tab %}}
+{{% tab name="bash" %}}
+
+```bash
+echo "Hello World!"
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+## Usage
 
 ````go
 {{</* tabs */>}}
@@ -15,60 +31,30 @@ snippets for multiple languages or providing configuration in different formats.
 print("Hello World!")
 ```
 {{%/* /tab */%}}
-{{%/* tab name="R" */%}}
-```R
-> print("Hello World!")
-```
-{{%/* /tab */%}}
-{{%/* tab name="Bash" */%}}
-```Bash
+{{%/* tab name="bash" */%}}
+```bash
 echo "Hello World!"
 ```
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
 
-Renders as:
+### Parameter
 
-{{< tabs groupId="tabs-example-language" >}}
-{{% tab name="python" %}}
-```python
-print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="R" %}}
-```R
-> print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="Bash" %}}
-```Bash
-echo "Hello World!"
-```
-{{% /tab %}}
-{{< /tabs >}}
+| Name                  | Default          | Notes       |
+|:----------------------|:-----------------|:------------|
+| **groupId**           | `default`        | Arbitrary name of the group the tab view belongs to.<br/><br/>Tab views with the same **groupId** sychronize their selected tab. This sychronization applies to the whole site! |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
-Tab views with the same tabs that belong to the same group sychronize their selection:
+{{% notice warning %}}
+When using tab views with different content sets, make sure to use a common `groupId` for equal sets of tabs but distinct `groupId` for different sets.
 
-{{< tabs groupId="tabs-example-language" >}}
-{{% tab name="python" %}}
-```python
-print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="R" %}}
-```R
-> print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="Bash" %}}
-```Bash
-echo "Hello World!"
-```
-{{% /tab %}}
-{{< /tabs >}}
+The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came from the `'default'` group on a different page then all tabs will be empty at first!
+{{% /notice %}}
 
-## Config example
+## Examples
+
+### Distinct `groupId`
 
 ````go
 {{</* tabs groupId="config" */>}}
@@ -92,8 +78,6 @@ Hello = World
 {{</* /tabs */>}}
 ````
 
-Renders as:
-
 {{< tabs groupId="tabs-example-config" >}}
 {{% tab name="json" %}}
 ```json
@@ -114,10 +98,38 @@ Hello = World
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice warning %}}
-When using tab views with different content sets, make sure to use a common `groupId` for equal sets but distinct
-`groupId` for different sets. The `groupId` defaults to `'default'`.
-**Take this into account across the whole site!**
-The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came
-from the `'default'` group on a different page then all tabs will be empty at first.
-{{% /notice %}}
+### Non-Distinct `groupId`
+
+See what happens to this tab view if you select **properties** tab from the previous example.
+
+````go
+{{</* tabs groupId="config" */>}}
+{{%/* tab name="json" */%}}
+```json
+{
+  "Hello": "World"
+}
+```
+{{%/* /tab */%}}
+{{%/* tab name="XML" */%}}
+```xml
+<Hello>World</Hello>
+```
+{{%/* /tab */%}}
+{{</* /tabs */>}}
+````
+
+{{< tabs groupId="tabs-example-config" >}}
+{{% tab name="json" %}}
+```json
+{
+  "Hello": "World"
+}
+```
+{{% /tab %}}
+{{% tab name="XML" %}}
+```xml
+<Hello>World</Hello>
+```
+{{% /tab %}}
+{{< /tabs >}}

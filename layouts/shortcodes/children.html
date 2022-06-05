@@ -1,8 +1,14 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
-{{- $showhidden := .Get "showhidden"}}
-{{- $style :=  .Get "style" | default "li" }}
-{{- $depth :=  .Get "depth" | default 1 }}
-{{- $withDescription :=  .Get "description" | default false }}
+{{- $showhidden := .Get "showhidden" | default false }}
+{{- if eq (printf "%T" $showhidden) "string" }}
+	{{- $showhidden = (eq $showhidden "true") }}
+{{- end }}
+{{- $style := .Get "style" | default "li" }}
+{{- $depth := .Get "depth" | default 1 }}
+{{- $withDescription := .Get "description" | default false }}
+{{- if eq (printf "%T" $withDescription) "string" }}
+	{{- $withDescription = (eq $withDescription "true") }}
+{{- end }}
 {{- $sortTerm :=  .Get "sort" | lower }}
 {{- $containerstyle :=  .Get "containerstyle" | default "ul" }}
 {{- if( and (not (eq $style "li") ) (eq $containerstyle "ul" ) ) }}

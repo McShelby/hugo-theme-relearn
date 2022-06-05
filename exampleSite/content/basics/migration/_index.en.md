@@ -20,13 +20,17 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Breaking**: Because anchor hover color was not configurable without introducing more complexitity to the variant stylesheets, we decided to remove `--MAIN-ANCHOR-color` instead. You don't need to change anything in your custom color stylesheet as the anchors now get their colors from `--MAIN-LINK-color` and `--MAIN-ANCHOR-HOVER-color` respectivley.
 
-- **New**: The [`notice`]({{% relref "shortcodes/notice" %}}) shortcode can now be used with named parameters. The old positional parameters are still supported, so you don't need to change anything in your installation.
+- **New**: All shortcodes now support named parameter. The positional parameter are still supported but will not be enhanced with new features, so you don't need to change anything in your installation.
+
+  This applies to [`expand`]({{% relref "shortcodes/expand" %}}) , [`include`]({{% relref "shortcodes/include" %}}) , [`notice`]({{% relref "shortcodes/notice" %}}) and [`siteparam`]({{% relref "shortcodes/siteparam" %}}) .
 
 - **New**: The [`button`]({{% relref "shortcodes/button" %}}) shortcode received some love and now has a parameter for the color style similar to other shortcodes.
 
 - **New**: New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. Shortcodes with a color style can now have `primary` or `secondary` as additional values.
 
   These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
+
+- **New**: The documentation for all shortcodes were revised.
 
 ---
 

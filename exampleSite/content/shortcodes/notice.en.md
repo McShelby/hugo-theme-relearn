@@ -36,11 +36,11 @@ It is all about the boxes.
 
 ### Parameter
 
-| Name      | Position | Optional  | Default   | Notes       |
-|:----------|:---------|:----------|:----------|:------------|
-| **style** | 1        | yes       | `default` | The color scheme used to highlight the box content.<br/><br/>- by severity: `info`, `note`, `tip`, `warning`<br/>- by brand color: `primary`, `secondary`<br/>- by color: `blue`, `green`, `grey`, `orange`, `red`<br/>- by special color: `default`, `transparent` |
-| **title** | 2        | yes       | see notes | Arbitray text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br/><br/>- for severity styles: the matching title for the severity<br/>- for all other colors: _&lt;empty&gt;_<br/><br/>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| **icon**  | 3        | yes       | see notes | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br/><br/>- for severity styles: a nice matching icon for the severity<br/>- for all other colors: _&lt;empty&gt;_<br/><br/>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| Name      | Position | Default   | Notes       |
+|:----------|:---------|:----------|:------------|
+| **style** | 1        | `default` | The color scheme used to highlight the box content.<br/><br/>- by severity: `info`, `note`, `tip`, `warning`<br/>- by brand color: `primary`, `secondary`<br/>- by color: `blue`, `green`, `grey`, `orange`, `red`<br/>- by special color: `default`, `transparent` |
+| **title** | 2        | see notes | Arbitray text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br/><br/>- for severity styles: the matching title for the severity<br/>- for all other colors: _&lt;empty&gt;_<br/><br/>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**  | 3        | see notes | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br/><br/>- for severity styles: a nice matching icon for the severity<br/>- for all other colors: _&lt;empty&gt;_<br/><br/>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 
 ## Examples
 
@@ -137,7 +137,7 @@ A **warning** disclaimer
 
 {{% /expand %}}
 
-#### Warning with non-default title and icon
+#### Warning with Non-Default Title and Icon
 
 {{% notice style="warning" title="Here are dragons" icon="dragon" %}}
 A **warning** disclaimer
@@ -153,7 +153,7 @@ A **warning** disclaimer
 
 {{% /expand %}}
 
-#### Warning without a title and icon
+#### Warning without a Title and Icon
 
 {{% notice style="warning" title=" " icon=" " %}}
 A **warning** disclaimer
@@ -171,7 +171,7 @@ A **warning** disclaimer
 
 ### By Brand Colors
 
-#### Primary with title only
+#### Primary with Title only
 
 {{% notice style="primary" title="Primary" %}}
 A **primary** disclaimer
@@ -187,7 +187,7 @@ A **primary** disclaimer
 
 {{% /expand %}}
 
-#### Secondary with icon only
+#### Secondary with Icon only
 
 {{% notice style="secondary" icon="stopwatch" %}}
 A **secondary** disclaimer
@@ -205,7 +205,7 @@ A **secondary** disclaimer
 
 ### By Color
 
-#### Blue without a title and icon
+#### Blue without a Title and Icon
 
 {{% notice style="blue" %}}
 A **blue** disclaimer
@@ -221,7 +221,7 @@ A **blue** disclaimer
 
 {{% /expand %}}
 
-#### Green with title only
+#### Green with Title only
 
 {{% notice style="green" title="Green" %}}
 A **green** disclaimer
@@ -237,7 +237,7 @@ A **green** disclaimer
 
 {{% /expand %}}
 
-#### Grey with icon only
+#### Grey with Icon only
 
 {{% notice style="grey" icon="bug" %}}
 A **grey** disclaimer
@@ -253,7 +253,7 @@ A **grey** disclaimer
 
 {{% /expand %}}
 
-#### Orange with title and icon
+#### Orange with Title and Icon
 
 {{% notice style="orange" title="Orange" icon="bug" %}}
 A **orange** disclaimer
@@ -287,7 +287,7 @@ A **red** disclaimer
 
 ### By Special Color
 
-#### Default with title and icon
+#### Default with Title and Icon
 
 {{% notice default "Pay Attention to this Note!" "skull-crossbones" %}}
 Some serious information.
@@ -303,7 +303,7 @@ Some serious information.
 
 {{% /expand %}}
 
-#### Transparent with title and icon
+#### Transparent with Title and Icon
 
 {{% notice style="transparent" title="Pay Attention to this Note!" icon="skull-crossbones" %}}
 Some serious information.

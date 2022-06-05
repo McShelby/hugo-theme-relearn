@@ -1,5 +1,6 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
-<div class="mermaid" align="{{ if .Get "align" }}{{ .Get "align" }}{{ else }}center{{ end }}">
+{{- $align := .Get "align" | default "center" }}
+<div class="mermaid" align="{{ $align }}">
   {{- safeHTML .Inner -}}
 </div>
 {{- .Page.Store.Set "htmlHasMermaid" true }}

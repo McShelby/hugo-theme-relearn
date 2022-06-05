@@ -1,5 +1,5 @@
 {{- with .Inner }}{{/* don't do anything, just call it */}}{{ end }}
-{{- $groupId := default "default" (.Get "groupId") }}
+{{- $groupId := .Get "groupId" | default "default" }}
 <div class="tab-panel">
   <div class="tab-nav">
   {{- range $idx, $tab := .Scratch.Get "tabs" }}

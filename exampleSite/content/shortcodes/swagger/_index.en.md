@@ -1,13 +1,26 @@
 ---
-description: "Adds UI for your Swagger / OpenAPI Specifications"
+description: "UI for your Swagger / OpenAPI Specifications"
 title: "Swagger"
 ---
 
-This shortcode uses the [RapiDoc](https://mrin9.github.io/RapiDoc) library to display your OpenAPI Specifications.
+This shortcode uses the [RapiDoc](https://mrin9.github.io/RapiDoc) library to display your Swagger / OpenAPI Specifications.
 
 {{% notice note %}}
 This only works in modern browsers.
 {{% /notice %}}
+
+## Usage
+
+
+````go
+{{</* swagger src="https://petstore3.swagger.io/api/v3/openapi.json" */>}}
+````
+
+### Parameter
+
+| Name                 | Default          | Notes       |
+|:---------------------|:-----------------|:------------|
+| **src**              | _&lt;empty&gt;_  | The URL to the OpenAPI Specification file. This can be relative to the URL of your page if it is a leaf or branch bundle. |
 
 ## Configuration
 
@@ -17,29 +30,19 @@ The JSON object of your `config.toml` / frontmatter is forwarded into Swagger's 
 
 The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `config.toml` or frontmatter.
 
-### Example
+### Global Configuration File
 
 ````toml
 [params]
   swaggerInitialize = "{ \"theme\": \"dark\" }"
 ````
 
-## Usage
+## Example
 
-Just insert give the URL to your OpenAPI Specification like this:
-
-````go
-{{</* swagger src="https://petstore3.swagger.io/api/v3/openapi.json" */>}}
-````
-
-If your page is a leaf or branch bundle, you can also use relative URLs:
+### Using Local File
 
 ````go
 {{</* swagger src="petstore.json" */>}}
 ````
-
-The `src` parameter is mandatory and can be either an absolute or a relative URL.
-
-## Example
 
 {{< swagger src="petstore.json" >}}

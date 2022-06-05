@@ -1,33 +1,44 @@
 +++
-description = "Get value of site params variables in your page"
+description = "Get value of site params"
 title = "Site param"
 +++
 
-The `siteparam` shortcode is used to help you print values of site params.
+The `siteparam` shortcode prints values of site params.
 
 ## Usage
 
+While the examples are using named parameter you are free to use positional aswell.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="named" %}}
+
+
 ````go
-{{%/* siteparam <string> */%}}
+{{%/* siteparam name="editURL" */%}}
 ````
 
-The first required parameter is the name of the site param to be displayed.
+{{% /tab %}}
+{{% tab name="positional" %}}
+
+````go
+{{%/* siteparam "editURL" */%}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+### Parameter
+
+| Name                 | Position | Default          | Notes       |
+|:---------------------|:---------|:-----------------|:------------|
+| **name**             | 1        | _&lt;empty&gt;_  | The name of the site param to be displayed. |
 
 ## Examples
 
-For instance, in this current site, the `editURL` variable is used in `config.toml`
-
-```toml
-[params]
-  editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
-```
-
-Use the `siteparam` shortcode to display its value.
+### `editURL` from `config.toml`
 
 ```go
-`editURL` Value : {{%/* siteparam "editURL" */%}}
+`editURL` value: {{%/* siteparam name="editURL" */%}}
 ```
 
-is displayed as
-
-`editURL` Value : {{% siteparam "editURL" %}}
+`editURL` value: {{% siteparam name="editURL" %}}
