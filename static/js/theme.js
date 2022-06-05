@@ -427,6 +427,7 @@ function initToc(){
     function showToc(){
         var b = document.querySelector( 'body' );
         b.classList.toggle( 'toc-flyout' );
+        pst && pst.update();
     }
 
     document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
@@ -434,10 +435,12 @@ function initToc(){
     document.querySelector( '#toc-overlay' ).addEventListener( 'click', showToc );
     var t = document.querySelector( '#toc-menu' );
     var p = document.querySelector( '.progress' );
+    var pst;
     if( t && p ){
         // we may not have a toc
         t.addEventListener( 'click', showToc );
         p.addEventListener( 'click', showToc );
+        pst = new PerfectScrollbar('#TableOfContents');
     }
 }
 
