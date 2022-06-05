@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.3 (2022-06-05)
+
+### Enhancements
+
+- [**feature**] toc: add scrollbar [#262](https://github.com/McShelby/hugo-theme-relearn/issues/262)
+
+---
+
 ## 4.0.2 (2022-06-05)
 
 ### Fixes
