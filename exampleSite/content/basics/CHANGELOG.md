@@ -1,10 +1,15 @@
 # Changelog
 
-## 4.0.1 (2022-06-05)
+## 4.0.2 (2022-06-05)
 
 ### Fixes
 
 - [**bug**] theme: let browser scroll page on CTRL+f  [#242](https://github.com/McShelby/hugo-theme-relearn/issues/242)
+
+---
+
+## 4.0.1 (2022-06-05)
+*No changelog for this release.*
 
 ---
 
