@@ -10,18 +10,18 @@
     <title>Include :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link rel="canonical" type="text/html" href="/hugo-theme-relearn/pir/shortcodes/include/" title="Cap&#39;n Hugo Relearrrn Theme" />
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/pir/shortcodes/include/index.xml" title="Cap&#39;n Hugo Relearrrn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1654429921" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1654429921" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1654429921" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1654429921" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/variant.js?1654429921"></script>
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1654450354" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1654450354" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1654450354" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1654450354" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/variant.js?1654450354"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1654429921"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1654450354"></script>
   </head>
   <body class="mobile-support print" data-url="/hugo-theme-relearn/pir/shortcodes/include/">
     <div id="body" class="default-animation">
@@ -90,14 +90,67 @@
 	</div>
 </div>
 
-<p>Th' include shorrrtcode includes other files from yer project inside o' th' current file. This can even contain Marrrkdown an' will be taken into account when generat'n th' t'ble o' contents.</p>
+<p>Th' <code>include</code> shorrrtcode includes other files from yer project inside o' th' current plank.</p>
 <h2 id="usage">Usage</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">include</span> <span class="p">&lt;</span><span class="kt">str'n</span><span class="p">&gt;</span> <span class="p">[</span> <span class="s">&#34;true&#34;</span> <span class="p">|</span> <span class="s">&#34;false&#34;</span> <span class="p">]</span> <span class="o">%</span><span class="p">}}</span>
-</span></span></code></pre></div><p>Th' first required parameter be th' path t' th' file t' be included.</p>
-<p>If th' file&rsquo;s rrrambl'n will be displayed as HTML, th' second optional parameter controls if th' first head'n o' th' included file should be displayed (<code>&quot;true&quot;</code>)- which be th' default - or be hidden.</p>
+<p>While th' examples be us'n named parameter ye be free t' use positional aswell.</p>
+
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="named"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button active"
+      onclick="switchTab('shortcode-parameter','named')"
+      ><span>named</span></button>
+    <button
+      data-tab-item="positional"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button "
+      onclick="switchTab('shortcode-parameter','positional')"
+      ><span>positional</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="named" data-tab-group="shortcode-parameter" class="tab-item active">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">include</span> <span class="nx">file</span><span class="p">=</span><span class="s">&#34;shortcodes/INCLUDE_ME.md&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span></code></pre></div>
+    </div>
+    <div data-tab-item="positional" data-tab-group="shortcode-parameter" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">include</span> <span class="s">&#34;shortcodes/INCLUDE_ME.md&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span></code></pre></div>
+    </div>
+  </div>
+</div>
+
+<p>Th' included files can even contain Marrrkdown an' will be taken into account when generat'n th' t'ble o' contents.</p>
+<h3 id="parameter">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Posit'n</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>file</strong></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><em>&lt;empty&gt;</em></td>
+<td style="text-align:left">Th' path t' th' file t' be included. Path resolut'n adheres t' <a href="https://gohugo.io/functions/readfile/">Hugo&rsquo;s build-in <code>readFile</code> funct'n</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>showfirsthead'n</strong></td>
+<td style="text-align:left">2</td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">When <code>false</code> an' th' included file contains head'ns, th' first head'n will be hidden. This comes 'n handy, eg. if ye include otherwise standalone Marrrkdown files.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="examples">Examples</h2>
-<h3 id="arbitray-content">Arbitray rrrambl'n</h3>
-<p>Ye can add standard markdown rules:</p>
+<h3 id="arbitray-content">Arbitray Rrrambl'n</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">include</span> <span class="s">&#34;shortcodes/INCLUDE_ME.md&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span></code></pre></div><p>Ye can add standard markdown rules:</p>
 <ul>
 <li>multiple paragraphs</li>
 <li>bullet point lists</li>
@@ -109,18 +162,6 @@
 </span></span></code></pre></div><blockquote>
 <p>th' possiblities be endless (almost - includ'n other shorrrtcodes may or may not work) (almost - includ'n other shorrrtcodes may or may not work)</p>
 </blockquote>
-
-<div class="expand">
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-right"></i>
-        Show marrrkup
-    </a>
-    <div class="expand-content" style="display: none;">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">include</span> <span class="s">&#34;shortcodes/INCLUDE_ME.md&#34;</span> <span class="o">%</span><span class="p">}}</span>
-</span></span></code></pre></div>
-    </div>
-</div>
 
 
             <footer class="footline">
@@ -197,9 +238,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Searrrch...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1654429921"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1654429921"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1654429921"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1654450354"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1654450354"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1654450354"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -311,13 +352,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1654429921"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1654450354"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1654429921"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1654429921"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1654429921"></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1654429921"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1654450354"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1654450354"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1654450354"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1654450354"></script>
   </body>
 </html>

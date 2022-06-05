@@ -5,23 +5,23 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.100.1" />
     <meta name="generator" content="Relearn 3.4.1&#43;tip">
-    <meta name="description" content="Generation of diagram and flowchart from text in a similar manner as Markdown">
+    <meta name="description" content="Generate diagrams and flowcharts from text">
     <meta name="author" content="Sören Weber">
     <title>Mermaid :: Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/shortcodes/mermaid/index.xml" title="Hugo Relearn Theme" />
     <link rel="alternate" type="text/html" href="/hugo-theme-relearn/_print/shortcodes/mermaid/" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1654429918" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1654429918" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1654429918" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1654429918" rel="stylesheet" media="print">
-    <script src="/hugo-theme-relearn/js/variant.js?1654429918"></script>
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1654450351" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1654450351" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1654450351" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1654450351" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1654450351"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1654429918"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1654450351"></script>
   </head>
   <body class="mobile-support" data-url="/hugo-theme-relearn/shortcodes/mermaid/">
     <div id="body" class="default-animation">
@@ -77,19 +77,24 @@
             <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#examples">Examples</a>
+    <li><a href="#usage">Usage</a>
       <ul>
-        <li><a href="#flowchart">Flowchart</a></li>
-        <li><a href="#sequence">Sequence</a></li>
-        <li><a href="#gantt">GANTT</a></li>
-        <li><a href="#class">Class</a></li>
-        <li><a href="#state">State</a></li>
+        <li><a href="#parameter">Parameter</a></li>
       </ul>
     </li>
     <li><a href="#configuration">Configuration</a>
       <ul>
-        <li><a href="#example">Example</a></li>
+        <li><a href="#global-configuration-file">Global Configuration File</a></li>
+        <li><a href="#pages-frontmatter">Page&rsquo;s Frontmatter</a></li>
+      </ul>
+    </li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#flowchart-with-non-default-mermaid-theme">Flowchart with Non-Default Mermaid Theme</a></li>
+        <li><a href="#sequence">Sequence</a></li>
+        <li><a href="#gantt">GANTT</a></li>
+        <li><a href="#class">Class</a></li>
+        <li><a href="#state-diagram-with-codefence-syntax">State Diagram with Codefence Syntax</a></li>
       </ul>
     </li>
   </ul>
@@ -105,7 +110,13 @@
           <article>
 
 <h1>Mermaid</h1>
-<p><a href="https://mermaidjs.github.io/">Mermaid</a> is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.</p>
+<p>With the <a href="https://mermaidjs.github.io/">Mermaid</a> library and shortcode, you can  generate diagrams and flowcharts from text, in a similar manner as Markdown.</p>
+
+<div class="mermaid" align="center">
+graph LR;
+    If --> Then
+    Then --> Else
+</div>
 
 <div class="box notices cstyle note">
     <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
@@ -121,37 +132,102 @@
     </div>
 </div>
 <h2 id="usage">Usage</h2>
-<p>Just insert your Mermaid code in the <code>mermaid</code> shortcode like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">[</span> <span class="nx">align</span><span class="p">=(</span><span class="s">&#34;left&#34;</span><span class="p">|</span><span class="s">&#34;right&#34;</span><span class="p">|</span><span class="s">&#34;center&#34;</span><span class="p">|</span><span class="s">&#34;justify&#34;</span><span class="p">)</span> <span class="p">]</span> <span class="p">&gt;}}</span>
-</span></span><span class="line"><span class="cl"><span class="nx">classDiagram</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Person</span> <span class="o">*--</span> <span class="nx">Dog</span>
-</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
-</span></span></code></pre></div><p>You can set an optional <code>align</code> attribute which defaults to <code>&quot;center&quot;</code>.</p>
-<p>If you don&rsquo;t need alignment you can use the alternative syntax using code fences if you have turned off <code>guessSyntax</code> for the <code>markup.highlight</code> setting (see below):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">```mermaid
-</span></span><span class="line"><span class="cl">classDiagram
-</span></span><span class="line"><span class="cl">    Person *-- Dog
-</span></span><span class="line"><span class="cl">```
-</span></span></code></pre></div><p>The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.</p>
-<h2 id="examples">Examples</h2>
-<h3 id="flowchart">Flowchart</h3>
+<p>The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.</p>
+<p>While the examples are using shortcode syntax it is recommended to use codefence syntax instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.</p>
 
-<div class="mermaid" align="left">
-%%{init:{"theme":"forest"}}%%
-graph LR;
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{<strong>Decision</strong>}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
+<div class="box notices cstyle note">
+    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+    <div class="box-content">
+<p>To use codefence syntax you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting (<a href="#configuration">see the configuration section</a>).</p>
+    </div>
 </div>
 
-<div class="expand expand-expanded">
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-right"></i>
-        Show markup
-    </a>
-    <div class="expand-content" style="display: block;">
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="codefence"
+      data-tab-group="shortcode-codefence"
+      class="tab-nav-button active"
+      onclick="switchTab('shortcode-codefence','codefence')"
+      ><span>codefence</span></button>
+    <button
+      data-tab-item="shortcode"
+      data-tab-group="shortcode-codefence"
+      class="tab-nav-button "
+      onclick="switchTab('shortcode-codefence','shortcode')"
+      ><span>shortcode</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="codefence" data-tab-group="shortcode-codefence" class="tab-item active">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">```mermaid
+</span></span><span class="line"><span class="cl">graph LR;
+</span></span><span class="line"><span class="cl">    If --&gt; Then
+</span></span><span class="line"><span class="cl">    Then --&gt; Else
+</span></span><span class="line"><span class="cl">```
+</span></span></code></pre></div>
+    </div>
+    <div data-tab-item="shortcode" data-tab-group="shortcode-codefence" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">LR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">If</span> <span class="o">--</span><span class="p">&gt;</span> <span class="nx">Then</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Then</span> <span class="o">--</span><span class="p">&gt;</span> <span class="nx">Else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
+</span></span></code></pre></div>
+    </div>
+  </div>
+</div>
+
+<h3 id="parameter">Parameter</h3>
+<p>Parameter are only supported when using shortcode syntax. Defaults are used when using codefence syntax.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>align</strong></td>
+<td style="text-align:left"><code>center</code></td>
+<td style="text-align:left">Allowed values are <code>left</code>, <code>center</code> or <code>right</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><em><strong>&lt;content&gt;</strong></em></td>
+<td style="text-align:left"><em>&lt;empty&gt;</em></td>
+<td style="text-align:left">Your mermaid graph.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<p>Mermaid is configured with default settings. You can customize Mermaid&rsquo;s default settings for all of your files thru a JSON object in your <code>config.toml</code>, override these settings per page thru your pages frontmatter or override these setting per diagramm thru <a href="https://mermaid-js.github.io/mermaid/#/directives?id=directives">diagram directives</a>.</p>
+<p>The JSON object of your <code>config.toml</code> / frontmatter is forwarded into Mermaid&rsquo;s <code>mermaid.initialize()</code> function.</p>
+<p>See <a href="http://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults">Mermaid documentation</a> for all allowed settings.</p>
+<p>The <code>theme</code> setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in <code>config.toml</code>, frontmatter or diagram directives.</p>
+
+<div class="box notices cstyle note">
+    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+    <div class="box-content">
+<p>To use codefence syntax you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting.</p>
+    </div>
+</div>
+<h3 id="global-configuration-file">Global Configuration File</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mermaidInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;theme\&#34;: \&#34;dark\&#34; }&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># if set to `guessSyntax = true`, there will be no unstyled code even if no language</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># was given BUT mermaid code fences will not work anymore! So this is a mandatory</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># setting for your site</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">guessSyntax</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></div><h3 id="pages-frontmatter">Page&rsquo;s Frontmatter</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mermaidInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;theme\&#34;: \&#34;dark\&#34; }&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span></code></pre></div><h2 id="examples">Examples</h2>
+<h3 id="flowchart-with-non-default-mermaid-theme">Flowchart with Non-Default Mermaid Theme</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="nx">align</span><span class="p">=</span><span class="s">&#34;left&#34;</span> <span class="p">&gt;}}</span>
 </span></span><span class="line"><span class="cl"><span class="o">%%</span><span class="p">{</span><span class="nx">init</span><span class="p">:{</span><span class="s">&#34;theme&#34;</span><span class="p">:</span><span class="s">&#34;forest&#34;</span><span class="p">}}</span><span class="o">%%</span>
 </span></span><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">LR</span><span class="p">;</span>
@@ -161,31 +237,15 @@ graph LR;
 </span></span><span class="line"><span class="cl">    <span class="nx">C</span> <span class="o">--</span><span class="p">&gt;|</span><span class="nx">Two</span><span class="p">|</span> <span class="nx">E</span><span class="p">[</span><span class="nx">Result</span> <span class="nx">two</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span></code></pre></div>
-    </div>
+<div class="mermaid" align="left">
+%%{init:{"theme":"forest"}}%%
+graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{<strong>Decision</strong>}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
 </div>
 <h3 id="sequence">Sequence</h3>
-
-<div class="mermaid" align="center">
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail...
-    John-->Alice: Great!
-    John->Bob: How about you?
-    Bob-->John: Jolly good!
-</div>
-
-<div class="expand expand-expanded">
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-right"></i>
-        Show markup
-    </a>
-    <div class="expand-content" style="display: block;">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">sequenceDiagram</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">participant</span> <span class="nx">Alice</span>
@@ -200,35 +260,20 @@ sequenceDiagram
 </span></span><span class="line"><span class="cl">    <span class="nx">Bob</span><span class="o">--</span><span class="p">&gt;</span><span class="nx">John</span><span class="p">:</span> <span class="nx">Jolly</span> <span class="nx">good</span><span class="p">!</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span></code></pre></div>
-    </div>
+<div class="mermaid" align="center">
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
 </div>
 <h3 id="gantt">GANTT</h3>
-
-<div class="mermaid" align="center">
-gantt
-        dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to Mermaid
-        section A section
-        Completed task            :done,    des1, 2014-01-06,2014-01-08
-        Active task               :active,  des2, 2014-01-09, 3d
-        Future task               :         des3, after des2, 5d
-        Future task2              :         des4, after des3, 5d
-        section Critical tasks
-        Completed task in the critical line :crit, done, 2014-01-06,24h
-        Implement parser and jison          :crit, done, after des1, 2d
-        Create tests for parser             :crit, active, 3d
-        Future task in critical line        :crit, 5d
-        Create tests for renderer           :2d
-        Add to Mermaid                      :1d
-</div>
-
-<div class="expand expand-expanded">
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-right"></i>
-        Show markup
-    </a>
-    <div class="expand-content" style="display: block;">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">gantt</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">dateFormat</span>  <span class="nx">YYYY</span><span class="o">-</span><span class="nx">MM</span><span class="o">-</span><span class="nx">DD</span>
@@ -247,34 +292,24 @@ gantt
 </span></span><span class="line"><span class="cl">        <span class="nx">Add</span> <span class="nx">to</span> <span class="nx">Mermaid</span>                      <span class="p">:</span><span class="mi">1</span><span class="nx">d</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span></code></pre></div>
-    </div>
+<div class="mermaid" align="center">
+gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to Mermaid
+        section A section
+        Completed task            :done,    des1, 2014-01-06,2014-01-08
+        Active task               :active,  des2, 2014-01-09, 3d
+        Future task               :         des3, after des2, 5d
+        Future task2              :         des4, after des3, 5d
+        section Critical tasks
+        Completed task in the critical line :crit, done, 2014-01-06,24h
+        Implement parser and jison          :crit, done, after des1, 2d
+        Create tests for parser             :crit, active, 3d
+        Future task in critical line        :crit, 5d
+        Create tests for renderer           :2d
+        Add to Mermaid                      :1d
 </div>
 <h3 id="class">Class</h3>
-
-<div class="mermaid" align="center">
-classDiagram
-  Class01 <|-- AveryLongClass : Cool
-  Class03 *-- Class04
-  Class05 o-- Class06
-  Class07 .. Class08
-  Class09 --> C2 : Where am i?
-  Class09 --* C3
-  Class09 --|> Class07
-  Class07 : equals()
-  Class07 : Object[] elementData
-  Class01 : size()
-  Class01 : int chimp
-  Class01 : int gorilla
-  Class08 <--> C2: Cool label
-</div>
-
-<div class="expand expand-expanded">
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-right"></i>
-        Show markup
-    </a>
-    <div class="expand-content" style="display: block;">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">classDiagram</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">Class01</span> <span class="p">&lt;|</span><span class="o">--</span> <span class="nx">AveryLongClass</span> <span class="p">:</span> <span class="nx">Cool</span>
@@ -292,25 +327,23 @@ classDiagram
 </span></span><span class="line"><span class="cl">    <span class="nx">Class08</span> <span class="o">&lt;--</span><span class="p">&gt;</span> <span class="nx">C2</span><span class="p">:</span> <span class="nx">Cool</span> <span class="nx">label</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span></code></pre></div>
-    </div>
+<div class="mermaid" align="center">
+classDiagram
+  Class01 <|-- AveryLongClass : Cool
+  Class03 *-- Class04
+  Class05 o-- Class06
+  Class07 .. Class08
+  Class09 --> C2 : Where am i?
+  Class09 --* C3
+  Class09 --|> Class07
+  Class07 : equals()
+  Class07 : Object[] elementData
+  Class01 : size()
+  Class01 : int chimp
+  Class01 : int gorilla
+  Class08 <--> C2: Cool label
 </div>
-<h3 id="state">State</h3>
-<div class="mermaid" align="center">stateDiagram-v2
-  open: Open Door
-  closed: Closed Door
-  locked: Locked Door
-  open   --> closed: Close
-  closed --> locked: Lock
-  locked --> closed: Unlock
-  closed --> open: Open</div>
-
-<div class="expand expand-expanded">
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-right"></i>
-        Show markup
-    </a>
-    <div class="expand-content" style="display: block;">
+<h3 id="state-diagram-with-codefence-syntax">State Diagram with Codefence Syntax</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="s">```mermaid
 </span></span></span><span class="line"><span class="cl"><span class="s">stateDiagram-v2
 </span></span></span><span class="line"><span class="cl"><span class="s">    open: Open Door
@@ -321,36 +354,15 @@ classDiagram
 </span></span></span><span class="line"><span class="cl"><span class="s">    locked --&gt; closed: Unlock
 </span></span></span><span class="line"><span class="cl"><span class="s">    closed --&gt; open: Open
 </span></span></span><span class="line"><span class="cl"><span class="s">```</span>
-</span></span></code></pre></div>
-    </div>
-</div>
-<h2 id="configuration">Configuration</h2>
-<p>Mermaid is configured with default settings. You can customize Mermaid&rsquo;s default settings for all of your files thru a JSON object in your <code>config.toml</code>, override these settings per page thru your pages frontmatter or override these setting per diagramm thru <a href="https://mermaid-js.github.io/mermaid/#/directives?id=directives">diagram directives</a>.</p>
-<p>The JSON object of your <code>config.toml</code> / frontmatter is forwarded into Mermaid&rsquo;s <code>mermaid.initialize()</code> function.</p>
-<p>See <a href="http://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults">Mermaid documentation</a> for all allowed settings.</p>
-<p>The <code>theme</code> setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in <code>config.toml</code>, frontmatter or diagram directives.</p>
+</span></span></code></pre></div><div class="mermaid" align="center">stateDiagram-v2
+  open: Open Door
+  closed: Closed Door
+  locked: Locked Door
+  open   --> closed: Close
+  closed --> locked: Lock
+  locked --> closed: Unlock
+  closed --> open: Open</div>
 
-<div class="box notices cstyle note">
-    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
-    <div class="box-content">
-<p>If you want to use mermaid codefences, you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting.</p>
-    </div>
-</div>
-<h3 id="example">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mermaidInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;theme\&#34;: \&#34;dark\&#34; }&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="c"># if set to `guessSyntax = true`, there will be no unstyled code even if no language</span>
-</span></span><span class="line"><span class="cl">    <span class="c"># was given BUT mermaid code fences will not work anymore! So this is a mandatory</span>
-</span></span><span class="line"><span class="cl">    <span class="c"># setting for your site</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">guessSyntax</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span></code></pre></div><p>or pages frontmatter</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
-</span></span><span class="line"><span class="cl"><span class="nx">mermaidInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;theme\&#34;: \&#34;dark\&#34; }&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="err">+++</span>
-</span></span></code></pre></div>
             <footer class="footline">
             </footer>
           </article>
@@ -425,9 +437,9 @@ classDiagram
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1654429918"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1654429918"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1654429918"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1654450351"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1654450351"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1654450351"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -539,15 +551,15 @@ classDiagram
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1654429918"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1654450351"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1654429918"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1654429918"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1654429918"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1654429918"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1654429918"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1654450351"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1654450351"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1654450351"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1654450351"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1654450351"></script>
     <script>
       function useMermaid( config ){
         if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
@@ -560,6 +572,6 @@ classDiagram
       }
       useMermaid( JSON.parse("{ \"securityLevel\": \"loose\" }") );
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1654429918"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1654450351"></script>
   </body>
 </html>

@@ -11,18 +11,17 @@
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/children/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/children/</guid>
-      <description>Use the children shortcode to list the child pages of a page and the further descendants (children&amp;rsquo;s children). By default, the shortcode displays links to the child pages.
-Usage Parameter Default Description page current Specify the page name (section name) to display children for containerstyle &amp;ldquo;ul&amp;rdquo; Choose the style used to group all children. It could be any HTML tag name style &amp;ldquo;li&amp;rdquo; Choose the style used to display each descendant.</description>
+      <description>The children shortcode lists the child pages of a page and its descendants .
+Usage {{% children %}} Parameter Name Default Notes page &amp;lt;current&amp;gt; Specify the page name (section name) to display children for. containerstyle ul Choose the style used to group all children. It could be any HTML tag name. style li Choose the style used to display each descendant. It could be any HTML tag name. showhidden false When true, child pages hidden from the menu will be displayed aswell.</description>
     </item>
     <item>
       <title>Swagger</title>
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/swagger/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/swagger/</guid>
-      <description>This shortcode uses the RapiDoc library to display your OpenAPI Specifications.
+      <description>This shortcode uses the RapiDoc library to display your Swagger / OpenAPI Specifications.
 Note This only works in modern browsers.
-Configuration Swagger is configured with default settings. You can customize Swagger&amp;rsquo;s default settings for all of your files thru a JSON object in your config.toml or override these settings per page thru your pages frontmatter.
-The JSON object of your config.toml / frontmatter is forwarded into Swagger&amp;rsquo;s initialization. At the moment, only the theme setting is supported.</description>
+Usage {{&amp;lt; swagger src=&amp;#34;https://petstore3.swagger.io/api/v3/openapi.json&amp;#34; &amp;gt;}} Parameter Name Default Notes src &amp;lt;empty&amp;gt; The URL to the OpenAPI Specification file. This can be relative to the URL of your page if it is a leaf or branch bundle. Configuration Swagger is configured with default settings. You can customize Swagger&amp;rsquo;s default settings for all of your files thru a JSON object in your config.</description>
     </item>
     <item>
       <title>Attachments</title>
@@ -30,8 +29,8 @@ The JSON object of your config.toml / frontmatter is forwarded into Swagger&amp;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/attachments/</guid>
       <description>The attachments shortcode displays a list of files attached to a page with adjustable color, title and icon.
-Attachments adivorciarsetoca00cape.pdf (361 KB) BachGavotteShort.mp3 (357 KB) Carroll_AliceAuPaysDesMerveilles.pdf (175 KB) hugo.png (17 KB) hugo.txt (20 B) movieselectricsheep-flock-244-32500-2.mp4 (340 KB) Usage The shortcurt lists files found in a specific folder.
-{{% attachments /%}} Currently, it support two implementations for pages
+Attachments adivorciarsetoca00cape.pdf (361 KB) BachGavotteShort.mp3 (357 KB) Carroll_AliceAuPaysDesMerveilles.pdf (175 KB) hugo.png (17 KB) hugo.txt (20 B) movieselectricsheep-flock-244-32500-2.mp4 (340 KB) Usage {{% attachments /%}} The shortcurt lists files found in a specific folder.
+Currently, it supports two implementations for pages
 If your page is a Markdown file, attachements must be placed in a folder named like your page and ending with .</description>
     </item>
     <item>
@@ -40,37 +39,37 @@ If your page is a Markdown file, attachements must be placed in a folder named l
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/button/</guid>
       <description>The button shortcode displays a clickable button with adjustable color, title and icon.
-Get Hugo Get Hugo Get Hugo Usage Once the button is clicked, it opens another browser tab for the given URL.
-{{% button href=&amp;#34;https://gohugo.io/&amp;#34; icon=&amp;#34;download&amp;#34; %}}Get Hugo{{% /button %}} Parameter Name Optional Default Notes href yes &amp;lt;empty&amp;gt; The destination URL for the button. If this parameter is not set, the button will do nothing but is still displayed as clickable.</description>
+Get Hugo Get Hugo Usage {{% button href=&amp;#34;https://gohugo.io/&amp;#34; %}}Get Hugo{{% /button %}} {{% button href=&amp;#34;https://gohugo.io/&amp;#34; style=&amp;#34;warning&amp;#34; icon=&amp;#34;dragon&amp;#34; %}}Get Hugo{{% /button %}} Once the button is clicked, it opens another browser tab for the given URL.
+Parameter Name Default Notes href &amp;lt;empty&amp;gt; The destination URL for the button. If this parameter is not set, the button will do nothing but is still displayed as clickable.</description>
     </item>
     <item>
       <title>Expand</title>
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/expand/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/expand/</guid>
-      <description>The Expand shortcode displays an expandable/collapsible section of text on your page.
-Usage {{% expand [ &amp;lt;string&amp;gt; [ &amp;#34;true&amp;#34; | &amp;#34;false&amp;#34; ] ] %}} Yes! {{% /expand %}} The first optional parameter defines the text that appears next to the expand/collapse icon. The default text is &amp;quot;Expand me...&amp;quot;.
-The second optional parameter controls if the block is initially shown as expanded (&amp;quot;true&amp;quot;) or collapsed (&amp;quot;false&amp;quot;). The default ist &amp;quot;false&amp;quot;.
-Examples I&amp;#39;ll tell you a secret.</description>
+      <description>The expand shortcode displays an expandable/collapsible section of text.
+Expand me... Thank you! Usage While the examples are using named parameter you are free to use positional aswell.
+named positional {{% expand title=&amp;#34;Expand me...&amp;#34; %}}Thank you!{{% /expand %}} {{% expand &amp;#34;Expand me...&amp;#34; %}}Thank you!{{% /expand %}} Parameter Name Position Default Notes title 1 &amp;quot;Expand me...&amp;quot; Arbitray text to appear next to the expand/collapse icon. open 2 false When true the content text will be initially shown as expanded.</description>
     </item>
     <item>
       <title>Include</title>
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/include/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/include/</guid>
-      <description>The include shortcode includes other files from your project inside of the current file. This can even contain Markdown and will be taken into account when generating the table of contents.
-Usage {{% include &amp;lt;string&amp;gt; [ &amp;#34;true&amp;#34; | &amp;#34;false&amp;#34; ] %}} The first required parameter is the path to the file to be included.
-If the file&amp;rsquo;s content will be displayed as HTML, the second optional parameter controls if the first heading of the included file should be displayed (&amp;quot;true&amp;quot;)- which is the default - or be hidden.</description>
+      <description>The include shortcode includes other files from your project inside of the current page.
+Usage While the examples are using named parameter you are free to use positional aswell.
+named positional {{% include file=&amp;#34;shortcodes/INCLUDE_ME.md&amp;#34; %}} {{% include &amp;#34;shortcodes/INCLUDE_ME.md&amp;#34; %}} The included files can even contain Markdown and will be taken into account when generating the table of contents.
+Parameter Name Position Default Notes file 1 &amp;lt;empty&amp;gt; The path to the file to be included.</description>
     </item>
     <item>
       <title>Mermaid</title>
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/mermaid/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/mermaid/</guid>
-      <description>Mermaid is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.
-Note This only works in modern browsers.
+      <description>With the Mermaid library and shortcode, you can generate diagrams and flowcharts from text, in a similar manner as Markdown.
+graph LR; If --&gt; Then Then --&gt; Else Note This only works in modern browsers.
 Warning Due to limitations with Mermaid, it is currently not possible to use Mermaid code fences in an initially collapsed expand shortcode. This is a know issue and can&amp;rsquo;t be fixed by this theme.
-Usage Just insert your Mermaid code in the mermaid shortcode like this:</description>
+Usage The generated graphs can be be panned by dragging them and zoomed by using the mousewheel.</description>
     </item>
     <item>
       <title>Notice</title>
@@ -87,21 +86,17 @@ named positional {{% notice style=&amp;#34;primary&amp;#34; title=&amp;#34;There
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/siteparam/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/siteparam/</guid>
-      <description>The siteparam shortcode is used to help you print values of site params.
-Usage {{% siteparam &amp;lt;string&amp;gt; %}} The first required parameter is the name of the site param to be displayed.
-Examples For instance, in this current site, the editURL variable is used in config.toml
-[params] editURL = &amp;#34;https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/&amp;#34; Use the siteparam shortcode to display its value.
-`editURL` Value : {{% siteparam &amp;#34;editURL&amp;#34; %}} is displayed as
-editURL Value : https://github.</description>
+      <description>The siteparam shortcode prints values of site params.
+Usage While the examples are using named parameter you are free to use positional aswell.
+named positional {{% siteparam name=&amp;#34;editURL&amp;#34; %}} {{% siteparam &amp;#34;editURL&amp;#34; %}} Parameter Name Position Default Notes name 1 &amp;lt;empty&amp;gt; The name of the site param to be displayed. Examples editURL from config.toml `editURL` value: {{% siteparam name=&amp;#34;editURL&amp;#34; %}} editURL value: https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/</description>
     </item>
     <item>
       <title>Tabbed views</title>
       <link>https://McShelby.github.io/hugo-theme-relearn/shortcodes/tabs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://McShelby.github.io/hugo-theme-relearn/shortcodes/tabs/</guid>
-      <description>Choose which content to see across the page. Very handy for providing code snippets for multiple languages or providing configuration in different formats.
-Code example {{&amp;lt; tabs &amp;gt;}} {{% tab name=&amp;#34;python&amp;#34; %}} ```python print(&amp;#34;Hello World!&amp;#34;) ``` {{% /tab %}} {{% tab name=&amp;#34;R&amp;#34; %}} ```R &amp;gt; print(&amp;#34;Hello World!&amp;#34;) ``` {{% /tab %}} {{% tab name=&amp;#34;Bash&amp;#34; %}} ```Bash echo &amp;#34;Hello World!&amp;#34; ``` {{% /tab %}} {{&amp;lt; /tabs &amp;gt;}} Renders as:
-python R Bash print(&amp;#34;Hello World!</description>
+      <description>The tabs shortcode displays arbitrary content in unlimited number of tabs. This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
+python bash print(&amp;#34;Hello World!&amp;#34;) echo &amp;#34;Hello World!&amp;#34; Usage {{&amp;lt; tabs &amp;gt;}} {{% tab name=&amp;#34;python&amp;#34; %}} ```python print(&amp;#34;Hello World!&amp;#34;) ``` {{% /tab %}} {{% tab name=&amp;#34;bash&amp;#34; %}} ```bash echo &amp;#34;Hello World!&amp;#34; ``` {{% /tab %}} {{&amp;lt; /tabs &amp;gt;}} Parameter Name Default Notes groupId default Arbitrary name of the group the tab view belongs to.</description>
     </item>
   </channel>
 </rss>

@@ -5,23 +5,23 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.100.1" />
     <meta name="generator" content="Relearn 3.4.1&#43;tip">
-    <meta name="description" content="Adds UI for your Swagger / OpenAPI Specifications">
+    <meta name="description" content="UI for your Swagger / OpenAPI Specifications">
     <meta name="author" content="Sören Weber">
     <title>Swagger :: Hugo Relearn Theme</title>
     <link rel="canonical" type="text/html" href="/hugo-theme-relearn/shortcodes/swagger/" title="Hugo Relearn Theme" />
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/shortcodes/swagger/index.xml" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1654429919" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1654429919" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1654429919" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1654429919" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/variant.js?1654429919"></script>
+    <link rel="icon" href="/hugo-theme-relearn/images/logo.svg?1654450353" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1654450353" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1654450353" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1654450353" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/variant.js?1654450353"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1654429919"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1654450353"></script>
   </head>
   <body class="mobile-support print" data-url="/hugo-theme-relearn/shortcodes/swagger/">
     <div id="body" class="default-animation">
@@ -77,13 +77,21 @@
             <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#configuration">Configuration</a>
+    <li><a href="#usage">Usage</a>
       <ul>
-        <li><a href="#example">Example</a></li>
+        <li><a href="#parameter">Parameter</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#example-1">Example</a></li>
+    <li><a href="#configuration">Configuration</a>
+      <ul>
+        <li><a href="#global-configuration-file">Global Configuration File</a></li>
+      </ul>
+    </li>
+    <li><a href="#example">Example</a>
+      <ul>
+        <li><a href="#using-local-file">Using Local File</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
@@ -98,7 +106,7 @@
           <article>
 
 <h1>Swagger</h1>
-<p>This shortcode uses the <a href="https://mrin9.github.io/RapiDoc">RapiDoc</a> library to display your OpenAPI Specifications.</p>
+<p>This shortcode uses the <a href="https://mrin9.github.io/RapiDoc">RapiDoc</a> library to display your Swagger / OpenAPI Specifications.</p>
 
 <div class="box notices cstyle note">
     <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
@@ -106,21 +114,36 @@
 <p>This only works in modern browsers.</p>
     </div>
 </div>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">swagger</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://petstore3.swagger.io/api/v3/openapi.json&#34;</span> <span class="p">&gt;}}</span>
+</span></span></code></pre></div><h3 id="parameter">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>src</strong></td>
+<td style="text-align:left"><em>&lt;empty&gt;</em></td>
+<td style="text-align:left">The URL to the OpenAPI Specification file. This can be relative to the URL of your page if it is a leaf or branch bundle.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="configuration">Configuration</h2>
 <p>Swagger is configured with default settings. You can customize Swagger&rsquo;s default settings for all of your files thru a JSON object in your <code>config.toml</code> or override these settings per page thru your pages frontmatter.</p>
 <p>The JSON object of your <code>config.toml</code> / frontmatter is forwarded into Swagger&rsquo;s initialization. At the moment, only the <code>theme</code> setting is supported.</p>
 <p>The <code>theme</code> setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in <code>config.toml</code> or frontmatter.</p>
-<h3 id="example">Example</h3>
+<h3 id="global-configuration-file">Global Configuration File</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">swaggerInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;theme\&#34;: \&#34;dark\&#34; }&#34;</span>
-</span></span></code></pre></div><h2 id="usage">Usage</h2>
-<p>Just insert give the URL to your OpenAPI Specification like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">swagger</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://petstore3.swagger.io/api/v3/openapi.json&#34;</span> <span class="p">&gt;}}</span>
-</span></span></code></pre></div><p>If your page is a leaf or branch bundle, you can also use relative URLs:</p>
+</span></span></code></pre></div><h2 id="example">Example</h2>
+<h3 id="using-local-file">Using Local File</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">swagger</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;petstore.json&#34;</span> <span class="p">&gt;}}</span>
-</span></span></code></pre></div><p>The <code>src</code> parameter is mandatory and can be either an absolute or a relative URL.</p>
-<h2 id="example-1">Example</h2>
-
+</span></span></code></pre></div>
 <rapi-doc
   allow-spec-file-download="true"
   default-schema-tab="example"
@@ -209,9 +232,9 @@
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1654429919"></script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1654429919"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1654429919"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1654450353"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1654450353"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1654450353"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -323,14 +346,14 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1654429919"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1654450353"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1654429919"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1654429919"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1654429919"></script>
-    <script src="/hugo-theme-relearn/js/rapidoc-min.js?1654429919"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1654450353"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1654450353"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1654450353"></script>
+    <script src="/hugo-theme-relearn/js/rapidoc-min.js?1654450353"></script>
     <script>
       function useSwagger( config ){
         if( config.theme ){
@@ -340,6 +363,6 @@
       }
       useSwagger( JSON.parse("{}") );
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1654429919"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1654450353"></script>
   </body>
 </html>
