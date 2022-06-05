@@ -334,7 +334,7 @@ function initMenuScrollbar(){
     // that need to be executed inbetween our own handlers
     var psm = new PerfectScrollbar('#content-wrapper');
     // PSC removed for #242 #243 #244
-    // var psc = new PerfectScrollbar(content);
+    var psc; // = new PerfectScrollbar(content);
     document.addEventListener('keydown', function(){
         // if we facked initial scrolling, we want to
         // remove the focus to not leave visual markers on
