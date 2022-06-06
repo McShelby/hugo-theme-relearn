@@ -345,7 +345,7 @@ function initMenuScrollbar(){
     // PSC removed for #242 #243 #244
     // psc = new PerfectScrollbar('#body-inner');
     psm = new PerfectScrollbar('#content-wrapper');
-    pst = new PerfectScrollbar('#TableOfContents');
+    pst = document.querySelector('#TableOfContents') ? new PerfectScrollbar('#TableOfContents') : null;
     document.addEventListener('keydown', function(){
         // if we facked initial scrolling, we want to
         // remove the focus to not leave visual markers on
@@ -448,34 +448,99 @@ function tocEscapeHandler( event ){
     }
 }
 
+function sidebarShortcutHandler( event ){
+    if( event.altKey && event.ctrlKey && event.which == 77 /* m */ ){
+        showNav();
+    }
+}
+
+function tocShortcutHandler( event ){
+    if( event.altKey && event.ctrlKey && event.which == 84 /* t */ ){
+        showToc();
+    }
+}
+
+function editShortcutHandler( event ){
+    if( event.altKey && event.ctrlKey && event.which == 69 /* e */ ){
+        showEdit();
+    }
+}
+
+function printShortcutHandler( event ){
+    if( event.altKey && event.ctrlKey && event.which == 80 /* p */ ){
+        showPrint();
+    }
+}
+
+function showNav(){
+    if( !document.querySelector( '#sidebar-overlay' ) ){
+        // we may not have a flyout
+        return;
+    }
+    var b = document.querySelector( 'body' );
+    b.classList.toggle( 'sidebar-flyout' );
+    if( b.classList.contains( 'sidebar-flyout' ) ){
+        b.classList.remove( 'toc-flyout' );
+        document.removeEventListener( 'keydown', tocEscapeHandler );
+        document.addEventListener( 'keydown', sidebarEscapeHandler );
+    }
+    else{
+        document.removeEventListener( 'keydown', sidebarEscapeHandler );
+        document.querySelector( '#body-inner' ).focus();
+        psc && psc.scrollbarY.focus();
+    }
+}
+
+function showToc(){
+    var t = document.querySelector( '#toc-menu' );
+    if( !t ){
+        // we may not have a toc
+        return;
+    }
+    var b = document.querySelector( 'body' );
+    b.classList.toggle( 'toc-flyout' );
+    if( b.classList.contains( 'toc-flyout' ) ){
+        pst && pst.update();
+        document.addEventListener( 'keydown', tocEscapeHandler );
+    }
+    else{
+        document.removeEventListener( 'keydown', tocEscapeHandler );
+        document.querySelector( '#body-inner' ).focus();
+        psc && psc.scrollbarY.focus();
+    }
+}
+
+function showEdit(){
+    var l = document.querySelector( '#top-github-link a' );
+    if( l ){
+        l.click();
+    }
+}
+
+function showPrint(){
+    var l = document.querySelector( '#top-print-link a' );
+    if( l ){
+        l.click();
+    }
+}
+
 function initToc(){
-    function showNav(){
-        var b = document.querySelector( 'body' );
-        b.classList.toggle( 'sidebar-flyout' );
-        if( b.classList.contains( 'sidebar-flyout' ) ){
-            b.classList.remove( 'toc-flyout' );
-            document.removeEventListener( 'keydown', tocEscapeHandler );
-            document.addEventListener( 'keydown', sidebarEscapeHandler );
-        }
-        else{
-            document.removeEventListener( 'keydown', sidebarEscapeHandler );
-            document.querySelector( '#body-inner' ).focus();
-            psc && psc.scrollbarY.focus();
-        }
+    if( isPrint ){
+        return;
     }
-    function showToc(){
-        var b = document.querySelector( 'body' );
-        b.classList.toggle( 'toc-flyout' );
-        if( b.classList.contains( 'toc-flyout' ) ){
-            pst && pst.update();
-            document.addEventListener( 'keydown', tocEscapeHandler );
+
+    document.addEventListener( 'keydown', editShortcutHandler );
+    document.addEventListener( 'keydown', printShortcutHandler );
+    document.addEventListener( 'keydown', sidebarShortcutHandler );
+    document.addEventListener( 'keydown', tocShortcutHandler );
+    // avoid keyboard navigation for input fields
+    jQuery(formelements).keydown(function (e) {
+        if( e.altKey && event.ctrlKey ){
+            if( e.which == 77 /* m */ || e.which == 84 /* t */ || e.which == 69 /* e */ || e.which == 80 /* p */ ){
+                e.stopPropagation();
+            }
         }
-        else{
-            document.removeEventListener( 'keydown', tocEscapeHandler );
-            document.querySelector( '#body-inner' ).focus();
-            psc && psc.scrollbarY.focus();
-        }
-    }
+    });
 
     document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
     document.querySelector( '#sidebar-toggle' ).addEventListener( 'click', showNav );
