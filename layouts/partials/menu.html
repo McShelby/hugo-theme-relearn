@@ -116,7 +116,9 @@
       {{- $alwaysopen := .alwaysopen }}
       {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
       {{- with .sect }}
-        {{- $isActive := eq .RelPermalink $currentFileRelPermalink }}
+        {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
+        {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
+        {{- $isActive := $isSelf }}
         {{- $pages := .Pages }}
         {{- if .Page.IsHome }}
           {{- $pages = .Sections }}
@@ -124,13 +126,13 @@
           {{- $pages = (.Pages | union .Sections) }}
         {{- end }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
-        {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not (.IsAncestor $currentNode)) }}
+        {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}
         {{- else if or .IsSection .IsHome }}
           {{- $numberOfVisibleChildren := 0 }}
           {{- range $pages }}
             {{- $relearnIsSubHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
-            {{- $subHidden := and $relearnIsSubHiddenFrom (not $.showhidden) (not (.IsAncestor $currentNode)) }}
+            {{- $subHidden := and $relearnIsSubHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
             {{- $numberOfVisibleChildren = add $numberOfVisibleChildren (int (not $subHidden)) }}
           {{- end }}
           {{- safeHTML .Params.head }}
@@ -139,8 +141,8 @@
             {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
-            {{- $isOpen := or $currentAlwaysopen (.IsAncestor $currentNode) }}
-          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if $isActive }} active{{end}}{{if .IsAncestor $currentNode }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><input type="checkbox" id="section-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}/><label for="section-{{ $pageHash }}" ></label><a href="{{.RelPermalink}}">
+            {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
+          <li data-nav-id="{{.RelPermalink}}" title="{{.Title}}" class="dd-item{{if $isActive }} active{{end}}{{if (or $isSelf $isAncestor) }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}"><input type="checkbox" id="section-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}/><label for="section-{{ $pageHash }}" ></label><a href="{{.RelPermalink}}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul>
               {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}

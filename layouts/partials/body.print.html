@@ -28,8 +28,8 @@
   {{- $isActive := .isActive }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
   {{- with .sect }}
-    {{- $currentIsActive := eq .RelPermalink $currentFileRelPermalink }}
-    {{- $isActive = or $currentIsActive $isActive }}
+    {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
+    {{- $isActive = or $isSelf $isActive }}
     {{- $pages := .Pages }}
     {{- if .Page.IsHome }}
       {{- $pages = .Sections }}
@@ -37,7 +37,8 @@
       {{- $pages = (.Pages | union .Sections) }}
     {{- end }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
-    {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not (.IsAncestor $currentNode)) }}
+    {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
+    {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
     {{- else if or .IsSection .IsHome }}
       {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
