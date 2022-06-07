@@ -552,6 +552,10 @@ function initToc(){
         t.addEventListener( 'click', showToc );
         p.addEventListener( 'click', showToc );
     }
+
+    // finally give initial focus to allow keyboard scrolling in FF
+    document.querySelector( '#body-inner' ).focus();
+    psc && psc.scrollbarY.focus();
 }
 
 function initSwipeHandler(){
@@ -768,10 +772,6 @@ jQuery(function() {
             jQuery('[data-nav-id="' + url + '"]').addClass('visited');
         }
     }
-
-    // finally give initial focus to allow keyboard scrolling in FF
-    document.querySelector( '#body-inner' ).focus();
-    psc && psc.scrollbarY.focus();
 });
 
 jQuery.extend({
