@@ -48,26 +48,6 @@ It is all about the boxes.
 
 #### Info with markup
 
-{{% notice style="info" %}}
-An **information** disclaimer
-
-You can add standard markdown syntax:
-
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even **_bold emphasized_** text
-- [links](https://example.com)
-- etc.
-
-```plaintext
-...and even source code
-```
-
-> the possiblities are endless (almost - including other shortcodes may or may not work)
-{{% /notice %}}
-
-{{% expand "Show markup" %}}
-
 ````go
 {{%/* notice style="info" */%}}
 An **information** disclaimer
@@ -88,15 +68,25 @@ You can add standard markdown syntax:
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
+{{% notice style="info" %}}
+An **information** disclaimer
 
-#### Note
+You can add standard markdown syntax:
 
-{{% notice style="note" %}}
-A **notice** disclaimer
+- multiple paragraphs
+- bullet point lists
+- _emphasized_, **bold** and even **_bold emphasized_** text
+- [links](https://example.com)
+- etc.
+
+```plaintext
+...and even source code
+```
+
+> the possiblities are endless (almost - including other shortcodes may or may not work)
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Note
 
 ````go
 {{%/* notice style="note" */%}}
@@ -104,30 +94,22 @@ A **notice** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Tip
-
-{{% notice style="tip" %}}
-A **tip** disclaimer
+{{% notice style="note" %}}
+A **notice** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Tip
 
 ````go
 {{%/* notice style="tip" */%}}
 A **tip** disclaimer
 ````
 
-{{% /expand %}}
-
-#### Warning
-
-{{% notice style="warning" %}}
-A **warning** disclaimer
+{{% notice style="tip" %}}
+A **tip** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Warning
 
 ````go
 {{%/* notice style="warning" */%}}
@@ -135,15 +117,11 @@ A **warning** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Warning with Non-Default Title and Icon
-
-{{% notice style="warning" title="Here are dragons" icon="dragon" %}}
+{{% notice style="warning" %}}
 A **warning** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Warning with Non-Default Title and Icon
 
 ````go
 {{%/* notice style="warning" title="Here are dragons" icon="dragon" */%}}
@@ -151,15 +129,11 @@ A **warning** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Warning without a Title and Icon
-
-{{% notice style="warning" title=" " icon=" " %}}
+{{% notice style="warning" title="Here are dragons" icon="dragon" %}}
 A **warning** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Warning without a Title and Icon
 
 ````go
 {{%/* notice style="warning" title=" " icon=" " */%}}
@@ -167,17 +141,13 @@ A **warning** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
+{{% notice style="warning" title=" " icon=" " %}}
+A **warning** disclaimer
+{{% /notice %}}
 
 ### By Brand Colors
 
 #### Primary with Title only
-
-{{% notice style="primary" title="Primary" %}}
-A **primary** disclaimer
-{{% /notice %}}
-
-{{% expand "Show markup" %}}
 
 ````go
 {{%/* notice style="primary" title="Primary" */%}}
@@ -185,15 +155,11 @@ A **primary** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Secondary with Icon only
-
-{{% notice style="secondary" icon="stopwatch" %}}
-A **secondary** disclaimer
+{{% notice style="primary" title="Primary" %}}
+A **primary** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Secondary with Icon only
 
 ````go
 {{%/* notice style="secondary" icon="stopwatch" */%}}
@@ -201,17 +167,13 @@ A **secondary** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
+{{% notice style="secondary" icon="stopwatch" %}}
+A **secondary** disclaimer
+{{% /notice %}}
 
 ### By Color
 
 #### Blue without a Title and Icon
-
-{{% notice style="blue" %}}
-A **blue** disclaimer
-{{% /notice %}}
-
-{{% expand "Show markup" %}}
 
 ````go
 {{%/* notice style="blue" */%}}
@@ -219,15 +181,11 @@ A **blue** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Green with Title only
-
-{{% notice style="green" title="Green" %}}
-A **green** disclaimer
+{{% notice style="blue" %}}
+A **blue** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Green with Title only
 
 ````go
 {{%/* notice style="green" title="Green" */%}}
@@ -235,15 +193,11 @@ A **green** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Grey with Icon only
-
-{{% notice style="grey" icon="bug" %}}
-A **grey** disclaimer
+{{% notice style="green" title="Green" %}}
+A **green** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Grey with Icon only
 
 ````go
 {{%/* notice style="grey" icon="bug" */%}}
@@ -251,15 +205,11 @@ A **grey** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Orange with Title and Icon
-
-{{% notice style="orange" title="Orange" icon="bug" %}}
-A **orange** disclaimer
+{{% notice style="grey" icon="bug" %}}
+A **grey** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Orange with Title and Icon
 
 ````go
 {{%/* notice style="orange" title="Orange" icon="bug" */%}}
@@ -267,15 +217,11 @@ A **orange** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Red
-
-{{% notice style="red" %}}
-A **red** disclaimer
+{{% notice style="orange" title="Orange" icon="bug" %}}
+A **orange** disclaimer
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Red
 
 ````go
 {{%/* notice style="red" */%}}
@@ -283,17 +229,13 @@ A **red** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
+{{% notice style="red" %}}
+A **red** disclaimer
+{{% /notice %}}
 
 ### By Special Color
 
 #### Default with Title and Icon
-
-{{% notice default "Pay Attention to this Note!" "skull-crossbones" %}}
-Some serious information.
-{{% /notice %}}
-
-{{% expand "Show markup" %}}
 
 ````go
 {{%/* notice style="default" title"Pay Attention to this Note!" icon="skull-crossbones" */%}}
@@ -301,15 +243,11 @@ Some serious information.
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
-
-#### Transparent with Title and Icon
-
-{{% notice style="transparent" title="Pay Attention to this Note!" icon="skull-crossbones" %}}
+{{% notice default "Pay Attention to this Note!" "skull-crossbones" %}}
 Some serious information.
 {{% /notice %}}
 
-{{% expand "Show markup" %}}
+#### Transparent with Title and Icon
 
 ````go
 {{%/* notice style="transparent" title"Pay Attention to this Note!" icon="skull-crossbones" */%}}
@@ -317,4 +255,6 @@ Some serious information.
 {{%/* /notice */%}}
 ````
 
-{{% /expand %}}
+{{% notice style="transparent" title="Pay Attention to this Note!" icon="skull-crossbones" %}}
+Some serious information.
+{{% /notice %}}
