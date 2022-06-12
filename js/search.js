@@ -9,10 +9,7 @@ function initLunr() {
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
             lunrIndex = lunr(function() {
-                if(lunr[pageBaseLang]){
-                    this.use(lunr[pageBaseLang]);
-                }
-
+                this.use(lunr.multiLanguage.apply(null, contentLangs));
                 this.ref('index');
                 this.field('title', {
                     boost: 15
