@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.5 (2022-06-12)
+
+### Fixes
+
+- [**bug**] i18n: vietnamese language with wrong lang code [#270](https://github.com/McShelby/hugo-theme-relearn/issues/270)
+- [**bug**] i18n: fix search for non western languages [#269](https://github.com/McShelby/hugo-theme-relearn/issues/269)
+
+---
+
 ## 4.0.4 (2022-06-07)
 
 ### Enhancements
