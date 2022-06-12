@@ -5,11 +5,19 @@
         </div>
         {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
         {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Lang }}
+        {{- $contentlangs := (union (slice | append .Site.Params.contentLang) (slice $pageBaseLang)) }}
+        {{- $quotedcontentlangs := slice }}
+        {{- range $contentlangs }}
+          {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
+        {{- end }}
         <script>
-          var pageBaseLang="{{ $pageBaseLang }}";
+          var contentLangs=[{{ delimit $quotedcontentlangs ", " | safeJS }}];
         </script>
         <script src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
         <script src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
         <script src="{{"js/lunr.stemmer.support.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
-        <script src="{{ (printf "js/lunr.%s.min.js" $pageBaseLang) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+        <script src="{{"js/lunr.multi.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+        {{- range $contentlangs }}
+        <script src="{{ (printf "js/lunr.%s.min.js" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+        {{- end }}
         <script src="{{ "js/search.js" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>

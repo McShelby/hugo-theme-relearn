@@ -72,6 +72,8 @@ Note that some of these parameters are explained in details in other sections of
   titleSeparator = "-"
   # If set to true, the menu in the sidebar will be displayed in a collapsible tree view.
   collapsibleMenu = false
+  # If a single page can contain content in multiple languages, add those here
+  additionalContentLanguage = [ "en" ]
 ```
 
 ## A word on running your site in a subfolder

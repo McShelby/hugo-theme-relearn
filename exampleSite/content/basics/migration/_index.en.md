@@ -14,6 +14,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 4.1.0
+
+- **New**: While fixing issues with the search functionality for non latin languages, you can now [configure to have multiple languages on a single page]({{% relref "cont/i18n/#search-with-mixed-language-support" %}}).
+
 ## 4.0.0
 
 - **Breaking**: The `custom_css` config parameter was removed from the configuration. If used in an existing installation, it can be achieved by overriding the `custom-header.html` template in a much more generic manner.
@@ -22,7 +26,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: All shortcodes now support named parameter. The positional parameter are still supported but will not be enhanced with new features, so you don't need to change anything in your installation.
 
-  This applies to [`expand`]({{% relref "shortcodes/expand" %}}) , [`include`]({{% relref "shortcodes/include" %}}) , [`notice`]({{% relref "shortcodes/notice" %}}) and [`siteparam`]({{% relref "shortcodes/siteparam" %}}) .
+  This applies to [`expand`]({{% relref "shortcodes/expand" %}}), [`include`]({{% relref "shortcodes/include" %}}), [`notice`]({{% relref "shortcodes/notice" %}}) and [`siteparam`]({{% relref "shortcodes/siteparam" %}}).
 
 - **New**: The [`button`]({{% relref "shortcodes/button" %}}) shortcode received some love and now has a parameter for the color style similar to other shortcodes.
 

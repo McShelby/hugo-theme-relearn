@@ -52,6 +52,34 @@ Be aware that only translated pages are displayed in menu. It's not replaced wit
 Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-content) Front Matter parameter to translate urls too.
 {{% /notice %}}
 
+## Search
+
+In case each page's content is written in one single language only, the above configuration will already configure the site's search functionality correctly.
+
+{{% notice warning %}}
+Although the theme supports a wide variety of supported languages, the site's search does not.
+You'll see error reports in your browsers console log for each unsupported language. Currently unsupported are:
+
+- Indonesian
+- Korean
+- Polish
+{{% /notice %}}
+
+### Search with mixed language support
+
+In case your page's content contains text in multiple languages (e.g. you are writing a russian documentation for your english API), you can add those languages to your `config.toml` to broaden search.
+
+```toml
+[params]
+  additionalContentLanguage = [ "en" ]
+````
+
+As this is an array, you can add multiple additional languages.
+
+{{% notice note %}}
+Keep in mind that the language code required here, is the base language code. E.g. if you have additonal content in `zh-CN`, you have to add just `zh` to this parameter.
+{{% /notice %}}
+
 ## Overwrite translation strings
 
 Translations strings are used for common default values used in the theme (*Edit* button, *Search placeholder* and so on). Translations are available in English and Piratized English but you may use another language or want to override default values.
