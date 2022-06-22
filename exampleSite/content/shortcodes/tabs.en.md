@@ -46,10 +46,10 @@ echo "Hello World!"
 | **groupId**           | `default`        | Arbitrary name of the group the tab view belongs to.<br/><br/>Tab views with the same **groupId** sychronize their selected tab. This sychronization applies to the whole site! |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
-{{% notice warning %}}
+{{% notice note %}}
 When using tab views with different content sets, make sure to use a common `groupId` for equal sets of tabs but distinct `groupId` for different sets.
 
-The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came from the `'default'` group on a different page then all tabs will be empty at first!
+The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came from the `'default'` group on a different page then the first tab is selected instead.
 {{% /notice %}}
 
 ## Examples
