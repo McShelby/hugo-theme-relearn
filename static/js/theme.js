@@ -13,6 +13,10 @@ var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) 
 
 var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
 
+// rapidoc: #280 disable broad document syntax highlightning
+window.Prism = window.Prism || {};
+Prism.manual = true;
+
 // PerfectScrollbar
 var psc;
 var psm;
