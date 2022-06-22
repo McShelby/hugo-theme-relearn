@@ -3,7 +3,7 @@
 {{- $align := .align | default "center" }}
 {{- with $context }}
 <div class="mermaid" align="{{ $align }}">
-  {{- safeHTML $content -}}
+  {{- $content | safeHTML -}}
 </div>
 {{- .Page.Store.Set "htmlHasMermaid" true }}
 {{- end }}
