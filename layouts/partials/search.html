@@ -5,11 +5,18 @@
         </div>
         {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
         {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Lang }}
-        {{- $contentlangs := (union (slice | append .Site.Params.contentLang) (slice $pageBaseLang)) }}
+        {{- $contentlangs := (union (slice | append .Site.Params.additionalContentLanguage) (slice $pageBaseLang)) }}
         {{- $quotedcontentlangs := slice }}
+        {{- $missingcontentlangs := slice }}
         {{- range $contentlangs }}
-          {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
+          {{- $file := (printf "js/lunr.%s.min.js" .) }}
+          {{- if fileExists (printf "/static/%s" $file) }}
+            {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
+          {{- else }}
+            {{- $missingcontentlangs = $missingcontentlangs | append . }}
+          {{- end }}
         {{- end }}
+        {{- $contentlangs = $contentlangs | complement $missingcontentlangs }}
         <script>
           var contentLangs=[{{ delimit $quotedcontentlangs ", " | safeJS }}];
         </script>
@@ -18,6 +25,7 @@
         <script src="{{"js/lunr.stemmer.support.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
         <script src="{{"js/lunr.multi.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
         {{- range $contentlangs }}
-        <script src="{{ (printf "js/lunr.%s.min.js" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+          {{- $file := (printf "js/lunr.%s.min.js" .) }}
+        <script src="{{ $file | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
         {{- end }}
         <script src="{{ "js/search.js" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
