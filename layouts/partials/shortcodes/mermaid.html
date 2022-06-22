@@ -1,0 +1,9 @@
+{{- $context := .context }}
+{{- $content := .content }}
+{{- $align := .align | default "center" }}
+{{- with $context }}
+<div class="mermaid" align="{{ $align }}">
+  {{- safeHTML $content -}}
+</div>
+{{- .Page.Store.Set "htmlHasMermaid" true }}
+{{- end }}

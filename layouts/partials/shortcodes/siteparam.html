@@ -1,0 +1,10 @@
+{{- $context := .context }}
+{{- $paramName := .name }}
+{{- with $context }}
+{{- $siteParams := .Site.Params }}
+{{- with $paramName }}
+    {{- with $siteParams }}
+        {{- index . (lower $paramName) }}
+    {{- end }}
+{{- end }}
+{{- end }}
