@@ -10,18 +10,18 @@
     <title>Tabbed views :: Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/shortcodes/tabs/index.xml" title="Hugo Relearn Theme" />
     <link rel="alternate" type="text/html" href="/hugo-theme-relearn/_print/shortcodes/tabs/" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/images/logo.svg?1655571098" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1655571098" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1655571098" rel="stylesheet" media="print">
-    <script src="/hugo-theme-relearn/js/variant.js?1655571098"></script>
+    <link rel="icon" href="/images/logo.svg?1655935721" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1655935721" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1655935721" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1655935721"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1655571098"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1655935721"></script>
   </head>
   <body class="mobile-support" data-url="/hugo-theme-relearn/shortcodes/tabs/">
     <div id="body" class="default-animation">
@@ -129,8 +129,26 @@
     </div>
   </div>
 </div>
-
 <h2 id="usage">Usage</h2>
+<p>While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.</p>
+
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="shortcode"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button active"
+      onclick="switchTab('shortcode-parameter','shortcode')"
+      ><span>shortcode</span></button>
+    <button
+      data-tab-item="partial"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button "
+      onclick="switchTab('shortcode-parameter','partial')"
+      ><span>partial</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="shortcode" data-tab-group="shortcode-parameter" class="tab-item active">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">tabs</span> <span class="p">&gt;}}</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;python&#34;</span> <span class="o">%</span><span class="p">}}</span>
 </span></span><span class="line"><span class="cl"><span class="s">```python
@@ -143,7 +161,27 @@
 </span></span></span><span class="line"><span class="cl"><span class="s">```</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">tab</span> <span class="o">%</span><span class="p">}}</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">tabs</span> <span class="p">&gt;}}</span>
-</span></span></code></pre></div><h3 id="parameter">Parameter</h3>
+</span></span></code></pre></div>
+    </div>
+    <div data-tab-item="partial" data-tab-group="shortcode-parameter" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/tabs.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;context&#34;</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;tabs&#34;</span> <span class="p">(</span><span class="nf">slice</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;name&#34;</span> <span class="s">&#34;python&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;content&#34;</span> <span class="p">(</span><span class="s">&#34;```python\nprint(\&#34;Hello World!\&#34;)\n```&#34;</span> <span class="p">|</span> <span class="nx">markdownify</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;name&#34;</span> <span class="s">&#34;bash&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;content&#34;</span> <span class="p">(</span><span class="s">&#34;```bash\necho \&#34;Hello World!\&#34;\n```&#34;</span> <span class="p">|</span> <span class="nx">markdownify</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span>
+</span></span></code></pre></div>
+    </div>
+  </div>
+</div>
+<h3 id="parameter">Parameter</h3>
 <table>
 <thead>
 <tr>
@@ -166,11 +204,11 @@
 </tbody>
 </table>
 
-<div class="box notices cstyle warning">
-    <div class="box-label"><i class="fa-fw fas fa-exclamation-triangle"></i> Warning</div>
+<div class="box notices cstyle note">
+    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
     <div class="box-content">
 <p>When using tab views with different content sets, make sure to use a common <code>groupId</code> for equal sets of tabs but distinct <code>groupId</code> for different sets.</p>
-<p>The tab selection is restored automatically based on the <code>groupId</code> and if it cannot find a tab item because it came from the <code>'default'</code> group on a different page then all tabs will be empty at first!</p>
+<p>The tab selection is restored automatically based on the <code>groupId</code> and if it cannot find a tab item because it came from the <code>'default'</code> group on a different page then the first tab is selected instead.</p>
     </div>
 </div>
 <h2 id="examples">Examples</h2>
@@ -233,7 +271,6 @@
     </div>
   </div>
 </div>
-
 <h3 id="non-distinct-groupid">Non-Distinct <code>groupId</code></h3>
 <p>See what happens to this tab view if you select <strong>properties</strong> tab from the previous example.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">tabs</span> <span class="nx">groupId</span><span class="p">=</span><span class="s">&#34;config&#34;</span> <span class="p">&gt;}}</span>
@@ -279,7 +316,6 @@
     </div>
   </div>
 </div>
-
 
             <footer class="footline">
             </footer>
@@ -358,12 +394,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1655571098"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1655935721"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -475,13 +511,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1655571098"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1655935721"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1655571098"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1655935721"></script>
   </body>
 </html>

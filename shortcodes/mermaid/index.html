@@ -10,18 +10,18 @@
     <title>Mermaid :: Hugo Relearn Theme</title>
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/shortcodes/mermaid/index.xml" title="Hugo Relearn Theme" />
     <link rel="alternate" type="text/html" href="/hugo-theme-relearn/_print/shortcodes/mermaid/" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/images/logo.svg?1655571098" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1655571098" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1655571098" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1655571098" rel="stylesheet" media="print">
-    <script src="/hugo-theme-relearn/js/variant.js?1655571098"></script>
+    <link rel="icon" href="/images/logo.svg?1655935721" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1655935721" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1655935721" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1655935721" rel="stylesheet" media="print">
+    <script src="/hugo-theme-relearn/js/variant.js?1655935721"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1655571098"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1655935721"></script>
   </head>
   <body class="mobile-support" data-url="/hugo-theme-relearn/shortcodes/mermaid/">
     <div id="body" class="default-animation">
@@ -132,8 +132,8 @@ graph LR;
     </div>
 </div>
 <h2 id="usage">Usage</h2>
-<p>The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.</p>
-<p>While the examples are using shortcode syntax it is recommended to use codefence syntax instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.</p>
+<p>While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.</p>
+<p>You are free to also call this shortcode from your own partials.</p>
 
 <div class="box notices cstyle note">
     <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
@@ -146,19 +146,25 @@ graph LR;
   <div class="tab-nav">
     <button
       data-tab-item="codefence"
-      data-tab-group="shortcode-codefence"
+      data-tab-group="shortcode-parameter"
       class="tab-nav-button active"
-      onclick="switchTab('shortcode-codefence','codefence')"
+      onclick="switchTab('shortcode-parameter','codefence')"
       ><span>codefence</span></button>
     <button
       data-tab-item="shortcode"
-      data-tab-group="shortcode-codefence"
+      data-tab-group="shortcode-parameter"
       class="tab-nav-button "
-      onclick="switchTab('shortcode-codefence','shortcode')"
+      onclick="switchTab('shortcode-parameter','shortcode')"
       ><span>shortcode</span></button>
+    <button
+      data-tab-item="partial"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button "
+      onclick="switchTab('shortcode-parameter','partial')"
+      ><span>partial</span></button>
   </div>
   <div class="tab-content">
-    <div data-tab-item="codefence" data-tab-group="shortcode-codefence" class="tab-item active">
+    <div data-tab-item="codefence" data-tab-group="shortcode-parameter" class="tab-item active">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">```mermaid
 </span></span><span class="line"><span class="cl">graph LR;
 </span></span><span class="line"><span class="cl">    If --&gt; Then
@@ -166,7 +172,7 @@ graph LR;
 </span></span><span class="line"><span class="cl">```
 </span></span></code></pre></div>
     </div>
-    <div data-tab-item="shortcode" data-tab-group="shortcode-codefence" class="tab-item ">
+    <div data-tab-item="shortcode" data-tab-group="shortcode-parameter" class="tab-item ">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">graph</span> <span class="nx">LR</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">If</span> <span class="o">--</span><span class="p">&gt;</span> <span class="nx">Then</span>
@@ -174,9 +180,16 @@ graph LR;
 </span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">mermaid</span> <span class="p">&gt;}}</span>
 </span></span></code></pre></div>
     </div>
+    <div data-tab-item="partial" data-tab-group="shortcode-parameter" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/mermaid.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;context&#34;</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;content&#34;</span> <span class="s">&#34;graph LR;\nIf --&gt; Then\nThen --&gt; Else&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span>
+</span></span></code></pre></div>
+    </div>
   </div>
 </div>
-
+<p>The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.</p>
 <h3 id="parameter">Parameter</h3>
 <p>Parameter are only supported when using shortcode syntax. Defaults are used when using codefence syntax.</p>
 <table>
@@ -440,12 +453,12 @@ classDiagram
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1655571098"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1655571098"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1655935721"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1655935721"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -557,15 +570,15 @@ classDiagram
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1655571098"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1655935721"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1655571098"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1655571098"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1655935721"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1655935721"></script>
     <script>
       function useMermaid( config ){
         if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
@@ -578,6 +591,6 @@ classDiagram
       }
       useMermaid( JSON.parse("{ \"securityLevel\": \"loose\" }") );
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1655571098"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1655935721"></script>
   </body>
 </html>
