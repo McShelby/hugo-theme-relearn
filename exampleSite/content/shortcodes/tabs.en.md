@@ -24,6 +24,11 @@ echo "Hello World!"
 
 ## Usage
 
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
+
 ````go
 {{</* tabs */>}}
 {{%/* tab name="python" */%}}
@@ -38,6 +43,28 @@ echo "Hello World!"
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/tabs.html" (dict
+  "context" .
+  "tabs" (slice
+    (dict
+      "name" "python"
+      "content" ("```python\nprint(\"Hello World!\")\n```" | markdownify)
+    )
+    (dict
+      "name" "bash"
+      "content" ("```bash\necho \"Hello World!\"\n```" | markdownify)
+    )
+  )
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Parameter
 

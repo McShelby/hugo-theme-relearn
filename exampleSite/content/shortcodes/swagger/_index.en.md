@@ -11,10 +11,27 @@ This only works in modern browsers.
 
 ## Usage
 
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
 
 ````go
 {{</* swagger src="https://petstore3.swagger.io/api/v3/openapi.json" */>}}
 ````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/swagger.html" (dict
+  "context" .
+  "src" "https://petstore3.swagger.io/api/v3/openapi.json"
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Parameter
 

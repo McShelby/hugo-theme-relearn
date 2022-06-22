@@ -21,15 +21,15 @@ Due to limitations with [Mermaid](https://github.com/mermaid-js/mermaid/issues/1
 
 ## Usage
 
-The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
+While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.
 
-While the examples are using shortcode syntax it is recommended to use codefence syntax instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.
+You are free to also call this shortcode from your own partials.
 
 {{% notice note %}}
 To use codefence syntax you have to turn off `guessSyntax` for the `markup.highlight` setting ([see the configuration section](#configuration)).
 {{% /notice %}}
 
-{{< tabs groupId="shortcode-codefence">}}
+{{< tabs groupId="shortcode-parameter">}}
 {{% tab name="codefence" %}}
 
 ````plaintext
@@ -52,7 +52,20 @@ graph LR;
 ````
 
 {{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/mermaid.html" (dict
+  "context" .
+  "content" "graph LR;\nIf --> Then\nThen --> Else"
+)}}
+
+````
+
+{{% /tab %}}
 {{< /tabs >}}
+
+The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
 
 ### Parameter
 

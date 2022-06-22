@@ -5,13 +5,31 @@ title = "Attachments"
 
 The `attachments` shortcode displays a list of files attached to a page with adjustable color, title and icon.
 
-{{% attachments /%}}
+{{% attachments sort="asc" /%}}
 
 ## Usage
 
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
+
 ````go
-{{%/* attachments /*/%}}
+{{%/* attachments sort="asc" /*/%}}
 ````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/attachments.html" (dict
+  "context" .
+  "sort" "asc"
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 The shortcurt lists files found in a specific folder.
 

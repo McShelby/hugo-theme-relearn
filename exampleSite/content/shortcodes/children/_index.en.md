@@ -6,11 +6,30 @@ title = "Children"
 
 The `children` shortcode lists the child pages of a page and its descendants .
 
+{{% children sort="weight" %}}
 ## Usage
 
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
+
 ````go
-{{%/* children */%}}
+{{%/* children sort="weight" */%}}
 ````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/children.html" (dict
+  "context" .
+  "sort" "weight"
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ### Parameter
 

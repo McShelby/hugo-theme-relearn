@@ -11,10 +11,10 @@ It is all about the boxes.
 
 ## Usage
 
-While the examples are using named parameter you are free to use positional aswell.
+While the examples are using shortcodes with named parameter you are free to use positional aswell or also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="named" %}}
+{{% tab name="shortcode" %}}
 
 ````go
 {{%/* notice style="primary" title="There may be pirates" icon="skull-crossbones" */%}}
@@ -23,12 +23,25 @@ It is all about the boxes.
 ````
 
 {{% /tab %}}
-{{% tab name="positional" %}}
+{{% tab name="shortcode (positional)" %}}
 
 ````go
 {{%/* notice primary "There may be pirates" "skull-crossbones" */%}}
 It is all about the boxes.
 {{%/* /notice */%}}
+````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/notice.html" (dict
+  "context" .
+  "style" "primary"
+  "title" "There may be pirates"
+  "icon" "skull-crossbones"
+  "content" "It is all about the boxes."
+)}}
 ````
 
 {{% /tab %}}

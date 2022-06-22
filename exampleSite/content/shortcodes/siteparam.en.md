@@ -7,10 +7,10 @@ The `siteparam` shortcode prints values of site params.
 
 ## Usage
 
-While the examples are using named parameter you are free to use positional aswell.
+While the examples are using shortcodes with named parameter you are free to use positional aswell or call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="named" %}}
+{{% tab name="shortcode" %}}
 
 
 ````go
@@ -18,10 +18,20 @@ While the examples are using named parameter you are free to use positional aswe
 ````
 
 {{% /tab %}}
-{{% tab name="positional" %}}
+{{% tab name="shortcode (positional)" %}}
 
 ````go
 {{%/* siteparam "editURL" */%}}
+````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/siteparam.html" (dict
+  "context" .
+  "name" "editURL"
+)}}
 ````
 
 {{% /tab %}}

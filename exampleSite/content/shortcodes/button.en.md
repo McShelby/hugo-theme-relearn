@@ -10,10 +10,36 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 ## Usage
 
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
+
 ````go
 {{%/* button href="https://gohugo.io/" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="warning" icon="dragon" %}}Get Hugo{{% /button */%}}
 ````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/button.html" (dict
+    "context" .
+    "href" "https://gohugo.io/"
+    "content" "Get Hugo"
+)}}
+{{ partial "shortcodes/button.html" (dict
+  "context" .
+  "href" "https://gohugo.io/"
+  "style" "warning"
+  "icon" "dragon"
+  "content" "Get Hugo"
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Once the button is clicked, it opens another browser tab for the given URL.
 

@@ -9,20 +9,31 @@ The `expand` shortcode displays an expandable/collapsible section of text.
 
 ## Usage
 
-While the examples are using named parameter you are free to use positional aswell.
+While the examples are using shortcodes with named parameter you are free to use positional aswell or also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="named" %}}
+{{% tab name="shortcode" %}}
 
 ````go
 {{%/* expand title="Expand me..." */%}}Thank you!{{%/* /expand */%}}
 ````
 
 {{% /tab %}}
-{{% tab name="positional" %}}
+{{% tab name="shortcode (positional)" %}}
 
 ````go
 {{%/* expand "Expand me..." */%}}Thank you!{{%/* /expand */%}}
+````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/expand.html" (dict
+  "context" .
+  "title" "Expand me..."
+  "content" "Thank you!"
+)}}
 ````
 
 {{% /tab %}}

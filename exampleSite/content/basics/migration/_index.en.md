@@ -14,6 +14,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 4.2.0
+
+- **New**: All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
+
 ## 4.1.0
 
 - **New**: While fixing issues with the search functionality for non latin languages, you can now [configure to have multiple languages on a single page]({{% relref "cont/i18n/#search-with-mixed-language-support" %}}).
