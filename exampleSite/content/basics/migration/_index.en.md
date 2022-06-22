@@ -16,6 +16,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 4.2.0
 
+- **Change**: Previously, if the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
+
 - **New**: All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
 
 ## 4.1.0
