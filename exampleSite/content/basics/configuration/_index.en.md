@@ -139,12 +139,10 @@ appearance, you will have to configure two parameters for the defined languages:
 [Languages]
 [Languages.en]
 ...
-landingPageURL = "/"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ...
 [Languages.pir]
 ...
-landingPageURL = "/pir/"
 landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
 ...
 ```
@@ -153,7 +151,6 @@ If those params are not configured for a specific language, they will get their
 default values:
 
 ```toml
-landingPageURL = "/"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ```
 
