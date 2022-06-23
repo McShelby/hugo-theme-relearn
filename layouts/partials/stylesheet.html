@@ -12,18 +12,6 @@
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"{{ if ne (.Scratch.Get "relearnOutputFormat") "PRINT" }} media="print"{{ end }}>
-    {{- if .Site.Params.disableInlineCopyToClipBoard }}
-    <style>
-      :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
-        display: none;
-      }
-      :not(pre) > code.copy-to-clipboard-code {
-        border-bottom-right-radius: 2px;
-        border-top-right-radius: 2px;
-        border-right-width: 1px;
-      }
-    </style>
-    {{- end }}
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>
       {{ "// hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:" | safeJS }}
