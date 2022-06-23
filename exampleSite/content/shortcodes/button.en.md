@@ -121,10 +121,10 @@ Once the button is clicked, it opens another browser tab for the given URL.
 #### To the Right
 
 ````go
-{{%/* button href="https://gohugo.io/" icon="download" icon-position="right" %}}Get Hugo{{% /button */%}}
+{{%/* button href="https://gohugo.io/" icon="download" iconposition="right" %}}Get Hugo{{% /button */%}}
 ````
 
-{{% button href="https://gohugo.io/" icon="download" icon-position="right" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" icon="download" iconposition="right" %}}Get Hugo{{% /button %}}
 
 #### Override for Severity
 
