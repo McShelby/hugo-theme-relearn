@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.2.1 (2022-06-23)
+
+### Fixes
+
+- [**bug**][**breaking**] include: second parameter is ignored [#281](https://github.com/McShelby/hugo-theme-relearn/issues/281)
+
+---
+
 ## 4.2.0 (2022-06-23)
 
 ### Enhancements
