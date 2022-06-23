@@ -1,35 +1,40 @@
 {{- $currentNode := . }}
 {{- $isActive := .IsHome }}
+{{- $isShortcut := false }}
 {{- $r_url := .RelPermalink }}
 {{- with .Site.Menus.shortcuts }}
   {{- range sort . "Weight" }}
     {{- $s_url := .URL | relLangURL }}
     {{- if (eq $s_url $r_url) }}
-      {{- $isActive = true }}
+      {{- $isShortcut = true }}
     {{- end }}
   {{- end }}
 {{- end }}
 {{- $pages := .Site.Home.Sections }}
 {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
-{{- if $isActive }}
+{{- if $isShortcut }}
   {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-  {{- if or .IsHome .Params.chapter $pages }}
-          <section>
-  {{- end }}
-{{- end }}
-{{- if eq $currentOrdersectionsby "title" }}
-  {{- range $pages.ByTitle }}
-    {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
-  {{- end }}
 {{- else }}
-  {{- range $pages.ByWeight }}
-    {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+  {{- if $isActive }}
+    {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
+    {{- if or .IsHome .Params.chapter $pages }}
+            <section>
+    {{- end }}
   {{- end }}
-{{- end }}
-{{- if $isActive }}
-  {{- if or .IsHome .Params.chapter $pages }}
-          </section>
+  {{- if eq $currentOrdersectionsby "title" }}
+    {{- range $pages.ByTitle }}
+      {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+    {{- end }}
+  {{- else }}
+    {{- range $pages.ByWeight }}
+      {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+    {{- end }}
+  {{- end }}
+  {{- if $isActive }}
+    {{- if or .IsHome .Params.chapter $pages }}
+            </section>
+    {{- end }}
   {{- end }}
 {{- end }}
 {{- define "section-tree-print" }}
