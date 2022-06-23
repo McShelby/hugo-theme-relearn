@@ -1,13 +1,13 @@
 {{- $context := .context }}
 {{- $file := .file }}
-{{- $showFirstHeading := .showfirstheading | default true }}
-{{- if eq (printf "%T" $showFirstHeading) "string" }}
-	{{- $showFirstHeading = (eq $showFirstHeading "true") }}
+{{- $hideFirstHeading := .hidefirstheading | default false }}
+{{- if eq (printf "%T" $hideFirstHeading) "string" }}
+	{{- $hideFirstHeading = (eq $hideFirstHeading "true") }}
 {{- end }}
-{{- if not $showFirstHeading }}<div class="include hide-first-heading">{{ end }}
+{{- if $hideFirstHeading }}<div class="include hide-first-heading">{{ end }}
 {{- with $context }}
 
 {{ $file | readFile | safeHTML }}
 
-{{- if not $showFirstHeading }}</div>{{ end }}
+{{- if $hideFirstHeading }}</div>{{ end }}
 {{- end }}

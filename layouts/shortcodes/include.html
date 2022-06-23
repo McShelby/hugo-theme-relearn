@@ -1,5 +1,7 @@
+@@{{ (.Get "hidefirstheading" | default (.Get 1))  | humanize}}@
+
 {{- partial "shortcodes/include.html" (dict
   "context" .
-  "file"             (.Get "align" | default (.Get 0))
-  "showFirstHeading" (.Get "showfirstheading" | default (.Get 1))
+  "file"             (.Get "file" | default (.Get 0))
+  "hidefirstheading" (.Get "hidefirstheading" | default (.Get 1))
 ) }}

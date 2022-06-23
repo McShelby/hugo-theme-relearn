@@ -16,6 +16,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 4.2.0
 
+- **Breaking**: The second parameter for the [`include` shortcode]({{% relref "shortcodes/tabs" %}}) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.
+
+  If you've used the second boolean parameter, you have to rename it and invert its value to achive the same behavior.
+
 - **Change**: Previously, if the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
 
 - **New**: All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
