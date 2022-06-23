@@ -5,7 +5,7 @@ title = "Tabbed views"
 
 The `tabs` shortcode displays arbitrary content in unlimited number of tabs. This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
 
-{{< tabs groupId="tabs-example-language" >}}
+{{< tabs groupid="tabs-example-language" >}}
 {{% tab name="python" %}}
 
 ```python
@@ -26,7 +26,7 @@ echo "Hello World!"
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
-{{< tabs groupId="shortcode-parameter">}}
+{{< tabs groupid="shortcode-parameter">}}
 {{% tab name="shortcode" %}}
 
 ````go
@@ -70,21 +70,21 @@ echo "Hello World!"
 
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
-| **groupId**           | `default`        | Arbitrary name of the group the tab view belongs to.<br/><br/>Tab views with the same **groupId** sychronize their selected tab. This sychronization applies to the whole site! |
+| **groupid**           | `default`        | Arbitrary name of the group the tab view belongs to.<br/><br/>Tab views with the same **groupid** sychronize their selected tab. This sychronization applies to the whole site! |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
 {{% notice note %}}
-When using tab views with different content sets, make sure to use a common `groupId` for equal sets of tabs but distinct `groupId` for different sets.
+When using tab views with different content sets, make sure to use a common `groupid` for equal sets of tabs but distinct `groupid` for different sets.
 
-The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came from the `'default'` group on a different page then the first tab is selected instead.
+The tab selection is restored automatically based on the `groupid` and if it cannot find a tab item because it came from the `'default'` group on a different page then the first tab is selected instead.
 {{% /notice %}}
 
 ## Examples
 
-### Distinct `groupId`
+### Distinct `groupid`
 
 ````go
-{{</* tabs groupId="config" */>}}
+{{</* tabs groupid="config" */>}}
 {{%/* tab name="json" */%}}
 ```json
 {
@@ -105,7 +105,7 @@ Hello = World
 {{</* /tabs */>}}
 ````
 
-{{< tabs groupId="tabs-example-config" >}}
+{{< tabs groupid="tabs-example-config" >}}
 {{% tab name="json" %}}
 ```json
 {
@@ -125,12 +125,12 @@ Hello = World
 {{% /tab %}}
 {{< /tabs >}}
 
-### Non-Distinct `groupId`
+### Non-Distinct `groupid`
 
 See what happens to this tab view if you select **properties** tab from the previous example.
 
 ````go
-{{</* tabs groupId="config" */>}}
+{{</* tabs groupid="config" */>}}
 {{%/* tab name="json" */%}}
 ```json
 {
@@ -146,7 +146,7 @@ See what happens to this tab view if you select **properties** tab from the prev
 {{</* /tabs */>}}
 ````
 
-{{< tabs groupId="tabs-example-config" >}}
+{{< tabs groupid="tabs-example-config" >}}
 {{% tab name="json" %}}
 ```json
 {

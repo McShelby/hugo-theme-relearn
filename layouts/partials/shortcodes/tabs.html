@@ -1,21 +1,21 @@
 {{- $context := .context }}
 {{- $tabs := .tabs | default slice }}
-{{- $groupId := .groupId | default "default" }}
+{{- $groupid := .groupid | default "default" }}
 {{- with $context }}
 <div class="tab-panel">
   <div class="tab-nav">
   {{- range $idx, $tab := $tabs }}
     <button
       data-tab-item="{{ .name }}"
-      data-tab-group="{{ $groupId }}"
+      data-tab-group="{{ $groupid }}"
       class="tab-nav-button {{ cond (eq $idx 0) "active" ""}}"
-      onclick="switchTab('{{ $groupId }}','{{ .name }}')"
+      onclick="switchTab('{{ $groupid }}','{{ .name }}')"
       ><span>{{ .name }}</span></button>
   {{- end }}
   </div>
   <div class="tab-content">
     {{- range $idx, $tab := $tabs }}
-    <div data-tab-item="{{ .name }}" data-tab-group="{{ $groupId }}" class="tab-item {{ cond (eq $idx 0) "active" ""}}">
+    <div data-tab-item="{{ .name }}" data-tab-group="{{ $groupid }}" class="tab-item {{ cond (eq $idx 0) "active" ""}}">
 {{ .content | safeHTML }}
     </div>
     {{- end }}
