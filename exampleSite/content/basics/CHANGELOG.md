@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.2.0 (2022-06-23)
+
+### Enhancements
+
+- [**feature**][**change**] tabs: don't change tab selection if panel does not contain item [#279](https://github.com/McShelby/hugo-theme-relearn/issues/279)
+- [**feature**] shortcodes: convert to partials [#277](https://github.com/McShelby/hugo-theme-relearn/issues/277)
+
+### Fixes
+
+- [**bug**] swagger: avoid builtin syntax-highlightning [#280](https://github.com/McShelby/hugo-theme-relearn/issues/280)
+- [**bug**] search: fix console message for missing lunr translations [#278](https://github.com/McShelby/hugo-theme-relearn/issues/278)
+- [**bug**] tabs: fix wrapping when having many tabs [#272](https://github.com/McShelby/hugo-theme-relearn/issues/272)
+
+---
+
 ## 4.1.1 (2022-06-18)
 
 ### Fixes
