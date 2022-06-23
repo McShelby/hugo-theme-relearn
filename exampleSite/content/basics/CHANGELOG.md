@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.2.5 (2022-06-23)
+
+### Fixes
+
+- [**bug**] swagger: javascript code does not load in documentation [#285](https://github.com/McShelby/hugo-theme-relearn/issues/285)
+- [**bug**] children: descriptions not working [#284](https://github.com/McShelby/hugo-theme-relearn/issues/284)
+- [**bug**] print: fix empty page for shortcut links [#283](https://github.com/McShelby/hugo-theme-relearn/issues/283)
+
+---
+
 ## 4.2.4 (2022-06-23)
 
 ### Fixes
