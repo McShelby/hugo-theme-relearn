@@ -1,5 +1,14 @@
 {{- $currentNode := . }}
 {{- $isActive := .IsHome }}
+{{- $r_url := .RelPermalink }}
+{{- with .Site.Menus.shortcuts }}
+  {{- range sort . "Weight" }}
+    {{- $s_url := .URL | relLangURL }}
+    {{- if (eq $s_url $r_url) }}
+      {{- $isActive = true }}
+    {{- end }}
+  {{- end }}
+{{- end }}
 {{- $pages := .Site.Home.Sections }}
 {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
@@ -29,6 +38,7 @@
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
   {{- with .sect }}
     {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
+    {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
     {{- $isActive = or $isSelf $isActive }}
     {{- $pages := .Pages }}
     {{- if .Page.IsHome }}
@@ -37,7 +47,6 @@
       {{- $pages = (.Pages | union .Sections) }}
     {{- end }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
-    {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
     {{- else if or .IsSection .IsHome }}
