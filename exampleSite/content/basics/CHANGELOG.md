@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.2.4 (2022-06-23)
+
+### Fixes
+
+- [**bug**] theme: fix url for logo and home button [#282](https://github.com/McShelby/hugo-theme-relearn/issues/282)
+
+---
+
 ## 4.2.3 (2022-06-23)
 
 ### Fixes
