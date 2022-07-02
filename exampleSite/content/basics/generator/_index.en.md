@@ -24,14 +24,14 @@ This only works in modern browsers.
 
 ## Variant generator
 
-<span class="btn cstyle secondary"><a class="vardownload"><i class="fa-fw fas fa-download"></i> Download variant</a></span>
-<span class="btn cstyle warning"><a class="varreset"><i class="fa-fw fas fa-trash"></i> Reset variant</a></span>
+{{% button style="secondary" icon="download" %}}Download variant{{% /button %}}
+{{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}
 
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
 
-<span class="btn cstyle secondary"><a class="vardownload"><i class="fa-fw fas fa-download"></i> Download variant</a></span>
-<span class="btn cstyle warning"><a class="varreset"><i class="fa-fw fas fa-trash"></i> Reset variant</a></span>
+{{% button style="secondary" icon="download" %}}Download variant{{% /button %}}
+{{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}
 
 <script>
-variants.generator( '#vargenerator', '.vardownload', '.varreset' );
+variants.generator( '#vargenerator', '.secondary a', '.warning a' );
 </script>
