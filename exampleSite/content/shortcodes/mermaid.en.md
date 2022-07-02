@@ -3,7 +3,7 @@ description = "Generate diagrams and flowcharts from text"
 title = "Mermaid"
 +++
 
-With the [Mermaid](https://mermaidjs.github.io/) library and shortcode, you can  generate diagrams and flowcharts from text, in a similar manner as Markdown.
+The `mermaid` shortcode generates diagrams and flowcharts from text, in a similar manner as Markdown using the [Mermaid](https://mermaidjs.github.io/) library.
 
 {{< mermaid >}}
 graph LR;
@@ -32,7 +32,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 {{< tabs groupId="shortcode-parameter">}}
 {{% tab name="codefence" %}}
 
-````plaintext
+````md
 ```mermaid
 graph LR;
     If --> Then
@@ -69,7 +69,7 @@ The generated graphs can be be panned by dragging them and zoomed by using the m
 
 ### Parameter
 
-Parameter are only supported when using shortcode syntax. Defaults are used when using codefence syntax.
+Parameter are only supported when using shortcode or partial syntax. Defaults are used when using codefence syntax.
 
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
@@ -98,9 +98,9 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 
 [markup]
   [markup.highlight]
-    # if set to `guessSyntax = true`, there will be no unstyled code even if no language
-    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
-    # setting for your site
+    # if `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT mermaid and math codefences will not work anymore! So this is a
+    # mandatory setting for your site if you want to use mermaid codefences
     guessSyntax = false
 ````
 
