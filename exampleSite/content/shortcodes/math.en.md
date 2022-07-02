@@ -9,10 +9,6 @@ The `math` shortcode generates beautiful formatted math and chemical formulae us
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{< /math >}}
 
-{{% notice note %}}
-This only works in modern browsers.
-{{% /notice %}}
-
 ## Usage
 
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.
