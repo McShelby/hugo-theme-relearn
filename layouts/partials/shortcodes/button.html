@@ -17,7 +17,7 @@
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $context }}
 <span class="btn cstyle {{ $style }}">
-  <a href="{{ $href }}" target="_blank">
+  <a{{ if $href }} href="{{ $href }}" target="_blank"{{ end }}>
     {{- if and $icon (eq $iconposition "left") }}
     <i class="{{ $icon }}"></i>
     {{- end }}
