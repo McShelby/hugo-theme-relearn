@@ -22,6 +22,19 @@ var psc;
 var psm;
 var pst;
 
+function scrollbarWidth(){
+    // https://davidwalsh.name/detect-scrollbar-width
+    // Create the measurement node
+    var scrollDiv = document.createElement("div");
+    scrollDiv.className = "scrollbar-measure";
+    document.body.appendChild(scrollDiv);
+    // Get the scrollbar width
+    var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    // Delete the DIV
+    document.body.removeChild(scrollDiv);
+    return scrollbarWidth;
+}
+
 function switchTab(tabGroup, tabId) {
     var tabs = jQuery(".tab-panel").has("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
     var allTabItems = tabs.find("[data-tab-group='"+tabGroup+"']");
@@ -380,6 +393,20 @@ function initMenuScrollbar(){
             psm && psm.update();
         });
     });
+
+    // finally, we want to adjust the contents right padding if there is a scrollbar visible
+    var scrollbarSize = scrollbarWidth();
+    function adjustContentWidth(){
+        var left = parseFloat( getComputedStyle( elc ).getPropertyValue( 'padding-left' ) );
+        var right = left;
+        if( elc.scrollHeight > elc.clientHeight ){
+            // if we have a scrollbar reduce the right margin by the scrollbar width
+            right = Math.max( 0, left - scrollbarSize );
+        }
+        elc.style[ 'padding-right' ] = '' + right + 'px';
+    }
+    window.addEventListener('resize', adjustContentWidth );
+    adjustContentWidth();
 }
 
 function initLightbox(){
