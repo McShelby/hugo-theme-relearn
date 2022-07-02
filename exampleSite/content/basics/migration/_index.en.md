@@ -16,7 +16,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 4.3.0
 
-- **New**: The new shortcode `math` is available to add beatiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
+- **New**: The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
 
 ## 4.2.0
 
