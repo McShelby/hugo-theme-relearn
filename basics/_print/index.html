@@ -10,18 +10,18 @@
     <title>Basics :: Hugo Relearn Theme</title>
     <link rel="canonical" type="text/html" href="/hugo-theme-relearn/basics/" title="Hugo Relearn Theme" />
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/basics/index.xml" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/images/logo.svg?1656199764" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1656199764" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1656199764" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/variant.js?1656199764"></script>
+    <link rel="icon" href="/images/logo.svg?1656764448" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1656764448" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1656764448" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/variant.js?1656764448"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1656764448"></script>
   </head>
   <body class="mobile-support print" data-url="/hugo-theme-relearn/basics/">
     <div id="body" class="default-animation">
@@ -97,6 +97,10 @@
 <p><strong>Change</strong>: A change in default behavior. This may requires action by you / may or may not be revertable by configuration.</p>
 <p><strong>New</strong>: Marks new behavior you might find interesting or comes configurable.</p>
 <hr>
+<h2 id="430">4.3.0</h2>
+<ul>
+<li><strong>New</strong>: The new shortcode <code>math</code> is available to add beatiful math and chemical formulae. See the <a href="/hugo-theme-relearn/shortcodes/math/">documentation</a> for available features. This feature will not work with Internet Explorer 11.</li>
+</ul>
 <h2 id="420">4.2.0</h2>
 <ul>
 <li>
@@ -534,6 +538,12 @@
 </span></span><span class="line"><span class="cl">  <span class="nx">disableBreadcrumb</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># If set to true, hide table of contents menu in the header of all pages</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">disableToc</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># If set to false, load the MathJax module on every page regardless if a MathJax shortcode is present</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableMathJax</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Specifies the remote location of the MathJax js</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">customMathJaxURL</span> <span class="p">=</span> <span class="s2">&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Initialization parameter for MathJax, see MathJax documentation</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mathJaxInitialize</span> <span class="p">=</span> <span class="s2">&#34;{}&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># If set to false, load the Mermaid module on every page regardless if a Mermaid shortcode or Mermaid codefence is present</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">disableMermaid</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># Specifies the remote location of the Mermaid js</span>
@@ -587,13 +597,17 @@ When you build the site with <code>hugo server</code>, hugo generates it interna
 <p>While colors of your chosen color variant are reset to the theme&rsquo;s light standard values for printing, this does not apply for Mermaid diagrams and Swagger/OpenAPI Specification. Those will still use the colors of your chosen color variant which may cause a non coherent look on paper.</p>
     </div>
 </div>
+<h2 id="mathjax">MathJax</h2>
+<p>The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See <a href="/hugo-theme-relearn/shortcodes/math/">Math</a> for additional documentation.</p>
+<h3 id="math-example">Example</h3>
+<p>MathJax is globally disabled. By default it won&rsquo;t be loaded by any page.</p>
+<p>On page &ldquo;Physics&rdquo; you coded some JavaScript for a dynamic formulae. You can set the MathJax parameters locally to load mathJax on this page.</p>
+<p>You also can disable MathJax for specific pages while globally enabled.</p>
 <h2 id="mermaid">Mermaid</h2>
 <p>The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See <a href="/hugo-theme-relearn/shortcodes/mermaid/">Mermaid</a> for additional documentation.</p>
-<blockquote>
-<p>Example:</p>
-<p>Mermaid is globally disabled. By default it won&rsquo;t be loaded by any page.
-On page &ldquo;Architecture&rdquo; you need a class diagram. You can set the Mermaid parameters locally to only load mermaid on this page (not on the others).</p>
-</blockquote>
+<h3 id="mermaid-example">Example</h3>
+<p>Mermaid is globally disabled. By default it won&rsquo;t be loaded by any page.</p>
+<p>On page &ldquo;Architecture&rdquo; you coded some JavaScript to dynamically generate a class diagram. You can set the Mermaid parameters locally to load mermaid on this page.</p>
 <p>You also can disable Mermaid for specific pages while globally enabled.</p>
 <h2 id="home-button-configuration">Home Button Configuration</h2>
 <p>If the <code>disableLandingPageButton</code> option is set to <code>false</code>, a Home button will appear
@@ -701,13 +715,37 @@ You could use an <code>img</code> HTML tag and reference an image created under 
     </div>
 </div>
 <h2 id="variant-generator">Variant generator</h2>
-<p><span class="btn cstyle secondary"><a class="vardownload"><i class="fa-fw fas fa-download"></i> Download variant</a></span>
-<span class="btn cstyle warning"><a class="varreset"><i class="fa-fw fas fa-trash"></i> Reset variant</a></span></p>
+<p>
+<span class="btn cstyle secondary">
+  <a>
+    <i class="fa-fw fas fa-download"></i>
+    Download variant
+  </a>
+</span>
+
+<span class="btn cstyle warning">
+  <a>
+    <i class="fa-fw fas fa-trash"></i>
+    Reset variant
+  </a>
+</span></p>
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
-<p><span class="btn cstyle secondary"><a class="vardownload"><i class="fa-fw fas fa-download"></i> Download variant</a></span>
-<span class="btn cstyle warning"><a class="varreset"><i class="fa-fw fas fa-trash"></i> Reset variant</a></span></p>
+<p>
+<span class="btn cstyle secondary">
+  <a>
+    <i class="fa-fw fas fa-download"></i>
+    Download variant
+  </a>
+</span>
+
+<span class="btn cstyle warning">
+  <a>
+    <i class="fa-fw fas fa-trash"></i>
+    Reset variant
+  </a>
+</span></p>
 <script>
-variants.generator( '#vargenerator', '.vardownload', '.varreset' );
+variants.generator( '#vargenerator', '.secondary a', '.warning a' );
 </script>
 
             <footer class="footline">
@@ -1334,12 +1372,12 @@ variants.generator( '#vargenerator', '.vardownload', '.varreset' );
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1656199764"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1656764448"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -1376,6 +1414,7 @@ variants.generator( '#vargenerator', '.vardownload', '.varreset' );
           <li data-nav-id="/hugo-theme-relearn/shortcodes/children/children-3/test3/" title="page 3-1" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/children/children-3/test3/">page 3-1<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/expand/" title="Expand" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/expand/">Expand<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/include/" title="Include" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/include/">Include<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/hugo-theme-relearn/shortcodes/math/" title="Math" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/math/">Math<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/mermaid/" title="Mermaid" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/mermaid/">Mermaid<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/notice/" title="Notice" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/notice/">Notice<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/siteparam/" title="Site param" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/siteparam/">Site param<i class="fas fa-check read-icon"></i></a></li>
@@ -1451,15 +1490,15 @@ variants.generator( '#vargenerator', '.vardownload', '.varreset' );
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1656199764"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1656764448"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1656764448"></script>
     <script>
       function useMermaid( config ){
         if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
@@ -1472,6 +1511,6 @@ variants.generator( '#vargenerator', '.vardownload', '.varreset' );
       }
       useMermaid( JSON.parse("{ \"securityLevel\": \"loose\" }") );
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1656764448"></script>
   </body>
 </html>

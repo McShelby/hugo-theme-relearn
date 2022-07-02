@@ -10,18 +10,18 @@
     <title>Hugo Relearn Theme</title>
     <link rel="canonical" type="text/html" href="/hugo-theme-relearn" title="Hugo Relearn Theme" />
     <link rel="alternate" type="application/rss&#43;xml" href="/hugo-theme-relearn/index.xml" title="Hugo Relearn Theme" />
-    <link rel="icon" href="/images/logo.svg?1656199764" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1656199764" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1656199764" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1656199764" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/variant.js?1656199764"></script>
+    <link rel="icon" href="/images/logo.svg?1656764448" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1656764448" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1656764448" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1656764448" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/variant.js?1656764448"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1656764448"></script>
   </head>
   <body class="mobile-support print" data-url="/hugo-theme-relearn/">
     <div id="body" class="default-animation">
@@ -126,6 +126,7 @@
 <li><a href="/hugo-theme-relearn/cont/syntaxhighlight/">Syntax highlighting</a></li>
 <li><a href="/hugo-theme-relearn/shortcodes/attachments/">Attachments files</a></li>
 <li><a href="/hugo-theme-relearn/shortcodes/children/">List child pages</a></li>
+<li>Math and chemical <a href="/hugo-theme-relearn/shortcodes/math/">formulae</a> using the MathJax library</li>
 <li><a href="/hugo-theme-relearn/shortcodes/mermaid/">Mermaid diagrams</a> for flowcharts, sequences, gantts, pie, etc.</li>
 <li><a href="/hugo-theme-relearn/shortcodes/swagger/">Swagger UI</a> for OpenAPI Specifications</li>
 <li><a href="/hugo-theme-relearn/basics/customization/">Customizable look and feel</a></li>
@@ -170,6 +171,10 @@
 <p><strong>Change</strong>: A change in default behavior. This may requires action by you / may or may not be revertable by configuration.</p>
 <p><strong>New</strong>: Marks new behavior you might find interesting or comes configurable.</p>
 <hr>
+<h2 id="430">4.3.0</h2>
+<ul>
+<li><strong>New</strong>: The new shortcode <code>math</code> is available to add beatiful math and chemical formulae. See the <a href="/hugo-theme-relearn/shortcodes/math/">documentation</a> for available features. This feature will not work with Internet Explorer 11.</li>
+</ul>
 <h2 id="420">4.2.0</h2>
 <ul>
 <li>
@@ -607,6 +612,12 @@
 </span></span><span class="line"><span class="cl">  <span class="nx">disableBreadcrumb</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># If set to true, hide table of contents menu in the header of all pages</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">disableToc</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># If set to false, load the MathJax module on every page regardless if a MathJax shortcode is present</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableMathJax</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Specifies the remote location of the MathJax js</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">customMathJaxURL</span> <span class="p">=</span> <span class="s2">&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Initialization parameter for MathJax, see MathJax documentation</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mathJaxInitialize</span> <span class="p">=</span> <span class="s2">&#34;{}&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># If set to false, load the Mermaid module on every page regardless if a Mermaid shortcode or Mermaid codefence is present</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">disableMermaid</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># Specifies the remote location of the Mermaid js</span>
@@ -660,13 +671,17 @@ When you build the site with <code>hugo server</code>, hugo generates it interna
 <p>While colors of your chosen color variant are reset to the theme&rsquo;s light standard values for printing, this does not apply for Mermaid diagrams and Swagger/OpenAPI Specification. Those will still use the colors of your chosen color variant which may cause a non coherent look on paper.</p>
     </div>
 </div>
+<h2 id="mathjax">MathJax</h2>
+<p>The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See <a href="/hugo-theme-relearn/shortcodes/math/">Math</a> for additional documentation.</p>
+<h3 id="math-example">Example</h3>
+<p>MathJax is globally disabled. By default it won&rsquo;t be loaded by any page.</p>
+<p>On page &ldquo;Physics&rdquo; you coded some JavaScript for a dynamic formulae. You can set the MathJax parameters locally to load mathJax on this page.</p>
+<p>You also can disable MathJax for specific pages while globally enabled.</p>
 <h2 id="mermaid">Mermaid</h2>
 <p>The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See <a href="/hugo-theme-relearn/shortcodes/mermaid/">Mermaid</a> for additional documentation.</p>
-<blockquote>
-<p>Example:</p>
-<p>Mermaid is globally disabled. By default it won&rsquo;t be loaded by any page.
-On page &ldquo;Architecture&rdquo; you need a class diagram. You can set the Mermaid parameters locally to only load mermaid on this page (not on the others).</p>
-</blockquote>
+<h3 id="mermaid-example">Example</h3>
+<p>Mermaid is globally disabled. By default it won&rsquo;t be loaded by any page.</p>
+<p>On page &ldquo;Architecture&rdquo; you coded some JavaScript to dynamically generate a class diagram. You can set the Mermaid parameters locally to load mermaid on this page.</p>
 <p>You also can disable Mermaid for specific pages while globally enabled.</p>
 <h2 id="home-button-configuration">Home Button Configuration</h2>
 <p>If the <code>disableLandingPageButton</code> option is set to <code>false</code>, a Home button will appear
@@ -774,13 +789,37 @@ You could use an <code>img</code> HTML tag and reference an image created under 
     </div>
 </div>
 <h2 id="variant-generator">Variant generator</h2>
-<p><span class="btn cstyle secondary"><a class="vardownload"><i class="fa-fw fas fa-download"></i> Download variant</a></span>
-<span class="btn cstyle warning"><a class="varreset"><i class="fa-fw fas fa-trash"></i> Reset variant</a></span></p>
+<p>
+<span class="btn cstyle secondary">
+  <a>
+    <i class="fa-fw fas fa-download"></i>
+    Download variant
+  </a>
+</span>
+
+<span class="btn cstyle warning">
+  <a>
+    <i class="fa-fw fas fa-trash"></i>
+    Reset variant
+  </a>
+</span></p>
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
-<p><span class="btn cstyle secondary"><a class="vardownload"><i class="fa-fw fas fa-download"></i> Download variant</a></span>
-<span class="btn cstyle warning"><a class="varreset"><i class="fa-fw fas fa-trash"></i> Reset variant</a></span></p>
+<p>
+<span class="btn cstyle secondary">
+  <a>
+    <i class="fa-fw fas fa-download"></i>
+    Download variant
+  </a>
+</span>
+
+<span class="btn cstyle warning">
+  <a>
+    <i class="fa-fw fas fa-trash"></i>
+    Reset variant
+  </a>
+</span></p>
 <script>
-variants.generator( '#vargenerator', '.vardownload', '.varreset' );
+variants.generator( '#vargenerator', '.secondary a', '.warning a' );
 </script>
 
             <footer class="footline">
@@ -2375,6 +2414,10 @@ You&rsquo;ll see error reports in your browsers console log for each unsupported
 <p>Displays content from other files</p>
 					
 
+<h2><a href="/hugo-theme-relearn/shortcodes/math/" >Math</a></h2>
+<p>Beautiful math and chemical formulae</p>
+					
+
 <h2><a href="/hugo-theme-relearn/shortcodes/mermaid/" >Mermaid</a></h2>
 <p>Generate diagrams and flowcharts from text</p>
 					
@@ -3379,8 +3422,160 @@ No need to press you!
     
           <article>
 
+<h1>Math</h1>
+<p>The <code>math</code> shortcode generates beautiful formatted math and chemical formulae using the <a href="https://mathjax.org/">MathJax</a> library.</p>
+
+<span class="math align-center">
+$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+</span>
+
+<div class="box notices cstyle note">
+    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+    <div class="box-content">
+<p>This only works in modern browsers.</p>
+    </div>
+</div>
+<h2 id="usage">Usage</h2>
+<p>While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.</p>
+<p>You are free to also call this shortcode from your own partials.</p>
+
+<div class="box notices cstyle note">
+    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+    <div class="box-content">
+<p>To use codefence syntax you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting (<a href="#configuration">see the configuration section</a>).</p>
+    </div>
+</div>
+
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="codefence"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button active"
+      onclick="switchTab('shortcode-parameter','codefence')"
+      ><span>codefence</span></button>
+    <button
+      data-tab-item="shortcode"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button "
+      onclick="switchTab('shortcode-parameter','shortcode')"
+      ><span>shortcode</span></button>
+    <button
+      data-tab-item="partial"
+      data-tab-group="shortcode-parameter"
+      class="tab-nav-button "
+      onclick="switchTab('shortcode-parameter','partial')"
+      ><span>partial</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="codefence" data-tab-group="shortcode-parameter" class="tab-item active">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="s">```math
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></div>
+    </div>
+    <div data-tab-item="shortcode" data-tab-group="shortcode-parameter" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">math</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="err">$$\</span><span class="nf">left</span><span class="p">(</span> <span class="err">\</span><span class="nx">sum_</span><span class="p">{</span><span class="nx">k</span><span class="p">=</span><span class="mi">1</span><span class="p">}^</span><span class="nx">n</span> <span class="nx">a_k</span> <span class="nx">b_k</span> <span class="err">\</span><span class="nx">right</span><span class="p">)^</span><span class="mi">2</span> <span class="err">\</span><span class="nx">leq</span> <span class="err">\</span><span class="nf">left</span><span class="p">(</span> <span class="err">\</span><span class="nx">sum_</span><span class="p">{</span><span class="nx">k</span><span class="p">=</span><span class="mi">1</span><span class="p">}^</span><span class="nx">n</span> <span class="nx">a_k</span><span class="p">^</span><span class="mi">2</span> <span class="err">\</span><span class="nx">right</span><span class="p">)</span> <span class="err">\</span><span class="nf">left</span><span class="p">(</span> <span class="err">\</span><span class="nx">sum_</span><span class="p">{</span><span class="nx">k</span><span class="p">=</span><span class="mi">1</span><span class="p">}^</span><span class="nx">n</span> <span class="nx">b_k</span><span class="p">^</span><span class="mi">2</span> <span class="err">\</span><span class="nx">right</span><span class="p">)</span><span class="err">$$</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">math</span> <span class="p">&gt;}}</span>
+</span></span></code></pre></div>
+    </div>
+    <div data-tab-item="partial" data-tab-group="shortcode-parameter" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/math.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;context&#34;</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;content&#34;</span> <span class="s">&#34;$$left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span>
+</span></span></code></pre></div>
+    </div>
+  </div>
+</div>
+<h3 id="parameter">Parameter</h3>
+<p>Parameter are only supported when using shortcode or partial syntax. Defaults are used when using codefence syntax.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>align</strong></td>
+<td style="text-align:left"><code>center</code></td>
+<td style="text-align:left">Allowed values are <code>left</code>, <code>center</code> or <code>right</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><em><strong>&lt;content&gt;</strong></em></td>
+<td style="text-align:left"><em>&lt;empty&gt;</em></td>
+<td style="text-align:left">Your formuale.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<p>MathJax is configured with default settings. You can customize MathJax&rsquo;s default settings for all of your files thru a JSON object in your <code>config.toml</code> or override these settings per page thru your pages frontmatter.</p>
+<p>The JSON object of your <code>config.toml</code> / frontmatter is forwarded into MathJax&rsquo;s configuration object.</p>
+<p>See <a href="https://docs.mathjax.org/en/latest/options/index.html">MathJax documentation</a> for all allowed settings.</p>
+
+<div class="box notices cstyle note">
+    <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+    <div class="box-content">
+<p>To use codefence syntax you have to turn off <code>guessSyntax</code> for the <code>markup.highlight</code> setting.</p>
+    </div>
+</div>
+<h3 id="global-configuration-file">Global Configuration File</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mathJaxInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;chtml\&#34;: { \&#34;displayAlign\&#34;: \&#34;left\&#34; } }&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># if `guessSyntax = true`, there will be no unstyled code even if no language</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># was given BUT mermaid and math codefences will not work anymore! So this is a</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># mandatory setting for your site if you want to use math codefences</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">guessSyntax</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></div><h3 id="pages-frontmatter">Page&rsquo;s Frontmatter</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mathJaxInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;chtml\&#34;: { \&#34;displayAlign\&#34;: \&#34;left\&#34; } }&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span></code></pre></div><h2 id="examples">Examples</h2>
+<h3 id="inline-math">Inline Math</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">Inline math is generated if you use a single <span class="sb">`$`</span> as a delimiter around your formulae: {{<span class="p">&lt;</span> <span class="nt">math</span> <span class="p">&gt;</span>}}$\sqrt{3}${{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></div><p>Inline math is generated if you use a single <code>$</code> as a delimiter around your formulae: 
+<span class="math align-center">$\sqrt{3}$</span></p>
+<h3 id="blocklevel-math-with-left-alignment">Blocklevel Math with Left Alignment</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">If you delimit your formulae by two consecutive <span class="sb">`$$`</span> it generates a new block.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">math</span> <span class="na">align</span><span class="o">=</span><span class="s">&#34;left&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></div><p>If you delimit your formulae by two consecutive <code>$$</code> it generates a new block.</p>
+
+<span class="math align-left">
+$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+</span>
+<h3 id="codefence">Codefence</h3>
+<p>You can also use codefences but without further parameter.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="s">```math
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span></code></pre></div>
+<span class="math align-center">$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$</span><h3 id="chemical-formulae">Chemical formulae</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">$$\ce{Hg^2+ -&gt;[I-] HgI2 -&gt;[I-] [Hg^{II}I4]^2-}$$
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">math</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></div>
+<span class="math align-center">
+$$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
+</span>
+
+            <footer class="footline">
+            </footer>
+          </article>
+    
+          <article>
+
 <h1>Mermaid</h1>
-<p>With the <a href="https://mermaidjs.github.io/">Mermaid</a> library and shortcode, you can  generate diagrams and flowcharts from text, in a similar manner as Markdown.</p>
+<p>The <code>mermaid</code> shortcode generates diagrams and flowcharts from text, in a similar manner as Markdown using the <a href="https://mermaidjs.github.io/">Mermaid</a> library.</p>
 
 <div class="mermaid" align="center">
 graph LR;
@@ -3435,11 +3630,11 @@ graph LR;
   </div>
   <div class="tab-content">
     <div data-tab-item="codefence" data-tab-group="shortcode-parameter" class="tab-item active">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">```mermaid
-</span></span><span class="line"><span class="cl">graph LR;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="s">```mermaid
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>graph LR;
 </span></span><span class="line"><span class="cl">    If --&gt; Then
 </span></span><span class="line"><span class="cl">    Then --&gt; Else
-</span></span><span class="line"><span class="cl">```
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
 </span></span></code></pre></div>
     </div>
     <div data-tab-item="shortcode" data-tab-group="shortcode-parameter" class="tab-item ">
@@ -3461,7 +3656,7 @@ graph LR;
 </div>
 <p>The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.</p>
 <h3 id="parameter">Parameter</h3>
-<p>Parameter are only supported when using shortcode syntax. Defaults are used when using codefence syntax.</p>
+<p>Parameter are only supported when using shortcode or partial syntax. Defaults are used when using codefence syntax.</p>
 <table>
 <thead>
 <tr>
@@ -3501,9 +3696,9 @@ graph LR;
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="c"># if set to `guessSyntax = true`, there will be no unstyled code even if no language</span>
-</span></span><span class="line"><span class="cl">    <span class="c"># was given BUT mermaid code fences will not work anymore! So this is a mandatory</span>
-</span></span><span class="line"><span class="cl">    <span class="c"># setting for your site</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># if `guessSyntax = true`, there will be no unstyled code even if no language</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># was given BUT mermaid and math codefences will not work anymore! So this is a</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># mandatory setting for your site if you want to use mermaid codefences</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">guessSyntax</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span></code></pre></div><h3 id="pages-frontmatter">Page&rsquo;s Frontmatter</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
@@ -3637,7 +3832,8 @@ classDiagram
 </span></span></span><span class="line"><span class="cl"><span class="s">    locked --&gt; closed: Unlock
 </span></span></span><span class="line"><span class="cl"><span class="s">    closed --&gt; open: Open
 </span></span></span><span class="line"><span class="cl"><span class="s">```</span>
-</span></span></code></pre></div><div class="mermaid" align="center">stateDiagram-v2
+</span></span></code></pre></div>
+<div class="mermaid" align="center">stateDiagram-v2
   open: Open Door
   closed: Closed Door
   locked: Locked Door
@@ -3645,7 +3841,6 @@ classDiagram
   closed --> locked: Lock
   locked --> closed: Unlock
   closed --> open: Open</div>
-
             <footer class="footline">
             </footer>
           </article>
@@ -4413,12 +4608,12 @@ classDiagram
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1656199764"></script>
-        <script src="/hugo-theme-relearn/js/search.js?1656199764"></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1656764448"></script>
+        <script src="/hugo-theme-relearn/js/search.js?1656764448"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -4455,6 +4650,7 @@ classDiagram
           <li data-nav-id="/hugo-theme-relearn/shortcodes/children/children-3/test3/" title="page 3-1" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/children/children-3/test3/">page 3-1<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/expand/" title="Expand" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/expand/">Expand<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/include/" title="Include" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/include/">Include<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/hugo-theme-relearn/shortcodes/math/" title="Math" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/math/">Math<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/mermaid/" title="Mermaid" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/mermaid/">Mermaid<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/notice/" title="Notice" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/notice/">Notice<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/hugo-theme-relearn/shortcodes/siteparam/" title="Site param" class="dd-item"><a href="/hugo-theme-relearn/shortcodes/siteparam/">Site param<i class="fas fa-check read-icon"></i></a></li>
@@ -4530,15 +4726,40 @@ classDiagram
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async defer src="/hugo-theme-relearn/js/buttons.js?1656199764"></script>
+          <script async defer src="/hugo-theme-relearn/js/buttons.js?1656764448"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1656199764"></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1656764448"></script>
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign({
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="/hugo-theme-relearn/js/mathjax/tex-mml-chtml.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/jquery.svg.pan.zoom.js?1656764448"></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1656764448"></script>
     <script>
       function useMermaid( config ){
         if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
@@ -4551,7 +4772,7 @@ classDiagram
       }
       useMermaid( JSON.parse("{ \"securityLevel\": \"loose\" }") );
     </script>
-    <script src="/hugo-theme-relearn/js/rapidoc-min.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/rapidoc-min.js?1656764448"></script>
     <script>
       function useSwagger( config ){
         if( config.theme ){
@@ -4561,6 +4782,6 @@ classDiagram
       }
       useSwagger( JSON.parse("{}") );
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1656199764"></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1656764448"></script>
   </body>
 </html>

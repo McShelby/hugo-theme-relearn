@@ -77,7 +77,7 @@ function restoreTabSelections() {
 function initMermaid( update ) {
     // we are either in update or initialization mode;
     // during initialization, we want to edit the DOM;
-    // during update we only want to execute if something chanegd
+    // during update we only want to execute if something changed
     var decodeHTML = function( html ){
         var txt = document.createElement( 'textarea' );
         txt.innerHTML = html;
