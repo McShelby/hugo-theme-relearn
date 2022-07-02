@@ -7,6 +7,47 @@
     <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+{{- $wantsMathJax := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasMathJax")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasMathJax")) }}
+{{- if $wantsMathJax }}
+  {{- if isset .Params "mathjaxinitialize" }}
+    {{- $.Scratch.Set "mathJaxInitialize" .Params.mathJaxInitialize }}
+  {{- else if isset .Site.Params "mathjaxinitialize" }}
+    {{- $.Scratch.Set "mathJaxInitialize" .Site.Params.mathJaxInitialize }}
+  {{- else }}
+    {{- $.Scratch.Set "mathJaxInitialize" "{}" }}
+  {{- end }}
+    <script>
+      function useMathJax( config ){
+        window.MathJax = Object.assign({
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], // allow for single dollars as we set startup.elements
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false // avoid translation hassle for context menu
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse({{ $.Scratch.Get "mathJaxInitialize" }}) );
+    </script>
+  {{- if isset .Params "custommathjaxurl" }}
+    <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
+  {{- else if isset .Site.Params "custommathjaxurl" }}
+    <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
+  {{- else }}
+    <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+  {{- end }}
+{{- end }}
 {{- $wantsMermaid := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasMermaid")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasMermaid")) }}
 {{- if $wantsMermaid }}
     <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>

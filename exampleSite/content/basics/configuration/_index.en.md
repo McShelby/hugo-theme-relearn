@@ -49,6 +49,12 @@ Note that some of these parameters are explained in details in other sections of
   disableBreadcrumb = true
   # If set to true, hide table of contents menu in the header of all pages
   disableToc = false
+  # If set to false, load the MathJax module on every page regardless if a MathJax shortcode is present
+  disableMathJax = false
+  # Specifies the remote location of the MathJax js
+  customMathJaxURL = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  # Initialization parameter for MathJax, see MathJax documentation
+  mathJaxInitialize = "{}"
   # If set to false, load the Mermaid module on every page regardless if a Mermaid shortcode or Mermaid codefence is present
   disableMermaid = false
   # Specifies the remote location of the Mermaid js
@@ -118,14 +124,27 @@ This will add a little printer icon in the top bar. It will switch the page to p
 While colors of your chosen color variant are reset to the theme's light standard values for printing, this does not apply for Mermaid diagrams and Swagger/OpenAPI Specification. Those will still use the colors of your chosen color variant which may cause a non coherent look on paper.
 {{% /notice %}}
 
+## MathJax
+
+The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Math]({{< relref "shortcodes/math" >}}) for additional documentation.
+
+### Example {#math-example}
+
+MathJax is globally disabled. By default it won't be loaded by any page.
+
+On page "Physics" you coded some JavaScript for a dynamic formulae. You can set the MathJax parameters locally to load mathJax on this page.
+
+You also can disable MathJax for specific pages while globally enabled.
+
 ## Mermaid
 
 The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid" >}}) for additional documentation.
 
-> Example:
->
-> Mermaid is globally disabled. By default it won't be loaded by any page.
-> On page "Architecture" you need a class diagram. You can set the Mermaid parameters locally to only load mermaid on this page (not on the others).
+### Example {#mermaid-example}
+
+Mermaid is globally disabled. By default it won't be loaded by any page.
+
+On page "Architecture" you coded some JavaScript to dynamically generate a class diagram. You can set the Mermaid parameters locally to load mermaid on this page.
 
 You also can disable Mermaid for specific pages while globally enabled.
 

@@ -14,6 +14,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 4.3.0
+
+- **New**: The new shortcode `math` is available to add beatiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
+
 ## 4.2.0
 
 - **Breaking**: The second parameter for the [`include` shortcode]({{% relref "shortcodes/tabs" %}}) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.

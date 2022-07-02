@@ -31,6 +31,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 - [Syntax highlighting]({{%relref "cont/syntaxhighlight" %}})
 - [Attachments files]({{%relref "shortcodes/attachments" %}})
 - [List child pages]({{%relref "shortcodes/children" %}})
+- Math and chemical [formulae]({{%relref "shortcodes/math" %}}) using the MathJax library
 - [Mermaid diagrams]({{%relref "shortcodes/mermaid" %}}) for flowcharts, sequences, gantts, pie, etc.
 - [Swagger UI]({{%relref "shortcodes/swagger" %}}) for OpenAPI Specifications
 - [Customizable look and feel]({{%relref "basics/customization"%}})

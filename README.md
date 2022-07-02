@@ -25,6 +25,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Syntax highlighting
 - Attachments files
 - List child pages
+- Math and chemical formulae using the MathJax library
 - Mermaid diagrams for flowcharts, sequences, gantts, pie, etc.
 - Swagger UI for OpenAPI Specifications
 - Customizable look and feel

@@ -87,6 +87,7 @@
 {{- define "section-print" }}
   {{- $currentNode := .currentnode }}
   {{- with .sect }}
+    {{- $currentNode.Page.Store.Set "printHasMathJax" (or ($currentNode.Page.Store.Get "printHasMathJax") (.Page.Store.Get "htmlHasMathJax")) }}
     {{- $currentNode.Page.Store.Set "printHasMermaid" (or ($currentNode.Page.Store.Get "printHasMermaid") (.Page.Store.Get "htmlHasMermaid")) }}
     {{- $currentNode.Page.Store.Set "printHasSwagger" (or ($currentNode.Page.Store.Get "printHasSwagger") (.Page.Store.Get "htmlHasSwagger")) }}
     {{/* if we have a relative link in a print page, our print URL is one level to deep; so we are making it absolute to our page by prepending the page's permalink */}}

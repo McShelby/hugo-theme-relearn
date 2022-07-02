@@ -1,0 +1,9 @@
+{{- $context := .context }}
+{{- $content := .content }}
+{{- $align := .align | default "center" }}
+{{- with $context }}
+<span class="math align-{{ $align }}">
+  {{- $content | safeHTML -}}
+</span>
+{{- .Page.Store.Set "htmlHasMathJax" true }}
+{{- end }}

@@ -6,6 +6,10 @@
 {{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}{{/* the node itself is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}{{/* the node or one of its parents is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}{{/* the node is hidden from the current page */}}
+{{- $wantsMathjax := or (and (ne $currentNode.Params.disableMathjax nil) (not $currentNode.Params.disableMathjax)) (and (ne .Site.Params.disableMathjax nil) (not .Site.Params.disableMathjax)) }}
+{{- if $wantsMathjax }}
+	{{- $currentNode.Page.Store.Set "htmlHasMathjax" true }}
+{{- end }}
 {{- $wantsMermaid := or (and (ne $currentNode.Params.disableMermaid nil) (not $currentNode.Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) }}
 {{- if $wantsMermaid }}
 	{{- $currentNode.Page.Store.Set "htmlHasMermaid" true }}
