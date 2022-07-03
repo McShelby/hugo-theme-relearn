@@ -16,6 +16,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 4.3.0
 
+- **Change**: Renaming the frontmatter options `pre` / `post` to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
+
+- **New**: Adding new partials `heading-pre.html` / `heading-post.html` and according frontmatter options `headingPre` / `headingPost` to modifiy the way your page`s main heading gets styled.
+
 - **New**: The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
 
 ## 4.2.0

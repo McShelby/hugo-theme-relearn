@@ -20,7 +20,7 @@ It will create a page with predefined Front-Matter:
 ```toml
 +++
 chapter = true
-pre = "<b>X. </b>"
+menuPre = "<b>X. </b>"
 title = "{{ replace .Name "-" " " | title }}"
 weight = 5
 +++

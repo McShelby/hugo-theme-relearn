@@ -2,7 +2,7 @@
 {{- with .page }}
           <article{{if .Params.chapter}} class="chapter"{{end}}>
 
-{{ if and (not .IsHome ) (not .Params.chapter) }}<h1>{{ .Title }}</h1>
+{{ if and (not .IsHome ) (not .Params.chapter) }}{{- partial "heading-pre.html" . }}<h1>{{ .Title }}</h1>{{- partial "heading-post.html" . }}
 {{ end }}{{ $content | safeHTML }}
             <footer class="footline">
               {{- partial "content-footer.html" . }}

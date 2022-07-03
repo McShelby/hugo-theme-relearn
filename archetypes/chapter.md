@@ -1,6 +1,6 @@
 +++
 chapter = true
-pre = "<b>X. </b>"
+menuPre = "<b>X. </b>"
 title = "{{ replace .Name "-" " " | title }}"
 weight = 5
 +++

@@ -54,7 +54,7 @@ You can define any HTML as prefix for the menu. In the example below, it's just 
 ```markdown
 +++
 chapter = true
-pre = "<b>1. </b>"
+menuPre = "<b>1. </b>"
 title = "Basics"
 weight = 5
 +++
@@ -110,10 +110,14 @@ menuTitle = ""
 alwaysopen = true
 # If set, this will explicitly override common rules for the sorting order of a page's submenu entries
 ordersectionsby = "title"
+# The title of the page heading will be prefixed by this HTML content
+headingPre = ""
+# The title of the page heading will be postfixed by this HTML content
+headingPost = ""
 # The title of the page in menu will be prefixed by this HTML content
-pre = ""
+menuPre = ""
 # The title of the page in menu will be postfixed by this HTML content
-post = ""
+menuPost = ""
 # Set the page as a chapter, changing the way it's displayed
 chapter = false
 # Hide a menu entry by setting this to true
@@ -127,12 +131,12 @@ LastModifierEmail = ""
 
 ### Add icon to a menu entry
 
-In the page frontmatter, add a `pre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
+In the page frontmatter, add a `menuPre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
 
 ```toml
 +++
 title = "GitHub repo"
-pre = "<i class='fab fa-github'></i> "
+menuPre = "<i class='fab fa-github'></i> "
 +++
 ```
 
