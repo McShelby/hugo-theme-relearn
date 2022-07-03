@@ -291,6 +291,10 @@ function initCodeClipboard(){
 }
 
 function initArrowNav(){
+    if( isPrint ){
+        return;
+    }
+
     // button navigation
     jQuery(function() {
         jQuery('a.nav-prev').click(function(){
