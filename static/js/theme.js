@@ -648,6 +648,36 @@ function initSwipeHandler(){
     document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
 }
 
+function clearHistory() {
+    var visitedItem = baseUriFull + 'visited-url/'
+    for( var item in sessionStorage ){
+        if( item.substring( 0, visitedItem.length ) === visitedItem ){
+            sessionStorage.removeItem( item );
+            var url = item.substring( visitedItem.length );
+            // in case we have `relativeURLs=true` we have to strip the
+            // relative path to root
+            url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
+            jQuery('[data-nav-id="' + url + '"]').removeClass('visited');
+        }
+    }
+}
+
+function initHistory() {
+    var visitedItem = baseUriFull + 'visited-url/'
+    sessionStorage.setItem(visitedItem+jQuery('body').data('url'), 1);
+
+    // loop through the sessionStorage and see if something should be marked as visited
+    for( var item in sessionStorage ){
+        if( item.substring( 0, visitedItem.length ) === visitedItem && sessionStorage.getItem( item ) == 1 ){
+            var url = item.substring( visitedItem.length );
+            // in case we have `relativeURLs=true` we have to strip the
+            // relative path to root
+            url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
+            jQuery('[data-nav-id="' + url + '"]').addClass('visited');
+        }
+    }
+}
+
 function scrollToActiveMenu() {
     window.setTimeout(function(){
         var e = document.querySelector( '#sidebar ul.topics li.active a' );
@@ -732,16 +762,7 @@ jQuery(function() {
     initCodeClipboard();
     restoreTabSelections();
     initSwipeHandler();
-
-    jQuery('[data-clear-history-toggle]').on('click', function() {
-        for( var item in sessionStorage ){
-          if( item.substring( 0, baseUriFull.length ) === baseUriFull ){
-            sessionStorage.removeItem( item );
-          }
-        }
-        location.reload();
-        return false;
-    });
+    initHistory();
 
     var ajax;
     jQuery('[data-search-input]').on('input', function() {
@@ -798,20 +819,6 @@ jQuery(function() {
 
     $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
-
-    var visitedItem = baseUriFull + 'visited-url/'
-    sessionStorage.setItem(visitedItem+jQuery('body').data('url'), 1);
-
-    // loop through the sessionStorage and see if something should be marked as visited
-    for( var item in sessionStorage ){
-        if( item.substring( 0, visitedItem.length ) === visitedItem && sessionStorage.getItem( item ) == 1 ){
-            var url = item.substring( visitedItem.length );
-            // in case we have `relativeURLs=true` we have to strip the
-            // relative path to root
-            url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
-            jQuery('[data-nav-id="' + url + '"]').addClass('visited');
-        }
-    }
 });
 
 jQuery.extend({
