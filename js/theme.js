@@ -242,10 +242,12 @@ function initCodeClipboard(){
     }
 
     $('code').each(function() {
-        var code = $(this),
-            text = code.text();
+        var code = $(this);
+        var text = code.text();
+        var parent = code.parent();
+        var inPre = parent.prop('tagName') == 'PRE';
 
-        if (text.length > 5) {
+        if (inPre || text.length > 5) {
             var clip = new ClipboardJS('.copy-to-clipboard-button', {
                 text: function(trigger) {
                     var text = $(trigger).prev('code').text();
@@ -272,8 +274,6 @@ function initCodeClipboard(){
                 });
             });
 
-            var parent = code.parent();
-            var inPre = parent.prop('tagName') == 'PRE';
             code.addClass('copy-to-clipboard-code');
             if( inPre ){
                 parent.addClass( 'copy-to-clipboard' );
