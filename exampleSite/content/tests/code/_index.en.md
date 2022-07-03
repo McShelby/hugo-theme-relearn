@@ -36,6 +36,12 @@ Code fences without any selected language
 }
 </code></pre>
 
+````jsonxmylmsl
+{
+  "well": "Code fences with unexisting language"
+}
+````
+
 ## Block Preformatted
 
     Some preformatted stuff with markdown indention
