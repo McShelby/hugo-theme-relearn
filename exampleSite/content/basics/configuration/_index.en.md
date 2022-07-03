@@ -64,7 +64,7 @@ Note that some of these parameters are explained in details in other sections of
   # If set to false, load the Swagger module on every page regardless if a Swagger shortcode is present
   disableSwagger = false
   # Specifies the remote location of the RapiDoc js
-  customSwaggerURL = ""https://unpkg.com/rapidoc/dist/rapidoc-min.js"
+  customSwaggerURL = "https://unpkg.com/rapidoc/dist/rapidoc-min.js"
   # Initialization parameter for Swagger, see RapiDoc documentation
   swaggerInitialize = "{ \"theme\": \"light\" }"
   # Hide Next and Previous page buttons normally displayed full height beside content
