@@ -21,7 +21,7 @@ This document shows you what's new in the latest release. For a detailed list of
   Nevertheless, it is recommended to adapt your existing files to the new way.
 
   - for your home page, add the frontmatter parameter `archetype = "home"`
-  - for all files having the old frontmatter parameter `chapter = true`, replace that parameter with `archetype = "chapter"`
+  - for all files having the old deprecated frontmatter parameter `chapter = true`, replace it with `archetype = "chapter"`
 
 - **Change**: The frontmatter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
 
