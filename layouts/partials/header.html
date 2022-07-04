@@ -79,7 +79,7 @@
         {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
         {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
         {{- $hastoc := not (eq 0 (int (len (.TableOfContents | plainify)))) }}
-        {{- $toc := (and $hastoc (not $currentDisableToc) (not .Params.chapter)) }}
+        {{- $toc := (and $hastoc (not $currentDisableToc)) }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
               <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }} (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
@@ -104,7 +104,7 @@
         {{- end }}
         </div>
       </nav>
-      <main id="body-inner" class="highlightable{{if .Params.chapter}} chapter{{end}}" tabindex="-1">
+      <main id="body-inner" class="highlightable{{if (or .Params.narrow .Params.chapter) }} narrow{{end}}" tabindex="-1">
         <div class="flex-block-wrapper">
           <div id="head-tags">
 {{- partial "tags.html" . }}

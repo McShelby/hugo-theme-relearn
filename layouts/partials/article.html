@@ -1,11 +1,12 @@
-{{- $content := .content }}
-{{- with .page }}
-          <article{{if .Params.chapter}} class="chapter"{{end}}>
-
-{{ if and (not .IsHome ) (not .Params.chapter) }}{{- partial "heading-pre.html" . }}<h1>{{ .Title }}</h1>{{- partial "heading-post.html" . }}
-{{ end }}{{ $content | safeHTML }}
-            <footer class="footline">
-              {{- partial "content-footer.html" . }}
-            </footer>
-          </article>
+{{- $archetype := "default" }}
+{{- if .page.Params.archetype }}
+  {{- $archetype = .page.Params.archetype }}
+{{- else if .page.Params.chapter }}
+  {{- $archetype = "chapter-deprecated" }}
+{{- else if .page.IsHome }}
+  {{- $archetype = "home-deprecated" }}
 {{- end }}
+{{- if not (fileExists (printf "/layouts/partials/archetypes/%s.html" $archetype)) }}
+  {{- $archetype = "default" }}
+{{- end }}
+{{- partial (printf "archetypes/%s.html" $archetype) (dict "page" .page "content" .content) }}

@@ -14,9 +14,16 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 4.3.0
+## 5.0.0
 
-- **Change**: Renaming the frontmatter options `pre` / `post` to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
+- **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. Your existing content files will still work like before and therefore you don't need to change anything after the upgrade.
+
+  Nevertheless, it is recommended to adapt your existing files to the new way.
+
+  - for your home page, add the frontmatter parameter `archetype = "home"`
+  - for all files having the old frontmatter parameter `chapter = true`, replace that parameter with `archetype = "chapter"`
+
+- **Change**: The frontmatter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
 
 - **New**: Adding new partials `heading-pre.html` / `heading-post.html` and according frontmatter options `headingPre` / `headingPost` to modifiy the way your page`s main heading gets styled.
 

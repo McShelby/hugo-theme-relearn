@@ -18,7 +18,7 @@
 {{- else }}
   {{- if $isActive }}
     {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-    {{- if or .IsHome .Params.chapter $pages }}
+    {{- if or $pages }}
             <section>
     {{- end }}
   {{- end }}
@@ -32,7 +32,7 @@
     {{- end }}
   {{- end }}
   {{- if $isActive }}
-    {{- if or .IsHome .Params.chapter $pages }}
+    {{- if $pages }}
             </section>
     {{- end }}
   {{- end }}
@@ -59,7 +59,7 @@
       {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
       {{- if $isActive }}
         {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-        {{- if or .IsHome .Params.chapter $pages }}
+        {{- if $pages }}
           <section>
         {{- end }}
       {{- end }}
@@ -73,7 +73,7 @@
         {{- end }}
       {{- end }}
       {{- if $isActive }}
-        {{- if or .IsHome .Params.chapter $pages }}
+        {{- if $pages }}
           </section>
         {{- end }}
       {{- end }}

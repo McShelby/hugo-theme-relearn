@@ -1,5 +1,6 @@
 +++
-chapter = true
+archetype = "chapter"
+narrow = true
 title = "Shorrrtcodes"
 weight = 3
 +++

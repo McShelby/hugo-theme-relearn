@@ -1,12 +1,8 @@
 +++
-chapter = true
-menuPre = "<b>X. </b>"
+archetype = "chapter"
+narrow = true
 title = "{{ replace .Name "-" " " | title }}"
-weight = 5
+weight = X
 +++
-
-### Chapter X
-
-# Some Chapter title
 
 Lorem Ipsum.

@@ -1,13 +1,10 @@
 +++
-chapter = true
+archetype = "chapter"
 hidden = true
+narrow = true
 title = "Tests"
 weight = 4
 +++
-
-### Chapter 4
-
-# Tests
 
 Some pages for internal testing of differnt styles
 

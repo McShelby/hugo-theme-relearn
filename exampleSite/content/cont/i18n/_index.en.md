@@ -49,7 +49,7 @@ Be aware that only translated pages are displayed in menu. It's not replaced wit
 {{% /notice %}}
 
 {{% notice tip %}}
-Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-content) Front Matter parameter to translate urls too.
+Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-content) frontmatter parameter to translate urls too.
 {{% /notice %}}
 
 ## Search

@@ -39,51 +39,9 @@ content
 `_index.md` is required in each folder, it’s your “folder home page”
 {{% /notice %}}
 
-## Types
-
-The Relearn theme defines two types of pages. *Default* and *Chapter*. Both can be used at any level of the documentation, the only difference being layout display.
-
-### Chapter {#chapter-style}
-
-A **Chapter** displays a page meant to be used as introduction for a set of child pages. Commonly, it contains a simple title and a catch line to define content that can be found under it.
-
-You can define any HTML as prefix for the menu. In the example below, it's just a number but that could be an [icon](https://fortawesome.github.io/Font-Awesome/).
-
-![Chapter page](images/pages-chapter.png?classes=shadow&width=60pc)
-
-```markdown
-+++
-chapter = true
-menuPre = "<b>1. </b>"
-title = "Basics"
-weight = 5
-+++
-
-### Chapter 1
-
-# Basics
-
-Discover what this Hugo theme is all about and the core-concepts behind it.
-```
-
-To tell the Relearn theme to consider a page as a chapter, set `chapter=true` in the Front Matter of the page.
-
-### Default
-
-A **Default** page is any other content page.
-
-![Default page](images/pages-default.png?classes=shadow&width=60pc)
-
-```toml
-+++
-title = "Installation"
-weight = 15
-+++
-```
-
-The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you to train by following this [great documentation for beginners](https://gohugo.io/overview/quickstart/).
-
 ## Create your project
+
+The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you to train by following [great documentation for beginners](https://gohugo.io/overview/quickstart/).
 
 Hugo provides a `new` command to create a new website.
 
@@ -93,11 +51,11 @@ hugo new site <new_project>
 
 The Relearn theme provides [archetypes]({{%relref "cont/archetypes" %}}) to help you create this kind of pages.
 
-## Front Matter configuration
+## Frontmatter Configuration
 
-Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
+Each Hugo page has to define a [frontmatter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
 
-The Relearn theme uses the following parameters on top of Hugo ones :
+The Relearn theme uses the following parameters on top of Hugo ones:
 
 ```toml
 +++
@@ -118,8 +76,8 @@ headingPost = ""
 menuPre = ""
 # The title of the page in menu will be postfixed by this HTML content
 menuPost = ""
-# Set the page as a chapter, changing the way it's displayed
-chapter = false
+# Makes the content more narrow, increases font-size and alignment
+narrow = false
 # Hide a menu entry by setting this to true
 hidden = false
 # Display name of this page modifier. If set, it will be displayed in the footer.
@@ -185,11 +143,3 @@ The theme generates the menu based on the following rules:
 - all remaining entries are not shown
 
 You can see this feature in action on the example page for [children shortcode]({{< relref "shortcodes/children" >}}) and its children pages.
-
-## Your Page
-
-To configure your page, you basically have three choices:
-
-1. Create an `_index.md` document in `content` folder and fill the file with *Markdown content*
-2. Create an `index.html` file in the `static` folder and fill the file with *HTML content*
-3. Configure your server to automatically redirect home page to one your documentation page
