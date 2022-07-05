@@ -1,12 +1,1 @@
-{{- $archetype := "default" }}
-{{- if .page.Params.archetype }}
-  {{- $archetype = .page.Params.archetype }}
-{{- else if .page.Params.chapter }}
-  {{- $archetype = "chapter-deprecated" }}
-{{- else if .page.IsHome }}
-  {{- $archetype = "home-deprecated" }}
-{{- end }}
-{{- if not (fileExists (printf "/layouts/partials/archetypes/%s.html" $archetype)) }}
-  {{- $archetype = "default" }}
-{{- end }}
-{{- partial (printf "archetypes/%s.html" $archetype) (dict "page" .page "content" .content) }}
+{{- partial "archetype.html" (dict "hook" "article" "page" .page "content" .content) }}

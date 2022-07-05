@@ -1,6 +1,5 @@
 +++
 archetype = "chapter"
-narrow = true
 title = "Content"
 weight = 2
 +++

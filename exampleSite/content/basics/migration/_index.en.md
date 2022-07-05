@@ -16,9 +16,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.0.0
 
-- **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade.
+- **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. The new systems allows you, to redefine existing archetypes or even generate your own ones.
 
-  Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
+  Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade. Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
 
   - for your home page, add the frontmatter parameter `archetype = "home"` and remove the leading heading
 

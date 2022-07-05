@@ -76,8 +76,6 @@ headingPost = ""
 menuPre = ""
 # The title of the page in menu will be postfixed by this HTML content
 menuPost = ""
-# Makes the content more narrow, increases font-size and alignment
-narrow = false
 # Hide a menu entry by setting this to true
 hidden = false
 # Display name of this page modifier. If set, it will be displayed in the footer.

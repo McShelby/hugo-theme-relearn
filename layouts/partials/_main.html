@@ -1,5 +1,7 @@
 {{- partial "header.html" . }}
-{{- if eq (.Scratch.Get "relearnOutputFormat") "PRINT" }}
+{{- if not .File }}
+  {{- partial "initial.html" . }}
+{{- else if eq (.Scratch.Get "relearnOutputFormat") "PRINT" }}
   {{- partial "body.print.html" . }}
 {{- else }}
   {{- partial "body.html" . }}

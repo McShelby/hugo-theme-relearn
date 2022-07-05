@@ -49,7 +49,6 @@ This leads to a file with the following content
 ```markdown
 +++
 archetype = "chapter"
-narrow = true
 title = "{{ replace .Name "-" " " | title }}"
 weight = X
 +++
@@ -57,7 +56,7 @@ weight = X
 Lorem Ipsum.
 ```
 
-Replace the `X` with a number. Because this number will be used to generate the subtitle of the content page, set the number to a consecutive value starting at 1 for each new chapter level.
+Replace the `X` with a number. Because this number will be used to generate the subtitle of the chapter page, set the number to a consecutive value starting at 1 for each new chapter level.
 
 ### Default {#archetypes-default}
 
@@ -110,10 +109,19 @@ Afterwards you can generate new content files of that kind with the follwing com
 hugo new --kind <kind> <name>/_index.md
 ```
 
-### Partial
+### Partials
 
-To define how your archetypes are rendered, define a corresponding file in your project at `layouts/partials/archetypes/<kind>.html`.
-
-Take a look at the existing archetypes of this theme to get an idea how to utilize it.
+To define how your archetypes are rendered, define corresponding partial files in your projects directory `layouts/partials/archetypes/<kind>`.
 
 If you use an unknown archetype in your frontmatter, the `default` archetype will be used to generate the page.
+
+Related to each archetype, several _hook_ partial files can be given. If a partial for a specific hook is missing, no output is generated for this hook.
+
+The following hooks are used:
+
+| Name                 | Notes       |
+|:---------------------|:------------|
+| styleclass           | Defines a set of CSS classes to be added to the HTML's `<main>` element. You can use these classes to define own CSS rules in your `custom-header.html` |
+| article              | Defines the HTML how to render your content |
+
+Take a look at the existing archetypes of this theme to get an idea how to utilize it.
