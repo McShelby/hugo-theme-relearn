@@ -60,16 +60,16 @@ body {
     width: 100%;
 }
 
-body #body-inner .chapter h1 {
+body #body-inner.narrow h1 {
     font-size: 3.5rem;
 }
 @media only screen and (min-width: 48em) and (max-width: 59.938em) {
-    body #body-inner .chapter h1 {
+    body #body-inner.narrow h1 {
         font-size: 2.8rem;
     }
 }
 @media only screen and (max-width: 47.938em) {
-    body #body-inner .chapter h1 {
+    body #body-inner.narrow h1 {
         font-size: 2.5rem;
     }
 }
@@ -399,34 +399,35 @@ th {
     }
 }
 
-#body-inner.chapter {
+#body-inner.narrow {
     margin-left: auto;
     margin-right: auto;
     padding: 2rem 9.75rem;
 }
 @media screen and (max-width: 59.938em) {
-    #body-inner.chapter {
+    #body-inner.narrow {
         padding: 15px 6.5rem 15px 6.5rem;
     }
 }
 @media screen and (max-width: 47.938em) {
-    #body-inner.chapter {
+    #body-inner.narrow {
         padding: 5px 3.25rem 5px 3.25rem;
     }
 }
 
-#body-inner .chapter h3:first-of-type {
+#body-inner div.article-subheading,
+#body-inner .chapter.deprecated h3:first-of-type {
     font-weight: 200;
     margin-top: 0;
     text-align: center;
 }
 
-#body-inner .chapter h1 {
+#body-inner.narrow h1 {
     border-bottom: 4px solid rgba( 134, 134, 134, .125 );
     font-size: 5rem;
 }
 
-#body-inner .chapter p {
+#body-inner.narrow p {
     font-size: 1.2rem;
     text-align: justify;
 }
@@ -437,7 +438,7 @@ h1 {
     text-transform: uppercase;
 }
 
-h2, h3, h4, h5, h6 {
+h2, h3, .article-subheading, h4, h5, h6 {
     letter-spacing: -1px;
     text-rendering: optimizeLegibility;
 }
@@ -608,7 +609,8 @@ hr {
 #body-inner h3,
 #body-inner h4,
 #body-inner h5,
-#body-inner h6 {
+#body-inner h6,
+#body-inner .article-subheading {
     /* big titles cause a horizontal scrollbar - fixing this by wrapping text */
     overflow-wrap: break-word;
     overflow-x: hidden;
@@ -1268,7 +1270,7 @@ h6 a {
     margin-top: 2rem;
 }
 
-#body h3 {
+#body h3, #body .article-subheading {
     font-size: 1.8rem;
     font-weight: 500;
     margin-top: 2rem;
