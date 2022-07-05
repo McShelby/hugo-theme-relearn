@@ -16,12 +16,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.0.0
 
-- **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. Your existing content files will still work like before and therefore you don't need to change anything after the upgrade.
+- **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade.
 
-  Nevertheless, it is recommended to adapt your existing files to the new way.
+  Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
 
-  - for your home page, add the frontmatter parameter `archetype = "home"`
-  - for all files having the old deprecated frontmatter parameter `chapter = true`, replace it with `archetype = "chapter"`
+  - for your home page, add the frontmatter parameter `archetype = "home"` and remove the leading heading
+
+  - for all files containing the deprecated frontmatter parameter `chapter = true`, replace it with `archetype = "chapter"` and remove the leading headings
 
 - **Change**: The frontmatter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
 
