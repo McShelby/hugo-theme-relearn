@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.3 (2022-07-07)
+
+### Fixes
+
+- [**bug**] ie11: no styles after rework of archetypes [#306](https://github.com/McShelby/hugo-theme-relearn/issues/306)
+
+---
+
 ## 5.0.2 (2022-07-07)
 
 ### Fixes
