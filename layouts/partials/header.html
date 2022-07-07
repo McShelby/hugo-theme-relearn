@@ -2,20 +2,21 @@
 <html lang="{{ .Page.Language | default "en" }}">
   <head>
     {{- partial "meta.html" . }}
+    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
     <title>{{ if and .Title (not (eq .Title .Site.Title)) }}{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ end}}{{ .Site.Title }}</title>
 
     {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     {{- else }}
         {{- range .AlternativeOutputFormats }}
             {{- if ne .Name "JSON" }}
-    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | relURL }}" title="{{ $.Site.Title | safeHTML }}" />
+    {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($.Site.Title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
     {{- end }}
     {{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
         {{- range .AlternativeOutputFormats }}
             {{- if eq .Name "JSON" }}
-    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | relURL }}" title="{{ $.Site.Title | safeHTML }}" />
+    {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($.Site.Title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
     {{- end }}
