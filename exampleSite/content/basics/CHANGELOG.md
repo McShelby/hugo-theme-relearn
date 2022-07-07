@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.2 (2022-07-07)
+
+### Fixes
+
+- [**bug**] theme: load CSS if JS is disabled [#305](https://github.com/McShelby/hugo-theme-relearn/issues/305)
+
+---
+
 ## 5.0.1 (2022-07-07)
 
 ### Enhancements
