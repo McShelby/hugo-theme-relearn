@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.1 (2022-07-07)
+
+### Enhancements
+
+- [**feature**][**breaking**] theme: optimize loading of js and css [#303](https://github.com/McShelby/hugo-theme-relearn/issues/303)
+
+---
+
 ## 5.0.0 (2022-07-05)
 
 ### Enhancements
