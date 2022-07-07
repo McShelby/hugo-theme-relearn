@@ -16,6 +16,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.0.0
 
+- **Breaking**: The theme changed how JavaScript and CSS dependencies are loaded to provide a better performance. In case you've added own JavaScript code that depends on the themes jQuery implementation, you have to put it into a separate `*.js` file (if not already) and add the `defer` keyword to the `script` element. Eg.
+
+  ````html
+  <script defer src="myscript.js"></script>
+  ````
+
 - **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. The new systems allows you, to redefine existing archetypes or even generate your own ones.
 
   Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade. Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
