@@ -40,6 +40,6 @@
       {{- range $themevariants }}
         {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .) }}
       {{- end }}
-      variants.init( [ {{ delimit $quotedthemevariants ", " | safeJS }} ] );
+      window.variants && variants.init( [ {{ delimit $quotedthemevariants ", " | safeJS }} ] );
     </script>
     <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>

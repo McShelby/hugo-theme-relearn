@@ -33,5 +33,5 @@ This only works in modern browsers.
 {{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}
 
 <script>
-variants.generator( '#vargenerator', '.secondary a', '.warning a' );
+window.variants && variants.generator( '#vargenerator', '.secondary a', '.warning a' );
 </script>

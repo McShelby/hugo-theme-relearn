@@ -69,7 +69,7 @@
       function useMermaid( config ){
         if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
           mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
-          if( config.theme ){
+          if( config.theme && variants ){
             var write_style = variants.findLoadedStylesheet( 'variant-style' );
             write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
           }
@@ -96,7 +96,7 @@
   {{- end }}
     <script>
       function useSwagger( config ){
-        if( config.theme ){
+        if( config.theme && variants ){
           var write_style = variants.findLoadedStylesheet( 'variant-style' );
           write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
         }

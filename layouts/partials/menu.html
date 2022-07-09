@@ -84,7 +84,7 @@
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
-                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     {{- $firstvariant := true }}
                     {{- range $themevariants }}
                       {{- $themevariant := . }}
@@ -100,7 +100,7 @@
                 </div>
                 <div class="select-clear"></div>
               </a>
-              <script>variants.markSelectedVariant();</script>
+              <script>window.variants && variants.markSelectedVariant();</script>
             </li>
             <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> {{ T "Clear-History" }}</a></li>
           </ul>
