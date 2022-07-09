@@ -1,9 +1,7 @@
-{{- partial "header.html" . }}
+{{- partial "output-partial.html" (dict "base" "header" "page" . "parameter" .) }}
 {{- if not .File }}
-  {{- partial "initial.html" . }}
-{{- else if eq (.Scratch.Get "relearnOutputFormat") "PRINT" }}
-  {{- partial "body.print.html" . }}
+  {{- partial "output-partial.html" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "initial.html" .))) }}
 {{- else }}
-  {{- partial "body.html" . }}
+  {{- partial "output-partial.html" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "content.html" .))) }}
 {{- end }}
-{{- partial "footer.html" . }}
+{{- partial "output-partial.html" (dict "base" "footer" "page" . "parameter" .) }}

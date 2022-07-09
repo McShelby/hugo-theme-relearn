@@ -9,8 +9,10 @@ In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials
 
 This theme defines the following partials :
 
-- `header.html`: the header of the page. _Not meant to be overwritten_
-- `footer.html`: the footer of the page._Not meant to be overwritten_
+- `header.html`: the header of the page. See [output-formats](#output-formats)
+- `footer.html`: the footer of the page. See [output-formats](#output-formats)
+- `body.html`: the body of the page. The body may contain of one or many articles. See [output-formats](#output-formats)
+- `article.html`: the output for a single article, can contain elements around your content. See [output-formats](#output-formats)
 - `menu.html`: left menu. _Not meant to be overwritten_
 - `search.html`: search box. _Not meant to be overwritten_
 - `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file.
@@ -81,3 +83,7 @@ If you want to switch the syntax highlightning theme together with your color va
 ### Roll your own
 
 If you are not happy with the shipped variants you can either copy one of the shipped files, edit them in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).
+
+### Output formats
+
+Certain parts of the theme can be changed for support of your own [output formats](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `config.toml`, you can add a file `layouts/partials/header.plaintext.html` to change the way, the page header should look like for that output format.

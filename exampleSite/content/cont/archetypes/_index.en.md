@@ -115,7 +115,7 @@ To define how your archetypes are rendered, define corresponding partial files i
 
 If you use an unknown archetype in your frontmatter, the `default` archetype will be used to generate the page.
 
-Related to each archetype, several _hook_ partial files can be given. If a partial for a specific hook is missing, no output is generated for this hook.
+Related to each archetype, several _hook_ partial files in the form of `<hook>.html` can be given inside each archetype directory. If a partial for a specific hook is missing, no output is generated for this hook.
 
 The following hooks are used:
 
@@ -125,3 +125,7 @@ The following hooks are used:
 | article              | Defines the HTML how to render your content |
 
 Take a look at the existing archetypes of this theme to get an idea how to utilize it.
+
+#### Output formats
+
+Each hook file can be overridden of a specific [output format](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `config.toml`, you can add a file `layouts/partials/archetypes/default.plaintext.html` to change the way how normal content is written for that output format.

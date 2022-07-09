@@ -1,1 +1,3 @@
-{{- partial "article.html" (dict "page" . "content" .Content) }}
+{{- $page := .page }}
+{{- $content := .content }}
+{{- partial "output-partial.html" (dict "base" "article" "page" $page "parameter" (dict "page" $page "content" $content)) }}

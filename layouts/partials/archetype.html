@@ -1,14 +1,15 @@
+{{- $hook := .hook }}
+{{- $page := .page }}
+{{- $parameter := .parameter }}
 {{- $archetype := "default" }}
-{{- if .page.Params.archetype }}
-  {{- $archetype = .page.Params.archetype }}
-{{- else if .page.Params.chapter }}
+{{- if $page.Params.archetype }}
+  {{- $archetype = $page.Params.archetype }}
+{{- else if $page.Params.chapter }}
   {{- $archetype = "deprecated-chapter" }}
-{{- else if .page.IsHome }}
+{{- else if $page.IsHome }}
   {{- $archetype = "deprecated-home" }}
 {{- end }}
 {{- if not (fileExists (printf "/layouts/partials/archetypes/%s" $archetype)) }}
   {{- $archetype = "default" }}
 {{- end }}
-{{- if (fileExists (printf "/layouts/partials/archetypes/%s/%s.html" $archetype .hook)) }}
-  {{- partial (printf "archetypes/%s/%s.html" $archetype .hook) . }}
-{{- end }}
+{{- partial "output-partial.html" (dict "base" (printf "archetypes/%s/%s" $archetype $hook) "page" $page "parameter" $parameter) }}
