@@ -18,7 +18,10 @@
     {{- end }}
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"{{ if ne (.Scratch.Get "relearnOutputFormat") "PRINT" }} media="print"{{ end }}>
+    <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
+    {{- if (fileExists (printf "/static/css/format-%s.css" ((.Scratch.Get "relearnOutputFormat") | lower))) }}
+    <link href="{{(printf "css/format-%s.css" ((.Scratch.Get "relearnOutputFormat") | lower)) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    {{- end }}
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>
       {{ "// hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:" | safeJS }}

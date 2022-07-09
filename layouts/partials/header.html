@@ -25,7 +25,7 @@
     {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support{{ if eq (.Scratch.Get "relearnOutputFormat") "PRINT" }} print{{ end }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}" data-url="{{ .RelPermalink }}">
+  <body class="mobile-support {{ ((.Scratch.Get "relearnOutputFormat") | lower) }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}" data-url="{{ .RelPermalink }}">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
