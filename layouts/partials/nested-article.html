@@ -1,39 +1,43 @@
-{{- $currentNode := . }}
-{{- $isActive := .IsHome }}
-{{- $isShortcut := false }}
-{{- $r_url := .RelPermalink }}
-{{- with .Site.Menus.shortcuts }}
-  {{- range sort . "Weight" }}
-    {{- $s_url := .URL | relLangURL }}
-    {{- if (eq $s_url $r_url) }}
-      {{- $isShortcut = true }}
+{{- $page := .page }}
+{{- $page.Page.Store.Set (printf "%sIsNested" (($page.Scratch.Get "relearnOutputFormat") | lower)) true }}
+{{- with $page }}
+  {{- $currentNode := . }}
+  {{- $isActive := .IsHome }}
+  {{- $isShortcut := false }}
+  {{- $r_url := .RelPermalink }}
+  {{- with .Site.Menus.shortcuts }}
+    {{- range sort . "Weight" }}
+      {{- $s_url := .URL | relLangURL }}
+      {{- if (eq $s_url $r_url) }}
+        {{- $isShortcut = true }}
+      {{- end }}
     {{- end }}
   {{- end }}
-{{- end }}
-{{- $pages := .Site.Home.Sections }}
-{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-{{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
-{{- if $isShortcut }}
-  {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-{{- else }}
-  {{- if $isActive }}
+  {{- $pages := .Site.Home.Sections }}
+  {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
+  {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
+  {{- if $isShortcut }}
     {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-    {{- if or $pages }}
-            <section>
-    {{- end }}
-  {{- end }}
-  {{- if eq $currentOrdersectionsby "title" }}
-    {{- range $pages.ByTitle }}
-      {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
-    {{- end }}
   {{- else }}
-    {{- range $pages.ByWeight }}
-      {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+    {{- if $isActive }}
+      {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
+      {{- if or $pages }}
+              <section>
+      {{- end }}
     {{- end }}
-  {{- end }}
-  {{- if $isActive }}
-    {{- if $pages }}
-            </section>
+    {{- if eq $currentOrdersectionsby "title" }}
+      {{- range $pages.ByTitle }}
+        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+      {{- end }}
+    {{- else }}
+      {{- range $pages.ByWeight }}
+        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+      {{- end }}
+    {{- end }}
+    {{- if $isActive }}
+      {{- if $pages }}
+              </section>
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -87,13 +91,7 @@
 {{- define "section-print" }}
   {{- $currentNode := .currentnode }}
   {{- with .sect }}
-    {{- $currentNode.Page.Store.Set "nestedHasMathJax" (or ($currentNode.Page.Store.Get "nestedHasMathJax") (.Page.Store.Get "selfHasMathJax")) }}
-    {{- $currentNode.Page.Store.Set "nestedHasMermaid" (or ($currentNode.Page.Store.Get "nestedHasMermaid") (.Page.Store.Get "selfHasMermaid")) }}
-    {{- $currentNode.Page.Store.Set "nestedHasSwagger" (or ($currentNode.Page.Store.Get "nestedHasSwagger") (.Page.Store.Get "selfHasSwagger")) }}
-    {{/* if we have a relative link in a print page, our print URL is one level to deep; so we are making it absolute to our page by prepending the page's permalink */}}
-    {{- $link_prefix := strings.TrimRight "/" .Page.RelPermalink }}
     {{- $content := partial "content.html" . }}
-    {{- $content = replaceRE "((?:src|href)\\s*=(?:\\s*[\"']\\s*)?)(\\.[^\"'\\s>]*|[\\w]+[^\"'\\s>:]*)([\"'\\s>])" (printf "${1}%s/${2}${3}" $link_prefix) $content }}
-    {{- partial "output-partial.html" (dict "base" "article" "page" . "parameter" (dict "page" . "content" $content)) }}
+    {{- partial "output-partial.html" (dict "base" "output-article" "page" . "parameter" (dict "page" . "content" $content)) }}
   {{- end }}
 {{- end }}

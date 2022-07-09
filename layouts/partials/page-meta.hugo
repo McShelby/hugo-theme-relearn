@@ -2,22 +2,9 @@
 {{- $currentNode.Scratch.Delete "relearnIsSelfFound"  }}
 {{- $currentNode.Scratch.Delete "relearnPrevPage"     }}
 {{- $currentNode.Scratch.Delete "relearnNextPage"     }}
-{{- $currentNode.Scratch.Delete "relearnSubPages"     }}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}{{/* the node itself is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}{{/* the node or one of its parents is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}{{/* the node is hidden from the current page */}}
-{{- $wantsMathjax := or (and (ne $currentNode.Params.disableMathjax nil) (not $currentNode.Params.disableMathjax)) (and (ne .Site.Params.disableMathjax nil) (not .Site.Params.disableMathjax)) }}
-{{- if $wantsMathjax }}
-	{{- $currentNode.Page.Store.Set "selfHasMathjax" true }}
-{{- end }}
-{{- $wantsMermaid := or (and (ne $currentNode.Params.disableMermaid nil) (not $currentNode.Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) }}
-{{- if $wantsMermaid }}
-	{{- $currentNode.Page.Store.Set "selfHasMermaid" true }}
-{{- end }}
-{{- $wantsSwagger := or (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) }}
-{{- if $wantsSwagger }}
-	{{- $currentNode.Page.Store.Set "selfHasSwagger" true }}
-{{- end }}
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" .Site.Params.ordersectionsby }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
@@ -26,6 +13,7 @@
 	{{- $isAncestor := and (not $isSelf) (.node.IsAncestor $currentNode) }}
 	{{- $isOther := and (not $isDescendant) (not $isSelf) (not $isAncestor) }}
 
+	{{- $isChildren := and (.node.Parent) (eq $currentNode.RelPermalink .node.Parent.RelPermalink) }}
 	{{- if $isSelf }}
 		{{- $currentNode.Scratch.Set "relearnIsSelfFound" true }}
 	{{- end}}
@@ -49,24 +37,32 @@
 		{{- end}}
 	{{- end }}
 
-	{{- $currentNode.Scratch.Set "relearnSubPages" .node.Pages }}
+	{{- $pages := .node.Pages }}
 	{{- if .node.IsHome }}
-		{{- $currentNode.Scratch.Set "relearnSubPages" .node.Sections }}
+		{{- $pages = .node.Sections }}
 	{{- else if .node.Sections }}
-		{{- $currentNode.Scratch.Set "relearnSubPages" (.node.Pages | union .node.Sections) }}
+		{{- $pages = (.node.Pages | union .node.Sections) }}
 	{{- end }}
-	{{- $pages := ($currentNode.Scratch.Get "relearnSubPages") }}
-
 	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
 	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
-
 	{{- if eq $currentOrdersectionsby "title"}}
-		{{- range $pages.ByTitle  }}
-			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
-		{{- end}}
+		{{- $pages := $pages.ByTitle }}
 	{{- else}}
-		{{- range $pages.ByWeight  }}
-			{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
-		{{- end}}
+		{{- $pages := $pages.ByWeight }}
+	{{- end }}
+	{{- range $pages }}
+		{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
+	{{- end}}
+
+	{{- if $isSelf }}
+		{{- $currentNode.Page.Store.Set "selfHasMathjax" (or ($currentNode.Page.Store.Get "selfHasMathJax") (and (ne $currentNode.Params.disableMathjax nil) (not $currentNode.Params.disableMathjax)) (and (ne .Site.Params.disableMathjax nil) (not .Site.Params.disableMathjax))) }}
+		{{- $currentNode.Page.Store.Set "selfHasMermaid" (or ($currentNode.Page.Store.Get "selfHasMermaid") (and (ne $currentNode.Params.disableMermaid nil) (not $currentNode.Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid))) }}
+		{{- $currentNode.Page.Store.Set "selfHasSwagger" (or ($currentNode.Page.Store.Get "selfHasSwagger") (and (ne $currentNode.Params.disableSwagger nil) (not $currentNode.Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger))) }}
+	{{- end }}
+
+	{{- if $isChildren }}
+		{{- $currentNode.Page.Store.Set "nestedHasMathJax" (or ($currentNode.Page.Store.Get "nestedHasMathJax") (.node.Page.Store.Get "selfHasMathJax") (.node.Page.Store.Get "nestedfHasMathJax")) }}
+		{{- $currentNode.Page.Store.Set "nestedHasMermaid" (or ($currentNode.Page.Store.Get "nestedHasMermaid") (.node.Page.Store.Get "selfHasMermaid") (.node.Page.Store.Get "nestedfHasMermaid")) }}
+		{{- $currentNode.Page.Store.Set "nestedHasSwagger" (or ($currentNode.Page.Store.Get "nestedHasSwagger") (.node.Page.Store.Get "selfHasSwagger") (.node.Page.Store.Get "nestedHasSwagger")) }}
 	{{- end }}
 {{- end }}
