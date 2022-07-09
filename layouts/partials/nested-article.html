@@ -91,7 +91,13 @@
 {{- define "section-print" }}
   {{- $currentNode := .currentnode }}
   {{- with .sect }}
-    {{- $content := partial "content.html" . }}
-    {{- partial "output-partial.html" (dict "base" "output-article" "page" . "parameter" (dict "page" . "content" $content)) }}
+    {{- $page := . }}
+    {{- $content := partial "content.html" $page }}
+    {{- partial "output-partial.html" (dict "base" "output-article" "page" $page "parameter" (dict "page" $page "content" $content)) }}
+    {{- range $page.OutputFormats }}
+      {{- $currentNode.Scratch.Set (printf "%sHasMathJax" (.Name | lower)) (or ($currentNode.Scratch.Get (printf "%sHasMathJax" (.Name | lower))) ($page.Scratch.Get (printf "%sHasMathJax" (.Name | lower)))) }}
+      {{- $currentNode.Scratch.Set (printf "%sHasMermaid" (.Name | lower)) (or ($currentNode.Scratch.Get (printf "%sHasMermaid" (.Name | lower))) ($page.Scratch.Get (printf "%sHasMermaid" (.Name | lower)))) }}
+      {{- $currentNode.Scratch.Set (printf "%sHasSwagger" (.Name | lower)) (or ($currentNode.Scratch.Get (printf "%sHasSwagger" (.Name | lower))) ($page.Scratch.Get (printf "%sHasSwagger" (.Name | lower)))) }}
+    {{- end }}
   {{- end }}
 {{- end }}

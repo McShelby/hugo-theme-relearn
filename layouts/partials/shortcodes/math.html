@@ -5,5 +5,8 @@
 <span class="math align-{{ $align }}">
   {{- $content | safeHTML -}}
 </span>
-{{- .Page.Store.Set "selfHasMathJax" true }}
+{{- $page := .Page }}
+{{- range $page.OutputFormats }}
+  {{- $page.Scratch.Set (printf "%sHasMathJax" (.Name | lower)) true }}
+{{- end }}
 {{- end }}
