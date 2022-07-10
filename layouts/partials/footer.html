@@ -7,7 +7,7 @@
     <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-{{- $wantsMathJax := .Scratch.Get (printf "%sHasMathJax" ((.Scratch.Get "relearnOutputFormat") | lower)) }}
+{{- $wantsMathJax := .Scratch.Get (printf "%sHasMathJax" ((partial "output-format.html" .) | lower)) }}
 {{- if $wantsMathJax }}
   {{- if isset .Params "mathjaxinitialize" }}
     {{- $.Scratch.Set "mathJaxInitialize" .Params.mathJaxInitialize }}
@@ -48,7 +48,7 @@
     <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
   {{- end }}
 {{- end }}
-{{- $wantsMermaid := .Scratch.Get (printf "%sHasMermaid" ((.Scratch.Get "relearnOutputFormat") | lower)) }}
+{{- $wantsMermaid := .Scratch.Get (printf "%sHasMermaid" ((partial "output-format.html" .) | lower)) }}
 {{- if $wantsMermaid }}
     <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   {{- if isset .Params "custommermaidurl" }}
@@ -78,7 +78,7 @@
       useMermaid( JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}) );
     </script>
 {{- end }}
-{{- $wantsSwagger := .Scratch.Get (printf "%sHasSwagger" ((.Scratch.Get "relearnOutputFormat") | lower)) }}
+{{- $wantsSwagger := .Scratch.Get (printf "%sHasSwagger" ((partial "output-format.html" .) | lower)) }}
 {{- if $wantsSwagger }}
   {{- if isset .Params "customswaggerurl" }}
     <script src="{{ .Params.customSwaggerURL }}" defer></script>

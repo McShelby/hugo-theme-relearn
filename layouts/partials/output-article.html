@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- $content := .content }}
 {{- $r_url := $page.RelPermalink }}
-{{- with  $page.OutputFormats.Get ($page.Scratch.Get "relearnOutputFormat") }}
+{{- with  $page.OutputFormats.Get (partial "output-format.html" $page) }}
 	{{- $s_url := .RelPermalink }}
     {{- if not (eq $s_url $r_url) }}
 		{{/* if we have a relative link in output formats with a path setting, our URLs are one level to deep; so we are making them absolute to our page by prepending the page's permalink */}}

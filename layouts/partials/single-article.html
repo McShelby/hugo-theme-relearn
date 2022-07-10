@@ -1,4 +1,4 @@
 {{- $page := .page }}
 {{- $content := .content }}
-{{- $page.Page.Store.Set (printf "%sIsNested" (($page.Scratch.Get "relearnOutputFormat") | lower)) false }}
+{{- $page.Page.Store.Set (printf "%sIsNested" ((partial "output-format.html" $page) | lower)) false }}
 {{- partial "output-partial.html" (dict "base" "output-article" "page" $page "parameter" (dict "page" $page "content" $content)) }}

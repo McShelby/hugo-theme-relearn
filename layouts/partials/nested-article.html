@@ -1,5 +1,5 @@
 {{- $page := .page }}
-{{- $page.Page.Store.Set (printf "%sIsNested" (($page.Scratch.Get "relearnOutputFormat") | lower)) true }}
+{{- $page.Page.Store.Set (printf "%sIsNested" ((partial "output-format.html" $page) | lower)) true }}
 {{- with $page }}
   {{- $currentNode := . }}
   {{- $isActive := .IsHome }}
