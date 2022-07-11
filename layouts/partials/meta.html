@@ -9,7 +9,6 @@
     {{- $ver = replaceRE "\\s*(\\S*)" "${1}" $ver }}
     {{- $ver := printf "<meta name=\"generator\" content=\"%s %s\">" "Relearn" $ver }}
     {{ $ver | safeHTML }}
-    {{- partial "page-meta.hugo" . }}
     {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
