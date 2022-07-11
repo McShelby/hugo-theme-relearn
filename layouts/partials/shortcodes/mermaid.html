@@ -5,8 +5,5 @@
 <div class="mermaid" align="{{ $align }}">
   {{- $content | safeHTML -}}
 </div>
-{{- $page := .Page }}
-{{- range $page.OutputFormats }}
-  {{- $page.Scratch.Set (printf "%sHasMermaid" (.Name | lower)) true }}
-{{- end }}
+{{- .Page.Store.Set "hasMermaid" true }}
 {{- end }}

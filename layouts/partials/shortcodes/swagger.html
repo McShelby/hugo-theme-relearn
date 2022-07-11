@@ -24,8 +24,5 @@
   spec-url="{{ $src }}"
   sort-tags="true"
 ></rapi-doc>
-{{- $page := .Page }}
-{{- range $page.OutputFormats }}
-  {{- $page.Scratch.Set (printf "%sHasSwagger" (.Name | lower)) true }}
-{{- end }}
+{{- .Page.Store.Set "hasSwagger" true }}
 {{- end }}
