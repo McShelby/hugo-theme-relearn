@@ -10,25 +10,26 @@
     <title>Customization :: Hugo Relearn Theme</title>
     <link href="/hugo-theme-relearn/basics/customization/" rel="canonical" type="text/html" title="Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/basics/customization/index.xml" rel="alternate" type="application/rss+xml" title="Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1657234283" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/images/logo.svg?1657830004" rel="icon" type="image/svg+xml">
     
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1657234283" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
-    <link href="/hugo-theme-relearn/css/featherlight.min.css?1657234283" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1657234283" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1657830004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
+    <link href="/hugo-theme-relearn/css/featherlight.min.css?1657830004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1657830004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
     <noscript>
-      <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1657234283" rel="stylesheet">
-      <link href="/hugo-theme-relearn/css/featherlight.min.css?1657234283" rel="stylesheet">
-      <link href="/hugo-theme-relearn/css/auto-complete.css?1657234283" rel="stylesheet">
+      <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1657830004" rel="stylesheet">
+      <link href="/hugo-theme-relearn/css/featherlight.min.css?1657830004" rel="stylesheet">
+      <link href="/hugo-theme-relearn/css/auto-complete.css?1657830004" rel="stylesheet">
     </noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1657234283" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/nucleus.css?1657234283" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fonts.css?1657234283" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
-    <link href="/hugo-theme-relearn/css/theme.css?1657234283" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1657234283" rel="stylesheet" id="variant-style">
-    <link href="/hugo-theme-relearn/css/ie.css?1657234283" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/variant.css?1657234283" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1657234283" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/variant.js?1657234283"></script>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1657830004" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/nucleus.css?1657830004" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fonts.css?1657830004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
+    <link href="/hugo-theme-relearn/css/theme.css?1657830004" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-light.css?1657830004" rel="stylesheet" id="variant-style">
+    <link href="/hugo-theme-relearn/css/ie.css?1657830004" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/variant.css?1657830004" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1657830004" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/format-print.css?1657830004" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/variant.js?1657830004"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -42,9 +43,9 @@
       window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
       // some further base stuff
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
-      variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="/hugo-theme-relearn/js/jquery.min.js?1657234283" defer></script>
+    <script src="/hugo-theme-relearn/js/jquery.min.js?1657830004" defer></script>
   </head>
   <body class="mobile-support print" data-url="/hugo-theme-relearn/basics/customization/">
     <div id="body" class="default-animation">
@@ -91,6 +92,7 @@
         <li><a href="#single-variant">Single variant</a></li>
         <li><a href="#multiple-variants">Multiple variants</a></li>
         <li><a href="#roll-your-own">Roll your own</a></li>
+        <li><a href="#output-formats">Output formats</a></li>
       </ul>
     </li>
   </ul>
@@ -103,7 +105,7 @@
         <div class="flex-block-wrapper">
           <div id="head-tags">
           </div>
-    
+		
           <article class="default">
 <h1>Customization</h1>
 
@@ -111,8 +113,10 @@
 <p>In <code>themes/hugo-theme-relearn/layouts/partials/</code>, you will find all the partials defined for this theme. If you need to overwrite something, don&rsquo;t change the code directly. Instead <a href="https://gohugo.io/themes/customizing/">follow this page</a>. You&rsquo;d create a new partial in the <code>layouts/partials</code> folder of your local project. This partial will have the priority.</p>
 <p>This theme defines the following partials :</p>
 <ul>
-<li><code>header.html</code>: the header of the page. <em>Not meant to be overwritten</em></li>
-<li><code>footer.html</code>: the footer of the page.<em>Not meant to be overwritten</em></li>
+<li><code>header.html</code>: the header of the page. See <a href="#output-formats">output-formats</a></li>
+<li><code>footer.html</code>: the footer of the page. See <a href="#output-formats">output-formats</a></li>
+<li><code>body.html</code>: the body of the page. The body may contain of one or many articles. See <a href="#output-formats">output-formats</a></li>
+<li><code>article.html</code>: the output for a single article, can contain elements around your content. See <a href="#output-formats">output-formats</a></li>
 <li><code>menu.html</code>: left menu. <em>Not meant to be overwritten</em></li>
 <li><code>search.html</code>: search box. <em>Not meant to be overwritten</em></li>
 <li><code>custom-header.html</code>: custom headers in page. Meant to be overwritten when adding CSS imports. Don&rsquo;t forget to include <code>style</code> HTML tag directive in your file.</li>
@@ -166,6 +170,8 @@ You could use an <code>img</code> HTML tag and reference an image created under 
 </div>
 <h3 id="roll-your-own">Roll your own</h3>
 <p>If you are not happy with the shipped variants you can either copy one of the shipped files, edit them in a text editor and configure the <code>themeVariant</code> parameter in your <code>config.toml</code> or just use the <a href="/hugo-theme-relearn/basics/generator/">interactive variant generator</a>.</p>
+<h3 id="output-formats">Output formats</h3>
+<p>Certain parts of the theme can be changed for support of your own <a href="https://gohugo.io/templates/output-formats/">output formats</a>. Eg. if you define a new output format <code>PLAINTEXT</code> in your <code>config.toml</code>, you can add a file <code>layouts/partials/header.plaintext.html</code> to change the way, the page header should look like for that output format.</p>
 
             <footer class="footline">
             </footer>
@@ -245,12 +251,12 @@ You could use an <code>img</code> HTML tag and reference an image created under 
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1657234283" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr.min.js?1657234283" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1657234283" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1657234283" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1657234283" defer></script>
-        <script src="/hugo-theme-relearn/js/search.js?1657234283" defer></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1657830004" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr.min.js?1657830004" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr.stemmer.support.min.js?1657830004" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr.multi.min.js?1657830004" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr.en.min.js?1657830004" defer></script>
+        <script src="/hugo-theme-relearn/js/search.js?1657830004" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -326,7 +332,7 @@ You could use an <code>img</code> HTML tag and reference an image created under 
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
                 <div class="select-style">
-                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="relearn-light" value="relearn-light" selected>Relearn Light</option>
                     <option id="relearn-dark" value="relearn-dark">Relearn Dark</option>
                     <option id="learn" value="learn">Learn</option>
@@ -338,7 +344,7 @@ You could use an <code>img</code> HTML tag and reference an image created under 
                 </div>
                 <div class="select-clear"></div>
               </a>
-              <script>variants.markSelectedVariant();</script>
+              <script>window.variants && variants.markSelectedVariant();</script>
             </li>
             <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
           </ul>
@@ -363,13 +369,13 @@ You could use an <code>img</code> HTML tag and reference an image created under 
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="/hugo-theme-relearn/js/buttons.js?1657234283"></script>
+          <script async src="/hugo-theme-relearn/js/buttons.js?1657830004"></script>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1657234283" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1657234283" defer></script>
-    <script src="/hugo-theme-relearn/js/featherlight.min.js?1657234283" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1657234283" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1657830004" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1657830004" defer></script>
+    <script src="/hugo-theme-relearn/js/featherlight.min.js?1657830004" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1657830004" defer></script>
   </body>
 </html>
