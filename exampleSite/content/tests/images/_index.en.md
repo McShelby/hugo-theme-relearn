@@ -9,11 +9,11 @@ Some testing for different styles of image links.
 
 ### Relative to page
 
-![Magic](images/magic.gif?classes=shadow&height=50px)
+![Magic](magic.gif?classes=shadow&height=50px)
 
 ### Relative to page up level
 
-![Magic](../images/images/magic.gif?classes=shadow&height=50px)
+![Magic](../images/magic.gif?classes=shadow&height=50px)
 
 ### Static
 
@@ -35,11 +35,11 @@ Some testing for different styles of image links.
 
 ### Relative to page
 
-<p><img src="images/magic.gif?classes=shadow&height=50px"></p>
+<p><img src="magic.gif?classes=shadow&height=50px"></p>
 
 ### Relative to page up level
 
-<p><img src="../images/images/magic.gif?classes=shadow&height=50px"></p>
+<p><img src="../images/magic.gif?classes=shadow&height=50px"></p>
 
 ### Static
 

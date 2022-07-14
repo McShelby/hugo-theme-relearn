@@ -48,7 +48,7 @@ Discover what this Hugo theme is all about and the core concepts behind it.
 
 renders as
 
-![A Chapter](images/chapter.png?classes=shadow&width=60pc)
+![A Chapter](chapter.png?classes=shadow&width=60pc)
 
 The Relearn theme provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command
 
