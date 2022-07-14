@@ -92,7 +92,7 @@
   {{- $currentNode := .currentnode }}
   {{- with .sect }}
     {{- $page := . }}
-    {{- $content := partial "content.html" $page }}
+    {{- $content := partial "output-partial.html" (dict "base" "content" "page" . "parameter" $page) }}
     {{- partial "output-partial.html" (dict "base" "output-article" "page" $page "parameter" (dict "page" $page "content" $content)) }}
     {{- $currentNode.Page.Store.Set "nestedHasMathJax" (or ($currentNode.Page.Store.Get "nestedHasMathJax") (.Page.Store.Get "hasMathJax")) }}
     {{- $currentNode.Page.Store.Set "nestedHasMermaid" (or ($currentNode.Page.Store.Get "nestedHasMermaid") (.Page.Store.Get "hasMermaid")) }}
