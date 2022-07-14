@@ -14,6 +14,23 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.1.0
+
+- **Change**: Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
+
+  You can revert this behavior by overwriting the PRINT output format setting in your `config.toml`to:
+
+  ````toml
+  [outputFormats]
+    [outputFormats.PRINT]
+      name= "PRINT"
+      baseName = "index"
+      path = "_print"
+      isHTML = true
+      mediaType = 'text/html'
+      permalinkable = false
+  ````
+
 ## 5.0.0
 
 - **Breaking**: The theme changed how JavaScript and CSS dependencies are loaded to provide a better performance. In case you've added own JavaScript code that depends on the themes jQuery implementation, you have to put it into a separate `*.js` file (if not already) and add the `defer` keyword to the `script` element. Eg.
