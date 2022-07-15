@@ -5,8 +5,7 @@
     {{- $gen := hugo.Generator }}
     {{- $gen = replaceRE "\\s*/>$" ">" $gen }}
     {{ $gen | safeHTML }}
-    {{- $ver := partial "version.html" }}
-    {{- $ver = replaceRE "\\s*(\\S*)" "${1}" $ver }}
+    {{- $ver := partial "version.txt" }}
     {{- $ver := printf "<meta name=\"generator\" content=\"%s %s\">" "Relearn" $ver }}
     {{ $ver | safeHTML }}
     {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}

@@ -1,0 +1,8 @@
+{{- partial "page-meta.hugo" . }}
+{{- partial "output-partial.hugo" (dict "base" "header" "page" . "parameter" .) }}
+{{- if not .File }}
+  {{- partial "output-partial.hugo" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "output-partial.hugo" (dict "base" "initial" "page" . "parameter" .)))) }}
+{{- else }}
+  {{- partial "output-partial.hugo" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "output-partial.hugo" (dict "base" "content" "page" . "parameter" .)))) }}
+{{- end }}
+{{- partial "output-partial.hugo" (dict "base" "footer" "page" . "parameter" .) }}

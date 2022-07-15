@@ -7,7 +7,7 @@
     <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-{{- $wantsMathJax := or (.Page.Store.Get "hasMathJax") (and (.Page.Store.Get (printf "%sIsNested" ((partial "output-format.html" .Page) | lower))) (.Page.Store.Get "nestedHasMathJax")) }}
+{{- $wantsMathJax := or (.Page.Store.Get "hasMathJax") (and (.Page.Store.Get (printf "%sIsNested" (partial "output-format.hugo" .Page))) (.Page.Store.Get "nestedHasMathJax")) }}
 {{- if $wantsMathJax }}
   {{- if isset .Params "mathjaxinitialize" }}
     {{- $.Scratch.Set "mathJaxInitialize" .Params.mathJaxInitialize }}
@@ -48,7 +48,7 @@
     <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
   {{- end }}
 {{- end }}
-{{- $wantsMermaid := or (.Page.Store.Get "hasMermaid") (and (.Page.Store.Get (printf "%sIsNested" ((partial "output-format.html" .Page) | lower))) (.Page.Store.Get "nestedHasMermaid")) }}
+{{- $wantsMermaid := or (.Page.Store.Get "hasMermaid") (and (.Page.Store.Get (printf "%sIsNested" (partial "output-format.hugo" .Page))) (.Page.Store.Get "nestedHasMermaid")) }}
 {{- if $wantsMermaid }}
     <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   {{- if isset .Params "custommermaidurl" }}
@@ -78,7 +78,7 @@
       useMermaid( JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}) );
     </script>
 {{- end }}
-{{- $wantsSwagger := or (.Page.Store.Get "hasSwagger") (and (.Page.Store.Get (printf "%sIsNested" ((partial "output-format.html" .Page) | lower))) (.Page.Store.Get "nestedHasSwagger")) }}
+{{- $wantsSwagger := or (.Page.Store.Get "hasSwagger") (and (.Page.Store.Get (printf "%sIsNested" (partial "output-format.hugo" .Page))) (.Page.Store.Get "nestedHasSwagger")) }}
 {{- if $wantsSwagger }}
   {{- if isset .Params "customswaggerurl" }}
     <script src="{{ .Params.customSwaggerURL }}" defer></script>

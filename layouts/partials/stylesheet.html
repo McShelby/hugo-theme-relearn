@@ -1,5 +1,5 @@
     {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
-    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    {{ "<!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->" | safeHTML }}
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
     <link href="{{"css/featherlight.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
     <link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
@@ -19,8 +19,8 @@
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
-    {{- if (fileExists (printf "/static/css/format-%s.css" ((partial "output-format.html" .) | lower))) }}
-    <link href="{{(printf "css/format-%s.css" ((partial "output-format.html" .) | lower)) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    {{- if (fileExists (printf "/static/css/format-%s.css" (partial "output-format.hugo" .))) }}
+    <link href="{{(printf "css/format-%s.css" (partial "output-format.hugo" .)) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>

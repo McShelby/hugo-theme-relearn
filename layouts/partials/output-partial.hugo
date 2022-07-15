@@ -1,0 +1,12 @@
+{{- $base := .base }}
+{{- $page := .page }}
+{{- $parameter := .parameter }}
+{{- $format := partial "output-format.hugo" $page }}
+{{- $suffix := partial "output-suffix.hugo" $page }}
+{{- if or (not $format) (not (fileExists (printf "/layouts/partials/%s.%s.%s" $base $format $suffix))) }}
+  {{- if (fileExists (printf "/layouts/partials/%s.%s" $base $suffix)) }}
+    {{- partial (printf "%s.%s" $base $suffix) $parameter }}
+  {{- end }}
+{{- else }}
+  {{- partial (printf "%s.%s.%s" $base $format $suffix) $parameter }}
+{{- end }}

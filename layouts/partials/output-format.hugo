@@ -1,0 +1,6 @@
+{{- $format := partial "get-format.hugo" . }}
+{{- $ret := "default" }}
+{{- if $format }}
+  {{ $ret = $format.Name | lower }}
+{{- end }}
+{{- return $ret }}

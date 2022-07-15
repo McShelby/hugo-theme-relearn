@@ -25,7 +25,7 @@
     {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support {{ ((partial "output-format.html" .) | lower) }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}" data-url="{{ .RelPermalink }}">
+  <body class="mobile-support {{ (partial "output-format.hugo" .) }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}" data-url="{{ .RelPermalink }}">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
@@ -105,7 +105,7 @@
         {{- end }}
         </div>
       </nav>
-      <main id="body-inner" class="highlightable {{ partial "archetype.html" (dict "hook" "styleclass" "page" . "parameter" .) }}" tabindex="-1">
+      <main id="body-inner" class="highlightable {{ partial "archetype.hugo" (dict "hook" "styleclass" "page" . "parameter" .) }}" tabindex="-1">
         <div class="flex-block-wrapper">
           <div id="head-tags">
 {{- partial "tags.html" . }}

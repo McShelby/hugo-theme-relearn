@@ -5,7 +5,7 @@
 {{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}{{/* the node itself is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}{{/* the node or one of its parents is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}{{/* the node is hidden from the current page */}}
-{{- $currentNode.Scratch.Delete (printf "%sWantsMathJax" ((partial "output-format.html" $currentNode) | lower)) }}
+{{- $currentNode.Scratch.Delete (printf "%sWantsMathJax" (partial "output-format.hugo" $currentNode)) }}
 {{- $wantsMathjax := or (and (ne $currentNode.Params.disableMathjax nil) (not $currentNode.Params.disableMathjax)) (and (ne .Site.Params.disableMathjax nil) (not .Site.Params.disableMathjax)) }}
 {{- if $wantsMathjax }}
 	{{- $currentNode.Store.Set "hasMathJax" true }}
