@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.1.1 (2022-07-15)
+
+### Fixes
+
+- [**bug**] tags: don't count tags if page is hidden [#310](https://github.com/McShelby/hugo-theme-relearn/issues/310)
+
+---
+
 ## 5.1.0 (2022-07-15)
 
 ### Enhancements
