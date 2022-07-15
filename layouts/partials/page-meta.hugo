@@ -38,8 +38,10 @@
 	{{- $hidden_stem:= or $hidden_node .hiddenstem }}
 	{{- $hidden_current_stem:= or $hidden_node .hiddencurrent }}
 	{{- $hidden_from_current := or (and $hidden_node (not $isAncestor) (not $isSelf) ) (and .hiddencurrent (or $isPreSelf $isPostSelf $isDescendant) ) }}
-	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenNode" .node.RelPermalink $hidden_node }}
-	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenStem" .node.RelPermalink $hidden_stem }}
+	{{- if $isSelf }}
+		{{- $currentNode.Scratch.Set "relearnIsHiddenNode" $hidden_node }}
+		{{- $currentNode.Scratch.Set "relearnIsHiddenStem" $hidden_stem }}
+	{{- end}}
 	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenFrom" .node.RelPermalink $hidden_current_stem }}
 
 	{{- if not $hidden_from_current }}

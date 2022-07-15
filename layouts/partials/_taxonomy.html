@@ -5,8 +5,14 @@
 <h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
 <ul>
   {{- range .Data.Terms.Alphabetical }}
-    {{- if and .Page.Title (or (ne (.Page.Scratch.Get "relearnIsHiddenStem") true) (ne .Page.Site.Params.disableTagHiddenPages true) ) }}
-  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ len .Pages }})</li>
+    {{- $len := 0 }}
+    {{- range .Pages }}
+      {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+        {{- $len = add $len 1 }}
+      {{- end }}
+    {{- end }}
+    {{- if $len }}
+  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ $len }})</li>
     {{- end }}
   {{- else }}
     {{- range sort .Pages "Title" }}
