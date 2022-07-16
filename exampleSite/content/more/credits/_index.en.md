@@ -24,6 +24,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 * [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
 * [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
 * [RapiDoc](https://mrin9.github.io/RapiDoc) - Create beautiful, customizable, interactive API documentation from OpenAPI Specifications
+* [WorkSans](http://weiweihuanghuang.github.io/Work-Sans/) - Work Sans is a 9 weight typeface family based loosely on early Grotesques
 
 ## Tooling
 
