@@ -13,21 +13,21 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 
 ## Packages and libraries
 
-* [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
-* [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard
-* [Featherlight](https://noelboss.github.io/featherlight) - A lightweight jQuery lightbox plugin
-* [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
-* [jQuery](https://jquery.com) - The "Write less, do more" JavaScript library
-* [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - A jQuery plugin to enable pan and zoom in SVG images
-* [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
-* [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
-* [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
-* [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
-* [RapiDoc](https://mrin9.github.io/RapiDoc) - Create beautiful, customizable, interactive API documentation from OpenAPI Specifications
-* [WorkSans](http://weiweihuanghuang.github.io/Work-Sans/) - Work Sans is a 9 weight typeface family based loosely on early Grotesques
+- [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
+- [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard
+- [Featherlight](https://noelboss.github.io/featherlight) - A lightweight jQuery lightbox plugin
+- [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
+- [jQuery](https://jquery.com) - The "Write less, do more" JavaScript library
+- [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - A jQuery plugin to enable pan and zoom in SVG images
+- [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
+- [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
+- [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
+- [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
+- [RapiDoc](https://mrin9.github.io/RapiDoc) - Create beautiful, customizable, interactive API documentation from OpenAPI Specifications
+- [WorkSans](http://weiweihuanghuang.github.io/Work-Sans/) - Work Sans is a 9 weight typeface family based loosely on early Grotesques
 
 ## Tooling
 
-* [GitHub](https://github.com) - Continuous deployement, testing and hosting of this project's sources and its documentation
-* [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
-* [Hugo](https://gohugo.io/) - The static site generator of your choice
+- [GitHub](https://github.com) - Continuous deployement, testing and hosting of this project's sources and its documentation
+- [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
+- [Hugo](https://gohugo.io/) - The static site generator of your choice
