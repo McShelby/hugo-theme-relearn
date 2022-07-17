@@ -18,7 +18,7 @@
   {{- end }}
     <script>
       function useMathJax( config ){
-        window.MathJax = Object.assign({
+        window.MathJax = Object.assign( window.MathJax || {}, {
           loader: {
             load: ['[tex]/mhchem']
           },
@@ -66,16 +66,7 @@
     {{- $.Scratch.Set "mermaidInitialize" "{}" }}
   {{- end }}
     <script>
-      function useMermaid( config ){
-        if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-          mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
-          if( config.theme && variants ){
-            var write_style = variants.findLoadedStylesheet( 'variant-style' );
-            write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
-          }
-        }
-      }
-      useMermaid( JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}) );
+      window.themeUseMermaid = JSON.parse({{ $.Scratch.Get "mermaidInitialize" }});
     </script>
 {{- end }}
 {{- $wantsSwagger := or (.Page.Store.Get "hasSwagger") (and (.Page.Store.Get (printf "%sIsNested" (partial "output-format.hugo" .Page))) (.Page.Store.Get "nestedHasSwagger")) }}
@@ -95,13 +86,7 @@
     {{- $.Scratch.Set "swaggerInitialize" "{}" }}
   {{- end }}
     <script>
-      function useSwagger( config ){
-        if( config.theme && variants ){
-          var write_style = variants.findLoadedStylesheet( 'variant-style' );
-          write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
-        }
-      }
-      useSwagger( JSON.parse({{ $.Scratch.Get "swaggerInitialize" }}) );
+      window.themeUseSwagger = JSON.parse({{ $.Scratch.Get "swaggerInitialize" }});
     </script>
 {{- end }}
     <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>

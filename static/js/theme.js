@@ -894,3 +894,26 @@ jQuery.fn.highlight = function(words, options) {
         jQuery.highlight(this, re, settings.element, settings.className);
     });
 };
+
+function useMermaid( config ){
+    if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
+        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false     }, config ) );
+        if( config.theme && variants ){
+            var write_style = variants.findLoadedStylesheet( 'variant-style' );
+            write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+        }
+    }
+}
+if( themeUseMermaid ){
+    useMermaid( themeUseMermaid );
+}
+
+function useSwagger( config ){
+    if( config.theme && variants ){
+        var write_style = variants.findLoadedStylesheet( 'variant-style' );
+        write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
+    }
+}
+if( themeUseSwagger ){
+    useSwagger( themeUseSwagger );
+}
