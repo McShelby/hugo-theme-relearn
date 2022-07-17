@@ -894,3 +894,30 @@ jQuery.fn.highlight = function(words, options) {
         jQuery.highlight(this, re, settings.element, settings.className);
     });
 };
+
+function useMermaid( config ){
+    if( !Object.assign ){
+        // We don't support Mermaid for IE11 anyways, so bail out early
+        return;
+    }
+    if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
+        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false     }, config ) );
+        if( config.theme && variants ){
+            var write_style = variants.findLoadedStylesheet( 'variant-style' );
+            write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+        }
+    }
+}
+if( window.themeUseMermaid ){
+    useMermaid( window.themeUseMermaid );
+}
+
+function useSwagger( config ){
+    if( config.theme && variants ){
+        var write_style = variants.findLoadedStylesheet( 'variant-style' );
+        write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
+    }
+}
+if( window.themeUseSwagger ){
+    useSwagger( window.themeUseSwagger );
+}
