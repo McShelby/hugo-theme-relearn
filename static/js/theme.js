@@ -896,6 +896,10 @@ jQuery.fn.highlight = function(words, options) {
 };
 
 function useMermaid( config ){
+    if( !Object.assign ){
+        // We don't support Mermaid for IE11 anyways, so bail out early
+        return;
+    }
     if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false     }, config ) );
         if( config.theme && variants ){
@@ -904,8 +908,8 @@ function useMermaid( config ){
         }
     }
 }
-if( themeUseMermaid ){
-    useMermaid( themeUseMermaid );
+if( window.themeUseMermaid ){
+    useMermaid( window.themeUseMermaid );
 }
 
 function useSwagger( config ){
@@ -914,6 +918,6 @@ function useSwagger( config ){
         write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
     }
 }
-if( themeUseSwagger ){
-    useSwagger( themeUseSwagger );
+if( window.themeUseSwagger ){
+    useSwagger( window.themeUseSwagger );
 }
