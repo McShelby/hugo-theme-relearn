@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.1.2 (2022-07-17)
+
+### Fixes
+
+- [**bug**] print: reset mermaid theme to light [#313](https://github.com/McShelby/hugo-theme-relearn/issues/313)
+- [**bug**] mermaid: header is showing up in FF [#311](https://github.com/McShelby/hugo-theme-relearn/issues/311)
+
+---
+
 ## 5.1.1 (2022-07-15)
 
 ### Fixes
