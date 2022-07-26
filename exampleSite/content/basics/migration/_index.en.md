@@ -14,6 +14,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.2.0
+
+- **Change**: If you've set `collapsibleMenu = true` in your `config.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
+
 ## 5.1.0
 
 - **Change**: Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
