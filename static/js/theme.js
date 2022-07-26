@@ -703,8 +703,81 @@ function scrollToFragment() {
     }, 10);
 }
 
+function mark(){
+    var value = sessionStorage.getItem(baseUriFull+'search-value');
+    $(".highlightable").highlight(value, { element: 'mark' });
+    $("mark").parents(".expand").addClass("expand-marked");
+    $("mark").parents("li").each( function(){
+        var i = jQuery(this).children("input.toggle:not(.menu-marked)");
+        if( i.length ){
+            e = jQuery(i[0]);
+            e.attr("data-checked", (e.prop('checked')?"true":"false")).addClass("menu-marked");
+            i[0].checked = true;
+        }
+    });
+    psm && psm.update();
+}
+
+function unmark(){
+    sessionStorage.removeItem(baseUriFull+'search-value');
+    $("mark").parents("li").each( function(){
+        var i = jQuery(this).children("input.toggle.menu-marked");
+        if( i.length ){
+            e = jQuery(i[0]);
+            i[0].checked = (e.attr("data-checked")=="true");
+            e.attr("data-checked", null).removeClass("menu-marked");
+        }
+    });
+    $("mark").parents(".expand-marked").removeClass("expand-marked");
+    $(".highlightable").unhighlight({ element: 'mark' })
+    psm && psm.update();
+}
+
+function initSearch() {
+    jQuery('[data-search-input]').on('input', function() {
+        var input = jQuery(this);
+        var value = input.val();
+        unmark();
+        if (value.length) {
+            sessionStorage.setItem(baseUriFull+'search-value', value);
+            mark();
+        }
+    });
+    jQuery('[data-search-clear]').on('click', function() {
+        jQuery('[data-search-input]').val('').trigger('input');
+        unmark();
+    });
+    mark();
+
+    // custom sizzle case insensitive "contains" pseudo selector
+    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
+        return function( elem ) {
+            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+        };
+    });
+
+    // set initial search value on page load
+    if (sessionStorage.getItem(baseUriFull+'search-value')) {
+        var searchValue = sessionStorage.getItem(baseUriFull+'search-value')
+        $('[data-search-input]').val(searchValue);
+        $('[data-search-input]').trigger('input');
+        var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
+        if (searchedElem) {
+            searchedElem.scrollIntoView(true);
+            var scrolledY = window.scrollY;
+            if(scrolledY){
+                window.scroll(0, scrolledY - 125);
+            }
+        }
+    }
+
+    // mark some additonal stuff as searchable
+    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
+    $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
+}
+
 // Get Parameters from some url
-var getUrlParameter = function getUrlParameter(sPageURL) {
+function getUrlParameter(sPageURL) {
     var url = sPageURL.split('?');
     var obj = {};
     if (url.length == 2) {
@@ -763,62 +836,7 @@ jQuery(function() {
     restoreTabSelections();
     initSwipeHandler();
     initHistory();
-
-    var ajax;
-    jQuery('[data-search-input]').on('input', function() {
-        var input = jQuery(this),
-            value = input.val(),
-            items = jQuery('[data-nav-id]');
-        items.removeClass('search-match');
-        if (!value.length) {
-            $('ul.topics').removeClass('searched');
-            items.css('display', 'block');
-            sessionStorage.removeItem(baseUriFull+'search-value');
-            $("mark").parents(".expand-marked").removeClass("expand-marked");
-            $(".highlightable").unhighlight({ element: 'mark' })
-            return;
-        }
-
-        sessionStorage.setItem(baseUriFull+'search-value', value);
-        $("mark").parents(".expand-marked").removeClass("expand-marked");
-        $(".highlightable").unhighlight({ element: 'mark' }).highlight(value, { element: 'mark' });
-        $("mark").parents(".expand").addClass("expand-marked");
-
-        if (ajax && ajax.abort) ajax.abort();
-
-        jQuery('[data-search-clear]').on('click', function() {
-            jQuery('[data-search-input]').val('').trigger('input');
-            sessionStorage.removeItem(baseUriFull+'search-input');
-            $("mark").parents(".expand-marked").removeClass("expand-marked");
-            $(".highlightable").unhighlight({ element: 'mark' })
-        });
-    });
-
-    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-        return function( elem ) {
-            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-        };
-    });
-
-    if (sessionStorage.getItem(baseUriFull+'search-value')) {
-        var searchValue = sessionStorage.getItem(baseUriFull+'search-value')
-        $('[data-search-input]').val(searchValue);
-        $('[data-search-input]').trigger('input');
-        var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
-        if (searchedElem) {
-            searchedElem.scrollIntoView(true);
-            var scrolledY = window.scrollY;
-            if(scrolledY){
-                window.scroll(0, scrolledY - 125);
-            }
-        }
-    }
-
-    $(".highlightable").highlight(sessionStorage.getItem(baseUriFull+'search-value'), { element: 'mark' });
-    $("mark").parents(".expand").addClass("expand-marked");
-
-    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
-    $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
+    initSearch();
 });
 
 jQuery.extend({
