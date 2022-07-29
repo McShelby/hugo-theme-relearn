@@ -87,7 +87,7 @@ function restoreTabSelections() {
     }
 }
 
-function initMermaid( update ) {
+function initMermaid( update, attrs ) {
     // we are either in update or initialization mode;
     // during initialization, we want to edit the DOM;
     // during update we only want to execute if something changed
@@ -113,10 +113,9 @@ function initMermaid( update ) {
         return '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n' + graph.content;
     };
 
-    var init_func = function(){
-        state.is_initialized = true;
+    var init_func = function( attrs ){
         var is_initialized = false;
-        var theme = variants.getColorValue( 'MERMAID-theme' );
+        var theme = attrs.theme;
         document.querySelectorAll('.mermaid').forEach( function( element ){
             var parse = parseGraph( decodeHTML( element.innerHTML ) );
 
@@ -138,9 +137,9 @@ function initMermaid( update ) {
         return is_initialized;
     }
 
-    var update_func = function(){
+    var update_func = function( attrs ){
         var is_initialized = false;
-        var theme = variants.getColorValue( 'MERMAID-theme' );
+        var theme = attrs.theme;
         document.querySelectorAll( '.mermaid-container' ).forEach( function( e ){
             var element = e.querySelector( '.mermaid' );
             var code = e.querySelector( '.mermaid-code' );
@@ -174,28 +173,66 @@ function initMermaid( update ) {
         return;
     }
 
-    var is_initialized = ( update ? update_func() : init_func() );
+    if( !state.is_initialized ){
+        state.is_initialized = true;
+        window.addEventListener( 'beforeprint', function(){
+            initMermaid( true, {
+                'theme': variants.getColorValue( 'PRINT-MERMAID-theme' ),
+            });
+		}.bind( this ) );
+		window.addEventListener( 'afterprint', function(){
+            initMermaid( true );
+		}.bind( this ) );
+    }
+
+    attrs = attrs || {
+        'theme': variants.getColorValue( 'MERMAID-theme' ),
+    };
+    var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
     if( is_initialized ){
         mermaid.init();
         $(".mermaid svg").svgPanZoom({});
     }
 }
 
-function initSwagger( update ){
+function initSwagger( update, attrs ){
+    var state = this;
+    if( update && !state.is_initialized ){
+        return;
+    }
     if( typeof variants == 'undefined' ){
         return;
     }
-    var attrs = [
-        [ 'bg-color', variants.getColorValue( 'MAIN-BG-color' ) ],
-        [ 'mono-font', variants.getColorValue( 'CODE-font' ) ],
-        [ 'primary-color', variants.getColorValue( 'TAG-BG-color' ) ],
-        [ 'regular-font', variants.getColorValue( 'MAIN-font' ) ],
-        [ 'text-color', variants.getColorValue( 'MAIN-TEXT-color' ) ],
-        [ 'theme', variants.getColorValue( 'SWAGGER-theme' ) ],
-    ];
+
+    if( !state.is_initialized ){
+        state.is_initialized = true;
+        window.addEventListener( 'beforeprint', function(){
+            initSwagger( true, {
+                'bg-color': variants.getColorValue( 'PRINT-MAIN-BG-color' ),
+                'mono-font': variants.getColorValue( 'PRINT-CODE-font' ),
+                'primary-color': variants.getColorValue( 'PRINT-TAG-BG-color' ),
+                'regular-font': variants.getColorValue( 'PRINT-MAIN-font' ),
+                'text-color': variants.getColorValue( 'PRINT-MAIN-TEXT-color' ),
+                'theme': variants.getColorValue( 'PRINT-SWAGGER-theme' ),
+            });
+        }.bind( this ) );
+        window.addEventListener( 'afterprint', function(){
+            initSwagger( true );
+        }.bind( this ) );
+    }
+
+    attrs = attrs || {
+        'bg-color': variants.getColorValue( 'MAIN-BG-color' ),
+        'mono-font': variants.getColorValue( 'CODE-font' ),
+        'primary-color': variants.getColorValue( 'TAG-BG-color' ),
+        'regular-font': variants.getColorValue( 'MAIN-font' ),
+        'text-color': variants.getColorValue( 'MAIN-TEXT-color' ),
+        'theme': variants.getColorValue( 'SWAGGER-theme' ),
+    };
     document.querySelectorAll( 'rapi-doc' ).forEach( function( e ){
-        attrs.forEach( function( attr ){
-            e.setAttribute( attr[0], attr[1] );
+        Object.keys( attrs ).forEach( function( key ){
+            /* this doesn't work for FF 102, maybe related to custom elements? */
+            e.setAttribute( key, attrs[key] );
         });
     });
 }
