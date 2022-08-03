@@ -1,6 +1,19 @@
 # Changelog
 
-## 5.1.2 (2022-07-17)
+## 5.2.0 (2022-07-29)
+
+### Enhancements
+
+- [**feature**][**change**] menu: expand collapsed menus if search term is found in submenus [#312](https://github.com/McShelby/hugo-theme-relearn/issues/312)
+
+### Fixes
+
+- [**bug**] print: switch mermaid and swagger style before print [#316](https://github.com/McShelby/hugo-theme-relearn/issues/316)
+- [**bug**] theme: fix chapter margins on big screens [#315](https://github.com/McShelby/hugo-theme-relearn/issues/315)
+
+---
+
+## 5.1.2 (2022-07-18)
 
 ### Fixes
 
