@@ -18,6 +18,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Change**: If you've set `collapsibleMenu = true` in your `config.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
 
+---
+
 ## 5.1.0
 
 - **Change**: Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
@@ -34,6 +36,8 @@ This document shows you what's new in the latest release. For a detailed list of
       mediaType = 'text/html'
       permalinkable = false
   ````
+
+---
 
 ## 5.0.0
 
@@ -57,6 +61,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
 
+---
+
 ## 4.2.0
 
 - **Breaking**: The second parameter for the [`include` shortcode]({{% relref "shortcodes/tabs" %}}) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.
@@ -69,9 +75,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
 
+---
+
 ## 4.1.0
 
 - **New**: While fixing issues with the search functionality for non latin languages, you can now [configure to have multiple languages on a single page]({{% relref "cont/i18n/#search-with-mixed-language-support" %}}).
+
+---
 
 ## 4.0.0
 
