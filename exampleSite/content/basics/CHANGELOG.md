@@ -1,6 +1,22 @@
 # Changelog
 
-## 5.2.0 (2022-07-29)
+## 5.2.1 (2022-08-05)
+
+### Enhancements
+
+- [**feature**] i18n: improve japanese translation [#318](https://github.com/McShelby/hugo-theme-relearn/issues/318)
+
+### Fixes
+
+- [**bug**] nav: prev/next ignores ordersectionby [#320](https://github.com/McShelby/hugo-theme-relearn/issues/320)
+
+### Maintenance
+
+- [**task**] task: bump Hugo minimum requirement to 0.95 [#319](https://github.com/McShelby/hugo-theme-relearn/issues/319)
+
+---
+
+## 5.2.0 (2022-08-03)
 
 ### Enhancements
 
