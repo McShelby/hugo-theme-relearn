@@ -1,6 +1,7 @@
 +++
 archetype = "chapter"
 title = "Shortcodes"
+ordersectionsby = "title"
 weight = 3
 +++
 

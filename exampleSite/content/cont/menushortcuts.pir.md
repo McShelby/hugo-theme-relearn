@@ -1,5 +1,5 @@
 +++
 title = "Menu extrrra shorrrtcuts"
-weight = 25
+weight = 5
 +++
 {{< piratify >}}

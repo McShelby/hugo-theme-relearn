@@ -1,6 +1,6 @@
 +++
 title = "Code highlighting"
-weight = 16
+weight = 4
 +++
 
 The Relearn theme uses [Hugo's built-in syntax highlighting](https://gohugo.io/content-management/syntax-highlighting/) for code.

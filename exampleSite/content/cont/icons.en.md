@@ -1,6 +1,6 @@
 +++
 title = "Icons and logos"
-weight = 27
+weight = 6
 +++
 
 The Relearn theme for Hugo loads the [**Font Awesome**](https://fontawesome.com) library, allowing you to easily display any icon or logo available in the Font Awesome free collection.
