@@ -18,7 +18,7 @@
 {{- if $wantsSwagger }}
 	{{- $currentNode.Store.Set "hasSwagger" true }}
 {{- end }}
-{{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" .Site.Params.ordersectionsby }}
+{{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" (.Site.Params.ordersectionsby | default "weight") }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
 	{{- $isSelf := eq $currentNode.RelPermalink .node.RelPermalink }}
@@ -61,9 +61,9 @@
 	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
 	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
 	{{- if eq $currentOrdersectionsby "title"}}
-		{{- $pages := $pages.ByTitle }}
+		{{- $pages = $pages.ByTitle }}
 	{{- else}}
-		{{- $pages := $pages.ByWeight }}
+		{{- $pages = $pages.ByWeight }}
 	{{- end }}
 	{{- range $pages }}
 		{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
