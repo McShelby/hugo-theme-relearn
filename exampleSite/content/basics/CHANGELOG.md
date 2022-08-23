@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.2.2 (2022-08-23)
+
+### Fixes
+
+- [**bug**] print: fix urls for uglyURLs=true [#322](https://github.com/McShelby/hugo-theme-relearn/issues/322)
+
+---
+
 ## 5.2.1 (2022-08-05)
 
 ### Enhancements
