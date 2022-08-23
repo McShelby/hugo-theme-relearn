@@ -120,6 +120,12 @@ You can activate print support to add the capability to print whole chapters or 
 
 This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
 
+{{% notice note %}}
+The resulting URL will not be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) in terms of [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls) even if you've set `uglyURLs=true` in your `config.toml`. This is due to the fact that for one mime type only one suffix can be configured.
+
+Nevertheless, if you're unhappy with the resulting URLs you can manually redefine `outputFormats.PRINT` in your own `config.toml` to your liking.
+{{% /notice %}}
+
 ## MathJax
 
 The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Math]({{< relref "shortcodes/math" >}}) for additional documentation.
