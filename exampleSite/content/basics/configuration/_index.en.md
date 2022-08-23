@@ -120,10 +120,6 @@ You can activate print support to add the capability to print whole chapters or 
 
 This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
 
-{{% notice note %}}
-While colors of your chosen color variant are reset to the theme's light standard values for printing, this does not apply for Mermaid diagrams and Swagger/OpenAPI Specification. Those will still use the colors of your chosen color variant which may cause a non coherent look on paper.
-{{% /notice %}}
-
 ## MathJax
 
 The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Math]({{< relref "shortcodes/math" >}}) for additional documentation.
