@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.2.3 (2022-09-12)
+
+### Fixes
+
+- [**bug**] print: chapter pages overwrite font-size [#328](https://github.com/McShelby/hugo-theme-relearn/issues/328)
+
+---
+
 ## 5.2.2 (2022-08-23)
 
 ### Fixes
@@ -41,7 +49,7 @@
 
 ### Fixes
 
-- [**bug**] print: reset mermaid theme to light [#313](https://github.com/McShelby/hugo-theme-relearn/issues/313)
+- [**bug**][**browser**] print: reset mermaid theme to light [#313](https://github.com/McShelby/hugo-theme-relearn/issues/313)
 - [**bug**] mermaid: header is showing up in FF [#311](https://github.com/McShelby/hugo-theme-relearn/issues/311)
 
 ---
