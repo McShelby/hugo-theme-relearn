@@ -134,7 +134,7 @@
     {{- $remaining = sub $remaining 1 }}
     {{- if $ispublished }}
       {{- $depth = add $depth 1 }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ $page.RelPermalink }}">{{end}}<span itemprop="name">{{ if $page.Title }}{{ $page.Title }}{{ else }}{{ $page.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}"></li>{{ if $remaining }} > {{ end }}
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ $page.RelPermalink }}">{{end}}<span itemprop="name">{{ if $page.Title }}{{ $page.Title }}{{ else }}{{ $page.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
     {{- end }}
   {{- end }}
 {{- end }}

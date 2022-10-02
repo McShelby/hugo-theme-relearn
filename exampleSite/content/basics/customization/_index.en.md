@@ -46,7 +46,7 @@ If no favicon file is found, the theme will lookup the alternative filename `log
 If you need to change this default behavior, create a new file in `layouts/partials/` named `favicon.html`. Then write something like this:
 
 ```html
-<link rel="icon" href="/images/favicon.bmp" type="image/bmp" />
+<link rel="icon" href="/images/favicon.bmp" type="image/bmp">
 ```
 
 ## Change the colors {#theme-variant}

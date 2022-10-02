@@ -70,7 +70,7 @@ echo "Hello World!"
 
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
-| **groupid**           | `default`        | Arbitrary name of the group the tab view belongs to.<br/><br/>Tab views with the same **groupid** sychronize their selected tab. This sychronization applies to the whole site! |
+| **groupid**           | `default`        | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. This sychronization applies to the whole site! |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
 {{% notice note %}}
