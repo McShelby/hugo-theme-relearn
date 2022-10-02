@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.2.4 (2022-10-02)
+
+### Fixes
+
+- [**bug**] theme: remove HTML5 validator errors [#329](https://github.com/McShelby/hugo-theme-relearn/issues/329)
+
+---
+
 ## 5.2.3 (2022-09-12)
 
 ### Fixes
@@ -49,7 +57,7 @@
 
 ### Fixes
 
-- [**bug**][**browser**] print: reset mermaid theme to light [#313](https://github.com/McShelby/hugo-theme-relearn/issues/313)
+- [**bug**] print: reset mermaid theme to light [#313](https://github.com/McShelby/hugo-theme-relearn/issues/313)
 - [**bug**] mermaid: header is showing up in FF [#311](https://github.com/McShelby/hugo-theme-relearn/issues/311)
 
 ---
