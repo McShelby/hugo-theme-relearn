@@ -91,8 +91,7 @@
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
-              <meta itemprop="itemListOrder" content="Descending">
-              {{- template "breadcrumb" dict "page" . "depth" 0 }}
+              {{- template "breadcrumb" dict "page" . }}
             </ol>
           {{- else }}
             <span class="links">
@@ -111,16 +110,31 @@
 {{- partial "tags.html" . }}
           </div>
 {{- define "breadcrumb" }}
-  {{- $parent := .page.Parent }}
-  {{- $ispublished := gt (int (len .page.Permalink)) 0 }}
-  {{- $depth := .depth }}
-  {{- if $ispublished }}
-    {{- $depth = add $depth 1 }}
+  {{- $breadcrumb := slice }}
+  {{- $page := .page }}
+  {{- $breadcrumb = $breadcrumb | append $page }}
+  {{- range seq (len .page.Site.Home.Pages) }}
+    {{- $page = $page.Parent }}
+    {{- if $page }}
+      {{- $breadcrumb = $breadcrumb | append $page }}
+    {{- else }}
+      {{- break }}
+    {{- end }}
   {{- end }}
-  {{- if $parent }}
-    {{- template "breadcrumb" dict "page" $parent "depth" $depth }}
+  {{- $len := len $breadcrumb -}}
+  {{- $breadcrumbReversed := slice }}
+  {{- range seq $len }}
+    {{- $breadcrumbReversed = $breadcrumbReversed | append (index $breadcrumb (sub $len .)) }}
   {{- end }}
-  {{- if $ispublished }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="{{ $depth }}"><a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}><span itemprop="name">{{if .page.Title}}{{ .page.Title }}{{else}}{{ .page.Site.Title }}{{end}}</span></a>{{ if .depth }} > {{ end }}</li>
+  {{- $remaining := $len }}
+  {{- $depth := 0 }}
+  {{- range $i, $e := $breadcrumbReversed }}
+    {{- $page := $e }}
+    {{- $ispublished := gt (int (len $page.Permalink)) 0 }}
+    {{- $remaining = sub $remaining 1 }}
+    {{- if $ispublished }}
+      {{- $depth = add $depth 1 }}
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ $page.RelPermalink }}">{{end}}<span itemprop="name">{{ if $page.Title }}{{ $page.Title }}{{ else }}{{ $page.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}"></li>{{ if $remaining }} > {{ end }}
+    {{- end }}
   {{- end }}
 {{- end }}
