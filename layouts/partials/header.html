@@ -91,7 +91,7 @@
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
-              <meta itemprop="itemListOrder" content="Descending" />
+              <meta itemprop="itemListOrder" content="Descending">
               {{- template "breadcrumb" dict "page" . "depth" 0 }}
             </ol>
           {{- else }}
@@ -121,6 +121,6 @@
     {{- template "breadcrumb" dict "page" $parent "depth" $depth }}
   {{- end }}
   {{- if $ispublished }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="{{ $depth }}" /><a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}><span itemprop="name">{{if .page.Title}}{{ .page.Title }}{{else}}{{ .page.Site.Title }}{{end}}</span></a>{{ if .depth }} > {{ end }}</li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="{{ $depth }}"><a itemprop="item" href="{{ .page.RelPermalink }}"{{if not .depth}} aria-disabled="true"{{end}}><span itemprop="name">{{if .page.Title}}{{ .page.Title }}{{else}}{{ .page.Site.Title }}{{end}}</span></a>{{ if .depth }} > {{ end }}</li>
   {{- end }}
 {{- end }}
