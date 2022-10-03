@@ -74,7 +74,7 @@ Parameter are only supported when using shortcode or partial syntax. Defaults ar
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
 | **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your mermaid graph. |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
 
 ## Configuration
 
@@ -99,8 +99,8 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 [markup]
   [markup.highlight]
     # if `guessSyntax = true`, there will be no unstyled code even if no language
-    # was given BUT mermaid and math codefences will not work anymore! So this is a
-    # mandatory setting for your site if you want to use mermaid codefences
+    # was given BUT Mermaid and Math codefences will not work anymore! So this is a
+    # mandatory setting for your site if you want to use Mermaid codefences
     guessSyntax = false
 ````
 
