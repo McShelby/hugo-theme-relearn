@@ -86,11 +86,11 @@ th {
     margin-top: 1rem;
 }
 
-.searchbox label {
+.searchbox > i {
     color: rgba( 255, 255, 255, .8 );
     position: absolute;
     left: 10px;
-    top: 3px;
+    top: 6px;
 }
 
 .searchbox span {
@@ -1417,3 +1417,41 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 	width: 100px;
 	top: -9999px;
 }
+
+.a11y-only {
+    /* idea taken from https://www.filamentgroup.com/lab/a11y-form-labels.html */
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    transform: translateY(-100%);
+    transition: transform .5s cubic-bezier(.18,.89,.32,1.28);
+    white-space: nowrap;
+}
+
+/* filament style for making action visible on focus - not adepted yet
+.a11y-only:focus {
+    position: fixed;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    margin: 0 0 0 -100px;
+    top: -.3em;
+    left: 50%;
+    text-align: center;
+    width: 200px;
+    background: #fff;
+    color: #368512;
+    padding: .8em 0 .7em;
+    font-size: 16px;
+    z-index: 5000;
+    text-decoration: none;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    outline: 0;
+    transform: translateY(0%);
+}
+*/
