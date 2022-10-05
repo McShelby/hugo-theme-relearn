@@ -76,7 +76,7 @@ Note that some of these parameters are explained in details in other sections of
   themeVariant = "relearn-light"
   # Change the title separator. Default to "::".
   titleSeparator = "-"
-  # If set to true, the menu in the sidebar will be displayed in a collapsible tree view.
+  # If set to true, the menu in the sidebar will be displayed in a collapsible tree view. Although the functionality works with old browsers (IE11), the display of the expander icons is limited to modern browsers
   collapsibleMenu = false
   # If a single page can contain content in multiple languages, add those here
   additionalContentLanguage = [ "en" ]
