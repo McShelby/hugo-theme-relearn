@@ -163,12 +163,7 @@ th {
     display: block;
 }
 
-#sidebar ul.topics input.toggle,
-#sidebar ul.topics label {
-    display: none;
-}
-
-#sidebar ul.topics > li > label,
+#sidebar ul.collapsible-menu > li > .toggle,
 #sidebar ul.topics > li > a {
     font-size: 1.1rem;
     line-height: 2rem;
@@ -1356,44 +1351,38 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 #sidebar ul.collapsible-menu input.toggle {
-	cursor: pointer;
-    display: block;
-	left: -1rem;
-	opacity: 0;
-    overflow: hidden;
-	position: absolute;
-	top: 0;
-}
-
-#sidebar ul.collapsible-menu label {
+    -webkit-appearance: none;
+    appearance: none;
     cursor: pointer;
-    display: inline;
-    height: 1rem;
-    left: 0;
-    margin-top: .2em;
-	position: absolute;
-    width: 1rem;
+    height: 2rem;
+    left: 1rem;
+    padding-top: .35rem;
+    position: absolute;
+    width: 1px;
 }
 
-#sidebar .collapsible-menu input.toggle + label:after {
+#sidebar ul.collapsible-menu > li > input.toggle {
+    padding-top: .25rem;
+}
+
+#sidebar .collapsible-menu input.toggle:before {
     content: "\f054";
     font-family: "Font Awesome 5 Free";
     font-size: .8rem;
     font-weight: 900;
+    padding: .5rem .1rem;
+    margin-left: -1rem;
 }
 
-#sidebar .collapsible-menu input.toggle:checked + label:after {
+#sidebar .collapsible-menu input.toggle:checked:before {
     content: "\f078";
-    font-family: "Font Awesome 5 Free";
-    font-size: .8rem;
-    font-weight: 900;
 }
 
-#sidebar .collapsible-menu input.toggle + label + a + ul {
+#sidebar .collapsible-menu input.toggle + label.toggle + a + ul {
     display: none;
 }
 
-#sidebar .collapsible-menu input.toggle:checked + label + a + ul {
+#sidebar .collapsible-menu input.toggle:checked + label.toggle + a + ul {
 	display: inline;
 }
 
@@ -1420,15 +1409,14 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 .a11y-only {
     /* idea taken from https://www.filamentgroup.com/lab/a11y-form-labels.html */
+    clip: rect(1px,1px,1px,1px);
+    overflow: hidden;
     position: absolute;
     height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px,1px,1px,1px);
     transform: translateY(-100%);
     transition: transform .5s cubic-bezier(.18,.89,.32,1.28);
     white-space: nowrap;
+    width: 1px;
 }
 
 /* filament style for making action visible on focus - not adepted yet
