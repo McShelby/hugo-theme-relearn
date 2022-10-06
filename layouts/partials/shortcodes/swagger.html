@@ -6,21 +6,22 @@
 		{{- $src = .RelPermalink }}
 	{{- end }}
 {{- end }}
-<style>
-  rapi-doc::part(section-endpoint-head-method) {
-    font-size: 11px;
-  }
-  rapi-doc::part(btn) {
-    width: unset !important;
-  }
-</style>
 <rapi-doc
+{{- if eq (partial "output-format.hugo" .Page) "print" }}
+  allow-spec-file-download="false"
+  allow-server-selection="false"
+  allow-try="false"
+  render-style="read"
+{{- else }}
   allow-spec-file-download="true"
+  allow-server-selection="true"
+  allow-try="true"
+  render-style="view"
+{{- end }}
   default-schema-tab="example"
   font-size="largest"
   layout="column"
   load-fonts="false"
-  render-style="view"
   schema-description-expanded="true"
   schema-style="table"
   show-header="false"
