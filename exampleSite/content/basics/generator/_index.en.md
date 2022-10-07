@@ -27,7 +27,7 @@ This only works in modern browsers.
 {{% button style="secondary" icon="download" %}}Download variant{{% /button %}}
 {{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}
 
-<div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);" align="center">Graph</div>
+<div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);">Graph</div>
 
 {{% button style="secondary" icon="download" %}}Download variant{{% /button %}}
 {{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}

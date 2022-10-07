@@ -2,7 +2,7 @@
 {{- $content := .content }}
 {{- $align := .align | default "center" }}
 {{- with $context }}
-<div class="mermaid" align="{{ $align }}">
+<div class="mermaid align-{{ $align }}">
   {{- replaceRE "&#39;" "'" ( replaceRE "&#34;" "\"" ( $content | safeHTML ) ) -}}
 </div>
 {{- .Page.Store.Set "hasMermaid" true }}
