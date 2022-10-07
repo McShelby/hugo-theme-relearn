@@ -4,7 +4,7 @@ description = "List the child pages of a page"
 title = "Children"
 +++
 
-The `children` shortcode lists the child pages of a page and its descendants .
+The `children` shortcode lists the child pages of the current page and its descendants .
 
 {{% children sort="weight" %}}
 ## Usage
@@ -35,7 +35,6 @@ While the examples are using shortcodes with named parameter you are free to als
 
 | Name               | Default           | Notes       |
 |:-------------------|:------------------|:------------|
-| **page**           | _&lt;current&gt;_ | Specify the page name (section name) to display children for. |
 | **containerstyle** | `ul`              | Choose the style used to group all children. It could be any HTML tag name. |
 | **style**          | `li`              | Choose the style used to display each descendant. It could be any HTML tag name. |
 | **showhidden**     | `false`           | When `true`, child pages hidden from the menu will be displayed aswell. |
