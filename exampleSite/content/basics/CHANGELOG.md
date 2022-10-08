@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.3.1 (2022-10-08)
+
+### Enhancements
+
+- [**feature**] i18n: update spanish translation [#343](https://github.com/McShelby/hugo-theme-relearn/issues/343)
+- [**feature**] theme: option to align images [#327](https://github.com/McShelby/hugo-theme-relearn/issues/327)
+
+---
+
 ## 5.3.0 (2022-10-07)
 
 ### Enhancements
