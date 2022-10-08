@@ -18,6 +18,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Change**: In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. Although the functionality of the new implementation works with old browsers (Internet Explorer 11), the display of the expander icons does not and is limited to modern browsers.
 
+- **New**: [Image formatting]({{% relref "cont/markdown#add-css-classes" %}}) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
+
 - **New**: Printing for the [`swagger` shortcode]({{% relref "shortcodes/swagger" %}}) was optimized to expand sections that are usually closed in interactive mode. This requires [print support]({{%relref "basics/configuration#activate-print-support" %}}) to be configured.
 
 ---

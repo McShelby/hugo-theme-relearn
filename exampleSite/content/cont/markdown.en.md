@@ -601,40 +601,40 @@ Content for chapter one.
 ## Chapter 3 <a id="chapter-3"></a>
 Content for chapter one.
 ```
-**NOTE** that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.
+
+{{% notice note %}}
+Note that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.
+{{% /notice %}}
 
 ## Images {#images}
-Images have a similar syntax to links but include a preceding exclamation point.
+
+Images have a similar syntax to links but include a preceding exclamation mark:
 
 ```markdown
-![Minion](https://octodex.github.com/images/minion.png)
+![Spock](https://octodex.github.com/images/spocktocat.png)
 ```
 
-![Minion](https://octodex.github.com/images/minion.png)
+![Spock](https://octodex.github.com/images/spocktocat.png?width=20vw)
 
-or
+Like links, images also have a footnote style syntax, resulting in a tooltip:
 
 ```markdown
-![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Picard](https://octodex.github.com/images/jean-luc-picat.jpg "Jean Luc Picard")
 ```
 
-![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Picard](https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw "Jean Luc Picard")
 
-Like links, Images also have a footnote style syntax
-
-### Alternative usage : note images
+Images can also be linked by reference ID to later define the URL location:
 
 ```markdown
-![Alt text][id]
+![La Forge][laforge]
+
+[laforge]: https://octodex.github.com/images/trekkie.jpg "Geordi La Forge"
 ```
 
-![Alt text][id]
+![La Forge][laforge]
 
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-    [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+[laforge]: https://octodex.github.com/images/trekkie.jpg?width=20vw "Geordi La Forge"
 
 ### Further image formatting
 
@@ -645,12 +645,10 @@ The Hugo Markdown parser supports additional non-standard functionality.
 Add HTTP parameters `width` and/or `height` to the link image to resize the image. Values are CSS values (default is `auto`).
 
 ```markdown
-![Minion](https://octodex.github.com/images/minion.png?width=20pc)
+![Minion](https://octodex.github.com/images/minion.png?width=20vw)
 ```
 
-![Minion](https://octodex.github.com/images/minion.png?width=20pc)
-
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.png?width=20pc)
+![Minion](https://octodex.github.com/images/minion.png?width=20vw)
 
 ```markdown
 ![Minion](https://octodex.github.com/images/minion.png?height=50px)
@@ -659,39 +657,67 @@ Add HTTP parameters `width` and/or `height` to the link image to resize the imag
 ![Minion](https://octodex.github.com/images/minion.png?height=50px)
 
 ```markdown
-![Minion](https://octodex.github.com/images/minion.png?height=50px&width=300px)
+![Minion](https://octodex.github.com/images/minion.png?height=50px&width=40vw)
 ```
 
-![Minion](https://octodex.github.com/images/minion.png?height=50px&width=300px)
+![Minion](https://octodex.github.com/images/minion.png?height=50px&width=40vw)
 
 #### Add CSS classes
 
-Add a HTTP `classes` parameter to the link image to add CSS classes. `shadow`and `border` are available but you could define other ones.
+Add a HTTP `classes` parameter to the link image to add CSS classes. Add some of the predefined values or even define your own in your CSS.
+
+##### shadow
 
 ```markdown
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?classes=shadow)
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?classes=shadow)
 ```
 
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=shadow)
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow)
+
+##### border
 
 ```markdown
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?classes=border)
+![DrOctocat](https://octodex.github.com/images/droctocat.png?classes=border)
 ```
 
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=border)
+![DrOctocat](https://octodex.github.com/images/droctocat.png?width=20vw&classes=border)
+
+##### left
 
 ```markdown
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?classes=border,shadow)
+![Supertocat](https://octodex.github.com/images/okal-eltocat.jpg?classes=left)
 ```
 
-![stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg?width=40pc&classes=border,shadow)
+![Supertocat](https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left)
+
+##### right
+
+```markdown
+![Riddlocat](https://octodex.github.com/images/riddlocat.jpg?classes=right)
+```
+
+![Riddlocat](https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right)
+
+##### inline
+
+```markdown
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?classes=inline)
+![DrOctocat](https://octodex.github.com/images/droctocat.png?classes=inline)
+![Supertocat](https://octodex.github.com/images/okal-eltocat.jpg?classes=inline)
+![Riddlocat](https://octodex.github.com/images/riddlocat.jpg?classes=inline)
+```
+
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline)
+![DrOctocat](https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline)
+![Supertocat](https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline)
+![Riddlocat](https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline)
 
 #### Lightbox
 
 Add a HTTP `featherlight` parameter to the link image to disable lightbox. By default lightbox is enabled using the featherlight.js plugin. You can disable this by defining `featherlight` to `false`.
 
 ```markdown
-![Minion](https://octodex.github.com/images/minion.png?featherlight=false)
+![Homercat](https://octodex.github.com/images/homercat.png?featherlight=false)
 ```
 
-![Minion](https://octodex.github.com/images/minion.png?featherlight=false)
+![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&featherlight=false)
