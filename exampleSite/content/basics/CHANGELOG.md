@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.3.2 (2022-10-08)
+
+### Fixes
+
+- [**bug**] nav: change defunct keyboard shortcuts [#344](https://github.com/McShelby/hugo-theme-relearn/issues/344)
+
+---
+
 ## 5.3.1 (2022-10-08)
 
 ### Enhancements
