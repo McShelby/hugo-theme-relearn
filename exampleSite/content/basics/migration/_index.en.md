@@ -16,6 +16,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.4.0
 
+- **Change**: The [`button` shortcode]({{% relref "shortcodes/button" %}}) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
+
 - **New**: The [`math` shortcode]({{% relref "shortcodes/math" %}}) and [`mermaid` shortcode]({{% relref "shortcodes/mermaid" %}}) now support alignment parameter also if codefence syntax is used.
 
 - **New**: Translation for Finnish (Suomi).
