@@ -47,7 +47,7 @@ The included files can even contain Markdown and will be taken into account when
 
 ## Examples
 
-### Arbitray Content
+### Arbitrary Content
 
 ````go
 {{%/* include "shortcodes/INCLUDE_ME.md" */%}}

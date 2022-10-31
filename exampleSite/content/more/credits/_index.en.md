@@ -28,6 +28,6 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 
 ## Tooling
 
-- [GitHub](https://github.com) - Continuous deployement, testing and hosting of this project's sources and its documentation
+- [GitHub](https://github.com) - Continuous deployment, testing and hosting of this project's sources and its documentation
 - [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
 - [Hugo](https://gohugo.io/) - The static site generator of your choice

@@ -1,9 +1,9 @@
 +++
-description = "Some testing for different styles used in syntax highlightning and preformatted blocks"
+description = "Some testing for different styles used in syntax highlighting and preformatted blocks"
 title = "Code"
 +++
 
-Some testing for different styles used in syntax highlightning and preformatted blocks.
+Some testing for different styles used in syntax highlighting and preformatted blocks.
 
 ## Inline Code
 
@@ -38,13 +38,13 @@ Code fences without any selected language
 
 ````jsonxmylmsl
 {
-  "well": "Code fences with unexisting language"
+  "well": "Code fences with non existing language"
 }
 ````
 
 ## Block Preformatted
 
-    Some preformatted stuff with markdown indention
+    Some preformatted stuff with markdown indentation
 
 <pre>
 Some preformatted stuff in HTML elements
