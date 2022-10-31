@@ -1,8 +1,11 @@
 {{- $context := .context }}
 {{- $content := .content }}
-{{- $href := .href }}
+{{- $href := .href | default "" }}
 {{- $style := .style | default "transparent" }}
-{{- $target := .target | default "_blank" }}
+{{- $target := .target | default "" }}
+{{- if and (eq (len $target) 0) (or (strings.HasPrefix $href "http://") (strings.HasPrefix $href "https://") ) }}
+  {{- $target = "_blank" }}
+{{- end }}
 {{- $title := .title | default ($content) | default ($style | T) }}
 {{- $icon := .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
@@ -18,7 +21,7 @@
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $context }}
 <span class="btn cstyle {{ $style }}">
-  <a{{ if $href }} href="{{ $href }}" target="{{ $target }}"{{ end }}>
+  <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}" rel="noopener"{{ end }}{{ end }}>
     {{- if and $icon (eq $iconposition "left") }}
     <i class="{{ $icon }}"></i>
     {{- end }}
