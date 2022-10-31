@@ -70,8 +70,6 @@ The generated graphs can be be panned by dragging them and zoomed by using the m
 
 ### Parameter
 
-Passing parameters is supported for each available syntax (codefence, shortcode and partial).
-
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
 | **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
