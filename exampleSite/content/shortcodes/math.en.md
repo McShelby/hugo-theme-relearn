@@ -5,7 +5,7 @@ title = "Math"
 
 The `math` shortcode generates beautiful formatted math and chemical formulae using the [MathJax](https://mathjax.org/) library.
 
-{{< math >}}
+{{< math align="center" >}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{< /math >}}
 
@@ -27,7 +27,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 {{% tab name="codefence" %}}
 
 ````md
-```math
+```math { align="center" }
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 ```
 ````
@@ -36,7 +36,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 {{% tab name="shortcode" %}}
 
 ````go
-{{</* math */>}}
+{{</* math align="center" */>}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{</* /math */>}}
 ````
@@ -48,6 +48,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 {{ partial "shortcodes/math.html" (dict
   "context" .
   "content" "$$left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$"
+  "align"   "center"
 )}}
 
 ````
@@ -56,8 +57,6 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 {{< /tabs >}}
 
 ### Parameter
-
-Parameter are only supported when using shortcode or partial syntax. Defaults are used when using codefence syntax.
 
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
@@ -149,3 +148,11 @@ $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
 {{< math >}}
 $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
 {{< /math >}}
+
+
+
+
+
+```math { align="left" }
+$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+```
