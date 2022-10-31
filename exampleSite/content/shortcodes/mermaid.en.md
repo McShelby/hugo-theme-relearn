@@ -5,7 +5,7 @@ title = "Mermaid"
 
 The `mermaid` shortcode generates diagrams and flowcharts from text, in a similar manner as Markdown using the [Mermaid](https://mermaidjs.github.io/) library.
 
-{{< mermaid >}}
+{{< mermaid align="center" >}}
 graph LR;
     If --> Then
     Then --> Else
@@ -33,7 +33,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 {{% tab name="codefence" %}}
 
 ````md
-```mermaid
+```mermaid { align="center" }
 graph LR;
     If --> Then
     Then --> Else
@@ -44,7 +44,7 @@ graph LR;
 {{% tab name="shortcode" %}}
 
 ````go
-{{</* mermaid */>}}
+{{</* mermaid align="center" */>}}
 graph LR;
     If --> Then
     Then --> Else
@@ -58,6 +58,7 @@ graph LR;
 {{ partial "shortcodes/mermaid.html" (dict
   "context" .
   "content" "graph LR;\nIf --> Then\nThen --> Else"
+  "align"   "center"
 )}}
 
 ````
@@ -69,7 +70,7 @@ The generated graphs can be be panned by dragging them and zoomed by using the m
 
 ### Parameter
 
-Parameter are only supported when using shortcode or partial syntax. Defaults are used when using codefence syntax.
+Passing parameters is supported for each available syntax (codefence, shortcode and partial).
 
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
