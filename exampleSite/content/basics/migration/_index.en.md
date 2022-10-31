@@ -14,6 +14,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.4.0
+
+- **New**: Translation for Finnish (Suomi).
+
+---
+
 ## 5.3.0
 
 - **Change**: In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. Although the functionality of the new implementation works with old browsers (Internet Explorer 11), the display of the expander icons does not and is limited to modern browsers.
