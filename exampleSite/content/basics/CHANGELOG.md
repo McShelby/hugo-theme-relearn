@@ -322,7 +322,7 @@
 
 ### Fixes
 
-- [**bug**] theme: fix IE11 incompatiblities [#234](https://github.com/McShelby/hugo-theme-relearn/issues/234)
+- [**bug**] theme: fix IE11 incompatibilities [#234](https://github.com/McShelby/hugo-theme-relearn/issues/234)
 
 ---
 
@@ -330,7 +330,7 @@
 
 ### Enhancements
 
-- [**feature**] i18n: add traditional chinese translation [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
+- [**feature**] i18n: add traditional Chinese translation [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
 - [**feature**] menu: expand/collapse menu items without navigation [#231](https://github.com/McShelby/hugo-theme-relearn/issues/231)
 - [**feature**] print: add option to print whole chapter [#230](https://github.com/McShelby/hugo-theme-relearn/issues/230)
 - [**feature**][**breaking**] theme: apply user supplied content footer below content [#229](https://github.com/McShelby/hugo-theme-relearn/issues/229)
@@ -733,14 +733,14 @@
 - [**feature**] menu: control menu expansion with alwaysopen parameter [#49](https://github.com/McShelby/hugo-theme-relearn/issues/49)
 - [**feature**] include: new shortcode to include other files [#43](https://github.com/McShelby/hugo-theme-relearn/issues/43)
 - [**feature**] theme: adjust print styles [#35](https://github.com/McShelby/hugo-theme-relearn/issues/35)
-- [**feature**][**change**] code highligher: switch to standard hugo highlighter [#32](https://github.com/McShelby/hugo-theme-relearn/issues/32)
+- [**feature**][**change**] code highlighter: switch to standard hugo highlighter [#32](https://github.com/McShelby/hugo-theme-relearn/issues/32)
 
 ### Fixes
 
 - [**bug**][**change**] arrow-nav: default sorting ignores ordersectionsby [#63](https://github.com/McShelby/hugo-theme-relearn/issues/63)
 - [**bug**][**change**] children: default sorting ignores ordersectionsby [#62](https://github.com/McShelby/hugo-theme-relearn/issues/62)
 - [**bug**][**change**] arrow-nav: fix broken links on (and below) hidden pages [#61](https://github.com/McShelby/hugo-theme-relearn/issues/61)
-- [**bug**] theme: remove superflous singular taxonomy from taxonomy title [#46](https://github.com/McShelby/hugo-theme-relearn/issues/46)
+- [**bug**] theme: remove superfluous singular taxonomy from taxonomy title [#46](https://github.com/McShelby/hugo-theme-relearn/issues/46)
 - [**bug**][**change**] theme: missing --MENU-HOME-LINK-HOVER-color in documentation [#45](https://github.com/McShelby/hugo-theme-relearn/issues/45)
 - [**bug**] theme: fix home link when base URL has some path [#44](https://github.com/McShelby/hugo-theme-relearn/issues/44)
 

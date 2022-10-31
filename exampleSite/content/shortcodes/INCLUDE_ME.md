@@ -10,4 +10,4 @@ You can add standard markdown syntax:
 ...and even source code
 ```
 
-> the possiblities are endless (almost - including other shortcodes may or may not work) (almost - including other shortcodes may or may not work)
+> the possibilities are endless (almost - including other shortcodes may or may not work) (almost - including other shortcodes may or may not work)

@@ -37,7 +37,7 @@ While the examples are using shortcodes with named parameter you are free to als
 |:-------------------|:------------------|:------------|
 | **containerstyle** | `ul`              | Choose the style used to group all children. It could be any HTML tag name. |
 | **style**          | `li`              | Choose the style used to display each descendant. It could be any HTML tag name. |
-| **showhidden**     | `false`           | When `true`, child pages hidden from the menu will be displayed aswell. |
+| **showhidden**     | `false`           | When `true`, child pages hidden from the menu will be displayed as well. |
 | **description**    | `false`           | When `true` shows a short text under each page in the list. When no description or summary exists for the page, the first 70 words of the content is taken - [read more info about summaries on gohugo.io](https://gohugo.io/content/summaries/). |
 | **depth**          | `1`               | The depth of descendants to display. For example, if the value is `2`, the shortcode will display two levels of child pages.  To get all descendants, set this value to a high  number eg. `999`. |
 | **sort**           | see notes         | The sort order of the displayed list.<br><br>If not set it is sorted by the [`ordersectionsby`]({{% relref "basics/configuration#global-site-parameters" %}}) setting of the site and the pages frontmatter<br><br>- `weight`: to sort on menu order<br>- `title`: to sort alphabetically on menu label. |
@@ -60,7 +60,7 @@ While the examples are using shortcodes with named parameter you are free to als
 
 {{%children description="true" %}}
 
-### Infinte Depth and Hidden Pages
+### Infinite Depth and Hidden Pages
 
 ````go
 {{%/* children depth="999" showhidden="true" */%}}
