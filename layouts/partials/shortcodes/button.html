@@ -2,6 +2,7 @@
 {{- $content := .content }}
 {{- $href := .href }}
 {{- $style := .style | default "transparent" }}
+{{- $target := .target | default "_blank" }}
 {{- $title := .title | default ($content) | default ($style | T) }}
 {{- $icon := .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
@@ -17,7 +18,7 @@
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $context }}
 <span class="btn cstyle {{ $style }}">
-  <a{{ if $href }} href="{{ $href }}" target="_blank"{{ end }}>
+  <a{{ if $href }} href="{{ $href }}" target="{{ $target }}"{{ end }}>
     {{- if and $icon (eq $iconposition "left") }}
     <i class="{{ $icon }}"></i>
     {{- end }}

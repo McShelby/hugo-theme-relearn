@@ -52,6 +52,7 @@ Once the button is clicked, it opens another browser tab for the given URL.
 | **icon**              | see notes       | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
 | _**&lt;content&gt;**_ | see notes       | Arbitrary text for the button title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **target**            | _blank          | The destination frame/window for the URL. |
 
 ## Examples
 
@@ -133,6 +134,15 @@ Once the button is clicked, it opens another browser tab for the given URL.
 ````
 
 {{% button href="https://gohugo.io/" icon="dragon" style="warning" %}}Get Hugo{{% /button %}}
+
+### Target
+
+````go
+{{%/* button href="https://gohugo.io/" target="_self" %}}Get Hugo in same window{{% /button */%}}
+{{%/* button href="https://gohugo.io/" %}}Get Hugo in new Window/Frame (default){{% /button */%}}
+````
+{{% button href="https://gohugo.io/" target="_self" %}}Get Hugo in same Window/Frame{{% /button %}}
+{{% button href="https://gohugo.io/" %}}Get Hugo in new Window/Frame (default){{% /button %}}
 
 ### Other
 
