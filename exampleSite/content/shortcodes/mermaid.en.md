@@ -270,12 +270,3 @@ stateDiagram-v2
   locked --> closed: Unlock
   closed --> open: Open
 ````
-
-
-
-
-```mermaid { align="left" }
-graph LR;
-    If --> Then
-    Then --> Else
-```
