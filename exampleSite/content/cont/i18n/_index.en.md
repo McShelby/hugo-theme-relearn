@@ -7,7 +7,8 @@ The Relearn theme is fully compatible with Hugo multilingual mode.
 
 It provides:
 
-- Translation strings for default values (English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese). Feel free to contribute!
+- Translation strings for default values (English, Piratized English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese). Feel free to contribute!
+- Translation strings for default values (English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese). Feel free to contribute!
 - Automatic menu generation from multilingual content
 - In-browser language switching
 
@@ -67,7 +68,7 @@ You'll see error reports in your browsers console log for each unsupported langu
 
 ### Search with mixed language support
 
-In case your page's content contains text in multiple languages (e.g. you are writing a russian documentation for your english API), you can add those languages to your `config.toml` to broaden search.
+In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your english API), you can add those languages to your `config.toml` to broaden search.
 
 ```toml
 [params]
@@ -77,7 +78,7 @@ In case your page's content contains text in multiple languages (e.g. you are wr
 As this is an array, you can add multiple additional languages.
 
 {{% notice note %}}
-Keep in mind that the language code required here, is the base language code. E.g. if you have additonal content in `zh-CN`, you have to add just `zh` to this parameter.
+Keep in mind that the language code required here, is the base language code. E.g. if you have additional content in `zh-CN`, you have to add just `zh` to this parameter.
 {{% /notice %}}
 
 ## Overwrite translation strings
@@ -94,6 +95,6 @@ Just set `disableLanguageSwitchingButton=true` in your `config.toml`
 
 ```toml
 [params]
-  # When using mulitlingual website, disable the switch language button.
+  # When using multilingual website, disable the switch language button.
   disableLanguageSwitchingButton = true
 ```

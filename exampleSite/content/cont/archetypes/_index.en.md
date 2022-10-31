@@ -87,9 +87,9 @@ weight = X
 Lorem Ipsum.
 ```
 
-Replace the `X` with a number or delete the whole `weight` parameter entirly.
+Replace the `X` with a number or delete the whole `weight` parameter entirely.
 
-## Selfdefined Archetypes
+## Self defined Archetypes
 
 If you are in need of further archetypes you can define your own or even redefine existing ones.
 
@@ -103,7 +103,7 @@ archetype = "<kind>"
 +++
 ````
 
-Afterwards you can generate new content files of that kind with the follwing command
+Afterwards you can generate new content files of that kind with the following command
 
 ```shell
 hugo new --kind <kind> <name>/_index.md

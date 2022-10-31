@@ -9,7 +9,7 @@ The `expand` shortcode displays an expandable/collapsible section of text.
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to use positional aswell or also call this shortcode from your own partials.
+While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
 {{% tab name="shortcode" %}}
@@ -43,9 +43,9 @@ While the examples are using shortcodes with named parameter you are free to use
 
 | Name                  | Position | Default          | Notes       |
 |:----------------------|:---------|:-----------------|:------------|
-| **title**             | 1        | `"Expand me..."` | Arbitray text to appear next to the expand/collapse icon. |
+| **title**             | 1        | `"Expand me..."` | Arbitrary text to appear next to the expand/collapse icon. |
 | **open**              | 2        | `false`          | When `true` the content text will be initially shown as expanded. |
-| _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Arbitray text to be displayed on expand. |
+| _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Arbitrary text to be displayed on expand. |
 
 ## Examples
 
@@ -81,7 +81,7 @@ You can add standard markdown syntax:
 ...and even source code
 ```
 
-> the possiblities are endless (almost - including other shortcodes may or may not work)
+> the possibilities are endless (almost - including other shortcodes may or may not work)
 {{%/* /expand */%}}
 ````
 
@@ -98,5 +98,5 @@ You can add standard markdown syntax:
 ...and even source code
 ```
 
-> the possiblities are endless (almost - including other shortcodes may or may not work)
+> the possibilities are endless (almost - including other shortcodes may or may not work)
 {{% /expand %}}
