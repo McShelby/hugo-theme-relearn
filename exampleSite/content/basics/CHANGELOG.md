@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.4.0 (2022-11-01)
+
+### Enhancements
+
+- [**feature**] math: allow passing of parameters with codefence syntax [#363](https://github.com/McShelby/hugo-theme-relearn/issues/363)
+- [**feature**] i18n: add Finnish translation [#361](https://github.com/McShelby/hugo-theme-relearn/issues/361)
+- [**feature**] mermaid: allow passing of parameters with codefence syntax [#360](https://github.com/McShelby/hugo-theme-relearn/issues/360)
+- [**feature**] i18n: support RTL [#357](https://github.com/McShelby/hugo-theme-relearn/issues/357)
+- [**feature**] button: add option for target [#351](https://github.com/McShelby/hugo-theme-relearn/issues/351)
+- [**feature**] theme: allow to be served by file:// protocol [#349](https://github.com/McShelby/hugo-theme-relearn/issues/349)
+
+---
+
 ## 5.3.3 (2022-10-09)
 
 ### Fixes
@@ -20,7 +33,7 @@
 
 ### Enhancements
 
-- [**feature**] i18n: update spanish translation [#343](https://github.com/McShelby/hugo-theme-relearn/issues/343)
+- [**feature**] i18n: update Spanish translation [#343](https://github.com/McShelby/hugo-theme-relearn/issues/343)
 - [**feature**] theme: option to align images [#327](https://github.com/McShelby/hugo-theme-relearn/issues/327)
 
 ---
@@ -71,7 +84,7 @@
 
 ### Enhancements
 
-- [**feature**] i18n: improve japanese translation [#318](https://github.com/McShelby/hugo-theme-relearn/issues/318)
+- [**feature**] i18n: improve Japanese translation [#318](https://github.com/McShelby/hugo-theme-relearn/issues/318)
 
 ### Fixes
 
@@ -155,7 +168,7 @@
 - [**feature**] menu: replace expander by fontawesome chevrons [#296](https://github.com/McShelby/hugo-theme-relearn/issues/296)
 - [**feature**] theme: align content with topbar icon limits [#290](https://github.com/McShelby/hugo-theme-relearn/issues/290)
 - [**feature**] button: allow for empty href [#288](https://github.com/McShelby/hugo-theme-relearn/issues/288)
-- [**feature**] i18n: make simplified chinese the standard language for the `zn` code [#287](https://github.com/McShelby/hugo-theme-relearn/issues/287)
+- [**feature**] i18n: make Simplified Chinese the standard language for the `zn` code [#287](https://github.com/McShelby/hugo-theme-relearn/issues/287)
 - [**feature**] clipboard: move head styles to stylesheet [#286](https://github.com/McShelby/hugo-theme-relearn/issues/286)
 - [**feature**] math: add mathjax rendering [#235](https://github.com/McShelby/hugo-theme-relearn/issues/235)
 - [**feature**] theme: allow for page heading modification [#139](https://github.com/McShelby/hugo-theme-relearn/issues/139)
@@ -248,7 +261,7 @@
 
 ### Fixes
 
-- [**bug**] i18n: vietnamese language with wrong lang code [#270](https://github.com/McShelby/hugo-theme-relearn/issues/270)
+- [**bug**] i18n: Vietnamese language with wrong lang code [#270](https://github.com/McShelby/hugo-theme-relearn/issues/270)
 - [**bug**] i18n: fix search for non western languages [#269](https://github.com/McShelby/hugo-theme-relearn/issues/269)
 
 ---
@@ -299,13 +312,13 @@
 
 - [**feature**] shortcodes: add named parameter if missing [#260](https://github.com/McShelby/hugo-theme-relearn/issues/260)
 - [**feature**][**breaking**] theme: remove --MAIN-ANCHOR-color from stylesheet [#256](https://github.com/McShelby/hugo-theme-relearn/issues/256)
-- [**feature**] i18n: add italian translation [#254](https://github.com/McShelby/hugo-theme-relearn/issues/254)
+- [**feature**] i18n: add Italian translation [#254](https://github.com/McShelby/hugo-theme-relearn/issues/254)
 - [**feature**] attachments: support for brand colors [#252](https://github.com/McShelby/hugo-theme-relearn/issues/252)
 - [**feature**] notice: support for brand colors [#251](https://github.com/McShelby/hugo-theme-relearn/issues/251)
 - [**feature**][**breaking**] config: remove custom_css [#248](https://github.com/McShelby/hugo-theme-relearn/issues/248)
 - [**feature**] theme: use proper file extension for page-meta.go [#246](https://github.com/McShelby/hugo-theme-relearn/issues/246)
 - [**feature**] variant: add support for brand color variables [#239](https://github.com/McShelby/hugo-theme-relearn/issues/239)
-- [**feature**] i18n: add polish translation [#237](https://github.com/McShelby/hugo-theme-relearn/issues/237)
+- [**feature**] i18n: add Polish translation [#237](https://github.com/McShelby/hugo-theme-relearn/issues/237)
 
 ### Fixes
 
@@ -330,7 +343,7 @@
 
 ### Enhancements
 
-- [**feature**] i18n: add traditional Chinese translation [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
+- [**feature**] i18n: add Traditional Chinese translation [#233](https://github.com/McShelby/hugo-theme-relearn/issues/233)
 - [**feature**] menu: expand/collapse menu items without navigation [#231](https://github.com/McShelby/hugo-theme-relearn/issues/231)
 - [**feature**] print: add option to print whole chapter [#230](https://github.com/McShelby/hugo-theme-relearn/issues/230)
 - [**feature**][**breaking**] theme: apply user supplied content footer below content [#229](https://github.com/McShelby/hugo-theme-relearn/issues/229)
@@ -381,7 +394,7 @@
 
 ### Enhancements
 
-- [**feature**] i18n: add korean translation [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
+- [**feature**] i18n: add Korean translation [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
 
 ---
 
