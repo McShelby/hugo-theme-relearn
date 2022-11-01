@@ -1,11 +1,16 @@
 # this is a required setting for this theme to appear on https://themes.gohugo.io/
 # change this to a value appropriate for you
 baseURL = "https://example.com"
+
 # as the official Hugo documentation recommends, we turn this off for this
 # showcase; this allows the published site to be served by both http and https
-canonifyURLs = false
-# required for official documentation served from subfolder
-relativeURLs = false
+canonifyURLs = false # true -> all relative URLs would instead be canonicalized using baseURL
+
+# required for this documentation to be served from subfolder
+relativeURLs = false # true -> rewrite all relative URLs to be relative to the current content
+
+# if you set uglyURLs to true, don't forget to set it also in the [params] section
+uglyURLs = false     # true -> basic/index.html -> basic.html
 
 # the directory where Hugo reads the themes from; this is specific to your
 # installation and most certainly needs be deleted or changed
@@ -27,6 +32,7 @@ title = "Hugo Relearn Documentation"
 # settings specific to this theme's features; choose to your likings and
 # consult this documentation for explaination
 [params]
+  uglyURLs = false # see uglyURLs setting above
   editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
   description = "Documentation for Hugo Relearn Theme"
   author = "Sören Weber"
@@ -49,7 +55,7 @@ title = "Hugo Relearn Documentation"
   # for the search functionality
   # add PRINT to home, section and page to activate the feature to print whole
   # chapters
-  home = ["HTML", "RSS", "PRINT", "JSON"]
+  home = ["HTML", "RSS", "PRINT", "SEARCH"]
   section = ["HTML", "RSS", "PRINT"]
   page = ["HTML", "RSS", "PRINT"]
 

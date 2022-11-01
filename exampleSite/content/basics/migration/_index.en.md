@@ -16,6 +16,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.4.0
 
+- **Change**: [With the proper settings]({{% relref "basics/configuration#serving-your-page-from-the-filesystem" %}}) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
+
+  Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `config.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
+
 - **Change**: The [`button` shortcode]({{% relref "shortcodes/button" %}}) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
 
 - **New**: The [`math` shortcode]({{% relref "shortcodes/math" %}}) and [`mermaid` shortcode]({{% relref "shortcodes/mermaid" %}}) now also support the `align` parameter if codefence syntax is used.

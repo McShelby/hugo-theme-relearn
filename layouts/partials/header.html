@@ -2,14 +2,15 @@
 <html lang="{{ .Page.Language | default "en" }}" dir="ltr">
   <head>
     {{- partial "meta.html" . }}
+    {{- $page := . }}
     {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
     <title>{{ if and .Title (not (eq .Title .Site.Title)) }}{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ end}}{{ .Site.Title }}</title>
 
     {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     {{- else }}
         {{- range .AlternativeOutputFormats }}
-            {{- if ne .Name "JSON" }}
-    {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($.Site.Title | htmlEscape)) | safeHTML }}
+            {{- if and (ne .Name "JSON") (ne .Name "SEARCH") }}
+    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .)) .Rel .MediaType.Type ($.Site.Title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
     {{- end }}
@@ -41,19 +42,19 @@
           <div class="navigation">
           {{- if and $ispublished ($.Scratch.Get "relearnNextPage") }}
             {{- with ($.Scratch.Get "relearnNextPage") }}
-             <a class="nav nav-next" href="{{.RelPermalink}}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+            <a class="nav nav-next" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
             {{- end }}
           {{- else }}
-             <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
+            <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
           {{- end }}
           </div>
           <div class="navigation">
           {{- if and $ispublished ($.Scratch.Get "relearnPrevPage") }}
             {{- with ($.Scratch.Get "relearnPrevPage") }}
-             <a class="nav nav-prev" href="{{.RelPermalink}}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end}}
           {{- else }}
-             <span class="nav nav-prev"><i class="fa fa-chevron-left fa-fw"></i></span>
+            <span class="nav nav-prev"><i class="fa fa-chevron-left fa-fw"></i></span>
           {{- end}}
           </div>
         {{- end }}
@@ -91,7 +92,7 @@
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
-              {{- template "breadcrumb" dict "page" . }}
+              {{- template "breadcrumb" dict "page" . "to" . }}
             </ol>
           {{- else }}
             <span class="links">
@@ -112,11 +113,12 @@
 {{- define "breadcrumb" }}
   {{- $breadcrumb := slice }}
   {{- $page := .page }}
-  {{- $breadcrumb = $breadcrumb | append $page }}
-  {{- range seq (len .page.Site.Home.Pages) }}
-    {{- $page = $page.Parent }}
-    {{- if $page }}
-      {{- $breadcrumb = $breadcrumb | append $page }}
+  {{- $to := .to }}
+  {{- $breadcrumb = $breadcrumb | append $to }}
+  {{- range seq (len .to.Site.Home.Pages) }}
+    {{- $to = $to.Parent }}
+    {{- if $to }}
+      {{- $breadcrumb = $breadcrumb | append $to }}
     {{- else }}
       {{- break }}
     {{- end }}
@@ -129,12 +131,12 @@
   {{- $remaining := $len }}
   {{- $depth := 0 }}
   {{- range $i, $e := $breadcrumbReversed }}
-    {{- $page := $e }}
-    {{- $ispublished := gt (int (len $page.Permalink)) 0 }}
+    {{- $to := $e }}
+    {{- $ispublished := gt (int (len $to.Permalink)) 0 }}
     {{- $remaining = sub $remaining 1 }}
     {{- if $ispublished }}
       {{- $depth = add $depth 1 }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ $page.RelPermalink }}">{{end}}<span itemprop="name">{{ if $page.Title }}{{ $page.Title }}{{ else }}{{ $page.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" $to) }}">{{end}}<span itemprop="name">{{ if $to.Title }}{{ $to.Title }}{{ else }}{{ $to.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
     {{- end }}
   {{- end }}
 {{- end }}

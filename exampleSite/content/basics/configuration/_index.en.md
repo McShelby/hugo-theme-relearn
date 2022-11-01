@@ -80,9 +80,11 @@ Note that some of these parameters are explained in details in other sections of
   collapsibleMenu = false
   # If a single page can contain content in multiple languages, add those here
   additionalContentLanguage = [ "en" ]
+  # Must be set to the same value as the global uglyURLs setting; this adds 'index.html' to all home links if set to true
+  uglyURLs = false
 ```
 
-## A word on running your site in a subfolder
+## Serving your page from a subfolder
 
 The theme runs best if your site is installed in the root of your webserver. If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
 
@@ -93,19 +95,33 @@ canonifyURLs = true
 
 Without `canonifyURLs=true` URLs in sublemental pages (like `sitemap.xml`, `rss.xml`) will be generated falsly while your HTML files will still work. See https://github.com/gohugoio/hugo/issues/5226.
 
+## Serving your page from the filesystem
+
+If you want your page served from the filesystem by using URLs starting with `file://` you'll need the following configuration in your `config.toml`:
+
+````toml
+relativeURLs = true
+uglyURLs = true
+[params]
+  uglyURLs = true
+````
+
+Because the global `uglyURLs` setting is not queryable in the theme's code, you'll have to set this option also in the `[params]` section of your `config.toml`.
+
+{{% notice note %}}
+If you want to use the search feature with an existing installation make sure to change your outputformat for the homepage from the now deprecated `JSON` to `SEARCH` [as seen below](#activate-search).
+{{% /notice %}}
+
 ## Activate search
 
-If not already present, add the follow lines in the same `config.toml` file.
+If not already present, add the following lines in the same `config.toml` file.
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "SEARCH"]
 ```
 
-Relearn theme uses the last improvement available in hugo version 20+ to generate a json index file ready to be consumed by lunr.js javascript search engine.
-
-> Hugo generate lunrjs index.json at the root of public folder.
-> When you build the site with `hugo server`, hugo generates it internally and of course it doesn’t show up in the filesystem
+This will generate a search index file at the root of your public folder ready to be consumed by the lunr.js javascript search engine.
 
 ## Activate print support
 
@@ -113,7 +129,7 @@ You can activate print support to add the capability to print whole chapters or 
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "PRINT", "JSON"]
+  home = ["HTML", "RSS", "PRINT", "SEARCH"]
   section = ["HTML", "RSS", "PRINT"]
   page = ["HTML", "RSS", "PRINT"]
 ```

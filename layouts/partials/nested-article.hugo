@@ -4,11 +4,11 @@
   {{- $currentNode := . }}
   {{- $isActive := .IsHome }}
   {{- $isShortcut := false }}
-  {{- $r_url := .RelPermalink }}
   {{- with .Site.Menus.shortcuts }}
     {{- range sort . "Weight" }}
-      {{- $s_url := .URL | relLangURL }}
-      {{- if (eq $s_url $r_url) }}
+      {{- $shortcut := . }}
+      {{- $shortcutPage := $page.Site.GetPage (printf "%s" $shortcut.URL ) }}
+      {{- if and $shortcutPage (eq $shortcutPage.RelPermalink $page.RelPermalink) }}
         {{- $isShortcut = true }}
       {{- end }}
     {{- end }}
