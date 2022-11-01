@@ -1,4 +1,50 @@
 @media all and (-ms-high-contrast:none) {
+	/* turn off LTR support as it is dependend on CSS properties that aren't supported by IE11 */
+	article,
+	.toc-wrapper,
+	.tags {
+		direction: ltr;
+	}
+	blockquote {
+		border-left: 10px solid rgba( 134, 134, 134, .4 );
+		padding-left: 0.85rem;
+	}
+	blockquote cite {
+		text-align: right;
+	}
+	th {
+		text-align: left;
+	}
+	.disableInlineCopyToClipboard span > code.copy-to-clipboard-code {
+		border-bottom-right-radius: 2px;
+		border-top-right-radius: 2px;
+		border-right-width: 1px;
+	}
+	.anchor {
+		margin-left: .66em;
+	}
+	div.attachments .box-content {
+		padding-left: 1.75rem;
+	}
+	.expand > .expand-label > .expand-rtl.direction-rtl {
+		display: none;
+	}
+	.expand > .expand-label > .expand-ltr.direction-rtl {
+		display: inline-block;
+	}
+	.expand.expand-expanded > .expand-label > .fa-chevron-right {
+		display: none;
+	}
+	#body .tab-nav-button {
+		margin-left: 4px;
+	}
+	#body .tab-nav-button.direction-rtl {
+		float: left;
+	}
+	#body .tab-nav-button:first-child {
+		margin-left: 9px;
+	}
+
 	/* set default colors as in variant.css for IE11 */
 	body {
 		background-color: #ffffff; /* var(--MAIN-BG-color) */
@@ -416,9 +462,7 @@
 		background-color: #ffffff !important; /* var(--MAIN-BG-color) */
 		border-bottom-color: #ffffff !important; /* var(--MAIN-BG-color) */
 	}
-}
 
-@media all and (-ms-high-contrast:none) {
 	/* set further styles to fix broken stuff in IE11 */
 
 	/* turn off animiation in IE because this causes the menu
