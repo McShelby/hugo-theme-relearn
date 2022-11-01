@@ -20,6 +20,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **New**: The [`math` shortcode]({{% relref "shortcodes/math" %}}) and [`mermaid` shortcode]({{% relref "shortcodes/mermaid" %}}) now support alignment parameter also if codefence syntax is used.
 
+- **New**: Support for languages that are written right to left (like Arabic). This is only implemented for the content area but not the navigation sidebar. This feature is not available in Internet Explorer 11.
+
 - **New**: Translation for Finnish (Suomi).
 
 ---
