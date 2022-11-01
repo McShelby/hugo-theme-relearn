@@ -313,7 +313,7 @@ function initCodeClipboard(){
 
             code.addClass('copy-to-clipboard-code');
             if( inPre ){
-                parent.addClass( 'copy-to-clipboard' );
+                parent.addClass( 'copy-to-clipboard' ).addClass( 'pre-code' );
             }
             else{
                 code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));

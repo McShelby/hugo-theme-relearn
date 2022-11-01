@@ -1,6 +1,6 @@
 {{- partial "page-meta.hugo" . }}
 <!DOCTYPE html>
-<html lang="{{ .Page.Language | default "en" }}">
+<html lang="{{ .Page.Language | default "en" }}" dir="ltr">
   <head>
     {{- partial "meta.html" . }}
     {{- .Scratch.Add "title" "" }}
@@ -28,12 +28,14 @@
       <div id="sidebar-overlay"></div>
       <main id="body-inner" class="chapter" tabindex="-1">
         <div class="flex-block-wrapper">
-          <h1>{{ T "title-404" }}</h1>
-          <p></p>
-          <p>{{ T "message-404" }}</p>
-          <p></p>
-          <p><a href="{{ "" | relLangURL }}">{{ T "Go-to-homepage" }}</a></p>
-          <p><img src="{{ "images/gopher-404.jpg" | relURL }}" style="width:50%" alt="Page not found!"></p>
+          <article class="default" dir="{{ T "Reading-direction" | default "ltr" }}">>
+            <h1>{{ T "title-404" }}</h1>
+            <p></p>
+            <p>{{ T "message-404" }}</p>
+            <p></p>
+            <p><a href="{{ "" | relLangURL }}">{{ T "Go-to-homepage" }}</a></p>
+            <p><img src="{{ "images/gopher-404.jpg" | relURL }}" style="width:50%" alt="Page not found!"></p>
+          </article>
         </div>
       </main>
     </div>

@@ -406,7 +406,7 @@ h2, h3, .article-subheading, h4, h5, h6 {
 }
 
 blockquote {
-    border-left: 10px solid rgba( 134, 134, 134, .4 );
+    border-inline-start: 10px solid rgba( 134, 134, 134, .4 );
 }
 
 blockquote p {
@@ -421,7 +421,7 @@ blockquote cite {
     font-weight: bold;
     opacity: .5;
     padding-top: .5em;
-    text-align: right;
+    text-align: end;
 }
 
 /* colored boxes */
@@ -461,7 +461,7 @@ div.box > .box-content {
 div.attachments .box-content {
     display: block;
     margin: 0;
-    padding-left: 1.75rem;
+    padding-inline-start: 1.75rem;
 }
 
 /* Children shortcode */
@@ -536,6 +536,15 @@ code.copy-to-clipboard-code {
     border-right-width: 0;
 }
 
+span > code.copy-to-clipboard-code {
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    border-right-width: 1px;
+    border-end-end-radius: 0;
+    border-start-end-radius: 0;
+    border-inline-end-width: 0;
+}
+
 pre {
     border-radius: 2px;
     border-style: solid;
@@ -546,12 +555,18 @@ pre {
     padding: 1rem;
 }
 
+pre.pre-code,
+pre:has( code ){
+    /* the :has() operator isn't available in FF yet, so we patch this by JS */
+    direction: ltr;
+}
+
 pre code {
     background-color: inherit;
+    border: 0;
     color: inherit;
     -webkit-print-color-adjust: economy;
     color-adjust: economy;
-    border: 0;
     font-size: 15px;
     margin: 0;
     padding: 0;
@@ -924,6 +939,13 @@ span.nav i{
     padding-left: 22px;
 }
 
+span > .copy-to-clipboard-button {
+    border-start-start-radius: 0;
+    border-start-end-radius: 2px;
+    border-end-end-radius: 2px;
+    border-end-start-radius: 0;
+}
+
 .copy-to-clipboard-button > i {
     font-size: 92%;
     font-weight: 500;
@@ -935,7 +957,7 @@ span.nav i{
     padding-right: 5px;
 }
 
-pre .copy-to-clipboard-button {
+pre > .copy-to-clipboard-button {
     background-color: rgba( 160, 160, 160, .2 );
     border-radius: 2px;
     border-style: solid;
@@ -946,14 +968,14 @@ pre .copy-to-clipboard-button {
     top: 4px;
 }
 
-.disableInlineCopyToClipboard :not(pre) > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
+.disableInlineCopyToClipboard span > code.copy-to-clipboard-code + span.copy-to-clipboard-button {
     display: none;
 }
 
-.disableInlineCopyToClipboard :not(pre) > code.copy-to-clipboard-code {
-    border-bottom-right-radius: 2px;
-    border-top-right-radius: 2px;
-    border-right-width: 1px;
+.disableInlineCopyToClipboard span > code.copy-to-clipboard-code {
+    border-end-end-radius: 2px;
+    border-start-end-radius: 2px;
+    border-inline-end-width: 1px;
 }
 
 #homelinks {
@@ -988,6 +1010,7 @@ option {
 .expand > .expand-label > .fa-chevron-down {
     display: none;
 }
+.expand > .expand-label > .fa-chevron-left,
 .expand > .expand-label > .fa-chevron-right {
     display: inline-block;
 }
@@ -996,6 +1019,7 @@ option {
 .expand.expand-expanded > .expand-label > .fa-chevron-down {
     display: inline-block;
 }
+.expand.expand-expanded > .expand-label > .fa-chevron-left,
 .expand.expand-expanded > .expand-label > .fa-chevron-right {
     display: none;
 }
@@ -1004,12 +1028,19 @@ option {
 .expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-down {
     display: inline-block;
 }
+.expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-left,
 .expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-right {
     display: none;
 }
 .expand:not(.expand-expanded).expand-marked > .expand-content {
     /* this will disable jquery's animation */
     display: block !important;
+}
+
+/* turn off unsuitable expander for this reading direction */
+.expand > .expand-label > .expand-rtl.direction-ltr,
+.expand > .expand-label > .expand-ltr.direction-rtl {
+    display: none;
 }
 
 #body footer.footline{
@@ -1132,7 +1163,7 @@ option {
     width: auto;
 }
 
-.progress .wrapper {
+.progress .toc-wrapper {
     background-color: rgba( 134, 134, 134, .066 );
 }
 
@@ -1205,7 +1236,7 @@ option {
 .anchor {
     cursor: pointer;
     font-size: .5em;
-    margin-left: .66em;
+    margin-inline-start: .66em;
     margin-top: .9em;
     position: absolute;
     visibility: hidden;

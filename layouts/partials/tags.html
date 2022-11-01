@@ -1,6 +1,6 @@
 
 {{- if .Params.tags }}
-<div class="tags">
+<div class="tags" dir="{{ T "Reading-direction" | default "ltr" }}">
 {{- range sort .Params.tags }}
   <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 {{- end }}
