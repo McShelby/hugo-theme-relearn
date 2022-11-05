@@ -11,12 +11,12 @@ runs:
   using: composite
   steps:
     - name: Setup node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3.x
       with:
         node-version: '16'
 
     - name: Close milestone
-      uses: Akkjon/close-milestone@v2
+      uses: Akkjon/close-milestone@v2.x
       with:
         milestone_name: ${{ env.MILESTONE }}
       env:
@@ -78,7 +78,7 @@ runs:
 
     - name: Generate next version number
       id: semvers
-      uses: "WyriHaximus/github-action-next-semvers@v1"
+      uses: WyriHaximus/github-action-next-semvers@v1.x
       with:
         version: ${{ env.MILESTONE }}
       env:
@@ -86,7 +86,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
 
     - name: Create next patch milestone
-      uses: "WyriHaximus/github-action-create-milestone@v1"
+      uses: WyriHaximus/github-action-create-milestone@v1.x
       with:
         title: ${{ steps.semvers.outputs.patch }}
       env:

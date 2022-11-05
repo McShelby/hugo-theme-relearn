@@ -16,7 +16,7 @@ runs:
   steps:
     - name: Get tag uniqueness
       id: unique_tag
-      uses: mukunku/tag-exists-action@v1
+      uses: mukunku/tag-exists-action@v1.x
       with:
         tag: ${{ env.MILESTONE }}
       env:
@@ -25,7 +25,7 @@ runs:
 
     - name: Get closed issues for milestone
       id: closed_issues
-      uses: octokit/graphql-action@v2
+      uses: octokit/graphql-action@v2.x
       with:
         query: |
           query {
@@ -39,7 +39,7 @@ runs:
 
     - name: Get open issues for milestone
       id: open_issues
-      uses: octokit/graphql-action@v2
+      uses: octokit/graphql-action@v2.x
       with:
         query: |
           query {
