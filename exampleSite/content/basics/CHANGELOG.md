@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.4.3 (2022-11-05)
+
+### Enhancements
+
+- [**feature**] history: refactor for a11y [#341](https://github.com/McShelby/hugo-theme-relearn/issues/341)
+
+### Fixes
+
+- [**bug**] theme: fix multilang links when site served from subdirectory [#370](https://github.com/McShelby/hugo-theme-relearn/issues/370)
+
+---
+
 ## 5.4.2 (2022-11-05)
 
 ### Maintenance
