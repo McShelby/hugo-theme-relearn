@@ -1,14 +1,18 @@
 # Changelog
 
+## 5.4.2 (2022-11-05)
+
+### Maintenance
+
+- [**task**] build: change set-output to env vars [#348](https://github.com/McShelby/hugo-theme-relearn/issues/348)
+
+---
+
 ## 5.4.1 (2022-11-05)
 
 ### Fixes
 
 - [**bug**] mermaid: fix Gantt chart width [#365](https://github.com/McShelby/hugo-theme-relearn/issues/365)
-
-### Maintenance
-
-- [**task**] build: change set-output to env vars [#348](https://github.com/McShelby/hugo-theme-relearn/issues/348)
 
 ---
 
