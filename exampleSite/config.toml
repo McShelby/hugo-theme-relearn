@@ -1,15 +1,20 @@
 # this is a required setting for this theme to appear on https://themes.gohugo.io/
-# change this to a value appropriate for you
-baseURL = "https://example.com"
+# change this to a value appropriate for you; if your site is served from a subdirectory
+# set it like "https://example.com/mysite/"
+baseURL = "https://example.com/"
 
-# as the official Hugo documentation recommends, we turn this off for this
-# showcase; this allows the published site to be served by both http and https
-canonifyURLs = false # true -> all relative URLs would instead be canonicalized using baseURL
-
-# required for this documentation to be served from subfolder
-relativeURLs = false # true -> rewrite all relative URLs to be relative to the current content
-
-# if you set uglyURLs to true, don't forget to set it also in the [params] section
+# canonicalization will only be used for the sitemap.xml and index.xml files;
+# if set to false, a site served from a subdirectory will generate wrong links
+# inside of the above mentioned files; if you serve the page from the servers root
+# you are free to set the value to false as recommended by the official Hugo documentation
+canonifyURLs = true # true -> all relative URLs would instead be canonicalized using baseURL
+# required value to serve this page from a webserver AND the file system;
+# if you don't want to serve your page from the file system, you can also set this value
+# to false
+relativeURLs = true # true -> rewrite all relative URLs to be relative to the current content
+# if you set uglyURLs to false, this theme will append 'index.html' to any branch bundle link
+# so your page can be also served from the file system; if you don't want that,
+# set disableExplicitIndexURLs=true in the [params] section
 uglyURLs = false     # true -> basic/index.html -> basic.html
 
 # the directory where Hugo reads the themes from; this is specific to your
@@ -32,7 +37,6 @@ title = "Hugo Relearn Documentation"
 # settings specific to this theme's features; choose to your likings and
 # consult this documentation for explaination
 [params]
-  uglyURLs = false # see uglyURLs setting above
   editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
   description = "Documentation for Hugo Relearn Theme"
   author = "Sören Weber"

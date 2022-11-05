@@ -80,17 +80,19 @@ Note that some of these parameters are explained in details in other sections of
   collapsibleMenu = false
   # If a single page can contain content in multiple languages, add those here
   additionalContentLanguage = [ "en" ]
-  # Must be set to the same value as the global uglyURLs setting; this adds 'index.html' to all home links if set to true
-  uglyURLs = false
+  # If set to true, no index.html will be appended to prettyURLs; this will cause pages not
+  # to be servable from the file system
+  disableExplicitIndexURLs = false
 ```
 
 ## Serving your page from a subfolder
 
-The theme runs best if your site is installed in the root of your webserver. If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
+If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
 
 ````toml
 baseURL = "https://example.com/mysite/"
 canonifyURLs = true
+relativeURLs = true
 ````
 
 Without `canonifyURLs=true` URLs in sublemental pages (like `sitemap.xml`, `rss.xml`) will be generated falsly while your HTML files will still work. See https://github.com/gohugoio/hugo/issues/5226.
@@ -101,15 +103,17 @@ If you want your page served from the filesystem by using URLs starting with `fi
 
 ````toml
 relativeURLs = true
-uglyURLs = true
-[params]
-  uglyURLs = true
 ````
 
-Because the global `uglyURLs` setting is not queryable in the theme's code, you'll have to set this option also in the `[params]` section of your `config.toml`.
+The theme will append an additional `index.html` to all branch bundle links by default to make the page be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can also generate the links without this change by adding this to your `config.toml`
+
+````toml
+[params]
+  disableExplicitIndexURLs = true
+````
 
 {{% notice note %}}
-If you want to use the search feature with an existing installation make sure to change your outputformat for the homepage from the now deprecated `JSON` to `SEARCH` [as seen below](#activate-search).
+If you want to use the search feature from the file system using an older installation of the theme make sure to change your outputformat for the homepage from the now deprecated `JSON` to `SEARCH` [as seen below](#activate-search).
 {{% /notice %}}
 
 ## Activate search
