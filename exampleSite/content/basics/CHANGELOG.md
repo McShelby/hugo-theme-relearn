@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.4.1 (2022-11-05)
+
+### Fixes
+
+- [**bug**] mermaid: fix Gantt chart width [#365](https://github.com/McShelby/hugo-theme-relearn/issues/365)
+
+### Maintenance
+
+- [**task**] build: change set-output to env vars [#348](https://github.com/McShelby/hugo-theme-relearn/issues/348)
+
+---
+
 ## 5.4.0 (2022-11-01)
 
 ### Enhancements
@@ -8,8 +20,8 @@
 - [**feature**] i18n: add Finnish translation [#361](https://github.com/McShelby/hugo-theme-relearn/issues/361)
 - [**feature**] mermaid: allow passing of parameters with codefence syntax [#360](https://github.com/McShelby/hugo-theme-relearn/issues/360)
 - [**feature**] i18n: support RTL [#357](https://github.com/McShelby/hugo-theme-relearn/issues/357)
-- [**feature**] button: add option for target [#351](https://github.com/McShelby/hugo-theme-relearn/issues/351)
-- [**feature**] theme: allow to be served by file:// protocol [#349](https://github.com/McShelby/hugo-theme-relearn/issues/349)
+- [**feature**][**change**] button: add option for target [#351](https://github.com/McShelby/hugo-theme-relearn/issues/351)
+- [**feature**][**change**] theme: allow to be served by file:// protocol [#349](https://github.com/McShelby/hugo-theme-relearn/issues/349)
 
 ---
 
