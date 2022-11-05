@@ -107,19 +107,19 @@ Inline math is generated if you use a single `$` as a delimiter around your form
 
 Inline math is generated if you use a single `$` as a delimiter around your formulae: {{< math >}}$\sqrt{3}${{< /math >}}
 
-### Blocklevel Math with Left Alignment
+### Blocklevel Math with Right Alignment
 
 ````md
 If you delimit your formulae by two consecutive `$$` it generates a new block.
 
-{{</* math align="left" */>}}
+{{</* math align="right" */>}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{</* /math */>}}
 ````
 
 If you delimit your formulae by two consecutive `$$` it generates a new block.
 
-{{< math align="left" >}}
+{{< math align="right" >}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{< /math >}}
 

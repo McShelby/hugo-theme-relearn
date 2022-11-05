@@ -116,7 +116,7 @@ mermaidInitialize = "{ \"theme\": \"dark\" }"
 ### Flowchart with Non-Default Mermaid Theme
 
 ````go
-{{</* mermaid align="left" */>}}
+{{</* mermaid */>}}
 %%{init:{"theme":"forest"}}%%
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
@@ -126,7 +126,7 @@ graph LR;
 {{</* /mermaid */>}}
 ````
 
-{{< mermaid align="left" >}}
+{{< mermaid >}}
 %%{init:{"theme":"forest"}}%%
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
@@ -207,10 +207,10 @@ gantt
         Add to Mermaid                      :1d
 {{< /mermaid >}}
 
-### Class
+### Class Diagram Aligned to the Right
 
 ````go
-{{</* mermaid */>}}
+{{</* mermaid align="right" */>}}
 classDiagram
     Class01 <|-- AveryLongClass : Cool
     Class03 *-- Class04
@@ -228,7 +228,7 @@ classDiagram
 {{</* /mermaid */>}}
 ````
 
-{{< mermaid >}}
+{{< mermaid align="right" >}}
 classDiagram
   Class01 <|-- AveryLongClass : Cool
   Class03 *-- Class04
