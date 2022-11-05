@@ -16,7 +16,9 @@ To better understand this select the `neon` variant and modify the different hea
 
 Once you've changed a color, the variant switch will show a "My custom variant" entry and your changes are stored in the browser. You can change pages and even close the browser without losing your changes.
 
-Once you are satisfied, you can download the new variants file and install it in your site.
+Once you are satisfied, you can download the new variants file and copy it into your site's `static/css` directory. Afterwards you have to adjust the `themeVariant` parameter in your `config.toml` to your chosen file name.
+
+Eg. if your new variants file is named `theme-my-custom-variant.css`, you have to set `themeVariant='my-custom-variant'` to use it.
 
 {{% notice note %}}
 This only works in modern browsers.
