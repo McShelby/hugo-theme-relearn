@@ -16,7 +16,7 @@ runs:
         node-version: '16'
 
     - name: Close milestone
-      uses: Akkjon/close-milestone@v2.x
+      uses: Akkjon/close-milestone@v2.0.1
       with:
         milestone_name: ${{ env.MILESTONE }}
       env:
@@ -78,7 +78,7 @@ runs:
 
     - name: Generate next version number
       id: semvers
-      uses: WyriHaximus/github-action-next-semvers@v1.x
+      uses: WyriHaximus/github-action-next-semvers@v1.1.0
       with:
         version: ${{ env.MILESTONE }}
       env:
@@ -86,7 +86,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
 
     - name: Create next patch milestone
-      uses: WyriHaximus/github-action-create-milestone@v1.x
+      uses: WyriHaximus/github-action-create-milestone@v1.1.0
       with:
         title: ${{ steps.semvers.outputs.patch }}
       env:
