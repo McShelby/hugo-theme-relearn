@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.5.0 (2022-11-06)
+
+### Enhancements
+
+- [**feature**][**change**] theme: optimize page load for images [#304](https://github.com/McShelby/hugo-theme-relearn/issues/304)
+
+### Fixes
+
+- [**bug**] theme: fix context in render hooks [#373](https://github.com/McShelby/hugo-theme-relearn/issues/373)
+- [**bug**] print: make canonical URL absolute [#371](https://github.com/McShelby/hugo-theme-relearn/issues/371)
+
+---
+
 ## 5.4.3 (2022-11-05)
 
 ### Enhancements
