@@ -712,6 +712,14 @@ Add a HTTP `classes` parameter to the link image to add CSS classes. Add some of
 ![Supertocat](https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline)
 ![Riddlocat](https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline)
 
+##### Combination
+
+```markdown
+![X-tocat](https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left)
+```
+
+![X-tocat](https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left)
+
 #### Lightbox
 
 Add a HTTP `featherlight` parameter to the link image to disable lightbox. By default lightbox is enabled using the featherlight.js plugin. You can disable this by defining `featherlight` to `false`.

@@ -14,6 +14,20 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.5.0
+
+- **Change**: The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.
+
+  For that the JavaScript code to handle the [lightbox and image effects]({{% relref "cont/markdown#further-image-formatting" %}}) on the client side was removed in favour for static generation of those effects on the server.
+
+  If you have used HTML directly in your Markdown files, this now has the downside that it doesn't respect the effect query parameter anymore. In this case you have to migrate all your HTML `img` URLs manually to the respective HTML attributes.
+
+  | Old                                                    | New                                                             |
+  | ------------------------------------------------------ | --------------------------------------------------------------- |
+  | `<img src="pic.png?width=20vw&classes=shadow,border">` | `<img src="pic.png" style="width:20vw;" class="shadow border">` |
+
+---
+
 ## 5.4.0
 
 - **Change**: [With the proper settings]({{% relref "basics/configuration#serving-your-page-from-the-filesystem" %}}) in your `config.toml` your page is now servable from the local file system using `file://` URLs.

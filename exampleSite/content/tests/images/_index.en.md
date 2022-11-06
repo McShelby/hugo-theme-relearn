@@ -9,7 +9,7 @@ Some testing for different styles of image links.
 
 ### Relative to page
 
-![Magic](magic.gif?classes=shadow&height=50px)
+![Magic](magic.gif?classes=shadow)
 
 ### Relative to page up level
 
@@ -35,7 +35,7 @@ Some testing for different styles of image links.
 
 ### Relative to page
 
-<p><img src="magic.gif?classes=shadow&height=50px"></p>
+<p><img src="magic.gif?classes=shadow"></p>
 
 ### Relative to page up level
 
