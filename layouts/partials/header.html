@@ -4,20 +4,27 @@
     {{- partial "meta.html" . }}
     {{- $page := . }}
     {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
-    <title>{{ if and .Title (not (eq .Title .Site.Title)) }}{{ .Title }} {{ default "::" .Site.Params.titleSeparator }} {{ end}}{{ .Site.Title }}</title>
+    {{- $title := "" }}
+    {{- if and .Title (not (eq .Title .Site.Title)) }}
+      {{- $title = printf "%s %s " .Title (default "::" .Site.Params.titleSeparator) }}
+    {{- end }}
+    {{- $title = printf "%s%s" $title .Site.Title }}
+    <title>{{ $title }}</title>
 
     {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     {{- else }}
         {{- range .AlternativeOutputFormats }}
-            {{- if and (ne .Name "JSON") (ne .Name "SEARCH") }}
-    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .)) .Rel .MediaType.Type ($.Site.Title | htmlEscape)) | safeHTML }}
+            {{- if eq .Rel "canonical" }}
+    {{ (printf $link .Permalink .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
+            {{- else if and (ne .Name "JSON") (ne .Name "SEARCH") }}
+    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
     {{- end }}
     {{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
         {{- range .AlternativeOutputFormats }}
             {{- if eq .Name "JSON" }}
-    {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($.Site.Title | htmlEscape)) | safeHTML }}
+    {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
     {{- end }}
