@@ -10,21 +10,21 @@
     <title>Basics :: Hugo Relearn Theme</title>
     <link href="https://McShelby.github.io/hugo-theme-relearn/basics/" rel="canonical" type="text/html" title="Basics :: Hugo Relearn Theme">
     <link href="../basics/index.xml" rel="alternate" type="application/rss+xml" title="Basics :: Hugo Relearn Theme">
-    <link href="../images/logo.svg?1667725430" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1667748427" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1667725430" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1667725430" rel="stylesheet"></noscript>
-    <link href="../css/featherlight.min.css?1667725430" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/featherlight.min.css?1667725430" rel="stylesheet"></noscript>
-    <link href="../css/auto-complete.css?1667725430" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1667725430" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1667725430" rel="stylesheet">
-    <link href="../css/nucleus.css?1667725430" rel="stylesheet">
-    <link href="../css/fonts.css?1667725430" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1667725430" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1667725430" rel="stylesheet">
-    <link href="../css/theme-relearn-light.css?1667725430" rel="stylesheet" id="variant-style">
-    <link href="../css/ie.css?1667725430" rel="stylesheet">
-    <link href="../css/variant.css?1667725430" rel="stylesheet">
-    <link href="../css/print.css?1667725430" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1667725430" rel="stylesheet">
-    <script src="../js/variant.js?1667725430"></script>
+    <link href="../css/fontawesome-all.min.css?1667748427" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1667748427" rel="stylesheet"></noscript>
+    <link href="../css/featherlight.min.css?1667748427" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/featherlight.min.css?1667748427" rel="stylesheet"></noscript>
+    <link href="../css/auto-complete.css?1667748427" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1667748427" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1667748427" rel="stylesheet">
+    <link href="../css/nucleus.css?1667748427" rel="stylesheet">
+    <link href="../css/fonts.css?1667748427" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1667748427" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1667748427" rel="stylesheet">
+    <link href="../css/theme-relearn-light.css?1667748427" rel="stylesheet" id="variant-style">
+    <link href="../css/ie.css?1667748427" rel="stylesheet">
+    <link href="../css/variant.css?1667748427" rel="stylesheet">
+    <link href="../css/print.css?1667748427" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1667748427" rel="stylesheet">
+    <script src="../js/variant.js?1667748427"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -40,9 +40,9 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../js/jquery.min.js?1667725430" defer></script>
+    <script src="../js/jquery.min.js?1667748427" defer></script>
   </head>
-  <body class="mobile-support print" data-url="../basics/">
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../basics/">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
@@ -100,6 +100,29 @@
 <p><strong>Breaking</strong>: A change that requires action by you after upgrading to assure the site is still functional.</p>
 <p><strong>Change</strong>: A change in default behavior. This may requires action by you / may or may not be revertable by configuration.</p>
 <p><strong>New</strong>: Marks new behavior you might find interesting or comes configurable.</p>
+<hr>
+<h2 id="550">5.5.0</h2>
+<ul>
+<li>
+<p><strong>Change</strong>: The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.</p>
+<p>For that the JavaScript code to handle the <a href="../cont/markdown/#further-image-formatting">lightbox and image effects</a> on the client side was removed in favour for static generation of those effects on the server.</p>
+<p>If you have used HTML directly in your Markdown files, this now has the downside that it doesn&rsquo;t respect the effect query parameter anymore. In this case you have to migrate all your HTML <code>img</code> URLs manually to the respective HTML attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Old</th>
+<th>New</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;img src=&quot;pic.png?width=20vw&amp;classes=shadow,border&quot;&gt;</code></td>
+<td><code>&lt;img src=&quot;pic.png&quot; style=&quot;width:20vw;&quot; class=&quot;shadow border&quot;&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 <hr>
 <h2 id="540">5.4.0</h2>
 <ul>
@@ -511,8 +534,9 @@
 <p>Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.</p>
 <p>Just download latest version of <a href="https://gohugo.io/getting-started/installing/">Hugo binary</a> for your OS (Windows, Linux, Mac) : it&rsquo;s that simple.</p>
 <p>
-<img src="../basics/requirements/magic.gif?classes=shadow" alt="Magic">
-</p>
+<a href="../basics/requirements/magic.gif?classes=shadow" data-featherlight="image">
+<img src="../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="shadow" style="height: 252px; width: 275px;" loading="lazy">
+</a></p>
 
             <footer class="footline">
             </footer>
@@ -547,8 +571,10 @@
 </span></span><span class="line"><span class="cl">Discover what this Hugo theme is all about and the core concepts behind it.
 </span></span></code></pre></div><p>renders as</p>
 <p>
-<img src="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter">
-</p>
+		
+<a href="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" data-featherlight="image">
+<img src="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="shadow" style="height: auto; width: 60pc;" loading="lazy">
+</a></p>
 <p>The Relearn theme provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new --kind chapter basics/_index.md
 </span></span></code></pre></div><p>By opening the given file, you should see the property <code>chapter=true</code> on top, meaning this page is a <em>chapter</em>.</p>
@@ -733,8 +759,10 @@ default values:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">landingPageName</span> <span class="p">=</span> <span class="s2">&#34;&lt;i class=&#39;fas fa-home&#39;&gt;&lt;/i&gt; Home&#34;</span>
 </span></span></code></pre></div><p>The home button is going to look like this:</p>
 <p>
-<img src="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=300px" alt="Default Home Button">
-</p>
+		
+<a href="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=300px" data-featherlight="image">
+<img src="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=300px" alt="Default Home Button" class="shadow" style="height: auto; width: 300px;" loading="lazy">
+</a></p>
 
             <footer class="footline">
             </footer>
@@ -1669,12 +1697,12 @@ window.variants && variants.generator( '#vargenerator', '.secondary a', '.warnin
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../js/auto-complete.js?1667725430" defer></script>
-        <script src="../js/lunr.min.js?1667725430" defer></script>
-        <script src="../js/lunr.stemmer.support.min.js?1667725430" defer></script>
-        <script src="../js/lunr.multi.min.js?1667725430" defer></script>
-        <script src="../js/lunr.en.min.js?1667725430" defer></script>
-        <script src="../js/search.js?1667725430" defer></script>
+        <script src="../js/auto-complete.js?1667748427" defer></script>
+        <script src="../js/lunr.min.js?1667748427" defer></script>
+        <script src="../js/lunr.stemmer.support.min.js?1667748427" defer></script>
+        <script src="../js/lunr.multi.min.js?1667748427" defer></script>
+        <script src="../js/lunr.en.min.js?1667748427" defer></script>
+        <script src="../js/search.js?1667748427" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -1789,18 +1817,18 @@ window.variants && variants.generator( '#vargenerator', '.secondary a', '.warnin
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../js/buttons.js?1667725430"></script>
+          <script async src="../js/buttons.js?1667748427"></script>
         </div>
       </div>
     </aside>
-    <script src="../js/clipboard.min.js?1667725430" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1667725430" defer></script>
-    <script src="../js/featherlight.min.js?1667725430" defer></script>
-    <script src="../js/jquery.svg.pan.zoom.js?1667725430" defer></script>
-    <script src="../js/mermaid.min.js?1667725430" defer></script>
+    <script src="../js/clipboard.min.js?1667748427" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1667748427" defer></script>
+    <script src="../js/featherlight.min.js?1667748427" defer></script>
+    <script src="../js/jquery.svg.pan.zoom.js?1667748427" defer></script>
+    <script src="../js/mermaid.min.js?1667748427" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
     </script>
-    <script src="../js/theme.js?1667725430" defer></script>
+    <script src="../js/theme.js?1667748427" defer></script>
   </body>
 </html>
