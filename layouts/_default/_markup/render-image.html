@@ -1,11 +1,6 @@
-{{- $dest_url := urls.Parse .Destination }}
-{{- $dest_path := $dest_url.Path }}
-{{- $image := .Page.Resources.GetMatch $dest_path }}
-{{- $url := .Destination | relURL }}
-{{- if $image }}
-	{{- $url = $image.RelPermalink }}
-	{{- if $dest_url.RawQuery }}
-		{{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
-	{{- end }}
-{{- end }}
-<img src="{{ $url }}" alt="{{ .Text }}"{{ with .Title}} title="{{ . }}"{{ end }}>
+{{- partial "shortcodes/image.html" (dict
+  "context" .Page
+  "url" .Destination
+  "title" .Title
+  "alt" .Text
+) }}

@@ -1,0 +1,15 @@
+{{- $context := .context }}
+{{- $url := .url }}
+{{- $title := .title }}
+{{- $alt := .alt }}
+{{- $dest_url := urls.Parse $url }}
+{{- $dest_path := $dest_url.Path }}
+{{- $image := $context.Resources.GetMatch $dest_path }}
+{{- $url = $url | relURL }}
+{{- if $image }}
+	{{- $url = $image.RelPermalink }}
+	{{- if $dest_url.RawQuery }}
+		{{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
+	{{- end }}
+{{- end }}
+<img src="{{ $url }}" alt="{{ $alt }}"{{ with $title}} title="{{ . }}"{{ end }}>
