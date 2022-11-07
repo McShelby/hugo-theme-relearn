@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.5.1 (2022-11-07)
+
+### Fixes
+
+- [**bug**] theme: fix overflowing issue with anchors and tooltips [#364](https://github.com/McShelby/hugo-theme-relearn/issues/364)
+
+---
+
 ## 5.5.0 (2022-11-06)
 
 ### Enhancements
