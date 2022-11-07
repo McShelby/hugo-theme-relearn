@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Page.Language | default "en" }}" dir="ltr">
+<html lang="{{ .Page.Language | default "en" }}" dir="{{ T "Reading-direction" | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}
     {{- $page := . }}
@@ -37,7 +37,7 @@
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
-      <nav id="topbar" class="highlightable">
+      <nav id="topbar" class="highlightable" dir="ltr">
         <div>
         {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
         {{- if $showPrevNext }}
