@@ -250,13 +250,14 @@ function initAnchorClipboard(){
     });
 
     $(".anchor").on('mouseleave', function(e) {
-        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-se tooltipped-sw');
     });
 
     var clip = new ClipboardJS('.anchor');
     clip.on('success', function(e) {
         e.clearSelection();
-        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
+        var rtl = $(e.trigger).closest('*[dir]').attr('dir') == 'rtl';
+        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s'+(rtl?'e':'w') );
     });
 }
 
@@ -300,14 +301,16 @@ function initCodeClipboard(){
             clip.on('success', function(e) {
                 e.clearSelection();
                 var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                var rtl = $(e.trigger).closest('*[dir]').attr('dir') == 'rtl';
+                $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')));
             });
 
             clip.on('error', function(e) {
                 var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                var rtl = $(this).closest('*[dir]').attr('dir') == 'rtl';
+                $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')));
                 $(document).one('copy', function(){
-                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')));
                 });
             });
 
@@ -321,7 +324,8 @@ function initCodeClipboard(){
             }
             code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
             code.next('.copy-to-clipboard-button').on('mouseleave', function() {
-                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+                var rtl = $(this).closest('*[dir]').attr('dir') == 'rtl';
+                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-w tooltipped-se tooltipped-sw');
             });
         }
     });
