@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.5.2 (2022-11-08)
+
+### Fixes
+
+- [**bug**] theme: fix typo in 404.html [#376](https://github.com/McShelby/hugo-theme-relearn/issues/376)
+- [**bug**] theme: allow menu items and children to be served by file:// protocol [#375](https://github.com/McShelby/hugo-theme-relearn/issues/375)
+
+---
+
 ## 5.5.1 (2022-11-07)
 
 ### Fixes
