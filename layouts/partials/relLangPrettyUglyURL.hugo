@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- $to := .to }}
 {{- $link := $to.RelPermalink }}
-{{- if and (ne .page.Site.Params.disableExplicitIndexURLs true) (eq (substr $link -1) "/") }}
+{{- if and (ne $page.Site.Params.disableExplicitIndexURLs true) (eq (substr $link -1) "/") }}
 	{{- $link = printf "%sindex.html" $link }}
 {{- end }}
 {{- $link }}
