@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.5.3 (2022-11-10)
+
+### Fixes
+
+- [**bug**] tags: fix non-latin tag display on pages [#378](https://github.com/McShelby/hugo-theme-relearn/issues/378)
+
+---
+
 ## 5.5.2 (2022-11-08)
 
 ### Fixes
