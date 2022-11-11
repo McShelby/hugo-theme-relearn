@@ -14,7 +14,7 @@
       <div id="homelinks" class="default-animation">
         <ul>
           <li>
-              <a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" . "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a>
+              <a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a>
           </li>
         </ul>
       </div>
@@ -44,7 +44,7 @@
               {{- $shortcut := . }}
               {{- with $page.Site.GetPage (printf "%s" $shortcut.URL ) }}
                 {{- $to := . }}
-            <li>{{ $shortcut.Pre }}<a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" $to) }}">{{ safeHTML $shortcut.Name }}</a>{{ $shortcut.Post }}</li>
+            <li>{{ $shortcut.Pre }}<a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ safeHTML $shortcut.Name }}</a>{{ $shortcut.Post }}</li>
               {{- else }}
             <li>{{ $shortcut.Pre }}<a class="padding" href="{{ $shortcut.URL | relLangURL }}">{{ safeHTML $shortcut.Name }}</a>{{ $shortcut.Post }}</li>
               {{- end }}
@@ -76,9 +76,9 @@
                       {{- range $siteLanguages }}
                         {{- if eq $translation.Lang .Lang }}
                           {{- if eq $pageLang .Lang }}
-                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" $translation) }}" selected>{{ .LanguageName }}</option>
+                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation) }}" selected>{{ .LanguageName }}</option>
                           {{- else }}
-                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" $translation) }}">{{ .LanguageName }}</option>
+                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation) }}">{{ .LanguageName }}</option>
                           {{- end }}
                         {{- end }}
                       {{- end }}
@@ -154,7 +154,7 @@
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
             {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}{{if (or $isSelf $isAncestor) }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">{{ if .Site.Params.collapsibleMenu }}<input type="checkbox" id="section-{{ $pageHash }}" aria-controls="subsections-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}><label class="a11y-only toggle" for="section-{{ $pageHash }}" >{{ T "Submenu" ( or .Params.menuTitle .LinkTitle .Title ) }}</label>{{ end }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" .Page "to" .) }}">
+          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}{{if (or $isSelf $isAncestor) }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">{{ if .Site.Params.collapsibleMenu }}<input type="checkbox" id="section-{{ $pageHash }}" aria-controls="subsections-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}><label class="a11y-only toggle" for="section-{{ $pageHash }}" >{{ T "Submenu" ( or .Params.menuTitle .LinkTitle .Title ) }}</label>{{ end }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul id="subsections-{{ $pageHash }}">
               {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
@@ -168,12 +168,12 @@
                 {{- end }}
               {{- end }}</ul></li>
             {{- else }}
-          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" .Page "to" .) }}">
+          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
                   {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
                   {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
             {{- end }}
         {{- else }}
-          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" .Page "to" .) }}">
+          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
         {{- end }}

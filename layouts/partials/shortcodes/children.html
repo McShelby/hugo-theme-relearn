@@ -51,7 +51,7 @@
 				{{- if hasPrefix $.style "h" }}
 					{{- $num := sub ( int (trim $.style "h") ) 1 }}
 					{{- $numn := add $num $.count }}
-{{ (printf "<h%d>" $numn)|safeHTML }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $context "to" .) }}">{{ .Title }}</a>{{ (printf "</h%d>" $numn)|safeHTML }}
+{{ (printf "<h%d>" $numn)|safeHTML }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ (printf "</h%d>" $numn)|safeHTML }}
 {{- if $.description }}
 	{{- if .Description -}}
 <p>{{ .Description }}</p>
@@ -61,7 +61,7 @@
 {{- end }}
 
 				{{- else if eq $.style "li" }}
-{{ (printf "<%s>" $.style)|safeHTML }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $context "to" .) }}">{{ .Title }}</a>
+{{ (printf "<%s>" $.style)|safeHTML }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>
 {{- if $.description }}
 	{{- if .Description -}}
 <p>{{ .Description }}</p>
@@ -71,7 +71,7 @@
 {{- end }}
 
 				{{- else }}
-{{ (printf "<%s>" $.style)|safeHTML }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $context "to" .) }}">{{ .Title }}</a>{{ (printf "</%s>" $.style)|safeHTML }}
+{{ (printf "<%s>" $.style)|safeHTML }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ (printf "</%s>" $.style)|safeHTML }}
 {{- if $.description }}
 	{{- if .Description -}}
 <p>{{ .Description }}</p>

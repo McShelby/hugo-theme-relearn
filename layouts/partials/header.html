@@ -17,7 +17,7 @@
             {{- if eq .Rel "canonical" }}
     {{ (printf $link .Permalink .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
             {{- else if and (ne .Name "JSON") (ne .Name "SEARCH") }}
-    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
+    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
     {{- end }}
@@ -49,7 +49,7 @@
           <div class="navigation">
           {{- if and $ispublished ($.Scratch.Get "relearnNextPage") }}
             {{- with ($.Scratch.Get "relearnNextPage") }}
-            <a class="nav nav-next" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+            <a class="nav nav-next" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
             {{- end }}
           {{- else }}
             <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
@@ -58,7 +58,7 @@
           <div class="navigation">
           {{- if and $ispublished ($.Scratch.Get "relearnPrevPage") }}
             {{- with ($.Scratch.Get "relearnPrevPage") }}
-            <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end}}
           {{- else }}
             <span class="nav nav-prev"><i class="fa fa-chevron-left fa-fw"></i></span>
@@ -143,7 +143,7 @@
     {{- $remaining = sub $remaining 1 }}
     {{- if $ispublished }}
       {{- $depth = add $depth 1 }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "page" $page "to" $to) }}">{{end}}<span itemprop="name">{{ if $to.Title }}{{ $to.Title }}{{ else }}{{ $to.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{end}}<span itemprop="name">{{ if $to.Title }}{{ $to.Title }}{{ else }}{{ $to.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
     {{- end }}
   {{- end }}
 {{- end }}
