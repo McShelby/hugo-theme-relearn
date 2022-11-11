@@ -348,12 +348,14 @@ function initArrowNav(){
 
     // keyboard navigation
     jQuery(document).keydown(function(e) {
-      if(e.which == '37') {
-        jQuery('a.nav-prev').click();
-      }
-      if(e.which == '39') {
-        jQuery('a.nav-next').click();
-      }
+        if(!e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey){
+            if(e.which == '37') {
+                jQuery('a.nav-prev').click();
+            }
+            if(e.which == '39') {
+                jQuery('a.nav-next').click();
+            }
+        }
     });
 
     // avoid keyboard navigation for input fields
@@ -475,25 +477,25 @@ function tocEscapeHandler( event ){
 }
 
 function sidebarShortcutHandler( event ){
-    if( event.altKey && event.ctrlKey && event.which == 78 /* n */ ){
+    if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 78 /* n */ ){
         showNav();
     }
 }
 
 function tocShortcutHandler( event ){
-    if( event.altKey && event.ctrlKey && event.which == 84 /* t */ ){
+    if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 84 /* t */ ){
         showToc();
     }
 }
 
 function editShortcutHandler( event ){
-    if( event.altKey && event.ctrlKey && event.which == 87 /* w */ ){
+    if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 87 /* w */ ){
         showEdit();
     }
 }
 
 function printShortcutHandler( event ){
-    if( event.altKey && event.ctrlKey && event.which == 80 /* p */ ){
+    if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 80 /* p */ ){
         showPrint();
     }
 }
@@ -561,8 +563,8 @@ function initToc(){
     document.addEventListener( 'keydown', tocShortcutHandler );
     // avoid keyboard navigation for input fields
     jQuery(formelements).keydown(function (e) {
-        if( e.altKey && event.ctrlKey ){
-            if( e.which == 77 /* m */ || e.which == 84 /* t */ || e.which == 69 /* e */ || e.which == 80 /* p */ ){
+        if( !e.shiftKey && e.altKey && e.ctrlKey && !e.metaKey){
+            if( e.which == 78 /* n */ || e.which == 84 /* t */ || e.which == 87 /* w */ || e.which == 80 /* p */ ){
                 e.stopPropagation();
             }
         }
