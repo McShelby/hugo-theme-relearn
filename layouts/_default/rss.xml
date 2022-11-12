@@ -25,7 +25,7 @@
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
     {{- range $pages }}
-	  {{- if and .Permalink .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) }}
+	  {{- if and .Permalink .Title (or (ne (.Scratch.Get "relearnIsHiddenNode") true) (ne .Site.Params.disableSeoHiddenPages true) ) }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
