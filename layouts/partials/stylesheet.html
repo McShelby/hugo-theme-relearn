@@ -14,7 +14,8 @@
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
-    {{- if (fileExists (printf "/static/css/format-%s.css" (partial "output-format.hugo" .))) }}
+    {{- $f := printf "/static/css/format-%s.css" (partial "output-format.hugo" .) }}
+    {{- if partialCached "fileExists.hugo" $f $f }}
     <link href="{{(printf "css/format-%s.css" (partial "output-format.hugo" .)) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>

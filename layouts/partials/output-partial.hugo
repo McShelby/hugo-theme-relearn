@@ -3,8 +3,10 @@
 {{- $parameter := .parameter }}
 {{- $format := partial "output-format.hugo" $page }}
 {{- $suffix := partial "output-suffix.hugo" $page }}
-{{- if or (not $format) (not (fileExists (printf "/layouts/partials/%s.%s.%s" $base $format $suffix))) }}
-  {{- if (fileExists (printf "/layouts/partials/%s.%s" $base $suffix)) }}
+{{- $f := printf "/layouts/partials/%s.%s.%s" $base $format $suffix }}
+{{- if or (not $format) (not (partialCached "fileExists.hugo" $f $f)) }}
+  {{- $f = printf "/layouts/partials/%s.%s" $base $suffix }}
+  {{- if partialCached "fileExists.hugo" $f $f }}
     {{- partial (printf "%s.%s" $base $suffix) $parameter }}
   {{- end }}
 {{- else }}

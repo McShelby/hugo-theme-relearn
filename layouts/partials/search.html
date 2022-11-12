@@ -10,8 +10,8 @@
         {{- $quotedcontentlangs := slice }}
         {{- $missingcontentlangs := slice }}
         {{- range $contentlangs }}
-          {{- $file := (printf "js/lunr.%s.min.js" .) }}
-          {{- if fileExists (printf "/static/%s" $file) }}
+          {{- $f := printf "/static/js/lunr.%s.min.js" . }}
+          {{- if partialCached "fileExists.hugo" $f $f }}
             {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
           {{- else }}
             {{- $missingcontentlangs = $missingcontentlangs | append . }}

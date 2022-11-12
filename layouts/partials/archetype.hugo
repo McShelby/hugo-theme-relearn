@@ -9,7 +9,8 @@
 {{- else if $page.IsHome }}
   {{- $archetype = "deprecated-home" }}
 {{- end }}
-{{- if not (fileExists (printf "/layouts/partials/archetypes/%s" $archetype)) }}
+{{- $f := printf "/layouts/partials/archetypes/%s" $archetype }}
+{{- if not (partialCached "fileExists.hugo" $f $f) }}
   {{- $archetype = "default" }}
 {{- end }}
 {{- partial "output-partial.hugo" (dict "base" (printf "archetypes/%s/%s" $archetype $hook) "page" $page "parameter" $parameter) }}
