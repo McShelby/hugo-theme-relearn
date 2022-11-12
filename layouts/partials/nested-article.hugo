@@ -59,7 +59,7 @@
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
-    {{- else if or .IsSection .IsHome }}
+    {{- else }}
       {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
       {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
       {{- if $isActive }}
@@ -82,10 +82,6 @@
         {{- if $pages }}
           </section>
         {{- end }}
-      {{- end }}
-    {{- else }}
-      {{- if $isActive }}
-        {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
       {{- end }}
     {{- end }}
   {{- end }}

@@ -138,7 +138,7 @@
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}
-        {{- else if or .IsSection .IsHome }}
+        {{- else }}
           {{- $numberOfVisibleChildren := 0 }}
           {{- range $pages }}
             {{- $isSelfSub := eq .RelPermalink $currentFileRelPermalink }}
@@ -155,27 +155,23 @@
             {{- $pageHash := md5 .Page }}
             {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
           <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}{{if (or $isSelf $isAncestor) }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">{{ if .Site.Params.collapsibleMenu }}<input type="checkbox" id="section-{{ $pageHash }}" aria-controls="subsections-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}><label class="a11y-only toggle" for="section-{{ $pageHash }}" >{{ T "Submenu" ( or .Params.menuTitle .LinkTitle .Title ) }}</label>{{ end }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
-              {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
-              {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul id="subsections-{{ $pageHash }}">
-              {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
-              {{- if eq $currentOrdersectionsby "title" }}
-                {{- range $pages.ByTitle }}
-                  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-                {{- end }}
-              {{- else }}
-                {{- range $pages.ByWeight }}
-                  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-                {{- end }}
-              {{- end }}</ul></li>
+            {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
+            {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul id="subsections-{{ $pageHash }}">
+            {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
+            {{- if eq $currentOrdersectionsby "title" }}
+              {{- range $pages.ByTitle }}
+                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
+              {{- end }}
             {{- else }}
-          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
-                  {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
-                  {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
-            {{- end }}
-        {{- else }}
+              {{- range $pages.ByWeight }}
+                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
+              {{- end }}
+            {{- end }}</ul></li>
+          {{- else }}
           <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
+          {{- end }}
         {{- end }}
       {{- end }}
     {{- end }}
