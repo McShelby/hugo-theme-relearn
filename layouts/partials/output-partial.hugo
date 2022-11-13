@@ -1,7 +1,10 @@
 {{- $base := .base }}
 {{- $page := .page }}
 {{- $parameter := .parameter }}
-{{- $outputFormat := partial "output-format.hugo" $page }}
+{{- $outputFormat := .outputFormat }}
+{{- if not $outputFormat }}
+  {{- $outputFormat = partial "output-format.hugo" $page }}
+{{- end }}
 {{- $suffix := partialCached "output-suffix.hugo" $page $page $outputFormat }}
 {{- $f := printf "/layouts/partials/%s.%s.%s" $base $outputFormat $suffix }}
 {{- if or (not $outputFormat) (not (partialCached "fileExists.hugo" $f $f)) }}

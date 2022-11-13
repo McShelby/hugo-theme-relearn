@@ -1,5 +1,6 @@
 {{- $page := .page }}
-{{- $page.Page.Store.Set (printf "%sIsNested" (partial "output-format.hugo" $page)) true }}
+{{- $outputFormat := .outputFormat }}
+{{- $page.Page.Store.Set (printf "%sIsNested" $outputFormat) true }}
 {{- with $page }}
   {{- $currentNode := . }}
   {{- $isActive := .IsHome }}
@@ -17,22 +18,22 @@
   {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
   {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
   {{- if $isShortcut }}
-    {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
+    {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
   {{- else }}
     {{- if $isActive }}
-      {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-      {{- if or $pages }}
+      {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
+      {{- if $pages }}
               <section>
                 <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
       {{- end }}
     {{- end }}
     {{- if eq $currentOrdersectionsby "title" }}
       {{- range $pages.ByTitle }}
-        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat "isActive" $isActive }}
       {{- end }}
     {{- else }}
       {{- range $pages.ByWeight }}
-        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat "isActive" $isActive }}
       {{- end }}
     {{- end }}
     {{- if $isActive }}
@@ -44,6 +45,7 @@
 {{- end }}
 {{- define "section-tree-print" }}
   {{- $currentNode := .currentnode }}
+  {{- $outputFormat := .outputFormat }}
   {{- $isActive := .isActive }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
   {{- with .sect }}
@@ -63,7 +65,7 @@
       {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
       {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
       {{- if $isActive }}
-        {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
+        {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
         {{- if $pages }}
           <section>
             <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
@@ -71,11 +73,11 @@
       {{- end }}
       {{- if eq $currentOrdersectionsby "title" }}
         {{- range $pages.ByTitle }}
-          {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+          {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat "isActive" $isActive }}
         {{- end }}
       {{- else }}
         {{- range $pages.ByWeight }}
-          {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "isActive" $isActive }}
+          {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat "isActive" $isActive }}
         {{- end }}
       {{- end }}
       {{- if $isActive }}
@@ -88,13 +90,14 @@
 {{- end }}
 {{- define "section-print" }}
   {{- $currentNode := .currentnode }}
+  {{- $outputFormat := .outputFormat }}
   {{- with .sect }}
     {{- $page := . }}
     {{/* if we have a relative link in a print page, our print URL is one level to deep; so we are making it absolute to our page by prepending the page's permalink */}}
     {{- $link_prefix := strings.TrimRight "/" .Page.RelPermalink }}
-    {{- $content := partial "output-partial.hugo" (dict "base" "content" "page" . "parameter" $page) }}
+    {{- $content := partial "output-partial.hugo" (dict "base" "content" "page" . "parameter" $page "outputFormat" $outputFormat) }}
     {{- $content = replaceRE "((?:src|href)\\s*=(?:\\s*[\"']\\s*)?)(\\.[^\"'\\s>]*|[\\w]+[^\"'\\s>:]*)([\"'\\s>])" (printf "${1}%s/${2}${3}" $link_prefix) $content }}
-    {{- partial "output-partial.hugo" (dict "base" "article" "page" $page "parameter" (dict "page" $page "content" $content)) }}
+    {{- partial "output-partial.hugo" (dict "base" "article" "page" $page "parameter" (dict "page" $page "content" $content "outputFormat" $outputFormat) "outputFormat" $outputFormat) }}
     {{- $currentNode.Page.Store.Set "nestedHasMathJax" (or ($currentNode.Page.Store.Get "nestedHasMathJax") (.Page.Store.Get "hasMathJax")) }}
     {{- $currentNode.Page.Store.Set "nestedHasMermaid" (or ($currentNode.Page.Store.Get "nestedHasMermaid") (.Page.Store.Get "hasMermaid")) }}
     {{- $currentNode.Page.Store.Set "nestedHasSwagger" (or ($currentNode.Page.Store.Get "nestedHasSwagger") (.Page.Store.Get "hasSwagger")) }}

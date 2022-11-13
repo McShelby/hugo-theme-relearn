@@ -1,8 +1,9 @@
 {{- partialCached "page-meta.hugo" . . }}
-{{- partial "output-partial.hugo" (dict "base" "header" "page" . "parameter" .) }}
+{{- $outputFormat := partial "output-format.hugo" . }}
+{{- partial "output-partial.hugo" (dict "base" "header" "page" . "parameter" . "outputFormat" $outputFormat) }}
 {{- if not .File }}
-  {{- partial "output-partial.hugo" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "output-partial.hugo" (dict "base" "initial" "page" . "parameter" .)))) }}
+  {{- partial "output-partial.hugo" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "output-partial.hugo" (dict "base" "initial" "page" . "parameter" . "outputFormat" $outputFormat))) "outputFormat" $outputFormat) }}
 {{- else }}
-  {{- partial "output-partial.hugo" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "output-partial.hugo" (dict "base" "content" "page" . "parameter" .)))) }}
+  {{- partial "output-partial.hugo" (dict "base" "body" "page" . "parameter" (dict "page" . "content" (partial "output-partial.hugo" (dict "base" "content" "page" . "parameter" . "outputFormat" $outputFormat))) "outputFormat" $outputFormat) }}
 {{- end }}
-{{- partial "output-partial.hugo" (dict "base" "footer" "page" . "parameter" .) }}
+{{- partial "output-partial.hugo" (dict "base" "footer" "page" . "parameter" . "outputFormat" $outputFormat) }}

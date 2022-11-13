@@ -1,3 +1,10 @@
+  {{- $page := .page }}
+  {{- $outputFormat := .outputFormat }}
+  {{- if not $page }}
+    {{- $page = . }}
+    {{- $outputFormat = partial "output-format.hugo" $page }}
+  {{- end }}
+  {{- with $page }}
     {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
     {{ "<!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->" | safeHTML }}
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
@@ -14,7 +21,6 @@
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
-    {{- $outputFormat := partial "output-format.hugo" . }}
     {{- $f := printf "/static/css/format-%s.css" $outputFormat }}
     {{- if partialCached "fileExists.hugo" $f $f }}
     <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -45,3 +51,4 @@
       window.variants && variants.init( [ {{ delimit $quotedthemevariants ", " | safeJS }} ] );
     </script>
     <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+  {{- end }}

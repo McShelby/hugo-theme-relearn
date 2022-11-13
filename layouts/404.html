@@ -1,5 +1,6 @@
-{{- partialCached "page-meta.hugo" . . }}
 <!DOCTYPE html>
+{{- partialCached "page-meta.hugo" . . }}
+{{- $outputFormat := partial "output-format.hugo" . }}
 <html lang="{{ .Page.Language | default "en" }}" dir="{{ T "Reading-direction" | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}
@@ -12,7 +13,7 @@
     <title>{{ .Scratch.Get "title" }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
 
     {{- partialCached "favicon.html" . }}
-    {{- partial "stylesheet.html" . }}
+    {{- partialCached "stylesheet.html" (dict "page" . "outputFormat" $outputFormat) $outputFormat }}
     <style>
       p, li, ul {
         text-align: center
