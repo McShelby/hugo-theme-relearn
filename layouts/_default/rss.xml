@@ -9,6 +9,7 @@
 {{- if ge $limit 0 -}}
   {{- $pages = $pages | first $limit -}}
 {{- end }}
+{{- $page := . }}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
@@ -25,7 +26,8 @@
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
     {{- range $pages }}
-	  {{- if and .Permalink .Title (or (ne (.Scratch.Get "relearnIsHiddenNode") true) (ne .Site.Params.disableSeoHiddenPages true) ) }}
+      {{- $relearnIsHiddenFrom := index ($page.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
+  	  {{- if and .Permalink .Title (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableSeoHiddenPages true) ) }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
@@ -36,7 +38,7 @@
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Summary | html }}</description>
     </item>
-    {{- end }}
+      {{- end }}
     {{- end }}
   </channel>
 </rss>
