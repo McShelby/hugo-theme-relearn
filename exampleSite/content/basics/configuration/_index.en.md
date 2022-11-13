@@ -36,6 +36,8 @@ Note that some of these parameters are explained in details in other sections of
   # Javascript and CSS cache are automatically busted when new version of site is generated.
   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
   disableAssetsBusting = false
+  # Set this to true if you want to disable generation for generator version meta tags of hugo and the theme
+  disableGeneratorVersion = false
   # Set this to true to disable copy-to-clipboard button for inline code.
   disableInlineCopyToClipBoard = false
   # A title for shortcuts in menu is set by default. Set this to true to disable it.
