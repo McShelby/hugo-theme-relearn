@@ -10,7 +10,7 @@
 <div class="expand
     {{- if $expanded }} expand-expanded{{ end -}}
 ">
-    {{/* things are getting complicated when search tries to open the expand box while jquery sets the display CSS on the element */}}{{ "" -}}
+    {{- $c:=""}}{{/* things are getting complicated when search tries to open the expand box while jquery sets the display CSS on the element */}}
     <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
         <i class="fas fa-chevron-down"></i>
         <i class="fas fa-chevron-left expand-rtl direction-{{ $direction }}"></i>

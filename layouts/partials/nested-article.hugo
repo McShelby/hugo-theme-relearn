@@ -93,11 +93,7 @@
   {{- $outputFormat := .outputFormat }}
   {{- with .sect }}
     {{- $page := . }}
-    {{/* if we have a relative link in a print page, our print URL is one level to deep; so we are making it absolute to our page by prepending the page's permalink */}}
-    {{- $link_prefix := strings.TrimRight "/" .Page.RelPermalink }}
-    {{- $content := partial "output-partial.hugo" (dict "base" "content" "page" . "parameter" $page "outputFormat" $outputFormat) }}
-    {{- $content = replaceRE "((?:src|href)\\s*=(?:\\s*[\"']\\s*)?)(\\.[^\"'\\s>]*|[\\w]+[^\"'\\s>:]*)([\"'\\s>])" (printf "${1}%s/${2}${3}" $link_prefix) $content }}
-    {{- partial "output-partial.hugo" (dict "base" "article" "page" $page "parameter" (dict "page" $page "content" $content "outputFormat" $outputFormat) "outputFormat" $outputFormat) }}
+    {{- partialCached "nested-content.hugo" (dict "page" $page "outputFormat" $outputFormat) $page.RelPermalink "outputFormat" $outputFormat }}
     {{- $currentNode.Page.Store.Set "nestedHasMathJax" (or ($currentNode.Page.Store.Get "nestedHasMathJax") (.Page.Store.Get "hasMathJax")) }}
     {{- $currentNode.Page.Store.Set "nestedHasMermaid" (or ($currentNode.Page.Store.Get "nestedHasMermaid") (.Page.Store.Get "hasMermaid")) }}
     {{- $currentNode.Page.Store.Set "nestedHasSwagger" (or ($currentNode.Page.Store.Get "nestedHasSwagger") (.Page.Store.Get "hasSwagger")) }}
