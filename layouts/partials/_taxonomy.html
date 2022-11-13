@@ -3,7 +3,12 @@
           <article>
 {{- $page := . }}
 
-<h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
+{{- $title := "" }}
+{{- if eq .Kind "term" }}
+  {{- $title = printf "%s %s " (.Data.Singular | humanize) (default "::" .Site.Params.titleSeparator) }}
+{{- end }}
+{{- $title = printf "%s%s" $title .Title }}
+<h1 id="{{ $title | urlize }}">{{ $title }}</h1>
 <ul>
   {{- range .Data.Terms.Alphabetical }}
     {{- $len := 0 }}
