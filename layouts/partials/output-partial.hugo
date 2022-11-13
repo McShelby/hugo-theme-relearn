@@ -5,7 +5,7 @@
 {{- if not $outputFormat }}
   {{- $outputFormat = partial "output-format.hugo" $page }}
 {{- end }}
-{{- $suffix := partialCached "output-suffix.hugo" $page $page $outputFormat }}
+{{- $suffix := partialCached "output-suffix.hugo" $page $page.RelPermalink $outputFormat }}
 {{- $f := printf "/layouts/partials/%s.%s.%s" $base $outputFormat $suffix }}
 {{- if or (not $outputFormat) (not (partialCached "fileExists.hugo" $f $f)) }}
   {{- $f = printf "/layouts/partials/%s.%s" $base $suffix }}

@@ -1,4 +1,4 @@
-{{- partialCached "page-meta.hugo" . . }}
+{{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- $pages := slice }}
 {{- range .Site.Pages }}
 {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
