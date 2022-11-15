@@ -154,7 +154,7 @@
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
             {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}{{if (or $isSelf $isAncestor) }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">{{ if .Site.Params.collapsibleMenu }}<input type="checkbox" id="section-{{ $pageHash }}" aria-controls="subsections-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}><label class="a11y-only toggle" for="section-{{ $pageHash }}" >{{ T "Submenu" ( or .Params.menuTitle .LinkTitle .Title ) }}</label>{{ end }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
+          <li data-nav-id="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" class="dd-item{{if $isActive }} active{{end}}{{if (or $isSelf $isAncestor) }} parent{{end}}{{if $currentAlwaysopen}} alwaysopen{{end}}">{{ if .Site.Params.collapsibleMenu }}<input type="checkbox" id="section-{{ $pageHash }}" aria-controls="subsections-{{ $pageHash }}" class="toggle"{{ if $isOpen }} checked{{ end }}><label class="a11y-only toggle" for="section-{{ $pageHash }}" >{{ T "Submenu" ( or .Params.menuTitle .LinkTitle .Title ) }}</label>{{ end }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
             {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
             {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a><ul id="subsections-{{ $pageHash }}">
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
@@ -168,7 +168,7 @@
               {{- end }}
             {{- end }}</ul></li>
           {{- else }}
-          <li data-nav-id="{{.RelPermalink}}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
+          <li data-nav-id="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" class="dd-item{{if $isActive }} active{{end}}"><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
               {{- partial "menu-pre.html" . }}{{ or .Params.menuTitle .LinkTitle .Title }}{{ partial "menu-post.html" . }}
               {{- if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a></li>
           {{- end }}
