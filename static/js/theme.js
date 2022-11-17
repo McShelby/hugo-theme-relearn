@@ -554,6 +554,8 @@ function showToc(){
     b.classList.toggle( 'toc-flyout' );
     if( b.classList.contains( 'toc-flyout' ) ){
         pst && pst.update();
+        pst && pst.scrollbarY.focus();
+        document.querySelector( '.toc-wrapper ul a' ).focus();
         document.addEventListener( 'keydown', tocEscapeHandler );
     }
     else{
