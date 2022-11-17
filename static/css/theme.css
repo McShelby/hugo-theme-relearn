@@ -86,18 +86,31 @@ th {
     margin-top: 1rem;
 }
 
-.searchbox > i {
+.searchbox > :first-child {
     color: rgba( 255, 255, 255, .8 );
     position: absolute;
     left: 10px;
-    top: 6px;
+}
+
+.searchbox > button {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    top: 4px;
+}
+
+.searchbox > i {
+    top: 7px;
 }
 
 .searchbox span {
     color: rgba( 255, 255, 255, .6 );
     position: absolute;
     right: 10px;
-    top: 3px;
+    top: 4px;
     cursor: pointer;
 }
 
@@ -116,10 +129,7 @@ th {
     font-weight: 300;
 }
 
-.searchbox input:-ms-input-placeholder {
-    color: rgba( 255, 255, 255, .4 );
-}
-
+.searchbox input:-ms-input-placeholder,
 .searchbox input::placeholder {
     color: rgba( 255, 255, 255, .4 );
 }
@@ -1204,7 +1214,7 @@ option {
     display: inline-block;
     font-size: .9rem;
     font-weight: 500;
-    line-height: 1.42857143;
+    line-height: 1.1;
     margin-bottom: 0;
     touch-action: manipulation;
     -ms-user-select: none;
@@ -1212,7 +1222,16 @@ option {
     user-select: none;
 }
 
-.btn a {
+.btn > :where(button) {
+    -webkit-appearance: none;
+    appearance: none;
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.btn > * {
+    background-color: transparent;
     border-radius: 4px;
     border-style: solid;
     border-width: 1px;
@@ -1223,19 +1242,18 @@ option {
     -webkit-user-select: none;
     user-select: none;
     white-space: nowrap;
+}
+
+#body #body-inner .btn > *.highlight:after {
     background-color: transparent;
 }
 
-#body #body-inner .btn a.highlight:after {
-    background-color: transparent;
-}
-
-.btn a:focus {
+.btn > *:focus {
     outline: none;
 }
 
-.btn a:hover,
-.btn a:focus {
+.btn > *:hover,
+.btn > *:focus {
     text-decoration: none;
 }
 

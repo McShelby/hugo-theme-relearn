@@ -21,6 +21,12 @@ Prism.manual = true;
 var psc;
 var psm;
 var pst;
+var elc = document.querySelector('#body-inner');
+
+function documentFocus(){
+    document.querySelector( '#body-inner' ).focus();
+    psc && psc.scrollbarY.focus();
+}
 
 function scrollbarWidth(){
     // https://davidwalsh.name/detect-scrollbar-width
@@ -33,6 +39,17 @@ function scrollbarWidth(){
     // Delete the DIV
     document.body.removeChild(scrollDiv);
     return scrollbarWidth;
+}
+
+var scrollbarSize = scrollbarWidth();
+function adjustContentWidth(){
+    var left = parseFloat( getComputedStyle( elc ).getPropertyValue( 'padding-left' ) );
+    var right = left;
+    if( elc.scrollHeight > elc.clientHeight ){
+        // if we have a scrollbar reduce the right margin by the scrollbar width
+        right = Math.max( 0, left - scrollbarSize );
+    }
+    elc.style[ 'padding-right' ] = '' + right + 'px';
 }
 
 function switchTab(tabGroup, tabId) {
@@ -371,7 +388,6 @@ function initMenuScrollbar(){
         return;
     }
 
-    var elc = document.querySelector('#body-inner');
     var elm = document.querySelector('#content-wrapper');
     var elt = document.querySelector('#TableOfContents');
 
@@ -442,16 +458,6 @@ function initMenuScrollbar(){
     });
 
     // finally, we want to adjust the contents right padding if there is a scrollbar visible
-    var scrollbarSize = scrollbarWidth();
-    function adjustContentWidth(){
-        var left = parseFloat( getComputedStyle( elc ).getPropertyValue( 'padding-left' ) );
-        var right = left;
-        if( elc.scrollHeight > elc.clientHeight ){
-            // if we have a scrollbar reduce the right margin by the scrollbar width
-            right = Math.max( 0, left - scrollbarSize );
-        }
-        elc.style[ 'padding-right' ] = '' + right + 'px';
-    }
     window.addEventListener('resize', adjustContentWidth );
     adjustContentWidth();
 }
@@ -461,8 +467,7 @@ function sidebarEscapeHandler( event ){
         var b = document.querySelector( 'body' );
         b.classList.remove( 'sidebar-flyout' );
         document.removeEventListener( 'keydown', sidebarEscapeHandler );
-        document.querySelector( '#body-inner' ).focus();
-        psc && psc.scrollbarY.focus();
+        documentFocus();
     }
 }
 
@@ -471,14 +476,19 @@ function tocEscapeHandler( event ){
         var b = document.querySelector( 'body' );
         b.classList.remove( 'toc-flyout' );
         document.removeEventListener( 'keydown', tocEscapeHandler );
-        document.querySelector( '#body-inner' ).focus();
-        psc && psc.scrollbarY.focus();
+        documentFocus();
     }
 }
 
 function sidebarShortcutHandler( event ){
     if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 78 /* n */ ){
         showNav();
+    }
+}
+
+function searchShortcutHandler( event ){
+    if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 70 /* f */ ){
+        showSearch();
     }
 }
 
@@ -500,6 +510,22 @@ function printShortcutHandler( event ){
     }
 }
 
+function showSearch(){
+    var s = document.querySelector( '#search-by' );
+    var b = document.querySelector( 'body' );
+    if( s == document.activeElement ){
+        if( b.classList.contains( 'sidebar-flyout' ) ){
+            showNav();
+        }
+        documentFocus();
+    } else {
+        if( !b.classList.contains( 'sidebar-flyout' ) ){
+            showNav();
+        }
+        s.focus();
+    }
+}
+
 function showNav(){
     if( !document.querySelector( '#sidebar-overlay' ) ){
         // we may not have a flyout
@@ -514,8 +540,7 @@ function showNav(){
     }
     else{
         document.removeEventListener( 'keydown', sidebarEscapeHandler );
-        document.querySelector( '#body-inner' ).focus();
-        psc && psc.scrollbarY.focus();
+        documentFocus();
     }
 }
 
@@ -533,8 +558,7 @@ function showToc(){
     }
     else{
         document.removeEventListener( 'keydown', tocEscapeHandler );
-        document.querySelector( '#body-inner' ).focus();
-        psc && psc.scrollbarY.focus();
+        documentFocus();
     }
 }
 
@@ -560,15 +584,8 @@ function initToc(){
     document.addEventListener( 'keydown', editShortcutHandler );
     document.addEventListener( 'keydown', printShortcutHandler );
     document.addEventListener( 'keydown', sidebarShortcutHandler );
+    document.addEventListener( 'keydown', searchShortcutHandler );
     document.addEventListener( 'keydown', tocShortcutHandler );
-    // avoid keyboard navigation for input fields
-    jQuery(formelements).keydown(function (e) {
-        if( !e.shiftKey && e.altKey && e.ctrlKey && !e.metaKey){
-            if( e.which == 78 /* n */ || e.which == 84 /* t */ || e.which == 87 /* w */ || e.which == 80 /* p */ ){
-                e.stopPropagation();
-            }
-        }
-    });
 
     document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
     document.querySelector( '#sidebar-toggle' ).addEventListener( 'click', showNav );
@@ -582,8 +599,7 @@ function initToc(){
     }
 
     // finally give initial focus to allow keyboard scrolling in FF
-    document.querySelector( '#body-inner' ).focus();
-    psc && psc.scrollbarY.focus();
+    documentFocus();
 }
 
 function initSwipeHandler(){
@@ -613,8 +629,7 @@ function initSwipeHandler(){
                 var b = document.querySelector( 'body' );
                 b.classList.remove( 'sidebar-flyout' );
                 document.removeEventListener( 'keydown', sidebarEscapeHandler );
-                document.querySelector( '#body-inner' ).focus();
-                psc && psc.scrollbarY.focus();
+                documentFocus();
             }
         }
         return false;
@@ -721,16 +736,29 @@ function unmark(){
     psm && psm.update();
 }
 
+function searchInputHandler(value) {
+    unmark();
+    if (value.length) {
+        sessionStorage.setItem(baseUriFull+'search-value', value);
+        mark();
+    }
+}
+
 function initSearch() {
+    jQuery('[data-search-input]').on('keydown', function(event) {
+        if (event.key == "Escape") {
+            var input = jQuery(this);
+            input.blur();
+            searchInputHandler( '' );
+            documentFocus();
+        }
+    });
     jQuery('[data-search-input]').on('input', function() {
         var input = jQuery(this);
         var value = input.val();
-        unmark();
-        if (value.length) {
-            sessionStorage.setItem(baseUriFull+'search-value', value);
-            mark();
-        }
+        searchInputHandler( value );
     });
+
     jQuery('[data-search-clear]').on('click', function() {
         jQuery('[data-search-input]').val('').trigger('input');
         unmark();
