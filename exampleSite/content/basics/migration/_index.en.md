@@ -14,7 +14,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.6.0
+## Beta (not yet released)
 
 - **New**: This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
 
