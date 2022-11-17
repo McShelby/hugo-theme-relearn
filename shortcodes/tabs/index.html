@@ -3,27 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.105.0">
+    <meta name="generator" content="Hugo 0.106.0">
     <meta name="generator" content="Relearn 5.5.3+tip">
     <meta name="description" content="Show content in tabbed views">
     <meta name="author" content="Sören Weber">
     <title>Tabbed views :: Hugo Relearn Theme</title>
     <link href="../../shortcodes/tabs/index.xml" rel="alternate" type="application/rss+xml" title="Tabbed views :: Hugo Relearn Theme">
     <link href="../../shortcodes/tabs/index.print.html" rel="alternate" type="text/html" title="Tabbed views :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1668719584" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1668722278" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1668719584" rel="stylesheet"></noscript>
-    <link href="../../css/featherlight.min.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1668719584" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1668719584" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1668719584" rel="stylesheet">
-    <link href="../../css/nucleus.css?1668719584" rel="stylesheet">
-    <link href="../../css/fonts.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1668719584" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1668719584" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1668719584" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1668719584" rel="stylesheet">
-    <link href="../../css/variant.css?1668719584" rel="stylesheet">
-    <link href="../../css/print.css?1668719584" rel="stylesheet" media="print">
-    <script src="../../js/variant.js?1668719584"></script>
+    <link href="../../css/fontawesome-all.min.css?1668722278" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1668722278" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min.css?1668722278" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1668722278" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1668722278" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1668722278" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1668722278" rel="stylesheet">
+    <link href="../../css/nucleus.css?1668722278" rel="stylesheet">
+    <link href="../../css/fonts.css?1668722278" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1668722278" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1668722278" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1668722278" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1668722278" rel="stylesheet">
+    <link href="../../css/variant.css?1668722278" rel="stylesheet">
+    <link href="../../css/print.css?1668722278" rel="stylesheet" media="print">
+    <script src="../../js/variant.js?1668722278"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -41,7 +41,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1668719584" defer></script>
+    <script src="../../js/jquery.min.js?1668722278" defer></script>
   </head>
   <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../shortcodes/tabs/index.html">
     <div id="body" class="default-animation">
@@ -89,6 +89,7 @@
       <ul>
         <li><a href="#distinct-groupid">Distinct <code>groupid</code></a></li>
         <li><a href="#non-distinct-groupid">Non-Distinct <code>groupid</code></a></li>
+        <li><a href="#nested-tabs">Nested Tabs</a></li>
       </ul>
     </li>
   </ul>
@@ -319,6 +320,127 @@
     </div>
   </div>
 </div>
+<h3 id="nested-tabs">Nested Tabs</h3>
+<p>In case you want to nest tabs, the parent tab that contains the subtabs needs to be declared with <code>{{&lt; tab &gt;}}</code> instead of <code>{{% tab %}}</code>. Note, that in this case it is not possible to put markdown in the parent tab.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">tabs</span> <span class="nx">groupid</span><span class="p">=</span><span class="s">&#34;main&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;Text&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Simple</span> <span class="nx">text</span> <span class="nx">is</span> <span class="nx">possible</span> <span class="nx">here</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{&lt;</span> <span class="nx">tabs</span> <span class="nx">groupid</span><span class="p">=</span><span class="s">&#34;tabs-example-language&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;python&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Python</span> <span class="nx">is</span> <span class="o">**</span><span class="nx">super</span><span class="o">**</span> <span class="nx">easy</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="nx">most</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">time</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="k">if</span> <span class="nx">you</span> <span class="nx">don</span><span class="err">&#39;</span><span class="nx">t</span> <span class="nx">want</span> <span class="nx">to</span> <span class="nx">output</span> <span class="nx">unicode</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">tab</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;bash&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Bash</span> <span class="nx">is</span> <span class="k">for</span> <span class="o">**</span><span class="nx">hackers</span><span class="o">**</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">tab</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">tabs</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">tab</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;Code&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span><span class="nx">but</span> <span class="nx">no</span> <span class="nx">markdown</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{&lt;</span> <span class="nx">tabs</span> <span class="nx">groupid</span><span class="p">=</span><span class="s">&#34;tabs-example-language&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;python&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="s">```python
+</span></span></span><span class="line"><span class="cl"><span class="s">  print(&#34;Hello World!&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s">  ```</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">tab</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="nx">tab</span> <span class="nx">name</span><span class="p">=</span><span class="s">&#34;bash&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="s">```bash
+</span></span></span><span class="line"><span class="cl"><span class="s">  echo &#34;Hello World!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">  ```</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">tab</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">tabs</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">tab</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">tabs</span> <span class="p">&gt;}}</span>
+</span></span></code></pre></div>
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="Text"
+      data-tab-group="main"
+      class="tab-nav-button direction-ltr active"
+      onclick="switchTab('main','Text')"
+      ><span>Text</span></button>
+    <button
+      data-tab-item="Code"
+      data-tab-group="main"
+      class="tab-nav-button direction-ltr "
+      onclick="switchTab('main','Code')"
+      ><span>Code</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="Text" data-tab-group="main" class="tab-item active">
+
+  Simple text is possible here...
+  
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="python"
+      data-tab-group="tabs-example-language"
+      class="tab-nav-button direction-ltr active"
+      onclick="switchTab('tabs-example-language','python')"
+      ><span>python</span></button>
+    <button
+      data-tab-item="bash"
+      data-tab-group="tabs-example-language"
+      class="tab-nav-button direction-ltr "
+      onclick="switchTab('tabs-example-language','bash')"
+      ><span>bash</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="python" data-tab-group="tabs-example-language" class="tab-item active">
+<p>Python is <strong>super</strong> easy.</p>
+<ul>
+<li>most of the time.</li>
+<li>if you don&rsquo;t want to output unicode</li>
+</ul>
+
+    </div>
+    <div data-tab-item="bash" data-tab-group="tabs-example-language" class="tab-item ">
+<p>Bash is for <strong>hackers</strong>.</p>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div data-tab-item="Code" data-tab-group="main" class="tab-item ">
+
+  ...but no markdown
+  
+<div class="tab-panel">
+  <div class="tab-nav">
+    <button
+      data-tab-item="python"
+      data-tab-group="tabs-example-language"
+      class="tab-nav-button direction-ltr active"
+      onclick="switchTab('tabs-example-language','python')"
+      ><span>python</span></button>
+    <button
+      data-tab-item="bash"
+      data-tab-group="tabs-example-language"
+      class="tab-nav-button direction-ltr "
+      onclick="switchTab('tabs-example-language','bash')"
+      ><span>bash</span></button>
+  </div>
+  <div class="tab-content">
+    <div data-tab-item="python" data-tab-group="tabs-example-language" class="tab-item active">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+    </div>
+    <div data-tab-item="bash" data-tab-group="tabs-example-language" class="tab-item ">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Hello World!&#34;</span>
+</span></span></code></pre></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
 
             <footer class="footline">
             </footer>
@@ -398,12 +520,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1668719584" defer></script>
-        <script src="../../js/lunr.min.js?1668719584" defer></script>
-        <script src="../../js/lunr.stemmer.support.min.js?1668719584" defer></script>
-        <script src="../../js/lunr.multi.min.js?1668719584" defer></script>
-        <script src="../../js/lunr.en.min.js?1668719584" defer></script>
-        <script src="../../js/search.js?1668719584" defer></script>
+        <script src="../../js/auto-complete.js?1668722279" defer></script>
+        <script src="../../js/lunr.min.js?1668722279" defer></script>
+        <script src="../../js/lunr.stemmer.support.min.js?1668722279" defer></script>
+        <script src="../../js/lunr.multi.min.js?1668722279" defer></script>
+        <script src="../../js/lunr.en.min.js?1668722279" defer></script>
+        <script src="../../js/search.js?1668722279" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -518,13 +640,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../../js/buttons.js?1668719584"></script>
+          <script async src="../../js/buttons.js?1668722279"></script>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1668719584" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1668719584" defer></script>
-    <script src="../../js/featherlight.min.js?1668719584" defer></script>
-    <script src="../../js/theme.js?1668719584" defer></script>
+    <script src="../../js/clipboard.min.js?1668722279" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1668722279" defer></script>
+    <script src="../../js/featherlight.min.js?1668722279" defer></script>
+    <script src="../../js/theme.js?1668722279" defer></script>
   </body>
 </html>
