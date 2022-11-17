@@ -122,6 +122,7 @@ $(function() {
         /* onSelect callback fires when a search suggestion is chosen */
         onSelect: function(e, term, item) {
             location.href = item.getAttribute('data-uri');
+            e.preventDefault();
         }
     });
 
