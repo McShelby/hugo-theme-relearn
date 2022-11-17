@@ -14,6 +14,30 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.6.0
+
+- **New**: This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
+
+  To activate this feature, you need to [configure it]({{% relref "basics/configuration#activate-dedicated-search-page" %}}) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+
+  You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
+
+- **New**: Keyboard handling for the TOC and search was improved.
+
+  Pressing `CTRL+ALT+t` now will not only toggle the TOC overlay but also places the focus to the first heading on opening. Subsequently this makes it possible to easily select headings by using the `TAB` key.
+
+  The search received its own brand new keyboard shortcut `CTRL+ALT+f`. This will focus the cursor inside of the the search box so you can immediately start your search by typing.
+
+- **New**: You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
+
+  To [configure this]({{% relref "basics/configuration#global-site-parameters" %}}) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+
+- **New**: Creation of your project gets a little bit faster with this release.
+
+  This addresses increased build time with the 5.x releases. The theme now heavily caches partial results leading to improved performance. To further increase performance, unnecessary parts of the page are now skipped for creation of the print output (eg. menus, navigation bar, etc.).
+
+---
+
 ## 5.5.0
 
 - **Change**: The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.

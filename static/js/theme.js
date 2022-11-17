@@ -1,3 +1,5 @@
+window.relearn = window.relearn || {};
+
 var theme = true;
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
 if( isIE ){
@@ -709,6 +711,10 @@ function scrollToFragment() {
 }
 
 function mark(){
+    // mark some additonal stuff as searchable
+    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
+    $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
+
     var value = sessionStorage.getItem(baseUriFull+'search-value');
     $(".highlightable").highlight(value, { element: 'mark' });
     $("mark").parents(".expand").addClass("expand-marked");
@@ -722,6 +728,7 @@ function mark(){
     });
     psm && psm.update();
 }
+window.relearn.markSearch = mark;
 
 function unmark(){
     sessionStorage.removeItem(baseUriFull+'search-value');
@@ -747,24 +754,36 @@ function searchInputHandler(value) {
 }
 
 function initSearch() {
-    jQuery('[data-search-input]').on('keydown', function(event) {
+    // sync input/escape between searchbox and searchdetail
+    jQuery('input.search-by').on('keydown', function(event) {
         if (event.key == "Escape") {
             var input = jQuery(this);
             input.blur();
             searchInputHandler( '' );
+            jQuery('input.search-by').val('');
             documentFocus();
         }
     });
-    jQuery('[data-search-input]').on('input', function() {
+    jQuery('input.search-by').on('input', function() {
         var input = jQuery(this);
         var value = input.val();
         searchInputHandler( value );
+        jQuery('input.search-by').not(this).val($(this).val());
     });
 
     jQuery('[data-search-clear]').on('click', function() {
         jQuery('[data-search-input]').val('').trigger('input');
         unmark();
     });
+
+    if( URLSearchParams ){
+        // sorry IE11
+        var urlParams = new URLSearchParams(window.location.search);
+        var value = urlParams.get('search-by');
+        if( value ){
+            sessionStorage.setItem(baseUriFull+'search-value', value);
+        }
+    }
     mark();
 
     // custom sizzle case insensitive "contains" pseudo selector
@@ -789,9 +808,8 @@ function initSearch() {
         }
     }
 
-    // mark some additonal stuff as searchable
-    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
-    $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
+    window.relearn.isSearchInit = true;
+    window.relearn.runInitialSearch && window.relearn.runInitialSearch();
 }
 
 // debouncing function from John Hann

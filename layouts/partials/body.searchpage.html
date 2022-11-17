@@ -1,0 +1,25 @@
+{{- $title := T "Search" }}
+          <article class="default">
+            <h1 id="{{ $title | urlize }}">{{ $title }}</h1>
+
+            <form action="javascript:triggerSearch()">
+              <div class="searchform">
+                <label class="a11y-only" for="search-by">{{ T "Search" }}</label>
+                <input data-search-input id="search-by-detail" class="search-by" name="search-by" type="search" placeholder="{{ T "Search-placeholder" }}">
+                <span class="btn cstyle secondary">
+                  <button type="submit" title="{{ T "Search" }}">
+                    <i class="fas fa-search"></i> {{ T "Search" }}
+                  </button>
+                </span>
+              </div>
+            </form>
+            <div class="searchhint">
+            </div>
+            <hr>
+            <div id="searchresults">
+            </div>
+
+            <footer class="footline">
+              {{- partial "content-footer.html" . }}
+            </footer>
+          </article>

@@ -1,5 +1,11 @@
 
     {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
+    {{- $format := partial "get-format.hugo" . }}
+    {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+    {{- $basename := "index" }}
+    {{- if ne $outputFormat "html" }}
+      {{- $basename = path.BaseName $format.RelPermalink }}
+    {{- end }}
     <aside id="sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}" dir="ltr">
       {{- $currentNode := . }}
       <div id="header-wrapper" class="default-animation">
@@ -76,9 +82,9 @@
                       {{- range $siteLanguages }}
                         {{- if eq $translation.Lang .Lang }}
                           {{- if eq $pageLang .Lang }}
-                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation) }}" selected>{{ .LanguageName }}</option>
+                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" selected>{{ .LanguageName }}</option>
                           {{- else }}
-                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation) }}">{{ .LanguageName }}</option>
+                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}">{{ .LanguageName }}</option>
                           {{- end }}
                         {{- end }}
                       {{- end }}

@@ -1,3 +1,11 @@
+window.relearn = window.relearn || {};
+
+window.relearn.runInitialSearch = function(){
+    if( window.relearn.isSearchInit && window.relearn.isLunrInit ){
+        searchDetail();
+    }
+}
+
 var lunrIndex, pagesIndex;
 
 function initLunrIndex( index ){
@@ -25,7 +33,47 @@ function initLunrIndex( index ){
             page.index = idx;
             this.add(page);
         }, this);
-    })
+    });
+
+    window.relearn.isLunrInit = true;
+    window.relearn.runInitialSearch();
+}
+
+function triggerSearch(){
+    searchDetail();
+    if( URL ){
+        // sorry IE11
+        var input = document.querySelector('#search-by-detail');
+        if( !input ){
+            return;
+        }
+        var value = input.value;
+        var url = new URL( window.location );
+        var oldValue = url.searchParams.get('search-by');
+        if( value != oldValue ){
+            url.searchParams.set('search-by', value);
+            window.history.pushState(url.toString(), '', url);
+        }
+    }
+}
+
+window.addEventListener('popstate', function ( event ) {
+    // restart search if browsed thru history
+    if (event.state && event.state.indexOf('search.html?search-by=') >= 0) {
+        window.location.reload();
+    }
+});
+
+var input = document.querySelector('#search-by-detail');
+if( input ){
+    input.addEventListener( 'keydown', function(event) {
+        // if we are pressing ESC in the searchdetail our focus will
+        // be stolen by the other event handlers, so we have to refocus
+        // here after a short while
+        if (event.key == "Escape") {
+            setTimeout( function(){ input.focus(); }, 0 );
+        }
+    });
 }
 
 function initLunrJson() {
@@ -86,10 +134,70 @@ function searchPatterns(word) {
     ];
 }
 
+
+function resolvePlaceholders( s, args ) {
+    var args = args || [];
+    // use replace to iterate over the string
+    // select the match and check if the related argument is present
+    // if yes, replace the match with the argument
+    return s.replace(/{([0-9]+)}/g, function (match, index) {
+        // check if the argument is present
+        return typeof args[index] == 'undefined' ? match : args[index];
+    });
+};
+
+function searchDetail() {
+    var input = document.querySelector('#search-by-detail');
+    if( !input ){
+        return;
+    }
+    var value = input.value;
+    var results = document.querySelector('#searchresults');
+    var hint = document.querySelector('.searchhint');
+    hint.innerText = '';
+    results.textContent = '';
+    var a = search( value );
+    if( a.length ){
+        hint.innerText = resolvePlaceholders( window.T_N_results_found, [ value, a.length ] );
+        a.forEach( function(item){
+            var page = pagesIndex[item.index];
+            var numContextWords = 10;
+            var contextPattern = '(?:\\S+ +){0,' + numContextWords + '}\\S*\\b(?:' +
+                item.matches.map( function(match){return match.replace(/\W/g, '\\$&')} ).join('|') +
+                ')\\b\\S*(?: +\\S+){0,' + numContextWords + '}';
+            var context = page.content.match(new RegExp(contextPattern, 'i'));
+            var divcontext = document.createElement('div');
+            divcontext.className = 'context';
+            divcontext.innerText = (context || '');
+            var divsuggestion = document.createElement('a');
+            divsuggestion.className = 'autocomplete-suggestion';
+            divsuggestion.setAttribute('data-term', value);
+            divsuggestion.setAttribute('data-title', page.title);
+            divsuggestion.setAttribute('href', baseUri + page.uri);
+            divsuggestion.setAttribute('data-context', context);
+            divsuggestion.innerText = '» ' + page.title;
+            divsuggestion.appendChild(divcontext);
+            results.appendChild( divsuggestion );
+        });
+        window.relearn.markSearch();
+    }
+    else if( value.length ) {
+        hint.innerText = resolvePlaceholders( window.T_No_results_found, [ value ] );
+    }
+    input.focus();
+    setTimeout( adjustContentWidth, 0 );
+}
+
 // Let's get started
 initLunrJson();
 initLunrJs();
 $(function() {
+    if( URL ){
+        // sorry IE11
+        var url = new URL( window.location );
+        window.history.replaceState(url.toString(), '', url);
+    }
+
     var searchList = new autoComplete({
         /* selector for the search box element */
         selectorToInsert: '#header-wrapper',

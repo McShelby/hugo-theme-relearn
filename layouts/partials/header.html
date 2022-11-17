@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-{{- $outputFormat := partial "output-format.hugo" . }}
+{{- $format := partial "get-format.hugo" . }}
+{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+{{- $basename := "index" }}
+{{- if eq $outputFormat "searchpage" }}
+  {{- $basename = path.BaseName $format.RelPermalink }}
+{{- end }}
 <html lang="{{ .Page.Language | default "en" }}" dir="{{ T "Reading-direction" | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}
@@ -16,7 +21,9 @@
     {{- else }}
         {{- range .AlternativeOutputFormats }}
             {{- if eq .Rel "canonical" }}
-    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
+    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
+            {{- else if eq $outputFormat "searchpage" }}
+            {{- else if eq .Name "SEARCHPAGE" }}
             {{- else if and (ne .Name "JSON") (ne .Name "SEARCH") }}
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
             {{- end }}
@@ -24,7 +31,8 @@
     {{- end }}
     {{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
         {{- range .AlternativeOutputFormats }}
-            {{- if eq .Name "JSON" }}
+            {{- if eq .Name "SEARCHPAGE" }}
+            {{- else if eq .Name "JSON" }}
     {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
             {{- end }}
         {{- end }}
@@ -40,56 +48,58 @@
       <div id="toc-overlay"></div>
       <nav id="topbar" class="highlightable" dir="ltr">
         <div>
+        {{- $File := .File }}
+        {{- $Site := .Site }}
         {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
-        {{- if $showPrevNext }}
+        {{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
           {{- $parent := .Parent }}
           {{- $ispublished := true }}
           {{- if $parent }}
             {{- $ispublished = gt (int (len $parent.Permalink)) 0 }}
           {{- end }}
           <div class="navigation">
-          {{- if and $ispublished ($.Scratch.Get "relearnNextPage") }}
+          {{- if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnNextPage"))) }}
+            <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
+          {{- else }}
             {{- with ($.Scratch.Get "relearnNextPage") }}
             <a class="nav nav-next" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
             {{- end }}
-          {{- else }}
-            <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
           {{- end }}
           </div>
           <div class="navigation">
-          {{- if and $ispublished ($.Scratch.Get "relearnPrevPage") }}
+          {{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
+            <span class="nav nav-prev"><i class="fa fa-chevron-left fa-fw"></i></span>
+          {{- else if or (ne $outputFormat "html") (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) }}
+            {{- with .Site.Home }}
+            <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            {{- end }}
+          {{- else }}
             {{- with ($.Scratch.Get "relearnPrevPage") }}
             <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end}}
-          {{- else }}
-            <span class="nav nav-prev"><i class="fa fa-chevron-left fa-fw"></i></span>
           {{- end}}
           </div>
         {{- end }}
-        {{- with .OutputFormats.Get "PRINT" }}
+        {{- with and (eq $outputFormat "html") (.OutputFormats.Get "PRINT") }}
           <div id="top-print-link">
             <a class="print-link" title='{{ T "Print-this-chapter" }} (CTRL+ALT+p)' href="{{ .RelPermalink }}">
               <i class="fas fa-print fa-fw"></i>
             </a>
           </div>
         {{- end -}}
-        {{- if .Site.Params.editURL }}
-          {{- $File := .File }}
-          {{- $Site := .Site }}
-          {{- if $File }}
-            {{- with $File.Path }}
+        {{- if and (eq $outputFormat "html") .Site.Params.editURL $File }}
+          {{- with $File.Path }}
           <div id="top-github-link">
             <a class="github-link" title='{{ T "Edit-this-page" }} (CTRL+ALT+w)' href="{{ $Site.Params.editURL }}{{ replace $File.Dir "\\" "/" }}{{ $File.LogicalName }}" target="blank">
               <i class="fas fa-pen fa-fw"></i>
             </a>
           </div>
-            {{- end }}
           {{- end }}
         {{- end }}
         {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
         {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
         {{- $hastoc := not (eq 0 (int (len (.TableOfContents | plainify)))) }}
-        {{- $toc := (and $hastoc (not $currentDisableToc)) }}
+        {{- $toc := and $hastoc (not $currentDisableToc) (eq $outputFormat "html") }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
               <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }} (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>

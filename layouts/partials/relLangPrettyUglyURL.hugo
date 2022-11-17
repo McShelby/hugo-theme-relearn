@@ -1,10 +1,14 @@
 {{- $to := .to }}
 {{- $abs := .abs }}
+{{- $basename := .basename }}
 {{- $link := $to.RelPermalink }}
 {{- if $abs }}
 	{{- $link = $to.Permalink }}
 {{- end }}
+{{- if not $basename }}
+	{{- $basename = "index" }}
+{{- end }}
 {{- if and (ne .Site.Params.disableExplicitIndexURLs true) (eq (substr $link -1) "/") }}
-	{{- $link = printf "%sindex.html" $link }}
+	{{- $link = printf "%s%s.html" $link $basename }}
 {{- end }}
 {{- $link }}
