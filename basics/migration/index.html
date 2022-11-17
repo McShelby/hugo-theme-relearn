@@ -10,20 +10,20 @@
     <title>What&#39;s new :: Hugo Relearn Theme</title>
     <link href="../../basics/migration/index.xml" rel="alternate" type="application/rss+xml" title="What&#39;s new :: Hugo Relearn Theme">
     <link href="../../basics/migration/index.print.html" rel="alternate" type="text/html" title="What&#39;s new :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1668703719" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1668719584" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1668703719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1668703719" rel="stylesheet"></noscript>
-    <link href="../../css/featherlight.min.css?1668703719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1668703719" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1668703719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1668703719" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1668703719" rel="stylesheet">
-    <link href="../../css/nucleus.css?1668703719" rel="stylesheet">
-    <link href="../../css/fonts.css?1668703719" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1668703719" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1668703719" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1668703719" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1668703719" rel="stylesheet">
-    <link href="../../css/variant.css?1668703719" rel="stylesheet">
-    <link href="../../css/print.css?1668703719" rel="stylesheet" media="print">
-    <script src="../../js/variant.js?1668703719"></script>
+    <link href="../../css/fontawesome-all.min.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1668719584" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1668719584" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1668719584" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1668719584" rel="stylesheet">
+    <link href="../../css/nucleus.css?1668719584" rel="stylesheet">
+    <link href="../../css/fonts.css?1668719584" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1668719584" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1668719584" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1668719584" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1668719584" rel="stylesheet">
+    <link href="../../css/variant.css?1668719584" rel="stylesheet">
+    <link href="../../css/print.css?1668719584" rel="stylesheet" media="print">
+    <script src="../../js/variant.js?1668719584"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -35,11 +35,13 @@
       window.T_Copied_to_clipboard = 'Copied to clipboard!';
       window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
       window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
       // some further base stuff
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1668703719" defer></script>
+    <script src="../../js/jquery.min.js?1668719584" defer></script>
   </head>
   <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../basics/migration/index.html">
     <div id="body" class="default-animation">
@@ -78,6 +80,7 @@
             <div class="toc-wrapper" dir="ltr">
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#560">5.6.0</a></li>
     <li><a href="#550">5.5.0</a></li>
     <li><a href="#540">5.4.0</a></li>
     <li><a href="#530">5.3.0</a></li>
@@ -122,6 +125,28 @@
 <p><strong>Breaking</strong>: A change that requires action by you after upgrading to assure the site is still functional.</p>
 <p><strong>Change</strong>: A change in default behavior. This may requires action by you / may or may not be revertable by configuration.</p>
 <p><strong>New</strong>: Marks new behavior you might find interesting or comes configurable.</p>
+<hr>
+<h2 id="560">5.6.0</h2>
+<ul>
+<li>
+<p><strong>New</strong>: This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.</p>
+<p>To activate this feature, you need to <a href="../../basics/configuration/#activate-dedicated-search-page">configure it</a> in your <code>config.toml</code> as a new outputformat <code>SEARCHPAGE</code> for the home page. If you don&rsquo;t configure it, no dedicated search page will be accessible and the theme works as before.</p>
+<p>You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.</p>
+</li>
+<li>
+<p><strong>New</strong>: Keyboard handling for the TOC and search was improved.</p>
+<p>Pressing <code>CTRL+ALT+t</code> now will not only toggle the TOC overlay but also places the focus to the first heading on opening. Subsequently this makes it possible to easily select headings by using the <code>TAB</code> key.</p>
+<p>The search received its own brand new keyboard shortcut <code>CTRL+ALT+f</code>. This will focus the cursor inside of the the search box so you can immediately start your search by typing.</p>
+</li>
+<li>
+<p><strong>New</strong>: You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.</p>
+<p>To <a href="../../basics/configuration/#global-site-parameters">configure this</a> in your <code>config.toml</code> make sure to set Hugo&rsquo;s <code>disableHugoGeneratorInject=true</code> <strong>and</strong> also <code>[params] disableGeneratorVersion=true</code>, otherwise Hugo will generate a meta tag into your home page automagically.</p>
+</li>
+<li>
+<p><strong>New</strong>: Creation of your project gets a little bit faster with this release.</p>
+<p>This addresses increased build time with the 5.x releases. The theme now heavily caches partial results leading to improved performance. To further increase performance, unnecessary parts of the page are now skipped for creation of the print output (eg. menus, navigation bar, etc.).</p>
+</li>
+</ul>
 <hr>
 <h2 id="550">5.5.0</h2>
 <ul>
@@ -614,21 +639,21 @@
             Relearn
           </a>
         </div>
-        <div class="searchbox default-animation">
-          <i class="fas fa-search" title="Search (CTRL+ALT+f)"></i>
+        <form action="../../search.html" method="get"><div class="searchbox default-animation">
+          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
-        </div>
+        </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1668703720" defer></script>
-        <script src="../../js/lunr.min.js?1668703720" defer></script>
-        <script src="../../js/lunr.stemmer.support.min.js?1668703720" defer></script>
-        <script src="../../js/lunr.multi.min.js?1668703720" defer></script>
-        <script src="../../js/lunr.en.min.js?1668703720" defer></script>
-        <script src="../../js/search.js?1668703720" defer></script>
+        <script src="../../js/auto-complete.js?1668719585" defer></script>
+        <script src="../../js/lunr.min.js?1668719585" defer></script>
+        <script src="../../js/lunr.stemmer.support.min.js?1668719585" defer></script>
+        <script src="../../js/lunr.multi.min.js?1668719585" defer></script>
+        <script src="../../js/lunr.en.min.js?1668719585" defer></script>
+        <script src="../../js/search.js?1668719585" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -743,13 +768,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../../js/buttons.js?1668703720"></script>
+          <script async src="../../js/buttons.js?1668719585"></script>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1668703720" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1668703720" defer></script>
-    <script src="../../js/featherlight.min.js?1668703720" defer></script>
-    <script src="../../js/theme.js?1668703720" defer></script>
+    <script src="../../js/clipboard.min.js?1668719585" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1668719585" defer></script>
+    <script src="../../js/featherlight.min.js?1668719585" defer></script>
+    <script src="../../js/theme.js?1668719585" defer></script>
   </body>
 </html>
