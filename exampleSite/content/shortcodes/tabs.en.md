@@ -160,3 +160,75 @@ See what happens to this tab view if you select **properties** tab from the prev
 ```
 {{% /tab %}}
 {{< /tabs >}}
+
+### Nested Tabs
+
+In case you want to nest tabs, the parent tab that contains the subtabs needs to be declared with `{{</* tab */>}}` instead of `{{%/* tab */%}}`. Note, that in this case it is not possible to put markdown in the parent tab.
+
+````go
+{{</* tabs groupid="main" */>}}
+{{</* tab name="Text" */>}}
+  Simple text is possible here...
+  {{</* tabs groupid="tabs-example-language" */>}}
+  {{%/* tab name="python" */%}}
+  Python is **super** easy.
+
+  - most of the time.
+  - if you don't want to output unicode
+  {{%/* /tab */%}}
+  {{%/* tab name="bash" */%}}
+  Bash is for **hackers**.
+  {{%/* /tab */%}}
+  {{</* /tabs */>}}
+{{</* /tab */>}}
+
+{{</* tab name="Code" */>}}
+  ...but no markdown
+  {{</* tabs groupid="tabs-example-language" */>}}
+  {{%/* tab name="python" */%}}
+  ```python
+  print("Hello World!")
+  ```
+  {{%/* /tab */%}}
+  {{%/* tab name="bash" */%}}
+  ```bash
+  echo "Hello World!"
+  ```
+  {{%/* /tab */%}}
+  {{</* /tabs */>}}
+{{</* /tab */>}}
+{{</* /tabs */>}}
+````
+
+{{< tabs groupid="main" >}}
+{{< tab name="Text" >}}
+  Simple text is possible here...
+  {{< tabs groupid="tabs-example-language" >}}
+  {{% tab name="python" %}}
+  Python is **super** easy.
+
+  - most of the time.
+  - if you don't want to output unicode
+  {{% /tab %}}
+  {{% tab name="bash" %}}
+  Bash is for **hackers**.
+  {{% /tab %}}
+  {{< /tabs >}}
+{{< /tab >}}
+
+{{< tab name="Code" >}}
+  ...but no markdown
+  {{< tabs groupid="tabs-example-language" >}}
+  {{% tab name="python" %}}
+  ```python
+  print("Hello World!")
+  ```
+  {{% /tab %}}
+  {{% tab name="bash" %}}
+  ```bash
+  echo "Hello World!"
+  ```
+  {{% /tab %}}
+  {{< /tabs >}}
+{{< /tab >}}
+{{< /tabs >}}
