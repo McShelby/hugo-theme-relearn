@@ -201,63 +201,63 @@ var relearn_search_index = [
     "description": "",
     "tags": null,
     "title": "11",
-    "uri": "/tests/chapters/11.de/index.html"
+    "uri": "/tests/chapters/11/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "12",
-    "uri": "/tests/chapters/12.de/index.html"
+    "uri": "/tests/chapters/12/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "13",
-    "uri": "/tests/chapters/13.de/index.html"
+    "uri": "/tests/chapters/13/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "14",
-    "uri": "/tests/chapters/14.de/index.html"
+    "uri": "/tests/chapters/14/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "15",
-    "uri": "/tests/chapters/15.de/index.html"
+    "uri": "/tests/chapters/15/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "16",
-    "uri": "/tests/chapters/16.de/index.html"
+    "uri": "/tests/chapters/16/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "17",
-    "uri": "/tests/chapters/17.de/index.html"
+    "uri": "/tests/chapters/17/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "18",
-    "uri": "/tests/chapters/18.de/index.html"
+    "uri": "/tests/chapters/18/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "19",
-    "uri": "/tests/chapters/19.de/index.html"
+    "uri": "/tests/chapters/19/index.html"
   },
   {
     "content": "",
@@ -271,70 +271,70 @@ var relearn_search_index = [
     "description": "",
     "tags": null,
     "title": "20",
-    "uri": "/tests/chapters/20.de/index.html"
+    "uri": "/tests/chapters/20/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "21",
-    "uri": "/tests/chapters/21.de/index.html"
+    "uri": "/tests/chapters/21/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "22",
-    "uri": "/tests/chapters/22.de/index.html"
+    "uri": "/tests/chapters/22/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "23",
-    "uri": "/tests/chapters/23.de/index.html"
+    "uri": "/tests/chapters/23/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "24",
-    "uri": "/tests/chapters/24.de/index.html"
+    "uri": "/tests/chapters/24/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "25",
-    "uri": "/tests/chapters/25.de/index.html"
+    "uri": "/tests/chapters/25/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "26",
-    "uri": "/tests/chapters/26.de/index.html"
+    "uri": "/tests/chapters/26/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "27",
-    "uri": "/tests/chapters/27.de/index.html"
+    "uri": "/tests/chapters/27/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "28",
-    "uri": "/tests/chapters/28.de/index.html"
+    "uri": "/tests/chapters/28/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
     "title": "29",
-    "uri": "/tests/chapters/29.de/index.html"
+    "uri": "/tests/chapters/29/index.html"
   },
   {
     "content": "",
@@ -348,7 +348,7 @@ var relearn_search_index = [
     "description": "",
     "tags": null,
     "title": "30",
-    "uri": "/tests/chapters/30.de/index.html"
+    "uri": "/tests/chapters/30/index.html"
   },
   {
     "content": "",
