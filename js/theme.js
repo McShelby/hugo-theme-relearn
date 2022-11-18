@@ -776,13 +776,10 @@ function initSearch() {
         unmark();
     });
 
-    if( URLSearchParams ){
-        // sorry IE11
-        var urlParams = new URLSearchParams(window.location.search);
-        var value = urlParams.get('search-by');
-        if( value ){
-            sessionStorage.setItem(baseUriFull+'search-value', value);
-        }
+    var urlParams = new URLSearchParams(window.location.search);
+    var value = urlParams.get('search-by');
+    if( value ){
+        sessionStorage.setItem(baseUriFull+'search-value', value);
     }
     mark();
 
