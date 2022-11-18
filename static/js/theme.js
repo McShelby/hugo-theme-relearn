@@ -393,7 +393,7 @@ function initMenuScrollbar(){
     var elm = document.querySelector('#content-wrapper');
     var elt = document.querySelector('#TableOfContents');
 
-    var autofocus = false;
+    var autofocus = true;
     document.addEventListener('keydown', function(event){
         // for initial keyboard scrolling support, no element
         // may be hovered, but we still want to react on
@@ -402,6 +402,13 @@ function initMenuScrollbar(){
         // it and give focus to the scrollbar - only
         // to just remove the focus right after scrolling
         // happend
+        autofocus = false;
+        if( event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || event.which < 32 || event.which > 40 ){
+            // if tab key was pressed, we are ended with our initial
+            // focus job
+            return;
+        }
+
         var c = elc && elc.matches(':hover');
         var m = elm && elm.matches(':hover');
         var t = elt && elt.matches(':hover');
@@ -409,7 +416,6 @@ function initMenuScrollbar(){
         if( !c && !m && !t && !f ){
             // only do this hack if none of our scrollbars
             // is hovered
-            autofocus = true;
             // if we are showing the sidebar as a flyout we
             // want to scroll the content-wrapper, otherwise we want
             // to scroll the body
