@@ -41,19 +41,16 @@ function initLunrIndex( index ){
 
 function triggerSearch(){
     searchDetail();
-    if( URL ){
-        // sorry IE11
-        var input = document.querySelector('#search-by-detail');
-        if( !input ){
-            return;
-        }
-        var value = input.value;
-        var url = new URL( window.location );
-        var oldValue = url.searchParams.get('search-by');
-        if( value != oldValue ){
-            url.searchParams.set('search-by', value);
-            window.history.pushState(url.toString(), '', url);
-        }
+    var input = document.querySelector('#search-by-detail');
+    if( !input ){
+        return;
+    }
+    var value = input.value;
+    var url = new URL( window.location );
+    var oldValue = url.searchParams.get('search-by');
+    if( value != oldValue ){
+        url.searchParams.set('search-by', value);
+        window.history.pushState(url.toString(), '', url);
     }
 }
 
@@ -192,11 +189,8 @@ function searchDetail() {
 initLunrJson();
 initLunrJs();
 $(function() {
-    if( URL ){
-        // sorry IE11
-        var url = new URL( window.location );
-        window.history.replaceState(url.toString(), '', url);
-    }
+    var url = new URL( window.location );
+    window.history.replaceState(url.toString(), '', url);
 
     var searchList = new autoComplete({
         /* selector for the search box element */

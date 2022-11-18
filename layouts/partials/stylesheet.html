@@ -25,6 +25,7 @@
     {{- if partialCached "fileExists.hugo" $f $f }}
     <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
+    <script src="{{"js/url.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>
       {{ "// hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:" | safeJS }}
