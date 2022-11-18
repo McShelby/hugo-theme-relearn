@@ -20,8 +20,10 @@
 	{{- if $dest_url.RawQuery }}
 		{{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
 	{{- end }}
-	{{- $height = printf "%dpx" $image.Height }}
-	{{- $width = printf "%dpx" $image.Width }}
+	{{- if ne $image.MediaType.SubType "svg" }}
+		{{- $height = printf "%dpx" $image.Height }}
+		{{- $width = printf "%dpx" $image.Width }}
+	{{- end }}
 {{- end }}
 {{- if $dest_url.RawQuery }}
 	{{- $classes = (replaceRE "\\s+" " " (replaceRE "," " " ($dest_url.Query.Get "classes") ) ) }}
