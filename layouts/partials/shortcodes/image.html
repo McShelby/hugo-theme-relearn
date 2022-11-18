@@ -7,19 +7,13 @@
 {{- $height := "auto" }}
 {{- $width := "auto" }}
 {{- $dest_url := urls.Parse $url }}
-{{- $dest_path := path.Clean $dest_url.Path }}
-{{- $image := "" }}
-{{- if ($dest_url.IsAbs) }}
-	{{/* this image does not belong to the site, get it from external */}}
-	{{- $image = resources.GetRemote $url }}
-{{- else }}
-	{{- /* Get local page resource image. */}}
-	{{- $image = $context.Resources.Get $dest_path }}
-	{{- if not $image }}
-		{{- /* Get local image from assets directory. */}}
-		{{- $dest_path := path.Clean $dest_url.Path }}
-		{{- $image = resources.Get $dest_path }}
-	{{- end }}
+{{- $dest_path := $dest_url.Path }}
+{{- $image := $context.Resources.GetMatch $dest_path }}
+{{- if not $image }}
+	{{- $image = .Resources.GetMatch $dest_path }}
+{{- end }}
+{{- if not $image }}
+	{{- $image = .Resources.GetRemote $url }}
 {{- end }}
 {{- if $image }}
 	{{- $url = $image.RelPermalink }}
@@ -32,7 +26,7 @@
 	{{- end }}
 {{- end }}
 {{- if $dest_url.RawQuery }}
-	{{- $classes = delimit (split ($dest_url.Query.Get "classes") ",") " " }}
+	{{- $classes = (replaceRE "\\s+" " " (replaceRE "," " " ($dest_url.Query.Get "classes") ) ) }}
 	{{- $featherlight = (ne ($dest_url.Query.Get "featherlight") "false") }}
 	{{- if or ($dest_url.Query.Get "height") ($dest_url.Query.Get "width") }}
 		{{- $height = "auto" }}
