@@ -125,11 +125,14 @@ function initMermaid( update, attrs ) {
             dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
             content = graph.substring( d.lastIndex );
         }
+        content = content.trim();
         return { dir: dir, content: content };
     };
 
     var serializeGraph = function( graph ){
-        return '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n' + graph.content;
+        var s = '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n';
+        s += graph.content;
+        return s;
     };
 
     var init_func = function( attrs ){
