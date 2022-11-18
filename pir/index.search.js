@@ -337,7 +337,7 @@ var relearn_search_index = [
     "uri": "/pir/tags/hidden/index.html"
   },
   {
-    "content": " Arrr! Pirrrates Fello' pirrates, be awarrre some stuff may not work fer us in this trrranslat'n. Like table of rrramblings, see'ng Merrrmaids, do'ng math or chemistrrry and stuff.\nSome test'n fer different styles o' image links.\nMarrrkdown Relative t' plank Relative t' plank up level Static External fully qualified External without scheme External without scheme an' scheme separator HTML Relative t' plank Relative t' plank up level Static External fully qualified External without scheme External without scheme an' scheme separator ",
+    "content": " Arrr! Pirrrates Fello' pirrates, be awarrre some stuff may not work fer us in this trrranslat'n. Like table of rrramblings, see'ng Merrrmaids, do'ng math or chemistrrry and stuff.\nSome test'n fer different styles o' image links.\nMarrrkdown Resource SVG Relative t' plank Relative t' plank up level Static SVG External fully qualified External without scheme External without scheme an' scheme separator HTML Resource SVG Relative t' plank Relative t' plank up level Static SVG External fully qualified External without scheme External without scheme an' scheme separator ",
     "description": "Some test'n fer different styles o' image links",
     "tags": null,
     "title": "Images",

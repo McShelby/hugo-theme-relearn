@@ -477,7 +477,7 @@ var relearn_search_index = [
     "uri": "/index.html"
   },
   {
-    "content": "Some testing for different styles of image links.\nMarkdown Relative to page Relative to page up level Static External fully qualified External without scheme External without scheme and scheme separator HTML Relative to page Relative to page up level Static External fully qualified External without scheme External without scheme and scheme separator ",
+    "content": "Some testing for different styles of image links.\nMarkdown Resource SVG Relative to page Relative to page up level Static SVG External fully qualified External without scheme External without scheme and scheme separator HTML Resource SVG Relative to page Relative to page up level Static SVG External fully qualified External without scheme External without scheme and scheme separator ",
     "description": "Some testing for different styles of image links",
     "tags": null,
     "title": "Images",
