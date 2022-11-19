@@ -34,12 +34,10 @@ except the current one.  */}}
 {{- end }}
 {{- $current := "default" }}
 {{/* If any alternate output formats part of the "concerned" ones have been found, we range on them. */}}
-{{- with $alt }}
-  {{- range $outputs }}
-    {{/* If the output format is not listed as an "alternate", it means it is the current one.  */}}
-    {{- if not (in $alt .) }}
-      {{- $current = . }}
-    {{- end }}
+{{- range $outputs }}
+  {{/* If the output format is not listed as an "alternate", it means it is the current one.  */}}
+  {{- if not (in $alt .) }}
+    {{- $current = . }}
   {{- end }}
 {{- end }}
 
