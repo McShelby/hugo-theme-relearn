@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.6.2 (2022-11-19)
+
+### Fixes
+
+- [**bug**] theme: build breaks sites without "output" section in config [#396](https://github.com/McShelby/hugo-theme-relearn/issues/396)
+
+---
+
 ## 5.6.1 (2022-11-19)
 
 ### Fixes
