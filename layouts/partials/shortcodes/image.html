@@ -24,10 +24,6 @@
 {{- if $dest_url.RawQuery }}
 	{{- $classes = (replaceRE "\\s+" " " (replaceRE "," " " ($dest_url.Query.Get "classes") ) ) }}
 	{{- $featherlight = (ne ($dest_url.Query.Get "featherlight") "false") }}
-	{{- if or ($dest_url.Query.Get "height") ($dest_url.Query.Get "width") }}
-		{{- $height = "auto" }}
-		{{- $width = "auto" }}
-	{{- end }}
 	{{- with $dest_url.Query.Get "height" }}
 		{{ $height = . }}
 	{{- end }}
