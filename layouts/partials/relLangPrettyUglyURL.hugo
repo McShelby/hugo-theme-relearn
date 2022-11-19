@@ -1,9 +1,13 @@
 {{- $to := .to }}
 {{- $abs := .abs }}
 {{- $basename := .basename }}
-{{- $link := $to.RelPermalink }}
-{{- if $abs }}
+{{- $link := "" }}
+{{- if isset . "link" }}
+	{{- $link = .link }}
+{{- else if $abs }}
 	{{- $link = $to.Permalink }}
+{{- else }}
+	{{- $link = $to.RelPermalink }}
 {{- end }}
 {{- if not $basename }}
 	{{- $basename = "index" }}
