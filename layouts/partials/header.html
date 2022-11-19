@@ -3,7 +3,7 @@
 {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
 {{- $basename := "index" }}
 {{- if eq $outputFormat "searchpage" }}
-  {{- $basename = path.BaseName $format.RelPermalink }}
+  {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
 {{- end }}
 <html lang="{{ .Page.Language | default "en" }}" dir="{{ T "Reading-direction" | default "ltr" }}">
   <head>

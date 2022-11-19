@@ -4,7 +4,7 @@
     {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
     {{- $basename := "index" }}
     {{- if ne $outputFormat "html" }}
-      {{- $basename = path.BaseName $format.RelPermalink }}
+      {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
     {{- end }}
     <aside id="sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}" dir="ltr">
       {{- $currentNode := . }}
