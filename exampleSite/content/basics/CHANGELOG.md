@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.6.3 (2022-11-19)
+
+### Fixes
+
+- [**bug**] theme: be compatible with Hugo >= 0.95.0 [#397](https://github.com/McShelby/hugo-theme-relearn/issues/397)
+
+---
+
 ## 5.6.2 (2022-11-19)
 
 ### Fixes
