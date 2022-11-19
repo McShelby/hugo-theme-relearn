@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.6.5 (2022-11-19)
+
+### Fixes
+
+- [**bug**] menu: relax usage of background color [#399](https://github.com/McShelby/hugo-theme-relearn/issues/399)
+
+---
+
 ## 5.6.4 (2022-11-19)
 
 ### Fixes
