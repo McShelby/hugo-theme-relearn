@@ -117,7 +117,7 @@ function search(term) {
     // Find the item in our index corresponding to the lunr one to have more info
     // Remove Lunr special search characters: https://lunrjs.com/guides/searching.html
     var searchTerm = lunr.tokenizer(term.replace(/[*:^~+-]/, ' ')).reduce( function(a,token){return a.concat(searchPatterns(token.str))}, []).join(' ');
-    return !searchTerm ? [] : lunrIndex.search(searchTerm).map(function(result) {
+    return !searchTerm || !lunrIndex ? [] : lunrIndex.search(searchTerm).map(function(result) {
         return { index: result.ref, matches: Object.keys(result.matchData.metadata) }
     });
 }

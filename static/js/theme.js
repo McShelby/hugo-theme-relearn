@@ -523,6 +523,9 @@ function printShortcutHandler( event ){
 
 function showSearch(){
     var s = document.querySelector( '#search-by' );
+    if( !s ){
+        return;
+    }
     var b = document.querySelector( 'body' );
     if( s == document.activeElement ){
         if( b.classList.contains( 'sidebar-flyout' ) ){

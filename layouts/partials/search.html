@@ -1,6 +1,8 @@
         {{- $link := "" }}
-        {{- with .Site.Home.OutputFormats.Get "SEARCHPAGE" }}
-          {{- $link = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+        {{- if or (.Site.Home.OutputFormats.Get "JSON") (.Site.Home.OutputFormats.Get "SEARCH") }}
+          {{- with .Site.Home.OutputFormats.Get "SEARCHPAGE" }}
+            {{- $link = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+          {{- end }}
         {{- end }}
 {{- $c:="" }}        {{ if $link }}<form action="{{ $link }}" method="get">{{ end }}<div class="searchbox default-animation">
           {{ if $link }}<button type="submit" title="{{ T "Search" }} (CTRL+ALT+f)">{{ end }}<i class="fas fa-search"{{ if not $link }} title="{{ T "Search" }} (CTRL+ALT+f)"{{ end }}></i>{{ if $link }}</button>{{ end }}
