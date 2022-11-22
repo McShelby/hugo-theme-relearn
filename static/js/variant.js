@@ -326,20 +326,27 @@ var variants = {
 	},
 
 	findLoadedStylesheet: function( id ){
-		var style = null;
 		for( var n = 0; n < document.styleSheets.length; ++n ){
 			if( document.styleSheets[n].ownerNode.id == id ){
 				var s = document.styleSheets[n];
-				for( var m = 0; m < s.rules.length; ++m ){
-					if( s.rules[m].selectorText == ':root' ){
-						style = s.rules[m].style;
-						break;
+				if( s.rules && s.rules.length ){
+					for( var m = 0; m < s.rules.length; ++m ){
+						if( s.rules[m].selectorText == ':root' ){
+							return s.rules[m].style;
+						}
+						if( s.rules[m].cssRules && s.rules[m].cssRules.length ){
+							for( var o = 0; o < s.rules[m].cssRules.length; ++o ){
+								if( s.rules[m].cssRules[o].selectorText == ':root' ){
+									return s.rules[m].cssRules[o].style;
+								}
+							}
+						}
 					}
 				}
 				break;
 			}
 		}
-		return style;
+		return null;
 	},
 
 	changeColor: function( c, without_prompt ){
