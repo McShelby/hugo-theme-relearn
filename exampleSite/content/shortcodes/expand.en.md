@@ -1,95 +1,102 @@
 +++
-description = "Displays an expandable/collapsible section of text on your page"
+description = "Expandable/collapsible sections of text"
 title = "Expand"
 +++
 
-The Expand shortcode displays an expandable/collapsible section of text on your page.
+The `expand` shortcode displays an expandable/collapsible section of text.
+
+{{% expand title="Expand me..." %}}Thank you!{{% /expand %}}
 
 ## Usage
 
+While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
+
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
+
 ````go
-{{%/* expand [ <string> [ "true" | "false" ] ] */%}}
-Yes!
-{{%/* /expand */%}}
+{{%/* expand title="Expand me..." */%}}Thank you!{{%/* /expand */%}}
 ````
 
-The first optional parameter defines the text that appears next to the expand/collapse icon. The default text is `"Expand me..."`.
+{{% /tab %}}
+{{% tab name="shortcode (positional)" %}}
 
-The second optional parameter controls if the block is initially shown as expanded (`"true"`) or collapsed (`"false"`). The default ist `"false"`.
+````go
+{{%/* expand "Expand me..." */%}}Thank you!{{%/* /expand */%}}
+````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/expand.html" (dict
+  "context" .
+  "title" "Expand me..."
+  "content" "Thank you!"
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+### Parameter
+
+| Name                  | Position | Default          | Notes       |
+|:----------------------|:---------|:-----------------|:------------|
+| **title**             | 1        | `"Expand me..."` | Arbitrary text to appear next to the expand/collapse icon. |
+| **open**              | 2        | `false`          | When `true` the content text will be initially shown as expanded. |
+| _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Arbitrary text to be displayed on expand. |
+
 ## Examples
 
-{{% expand "I'll tell you a secret..." %}}
-...maybe the next time you'll open this expander!
-{{% /expand %}}
+### All Defaults
 
-### All defaults
-
-{{% expand %}}
-Yes, you did it!
-{{% /expand %}}
-
-{{% expand "Show markup" "true" %}}
 ````go
-{{%/* expand */%}}
-Yes, you did it!
-{{%/* /expand */%}}
+{{%/* expand */%}}Yes, you did it!{{%/* /expand */%}}
 ````
-{{% /expand %}}
 
-### Initially expanded
+{{% expand %}}Yes, you did it!{{% /expand %}}
 
-{{% expand "Expand me..." "true" %}}
-No need to press you!
-{{% /expand %}}
+### Initially Expanded
 
-{{% expand "Show markup" "true" %}}
 ````go
-{{%/* expand "Expand me..." "true" */%}}
-No need to press you!
-{{%/* /expand */%}}
+{{%/* expand title="Expand me..." open="true" */%}}No need to press you!{{%/* /expand */%}}
 ````
-{{% /expand %}}
 
-### Arbitrary text
+{{% expand title="Expand me..." open="true" %}}No need to press you!{{% /expand %}}
 
-{{% expand "Show me endless possibilities" %}}
-Some expandable text.
+### Arbitrary Text
 
-You can add:
+````go
+{{%/* expand title="Show me almost endless possibilities" */%}}
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even **_bold emphasized_** text
 - [links](https://example.com)
-- other shortcodes besides `expand`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
-{{% /expand %}}
+> the possibilities are endless (almost - including other shortcodes may or may not work)
+{{%/* /expand */%}}
+````
 
-{{% expand "Show markup" %}}
-````go
-{{%/* expand "Show me endless possibilities" */%}}
-Some expandable text.
-
-You can add:
+{{% expand title="Show me almost endless possibilities" %}}
+You can add standard markdown syntax:
 
 - multiple paragraphs
 - bullet point lists
 - _emphasized_, **bold** and even **_bold emphasized_** text
 - [links](https://example.com)
-- other shortcodes besides `expand`
 - etc.
 
 ```plaintext
 ...and even source code
 ```
 
-> the possiblities are endless
-{{%/* /expand */%}}
-````
+> the possibilities are endless (almost - including other shortcodes may or may not work)
 {{% /expand %}}

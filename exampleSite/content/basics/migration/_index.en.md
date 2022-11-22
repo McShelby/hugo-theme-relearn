@@ -14,6 +14,159 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.6.0
+
+- **New**: This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
+
+  To activate this feature, you need to [configure it]({{% relref "basics/configuration#activate-dedicated-search-page" %}}) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+
+  You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
+
+- **New**: Keyboard handling for the TOC and search was improved.
+
+  Pressing `CTRL+ALT+t` now will not only toggle the TOC overlay but also places the focus to the first heading on opening. Subsequently this makes it possible to easily select headings by using the `TAB` key.
+
+  The search received its own brand new keyboard shortcut `CTRL+ALT+f`. This will focus the cursor inside of the the search box so you can immediately start your search by typing.
+
+- **New**: You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
+
+  To [configure this]({{% relref "basics/configuration#global-site-parameters" %}}) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+
+- **New**: Creation of your project gets a little bit faster with this release.
+
+  This addresses increased build time with the 5.x releases. The theme now heavily caches partial results leading to improved performance. To further increase performance, unnecessary parts of the page are now skipped for creation of the print output (eg. menus, navigation bar, etc.).
+
+---
+
+## 5.5.0
+
+- **Change**: The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.
+
+  For that the JavaScript code to handle the [lightbox and image effects]({{% relref "cont/markdown#further-image-formatting" %}}) on the client side was removed in favour for static generation of those effects on the server.
+
+  If you have used HTML directly in your Markdown files, this now has the downside that it doesn't respect the effect query parameter anymore. In this case you have to migrate all your HTML `img` URLs manually to the respective HTML attributes.
+
+  | Old                                                    | New                                                             |
+  | ------------------------------------------------------ | --------------------------------------------------------------- |
+  | `<img src="pic.png?width=20vw&classes=shadow,border">` | `<img src="pic.png" style="width:20vw;" class="shadow border">` |
+
+---
+
+## 5.4.0
+
+- **Change**: [With the proper settings]({{% relref "basics/configuration#serving-your-page-from-the-filesystem" %}}) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
+
+  Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `config.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
+
+- **Change**: The [`button` shortcode]({{% relref "shortcodes/button" %}}) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
+
+- **New**: The [`math` shortcode]({{% relref "shortcodes/math" %}}) and [`mermaid` shortcode]({{% relref "shortcodes/mermaid" %}}) now also support the `align` parameter if codefence syntax is used.
+
+- **New**: Support for languages that are written right to left (like Arabic). This is only implemented for the content area but not the navigation sidebar. This feature is not available in Internet Explorer 11.
+
+- **New**: Translation for Finnish (Suomi).
+
+---
+
+## 5.3.0
+
+- **Change**: In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. Although the functionality of the new implementation works with old browsers (Internet Explorer 11), the display of the expander icons does not and is limited to modern browsers.
+
+- **New**: [Image formatting]({{% relref "cont/markdown#add-css-classes" %}}) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
+
+- **New**: Printing for the [`swagger` shortcode]({{% relref "shortcodes/swagger" %}}) was optimized to expand sections that are usually closed in interactive mode. This requires [print support]({{%relref "basics/configuration#activate-print-support" %}}) to be configured.
+
+---
+
+## 5.2.0
+
+- **Change**: If you've set `collapsibleMenu = true` in your `config.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
+
+---
+
+## 5.1.0
+
+- **Change**: Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
+
+  You can revert this behavior by overwriting the PRINT output format setting in your `config.toml`to:
+
+  ````toml
+  [outputFormats]
+    [outputFormats.PRINT]
+      name= "PRINT"
+      baseName = "index"
+      path = "_print"
+      isHTML = true
+      mediaType = 'text/html'
+      permalinkable = false
+  ````
+
+---
+
+## 5.0.0
+
+- **Breaking**: The theme changed how JavaScript and CSS dependencies are loaded to provide a better performance. In case you've added own JavaScript code that depends on the themes jQuery implementation, you have to put it into a separate `*.js` file (if not already) and add the `defer` keyword to the `script` element. Eg.
+
+  ````html
+  <script defer src="myscript.js"></script>
+  ````
+
+- **Change**: The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. The new systems allows you, to redefine existing archetypes or even generate your own ones.
+
+  Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade. Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
+
+  - for your home page, add the frontmatter parameter `archetype = "home"` and remove the leading heading
+
+  - for all files containing the deprecated frontmatter parameter `chapter = true`, replace it with `archetype = "chapter"` and remove the leading headings
+
+- **Change**: The frontmatter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
+
+- **New**: Adding new partials `heading-pre.html` / `heading-post.html` and according frontmatter options `headingPre` / `headingPost` to modify the way your page`s main heading gets styled.
+
+- **New**: The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
+
+---
+
+## 4.2.0
+
+- **Breaking**: The second parameter for the [`include` shortcode]({{% relref "shortcodes/include" %}}) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.
+
+  If you've used the second boolean parameter, you have to rename it and invert its value to achieve the same behavior.
+
+- **Change**: Previously, if the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
+
+- **Change**: The `landingPageURL` was removed from `config.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically.
+
+- **New**: All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
+
+---
+
+## 4.1.0
+
+- **New**: While fixing issues with the search functionality for non Latin languages, you can now [configure to have multiple languages on a single page]({{% relref "cont/i18n/#search-with-mixed-language-support" %}}).
+
+---
+
+## 4.0.0
+
+- **Breaking**: The `custom_css` config parameter was removed from the configuration. If used in an existing installation, it can be achieved by overriding the `custom-header.html` template in a much more generic manner.
+
+- **Breaking**: Because anchor hover color was not configurable without introducing more complexity to the variant stylesheets, we decided to remove `--MAIN-ANCHOR-color` instead. You don't need to change anything in your custom color stylesheet as the anchors now get their colors from `--MAIN-LINK-color` and `--MAIN-ANCHOR-HOVER-color` respectively.
+
+- **New**: All shortcodes now support named parameter. The positional parameter are still supported but will not be enhanced with new features, so you don't need to change anything in your installation.
+
+  This applies to [`expand`]({{% relref "shortcodes/expand" %}}), [`include`]({{% relref "shortcodes/include" %}}), [`notice`]({{% relref "shortcodes/notice" %}}) and [`siteparam`]({{% relref "shortcodes/siteparam" %}}).
+
+- **New**: The [`button`]({{% relref "shortcodes/button" %}}) shortcode received some love and now has a parameter for the color style similar to other shortcodes.
+
+- **New**: New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. Shortcodes with a color style can now have `primary` or `secondary` as additional values.
+
+  These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
+
+- **New**: The documentation for all shortcodes were revised.
+
+---
+
 ## 3.4.0
 
 - **Breaking**: If you had previously overwritten the `custom-footer.html` partial to add visual elements below the content of your page, you have to move this content to the new partial `content-footer.html`. `custom-footer.html` was never meant to contain HTML other than additional styles and JavaScript.
@@ -28,7 +181,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 3.3.0
 
-- **New**: Introduction of new CSS variables to set the font. The theme distinguishs between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
+- **New**: Introduction of new CSS variables to set the font. The theme distinguishes between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
 
 - **New**: The new shortcode `swagger` is available to include a UI for REST OpenAPI Specifications. See the [documentation]({{% relref "shortcodes/swagger" %}}) for available features. This feature will not work with Internet Explorer 11.
 
@@ -64,13 +217,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
-- **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to removed `--MENU-SEARCH-BOX-ICONS-color` and introduced `--MENU-SEARCH-color` instead. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
+- **Change**: Due to a bug, that we couldn't fix in a general manner for color variants, we decided to remove `--MENU-SEARCH-BOX-ICONS-color` and introduced `--MENU-SEARCH-color` instead. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 
 - **Change**: For consistency reasons, we renamed `--MENU-SEARCH-BOX-color` to `--MENU-SEARCH-BORDER-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 
 - **New**: With this release you are now capable to define your own *dark mode* variants.
 
-  To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#theme-variant" %}}). Your old variants will still work and don't need to be changed as apropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+  To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#theme-variant" %}}). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
   To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
 
@@ -84,9 +237,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.9.0
 
-- **Breaking**: This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard complient and exchanging this theme in your project to some other theme will be effortless.
+- **Breaking**: This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
 
-  In a standard complient form you must not link to the `*.md` file but to its logical name. You'll see, referencing other pages becomes much easier. All three types result in the same reference:
+  In a standard compliant form you must not link to the `*.md` file but to its logical name. You'll see, referencing other pages becomes much easier. All three types result in the same reference:
 
   | Type          | Non-Standard                     | Standard               |
   | ------------- | -------------------------------- | ---------------------- |
@@ -98,7 +251,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Also, the old themes implementation allowed refs to non-existing content. This will cause Hugos implementation to show the error below and abort the generation. If your project relies on this old behavior, you can [reconfigure the error handling](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) of Hugos implementation.
 
-  In the best case your usage of the old implementation is already standard complient and you don't need to change anything. You'll notice this very easily once you've started `hugo server` after an upgrade and no errors are written to the console.
+  In the best case your usage of the old implementation is already standard compliant and you don't need to change anything. You'll notice this very easily once you've started `hugo server` after an upgrade and no errors are written to the console.
 
   You may see errors on the console after the update in the form:
 
@@ -122,7 +275,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.8.0
 
-- **Change**: Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for czech.
+- **Change**: Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for Czech.
 
 - **New**: The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box]({{% relref "basics/customization/#change-the-favicon" %}}). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
@@ -144,7 +297,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.5.0
 
-- **Change**: New colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` were added to provide a fallback for Hugos syntax highlightning in case `guessSyntax=true` is set. Ideally the colors are set to the same values as the ones from your chosen chroma style.
+- **Change**: New colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` were added to provide a fallback for Hugos syntax highlighting in case `guessSyntax=true` is set. Ideally the colors are set to the same values as the ones from your chosen chroma style.
 
 ---
 
@@ -164,7 +317,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.3.0
 
-- **New**: Showcase multilanguage features by provding a documentation translation "fer us pirrrates". There will be no other translations besides the original English one and the Pirates one due to maintenance constraints.
+- **New**: Showcase multilanguage features by providing a documentation translation "fer us pirrrates". There will be no other translations besides the original English one and the Pirates one due to maintenance constraints.
 
 ---
 
@@ -176,7 +329,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.1.0
 
-- **Change**: In case the site's structure contains addional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
+- **Change**: In case the site's structure contains additional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
 
 - **New**: Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages=true` in your `config.toml`.
 
@@ -188,7 +341,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.0.0
 
-- **Change**: Syntaxhighlightning was switched to the [built in Hugo mechanism](https://gohugo.io/content-management/syntax-highlighting/). You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation
+- **Change**: Syntax highlighting was switched to the [built in Hugo mechanism](https://gohugo.io/content-management/syntax-highlighting/). You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation
 
 - **Change**: In the predefined stylesheets there was a typo and `--MENU-HOME-LINK-HOVERED-color` must be changed to `--MENU-HOME-LINK-HOVER-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 

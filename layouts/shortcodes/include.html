@@ -1,7 +1,5 @@
-{{- $file := .Get 0 }}
-{{- $showFirstHeading := .Get 1 | default true }}
-{{- if not $showFirstHeading }}<div class="include hide-first-heading">{{ end }}
-
-{{ $file | readFile | safeHTML }}
-
-{{- if not $showFirstHeading }}</div>{{ end }}
+{{- partial "shortcodes/include.html" (dict
+  "context" .
+  "file"             (.Get "file" | default (.Get 0))
+  "hidefirstheading" (.Get "hidefirstheading" | default (.Get 1))
+) }}

@@ -1,8 +1,7 @@
 +++
+archetype = "home"
 title = "Hugo Relearn Theme"
 +++
-
-# Hugo Relearn Theme
 
 The [Relearn theme](http://github.com/McShelby/hugo-theme-relearn) is a theme for [Hugo](https://gohugo.io/), a static website generator written in Go. Where Hugo is often used for blogs, this theme is designed with documentation in mind.
 
@@ -17,13 +16,16 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 {{% /notice %}}
 
 - Usable offline, no external dependencies
+- Usable without a HTTP server from the file system
 - Support for Internet Explorer 11
 - Responsive design
 - Configurable hidden pages
 - Automatic next/prev buttons to navigate through menu entries
 - [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
+- [Dedicated search page]({{%relref "basics/configuration#activate-dedicated-search-page" %}})
 - [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
-- [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinesse, Dutch, French, German, Hindi, Indonesian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+- [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+- Support for languages written right to left
 - [Unrestricted menu configuration]({{%relref "cont/menushortcuts" %}}) relating to amount of items and level of nesting
 - [Font Awesome icons]({{%relref "cont/icons" %}})
 - [Tagging support]({{%relref "cont/tags" %}})
@@ -31,6 +33,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 - [Syntax highlighting]({{%relref "cont/syntaxhighlight" %}})
 - [Attachments files]({{%relref "shortcodes/attachments" %}})
 - [List child pages]({{%relref "shortcodes/children" %}})
+- [Math and chemical formulae]({{%relref "shortcodes/math" %}}) using the MathJax library
 - [Mermaid diagrams]({{%relref "shortcodes/mermaid" %}}) for flowcharts, sequences, gantts, pie, etc.
 - [Swagger UI]({{%relref "shortcodes/swagger" %}}) for OpenAPI Specifications
 - [Customizable look and feel]({{%relref "basics/customization"%}})

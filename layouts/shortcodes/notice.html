@@ -1,17 +1,8 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
-{{- $style := .Get 0 }}
-{{- $title := .Get 1 | default ($style | T) }}
-{{- $icon := .Get 2 }}
-{{- if and (not $icon) (eq (len $icon) 0) }}
-  {{- if eq $style "info" }}{{ $icon = default "info-circle" }}{{ end }}
-  {{- if eq $style "warning" }}{{ $icon = default "exclamation-triangle" }}{{ end }}
-  {{- if eq $style "note" }}{{ $icon = default "exclamation-circle" }}{{ end }}
-  {{- if eq $style "tip" }}{{ $icon = default "lightbulb " }}{{ end }}
-{{- end }}
-{{- $icon = trim $icon " " }}
-<div class="box notices {{ $style }}">
-    <div class="box-label">{{ if $icon }}<i class="fas fa-{{ $icon }} fa-fw"></i> {{ end }}{{ $title }}</div>
-    <div class="box-content">
-{{ .Inner }}
-    </div>
-</div>
+{{- partial "shortcodes/notice.html" (dict
+  "context" .
+  "content" .Inner
+  "icon"    (.Get "icon" | default (.Get 2))
+  "style"   (.Get "style" | default (.Get 0))
+  "title"   (.Get "title" | default (.Get 1))
+) }}

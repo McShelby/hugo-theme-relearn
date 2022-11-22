@@ -1,41 +1,10 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
-{{- $style := .Get "style" | default "transparent" }}
-{{- $title := .Get "title" | default ("Attachments-label" | T) }}
-{{- $sort := .Get "sort" | default "asc" }}
-{{- $icon := .Get "icon" | default "" }}
-{{- if and (not $icon) (eq (len $icon) 0) }}
-  {{- $icon = "paperclip" }}
-{{- end }}
-{{- $icon = trim $icon " " }}
-<div class="box attachments {{ $style }}">
-  <div class="box-label">{{ if $icon }}<i class="fas fa-{{ $icon }} fa-fw"></i> {{ end }}{{ $title }}</div>
-  <ul class="box-content attachments-files">
-  {{- $filesName := "files" }}
-  {{- if ne .Page.File.BaseFileName "index" }}
-    {{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
-  {{- end}}
-
-  {{- $fileLink := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir }}
-  {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}
-  {{- $fileDir := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir  }}
-  {{- $fileDir = replace $fileDir "\\" "/" }}
-  {{- $pattern := .Get "pattern" | default "" }}
-  {{- range sort (readDir (printf "%s%s" $fileDir $filesName) ) "Name" $sort }}
-    {{- if findRE $pattern .Name}}
-      {{- $size := .Size }}
-      {{- $unit := "Byte-symbol" }}
-      {{- if ge $size 1024 }}
-        {{- $size = div $size 1024 }}
-        {{- $unit = "Kilobyte-symbol" }}
-      {{- end }}
-      {{- if ge $size 1024 }}
-        {{- $size = div $size 1024 }}
-        {{- $unit = "Megabyte-symbol" }}
-      {{- end }}
-      {{- $unitsymbol := $unit | T }}
-    <li><a href="{{ (printf "%s%s/%s" $fileLink $filesName .Name) | relURL }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
-    {{- end }}
-  {{- end }}
-  </ul>
-  {{- .Inner }}
-</div>
+{{- partial "shortcodes/attachments.html" (dict
+  "context" .
+  "content" .Inner
+  "icon"    (.Get "icon")
+  "pattern" (.Get "pattern")
+  "style"   (.Get "style")
+  "sort"    (.Get "sort")
+  "title"   (.Get "title")
+) }}

@@ -1,1 +1,4 @@
-{{- partial "article.html" (dict "page" . "content" .Content) }}
+{{- $page := .page }}
+{{- $content := .content }}
+{{- $outputFormat := partial "output-format.hugo" .page }}
+{{- partial "single-article.hugo" (dict "page" $page "content" $content "outputFormat" $outputFormat) }}

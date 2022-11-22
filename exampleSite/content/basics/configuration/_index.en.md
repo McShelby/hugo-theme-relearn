@@ -36,6 +36,9 @@ Note that some of these parameters are explained in details in other sections of
   # Javascript and CSS cache are automatically busted when new version of site is generated.
   # Set this to true to disable this behavior (some proxies don't handle well this optimization)
   disableAssetsBusting = false
+  # Set this to true if you want to disable generation for generator version meta tags of hugo and the theme;
+  # don't forget to also set Hugo's disableHugoGeneratorInject=true, otherwise it will generate a meta tag into your home page
+  disableGeneratorVersion = false
   # Set this to true to disable copy-to-clipboard button for inline code.
   disableInlineCopyToClipBoard = false
   # A title for shortcuts in menu is set by default. Set this to true to disable it.
@@ -49,6 +52,12 @@ Note that some of these parameters are explained in details in other sections of
   disableBreadcrumb = true
   # If set to true, hide table of contents menu in the header of all pages
   disableToc = false
+  # If set to false, load the MathJax module on every page regardless if a MathJax shortcode is present
+  disableMathJax = false
+  # Specifies the remote location of the MathJax js
+  customMathJaxURL = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  # Initialization parameter for MathJax, see MathJax documentation
+  mathJaxInitialize = "{}"
   # If set to false, load the Mermaid module on every page regardless if a Mermaid shortcode or Mermaid codefence is present
   disableMermaid = false
   # Specifies the remote location of the Mermaid js
@@ -58,7 +67,7 @@ Note that some of these parameters are explained in details in other sections of
   # If set to false, load the Swagger module on every page regardless if a Swagger shortcode is present
   disableSwagger = false
   # Specifies the remote location of the RapiDoc js
-  customSwaggerURL = ""https://unpkg.com/rapidoc/dist/rapidoc-min.js"
+  customSwaggerURL = "https://unpkg.com/rapidoc/dist/rapidoc-min.js"
   # Initialization parameter for Swagger, see RapiDoc documentation
   swaggerInitialize = "{ \"theme\": \"light\" }"
   # Hide Next and Previous page buttons normally displayed full height beside content
@@ -68,38 +77,71 @@ Note that some of these parameters are explained in details in other sections of
   ordersectionsby = "weight"
   # Change default color scheme with a variant one. Eg. can be "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = "relearn-light"
-  # Provide a list of custom css files to load relative from the `static/` folder in the site root.
-  custom_css = ["css/foo.css", "css/bar.css"]
   # Change the title separator. Default to "::".
   titleSeparator = "-"
-  # If set to true, the menu in the sidebar will be displayed in a collapsible tree view.
+  # If set to true, the menu in the sidebar will be displayed in a collapsible tree view. Although the functionality works with old browsers (IE11), the display of the expander icons is limited to modern browsers
   collapsibleMenu = false
+  # If a single page can contain content in multiple languages, add those here
+  additionalContentLanguage = [ "en" ]
+  # If set to true, no index.html will be appended to prettyURLs; this will cause pages not
+  # to be servable from the file system
+  disableExplicitIndexURLs = false
 ```
 
-## A word on running your site in a subfolder
+## Serving your page from a subfolder
 
-The theme runs best if your site is installed in the root of your webserver. If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
+If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
 
 ````toml
 baseURL = "https://example.com/mysite/"
 canonifyURLs = true
+relativeURLs = true
 ````
 
 Without `canonifyURLs=true` URLs in sublemental pages (like `sitemap.xml`, `rss.xml`) will be generated falsly while your HTML files will still work. See https://github.com/gohugoio/hugo/issues/5226.
 
+## Serving your page from the filesystem
+
+If you want your page served from the filesystem by using URLs starting with `file://` you'll need the following configuration in your `config.toml`:
+
+````toml
+relativeURLs = true
+````
+
+The theme will append an additional `index.html` to all branch bundle links by default to make the page be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can also generate the links without this change by adding this to your `config.toml`
+
+````toml
+[params]
+  disableExplicitIndexURLs = true
+````
+
+{{% notice note %}}
+If you want to use the search feature from the file system using an older installation of the theme make sure to change your outputformat for the homepage from the now deprecated `JSON` to `SEARCH` [as seen below](#activate-search).
+{{% /notice %}}
+
 ## Activate search
 
-If not already present, add the follow lines in the same `config.toml` file.
+If not already present, add the following lines in the same `config.toml` file.
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "SEARCH"]
 ```
 
-Relearn theme uses the last improvement available in hugo version 20+ to generate a json index file ready to be consumed by lunr.js javascript search engine.
+This will generate a search index file at the root of your public folder ready to be consumed by the lunr.js javascript search engine. Note that the `SEARCH` outputformat was named `JSON` in previous releases but was implemented differently. Although `JSON` still works, it is now deprecated.
 
-> Hugo generate lunrjs index.json at the root of public folder.
-> When you build the site with `hugo server`, hugo generates it internally and of course it doesn’t show up in the filesystem
+### Activate dedicated search page
+
+You can add a dedicated search page for your page by adding the `SEARCHPAGE` outputformat to your home page by adding the following lines in your `config.toml` file.
+
+```toml
+[outputs]
+  home = ["HTML", "RSS", "SEARCH", "SEARCHPAGE"]
+```
+
+You can access this page by either clicking on the magnifier glass or by typing some search term and pressing `ENTER` inside of the menu's search box .
+
+![Screenshot of the dedicated search page](search_page.png?&width=60pc)
 
 ## Activate print support
 
@@ -107,7 +149,7 @@ You can activate print support to add the capability to print whole chapters or 
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "PRINT", "JSON"]
+  home = ["HTML", "RSS", "PRINT", "SEARCH"]
   section = ["HTML", "RSS", "PRINT"]
   page = ["HTML", "RSS", "PRINT"]
 ```
@@ -115,17 +157,32 @@ You can activate print support to add the capability to print whole chapters or 
 This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
 
 {{% notice note %}}
-While colors of your chosen color variant are reset to the theme's light standard values for printing, this does not apply for Mermaid diagrams and Swagger/OpenAPI Specification. Those will still use the colors of your chosen color variant which may cause a non coherent look on paper.
+The resulting URL will not be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) in terms of [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls) even if you've set `uglyURLs=true` in your `config.toml`. This is due to the fact that for one mime type only one suffix can be configured.
+
+Nevertheless, if you're unhappy with the resulting URLs you can manually redefine `outputFormats.PRINT` in your own `config.toml` to your liking.
 {{% /notice %}}
+
+## MathJax
+
+The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Math]({{< relref "shortcodes/math" >}}) for additional documentation.
+
+### Example {#math-example}
+
+MathJax is globally disabled. By default it won't be loaded by any page.
+
+On page "Physics" you coded some JavaScript for a dynamic formulae. You can set the MathJax parameters locally to load mathJax on this page.
+
+You also can disable MathJax for specific pages while globally enabled.
 
 ## Mermaid
 
-The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid.md" >}}) for additional documentation.
+The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid" >}}) for additional documentation.
 
-> Example:
->
-> Mermaid is globally disabled. By default it won't be loaded by any page.
-> On page "Architecture" you need a class diagram. You can set the Mermaid parameters locally to only load mermaid on this page (not on the others).
+### Example {#mermaid-example}
+
+Mermaid is globally disabled. By default it won't be loaded by any page.
+
+On page "Architecture" you coded some JavaScript to dynamically generate a class diagram. You can set the Mermaid parameters locally to load mermaid on this page.
 
 You also can disable Mermaid for specific pages while globally enabled.
 
@@ -139,12 +196,10 @@ appearance, you will have to configure two parameters for the defined languages:
 [Languages]
 [Languages.en]
 ...
-landingPageURL = "/"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ...
 [Languages.pir]
 ...
-landingPageURL = "/pir/"
 landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
 ...
 ```
@@ -153,10 +208,9 @@ If those params are not configured for a specific language, they will get their
 default values:
 
 ```toml
-landingPageURL = "/"
 landingPageName = "<i class='fas fa-home'></i> Home"
 ```
 
 The home button is going to look like this:
 
-![Default Home Button](images/home_button_defaults.png?classes=shadow&width=300px)
+![Default Home Button](home_button_defaults.png?classes=shadow&width=300px)

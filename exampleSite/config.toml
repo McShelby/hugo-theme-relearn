@@ -1,11 +1,21 @@
 # this is a required setting for this theme to appear on https://themes.gohugo.io/
-# change this to a value appropriate for you
-baseURL = "https://example.com"
-# as the official Hugo documentation recommends, we turn this off for this
-# showcase; this allows the published site to be served by both http and https
-canonifyURLs = false
-# required for official documentation served from subfolder
-relativeURLs = false
+# change this to a value appropriate for you; if your site is served from a subdirectory
+# set it like "https://example.com/mysite/"
+baseURL = "https://example.com/"
+
+# canonicalization will only be used for the sitemap.xml and index.xml files;
+# if set to false, a site served from a subdirectory will generate wrong links
+# inside of the above mentioned files; if you serve the page from the servers root
+# you are free to set the value to false as recommended by the official Hugo documentation
+canonifyURLs = true # true -> all relative URLs would instead be canonicalized using baseURL
+# required value to serve this page from a webserver AND the file system;
+# if you don't want to serve your page from the file system, you can also set this value
+# to false
+relativeURLs = true # true -> rewrite all relative URLs to be relative to the current content
+# if you set uglyURLs to false, this theme will append 'index.html' to any branch bundle link
+# so your page can be also served from the file system; if you don't want that,
+# set disableExplicitIndexURLs=true in the [params] section
+uglyURLs = false     # true -> basic/index.html -> basic.html
 
 # the directory where Hugo reads the themes from; this is specific to your
 # installation and most certainly needs be deleted or changed
@@ -24,39 +34,25 @@ defaultContentLanguage = "en"
 # the site's title of this showcase; you should change this ;-)
 title = "Hugo Relearn Documentation"
 
-# settings specific to this theme's features; choose to your likings and
-# consult this documentation for explaination
-[params]
-  editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
-  description = "Documentation for Hugo Relearn Theme"
-  author = "Sören Weber"
-  showVisitedLinks = true
-  collapsibleMenu = true
-  disableBreadcrumb = false
-  disableNextPrev = false
-  disableLandingPageButton = true
-  titleSeparator = "::"
-  themeVariant = [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ]
-  disableSeoHiddenPages = true
-  # this is for the stylesheet genertor to allow for interactivity in mermaid
-  # graphs; you usually will not need it and you should remove this for
-  # security reasons
-  mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
+# We disable this for testing the exampleSite; you must do so too
+# if you want to use the themes parameter disableGeneratorVersion=true;
+# otherwise Hugo will create a generator tag on your home page
+disableHugoGeneratorInject = true
 
 [outputs]
   # add JSON to the home to support lunr search; This is a mandatory setting
   # for the search functionality
-  # add PRINT to home, section and page to activate feature to print whole
+  # add PRINT to home, section and page to activate the feature to print whole
   # chapters
-  home = ["HTML", "RSS", "PRINT", "JSON"]
+  home = ["HTML", "RSS", "PRINT", "SEARCH", "SEARCHPAGE"]
   section = ["HTML", "RSS", "PRINT"]
   page = ["HTML", "RSS", "PRINT"]
 
 [markup]
   [markup.highlight]
     # if `guessSyntax = true`, there will be no unstyled code even if no language
-    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
-    # setting for your site
+    # was given BUT Mermaid and Math codefences will not work anymore! So this is a
+    # mandatory setting for your site if you want to use Mermaid or Math codefences
     guessSyntax = false
 
     # here in this showcase we use our own modified chroma syntax highlightning style
@@ -91,7 +87,6 @@ title = "Hugo Relearn Documentation"
     title = "Hugo Relearn Theme"
     weight = 1
     languageName = "English"
-    landingPageURL = "/"
     landingPageName = "<i class='fas fa-home'></i> Home"
 
   [[Languages.en.menu.shortcuts]]
@@ -125,13 +120,12 @@ title = "Hugo Relearn Documentation"
   # doing autotrrranlat'n of th' english content; we are
   # lazy and don't supporrt furrrther trrranslations; arrr,
   # don't take it t' serrrious, fello'; it's prrretty hacky and:
-  # NOT MEANT FOR PRRRODUCTION! ARRR!
+  # NOT MEANT FER PRRRODUCTION! ARRR!
 
   [Languages.pir]
     title = "Cap'n Hugo Relearrrn Theme"
     weight = 1
     languageName = "Arrr! ☠ Pirrrates ☠"
-    landingPageURL = "/pir/"
     landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
 
   [[Languages.pir.menu.shortcuts]]
@@ -160,3 +154,24 @@ title = "Hugo Relearn Documentation"
     name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
     url = "tags/"
     weight = 40
+
+# settings specific to this theme's features; choose to your likings and
+# consult this documentation for explaination
+[params]
+  editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
+  description = "Documentation for Hugo Relearn Theme"
+  author = "Sören Weber"
+  showVisitedLinks = true
+  collapsibleMenu = true
+  disableBreadcrumb = false
+  disableInlineCopyToClipBoard = true
+  disableNextPrev = false
+  disableLandingPageButton = true
+  titleSeparator = "::"
+  themeVariant = [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ]
+  disableSeoHiddenPages = true
+  # this is for the stylesheet generator to allow for interactivity in Mermaid
+  # graphs; you usually will not need it and you should remove this for
+  # security reasons
+  mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
+  additionalContentLanguage = [ "en" ]

@@ -1,6 +1,6 @@
 +++
 title = "Icons and logos"
-weight = 27
+weight = 6
 +++
 
 The Relearn theme for Hugo loads the [**Font Awesome**](https://fontawesome.com) library, allowing you to easily display any icon or logo available in the Font Awesome free collection.
@@ -33,9 +33,9 @@ Built with <i class="fas fa-heart"></i> by Relearn and Hugo
 
 Font Awesome provides many ways to modify the icon
 
-* Change color (by default the icon will inherit the parent color)
-* Increase or decrease size
-* Rotate
-* Combine with other icons
+- Change color (by default the icon will inherit the parent color)
+- Increase or decrease size
+- Rotate
+- Combine with other icons
 
 Check the full documentation on [web fonts with CSS](https://fontawesome.com/how-to-use/web-fonts-with-css) for more.

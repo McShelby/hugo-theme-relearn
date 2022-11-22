@@ -1,14 +1,10 @@
 +++
-chapter = true
+archetype = "chapter"
 hidden = true
 title = "Tests"
-weight = 5
+weight = 4
 +++
 
-### Chapter 5
-
-# Tests
-
-Some pages for internal testing of differnt styles
+Some pages for internal testing of different styles
 
 {{%children containerstyle="div" style="h2" description="true" %}}

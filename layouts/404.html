@@ -1,6 +1,7 @@
-{{- .Scratch.Set "relearnOutputFormat" "HTML" }}
 <!DOCTYPE html>
-<html lang="{{ .Page.Language | default "en" }}">
+{{- partialCached "page-meta.hugo" . .RelPermalink }}
+{{- $outputFormat := partial "output-format.hugo" . }}
+<html lang="{{ .Page.Language | default "en" }}" dir="{{ T "Reading-direction" | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}
     {{- .Scratch.Add "title" "" }}
@@ -11,8 +12,8 @@
     {{- end }}
     <title>{{ .Scratch.Get "title" }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
 
-    {{- partial "favicon.html" . }}
-    {{- partial "stylesheet.html" . }}
+    {{- partialCached "favicon.html" . }}
+    {{- partialCached "stylesheet.html" (dict "page" . "outputFormat" $outputFormat) $outputFormat }}
     <style>
       p, li, ul {
         text-align: center
@@ -23,17 +24,19 @@
     </style>
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support" data-url="/">
+  <body class="mobile-support" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
     <div id="body" class="default-animation" style="margin-left:0px;">
       <div id="sidebar-overlay"></div>
-      <main id="body-inner" class="chapter">
+      <main id="body-inner" class="chapter" tabindex="-1">
         <div class="flex-block-wrapper">
-          <h1>{{ T "title-404" }}</h1>
-          <p></p>
-          <p>{{ T "message-404" }}</p>
-          <p></p>
-          <p><a href="{{ "" | relLangURL }}">{{ T "Go-to-homepage" }}</a></p>
-          <p><img src="{{ "/images/gopher-404.jpg" | relURL }}" style="width:50%" alt="Page not found!"></p>
+          <article class="default">
+            <h1 id="{{ T "title-404" | urlize }}">{{ T "title-404" }}</h1>
+            <p></p>
+            <p>{{ T "message-404" }}</p>
+            <p></p>
+            <p><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ T "Go-to-homepage" }}</a></p>
+            <p><img src="{{ "images/gopher-404.jpg" | relURL }}" style="width:50%" alt="Page not found!"></p>
+          </article>
         </div>
       </main>
     </div>

@@ -1,6 +1,6 @@
 +++
 title = "Pages organization"
-weight = 5
+weight = 1
 +++
 
 In **Hugo**, pages are the core of your site. Once it is configured, pages are definitely the added value to your documentation site.
@@ -39,51 +39,9 @@ content
 `_index.md` is required in each folder, it’s your “folder home page”
 {{% /notice %}}
 
-## Types
-
-The Relearn theme defines two types of pages. *Default* and *Chapter*. Both can be used at any level of the documentation, the only difference being layout display.
-
-### Chapter {#chapter-style}
-
-A **Chapter** displays a page meant to be used as introduction for a set of child pages. Commonly, it contains a simple title and a catch line to define content that can be found under it.
-
-You can define any HTML as prefix for the menu. In the example below, it's just a number but that could be an [icon](https://fortawesome.github.io/Font-Awesome/).
-
-![Chapter page](images/pages-chapter.png?classes=shadow&width=60pc)
-
-```markdown
-+++
-chapter = true
-pre = "<b>1. </b>"
-title = "Basics"
-weight = 5
-+++
-
-### Chapter 1
-
-# Basics
-
-Discover what this Hugo theme is all about and the core-concepts behind it.
-```
-
-To tell the Relearn theme to consider a page as a chapter, set `chapter=true` in the Front Matter of the page.
-
-### Default
-
-A **Default** page is any other content page.
-
-![Default page](images/pages-default.png?classes=shadow&width=60pc)
-
-```toml
-+++
-title = "Installation"
-weight = 15
-+++
-```
-
-The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you to train by following this [great documentation for beginners](https://gohugo.io/overview/quickstart/).
-
 ## Create your project
+
+The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you to train by following [great documentation for beginners](https://gohugo.io/overview/quickstart/).
 
 Hugo provides a `new` command to create a new website.
 
@@ -93,11 +51,11 @@ hugo new site <new_project>
 
 The Relearn theme provides [archetypes]({{%relref "cont/archetypes" %}}) to help you create this kind of pages.
 
-## Front Matter configuration
+## Frontmatter Configuration
 
-Each Hugo page has to define a [Front Matter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
+Each Hugo page has to define a [frontmatter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
 
-The Relearn theme uses the following parameters on top of Hugo ones :
+The Relearn theme uses the following parameters on top of Hugo ones:
 
 ```toml
 +++
@@ -110,12 +68,14 @@ menuTitle = ""
 alwaysopen = true
 # If set, this will explicitly override common rules for the sorting order of a page's submenu entries
 ordersectionsby = "title"
+# The title of the page heading will be prefixed by this HTML content
+headingPre = ""
+# The title of the page heading will be postfixed by this HTML content
+headingPost = ""
 # The title of the page in menu will be prefixed by this HTML content
-pre = ""
+menuPre = ""
 # The title of the page in menu will be postfixed by this HTML content
-post = ""
-# Set the page as a chapter, changing the way it's displayed
-chapter = false
+menuPost = ""
 # Hide a menu entry by setting this to true
 hidden = false
 # Display name of this page modifier. If set, it will be displayed in the footer.
@@ -127,16 +87,16 @@ LastModifierEmail = ""
 
 ### Add icon to a menu entry
 
-In the page frontmatter, add a `pre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
+In the page frontmatter, add a `menuPre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
 
 ```toml
 +++
 title = "GitHub repo"
-pre = "<i class='fab fa-github'></i> "
+menuPre = "<i class='fab fa-github'></i> "
 +++
 ```
 
-![Title with icon](images/frontmatter-icon.png?classes=shadow&width=300px)
+![Title with icon](frontmatter-icon.png?classes=shadow&width=300px)
 
 ### Ordering sibling menu/page entries
 
@@ -177,15 +137,7 @@ The theme generates the menu based on the following rules:
 - immediate children entries of the active page are shown regardless of any settings
 - if not overridden, all other first level entries behave like they would have been given `alwaysopen=false`
 - if not overridden, all other entries of levels besides the first behave like they would have been given `alwaysopen=true`
-- all visible entries show their immediate children entries if `alwaysopen=true`; this proceeds recursivley
+- all visible entries show their immediate children entries if `alwaysopen=true`; this proceeds recursively
 - all remaining entries are not shown
 
 You can see this feature in action on the example page for [children shortcode]({{< relref "shortcodes/children" >}}) and its children pages.
-
-## Your Page
-
-To configure your page, you basically have three choices:
-
-1. Create an `_index.md` document in `content` folder and fill the file with *Markdown content*
-2. Create an `index.html` file in the `static` folder and fill the file with *HTML content*
-3. Configure your server to automatically redirect home page to one your documentation page

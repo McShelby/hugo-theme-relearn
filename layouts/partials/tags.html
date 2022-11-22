@@ -1,8 +1,13 @@
 
+{{- $page := . }}
 {{- if .Params.tags }}
 <div class="tags">
 {{- range sort .Params.tags }}
-  <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+  {{- $tag := . }}
+  {{- with $page.Site.GetPage (printf "%s%s" ("/tags/" | relURL ) $tag ) }}
+    {{- $to := . }}
+  <a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $tag }}</a>
+  {{- end }}
 {{- end }}
 </div>
 {{- end }}

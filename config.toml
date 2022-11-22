@@ -1,12 +1,32 @@
 [module]
   [module.hugoVersion]
-    min = "0.93.0"
+    min = "0.95.0"
+
+[mediaTypes]
+  [mediaTypes."text/javascript"]
+    suffixes = ["js"]
 
 [outputFormats]
   [outputFormats.PRINT]
     name= "PRINT"
-    baseName = "index"
-    path = "_print"
+    baseName = "index.print"
     isHTML = true
     mediaType = 'text/html'
     permalinkable = false
+    noUgly = true
+
+  [outputFormats.SEARCH]
+    name= "SEARCH"
+    baseName = "index.search"
+    isPlainText = true
+    mediaType = 'text/javascript'
+    permalinkable = false
+    noUgly = true
+
+  [outputFormats.SERCHPAGE]
+    name= "SEARCHPAGE"
+    baseName = "search"
+    isHTML = true
+    mediaType = 'text/html'
+    permalinkable = false
+    noUgly = true

@@ -1,4 +1,5 @@
-<div class="mermaid" align="center">
-  {{- safeHTML .Inner -}}
-</div>
-{{- .Page.Store.Set "htmlHasMermaid" true }}
+{{- partial "shortcodes/mermaid.html" (dict
+  "context" .Page
+  "content" .Inner
+  "align"  (index .Attributes "align")
+) }}

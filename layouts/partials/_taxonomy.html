@@ -1,16 +1,29 @@
+{{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- partial "header.html" . }}
           <article>
+{{- $page := . }}
 
-<h1>{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }} {{ default "::" .Site.Params.titleSeparator }} {{ end }}{{ .Title }}</h1>
+{{- $title := "" }}
+{{- if eq .Kind "term" }}
+  {{- $title = printf "%s %s " (.Data.Singular | humanize) (default "::" .Site.Params.titleSeparator) }}
+{{- end }}
+{{- $title = printf "%s%s" $title .Title }}
+<h1 id="{{ $title | urlize }}">{{ $title }}</h1>
 <ul>
   {{- range .Data.Terms.Alphabetical }}
-    {{- if and .Page.Title (or (ne (.Page.Scratch.Get "relearnIsHiddenStem") true) (ne .Page.Site.Params.disableTagHiddenPages true) ) }}
-  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ len .Pages }})</li>
+    {{- $len := 0 }}
+    {{- range .Pages }}
+      {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+        {{- $len = add $len 1 }}
+      {{- end }}
+    {{- end }}
+    {{- if $len }}
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Page.Title }}</a> ({{ $len }})</li>
     {{- end }}
   {{- else }}
     {{- range sort .Pages "Title" }}
       {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a></li>
       {{- end }}
     {{- end }}
   {{- end }}

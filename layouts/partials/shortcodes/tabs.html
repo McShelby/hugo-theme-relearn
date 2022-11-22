@@ -1,0 +1,25 @@
+{{- $context := .context }}
+{{- $tabs := .tabs | default slice }}
+{{- $groupid := .groupid | default "default" }}
+{{- $direction := T "Reading-direction" | default "ltr" }}
+{{- with $context }}
+<div class="tab-panel">
+  <div class="tab-nav">
+  {{- range $idx, $tab := $tabs }}
+    <button
+      data-tab-item="{{ .name }}"
+      data-tab-group="{{ $groupid }}"
+      class="tab-nav-button direction-{{ $direction }} {{ cond (eq $idx 0) "active" ""}}"
+      onclick="switchTab('{{ $groupid }}','{{ .name }}')"
+      ><span>{{ .name }}</span></button>
+  {{- end }}
+  </div>
+  <div class="tab-content">
+    {{- range $idx, $tab := $tabs }}
+    <div data-tab-item="{{ .name }}" data-tab-group="{{ $groupid }}" class="tab-item {{ cond (eq $idx 0) "active" ""}}">
+{{ .content | safeHTML }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+{{- end }}

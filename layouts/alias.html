@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default site.Language.Lang | default "en" }}" dir="{{ T "Reading-direction" | default "ltr" }}">
+  <head>
+    {{- $url := replace (replace .Permalink site.BaseURL "/") "//" "/" }}
+    {{- $url = partial "relLangPrettyUglyURL.hugo" (dict "link" $url) }}
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url={{ $url }}">
+    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
+    <title>{{ $url }}</title>
+
+    {{ (printf $link $url "canonical" "text/html" ($url | htmlEscape)) | safeHTML }}
+  </head>
+</html>

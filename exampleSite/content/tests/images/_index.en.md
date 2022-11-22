@@ -7,15 +7,19 @@ Some testing for different styles of image links.
 
 ## Markdown
 
+### Resource SVG
+
+![Magic](test.svg?classes=shadow)
+
 ### Relative to page
 
-![Magic](images/magic.gif?classes=shadow&height=50px)
+![Magic](magic.gif?classes=shadow)
 
 ### Relative to page up level
 
-![Magic](../images/images/magic.gif?classes=shadow&height=50px)
+![Magic](../images/magic.gif?classes=shadow&height=50px)
 
-### Static
+### Static SVG
 
 ![Logo](/images/logo.svg?classes=shadow&height=50px)
 
@@ -33,15 +37,19 @@ Some testing for different styles of image links.
 
 ## HTML
 
+### Resource SVG
+
+<p><img src="test.svg?classes=shadow"></p>
+
 ### Relative to page
 
-<p><img src="images/magic.gif?classes=shadow&height=50px"></p>
+<p><img src="magic.gif?classes=shadow"></p>
 
 ### Relative to page up level
 
-<p><img src="../images/images/magic.gif?classes=shadow&height=50px"></p>
+<p><img src="../images/magic.gif?classes=shadow&height=50px"></p>
 
-### Static
+### Static SVG
 
 <p><img src="/images/logo.svg?classes=shadow&height=50px"></p>
 

@@ -1,5 +1,5 @@
 +++
 title = "Marrrkdown rules"
-weight = 15
+weight = 3
 +++
 {{< piratify >}}

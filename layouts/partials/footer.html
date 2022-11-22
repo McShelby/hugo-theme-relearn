@@ -1,21 +1,66 @@
-
         </div>
       </main><!-- #body-inner -->
 {{- partial "custom-comments.html" . }}
     </div><!-- #body -->
-{{- partial "menu.html" . }}
-    <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-{{- $wantsMermaid := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasMermaid")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasMermaid")) }}
-{{- if (or $wantsMermaid (and (ne .Params.disableMermaid nil) (not .Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) ) }}
-    <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-  {{- if isset .Params "custommermaidurl" }}
-    <script src="{{ .Params.customMermaidURL }}"></script>
-  {{- else if isset .Site.Params "custommermaidurl" }}
-    <script src="{{ .Site.Params.customMermaidURL }}"></script>
+{{- $outputFormat := partial "output-format.hugo" .Page }}
+{{- partial "output-partial.hugo" (dict "base" "menu" "page" . "parameter" . "outputFormat" $outputFormat) }}
+    <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+{{- $wantsMathJax := or (.Page.Store.Get "hasMathJax") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasMathJax")) }}
+{{- if $wantsMathJax }}
+  {{- if isset .Params "mathjaxinitialize" }}
+    {{- $.Scratch.Set "mathJaxInitialize" .Params.mathJaxInitialize }}
+  {{- else if isset .Site.Params "mathjaxinitialize" }}
+    {{- $.Scratch.Set "mathJaxInitialize" .Site.Params.mathJaxInitialize }}
   {{- else }}
-    <script src="{{"js/mermaid.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    {{- $.Scratch.Set "mathJaxInitialize" "{}" }}
+  {{- end }}
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          // We don't support MathJax for IE11 anyways, so bail out early
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], // allow for single dollars as we set startup.elements
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false // avoid translation hassle for context menu
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse({{ $.Scratch.Get "mathJaxInitialize" }}) );
+    </script>
+  {{- if isset .Params "custommathjaxurl" }}
+    <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
+  {{- else if isset .Site.Params "custommathjaxurl" }}
+    <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
+  {{- else }}
+    <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+  {{- end }}
+{{- end }}
+{{- $wantsMermaid := or (.Page.Store.Get "hasMermaid") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasMermaid")) }}
+{{- if $wantsMermaid }}
+    <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+  {{- if isset .Params "custommermaidurl" }}
+    <script src="{{ .Params.customMermaidURL }}" defer></script>
+  {{- else if isset .Site.Params "custommermaidurl" }}
+    <script src="{{ .Site.Params.customMermaidURL }}" defer></script>
+  {{- else }}
+    <script src="{{"js/mermaid.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   {{- end }}
   {{- if isset .Params "mermaidinitialize" }}
     {{- $.Scratch.Set "mermaidInitialize" .Params.mermaidInitialize }}
@@ -25,26 +70,17 @@
     {{- $.Scratch.Set "mermaidInitialize" "{}" }}
   {{- end }}
     <script>
-      function useMermaid( config ){
-        if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-          mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false  }, config ) );
-          if( config.theme ){
-            var write_style = variants.findLoadedStylesheet( 'variant-style' );
-            write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
-          }
-        }
-      }
-      useMermaid( JSON.parse({{ $.Scratch.Get "mermaidInitialize" }}) );
+      window.themeUseMermaid = JSON.parse({{ $.Scratch.Get "mermaidInitialize" }});
     </script>
 {{- end }}
-{{- $wantsSwagger := or (and (eq (.Scratch.Get "relearnOutputFormat") "HTML") (.Page.Store.Get "htmlHasSwagger")) (and (eq (.Scratch.Get "relearnOutputFormat") "PRINT") (.Page.Store.Get "printHasSwagger")) }}
-{{- if (or $wantsSwagger (and (ne .Params.disableSwagger nil) (not .Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) ) }}
+{{- $wantsSwagger := or (.Page.Store.Get "hasSwagger") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasSwagger")) }}
+{{- if $wantsSwagger }}
   {{- if isset .Params "customswaggerurl" }}
-    <script src="{{ .Params.customSwaggerURL }}"></script>
+    <script src="{{ .Params.customSwaggerURL }}" defer></script>
   {{- else if isset .Site.Params "customswaggerurl" }}
-    <script src="{{ .Site.Params.customSwaggerURL }}"></script>
+    <script src="{{ .Site.Params.customSwaggerURL }}" defer></script>
   {{- else }}
-    <script src="{{ "/js/rapidoc-min.js" | relURL }}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{ "js/rapidoc-min.js" | relURL }}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   {{- end }}
   {{- if isset .Params "swaggerinitialize" }}
     {{- $.Scratch.Set "swaggerInitialize" .Params.swaggerInitialize }}
@@ -54,16 +90,10 @@
     {{- $.Scratch.Set "swaggerInitialize" "{}" }}
   {{- end }}
     <script>
-      function useSwagger( config ){
-        if( config.theme ){
-          var write_style = variants.findLoadedStylesheet( 'variant-style' );
-          write_style.setProperty( '--CONFIG-SWAGGER-theme', config.theme );
-        }
-      }
-      useSwagger( JSON.parse({{ $.Scratch.Get "swaggerInitialize" }}) );
+      window.themeUseSwagger = JSON.parse({{ $.Scratch.Get "swaggerInitialize" }});
     </script>
 {{- end }}
-    <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     {{- partial "custom-footer.html" . }}
   </body>
 </html>

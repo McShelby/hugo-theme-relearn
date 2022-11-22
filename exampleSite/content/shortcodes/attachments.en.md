@@ -1,95 +1,88 @@
 +++
-description = "The Attachments shortcode displays a list of files attached to a page"
+description = "List of files attached to a page"
 title = "Attachments"
 +++
 
-The Attachments shortcode displays a list of files attached to a page.
+The `attachments` shortcode displays a list of files attached to a page with adjustable color, title and icon.
 
-{{% attachments /%}}
+{{% attachments sort="asc" /%}}
 
 ## Usage
 
-The shortcurt lists files found in a **specific folder**.
-Currently, it support two implementations for pages
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
-1. If your page is a Markdown file, attachements must be placed in a **folder** named like your page and ending with **.files**.
+{{< tabs groupId="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
+
+````go
+{{%/* attachments sort="asc" /*/%}}
+````
+
+{{% /tab %}}
+{{% tab name="partial" %}}
+
+````go
+{{ partial "shortcodes/attachments.html" (dict
+  "context" .
+  "sort" "asc"
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+The shortcode lists files found in a specific folder.
+
+Currently, it supports two implementations for pages
+
+1. If your page is a Markdown file, attachments must be placed in a folder named like your page and ending with `.files`.
 
     > * content
     >   * _index.md
-    >   * page.files
+    >   * **page.files**
     >      * attachment.pdf
     >   * page.md
 
-2. If your page is a **folder**, attachements must be placed in a nested **'files'** folder.
+2. If your page is a folder, attachments must be placed in a nested `files` folder.
 
     > * content
     >   * _index.md
     >   * page
     >      * index.md
-    >      * files
+    >      * **files**
     >          * attachment.pdf
 
 Be aware that if you use a multilingual website, you will need to have as many folders as languages.
 
-That's all!
 
-### Parameters
+### Parameter
 
-| Parameter | Default | Description |
-|:--|:--|:--|
-| title | "Attachments" | List's title |
-| icon | "paperclip" | Sets the icon near the title; if you want no icon at all, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| sort  | "asc" | Sorting the output in `asc`ending or `desc`ending order |
-| style | "" | Choose between `orange`, `grey`, `blue` and `green` for nice style |
-| pattern | ".*" | A regular expressions, used to filter the attachments by file name. <br/><br/>The **pattern** parameter value must be [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).
+| Name        | Default       | Notes       |
+|:------------|:--------------|:------------|
+| **style**   | `transparent` | The color scheme used to highlight the box content.<br><br>- by severity: `info`, `note`, `tip`, `warning`<nd color: `primary`, `secondary`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`,t` |
+| **title**   | see notes     | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwault.<br><br>- for severity styles: the matching title for the severity<br>- for all other colors: `Attachments`<br><br>If you wa you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**    | see notes     | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending le** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching iseverity<br>- for all other colors: `paperclip`<br><br>If you want no icon, you have to set this parameter to `" "` (a non empty d with spaces) |
+| **sort**    | `asc`         | Sorting the output in `asc`ending or `desc`ending order. |
+| **pattern** | `.*`          | A [regular expressions](https://en.wikipedia.org/wiki/Regular_expression), used to filter the attachments by file name. For example:<br><br>- to match a file suffix of 'jpg', use `.*jpg` (not `*.jpg`)<br>- to match file names ending in `jpg` or `png`, use `.*(jpg\|png)` |
 
-For example:
+## Examples
 
-* To match a file suffix of 'jpg', use **.*jpg** (not *.jpg).
-* To match file names ending in 'jpg' or 'png', use **.*(jpg|png)**
-
-### Examples
-
-#### List of attachments ending in pdf or mp4
+### Custom Title, List of Attachments Ending in pdf or mp4
 
 ````go
-{{%/*attachments title="Related files" pattern=".*(pdf|mp4)"/*/%}}
+{{%/* attachments title="Related files" pattern=".*(pdf|mp4)" /*/%}}
 ````
 
-renders as
+{{% attachments title="Related files" pattern=".*(pdf|mp4)" /%}}
 
-{{%attachments title="Related files" pattern=".*(pdf|mp4)"/%}}
-
-#### Colored styled box
+### Info Styled Box, Descending Sort Order
 
 ````go
-{{%/*attachments style="orange" /*/%}}
+{{%/* attachments style="info" sort="desc" /*/%}}
 ````
 
-renders as
+{{% attachments style="info" sort="desc" /%}}
 
-{{% attachments style="orange" /%}}
+### Style and Icons
 
-````go
-{{%/*attachments style="grey" /*/%}}
-````
-
-renders as
-
-{{% attachments style="grey" /%}}
-
-````go
-{{%/*attachments style="blue" /*/%}}
-````
-
-renders as
-
-{{% attachments style="blue" /%}}
-
-````go
-{{%/*attachments style="green" /*/%}}
-````
-
-renders as
-
-{{% attachments style="green" /%}}
+For further examples for **style**, **title** and **icon**, see the [`notice` shortcode]({{% relref "shortcodes/notice" %}}) documentation. The parameter are working the same way for both shortcodes, besides having different defaults.

@@ -9,20 +9,24 @@ In `themes/hugo-theme-relearn/layouts/partials/`, you will find all the partials
 
 This theme defines the following partials :
 
-- `header.html`: the header of the page. _Not meant to be overwritten_
-- `footer.html`: the footer of the page._Not meant to be overwritten_
+- `header.html`: the header of the page. See [output-formats](#output-formats)
+- `footer.html`: the footer of the page. See [output-formats](#output-formats)
+- `body.html`: the body of the page. The body may contain of one or many articles. See [output-formats](#output-formats)
+- `article.html`: the output for a single article, can contain elements around your content. See [output-formats](#output-formats)
 - `menu.html`: left menu. _Not meant to be overwritten_
 - `search.html`: search box. _Not meant to be overwritten_
 - `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file.
-- `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding Javacript. Don't forget to include `javascript` HTML tag directive in your file.
+- `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding JavaScript. Don't forget to include `javascript` HTML tag directive in your file.
 - `favicon.html`: the favicon
+- `heading-pre.html`: side-wide configuration to prepend to pages title headings. If you override this, it is your responsibility to take the page's `headingPre` setting into account.
+- `heading-post.html`: side-wide configuration to append to pages title headings. If you override this, it is your responsibility to take the page's `headingPost` setting into account.
 - `logo.html`: the logo, on top left hand corner
 - `meta.html`: HTML meta tags, if you want to change default behavior
-- `menu-pre.html`: side-wide configuration to prepend to menu items. If you override this, it is your responsiblity to take the page's `pre` setting into account.
-- `menu-post.html`: side-wide configuration to append to menu items. If you override this, it is your responsiblity to take the page's `post` setting into account.
+- `menu-pre.html`: side-wide configuration to prepend to menu items. If you override this, it is your responsibility to take the page's `menuPre` setting into account.
+- `menu-post.html`: side-wide configuration to append to menu items. If you override this, it is your responsibility to take the page's `menuPost` setting into account.
 - `menu-footer.html`: footer of the the left menu
 - `toc.html`: table of contents
-- `content.html`: the content page itself. This can be overridden if you wan't to display page's meta data above or below the content.
+- `content.html`: the content page itself. This can be overridden if you want to display page's meta data above or below the content.
 - `content-footer`: footer below the content, has a default implementation but you can overwrite it if you don't like it.
 ## Change the logo
 
@@ -35,14 +39,14 @@ The size of the logo will adapt automatically
 
 ## Change the favicon
 
-If your favicon is a SVG, PNG or ICO, just drop off your image in your local `static/images/` folder and name it `favicon.svg`, `favicon.png` or `favicon.ico` respectivly.
+If your favicon is a SVG, PNG or ICO, just drop off your image in your local `static/images/` folder and name it `favicon.svg`, `favicon.png` or `favicon.ico` respectively.
 
 If no favicon file is found, the theme will lookup the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
 
 If you need to change this default behavior, create a new file in `layouts/partials/` named `favicon.html`. Then write something like this:
 
 ```html
-<link rel="icon" href="/images/favicon.bmp" type="image/bmp" />
+<link rel="icon" href="/images/favicon.bmp" type="image/bmp">
 ```
 
 ## Change the colors {#theme-variant}
@@ -60,11 +64,11 @@ Set the `themeVariant` value with the name of your theme file. That's it!
   themeVariant = "relearn-light"
 ```
 
-In the above exaple your theme file has to be named `theme-relearn-light.css`
+In the above example your theme file has to be named `theme-relearn-light.css`
 
 ### Multiple variants
 
-You can also set multiple variants. In this case, the first variant is the default choosen on first view and a variant switch will be shown in the menu footer.
+You can also set multiple variants. In this case, the first variant is the default chosen on first view and a variant switch will be shown in the menu footer.
 
 ```toml
 [params]
@@ -73,9 +77,13 @@ You can also set multiple variants. In this case, the first variant is the defau
 ```
 
 {{% notice tip %}}
-If you want to switch the syntax highlightning theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/), and `@import` this stylesheet in your color variant stylesheet. For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
+If you want to switch the syntax highlighting theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/), and `@import` this stylesheet in your color variant stylesheet. For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
 {{% /notice %}}
 
 ### Roll your own
 
-If you are not happy with the shipped variants you can either copy one of the shipped files, edit them in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).
+If you are not happy with the shipped variants you can either copy and rename one of the shipped files from `themes/hugo-theme-relearn/static/css` to `static/css`, edit them afterwards to your liking in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).
+
+### Output formats
+
+Certain parts of the theme can be changed for support of your own [output formats](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `config.toml`, you can add a file `layouts/partials/header.plaintext.html` to change the way, the page header should look like for that output format.

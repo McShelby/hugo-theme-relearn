@@ -1,12 +1,33 @@
 +++
-description = "Synchronize selection of content in different tabbed views"
+description = "Show content in tabbed views"
 title = "Tabbed views"
 +++
 
-Choose which content to see across the page. Very handy for providing code
-snippets for multiple languages or providing configuration in different formats.
+The `tabs` shortcode displays arbitrary content in unlimited number of tabs. This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
 
-## Code example
+{{< tabs groupid="tabs-example-language" >}}
+{{% tab name="python" %}}
+
+```python
+print("Hello World!")
+```
+
+{{% /tab %}}
+{{% tab name="bash" %}}
+
+```bash
+echo "Hello World!"
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+## Usage
+
+While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+{{< tabs groupid="shortcode-parameter">}}
+{{% tab name="shortcode" %}}
 
 ````go
 {{</* tabs */>}}
@@ -15,63 +36,55 @@ snippets for multiple languages or providing configuration in different formats.
 print("Hello World!")
 ```
 {{%/* /tab */%}}
-{{%/* tab name="R" */%}}
-```R
-> print("Hello World!")
-```
-{{%/* /tab */%}}
-{{%/* tab name="Bash" */%}}
-```Bash
+{{%/* tab name="bash" */%}}
+```bash
 echo "Hello World!"
 ```
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
 
-Renders as:
-
-{{< tabs >}}
-{{% tab name="python" %}}
-```python
-print("Hello World!")
-```
 {{% /tab %}}
-{{% tab name="R" %}}
-```R
-> print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="Bash" %}}
-```Bash
-echo "Hello World!"
-```
-{{% /tab %}}
-{{< /tabs >}}
-
-Tab views with the same tabs that belong to the same group sychronize their selection:
-
-{{< tabs >}}
-{{% tab name="python" %}}
-```python
-print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="R" %}}
-```R
-> print("Hello World!")
-```
-{{% /tab %}}
-{{% tab name="Bash" %}}
-```Bash
-echo "Hello World!"
-```
-{{% /tab %}}
-{{< /tabs >}}
-
-## Config example
+{{% tab name="partial" %}}
 
 ````go
-{{</* tabs groupId="config" */>}}
+{{ partial "shortcodes/tabs.html" (dict
+  "context" .
+  "tabs" (slice
+    (dict
+      "name" "python"
+      "content" ("```python\nprint(\"Hello World!\")\n```" | markdownify)
+    )
+    (dict
+      "name" "bash"
+      "content" ("```bash\necho \"Hello World!\"\n```" | markdownify)
+    )
+  )
+)}}
+````
+
+{{% /tab %}}
+{{< /tabs >}}
+
+### Parameter
+
+| Name                  | Default          | Notes       |
+|:----------------------|:-----------------|:------------|
+| **groupid**           | `default`        | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. This sychronization applies to the whole site! |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
+
+{{% notice note %}}
+When using tab views with different content sets, make sure to use a common `groupid` for equal sets of tabs but distinct `groupid` for different sets.
+
+The tab selection is restored automatically based on the `groupid` and if it cannot find a tab item because it came from the `'default'` group on a different page then the first tab is selected instead.
+{{% /notice %}}
+
+## Examples
+
+### Distinct `groupid`
+
+````go
+{{</* tabs groupid="config" */>}}
 {{%/* tab name="json" */%}}
 ```json
 {
@@ -92,9 +105,7 @@ Hello = World
 {{</* /tabs */>}}
 ````
 
-Renders as:
-
-{{< tabs groupId="config" >}}
+{{< tabs groupid="tabs-example-config" >}}
 {{% tab name="json" %}}
 ```json
 {
@@ -114,10 +125,110 @@ Hello = World
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice warning %}}
-When using tab views with different content sets, make sure to use a common `groupId` for equal sets but distinct
-`groupId` for different sets. The `groupId` defaults to `'default'`.
-**Take this into account across the whole site!**
-The tab selection is restored automatically based on the `groupId` and if it cannot find a tab item because it came
-from the `'default'` group on a different page then all tabs will be empty at first.
-{{% /notice %}}
+### Non-Distinct `groupid`
+
+See what happens to this tab view if you select **properties** tab from the previous example.
+
+````go
+{{</* tabs groupid="config" */>}}
+{{%/* tab name="json" */%}}
+```json
+{
+  "Hello": "World"
+}
+```
+{{%/* /tab */%}}
+{{%/* tab name="XML" */%}}
+```xml
+<Hello>World</Hello>
+```
+{{%/* /tab */%}}
+{{</* /tabs */>}}
+````
+
+{{< tabs groupid="tabs-example-config" >}}
+{{% tab name="json" %}}
+```json
+{
+  "Hello": "World"
+}
+```
+{{% /tab %}}
+{{% tab name="XML" %}}
+```xml
+<Hello>World</Hello>
+```
+{{% /tab %}}
+{{< /tabs >}}
+
+### Nested Tabs
+
+In case you want to nest tabs, the parent tab that contains the subtabs needs to be declared with `{{</* tab */>}}` instead of `{{%/* tab */%}}`. Note, that in this case it is not possible to put markdown in the parent tab.
+
+````go
+{{</* tabs groupid="main" */>}}
+{{</* tab name="Text" */>}}
+  Simple text is possible here...
+  {{</* tabs groupid="tabs-example-language" */>}}
+  {{%/* tab name="python" */%}}
+  Python is **super** easy.
+
+  - most of the time.
+  - if you don't want to output unicode
+  {{%/* /tab */%}}
+  {{%/* tab name="bash" */%}}
+  Bash is for **hackers**.
+  {{%/* /tab */%}}
+  {{</* /tabs */>}}
+{{</* /tab */>}}
+
+{{</* tab name="Code" */>}}
+  ...but no markdown
+  {{</* tabs groupid="tabs-example-language" */>}}
+  {{%/* tab name="python" */%}}
+  ```python
+  print("Hello World!")
+  ```
+  {{%/* /tab */%}}
+  {{%/* tab name="bash" */%}}
+  ```bash
+  echo "Hello World!"
+  ```
+  {{%/* /tab */%}}
+  {{</* /tabs */>}}
+{{</* /tab */>}}
+{{</* /tabs */>}}
+````
+
+{{< tabs groupid="main" >}}
+{{< tab name="Text" >}}
+  Simple text is possible here...
+  {{< tabs groupid="tabs-example-language" >}}
+  {{% tab name="python" %}}
+  Python is **super** easy.
+
+  - most of the time.
+  - if you don't want to output unicode
+  {{% /tab %}}
+  {{% tab name="bash" %}}
+  Bash is for **hackers**.
+  {{% /tab %}}
+  {{< /tabs >}}
+{{< /tab >}}
+
+{{< tab name="Code" >}}
+  ...but no markdown
+  {{< tabs groupid="tabs-example-language" >}}
+  {{% tab name="python" %}}
+  ```python
+  print("Hello World!")
+  ```
+  {{% /tab %}}
+  {{% tab name="bash" %}}
+  ```bash
+  echo "Hello World!"
+  ```
+  {{% /tab %}}
+  {{< /tabs >}}
+{{< /tab >}}
+{{< /tabs >}}

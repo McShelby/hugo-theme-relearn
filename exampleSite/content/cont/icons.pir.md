@@ -1,5 +1,5 @@
 +++
 title = "Ay'cons an' logos"
-weight = 27
+weight = 6
 +++
 {{< piratify >}}

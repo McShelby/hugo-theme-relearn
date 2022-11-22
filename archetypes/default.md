@@ -1,6 +1,6 @@
 +++
 title = "{{ replace .Name "-" " " | title }}"
-weight = 5
+weight = X
 +++
 
 Lorem Ipsum.

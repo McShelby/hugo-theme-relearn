@@ -1,14 +1,11 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
-<a{{ with .Get "href"}} href="{{ . }}" target="_blank"{{ end }} class="btn btn-default">
-  {{- $icon := .Get "icon" }}
-  {{- $iconposition := .Get "icon-position" }}
-  {{- if ($icon) }}
-    {{- if or (not ($iconposition)) (eq $iconposition "left") }}
-  <i class="{{ $icon }}"></i>
-    {{- end }}
-  {{- end }}
-  {{ .Inner }}
-  {{- if and ($icon) (eq $iconposition "right")}}
-  <i class="{{$icon}}"></i>
-  {{- end }}
-</a>
+{{- partial "shortcodes/button.html" (dict
+  "context" .
+  "content" .Inner
+  "href"          (.Get "href")
+  "icon"          (.Get "icon")
+  "iconposition"  ((.Get "iconposition") | default (.Get "icon-position"))
+  "style"         (.Get "style")
+  "title"         (.Get "title")
+  "target"        (.Get "target")
+) }}

@@ -1,0 +1,40 @@
+{{- $context := .context }}
+{{- $url := .url }}
+{{- $title := .title }}
+{{- $alt := .alt }}
+{{- $classes := "" }}
+{{- $featherlight := true }}
+{{- $height := "auto" }}
+{{- $width := "auto" }}
+{{- $dest_url := urls.Parse $url }}
+{{- $dest_path := $dest_url.Path }}
+{{- $image := $context.Resources.GetMatch $dest_path }}
+{{- if not $image }}
+	{{- $image = .Resources.GetMatch $dest_path }}
+{{- end }}
+{{- if not $image }}
+	{{- $image = .Resources.GetRemote $url }}
+{{- end }}
+{{- if $image }}
+	{{- $url = $image.RelPermalink }}
+	{{- if $dest_url.RawQuery }}
+		{{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
+	{{- end }}
+{{- end }}
+{{- if $dest_url.RawQuery }}
+	{{- $classes = (replaceRE "\\s+" " " (replaceRE "," " " ($dest_url.Query.Get "classes") ) ) }}
+	{{- $featherlight = (ne ($dest_url.Query.Get "featherlight") "false") }}
+	{{- with $dest_url.Query.Get "height" }}
+		{{ $height = . }}
+	{{- end }}
+	{{- with $dest_url.Query.Get "width" }}
+		{{ $width = . }}
+	{{- end }}
+{{- end }}
+{{- if $featherlight }}
+<a href="{{ $url | safeURL }}" data-featherlight="image">
+{{- end }}
+<img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ with $classes }} class="{{ . }}"{{ end }} style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
+{{- if $featherlight }}
+</a>
+{{- end }}

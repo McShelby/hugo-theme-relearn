@@ -1,0 +1,12 @@
+{{- $page := .page }}
+{{- $content := .content }}
+{{- with $page }}
+          <article class="default">
+{{ partial "heading-pre.html" . }}<h1 id="{{ .Title | urlize }}">{{ .Title }}</h1>{{ partial "heading-post.html" . }}
+
+{{ $content | safeHTML }}
+            <footer class="footline">
+              {{- partial "content-footer.html" . }}
+            </footer>
+          </article>
+{{- end }}

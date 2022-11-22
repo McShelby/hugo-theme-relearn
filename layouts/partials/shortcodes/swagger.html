@@ -1,0 +1,33 @@
+{{- $context := .context }}
+{{- $src := .src }}
+{{- with $context }}
+{{- with .Page.Resources.Match $src }}
+	{{- range . }}
+		{{- $src = .RelPermalink }}
+	{{- end }}
+{{- end }}
+<rapi-doc
+{{- if eq (partial "output-format.hugo" .Page) "print" }}
+  allow-spec-file-download="false"
+  allow-server-selection="false"
+  allow-try="false"
+  font-size="default"
+  render-style="read"
+{{- else }}
+  allow-spec-file-download="true"
+  allow-server-selection="true"
+  allow-try="true"
+  font-size="largest"
+  render-style="view"
+{{- end }}
+  default-schema-tab="example"
+  layout="column"
+  load-fonts="false"
+  schema-description-expanded="true"
+  schema-style="table"
+  show-header="false"
+  spec-url="{{ $src }}"
+  sort-tags="true"
+></rapi-doc>
+{{- .Page.Store.Set "hasSwagger" true }}
+{{- end }}

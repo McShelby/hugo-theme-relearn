@@ -1,0 +1,13 @@
+{{- $context := .context }}
+{{- $file := .file }}
+{{- $hideFirstHeading := .hidefirstheading | default false }}
+{{- if eq (printf "%T" $hideFirstHeading) "string" }}
+	{{- $hideFirstHeading = (eq $hideFirstHeading "true") }}
+{{- end }}
+{{- if $hideFirstHeading }}<div class="include hide-first-heading">{{ end }}
+{{- with $context }}
+
+{{ $file | readFile | safeHTML }}
+
+{{- if $hideFirstHeading }}</div>{{ end }}
+{{- end }}

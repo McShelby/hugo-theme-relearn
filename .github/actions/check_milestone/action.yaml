@@ -16,7 +16,7 @@ runs:
   steps:
     - name: Get tag uniqueness
       id: unique_tag
-      uses: mukunku/tag-exists-action@v1.0.0
+      uses: mukunku/tag-exists-action@v1.1.0
       with:
         tag: ${{ env.MILESTONE }}
       env:
@@ -56,9 +56,9 @@ runs:
       shell: bash
       run: |
         if [ "${{ fromJSON(steps.closed_issues.outputs.data).search.issueCount > 0 && fromJSON(steps.open_issues.outputs.data).search.issueCount == 0 && steps.unique_tag.outputs.exists == 'false' }}" = "true" ]; then
-          echo "::set-output name=outcome::success"
+          echo "outcome=success" >> $GITHUB_OUTPUT
         else
-          echo "::set-output name=outcome::failure"
+          echo "outcome=failure" >> $GITHUB_OUTPUT
         fi
 
     - name: Log results and exit

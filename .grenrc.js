@@ -16,14 +16,20 @@ module.exports = {
     ],
   },
   ignoreLabels: [
+    "blocked",
+    "browser",
+    "helpwanted",
     "hugo",
+    "mermaid",
+    "needsfeedback",
+    "undecided",
   ],
   ignoreIssuesWith: [
     "discussion",
     "documentation",
     "duplicate",
     "invalid",
-    "support",
+    "unresolved",
     "wontfix",
   ],
   ignoreTagsWith: [
