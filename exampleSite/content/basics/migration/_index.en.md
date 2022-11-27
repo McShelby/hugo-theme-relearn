@@ -14,6 +14,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.7.0
+
+- **Change**: The Korean language translation for this theme is now available with the language code `ko`. Formerly the country code `kr` was used instead.
+
+- **New**: The search now supports the Korean language.
+
+---
+
 ## 5.6.0
 
 - **New**: This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.

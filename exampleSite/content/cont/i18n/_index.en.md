@@ -62,7 +62,6 @@ Although the theme supports a wide variety of supported languages, the site's se
 You'll see error reports in your browsers console log for each unsupported language. Currently unsupported are:
 
 - Indonesian
-- Korean
 - Polish
 {{% /notice %}}
 
