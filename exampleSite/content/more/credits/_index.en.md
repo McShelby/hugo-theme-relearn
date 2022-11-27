@@ -20,6 +20,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 - [jQuery](https://jquery.com) - The "Write less, do more" JavaScript library
 - [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - A jQuery plugin to enable pan and zoom in SVG images
 - [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
+- [Lunr Languages](https://github.com/MihaiValentin/lunr-languages) - A collection of languages stemmers and stopwords for Lunr Javascript library
 - [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
 - [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
 - [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
