@@ -18,6 +18,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - **Change**: The Korean language translation for this theme is now available with the language code `ko`. Formerly the country code `kr` was used instead.
 
+- **New**: The [`button` shortcode]({{% relref "shortcodes/button" %}}) can now also be used as a real button inside of HTML forms - although this is a pretty rare use case. The documentation was updated accordingly.
+
 - **New**: The search now supports the Korean language.
 
 ---

@@ -26,14 +26,14 @@ This only works in modern browsers.
 
 ## Variant generator
 
-{{% button style="secondary" icon="download" %}}Download variant{{% /button %}}
-{{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}
+{{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}
+{{% button style="warning" icon="trash" href="javascript:window.variants&&variants.resetVariant();this.blur();" %}}Reset variant{{% /button %}}
 
 <div id="vargenerator" class="mermaid" style="background-color: var(--INTERNAL-MAIN-TEXT-color);">Graph</div>
 
-{{% button style="secondary" icon="download" %}}Download variant{{% /button %}}
-{{% button style="warning" icon="trash" %}}Reset variant{{% /button %}}
+{{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}
+{{% button style="warning" icon="trash" href="javascript:window.variants&&variants.resetVariant();this.blur();" %}}Reset variant{{% /button %}}
 
 <script>
-window.variants && variants.generator( '#vargenerator', '.secondary a', '.warning a' );
+window.variants && variants.generator( '#vargenerator' );
 </script>

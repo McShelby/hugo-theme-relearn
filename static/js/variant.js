@@ -223,7 +223,7 @@ var variants = {
 		}
 	},
 
-	generator: function( vargenerator, vardownload, varreset ){
+	generator: function( vargenerator ){
 		var graphDefinition = this.generateGraph();
 		var graphs = document.querySelectorAll( vargenerator );
 		graphs.forEach( function( e ){ e.innerHTML = graphDefinition; });
@@ -234,12 +234,6 @@ var variants = {
 				this.styleGraph();
 			}
 		}.bind( this ), 25 );
-
-		var downloads = document.querySelectorAll( vardownload );
-		downloads.forEach( function( e ){ e.addEventListener('click', this.getStylesheet.bind( this )); }.bind( this ) );
-
-		var resets = document.querySelectorAll( varreset );
-		resets.forEach( function( e ){ e.addEventListener('click', this.resetVariant.bind( this )); }.bind( this ) );
 	},
 
 	download: function(data, mimetype, filename){

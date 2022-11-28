@@ -47,11 +47,12 @@ Once the button is clicked, it opens another browser tab for the given URL.
 
 | Name                  | Default         | Notes       |
 |:----------------------|:----------------|:------------|
-| **href**              | _&lt;empty&gt;_ | The destination URL for the button. If this parameter is not set, the button will do nothing but is still displayed as clickable. |
+| **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL|
 | **style**             | `transparent`   | The color scheme used to paint the button.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent` |
 | **icon**              | see notes       | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
-| **target**            | see notes       | The destination frame/window for the URL. This behaves similar to normal links. If the parameter is not given it defaults to:<br><br>- `_blank` for any address starting with `http://` or `https://`<br>- no specific value for all other links |
+| **target**            | see notes       | The destination frame/window if **href** is an URL. Otherwise the parameter is not used. This behaves similar to normal links. If the parameter is not given it defaults to:<br><br>- `_blank` for any address starting with `http://` or `https://`<br>- no specific value for all other links |
+| **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button` |
 | _**&lt;content&gt;**_ | see notes       | Arbitrary text for the button title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 
 ## Examples
@@ -146,7 +147,7 @@ Once the button is clicked, it opens another browser tab for the given URL.
 
 ### Other
 
-#### Severity Style with all Defaults
+#### Severity Style with All Defaults
 
 ````go
 {{%/* button href="https://gohugo.io/" style="tip" %}}{{% /button */%}}
@@ -154,10 +155,43 @@ Once the button is clicked, it opens another browser tab for the given URL.
 
 {{% button href="https://gohugo.io/" style="tip" %}}{{% /button %}}
 
-#### Button to internal page
+#### Button to Internal Page
 
 ````go
 {{%/* button href="/" %}}Home{{% /button */%}}
 ````
 
 {{% button href="/" %}}Home{{% /button %}}
+
+#### Button with JavaScript Action
+
+If your JavaScript action does not change the focus afterwards, make sure to call `this.blur()` in the end to unselect the button.
+
+````go
+{{%/* button style="primary" icon="bullhorn" href="javascript:alert('Hello world!');this.blur();" %}}Shout it out{{% /button */%}}
+````
+
+{{% button style="primary" icon="bullhorn" href="javascript:alert('Hello world!');this.blur();" %}}Shout it out{{% /button %}}
+
+#### Button within a `form` Element
+
+To use native HTML elements in your Markdown, add this in your `config.toml`
+
+````toml
+[markup.goldmark.renderer]
+    unsafe = true
+````
+
+````html
+<form action="../../search.html" method="get">
+  <input name="search-by-detail" class="search-by" type="search">
+  {{%/* button type="submit" style="secondary" icon="search" %}}Search{{% /button */%}}
+</form>
+````
+
+<form action="../../search.html" method="get">
+  <div class="searchform" style="width: 20vw;">
+    <input name="search-by-detail" class="search-by" type="search" placeholder="Search...">
+    {{% button type="submit" style="secondary" icon="search" %}}Search{{% /button %}}
+  </div>
+</form>
