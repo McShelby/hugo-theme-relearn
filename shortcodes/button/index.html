@@ -10,21 +10,21 @@
     <title>Button :: Hugo Relearn Theme</title>
     <link href="../../shortcodes/button/index.xml" rel="alternate" type="application/rss+xml" title="Button :: Hugo Relearn Theme">
     <link href="../../shortcodes/button/index.print.html" rel="alternate" type="text/html" title="Button :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1669564175" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1669657437" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1669564175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1669564175" rel="stylesheet"></noscript>
-    <link href="../../css/featherlight.min.css?1669564175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1669564175" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1669564175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1669564175" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1669564175" rel="stylesheet">
-    <link href="../../css/nucleus.css?1669564175" rel="stylesheet">
-    <link href="../../css/fonts.css?1669564175" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1669564175" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1669564175" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1669564175" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1669564175" rel="stylesheet">
-    <link href="../../css/variant.css?1669564175" rel="stylesheet">
-    <link href="../../css/print.css?1669564175" rel="stylesheet" media="print">
-    <script src="../../js/url.js?1669564175"></script>
-    <script src="../../js/variant.js?1669564175"></script>
+    <link href="../../css/fontawesome-all.min.css?1669657437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1669657437" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min.css?1669657437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1669657437" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1669657437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1669657437" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1669657437" rel="stylesheet">
+    <link href="../../css/nucleus.css?1669657437" rel="stylesheet">
+    <link href="../../css/fonts.css?1669657437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1669657437" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1669657437" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1669657437" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1669657437" rel="stylesheet">
+    <link href="../../css/variant.css?1669657437" rel="stylesheet">
+    <link href="../../css/print.css?1669657437" rel="stylesheet" media="print">
+    <script src="../../js/url.js?1669657437"></script>
+    <script src="../../js/variant.js?1669657437"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -42,7 +42,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1669564175" defer></script>
+    <script src="../../js/jquery.min.js?1669657437" defer></script>
   </head>
   <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../shortcodes/button/index.html">
     <div id="body" class="default-animation">
@@ -176,7 +176,7 @@
 <tr>
 <td style="text-align:left"><strong>href</strong></td>
 <td style="text-align:left"><em>&lt;empty&gt;</em></td>
-<td style="text-align:left">The destination URL for the button. If this parameter is not set, the button will do nothing but is still displayed as clickable.</td>
+<td style="text-align:left">Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.<br><br>- if starting with <code>javascript:</code> all following text will be executed in your browser<br>- every other string will be interpreted as URL</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>style</strong></td>
@@ -196,7 +196,12 @@
 <tr>
 <td style="text-align:left"><strong>target</strong></td>
 <td style="text-align:left">see notes</td>
-<td style="text-align:left">The destination frame/window for the URL. This behaves similar to normal links. If the parameter is not given it defaults to:<br><br>- <code>_blank</code> for any address starting with <code>http://</code> or <code>https://</code><br>- no specific value for all other links</td>
+<td style="text-align:left">The destination frame/window if <strong>href</strong> is an URL. Otherwise the parameter is not used. This behaves similar to normal links. If the parameter is not given it defaults to:<br><br>- <code>_blank</code> for any address starting with <code>http://</code> or <code>https://</code><br>- no specific value for all other links</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>type</strong></td>
+<td style="text-align:left">see notes</td>
+<td style="text-align:left">The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type">button type</a> if <strong>href</strong> is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to <code>button</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><em><strong>&lt;content&gt;</strong></em></td>
@@ -350,7 +355,7 @@
   </a>
 </span></p>
 <h3 id="other">Other</h3>
-<h4 id="severity-style-with-all-defaults">Severity Style with all Defaults</h4>
+<h4 id="severity-style-with-all-defaults">Severity Style with All Defaults</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">button</span> <span class="nx">href</span><span class="p">=</span><span class="s">&#34;https://gohugo.io/&#34;</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;tip&#34;</span> <span class="o">%</span><span class="p">}}{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">button</span> <span class="o">%</span><span class="p">}}</span>
 </span></span></code></pre></div>
 <span class="btn cstyle tip">
@@ -359,7 +364,7 @@
     Tip
   </a>
 </span>
-<h4 id="button-to-internal-page">Button to internal page</h4>
+<h4 id="button-to-internal-page">Button to Internal Page</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">button</span> <span class="nx">href</span><span class="p">=</span><span class="s">&#34;/&#34;</span> <span class="o">%</span><span class="p">}}</span><span class="nx">Home</span><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">button</span> <span class="o">%</span><span class="p">}}</span>
 </span></span></code></pre></div>
 <span class="btn cstyle transparent">
@@ -367,6 +372,36 @@
     Home
   </a>
 </span>
+<h4 id="button-with-javascript-action">Button with JavaScript Action</h4>
+<p>If your JavaScript action does not change the focus afterwards, make sure to call <code>this.blur()</code> in the end to unselect the button.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">button</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;primary&#34;</span> <span class="nx">icon</span><span class="p">=</span><span class="s">&#34;bullhorn&#34;</span> <span class="nx">href</span><span class="p">=</span><span class="s">&#34;javascript:alert(&#39;Hello world!&#39;);this.blur();&#34;</span> <span class="o">%</span><span class="p">}}</span><span class="nx">Shout</span> <span class="nx">it</span> <span class="nx">out</span><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">button</span> <span class="o">%</span><span class="p">}}</span>
+</span></span></code></pre></div>
+<span class="btn cstyle primary">
+  <button onclick="alert(&#39;Hello world!&#39;);this.blur();" type="button">
+    <i class="fa-fw fas fa-bullhorn"></i>
+    Shout it out
+  </button>
+</span>
+<h4 id="button-within-a-form-element">Button within a <code>form</code> Element</h4>
+<p>To use native HTML elements in your Markdown, add this in your <code>config.toml</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;../../search.html&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;get&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;search-by-detail&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;search-by&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;search&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  {{% button type=&#34;submit&#34; style=&#34;secondary&#34; icon=&#34;search&#34; %}}Search{{% /button %}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span></code></pre></div><form action="../../search.html" method="get">
+  <div class="searchform" style="width: 20vw;">
+    <input name="search-by-detail" class="search-by" type="search" placeholder="Search...">
+    
+<span class="btn cstyle secondary">
+  <button type="submit">
+    <i class="fa-fw fas fa-search"></i>
+    Search
+  </button>
+</span>
+  </div>
+</form>
 
             <footer class="footline">
             </footer>
@@ -446,12 +481,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1669564175" defer></script>
-        <script src="../../js/lunr.min.js?1669564175" defer></script>
-        <script src="../../js/lunr.stemmer.support.min.js?1669564175" defer></script>
-        <script src="../../js/lunr.multi.min.js?1669564175" defer></script>
-        <script src="../../js/lunr.en.min.js?1669564175" defer></script>
-        <script src="../../js/search.js?1669564175" defer></script>
+        <script src="../../js/auto-complete.js?1669657437" defer></script>
+        <script src="../../js/lunr.min.js?1669657437" defer></script>
+        <script src="../../js/lunr.stemmer.support.min.js?1669657437" defer></script>
+        <script src="../../js/lunr.multi.min.js?1669657437" defer></script>
+        <script src="../../js/lunr.en.min.js?1669657437" defer></script>
+        <script src="../../js/search.js?1669657437" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -566,13 +601,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../../js/buttons.js?1669564175"></script>
+          <script async src="../../js/buttons.js?1669657437"></script>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1669564175" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1669564175" defer></script>
-    <script src="../../js/featherlight.min.js?1669564175" defer></script>
-    <script src="../../js/theme.js?1669564175" defer></script>
+    <script src="../../js/clipboard.min.js?1669657437" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1669657437" defer></script>
+    <script src="../../js/featherlight.min.js?1669657437" defer></script>
+    <script src="../../js/theme.js?1669657437" defer></script>
   </body>
 </html>
