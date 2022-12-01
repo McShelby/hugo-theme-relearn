@@ -54,16 +54,14 @@ While the examples are using shortcodes with named parameter you are free to als
 {{% /tab %}}
 {{< /tabs >}}
 
-Once the button is clicked, it opens another browser tab for the given URL.
-
 ### Parameter
 
 | Name                  | Default         | Notes       |
 |:----------------------|:----------------|:------------|
-| **style**             | `transparent`   | The color scheme used to paint the badge.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent` |
+| **style**             | `default`       | The color scheme used to paint the badge.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent` |
 | **icon**              | see notes       | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **title**             | see notes       | Arbitrary text for the badge title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| _**&lt;content&gt;**_ | see notes       | Arbitrary text for the badge| _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_ | Arbitrary text for the badge. |
 
 ## Examples
 
