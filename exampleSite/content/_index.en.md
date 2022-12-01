@@ -38,6 +38,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 - [Swagger UI]({{%relref "shortcodes/swagger" %}}) for OpenAPI Specifications
 - [Customizable look and feel]({{%relref "basics/customization"%}})
 - [Predefined (light, dark) and customizable color variants]({{%relref "basics/generator" %}})
+- [Badges]({{%relref "shortcodes/badge" %}})
 - [Buttons]({{%relref "shortcodes/button" %}})
 - [Tip/Note/Info/Warning boxes]({{%relref "shortcodes/notice" %}})
 - [Expand]({{%relref "shortcodes/expand" %}})

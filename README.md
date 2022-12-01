@@ -33,6 +33,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Swagger UI for OpenAPI Specifications
 - Customizable look and feel
 - Predefined (light, dark) and customizable color variants
+- Badges
 - Buttons
 - Tip/Note/Info/Warning boxes
 - Expand
