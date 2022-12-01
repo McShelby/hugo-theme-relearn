@@ -447,13 +447,16 @@ blockquote cite {
 
 /* colored boxes */
 
-div.box {
+.cstyle {
     --VARIABLE-BOX-color: var(--INTERNAL-BOX-NEUTRAL-color);
     --VARIABLE-BOX-CAPTION-color: var(--INTERNAL-BOX-CAPTION-color);
     --VARIABLE-BOX-BG-color: var(--INTERNAL-BOX-BG-color);
     --VARIABLE-BOX-TEXT-color: var(--INTERNAL-BOX-NEUTRAL-TEXT-color);
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
+}
+
+div.box {
     margin: 1.5rem 0;
 }
 
@@ -1207,13 +1210,7 @@ option {
 }
 
 .btn {
-    --VARIABLE-BOX-color: var(--INTERNAL-BOX-NEUTRAL-color);
-    --VARIABLE-BOX-CAPTION-color: var(--INTERNAL-BOX-CAPTION-color);
-    --VARIABLE-BOX-BG-color: var(--INTERNAL-BOX-BG-color);
-    --VARIABLE-BOX-TEXT-color: var(--INTERNAL-BOX-NEUTRAL-TEXT-color);
     border-radius: 4px;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
     cursor: pointer;
     display: inline-block;
     font-size: .9rem;
@@ -1617,4 +1614,33 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     font-size: 1rem;
     font-weight: 300;
     margin-top: .66rem;
+}
+
+.badge {
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 80%;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.badge > * {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    padding: 0 .25rem
+}
+
+.badge > .badge-title {
+    border-inline-end: 0;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+    filter: contrast(2);
+    opacity: .75;
+}
+
+.badge.badge-with-title > .badge-content {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
 }

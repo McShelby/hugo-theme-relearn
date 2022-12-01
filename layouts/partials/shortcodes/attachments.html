@@ -2,6 +2,7 @@
 {{- $content := .content }}
 {{- $style := .style | default "transparent" }}
 {{- $title := .title | default ($style | T) | default ("Attachments-label" | T) }}
+{{- $title = trim $title " " }}
 {{- $icon := .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
   {{- $icon = "paperclip" }}
@@ -18,7 +19,7 @@
 {{- $pattern := .pattern | default "" }}
 {{- with $context }}
 <div class="box attachments cstyle {{ $style }}">
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i> {{ end }}{{ $title }}</div>
+  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
   <ul class="box-content attachments-files">
   {{- $filesName := "files" }}
   {{- if ne .Page.File.BaseFileName "index" }}

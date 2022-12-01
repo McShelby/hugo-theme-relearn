@@ -15,6 +15,7 @@
   {{- $target = "_blank" }}
 {{- end }}
 {{- $title := .title | default ($content) | default ($style | T) }}
+{{- $title = trim $title " " }}
 {{- $icon := .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
   {{- if eq $style "info" }}{{ $icon = default "info-circle" }}{{ end }}

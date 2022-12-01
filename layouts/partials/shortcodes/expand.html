@@ -1,6 +1,7 @@
 {{- $context := .context }}
 {{- $content := .content }}
 {{- $title := .title | default (T "Expand-title") }}
+{{- $title = trim $title " " }}
 {{- $expanded := .open | default false }}
 {{- if eq (printf "%T" $expanded) "string" }}
 	{{- $expanded = (eq $expanded "true") }}

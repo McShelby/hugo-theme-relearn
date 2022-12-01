@@ -14,10 +14,6 @@
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
-{{- with $context }}
-<div class="box notices cstyle {{ $style }}">
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
-  <div class="box-content">
-{{ $content | safeHTML }}    </div>
-</div>
+{{- with $context -}}
+<span class="badge cstyle {{ $style }}{{ if or $icon $title }} badge-with-title{{ end }}">{{ if or $icon $title }}<span class="badge-title">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ if $title }}{{ $title }}{{ end }}</span>{{ end }}<span class="badge-content">{{ $content }}</span></span>
 {{- end }}
