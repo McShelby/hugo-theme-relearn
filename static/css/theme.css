@@ -1645,3 +1645,48 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     border-start-start-radius: 0;
     border-end-start-radius: 0;
 }
+
+/* task list and its checkboxes */
+article ul li:has(input[type="checkbox"]) {
+    list-style: none;
+    margin-inline-start: -1rem;
+}
+
+article ul li:has(input[type="checkbox"])::before {
+    content: "\200B"; /* accessibilty for Safari https://developer.mozilla.org/en-US/docs/Web/CSS/list-style */
+}
+
+/* https://moderncss.dev/pure-css-custom-checkbox-style/ */
+article ul li input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: var(--INTERNAL-MAIN-BG-color); /* box background */
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    color: var(--INTERNAL-MAIN-TEXT-color);
+    display: inline-grid;
+    font: inherit;
+    height: 1.15em;
+    margin: 0;
+    place-content: center;
+    transform: translateY(-0.075em);
+    width: 1.15em;
+}
+
+article ul li input[type="checkbox"]::before {
+    box-shadow: inset 1em 1em var(--INTERNAL-PRIMARY-color);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    content: "";
+    height: 0.65em;
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    width: 0.65em;
+    /* Windows High Contrast Mode fallback must be last */
+    background-color: CanvasText;
+}
+
+article ul li input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
