@@ -1,0 +1,11 @@
+{{- $context := .context }}
+{{- $icon := .icon | default "" }}
+{{- $icon = trim $icon " " }}
+{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+{{- end }}
+{{- with $context }}
+  {{- if $icon }}
+<i class="{{ $icon }}"></i>
+  {{- end }}
+{{- end }}

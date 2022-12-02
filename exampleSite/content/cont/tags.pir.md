@@ -1,6 +1,6 @@
 +++
 tags = ["documentat'n", "tutorrrial"]
 title = "Tags"
-weight = 8
+weight = 7
 +++
 {{< piratify >}}

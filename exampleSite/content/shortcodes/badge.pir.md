@@ -1,5 +1,5 @@
 +++
-descrption = "Nice buttons on yer plank"
-title = "Button"
+descrption = "Marker badges t' display 'n yer text"
+title = "Badge"
 +++
 {{< piratify >}}

@@ -1,6 +1,6 @@
 +++
 title = "Multilingual and i18n"
-weight = 7
+weight = 6
 +++
 
 The Relearn theme is fully compatible with Hugo multilingual mode.

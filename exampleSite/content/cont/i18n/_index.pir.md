@@ -1,5 +1,5 @@
 +++
 title = "Multilingual an' i18n"
-weight = 7
+weight = 6
 +++
 {{< piratify >}}

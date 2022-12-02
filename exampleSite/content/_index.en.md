@@ -28,7 +28,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 - [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
 - Support for languages written right to left
 - [Unrestricted menu configuration]({{%relref "cont/menushortcuts" %}}) relating to amount of items and level of nesting
-- [Font Awesome icons]({{%relref "cont/icons" %}})
+- [Font Awesome icons]({{%relref "shortcodes/icon" %}})
 - [Tagging support]({{%relref "cont/tags" %}})
 - [Image resizing, shadow...]({{%relref "cont/markdown#images" %}})
 - [Syntax highlighting]({{%relref "cont/syntaxhighlight" %}})

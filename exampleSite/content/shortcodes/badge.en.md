@@ -7,7 +7,7 @@ The `badge` shortcode displays little markers in your text with adjustable color
 
 {{% badge %}}Important{{% /badge %}}
 {{% badge style="primary" title="Version" %}}6.6.6{{% /badge %}}
-{{% badge style="red" icon="skull-crossbones" %}}Captain{{% /badge %}}
+{{% badge style="red" icon="angle-double-up" %}}Captain{{% /badge %}}
 {{% badge style="info" %}}Awesome{{% /badge %}}
 
 ## Usage
@@ -20,7 +20,7 @@ While the examples are using shortcodes with named parameter you are free to als
 ````go
 {{%/* badge %}}Important{{% /badge */%}}
 {{%/* badge style="primary" title="Version" %}}6.6.6{{% /badge */%}}
-{{%/* badge style="red" icon="skull-crossbones" %}}Captain{{% /badge */%}}
+{{%/* badge style="red" icon="angle-double-up" %}}Captain{{% /badge */%}}
 {{%/* badge style="info" %}}Awesome{{% /badge */%}}
 ````
 
@@ -41,7 +41,7 @@ While the examples are using shortcodes with named parameter you are free to als
 {{ partial "shortcodes/badge.html" (dict
   "context" .
   "style" "red"
-  "icon" "skull-crossbones"
+  "icon" "angle-double-up"
   "content" "Captain"
 )}}
 {{ partial "shortcodes/badge.html" (dict
@@ -59,7 +59,7 @@ While the examples are using shortcodes with named parameter you are free to als
 | Name                  | Default         | Notes       |
 |:----------------------|:----------------|:------------|
 | **style**             | `default`       | The color scheme used to paint the badge.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent` |
-| **icon**              | see notes       | [Font Awesome icon name]({{%relref "cont/icons#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**              | see notes       | [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **title**             | see notes       | Arbitrary text for the badge title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other colors: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_ | Arbitrary text for the badge. |
 
@@ -148,24 +148,24 @@ While the examples are using shortcodes with named parameter you are free to als
 ````go
 {{%/* badge icon="star" %}}6.6.6{{% /badge */%}}
 {{%/* badge style="info" title=" " %}}Awesome{{% /badge */%}}
-{{%/* badge style="red" icon="skull-crossbones" %}}Captain{{% /badge */%}}
+{{%/* badge style="red" icon="angle-double-up" %}}Captain{{% /badge */%}}
 ````
 
 {{% badge icon="star" %}}6.6.6{{% /badge %}}
 {{% badge style="info" title=" " %}}Awesome{{% /badge %}}
-{{% badge style="red" icon="skull-crossbones" %}}Captain{{% /badge %}}
+{{% badge style="red" icon="angle-double-up" %}}Captain{{% /badge %}}
 
 #### All Set
 
 ````go
 {{%/* badge icon="star" title="Version" %}}6.6.6{{% /badge */%}}
 {{%/* badge style="info" %}}Awesome{{% /badge */%}}
-{{%/* badge style="red" icon="skull-crossbones" title="Rank" %}}Captain{{% /badge */%}}
+{{%/* badge style="red" icon="angle-double-up" title="Rank" %}}Captain{{% /badge */%}}
 ````
 
 {{% badge icon="star" title="Version" %}}6.6.6{{% /badge %}}
 {{% badge style="info" %}}Awesome{{% /badge %}}
-{{% badge style="red" icon="skull-crossbones" title="Rank" %}}Captain{{% /badge %}}
+{{% badge style="red" icon="angle-double-up" title="Rank" %}}Captain{{% /badge %}}
 
 #### Override for Severity
 
@@ -176,6 +176,24 @@ While the examples are using shortcodes with named parameter you are free to als
 {{% badge style="info" icon="rocket" title="Feature" %}}Awesome{{% /badge %}}
 
 ### Other
+
+#### With Icon Content
+
+You can combine the badge with the [`icon` shortcode]({{% relref "shortcodes/icon" %}}) to create even more stunning variants.
+
+In this case you need to declare `{{</* badge */>}}` instead of `{{%/* badge */%}}`. Note, that in this case it is not possible to put markdown in the content.
+
+````go
+{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge */>}}
+{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}
+````
+
+{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}}{{< /badge >}}
+{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
+{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}
+{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
+{{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}
+{{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
 
 #### Inside of Text
 

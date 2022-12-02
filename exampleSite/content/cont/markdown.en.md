@@ -24,7 +24,7 @@ John Gruber, the author of Markdown, puts it like this:
 Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:
 
 {{% notice tip %}}
-<i class="fas fa-bookmark"></i> Bookmark this page and the [official Commonmark reference](https://commonmark.org/help/) for easy future reference!
+{{% icon bookmark %}} Bookmark this page and the [official Commonmark reference](https://commonmark.org/help/) for easy future reference!
 {{% /notice %}}
 
 ## Paragraphs
