@@ -601,7 +601,7 @@ Add a query parameter `classes` to the link image to add CSS classes. Add some o
 ##### Shadow
 
 ````markdown
-![Spidertocat](https://octodex.github.com/images/spidertocat.png?classes=shadow,bg-white)
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?classes=shadow)
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
