@@ -45,6 +45,19 @@ th {
     font-weight: 600;
 }
 
+ul {
+    list-style: disc;
+}
+
+dt {
+    font-style: italic;
+}
+
+dd {
+    display: list-item;
+    list-style: circle;
+}
+
 .default-animation{
     transition: all 0.35s ease;
 }
@@ -320,8 +333,7 @@ th {
 
 #body img.border,
 #body .video-container.border {
-    border: 2px solid #e6e6e6;
-    padding: 2px;
+    border: 2px solid rgba( 134, 134, 134, .125 );
 }
 
 #body img.shadow,
@@ -466,18 +478,20 @@ div.box > .box-label {
 }
 
 div.box > .box-content {
-    padding-bottom: .1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
-#body div.box > .box-content > :first-child {
+#body div.box > .box-content > :first-child,
+#body div.box > .box-content > :first-child :first-child {
     margin-top: 0;
-    padding-top: 1rem;
 }
 
-#body div.box > .box-content > :last-child {
-    margin-bottom: 1rem;
+#body div.box > .box-content > :last-child,
+#body div.box > .box-content > :last-child :last-child {
+    margin-bottom: 0;
 }
 
 /* attachments shortcode */
@@ -1643,4 +1657,49 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .badge.badge-with-title > .badge-content {
     border-start-start-radius: 0;
     border-end-start-radius: 0;
+}
+
+/* task list and its checkboxes */
+article ul li:has(input[type="checkbox"]) {
+    list-style: none;
+    margin-inline-start: -1rem;
+}
+
+article ul li:has(input[type="checkbox"])::before {
+    content: "\200B"; /* accessibilty for Safari https://developer.mozilla.org/en-US/docs/Web/CSS/list-style */
+}
+
+/* https://moderncss.dev/pure-css-custom-checkbox-style/ */
+article ul li input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: var(--INTERNAL-MAIN-BG-color); /* box background */
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    color: var(--INTERNAL-MAIN-TEXT-color);
+    display: inline-grid;
+    font: inherit;
+    height: 1.15em;
+    margin: 0;
+    place-content: center;
+    transform: translateY(-0.075em);
+    width: 1.15em;
+}
+
+article ul li input[type="checkbox"]::before {
+    box-shadow: inset 1em 1em var(--INTERNAL-PRIMARY-color);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    content: "";
+    height: 0.65em;
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    width: 0.65em;
+    /* Windows High Contrast Mode fallback must be last */
+    background-color: CanvasText;
+}
+
+article ul li input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }

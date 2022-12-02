@@ -10,21 +10,21 @@
     <title>Markdown syntax :: Hugo Relearn Theme</title>
     <link href="../../cont/markdown/index.xml" rel="alternate" type="application/rss+xml" title="Markdown syntax :: Hugo Relearn Theme">
     <link href="../../cont/markdown/index.print.html" rel="alternate" type="text/html" title="Markdown syntax :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1669884723" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1669993548" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1669884723" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1669884723" rel="stylesheet"></noscript>
-    <link href="../../css/featherlight.min.css?1669884723" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1669884723" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1669884723" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1669884723" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1669884723" rel="stylesheet">
-    <link href="../../css/nucleus.css?1669884723" rel="stylesheet">
-    <link href="../../css/fonts.css?1669884723" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1669884723" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1669884723" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1669884723" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1669884723" rel="stylesheet">
-    <link href="../../css/variant.css?1669884723" rel="stylesheet">
-    <link href="../../css/print.css?1669884723" rel="stylesheet" media="print">
-    <script src="../../js/url.js?1669884723"></script>
-    <script src="../../js/variant.js?1669884723"></script>
+    <link href="../../css/fontawesome-all.min.css?1669993548" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1669993548" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min.css?1669993548" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1669993548" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1669993548" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1669993548" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1669993548" rel="stylesheet">
+    <link href="../../css/nucleus.css?1669993548" rel="stylesheet">
+    <link href="../../css/fonts.css?1669993548" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1669993548" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1669993548" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1669993548" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1669993548" rel="stylesheet">
+    <link href="../../css/variant.css?1669993548" rel="stylesheet">
+    <link href="../../css/print.css?1669993548" rel="stylesheet" media="print">
+    <script src="../../js/url.js?1669993548"></script>
+    <script src="../../js/variant.js?1669993548"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -42,7 +42,12 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1669884723" defer></script>
+    <script src="../../js/jquery.min.js?1669993548" defer></script>
+    <style>
+      #body img.bg-white {
+        background-color: white;
+      }
+    </style>
   </head>
   <body class="mobile-support html disableInlineCopyToClipboard" data-url="../../cont/markdown/index.html">
     <div id="body" class="default-animation">
@@ -81,18 +86,9 @@
             <div class="toc-wrapper" dir="ltr">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#headings">Headings</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#h2-heading">h2 Heading</a>
-      <ul>
-        <li><a href="#h3-heading">h3 Heading</a></li>
-      </ul>
-    </li>
-    <li><a href="#comments">Comments</a></li>
-    <li><a href="#horizontal-rules">Horizontal Rules</a></li>
     <li><a href="#paragraphs">Paragraphs</a></li>
+    <li><a href="#headings">Headings</a></li>
+    <li><a href="#horizontal-rules">Horizontal Rules</a></li>
     <li><a href="#text-markers">Text Markers</a>
       <ul>
         <li><a href="#bold">Bold</a></li>
@@ -100,37 +96,43 @@
         <li><a href="#strikethrough">Strikethrough</a></li>
       </ul>
     </li>
-    <li><a href="#blockquotes">Blockquotes</a></li>
+    <li><a href="#text-substitution">Text substitution</a></li>
     <li><a href="#lists">Lists</a>
       <ul>
         <li><a href="#unordered">Unordered</a></li>
         <li><a href="#ordered">Ordered</a></li>
+        <li><a href="#tasks">Tasks</a></li>
+        <li><a href="#defintions">Defintions</a></li>
       </ul>
     </li>
     <li><a href="#code">Code</a>
       <ul>
-        <li><a href="#inline-code">Inline code</a></li>
-        <li><a href="#indented-code">Indented code</a></li>
-        <li><a href="#block-code-fences">Block code &ldquo;fences&rdquo;</a></li>
-        <li><a href="#syntax-highlighting">Syntax highlighting</a></li>
+        <li><a href="#inline-code">Inline Code</a></li>
+        <li><a href="#indented-code-block">Indented Code Block</a></li>
+        <li><a href="#fenced-code-block">Fenced Code Block</a></li>
       </ul>
     </li>
     <li><a href="#tables">Tables</a>
       <ul>
-        <li><a href="#right-aligned-text">Right aligned text</a></li>
-        <li><a href="#two-tables-adjacent">Two tables adjacent</a></li>
+        <li><a href="#aligned-columns">Aligned Columns</a></li>
       </ul>
     </li>
+    <li><a href="#blockquotes">Blockquotes</a></li>
     <li><a href="#links">Links</a>
       <ul>
-        <li><a href="#basic-link">Basic link</a></li>
-        <li><a href="#add-a-tooltip">Add a tooltip</a></li>
-        <li><a href="#named-anchors">Named Anchors</a></li>
+        <li><a href="#autolink">Autolink</a></li>
+        <li><a href="#basic-link">Basic Link</a></li>
+        <li><a href="#link-with-tooltip">Link with Tooltip</a></li>
+        <li><a href="#link-references">Link References</a></li>
+        <li><a href="#footnotes">Footnotes</a></li>
       </ul>
     </li>
     <li><a href="#images">Images</a>
       <ul>
-        <li><a href="#further-image-formatting">Further image formatting</a></li>
+        <li><a href="#basic-images">Basic Images</a></li>
+        <li><a href="#image-with-tooltip">Image with Tooltip</a></li>
+        <li><a href="#image-references">Image References</a></li>
+        <li><a href="#further-image-formatting">Further Image Formatting</a></li>
       </ul>
     </li>
   </ul>
@@ -146,13 +148,13 @@
           <article class="default">
 <h1 id="markdown-syntax">Markdown syntax</h1>
 
-<p>Let&rsquo;s face it: Writing content for the Web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.</p>
+<p>Let&rsquo;s face it: Writing content for the web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.</p>
 <p><strong>Markdown</strong> is a better way to write <strong>HTML</strong>, without all the complexities and ugliness that usually accompanies it.</p>
 <p>Some of the key benefits are:</p>
 <ol>
 <li>Markdown is simple to learn, with minimal extra characters so it&rsquo;s also quicker to write content.</li>
 <li>Less chance of errors when writing in Markdown.</li>
-<li>Produces valid XHTML output.</li>
+<li>Produces valid HTML output.</li>
 <li>Keeps the content and the visual display separate, so you cannot mess up the look of your site.</li>
 <li>Write in any text editor or Markdown application you like.</li>
 <li>Markdown is a joy to use!</li>
@@ -164,269 +166,278 @@
 </blockquote>
 <p>Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:</p>
 
-<div class="box notices cstyle info">
-  <div class="box-label"><i class="fa-fw fas fa-info-circle"></i> Info</div>
+<div class="box notices cstyle tip">
+  <div class="box-label"><i class="fa-fw fas fa-lightbulb"></i> Tip</div>
   <div class="box-content">
 <p><i class="fas fa-bookmark"></i> Bookmark this page and the <a href="https://commonmark.org/help/">official Commonmark reference</a> for easy future reference!</p>
     </div>
 </div>
+<h2 id="paragraphs">Paragraphs</h2>
+<p>In Markdown your content usually spans the whole available document width. This is called a block. Blocks are always separated by whitespace to their adjacent blocks in the resulting document.</p>
+<p>Any text not starting with a special sign is written as normal, plain text paragraph block and must be separated to its adjacent blocks by empty lines.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus.</p>
+<p>Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.</p>
+    </div>
+</div>
 <h2 id="headings">Headings</h2>
-<p>Headings from <code>h1</code> through <code>h6</code> are constructed with a <code>#</code> for each level:</p>
+<p>A good idea is to structure your content using headings and subheadings. HTML-headings from <code>h1</code> through <code>h6</code> are constructed with a <code>#</code> for each level.</p>
+<p>In Hugo you usually don&rsquo;t use <code>h1</code> as this is generated by your theme and you should only have one such element in a document.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># h1 Heading
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gu">## h2 Heading
-</span></span></span><span class="line"><span class="cl"><span class="gu">### h3 Heading
-</span></span></span><span class="line"><span class="cl"><span class="gu">#### h4 Heading
-</span></span></span><span class="line"><span class="cl"><span class="gu">##### h5 Heading
-</span></span></span><span class="line"><span class="cl"><span class="gu">###### h6 Heading
-</span></span></span></code></pre></div><p>Renders to:</p>
-<!-- markdownlint-disable MD025 -->
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## h2 Heading
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">### h3 Heading
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">#### h4 Heading
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">##### h5 Heading
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">###### h6 Heading
+</span></span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
 <h1 id="h1-heading">h1 Heading</h1>
-<!-- markdownlint-enable MD025 -->
 <h2 id="h2-heading">h2 Heading</h2>
 <h3 id="h3-heading">h3 Heading</h3>
 <h4 id="h4-heading">h4 Heading</h4>
 <h5 id="h5-heading">h5 Heading</h5>
 <h6 id="h6-heading">h6 Heading</h6>
-<p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>h1 Heading<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>h2 Heading<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>h3 Heading<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>h4 Heading<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>h5 Heading<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h6</span><span class="p">&gt;</span>h6 Heading<span class="p">&lt;/</span><span class="nt">h6</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="comments">Comments</h2>
-<p>Comments should be HTML compatible</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!--
-</span></span></span><span class="line"><span class="cl"><span class="c">This is a comment
-</span></span></span><span class="line"><span class="cl"><span class="c">--&gt;</span>
-</span></span></code></pre></div><p>Comment below should <strong>NOT</strong> be seen:</p>
-<!--
-This is a comment
--->
+    </div>
+</div>
 <h2 id="horizontal-rules">Horizontal Rules</h2>
-<p>The HTML <code>&lt;hr&gt;</code> element is for creating a &ldquo;thematic break&rdquo; between paragraph-level elements. In Markdown, you can create a <code>&lt;hr&gt;</code> with <code>---</code> - three consecutive dashes</p>
-<p>renders to:</p>
+<p>To further structure your content you can add horizontal rules. They create a &ldquo;thematic break&rdquo; between paragraph blocks. In Markdown, you can create it with three consecutive dashes <code>---</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus.</p>
 <hr>
-<h2 id="paragraphs">Paragraphs</h2>
-<p>Any text not starting with a special sign is written as normal, plain text and will be wrapped within <code>&lt;p&gt;&lt;/p&gt;</code> tags in the rendered HTML.</p>
-<p>So this body copy:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
-</span></span></code></pre></div><p>renders to this HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="text-markers">Text Markers</h2>
+<p>Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.</p>
+    </div>
+</div>
+<h2 id="text-markers">Text Markers</h2>
 <h3 id="bold">Bold</h3>
-<p>For emphasizing a snippet of text with a heavier font-weight.</p>
-<p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">**rendered as bold text**
-</span></span></code></pre></div><p>renders to:</p>
-<!-- markdownlint-disable MD036 -->
-<p><strong>rendered as bold text</strong></p>
-<!-- markdownlint-enable MD036 -->
-<p>and this HTML</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>rendered as bold text<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="italics">Italics</h3>
-<p>For emphasizing a snippet of text with italics.</p>
-<p>The following snippet of text is <em>rendered as italicized text</em>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">_rendered as italicized text_
-</span></span></code></pre></div><p>renders to:</p>
-<!-- markdownlint-disable MD036 -->
-<p><em>rendered as italicized text</em></p>
-<!-- markdownlint-enable MD036 -->
-<p>and this HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>rendered as italicized text<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="strikethrough">Strikethrough</h3>
-<p>In GFM (GitHub flavored Markdown) you can do strikethroughs.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">~~Strike through this text.~~
-</span></span></code></pre></div><p>Which renders to:</p>
-<p><del>Strike through this text.</del></p>
-<p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">del</span><span class="p">&gt;</span>Strike through this text.<span class="p">&lt;/</span><span class="nt">del</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="blockquotes">Blockquotes</h2>
-<p>For quoting blocks of content from another source within your document.</p>
-<p>Add <code>&gt;</code> before any text you want to quote.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">**Fusion Drive** combines a hard drive with a flash storage (solid-state drive) and presents it as a single logical volume with the space of both drives combined.
-</span></span></span></code></pre></div><p>Renders to:</p>
-<blockquote>
-<p><strong>Fusion Drive</strong> combines a hard drive with a flash storage (solid-state drive) and presents it as a single logical volume with the space of both drives combined.</p>
-</blockquote>
-<p>and this HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Fusion Drive<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> combines a hard drive with a flash storage (solid-state drive) and presents it as a single logical volume with the space of both drives combined.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Blockquotes can also be nested:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
-</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt;
-</span></span></span><span class="line"><span class="cl"><span class="k"></span><span class="ge">&gt; &gt; Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
-</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt;
-</span></span></span><span class="line"><span class="cl"><span class="k"></span><span class="ge">&gt; Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
-</span></span></span></code></pre></div><p>Renders to:</p>
-<blockquote>
-<p>Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.</p>
-<blockquote>
-<p>Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.</p>
-</blockquote>
-<p>Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.</p>
-</blockquote>
+<p>You can show importance of a snippet of text with a heavier font-weight by enclosing it with two asterisks <code>**</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">I am rendered with <span class="gs">**bold text**</span>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>I am rendered with <strong>bold text</strong></p>
+    </div>
+</div>
+<h3 id="italics">Italics</h3>
+<p>You can emphasize a snippet of text with italics by enclosing it with underscores <code>_</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">I am rendered with <span class="ge">_italicized text_</span>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>I am rendered with <em>italicized text</em></p>
+    </div>
+</div>
+<h3 id="strikethrough">Strikethrough</h3>
+<p>In GFM (GitHub flavored Markdown) you can do strikethroughs by enclosing text with two tildes <code>~~</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">~~Strike through this text~~
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p><del>Strike through this text</del></p>
+    </div>
+</div>
+<h2 id="text-substitution">Text substitution</h2>
+<p>This Markdown dialect supports an extension to combine multiple punctuation characters to single typographic entities. This will only be applied to text outside of code blocks or inline code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Double quotes <span class="sb">`&#34;`</span> and single quotes <span class="sb">`&#39;`</span> of enclosed text are replaced by <span class="ge">**</span>&#34;double curly quotes&#34;** and <span class="ge">**</span>&#39;single curly quotes&#39;**.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Double dashes <span class="sb">`--`</span> and triple dashes <span class="sb">`---`</span> are replaced by en-dash <span class="ge">**</span>--** and em-dash <span class="ge">**</span>---** entities.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Double arrows pointing left <span class="sb">`&lt;&lt;`</span> or right <span class="sb">`&gt;&gt;`</span> are replaced by arrow <span class="ge">**</span><span class="err">&lt;&lt;</span>** and <span class="ge">**</span>&gt;&gt;** entities.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Three consecutive dots <span class="sb">`...`</span> are replaced by an ellipsis <span class="ge">**</span>...** entity.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>Double quotes <code>&quot;</code> and single quotes <code>'</code> of enclosed text are replaced by <strong>&ldquo;double curly quotes&rdquo;</strong> and <strong>&lsquo;single curly quotes&rsquo;</strong>.</p>
+<p>Double dashes <code>--</code> and triple dashes <code>---</code> are replaced by en-dash <strong>&ndash;</strong> and em-dash <strong>&mdash;</strong> entities.</p>
+<p>Double arrows pointing left <code>&lt;&lt;</code> or right <code>&gt;&gt;</code> are replaced by arrow <strong>&laquo;</strong> and <strong>&raquo;</strong> entities.</p>
+<p>Three consecutive dots <code>...</code> are replaced by an ellipsis <strong>&hellip;</strong> entity.</p>
+    </div>
+</div>
 <h2 id="lists">Lists</h2>
 <h3 id="unordered">Unordered</h3>
-<p>A list of items in which the order of the items does not explicitly matter.</p>
-<p>You may use any of the following symbols to denote bullets for each list item:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">*</span> valid bullet
-</span></span><span class="line"><span class="cl"><span class="k">-</span> valid bullet
-</span></span><span class="line"><span class="cl">+ valid bullet
-</span></span></code></pre></div><p>For example</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">+ Lorem ipsum dolor sit amet
-</span></span><span class="line"><span class="cl">+ Consectetur adipiscing elit
-</span></span><span class="line"><span class="cl">+ Integer molestie lorem at massa
-</span></span><span class="line"><span class="cl">+ Facilisis in pretium nisl aliquet
-</span></span><span class="line"><span class="cl">+ Nulla volutpat aliquam velit
-</span></span><span class="line"><span class="cl">  <span class="k">-</span> Phasellus iaculis neque
-</span></span><span class="line"><span class="cl">  <span class="k">-</span> Purus sodales ultricies
+<p>You can write a list of items in which the order of the items does not explicitly matter.</p>
+<p>It is possible to nest lists by indenting an item for the next sublevel.</p>
+<p>You may use any of <code>-</code>, <code>*</code> or <code>+</code> to denote bullets for each list item but should not switch between those symbols inside one whole list.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">-</span> Lorem ipsum dolor sit amet
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Consectetur adipiscing elit
 </span></span><span class="line"><span class="cl">  <span class="k">-</span> Vestibulum laoreet porttitor sem
 </span></span><span class="line"><span class="cl">  <span class="k">-</span> Ac tristique libero volutpat at
-</span></span><span class="line"><span class="cl">+ Faucibus porta lacus fringilla vel
-</span></span><span class="line"><span class="cl">+ Aenean sit amet erat nunc
-</span></span><span class="line"><span class="cl">+ Eget porttitor lorem
-</span></span></code></pre></div><p>Renders to:</p>
-<!-- markdownlint-disable MD004 -->
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Nulla volutpat aliquam velit
+</span></span><span class="line"><span class="cl">  <span class="k">-</span> Phasellus iaculis neque
+</span></span><span class="line"><span class="cl">  <span class="k">-</span> Purus sodales ultricies
+</span></span><span class="line"><span class="cl"><span class="k">-</span> Faucibus porta lacus fringilla vel
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
 <ul>
 <li>Lorem ipsum dolor sit amet</li>
-<li>Consectetur adipiscing elit</li>
-<li>Integer molestie lorem at massa</li>
-<li>Facilisis in pretium nisl aliquet</li>
-<li>Nulla volutpat aliquam velit
+<li>Consectetur adipiscing elit
 <ul>
-<li>Phasellus iaculis neque</li>
-<li>Purus sodales ultricies</li>
 <li>Vestibulum laoreet porttitor sem</li>
 <li>Ac tristique libero volutpat at</li>
 </ul>
 </li>
-<li>Faucibus porta lacus fringilla vel</li>
-<li>Aenean sit amet erat nunc</li>
-<li>Eget porttitor lorem</li>
+<li>Nulla volutpat aliquam velit
+<ul>
+<li>Phasellus iaculis neque</li>
+<li>Purus sodales ultricies</li>
 </ul>
-<!-- markdownlint-enable MD004 -->
-<p>And this HTML</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Lorem ipsum dolor sit amet<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Consectetur adipiscing elit<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Integer molestie lorem at massa<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Facilisis in pretium nisl aliquet<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Nulla volutpat aliquam velit
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Phasellus iaculis neque<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Purus sodales ultricies<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Vestibulum laoreet porttitor sem<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Ac tristique libero volutpat at<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Faucibus porta lacus fringilla vel<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Aenean sit amet erat nunc<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Eget porttitor lorem<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="ordered">Ordered</h3>
-<p>A list of items in which the order of items does explicitly matter.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">1.</span> Lorem ipsum dolor sit amet
-</span></span><span class="line"><span class="cl"><span class="k">4.</span> Consectetur adipiscing elit
-</span></span><span class="line"><span class="cl"><span class="k">2.</span> Integer molestie lorem at massa
-</span></span><span class="line"><span class="cl"><span class="k">8.</span> Facilisis in pretium nisl aliquet
-</span></span><span class="line"><span class="cl"><span class="k">4.</span> Nulla volutpat aliquam velit
-</span></span><span class="line"><span class="cl"><span class="k">99.</span> Faucibus porta lacus fringilla vel
-</span></span><span class="line"><span class="cl"><span class="k">21.</span> Aenean sit amet erat nunc
-</span></span><span class="line"><span class="cl"><span class="k">6.</span> Eget porttitor lorem
-</span></span></code></pre></div><p>Renders to:</p>
-<ol>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Consectetur adipiscing elit</li>
-<li>Integer molestie lorem at massa</li>
-<li>Facilisis in pretium nisl aliquet</li>
-<li>Nulla volutpat aliquam velit</li>
+</li>
 <li>Faucibus porta lacus fringilla vel</li>
-<li>Aenean sit amet erat nunc</li>
-<li>Eget porttitor lorem</li>
-</ol>
-<p>And this HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Lorem ipsum dolor sit amet<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Consectetur adipiscing elit<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Integer molestie lorem at massa<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Facilisis in pretium nisl aliquet<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Nulla volutpat aliquam velit<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Faucibus porta lacus fringilla vel<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Aenean sit amet erat nunc<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Eget porttitor lorem<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
-</span></span></code></pre></div>
-<div class="box notices cstyle tip">
-  <div class="box-label"><i class="fa-fw fas fa-lightbulb"></i> Tip</div>
-  <div class="box-content">
-<p>If you just use <code>1.</code> for each number, Markdown will automatically number each item. For example:</p>
+</ul>
     </div>
 </div>
+<h3 id="ordered">Ordered</h3>
+<p>You can create a list of items in which the order of items does explicitly matter.</p>
+<p>It is possible to nest lists by indenting an item for the next sublevel.</p>
+<p>Markdown will automatically number each of your items consecutively. This means, the order number you are providing is irrelevant.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">1.</span> Lorem ipsum dolor sit amet
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Consectetur adipiscing elit
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Integer molestie lorem at massa
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Facilisis in pretium nisl aliquet
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Nulla volutpat aliquam velit
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Faucibus porta lacus fringilla vel
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Aenean sit amet erat nunc
-</span></span><span class="line"><span class="cl"><span class="k">1.</span> Eget porttitor lorem
-</span></span></code></pre></div><p>Renders to:</p>
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> Consectetur adipiscing elit
+</span></span><span class="line"><span class="cl">    <span class="k">1.</span> Integer molestie lorem at massa
+</span></span><span class="line"><span class="cl">    <span class="k">7.</span> Facilisis in pretium nisl aliquet
+</span></span><span class="line"><span class="cl"><span class="k">99.</span> Nulla volutpat aliquam velit
+</span></span><span class="line"><span class="cl">    <span class="k">1.</span> Faucibus porta lacus fringilla vel
+</span></span><span class="line"><span class="cl">    <span class="k">1.</span> Aenean sit amet erat nunc
+</span></span><span class="line"><span class="cl"><span class="k">17.</span> Eget porttitor lorem
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
 <ol>
 <li>Lorem ipsum dolor sit amet</li>
-<li>Consectetur adipiscing elit</li>
+<li>Consectetur adipiscing elit
+<ol>
 <li>Integer molestie lorem at massa</li>
 <li>Facilisis in pretium nisl aliquet</li>
-<li>Nulla volutpat aliquam velit</li>
+</ol>
+</li>
+<li>Nulla volutpat aliquam velit
+<ol>
 <li>Faucibus porta lacus fringilla vel</li>
 <li>Aenean sit amet erat nunc</li>
+</ol>
+</li>
 <li>Eget porttitor lorem</li>
 </ol>
+    </div>
+</div>
+<h3 id="tasks">Tasks</h3>
+<p>In GFM (GitHub flavored Markdown) you can add task lists resulting in checked or unchecked non-clickable items</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">- [x]</span> Basic Test
+</span></span><span class="line"><span class="cl"><span class="k">- [ ]</span> More Tests
+</span></span><span class="line"><span class="cl">  <span class="k">- [x]</span> View
+</span></span><span class="line"><span class="cl">  <span class="k">- [x]</span> Hear
+</span></span><span class="line"><span class="cl">  <span class="k">- [ ]</span> Smell
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Basic Test</li>
+<li><input disabled="" type="checkbox"> More Tests
+<ul>
+<li><input checked="" disabled="" type="checkbox"> View</li>
+<li><input checked="" disabled="" type="checkbox"> Hear</li>
+<li><input disabled="" type="checkbox"> Smell</li>
+</ul>
+</li>
+</ul>
+    </div>
+</div>
+<h3 id="defintions">Defintions</h3>
+<p>This Markdown dialect supports an extension to add defintion lists. Definition lists are made of terms and definitions of these terms, much like in a dictionary.</p>
+<p>A definition list in Markdown Extra is made of a single-line term followed by a colon and the definition for that term. You can also associate more than one term to a definition.</p>
+<p>If you add empty lines around the definition terms, additional vertical space will be generated. Also multiple paragraphs are possible</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Apple
+</span></span><span class="line"><span class="cl">: Pomaceous fruit of plants of the genus Malus in the family Rosaceae.
+</span></span><span class="line"><span class="cl">: An American computer company.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Orange
+</span></span><span class="line"><span class="cl">: The fruit of an evergreen tree of the genus Citrus.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  You can make juice out of it.
+</span></span><span class="line"><span class="cl">: A telecommunication company.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  You can&#39;t make juice out of it.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<dl>
+<dt>Apple</dt>
+<dd>Pomaceous fruit of plants of the genus Malus in the family Rosaceae.</dd>
+<dd>An American computer company.</dd>
+<dt>Orange</dt>
+<dd>The fruit of an evergreen tree of the genus Citrus.
+<p>You can make juice out of it.</p>
+</dd>
+<dd>A telecommunication company.
+<p>You can&rsquo;t make juice out of it.</p>
+</dd>
+</dl>
+    </div>
+</div>
 <h2 id="code">Code</h2>
-<h3 id="inline-code">Inline code</h3>
-<p>Wrap inline snippets of code with <code>`</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">In this example, <span class="sb">`&lt;div&gt;&lt;/div&gt;`</span> should be wrapped as <span class="gs">**code**</span>.
-</span></span></code></pre></div><p>Renders to:</p>
-<p>In this example, <code>&lt;div&gt;&lt;/div&gt;</code> should be wrapped as <strong>code</strong>.</p>
-<p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>In this example, <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span><span class="ni">&amp;lt;</span>div<span class="ni">&amp;gt;&amp;lt;</span>/div<span class="ni">&amp;gt;</span><span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span> should be wrapped as <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>code<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="indented-code">Indented code</h3>
-<p>Or indent several lines of code by at least two spaces, as in:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">    // Some comments
+<h3 id="inline-code">Inline Code</h3>
+<p>Inline snippets of code can be wrapped with backticks <code>`</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">In this example, <span class="sb">`&lt;div&gt;&lt;/div&gt;`</span> is marked as code.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>In this example, <code>&lt;div&gt;&lt;/div&gt;</code> is marked as code.</p>
+    </div>
+</div>
+<h3 id="indented-code-block">Indented Code Block</h3>
+<p>A simple code block can be generated by indenting several lines of code by at least two spaces.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Be impressed by my advanced code:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // Some comments
 </span></span><span class="line"><span class="cl">    line 1 of code
 </span></span><span class="line"><span class="cl">    line 2 of code
 </span></span><span class="line"><span class="cl">    line 3 of code
-</span></span></code></pre></div><p>Renders to:</p>
-<!-- markdownlint-disable MD046 -->
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>Be impressed by my advanced code:</p>
 <pre><code>// Some comments
 line 1 of code
 line 2 of code
 line 3 of code
 </code></pre>
-<!-- markdownlint-enable MD046 -->
-<p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    // Some comments
-</span></span><span class="line"><span class="cl">    line 1 of code
-</span></span><span class="line"><span class="cl">    line 2 of code
-</span></span><span class="line"><span class="cl">    line 3 of code
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="block-code-fences">Block code &ldquo;fences&rdquo;</h3>
-<p>Use &ldquo;fences&rdquo;  <code>```</code> to block in multiple lines of code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">```
-</span></span><span class="line"><span class="cl">Sample text here...
-</span></span><span class="line"><span class="cl">```
-</span></span></code></pre></div><p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>Sample text here...<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="syntax-highlighting">Syntax highlighting</h3>
-<p>GFM, or &ldquo;GitHub Flavored Markdown&rdquo; also supports syntax highlighting. To activate it, usually you simply add the file extension of the language you want to use directly after the first code &ldquo;fence&rdquo;, <code>```js</code>, and syntax highlighting will automatically be applied in the rendered HTML.</p>
+    </div>
+</div>
+<h3 id="fenced-code-block">Fenced Code Block</h3>
+<p>If you want to gain more control of your code block you can enclose your code by at least three backticks <code>```</code> a so called fence.</p>
+<p>In GFM (GitHub Flavored Markdown) you can also add a language specifier directly after the opening fence, <code>```js</code>, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.</p>
 <p>See <a href="../../cont/syntaxhighlight/">Code Highlighting</a> for additional documentation.</p>
-<p>For example, to apply syntax highlighting to JavaScript code:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">```js
 </span></span><span class="line"><span class="cl">grunt.initConfig({
 </span></span><span class="line"><span class="cl">  assemble: {
@@ -447,7 +458,10 @@ line 3 of code
 </span></span><span class="line"><span class="cl">  }
 </span></span><span class="line"><span class="cl">};
 </span></span><span class="line"><span class="cl">```
-</span></span></code></pre></div><p>Renders to:</p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">assemble</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
@@ -466,14 +480,19 @@ line 3 of code
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><h2 id="tables">Tables</h2>
-<p>Tables are created by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.</p>
+</span></span></code></pre></div>    </div>
+</div>
+<h2 id="tables">Tables</h2>
+<p>In GFM (GitHub flavored Markdown) you can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">| Option | Description |
 </span></span><span class="line"><span class="cl">| ------ | ----------- |
 </span></span><span class="line"><span class="cl">| data   | path to data files to supply the data that will be passed into templates. |
 </span></span><span class="line"><span class="cl">| engine | engine to be used for processing templates. Handlebars is the default. |
 </span></span><span class="line"><span class="cl">| ext    | extension to be used for dest files. |
-</span></span></code></pre></div><p>Renders to:</p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
 <table>
 <thead>
 <tr>
@@ -496,205 +515,298 @@ line 3 of code
 </tr>
 </tbody>
 </table>
-<p>And this HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Option<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Description<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>data<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>path to data files to supply the data that will be passed into templates.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>engine<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>engine to be used for processing templates. Handlebars is the default.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>ext<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>extension to be used for dest files.<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="right-aligned-text">Right aligned text</h3>
-<p>Adding a colon on the right side of the dashes below any heading will right align text for that column.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">| Option | Description |
-</span></span><span class="line"><span class="cl">| ------:| -----------:|
-</span></span><span class="line"><span class="cl">| data   | path to data files to supply the data that will be passed into templates. |
-</span></span><span class="line"><span class="cl">| engine | engine to be used for processing templates. Handlebars is the default. |
-</span></span><span class="line"><span class="cl">| ext    | extension to be used for dest files. |
-</span></span></code></pre></div><table>
+    </div>
+</div>
+<h3 id="aligned-columns">Aligned Columns</h3>
+<p>Adding a colon on the left and/or right side of the dashes below any heading will align the text for that column accordingly.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">| Option | Number | Description |
+</span></span><span class="line"><span class="cl">| ------:|:------:|:----------- |
+</span></span><span class="line"><span class="cl">| data   | 1      | path to data files to supply the data that will be passed into templates. |
+</span></span><span class="line"><span class="cl">| engine | 2      | engine to be used for processing templates. Handlebars is the default. |
+</span></span><span class="line"><span class="cl">| ext    | 3      | extension to be used for dest files. |
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<table>
 <thead>
 <tr>
 <th style="text-align:right">Option</th>
-<th style="text-align:right">Description</th>
+<th style="text-align:center">Number</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:right">data</td>
-<td style="text-align:right">path to data files to supply the data that will be passed into templates.</td>
+<td style="text-align:center">1</td>
+<td style="text-align:left">path to data files to supply the data that will be passed into templates.</td>
 </tr>
 <tr>
 <td style="text-align:right">engine</td>
-<td style="text-align:right">engine to be used for processing templates. Handlebars is the default.</td>
+<td style="text-align:center">2</td>
+<td style="text-align:left">engine to be used for processing templates. Handlebars is the default.</td>
 </tr>
 <tr>
 <td style="text-align:right">ext</td>
-<td style="text-align:right">extension to be used for dest files.</td>
+<td style="text-align:center">3</td>
+<td style="text-align:left">extension to be used for dest files.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="two-tables-adjacent">Two tables adjacent</h3>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ext</td>
-<td>extension to be used for dest files.</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ext</td>
-<td>extension to be used for dest files.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="links">Links</h2>
-<h3 id="basic-link">Basic link</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[<span class="nt">Assemble</span>](<span class="na">http://assemble.io</span>)
-</span></span></code></pre></div><p>Renders to (hover over the link, there is no tooltip):</p>
-<p><a href="http://assemble.io">Assemble</a></p>
-<p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://assemble.io&#34;</span><span class="p">&gt;</span>Assemble<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="add-a-tooltip">Add a tooltip</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[<span class="nt">Upstage</span>](<span class="na">https://github.com/upstage/ &#34;Visit Upstage!&#34;</span>)
-</span></span></code></pre></div><p>Renders to (hover over the link, there should be a tooltip):</p>
-<p><a href="https://github.com/upstage/" title="Visit Upstage!">Upstage</a></p>
-<p>HTML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/upstage/&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Visit Upstage!&#34;</span><span class="p">&gt;</span>Upstage<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="named-anchors">Named Anchors</h3>
-<p>Named anchors enable you to jump to the specified anchor point on the same page. For example, each of these chapters:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># Table of Contents
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
-</span></span><span class="line"><span class="cl"><span class="k">-</span> [<span class="nt">Chapter 1</span>](<span class="na">#chapter-1</span>)
-</span></span><span class="line"><span class="cl"><span class="k">-</span> [<span class="nt">Chapter 2</span>](<span class="na">#chapter-2</span>)
-</span></span><span class="line"><span class="cl"><span class="k">-</span> [<span class="nt">Chapter 3</span>](<span class="na">#chapter-3</span>)
-</span></span></code></pre></div><p>will jump to these sections:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## Chapter 1 &lt;a id=&#34;chapter-1&#34;&gt;&lt;/a&gt;
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 2 &lt;a id=&#34;chapter-2&#34;&gt;&lt;/a&gt;
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 3 &lt;a id=&#34;chapter-3&#34;&gt;&lt;/a&gt;
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
-</span></span></code></pre></div>
-<div class="box notices cstyle note">
-  <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+    </div>
+</div>
+<h2 id="blockquotes">Blockquotes</h2>
+<p>For quoting blocks of content from another source within your document add <code>&gt;</code> before any text you want to quote.</p>
+<p>Blockquotes can also be nested.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt;
+</span></span></span><span class="line"><span class="cl"><span class="k"></span><span class="ge">&gt; &gt; Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt;
+</span></span></span><span class="line"><span class="cl"><span class="k"></span><span class="ge">&gt; Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
+</span></span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
-<p>Note that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.</p>
+<blockquote>
+<p>Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.</p>
+<blockquote>
+<p>Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.</p>
+</blockquote>
+<p>Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.</p>
+</blockquote>
+    </div>
+</div>
+<h2 id="links">Links</h2>
+<h3 id="autolink">Autolink</h3>
+<p>In GFM (GitHub Flavored Markdown) absolute URLs will automatically be converted into a link.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">This is a link to https://example.com.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>This is a link to <a href="https://example.com">https://example.com</a>.</p>
+    </div>
+</div>
+<h3 id="basic-link">Basic Link</h3>
+<p>You can explicitly define links in case you want to use non-absolute URLs or want to give different text.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[<span class="nt">Assemble</span>](<span class="na">http://assemble.io</span>)
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p><a href="http://assemble.io">Assemble</a></p>
+    </div>
+</div>
+<h3 id="link-with-tooltip">Link with Tooltip</h3>
+<p>For even further information, you can add an additional text, displayed in a tooltip on hovering over the link.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[<span class="nt">Upstage</span>](<span class="na">https://github.com/upstage/ &#34;Visit Upstage!&#34;</span>)
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p><a href="https://github.com/upstage/" title="Visit Upstage!">Upstage</a></p>
+    </div>
+</div>
+<h3 id="link-references">Link References</h3>
+<p>Links can be simplyfied for recurring reuse by using a reference ID to later define the URL location. This simplyfies writing if you want to use a link more than once in a document.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[Example][somelinkID]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[somelinkID]: https://example.com &#34;Go to example domain&#34;
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p><a href="https://example.com" title="Go to example domain">Example</a></p>
+    </div>
+</div>
+<h3 id="footnotes">Footnotes</h3>
+<p>Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.</p>
+<p>Usually the list of footnotes will be shown at the end of your document. If we use a footnote in a notice box it will instead be listed at the end of its box.</p>
+<p>Footnotes can contain block elements, which means that you can put multiple paragraphs, lists, blockquotes and so on in a footnote. It works the same as for list items, just indent the following paragraphs by four spaces in the footnote definition.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">That&#39;s some text with a footnote[^1]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[^1]: And that&#39;s the footnote.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">That&#39;s some more text with a footnote.[^someid]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[^someid]:
+</span></span><span class="line"><span class="cl">    Anything of interest goes here.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Blue light glows blue.
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>That&rsquo;s some text with a footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>That&rsquo;s some more text with a footnote.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>And that&rsquo;s the footnote.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Anything of interest goes here.</p>
+<p>Blue light glows blue.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
     </div>
 </div>
 <h2 id="images">Images</h2>
-<p>Images have a similar syntax to links but include a preceding exclamation mark:</p>
+<h3 id="basic-images">Basic Images</h3>
+<p>Images have a similar syntax to links but include a preceding exclamation mark.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Spock</span>](<span class="na">https://octodex.github.com/images/spocktocat.png</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
-<a href="https://octodex.github.com/images/spocktocat.png?width=20vw" data-featherlight="image">
-<img src="https://octodex.github.com/images/spocktocat.png?width=20vw" alt="Spock" style="height: auto; width: 20vw;" loading="lazy">
+<a href="https://octodex.github.com/images/spocktocat.png?width=20vw&amp;classes=bg-white" data-featherlight="image">
+<img src="https://octodex.github.com/images/spocktocat.png?width=20vw&amp;classes=bg-white" alt="Spock" class="bg-white" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<p>Like links, images also have a footnote style syntax, resulting in a tooltip:</p>
+    </div>
+</div>
+<h3 id="image-with-tooltip">Image with Tooltip</h3>
+<p>Like links, images can also be given a tooltip.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Picard</span>](<span class="na">https://octodex.github.com/images/jean-luc-picat.jpg &#34;Jean Luc Picard&#34;</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 <a href="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" data-featherlight="image">
 <img src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" alt="Picard" title="Jean Luc Picard" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<p>Images can also be linked by reference ID to later define the URL location:</p>
+    </div>
+</div>
+<h3 id="image-references">Image References</h3>
+<p>Images can also be linked by reference ID to later define the URL location. This simplyfies writing if you want to use an image more than once in a document.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![La Forge][laforge]
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">[laforge]: https://octodex.github.com/images/trekkie.jpg &#34;Geordi La Forge&#34;
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 <a href="https://octodex.github.com/images/trekkie.jpg?width=20vw" data-featherlight="image">
 <img src="https://octodex.github.com/images/trekkie.jpg?width=20vw" alt="La Forge" title="Geordi La Forge" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<h3 id="further-image-formatting">Further image formatting</h3>
-<p>The Hugo Markdown parser supports additional non-standard functionality.</p>
-<h4 id="resizing-image">Resizing image</h4>
-<p>Add HTTP parameters <code>width</code> and/or <code>height</code> to the link image to resize the image. Values are CSS values (default is <code>auto</code>).</p>
+    </div>
+</div>
+<h3 id="further-image-formatting">Further Image Formatting</h3>
+<p>This theme allows additional non-standard formatting by setting query parameter at the end of the image URL.</p>
+<h4 id="resizing">Resizing</h4>
+<p>Add query parameter <code>width</code> and/or <code>height</code> to the link image to resize the image. Values are CSS values (default is <code>auto</code>).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?width=20vw</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
-<a href="https://octodex.github.com/images/minion.png?width=20vw" data-featherlight="image">
-<img src="https://octodex.github.com/images/minion.png?width=20vw" alt="Minion" style="height: auto; width: 20vw;" loading="lazy">
+<a href="https://octodex.github.com/images/minion.png?width=20vw&amp;classes=bg-white" data-featherlight="image">
+<img src="https://octodex.github.com/images/minion.png?width=20vw&amp;classes=bg-white" alt="Minion" class="bg-white" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
+    </div>
+</div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
-<a href="https://octodex.github.com/images/minion.png?height=50px" data-featherlight="image">
-<img src="https://octodex.github.com/images/minion.png?height=50px" alt="Minion" style="height: 50px; width: auto;" loading="lazy">
+<a href="https://octodex.github.com/images/minion.png?height=50px&amp;classes=bg-white" data-featherlight="image">
+<img src="https://octodex.github.com/images/minion.png?height=50px&amp;classes=bg-white" alt="Minion" class="bg-white" style="height: 50px; width: auto;" loading="lazy">
 </a></p>
+    </div>
+</div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 		
-<a href="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw" data-featherlight="image">
-<img src="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw" alt="Minion" style="height: 50px; width: 40vw;" loading="lazy">
+<a href="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw&amp;classes=bg-white" data-featherlight="image">
+<img src="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw&amp;classes=bg-white" alt="Minion" class="bg-white" style="height: 50px; width: 40vw;" loading="lazy">
 </a></p>
-<h4 id="add-css-classes">Add CSS classes</h4>
-<p>Add a HTTP <code>classes</code> parameter to the link image to add CSS classes. Add some of the predefined values or even define your own in your CSS.</p>
-<h5 id="shadow">shadow</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Spidertocat</span>](<span class="na">https://octodex.github.com/images/spidertocat.png?classes=shadow</span>)
-</span></span></code></pre></div><p>
+    </div>
+</div>
+<h4 id="css-classes">CSS Classes</h4>
+<p>Add a query parameter <code>classes</code> to the link image to add CSS classes. Add some of the predefined values or even define your own in your CSS.</p>
+<h5 id="shadow">Shadow</h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Spidertocat</span>](<span class="na">https://octodex.github.com/images/spidertocat.png?classes=shadow,bg-white</span>)
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
-<a href="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow" data-featherlight="image">
-<img src="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow" alt="Spidertocat" class="shadow" style="height: auto; width: 20vw;" loading="lazy">
+<a href="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow,bg-white" data-featherlight="image">
+<img src="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow,bg-white" alt="Spidertocat" class="shadow bg-white" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<h5 id="border">border</h5>
+    </div>
+</div>
+<h5 id="border">Border</h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">DrOctocat</span>](<span class="na">https://octodex.github.com/images/droctocat.png?classes=border</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 <a href="https://octodex.github.com/images/droctocat.png?width=20vw&amp;classes=border" data-featherlight="image">
 <img src="https://octodex.github.com/images/droctocat.png?width=20vw&amp;classes=border" alt="DrOctocat" class="border" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<h5 id="left">left</h5>
+    </div>
+</div>
+<h5 id="left">Left</h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Supertocat</span>](<span class="na">https://octodex.github.com/images/okal-eltocat.jpg?classes=left</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 <a href="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&amp;classes=left" data-featherlight="image">
 <img src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&amp;classes=left" alt="Supertocat" class="left" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<h5 id="right">right</h5>
+    </div>
+</div>
+<h5 id="right">Right</h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Riddlocat</span>](<span class="na">https://octodex.github.com/images/riddlocat.jpg?classes=right</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 <a href="https://octodex.github.com/images/riddlocat.jpg?width=20vw&amp;classes=right" data-featherlight="image">
 <img src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&amp;classes=right" alt="Riddlocat" class="right" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
-<h5 id="inline">inline</h5>
+    </div>
+</div>
+<h5 id="inline">Inline</h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Spidertocat</span>](<span class="na">https://octodex.github.com/images/spidertocat.png?classes=inline</span>)
 </span></span><span class="line"><span class="cl">![<span class="nt">DrOctocat</span>](<span class="na">https://octodex.github.com/images/droctocat.png?classes=inline</span>)
 </span></span><span class="line"><span class="cl">![<span class="nt">Supertocat</span>](<span class="na">https://octodex.github.com/images/okal-eltocat.jpg?classes=inline</span>)
 </span></span><span class="line"><span class="cl">![<span class="nt">Riddlocat</span>](<span class="na">https://octodex.github.com/images/riddlocat.jpg?classes=inline</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
-<a href="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline" data-featherlight="image">
-<img src="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline" alt="Spidertocat" class="inline" style="height: auto; width: 10vw;" loading="lazy">
+<a href="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline,bg-white" data-featherlight="image">
+<img src="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline,bg-white" alt="Spidertocat" class="inline bg-white" style="height: auto; width: 10vw;" loading="lazy">
 </a>
 
 		
@@ -711,19 +823,33 @@ line 3 of code
 <a href="https://octodex.github.com/images/riddlocat.jpg?width=10vw&amp;classes=inline" data-featherlight="image">
 <img src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&amp;classes=inline" alt="Riddlocat" class="inline" style="height: auto; width: 10vw;" loading="lazy">
 </a></p>
+    </div>
+</div>
 <h5 id="combination">Combination</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">X-tocat</span>](<span class="na">https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left</span>)
-</span></span></code></pre></div><p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">X-tocat</span>](<span class="na">https://octodex.github.com/images/xtocat.jpg?classes=shadow,border,left</span>)
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
 <a href="https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left" data-featherlight="image">
 <img src="https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left" alt="X-tocat" class="shadow border left" style="height: auto; width: 20vw;" loading="lazy">
 </a></p>
+    </div>
+</div>
 <h4 id="lightbox">Lightbox</h4>
-<p>Add a HTTP <code>featherlight</code> parameter to the link image to disable lightbox. By default lightbox is enabled using the featherlight.js plugin. You can disable this by defining <code>featherlight</code> to <code>false</code>.</p>
+<p>Add the query parameter <code>featherlight=false</code> to the image link to disable the lightbox.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Homercat</span>](<span class="na">https://octodex.github.com/images/homercat.png?featherlight=false</span>)
-</span></span></code></pre></div><p>
+</span></span></code></pre></div>
+<div class="box notices cstyle secondary">
+  <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
+  <div class="box-content">
+<p>
 		
-<img src="https://octodex.github.com/images/homercat.png?width=20vw&amp;featherlight=false" alt="Homercat" style="height: auto; width: 20vw;" loading="lazy"></p>
+<img src="https://octodex.github.com/images/homercat.png?width=20vw&amp;featherlight=false&amp;classes=bg-white" alt="Homercat" class="bg-white" style="height: auto; width: 20vw;" loading="lazy"></p>
+    </div>
+</div>
 
             <footer class="footline">
             </footer>
@@ -803,12 +929,12 @@ line 3 of code
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1669884724" defer></script>
-        <script src="../../js/lunr.min.js?1669884724" defer></script>
-        <script src="../../js/lunr.stemmer.support.min.js?1669884724" defer></script>
-        <script src="../../js/lunr.multi.min.js?1669884724" defer></script>
-        <script src="../../js/lunr.en.min.js?1669884724" defer></script>
-        <script src="../../js/search.js?1669884724" defer></script>
+        <script src="../../js/auto-complete.js?1669993548" defer></script>
+        <script src="../../js/lunr.min.js?1669993548" defer></script>
+        <script src="../../js/lunr.stemmer.support.min.js?1669993548" defer></script>
+        <script src="../../js/lunr.multi.min.js?1669993548" defer></script>
+        <script src="../../js/lunr.en.min.js?1669993548" defer></script>
+        <script src="../../js/search.js?1669993548" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -924,13 +1050,13 @@ line 3 of code
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../../js/buttons.js?1669884724"></script>
+          <script async src="../../js/buttons.js?1669993548"></script>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1669884724" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1669884724" defer></script>
-    <script src="../../js/featherlight.min.js?1669884724" defer></script>
-    <script src="../../js/theme.js?1669884724" defer></script>
+    <script src="../../js/clipboard.min.js?1669993548" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1669993548" defer></script>
+    <script src="../../js/featherlight.min.js?1669993548" defer></script>
+    <script src="../../js/theme.js?1669993548" defer></script>
   </body>
 </html>
