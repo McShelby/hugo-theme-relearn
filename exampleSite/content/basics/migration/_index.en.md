@@ -18,6 +18,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`badge` shortcode]({{% relref "shortcodes/badge" %}}) is now available to add highly configurable markers to your content as you can see it on this page.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hudo Markdown extensions, namely [task lists]({{% relref "cont/markdown#tasks" %}}), [defintion lists]({{% relref "cont/markdown#defintions" %}}) and [footnotes]({{% relref "cont/markdown#footnotes" %}}).
+
 ---
 
 ## 5.7.0

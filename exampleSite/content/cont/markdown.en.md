@@ -127,7 +127,7 @@ I am rendered with _italicized text_
 
 ### Strikethrough
 
-In GFM (GitHub flavored Markdown) you can do strikethroughs by enclosing text with two tildes `~~`.
+In GFM (GitHub Flavored Markdown) you can do strikethroughs by enclosing text with two tildes `~~`.
 
 ````markdown
 ~~Strike through this text~~
@@ -225,7 +225,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Tasks
 
-In GFM (GitHub flavored Markdown) you can add task lists resulting in checked or unchecked non-clickable items
+In GFM (GitHub Flavored Markdown) you can add task lists resulting in checked or unchecked non-clickable items
 
 ````markdown
 - [x] Basic Test
@@ -371,7 +371,7 @@ grunt.initConfig({
 
 ## Tables
 
-In GFM (GitHub flavored Markdown) you can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
+In GFM (GitHub Flavored Markdown) you can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
 
 ````markdown
 | Option | Description |

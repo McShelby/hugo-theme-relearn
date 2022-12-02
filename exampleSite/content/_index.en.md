@@ -23,6 +23,7 @@ See [what's new]({{% relref "basics/migration" %}}) within the latest update.
 - Automatic next/prev buttons to navigate through menu entries
 - [Automatic Search]({{%relref "basics/configuration#activate-search" %}})
 - [Dedicated search page]({{%relref "basics/configuration#activate-dedicated-search-page" %}})
+- [Support for GFM]({{% relref "cont/markdown" %}}) (GitHub Flavored Markdown)
 - [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
 - [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
 - Support for languages written right to left
