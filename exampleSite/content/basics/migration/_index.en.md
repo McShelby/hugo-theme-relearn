@@ -22,6 +22,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hugo Markdown extensions, namely [task lists]({{% relref "cont/markdown#tasks" %}}), [defintion lists]({{% relref "cont/markdown#defintions" %}}) and [footnotes]({{% relref "cont/markdown#footnotes" %}}).
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} A new color `--ACCENT-color` was introduced which is used for highlightning search results on the page. In case you simply don't care, you don't need to change anything in your variant stylesheet as the old `yellow` color is still used as default.
+
 ---
 
 ## 5.7.0
