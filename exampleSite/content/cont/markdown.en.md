@@ -435,7 +435,7 @@ Blockquotes can also be nested.
 
 ### Autolink
 
-In GFM (GitHub Flavored Markdown) an absolute URLs will automatically be converted into a link.
+In GFM (GitHub Flavored Markdown) absolute URLs will automatically be converted into a link.
 
 ````markdown
 This is a link to https://example.com.
@@ -468,6 +468,22 @@ For even further information, you can add an additional text, displayed in a too
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
 [Upstage](https://github.com/upstage/ "Visit Upstage!")
+{{% /notice %}}
+
+### Link References
+
+Links can be simplyfied for recurring reuse by using a reference ID to later define the URL location. This simplyfies writing if you want to use a link more than once in a document.
+
+````markdown
+[Example][somelinkID]
+
+[somelinkID]: https://example.com "Go to example domain"
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+[Example][somelinkID]
+
+[somelinkID]: https://example.com "Go to example domain"
 {{% /notice %}}
 
 ### Footnotes
@@ -518,7 +534,7 @@ Images have a similar syntax to links but include a preceding exclamation mark.
 ![Spock](https://octodex.github.com/images/spocktocat.png?width=20vw&classes=bg-white)
 {{% /notice %}}
 
-### Images with Tooltip
+### Image with Tooltip
 
 Like links, images can also be given a tooltip.
 
