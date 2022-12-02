@@ -184,15 +184,19 @@ You can combine the badge with the [`icon` shortcode]({{% relref "shortcodes/ico
 In this case you need to declare `{{</* badge */>}}` instead of `{{%/* badge */%}}`. Note, that in this case it is not possible to put markdown in the content.
 
 ````go
-{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge */>}}
-{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}
+{{</* badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}}{{< /badge */>}}  
+{{</* badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}  
+{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge */>}}  
+{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}  
+{{</* badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge */>}}  
+{{</* badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}
 ````
 
-{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}}{{< /badge >}}
-{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
-{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}
-{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
-{{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}
+{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}}{{< /badge >}}  
+{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}  
+{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}  
+{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}  
+{{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}  
 {{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
 
 #### Inside of Text

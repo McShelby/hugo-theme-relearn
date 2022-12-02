@@ -61,13 +61,13 @@ While the examples are using shortcodes with positional parameter you are free t
 |:----------------------|:---------|:----------------|:------------|
 | **icon**              | 1        | _&lt;empty&gt;_ | [Font Awesome icon name]({{%relref "#finding-an-icon" %}}) to be displayed. It will be displayed in the text color of its according context. |
 
-## Finding an icon
+### Finding an icon
 
 Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/v5/search?m=free). Notice that the **free** filter is enabled, as only the free icons are available by default.
 
 Once on the Font Awesome page for a specific icon, for example the page for the [heart](https://fontawesome.com/v5/icons/heart?s=solid), copy the icon name and paste into the Markdown content.
 
-## Customising Icons
+### Customising Icons
 
 Font Awesome provides many ways to modify the icon
 
@@ -80,7 +80,7 @@ Check the full documentation on [web fonts with CSS](https://fontawesome.com/how
 
 ## Examples
 
-### Standard Use
+### Standard Usage
 
 ````go
 Built with {{%/* icon heart */%}} by Relearn and Hugo
