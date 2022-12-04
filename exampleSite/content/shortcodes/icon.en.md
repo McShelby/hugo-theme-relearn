@@ -1,5 +1,5 @@
 +++
-aliases = "/en/cont/icons"
+aliases = "/cont/icons"
 description = "Nice icons for your page"
 title = "Icon"
 +++
