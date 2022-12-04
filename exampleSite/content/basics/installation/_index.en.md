@@ -98,5 +98,5 @@ hugo
 A `public` folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.
 
 {{% notice note %}}
-This website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)). Alternatively, you can use [GitHub pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
+This website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)). Alternatively, you can use [GitHub pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
 {{% /notice %}}
