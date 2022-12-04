@@ -14,7 +14,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.8.0
+## 5.8.0 (not yet released)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`badge` shortcode]({{% relref "shortcodes/badge" %}}) is now available to add highly configurable markers to your content as you can see it on this page.
 
@@ -26,7 +26,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.7.0
+## 5.7.0 (2022-11-29)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The Korean language translation for this theme is now available with the language code `ko`. Formerly the country code `kr` was used instead.
 
@@ -36,7 +36,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.6.0
+## 5.6.0 (2022-11-18)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
 
@@ -60,7 +60,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.5.0
+## 5.5.0 (2022-11-06)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.
 
@@ -74,7 +74,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.4.0
+## 5.4.0 (2022-11-01)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings]({{% relref "basics/configuration#serving-your-page-from-the-filesystem" %}}) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
 
@@ -90,7 +90,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.3.0
+## 5.3.0 (2022-10-07)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. Although the functionality of the new implementation works with old browsers (Internet Explorer 11), the display of the expander icons does not and is limited to modern browsers.
 
@@ -100,13 +100,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.2.0
+## 5.2.0 (2022-08-03)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} If you've set `collapsibleMenu = true` in your `config.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
 
 ---
 
-## 5.1.0
+## 5.1.0 (2022-07-15)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
@@ -125,7 +125,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.0.0
+## 5.0.0 (2022-07-05)
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The theme changed how JavaScript and CSS dependencies are loaded to provide a better performance. In case you've added own JavaScript code that depends on the themes jQuery implementation, you have to put it into a separate `*.js` file (if not already) and add the `defer` keyword to the `script` element. Eg.
 
@@ -149,7 +149,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 4.2.0
+## 4.2.0 (2022-06-23)
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The second parameter for the [`include` shortcode]({{% relref "shortcodes/include" %}}) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.
 
@@ -163,13 +163,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 4.1.0
+## 4.1.0 (2022-06-12)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} While fixing issues with the search functionality for non Latin languages, you can now [configure to have multiple languages on a single page]({{% relref "cont/i18n/#search-with-mixed-language-support" %}}).
 
 ---
 
-## 4.0.0
+## 4.0.0 (2022-06-05)
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The `custom_css` config parameter was removed from the configuration. If used in an existing installation, it can be achieved by overriding the `custom-header.html` template in a much more generic manner.
 
@@ -189,7 +189,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 3.4.0
+## 3.4.0 (2022-04-03)
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} If you had previously overwritten the `custom-footer.html` partial to add visual elements below the content of your page, you have to move this content to the new partial `content-footer.html`. `custom-footer.html` was never meant to contain HTML other than additional styles and JavaScript.
 
@@ -201,7 +201,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 3.3.0
+## 3.3.0 (2022-03-28)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Introduction of new CSS variables to set the font. The theme distinguishes between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
 
@@ -209,7 +209,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 3.2.0
+## 3.2.0 (2022-03-19)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
@@ -221,13 +221,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 3.1.0
+## 3.1.0 (2022-03-15)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`attachment`]({{% relref "shortcodes/attachments" %}}) and [`notice`]({{% relref "shortcodes/notice" %}}) shortcodes have a new parameter to override the default icon. Allowed values are all [Font Awesome 5 Free](https://fontawesome.com/v5/search?m=free) icons.
 
 ---
 
-## 3.0.0
+## 3.0.0 (2022-02-22)
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
@@ -257,7 +257,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 2.9.0
+## 2.9.0 (2021-11-19)
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
 
@@ -295,7 +295,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 2.8.0
+## 2.8.0 (2021-11-03)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for Czech.
 
@@ -305,25 +305,25 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 2.7.0
+## 2.7.0 (2021-10-24)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Optional second parameter for [`notice`]({{% relref "shortcodes/notice" %}}) shortcode to set title in box header.
 
 ---
 
-## 2.6.0
+## 2.6.0 (2021-10-21)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation]({{% relref "basics/configuration/#a-word-on-running-your-site-in-a-subfolder" %}}) for a detailed example.
 
 ---
 
-## 2.5.0
+## 2.5.0 (2021-10-08)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} New colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` were added to provide a fallback for Hugos syntax highlighting in case `guessSyntax=true` is set. Ideally the colors are set to the same values as the ones from your chosen chroma style.
 
 ---
 
-## 2.4.0
+## 2.4.0 (2021-10-07)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Creation of customized stylesheets was simplified down to only contain the CSS variables. Everything else can and should be deleted from your custom stylesheet to assure everything works fine. For the predefined stylesheet variants, this change is already included.
 
@@ -337,19 +337,19 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 2.3.0
+## 2.3.0 (2021-09-13)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Showcase multilanguage features by providing a documentation translation "fer us pirrrates". There will be no other translations besides the original English one and the Pirates one due to maintenance constraints.
 
 ---
 
-## 2.2.0
+## 2.2.0 (2021-09-09)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in the sitemap generated by Hugo and are therefore visible for search engine indexing. You can now turn off this behavior by setting `disableSeoHiddenPages=true` in your `config.toml`.
 
 ---
 
-## 2.1.0
+## 2.1.0 (2021-09-07)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In case the site's structure contains additional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
 
@@ -361,7 +361,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 2.0.0
+## 2.0.0 (2021-08-28)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Syntax highlighting was switched to the [built in Hugo mechanism](https://gohugo.io/content-management/syntax-highlighting/). You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation
 
@@ -385,18 +385,18 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 1.2.0
+## 1.2.0 (2021-07-26)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcode [`expand`]({{% relref "shortcodes/expand" %}}) with new parameter to open on page load.
 
 ---
 
-## 1.1.0
+## 1.1.0 (2021-07-02)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`Mermaid`]({{% relref "shortcodes/mermaid#configuration" %}}) config options can be set in `config.toml`.
 
 ---
 
-## 1.0.0
+## 1.0.0 (2021-07-01)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Initial fork of the [Learn theme](https://github.com/matcornic/hugo-theme-learn) based on Learn 2.5.0 on 2021-07-01. This introduces no new features besides a global rename to `Relearn` and a new logo. For the reasons behind forking the Learn theme, see [this comment](https://github.com/matcornic/hugo-theme-learn/issues/442#issuecomment-907863495) in the Learn issues.
