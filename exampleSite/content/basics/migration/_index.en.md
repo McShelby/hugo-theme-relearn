@@ -14,7 +14,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.8.0 (not yet released)
+## 5.8.0 (2022-12-08)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`badge` shortcode]({{% relref "shortcodes/badge" %}}) is now available to add highly configurable markers to your content as you can see it on this page.
 
