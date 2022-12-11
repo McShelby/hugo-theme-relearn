@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.8.1 (2022-12-11)
+
+### Fixes
+
+- [**bug**] theme: fix alias for home page if defaultContentLanguageInSubdir=true [#414](https://github.com/McShelby/hugo-theme-relearn/issues/414)
+
+---
+
 ## 5.8.0 (2022-12-08)
 
 ### Enhancements
