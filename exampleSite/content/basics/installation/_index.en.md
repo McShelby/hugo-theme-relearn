@@ -15,7 +15,7 @@ hugo new site <new_project>
 
 ## Install the theme
 
-Install the Relearn theme by following [this documentation](https://gohugo.io/getting-started/quick-start/#step-3-add-a-theme)
+Install the Relearn theme by following [this documentation](https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme) using Hugo's module system.
 
 This theme's repository is: https://github.com/McShelby/hugo-theme-relearn.git
 
