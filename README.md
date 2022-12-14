@@ -69,4 +69,4 @@ Many thanks to [Mathieu Cornic](https://github.com/matcornic) for his work on po
 
 Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav.
 
-See the [credits](https://mcshelby.github.io/hugo-theme-relearn/credits) for a detailed list.
+See the [credits](https://mcshelby.github.io/hugo-theme-relearn/more/credits) for a detailed list.
