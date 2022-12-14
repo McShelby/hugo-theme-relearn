@@ -11,7 +11,7 @@ Many thanks to [Mathieu Cornic](https://github.com/matcornic) for his work on po
 
 Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav.
 
-## Packages and libraries
+## Packages and Libraries
 
 - [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
 - [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard

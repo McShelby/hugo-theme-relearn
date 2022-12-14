@@ -8,7 +8,7 @@ A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
 The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adepting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for the Learn theme.
 
-## Main features
+## Features
 
 - Usable offline, no external dependencies
 - Usable without a HTTP server from the file system
@@ -25,21 +25,22 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Unrestricted menu configuration relating to amount of items and level of nesting
 - Font Awesome icons
 - Tagging support
-- Image resizing, shadow…
+- Image styling like sizing, shadow, border and alignment
 - Syntax highlighting
+- Customizable look and feel
+- Predefined (light, dark) and customizable color variants
 - Attachments files
 - List child pages
 - Math and chemical formulae using the MathJax library
 - Mermaid diagrams for flowcharts, sequences, gantts, pie, etc.
 - Swagger UI for OpenAPI Specifications
-- Customizable look and feel
-- Predefined (light, dark) and customizable color variants
 - Badges
 - Buttons
 - Tip/Note/Info/Warning boxes
 - Expand
 - Tabs
 - File inclusion
+
 ## Installation
 
 Visit the [installation instructions](https://mcshelby.github.io/hugo-theme-relearn/basics/installation) to learn how to setup the theme in your Hugo installation.
@@ -50,11 +51,11 @@ Visit the [documentation](https://mcshelby.github.io/hugo-theme-relearn/) to lea
 
 ## Changelog
 
-See the [changelog](https://mcshelby.github.io/hugo-theme-relearn/basics/history) for a complete list of releases.
+See the [What's New](https://mcshelby.github.io/hugo-theme-relearn/basics/migration) page for release highlights or the [history](https://mcshelby.github.io/hugo-theme-relearn/basics/history) for a complete list of changes per release.
 
 ## Contribution
 
-You are most welcome to contribute to the source code but please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/contributing.md) first.
+You are most welcome to contribute bugfixes or even new features to the source code. Please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/contributing.md) first.
 
 ## License
 
@@ -67,3 +68,5 @@ Special thanks to [everyone who has contributed](https://github.com/McShelby/hug
 Many thanks to [Mathieu Cornic](https://github.com/matcornic) for his work on porting the [Learn theme](https://github.com/matcornic/hugo-theme-learn) to Hugo.
 
 Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav.
+
+See the [credits](https://mcshelby.github.io/hugo-theme-relearn/credits) for a detailed list.
