@@ -1,5 +1,6 @@
-<!-- This code opens an external link in a new tab. -->
-
-<a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>
-   {{ .Text | safeHTML }}
-</a>
+{{- partial "shortcodes/link.html" (dict
+  "context" .Page
+  "url" .Destination
+  "title" .Title
+  "content" .Text
+) }}

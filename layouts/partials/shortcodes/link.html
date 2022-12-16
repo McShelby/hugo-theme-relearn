@@ -1,0 +1,10 @@
+{{- $context := .context }}
+{{- $url := .url }}
+{{- $title := .title | default "" }}
+{{- $title = trim $title " " }}
+{{- $content := .content }}
+{{- $target := .target | default "" }}
+{{- if and (eq (len $target) 0) (or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") ) }}
+  {{- $target = "_blank" }}
+{{- end -}}
+<a href="{{ $url | safeURL }}"{{ if $title }} title="{{ $title }}"{{ end }}{{ if gt (len $target) 0 }} target="{{ $target }}" rel="noopener"{{ end }}>{{ $content | safeHTML }}</a>

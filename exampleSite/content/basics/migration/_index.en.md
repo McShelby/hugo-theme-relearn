@@ -16,6 +16,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.9.0 (not yet released)
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Absolute links prefixed with `http://` or `https://` are now opened in a separate browser tab.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports [Hugo's module system](https://gohugo.io/hugo-modules/).
 
 ---
