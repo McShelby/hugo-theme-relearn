@@ -2,7 +2,7 @@
 {{- $url := .url }}
 {{- $title := .title }}
 {{- $alt := .alt }}
-{{- $classes := "" }}
+{{- $classes := slice }}
 {{- $featherlight := true }}
 {{- $height := "auto" }}
 {{- $width := "auto" }}
@@ -22,7 +22,9 @@
 	{{- end }}
 {{- end }}
 {{- if $dest_url.RawQuery }}
-	{{- $classes = (replaceRE "\\s+" " " (replaceRE "," " " ($dest_url.Query.Get "classes") ) ) }}
+	{{- if $dest_url.Query.Get "classes" }}
+		{{- $classes = $classes | append (split ($dest_url.Query.Get "classes") ",") }}
+	{{- end }}
 	{{- $featherlight = (ne ($dest_url.Query.Get "featherlight") "false") }}
 	{{- with $dest_url.Query.Get "height" }}
 		{{ $height = . }}
@@ -34,7 +36,7 @@
 {{- if $featherlight }}
 <a href="{{ $url | safeURL }}" data-featherlight="image">
 {{- end }}
-<img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ with $classes }} class="{{ . }}"{{ end }} style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
+<img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ if len ($classes) }} class="{{ delimit $classes " " }}"{{ end }} style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
 {{- if $featherlight }}
 </a>
 {{- end }}
