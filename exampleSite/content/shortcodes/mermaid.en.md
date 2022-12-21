@@ -81,7 +81,7 @@ Mermaid is configured with default settings. You can customize Mermaid's default
 
 The JSON object of your `config.toml` / frontmatter is forwarded into Mermaid's `mermaid.initialize()` function.
 
-See [Mermaid documentation](http://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
+See [Mermaid documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
 
 The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `config.toml`, frontmatter or diagram directives.
 
