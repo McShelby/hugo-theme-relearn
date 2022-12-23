@@ -10,21 +10,21 @@
     <title>Attachments :: Hugo Relearn Theme</title>
     <link href="../../shortcodes/attachments/index.xml" rel="alternate" type="application/rss+xml" title="Attachments :: Hugo Relearn Theme">
     <link href="../../shortcodes/attachments/index.print.html" rel="alternate" type="text/html" title="Attachments :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1671666606" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1671762309" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1671666606" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1671666606" rel="stylesheet"></noscript>
-    <link href="../../css/featherlight.min.css?1671666606" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1671666606" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1671666606" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1671666606" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1671666606" rel="stylesheet">
-    <link href="../../css/nucleus.css?1671666606" rel="stylesheet">
-    <link href="../../css/fonts.css?1671666606" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1671666606" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1671666606" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1671666606" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1671666606" rel="stylesheet">
-    <link href="../../css/variant.css?1671666606" rel="stylesheet">
-    <link href="../../css/print.css?1671666606" rel="stylesheet" media="print">
-    <script src="../../js/url.js?1671666606"></script>
-    <script src="../../js/variant.js?1671666606"></script>
+    <link href="../../css/fontawesome-all.min.css?1671762309" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1671762309" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min.css?1671762309" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1671762309" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1671762309" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1671762309" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1671762309" rel="stylesheet">
+    <link href="../../css/nucleus.css?1671762309" rel="stylesheet">
+    <link href="../../css/fonts.css?1671762309" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1671762309" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1671762309" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1671762309" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1671762309" rel="stylesheet">
+    <link href="../../css/variant.css?1671762309" rel="stylesheet">
+    <link href="../../css/print.css?1671762309" rel="stylesheet" media="print">
+    <script src="../../js/url.js?1671762309"></script>
+    <script src="../../js/variant.js?1671762309"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -42,7 +42,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1671666606" defer></script>
+    <script src="../../js/jquery.min.js?1671762309" defer></script>
     <style>
       #body img.bg-white {
         background-color: white;
@@ -157,11 +157,10 @@
     </div>
   </div>
 </div>
-<p>The shortcode lists files found in a specific folder.</p>
-<p>Currently, it supports two implementations for pages</p>
+<p>The shortcode lists files found in a specific folder. The name of the folder depends on your page type (either branch bundle, leaf bundle or page).</p>
 <ol>
 <li>
-<p>If your page is a Markdown file, attachments must be placed in a folder named like your page and ending with <code>.files</code>.</p>
+<p>For simple pages, attachments must be placed in a folder named like your page and ending with <code>.files</code>.</p>
 <blockquote>
 <ul>
 <li>content
@@ -179,7 +178,8 @@
 </blockquote>
 </li>
 <li>
-<p>If your page is a folder, attachments must be placed in a nested <code>files</code> folder.</p>
+<p>If your page is a branch or leaf bundle, attachments must be placed in a nested <code>_index.files</code> or &lsquo;index.files&rsquo; folder, accordingly.</p>
+<p>For branch bundles:</p>
 <blockquote>
 <ul>
 <li>content
@@ -188,7 +188,27 @@
 <li>page
 <ul>
 <li>index.md</li>
-<li><strong>files</strong>
+<li><strong>index.files</strong>
+<ul>
+<li>attachment.pdf</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>For leaf bundles:</p>
+<blockquote>
+<ul>
+<li>content
+<ul>
+<li>_index.md</li>
+<li>page
+<ul>
+<li>_index.md</li>
+<li><strong>_index.files</strong>
 <ul>
 <li>attachment.pdf</li>
 </ul>
@@ -201,7 +221,30 @@
 </blockquote>
 </li>
 </ol>
-<p>Be aware that if you use a multilingual website, you will need to have as many folders as languages.</p>
+<p>Be aware that if you use a multilingual website, you will need to have as many folders as languages and the language code must be part of the folder name.</p>
+<p>Eg. for a site in English and Piratish:</p>
+<blockquote>
+<ul>
+<li>content
+<ul>
+<li>_index.en.md</li>
+<li>_index.pir.md</li>
+<li><strong>page.en.files</strong>
+<ul>
+<li>attachment.pdf</li>
+</ul>
+</li>
+<li><strong>page.pir.files</strong>
+<ul>
+<li>attachment.pdf</li>
+</ul>
+</li>
+<li>page.en.md</li>
+<li>page.pir.md</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h3 id="parameter">Parameter</h3>
 <table>
 <thead>
@@ -348,12 +391,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1671666606" defer></script>
-        <script src="../../js/lunr.min.js?1671666606" defer></script>
-        <script src="../../js/lunr.stemmer.support.min.js?1671666606" defer></script>
-        <script src="../../js/lunr.multi.min.js?1671666606" defer></script>
-        <script src="../../js/lunr.en.min.js?1671666606" defer></script>
-        <script src="../../js/search.js?1671666606" defer></script>
+        <script src="../../js/auto-complete.js?1671762309" defer></script>
+        <script src="../../js/lunr.min.js?1671762309" defer></script>
+        <script src="../../js/lunr.stemmer.support.min.js?1671762309" defer></script>
+        <script src="../../js/lunr.multi.min.js?1671762309" defer></script>
+        <script src="../../js/lunr.en.min.js?1671762309" defer></script>
+        <script src="../../js/search.js?1671762309" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -469,13 +512,13 @@
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
           <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../../js/buttons.js?1671666607"></script>
+          <script async src="../../js/buttons.js?1671762309"></script>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1671666607" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1671666607" defer></script>
-    <script src="../../js/featherlight.min.js?1671666607" defer></script>
-    <script src="../../js/theme.js?1671666607" defer></script>
+    <script src="../../js/clipboard.min.js?1671762309" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1671762309" defer></script>
+    <script src="../../js/featherlight.min.js?1671762309" defer></script>
+    <script src="../../js/theme.js?1671762309" defer></script>
   </body>
 </html>
