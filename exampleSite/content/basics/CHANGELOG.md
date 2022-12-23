@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.9.0 (2022-12-23)
+
+### Enhancements
+
+- [**feature**][**change**] theme: open external links in separate tab [#419](https://github.com/McShelby/hugo-theme-relearn/issues/419)
+- [**feature**] theme: make it a Hugo module [#417](https://github.com/McShelby/hugo-theme-relearn/issues/417)
+
+### Fixes
+
+- [**bug**][**change**] attachments: fix incorrect links for defaultContentLanguageInSubdir=true [#425](https://github.com/McShelby/hugo-theme-relearn/issues/425)
+
+---
+
 ## 5.8.1 (2022-12-11)
 
 ### Fixes
