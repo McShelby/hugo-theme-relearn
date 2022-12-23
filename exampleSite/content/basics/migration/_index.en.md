@@ -22,6 +22,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
   This added unnessessary complexity. So attachments for leaf bundles in non-multilang setups can now also reside in a `index.files` directory. Although the old `files` directory is now deprecated, if both directories are present, only the old `files` directory will be used for compatiblity.
 
+  You can revert back to the old behavior by defining `externalLinkTarget="_self"` in your in the `params` section of your `config.toml`.
+
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Absolute links prefixed with `http://` or `https://` are now opened in a separate browser tab.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports [Hugo's module system](https://gohugo.io/hugo-modules/).
