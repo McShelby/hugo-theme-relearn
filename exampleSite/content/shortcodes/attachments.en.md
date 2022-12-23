@@ -31,11 +31,9 @@ While the examples are using shortcodes with named parameter you are free to als
 {{% /tab %}}
 {{< /tabs >}}
 
-The shortcode lists files found in a specific folder.
+The shortcode lists files found in a specific folder. The name of the folder depends on your page type (either branch bundle, leaf bundle or page).
 
-Currently, it supports two implementations for pages
-
-1. If your page is a Markdown file, attachments must be placed in a folder named like your page and ending with `.files`.
+1. For simple pages, attachments must be placed in a folder named like your page and ending with `.files`.
 
     > * content
     >   * _index.md
@@ -43,17 +41,39 @@ Currently, it supports two implementations for pages
     >      * attachment.pdf
     >   * page.md
 
-2. If your page is a folder, attachments must be placed in a nested `files` folder.
+2. If your page is a branch or leaf bundle, attachments must be placed in a nested `_index.files` or 'index.files' folder, accordingly.
+
+    For branch bundles:
 
     > * content
     >   * _index.md
     >   * page
     >      * index.md
-    >      * **files**
+    >      * **index.files**
     >          * attachment.pdf
 
-Be aware that if you use a multilingual website, you will need to have as many folders as languages.
+    For leaf bundles:
 
+    > * content
+    >   * _index.md
+    >   * page
+    >      * _index.md
+    >      * **_index.files**
+    >          * attachment.pdf
+
+Be aware that if you use a multilingual website, you will need to have as many folders as languages and the language code must be part of the folder name.
+
+Eg. for a site in English and Piratish:
+
+  > * content
+  >   * _index.en.md
+  >   * _index.pir.md
+  >   * **page.en.files**
+  >      * attachment.pdf
+  >   * **page.pir.files**
+  >      * attachment.pdf
+  >   * page.en.md
+  >   * page.pir.md
 
 ### Parameter
 

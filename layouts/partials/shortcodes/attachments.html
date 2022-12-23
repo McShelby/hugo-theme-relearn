@@ -17,19 +17,25 @@
 {{- end }}
 {{- $sort := .sort | default "asc" }}
 {{- $pattern := .pattern | default "" }}
+{{- $defaultLanguage := (index $context.Site.Home.AllTranslations 0).Lang }}
+{{- $defaultLanguagePage := index (where $context.Page.AllTranslations "Language.Lang" $defaultLanguage) 0 }}
+{{- $defaultUrlPrefix := strings.TrimRight "/" $defaultLanguagePage.RelPermalink }}
+{{- $urlPrefix := strings.TrimRight "/" $context.Page.RelPermalink }}
 {{- with $context }}
 <div class="box attachments cstyle {{ $style }}">
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
   <ul class="box-content attachments-files">
-  {{- $filesName := "files" }}
-  {{- if ne .Page.File.BaseFileName "index" }}
-    {{- $filesName = printf "%s.files" .Page.File.BaseFileName }}
-  {{- end }}
   {{- $fileLink := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir }}
   {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}
   {{- $fileDir := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir  }}
   {{- $fileDir = replace $fileDir "\\" "/" }}
-  {{- range sort (readDir (printf "%s%s" $fileDir $filesName) ) "Name" $sort }}
+  {{- $filesName := printf "%s.files" .Page.File.BaseFileName }}
+  {{- if and (eq .Page.File.BaseFileName "index") (fileExists (printf "%sfiles" $fileDir)) }}
+    {{- $c := "" }}{{/* backward compat to < 5.9.0 behavior */}}
+    {{- $filesName = "files" }}
+  {{- end }}
+  {{- $dir := printf "%s%s" $fileDir $filesName }}
+  {{- range sort (readDir $dir) "Name" $sort }}
     {{- if findRE $pattern .Name}}
       {{- $size := .Size }}
       {{- $unit := "Byte-symbol" }}
@@ -42,7 +48,10 @@
         {{- $unit = "Megabyte-symbol" }}
       {{- end }}
       {{- $unitsymbol := $unit | T }}
-    <li><a href="{{ (printf "%s%s/%s" $fileLink $filesName .Name) | relURL }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
+      {{- $link := (printf "%s%s/%s" $fileLink $filesName .Name) | relLangURL }}
+      {{- $c := "" }}{{/* Hugo stores the attachments always in the default language subdirectory */}}
+      {{- $link = replace $link $urlPrefix $defaultUrlPrefix 1 }}
+    <li><a href="{{ $link }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
     {{- end }}
   {{- end }}
   </ul>

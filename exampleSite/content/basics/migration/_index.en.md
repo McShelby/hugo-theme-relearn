@@ -14,7 +14,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.9.0 (not yet released)
+## 5.9.0 (2022-12-23)
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The required folder name for the [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) was changed for leaf bundles.
+
+  Previously, the attachments for leaf bundles in non-multilang setups were required to be in a `files` subdirectory. For page bundles and leaf bundles in multilang setups they were always required to be in a `_index.<LANGCODE>.files` or `index.<LANGCODE>.files` subdirectory accordingly.
+
+  This added unnessessary complexity. So attachments for leaf bundles in non-multilang setups can now also reside in a `index.files` directory. Although the old `files` directory is now deprecated, if both directories are present, only the old `files` directory will be used for compatiblity.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Absolute links prefixed with `http://` or `https://` are now opened in a separate browser tab.
 
