@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.9.1 (2022-12-23)
+
+### Enhancements
+
+- [**feature**] theme: make external link target configurable [#426](https://github.com/McShelby/hugo-theme-relearn/issues/426)
+
+---
+
 ## 5.9.0 (2022-12-23)
 
 ### Enhancements
