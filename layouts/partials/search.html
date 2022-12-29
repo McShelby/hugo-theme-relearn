@@ -16,7 +16,7 @@
         {{- $quotedcontentlangs := slice }}
         {{- $missingcontentlangs := slice }}
         {{- range $contentlangs }}
-          {{- $f := printf "/static/js/lunr.%s.min.js" . }}
+          {{- $f := printf "/static/js/lunr/lunr.%s.min.js" . }}
           {{- if partialCached "fileExists.hugo" $f $f }}
             {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
           {{- else }}
@@ -28,11 +28,11 @@
           var contentLangs=[{{ delimit $quotedcontentlangs ", " | safeJS }}];
         </script>
         <script src="{{"js/auto-complete.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-        <script src="{{"js/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-        <script src="{{"js/lunr.stemmer.support.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-        <script src="{{"js/lunr.multi.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+        <script src="{{"js/lunr/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+        <script src="{{"js/lunr/lunr.stemmer.support.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+        <script src="{{"js/lunr/lunr.multi.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
         {{- range $contentlangs }}
-          {{- $file := (printf "js/lunr.%s.min.js" .) }}
+          {{- $file := (printf "js/lunr/lunr.%s.min.js" .) }}
         <script src="{{ $file | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
         {{- end }}
         <script src="{{ "js/search.js" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
