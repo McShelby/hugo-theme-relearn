@@ -31,7 +31,17 @@
         <script src="{{"js/lunr/lunr.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
         <script src="{{"js/lunr/lunr.stemmer.support.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
         <script src="{{"js/lunr/lunr.multi.min.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+        {{- $tinyseg := false }}
+        {{- $wordcut := false }}
         {{- range $contentlangs }}
+          {{- if and (not $tinyseg) (or (eq . "ja")) }}
+            {{- $tinyseg = true }}
+        <script src="{{"js/lunr/tinyseg.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+          {{- end }}
+          {{- if and (not $wordcut) (or (eq . "hi") (eq . "th")) }}
+            {{- $wordcut = true }}
+        <script src="{{"js/lunr/wordcut.js" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+          {{- end }}
           {{- $file := (printf "js/lunr/lunr.%s.min.js" .) }}
         <script src="{{ $file | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
         {{- end }}
