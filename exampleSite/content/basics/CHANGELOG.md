@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.9.2 (2022-12-30)
+
+### Fixes
+
+- [**bug**] search: apply dependency scripts for Hindi and Japanese [#427](https://github.com/McShelby/hugo-theme-relearn/issues/427)
+
+---
+
 ## 5.9.1 (2022-12-23)
 
 ### Enhancements
