@@ -16,12 +16,11 @@ runs:
   steps:
     - name: Get tag uniqueness
       id: unique_tag
-      uses: mukunku/tag-exists-action@v1.1.0
+      uses: mukunku/tag-exists-action@v1.2.0 # wildcard version @v1 not possible
       with:
         tag: ${{ env.MILESTONE }}
       env:
         MILESTONE: ${{ inputs.milestone }}
-        GITHUB_TOKEN: ${{ inputs.github_token }}
 
     - name: Get closed issues for milestone
       id: closed_issues
