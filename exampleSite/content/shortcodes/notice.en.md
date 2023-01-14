@@ -235,7 +235,7 @@ A **orange** disclaimer
 A **orange** disclaimer
 {{% /notice %}}
 
-#### Red
+#### Red without a Title and Icon
 
 ````go
 {{%/* notice style="red" */%}}

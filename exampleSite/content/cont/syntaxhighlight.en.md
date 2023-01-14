@@ -56,9 +56,9 @@ You can choose a color theme from the [list of supported themes](https://xyproto
 ````toml
 [markup]
   [markup.highlight]
-    # if set to `guessSyntax = true`, there will be no unstyled code even if no language
-    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
-    # setting for your site
+    # if `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT Mermaid and Math codefences will not work anymore! So this is a
+    # mandatory setting for your site if you want to use Mermaid or Math codefences
     guessSyntax = false
 
     # choose a color theme or create your own

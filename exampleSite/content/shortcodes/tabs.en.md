@@ -1,9 +1,11 @@
 +++
 description = "Show content in tabbed views"
-title = "Tabbed views"
+title = "Tabs"
 +++
 
-The `tabs` shortcode displays arbitrary content in unlimited number of tabs. This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
+The `tabs` shortcode displays arbitrary content in unlimited number of tabs.
+
+This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
 
 {{< tabs groupid="tabs-example-language" >}}
 {{% tab name="python" %}}

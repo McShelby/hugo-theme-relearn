@@ -3,7 +3,7 @@ description: "UI for your Swagger / OpenAPI Specifications"
 title: "Swagger"
 ---
 
-This shortcode uses the [RapiDoc](https://mrin9.github.io/RapiDoc) library to display your Swagger / OpenAPI Specifications.
+The `swagger` shortcode uses the [RapiDoc](https://mrin9.github.io/RapiDoc) library to display your Swagger / OpenAPI Specifications.
 
 {{% notice note %}}
 This only works in modern browsers.

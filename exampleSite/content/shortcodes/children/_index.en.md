@@ -4,7 +4,7 @@ description = "List the child pages of a page"
 title = "Children"
 +++
 
-The `children` shortcode lists the child pages of the current page and its descendants .
+The `children` shortcode lists the child pages of the current page and its descendants.
 
 {{% children sort="weight" %}}
 ## Usage
