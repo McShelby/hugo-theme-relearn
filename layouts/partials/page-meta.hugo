@@ -52,9 +52,6 @@
 	{{- end }}
 
 	{{- $pages := .node.Pages }}
-	{{- if .node.Sections }}
-		{{- $pages = (.node.Pages | union .node.Sections) }}
-	{{- end }}
 	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
 	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
 	{{- if eq $currentOrdersectionsby "title"}}

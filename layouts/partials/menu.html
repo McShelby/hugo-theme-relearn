@@ -134,9 +134,6 @@
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
         {{- $pages := .Pages }}
-        {{- if .Sections}}
-          {{- $pages = (.Pages | union .Sections) }}
-        {{- end }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}

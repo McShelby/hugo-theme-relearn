@@ -1,8 +1,5 @@
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- $pages := .Page.Pages }}
-{{- if .Page.Sections}}
-  {{- $pages = (.Page.Pages | union .Page.Sections) }}
-{{- end }}
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 0 -}}
   {{- $pages = $pages | first $limit -}}

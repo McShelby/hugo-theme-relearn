@@ -18,9 +18,6 @@
 {{- with $context }}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
 	{{- $pages := .Page.Pages }}
-	{{- if .Page.Sections}}
-		{{- $pages = (.Page.Pages | union .Page.Sections) }}
-	{{- end }}
 
 	{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 	{{- $currentOrdersectionsby := $sortTerm | default (.Page.Params.ordersectionsby | default $defaultOrdersectionsby) }}
@@ -87,9 +84,6 @@
 				{{- end }}
 
 				{{- $pages := .Page.Pages }}
-				{{- if .Page.Sections}}
-					{{- $pages = (.Page.Pages | union .Page.Sections) }}
-				{{- end }}
 
 				{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 				{{- $currentOrdersectionsby := $.sortTerm | default (.Page.Params.ordersectionsby | default $defaultOrdersectionsby) }}
