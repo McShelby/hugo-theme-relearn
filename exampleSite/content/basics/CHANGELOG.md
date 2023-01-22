@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.9.3 (2023-01-22)
+
+### Fixes
+
+- [**bug**] nav: fix left/right navigation for horizontal scrolling [#435](https://github.com/McShelby/hugo-theme-relearn/issues/435)
+- [**bug**] theme: allow pages on top level [#434](https://github.com/McShelby/hugo-theme-relearn/issues/434)
+
+### Maintenance
+
+- [**task**] build: switch to wildcard version of actions [#428](https://github.com/McShelby/hugo-theme-relearn/issues/428)
+
+---
+
 ## 5.9.2 (2022-12-30)
 
 ### Fixes
