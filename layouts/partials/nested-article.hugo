@@ -14,7 +14,10 @@
       {{- end }}
     {{- end }}
   {{- end }}
-  {{- $pages := .Site.Home.Sections }}
+  {{- $pages := .Site.Home.Pages }}
+  {{- if .Site.Home.Sections}}
+    {{- $pages = (.Site.Home.Pages | union .Site.Home.Sections) }}
+  {{- end }}
   {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
   {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
   {{- if $isShortcut }}
@@ -53,9 +56,7 @@
     {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
     {{- $isActive = or $isSelf $isActive }}
     {{- $pages := .Pages }}
-    {{- if .Page.IsHome }}
-      {{- $pages = .Sections }}
-    {{- else if .Page.Sections}}
+    {{- if .Sections}}
       {{- $pages = (.Pages | union .Sections) }}
     {{- end }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}

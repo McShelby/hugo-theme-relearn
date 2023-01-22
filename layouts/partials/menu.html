@@ -29,11 +29,11 @@
           {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
           {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
           {{- if eq $currentOrdersectionsby "title" }}
-            {{- range .Site.Home.Sections.ByTitle }}
+            {{- range .Site.Home.Pages.ByTitle }}
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}
           {{- else }}
-            {{- range .Site.Home.Sections.ByWeight }}
+            {{- range .Site.Home.Pages.ByWeight }}
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}
           {{- end }}
@@ -134,9 +134,7 @@
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
         {{- $pages := .Pages }}
-        {{- if .Page.IsHome }}
-          {{- $pages = .Sections }}
-        {{- else if .Page.Sections}}
+        {{- if .Sections}}
           {{- $pages = (.Pages | union .Sections) }}
         {{- end }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}

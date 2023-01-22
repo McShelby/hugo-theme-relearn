@@ -18,9 +18,7 @@
 {{- with $context }}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
 	{{- $pages := .Page.Pages }}
-	{{- if .Page.IsHome }}
-		{{- $pages = .Page.Sections }}
-	{{- else if .Page.Sections}}
+	{{- if .Page.Sections}}
 		{{- $pages = (.Page.Pages | union .Page.Sections) }}
 	{{- end }}
 
@@ -89,9 +87,7 @@
 				{{- end }}
 
 				{{- $pages := .Page.Pages }}
-				{{- if .Page.IsHome }}
-					{{- $pages = .Page.Sections }}
-				{{- else if .Page.Sections}}
+				{{- if .Page.Sections}}
 					{{- $pages = (.Page.Pages | union .Page.Sections) }}
 				{{- end }}
 

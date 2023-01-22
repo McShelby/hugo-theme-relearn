@@ -52,9 +52,7 @@
 	{{- end }}
 
 	{{- $pages := .node.Pages }}
-	{{- if .node.IsHome }}
-		{{- $pages = .node.Sections }}
-	{{- else if .node.Sections }}
+	{{- if .node.Sections }}
 		{{- $pages = (.node.Pages | union .node.Sections) }}
 	{{- end }}
 	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
