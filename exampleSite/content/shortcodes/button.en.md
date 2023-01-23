@@ -158,10 +158,10 @@ Once the button is clicked, it opens another browser tab for the given URL.
 #### Button to Internal Page
 
 ````go
-{{%/* button href="/" %}}Home{{% /button */%}}
+{{%/* button href="/index.html" %}}Home{{% /button */%}}
 ````
 
-{{% button href="/" %}}Home{{% /button %}}
+{{% button href="/index.html" %}}Home{{% /button %}}
 
 #### Button with JavaScript Action
 
