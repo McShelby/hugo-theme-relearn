@@ -6,9 +6,11 @@ weight = 2
 
 This document shows you what's new in the latest release. For a detailed list of changes, see the [history page]({{%relref "basics/history" %}}).
 
+{{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} The minimum required Hugo version.
+
 {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} A change that requires action by you after upgrading to assure the site is still functional.
 
-{{% badge style="note" title=" " %}}Change{{% /badge %}} A change in default behavior. This may requires action by you / may or may not be revertable by configuration.
+{{% badge style="note" title=" " %}}Change{{% /badge %}} A change in default behavior that may requires action by you if you want to revert it.
 
 {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Marks new behavior you might find interesting or comes configurable.
 
@@ -130,6 +132,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.1.0 (2022-07-15)
 
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} This release requires a newer Hugo version.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
   You can revert this behavior by overwriting the PRINT output format setting in your `config.toml`to:
@@ -232,6 +236,8 @@ This document shows you what's new in the latest release. For a detailed list of
 ---
 
 ## 3.2.0 (2022-03-19)
+
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.93.0{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
@@ -361,6 +367,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 2.3.0 (2021-09-13)
 
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.81.0{{% /badge %}} This release requires a newer Hugo version.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Showcase multilanguage features by providing a documentation translation "fer us pirrrates". There will be no other translations besides the original English one and the Pirates one due to maintenance constraints.
 
 ---
@@ -372,6 +380,8 @@ This document shows you what's new in the latest release. For a detailed list of
 ---
 
 ## 2.1.0 (2021-09-07)
+
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.69.0{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In case the site's structure contains additional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
 
@@ -420,5 +430,7 @@ This document shows you what's new in the latest release. For a detailed list of
 ---
 
 ## 1.0.0 (2021-07-01)
+
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.65.0{{% /badge %}} The version requirement for Hugo is the same as for the Learn theme version 2.5.0 on 2021-07-01.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Initial fork of the [Learn theme](https://github.com/matcornic/hugo-theme-learn) based on Learn 2.5.0 on 2021-07-01. This introduces no new features besides a global rename to `Relearn` and a new logo. For the reasons behind forking the Learn theme, see [this comment](https://github.com/matcornic/hugo-theme-learn/issues/442#issuecomment-907863495) in the Learn issues.
