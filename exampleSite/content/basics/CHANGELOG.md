@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.9.4 (2023-01-23)
+
+### Fixes
+
+- [**bug**] variant: fix search icon and text color [#437](https://github.com/McShelby/hugo-theme-relearn/issues/437)
+
+---
+
 ## 5.9.3 (2023-01-22)
 
 ### Fixes
