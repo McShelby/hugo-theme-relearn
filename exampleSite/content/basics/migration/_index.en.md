@@ -20,6 +20,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`attachments`]({{% relref "shortcodes/attachments" %}}), [`badge`]({{% relref "shortcodes/badge" %}}), [`button`]({{% relref "shortcodes/button" %}}) and [`notice`]({{% relref "shortcodes/notice" %}}) shortcodes have a new parameter `color` to set arbitrary CSS color values.
 
+  Additionally the `--ACCENT-color` brand color introduced in version 5.8.0 is now supported with these shortcodes.
+
 ---
 
 ## 5.9.0 (2022-12-23)
