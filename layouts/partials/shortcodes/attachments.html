@@ -1,6 +1,10 @@
 {{- $context := .context }}
+{{- $color := .color | default "" }}
 {{- $content := .content }}
-{{- $style := .style | default "transparent" }}
+{{- $style := .style | default "default" }}
+{{- if and (not $color) (eq (len $color) 0) }}
+  {{- $style = .style | default "transparent" }}
+{{- end }}
 {{- $title := .title | default ($style | T) | default ("Attachments-label" | T) }}
 {{- $title = trim $title " " }}
 {{- $icon := .icon | default "" }}
@@ -22,7 +26,7 @@
 {{- $defaultUrlPrefix := strings.TrimRight "/" $defaultLanguagePage.RelPermalink }}
 {{- $urlPrefix := strings.TrimRight "/" $context.Page.RelPermalink }}
 {{- with $context }}
-<div class="box attachments cstyle {{ $style }}">
+<div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
   <ul class="box-content attachments-files">
   {{- $fileLink := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir }}

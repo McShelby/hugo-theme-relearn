@@ -1,4 +1,5 @@
 {{- $context := .context }}
+{{- $color := .color | default "" }}
 {{- $content := .content }}
 {{- $style := .style | default "default" }}
 {{- $title := .title | default ($style | T) }}
@@ -15,7 +16,7 @@
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- with $context }}
-<div class="box notices cstyle {{ $style }}">
+<div class="box notices cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
   <div class="box-content">
 {{ $content | safeHTML }}  </div>

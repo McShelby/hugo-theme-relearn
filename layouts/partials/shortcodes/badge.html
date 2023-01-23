@@ -1,4 +1,5 @@
 {{- $context := .context }}
+{{- $color := .color | default "" }}
 {{- $content := .content }}
 {{- $style := .style | default "default" }}
 {{- $title := .title | default ($style | T) }}
@@ -15,5 +16,5 @@
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- with $context -}}
-<span class="badge cstyle {{ $style }}{{ if or $icon $title }} badge-with-title{{ end }}">{{ if or $icon $title }}<span class="badge-title">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ if $title }}{{ $title }}{{ end }}</span>{{ end }}<span class="badge-content">{{ $content }}</span></span>
+<span class="badge cstyle {{ $style }}{{ if or $icon $title }} badge-with-title{{ end }}">{{ if or $icon $title }}<span class="badge-title">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ if $title }}{{ $title }}{{ end }}</span>{{ end }}<span class="badge-content"{{ if $color }} style="background-color: {{ $color }};"{{ end }}>{{ $content }}</span></span>
 {{- end }}

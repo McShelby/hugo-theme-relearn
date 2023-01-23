@@ -1,7 +1,11 @@
 {{- $context := .context }}
+{{- $color := .color | default "" }}
 {{- $content := .content }}
 {{- $href := (trim .href " ") | default "" }}
-{{- $style := .style | default "transparent" }}
+{{- $style := .style | default "default" }}
+{{- if and (not $color) (eq (len $color) 0) }}
+  {{- $style = .style | default "transparent" }}
+{{- end }}
 {{- $target := .target | default "" }}
 {{- $type := .type | default "" }}
 {{- $isButton := false }}
@@ -32,7 +36,7 @@
 {{- end }}
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $context }}
-<span class="btn cstyle {{ $style }}">
+<span class="btn cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   {{- if $isButton }}
   <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
   {{- else }}
