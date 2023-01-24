@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 hidden = true
-title = "Tests"
-weight = 5
+title = "Development"
+weight = 4
 +++
 {{< piratify >}}

@@ -2,7 +2,7 @@
 
 A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
-![Overview](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/screenshot.png)
+![Overview](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/hero.png)
 
 ## Motivation
 
