@@ -4,9 +4,7 @@ description = "Nice icons for your page"
 title = "Icon"
 +++
 
-The `icon` shortcode displays icons in your text.
-
-The theme uses the [**Font Awesome**](https://fontawesome.com) library, allowing you to easily display any icon or logo available in the Font Awesome free collection.
+The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome.com) library.
 
 {{% icon exclamation-triangle %}}
 {{% icon angle-double-up %}}
