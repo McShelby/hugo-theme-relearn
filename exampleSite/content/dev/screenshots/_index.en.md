@@ -53,9 +53,9 @@ What to show:
 
 **Used by**:
 
-- Hugo Themes notes: https://themes.gohugo.io/themes/hugo-theme-relearn/               _1500 x 1000_
 - Hugo Themes gallery: https://themes.gohugo.io/tags/docs/                              _900 x 600_
-- GitHub project site: https://github.com/McShelby/hugo-theme-relearn                  _1500 x 1000_
+- Hugo Themes notes: https://themes.gohugo.io/themes/hugo-theme-relearn/               _1280 x 640_
+- GitHub project site: https://github.com/McShelby/hugo-theme-relearn                  _1280 x 640_
 - GitHub social media preview: https://github.com/McShelby/hugo-theme-relearn/settings _1280 x 640_
 
 **Page URL**: [Screenshot Link]({{% relref "/shortcodes/include" %}})
@@ -68,10 +68,8 @@ What to show:
 - Desktop: light theme _1440 x 900 @ 1_
 - Tablet: light theme _778 x 1038 @ 1_
 - Phone: dark theme _450 x 801 @ .666_
-- Resize template centered to _3000 x 2000_
-- Scale to _1500 x 1000_ and save as `images/hero.png`
-- Scale to _900 x 600_ and save as `images/tn.png`
-- Scale to _1280 x 853_, resize template _1280 x 640_ offset y: _-140_ and save as `images/social.png`
+- From original template size resize to _2700 x 1800_ centered, scale to _900 x 600_ and save as `images/tn.png`
+- From original template size resize to _3000 x 1500_ offset y: _-330_, scale to _1280 x 640_ and save as `images/hero.png`
 
 **Preview**:
 
