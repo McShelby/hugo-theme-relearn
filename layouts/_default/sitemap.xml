@@ -4,20 +4,24 @@
 {{- range .Data.Pages }}
 {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) }}
   <url>
-    <loc>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</loc>{{ if not .Lastmod.IsZero }}
-    <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
-    <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
-    <priority>{{ .Sitemap.Priority }}</priority>{{ end }}{{ if .IsTranslated }}{{ range .Translations }}
-    <xhtml:link
-                rel="alternate"
-                hreflang="{{ .Lang }}"
-                href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}"
-                />{{ end }}
-    <xhtml:link
-                rel="alternate"
-                hreflang="{{ .Lang }}"
-                href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}"
-                />{{ end }}
+    <loc>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</loc>
+  {{- if not .Lastmod.IsZero }}
+    <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>
+  {{- end }}
+  {{- with .Sitemap.ChangeFreq }}
+    <changefreq>{{ . }}</changefreq>
+  {{- end }}
+  {{- if ge .Sitemap.Priority 0.0 }}
+    <priority>{{ .Sitemap.Priority }}</priority>
+  {{- end }}
+  {{- if .IsTranslated }}
+    {{- range $index, $trans := .AllTranslations }}
+      {{- if eq $index 0 }}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}" />
+      {{- end }}
+    <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}" />
+    {{- end }}
+  {{- end }}
   </url>
 {{- end -}}
 {{- end }}

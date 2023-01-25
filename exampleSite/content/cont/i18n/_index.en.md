@@ -20,6 +20,11 @@ After learning [how Hugo handle multilingual websites](https://gohugo.io/content
 
 For example with current English and Piratized English website.
 
+{{% notice note %}}
+Make sure your default language is defined as the first one in the `[Languages]` array, as the theme needs to make assumptions on it
+{{% /notice %}}
+
+
 ```toml
 # English is the default language
 defaultContentLanguage = "en"
