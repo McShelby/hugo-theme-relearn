@@ -144,7 +144,8 @@
   {{- $page := .page }}
   {{- $to := .to }}
   {{- $breadcrumb = $breadcrumb | append $to }}
-  {{- range seq (len .to.Site.AllPages) }}
+  {{- $depth := int (partial "get-page-depth.hugo" (dict "page" $page)) }}
+  {{- range seq $depth }}
     {{- $to = $to.Parent }}
     {{- if $to }}
       {{- $breadcrumb = $breadcrumb | append $to }}
