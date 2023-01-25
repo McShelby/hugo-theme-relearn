@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.10.2 (2023-01-25)
+
+### Fixes
+
+- [**bug**] nav: fix breadcrumb for huge installations [#446](https://github.com/McShelby/hugo-theme-relearn/issues/446)
+
+---
+
 ## 5.10.1 (2023-01-25)
 
 ### Fixes
