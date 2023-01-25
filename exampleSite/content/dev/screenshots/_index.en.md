@@ -30,13 +30,15 @@ The content should be:
 
 **Page URL**: [Screenshot Link]({{% relref "/shortcodes/include" %}})
 
-**Location**: `images/screenshot.png`
+**Creation**:
+
+- save as `images/screenshot.png`
 
 **Remarks**:
 
 The location is mandatory due to Hugo's theme site builder.
 
-**Preview**:
+**Preview** `images/screenshot.png`:
 
 ![Screenshot](/images/screenshot.png?classes=shadow&width=100%25&height=100%25)
 
@@ -44,12 +46,12 @@ The location is mandatory due to Hugo's theme site builder.
 
 **Content**:
 
-Show the screenshot page on different devices and different themes. Composition of different images.
+Show the [screenshot](#screenshot) page on different devices and different themes. Composition of different images.
 
-What to show:
+The content should be:
 
-- always use the same page for all variations
-- use a delightful background
+- consistent: always use the same page for all devices
+- pleasing: use a delightful background
 
 **Used by**:
 
@@ -58,9 +60,7 @@ What to show:
 - GitHub project site: https://github.com/McShelby/hugo-theme-relearn                  _1280 x 640_
 - GitHub social media preview: https://github.com/McShelby/hugo-theme-relearn/settings _1280 x 640_
 
-**Page URL**: [Screenshot Link]({{% relref "/shortcodes/include" %}})
-
-**Location**: `images/hero.xcf`
+**Page URL**: [Hero Image Link]({{% relref "/shortcodes/include" %}})
 
 **Creation**:
 
@@ -71,8 +71,14 @@ What to show:
 - From original template size resize to _2700 x 1800_ centered, scale to _900 x 600_ and save as `images/tn.png`
 - From original template size resize to _3000 x 1500_ offset y: _-330_, scale to _1280 x 640_ and save as `images/hero.png`
 
-**Preview**:
+**Remarks**:
+
+The location of `images/tn.png` is mandatory due to Hugo's theme site builder.
+
+**Preview** `images/hero.png`:
 
 ![Hero](/images/hero.png?classes=shadow&width=100%25&height=100%25)
+
+**Preview** `images/tn.png`:
+
 ![tn](/images/tn.png?classes=shadow&width=100%25&height=100%25)
-![Social](/images/social.png?classes=shadow&width=100%25&height=100%25)
