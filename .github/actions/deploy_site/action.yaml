@@ -9,9 +9,9 @@ runs:
   steps:
     - name: Deploy site
       uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ env.GITHUB_TOKEN }}
-        publish_dir: ${{ env.GITHUB_WORKSPACE }}/../public
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GITHUB_WORKSPACE: ${{ github.workspace }}
+      with:
+        github_token: ${{ env.GITHUB_TOKEN }}
+        publish_dir: ${{ env.GITHUB_WORKSPACE }}/../public

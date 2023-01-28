@@ -30,5 +30,18 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 ## Tooling
 
 - [GitHub](https://github.com) - Continuous deployment, testing and hosting of this project's sources and its documentation
+- Various GitHub Actions
+  - https://github.com/actions/setup-node
+  - https://github.com/Akkjon/close-milestone
+  - https://github.com/andstor/file-reader-action
+  - https://github.com/ashley-taylor/regex-property-action
+  - https://github.com/Kaven-Universe/github-action-current-date-time
+  - https://github.com/mingjun97/file-regex-replace
+  - https://github.com/mukunku/tag-exists-action
+  - https://github.com/octokit/graphql-action
+  - https://github.com/peaceiris/actions-gh-pages
+  - https://github.com/peaceiris/actions-hugo
+  - https://github.com/WyriHaximus/github-action-create-milestone
+  - https://github.com/WyriHaximus/github-action-next-semvers
 - [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
 - [Hugo](https://gohugo.io/) - The static site generator of your choice
