@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.110.0">
+    <meta name="generator" content="Relearn 5.10.2+tip">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="What to know as a maintainer">
+    <meta name="author" content="Sören Weber">
+    <title>Issue and Release Management :: Hugo Relearn Theme</title>
+    <link href="https://McShelby.github.io/hugo-theme-relearn/dev/maintaining/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://McShelby.github.io/hugo-theme-relearn/dev/maintaining/index.html" rel="alternate" hreflang="en">
+    <link href="https://McShelby.github.io/hugo-theme-relearn/pir/dev/maintaining/index.html" rel="alternate" hreflang="pir">
+    <link href="../../images/logo.svg?1674913744" rel="icon" type="image/svg+xml">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="../../css/fontawesome-all.min.css?1674913745" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1674913745" rel="stylesheet"></noscript>
+    <link href="../../css/featherlight.min.css?1674913745" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/featherlight.min.css?1674913745" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1674913745" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1674913745" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1674913745" rel="stylesheet">
+    <link href="../../css/nucleus.css?1674913745" rel="stylesheet">
+    <link href="../../css/fonts.css?1674913745" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1674913745" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1674913745" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1674913745" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1674913745" rel="stylesheet">
+    <link href="../../css/variant.css?1674913745" rel="stylesheet">
+    <link href="../../css/print.css?1674913745" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1674913745" rel="stylesheet">
+    <script src="../../js/url.js?1674913745"></script>
+    <script src="../../js/variant.js?1674913745"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="../../index.search.js";
+      var root_url="../../";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
+      window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
+    </script>
+    <script src="../../js/jquery.min.js?1674913745" defer></script>
+    <style>
+      #body img.bg-white {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="../../dev/maintaining/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable" dir="ltr">
+        <div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Hugo Relearn Theme</span></a><meta itemprop="position" content="1"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dev/index.html"><span itemprop="name">Development</span></a><meta itemprop="position" content="2"> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Issue and Release Management</span><meta itemprop="position" content="3"></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1 id="issue-and-release-management">Issue and Release Management</h1>
+
+<h2 id="semver">Semver</h2>
+<p>This project tries to follow the <a href="https://semver.org/" target="_blank">semver policy</a> - although not followed 100% in the past.</p>
+<p>Usually an entry of <span class="badge cstyle warning badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-triangle"></i></span><span class="badge-content">Breaking</span></span> on the <a href="../../basics/migration/">What&rsquo;s new</a> page causes a new major release number.</p>
+<p>All other entries on the <a href="../../basics/migration/">What&rsquo;s new</a> page will increase the minor release number.</p>
+<p>Releases resulting in a new major or minor number are called main release.</p>
+<p>Releases containing bugixes only, are only increasing the patch release number. Those releases don&rsquo;t result in announcements on the <a href="../../basics/migration/">What&rsquo;s new</a> page.</p>
+<p>Entries on the <a href="../../basics/migration/">What&rsquo;s new</a> page are checked and enforced during the <code>version-release</code> GitHub Action.</p>
+<h2 id="managing-issues">Managing Issues</h2>
+<p>Issues are categorized and managed by assigning <a href="#labels">labels</a> to it.</p>
+<p>Once working on an issue, assign it to a fitting maintainer.</p>
+<p>When done, close the ticket. Once an issue is closed, it needs to be assigned to next release milestone.</p>
+<h2 id="managing-pull-requests">Managing Pull Requests</h2>
+<p>If a PR is merged and closed it needs an accompanied issue assigned to. If there is no issue for a PR, the maintainer needs to create one.</p>
+<p>You can assign multiple PRs to one issue as long as they belong together.</p>
+<p>Usually set the same labels and milestone for the PR as for the accompanied issue.</p>
+<h2 id="labels">Labels</h2>
+<h3 id="kind">Kind</h3>
+<p>An issue that results in changesets must have exactly one of the following labels. This needs to be assigned latest before release.</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Description</th>
+<th>Changelog section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #5498d8;">documentation</span></span></td>
+<td>Improvements or additions to documentation</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #99d856;">discussion</span></span></td>
+<td>This issue was converted to a discussion</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #d8d104;">task</span></span></td>
+<td>Maintainence work</td>
+<td>Maintenance</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #d8ae04;">feature</span></span></td>
+<td>New feature or request</td>
+<td>Features</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #d88704;">bug</span></span></td>
+<td>Something isn&rsquo;t working</td>
+<td>Fixes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="impact">Impact</h3>
+<p>If the issue would cause a new main release due to <a href="#semver">semver semantics</a> it needs one of the according labels and the matching badge on the <a href="../../basics/migration/">What&rsquo;s new</a> page.</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #d73a4a;">change</span></span></td>
+<td>Introduces changes with existing installations</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #d73a4a;">breaking</span></span></td>
+<td>Introduces breaking changes with existing installations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="declination">Declination</h3>
+<p>If an issue does not result in changesets but is closed anyways, it must have exactly one of the following labels.</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #9fa2a5;">duplicate</span></span></td>
+<td>This issue or pull request already exists</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #9fa2a5;">invalid</span></span></td>
+<td>This doesn&rsquo;t seem right</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #9fa2a5;">unresolved</span></span></td>
+<td>No progress on this issue</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #9fa2a5;">wontfix</span></span></td>
+<td>This will not be worked on</td>
+</tr>
+</tbody>
+</table>
+<h3 id="halt">Halt</h3>
+<p>You can assign one further label out of the following list to signal readers that development on an open issue is currently halted for different reasons.</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #998f6b;">blocked</span></span></td>
+<td>Depends on other issue to be fixed first</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #998f6b;">idea</span></span></td>
+<td>A valuable idea that&rsquo;s currently not worked on</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #998f6b;">undecided</span></span></td>
+<td>No decission was made yet</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #6426ff;">helpwanted</span></span></td>
+<td>Great idea, send in a PR</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #6426ff;">needsfeedback</span></span></td>
+<td>Further information is needed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3rd-party">3rd-Party</h3>
+<p>If the issue is not caused by a programming error in the themes own code, you can label the causing program or library.</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #e550a7;">browser</span></span></td>
+<td>This is a topic related to the browser but not the theme</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #e550a7;">hugo</span></span></td>
+<td>This is a topic related to Hugo itself but not the theme</td>
+</tr>
+<tr>
+<td><span class="badge cstyle default"><span class="badge-content" style="background-color: #e550a7;">mermaid</span></span></td>
+<td>This is a topic related to Mermaid itself but not the theme</td>
+</tr>
+</tbody>
+</table>
+<h2 id="making-releases">Making Releases</h2>
+<p>A release is based on a milestone named like the release itself - just the version number, eg: <code>1.2.3</code>. It&rsquo;s in the maintainers responsiblity to check <a href="#semver">semver semantics</a> of the milestone&rsquo;s name prior to release and change it if necessary.</p>
+<p>Making releases is automated by the <code>version-release</code> GitHub Action. It requires the version number of the milestone that should be released. The release will be created from the <code>main</code> branch of the repository.</p>
+<p>During execution of the action a few things are checked. If a check fails the action fails, resulting in no new release. You can correct the errors afterwards and rerun the action.</p>
+<p>The following checks will be enforced</p>
+<ul>
+<li>the milestone exists</li>
+<li>there is at least one closed issue assigned to the milestone</li>
+<li>all assigned issues for this milestone are closed</li>
+<li>the milestone is not previously released</li>
+<li>if it&rsquo;s a main release, there must be a new <code>&lt;major&gt;.&lt;minor&gt;</code> at the beginning of the <a href="../../basics/migration/">What&rsquo;s new</a> page</li>
+<li>if it&rsquo;s a patch release, there must be the <code>&lt;major&gt;.&lt;minor&gt;</code> from the previous release at the beginning of the <a href="../../basics/migration/">What&rsquo;s new</a> page</li>
+</ul>
+<p>After a successful run of the action</p>
+<ul>
+<li>the <a href="https://mcshelby.github.io/hugo-theme-relearn/basics/history/index.html" target="_blank">History</a> page is updated</li>
+<li>the <a href="https://mcshelby.github.io/hugo-theme-relearn/basics/migration/index.html" target="_blank">What&rsquo;s new</a> page is updated</li>
+<li>the version number for the <code>&lt;meta generator&gt;</code> is updated</li>
+<li>the updated files are commited</li>
+<li>the milestone is closed</li>
+<li>the repository is tagged with the version number</li>
+<li>a new entry in the <a href="https://github.com/McShelby/hugo-theme-relearn/releases" target="_blank">GitHub release list</a> with the according changelog will be created</li>
+<li>the <a href="https://mcshelby.github.io/hugo-theme-relearn/index.html" target="_blank">official documentation</a> is built and deployed</li>
+<li>the version number for the <code>&lt;meta generator&gt;</code> is updated to a temporary and commited (this helps to determine if users are running directly on the main branch or are using releases)</li>
+<li>a new milestone for the next patch release is created (this can later be renamed to a main release if necessary)</li>
+</ul>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="../../js/clipboard.min.js?1674913745" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1674913745" defer></script>
+    <script src="../../js/featherlight.min.js?1674913745" defer></script>
+    <script src="../../js/theme.js?1674913745" defer></script>
+  </body>
+</html>
