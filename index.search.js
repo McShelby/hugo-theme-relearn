@@ -111,7 +111,7 @@ var relearn_search_index = [
     "uri": "/shortcodes/children/children-1/index.html"
   },
   {
-    "content": "Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.\nJust download at leat version 0.95.0 of the Hugo binary for your OS (Windows, Linux, Mac).\n",
+    "content": "Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.\nJust download at least version 0.95.0 of the Hugo binary for your OS (Windows, Linux, Mac).\n",
     "description": "",
     "tags": null,
     "title": "Requirements",

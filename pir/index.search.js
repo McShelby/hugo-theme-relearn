@@ -111,7 +111,7 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/children/children-1/index.html"
   },
   {
-    "content": " Arrr! Pirrrates Fello' pirrates, be awarrre some stuff may not work fer us in this trrranslat'n. Like table of rrramblings, see'ng Merrrmaids, do'ng math or chemistrrry and stuff.\nThanks t' th' simplicity o' Cap'n Hugo, this plank be as empty as this theme needs requirements.\nJust download at leat version 0.95.0 o' th' Cap'n Hugo binary fer yer OS (Windows, Linux, Mac).\n",
+    "content": " Arrr! Pirrrates Fello' pirrates, be awarrre some stuff may not work fer us in this trrranslat'n. Like table of rrramblings, see'ng Merrrmaids, do'ng math or chemistrrry and stuff.\nThanks t' th' simplicity o' Cap'n Hugo, this plank be as empty as this theme needs requirements.\nJust download at least version 0.95.0 o' th' Cap'n Hugo binary fer yer OS (Windows, Linux, Mac).\n",
     "description": "",
     "tags": null,
     "title": "Requirrrements",
