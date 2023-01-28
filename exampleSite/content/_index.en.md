@@ -54,7 +54,7 @@ To get support, feel free to open a new [discussion topic](https://github.com/Mc
 
 Feel free to update this documentation by just clicking the {{% button style="transparent" icon="pen" %}}{{% /button %}} button displayed on top right of each page. Your changes will be deployed automatically once they were reviewed.
 
-You are most welcome to contribute bugfixes or even new features to the source code by making pull requests to the [official repository](https://github.com/McShelby/hugo-theme-relearn) via GitHub. Please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/contributing.md) first.
+You are most welcome to contribute bugfixes or even new features to the source code by making pull requests to the [official repository](https://github.com/McShelby/hugo-theme-relearn) via GitHub. Please visit the [contribution guidelines]({{%relref "dev/contributing" %}}) first.
 
 ## License
 

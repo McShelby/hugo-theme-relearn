@@ -55,7 +55,7 @@ See the [What's New](https://mcshelby.github.io/hugo-theme-relearn/basics/migrat
 
 ## Contribution
 
-You are most welcome to contribute bugfixes or even new features to the source code. Please visit the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn/blob/main/.github/contributing.md) first.
+You are most welcome to contribute bugfixes or even new features to the source code. Please visit the [contribution guidelines](https://mcshelby.github.io/hugo-theme-relearn/dev/contributing) first.
 
 ## License
 
