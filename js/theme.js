@@ -807,62 +807,89 @@ function unmark(){
     psm && psm.update();
 }
 
-function searchInputHandler(value) {
+// replace jQuery.createPseudo with https://stackoverflow.com/a/66318392
+function elementContains( txt, e ){
+    var regex = RegExp( txt, 'i' );
+    var nodes = [];
+    if( e ){
+        var tree = document.createTreeWalker( e, 4 /* NodeFilter.SHOW_TEXT */, function( node ){
+            return regex.test( node.data );
+        });
+        var node = null;
+        while( node = tree.nextNode() ){
+            nodes.push( node.parentElement );
+        }
+    }
+    return nodes;
+}
+
+function searchInputHandler( value ){
     unmark();
-    if (value.length) {
-        sessionStorage.setItem(baseUriFull+'search-value', value);
+    if( value.length ){
+        sessionStorage.setItem( baseUriFull+'search-value', value );
         mark();
     }
 }
 
 function initSearch() {
     // sync input/escape between searchbox and searchdetail
-    jQuery('input.search-by').on('keydown', function(event) {
-        if (event.key == "Escape") {
-            var input = jQuery(this);
-            input.blur();
-            searchInputHandler( '' );
-            jQuery('input.search-by').val('');
-            documentFocus();
-        }
-    });
-    jQuery('input.search-by').on('input', function() {
-        var input = jQuery(this);
-        var value = input.val();
-        searchInputHandler( value );
-        jQuery('input.search-by').not(this).val($(this).val());
+    var inputs = document.querySelectorAll( 'input.search-by' );
+    inputs.forEach( function( e ){
+        e.addEventListener( 'keydown', function( event ){
+            if( event.key == 'Escape' ){
+                var input = event.target;
+                input.blur();
+                searchInputHandler( '' );
+                inputs.forEach( function( e ){
+                    e.value = '';
+                });
+                documentFocus();
+            }
+        });
+        e.addEventListener( 'input', function( event ){
+            var input = event.target;
+            var value = input.value;
+            searchInputHandler( value );
+            inputs.forEach( function( e ){
+                if( e != input ){
+                    e.value = value;
+                }
+            });
+        });
     });
 
-    jQuery('[data-search-clear]').on('click', function() {
-        jQuery('[data-search-input]').val('').trigger('input');
-        unmark();
+    document.querySelectorAll( '[data-search-clear]' ).forEach( function( e ){
+        e.addEventListener( 'click', function(){
+            inputs.forEach( function( e ){
+                e.value = '';
+                e.dispatchEvent( new Event( 'input' ) );
+            });
+            unmark();
+        });
     });
 
-    var urlParams = new URLSearchParams(window.location.search);
-    var value = urlParams.get('search-by');
+    var urlParams = new URLSearchParams( window.location.search );
+    var value = urlParams.get( 'search-by' );
     if( value ){
-        sessionStorage.setItem(baseUriFull+'search-value', value);
+        sessionStorage.setItem( baseUriFull+'search-value', value );
     }
     mark();
 
-    // custom sizzle case insensitive "contains" pseudo selector
-    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-        return function( elem ) {
-            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-        };
-    });
-
     // set initial search value on page load
-    if (sessionStorage.getItem(baseUriFull+'search-value')) {
-        var searchValue = sessionStorage.getItem(baseUriFull+'search-value')
-        $('[data-search-input]').val(searchValue);
-        $('[data-search-input]').trigger('input');
-        var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
-        if (searchedElem) {
-            searchedElem.scrollIntoView(true);
+    if( sessionStorage.getItem( baseUriFull+'search-value' ) ){
+        var searchValue = sessionStorage.getItem( baseUriFull+'search-value' );
+        inputs.forEach( function( e ){
+            e.value = searchValue;
+            e.dispatchEvent( new Event( 'input' ) );
+        });
+
+        var found = elementContains( searchValue, document.querySelector( '#body-inner' ) );
+        var searchedElem = found.length && found[ 0 ];
+        if( searchedElem ){
+            searchedElem.scrollIntoView( true );
             var scrolledY = window.scrollY;
-            if(scrolledY){
-                window.scroll(0, scrolledY - 125);
+            if( scrolledY ){
+                window.scroll( 0, scrolledY - 125 );
             }
         }
     }
