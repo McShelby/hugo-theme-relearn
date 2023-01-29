@@ -80,14 +80,20 @@ function initLunrJson() {
     // backward compatiblity if the user did not
     // define the SEARCH output format for the homepage
     if( window.index_json_url && !window.index_js_url ){
-        $.getJSON(index_json_url)
-        .done(function(index) {
-            initLunrIndex(index);
-        })
-        .fail(function(jqxhr, textStatus, error) {
-            var err = textStatus + ', ' + error;
-            console.error('Error getting Hugo index file:', err);
-        });
+        xhr = new XMLHttpRequest;
+        xhr.onreadystatechange = function(){
+            if( xhr.readyState == 4 ){
+                if( xhr.status == 200 ){
+                    initLunrIndex( JSON.parse( xhr.responseText ) );
+                }
+                else{
+                    var err = xhr.status;
+                    console.error( 'Error getting Hugo index file: ', err );
+                }
+            }
+        }
+        xhr.open( 'GET', index_json_url );
+        xhr.send();
     }
 }
 
