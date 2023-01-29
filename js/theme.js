@@ -757,7 +757,7 @@ function scrollToFragment() {
 function mark(){
     // mark some additonal stuff as searchable
     $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
-    $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
+    $('#body-inner a:not(:has(img)):not(.btn):not(.lightbox):not(a[rel="footnote"])').addClass('highlight');
 
     var value = sessionStorage.getItem(baseUriFull+'search-value');
     $(".highlightable").highlight(value, { element: 'mark' });
