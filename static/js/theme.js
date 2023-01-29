@@ -55,9 +55,15 @@ function adjustContentWidth(){
 }
 
 function switchTab(tabGroup, tabId) {
-    var tabs = jQuery(".tab-panel").has("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
-    var allTabItems = tabs.find("[data-tab-group='"+tabGroup+"']");
-    var targetTabItems = tabs.find("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
+    var tabs = Array.from( document.querySelectorAll( '.tab-panel[data-tab-group="'+tabGroup+'"]' ) ).filter( function( e ){
+        return !!e.querySelector( '[data-tab-item="'+tabId+'"]' );
+    });
+    var allTabItems = tabs && tabs.reduce( function( a, e ){
+        return a.concat( Array.from( e.querySelectorAll( '.tab-nav-button, .tab-item' ) ) );
+    }, [] );
+    var targetTabItems = tabs && tabs.reduce( function( a, e ){
+        return a.concat( Array.from( e.querySelectorAll( '[data-tab-item="'+tabId+'"]' ) ) );
+    }, [] );
 
     // if event is undefined then switchTab was called from restoreTabSelection
     // so it's not a button event and we don't need to safe the selction or
@@ -69,8 +75,8 @@ function switchTab(tabGroup, tabId) {
       var yposButton = event.target.getBoundingClientRect().top;
     }
 
-    allTabItems.removeClass("active");
-    targetTabItems.addClass("active");
+    allTabItems && allTabItems.forEach( function( e ){ e.classList.remove( 'active' ); });
+    targetTabItems && targetTabItems.forEach( function( e ){ e.classList.add( 'active' ); });
 
     if(isButtonEvent){
       // reset screen to the same position relative to clicked button to prevent page jump
