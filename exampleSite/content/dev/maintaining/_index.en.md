@@ -25,6 +25,8 @@ Once working on an issue, assign it to a fitting maintainer.
 
 When done, close the ticket. Once an issue is closed, it needs to be assigned to next release milestone.
 
+A once released ticket is not allowed to be reopened and rereleased in a different release. Write a new ticket in this case.
+
 ## Managing Pull Requests
 
 If a PR is merged and closed it needs an accompanied issue assigned to. If there is no issue for a PR, the maintainer needs to create one.
@@ -108,8 +110,8 @@ The following checks will be enforced
 
 After a successful run of the action
 
-- the [History](https://mcshelby.github.io/hugo-theme-relearn/basics/history/index.html) page is updated
-- the [What's new](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/index.html) page is updated
+- the [History](https://mcshelby.github.io/hugo-theme-relearn/basics/history/index.html) page is updated, including release version, release date and text
+- the [What's new](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/index.html) page is updated, including release version, release date and text
 - the version number for the `<meta generator>` is updated
 - the updated files are commited
 - the milestone is closed
