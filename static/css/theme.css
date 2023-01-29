@@ -77,7 +77,6 @@ dd {
     max-width: 300px;
     position: fixed;
     width: 300px;
-    z-index: 80;
 }
 
 #header-wrapper {
@@ -805,14 +804,6 @@ td {
 #sidebar .highlightable {
     padding: 1rem 0 1rem;
     position: relative;
-}
-
-.lightbox-active #body {
-    overflow: visible;
-}
-
-.featherlight img {
-    margin: 0 !important;
 }
 
 #topbar {
@@ -1716,4 +1707,31 @@ article ul li input[type="checkbox"]::before {
 
 article ul li input[type="checkbox"]:checked::before {
     transform: scale(1);
+}
+
+/* CSS Lightbox https://codepen.io/gschier/pen/kyRXVx */
+.lightbox {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+    z-index: 1999;
+}
+
+.lightbox:target {
+    display: flex;
+}
+
+.lightbox img {
+    max-height: 95%;
+    max-width: 95%;
+    overflow: auto;
+    padding: min(2vh, 2vw);
 }

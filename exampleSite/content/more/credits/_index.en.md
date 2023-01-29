@@ -15,7 +15,6 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 
 - [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
 - [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard
-- [Featherlight](https://noelboss.github.io/featherlight) - A lightweight jQuery lightbox plugin
 - [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
 - [jQuery](https://jquery.com) - The "Write less, do more" JavaScript library
 - [jquery-svg-zoom-pan](https://github.com/DanielHoffmann/jquery-svg-pan-zoom) - A jQuery plugin to enable pan and zoom in SVG images

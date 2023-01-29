@@ -666,12 +666,12 @@ Add a query parameter `classes` to the link image to add CSS classes. Add some o
 
 #### Lightbox
 
-Add the query parameter `featherlight=false` to the image link to disable the lightbox.
+Add the query parameter `lightbox=false` to the image link to disable the lightbox.
 
 ````markdown
-![Homercat](https://octodex.github.com/images/homercat.png?featherlight=false)
+![Homercat](https://octodex.github.com/images/homercat.png?lightbox=false)
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&featherlight=false&classes=bg-white)
+![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&lightbox=false&classes=bg-white)
 {{% /notice %}}

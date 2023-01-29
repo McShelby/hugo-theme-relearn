@@ -18,6 +18,16 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.11.0 (not yet released)
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (was [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.
+
+  This also changed the [lightbox effects]({{% relref "cont/markdown#lightbox" %}}) parameter from `featherlight=false` to `lightbox=false`. Nevertheless you don't need to change anything as the old name will be used as a fallback.
+
+  As a further advantage, the image inside the lightbox now has its own URL and is therefore linkable.
+
+---
+
 ## 5.10.0 (2023-01-25)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`attachments`]({{% relref "shortcodes/attachments" %}}), [`badge`]({{% relref "shortcodes/badge" %}}), [`button`]({{% relref "shortcodes/button" %}}) and [`notice`]({{% relref "shortcodes/notice" %}}) shortcodes have a new parameter `color` to set arbitrary CSS color values.

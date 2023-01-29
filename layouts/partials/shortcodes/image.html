@@ -2,8 +2,9 @@
 {{- $url := .url }}
 {{- $title := .title }}
 {{- $alt := .alt }}
+{{- $ordinal := .ordinal }}
 {{- $classes := slice }}
-{{- $featherlight := true }}
+{{- $lightbox := true }}
 {{- $height := "auto" }}
 {{- $width := "auto" }}
 {{- $dest_url := urls.Parse $url }}
@@ -25,7 +26,7 @@
 	{{- if $dest_url.Query.Get "classes" }}
 		{{- $classes = $classes | append (split ($dest_url.Query.Get "classes") ",") }}
 	{{- end }}
-	{{- $featherlight = (ne ($dest_url.Query.Get "featherlight") "false") }}
+	{{- $lightbox = and (ne ($dest_url.Query.Get "lightbox") "false") (ne ($dest_url.Query.Get "featherlight") "false") }}
 	{{- with $dest_url.Query.Get "height" }}
 		{{ $height = . }}
 	{{- end }}
@@ -33,10 +34,14 @@
 		{{ $width = . }}
 	{{- end }}
 {{- end }}
-{{- if $featherlight }}
-<a href="{{ $url | safeURL }}" data-featherlight="image">
+{{- $fragment := printf "%d-%s" $ordinal ((trim (replace (replace (replace (replace (replace $url "=" "-") "&" "-") "?" "-") "." "-") "/" "-") "-") | safeURL | anchorize) }}
+{{- if $lightbox }}
+<a href="#{{ $fragment }}">
 {{- end }}
 <img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ if len ($classes) }} class="{{ delimit $classes " " }}"{{ end }} style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
-{{- if $featherlight }}
+{{- if $lightbox }}
+</a>
+<a href="javascript:history.back();" class="lightbox" id="{{ $fragment }}">
+<img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}loading="lazy">
 </a>
 {{- end }}

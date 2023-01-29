@@ -6,7 +6,6 @@
 {{- partial "output-partial.hugo" (dict "base" "menu" "page" . "parameter" . "outputFormat" $outputFormat) }}
     <script src="{{"js/clipboard.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-    <script src="{{"js/featherlight.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
 {{- $wantsMathJax := or (.Page.Store.Get "hasMathJax") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasMathJax")) }}
 {{- if $wantsMathJax }}
   {{- if isset .Params "mathjaxinitialize" }}
