@@ -365,14 +365,10 @@ function initArrowNav(){
     }
 
     // button navigation
-    jQuery(function() {
-        jQuery('a.nav-prev').click(function(){
-            location.href = jQuery(this).attr('href');
-        });
-        jQuery('a.nav-next').click(function() {
-            location.href = jQuery(this).attr('href');
-        });
-    });
+    var e = document.querySelector( 'a.nav-prev' );
+    e && e.addEventListener( 'click', navPrev );
+    e = document.querySelector( 'a.nav-next' );
+    e && e.addEventListener( 'click', navNext );
 
     // keyboard navigation
     // avoid prev/next navigation if we are not at the start/end of the
@@ -384,7 +380,7 @@ function initArrowNav(){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
             if( event.which == '37' ){
                 if( !scrollLeft && el.scrollLeft <= 0 ){
-                    jQuery('a.nav-prev').click();
+                    navPrev();
                 }
                 else if( scrollLeft != -1 ){
                     clearTimeout( scrollLeft );
@@ -393,7 +389,7 @@ function initArrowNav(){
             }
             if( event.which == '39' ){
                 if( !scrollRight && el.scrollLeft + el.clientWidth >= el.scrollWidth ){
-                    jQuery('a.nav-next').click();
+                    navNext();
                 }
                 else if( scrollRight != -1 ){
                     clearTimeout( scrollRight );
@@ -419,10 +415,12 @@ function initArrowNav(){
     });
 
     // avoid keyboard navigation for input fields
-    jQuery(formelements).keydown(function (e) {
-        if (e.which == '37' || e.which == '39') {
-            e.stopPropagation();
-        }
+    document.querySelectorAll( formelements ).forEach( function( e ){
+        e.addEventListener( 'keydown', function( event ){
+            if( event.which == 37 || event.which == 39 ){
+                event.stopPropagation();
+            }
+        });
     });
 }
 
@@ -629,6 +627,16 @@ function showPrint(){
         l.click();
     }
 }
+
+function navPrev(){
+    var e = document.querySelector( 'a.nav-prev' );
+    location.href = e && e.getAttribute( 'href' );
+};
+
+function navNext(){
+    var e = document.querySelector( 'a.nav-next' );
+    location.href = e && e.getAttribute( 'href' );
+};
 
 function initToc(){
     if( isPrint ){
