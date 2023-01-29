@@ -8,6 +8,9 @@
             - don't empty search input if no data-val is given
             - don't delete search term but close suggestions when suggestions are open
             - delete search term when suggestions are closed
+        McShelby/hugo-theme-relearn#452
+            - register focus event ignoring minChars because that doesn't make sense
+
     Copyright (c) 2014 Simon Steinberger / Pixabay
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
     License: http://www.opensource.org/licenses/mit-license.php
@@ -240,7 +243,7 @@ var autoComplete = (function(){
                 that.last_val = '\n';
                 that.keyupHandler(e)
             };
-            if (!o.minChars) addEvent(that, 'focus', that.focusHandler);
+            addEvent(that, 'focus', that.focusHandler);
         }
 
         // public destroy method

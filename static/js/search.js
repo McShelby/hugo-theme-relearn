@@ -203,10 +203,11 @@ function searchDetail() {
     setTimeout( adjustContentWidth, 0 );
 }
 
-// Let's get started
 initLunrJson();
 initLunrJs();
-$(function() {
+
+
+function startSearch(){
     var url = new URL( window.location );
     window.history.replaceState(url.toString(), '', url);
 
@@ -245,9 +246,6 @@ $(function() {
             e.preventDefault();
         }
     });
+};
 
-    // JavaScript-autoComplete only registers the focus event when minChars is 0 which doesn't make sense, let's do it ourselves
-    // https://github.com/Pixabay/JavaScript-autoComplete/blob/master/auto-complete.js#L191
-    var selector = $('#search-by').get(0);
-    $(selector).focus(selector.focusHandler);
-});
+ready( startSearch );
