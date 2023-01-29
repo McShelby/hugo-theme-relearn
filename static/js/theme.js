@@ -714,14 +714,16 @@ function clearHistory() {
             // in case we have `relativeURLs=true` we have to strip the
             // relative path to root
             url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
-            jQuery('[data-nav-id="' + url + '"]').removeClass('visited');
+            document.querySelectorAll( '[data-nav-id="'+url+'"]' ).forEach( function( e ){
+                e.classList.remove( 'visited' );
+            });
         }
     }
 }
 
 function initHistory() {
     var visitedItem = baseUriFull + 'visited-url/'
-    sessionStorage.setItem(visitedItem+jQuery('body').data('url'), 1);
+    sessionStorage.setItem( visitedItem+document.querySelector( 'body' ).dataset.url, 1);
 
     // loop through the sessionStorage and see if something should be marked as visited
     for( var item in sessionStorage ){
@@ -730,7 +732,9 @@ function initHistory() {
             // in case we have `relativeURLs=true` we have to strip the
             // relative path to root
             url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
-            jQuery('[data-nav-id="' + url + '"]').addClass('visited');
+            document.querySelectorAll( '[data-nav-id="'+url+'"]' ).forEach( function( e ){
+                e.classList.add( 'visited' );
+            });
         }
     }
 }
