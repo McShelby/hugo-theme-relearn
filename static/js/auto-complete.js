@@ -1,10 +1,9 @@
 /*
     JavaScript autoComplete v1.0.4+
-		#46 - positioning
-		#75 - complete
         McShelby/hugo-theme-relearn#155
+            - PR #46, PR #75: introducing selectorToInsert and anchor to it
             - sticky dropdown on scrolling
-        McShelby/hugo-theme-relearn#3xx
+        McShelby/hugo-theme-relearn#387
             - don't empty search input if no data-val is given
             - don't delete search term but close suggestions when suggestions are open
             - delete search term when suggestions are closed
