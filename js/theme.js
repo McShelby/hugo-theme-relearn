@@ -55,9 +55,15 @@ function adjustContentWidth(){
 }
 
 function switchTab(tabGroup, tabId) {
-    var tabs = jQuery(".tab-panel").has("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
-    var allTabItems = tabs.find("[data-tab-group='"+tabGroup+"']");
-    var targetTabItems = tabs.find("[data-tab-group='"+tabGroup+"'][data-tab-item='"+tabId+"']");
+    var tabs = Array.from( document.querySelectorAll( '.tab-panel[data-tab-group="'+tabGroup+'"]' ) ).filter( function( e ){
+        return !!e.querySelector( '[data-tab-item="'+tabId+'"]' );
+    });
+    var allTabItems = tabs && tabs.reduce( function( a, e ){
+        return a.concat( Array.from( e.querySelectorAll( '.tab-nav-button, .tab-item' ) ) );
+    }, [] );
+    var targetTabItems = tabs && tabs.reduce( function( a, e ){
+        return a.concat( Array.from( e.querySelectorAll( '[data-tab-item="'+tabId+'"]' ) ) );
+    }, [] );
 
     // if event is undefined then switchTab was called from restoreTabSelection
     // so it's not a button event and we don't need to safe the selction or
@@ -69,8 +75,8 @@ function switchTab(tabGroup, tabId) {
       var yposButton = event.target.getBoundingClientRect().top;
     }
 
-    allTabItems.removeClass("active");
-    targetTabItems.addClass("active");
+    allTabItems && allTabItems.forEach( function( e ){ e.classList.remove( 'active' ); });
+    targetTabItems && targetTabItems.forEach( function( e ){ e.classList.add( 'active' ); });
 
     if(isButtonEvent){
       // reset screen to the same position relative to clicked button to prevent page jump
@@ -359,14 +365,10 @@ function initArrowNav(){
     }
 
     // button navigation
-    jQuery(function() {
-        jQuery('a.nav-prev').click(function(){
-            location.href = jQuery(this).attr('href');
-        });
-        jQuery('a.nav-next').click(function() {
-            location.href = jQuery(this).attr('href');
-        });
-    });
+    var e = document.querySelector( 'a.nav-prev' );
+    e && e.addEventListener( 'click', navPrev );
+    e = document.querySelector( 'a.nav-next' );
+    e && e.addEventListener( 'click', navNext );
 
     // keyboard navigation
     // avoid prev/next navigation if we are not at the start/end of the
@@ -378,7 +380,7 @@ function initArrowNav(){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
             if( event.which == '37' ){
                 if( !scrollLeft && el.scrollLeft <= 0 ){
-                    jQuery('a.nav-prev').click();
+                    navPrev();
                 }
                 else if( scrollLeft != -1 ){
                     clearTimeout( scrollLeft );
@@ -387,7 +389,7 @@ function initArrowNav(){
             }
             if( event.which == '39' ){
                 if( !scrollRight && el.scrollLeft + el.clientWidth >= el.scrollWidth ){
-                    jQuery('a.nav-next').click();
+                    navNext();
                 }
                 else if( scrollRight != -1 ){
                     clearTimeout( scrollRight );
@@ -413,10 +415,12 @@ function initArrowNav(){
     });
 
     // avoid keyboard navigation for input fields
-    jQuery(formelements).keydown(function (e) {
-        if (e.which == '37' || e.which == '39') {
-            e.stopPropagation();
-        }
+    document.querySelectorAll( formelements ).forEach( function( e ){
+        e.addEventListener( 'keydown', function( event ){
+            if( event.which == 37 || event.which == 39 ){
+                event.stopPropagation();
+            }
+        });
     });
 }
 
@@ -624,6 +628,16 @@ function showPrint(){
     }
 }
 
+function navPrev(){
+    var e = document.querySelector( 'a.nav-prev' );
+    location.href = e && e.getAttribute( 'href' );
+};
+
+function navNext(){
+    var e = document.querySelector( 'a.nav-next' );
+    location.href = e && e.getAttribute( 'href' );
+};
+
 function initToc(){
     if( isPrint ){
         return;
@@ -708,14 +722,16 @@ function clearHistory() {
             // in case we have `relativeURLs=true` we have to strip the
             // relative path to root
             url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
-            jQuery('[data-nav-id="' + url + '"]').removeClass('visited');
+            document.querySelectorAll( '[data-nav-id="'+url+'"]' ).forEach( function( e ){
+                e.classList.remove( 'visited' );
+            });
         }
     }
 }
 
 function initHistory() {
     var visitedItem = baseUriFull + 'visited-url/'
-    sessionStorage.setItem(visitedItem+jQuery('body').data('url'), 1);
+    sessionStorage.setItem( visitedItem+document.querySelector( 'body' ).dataset.url, 1);
 
     // loop through the sessionStorage and see if something should be marked as visited
     for( var item in sessionStorage ){
@@ -724,7 +740,9 @@ function initHistory() {
             // in case we have `relativeURLs=true` we have to strip the
             // relative path to root
             url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
-            jQuery('[data-nav-id="' + url + '"]').addClass('visited');
+            document.querySelectorAll( '[data-nav-id="'+url+'"]' ).forEach( function( e ){
+                e.classList.add( 'visited' );
+            });
         }
     }
 }

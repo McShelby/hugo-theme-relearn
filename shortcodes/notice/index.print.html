@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/shortcodes/notice/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/shortcodes/notice/index.html" rel="canonical" type="text/html" title="Notice :: Hugo Relearn Theme">
     <link href="../../shortcodes/notice/index.xml" rel="alternate" type="application/rss+xml" title="Notice :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1674988292" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1675008302" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1674988293" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1674988293" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1674988293" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1674988293" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1674988293" rel="stylesheet">
-    <link href="../../css/nucleus.css?1674988293" rel="stylesheet">
-    <link href="../../css/fonts.css?1674988293" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1674988293" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1674988293" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1674988293" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1674988293" rel="stylesheet">
-    <link href="../../css/variant.css?1674988293" rel="stylesheet">
-    <link href="../../css/print.css?1674988293" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1674988293" rel="stylesheet">
-    <script src="../../js/url.js?1674988293"></script>
-    <script src="../../js/variant.js?1674988293"></script>
+    <link href="../../css/fontawesome-all.min.css?1675008304" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675008304" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675008304" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675008304" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675008304" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675008304" rel="stylesheet">
+    <link href="../../css/fonts.css?1675008304" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675008304" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675008304" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675008304" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675008304" rel="stylesheet">
+    <link href="../../css/variant.css?1675008304" rel="stylesheet">
+    <link href="../../css/print.css?1675008304" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675008304" rel="stylesheet">
+    <script src="../../js/url.js?1675008304"></script>
+    <script src="../../js/variant.js?1675008304"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -45,7 +45,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1674988293" defer></script>
+    <script src="../../js/jquery.min.js?1675008304" defer></script>
     <style>
       #body img.bg-white {
         background-color: white;
@@ -88,41 +88,50 @@
 <h2 id="usage">Usage</h2>
 <p>While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.</p>
 
-<div class="tab-panel">
+<div class="tab-panel" data-tab-group="shortcode-parameter">
   <div class="tab-nav">
     <button
       data-tab-item="shortcode"
-      data-tab-group="shortcode-parameter"
       class="tab-nav-button direction-ltr active"
       onclick="switchTab('shortcode-parameter','shortcode')"
-      ><span>shortcode</span></button>
+    >
+      <span>shortcode</span></button>
     <button
       data-tab-item="shortcode (positional)"
-      data-tab-group="shortcode-parameter"
       class="tab-nav-button direction-ltr "
       onclick="switchTab('shortcode-parameter','shortcode (positional)')"
-      ><span>shortcode (positional)</span></button>
+    >
+      <span>shortcode (positional)</span></button>
     <button
       data-tab-item="partial"
-      data-tab-group="shortcode-parameter"
       class="tab-nav-button direction-ltr "
       onclick="switchTab('shortcode-parameter','partial')"
-      ><span>partial</span></button>
+    >
+      <span>partial</span></button>
   </div>
   <div class="tab-content">
-    <div data-tab-item="shortcode" data-tab-group="shortcode-parameter" class="tab-item active">
+    <div
+      data-tab-item="shortcode"
+      class="tab-item active"
+    >
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">notice</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;primary&#34;</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;There may be pirates&#34;</span> <span class="nx">icon</span><span class="p">=</span><span class="s">&#34;skull-crossbones&#34;</span> <span class="o">%</span><span class="p">}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">It</span> <span class="nx">is</span> <span class="nx">all</span> <span class="nx">about</span> <span class="nx">the</span> <span class="nx">boxes</span><span class="p">.</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">notice</span> <span class="o">%</span><span class="p">}}</span>
 </span></span></code></pre></div>
     </div>
-    <div data-tab-item="shortcode (positional)" data-tab-group="shortcode-parameter" class="tab-item ">
+    <div
+      data-tab-item="shortcode (positional)"
+      class="tab-item "
+    >
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">notice</span> <span class="nx">primary</span> <span class="s">&#34;There may be pirates&#34;</span> <span class="s">&#34;skull-crossbones&#34;</span> <span class="o">%</span><span class="p">}}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">It</span> <span class="nx">is</span> <span class="nx">all</span> <span class="nx">about</span> <span class="nx">the</span> <span class="nx">boxes</span><span class="p">.</span>
 </span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">notice</span> <span class="o">%</span><span class="p">}}</span>
 </span></span></code></pre></div>
     </div>
-    <div data-tab-item="partial" data-tab-group="shortcode-parameter" class="tab-item ">
+    <div
+      data-tab-item="partial"
+      class="tab-item "
+    >
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/notice.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;context&#34;</span> <span class="p">.</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;style&#34;</span> <span class="s">&#34;primary&#34;</span>
@@ -401,8 +410,8 @@
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1674988293" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1674988293" defer></script>
-    <script src="../../js/theme.js?1674988293" defer></script>
+    <script src="../../js/clipboard.min.js?1675008304" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675008304" defer></script>
+    <script src="../../js/theme.js?1675008304" defer></script>
   </body>
 </html>
