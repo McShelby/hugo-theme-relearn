@@ -10,7 +10,7 @@ var lunrIndex, pagesIndex;
 
 function initLunrIndex( index ){
     pagesIndex = index;
-    // Set up lunrjs by declaring the fields we use
+    // Set up Lunr by declaring the fields we use
     // Also provide their boost level for the ranking
     lunrIndex = lunr(function() {
         this.use(lunr.multiLanguage.apply(null, contentLangs));
@@ -28,7 +28,7 @@ function initLunrIndex( index ){
         this.pipeline.remove(lunr.stemmer);
         this.searchPipeline.remove(lunr.stemmer);
 
-        // Feed lunr with each file and let lunr actually index them
+        // Feed Lunr with each file and let LUnr actually index them
         pagesIndex.forEach(function(page, idx) {
             page.index = idx;
             this.add(page);
@@ -114,13 +114,13 @@ function initLunrJs() {
 }
 
 /**
- * Trigger a search in lunr and transform the result
+ * Trigger a search in Lunr and transform the result
  *
  * @param  {String} term
  * @return {Array}  results
  */
 function search(term) {
-    // Find the item in our index corresponding to the lunr one to have more info
+    // Find the item in our index corresponding to the Lunr one to have more info
     // Remove Lunr special search characters: https://lunrjs.com/guides/searching.html
     var searchTerm = lunr.tokenizer(term.replace(/[*:^~+-]/, ' ')).reduce( function(a,token){return a.concat(searchPatterns(token.str))}, []).join(' ');
     return !searchTerm || !lunrIndex ? [] : lunrIndex.search(searchTerm).map(function(result) {
