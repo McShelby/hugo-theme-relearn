@@ -12,21 +12,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/dev/index.html" rel="alternate" hreflang="x-default">
     <link href="https://McShelby.github.io/hugo-theme-relearn/dev/index.html" rel="alternate" hreflang="en">
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/dev/index.html" rel="alternate" hreflang="pir">
-    <link href="../../images/logo.svg?1675083446" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1675094103" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1675083448" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675083448" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1675083448" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675083448" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1675083448" rel="stylesheet">
-    <link href="../../css/nucleus.css?1675083448" rel="stylesheet">
-    <link href="../../css/fonts.css?1675083448" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675083448" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1675083448" rel="stylesheet">
-    <link href="../../css/theme-relearn-light.css?1675083448" rel="stylesheet" id="variant-style">
-    <link href="../../css/ie.css?1675083448" rel="stylesheet">
-    <link href="../../css/variant.css?1675083448" rel="stylesheet">
-    <link href="../../css/print.css?1675083448" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1675083448" rel="stylesheet">
-    <script src="../../js/url.js?1675083448"></script>
-    <script src="../../js/variant.js?1675083448"></script>
+    <link href="../../css/fontawesome-all.min.css?1675094105" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1675094105" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1675094105" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1675094105" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1675094105" rel="stylesheet">
+    <link href="../../css/nucleus.css?1675094105" rel="stylesheet">
+    <link href="../../css/fonts.css?1675094105" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1675094105" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1675094105" rel="stylesheet">
+    <link href="../../css/theme-relearn-light.css?1675094105" rel="stylesheet" id="variant-style">
+    <link href="../../css/ie.css?1675094105" rel="stylesheet">
+    <link href="../../css/variant.css?1675094105" rel="stylesheet">
+    <link href="../../css/print.css?1675094105" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1675094105" rel="stylesheet">
+    <script src="../../js/url.js?1675094105"></script>
+    <script src="../../js/variant.js?1675094105"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -44,7 +44,7 @@
       var baseUriFull='https:\/\/McShelby.github.io\/hugo-theme-relearn/';
       window.variants && variants.init( [ 'relearn-light', 'relearn-dark', 'learn', 'neon', 'blue', 'green', 'red' ] );
     </script>
-    <script src="../../js/jquery.min.js?1675083448" defer></script>
+    <script src="../../js/jquery.min.js?1675094105" defer></script>
     <style>
       #body img.bg-white {
         background-color: white;
@@ -256,7 +256,7 @@
 <p>Issues be categorized an' managed by assign'n <a href="#labels">labels</a> t' it.</p>
 <p>Once work'n on an issue, assign it t' a fitt'n maintainer.</p>
 <p>When done, close th' ticket. Once an issue be closed, it needs t' be assigned t' next release milestone.</p>
-<p>A once released ticket be not allowed t' be reopened an' rereleased 'n a different release. Write a new ticket 'n this case.</p>
+<p>A once released ticket be not allowed t' be reopened an' rereleased 'n a different milestone. This would cause th' changelog t' be changed even fer th' milestone th' issue was previously released 'n. Instead write a new ticket.</p>
 <h2 id="managing-pull-requests">Manag'n Pull Requests</h2>
 <p>If a PR be merged an' closed it needs an accompanied issue assigned t'. If there be no issue fer a PR, th' maintainer needs t' create one.</p>
 <p>Ye can assign multiple PRs t' one issue as long as they belong together.</p>
@@ -407,13 +407,13 @@
 <h2 id="making-releases">Mak'n Releases</h2>
 <p>A release be based on a milestone named like th' release itself - just th' version number, eg: <code>1.2.3</code>. It&rsquo;s 'n th' maintainers responsiblity t' check <a href="#semver">semver semantics</a> o' th' milestone&rsquo;s name prior t' release an' change it if necessary.</p>
 <p>Mak'n releases be automated by th' <code>version-release</code> GitHub Act'n. It requires th' version number o' th' milestone that should be released. Th' release will be created from th' <code>main</code> branch o' th' repository.</p>
+<p>Treat released milestones as immut'ble. Don&rsquo;t rerelease an already released milestone. An already released milestone may already been consumed by yer users.</p>
 <p>Dur'n execut'n o' th' act'n a few th'ns be checked. If a check fails th' act'n fails, result'n 'n no new release. Ye can correct th' errors afterwards an' rerun th' act'n.</p>
 <p>Th' follow'n checks will be enforced</p>
 <ul>
 <li>th' milestone exists</li>
 <li>there be at least one closed issue assigned t' th' milestone</li>
 <li>all assigned issues fer this milestone be closed</li>
-<li>th' milestone be not previously released</li>
 <li>if it&rsquo;s a main release, there must be a new <code>&lt;major&gt;.&lt;minor&gt;</code> at th' beginn'n o' th' <a href="../../basics/migration/">What&rsquo;s new</a> plank</li>
 <li>if it&rsquo;s a patch release, there must be th' <code>&lt;major&gt;.&lt;minor&gt;</code> from th' previous release at th' beginn'n o' th' <a href="../../basics/migration/">What&rsquo;s new</a> plank</li>
 </ul>
@@ -543,8 +543,8 @@
           </section>        </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1675083448" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1675083448" defer></script>
-    <script src="../../js/theme.js?1675083448" defer></script>
+    <script src="../../js/clipboard.min.js?1675094105" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1675094105" defer></script>
+    <script src="../../js/theme.js?1675094105" defer></script>
   </body>
 </html>
