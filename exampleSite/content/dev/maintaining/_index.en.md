@@ -115,7 +115,7 @@ After a successful run of the action
 - the version number for the `<meta generator>` is updated
 - the updated files are commited
 - the milestone is closed
-- the repository is tagged with the version number
+- the repository is tagged with the version number (eg. `1.2.3`), the main version number (eg. `1.2.x`) and the major version number (eg. `1.x`)
 - a new entry in the [GitHub release list](https://github.com/McShelby/hugo-theme-relearn/releases) with the according changelog will be created
 - the [official documentation](https://mcshelby.github.io/hugo-theme-relearn/index.html) is built and deployed
 - the version number for the `<meta generator>` is updated to a temporary and commited (this helps to determine if users are running directly on the main branch or are using releases)

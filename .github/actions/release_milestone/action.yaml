@@ -37,7 +37,17 @@ runs:
       with:
         value: ${{ env.MILESTONE }}
         regex: (\d+\.\d+)\.\d+
-        replacement: "$1.0"
+        replacement: "$1"
+
+    - name: Get current major version number
+      id: majorvers
+      uses: ashley-taylor/regex-property-action@v1
+      env:
+        MILESTONE: ${{ inputs.milestone }}
+      with:
+        value: ${{ env.MILESTONE }}
+        regex: (\d+)\.\d+\.\d+
+        replacement: "$1"
 
     - name: Get next version number
       id: nextvers
@@ -61,14 +71,16 @@ runs:
         MILESTONE: ${{ inputs.milestone }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
-        git tag --message "" "$MILESTONE"
-        git push origin "$MILESTONE"
+        git tag --message "" "$MILESTONE" || true
+        git push origin "$MILESTONE"      || true
+        git tag  --force --message "" "$MILESTONE"
+        git push --force origin "$MILESTONE"
 
     - name: Update migration docs
       uses: mingjun97/file-regex-replace@v1
       with:
         regex: '(.)[\n\r\s]*<!--GH-ACTION-RELEASE-MILESTONE-->[\n\r\s]*-*\s*[\n\r\s]*?[\n\r]+##\s*.*?[\n\r][\n\r\s]*(.)'
-        replacement: "$1\n\n<!--GH-ACTION-RELEASE-MILESTONE-->\n\n---\n\n## ${{ steps.mainvers.outputs.value }} (${{ steps.date.outputs.time }})\n\n$2"
+        replacement: "$1\n\n<!--GH-ACTION-RELEASE-MILESTONE-->\n\n---\n\n## ${{ steps.mainvers.outputs.value }}.0 (${{ steps.date.outputs.time }})\n\n$2"
         include: exampleSite/content/basics/migration/_index.en.md
 
     - name: Update generator version
@@ -99,12 +111,23 @@ runs:
 
     - name: Create final tag
       shell: bash
+      continue-on-error: true
       env:
         MILESTONE: ${{ inputs.milestone }}
+        MILESTONE_MINOR: ${{ steps.mainvers.outputs.value }}
+        MILESTONE_MAJOR: ${{ steps.majorvers.outputs.value }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
-        git tag --force --message "" "$MILESTONE"
+        git tag  --force --message "" "$MILESTONE"
         git push --force origin "$MILESTONE"
+        git tag --message "" "$MILESTONE_MINOR.x" || true
+        git push origin "$MILESTONE_MINOR.x"      || true
+        git tag  --force --message "" "$MILESTONE_MINOR.x"
+        git push --force origin "$MILESTONE_MINOR.x"
+        git tag --message "" "$MILESTONE_MAJOR.x" || true
+        git push origin "$MILESTONE_MAJOR.x"      || true
+        git tag  --force --message "" "$MILESTONE_MAJOR.x"
+        git push --force origin "$MILESTONE_MAJOR.x"
 
     - name: Publish release
       shell: bash
