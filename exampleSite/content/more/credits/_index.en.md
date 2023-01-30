@@ -36,7 +36,6 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - https://github.com/ashley-taylor/regex-property-action
   - https://github.com/Kaven-Universe/github-action-current-date-time
   - https://github.com/mingjun97/file-regex-replace
-  - https://github.com/mukunku/tag-exists-action
   - https://github.com/octokit/graphql-action
   - https://github.com/peaceiris/actions-gh-pages
   - https://github.com/peaceiris/actions-hugo

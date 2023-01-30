@@ -25,7 +25,7 @@ Once working on an issue, assign it to a fitting maintainer.
 
 When done, close the ticket. Once an issue is closed, it needs to be assigned to next release milestone.
 
-A once released ticket is not allowed to be reopened and rereleased in a different release. Write a new ticket in this case.
+A once released ticket is not allowed to be reopened and rereleased in a different milestone. This would cause the changelog to be changed even for the milestone the issue was previously released in. Instead write a new ticket.
 
 ## Managing Pull Requests
 
@@ -97,6 +97,8 @@ A release is based on a milestone named like the release itself - just the versi
 
 Making releases is automated by the `version-release` GitHub Action. It requires the version number of the milestone that should be released. The release will be created from the `main` branch of the repository.
 
+Treat released milestones as immutable. Don't rerelease an already released milestone. An already released milestone may already been consumed by your users.
+
 During execution of the action a few things are checked. If a check fails the action fails, resulting in no new release. You can correct the errors afterwards and rerun the action.
 
 The following checks will be enforced
@@ -104,7 +106,6 @@ The following checks will be enforced
 - the milestone exists
 - there is at least one closed issue assigned to the milestone
 - all assigned issues for this milestone are closed
-- the milestone is not previously released
 - if it's a main release, there must be a new `<major>.<minor>` at the beginning of the [What's new]({{% relref "basics/migration" %}}) page
 - if it's a patch release, there must be the `<major>.<minor>` from the previous release at the beginning of the [What's new]({{% relref "basics/migration" %}}) page
 
