@@ -63,9 +63,10 @@ Use [slug](https://gohugo.io/content-management/multilingual/#translate-your-con
 In case each page's content is written in one single language only, the above configuration will already configure the site's search functionality correctly.
 
 {{% notice warning %}}
-Although the theme supports a wide variety of supported languages, the site's search does not.
+Although the theme supports a wide variety of supported languages, the site's search via the [Lunr](https://lunrjs.com) search library does not.
 You'll see error reports in your browsers console log for each unsupported language. Currently unsupported are:
 
+- Czech
 - Indonesian
 - Polish
 {{% /notice %}}

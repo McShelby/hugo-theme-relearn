@@ -130,7 +130,7 @@ If not already present, add the following lines in the same `config.toml` file.
   home = ["HTML", "RSS", "SEARCH"]
 ```
 
-This will generate a search index file at the root of your public folder ready to be consumed by the lunr.js javascript search engine. Note that the `SEARCH` outputformat was named `JSON` in previous releases but was implemented differently. Although `JSON` still works, it is now deprecated.
+This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library. Note that the `SEARCH` outputformat was named `JSON` in previous releases but was implemented differently. Although `JSON` still works, it is now deprecated.
 
 ### Activate dedicated search page
 
