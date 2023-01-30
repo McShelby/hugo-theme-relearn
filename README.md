@@ -20,7 +20,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Dedicated search page
 - Support for GFM (GitHub Flavored Markdown)
 - Print whole chapters or even the complete site
-- Multilingual mode for English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+- Multilingual mode for English, Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, Finnish, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
 - Support for languages written right to left
 - Unrestricted menu configuration relating to amount of items and level of nesting
 - Font Awesome icons

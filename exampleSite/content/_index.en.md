@@ -25,7 +25,7 @@ See [What's New]({{% relref "basics/migration" %}}) within the latest update.
 - [Dedicated search page]({{%relref "basics/configuration#activate-dedicated-search-page" %}})
 - [Support for GFM]({{% relref "cont/markdown" %}}) (GitHub Flavored Markdown)
 - [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
-- [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinese, Dutch, Finnish (Suomi), French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+- [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, Finnish, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
 - Support for languages written right to left
 - [Unrestricted menu configuration]({{%relref "cont/menushortcuts" %}}) relating to amount of items and level of nesting
 - [Font Awesome icons]({{%relref "shortcodes/icon" %}})
