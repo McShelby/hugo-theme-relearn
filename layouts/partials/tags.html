@@ -4,7 +4,7 @@
 <div class="tags">
 {{- range sort .Params.tags }}
   {{- $tag := . }}
-  {{- with $page.Site.GetPage (printf "%s%s" ("/tags/" | relURL ) $tag ) }}
+  {{- with $page.Site.GetPage (printf "%s%s" ("/tags/" | relURL ) ( $tag | anchorize ) ) }}
     {{- $to := . }}
   <a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $tag }}</a>
   {{- end }}
