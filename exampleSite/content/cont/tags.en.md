@@ -1,5 +1,5 @@
 +++
-tags = ["documentation", "tutorial"]
+tags = ["documentation", "tutorial stuff"]
 title = "Tags"
 weight = 7
 +++
