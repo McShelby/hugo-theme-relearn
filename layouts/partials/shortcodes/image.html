@@ -2,7 +2,6 @@
 {{- $url := .url }}
 {{- $title := .title }}
 {{- $alt := .alt }}
-{{- $ordinal := .ordinal }}
 {{- $classes := slice }}
 {{- $lightbox := true }}
 {{- $height := "auto" }}
@@ -34,14 +33,14 @@
 		{{ $width = . }}
 	{{- end }}
 {{- end }}
-{{- $fragment := printf "%d-%s" $ordinal ((trim (replace (replace (replace (replace (replace $url "=" "-") "&" "-") "?" "-") "." "-") "/" "-") "-") | safeURL | anchorize) }}
+{{- $id := partial "make-random-md5.hugo" }}
 {{- if $lightbox }}
-<a href="#{{ $fragment }}">
+<a href="#{{ $id }}">
 {{- end }}
 <img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ if len ($classes) }} class="{{ delimit $classes " " }}"{{ end }} style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
 {{- if $lightbox }}
 </a>
-<a href="javascript:history.back();" class="lightbox" id="{{ $fragment }}">
+<a href="javascript:history.back();" class="lightbox" id="{{ $id }}">
 <img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}loading="lazy">
 </a>
 {{- end }}

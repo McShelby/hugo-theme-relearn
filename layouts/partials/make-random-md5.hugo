@@ -1,0 +1,8 @@
+{{- $random := "" }}
+{{- $set := split "012345abcdefghijklmnopqrstuvwxyz" "" }}
+{{- range (seq 16) }}
+	{{- with ($set | shuffle | first 1) }}
+		{{- $random = printf "%s%s" $random  . }}
+	{{- end }}
+{{- end }}
+{{- md5 $random }}
