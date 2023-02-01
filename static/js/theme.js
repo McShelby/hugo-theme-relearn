@@ -772,40 +772,143 @@ function scrollToFragment() {
     }, 10);
 }
 
-function mark(){
-    // mark some additonal stuff as searchable
-    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
-    $('#body-inner a:not(:has(img)):not(.btn):not(.lightbox):not(a[rel="footnote"])').addClass('highlight');
+function mark() {
+	// mark some additional stuff as searchable
+	var topbarLinks = document.querySelectorAll( '#topbar a:not(:has(img)):not(.btn)' );
+	for( var i = 0; i < topbarLinks.length; i++ ){
+		topbarLinks[i].classList.add( 'highlight' );
+	}
 
-    var value = sessionStorage.getItem(baseUriFull+'search-value');
-    $(".highlightable").highlight(value, { element: 'mark' });
-    $("mark").parents(".expand").addClass("expand-marked");
-    $("mark").parents("li").each( function(){
-        var i = jQuery(this).children("input.toggle:not(.menu-marked)");
-        if( i.length ){
-            e = jQuery(i[0]);
-            e.attr("data-checked", (e.prop('checked')?"true":"false")).addClass("menu-marked");
-            i[0].checked = true;
-        }
-    });
+	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(:has(img)):not(.btn):not(.lightbox):not(a[rel="footnote"])' );
+	for( var i = 0; i < bodyInnerLinks.length; i++ ){
+		bodyInnerLinks[i].classList.add( 'highlight' );
+	}
+
+	var value = sessionStorage.getItem( baseUriFull + 'search-value' );
+    var highlightableElements = document.querySelectorAll( '.highlightable' );
+    highlight( highlightableElements, value, { element: 'mark' } );
+
+	var markedElements = document.querySelectorAll( 'mark' );
+	for( var i = 0; i < markedElements.length; i++ ){
+		var parent = markedElements[i].parentNode;
+		while( parent && parent.classList ){
+			if( parent.classList.contains( 'expand' ) ){
+				parent.classList.add( 'expand-marked' );
+			}
+			if( parent.tagName.toLowerCase() === 'li' ){
+				var toggleInputs = parent.querySelectorAll( 'input.toggle:not(.menu-marked)' );
+				if( i.length ){
+					toggleInputs[0].classList.add( 'menu-marked' );
+					toggleInputs[0].dataset.checked = toggleInputs[0].checked ? 'true' : 'false';
+					toggleInputs[0].checked = true;
+				}
+			}
+			parent = parent.parentNode;
+		}
+	}
     psm && psm.update();
 }
 window.relearn.markSearch = mark;
 
-function unmark(){
-    sessionStorage.removeItem(baseUriFull+'search-value');
-    $("mark").parents("li").each( function(){
-        var i = jQuery(this).children("input.toggle.menu-marked");
-        if( i.length ){
-            e = jQuery(i[0]);
-            i[0].checked = (e.attr("data-checked")=="true");
-            e.attr("data-checked", null).removeClass("menu-marked");
-        }
+function highlight( es, words, options ){
+    var settings = {
+        className: 'highlight',
+        element: 'span',
+        caseSensitive: false,
+        wordsOnly: false
+    };
+    Object.assign( settings, options );
+
+    if( !words ){ return; }
+    if( words.constructor === String ){
+        words = [ words ];
+    }
+    words = words.filter( function( word, i ){
+        return word != '';
     });
-    $("mark").parents(".expand-marked").removeClass("expand-marked");
-    $(".highlightable").unhighlight({ element: 'mark' })
+    words = words.map( function( word, i ){
+        return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    });
+    if( words.length == 0 ){ return this; }
+
+    var flag = settings.caseSensitive ? '' : 'i';
+    var pattern = "(" + words.join( '|' ) + ')';
+    if( settings.wordsOnly ){
+        pattern = '\\b' + pattern + '\\b';
+    }
+    var re = new RegExp( pattern, flag );
+
+	for( var i = 0; i < es.length; i++ ){
+        highlightNode( es[i], re, settings.element, settings.className );
+	}
+};
+
+function highlightNode( node, re, nodeName, className ){
+    if( node.nodeType === 3 && node.parentElement && node.parentElement.namespaceURI == 'http://www.w3.org/1999/xhtml' ) { // text nodes
+        var match = node.data.match( re );
+        if( match ){
+            var highlight = document.createElement( nodeName || 'span' );
+            highlight.className = className || 'highlight';
+            var wordNode = node.splitText( match.index );
+            wordNode.splitText( match[0].length );
+            var wordClone = wordNode.cloneNode( true );
+            highlight.appendChild( wordClone );
+            wordNode.parentNode.replaceChild( highlight, wordNode );
+            return 1; //skip added node in parent
+        }
+    } else if( (node.nodeType === 1 && node.childNodes) && // only element nodes that have children
+        !/(script|style)/i.test(node.tagName) && // ignore script and style nodes
+        !(node.tagName === nodeName.toUpperCase() && node.className === className) ){ // skip if already highlighted
+        for( var i = 0; i < node.childNodes.length; i++ ){
+            i += highlightNode( node.childNodes[i], re, nodeName, className );
+        }
+    }
+    return 0;
+};
+
+function unmark() {
+	sessionStorage.removeItem( baseUriFull + 'search-value' );
+	var markedElements = document.querySelectorAll( 'mark' );
+	for( var i = 0; i < markedElements.length; i++ ){
+		var parent = markedElements[i].parentNode;
+		while( parent && parent.classList ){
+			if( parent.tagName.toLowerCase() === 'li' ){
+				var toggleInputs = parent.querySelectorAll( 'input.toggle.menu-marked' );
+				if( i.length ){
+					toggleInputs[0].checked = toggleInputs[0].dataset.checked === 'true';
+					toggleInputs[0].dataset.checked = null;
+					toggleInputs[0].classList.remove( 'menu-marked' );
+								}
+			}
+			if( parent.classList.contains( 'expand-marked' ) ){
+				parent.classList.remove( 'expand-marked' );
+			}
+			parent = parent.parentNode;
+		}
+	}
+
+	var highlighted = document.querySelectorAll( '.highlightable' );
+    unhighlight( highlighted, { element: 'mark' } );
     psm && psm.update();
 }
+
+function unhighlight( es, options ){
+    var settings = {
+        className: 'highlight',
+        element: 'span'
+    };
+    Object.assign( settings, options );
+
+	for( var i = 0; i < es.length; i++ ){
+        var highlightedElements = es[i].querySelectorAll( settings.element + '.' + settings.className );
+        for( var j = 0; j < highlightedElements.length; j++ ){
+            var parent = highlightedElements[j].parentNode;
+            parent.replaceChild( highlightedElements[j].firstChild, highlightedElements[j] );
+            parent.normalize();
+        }
+	}
+};
+
 
 // replace jQuery.createPseudo with https://stackoverflow.com/a/66318392
 function elementContains( txt, e ){
@@ -942,80 +1045,6 @@ jQuery(function() {
     initHistory();
     initSearch();
 });
-
-jQuery.extend({
-    highlight: function(node, re, nodeName, className) {
-        if (node.nodeType === 3 && node.parentElement && node.parentElement.namespaceURI == 'http://www.w3.org/1999/xhtml') { // text nodes
-            var match = node.data.match(re);
-            if (match) {
-                var highlight = document.createElement(nodeName || 'span');
-                highlight.className = className || 'highlight';
-                var wordNode = node.splitText(match.index);
-                wordNode.splitText(match[0].length);
-                var wordClone = wordNode.cloneNode(true);
-                highlight.appendChild(wordClone);
-                wordNode.parentNode.replaceChild(highlight, wordNode);
-                return 1; //skip added node in parent
-            }
-        } else if ((node.nodeType === 1 && node.childNodes) && // only element nodes that have children
-            !/(script|style)/i.test(node.tagName) && // ignore script and style nodes
-            !(node.tagName === nodeName.toUpperCase() && node.className === className)) { // skip if already highlighted
-            for (var i = 0; i < node.childNodes.length; i++) {
-                i += jQuery.highlight(node.childNodes[i], re, nodeName, className);
-            }
-        }
-        return 0;
-    }
-});
-
-jQuery.fn.unhighlight = function(options) {
-    var settings = {
-        className: 'highlight',
-        element: 'span'
-    };
-    jQuery.extend(settings, options);
-
-    return this.find(settings.element + "." + settings.className).each(function() {
-        var parent = this.parentNode;
-        parent.replaceChild(this.firstChild, this);
-        parent.normalize();
-    }).end();
-};
-
-jQuery.fn.highlight = function(words, options) {
-    var settings = {
-        className: 'highlight',
-        element: 'span',
-        caseSensitive: false,
-        wordsOnly: false
-    };
-    jQuery.extend(settings, options);
-
-    if (!words) { return; }
-
-    if (words.constructor === String) {
-        words = [words];
-    }
-    words = jQuery.grep(words, function(word, i) {
-        return word != '';
-    });
-    words = jQuery.map(words, function(word, i) {
-        return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-    });
-    if (words.length == 0) { return this; }
-    ;
-
-    var flag = settings.caseSensitive ? "" : "i";
-    var pattern = "(" + words.join("|") + ")";
-    if (settings.wordsOnly) {
-        pattern = "\\b" + pattern + "\\b";
-    }
-    var re = new RegExp(pattern, flag);
-
-    return this.each(function() {
-        jQuery.highlight(this, re, settings.element, settings.className);
-    });
-};
 
 function useMermaid( config ){
     if( !Object.assign ){
