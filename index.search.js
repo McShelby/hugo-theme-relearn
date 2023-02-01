@@ -95,7 +95,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "documentation",
-      "tutorial"
+      "tutorial stuff"
     ],
     "title": "Tags",
     "uri": "/cont/tags/index.html"
@@ -734,8 +734,8 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "tutorial",
-    "uri": "/tags/tutorial/index.html"
+    "title": "tutorial stuff",
+    "uri": "/tags/tutorial-stuff/index.html"
   },
   {
     "content": " Make a visible block\nAnd another one\n",
