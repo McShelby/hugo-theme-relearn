@@ -8,7 +8,7 @@
   {{- $title = printf "%s %s " (.Data.Singular | humanize) (default "::" .Site.Params.titleSeparator) }}
 {{- end }}
 {{- $title = printf "%s%s" $title .Title }}
-<h1 id="{{ $title | urlize }}">{{ $title }}</h1>
+<h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
 <ul>
   {{- range .Data.Terms.Alphabetical }}
     {{- $len := 0 }}
