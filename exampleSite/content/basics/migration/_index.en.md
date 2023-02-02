@@ -26,7 +26,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [GitHub releases](https://github.com/McShelby/hugo-theme-relearn/tags) are also now tagged for the main version (eg. `1.2.x`) and major version (eg. `1.x`) making it easier for you to pin the theme to a certain version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Czech.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Czech. This language is not supported for search.
 
 ---
 
@@ -226,6 +226,8 @@ This document shows you what's new in the latest release. For a detailed list of
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. Shortcodes with a color style can now have `primary` or `secondary` as additional values.
 
   These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Polish. This language is not supported for search.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The documentation for all shortcodes were revised.
 
