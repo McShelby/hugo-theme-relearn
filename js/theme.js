@@ -216,10 +216,20 @@ function initMermaid( update, attrs ) {
     attrs = attrs || {
         'theme': variants.getColorValue( 'MERMAID-theme' ),
     };
+
+    var search;
+    if( update ){
+        search = sessionStorage.getItem( baseUriFull+'search-value' );
+        unmark();
+    }
     var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
     if( is_initialized ){
         mermaid.init();
         $(".mermaid svg").svgPanZoom({});
+    }
+    if( update && search && search.length ){
+        sessionStorage.setItem( baseUriFull+'search-value', search );
+        mark();
     }
 }
 
