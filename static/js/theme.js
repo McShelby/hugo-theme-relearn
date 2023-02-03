@@ -268,7 +268,7 @@ function initSwagger( update, attrs ){
 function initAnchorClipboard(){
     document.querySelectorAll( 'h1~h2,h1~h3,h1~h4,h1~h5,h1~h6').forEach( function( element ){
         var url = encodeURI(document.location.origin + document.location.pathname);
-        var link = url + "#"+element.id;
+        var link = url + "#" + element.id;
         var new_element = document.createElement( 'span' );
         new_element.classList.add( 'anchor' );
         new_element.setAttribute( 'title', window.T_Copy_link_to_clipboard );
@@ -277,23 +277,27 @@ function initAnchorClipboard(){
         element.appendChild( new_element );
     });
 
-    $(".anchor").on('mouseleave', function(e) {
-        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-se tooltipped-sw');
-    });
+    var anchors = document.querySelectorAll( '.anchor' );
+    for( var i = 0; i < anchors.length; i++ ) {
+      anchors[i].addEventListener( 'mouseleave', function( e ){
+        this.removeAttribute( 'aria-label' );
+        this.classList.remove( 'tooltipped', 'tooltipped-se', 'tooltipped-sw' );
+      });
+    }
 
-    var clip = new ClipboardJS('.anchor');
-    clip.on('success', function(e) {
+    var clip = new ClipboardJS( '.anchor' );
+    clip.on( 'success', function( e ){
         e.clearSelection();
-        var rtl = $(e.trigger).closest('*[dir]').attr('dir') == 'rtl';
-        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s'+(rtl?'e':'w') );
+        var rtl = e.trigger.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
+        e.trigger.setAttribute( 'aria-label', window.T_Link_copied_to_clipboard );
+        e.trigger.classList.add( 'tooltipped', 'tooltipped-s'+(rtl?'e':'w') );
     });
 }
 
 function initCodeClipboard(){
-    function fallbackMessage(action) {
+    function fallbackMessage( action ){
         var actionMsg = '';
         var actionKey = (action === 'cut' ? 'X' : 'C');
-
         if (/iPhone|iPad/i.test(navigator.userAgent)) {
             actionMsg = 'No support :(';
         }
@@ -303,60 +307,75 @@ function initCodeClipboard(){
         else {
             actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
         }
-
         return actionMsg;
     }
 
-    $('code').each(function() {
-        var code = $(this);
-        var text = code.text();
-        var parent = code.parent();
-        var inPre = parent.prop('tagName') == 'PRE';
+	var codeElements = document.querySelectorAll( 'code' );
+	for( var i = 0; i < codeElements.length; i++ ){
+        var code = codeElements[i];
+        var text = code.textContent;
+        var parent = code.parentNode;
+        var inPre = parent.tagName.toLowerCase() == 'pre';
 
-        if (inPre || text.length > 5) {
-            var clip = new ClipboardJS('.copy-to-clipboard-button', {
-                text: function(trigger) {
-                    var text = $(trigger).prev('code').text();
+        if( inPre || text.length > 5 ){
+            var clip = new ClipboardJS( '.copy-to-clipboard-button', {
+                text: function( trigger ){
+                    var text = trigger.previousElementSibling && trigger.previousElementSibling.matches( 'code' ) && trigger.previousElementSibling.textContent;
                     // remove a trailing line break, this may most likely
                     // come from the browser / Hugo transformation
-                    text = text.replace(/\n$/, '');
+                    text = text.replace( /\n$/, '' );
                     // removes leading $ signs from text in an assumption
                     // that this has to be the unix prompt marker - weird
-                    return text.replace(/^\$\s/gm, '');
+                    return text.replace( /^\$\s/gm, '' );
                 }
             });
 
-            clip.on('success', function(e) {
+            clip.on( 'success', function( e ){
                 e.clearSelection();
-                var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                var rtl = $(e.trigger).closest('*[dir]').attr('dir') == 'rtl';
-                $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')));
+                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
+                var rtl = e.trigger.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
+                e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')) );
             });
 
-            clip.on('error', function(e) {
-                var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                var rtl = $(this).closest('*[dir]').attr('dir') == 'rtl';
-                $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')));
-                $(document).one('copy', function(){
-                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')));
-                });
+            clip.on( 'error', function( e ){
+                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
+                var rtl = e.trigger.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
+                e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')) );
+                var f = function(){
+                    e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
+                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')) );
+                    document.removeEventListener( 'copy', f );
+                };
+                document.addEventListener( 'copy', f );
             });
 
-            code.addClass('copy-to-clipboard-code');
+            code.classList.add( 'copy-to-clipboard-code' );
             if( inPre ){
-                parent.addClass( 'copy-to-clipboard' ).addClass( 'pre-code' );
+                code.classList.add( 'copy-to-clipboard' );
+                code.classList.add( 'pre-code' );
             }
             else{
-                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
-                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+                var clone = code.cloneNode( true );
+                var span = document.createElement( 'span' );
+                span.classList.add( 'copy-to-clipboard' );
+                span.appendChild( clone );
+                code.replaceWith( span );
+                code = clone;
             }
-            code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
-            code.next('.copy-to-clipboard-button').on('mouseleave', function() {
-                var rtl = $(this).closest('*[dir]').attr('dir') == 'rtl';
-                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-w tooltipped-se tooltipped-sw');
+            var button = document.createElement( 'span' );
+            button.classList.add( 'copy-to-clipboard-button' );
+            button.setAttribute( 'title', window.T_Copy_to_clipboard );
+            button.innerHTML = '<i class="fas fa-copy"></i>';
+            button.addEventListener( 'mouseleave', function() {
+                var rtl = this.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
+                this.removeAttribute( 'aria-label' );
+                this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
             });
+            code.after( button );
         }
-    });
+    }
 }
 
 function initArrowNav(){
