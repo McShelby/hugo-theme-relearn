@@ -68,7 +68,7 @@ function switchTab(tabGroup, tabId) {
     // if event is undefined then switchTab was called from restoreTabSelection
     // so it's not a button event and we don't need to safe the selction or
     // prevent page jump
-    var isButtonEvent = event != undefined;
+    var isButtonEvent = event && event.target && event.target.getBoundingClientRect;
 
     if(isButtonEvent){
       // save button position relative to viewport
