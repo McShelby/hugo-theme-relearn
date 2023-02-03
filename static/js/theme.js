@@ -797,7 +797,7 @@ function mark() {
 			}
 			if( parent.tagName.toLowerCase() === 'li' ){
 				var toggleInputs = parent.querySelectorAll( 'input.toggle:not(.menu-marked)' );
-				if( i.length ){
+				if( toggleInputs.length ){
 					toggleInputs[0].classList.add( 'menu-marked' );
 					toggleInputs[0].dataset.checked = toggleInputs[0].checked ? 'true' : 'false';
 					toggleInputs[0].checked = true;
@@ -874,11 +874,11 @@ function unmark() {
 		while( parent && parent.classList ){
 			if( parent.tagName.toLowerCase() === 'li' ){
 				var toggleInputs = parent.querySelectorAll( 'input.toggle.menu-marked' );
-				if( i.length ){
+				if( toggleInputs.length ){
 					toggleInputs[0].checked = toggleInputs[0].dataset.checked === 'true';
 					toggleInputs[0].dataset.checked = null;
 					toggleInputs[0].classList.remove( 'menu-marked' );
-								}
+				}
 			}
 			if( parent.classList.contains( 'expand-marked' ) ){
 				parent.classList.remove( 'expand-marked' );
