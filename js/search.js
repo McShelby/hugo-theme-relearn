@@ -206,7 +206,6 @@ function searchDetail() {
 initLunrJson();
 initLunrJs();
 
-
 function startSearch(){
     var url = new URL( window.location );
     window.history.replaceState(url.toString(), '', url);

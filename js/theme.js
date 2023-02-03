@@ -1029,7 +1029,7 @@ function initSearch() {
     window.relearn.runInitialSearch && window.relearn.runInitialSearch();
 }
 
-jQuery(function() {
+ready( function(){
     initArrowNav();
     initMermaid();
     initSwagger();
