@@ -9,6 +9,10 @@
             - delete search term when suggestions are closed
         McShelby/hugo-theme-relearn#452
             - register focus event ignoring minChars because that doesn't make sense
+        McShelby/hugo-theme-relearn#452
+            - on ESC, close overlay without deleting search term if overlay is open
+            - on ESC, delete search term if overlay is closed
+            - on UP, preventDefault to keep cursor in position
 
     Copyright (c) 2014 Simon Steinberger / Pixabay
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
@@ -162,6 +166,7 @@ var autoComplete = (function(){
                 var key = window.event ? e.keyCode : e.which;
                 // down (40), up (38)
                 if ((key == 40 || key == 38) && that.sc.innerHTML) {
+                    e.preventDefault();
                     var next, sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                     if (!sel) {
                         next = (key == 40) ? that.sc.querySelector('.autocomplete-suggestion') : that.sc.childNodes[that.sc.childNodes.length - 1]; // first : last
@@ -185,22 +190,20 @@ var autoComplete = (function(){
                 }
                 // esc
                 else if (key == 27) {
-                    if( that.sc.style.display != 'none' ){
+                    if (that.sc.style.display != 'none') {
+                        // just close the overlay if it's open, and prevent other listeners
+                        // from recognizing it; this is not for you!
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        that.sc.style.display = 'none';
                         var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                         if (sel) {
-                            e.preventDefault();
-                            setTimeout(function(){
-                                that.value = that.last_val;
-                                that.focus();
-                                that.sc.style.display = 'none';
-                            }, 0);
-                        }
-                        else{
-                            that.value = '';
-                            that.sc.style.display = 'none';
+                            that.focus();
                         }
                     }
-                    else{
+                    else {
+                        // if no overlay is open, we want to remove the search term and also
+                        // want other listeners to recognize it
                         that.value = '';
                     }
                 }
