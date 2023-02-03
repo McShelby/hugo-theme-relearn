@@ -1028,53 +1028,73 @@ option {
     color: initial;
 }
 
-.expand{
+.expand {
     margin-bottom: 1rem;
     margin-top: 1rem;
+    position: relative;
 }
 
-.expand-label {
+.expand > input {
+    -webkit-appearance: none;
+    appearance: none;
     cursor: pointer;
 }
 
-.expand-label > .fas {
+.expand > label {
+    cursor: pointer;
+    display: inline;
+    font-weight: 300;
+    inset-inline-start: 0;
+    line-height: 1.1;
+    margin-top: .2rem;
+    position: absolute;
+}
+
+.expand > label:after {
+    background-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+    content: "";
+    display: block;
+    height: 1px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.expand > label:hover:after {
+    width: 100%;
+}
+
+.expand > label > .fas {
     font-size: .8rem;
     width: .6rem;
 }
 
-.expand-content {
+.expand > .expand-content {
     margin-top: .5rem;
 }
-
-/* expander collapsed, default */
-.expand > .expand-label > .fa-chevron-down {
-    display: none;
-}
-.expand > .expand-label > .fa-chevron-left,
-.expand > .expand-label > .fa-chevron-right {
-    display: inline-block;
-}
-
-/* expander expanded, controlled by expand.html */
-.expand.expand-expanded > .expand-label > .fa-chevron-down {
-    display: inline-block;
-}
-.expand.expand-expanded > .expand-label > .fa-chevron-left,
-.expand.expand-expanded > .expand-label > .fa-chevron-right {
+/* closed expander */
+.expand > input + label + div {
     display: none;
 }
 
-/* expander expand collapsed marked, must override logic of expand.html, controlled by theme.js */
-.expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-down {
-    display: inline-block;
-}
-.expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-left,
-.expand:not(.expand-expanded).expand-marked > .expand-label > .fa-chevron-right {
+.expand > input + label > .fa-chevron-down {
     display: none;
 }
-.expand:not(.expand-expanded).expand-marked > .expand-content {
-    /* this will disable jquery's animation */
-    display: block !important;
+.expand > input + label > .fa-chevron-left,
+.expand > input + label > .fa-chevron-right {
+    display: inline-block;
+}
+
+/* open expander */
+.expand > input:checked + label + div {
+	display: block;
+}
+
+.expand > input:checked + label > .fa-chevron-down {
+    display: inline-block;
+}
+.expand > input:checked + label > .fa-chevron-left,
+.expand > input:checked + label > .fa-chevron-right {
+    display: none;
 }
 
 /* turn off unsuitable expander for this reading direction */

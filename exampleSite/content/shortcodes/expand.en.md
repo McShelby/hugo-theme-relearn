@@ -7,6 +7,10 @@ The `expand` shortcode displays an expandable/collapsible section of text.
 
 {{% expand title="Expand me..." %}}Thank you!{{% /expand %}}
 
+{{% notice note %}}
+This only works in modern browsers.
+{{% /notice %}}
+
 ## Usage
 
 While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.

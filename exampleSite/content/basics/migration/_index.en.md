@@ -20,13 +20,15 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.11.0 (not yet released)
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (was [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. The functionality of the new implementation does not work with old browsers (Internet Explorer 11).
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (provided by [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.
 
   This also changed the [lightbox effects]({{% relref "cont/markdown#lightbox" %}}) parameter from `featherlight=false` to `lightbox=false`. Nevertheless you don't need to change anything as the old name will be used as a fallback.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [GitHub releases](https://github.com/McShelby/hugo-theme-relearn/tags) are also now tagged for the main version (eg. `1.2.x`) and major version (eg. `1.x`) making it easier for you to pin the theme to a certain version.
-
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Czech. This language is not supported for search.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [GitHub releases](https://github.com/McShelby/hugo-theme-relearn/tags) are also now tagged for the main version (eg. `1.2.x`) and major version (eg. `1.x`) making it easier for you to pin the theme to a certain version.
 
 ---
 
@@ -132,7 +134,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.3.0 (2022-10-07)
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. Although the functionality of the new implementation works with old browsers (Internet Explorer 11), the display of the expander icons does not and is limited to modern browsers.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. The functionality of the new implementation does not work with old browsers (Internet Explorer 11).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting]({{% relref "cont/markdown#add-css-classes" %}}) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
 

@@ -8,19 +8,16 @@
 {{- end }}
 {{- $direction := T "Reading-direction" | default "ltr" }}
 {{- with $context }}
-<div class="expand
-    {{- if $expanded }} expand-expanded{{ end -}}
-">
-    {{- $c:=""}}{{/* things are getting complicated when search tries to open the expand box while jquery sets the display CSS on the element */}}
-    <a class="expand-label" onclick="$t=$(this); if($t.parent('.expand-expanded.expand-marked').length){ $t.next().css('display','none') }else if($t.parent('.expand-marked').length){ $t.next().css('display','block') }else{ $t.next('.expand-content').slideToggle(100); } $t.parent().toggleClass('expand-expanded');">
+{{- $id := partial "make-random-md5.hugo" }}
+<div class="expand">
+    <input type="checkbox" id="expand-{{ $id }}" aria-controls="expandcontent-{{ $id }}" {{ if $expanded }} checked{{ end }}>
+    <label class="expand-label" for="expand-{{ $id }}" >
         <i class="fas fa-chevron-down"></i>
         <i class="fas fa-chevron-left expand-rtl direction-{{ $direction }}"></i>
         <i class="fas fa-chevron-right expand-ltr direction-{{ $direction }}"></i>
         {{ $title }}
-    </a>
-    <div class="expand-content" style="display:
-        {{- if $expanded }} block{{ else }} none{{ end -}}
-    ;">
+    </label>
+    <div id="expandcontent-{{ $id }}" class="expand-content">
 {{ $content | safeHTML }}
     </div>
 </div>
