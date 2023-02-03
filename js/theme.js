@@ -793,11 +793,16 @@ function mark() {
 		var parent = markedElements[i].parentNode;
 		while( parent && parent.classList ){
 			if( parent.classList.contains( 'expand' ) ){
-				parent.classList.add( 'expand-marked' );
+				var expandInputs = parent.querySelectorAll( 'input:not(.expand-marked)' );
+				if( expandInputs.length ){
+					expandInputs[0].classList.add( 'expand-marked' );
+					expandInputs[0].dataset.checked = expandInputs[0].checked ? 'true' : 'false';
+					expandInputs[0].checked = true;
+				}
 			}
 			if( parent.tagName.toLowerCase() === 'li' ){
 				var toggleInputs = parent.querySelectorAll( 'input.toggle:not(.menu-marked)' );
-				if( i.length ){
+				if( toggleInputs.length ){
 					toggleInputs[0].classList.add( 'menu-marked' );
 					toggleInputs[0].dataset.checked = toggleInputs[0].checked ? 'true' : 'false';
 					toggleInputs[0].checked = true;
@@ -874,14 +879,19 @@ function unmark() {
 		while( parent && parent.classList ){
 			if( parent.tagName.toLowerCase() === 'li' ){
 				var toggleInputs = parent.querySelectorAll( 'input.toggle.menu-marked' );
-				if( i.length ){
+				if( toggleInputs.length ){
 					toggleInputs[0].checked = toggleInputs[0].dataset.checked === 'true';
 					toggleInputs[0].dataset.checked = null;
 					toggleInputs[0].classList.remove( 'menu-marked' );
-								}
+				}
 			}
-			if( parent.classList.contains( 'expand-marked' ) ){
-				parent.classList.remove( 'expand-marked' );
+			if( parent.classList.contains( 'expand' ) ){
+				var expandInputs = parent.querySelectorAll( 'input.expand-marked' );
+				if( expandInputs.length ){
+					expandInputs[0].checked = expandInputs[0].dataset.checked === 'true';
+					expandInputs[0].dataset.checked = null;
+					expandInputs[0].classList.remove( 'expand-marked' );
+				}
 			}
 			parent = parent.parentNode;
 		}
@@ -908,7 +918,6 @@ function unhighlight( es, options ){
         }
 	}
 };
-
 
 // replace jQuery.createPseudo with https://stackoverflow.com/a/66318392
 function elementContains( txt, e ){
