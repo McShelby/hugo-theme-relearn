@@ -382,7 +382,7 @@ function initCodeClipboard(){
                 var span = document.createElement( 'span' );
                 span.classList.add( 'copy-to-clipboard' );
                 span.appendChild( clone );
-                code.replaceWith( span );
+                parent.replaceChild( span, code );
                 code = clone;
             }
             var button = document.createElement( 'span' );
@@ -394,7 +394,7 @@ function initCodeClipboard(){
                 this.removeAttribute( 'aria-label' );
                 this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
             });
-            code.after( button );
+            parent.insertBefore( button, code.nextSibling );
         }
     }
 }
@@ -816,12 +816,12 @@ function scrollToFragment() {
 
 function mark() {
 	// mark some additional stuff as searchable
-	var topbarLinks = document.querySelectorAll( '#topbar a:not(:has(img)):not(.btn)' );
+	var topbarLinks = document.querySelectorAll( '#topbar a:not(.topbar-link):not(.btn)' );
 	for( var i = 0; i < topbarLinks.length; i++ ){
 		topbarLinks[i].classList.add( 'highlight' );
 	}
 
-	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(:has(img)):not(.btn):not(.lightbox):not(a[rel="footnote"])' );
+	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox):not(a[rel="footnote"])' );
 	for( var i = 0; i < bodyInnerLinks.length; i++ ){
 		bodyInnerLinks[i].classList.add( 'highlight' );
 	}
@@ -992,12 +992,17 @@ function initSearch() {
         e.addEventListener( 'keydown', function( event ){
             if( event.key == 'Escape' ){
                 var input = event.target;
-                input.blur();
+                var search = sessionStorage.getItem( baseUriFull+'search-value' );
+                if( !search || !search.length ){
+                    input.blur();
+                }
                 searchInputHandler( '' );
                 inputs.forEach( function( e ){
                     e.value = '';
                 });
-                documentFocus();
+                if( !search || !search.length ){
+                    documentFocus();
+                }
             }
         });
         e.addEventListener( 'input', function( event ){
