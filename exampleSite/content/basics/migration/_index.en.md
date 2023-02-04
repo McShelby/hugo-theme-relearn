@@ -20,6 +20,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.11.0 (not yet released)
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme removed the popular [jQuery](https://jquery.com) library from its distribution.
+
+  In case you made changes to the theme that are dependend on this library you can place a copy of jQuery into your `static/js` directory and load it from your own `layouts/partials/custom-header.html` like this:
+
+  ````html
+  <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+  ````
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. The functionality of the new implementation does not work with old browsers (Internet Explorer 11).
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (provided by [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.

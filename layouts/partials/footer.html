@@ -53,7 +53,15 @@
 {{- end }}
 {{- $wantsMermaid := or (.Page.Store.Get "hasMermaid") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasMermaid")) }}
 {{- if $wantsMermaid }}
-    <script src="{{"js/jquery.svg.pan.zoom.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-color.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-dispatch.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-drag.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-ease.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-interpolate.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-selection.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-timer.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-transition.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    <script src="{{"js/d3/d3-zoom.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   {{- if isset .Params "custommermaidurl" }}
     <script src="{{ .Params.customMermaidURL }}" defer></script>
   {{- else if isset .Site.Params "custommermaidurl" }}

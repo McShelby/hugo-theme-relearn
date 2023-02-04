@@ -225,7 +225,18 @@ function initMermaid( update, attrs ) {
     var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
     if( is_initialized ){
         mermaid.init();
-        $(".mermaid svg").svgPanZoom({});
+        // zoom for Mermaid
+        // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
+        var svgs = d3.selectAll( '.mermaid svg' );
+        svgs.each( function(){
+            var svg = d3.select( this );
+            svg.html( '<g>' + svg.html() + '</g>' );
+            var inner = svg.select( 'g' );
+            var zoom = d3.zoom().on( 'zoom', function( e ){
+                inner.attr( 'transform', e.transform);
+            });
+            svg.call( zoom );
+        });
     }
     if( update && search && search.length ){
         sessionStorage.setItem( baseUriFull+'search-value', search );
