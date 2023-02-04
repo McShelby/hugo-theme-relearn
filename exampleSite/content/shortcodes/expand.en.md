@@ -8,7 +8,7 @@ The `expand` shortcode displays an expandable/collapsible section of text.
 {{% expand title="Expand me..." %}}Thank you!{{% /expand %}}
 
 {{% notice note %}}
-This only works in modern browsers.
+This only works in modern browsers flawlessly. While Internet Explorer 11 has issues in displaying it, the functionality still works.
 {{% /notice %}}
 
 ## Usage

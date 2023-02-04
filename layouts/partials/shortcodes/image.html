@@ -35,12 +35,12 @@
 {{- end }}
 {{- $id := partial "make-random-md5.hugo" }}
 {{- if $lightbox }}
-<a href="#image-{{ $id }}">
+<a class="lightbox-link" href="#image-{{ $id }}">
 {{- end }}
 <img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}{{ if len ($classes) }} class="{{ delimit $classes " " }}"{{ end }} style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
 {{- if $lightbox }}
 </a>
 <a href="javascript:history.back();" class="lightbox" id="image-{{ $id }}">
-<img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}loading="lazy">
+<img class="lightbox-image" src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}loading="lazy">
 </a>
 {{- end }}

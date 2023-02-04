@@ -72,7 +72,7 @@
             <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
           {{- else }}
             {{- with ($.Scratch.Get "relearnNextPage") }}
-            <a class="nav nav-next" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+            <a class="nav nav-next topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
             {{- end }}
           {{- end }}
           </div>
@@ -81,18 +81,18 @@
             <span class="nav nav-prev"><i class="fa fa-chevron-left fa-fw"></i></span>
           {{- else if or (ne $outputFormat "html") (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) }}
             {{- with .Site.Home }}
-            <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end }}
           {{- else }}
             {{- with ($.Scratch.Get "relearnPrevPage") }}
-            <a class="nav nav-prev" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end}}
           {{- end}}
           </div>
         {{- end }}
         {{- with and (eq $outputFormat "html") (.OutputFormats.Get "PRINT") }}
           <div id="top-print-link">
-            <a class="print-link" title='{{ T "Print-this-chapter" }} (CTRL+ALT+p)' href="{{ .RelPermalink }}">
+            <a class="print-link topbar-link" title='{{ T "Print-this-chapter" }} (CTRL+ALT+p)' href="{{ .RelPermalink }}">
               <i class="fas fa-print fa-fw"></i>
             </a>
           </div>
@@ -100,7 +100,7 @@
         {{- if and (eq $outputFormat "html") .Site.Params.editURL $File }}
           {{- with $File.Path }}
           <div id="top-github-link">
-            <a class="github-link" title='{{ T "Edit-this-page" }} (CTRL+ALT+w)' href="{{ $Site.Params.editURL }}{{ strings.TrimLeft "/" (replace $File.Dir "\\" "/") }}{{ $File.LogicalName }}" target="_blank">
+            <a class="github-link topbar-link" title='{{ T "Edit-this-page" }} (CTRL+ALT+w)' href="{{ $Site.Params.editURL }}{{ strings.TrimLeft "/" (replace $File.Dir "\\" "/") }}{{ $File.LogicalName }}" target="_blank">
               <i class="fas fa-pen fa-fw"></i>
             </a>
           </div>
@@ -112,7 +112,7 @@
         {{- $toc := and $hastoc (not $currentDisableToc) (eq $outputFormat "html") }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
-              <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }} (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='{{ T "Navigation-toggle" }} (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
             </span>
           {{- if $toc }}
             <span id="toc-menu" title='{{ T "Toc-toggle" }} (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
