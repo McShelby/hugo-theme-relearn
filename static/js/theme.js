@@ -394,10 +394,10 @@ function initArrowNav(){
     }
 
     // button navigation
-    var e = document.querySelector( 'a.nav-prev' );
-    e && e.addEventListener( 'click', navPrev );
-    e = document.querySelector( 'a.nav-next' );
-    e && e.addEventListener( 'click', navNext );
+    var prev = document.querySelector( 'a.nav-prev' );
+    prev && prev.addEventListener( 'click', navPrev );
+    var next = document.querySelector( 'a.nav-next' );
+    next && next.addEventListener( 'click', navNext );
 
     // keyboard navigation
     // avoid prev/next navigation if we are not at the start/end of the
@@ -408,8 +408,8 @@ function initArrowNav(){
     document.addEventListener('keydown', function(event){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
             if( event.which == '37' ){
-                if( !scrollLeft && el.scrollLeft <= 0 ){
-                    navPrev();
+                if( !scrollLeft && +el.scrollLeft.toFixed() <= 0 ){
+                    prev && prev.click();
                 }
                 else if( scrollLeft != -1 ){
                     clearTimeout( scrollLeft );
@@ -417,8 +417,8 @@ function initArrowNav(){
                 scrollLeft = -1;
             }
             if( event.which == '39' ){
-                if( !scrollRight && el.scrollLeft + el.clientWidth >= el.scrollWidth ){
-                    navNext();
+                if( !scrollRight && +el.scrollLeft.toFixed() + +el.clientWidth.toFixed() >= +el.scrollWidth.toFixed() ){
+                    next && next.click();
                 }
                 else if( scrollRight != -1 ){
                     clearTimeout( scrollRight );
