@@ -821,7 +821,7 @@ function mark() {
 		topbarLinks[i].classList.add( 'highlight' );
 	}
 
-	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox):not(a[rel="footnote"])' );
+	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox)' );
 	for( var i = 0; i < bodyInnerLinks.length; i++ ){
 		bodyInnerLinks[i].classList.add( 'highlight' );
 	}
