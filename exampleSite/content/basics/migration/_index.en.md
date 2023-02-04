@@ -34,6 +34,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Additionally you are able to configure the variants to be taken for light/dark mode with the new `themeVariantAuto` parameter.
 
+  This is not supported for Internet Explorer 11, which still displays in the `relearn-light` variant.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. While Internet Explorer 11 has issues in displaying it, the functionality still works.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (provided by [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.

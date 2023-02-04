@@ -100,6 +100,10 @@ If you don't like that, you can set `themeVariantAuto`. The first element is the
   themeVariantAuto = [ "learn", "neon" ]
 ```
 
+{{% notice note %}}
+This is not supported for Internet Explorer 11, which still displays in the `relearn-light` variant.
+{{% /notice %}}
+
 ### Roll your own
 
 If you are not happy with the shipped variants you can either copy and rename one of the shipped files from `themes/hugo-theme-relearn/static/css` to `static/css`, edit them afterwards to your liking in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).
