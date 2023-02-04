@@ -803,12 +803,14 @@ function scrollToFragment() {
         return;
     }
     window.setTimeout(function(){
-        var e = document.querySelector( window.location.hash );
-        if( e && e.scrollIntoView ){
-            e.scrollIntoView({
-                block: 'start',
-            });
-        }
+        try{
+            var e = document.querySelector( window.location.hash );
+            if( e && e.scrollIntoView ){
+                e.scrollIntoView({
+                    block: 'start',
+                });
+            }
+        } catch( e ){}
     }, 10);
 }
 
