@@ -1021,7 +1021,9 @@ function initSearch() {
         e.addEventListener( 'click', function(){
             inputs.forEach( function( e ){
                 e.value = '';
-                e.dispatchEvent( new Event( 'input' ) );
+                var event = document.createEvent( 'Event' );
+                event.initEvent( 'input', false, false );
+                e.dispatchEvent( event );
             });
             unmark();
         });
@@ -1039,7 +1041,9 @@ function initSearch() {
         var searchValue = sessionStorage.getItem( baseUriFull+'search-value' );
         inputs.forEach( function( e ){
             e.value = searchValue;
-            e.dispatchEvent( new Event( 'input' ) );
+            var event = document.createEvent( 'Event' );
+            event.initEvent( 'input', false, false );
+            e.dispatchEvent( event );
         });
 
         var found = elementContains( searchValue, document.querySelector( '#body-inner' ) );
