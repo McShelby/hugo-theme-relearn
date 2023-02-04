@@ -335,8 +335,7 @@ function initCodeClipboard(){
 	for( var i = 0; i < codeElements.length; i++ ){
         var code = codeElements[i];
         var text = code.textContent;
-        var parent = code.parentNode;
-        var inPre = parent.tagName.toLowerCase() == 'pre';
+        var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
 
         if( inPre || text.length > 5 ){
             var clip = new ClipboardJS( '.copy-to-clipboard-button', {
@@ -382,7 +381,7 @@ function initCodeClipboard(){
                 var span = document.createElement( 'span' );
                 span.classList.add( 'copy-to-clipboard' );
                 span.appendChild( clone );
-                parent.replaceChild( span, code );
+                code.parentNode.replaceChild( span, code );
                 code = clone;
             }
             var button = document.createElement( 'span' );
@@ -394,7 +393,7 @@ function initCodeClipboard(){
                 this.removeAttribute( 'aria-label' );
                 this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
             });
-            parent.insertBefore( button, code.nextSibling );
+            code.parentNode.insertBefore( button, code.nextSibling );
         }
     }
 }
