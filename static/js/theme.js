@@ -968,7 +968,7 @@ function elementContains( txt, e ){
     if( e ){
         var tree = document.createTreeWalker( e, 4 /* NodeFilter.SHOW_TEXT */, function( node ){
             return regex.test( node.data );
-        });
+        }, false );
         var node = null;
         while( node = tree.nextNode() ){
             nodes.push( node.parentElement );
