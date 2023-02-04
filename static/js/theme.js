@@ -548,6 +548,13 @@ function initMenuScrollbar(){
     adjustContentWidth();
 }
 
+function imageEscapeHandler( event ){
+    if( event.key == "Escape" ){
+        var image = event.target;
+        image.click();
+    }
+}
+
 function sidebarEscapeHandler( event ){
     if( event.key == "Escape" ){
         var b = document.querySelector( 'body' );
@@ -750,6 +757,10 @@ function initSwipeHandler(){
     document.querySelector( '#sidebar-overlay' ).addEventListener("touchend", handleEndX, false);
     document.querySelector( '#sidebar' ).addEventListener("touchend", handleEndX, false);
     document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
+}
+
+function initImage(){
+    document.querySelectorAll( '.lightbox' ).forEach( function(e){ e.addEventListener("keydown", imageEscapeHandler); }, false);
 }
 
 function clearHistory() {
@@ -1074,6 +1085,7 @@ ready( function(){
     initSwipeHandler();
     initHistory();
     initSearch();
+    initImage();
 });
 
 function useMermaid( config ){
