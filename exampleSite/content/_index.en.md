@@ -34,6 +34,7 @@ See [What's New]({{% relref "basics/migration" %}}) within the latest update.
 - [Syntax highlighting]({{%relref "cont/syntaxhighlight" %}})
 - [Customizable look and feel]({{%relref "basics/customization"%}})
 - [Predefined (light, dark) and customizable color variants]({{%relref "basics/generator" %}})
+- [Automatic switch for light/dark mode]({{%relref "basics/customization/#adjust-to-os-settings" %}}) dependend on your OS settings
 - [Attachments files]({{%relref "shortcodes/attachments" %}})
 - [List child pages]({{%relref "shortcodes/children" %}})
 - [Math and chemical formulae]({{%relref "shortcodes/math" %}}) using the MathJax library

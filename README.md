@@ -29,6 +29,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 - Syntax highlighting
 - Customizable look and feel
 - Predefined (light, dark) and customizable color variants
+- Automatic switch for light/dark mode dependend on your OS settings
 - Attachments files
 - List child pages
 - Math and chemical formulae using the MathJax library
