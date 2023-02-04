@@ -1,0 +1,34 @@
+{{- $themevariants := slice | append (.Site.Params.themeVariant | default "auto") -}}
+{{- $themevariantsauto := slice | append (.Site.Params.themeVariantAuto | default slice) -}}
+{{- $i := 0 -}}
+{{- if eq (int (len $themevariantsauto)) 0 -}}
+	{{- range $themevariants -}}
+		{{- $i = add $i 1 -}}
+		{{- if ne . "auto" -}}
+			{{- $themevariantsauto = $themevariantsauto | append . -}}
+			{{- break -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+{{- if eq (int (len $themevariantsauto)) 0 -}}
+	{{- $themevariantsauto = $themevariantsauto | append "relearn-light" -}}
+{{- end -}}
+{{- if eq (int (len $themevariantsauto)) 1 -}}
+	{{- $poppedthemevariants := last (sub (len $themevariants) $i) $themevariants -}}
+	{{- range $poppedthemevariants -}}
+		{{- if ne . "auto" -}}
+			{{- $themevariantsauto = $themevariantsauto | append . -}}
+			{{- break -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+{{- if eq (int (len $themevariantsauto)) 1 -}}
+	{{- $themevariantsauto = $themevariantsauto | append "relearn-dark" -}}
+{{- end -}}
+{{- $themevariantsauto = ($themevariantsauto | first 2) -}}
+{{- with index $themevariantsauto 0 -}}
+@import "{{(printf "css/theme-%s.css" .) | relURL}}" screen;
+{{- end -}}
+{{- with index $themevariantsauto 1 }}
+@import "{{(printf "css/theme-%s.css" .) | relURL}}" screen and (prefers-color-scheme: dark);
+{{- end -}}

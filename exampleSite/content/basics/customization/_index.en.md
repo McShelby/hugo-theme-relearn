@@ -80,6 +80,26 @@ You can also set multiple variants. In this case, the first variant is the defau
 If you want to switch the syntax highlighting theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/), and `@import` this stylesheet in your color variant stylesheet. For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
 {{% /notice %}}
 
+### Adjust to OS Settings
+
+You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `themeVariant` to `auto`. That's it.
+
+If you've set multiple variants, you can drop `auto` at any position, but usually it makes sense to set it in the first position and make it the default.
+
+```toml
+[params]
+  themeVariant = [ "auto", "red" ]
+```
+
+If you don't configure anything else, the theme will use `relearn-light` for light mode and `relearn-dark` for dark mode.
+
+If you don't like that, you can set `themeVariantAuto`. The first element is the variant for light mode, the second for dark mode
+
+```toml
+[params]
+  themeVariantAuto = [ "learn", "neon" ]
+```
+
 ### Roll your own
 
 If you are not happy with the shipped variants you can either copy and rename one of the shipped files from `themes/hugo-theme-relearn/static/css` to `static/css`, edit them afterwards to your liking in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).
