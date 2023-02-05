@@ -48,7 +48,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Czech. This language is not supported for search.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [GitHub releases](https://github.com/McShelby/hugo-theme-relearn/tags) are also now tagged for the main version (eg. `1.2.x`) and major version (eg. `1.x`) making it easier for you to pin the theme to a certain version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [GitHub releases](https://github.com/McShelby/hugo-theme-relearn/tags) are also now tagged for the main version (eg. `1.2.x`), major version (eg. `1.x`) and the latest (just `x`) release making it easier for you to pin the theme to a certain version.
 
 ---
 

@@ -21,6 +21,16 @@ This theme's repository is: https://github.com/McShelby/hugo-theme-relearn.git
 
 Alternatively, you can [download the theme as .zip](https://github.com/McShelby/hugo-theme-relearn/archive/main.zip) file and extract it in the `themes` directory
 
+### From Git
+
+If you install the theme from your git repository or GitHub, you have several options.
+
+If you use the `head` of the `main` branch, you are using the development version. Usually it is fully functional but can break from time to time. We try to fix newly introduced bugs in this version as soon as possible.
+
+Additionally you can checkout one of the tagged versions. These tagged versions correspond to an official [releases from the GitHub repository](https://github.com/McShelby/hugo-theme-relearn/releases).
+
+Besides the usual version tags (eg `1.2.3`) there are also tags for the main version (eg. `1.2.x`), major version (eg. `1.x`) and the latest (just `x`) released version making it easier for you to pin the theme to a certain version.
+
 ## Basic configuration
 
 When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the configuration file (`config.toml`) and set the theme as the default. You can also add the `[outputs]` section to enable the search functionality.

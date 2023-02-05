@@ -128,6 +128,10 @@ runs:
         git push origin "$MILESTONE_MAJOR.x"      || true
         git tag  --force --message "" "$MILESTONE_MAJOR.x"
         git push --force origin "$MILESTONE_MAJOR.x"
+        git tag --message "" "x" || true
+        git push origin "x"      || true
+        git tag  --force --message "" "x"
+        git push --force origin "x"
 
     - name: Publish release
       shell: bash
