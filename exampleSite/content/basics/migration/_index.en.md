@@ -28,7 +28,7 @@ This document shows you what's new in the latest release. For a detailed list of
   <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   ````
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} [Mermaid]({{% relref "shortcodes/mermaid#parameter" %}}) diagrams can now be configured for pan and zoom on site and project level as individually for each graph.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [Mermaid]({{% relref "shortcodes/mermaid#parameter" %}}) diagrams can now be configured for pan and zoom on site-, page-level or individually for each graph.
 
   The default setting of `on`, in effect since 1.1.0, changed back to `off` as there was interference with scrolling on mobile and big pages.
 
@@ -36,15 +36,15 @@ This document shows you what's new in the latest release. For a detailed list of
 
   This is also the new default setting if you haven't configured `themeVariant` in your `config.toml`.
 
-  Additionally you are able to configure the variants to be taken for light/dark mode with the new `themeVariantAuto` parameter.
+  Additionally you can configure the variants to be taken for light/dark mode with the new `themeVariantAuto` parameter.
 
   This is not supported for Internet Explorer 11, which still displays in the `relearn-light` variant.
-
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. While Internet Explorer 11 has issues in displaying it, the functionality still works.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (provided by [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.
 
   This also changed the [lightbox effects]({{% relref "cont/markdown#lightbox" %}}) parameter from `featherlight=false` to `lightbox=false`. Nevertheless you don't need to change anything as the old name will be used as a fallback.
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. While Internet Explorer 11 has issues in displaying it, the functionality still works.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Czech. This language is not supported for search.
 
