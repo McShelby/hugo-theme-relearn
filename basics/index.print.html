@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/basics/index.html" rel="canonical" type="text/html" title="Basics :: Hugo Relearn Theme">
     <link href="../basics/index.xml" rel="alternate" type="application/rss+xml" title="Basics :: Hugo Relearn Theme">
-    <link href="../images/logo.svg?1675552941" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1675592023" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1675552942" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1675552942" rel="stylesheet"></noscript>
-    <link href="../css/auto-complete.css?1675552942" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1675552942" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1675552942" rel="stylesheet">
-    <link href="../css/nucleus.css?1675552942" rel="stylesheet">
-    <link href="../css/fonts.css?1675552942" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1675552942" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1675552942" rel="stylesheet">
-    <link href="../css/theme-auto.css?1675552942" rel="stylesheet" id="variant-style">
-    <link href="../css/ie.css?1675552942" rel="stylesheet">
-    <link href="../css/variant.css?1675552942" rel="stylesheet">
-    <link href="../css/print.css?1675552942" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1675552942" rel="stylesheet">
-    <script src="../js/url.js?1675552942"></script>
-    <script src="../js/variant.js?1675552942"></script>
+    <link href="../css/fontawesome-all.min.css?1675592024" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1675592024" rel="stylesheet"></noscript>
+    <link href="../css/auto-complete.css?1675592024" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1675592024" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1675592024" rel="stylesheet">
+    <link href="../css/nucleus.css?1675592024" rel="stylesheet">
+    <link href="../css/fonts.css?1675592024" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1675592024" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1675592024" rel="stylesheet">
+    <link href="../css/theme-auto.css?1675592024" rel="stylesheet" id="variant-style">
+    <link href="../css/ie.css?1675592024" rel="stylesheet">
+    <link href="../css/variant.css?1675592024" rel="stylesheet">
+    <link href="../css/print.css?1675592024" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1675592024" rel="stylesheet">
+    <script src="../js/url.js?1675592024"></script>
+    <script src="../js/variant.js?1675592024"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -101,6 +101,10 @@
 <p>In case you made changes to the theme that are dependend on this library you can place a copy of jQuery into your <code>static/js</code> directory and load it from your own <code>layouts/partials/custom-header.html</code> like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;{{&#34;</span><span class="na">js</span><span class="err">/</span><span class="na">jquery</span><span class="err">.</span><span class="na">min</span><span class="err">.</span><span class="na">js</span><span class="err">&#34;|</span> <span class="na">relURL</span><span class="err">}}{{</span> <span class="na">if</span> <span class="err">$</span><span class="na">assetBusting</span> <span class="err">}}?{{</span> <span class="na">now</span><span class="err">.</span><span class="na">Unix</span> <span class="err">}}{{</span> <span class="na">end</span> <span class="err">}}&#34;</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div></li>
+<li>
+<p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> <a href="../shortcodes/mermaid/#parameter">Mermaid</a> diagrams can now be configured for pan and zoom on site and project level as individually for each graph.</p>
+<p>The default setting of <code>on</code>, in effect since 1.1.0, changed back to <code>off</code> as there was interference with scrolling on mobile and big pages.</p>
+</li>
 <li>
 <p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> The theme is now capable to visually <a href="../basics/customization/#adjust-to-os-settings">adapt to your OS&rsquo;s light/dark mode setting</a>.</p>
 <p>This is also the new default setting if you haven&rsquo;t configured <code>themeVariant</code> in your <code>config.toml</code>.</p>
@@ -627,7 +631,12 @@
 <hr>
 <h2 id="110-2021-07-02">1.1.0 (2021-07-02)</h2>
 <ul>
-<li><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> <a href="../shortcodes/mermaid/#configuration"><code>Mermaid</code></a> config options can be set in <code>config.toml</code>.</li>
+<li>
+<p><span class="badge cstyle warning badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-triangle"></i></span><span class="badge-content">Breaking</span></span> <a href="../shortcodes/mermaid/">Mermaid</a> diagrams can now be panned and zoomed. This isn&rsquo;t configurable yet.</p>
+</li>
+<li>
+<p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> <a href="../shortcodes/mermaid/#configuration"><code>Mermaid</code></a> config options can be set in <code>config.toml</code>.</p>
+</li>
 </ul>
 <hr>
 <h2 id="100-2021-07-01">1.0.0 (2021-07-01)</h2>
@@ -650,10 +659,10 @@
 <p>Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.</p>
 <p>Just download at least version <span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fab fa-hackerrank"></i></span><span class="badge-content" style="background-color: fuchsia;">0.95.0</span></span> of the <a href="https://gohugo.io/getting-started/installing/" target="_blank">Hugo binary</a> for your OS (Windows, Linux, Mac).</p>
 <p>
-<a href="#image-878e73497f7b3ae71b05f185f98eced7" class="lightbox-link">
+<a href="#image-50020aa3d29980ceb3e7392d5f538fb3" class="lightbox-link">
 <img src="../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="shadow" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-878e73497f7b3ae71b05f185f98eced7">
+<a href="javascript:history.back();" class="lightbox" id="image-50020aa3d29980ceb3e7392d5f538fb3">
 <img src="../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -690,10 +699,10 @@
 </span></span></code></pre></div><p>renders as</p>
 <p>
 		
-<a href="#image-35426b5193348239625e34b91eed4df8" class="lightbox-link">
+<a href="#image-97ba0e1dfcaaa202d477d2594286fb7c" class="lightbox-link">
 <img src="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="shadow" style="height: auto; width: 60pc;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-35426b5193348239625e34b91eed4df8">
+<a href="javascript:history.back();" class="lightbox" id="image-97ba0e1dfcaaa202d477d2594286fb7c">
 <img src="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="lightbox-image" loading="lazy">
 </a></p>
 <p>The Relearn theme provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command</p>
@@ -846,10 +855,10 @@
 </span></span></code></pre></div><p>You can access this page by either clicking on the magnifier glass or by typing some search term and pressing <code>ENTER</code> inside of the menu&rsquo;s search box .</p>
 <p>
 		
-<a href="#image-50e630818ee9ab9634b3690f71190e44" class="lightbox-link">
+<a href="#image-aa8dc9310c1d8c037deb52ef224fdeec" class="lightbox-link">
 <img src="../basics/configuration/search_page.png?&amp;width=60pc" alt="Screenshot of the dedicated search page" style="height: auto; width: 60pc;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-50e630818ee9ab9634b3690f71190e44">
+<a href="javascript:history.back();" class="lightbox" id="image-aa8dc9310c1d8c037deb52ef224fdeec">
 <img src="../basics/configuration/search_page.png?&amp;width=60pc" alt="Screenshot of the dedicated search page" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="activate-print-support">Activate print support</h2>
@@ -898,10 +907,10 @@ default values:</p>
 </span></span></code></pre></div><p>The home button is going to look like this:</p>
 <p>
 		
-<a href="#image-a04bc7fa302c9f5f86358174b672ccac" class="lightbox-link">
+<a href="#image-23f033b6592603567af5ac834085e238" class="lightbox-link">
 <img src="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=300px" alt="Default Home Button" class="shadow" style="height: auto; width: 300px;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a04bc7fa302c9f5f86358174b672ccac">
+<a href="javascript:history.back();" class="lightbox" id="image-23f033b6592603567af5ac834085e238">
 <img src="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=300px" alt="Default Home Button" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -1974,21 +1983,21 @@ window.variants && variants.generator( '#vargenerator' );
           </section>        </div>
       </main>
     </div>
-    <script src="../js/clipboard.min.js?1675552942" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-color.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-dispatch.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-drag.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-ease.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-interpolate.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-selection.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-timer.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-transition.min.js?1675552942" defer></script>
-    <script src="../js/d3/d3-zoom.min.js?1675552942" defer></script>
-    <script src="../js/mermaid.min.js?1675552942" defer></script>
+    <script src="../js/clipboard.min.js?1675592025" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-color.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-dispatch.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-drag.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-ease.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-interpolate.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-selection.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-timer.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-transition.min.js?1675592025" defer></script>
+    <script src="../js/d3/d3-zoom.min.js?1675592025" defer></script>
+    <script src="../js/mermaid.min.js?1675592025" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
     </script>
-    <script src="../js/theme.js?1675552942" defer></script>
+    <script src="../js/theme.js?1675592025" defer></script>
   </body>
 </html>
