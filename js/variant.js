@@ -352,6 +352,12 @@ var variants = {
 
 	changeColor: function( c, without_prompt ){
 		var with_prompt = !(without_prompt || false);
+		if( this.getVariant() == 'auto' ){
+			if( with_prompt ){
+				alert( 'The Auto variant can not be changed. Please select the light/dark variant directly to make changes' );
+			}
+			return;
+		}
 
 		var read_style = this.findLoadedStylesheet( 'custom-variant-style' );
 		var write_style = this.findLoadedStylesheet( 'variant-style' );
