@@ -1,8 +1,21 @@
 {{- $context := .context }}
 {{- $content := .content }}
 {{- $align := .align | default "center" }}
+{{- $zoom := $context.Site.Params.mermaidZoom | default false }}
+{{- with $context.Page.Params.mermaidZoom }}
+  {{- $zoom = . }}
+  {{- if eq (printf "%T" .) "string" }}
+    {{- $zoom = (eq . "true") }}
+  {{- end }}
+{{- end }}
+{{- with .zoom }}
+  {{- $zoom = . }}
+  {{- if eq (printf "%T" .) "string" }}
+    {{- $zoom = (eq . "true") }}
+  {{- end }}
+{{- end }}
 {{- with $context }}
-<div class="mermaid align-{{ $align }}">
+<div class="mermaid align-{{ $align }}{{ if $zoom }} zoom{{ end }}">
   {{- replaceRE "&#39;" "'" ( replaceRE "&#34;" "\"" ( $content | safeHTML ) ) -}}
 </div>
 {{- .Page.Store.Set "hasMermaid" true }}

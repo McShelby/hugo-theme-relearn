@@ -5,7 +5,7 @@ title = "Mermaid"
 
 The `mermaid` shortcode generates diagrams and flowcharts from text, in a similar manner as Markdown using the [Mermaid](https://mermaidjs.github.io/) library.
 
-{{< mermaid align="center" >}}
+{{< mermaid align="center">}}
 graph LR;
     If --> Then
     Then --> Else
@@ -33,7 +33,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 {{% tab name="codefence" %}}
 
 ````md
-```mermaid { align="center" }
+```mermaid { align="center" zoom="true" }
 graph LR;
     If --> Then
     Then --> Else
@@ -44,7 +44,7 @@ graph LR;
 {{% tab name="shortcode" %}}
 
 ````go
-{{</* mermaid align="center" */>}}
+{{</* mermaid align="center" zoom="true" */>}}
 graph LR;
     If --> Then
     Then --> Else
@@ -59,6 +59,7 @@ graph LR;
   "context" .
   "content" "graph LR;\nIf --> Then\nThen --> Else"
   "align"   "center"
+  "zoom"    "true"
 )}}
 
 ````
@@ -73,6 +74,7 @@ The generated graphs can be be panned by dragging them and zoomed by using the m
 | Name                  | Default          | Notes       |
 |:----------------------|:-----------------|:------------|
 | **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
+| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the `mermaidZoom` setting of the [site](#global-configuration-file) or the [pages frontmatter](#pages-frontmatter) or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
 
 ## Configuration
@@ -94,6 +96,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 ````toml
 [params]
   mermaidInitialize = "{ \"theme\": \"dark\" }"
+  mermaidZoom = true
 
 [markup]
   [markup.highlight]
@@ -108,6 +111,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 ````toml
 +++
 mermaidInitialize = "{ \"theme\": \"dark\" }"
+mermaidZoom = true
 +++
 ````
 
@@ -339,10 +343,10 @@ gantt
         Add to Mermaid                      :1d
 {{< /mermaid >}}
 
-### Pie Chart
+### Pie Chart without Zoom
 
 ````go
-{{</* mermaid */>}}
+{{</* mermaid zoom="false" */>}}
 pie title Pets adopted by volunteers
     "Dogs" : 386
     "Cats" : 85
@@ -350,7 +354,7 @@ pie title Pets adopted by volunteers
 {{</* /mermaid */>}}
 ````
 
-{{< mermaid >}}
+{{< mermaid zoom="false" >}}
 pie title Pets adopted by volunteers
     "Dogs" : 386
     "Cats" : 85

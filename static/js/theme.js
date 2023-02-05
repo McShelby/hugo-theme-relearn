@@ -227,7 +227,7 @@ function initMermaid( update, attrs ) {
         mermaid.init();
         // zoom for Mermaid
         // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
-        var svgs = d3.selectAll( '.mermaid svg' );
+        var svgs = d3.selectAll( '.mermaid.zoom svg' );
         svgs.each( function(){
             var svg = d3.select( this );
             svg.html( '<g>' + svg.html() + '</g>' );

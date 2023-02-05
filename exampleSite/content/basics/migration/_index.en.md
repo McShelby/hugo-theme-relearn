@@ -28,6 +28,10 @@ This document shows you what's new in the latest release. For a detailed list of
   <script src="{{"js/jquery.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   ````
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [Mermaid]({{% relref "shortcodes/mermaid#parameter" %}}) diagrams can now be configured for pan and zoom on site and project level as individually for each graph.
+
+  The default setting of `on`, in effect since 1.1.0, changed back to `off` as there was interference with scrolling on mobile and big pages.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting]({{%relref "basics/customization/#adjust-to-os-settings" %}}).
 
   This is also the new default setting if you haven't configured `themeVariant` in your `config.toml`.
@@ -458,6 +462,8 @@ This document shows you what's new in the latest release. For a detailed list of
 ---
 
 ## 1.1.0 (2021-07-02)
+
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} [Mermaid]({{% relref "shortcodes/mermaid" %}}) diagrams can now be panned and zoomed. This isn't configurable yet.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`Mermaid`]({{% relref "shortcodes/mermaid#configuration" %}}) config options can be set in `config.toml`.
 
