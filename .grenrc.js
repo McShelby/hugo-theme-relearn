@@ -34,6 +34,7 @@ module.exports = {
   ],
   ignoreTagsWith: [
     "Relearn",
+    "x",
   ],
   milestoneMatch: "{{tag_name}}",
   onlyMilestones: true,
