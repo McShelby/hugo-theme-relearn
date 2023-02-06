@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.11.1 (2023-02-06)
+
+### Fixes
+
+- [**bug**] variant: include missing `theme-auto.css` in distribution [#467](https://github.com/McShelby/hugo-theme-relearn/issues/467)
+
+---
+
 ## 5.11.0 (2023-02-05)
 
 ### Enhancements
@@ -8,7 +16,7 @@
 - [**feature**][**change**] lightbox: switch to CSS-only solution [#451](https://github.com/McShelby/hugo-theme-relearn/issues/451)
 - [**feature**][**change**] variant: add support for `prefers-color-scheme` [#445](https://github.com/McShelby/hugo-theme-relearn/issues/445)
 - [**feature**][**change**] expand: refactor for a11y [#339](https://github.com/McShelby/hugo-theme-relearn/issues/339)
-- [**feature**] mermaid: make zoom configurable [#144](https://github.com/McShelby/hugo-theme-relearn/issues/144)
+- [**feature**][**change**] mermaid: make zoom configurable [#144](https://github.com/McShelby/hugo-theme-relearn/issues/144)
 
 ### Fixes
 
@@ -32,16 +40,6 @@
 ### Fixes
 
 - [**bug**] nav: fix breadcrumb for huge installations [#446](https://github.com/McShelby/hugo-theme-relearn/issues/446)
-
----
-
-## 5.10.x (2023-01-25)
-*No changelog for this release.*
-
----
-
-## 5.x (2023-01-25)
-*No changelog for this release.*
 
 ---
 
@@ -73,11 +71,6 @@
 ### Fixes
 
 - [**bug**] variant: fix search icon and text color [#437](https://github.com/McShelby/hugo-theme-relearn/issues/437)
-
----
-
-## 5.9.x (2023-01-23)
-*No changelog for this release.*
 
 ---
 
@@ -131,11 +124,6 @@
 
 ---
 
-## 5.8.x (2022-12-11)
-*No changelog for this release.*
-
----
-
 ## 5.8.0 (2022-12-08)
 
 ### Enhancements
@@ -169,11 +157,6 @@
 
 ---
 
-## 5.7.x (2022-11-29)
-*No changelog for this release.*
-
----
-
 ## 5.6.6 (2022-11-23)
 
 ### Enhancements
@@ -184,11 +167,6 @@
 
 - [**bug**] variant: minor color adjustments [#402](https://github.com/McShelby/hugo-theme-relearn/issues/402)
 - [**bug**] variant: fix generator for use of neon [#401](https://github.com/McShelby/hugo-theme-relearn/issues/401)
-
----
-
-## 5.6.x (2022-11-23)
-*No changelog for this release.*
 
 ---
 
@@ -266,11 +244,6 @@
 
 ---
 
-## 5.5.x (2022-11-10)
-*No changelog for this release.*
-
----
-
 ## 5.5.2 (2022-11-08)
 
 ### Fixes
@@ -313,11 +286,6 @@
 
 ---
 
-## 5.4.x (2022-11-05)
-*No changelog for this release.*
-
----
-
 ## 5.4.2 (2022-11-05)
 
 ### Maintenance
@@ -352,11 +320,6 @@
 ### Fixes
 
 - [**bug**] archetypes: fix frontmatter on home.md template [#346](https://github.com/McShelby/hugo-theme-relearn/issues/346)
-
----
-
-## 5.3.x (2022-10-09)
-*No changelog for this release.*
 
 ---
 
@@ -400,11 +363,6 @@
 ### Fixes
 
 - [**bug**] theme: remove HTML5 validator errors [#329](https://github.com/McShelby/hugo-theme-relearn/issues/329)
-
----
-
-## 5.2.x (2022-10-02)
-*No changelog for this release.*
 
 ---
 
@@ -462,11 +420,6 @@
 
 ---
 
-## 5.1.x (2022-07-18)
-*No changelog for this release.*
-
----
-
 ## 5.1.1 (2022-07-15)
 
 ### Fixes
@@ -489,11 +442,6 @@
 ### Fixes
 
 - [**bug**] ie11: no styles after rework of archetypes [#306](https://github.com/McShelby/hugo-theme-relearn/issues/306)
-
----
-
-## 5.0.x (2022-07-07)
-*No changelog for this release.*
 
 ---
 
@@ -554,16 +502,6 @@
 
 ---
 
-## 4.2.x (2022-06-23)
-*No changelog for this release.*
-
----
-
-## 4.x (2022-06-23)
-*No changelog for this release.*
-
----
-
 ## 4.2.4 (2022-06-23)
 
 ### Fixes
@@ -613,11 +551,6 @@
 
 ---
 
-## 4.1.x (2022-06-18)
-*No changelog for this release.*
-
----
-
 ## 4.1.0 (2022-06-12)
 
 ### Enhancements
@@ -632,11 +565,6 @@
 
 - [**bug**] i18n: Vietnamese language with wrong lang code [#270](https://github.com/McShelby/hugo-theme-relearn/issues/270)
 - [**bug**] i18n: fix search for non western languages [#269](https://github.com/McShelby/hugo-theme-relearn/issues/269)
-
----
-
-## 4.0.x (2022-06-12)
-*No changelog for this release.*
 
 ---
 
@@ -728,16 +656,6 @@
 
 ---
 
-## 3.4.x (2022-04-03)
-*No changelog for this release.*
-
----
-
-## 3.x (2022-04-03)
-*No changelog for this release.*
-
----
-
 ## 3.3.0 (2022-03-28)
 
 ### Enhancements
@@ -751,11 +669,6 @@
 
 ---
 
-## 3.3.x (2022-03-28)
-*No changelog for this release.*
-
----
-
 ## 3.2.1 (2022-03-25)
 
 ### Fixes
@@ -763,11 +676,6 @@
 - [**bug**] print: fix minor inconsistencies [#225](https://github.com/McShelby/hugo-theme-relearn/issues/225)
 - [**bug**] print: show more than just the title page [#224](https://github.com/McShelby/hugo-theme-relearn/issues/224)
 - [**bug**] theme: align content scrollbar to the right on big screens [#223](https://github.com/McShelby/hugo-theme-relearn/issues/223)
-
----
-
-## 3.2.x (2022-03-25)
-*No changelog for this release.*
 
 ---
 
@@ -789,11 +697,6 @@
 ### Enhancements
 
 - [**feature**] i18n: add Korean translation [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
-
----
-
-## 3.1.x (2022-03-16)
-*No changelog for this release.*
 
 ---
 
@@ -826,11 +729,6 @@
 - [**bug**] variant: avoid flash of menu header when non default variant is active [#206](https://github.com/McShelby/hugo-theme-relearn/issues/206)
 - [**bug**] theme: fix wrong HTML closing tag order in chapters [#205](https://github.com/McShelby/hugo-theme-relearn/issues/205)
 - [**bug**] theme: adjust breadcrumb and title for empty home page titles [#202](https://github.com/McShelby/hugo-theme-relearn/issues/202)
-
----
-
-## 3.0.x (2022-02-24)
-*No changelog for this release.*
 
 ---
 
@@ -889,16 +787,6 @@
 - [**bug**] print: hide sidebar on Mac [#183](https://github.com/McShelby/hugo-theme-relearn/issues/183)
 - [**bug**] menu: fix scrollbar height [#180](https://github.com/McShelby/hugo-theme-relearn/issues/180)
 - [**bug**][**change**] search: fix color change for icons on hover [#176](https://github.com/McShelby/hugo-theme-relearn/issues/176)
-
----
-
-## 2.9.x (2022-02-07)
-*No changelog for this release.*
-
----
-
-## 2.x (2022-02-07)
-*No changelog for this release.*
 
 ---
 
@@ -976,11 +864,6 @@
 
 ---
 
-## 2.8.x (2021-11-09)
-*No changelog for this release.*
-
----
-
 ## 2.8.2 (2021-11-08)
 
 ### Fixes
@@ -1024,11 +907,6 @@
 
 ---
 
-## 2.7.x (2021-10-24)
-*No changelog for this release.*
-
----
-
 ## 2.6.0 (2021-10-21)
 
 ### Fixes
@@ -1037,21 +915,11 @@
 
 ---
 
-## 2.6.x (2021-10-21)
-*No changelog for this release.*
-
----
-
 ## 2.5.1 (2021-10-12)
 
 ### Fixes
 
 - [**bug**] security: fix XSS for malicioius image URLs [#117](https://github.com/McShelby/hugo-theme-relearn/issues/117)
-
----
-
-## 2.5.x (2021-10-12)
-*No changelog for this release.*
 
 ---
 
@@ -1073,11 +941,6 @@
 ### Fixes
 
 - [**bug**] theme: remove runtime styles from print [#111](https://github.com/McShelby/hugo-theme-relearn/issues/111)
-
----
-
-## 2.4.x (2021-10-07)
-*No changelog for this release.*
 
 ---
 
@@ -1111,11 +974,6 @@
 ### Fixes
 
 - [**bug**] docs: rename history pirate translation [#91](https://github.com/McShelby/hugo-theme-relearn/issues/91)
-
----
-
-## 2.3.x (2021-09-20)
-*No changelog for this release.*
 
 ---
 
@@ -1156,11 +1014,6 @@
 
 ---
 
-## 2.2.x (2021-09-09)
-*No changelog for this release.*
-
----
-
 ## 2.1.0 (2021-09-07)
 
 ### Enhancements
@@ -1176,11 +1029,6 @@
 
 - [**bug**][**change**] search: hide non-site content [#81](https://github.com/McShelby/hugo-theme-relearn/issues/81)
 - [**bug**] menu: always hide hidden sub pages [#77](https://github.com/McShelby/hugo-theme-relearn/issues/77)
-
----
-
-## 2.1.x (2021-09-07)
-*No changelog for this release.*
 
 ---
 
@@ -1244,26 +1092,11 @@
 
 ---
 
-## 1.2.x (2021-07-26)
-*No changelog for this release.*
-
----
-
-## 1.x (2021-07-26)
-*No changelog for this release.*
-
----
-
 ## 1.1.1 (2021-07-04)
 
 ### Maintenance
 
 - [**task**] theme: prepare for new hugo theme registration [#13](https://github.com/McShelby/hugo-theme-relearn/issues/13)
-
----
-
-## 1.1.x (2021-07-04)
-*No changelog for this release.*
 
 ---
 
@@ -1292,11 +1125,6 @@
 ### Maintenance
 
 - [**task**] Prepare for hugo showcase [#3](https://github.com/McShelby/hugo-theme-relearn/issues/3)
-
----
-
-## 1.0.x (2021-07-01)
-*No changelog for this release.*
 
 ---
 
