@@ -4,38 +4,20 @@
 @import "tabs.css";
 
 html {
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
 body {
     display: flex;
     flex-direction: row-reverse; /* IE11 to allow body to have initial focus for PS and better SEO and a11y */
-    font-size: 16.25px;
+    font-size: 1.015625rem;
     font-weight: 300;
     height: 100%;
     justify-content: flex-end;
     line-height: 1.574;
     /* overflow: hidden; PSC removed for #242 #243 #244; to avoid browser scrollbar to flicker before we create our own */
     width: 100%;
-}
-
-body:not(.print) #body-inner.narrow h1 {
-    font-size: 3.5rem;
-}
-@media only screen and (min-width: 48em) and (max-width: 59.938em) {
-    body:not(.print) #body-inner.narrow h1 {
-        font-size: 2.8rem;
-    }
-}
-@media only screen and (max-width: 47.938em) {
-    body:not(.print) #body-inner.narrow h1 {
-        font-size: 2.5rem;
-    }
-}
-
-pre {
-    position: relative;
 }
 
 b,
@@ -68,7 +50,7 @@ dd {
     flex-direction: column;
     flex-grow: 0;
     flex-shrink: 0;
-    font-size: 15.25px;
+    font-size: .953125rem;
     height: 100%;
     left: 0;
     line-height: 1.574;
@@ -100,7 +82,7 @@ dd {
 
 .searchbox > :first-child {
     position: absolute;
-    left: 10px;
+    left: .5rem;
 }
 
 .searchbox > button {
@@ -110,18 +92,18 @@ dd {
     border: 0;
     margin: 0;
     padding: 0;
-    top: 4px;
+    top: .25rem;
 }
 
 .searchbox > i {
-    top: 7px;
+    top: .5rem;
 }
 
 .searchbox span {
-    position: absolute;
-    right: 10px;
-    top: 4px;
     cursor: pointer;
+    position: absolute;
+    right: .5rem;
+    top: .25rem;
 }
 
 #sidebar .searchbox > :first-child,
@@ -138,10 +120,10 @@ dd {
 .searchbox input {
     display: inline-block;
     width: 100%;
-    height: 30px;
+    height: 1.875rem;
     background: transparent;
     border: 0;
-    padding: 0 25px 0 30px;
+    padding: 0 1.6rem 0 1.8rem;
     margin: 0;
     font-weight: 300;
 }
@@ -411,10 +393,6 @@ body:not(.print) #body-inner.narrow {
     text-align: center;
 }
 
-body:not(.print) #body-inner.narrow h1 {
-    border-bottom: 4px solid rgba( 134, 134, 134, .125 );
-}
-
 body:not(.print) #body-inner.narrow p {
     font-size: 1.2rem;
     text-align: justify;
@@ -425,13 +403,63 @@ mark {
 }
 
 h1 {
+    font-size: 3.25rem;
     font-weight: 200;
+    margin: 0.85rem 0 1rem 0;
+    /* big titles cause a horizontal scrollbar - fixing this by wrapping text */
+    overflow-wrap: break-word;
+    overflow-x: hidden;
     text-align: center;
+    text-rendering: optimizeLegibility;
     text-transform: uppercase;
+}
+
+body:not(.print) #body-inner.narrow h1 {
+    border-bottom: 4px solid rgba( 134, 134, 134, .125 );
+    font-size: 3.5rem;
+}
+@media only screen and (min-width: 48em) and (max-width: 59.938em) {
+    body:not(.print) #body-inner.narrow h1 {
+        font-size: 2.8rem;
+    }
+}
+@media only screen and (max-width: 47.938em) {
+    body:not(.print) #body-inner.narrow h1 {
+        font-size: 2.5rem;
+    }
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+h3, .article-subheading {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 1.85rem;
+    font-weight: 300;
+}
+
+h5 {
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+h6 {
+    font-size: 1.3rem;
+    font-weight: 300;
 }
 
 h2, h3, .article-subheading, h4, h5, h6 {
     letter-spacing: -1px;
+    margin: 2rem 0 1rem 0;
+    /* big titles cause a horizontal scrollbar - fixing this by wrapping text */
+    overflow-wrap: break-word;
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
 }
 
@@ -445,7 +473,7 @@ blockquote {
 }
 
 blockquote p {
-    font-size: 105%;
+    font-size: 1.06640625rem;
     font-style: italic;
     opacity: .75;
     text-align: justify;
@@ -515,7 +543,7 @@ div.attachments .box-content {
 /* Children shortcode */
 
 .children p {
-    font-size: small;
+    font-size: .8125rem;
     margin-bottom:  0px;
     margin-top: 0px;
     padding-bottom: 0px;
@@ -523,13 +551,13 @@ div.attachments .box-content {
 }
 
 .children-li p {
-    font-size: small;
+    font-size: .8125rem;
     font-style: italic;
 }
 
 .children-h2 p,
 .children-h3 p {
-    font-size: small;
+    font-size: .8125rem;
     margin-bottom:  0px;
     margin-top: 0px;
     padding-bottom: 0px;
@@ -559,7 +587,7 @@ code,
 kbd,
 pre,
 samp {
-    font-size: 92%;
+    font-size: .934375rem;
     vertical-align: baseline;
 }
 
@@ -601,6 +629,7 @@ pre {
     color-adjust: economy;
     line-height: 1.15;
     padding: 1rem;
+    position: relative;
 }
 
 pre.pre-code,
@@ -615,7 +644,7 @@ pre code {
     color: inherit;
     -webkit-print-color-adjust: economy;
     color-adjust: economy;
-    font-size: 15px;
+    font-size: .9375rem;
     margin: 0;
     padding: 0;
     white-space: inherit;
@@ -627,18 +656,6 @@ hr {
 
 #body-inner pre {
     white-space: pre-wrap;
-}
-
-#body-inner h1,
-#body-inner h2,
-#body-inner h3,
-#body-inner h4,
-#body-inner h5,
-#body-inner h6,
-#body-inner .article-subheading {
-    /* big titles cause a horizontal scrollbar - fixing this by wrapping text */
-    overflow-wrap: break-word;
-    overflow-x: hidden;
 }
 
 table {
@@ -673,9 +690,12 @@ td {
     color: #fff;
     content: attr(aria-label);
     display: none;
-    font: normal normal 11px/1.5 "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-size: .6875rem;
+    font-weight: normal;
     -webkit-font-smoothing: subpixel-antialiased;
     letter-spacing: normal;
+    line-height: 1.5;
     padding: 5px 8px;
     pointer-events: none;
     position: absolute;
@@ -975,7 +995,7 @@ span.nav i{
     border-style: solid;
     border-width: 1px;
     cursor: pointer;
-    font-size: 92%;
+    font-size: .859625rem;
     padding-left: 22px;
 }
 
@@ -987,7 +1007,7 @@ span > .copy-to-clipboard-button {
 }
 
 .copy-to-clipboard-button > i {
-    font-size: 92%;
+    font-size: .790855rem;
     font-weight: 500;
     margin-left: -22px;
 }
@@ -1237,7 +1257,7 @@ option {
 }
 
 #TableOfContents {
-    font-size: 13px !important;
+    font-size: .8125rem !important;
     max-height: 90vh;
     overflow: hidden;
     padding: 15px 5px !important;
@@ -1326,36 +1346,6 @@ h6 a {
     font-weight: inherit;
 }
 
-#body h2 {
-    font-size: 2.2rem;
-    font-weight: 500;
-    margin-top: 2rem;
-}
-
-#body h3, #body .article-subheading {
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-top: 2rem;
-}
-
-#body h4 {
-    font-size: 1.85rem;
-    font-weight: 300;
-    margin-top: 2rem;
-}
-
-#body h5 {
-    font-size: 1.6rem;
-    font-weight: 300;
-    margin-top: 2rem;
-}
-
-#body h6 {
-    font-size: 1.3rem;
-    font-weight: 300;
-    margin-top: 2rem;
-}
-
 #body h1 + h2,
 #body h1 + h3,
 #body h1 + h4,
@@ -1389,9 +1379,10 @@ rapi-doc {
 rapi-doc::part(section-main-content) {
     /* override variables for adapting rapidoc design to theme */
     --font-mono: var(--INTERNAL-CODE-font);
-    --font-size-mono: 15px;
+    --font-size-mono: .9375rem;
     --font-regular: var(--INTERNAL-MAIN-font);
-    --font-size-regular: 16.25px;
+    --font-size-regular: 1.015625rem;
+    --font-size-small: .875rem;
     font-weight: 300 !important;
 }
 
@@ -1408,7 +1399,8 @@ rapi-doc::part(btn) {
 
 rapi-doc::part(section-endpoint-head-method) {
     /* makes method marker large enough to not overflow on text DELETE */
-    font-size: 11px;
+    font-size: .6875rem;
+    width: 5.5em;
 }
 
 .select-container i {
@@ -1659,7 +1651,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .badge {
     border-radius: 3px;
     display: inline-block;
-    font-size: 80%;
+    font-size: .8rem;
     font-weight: 500;
     vertical-align: middle;
 }
