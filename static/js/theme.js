@@ -59,17 +59,20 @@ function switchTab(tabGroup, tabId) {
         return !!e.querySelector( '[data-tab-item="'+tabId+'"]' );
     });
     var allTabItems = tabs && tabs.reduce( function( a, e ){
-        return a.concat( Array.from( e.querySelectorAll( '.tab-nav-button, .tab-item' ) ) );
+        return a.concat( Array.from( e.querySelectorAll( '[data-tab-item]' ) ).filter( function( es ){
+            return es.parentNode.parentNode == e;
+        }) );
     }, [] );
     var targetTabItems = tabs && tabs.reduce( function( a, e ){
-        return a.concat( Array.from( e.querySelectorAll( '[data-tab-item="'+tabId+'"]' ) ) );
+        return a.concat( Array.from( e.querySelectorAll( '[data-tab-item="'+tabId+'"]' ) ).filter( function( es ){
+            return es.parentNode.parentNode == e;
+        }) );
     }, [] );
 
     // if event is undefined then switchTab was called from restoreTabSelection
     // so it's not a button event and we don't need to safe the selction or
     // prevent page jump
     var isButtonEvent = event && event.target && event.target.getBoundingClientRect;
-
     if(isButtonEvent){
       // save button position relative to viewport
       var yposButton = event.target.getBoundingClientRect().top;
