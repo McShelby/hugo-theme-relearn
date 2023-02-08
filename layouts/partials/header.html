@@ -56,7 +56,7 @@
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
-      <nav id="topbar" class="highlightable" dir="ltr">
+      <nav id="topbar" class="highlightable">
         <div>
         {{- $File := .File }}
         {{- $Site := .Site }}
@@ -67,12 +67,18 @@
           {{- if $parent }}
             {{- $ispublished = gt (int (len $parent.Permalink)) 0 }}
           {{- end }}
+          {{- $startarrow := "&#129104;" }}
+          {{- $endarrow := "&#129106;" }}
+          {{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
+            {{- $startarrow = "&#129106;" }}
+            {{- $endarrow = "&#129104;" }}
+          {{- end }}
           <div class="navigation">
           {{- if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnNextPage"))) }}
             <span class="nav nav-next topbar-link"><i class="fa fa-chevron-right fa-fw"></i></span>
           {{- else }}
             {{- with ($.Scratch.Get "relearnNextPage") }}
-            <a class="nav nav-next topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+            <a class="nav nav-next topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} ({{ $endarrow | safeHTML }})"><i class="fas fa-chevron-right fa-fw"></i></a>
             {{- end }}
           {{- end }}
           </div>
@@ -81,11 +87,11 @@
             <span class="nav nav-prev topbar-link"><i class="fa fa-chevron-left fa-fw"></i></span>
           {{- else if or (ne $outputFormat "html") (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) }}
             {{- with .Site.Home }}
-            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} ({{ $startarrow | safeHTML }})"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end }}
           {{- else }}
             {{- with ($.Scratch.Get "relearnPrevPage") }}
-            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} ({{ $startarrow | safeHTML }})"><i class="fas fa-chevron-left fa-fw"></i></a>
             {{- end}}
           {{- end}}
           </div>

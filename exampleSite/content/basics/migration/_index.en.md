@@ -18,6 +18,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.12.0 (not yet released)
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic) is expanded to the top navigation bar. This feature is not available in Internet Explorer 11.
+
+---
+
 ## 5.11.0 (2023-02-07)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme removed the popular [jQuery](https://jquery.com) library from its distribution.

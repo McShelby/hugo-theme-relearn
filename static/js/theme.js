@@ -11,6 +11,20 @@ else{
 }
 var isPrint = document.querySelector( 'body' ).classList.contains( 'print' );
 
+var isRtl = document.querySelector( 'html' ).getAttribute( 'dir' ) == 'rtl';
+var dir_padding_start = 'padding-left';
+var dir_padding_end = 'padding-right';
+var dir_key_start = 37;
+var dir_key_end = 39;
+var dir_scroll = 1;
+if( isRtl && !isIE ){
+    dir_padding_start = 'padding-right';
+    dir_padding_end = 'padding-left';
+    dir_key_start = 39;
+    dir_key_end = 37;
+    dir_scroll = -1;
+}
+
 var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 
 var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
@@ -26,7 +40,7 @@ var pst;
 var elc = document.querySelector('#body-inner');
 
 function documentFocus(){
-    document.querySelector( '#body-inner' ).focus();
+    elc.focus();
     psc && psc.scrollbarY.focus();
 }
 
@@ -45,13 +59,13 @@ function scrollbarWidth(){
 
 var scrollbarSize = scrollbarWidth();
 function adjustContentWidth(){
-    var left = parseFloat( getComputedStyle( elc ).getPropertyValue( 'padding-left' ) );
-    var right = left;
+    var start = parseFloat( getComputedStyle( elc ).getPropertyValue( dir_padding_start ) );
+    var end = start;
     if( elc.scrollHeight > elc.clientHeight ){
-        // if we have a scrollbar reduce the right margin by the scrollbar width
-        right = Math.max( 0, left - scrollbarSize );
+        // if we have a scrollbar reduce the end margin by the scrollbar width
+        end = Math.max( 0, start - scrollbarSize );
     }
-    elc.style[ 'padding-right' ] = '' + right + 'px';
+    elc.style[ dir_padding_end ] = '' + end + 'px';
 }
 
 function switchTab(tabGroup, tabId) {
@@ -416,41 +430,41 @@ function initArrowNav(){
     // avoid prev/next navigation if we are not at the start/end of the
     // horizontal area
     var el = document.querySelector('#body-inner');
-    var scrollLeft = 0;
-    var scrollRight = 0;
+    var scrollStart = 0;
+    var scrollEnd = 0;
     document.addEventListener('keydown', function(event){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
-            if( event.which == '37' ){
-                if( !scrollLeft && +el.scrollLeft.toFixed() <= 0 ){
+            if( event.which == dir_key_start ){
+                if( !scrollStart && +el.scrollLeft.toFixed()*dir_scroll <= 0 ){
                     prev && prev.click();
                 }
-                else if( scrollLeft != -1 ){
-                    clearTimeout( scrollLeft );
+                else if( scrollStart != -1 ){
+                    clearTimeout( scrollStart );
                 }
-                scrollLeft = -1;
+                scrollStart = -1;
             }
-            if( event.which == '39' ){
-                if( !scrollRight && +el.scrollLeft.toFixed() + +el.clientWidth.toFixed() >= +el.scrollWidth.toFixed() ){
+            if( event.which == dir_key_end ){
+                if( !scrollEnd && +el.scrollLeft.toFixed()*dir_scroll + +el.clientWidth.toFixed() >= +el.scrollWidth.toFixed() ){
                     next && next.click();
                 }
-                else if( scrollRight != -1 ){
-                    clearTimeout( scrollRight );
+                else if( scrollEnd != -1 ){
+                    clearTimeout( scrollEnd );
                 }
-                scrollRight = -1;
+                scrollEnd = -1;
             }
         }
     });
     document.addEventListener('keyup', function(event){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
-            if( event.which == '37' ){
+            if( event.which == dir_key_start ){
                 // check for false indication if keyup is delayed after navigation
-                if( scrollLeft == -1 ){
-                    scrollLeft = setTimeout( function(){ scrollLeft = 0; }, 300 );
+                if( scrollStart == -1 ){
+                    scrollStart = setTimeout( function(){ scrollStart = 0; }, 300 );
                 }
             }
-            if( event.which == '39' ){
-                if( scrollRight == -1 ){
-                    scrollRight = setTimeout( function(){ scrollRight = 0; }, 300 );
+            if( event.which == dir_key_end ){
+                if( scrollEnd == -1 ){
+                    scrollEnd = setTimeout( function(){ scrollEnd = 0; }, 300 );
                 }
             }
         }
@@ -459,7 +473,7 @@ function initArrowNav(){
     // avoid keyboard navigation for input fields
     document.querySelectorAll( formelements ).forEach( function( e ){
         e.addEventListener( 'keydown', function( event ){
-            if( event.which == 37 || event.which == 39 ){
+            if( event.which == dir_key_start || event.which == dir_key_end ){
                 event.stopPropagation();
             }
         });
@@ -545,8 +559,11 @@ function initMenuScrollbar(){
             psm && psm.update();
         });
     });
+    // bugfix for PS in RTL mode: the initial scrollbar position is off;
+    // calling update() once, fixes this
+    pst && setTimeout( function(){ pst.update(); }, 0 );
 
-    // finally, we want to adjust the contents right padding if there is a scrollbar visible
+    // finally, we want to adjust the contents end padding if there is a scrollbar visible
     window.addEventListener('resize', adjustContentWidth );
     adjustContentWidth();
 }

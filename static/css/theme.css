@@ -843,6 +843,11 @@ td {
     display: block;
     float: right;
 }
+html[dir="rtl"] .navigation,
+html[dir="rtl"] #top-print-link,
+html[dir="rtl"] #top-github-link {
+    float: left;
+}
 
 .nav,
 .print-link,
@@ -850,6 +855,9 @@ td {
     border-left: thin solid rgba( 134, 134, 134, .333 );
     padding-left: 1rem;
     padding-right: 1rem;
+}
+html[dir="rtl"] .nav i{
+    transform: scaleX(-1);
 }
 span.nav i{
     color: rgba( 134, 134, 134, .333 );
@@ -887,6 +895,9 @@ span.nav i{
     white-space: nowrap;
     width: calc(100% - 5*3.25rem);
 }
+html[dir="rtl"] #body #breadcrumbs {
+    float: right;
+}
 @media screen and (max-width: 47.938em) {
     #body #breadcrumbs {
         text-overflow: unset;
@@ -897,15 +908,23 @@ span.nav i{
     display: none;
 }
 .progress {
-    left: 1rem;
     top: 1rem;
+}
+html[dir="ltr"] .progress {
+    left: 1rem;
+}
+html[dir="rtl"] .progress {
+    right: 1rem;
 }
 @media screen and (max-width: 47.938em) {
     .mobile-support #sidebar-toggle-span {
         display: inline;
     }
-    .progress {
+    html[dir="ltr"] .progress {
         left: 4.25rem;
+    }
+    html[dir="rtl"] .progress {
+        right: 4.25rem;
     }
 }
 
@@ -1749,4 +1768,8 @@ article ul li input[type="checkbox"]:checked::before {
     max-width: 95%;
     overflow: auto;
     padding: min(2vh, 2vw);
+}
+
+#TableOfContents{
+    min-width: 1px;
 }
