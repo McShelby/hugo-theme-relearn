@@ -108,7 +108,8 @@
         {{- end }}
         {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
         {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
-        {{- $hastoc := not (eq 0 (int (len (.TableOfContents | plainify)))) }}
+        {{- $toc_content := partial "toc.html" . }}
+        {{- $hastoc := not (eq 0 (int (len ($toc_content | plainify)))) }}
         {{- $toc := and $hastoc (not $currentDisableToc) (eq $outputFormat "html") }}
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
@@ -129,7 +130,7 @@
           {{- end }}
           </div>
         {{- if $toc }}
-          {{- partial "toc.html" . }}
+{{ $toc_content }}
         {{- end }}
         </div>
       </nav>

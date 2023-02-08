@@ -1,0 +1,124 @@
+{{- $context := .context }}
+{{- $content := .content }}
+{{- $pagefield := cond (ne $content nil) nil (.pagefield | default "Content") }}
+{{- $writenotice := cond (ne $content nil) false (cond (eq $pagefield "Content") true false) }}
+{{- $langtrg := "pir" }}
+{{- $langsrc := cond (eq $context.Page.Lang $langtrg) (.langsrc | default "en") $context.Page.Lang }}
+{{- $baseURL := urls.Parse site.BaseURL }}
+{{- $baseURLpath := $baseURL.Path | default "/" }}
+{{- $l := "" }}
+{{- $c := "" }}
+{{- range $context.Page.AllTranslations }}
+	{{- if eq .Language.Lang $langsrc }}
+		{{- $l = .RelPermalink }}
+		{{- if ne $content nil }}
+			{{- $c = $content }}
+		{{- else if eq $pagefield "Content" }}
+			{{- $c = .Content }}
+		{{- else if eq $pagefield "TableOfContents" }}
+			{{- $c = .TableOfContents }}
+		{{- end }}
+		{{- break }}
+	{{- end }}
+{{- end }}
+{{- if eq $context.Page.Lang $langtrg }}
+	{{- if $writenotice }}
+		{{- partial "shortcodes/notice.html" (dict
+			"context" .
+			"content" "<p>Fello' pirrrates, wrrrit'n are not fer us as yer can see! Also be awarrre <b>some stuff may not work</b> in this trrranslat'n. Like see'n <b>Merrrmaids</b>, do'n <b>math or chemistrrry</b> and stuff.</p>\n"
+			"icon" "skull-crossbones"
+			"style" "warning"
+			"title" "Arrr! Pirrrates"
+		) }}
+	{{- end }}
+	{{- $words := dict
+		"Hugo" "Cap'n Hugo"
+		"Info" "Ahoi"
+		"Note" "Avast"
+		"Tip" "Smarrrt Arrrse"
+		"Warning" "Arrr"
+		"good" "bloody"
+		"shortcodes" "shorrrtcodes"
+		"Shortcodes" "Shorrrtcodes"
+		"Mermaid" "Merrrmaid"
+		"Markdown" "Marrrkdown"
+		"Markup" "Marrrkup"
+		"markup" "marrrkup"
+		"for" "fer"
+		"Your" "Yer"
+		"your" "yer"
+		"You" "Ye"
+		"you" "ye"
+		"the" "th'"
+		"The" "Th'"
+		"is" "be"
+		"Is" "Be"
+		"are" "be"
+		"Are" "Be"
+		"Of" "O'"
+		"of" "o'"
+		"To" "T'"
+		"to" "t'"
+		"in" "'n"
+		"With" "Wit'"
+		"with" "wit'"
+		"Where" "Whar'"
+		"where" "whar'"
+		"After" "Aft"
+		"after" "aft"
+		"And" "An'"
+		"and" "an'"
+		"Load" "Board"
+		"load" "board"
+		"Loaded" "Boarded"
+		"loaded" "boarded"
+		"Content" "Rrrambling"
+		"content" "rrrambling"
+		"icon" "ay'con"
+		"Icon" "Ay'con"
+		"icons" "ay'cons"
+		"Icons" "Ay'cons"
+		"syntax" "rules"
+		"Syntax" "Rules"
+		"Site" "Ship"
+		"site" "ship"
+		"Page" "Plank"
+		"page" "plank"
+		"Pages" "Planks"
+		"pages" "planks"
+		"Relearn" "Relearrrn"
+		"Learn" "Learrrn"
+	-}}
+	{{- $specials := dict
+		"(\\w)ing([\\s\\n<.,;?!:])" "'n"
+		"(\\w)ings([\\s\\n<.,;?!:])" "'ns"
+		"(\\w)tion([\\s\\n<.,;?!:])" "t'n"
+		"(\\w)tions([\\s\\n<.,;?!:])" "t'ns"
+		"(\\w)(?:[aeiou])ble([\\s\\n<.,;?!:])" "'ble"
+		"(\\w)(?:[aeiou])mize([\\s\\n<.,;?!:])" "'mize"
+		"(\\w)(?:[aeiou])mizes([\\s\\n<.,;?!:])" "'mizes"
+		"(\\w)(?:[aeiou])nize([\\s\\n<.,;?!:])" "'nize"
+		"(\\w)(?:[aeiou])nizes([\\s\\n<.,;?!:])" "'nizes"
+		(printf "(.)=\"%s([^\"]*?\")" $baseURLpath)  (printf "=\"%s%s/" $baseURLpath $langtrg)
+	-}}
+	{{- $fix := dict
+		"warn'n" "warning"
+		"sect'n" "section"
+		"n Cap'n" "n"
+		"Avast right o' John" "Note right of John"
+	-}}
+	{{- range $from, $to := $words }}
+		{{- $c = replaceRE (printf "([\\s\\n>])%s([\\s\\n<.,;?!:])" $from) (printf "${1}%s${2}" $to) $c }}
+	{{- end }}
+	{{- range $from, $to := $specials }}
+		{{- $c = replaceRE $from (printf "${1}%s${2}" $to) $c }}
+	{{- end }}
+	{{- range $from, $to := $fix }}
+		{{- $c = replace $c $from $to }}
+	{{- end }}
+	{{- if (int (len $l)) }}
+		{{- $c = replaceRE "(src|href)=\"(images/[^\"]*?\")" (printf "${1}=\"%s${2}" $l) $c }}
+	{{- end }}
+	{{- $c = replaceRE "(src|href)=\"([^\"]*?)/pir/([^\"]*?.files/[^\"]*?\")" "${1}=\"${2}/${3}" $c }}
+{{- end }}
+{{ $c | safeHTML }}
