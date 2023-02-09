@@ -8,26 +8,26 @@
     {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
     {{ "<!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->" | safeHTML }}
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
+    <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
     <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
     <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    {{- $autotemplate := resources.Get "css/theme-auto.css" }}
+    {{- $autocss := $autotemplate | resources.ExecuteAsTemplate "css/theme-auto.css" .Site.Home }}
+    {{- $c := "" }}<!-- cause Hugo to generate our theme-auto.css -->
+    {{- $c = "" }}<!-- link href="{{ $autocss.RelPermalink }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"-->
     {{- $themevariants := slice | append (.Site.Params.themeVariant | default "auto" ) }}
     {{- with index $themevariants 0 }}
     <link href="{{(printf "css/theme-%s.css" .) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="variant-style">
     {{- end }}
-    <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
     {{- $f := printf "/static/css/format-%s.css" $outputFormat }}
     {{- if partialCached "fileExists.hugo" $f $f }}
     <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
-    {{- $autotemplate := resources.Get "css/theme-auto.css" }}
-    {{- $autocss := $autotemplate | resources.ExecuteAsTemplate "css/theme-auto.css" .Site.Home }}
-    {{- $c := "" }}<!-- cause Hugo to generate our theme-auto.css -->
-    {{- $c = "" }}<!-- link href="{{ $autocss.RelPermalink }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"-->
+    <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <script src="{{"js/url.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>

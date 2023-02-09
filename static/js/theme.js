@@ -326,9 +326,8 @@ function initAnchorClipboard(){
     var clip = new ClipboardJS( '.anchor' );
     clip.on( 'success', function( e ){
         e.clearSelection();
-        var rtl = e.trigger.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
         e.trigger.setAttribute( 'aria-label', window.T_Link_copied_to_clipboard );
-        e.trigger.classList.add( 'tooltipped', 'tooltipped-s'+(rtl?'e':'w') );
+        e.trigger.classList.add( 'tooltipped', 'tooltipped-s'+(isRtl?'e':'w') );
     });
 }
 
@@ -370,19 +369,17 @@ function initCodeClipboard(){
             clip.on( 'success', function( e ){
                 e.clearSelection();
                 var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
-                var rtl = e.trigger.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
                 e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
             });
 
             clip.on( 'error', function( e ){
                 var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
-                var rtl = e.trigger.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
                 e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
                 var f = function(){
                     e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(rtl?'e':'w')) );
+                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
                     document.removeEventListener( 'copy', f );
                 };
                 document.addEventListener( 'copy', f );
@@ -406,7 +403,6 @@ function initCodeClipboard(){
             button.setAttribute( 'title', window.T_Copy_to_clipboard );
             button.innerHTML = '<i class="fas fa-copy"></i>';
             button.addEventListener( 'mouseleave', function() {
-                var rtl = this.closest( '*[dir]' ).getAttribute( 'dir' ) == 'rtl';
                 this.removeAttribute( 'aria-label' );
                 this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
             });
@@ -548,20 +544,23 @@ function initMenuScrollbar(){
     // on resize, we have to redraw the scrollbars to let new height
     // affect their size
     window.addEventListener('resize', function(){
-        pst && pst.update();
-        psm && psm.update();
-        psc && psc.update();
+        console.log("resize")
+        pst && setTimeout( function(){ pst.update(); }, 400 );
+        psm && setTimeout( function(){ psm.update(); }, 400 );
+        psc && setTimeout( function(){ psc.update(); }, 400 );
     });
     // now that we may have collapsible menus, we need to call a resize
     // for the menu scrollbar if sections are expanded/collapsed
     document.querySelectorAll('#sidebar .collapsible-menu input.toggle').forEach( function(e){
         e.addEventListener('change', function(){
-            psm && psm.update();
+            psm && setTimeout( function(){ psm.update(); }, 400 );
         });
     });
     // bugfix for PS in RTL mode: the initial scrollbar position is off;
     // calling update() once, fixes this
-    pst && setTimeout( function(){ pst.update(); }, 0 );
+    pst && setTimeout( function(){ pst.update(); }, 400 );
+    psm && setTimeout( function(){ psm.update(); }, 400 );
+    psc && setTimeout( function(){ psc.update(); }, 400 );
 
     // finally, we want to adjust the contents end padding if there is a scrollbar visible
     window.addEventListener('resize', adjustContentWidth );
@@ -669,7 +668,7 @@ function showToc(){
     var b = document.querySelector( 'body' );
     b.classList.toggle( 'toc-flyout' );
     if( b.classList.contains( 'toc-flyout' ) ){
-        pst && pst.update();
+        pst && setTimeout( function(){ pst.update(); }, 400 );
         pst && pst.scrollbarY.focus();
         document.querySelector( '.toc-wrapper ul a' ).focus();
         document.addEventListener( 'keydown', tocEscapeHandler );
@@ -883,7 +882,7 @@ function mark() {
 			parent = parent.parentNode;
 		}
 	}
-    psm && psm.update();
+    psm && setTimeout( function(){ psm.update(); }, 400 );
 }
 window.relearn.markSearch = mark;
 
@@ -971,7 +970,7 @@ function unmark() {
 
 	var highlighted = document.querySelectorAll( '.highlightable' );
     unhighlight( highlighted, { element: 'mark' } );
-    psm && psm.update();
+    psm && setTimeout( function(){ psm.update(); }, 400 );
 }
 
 function unhighlight( es, options ){

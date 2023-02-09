@@ -20,7 +20,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.12.0 (not yet released)
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic) is expanded to the top navigation bar. This feature is not available in Internet Explorer 11.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic) is now complete and extended to the menu, the top navigation bar and print. This feature is not available in Internet Explorer 11.
 
 ---
 

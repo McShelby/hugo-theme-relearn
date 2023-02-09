@@ -26,7 +26,7 @@ See [What's New]({{% relref "basics/migration" %}}) within the latest update.
 - [Support for GFM]({{% relref "cont/markdown" %}}) (GitHub Flavored Markdown)
 - [Print]({{%relref "basics/configuration#activate-print-support" %}}) whole chapters or even the complete site
 - [Multilingual mode]({{%relref "cont/i18n" %}}) for English, Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, Finnish, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
-- Support for languages written right to left
+- Full support for languages written right to left
 - [Unrestricted menu configuration]({{%relref "cont/menushortcuts" %}}) relating to amount of items and level of nesting
 - [Font Awesome icons]({{%relref "shortcodes/icon" %}})
 - [Tagging support]({{%relref "cont/tags" %}})
