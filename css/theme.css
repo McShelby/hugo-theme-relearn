@@ -52,13 +52,18 @@ dd {
     flex-shrink: 0;
     font-size: .953125rem;
     height: 100%;
-    left: 0;
     line-height: 1.574;
     min-height: 100%;
     min-width: 300px;
     max-width: 300px;
     position: fixed;
     width: 300px;
+}
+html[dir="ltr"] #sidebar {
+    left: 0;
+}
+html[dir="rtl"] #sidebar {
+    right: 0;
 }
 
 #header-wrapper {
@@ -285,7 +290,6 @@ dd {
     flex-grow: 1;
     flex-shrink: 0;
     height: 100%;
-    margin-left: 300px;
     min-height: 100%;
     min-width: calc( 100% - 300px);
     max-width: calc( 100% - 300px);
@@ -293,6 +297,12 @@ dd {
     position: relative; /* PS */
     width: calc( 100% - 300px);
     z-index: 70;
+}
+html[dir="ltr"] #body {
+    margin-left: 300px;
+}
+html[dir="rtl"] #body {
+    margin-right: 300px;
 }
 
 #body img:not(.lightbox-image),
@@ -966,36 +976,59 @@ html[dir="rtl"] .progress {
         width: 230px;
     }
     #body {
-        margin-left: 230px;
         min-width: calc( 100% - 230px);
         max-width: calc( 100% - 230px);
         width: calc( 100% - 230px);
     }
+    html[dir="ltr"] #body {
+        margin-left: 230px;
+    }
+    html[dir="rtl"] #body {
+        margin-right: 230px;
+    }
 }
 @media screen and (max-width: 47.938em) {
     /* we don't support sidebar flyout in mobile */
-    .mobile-support #sidebar {
+    html[dir="ltr"] .mobile-support #sidebar {
         left: -230px;
+    }
+    html[dir="rtl"] .mobile-support #sidebar {
+        right: -230px;
     }
     .mobile-support #navshow{
         display: inline;
     }
     .mobile-support #body {
-        margin-left: 0;
         min-width: 100%;
         max-width: 100%;
         width: 100%;
+    }
+    html[dir="ltr"] .mobile-support #body {
+        margin-left: 0;
+    }
+    html[dir="rtl"] .mobile-support #body {
+        margin-right: 0;
     }
     .mobile-support.sidebar-flyout {
         overflow: hidden;
     }
     .mobile-support.sidebar-flyout #sidebar {
-        left: 0;
         z-index: 90;
     }
+    html[dir="ltr"] .mobile-support.sidebar-flyout #sidebar {
+        left: 0;
+    }
+    html[dir="rtl"] .mobile-support.sidebar-flyout #sidebar {
+        right: 0;
+    }
     .mobile-support.sidebar-flyout #body {
-        margin-left: 230px;
         overflow: hidden;
+    }
+    html[dir="ltr"] .mobile-support.sidebar-flyout #body {
+        margin-left: 230px;
+    }
+    html[dir="rtl"] .mobile-support.sidebar-flyout #body {
+        margin-right: 230px;
     }
     .mobile-support.sidebar-flyout #sidebar-overlay{
         background-color: rgba(134, 134, 134, 0.5);
