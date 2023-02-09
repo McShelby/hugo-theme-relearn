@@ -52,18 +52,13 @@ dd {
     flex-shrink: 0;
     font-size: .953125rem;
     height: 100%;
+    inset-inline-start: 0;
     line-height: 1.574;
     min-height: 100%;
     min-width: 300px;
     max-width: 300px;
     position: fixed;
     width: 300px;
-}
-html[dir="ltr"] #sidebar {
-    left: 0;
-}
-html[dir="rtl"] #sidebar {
-    right: 0;
 }
 
 #header-wrapper {
@@ -86,8 +81,8 @@ html[dir="rtl"] #sidebar {
 }
 
 .searchbox > :first-child {
+    inset-inline-start: .5rem;
     position: absolute;
-    left: .5rem;
 }
 
 .searchbox > button {
@@ -106,8 +101,8 @@ html[dir="rtl"] #sidebar {
 
 .searchbox span {
     cursor: pointer;
+    inset-inline-end: .5rem;
     position: absolute;
-    right: .5rem;
     top: .25rem;
 }
 
@@ -128,7 +123,10 @@ html[dir="rtl"] #sidebar {
     height: 1.875rem;
     background: transparent;
     border: 0;
-    padding: 0 1.6rem 0 1.8rem;
+    padding-bottom: 0;
+    padding-inline-end: 1.6rem;
+    padding-inline-start: 1.8rem;
+    padding-top: 0;
     margin: 0;
     font-weight: 300;
 }
@@ -215,7 +213,7 @@ html[dir="rtl"] #sidebar {
 }
 
 #sidebar ul li.visited + span {
-    margin-right: 16px;
+    margin-inline-end: 16px;
 }
 
 #sidebar ul li a,
@@ -237,7 +235,7 @@ html[dir="rtl"] #sidebar {
 }
 
 #sidebar ul li li {
-    padding-left: 1rem;
+    padding-inline-start: 1rem;
 }
 
 #sidebar ul.topics > li > a .read-icon {
@@ -255,7 +253,10 @@ html[dir="rtl"] #sidebar {
     font-size: 13px;
     margin: 4px 0 0 0;
     min-width: 16px;
-    text-align: right;
+    text-align: start;
+}
+html[dir="rtl"] #sidebar ul li .read-icon {
+    float: left;
 }
 
 #sidebar ul li.visited > a .read-icon {
@@ -268,7 +269,7 @@ html[dir="rtl"] #sidebar {
     letter-spacing: -1px;
     line-height: 110% !important;
     margin: 1rem 0 1rem 0;
-    padding-left: 1rem;
+    padding-inline-start: 1rem;
     text-rendering: optimizeLegibility;
     text-transform: uppercase;
 }
@@ -290,6 +291,7 @@ html[dir="rtl"] #sidebar {
     flex-grow: 1;
     flex-shrink: 0;
     height: 100%;
+    margin-inline-start: 300px;
     min-height: 100%;
     min-width: calc( 100% - 300px);
     max-width: calc( 100% - 300px);
@@ -297,12 +299,6 @@ html[dir="rtl"] #sidebar {
     position: relative; /* PS */
     width: calc( 100% - 300px);
     z-index: 70;
-}
-html[dir="ltr"] #body {
-    margin-left: 300px;
-}
-html[dir="rtl"] #body {
-    margin-right: 300px;
 }
 
 #body img:not(.lightbox-image),
@@ -614,18 +610,10 @@ code {
 
 span.copy-to-clipboard {
     display: inline-block;
+    white-space: nowrap;
 }
 
 code.copy-to-clipboard-code {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-right-width: 0;
-}
-
-span > code.copy-to-clipboard-code {
-    border-bottom-right-radius: 2px;
-    border-top-right-radius: 2px;
-    border-right-width: 1px;
     border-end-end-radius: 0;
     border-start-end-radius: 0;
     border-inline-end-width: 0;
@@ -862,11 +850,11 @@ html[dir="rtl"] #top-github-link {
 .nav,
 .print-link,
 .github-link {
-    border-left: thin solid rgba( 134, 134, 134, .333 );
+    border-inline-start: thin solid rgba( 134, 134, 134, .333 );
     padding-left: 1rem;
     padding-right: 1rem;
 }
-html[dir="rtl"] .nav i{
+html[dir="rtl"] .nav i {
     transform: scaleX(-1);
 }
 span.nav i{
@@ -886,13 +874,12 @@ span.nav i{
 }
 #toc-menu,
 #sidebar-toggle-span {
-    border-right: thin solid rgba( 134, 134, 134, .333 );
+    border-inline-end: thin solid rgba( 134, 134, 134, .333 );
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
 #body #breadcrumbs {
-    display: inline-block;
     float: left;
     height: auto;
     line-height: 1.4;
@@ -918,23 +905,15 @@ html[dir="rtl"] #body #breadcrumbs {
     display: none;
 }
 .progress {
+    inset-inline-start: 1rem;
     top: 1rem;
-}
-html[dir="ltr"] .progress {
-    left: 1rem;
-}
-html[dir="rtl"] .progress {
-    right: 1rem;
 }
 @media screen and (max-width: 47.938em) {
     .mobile-support #sidebar-toggle-span {
         display: inline;
     }
-    html[dir="ltr"] .progress {
-        left: 4.25rem;
-    }
-    html[dir="rtl"] .progress {
-        right: 4.25rem;
+    .progress {
+        inset-inline-start: 4.25rem;
     }
 }
 
@@ -976,24 +955,16 @@ html[dir="rtl"] .progress {
         width: 230px;
     }
     #body {
+        margin-inline-start: 230px;
         min-width: calc( 100% - 230px);
         max-width: calc( 100% - 230px);
         width: calc( 100% - 230px);
     }
-    html[dir="ltr"] #body {
-        margin-left: 230px;
-    }
-    html[dir="rtl"] #body {
-        margin-right: 230px;
-    }
 }
 @media screen and (max-width: 47.938em) {
     /* we don't support sidebar flyout in mobile */
-    html[dir="ltr"] .mobile-support #sidebar {
-        left: -230px;
-    }
-    html[dir="rtl"] .mobile-support #sidebar {
-        right: -230px;
+    .mobile-support #sidebar {
+        inset-inline-start: -230px;
     }
     .mobile-support #navshow{
         display: inline;
@@ -1003,32 +974,19 @@ html[dir="rtl"] .progress {
         max-width: 100%;
         width: 100%;
     }
-    html[dir="ltr"] .mobile-support #body {
-        margin-left: 0;
-    }
-    html[dir="rtl"] .mobile-support #body {
-        margin-right: 0;
+    .mobile-support #body {
+        margin-inline-start: 0;
     }
     .mobile-support.sidebar-flyout {
         overflow: hidden;
     }
     .mobile-support.sidebar-flyout #sidebar {
+        inset-inline-start: 0;
         z-index: 90;
     }
-    html[dir="ltr"] .mobile-support.sidebar-flyout #sidebar {
-        left: 0;
-    }
-    html[dir="rtl"] .mobile-support.sidebar-flyout #sidebar {
-        right: 0;
-    }
     .mobile-support.sidebar-flyout #body {
+        margin-inline-start: 230px;
         overflow: hidden;
-    }
-    html[dir="ltr"] .mobile-support.sidebar-flyout #body {
-        margin-left: 230px;
-    }
-    html[dir="rtl"] .mobile-support.sidebar-flyout #body {
-        margin-right: 230px;
     }
     .mobile-support.sidebar-flyout #sidebar-overlay{
         background-color: rgba(134, 134, 134, 0.5);
@@ -1043,12 +1001,15 @@ html[dir="rtl"] .progress {
 }
 
 .copy-to-clipboard-button {
-    border-radius: 0 2px 2px 0;
+    border-start-start-radius: 0;
+    border-start-end-radius: 2px;
+    border-end-end-radius: 2px;
+    border-end-start-radius: 0;
     border-style: solid;
     border-width: 1px;
     cursor: pointer;
-    font-size: .859625rem;
-    padding-left: 22px;
+    font-size: .934375rem;
+    padding-inline-start: 22px;
 }
 
 span > .copy-to-clipboard-button {
@@ -1059,9 +1020,9 @@ span > .copy-to-clipboard-button {
 }
 
 .copy-to-clipboard-button > i {
-    font-size: .790855rem;
+    font-size: .859625rem;
     font-weight: 500;
-    margin-left: -22px;
+    margin-inline-start: -22px;
 }
 
 .copy-to-clipboard-code + .copy-to-clipboard-button > i {
@@ -1074,9 +1035,12 @@ pre > .copy-to-clipboard-button {
     border-radius: 2px;
     border-style: solid;
     border-width: 1px;
-    padding: 5px 3px 5px 25px;
+    inset-inline-end: 4px;
+    padding-bottom: 5px;
+    padding-inline-start: 25px;
+    padding-inline-end: 3px;
+    padding-top: 5px;
     position: absolute;
-    right: 4px;
     top: 4px;
 }
 
@@ -1085,8 +1049,8 @@ pre > .copy-to-clipboard-button {
 }
 
 .disableInlineCopyToClipboard span > code.copy-to-clipboard-code {
-    border-end-end-radius: 2px;
     border-start-end-radius: 2px;
+    border-end-end-radius: 2px;
     border-inline-end-width: 1px;
 }
 
@@ -1151,7 +1115,6 @@ option {
 .expand > input + label > .fa-chevron-down {
     display: none;
 }
-.expand > input + label > .fa-chevron-left,
 .expand > input + label > .fa-chevron-right {
     display: inline-block;
 }
@@ -1164,7 +1127,6 @@ option {
 .expand > input:checked + label > .fa-chevron-down {
     display: inline-block;
 }
-.expand > input:checked + label > .fa-chevron-left,
 .expand > input:checked + label > .fa-chevron-right {
     display: none;
 }
@@ -1179,10 +1141,10 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 }
 
 .footline i{
-    margin-left: .5rem;
+    margin-inline-start: .5rem;
 }
 .footline i:first-child{
-    margin-left: 0;
+    margin-inline-start: 0;
 }
 
 .mermaid-container {
@@ -1463,6 +1425,10 @@ rapi-doc::part(section-endpoint-head-method) {
     display: block;
     float: left;
 }
+html[dir="rtl"] .select-container i,
+html[dir="rtl"] .select-container span {
+    float: right;
+}
 
 .select-style {
     border: 0;
@@ -1518,7 +1484,7 @@ rapi-doc::part(section-endpoint-head-method) {
     appearance: none;
     background: transparent;
 	cursor: pointer;
-    text-align: left;
+    text-align: start;
     text-decoration: none;
     width: 100%;
 }
@@ -1540,7 +1506,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     appearance: none;
     cursor: pointer;
     height: 2rem;
-    left: 1rem;
+    inset-inline-start: 1rem;
     padding-top: .35rem;
     position: absolute;
     width: 1px;
@@ -1555,14 +1521,17 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     font-family: "Font Awesome 5 Free";
     font-size: .8rem;
     font-weight: 900;
-    margin-left: -1rem;
+    margin-inline-start: -1rem;
     padding-bottom: .65rem;
     padding-left: .2rem;
     padding-right: .2rem;
     padding-top: .6rem;
 }
+html[dir="rtl"] #sidebar .collapsible-menu input.toggle:before {
+    content: "\f053";
+}
 
-#sidebar .collapsible-menu input.toggle:checked:before {
+html[dir] #sidebar .collapsible-menu input.toggle:checked:before {
     content: "\f078";
     padding-left: .1rem;
     padding-right: .1rem;
