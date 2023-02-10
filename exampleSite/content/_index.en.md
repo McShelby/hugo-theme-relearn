@@ -3,7 +3,7 @@ archetype = "home"
 title = "Hugo Relearn Theme"
 +++
 
-A theme for [Hugo](https://gohugo.io/), designed for documentation.
+A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
 [★ What's new in the latest release ★]({{% relref "basics/migration" %}})
 
