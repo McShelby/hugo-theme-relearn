@@ -2,4 +2,4 @@
 archetype = "home"
 title = "Cap'n Hugo Relearrrn Theme"
 +++
-{{< piratify >}}
+{{< piratify true >}}
