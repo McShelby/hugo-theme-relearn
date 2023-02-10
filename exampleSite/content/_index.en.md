@@ -7,7 +7,7 @@ A theme for [Hugo](https://gohugo.io/), designed for documentation.
 
 [★ What's new in the latest release ★]({{% relref "basics/migration" %}})
 
-![Overview](images/hero.png)
+![Overview](images/hero.png?classes=shadow&width=100%&height=100%)
 
 ## Motivation
 
