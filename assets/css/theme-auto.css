@@ -28,9 +28,9 @@
 {{- $themevariantsauto = ($themevariantsauto | first 2) -}}
 {{- with index $themevariantsauto 0 -}}
 	{{- if site.IsServer -}}
-@import "{{(printf "css/theme-%s.css" .) | relURL}}" screen;
+@import "{{(printf "css/theme-%s.css" .) | relURL}}" screen and (prefers-color-scheme: light);
 	{{- else -}}
-@import "{{(printf "theme-%s.css" .)}}" screen;
+@import "{{(printf "theme-%s.css" .)}}" screen and (prefers-color-scheme: light);
 	{{- end -}}
 {{- end -}}
 {{- with index $themevariantsauto 1 -}}
