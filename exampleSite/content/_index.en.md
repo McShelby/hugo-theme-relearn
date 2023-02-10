@@ -7,7 +7,7 @@ A theme for [Hugo](https://gohugo.io/), designed for documentation.
 
 [★ What's new in the latest release ★]({{% relref "basics/migration" %}})
 
-![Overview](images/hero.png?classes=shadow&width=100%&height=100%)
+![Image of the Relearn theme in light and dark mode on phone, tablet and desktop](images/hero.png?classes=shadow&width=100%&height=100%)
 
 ## Motivation
 
@@ -40,7 +40,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Configurable shortcut links]({{%relref "cont/menushortcuts" %}})
 - **Multi language support**
   - [Full support for languages written right to left]({{%relref "cont/i18n" %}})
-  - [Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese]({{%relref "cont/i18n#basic-configuration" %}})
+  - [Available languages: Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese]({{%relref "cont/i18n#basic-configuration" %}})
   - [Search support for mixed language content]({{%relref "cont/i18n#search" %}})
 - **Additional Markdown features**
   - [Support for GFM (GitHub Flavored Markdown]({{%relref "cont/markdown" %}})
@@ -67,9 +67,9 @@ To get support, feel free to open a new [discussion topic](https://github.com/Mc
 
 ## Contributions
 
-Feel free to contribute to this documentation by just clicking the {{% button style="transparent" icon="pen" %}}{{% /button %}} button displayed on top right of each page. Your changes will be deployed automatically once they were reviewed. This requires a GitHub account.
+Feel free to contribute to this documentation by just clicking the {{% button style="transparent" icon="pen" %}}{{% /button %}} button displayed on top right of each page.
 
-You are most welcome to contribute bugfixes or even new features to the source code by making pull requests to the [official repository](https://github.com/McShelby/hugo-theme-relearn) via GitHub. Check the Please [contribution guidelines]({{%relref "dev/contributing" %}}) first before making any changes.
+You are most welcome to contribute bugfixes or new features by making pull requests to the [official repository](https://github.com/McShelby/hugo-theme-relearn). Check the [contribution guidelines]({{%relref "dev/contributing" %}}) first before starting.
 
 ## License
 
