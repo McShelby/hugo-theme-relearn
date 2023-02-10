@@ -545,22 +545,22 @@ function initMenuScrollbar(){
     // affect their size
     window.addEventListener('resize', function(){
         console.log("resize")
-        pst && setTimeout( function(){ pst.update(); }, 400 );
-        psm && setTimeout( function(){ psm.update(); }, 400 );
-        psc && setTimeout( function(){ psc.update(); }, 400 );
+        pst && setTimeout( function(){ pst.update(); }, 10 );
+        psm && setTimeout( function(){ psm.update(); }, 10 );
+        psc && setTimeout( function(){ psc.update(); }, 10 );
     });
     // now that we may have collapsible menus, we need to call a resize
     // for the menu scrollbar if sections are expanded/collapsed
     document.querySelectorAll('#sidebar .collapsible-menu input.toggle').forEach( function(e){
         e.addEventListener('change', function(){
-            psm && setTimeout( function(){ psm.update(); }, 400 );
+            psm && setTimeout( function(){ psm.update(); }, 10 );
         });
     });
     // bugfix for PS in RTL mode: the initial scrollbar position is off;
     // calling update() once, fixes this
-    pst && setTimeout( function(){ pst.update(); }, 400 );
-    psm && setTimeout( function(){ psm.update(); }, 400 );
-    psc && setTimeout( function(){ psc.update(); }, 400 );
+    pst && setTimeout( function(){ pst.update(); }, 10 );
+    psm && setTimeout( function(){ psm.update(); }, 10 );
+    psc && setTimeout( function(){ psc.update(); }, 10 );
 
     // finally, we want to adjust the contents end padding if there is a scrollbar visible
     window.addEventListener('resize', adjustContentWidth );
@@ -668,7 +668,7 @@ function showToc(){
     var b = document.querySelector( 'body' );
     b.classList.toggle( 'toc-flyout' );
     if( b.classList.contains( 'toc-flyout' ) ){
-        pst && setTimeout( function(){ pst.update(); }, 400 );
+        pst && setTimeout( function(){ pst.update(); }, 10 );
         pst && pst.scrollbarY.focus();
         document.querySelector( '.toc-wrapper ul a' ).focus();
         document.addEventListener( 'keydown', tocEscapeHandler );
@@ -882,7 +882,7 @@ function mark() {
 			parent = parent.parentNode;
 		}
 	}
-    psm && setTimeout( function(){ psm.update(); }, 400 );
+    psm && setTimeout( function(){ psm.update(); }, 10 );
 }
 window.relearn.markSearch = mark;
 
@@ -970,7 +970,7 @@ function unmark() {
 
 	var highlighted = document.querySelectorAll( '.highlightable' );
     unhighlight( highlighted, { element: 'mark' } );
-    psm && setTimeout( function(){ psm.update(); }, 400 );
+    psm && setTimeout( function(){ psm.update(); }, 10 );
 }
 
 function unhighlight( es, options ){
