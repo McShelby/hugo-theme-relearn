@@ -544,7 +544,6 @@ function initMenuScrollbar(){
     // on resize, we have to redraw the scrollbars to let new height
     // affect their size
     window.addEventListener('resize', function(){
-        console.log("resize")
         pst && setTimeout( function(){ pst.update(); }, 10 );
         psm && setTimeout( function(){ psm.update(); }, 10 );
         psc && setTimeout( function(){ psc.update(); }, 10 );
