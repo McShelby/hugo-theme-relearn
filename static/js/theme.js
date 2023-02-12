@@ -819,7 +819,7 @@ function initScrollPositionSaver(){
     function savePosition( event ){
         var state = window.history.state || {};
         state = Object.assign( {}, ( typeof state === 'object' ) ? state : {} );
-        state.contentScrollTop = elc.scrollTop;
+        state.contentScrollTop = +elc.scrollTop;
         window.history.replaceState( state, '', window.location );
     };
     window.addEventListener( 'pagehide', savePosition );
@@ -846,21 +846,23 @@ function scrollToPositions() {
 
     var state = window.history.state || {};
     state = ( typeof state === 'object')  ? state : {};
-    if( state.contentScrollTop !== undefined ){
+    if( state.hasOwnProperty( 'contentScrollTop' ) ){
         window.setTimeout( function(){
-            elc.scrollTop = state.contentScrollTop;
+            elc.scrollTop = +state.contentScrollTop;
         }, 10 );
         return;
     }
 
-    var searchValue = sessionStorage.getItem( baseUriFull+'search-value' );
-    var found = elementContains( searchValue, elc );
-    var searchedElem = found.length && found[ 0 ];
-    if( searchedElem ){
-        searchedElem.scrollIntoView( true );
-        var scrolledY = window.scrollY;
-        if( scrolledY ){
-            window.scroll( 0, scrolledY - 125 );
+    var search = sessionStorage.getItem( baseUriFull+'search-value' );
+    if( search && search.length ){
+        var found = elementContains( search, elc );
+        var searchedElem = found.length && found[ 0 ];
+        if( searchedElem ){
+            searchedElem.scrollIntoView( true );
+            var scrolledY = window.scrollY;
+            if( scrolledY ){
+                window.scroll( 0, scrolledY - 125 );
+            }
         }
         return;
     }

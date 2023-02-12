@@ -65,7 +65,7 @@ function triggerSearch(){
         // with normal pages, this is handled by the 'pagehide' event, but this
         // doesn't fire in case of pushState, so we have to do the same thing
         // here, too
-        state.contentScrollTop = elc.scrollTop;
+        state.contentScrollTop = +elc.scrollTop;
         window.history.pushState( state, '', url );
     }
 }
@@ -239,9 +239,9 @@ function searchDetail( value ) {
 	// by a browser history operation, it simply does nothing
     var state = window.history.state || {};
     state = Object.assign( {}, ( typeof state === 'object' ) ? state : {} );
-    if( state.contentScrollTop ){
+    if( state.hasOwnProperty( 'contentScrollTop' ) ){
         window.setTimeout( function(){
-            elc.scrollTop = state.contentScrollTop;
+            elc.scrollTop = +state.contentScrollTop;
         }, 10 );
         return;
     }
