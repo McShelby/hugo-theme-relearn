@@ -815,31 +815,69 @@ function initHistory() {
     }
 }
 
-function scrollToActiveMenu() {
-    window.setTimeout(function(){
+function initScrollPositionSaver(){
+    function savePosition( event ){
+        var state = window.history.state || {};
+        state = Object.assign( {}, ( typeof state === 'object' ) ? state : {} );
+        state.contentScrollTop = elc.scrollTop;
+        window.history.replaceState( state, '', window.location );
+    };
+    window.addEventListener( 'pagehide', savePosition );
+}
+
+function scrollToPositions() {
+    // show active menu entry
+    window.setTimeout( function(){
         var e = document.querySelector( '#sidebar ul.topics li.active a' );
         if( e && e.scrollIntoView ){
             e.scrollIntoView({
                 block: 'center',
             });
         }
-    }, 10);
-}
+    }, 10 );
 
-function scrollToFragment() {
-    if( !window.location.hash || window.location.hash.length <= 1 ){
+    // scroll the content to point of interest;
+    // if we have a scroll position saved, the user was here
+    // before in his history stack and we want to reposition
+    // to the position he was when he left the page;
+    // otherwise if he used page search before, we want to position
+    // to its last outcome;
+    // otherwise he may want to see a specific fragment
+
+    var state = window.history.state || {};
+    state = ( typeof state === 'object')  ? state : {};
+    if( state.contentScrollTop !== undefined ){
+        window.setTimeout( function(){
+            elc.scrollTop = state.contentScrollTop;
+        }, 10 );
         return;
     }
-    window.setTimeout(function(){
-        try{
-            var e = document.querySelector( window.location.hash );
-            if( e && e.scrollIntoView ){
-                e.scrollIntoView({
-                    block: 'start',
-                });
-            }
-        } catch( e ){}
-    }, 10);
+
+    var searchValue = sessionStorage.getItem( baseUriFull+'search-value' );
+    var found = elementContains( searchValue, elc );
+    var searchedElem = found.length && found[ 0 ];
+    if( searchedElem ){
+        searchedElem.scrollIntoView( true );
+        var scrolledY = window.scrollY;
+        if( scrolledY ){
+            window.scroll( 0, scrolledY - 125 );
+        }
+        return;
+    }
+
+    if( window.location.hash && window.location.hash.length > 1 ){
+        window.setTimeout( function(){
+            try{
+                var e = document.querySelector( window.location.hash );
+                if( e && e.scrollIntoView ){
+                    e.scrollIntoView({
+                        block: 'start',
+                    });
+                }
+            } catch( e ){}
+        }, 10 );
+        return;
+    }
 }
 
 function mark() {
@@ -1064,25 +1102,15 @@ function initSearch() {
     }
     mark();
 
-    // set initial search value on page load
+    // set initial search value for inputs on page load
     if( sessionStorage.getItem( baseUriFull+'search-value' ) ){
-        var searchValue = sessionStorage.getItem( baseUriFull+'search-value' );
+        var search = sessionStorage.getItem( baseUriFull+'search-value' );
         inputs.forEach( function( e ){
-            e.value = searchValue;
+            e.value = search;
             var event = document.createEvent( 'Event' );
             event.initEvent( 'input', false, false );
             e.dispatchEvent( event );
         });
-
-        var found = elementContains( searchValue, document.querySelector( '#body-inner' ) );
-        var searchedElem = found.length && found[ 0 ];
-        if( searchedElem ){
-            searchedElem.scrollIntoView( true );
-            var scrolledY = window.scrollY;
-            if( scrolledY ){
-                window.scroll( 0, scrolledY - 125 );
-            }
-        }
     }
 
     window.relearn.isSearchInit = true;
@@ -1094,8 +1122,6 @@ ready( function(){
     initMermaid();
     initSwagger();
     initMenuScrollbar();
-    scrollToActiveMenu();
-    scrollToFragment();
     initToc();
     initAnchorClipboard();
     initCodeClipboard();
@@ -1104,6 +1130,8 @@ ready( function(){
     initHistory();
     initSearch();
     initImage();
+    initScrollPositionSaver();
+    scrollToPositions();
 });
 
 function useMermaid( config ){
