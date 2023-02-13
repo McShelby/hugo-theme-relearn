@@ -6,8 +6,8 @@
 {{- if eq (printf "%T" $expanded) "string" }}
 	{{- $expanded = (eq $expanded "true") }}
 {{- end }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo") .id }}
 {{- with $context }}
-{{- $id := partial "make-random-md5.hugo" }}
 <div class="expand">
     <input type="checkbox" id="expand-{{ $id }}" aria-controls="expandcontent-{{ $id }}" {{ if $expanded }} checked{{ end }}>
     <label class="expand-label" for="expand-{{ $id }}" >

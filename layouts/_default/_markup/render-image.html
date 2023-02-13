@@ -1,6 +1,14 @@
+{{- $version := split hugo.Version "." }}
+{{- $major := int (index $version 0) }}
+{{- $minor := int (index $version 1) }}
+{{- $id := "" }}
+{{- if and (ge $major 0) (ge $major 108) }}
+  {{- $id = .Ordinal }}
+{{- end }}
 {{- partial "shortcodes/image.html" (dict
   "context" .Page
   "url" .Destination
   "title" .Title
   "alt" .Text
+  "id" $id
 ) }}
