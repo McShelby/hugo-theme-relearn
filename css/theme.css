@@ -55,10 +55,10 @@ dd {
     inset-inline-start: 0;
     line-height: 1.574;
     min-height: 100%;
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 18.75rem;
+    max-width: 18.75rem;
     position: fixed;
-    width: 300px;
+    width: 18.75rem;
 }
 
 #header-wrapper {
@@ -251,7 +251,7 @@ dd {
 #sidebar ul li .read-icon {
     display: none;
     float: right;
-    font-size: 13px;
+    font-size: .8125rem;
     margin: 4px 0 0 0;
     min-width: 16px;
     text-align: start;
@@ -292,13 +292,13 @@ html[dir="rtl"] #sidebar ul li .read-icon {
     flex-grow: 1;
     flex-shrink: 0;
     height: 100%;
-    margin-inline-start: 300px;
+    margin-inline-start: 18.75rem;
     min-height: 100%;
-    min-width: calc( 100% - 300px);
-    max-width: calc( 100% - 300px);
+    min-width: calc( 100% - 18.75rem);
+    max-width: calc( 100% - 18.75rem);
     overflow-wrap: break-word; /* avoid x-scrolling of body if it is to large to fit */
     position: relative; /* PS */
-    width: calc( 100% - 300px);
+    width: calc( 100% - 18.75rem);
     z-index: 70;
 }
 
@@ -325,7 +325,7 @@ html[dir="rtl"] #sidebar ul li .read-icon {
 
 #body img.shadow,
 #body .video-container.shadow {
-    box-shadow: 0 10px 30px rgba( 200, 200, 200, .666 );
+    box-shadow: 0 .625rem 1.875rem rgba( 200, 200, 200, .666 );
 }
 
 #body img.inline {
@@ -342,14 +342,14 @@ html[dir="rtl"] #sidebar ul li .read-icon {
     padding: 0 3.25rem 4rem 3.25rem;
     position: relative; /* PS */
 }
-@media screen and (max-width: 59.938em) {
+@media screen and (max-width: 60rem) {
     #body-inner {
-        padding: 0 2rem 15px 2rem;
+        padding: 0 2rem 1rem 2rem;
     }
 }
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     #body-inner {
-        padding: 0 1.25rem 5px 1.25rem;
+        padding: 0 1.25rem .375rem 1.25rem;
     }
 }
 
@@ -363,33 +363,38 @@ html[dir="rtl"] #sidebar ul li .read-icon {
     margin-top: -1rem;
 }
 
+#body .flex-block-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc( 81.25rem - 18.75rem - 2 * 3.25rem );
+}
+body:not(.print) #body .narrow .flex-block-wrapper {
+    max-width: calc( 81.25rem - 18.75rem - 2 * 9.75rem );
+}
+
 /* we limit width if we have large screens */
-@media screen and ( min-width: 1300px ){ /* #sidebar/width + ./max-width */
+@media screen and ( min-width: 81.25rem ){ /* #sidebar/width + ./max-width */
     #body .flex-block-wrapper {
-        margin-left: auto;
-        margin-right: auto;
-        min-width: calc( 1300px - 300px - 2 * 3.25rem );
-        width: calc( 1300px - 300px - 2 * 3.25rem );
-        max-width: calc( 1300px - 300px - 2 * 3.25rem );
+        min-width: calc( 81.25rem - 18.75rem - 2 * 3.25rem );
+        width: calc( 81.25rem - 18.75rem - 2 * 3.25rem );
     }
     body:not(.print) #body .narrow .flex-block-wrapper {
-        min-width: calc( 1300px - 300px - 2 * 9.75rem );
-        width: calc( 1300px - 300px - 2 * 9.75rem );
-        max-width: calc( 1300px - 300px - 2 * 9.75rem );
+        min-width: calc( 81.25rem - 18.75rem - 2 * 9.75rem );
+        width: calc( 81.25rem - 18.75rem - 2 * 9.75rem );
     }
 }
 
 body:not(.print) #body-inner.narrow {
     padding: 2rem 9.75rem;
 }
-@media screen and (max-width: 59.938em) {
+@media screen and (max-width: 60rem) {
     body:not(.print) #body-inner.narrow {
-        padding: 15px 6.5rem;
+        padding: 1rem 6.5rem;
     }
 }
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     body:not(.print) #body-inner.narrow {
-        padding: 5px 3.25rem;
+        padding: .375rem 3.25rem;
     }
 }
 
@@ -425,12 +430,12 @@ body:not(.print) #body-inner.narrow h1 {
     border-bottom: 4px solid rgba( 134, 134, 134, .125 );
     font-size: 3.5rem;
 }
-@media only screen and (min-width: 48em) and (max-width: 59.938em) {
+@media only screen and (min-width: 48em) and (max-width: 60rem) {
     body:not(.print) #body-inner.narrow h1 {
         font-size: 2.8rem;
     }
 }
-@media only screen and (max-width: 47.938em) {
+@media only screen and (max-width: 48rem) {
     body:not(.print) #body-inner.narrow h1 {
         font-size: 2.5rem;
     }
@@ -896,7 +901,7 @@ span.nav i{
 html[dir="rtl"] #body #breadcrumbs {
     float: right;
 }
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     #body #breadcrumbs {
         text-overflow: unset;
     }
@@ -909,7 +914,7 @@ html[dir="rtl"] #body #breadcrumbs {
     inset-inline-start: 1rem;
     top: 1rem;
 }
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     .mobile-support #sidebar-toggle-span {
         display: inline;
     }
@@ -922,7 +927,7 @@ html[dir="rtl"] #body #breadcrumbs {
     display: inline;
     padding: 0 .75rem;
 }
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     #body #breadcrumbs .links {
         /* we just hide the breadcrumbs instead of display: none;
         this makes sure that the breadcrumbs are still usable for
@@ -949,23 +954,23 @@ html[dir="rtl"] #body #breadcrumbs {
     text-decoration: none;
 }
 
-@media screen and (max-width: 59.938em) {
+@media screen and (max-width: 60rem) {
     #sidebar {
-        min-width: 230px;
-        max-width: 230px;
-        width: 230px;
+        min-width: 14.375rem;
+        max-width: 14.375rem;
+        width: 14.375rem;
     }
     #body {
-        margin-inline-start: 230px;
-        min-width: calc( 100% - 230px);
-        max-width: calc( 100% - 230px);
-        width: calc( 100% - 230px);
+        margin-inline-start: 14.375rem;
+        min-width: calc( 100% - 14.375rem);
+        max-width: calc( 100% - 14.375rem);
+        width: calc( 100% - 14.375rem);
     }
 }
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     /* we don't support sidebar flyout in mobile */
     .mobile-support #sidebar {
-        inset-inline-start: -230px;
+        inset-inline-start: -14.375rem;
     }
     .mobile-support #navshow{
         display: inline;
@@ -986,7 +991,7 @@ html[dir="rtl"] #body #breadcrumbs {
         z-index: 90;
     }
     .mobile-support.sidebar-flyout #body {
-        margin-inline-start: 230px;
+        margin-inline-start: 14.375rem;
         overflow: hidden;
     }
     .mobile-support.sidebar-flyout #sidebar-overlay{
@@ -1262,7 +1267,7 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 .progress ul {
     list-style: none;
     margin: 0;
-    padding: 0 15px;
+    padding: 0 1rem;
 }
 
 #TableOfContents {
@@ -1270,7 +1275,7 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     font-size: .8125rem !important;
     max-height: 90vh;
     overflow: hidden;
-    padding: 15px 5px !important;
+    padding: 1rem .375rem !important;
     position: relative; /* PS */
 }
 
@@ -1379,7 +1384,7 @@ rapi-doc {
     margin-left: calc( -8px - 24px );
     width: calc( 100% + 8px + 24px + 8px );
 }
-@media (max-width: 767px) {
+@media (max-width: 48rem) {
     rapi-doc {
         margin-left: calc( -12px );
         width: calc( 100% + 12px + 4px );
@@ -1486,7 +1491,7 @@ html[dir="rtl"] .select-container span {
     width: 100%;
 }
 
-@media screen and (max-width: 47.938em) {
+@media screen and (max-width: 48rem) {
     #breadcrumbs .links {
         display: none;
     }
