@@ -67,6 +67,7 @@ If an issue does not result in changesets but is closed anyways, it must have ex
 | {{% badge color="#9fa2a5" %}}duplicate{{% /badge %}}  | This issue or pull request already exists |
 | {{% badge color="#9fa2a5" %}}invalid{{% /badge %}}    | This doesn't seem right                   |
 | {{% badge color="#9fa2a5" %}}unresolved{{% /badge %}} | No progress on this issue                 |
+| {{% badge color="#9fa2a5" %}}update{{% /badge %}}     | A documented change in behaviour          |
 | {{% badge color="#9fa2a5" %}}wontfix{{% /badge %}}    | This will not be worked on                |
 
 ### Halt

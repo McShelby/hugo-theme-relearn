@@ -29,6 +29,7 @@ module.exports = {
     "documentation",
     "duplicate",
     "invalid",
+    "update",
     "unresolved",
     "wontfix",
   ],
