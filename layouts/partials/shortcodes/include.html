@@ -4,10 +4,12 @@
 {{- if eq (printf "%T" $hideFirstHeading) "string" }}
 	{{- $hideFirstHeading = (eq $hideFirstHeading "true") }}
 {{- end }}
-{{- if $hideFirstHeading }}<div class="include hide-first-heading">{{ end }}
-{{- with $context }}
+{{- if and (gt (len (trim $file " ")) 0) (fileExists $file) }}
+	{{- if $hideFirstHeading }}<div class="include hide-first-heading">{{ end }}
+	{{- with $context }}
 
 {{ $file | readFile | safeHTML }}
 
-{{- if $hideFirstHeading }}</div>{{ end }}
+	{{- end }}
+	{{- if $hideFirstHeading }}</div>{{ end }}
 {{- end }}
