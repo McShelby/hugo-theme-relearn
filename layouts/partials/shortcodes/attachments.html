@@ -39,23 +39,25 @@
     {{- $filesName = "files" }}
   {{- end }}
   {{- $dir := printf "%s%s" $fileDir $filesName }}
-  {{- range sort (readDir $dir) "Name" $sort }}
-    {{- if findRE $pattern .Name}}
-      {{- $size := .Size }}
-      {{- $unit := "Byte-symbol" }}
-      {{- if ge $size 1024 }}
-        {{- $size = div $size 1024 }}
-        {{- $unit = "Kilobyte-symbol" }}
+  {{- if fileExists $dir }}
+    {{- range sort (readDir $dir) "Name" $sort }}
+      {{- if findRE $pattern .Name}}
+        {{- $size := .Size }}
+        {{- $unit := "Byte-symbol" }}
+        {{- if ge $size 1024 }}
+          {{- $size = div $size 1024 }}
+          {{- $unit = "Kilobyte-symbol" }}
+        {{- end }}
+        {{- if ge $size 1024 }}
+          {{- $size = div $size 1024 }}
+          {{- $unit = "Megabyte-symbol" }}
+        {{- end }}
+        {{- $unitsymbol := $unit | T }}
+        {{- $link := (printf "%s%s/%s" $fileLink $filesName .Name) | relLangURL }}
+        {{- $c := "" }}{{/* Hugo stores the attachments always in the default language subdirectory */}}
+        {{- $link = replace $link $urlPrefix $defaultUrlPrefix 1 }}
+      <li><a href="{{ $link }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
       {{- end }}
-      {{- if ge $size 1024 }}
-        {{- $size = div $size 1024 }}
-        {{- $unit = "Megabyte-symbol" }}
-      {{- end }}
-      {{- $unitsymbol := $unit | T }}
-      {{- $link := (printf "%s%s/%s" $fileLink $filesName .Name) | relLangURL }}
-      {{- $c := "" }}{{/* Hugo stores the attachments always in the default language subdirectory */}}
-      {{- $link = replace $link $urlPrefix $defaultUrlPrefix 1 }}
-    <li><a href="{{ $link }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
     {{- end }}
   {{- end }}
   </ul>
