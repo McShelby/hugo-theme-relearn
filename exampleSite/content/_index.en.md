@@ -20,6 +20,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - Looks nice on paper (if you have to)
   - Usable offline, no external dependencies
   - [Usable from your local file system via `file://` protocol]({{%relref "basics/configuration#serving-your-page-from-the-filesystem" %}})
+  - Support for the [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
   - Support for Internet Explorer 11
 - **Configurable theming and visuals**
   - [Configurable brand images]({{%relref "basics/customization#change-the-logo" %}})
