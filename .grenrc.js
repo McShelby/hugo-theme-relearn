@@ -18,6 +18,7 @@ module.exports = {
   ignoreLabels: [
     "blocked",
     "browser",
+    "device",
     "helpwanted",
     "hugo",
     "mermaid",
