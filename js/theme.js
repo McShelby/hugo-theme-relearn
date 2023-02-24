@@ -368,11 +368,13 @@ function initCodeClipboard(){
 
             clip.on( 'success', function( e ){
                 e.clearSelection();
+                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
                 e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
                 e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
             });
 
             clip.on( 'error', function( e ){
+                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
                 e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
                 e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
                 var f = function(){
