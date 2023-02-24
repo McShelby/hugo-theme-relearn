@@ -149,60 +149,6 @@ dd {
     padding: 0 1rem;
 }
 
-#sidebar ul.topics {
-    margin: 0 1rem;
-}
-
-#sidebar ul.topics ul {
-    display: none;
-}
-
-#sidebar ul.topics li {
-    position: relative;
-}
-
-#sidebar ul.topics > li > ul > li:last-child {
-    padding-bottom: 1rem;
-}
-
-#sidebar ul.topics ul ul {
-    padding-bottom: 0;
-}
-
-#sidebar ul.topics li.parent > ul,
-#sidebar ul.topics li.active > ul,
-#sidebar ul.topics li.alwaysopen > ul {
-    display: block;
-}
-
-#sidebar ul.collapsible-menu > li > .toggle,
-#sidebar ul.topics > li > a {
-    font-size: 1.1rem;
-    line-height: 2rem;
-}
-
-#sidebar ul.topics > li > a b {
-    font-weight: 400;
-}
-
-#sidebar ul.topics > li > a .fa {
-    margin-top: .5rem;
-}
-
-#sidebar ul.topics > li {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-#sidebar ul.topics li > a {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
 #sidebar ul {
     list-style: none;
     padding: 0;
@@ -217,47 +163,14 @@ dd {
     margin-inline-end: 1rem;
 }
 
-#sidebar ul li a,
-#sidebar ul li button {
-    display: block;
-    padding: .125rem 0;
-}
-
-#sidebar ul li a span {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#sidebar ul li > a,
-#sidebar ul li > button {
-    padding: .25rem 0;
-}
-
-#sidebar ul li li {
-    padding-inline-start: 1rem;
-}
-
-#sidebar ul.topics > li > a .read-icon {
-    margin-top: .5rem;
-}
-
-#sidebar #shortcuts li {
-    list-style: none;
-    padding: .125rem 0;
-}
-
 #sidebar ul li .read-icon {
     display: none;
-    float: right;
     font-size: .8125rem;
+    inset-inline-end: 1rem;
     margin: .25rem 0 0 0;
     min-width: 1rem;
-    text-align: start;
-}
-html[dir="rtl"] #sidebar ul li .read-icon {
-    float: left;
+    position: absolute;
+    z-index: -1;
 }
 
 #sidebar ul li.visited > a .read-icon {
@@ -1507,50 +1420,6 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
 
-#sidebar ul.collapsible-menu input.toggle {
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
-    height: 2rem;
-    inset-inline-start: 1rem;
-    padding-top: .35rem;
-    position: absolute;
-    width: 1px;
-}
-
-#sidebar ul.collapsible-menu > li > input.toggle {
-    padding-top: .25rem;
-}
-
-#sidebar .collapsible-menu input.toggle:before {
-    content: "\f054";
-    font-family: "Font Awesome 5 Free";
-    font-size: .8rem;
-    font-weight: 900;
-    margin-inline-start: -1rem;
-    padding-bottom: .65rem;
-    padding-left: .2rem;
-    padding-right: .2rem;
-    padding-top: .6rem;
-}
-html[dir="rtl"] #sidebar .collapsible-menu input.toggle:before {
-    content: "\f053";
-}
-
-html[dir] #sidebar .collapsible-menu input.toggle:checked:before {
-    content: "\f078";
-    padding-left: .1rem;
-    padding-right: .1rem;
-}
-
-#sidebar .collapsible-menu input.toggle + label.toggle + a + ul {
-    display: none;
-}
-
-#sidebar .collapsible-menu input.toggle:checked + label.toggle + a + ul {
-	display: inline;
-}
-
 .math.align-left > mjx-container{
     text-align: left !important;
 }
@@ -1780,4 +1649,135 @@ article ul li input[type="checkbox"]:checked::before {
     max-width: 95%;
     overflow: auto;
     padding: min(2vh, 2vw);
+}
+
+/* basic menu list styles (non-collapsible) */
+
+#sidebar ul > li > a {
+    display: block;
+    position: relative;
+}
+
+#sidebar ul.space > li > * {
+    padding-bottom: .125rem;
+    padding-top: .125rem;
+}
+#sidebar ul.space > li > ul {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+#sidebar ul.morespace > li > * {
+    padding-bottom: .25rem;
+    padding-top: .25rem;
+}
+#sidebar ul.morespace > li > ul {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+#sidebar ul.enlarge > li > a {
+    font-size: 1.1rem;
+    line-height: 2rem;
+}
+#sidebar ul.enlarge > li > a > .read-icon {
+    margin-top: .5rem;
+}
+#sidebar ul.enlarge > li > ul > li:last-child {
+    padding-bottom: 1rem;
+}
+
+#sidebar ul ul {
+    padding-inline-start: 1rem;
+}
+
+/* collapsible menu style overrides */
+
+#sidebar ul.collapsible-menu > li {
+    position: relative;
+}
+
+#sidebar ul.collapsible-menu > li > input {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: .65rem;
+    position: absolute;
+    width: 1rem;
+    z-index: 1;
+}
+#sidebar ul.collapsible-menu.enlarge > li > input {
+    margin-top: .9rem;
+}
+
+#sidebar ul.collapsible-menu > li > label {
+    cursor: pointer;
+    display: inline-block;
+    inset-inline-start: 0;
+    margin-bottom: 0; /* nucleus */
+    padding-inline-start: .125rem;
+    position: absolute;
+    width: 1rem;
+    z-index: 2;
+}
+#sidebar ul.collapsible-menu.enlarge > li > label {
+    font-size: 1.1rem;
+    line-height: 2rem;
+}
+
+#sidebar ul.collapsible-menu > li > label:after {
+    content: "";
+    display: block;
+    height: 1px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+#sidebar ul.collapsible-menu > li > label:hover:after {
+    width: 100%;
+}
+
+#sidebar ul.collapsible-menu > li > label > .fas {
+    font-size: .8rem;
+    width: .6rem;
+}
+
+#sidebar ul.collapsible-menu > li > a {
+    display: inline-block;
+    width: 100%;
+}
+
+/* closed menu */
+
+#sidebar ul.collapsible-menu > li > input + label ~ ul {
+    display: none;
+}
+
+#sidebar ul.collapsible-menu > li > input + label > .fa-chevron-down {
+    display: none;
+}
+#sidebar ul.collapsible-menu > li > input + label > .fa-chevron-right {
+    display: inline-block;
+}
+
+/* open menu  */
+
+#sidebar ul.collapsible-menu > li > input:checked + label ~ ul {
+	display: block;
+}
+
+#sidebar ul.collapsible-menu > li > input:checked + label > .fa-chevron-down {
+    display: inline-block;
+}
+#sidebar ul.collapsible-menu > li > input:checked + label > .fa-chevron-right {
+    display: none;
+}
+
+/* adjust menu for RTL reading direction */
+
+html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
+    transform: scaleX(-1);
 }

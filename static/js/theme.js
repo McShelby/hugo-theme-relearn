@@ -550,7 +550,7 @@ function initMenuScrollbar(){
     });
     // now that we may have collapsible menus, we need to call a resize
     // for the menu scrollbar if sections are expanded/collapsed
-    document.querySelectorAll('#sidebar .collapsible-menu input.toggle').forEach( function(e){
+    document.querySelectorAll('#sidebar .collapsible-menu input').forEach( function(e){
         e.addEventListener('change', function(){
             psm && setTimeout( function(){ psm.update(); }, 10 );
         });
@@ -828,7 +828,7 @@ function initScrollPositionSaver(){
 function scrollToPositions() {
     // show active menu entry
     window.setTimeout( function(){
-        var e = document.querySelector( '#sidebar ul.topics li.active a' );
+        var e = document.querySelector( '#sidebar li.active a' );
         if( e && e.scrollIntoView ){
             e.scrollIntoView({
                 block: 'center',
@@ -910,8 +910,8 @@ function mark() {
 					expandInputs[0].checked = true;
 				}
 			}
-			if( parent.tagName.toLowerCase() === 'li' ){
-				var toggleInputs = parent.querySelectorAll( 'input.toggle:not(.menu-marked)' );
+			if( parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains( 'collapsible-menu' )){
+				var toggleInputs = parent.querySelectorAll( 'input:not(.menu-marked)' );
 				if( toggleInputs.length ){
 					toggleInputs[0].classList.add( 'menu-marked' );
 					toggleInputs[0].dataset.checked = toggleInputs[0].checked ? 'true' : 'false';
@@ -987,8 +987,8 @@ function unmark() {
 	for( var i = 0; i < markedElements.length; i++ ){
 		var parent = markedElements[i].parentNode;
 		while( parent && parent.classList ){
-			if( parent.tagName.toLowerCase() === 'li' ){
-				var toggleInputs = parent.querySelectorAll( 'input.toggle.menu-marked' );
+			if( parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains( 'collapsible-menu' )){
+				var toggleInputs = parent.querySelectorAll( 'input.menu-marked' );
 				if( toggleInputs.length ){
 					toggleInputs[0].checked = toggleInputs[0].dataset.checked === 'true';
 					toggleInputs[0].dataset.checked = null;
