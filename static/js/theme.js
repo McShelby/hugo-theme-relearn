@@ -368,13 +368,11 @@ function initCodeClipboard(){
 
             clip.on( 'success', function( e ){
                 e.clearSelection();
-                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
                 e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
                 e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
             });
 
             clip.on( 'error', function( e ){
-                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
                 e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
                 e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
                 var f = function(){
@@ -388,7 +386,7 @@ function initCodeClipboard(){
             code.classList.add( 'copy-to-clipboard-code' );
             if( inPre ){
                 code.classList.add( 'copy-to-clipboard' );
-                code.classList.add( 'pre-code' );
+                code.parentNode.classList.add( 'pre-code' );
             }
             else{
                 var clone = code.cloneNode( true );
