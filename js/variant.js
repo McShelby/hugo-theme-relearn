@@ -575,6 +575,7 @@ var variants = {
 
 		{ name: 'CODE-font',                             group: 'code',           default: '"Consolas", menlo, monospace', tooltip: 'text font of code', },
 
+		{ name: 'BROWSER-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the theme for browser scrollbars of the main section', },
 		{ name: 'MERMAID-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Mermaid theme for this variant, can be overridden in config.toml', },
 		{ name: 'SWAGGER-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the default Swagger theme for this variant, can be overridden in config.toml', },
 
