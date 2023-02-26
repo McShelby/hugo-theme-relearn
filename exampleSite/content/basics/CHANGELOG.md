@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.12.1 (2023-02-26)
+
+### Enhancements
+
+- [**feature**] variant: add relearn bright theme [#493](https://github.com/McShelby/hugo-theme-relearn/issues/493)
+
+### Fixes
+
+- [**bug**] generator: fix setting of colors [#494](https://github.com/McShelby/hugo-theme-relearn/issues/494)
+
+---
+
 ## 5.12.0 (2023-02-24)
 
 ### Enhancements
