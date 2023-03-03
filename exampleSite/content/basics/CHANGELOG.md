@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.12.2 (2023-03-03)
+
+### Fixes
+
+- [**bug**] menu: fix state for alwaysopen=false + collapsibleMenu=false [#498](https://github.com/McShelby/hugo-theme-relearn/issues/498)
+
+---
+
 ## 5.12.1 (2023-02-26)
 
 ### Enhancements
