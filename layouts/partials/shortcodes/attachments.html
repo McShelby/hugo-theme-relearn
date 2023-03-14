@@ -21,9 +21,12 @@
 {{- end }}
 {{- $sort := .sort | default "asc" }}
 {{- $pattern := .pattern | default "" }}
-{{- $defaultLanguage := (index $context.Site.Home.AllTranslations 0).Lang }}
-{{- $defaultLanguagePage := index (where $context.Page.AllTranslations "Language.Lang" $defaultLanguage) 0 }}
-{{- $defaultUrlPrefix := strings.TrimRight "/" $defaultLanguagePage.RelPermalink }}
+{{- $defaultUrlPrefix := strings.TrimRight "/" $context.Page.RelPermalink }}
+{{- if .IsTranslated -}}
+  {{- $defaultLanguage := (index $context.Site.Home.AllTranslations 0).Lang }}
+  {{- $defaultLanguagePage := index (where $context.Page.AllTranslations "Language.Lang" $defaultLanguage) 0 }}
+  {{- $defaultUrlPrefix = strings.TrimRight "/" $defaultLanguagePage.RelPermalink }}
+{{- end }}
 {{- $urlPrefix := strings.TrimRight "/" $context.Page.RelPermalink }}
 {{- with $context }}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
