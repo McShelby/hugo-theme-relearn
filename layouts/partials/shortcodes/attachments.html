@@ -30,7 +30,7 @@
 {{- $urlPrefix := strings.TrimRight "/" $context.Page.RelPermalink }}
 {{- with $context }}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
+  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | markdownify }}</div>
   <ul class="box-content attachments-files">
   {{- $fileLink := printf "%s/%s" (.Page.Language.ContentDir | default "content") .Page.File.Dir }}
   {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}

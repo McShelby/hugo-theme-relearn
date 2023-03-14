@@ -286,14 +286,14 @@ Some serious information.
 Some serious information.
 {{% /notice %}}
 
-### With User-Defined Color and Font Awesome Brand Icon
+### With User-Defined Color, Font Awesome Brand Icon and Markdown Title
 
 ````go
-{{%/* notice color="fuchsia" title="Hugo" icon="fab fa-hackerrank" */%}}
+{{%/* notice color="fuchsia" title="**Hugo**" icon="fab fa-hackerrank" */%}}
 Victor? Is it you?
 {{%/* /notice */%}}
 ````
 
-{{% notice color="fuchsia" title="Hugo" icon="fab fa-hackerrank" %}}
+{{% notice color="fuchsia" title="**Hugo**" icon="fab fa-hackerrank" %}}
 Victor? Is it you?
 {{% /notice %}}

@@ -72,7 +72,7 @@ While the examples are using shortcodes with named parameter you are free to use
 ### Arbitrary Text
 
 ````go
-{{%/* expand title="Show me almost endless possibilities" */%}}
+{{%/* expand title="Show me almost **endless** possibilities" */%}}
 You can add standard markdown syntax:
 
 - multiple paragraphs
@@ -89,7 +89,7 @@ You can add standard markdown syntax:
 {{%/* /expand */%}}
 ````
 
-{{% expand title="Show me almost endless possibilities" %}}
+{{% expand title="Show me almost **endless** possibilities" %}}
 You can add standard markdown syntax:
 
 - multiple paragraphs

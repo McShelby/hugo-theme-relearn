@@ -17,7 +17,7 @@
 {{- end }}
 {{- with $context }}
 <div class="box notices cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title }}</div>
+  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | markdownify }}</div>
   <div class="box-content">
 {{ $content | safeHTML }}  </div>
 </div>

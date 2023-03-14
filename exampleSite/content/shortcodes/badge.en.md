@@ -188,13 +188,13 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ### Other
 
-#### With User-Defined Color and Font Awesome Brand Icon
+#### With User-Defined Color, Font Awesome Brand Icon and Markdown Title and Content
 
 ````go
-{{%/* badge color="fuchsia" icon="fab fa-hackerrank" %}}Awesome{{% /badge */%}}
+{{%/* badge color="fuchsia" icon="fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge */%}}
 ````
 
-{{% badge color="fuchsia" icon="fab fa-hackerrank" %}}Awesome{{% /badge %}}
+{{% badge color="fuchsia" icon="fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge %}}
 
 #### With Icon Content
 

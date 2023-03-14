@@ -97,10 +97,10 @@ Eg. for a site in English and Piratish:
 ### Custom Title, List of Attachments Ending in pdf or mp4
 
 ````go
-{{%/* attachments title="Related files" pattern=".*\.(pdf|mp4)" /*/%}}
+{{%/* attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /*/%}}
 ````
 
-{{% attachments title="Related files" pattern=".*\.(pdf|mp4)" /%}}
+{{% attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /%}}
 
 ### Info Styled Box, Descending Sort Order
 
