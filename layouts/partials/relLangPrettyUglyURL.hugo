@@ -12,7 +12,7 @@
 {{- if not $basename }}
 	{{- $basename = "index" }}
 {{- end }}
-{{- if and (ne .Site.Params.disableExplicitIndexURLs true) (eq (substr $link -1) "/") }}
+{{- if and (ne site.Params.disableExplicitIndexURLs true) (eq (substr $link -1) "/") }}
 	{{- $link = printf "%s%s.html" $link $basename }}
 {{- end }}
 {{- $link }}
