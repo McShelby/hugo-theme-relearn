@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.12.4 (2023-03-24)
+
+### Fixes
+
+- [**bug**] theme: disableExplicitIndexURLs param is not working as expected [#505](https://github.com/McShelby/hugo-theme-relearn/issues/505)
+
+---
+
 ## 5.12.3 (2023-03-14)
 
 ### Fixes
