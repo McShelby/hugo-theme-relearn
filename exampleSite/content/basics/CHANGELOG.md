@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.12.5 (2023-03-28)
+
+### Fixes
+
+- [**bug**] expand: not properly exanded when used in bullet point list [#508](https://github.com/McShelby/hugo-theme-relearn/issues/508)
+
+---
+
 ## 5.12.4 (2023-03-24)
 
 ### Fixes
