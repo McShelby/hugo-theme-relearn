@@ -243,9 +243,9 @@ In GFM (GitHub Flavored Markdown) you can add task lists resulting in checked or
   - [ ] Smell
 {{% /notice %}}
 
-### Defintions
+### Definitions
 
-This Markdown dialect supports an extension to add defintion lists. Definition lists are made of terms and definitions of these terms, much like in a dictionary.
+This Markdown dialect supports an extension to add definition lists. Definition lists are made of terms and definitions of these terms, much like in a dictionary.
 
 A definition list in Markdown Extra is made of a single-line term followed by a colon and the definition for that term. You can also associate more than one term to a definition.
 
