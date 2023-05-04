@@ -64,7 +64,6 @@ Example from the current website:
     title = "Hugo Relearn Theme"
     weight = 1
     languageName = "English"
-    landingPageURL = "/"
     landingPageName = "<i class='fas fa-home'></i> Home"
 
   [[Languages.en.menu.shortcuts]]
@@ -98,7 +97,6 @@ Example from the current website:
     title = "Cap'n Hugo Relearrrn Theme"
     weight = 1
     languageName = "Arrr! Pirrrates"
-    landingPageURL = "/pir/"
     landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
 
   [[Languages.pir.menu.shortcuts]]
