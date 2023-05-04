@@ -11,7 +11,7 @@
       {{- .Scratch.Set "title" .Title}}
     {{- end }}
     <title>{{ .Scratch.Get "title" }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
-
+    <base href="{{ .Site.BaseURL }}">
     {{- partialCached "favicon.html" . }}
     {{- partialCached "stylesheet.html" (dict "page" . "outputFormat" $outputFormat) $outputFormat }}
     <style>
