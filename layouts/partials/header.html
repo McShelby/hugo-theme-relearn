@@ -10,11 +10,15 @@
     {{- partial "meta.html" . }}
     {{- $page := . }}
     {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
-    {{- $title := "" }}
-    {{- if and .Title (not (eq .Title .Site.Title)) }}
-      {{- $title = printf "%s %s " .Title (default "::" .Site.Params.titleSeparator) }}
+    {{- $title := .Title }}
+    {{- if eq $outputFormat "searchpage" }}
+      {{- $title = T "Search" }}
+    {{- else if eq .Kind "term" }}
+      {{- $title = printf "%s %s" (.Data.Singular | humanize) $title }}
     {{- end }}
-    {{- $title = printf "%s%s" $title .Site.Title }}
+    {{- if and $title (not (eq $title .Site.Title)) }}
+      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
+    {{- end }}
     <title>{{ $title }}</title>
 
     {{- if .IsTranslated -}}
@@ -173,7 +177,14 @@
     {{- $remaining = sub $remaining 1 }}
     {{- if $ispublished }}
       {{- $depth = add $depth 1 }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{end}}<span itemprop="name">{{ if $to.Title }}{{ $to.Title }}{{ else }}{{ $to.Site.Title }}{{ end }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
+      {{- $title := $to.Title }}
+      {{- if eq .Kind "term" }}
+        {{- $title = printf "%s %s" (.Data.Singular | humanize) $title }}
+      {{- end }}
+      {{- if not $title }}
+        {{- $title = $to.Site.Title }}
+      {{- end }}
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{end}}<span itemprop="name">{{ $title }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }} > {{ end }}</li>
     {{- end }}
   {{- end }}
 {{- end }}
