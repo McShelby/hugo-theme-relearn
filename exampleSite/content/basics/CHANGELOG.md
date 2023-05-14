@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.13.0 (2023-05-14)
+
+### Enhancements
+
+- [**feature**] openapi: replace implementation with swagger-ui [#523](https://github.com/McShelby/hugo-theme-relearn/issues/523)
+
+### Fixes
+
+- [**bug**] variant: avoid leaking shadows in neon print style [#524](https://github.com/McShelby/hugo-theme-relearn/issues/524)
+
+---
+
 ## 5.12.6 (2023-05-04)
 
 ### Enhancements
