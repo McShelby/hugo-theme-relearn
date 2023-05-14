@@ -49,7 +49,7 @@ Following is an impomplete list of some of the used conventional commit types. B
 |            | rss        | clipboard       | math        |
 |            | variant    | syntaxhighlight | mermaid     |
 |            |            | boxes           | notice      |
+|            |            |                 | openapi     |
 |            |            |                 | piratify    |
 |            |            |                 | siteparam   |
-|            |            |                 | swagger     |
 |            |            |                 | tabs        |

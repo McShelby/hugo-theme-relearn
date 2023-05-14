@@ -1,8 +1,15 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
+{{- $version := split hugo.Version "." }}
+{{- $major := int (index $version 0) }}
+{{- $minor := int (index $version 1) }}
+{{- $id := "" }}
+{{- if and (ge $major 0) (ge $major 108) }}
+  {{- $id = .Ordinal }}
+{{- end }}
 {{- partial "shortcodes/expand.html" (dict
   "context" .
   "content" .Inner
   "open"    (.Get "open" | default (.Get 1))
   "title"   (.Get "title" | default (.Get 0))
-  "id"      .Ordinal
+  "id"      $id
 ) }}

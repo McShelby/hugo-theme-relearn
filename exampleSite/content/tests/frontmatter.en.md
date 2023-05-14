@@ -31,7 +31,7 @@ a{{< icon  >}}a
 
 {{< siteparam  >}}
 
-{{< swagger src="" >}}
+{{< openapi src="" >}}
 
 {{< tabs groupid="" >}}
 {{% tab name="" %}}

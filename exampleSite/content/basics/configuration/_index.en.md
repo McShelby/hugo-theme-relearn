@@ -64,12 +64,10 @@ Note that some of these parameters are explained in details in other sections of
   customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
   # Initialization parameter for Mermaid, see Mermaid documentation
   mermaidInitialize = "{ \"theme\": \"default\" }"
-  # If set to false, load the Swagger module on every page regardless if a Swagger shortcode is present
-  disableSwagger = false
-  # Specifies the remote location of the RapiDoc js
-  customSwaggerURL = "https://unpkg.com/rapidoc/dist/rapidoc-min.js"
-  # Initialization parameter for Swagger, see RapiDoc documentation
-  swaggerInitialize = "{ \"theme\": \"light\" }"
+  # If set to false, load the OpenAPI module on every page regardless if a OpenAPI shortcode is present
+  disableOpenapi = false
+  # Specifies the remote location of the swagger-ui js
+  customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
   # Hide Next and Previous page buttons normally displayed full height beside content
   disableNextPrev = true
   # Order sections in menu by "weight" or "title". Default to "weight";

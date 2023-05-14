@@ -18,6 +18,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.13.0 (2023-05-14)
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `swagger` shortcode was deprecated in favor for the  [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}). You don't need to change anything yet as the old name will be used as a fallback. It is planned to remove the `swagger` shortcode in the next major release.
+
+  Additionally, the implemantion of this shortcode was switched from RapiDoc to [SwaggerUI](https://github.com/swagger-api/swagger-ui).
+
+---
+
 ## 5.12.0 (2023-05-04)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed (again). While Internet Explorer 11 has issues in displaying it, the functionality still works.
@@ -182,7 +190,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting]({{% relref "cont/markdown#add-css-classes" %}}) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode]({{% relref "shortcodes/swagger" %}}) was optimized to expand sections that are usually closed in interactive mode. This requires [print support]({{%relref "basics/configuration#activate-print-support" %}}) to be configured.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode]({{% relref "shortcodes/openapi" %}}) was optimized to expand sections that are usually closed in interactive mode. This requires [print support]({{%relref "basics/configuration#activate-print-support" %}}) to be configured.
 
 ---
 
@@ -295,7 +303,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Introduction of new CSS variables to set the font. The theme distinguishes between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `swagger` is available to include a UI for REST OpenAPI Specifications. See the [documentation]({{% relref "shortcodes/swagger" %}}) for available features. This feature will not work with Internet Explorer 11.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `swagger` is available to include a UI for REST OpenAPI specifications. See the [documentation]({{% relref "shortcodes/openapi" %}}) for available features. This feature will not work with Internet Explorer 11.
 
 ---
 

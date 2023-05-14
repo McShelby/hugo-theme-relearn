@@ -30,7 +30,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 - [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
 - [Mermaid](https://mermaid-js.github.io/mermaid) - Generation of diagram and flowchart from text in a similar manner as markdown
 - [Perfect Scrollbar](https://perfectscrollbar.com) - A minimalistic but perfect custom scrollbar plugin
-- [RapiDoc](https://mrin9.github.io/RapiDoc) - Create beautiful, customizable, interactive API documentation from OpenAPI Specifications
+- [SwaggerUI](https://github.com/swagger-api/swagger-ui) - Generate beautiful documentation from a Swagger-compliant API
 - [WorkSans](https://weiweihuanghuang.github.io/Work-Sans/) - Work Sans is a 9 weight typeface family based loosely on early Grotesques
 
 ## Tooling

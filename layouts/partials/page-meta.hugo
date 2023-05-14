@@ -13,9 +13,9 @@
 {{- if $wantsMermaid }}
 	{{- $currentNode.Store.Set "hasMermaid" true }}
 {{- end }}
-{{- $wantsSwagger := or (and (ne $currentNode.Params.disableSwagger nil) (not $currentNode.Params.disableSwagger)) (and (ne .Site.Params.disableSwagger nil) (not .Site.Params.disableSwagger)) }}
-{{- if $wantsSwagger }}
-	{{- $currentNode.Store.Set "hasSwagger" true }}
+{{- $wantsOpenapi := or (and (ne $currentNode.Params.disableOpenapi nil) (not $currentNode.Params.disableOpenapi)) (and (ne .Site.Params.disableOpenapi nil) (not .Site.Params.disableOpenapi)) }}
+{{- if $wantsOpenapi }}
+	{{- $currentNode.Store.Set "hasOpenapi" true }}
 {{- end }}
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" (.Site.Params.ordersectionsby | default "weight") }}
 {{- define "relearn-structure" }}

@@ -59,7 +59,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Mermaid diagrams for flowcharts, sequences, gantts, pie, etc.]({{%relref "shortcodes/mermaid" %}})
   - [Colorful boxes]({{%relref "shortcodes/notice" %}})
   - [Reveal you site's configuration parameter]({{%relref "shortcodes/siteparam" %}})
-  - [Swagger UI for your OpenAPI Specifications]({{%relref "shortcodes/swagger" %}})
+  - [Swagger UI for your OpenAPI specifications]({{%relref "shortcodes/openapi" %}})
   - [Tabbed panels]({{%relref "shortcodes/tabs" %}})
 
 ## Support

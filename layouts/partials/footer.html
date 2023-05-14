@@ -80,24 +80,26 @@
       window.themeUseMermaid = JSON.parse({{ $.Scratch.Get "mermaidInitialize" }});
     </script>
 {{- end }}
-{{- $wantsSwagger := or (.Page.Store.Get "hasSwagger") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasSwagger")) }}
-{{- if $wantsSwagger }}
-  {{- if isset .Params "customswaggerurl" }}
-    <script src="{{ .Params.customSwaggerURL }}" defer></script>
-  {{- else if isset .Site.Params "customswaggerurl" }}
-    <script src="{{ .Site.Params.customSwaggerURL }}" defer></script>
+{{- $wantsOpenapi := or (.Page.Store.Get "hasOpenapi") (and (.Page.Store.Get (printf "%sIsNested" $outputFormat)) (.Page.Store.Get "nestedHasOpenapi")) }}
+{{- if $wantsOpenapi }}
+  {{- $urlOpenapi := "" }}
+  {{- if isset .Params "customopenapiurl" }}
+    {{- $urlOpenapi = .Params.customOpenapiURL }}
+  {{- else if isset .Site.Params "customopenapiurl" }}
+    {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
   {{- else }}
-    <script src="{{ "js/rapidoc-min.js" | relURL }}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    {{- $urlOpenapi = "js/swagger-ui/swagger-ui-bundle.js" | relURL }}
+    {{- if not .Site.Params.disableAssetsBusting }}
+      {{- $urlOpenapi = printf "%s?%d" $urlOpenapi now.Unix }}"
+    {{- end }}
   {{- end }}
-  {{- if isset .Params "swaggerinitialize" }}
-    {{- $.Scratch.Set "swaggerInitialize" .Params.swaggerInitialize }}
-  {{- else if isset .Site.Params "swaggerinitialize" }}
-    {{- $.Scratch.Set "swaggerInitialize" .Site.Params.swaggerInitialize }}
-  {{- else }}
-    {{- $.Scratch.Set "swaggerInitialize" "{}" }}
-  {{- end }}
+    <script src="{{ $urlOpenapi }}" defer></script>
+  {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
+    <script src="{{ $urlOpenapi }}" defer></script>
+  {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-standalone-preset" "swagger-ui" }}
+  {{- $urlOpenapi := replace $urlOpenapi ".js" ".css" }}
     <script>
-      window.themeUseSwagger = JSON.parse({{ $.Scratch.Get "swaggerInitialize" }});
+      window.themeUseOpenapi = { css: {{ $urlOpenapi }}, assetsBuster: {{ cond (ne .Site.Params.disableAssetsBusting false) now.Unix 0 }} };
     </script>
 {{- end }}
     <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
