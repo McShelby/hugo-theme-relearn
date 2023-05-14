@@ -33,7 +33,8 @@
 
     --BROWSER-theme: dark; /* name of the theme for browser scrollbars of the main section */
     --MERMAID-theme: dark; /* name of the default Mermaid theme for this variant, can be overridden in config.toml */
-    --SWAGGER-theme: dark; /* name of the default Swagger theme for this variant, can be overridden in config.toml */
+    --OPENAPI-theme: dark; /* name of the default OpenAPI theme for this variant, can be overridden in config.toml */
+    --OPENAPI-CODE-theme: tomorrow-night; /* name of the default OpenAPI code theme for this variant, can be overridden in config.toml */
 
     --MENU-HEADER-BG-color: rgba( 0, 0, 0, 0 ); /* background color of menu header */
 
@@ -80,7 +81,6 @@ body #logo svg * {
 }
 
 body a#logo{
-    color: var(--INTERNAL-MENU-SEARCH-BORDER-color);
     text-shadow:
         0 0  1px var(--INTERNAL-MENU-SEARCH-BORDER-color),
         0 0  2px var(--INTERNAL-MENU-SEARCH-BORDER-color),
@@ -113,19 +113,6 @@ body h2 {
         0 0 10px var(--INTERNAL-MAIN-TITLES-H2-color);
 }
 
-@media screen {
-    body:not(.print) rapi-doc::part(section-overview-title) {
-        color: #fff;
-        text-shadow:
-            0 0  1px #fff,
-            0 0  2px #fff,
-            0 0  8px #808080,
-            0 0  4px var(--INTERNAL-MAIN-TITLES-H2-color),
-            0 0  8px var(--INTERNAL-MAIN-TITLES-H2-color),
-            0 0 10px var(--INTERNAL-MAIN-TITLES-H2-color);
-    }
-}
-
 body h3, body .article-subheading {
     color: #fff;
     text-shadow:
@@ -152,11 +139,10 @@ body h5 {
     color: #fff;
     text-shadow:
         0 0  1px #fff,
-        0 0  2px #fff,
-        0 0  8px #808080,
+        0 0  3px #fff,
+        0 0  6px #808080,
         0 0  4px var(--INTERNAL-MAIN-TITLES-H5-color),
-        0 0  8px var(--INTERNAL-MAIN-TITLES-H5-color),
-        0 0 10px var(--INTERNAL-MAIN-TITLES-H5-color);
+        0 0  8px var(--INTERNAL-MAIN-TITLES-H5-color);
 }
 
 body h6 {
@@ -164,10 +150,15 @@ body h6 {
     text-shadow:
         0 0  1px #fff,
         0 0  2px #fff,
-        0 0  8px #808080,
+        0 0  4px #808080,
         0 0  4px var(--INTERNAL-MAIN-TITLES-H6-color),
-        0 0  8px var(--INTERNAL-MAIN-TITLES-H6-color),
-        0 0 10px var(--INTERNAL-MAIN-TITLES-H5-color);
+        0 0  8px var(--INTERNAL-MAIN-TITLES-H6-color);
+}
+
+.swagger-ui h4,
+.swagger-ui h5,
+.swagger-ui h6{
+    color: #fff !important;
 }
 
 body #sidebar .searchbox button:hover,
