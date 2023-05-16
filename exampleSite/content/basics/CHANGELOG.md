@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.13.1 (2023-05-16)
+
+### Fixes
+
+- [**bug**] openapi: allow toc to scroll page [#526](https://github.com/McShelby/hugo-theme-relearn/issues/526)
+
+---
+
 ## 5.13.0 (2023-05-14)
 
 ### Enhancements
