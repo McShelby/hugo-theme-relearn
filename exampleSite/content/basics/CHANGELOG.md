@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.13.2 (2023-05-17)
+
+### Fixes
+
+- [**bug**] print: enable print for pages with _build options [#522](https://github.com/McShelby/hugo-theme-relearn/issues/522)
+
+---
+
 ## 5.13.1 (2023-05-16)
 
 ### Fixes
@@ -12,7 +20,7 @@
 
 ### Enhancements
 
-- [**feature**] openapi: replace implementation with swagger-ui [#523](https://github.com/McShelby/hugo-theme-relearn/issues/523)
+- [**feature**][**change**] openapi: replace implementation with swagger-ui [#523](https://github.com/McShelby/hugo-theme-relearn/issues/523)
 
 ### Fixes
 
