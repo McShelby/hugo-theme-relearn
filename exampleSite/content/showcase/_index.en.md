@@ -1,5 +1,9 @@
 +++
 title = "Showcase"
+[_build]
+  render = "always"
+  list = "never"
+  publishResources = true
 +++
 
 ## [GoboLinux Wiki](https://wiki.gobolinux.org/) by NEONsys.org
@@ -10,6 +14,6 @@ title = "Showcase"
 
 ![BITS image](bits-train.png?width=60pc&classes=shadow)
 
-## [Pamasol Electrics](https://pamasol.github.io/de/) by Pamasol – Swiss Aerosol Solutions
+## [Pamasol Electrics](https://pamasol.github.io/de/) by Pamasol
 
 ![Pamasol Electrics](pamasol-electrics-portal.png?width=60pc&classes=shadow)
