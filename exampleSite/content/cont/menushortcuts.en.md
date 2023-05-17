@@ -59,69 +59,71 @@ When using a multilingual website, you can set different menus for each language
 Example from the current website:
 
 ````toml
-[Languages]
-  [Languages.en]
+[languages]
+  [languages.en]
     title = "Hugo Relearn Theme"
     weight = 1
     languageName = "English"
-    landingPageName = "<i class='fas fa-home'></i> Home"
+    [languages.en.params]
+      landingPageName = "<i class='fas fa-home'></i> Home"
 
-  [[Languages.en.menu.shortcuts]]
+  [[languages.en.menu.shortcuts]]
     name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
-  [[Languages.en.menu.shortcuts]]
+  [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
     url = "more/showcase/"
     weight = 11
 
-  [[Languages.en.menu.shortcuts]]
+  [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
     identifier = "hugodoc"
     url = "https://gohugo.io/"
     weight = 20
 
-  [[Languages.en.menu.shortcuts]]
+  [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
     url = "more/credits/"
     weight = 30
 
-  [[Languages.en.menu.shortcuts]]
+  [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-tags'></i> Tags"
     url = "tags/"
     weight = 40
 
-  [Languages.pir]
+  [languages.pir]
     title = "Cap'n Hugo Relearrrn Theme"
     weight = 1
     languageName = "Arrr! Pirrrates"
-    landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
+    [languages.pir.params]
+      landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
 
-  [[Languages.pir.menu.shortcuts]]
+  [[languages.pir.menu.shortcuts]]
     name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
-  [[Languages.pir.menu.shortcuts]]
+  [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
     url = "more/showcase/"
     weight = 11
 
-  [[Languages.pir.menu.shortcuts]]
+  [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bookmark'></i> Cap'n Hugo Documentat'n"
     identifier = "hugodoc"
     url = "https://gohugo.io/"
     weight = 20
 
-  [[Languages.pir.menu.shortcuts]]
+  [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
     url = "more/credits/"
     weight = 30
 
-  [[Languages.pir.menu.shortcuts]]
+  [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
     url = "tags/"
     weight = 40

@@ -19,7 +19,7 @@ After learning [how Hugo handle multilingual websites](https://gohugo.io/content
 For example with current English and Piratized English website.
 
 {{% notice note %}}
-Make sure your default language is defined as the first one in the `[Languages]` array, as the theme needs to make assumptions on it
+Make sure your default language is defined as the first one in the `[languages]` array, as the theme needs to make assumptions on it
 {{% /notice %}}
 
 
@@ -27,13 +27,13 @@ Make sure your default language is defined as the first one in the `[Languages]`
 # English is the default language
 defaultContentLanguage = "en"
 
-[Languages]
-[Languages.en]
+[languages]
+[languages.en]
 title = "Hugo Relearn Theme"
 weight = 1
 languageName = "English"
 
-[Languages.pir]
+[languages.pir]
 title = "Cap'n Hugo Relearrrn Theme"
 weight = 2
 languageName = "Arrr! Pirrrates"
