@@ -33,7 +33,7 @@
 		{{ $width = . }}
 	{{- end }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo") .id }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $context) .id }}
 {{- if $lightbox }}
 <a href="#image-{{ $id }}" class="lightbox-link">
 {{- end }}
