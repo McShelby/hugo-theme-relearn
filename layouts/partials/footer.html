@@ -100,7 +100,7 @@
   {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-standalone-preset" "swagger-ui" }}
   {{- $urlOpenapi := replace $urlOpenapi ".js" ".css" }}
     <script>
-      window.themeUseOpenapi = { css: {{ $urlOpenapi }}, assetsBuster: {{ cond (ne .Site.Params.disableAssetsBusting false) now.Unix 0 }} };
+      window.themeUseOpenapi = { css: {{ $urlOpenapi }}, assetsBuster: {{ cond (not .Site.Params.disableAssetsBusting) now.Unix 0 }} };
     </script>
 {{- end }}
     <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
