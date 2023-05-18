@@ -435,6 +435,13 @@ var relearn_search_index = [
     "uri": "/shortcodes/badge/index.html"
   },
   {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "basic",
+    "uri": "/categories/basic/index.html"
+  },
+  {
     "content": "The button shortcode displays a clickable button with adjustable color, title and icon.\nGet Hugo Get Hugo Usage While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.\nshortcode partial {{% button href=\"https://gohugo.io/\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"warning\" icon=\"dragon\" %}}Get Hugo{{% /button %}} {{ partial \"shortcodes/button.html\" (dict \"context\" . \"href\" \"https://gohugo.io/\" \"content\" \"Get Hugo\" )}} {{ partial \"shortcodes/button.html\" (dict \"context\" . \"href\" \"https://gohugo.io/\" \"style\" \"warning\" \"icon\" \"dragon\" \"content\" \"Get Hugo\" )}} Once the button is clicked, it opens another browser tab for the given URL.\nParameter Name Default Notes href \u003cempty\u003e Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.\n- if starting with javascript: all following text will be executed in your browser\n- every other string will be interpreted as URL style transparent The style scheme used for the button.\n- by severity: info, note, tip, warning\n- by brand color: primary, secondary, accent\n- by color: blue, green, grey, orange, red\n- by special color: default, transparent color see notes The CSS color value to be used. If not set, the chosen color depends on the style. Any given value will overwrite the default.\n- for severity styles: a nice matching color for the severity\n- for all other styles: the corresponding color icon see notes Font Awesome icon name set to the left of the title. Depending on the style there may be a default icon. Any given value will overwrite the default.\n- for severity styles: a nice matching icon for the severity\n- for all other styles: \u003cempty\u003e\nIf you want no icon for a severity style, you have to set this parameter to \" \" (a non empty string filled with spaces) iconposition left Places the icon to the left or right of the title. target see notes The destination frame/window if href is an URL. Otherwise the parameter is not used. This behaves similar to normal links. If the parameter is not given it defaults to:\n- the setting of externalLinkTarget or _blank if not set, for any address starting with http:// or https://\n- no specific value for all other links type see notes The button type if href is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to button \u003ccontent\u003e see notes Arbitrary text for the button title. Depending on the style there may be a default title. Any given value will overwrite the default.\n- for severity styles: the matching title for the severity\n- for all other styles: \u003cempty\u003e\nIf you want no title for a severity style, you have to set this parameter to \" \" (a non empty string filled with spaces) Examples Style By Severity {{% button href=\"https://gohugo.io/\" style=\"info\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"note\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"tip\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"warning\" %}}Get Hugo{{% /button %}} Get Hugo Get Hugo Get Hugo Get Hugo By Brand Colors {{% button href=\"https://gohugo.io/\" style=\"primary\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"secondary\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"accent\" %}}Get Hugo{{% /button %}} Get Hugo Get Hugo Get Hugo By Color {{% button href=\"https://gohugo.io/\" style=\"blue\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"green\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"grey\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"orange\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"red\" %}}Get Hugo{{% /button %}} Get Hugo Get Hugo Get Hugo Get Hugo Get Hugo By Special Color {{% button href=\"https://gohugo.io/\" style=\"default\" %}}Get Hugo{{% /button %}} {{% button href=\"https://gohugo.io/\" style=\"transparent\" %}}Get Hugo{{% /button %}} Get Hugo Get Hugo Icon To the Left {{% button href=\"https://gohugo.io/\" icon=\"download\" %}}Get Hugo{{% /button %}} Get Hugo To the Right {{% button href=\"https://gohugo.io/\" icon=\"download\" iconposition=\"right\" %}}Get Hugo{{% /button %}} Get Hugo Override for Severity {{% button href=\"https://gohugo.io/\" icon=\"dragon\" style=\"warning\" %}}Get Hugo{{% /button %}} Get Hugo Target {{% button href=\"https://gohugo.io/\" target=\"_self\" %}}Get Hugo in same window{{% /button %}} {{% button href=\"https://gohugo.io/\" %}}Get Hugo in new Window/Frame (default){{% /button %}} Get Hugo in same Window/Frame Get Hugo in new Window/Frame (default) Other With User-Defined Color, Font Awesome Brand Icon and Markdown Title {{% button href=\"https://gohugo.io/\" color=\"fuchsia\" icon=\"fab fa-hackerrank\" %}}Get **Hugo**{{% /button %}} Get Hugo Severity Style with All Defaults {{% button href=\"https://gohugo.io/\" style=\"tip\" %}}{{% /button %}} Tip Button to Internal Page {{% button href=\"/index.html\" %}}Home{{% /button %}} Home Button with JavaScript Action If your JavaScript action does not change the focus afterwards, make sure to call this.blur() in the end to unselect the button.\n{{% button style=\"primary\" icon=\"bullhorn\" href=\"javascript:alert('Hello world!');this.blur();\" %}}Shout it out{{% /button %}} Shout it out Button within a form Element To use native HTML elements in your Markdown, add this in your config.toml\n[markup.goldmark.renderer] unsafe = true \u003cform action=\"../../search.html\" method=\"get\"\u003e \u003cinput name=\"search-by-detail\" class=\"search-by\" type=\"search\"\u003e {{% button type=\"submit\" style=\"secondary\" icon=\"search\" %}}Search{{% /button %}} \u003c/form\u003e Search ",
     "description": "Clickable buttons",
     "tags": null,
@@ -489,6 +496,13 @@ var relearn_search_index = [
     "tags": null,
     "title": "Credits",
     "uri": "/more/credits/index.html"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "custom",
+    "uri": "/categories/custom/index.html"
   },
   {
     "content": "",
@@ -729,6 +743,13 @@ var relearn_search_index = [
     "tags": null,
     "title": "The one and only hidden child",
     "uri": "/tests/chapters/children-1/index.html"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "theming",
+    "uri": "/categories/theming/index.html"
   },
   {
     "content": "",
