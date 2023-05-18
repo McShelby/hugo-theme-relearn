@@ -1,8 +1,8 @@
 {{- $context := .context }}
 {{- $src := .src }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $context.Page) .id }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $context) .id }}
 {{- with $context }}
-{{- with .Page.Resources.Match $src }}
+{{- with .Resources.Match $src }}
 	{{- range . }}
 		{{- $src = .RelPermalink }}
 	{{- end }}
@@ -14,5 +14,5 @@
     openapi-url="{{ $src }}"
   ></div>
 </div>
-{{- .Page.Store.Set "hasOpenapi" true }}
+{{- .Store.Set "hasOpenapi" true }}
 {{- end }}

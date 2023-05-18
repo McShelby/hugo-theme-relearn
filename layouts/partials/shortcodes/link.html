@@ -6,8 +6,8 @@
 {{- $target := .target | default "" }}
 {{- if and (eq (len $target) 0) (or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") ) }}
   {{- $target = "_blank" }}
-  {{- if isset $context.Page.Site.Params "externallinktarget" }}
-    {{- $target = $context.Page.Site.Params.externalLinkTarget }}
+  {{- if isset $context.Site.Params "externallinktarget" }}
+    {{- $target = $context.Site.Params.externalLinkTarget }}
   {{- end }}
 {{- end -}}
 <a href="{{ $url | safeURL }}"{{ if $title }} title="{{ $title }}"{{ end }}{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ $content | safeHTML }}</a>

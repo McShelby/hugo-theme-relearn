@@ -17,10 +17,10 @@
 
 {{- with $context }}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
-	{{- $pages := .Page.Pages }}
+	{{- $pages := .Pages }}
 
 	{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-	{{- $currentOrdersectionsby := $sortTerm | default (.Page.Params.ordersectionsby | default $defaultOrdersectionsby) }}
+	{{- $currentOrdersectionsby := $sortTerm | default (.Params.ordersectionsby | default $defaultOrdersectionsby) }}
 	{{- if eq $currentOrdersectionsby "weight" }}
 		{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
 	{{- else if or (eq $currentOrdersectionsby "name") (eq $currentOrdersectionsby "title") }}
@@ -83,10 +83,10 @@
 {{- (printf "<%s>" $.containerstyle)|safeHTML }}
 				{{- end }}
 
-				{{- $pages := .Page.Pages }}
+				{{- $pages := .Pages }}
 
 				{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-				{{- $currentOrdersectionsby := $.sortTerm | default (.Page.Params.ordersectionsby | default $defaultOrdersectionsby) }}
+				{{- $currentOrdersectionsby := $.sortTerm | default (.Params.ordersectionsby | default $defaultOrdersectionsby) }}
 				{{- if eq $currentOrdersectionsby "weight" }}
 					{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
 				{{- else if or (eq $.currentOrdersectionsby "name") (eq $.currentOrdersectionsby "title") }}

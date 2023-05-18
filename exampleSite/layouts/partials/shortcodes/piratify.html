@@ -3,12 +3,12 @@
 {{- $pagefield := cond (ne $content nil) nil (.pagefield | default "Content") }}
 {{- $writenotice := cond (ne .writenotice nil) .writenotice false }}
 {{- $langtrg := "pir" }}
-{{- $langsrc := cond (eq $context.Page.Lang $langtrg) (.langsrc | default "en") $context.Page.Lang }}
+{{- $langsrc := cond (eq $context.Lang $langtrg) (.langsrc | default "en") $context.Lang }}
 {{- $baseURL := urls.Parse site.BaseURL }}
 {{- $baseURLpath := $baseURL.Path | default "/" }}
 {{- $l := "" }}
 {{- $c := "" }}
-{{- range $context.Page.AllTranslations }}
+{{- range $context.AllTranslations }}
 	{{- if eq .Language.Lang $langsrc }}
 		{{- $l = .RelPermalink }}
 		{{- if ne $content nil }}
@@ -21,10 +21,10 @@
 		{{- break }}
 	{{- end }}
 {{- end }}
-{{- if eq $context.Page.Lang $langtrg }}
+{{- if eq $context.Lang $langtrg }}
 	{{- if $writenotice }}
 		{{- partial "shortcodes/notice.html" (dict
-			"context" .
+			"context" $context
 			"content" "<p>Fello' pirrrates, grog made us dizzy! Be awarrre <b>some stuff may not work</b> in this trrranslat'n. Like see'n <b>Merrrmaids</b>, do'n <b>math or chemistrrry</b>, writ'n docs and stuff.</p>\n"
 			"icon" "skull-crossbones"
 			"style" "warning"
