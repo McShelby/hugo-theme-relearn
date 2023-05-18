@@ -1,4 +1,5 @@
 +++
+categories = "basic"
 disableToc = true
 title = "Requirements"
 weight = 10

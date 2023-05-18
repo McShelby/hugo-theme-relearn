@@ -1,4 +1,5 @@
 +++
+categories = ["custom", "theming"]
 title = "Customization"
 weight = 25
 +++

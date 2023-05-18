@@ -1,4 +1,5 @@
 +++
+categories = "theming"
 disableMermaid = false
 title = "Stylesheet generator"
 weight = 26

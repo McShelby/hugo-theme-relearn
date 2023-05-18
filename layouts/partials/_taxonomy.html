@@ -4,15 +4,25 @@
 {{- $page := . }}
 
 {{- $title := "" }}
-{{- if eq .Kind "term" }}
-  {{- $title = printf "%s %s " (.Data.Singular | humanize) (default "::" .Site.Params.titleSeparator) }}
+{{- if eq .Kind "taxonomy" }}
+  {{- $title = i18n .Data.Plural }}
+  {{- if not $title }}
+    {{- $title = .Data.Plural | humanize }}
+  {{- end }}
+{{- else }}
+  {{- $title = i18n .Data.Singular }}
+  {{- if not $title }}
+    {{- $title = .Data.Singular | humanize }}
+  {{- end }}
+  {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (.Title | humanize) }}
 {{- end }}
-{{- $title = printf "%s%s" $title .Title }}
 <h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
 <ul>
   {{- range .Data.Terms.Alphabetical }}
+    {{- $c:=""}}{{/* display terms of a taxonomy */}}
     {{- $len := 0 }}
     {{- range .Pages }}
+      {{- $c:=""}}{{/* count pages of term */}}
       {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
         {{- $len = add $len 1 }}
       {{- end }}
@@ -22,6 +32,7 @@
     {{- end }}
   {{- else }}
     {{- range sort .Pages "Title" }}
+      {{- $c:=""}}{{/* display pages of a term */}}
       {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
   <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a></li>
       {{- end }}

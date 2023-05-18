@@ -14,7 +14,11 @@
     {{- if eq $outputFormat "searchpage" }}
       {{- $title = T "Search" }}
     {{- else if eq .Kind "term" }}
-      {{- $title = printf "%s %s" (.Data.Singular | humanize) $title }}
+      {{- $title = i18n .Data.Singular }}
+      {{- if not $title }}
+        {{- $title = .Data.Singular | humanize }}
+      {{- end }}
+      {{- $title = printf "%s %s %s" (.Title | humanize) (default "::" .Site.Params.titleSeparator) $title }}
     {{- end }}
     {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
       {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
@@ -179,7 +183,11 @@
       {{- $depth = add $depth 1 }}
       {{- $title := $to.Title }}
       {{- if eq .Kind "term" }}
-        {{- $title = printf "%s %s" (.Data.Singular | humanize) $title }}
+        {{- $title = i18n .Data.Singular }}
+        {{- if not $title }}
+          {{- $title = .Data.Singular | humanize }}
+        {{- end }}
+        {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) ($to.Title | humanize) }}
       {{- end }}
       {{- if not $title }}
         {{- $title = $to.Site.Title }}
