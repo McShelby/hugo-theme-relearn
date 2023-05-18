@@ -75,6 +75,8 @@ Note that some of these parameters are explained in details in other sections of
   ordersectionsby = "weight"
   # Change default color scheme with a variant one. Eg. can be "auto", "red", "blue", "green" or an array like [ "blue", "green" ].
   themeVariant = "auto"
+  # Change the breadcrumb separator. Default to ">".
+  breadcrumbSeparator = "|"
   # Change the title separator. Default to "::".
   titleSeparator = "-"
   # If set to true, the menu in the sidebar will be displayed in a collapsible tree view. Although the functionality works with old browsers (IE11), the display of the expander icons is limited to modern browsers

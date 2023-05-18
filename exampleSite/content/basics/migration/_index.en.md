@@ -18,6 +18,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.14.0 (2023-05-18)
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new parameter `breadcrumbSeparator` is now available in your `config.toml` to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.
+
+---
+
 ## 5.13.0 (2023-05-17)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The `swagger` shortcode was deprecated in favor for the  [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}). You don't need to change anything yet as the old name will be used as a fallback. It is planned to remove the `swagger` shortcode in the next major release.
