@@ -27,16 +27,8 @@
 {{- end -}}
 {{- $themevariantsauto = ($themevariantsauto | first 2) -}}
 {{- with index $themevariantsauto 0 -}}
-	{{- if site.IsServer -}}
-@import "{{(printf "css/theme-%s.css" .) | relURL}}" screen and (prefers-color-scheme: light);
-	{{- else -}}
-@import "{{(printf "theme-%s.css" .)}}" screen and (prefers-color-scheme: light);
-	{{- end -}}
-{{- end -}}
+@import "{{ printf "theme-%s.css" . }}" screen and (prefers-color-scheme: light);
+{{ end -}}
 {{- with index $themevariantsauto 1 -}}
-	{{- if site.IsServer }}
-@import "{{(printf "css/theme-%s.css" .) | relURL}}" screen and (prefers-color-scheme: dark);
-	{{- else }}
-@import "{{(printf "theme-%s.css" .)}}" screen and (prefers-color-scheme: dark);
-	{{- end -}}
-{{- end -}}
+@import "{{ printf "theme-%s.css" . }}" screen and (prefers-color-scheme: dark);
+{{ end -}}
