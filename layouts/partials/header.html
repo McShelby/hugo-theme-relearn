@@ -16,7 +16,7 @@
     {{- else if eq .Kind "term" }}
       {{- $title = printf "%s %s" (.Data.Singular | humanize) $title }}
     {{- end }}
-    {{- if and $title (not (eq $title .Site.Title)) }}
+    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
       {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
     {{- end }}
     <title>{{ $title }}</title>

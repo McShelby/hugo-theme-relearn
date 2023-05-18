@@ -6,8 +6,15 @@
 {{- $langsrc := cond (eq $context.Lang $langtrg) (.langsrc | default "en") $context.Lang }}
 {{- $baseURL := urls.Parse site.BaseURL }}
 {{- $baseURLpath := $baseURL.Path | default "/" }}
-{{- $l := "" }}
+{{- $l := $context.RelPermalink }}
 {{- $c := "" }}
+{{- if ne $content nil }}
+	{{- $c = $content }}
+{{- else if eq $pagefield "Content" }}
+	{{- $c = $context.Content }}
+{{- else if eq $pagefield "TableOfContents" }}
+	{{- $c = $context.TableOfContents }}
+{{- end }}
 {{- range $context.AllTranslations }}
 	{{- if eq .Language.Lang $langsrc }}
 		{{- $l = .RelPermalink }}

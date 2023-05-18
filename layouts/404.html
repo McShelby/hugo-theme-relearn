@@ -5,12 +5,14 @@
   <head>
     {{- partial "meta.html" . }}
     {{- .Scratch.Add "title" "" }}
+    {{- $title := .Title }}
     {{- if eq .Site.Data.titles .Title }}
-      {{- .Scratch.Set "title" (index .Site.Data.titles .Title).title }}
-    {{- else }}
-      {{- .Scratch.Set "title" .Title}}
+      {{- $title = (index .Site.Data.titles .Title).title }}
     {{- end }}
-    <title>{{ .Scratch.Get "title" }} {{ default "::" .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
+    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
+      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
+    {{- end }}
+    <title>{{ $title }}</title>
     <base href="{{ .Site.BaseURL }}">
     {{- partialCached "favicon.html" . }}
     {{- partialCached "stylesheet.html" (dict "page" . "outputFormat" $outputFormat) $outputFormat }}
