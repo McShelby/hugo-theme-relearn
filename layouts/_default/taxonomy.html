@@ -8,8 +8,19 @@
   {{- $title = .Data.Plural | humanize }}
 {{- end }}
 <h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
-<ul>
-  {{- range .Data.Terms.Alphabetical }}
+<div class="tax-container">
+{{- $lastCapital := "" }}
+{{- range .Data.Terms.Alphabetical }}
+  {{- $capital := substr .Page.Title 0 1 | upper }}
+  {{- if ne $lastCapital $capital }}
+    {{- if ne $lastCapital "" }}
+    </ul>
+  </div>
+    {{- end }}
+  <div class="tax-box">
+    <h2 id="{{ $capital | anchorize }}">{{ $capital }}</h2>
+    <ul>
+  {{- end }}
     {{- $c:=""}}{{/* display terms of a taxonomy */}}
     {{- $len := 0 }}
     {{- range .Pages }}
@@ -19,10 +30,15 @@
       {{- end }}
     {{- end }}
     {{- if $len }}
-  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Page.Title }}</a> ({{ $len }})</li>
+      <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Page.Title }}</a> ({{ $len }})</li>
     {{- end }}
-  {{- end }}
-</ul>
+  {{- $lastCapital = $capital }}
+{{- end }}
+{{- if ne $lastCapital "" }}
+    </ul>
+  </div>
+{{- end }}
+</div>
 
             <footer class="footline">
             </footer>

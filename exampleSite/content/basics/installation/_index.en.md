@@ -1,4 +1,5 @@
 +++
+tags = ["documentation"]
 title = "Installation"
 weight = 15
 +++

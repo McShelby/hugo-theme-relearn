@@ -1,4 +1,5 @@
 +++
+tags = ["content"]
 title = "Markdown syntax"
 weight = 3
 +++

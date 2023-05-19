@@ -1,8 +1,23 @@
           <div class="default-animation progress">
             <div class="toc-wrapper">
-{{- partial "shortcodes/piratify.html" (dict
-  "context" .
-  "pagefield" "TableOfContents"
-) }}
+{{- if eq .Kind "taxonomy" }}
+<nav id="TableOfContents">
+  <ul>
+  {{- $lastCapital := "" }}
+  {{- range .Data.Terms.Alphabetical }}
+    {{- $capital := substr .Page.Title 0 1 | upper }}
+    {{- if ne $lastCapital $capital }}
+    <li><a href="#{{ $capital | anchorize }}">{{ $capital }}</a></li>
+    {{- end }}
+    {{- $lastCapital = $capital }}
+  {{- end }}
+  </ul>
+</nav>
+{{- else }}
+  {{- partial "shortcodes/piratify.html" (dict
+    "context" .
+    "pagefield" "TableOfContents"
+  ) }}
+{{- end }}
             </div>
           </div>
