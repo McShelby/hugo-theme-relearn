@@ -9,7 +9,7 @@
 {{- end }}
 {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (.Title | humanize) }}
 <h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
-<ul>
+<ul class="columnize">
   {{- range sort .Pages "Title" }}
     {{- $c:=""}}{{/* display pages of a term */}}
     {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
