@@ -130,3 +130,25 @@ Example from the current website:
 ````
 
 Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multilingual menus](https://gohugo.io/content-management/multilingual/#menus)
+
+## Shortcuts to pages inside of your project
+
+If you have shortcuts to pages inside of your project and you don't want them to show up in page menu section, you have two choices:  
+
+1. Make the page file for the shortcut section a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following rontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be ontained in the sitemap.
+
+    ````toml
+    [_build]
+      render = "never"
+      list = "never"
+      publishResources = false
+    ````
+
+2. Store the page file for the shortcut section below a parent headless branch bundle and add the following frontmatter to he **parent**. In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's content/more/` and `content/more/credits`). This causes its content to be contained in the sitemap.
+
+    ````toml
+    [_build]
+      render = "always"
+      list = "never"
+      publishResources = true
+    ````
