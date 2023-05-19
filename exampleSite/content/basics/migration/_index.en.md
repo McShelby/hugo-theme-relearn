@@ -114,6 +114,30 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.9.0 (2022-12-23)
 
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} With this version it is now possible to not only have sections on the first menu level but also pages.
+
+  It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu aswell.
+
+  To get rid of this undesired behavior you have two choices:
+
+  1. Make the page file for the `More` section a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be contained in the sitemap.
+
+      ````toml
+      [_build]
+        render = "never"
+        list = "never"
+        publishResources = false
+      ````
+
+  2. Store the page file for the `More` section below a parent headless branch bundle and add the following frontmatter to the **parent**. In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/` and `content/more/credits`). This causes its content to be contained in the sitemap.
+
+      ````toml
+      [_build]
+        render = "always"
+        list = "never"
+        publishResources = true
+      ````
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The required folder name for the [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) was changed for leaf bundles.
 
   Previously, the attachments for leaf bundles in non-multilang setups were required to be in a `files` subdirectory. For page bundles and leaf bundles in multilang setups they were always required to be in a `_index.<LANGCODE>.files` or `index.<LANGCODE>.files` subdirectory accordingly.
