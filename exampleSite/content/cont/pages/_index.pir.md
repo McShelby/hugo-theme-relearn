@@ -1,5 +1,5 @@
 +++
-title = "Planks orrrganizat'n"
+title = "planks orrrganizat'n"
 weight = 1
 +++
 {{< piratify >}}
