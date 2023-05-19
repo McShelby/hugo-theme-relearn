@@ -20,6 +20,10 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.14.0 (2023-05-18)
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The taxonomy pages received some love in this release, making them better leverage available screen space and adding translation support for the taxonomy names.
+
+  Hugo's default taxonmies `tags` and `categories` are already contained in the theme's i18n files. If you have self-defined taxonomies, you can add translations by adding them to your own i18n files. If you don't provide translations, the singualar and plural forms are taken as configured in your `config.toml`.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new parameter `breadcrumbSeparator` is now available in your `config.toml` to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.
 
 ---
