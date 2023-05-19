@@ -18,7 +18,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.14.0 (2023-05-18)
+## 5.14.0 (2023-05-19)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The taxonomy pages received some love in this release, making them better leverage available screen space and adding translation support for the taxonomy names.
 

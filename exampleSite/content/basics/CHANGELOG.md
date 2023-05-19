@@ -1,5 +1,22 @@
 # Changelog
 
+## 5.14.0 (2023-05-19)
+
+### Enhancements
+
+- [**feature**] tags: improve search index for tags [#531](https://github.com/McShelby/hugo-theme-relearn/issues/531)
+- [**feature**] tags: increase readability of taxonomy pages [#530](https://github.com/McShelby/hugo-theme-relearn/issues/530)
+- [**feature**] nav: make breadcrumb separator configurable [#529](https://github.com/McShelby/hugo-theme-relearn/issues/529)
+- [**feature**] i18n: add translation for default taxonomies [#528](https://github.com/McShelby/hugo-theme-relearn/issues/528)
+- [**feature**] theme: set appropriate defaults for all theme specific params [#516](https://github.com/McShelby/hugo-theme-relearn/issues/516)
+- [**feature**] theme: allow to display tags below article [#513](https://github.com/McShelby/hugo-theme-relearn/issues/513)
+
+### Fixes
+
+- [**bug**] shortcode: make .context always a page [#527](https://github.com/McShelby/hugo-theme-relearn/issues/527)
+
+---
+
 ## 5.13.2 (2023-05-17)
 
 ### Fixes
@@ -199,7 +216,7 @@
 ### Fixes
 
 - [**bug**] nav: fix left/right navigation for horizontal scrolling [#435](https://github.com/McShelby/hugo-theme-relearn/issues/435)
-- [**bug**] theme: allow pages on top level [#434](https://github.com/McShelby/hugo-theme-relearn/issues/434)
+- [**bug**][**breaking**] theme: allow pages on top level [#434](https://github.com/McShelby/hugo-theme-relearn/issues/434)
 
 ### Maintenance
 
