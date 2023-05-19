@@ -8,16 +8,18 @@ var relearn_search_index = [
   },
   {
     "content": " This be a plain demo child plank.\n",
-    "description": "",
-    "tags": null,
-    "title": "Plank X",
+    "description": "This be a plain plank test, an' th' beginn'n o' a YAML multiline description…\n",
+    "tags": [
+      "Children"
+    ],
+    "title": "plank X",
     "uri": "/pir/shortcodes/children/test/index.html"
   },
   {
     "content": " In Cap'n Hugo, planks be th' core o' yer ship. Once it be configured, planks be definitely th' added value t' yer documentat'n ship.\nFolders Org'nize yer ship like any other Cap'n Hugo project. Typically, ye will have a rrrambl'n folder wit' all yer planks.\nrrrambl'n ├── level-one │ ├── level-two │ │ ├── level-three │ │ │ ├── level-four │ │ │ │ ├── _index.md \u003c-- /level-one/level-two/level-three/level-four │ │ │ │ ├── page-4-a.md \u003c-- /level-one/level-two/level-three/level-four/page-4-a │ │ │ │ ├── page-4-b.md \u003c-- /level-one/level-two/level-three/level-four/page-4-b │ │ │ │ └── page-4-c.md \u003c-- /level-one/level-two/level-three/level-four/page-4-c │ │ │ ├── _index.md \u003c-- /level-one/level-two/level-three │ │ │ ├── page-3-a.md \u003c-- /level-one/level-two/level-three/page-3-a │ │ │ ├── page-3-b.md \u003c-- /level-one/level-two/level-three/page-3-b │ │ │ └── page-3-c.md \u003c-- /level-one/level-two/level-three/page-3-c │ │ ├── _index.md \u003c-- /level-one/level-two │ │ ├── page-2-a.md \u003c-- /level-one/level-two/page-2-a │ │ ├── page-2-b.md \u003c-- /level-one/level-two/page-2-b │ │ └── page-2-c.md \u003c-- /level-one/level-two/page-2-c │ ├── _index.md \u003c-- /level-one │ ├── page-1-a.md \u003c-- /level-one/page-1-a │ ├── page-1-b.md \u003c-- /level-one/page-1-b │ └── page-1-c.md \u003c-- /level-one/page-1-c ├── _index.md \u003c-- / └── page-top.md \u003c-- /page-top Avast _index.md be required 'n each folder, it’s yer “folder home page”\nCreate yer project Th' follow'n steps be here t' help ye initialize yer new website. If ye don’t know Cap'n Hugo at all, we strongly suggest ye t' train by follow'n great documentat'n fer beginners.\nCap'n Hugo provides a new command t' create a new website.\nhugo new ship \u003cnew_project\u003e Th' Relearrrn theme provides archetypes t' help ye create this kind o' planks.\nFrontmatter Configurat'n Each Cap'n Hugo plank has t' define a frontmatter 'n toml, yaml or json. This ship will use toml 'n all cases.\nTh' Relearrrn theme uses th' follow'n parameters on top o' Cap'n Hugo ones:\n+++ # T'ble o' contents (toc) be enabled by default. Set this parameter t' true t' dis'ble it. # Avast: Toc be always disabled fer chapter planks disableToc = false # If set, this will be used fer th' page's menu entry (instead o' th' `title` attribute) menuTitle = \"\" # If set, this will explicitly override common rules fer th' expand state o' a page's menu entry alwaysopen = true # If set, this will explicitly override common rules fer th' sort'n order o' a page's submenu entries ordersectionsby = \"title\" # Th' title o' th' plank head'n will be prefixed by this HTML rrrambl'n headingPre = \"\" # Th' title o' th' plank head'n will be postfixed by this HTML rrrambl'n headingPost = \"\" # Th' title o' th' plank 'n menu will be prefixed by this HTML rrrambl'n menuPre = \"\" # Th' title o' th' plank 'n menu will be postfixed by this HTML rrrambl'n menuPost = \"\" # Hide a menu entry by sett'n this t' true hidden = false # Display name o' this plank modifier. If set, it will be displayed 'n th' footer. LastModifierDisplayName = \"\" # Email o' this plank modifier. If set wit' LastModifierDisplayName, it will be displayed 'n th' footer LastModifierEmail = \"\" +++ Add ay'con t' a menu entry In th' plank frontmatter, add a menuPre param t' insert any HTML code before th' menu label. Th' example below uses th' GitHub ay'con.\n+++ title = \"GitHub repo\" menuPre = \"\u003ci class='fab fa-github'\u003e\u003c/i\u003e \" +++ Order'n sibl'n menu/page entries Cap'n Hugo provides a flex'ble way t' handle order fer yer planks.\nTh' simplest way be t' set weight parameter t' a number.\n+++ title = \"My page\" weight = 5 +++ Us'n a custom title fer menu entries By default, th' Relearrrn theme will use a page’s title attribute fer th' menu item (or linkTitle if defined).\nBut a page’s title has t' be descriptive on its own while th' menu be a hierarchy. We’ve added th' menuTitle parameter fer that purpose:\nFor example (for a plank named content/install/linux.md):\n+++ title = \"Install on Linux\" menuTitle = \"Linux\" +++ Override expand state rules fer menu entries Ye can change how th' theme expands menu entries on th' side o' th' rrrambl'n wit' th' alwaysopen sett'n on a per plank basis. If alwaysopen=false fer any given entry, its children will not be shown 'n th' menu as long as it be not necessary fer th' sake o' navigat'n.\nTh' theme generates th' menu based on th' follow'n rules:\nall parent entries o' th' active plank includ'n their sibl'ns be shown regardless o' any sett'ns immediate children entries o' th' active plank be shown regardless o' any sett'ns if not overridden, all other first level entries behave like they would have been given alwaysopen=false if not overridden, all other entries o' levels besides th' first behave like they would have been given alwaysopen=true all vis'ble entries show their immediate children entries if alwaysopen=true; this proceeds recursively all remain'n entries be not shown Ye can see this feature 'n act'n on th' example plank fer children shortcode an' its children planks.\n",
     "description": "",
     "tags": null,
-    "title": "Planks orrrganizat'n",
+    "title": "planks orrrganizat'n",
     "uri": "/pir/cont/pages/index.html"
   },
   {
@@ -109,7 +111,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 1",
+    "title": "plank 1",
     "uri": "/pir/shortcodes/children/children-1/index.html"
   },
   {
@@ -142,7 +144,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 2",
+    "title": "plank 2",
     "uri": "/pir/shortcodes/children/children-2/index.html"
   },
   {
@@ -173,7 +175,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 3",
+    "title": "plank 3",
     "uri": "/pir/shortcodes/children/children-3/index.html"
   },
   {
@@ -183,7 +185,7 @@ var relearn_search_index = [
       "children",
       "hidden"
     ],
-    "title": "Plank 4 (hidden)",
+    "title": "plank 4 (hidden)",
     "uri": "/pir/shortcodes/children/children-4/index.html"
   },
   {
@@ -302,7 +304,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: Basic",
+    "title": "Categorrry :: basic",
     "uri": "/pir/categories/basic/index.html"
   },
   {
@@ -358,7 +360,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Content",
+    "title": "Tak :: content",
     "uri": "/pir/tags/content/index.html"
   },
   {
@@ -379,14 +381,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: Custom",
+    "title": "Categorrry :: custom",
     "uri": "/pir/categories/custom/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Documentat'N",
+    "title": "Tak :: documentat'n",
     "uri": "/pir/tags/documentatn/index.html"
   },
   {
@@ -400,7 +402,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Hidden",
+    "title": "Tak :: hidden",
     "uri": "/pir/tags/hidden/index.html"
   },
   {
@@ -456,7 +458,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Non hidden",
+    "title": "Tak :: non-hidden",
     "uri": "/pir/tags/non-hidden/index.html"
   },
   {
@@ -480,7 +482,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 1-1",
+    "title": "plank 1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/index.html"
   },
   {
@@ -490,7 +492,7 @@ var relearn_search_index = [
       "children",
       "hidden"
     ],
-    "title": "Plank 1-1-1 (hidden)",
+    "title": "plank 1-1-1 (hidden)",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/index.html"
   },
   {
@@ -500,7 +502,7 @@ var relearn_search_index = [
       "children",
       "hidden"
     ],
-    "title": "Plank 1-1-1-1",
+    "title": "plank 1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/index.html"
   },
   {
@@ -510,7 +512,7 @@ var relearn_search_index = [
       "children",
       "hidden"
     ],
-    "title": "Plank 1-1-1-1-1 (hidden)",
+    "title": "plank 1-1-1-1-1 (hidden)",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/index.html"
   },
   {
@@ -520,7 +522,7 @@ var relearn_search_index = [
       "children",
       "hidden"
     ],
-    "title": "Plank 1-1-1-1-1-1",
+    "title": "plank 1-1-1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/children-1-1-1-1-1-1/index.html"
   },
   {
@@ -530,7 +532,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 1-1-2",
+    "title": "plank 1-1-2",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-2/index.html"
   },
   {
@@ -540,7 +542,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 1-1-2-1",
+    "title": "plank 1-1-2-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-2/children-1-1-2-1/index.html"
   },
   {
@@ -550,7 +552,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 1-1-2-2",
+    "title": "plank 1-1-2-2",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-2/children-1-1-2-2/index.html"
   },
   {
@@ -560,7 +562,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 1-1-3",
+    "title": "plank 1-1-3",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-3/index.html"
   },
   {
@@ -570,7 +572,7 @@ var relearn_search_index = [
       "children",
       "non-hidden"
     ],
-    "title": "Plank 3-1",
+    "title": "plank 3-1",
     "uri": "/pir/shortcodes/children/children-3/test3/index.html"
   },
   {
@@ -619,14 +621,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: Theming",
+    "title": "Categorrry :: theming",
     "uri": "/pir/categories/theming/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Tutorrrial",
+    "title": "Tak :: tutorrrial",
     "uri": "/pir/tags/tutorrrial/index.html"
   },
   {

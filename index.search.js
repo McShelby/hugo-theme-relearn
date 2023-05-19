@@ -9,7 +9,9 @@ var relearn_search_index = [
   {
     "content": "This is a plain demo child page.\n",
     "description": "This is a plain page test, and the beginning of a YAML multiline description...\n",
-    "tags": null,
+    "tags": [
+      "Children"
+    ],
     "title": "page X",
     "uri": "/shortcodes/children/test/index.html"
   },
@@ -442,7 +444,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: Basic",
+    "title": "Category :: basic",
     "uri": "/categories/basic/index.html"
   },
   {
@@ -491,7 +493,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: Content",
+    "title": "Tag :: content",
     "uri": "/tags/content/index.html"
   },
   {
@@ -512,14 +514,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: Custom",
+    "title": "Category :: custom",
     "uri": "/categories/custom/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: Documentation",
+    "title": "Tag :: documentation",
     "uri": "/tags/documentation/index.html"
   },
   {
@@ -533,7 +535,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: Hidden",
+    "title": "Tag :: hidden",
     "uri": "/tags/hidden/index.html"
   },
   {
@@ -596,7 +598,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: Non hidden",
+    "title": "Tag :: non-hidden",
     "uri": "/tags/non-hidden/index.html"
   },
   {
@@ -759,14 +761,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: Theming",
+    "title": "Category :: theming",
     "uri": "/categories/theming/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: Tutorial stuff",
+    "title": "Tag :: tutorial stuff",
     "uri": "/tags/tutorial-stuff/index.html"
   },
   {
