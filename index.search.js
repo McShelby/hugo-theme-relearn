@@ -442,7 +442,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "basic",
+    "title": "Category :: Basic",
     "uri": "/categories/basic/index.html"
   },
   {
@@ -470,7 +470,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "children",
+    "title": "Tag :: Children",
     "uri": "/tags/children/index.html"
   },
   {
@@ -491,7 +491,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "content",
+    "title": "Tag :: Content",
     "uri": "/tags/content/index.html"
   },
   {
@@ -512,14 +512,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "custom",
+    "title": "Category :: Custom",
     "uri": "/categories/custom/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "documentation",
+    "title": "Tag :: Documentation",
     "uri": "/tags/documentation/index.html"
   },
   {
@@ -533,7 +533,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "hidden",
+    "title": "Tag :: Hidden",
     "uri": "/tags/hidden/index.html"
   },
   {
@@ -596,7 +596,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "non-hidden",
+    "title": "Tag :: Non hidden",
     "uri": "/tags/non-hidden/index.html"
   },
   {
@@ -759,14 +759,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "theming",
+    "title": "Category :: Theming",
     "uri": "/categories/theming/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "tutorial stuff",
+    "title": "Tag :: Tutorial stuff",
     "uri": "/tags/tutorial-stuff/index.html"
   },
   {

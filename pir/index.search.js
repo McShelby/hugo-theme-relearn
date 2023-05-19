@@ -302,7 +302,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "basic",
+    "title": "Categorrry :: Basic",
     "uri": "/pir/categories/basic/index.html"
   },
   {
@@ -323,7 +323,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categories",
+    "title": "Categorrries",
     "uri": "/pir/categories/index.html"
   },
   {
@@ -337,7 +337,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "children",
+    "title": "Tak :: Children",
     "uri": "/pir/tags/children/index.html"
   },
   {
@@ -358,7 +358,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "content",
+    "title": "Tak :: Content",
     "uri": "/pir/tags/content/index.html"
   },
   {
@@ -379,14 +379,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "custom",
+    "title": "Categorrry :: Custom",
     "uri": "/pir/categories/custom/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "documentat'n",
+    "title": "Tak :: Documentat'N",
     "uri": "/pir/tags/documentatn/index.html"
   },
   {
@@ -400,7 +400,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "hidden",
+    "title": "Tak :: Hidden",
     "uri": "/pir/tags/hidden/index.html"
   },
   {
@@ -456,7 +456,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "non-hidden",
+    "title": "Tak :: Non hidden",
     "uri": "/pir/tags/non-hidden/index.html"
   },
   {
@@ -605,7 +605,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tags",
+    "title": "Taks",
     "uri": "/pir/tags/index.html"
   },
   {
@@ -619,14 +619,14 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "theming",
+    "title": "Categorrry :: Theming",
     "uri": "/pir/categories/theming/index.html"
   },
   {
     "content": "",
     "description": "",
     "tags": null,
-    "title": "tutorrrial",
+    "title": "Tak :: Tutorrrial",
     "uri": "/pir/tags/tutorrrial/index.html"
   },
   {
