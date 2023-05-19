@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/basics/index.html" rel="canonical" type="text/html" title="Basics :: Hugo Relearn Theme">
     <link href="../basics/index.xml" rel="alternate" type="application/rss+xml" title="Basics :: Hugo Relearn Theme">
-    <link href="../images/logo.svg?1684521957" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1684526828" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1684521959" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1684521959" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1684521959" rel="stylesheet">
-    <link href="../css/auto-complete.css?1684521959" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1684521959" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1684521959" rel="stylesheet">
-    <link href="../css/fonts.css?1684521959" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1684521959" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1684521959" rel="stylesheet">
-    <link href="../css/theme-auto.css?1684521959" rel="stylesheet" id="variant-style">
-    <link href="../css/variant.css?1684521959" rel="stylesheet">
-    <link href="../css/print.css?1684521959" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1684521959" rel="stylesheet">
-    <link href="../css/ie.css?1684521959" rel="stylesheet">
-    <script src="../js/url.js?1684521959"></script>
-    <script src="../js/variant.js?1684521959"></script>
+    <link href="../css/fontawesome-all.min.css?1684526831" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1684526831" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1684526831" rel="stylesheet">
+    <link href="../css/auto-complete.css?1684526831" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1684526831" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1684526831" rel="stylesheet">
+    <link href="../css/fonts.css?1684526831" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1684526831" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1684526831" rel="stylesheet">
+    <link href="../css/theme-auto.css?1684526831" rel="stylesheet" id="variant-style">
+    <link href="../css/variant.css?1684526831" rel="stylesheet">
+    <link href="../css/print.css?1684526831" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1684526831" rel="stylesheet">
+    <link href="../css/ie.css?1684526831" rel="stylesheet">
+    <script src="../js/url.js?1684526831"></script>
+    <script src="../js/variant.js?1684526831"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -191,6 +191,27 @@
 <hr>
 <h2 id="590-2022-12-23">5.9.0 (2022-12-23)</h2>
 <ul>
+<li>
+<p><span class="badge cstyle warning badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-triangle"></i></span><span class="badge-content">Breaking</span></span> With this version it is now possible to not only have sections on the first menu level but also pages.</p>
+<p>It was later discovered, that this causes pages only meant to be displayed in the <code>More</code> section of the menu and stored directly inside your <code>content</code> directory to now show up in the menu aswell.</p>
+<p>To get rid of this undesired behavior you have two choices:</p>
+<ol>
+<li>
+<p>Make the page file for the <code>More</code> section a <a href="https://gohugo.io/content-management/page-bundles/#headless-bundle" target="_blank">headless branch bundle</a> (contained in its own subdirectory and called <code>_index.md</code>) and add the following frontmatter configuration to the file (see exampleSite&rsquo;s <code>content/showcase</code>). This causes its content to <strong>not</strong> be contained in the sitemap.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Store the page file for the <code>More</code> section below a parent headless branch bundle and add the following frontmatter to the <strong>parent</strong>. In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite&rsquo;s <code>content/more/</code> and <code>content/more/credits</code>). This causes its content to be contained in the sitemap.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;always&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
 <li>
 <p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> The required folder name for the <a href="../shortcodes/attachments/"><code>attachments</code> shortcode</a> was changed for leaf bundles.</p>
 <p>Previously, the attachments for leaf bundles in non-multilang setups were required to be in a <code>files</code> subdirectory. For page bundles and leaf bundles in multilang setups they were always required to be in a <code>_index.&lt;LANGCODE&gt;.files</code> or <code>index.&lt;LANGCODE&gt;.files</code> subdirectory accordingly.</p>
@@ -716,10 +737,10 @@
 <p>Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.</p>
 <p>Just download at least version <span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fab fa-hackerrank"></i></span><span class="badge-content" style="background-color: fuchsia;">0.95.0</span></span> of the <a href="https://gohugo.io/getting-started/installing/" target="_blank">Hugo binary</a> for your OS (Windows, Linux, Mac).</p>
 <p>
-<a href="#image-46c93cb16fc024e98e08507bdcb0471c" class="lightbox-link">
+<a href="#image-004cc29992ea2f9ec191016bec4a2f75" class="lightbox-link">
 <img src="../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="shadow" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-46c93cb16fc024e98e08507bdcb0471c">
+<a href="javascript:history.back();" class="lightbox" id="image-004cc29992ea2f9ec191016bec4a2f75">
 <img src="../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -766,10 +787,10 @@
 </span></span></code></pre></div><p>renders as</p>
 <p>
 		
-<a href="#image-03d71ee10cdd70b04352aad8ec2b42f1" class="lightbox-link">
+<a href="#image-2908fd0a355c0756b908c21520c6d441" class="lightbox-link">
 <img src="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="shadow" style="height: auto; width: 60pc;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-03d71ee10cdd70b04352aad8ec2b42f1">
+<a href="javascript:history.back();" class="lightbox" id="image-2908fd0a355c0756b908c21520c6d441">
 <img src="../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="lightbox-image" loading="lazy">
 </a></p>
 <p>The Relearn theme provides archetypes to create skeletons for your website. Begin by creating your first chapter page with the following command</p>
@@ -924,10 +945,10 @@
 </span></span></code></pre></div><p>You can access this page by either clicking on the magnifier glass or by typing some search term and pressing <code>ENTER</code> inside of the menu&rsquo;s search box .</p>
 <p>
 		
-<a href="#image-cfa59a936b6bed765c5c5ef3e130b85e" class="lightbox-link">
+<a href="#image-1256de87af1b9f45274b9be0c66bdec6" class="lightbox-link">
 <img src="../basics/configuration/search_page.png?&amp;width=60pc" alt="Screenshot of the dedicated search page" style="height: auto; width: 60pc;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cfa59a936b6bed765c5c5ef3e130b85e">
+<a href="javascript:history.back();" class="lightbox" id="image-1256de87af1b9f45274b9be0c66bdec6">
 <img src="../basics/configuration/search_page.png?&amp;width=60pc" alt="Screenshot of the dedicated search page" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="activate-print-support">Activate print support</h2>
@@ -978,10 +999,10 @@ default values:</p>
 </span></span></code></pre></div><p>The home button is going to look like this:</p>
 <p>
 		
-<a href="#image-378ad752fbc4175bddc3531d4958d882" class="lightbox-link">
+<a href="#image-9236154d69088fa5cc13f402e6b2786f" class="lightbox-link">
 <img src="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=18.75rem" alt="Default Home Button" class="shadow" style="height: auto; width: 18.75rem;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-378ad752fbc4175bddc3531d4958d882">
+<a href="javascript:history.back();" class="lightbox" id="image-9236154d69088fa5cc13f402e6b2786f">
 <img src="../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=18.75rem" alt="Default Home Button" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -1087,13 +1108,13 @@ You could use an <code>img</code> HTML tag and reference an image created under 
 <p>This interactive tool may help you to generate your own color variant stylesheet.</p>
 
 <div class="expand">
-    <input type="checkbox" id="expand-f831fea2941241c9dc2b2cd2cfa8c15e" aria-controls="expandcontent-f831fea2941241c9dc2b2cd2cfa8c15e" >
-    <label class="expand-label" for="expand-f831fea2941241c9dc2b2cd2cfa8c15e" >
+    <input type="checkbox" id="expand-22bf9ba8638418cefd36e873d5abcaa6" aria-controls="expandcontent-22bf9ba8638418cefd36e873d5abcaa6" >
+    <label class="expand-label" for="expand-22bf9ba8638418cefd36e873d5abcaa6" >
         <i class="fas fa-chevron-down"></i>
         <i class="fas fa-chevron-right"></i>
         Show usage instructions
     </label>
-    <div id="expandcontent-f831fea2941241c9dc2b2cd2cfa8c15e" class="expand-content">
+    <div id="expandcontent-22bf9ba8638418cefd36e873d5abcaa6" class="expand-content">
 <p>To get started, first select a color variant from the variant switch in the lower left sidebar that fits you best as a starting point.</p>
 <p>The graph is interactive and reflect the current colors. You can click on any of the colored boxes to adjust the respective color. The graph <strong>and the page</strong> will update accordingly.</p>
 <p>The arrowed lines reflect how colors are inherited thru different parts of the theme if the descendent isn&rsquo;t overwritten. If you want to delete a color and let it inherit from its parent, just delete the value from the input field.</p>
@@ -2195,21 +2216,21 @@ window.variants && variants.generator( '#vargenerator' );
         </div>
       </main>
     </div>
-    <script src="../js/clipboard.min.js?1684521959" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-color.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-dispatch.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-drag.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-ease.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-interpolate.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-selection.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-timer.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-transition.min.js?1684521959" defer></script>
-    <script src="../js/d3/d3-zoom.min.js?1684521959" defer></script>
-    <script src="../js/mermaid.min.js?1684521959" defer></script>
+    <script src="../js/clipboard.min.js?1684526831" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-color.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-dispatch.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-drag.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-ease.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-interpolate.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-selection.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-timer.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-transition.min.js?1684526831" defer></script>
+    <script src="../js/d3/d3-zoom.min.js?1684526831" defer></script>
+    <script src="../js/mermaid.min.js?1684526831" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
     </script>
-    <script src="../js/theme.js?1684521959" defer></script>
+    <script src="../js/theme.js?1684526831" defer></script>
   </body>
 </html>

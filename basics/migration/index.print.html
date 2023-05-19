@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/migration/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/basics/migration/index.html" rel="canonical" type="text/html" title="What&#39;s New :: Hugo Relearn Theme">
     <link href="../../basics/migration/index.xml" rel="alternate" type="application/rss+xml" title="What&#39;s New :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1684521957" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1684526828" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1684521959" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1684521959" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1684521959" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1684521959" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1684521959" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1684521959" rel="stylesheet">
-    <link href="../../css/fonts.css?1684521959" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1684521959" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1684521959" rel="stylesheet">
-    <link href="../../css/theme-auto.css?1684521959" rel="stylesheet" id="variant-style">
-    <link href="../../css/variant.css?1684521959" rel="stylesheet">
-    <link href="../../css/print.css?1684521959" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1684521959" rel="stylesheet">
-    <link href="../../css/ie.css?1684521959" rel="stylesheet">
-    <script src="../../js/url.js?1684521959"></script>
-    <script src="../../js/variant.js?1684521959"></script>
+    <link href="../../css/fontawesome-all.min.css?1684526831" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1684526831" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1684526831" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1684526831" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1684526831" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1684526831" rel="stylesheet">
+    <link href="../../css/fonts.css?1684526831" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1684526831" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1684526831" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1684526831" rel="stylesheet" id="variant-style">
+    <link href="../../css/variant.css?1684526831" rel="stylesheet">
+    <link href="../../css/print.css?1684526831" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1684526831" rel="stylesheet">
+    <link href="../../css/ie.css?1684526831" rel="stylesheet">
+    <script src="../../js/url.js?1684526831"></script>
+    <script src="../../js/variant.js?1684526831"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -178,6 +178,27 @@
 <hr>
 <h2 id="590-2022-12-23">5.9.0 (2022-12-23)</h2>
 <ul>
+<li>
+<p><span class="badge cstyle warning badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-triangle"></i></span><span class="badge-content">Breaking</span></span> With this version it is now possible to not only have sections on the first menu level but also pages.</p>
+<p>It was later discovered, that this causes pages only meant to be displayed in the <code>More</code> section of the menu and stored directly inside your <code>content</code> directory to now show up in the menu aswell.</p>
+<p>To get rid of this undesired behavior you have two choices:</p>
+<ol>
+<li>
+<p>Make the page file for the <code>More</code> section a <a href="https://gohugo.io/content-management/page-bundles/#headless-bundle" target="_blank">headless branch bundle</a> (contained in its own subdirectory and called <code>_index.md</code>) and add the following frontmatter configuration to the file (see exampleSite&rsquo;s <code>content/showcase</code>). This causes its content to <strong>not</strong> be contained in the sitemap.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Store the page file for the <code>More</code> section below a parent headless branch bundle and add the following frontmatter to the <strong>parent</strong>. In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite&rsquo;s <code>content/more/</code> and <code>content/more/credits</code>). This causes its content to be contained in the sitemap.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;always&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
 <li>
 <p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> The required folder name for the <a href="../../shortcodes/attachments/"><code>attachments</code> shortcode</a> was changed for leaf bundles.</p>
 <p>Previously, the attachments for leaf bundles in non-multilang setups were required to be in a <code>files</code> subdirectory. For page bundles and leaf bundles in multilang setups they were always required to be in a <code>_index.&lt;LANGCODE&gt;.files</code> or <code>index.&lt;LANGCODE&gt;.files</code> subdirectory accordingly.</p>
@@ -698,8 +719,8 @@
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1684521959" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1684521959" defer></script>
-    <script src="../../js/theme.js?1684521959" defer></script>
+    <script src="../../js/clipboard.min.js?1684526831" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1684526831" defer></script>
+    <script src="../../js/theme.js?1684526831" defer></script>
   </body>
 </html>

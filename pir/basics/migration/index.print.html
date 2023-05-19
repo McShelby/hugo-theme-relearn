@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/migration/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/migration/index.html" rel="canonical" type="text/html" title="What&#39;s New :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="../../../pir/basics/migration/index.xml" rel="alternate" type="application/rss+xml" title="What&#39;s New :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="../../../images/logo.svg?1684521960" rel="icon" type="image/svg+xml">
+    <link href="../../../images/logo.svg?1684526831" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../../css/fontawesome-all.min.css?1684521962" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fontawesome-all.min.css?1684521962" rel="stylesheet"></noscript>
-    <link href="../../../css/nucleus.css?1684521962" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1684521962" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/auto-complete.css?1684521962" rel="stylesheet"></noscript>
-    <link href="../../../css/perfect-scrollbar.min.css?1684521962" rel="stylesheet">
-    <link href="../../../css/fonts.css?1684521962" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fonts.css?1684521962" rel="stylesheet"></noscript>
-    <link href="../../../css/theme.css?1684521962" rel="stylesheet">
-    <link href="../../../css/theme-auto.css?1684521962" rel="stylesheet" id="variant-style">
-    <link href="../../../css/variant.css?1684521962" rel="stylesheet">
-    <link href="../../../css/print.css?1684521962" rel="stylesheet" media="print">
-    <link href="../../../css/format-print.css?1684521962" rel="stylesheet">
-    <link href="../../../css/ie.css?1684521962" rel="stylesheet">
-    <script src="../../../js/url.js?1684521962"></script>
-    <script src="../../../js/variant.js?1684521962"></script>
+    <link href="../../../css/fontawesome-all.min.css?1684526834" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fontawesome-all.min.css?1684526834" rel="stylesheet"></noscript>
+    <link href="../../../css/nucleus.css?1684526834" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1684526834" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/auto-complete.css?1684526834" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar.min.css?1684526834" rel="stylesheet">
+    <link href="../../../css/fonts.css?1684526834" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fonts.css?1684526834" rel="stylesheet"></noscript>
+    <link href="../../../css/theme.css?1684526834" rel="stylesheet">
+    <link href="../../../css/theme-auto.css?1684526834" rel="stylesheet" id="variant-style">
+    <link href="../../../css/variant.css?1684526834" rel="stylesheet">
+    <link href="../../../css/print.css?1684526834" rel="stylesheet" media="print">
+    <link href="../../../css/format-print.css?1684526834" rel="stylesheet">
+    <link href="../../../css/ie.css?1684526834" rel="stylesheet">
+    <script src="../../../js/url.js?1684526834"></script>
+    <script src="../../../js/variant.js?1684526834"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -185,6 +185,27 @@
 <hr>
 <h2 id="590-2022-12-23">5.9.0 (2022-12-23)</h2>
 <ul>
+<li>
+<p><span class="badge cstyle warning badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-triangle"></i></span><span class="badge-content">Break'n</span></span> Wit' this version it be now poss'ble t' not only have sections on th' first menu level but also planks.</p>
+<p>It was later discovered, that this causes planks only meant t' be displayed 'n th' <code>More</code> section o' th' menu an' stored directly inside yer <code>rrrambl'n</code> directory t' now show up 'n th' menu aswell.</p>
+<p>T' get rid o' this undesired behavior ye have two choices:</p>
+<ol>
+<li>
+<p>Make th' plank file fer th' <code>More</code> section a <a href="https://gohugo.io/content-management/page-bundles/#headless-bundle" target="_blank">headless branch bundle</a> (contained 'n its own subdirectory an' called <code>_index.md</code>) an' add th' follow'n frontmatter configurat'n t' th' file (see exampleSite&rsquo;s <code>content/showcase</code>). This causes its rrrambl'n t' <strong>not</strong> be contained 'n th' sitemap.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Store th' plank file fer th' <code>More</code> section below a parent headless branch bundle an' add th' follow'n frontmatter t' th' <strong>parent</strong>. In this case, th' file itself can be a branch bundle, leaf bundle or simple plank (see exampleSite&rsquo;s <code>content/more/</code> an' <code>content/more/credits</code>). This causes its rrrambl'n t' be contained 'n th' sitemap.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;always&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
 <li>
 <p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Th' required folder name fer th' <a href="../../../shortcodes/attachments/"><code>attachments</code> shortcode</a> was changed fer leaf bundles.</p>
 <p>Previously, th' attachments fer leaf bundles 'n non-multilang setups were required t' be 'n a <code>files</code> subdirectory. For plank bundles an' leaf bundles 'n multilang setups they were always required t' be 'n a <code>_index.&lt;LANGCODE&gt;.files</code> or <code>index.&lt;LANGCODE&gt;.files</code> subdirectory accordingly.</p>
@@ -706,8 +727,8 @@
         </div>
       </main>
     </div>
-    <script src="../../../js/clipboard.min.js?1684521963" defer></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1684521963" defer></script>
-    <script src="../../../js/theme.js?1684521963" defer></script>
+    <script src="../../../js/clipboard.min.js?1684526834" defer></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1684526834" defer></script>
+    <script src="../../../js/theme.js?1684526834" defer></script>
   </body>
 </html>
