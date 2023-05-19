@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/index.html" rel="canonical" type="text/html" title="Basics :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="../../pir/basics/index.xml" rel="alternate" type="application/rss+xml" title="Basics :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="../../images/logo.svg?1684514847" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1684521960" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1684514850" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1684514850" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1684514850" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1684514850" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1684514850" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1684514850" rel="stylesheet">
-    <link href="../../css/fonts.css?1684514850" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1684514850" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1684514850" rel="stylesheet">
-    <link href="../../css/theme-auto.css?1684514850" rel="stylesheet" id="variant-style">
-    <link href="../../css/variant.css?1684514850" rel="stylesheet">
-    <link href="../../css/print.css?1684514850" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1684514850" rel="stylesheet">
-    <link href="../../css/ie.css?1684514850" rel="stylesheet">
-    <script src="../../js/url.js?1684514850"></script>
-    <script src="../../js/variant.js?1684514850"></script>
+    <link href="../../css/fontawesome-all.min.css?1684521962" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1684521962" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1684521962" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1684521962" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1684521962" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1684521962" rel="stylesheet">
+    <link href="../../css/fonts.css?1684521962" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1684521962" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1684521962" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1684521962" rel="stylesheet" id="variant-style">
+    <link href="../../css/variant.css?1684521962" rel="stylesheet">
+    <link href="../../css/print.css?1684521962" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1684521962" rel="stylesheet">
+    <link href="../../css/ie.css?1684521962" rel="stylesheet">
+    <script src="../../js/url.js?1684521962"></script>
+    <script src="../../js/variant.js?1684521962"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -70,9 +70,9 @@
       </nav>
       <main id="body-inner" class="highlightable chapter narrow" tabindex="-1">
         <div class="flex-block-wrapper">
-          <div id="head-tags">
-          </div>
           <article class="chapter">
+            <header class="headline">
+            </header>
 <div class="article-subheading">T&#39; chapterrr 1</div>
 <h1 id="basics">Basics</h1>
 
@@ -87,6 +87,8 @@
           <section>
             <h1 class="a11y-only">Subsct&#39;ns o&#39; Basics</h1>
           <article class="default">
+            <header class="headline">
+            </header>
 <h1 id="whats-new">What&#39;s New</h1>
 
 
@@ -111,6 +113,16 @@
 </li>
 <li>
 <p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' new parameter <code>breadcrumbSeparator</code> be now avail'ble 'n yer <code>config.toml</code> t' change th' - well - separator o' th' breadcrumb items. An appropriate default be 'n place if ye do not configure anyth'n.</p>
+</li>
+<li>
+<p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> T' give ye more flexibility 'n customiz'n yer article layout a new partial <code>content-header.html</code> be introduced.</p>
+<p>This came out o' th' requirement t' cust'mize th' posit'n o' article tags, which by default be displayed above th' title. A second requirement was t' also show additional <a href="https://gohugo.io/content-management/taxonomies/" target="_blank">taxonomies</a> not supported by th' theme nativly. While Cap'n Hugo supports tags an' categories by default, th' theme only displays tags.</p>
+<p>So how does it work start'n from th' theme&rsquo;s default whar' tags be only shown above th' title?</p>
+<ol>
+<li>Hide tags above title: Overwrite <code>content-header.html</code> wit' an empty file.</li>
+<li>Show tags below title: Overwrite <code>heading-post.html</code> an' add <code>{{- partial &quot;tags.html&quot; . }}</code> t' it.</li>
+<li>Show tags below article: Overwrite <code>content-footer.html</code> an' add <code>{{- partial &quot;tags.html&quot; . }}</code> t' it.</li>
+</ol>
 </li>
 </ul>
 <hr>
@@ -707,16 +719,18 @@
           </article>
 
           <article class="default">
+            <header class="headline">
+            </header>
 <h1 id="requirrrements">Requirrrements</h1>
 
 
 <p>Thanks t' th' simplicity o' Cap'n Hugo, this plank be as empty as this theme needs requirements.</p>
 <p>Just download at least version <span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fab fa-hackerrank"></i></span><span class="badge-content" style="background-color: fuchsia;">0.95.0</span></span> o' th' <a href="https://gohugo.io/getting-started/installing/" target="_blank">Cap'n Hugo binary</a> fer yer OS (Windows, Linux, Mac).</p>
 <p>
-<a href="#image-9dd29aae72f00909475adf0dc44ed6fd" class="lightbox-link">
+<a href="#image-a999076f184f9c584764ff6811fce19c" class="lightbox-link">
 <img src="../../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="shadow" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9dd29aae72f00909475adf0dc44ed6fd">
+<a href="javascript:history.back();" class="lightbox" id="image-a999076f184f9c584764ff6811fce19c">
 <img src="../../basics/requirements/magic.gif?classes=shadow" alt="Magic" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -726,6 +740,11 @@
           </article>
 
           <article class="default">
+            <header class="headline">
+<div class="tags">
+  <a class="tag-link" href="../../pir/tags/documentatn/index.html">documentat&#39;n</a>
+</div>
+            </header>
 <h1 id="installatn">Installat&#39;n</h1>
 
 
@@ -760,10 +779,10 @@
 </span></span></code></pre></div><p>renders as</p>
 <p>
 		
-<a href="#image-32252c02d42734a5e5560cf150c6fe5d" class="lightbox-link">
+<a href="#image-006ef4f75e80c6d068d4d5448476992f" class="lightbox-link">
 <img src="../../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="shadow" style="height: auto; width: 60pc;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-32252c02d42734a5e5560cf150c6fe5d">
+<a href="javascript:history.back();" class="lightbox" id="image-006ef4f75e80c6d068d4d5448476992f">
 <img src="../../basics/installation/chapter.png?classes=shadow&amp;width=60pc" alt="A Chapter" class="lightbox-image" loading="lazy">
 </a></p>
 <p>Th' Relearrrn theme provides archetypes t' create skeletons fer yer website. Begin by creat'n yer first chapter plank wit' th' follow'n command</p>
@@ -803,6 +822,8 @@
           </article>
 
           <article class="default">
+            <header class="headline">
+            </header>
 <h1 id="configurrratn">Configurrrat&#39;n</h1>
 
 
@@ -918,10 +939,10 @@
 </span></span></code></pre></div><p>Ye can access this plank by either click'n on th' magnifier glass or by typ'n some search term an' press'n <code>ENTER</code> inside o' th' menu&rsquo;s search box .</p>
 <p>
 		
-<a href="#image-12b5ed62fb3fe7a04b011f0630747deb" class="lightbox-link">
+<a href="#image-d581333204f2063d258064146044f99d" class="lightbox-link">
 <img src="../../basics/configuration/search_page.png?&amp;width=60pc" alt="Screenshot o' th' dedicated search page" style="height: auto; width: 60pc;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-12b5ed62fb3fe7a04b011f0630747deb">
+<a href="javascript:history.back();" class="lightbox" id="image-d581333204f2063d258064146044f99d">
 <img src="../../basics/configuration/search_page.png?&amp;width=60pc" alt="Screenshot o' th' dedicated search page" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="activate-print-support">Activate print support</h2>
@@ -972,10 +993,10 @@ default values:</p>
 </span></span></code></pre></div><p>Th' home button be go'n t' look like this:</p>
 <p>
 		
-<a href="#image-68d34410caa5453da231e7277f4fa320" class="lightbox-link">
+<a href="#image-e156bb30effbe17f8f784cd732297dd4" class="lightbox-link">
 <img src="../../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=18.75rem" alt="Default Home Button" class="shadow" style="height: auto; width: 18.75rem;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-68d34410caa5453da231e7277f4fa320">
+<a href="javascript:history.back();" class="lightbox" id="image-e156bb30effbe17f8f784cd732297dd4">
 <img src="../../basics/configuration/home_button_defaults.png?classes=shadow&amp;width=18.75rem" alt="Default Home Button" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -985,6 +1006,8 @@ default values:</p>
           </article>
 
           <article class="default">
+            <header class="headline">
+            </header>
 <h1 id="customizatn">Customizat&#39;n</h1>
 
 
@@ -1010,7 +1033,8 @@ default values:</p>
 <li><code>menu-footer.html</code>: footer o' th' the left menu</li>
 <li><code>toc.html</code>: t'ble o' contents</li>
 <li><code>rrrambl'n.html</code>: th' rrrambl'n plank itself. This can be overridden if ye want t' display page&rsquo;s meta data above or below th' rrrambl'n.</li>
-<li><code>content-footer</code>: footer below th' rrrambl'n, has a default implementat'n but ye can overwrite it if ye don&rsquo;t like it.</li>
+<li><code>content-header.html</code>: header above th' title, has a default implementat'n but ye can overwrite it if ye don&rsquo;t like it.</li>
+<li><code>content-footer.html</code>: footer below th' rrrambl'n, has a default implementat'n but ye can overwrite it if ye don&rsquo;t like it.</li>
 </ul>
 <h2 id="change-the-logo">Change th' logo</h2>
 <p>Create a new file 'n <code>layouts/partials/</code> named <code>logo.html</code>. Then write any HTML ye want.
@@ -1074,19 +1098,21 @@ Ye could use an <code>img</code> HTML tag an' reference an image created under t
           </article>
 
           <article class="default">
+            <header class="headline">
+            </header>
 <h1 id="stylesheet-generrratr">Stylesheet generrrat&#39;r</h1>
 
 
 <p>This interactive tool may help ye t' generate yer own color variant stylesheet.</p>
 
 <div class="expand">
-    <input type="checkbox" id="expand-3f9a54c6557c9ecc13b1d1731f89b866" aria-controls="expandcontent-3f9a54c6557c9ecc13b1d1731f89b866" >
-    <label class="expand-label" for="expand-3f9a54c6557c9ecc13b1d1731f89b866" >
+    <input type="checkbox" id="expand-b78ef2a0b9b833c507f9d6c80dd80445" aria-controls="expandcontent-b78ef2a0b9b833c507f9d6c80dd80445" >
+    <label class="expand-label" for="expand-b78ef2a0b9b833c507f9d6c80dd80445" >
         <i class="fas fa-chevron-down"></i>
         <i class="fas fa-chevron-right"></i>
         Show usage instruct'ns
     </label>
-    <div id="expandcontent-3f9a54c6557c9ecc13b1d1731f89b866" class="expand-content">
+    <div id="expandcontent-b78ef2a0b9b833c507f9d6c80dd80445" class="expand-content">
 <p>T' get started, first select a color variant from th' variant switch 'n th' lower left sidebar that fits ye best as a start'n point.</p>
 <p>Th' graph be interactive an' reflect th' current colors. Ye can click on any o' th' colored boxes t' adjust th' respective color. Th' graph <strong>an' th' plank</strong> will update accordingly.</p>
 <p>Th' arrowed lines reflect how colors be inherited thru different parts o' th' theme if th' descendent isn&rsquo;t overwritten. If ye want t' delete a color an' let it inherit from its parent, just delete th' value from th' input field.</p>
@@ -1136,6 +1162,8 @@ window.variants && variants.generator( '#vargenerator' );
           </article>
 
           <article class="default">
+            <header class="headline">
+            </header>
 <h1 id="historrry">Historrry</h1>
 
 
@@ -2189,8 +2217,8 @@ window.variants && variants.generator( '#vargenerator' );
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1684514850" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1684514850" defer></script>
-    <script src="../../js/theme.js?1684514850" defer></script>
+    <script src="../../js/clipboard.min.js?1684521962" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1684521962" defer></script>
+    <script src="../../js/theme.js?1684521962" defer></script>
   </body>
 </html>
