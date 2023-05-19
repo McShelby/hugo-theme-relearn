@@ -13,7 +13,7 @@
       {{- if not $title }}
         {{- $title = .Data.Singular | humanize }}
       {{- end }}
-      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (.Title | humanize) }}
+      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Title }}
     {{- end }}
     {{- $pages = $pages | append (dict "uri" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) "title" $title "tags" .Params.tags "description" .Description "content" (.Plain | htmlUnescape)) }}
   {{- end }}
