@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/migration/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/basics/migration/index.html" rel="canonical" type="text/html" title="What&#39;s New :: Hugo Relearn Theme">
     <link href="../../basics/migration/index.xml" rel="alternate" type="application/rss+xml" title="What&#39;s New :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1684528457" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1684529020" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1684528461" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1684528461" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1684528461" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1684528461" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1684528461" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1684528461" rel="stylesheet">
-    <link href="../../css/fonts.css?1684528461" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1684528461" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1684528461" rel="stylesheet">
-    <link href="../../css/theme-auto.css?1684528461" rel="stylesheet" id="variant-style">
-    <link href="../../css/variant.css?1684528461" rel="stylesheet">
-    <link href="../../css/print.css?1684528461" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1684528461" rel="stylesheet">
-    <link href="../../css/ie.css?1684528461" rel="stylesheet">
-    <script src="../../js/url.js?1684528461"></script>
-    <script src="../../js/variant.js?1684528461"></script>
+    <link href="../../css/fontawesome-all.min.css?1684529022" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1684529022" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1684529022" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1684529022" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1684529022" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1684529022" rel="stylesheet">
+    <link href="../../css/fonts.css?1684529022" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1684529022" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1684529022" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1684529022" rel="stylesheet" id="variant-style">
+    <link href="../../css/variant.css?1684529022" rel="stylesheet">
+    <link href="../../css/print.css?1684529022" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1684529022" rel="stylesheet">
+    <link href="../../css/ie.css?1684529022" rel="stylesheet">
+    <script src="../../js/url.js?1684529022"></script>
+    <script src="../../js/variant.js?1684529022"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -90,17 +90,17 @@
 <p>Hugo&rsquo;s default taxonmies <code>tags</code> and <code>categories</code> are already contained in the theme&rsquo;s i18n files. If you have self-defined taxonomies, you can add translations by adding them to your own i18n files. If you don&rsquo;t provide translations, the singualar and plural forms are taken as configured in your <code>config.toml</code>.</p>
 </li>
 <li>
-<p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> The new parameter <code>breadcrumbSeparator</code> is now available in your <code>config.toml</code> to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.</p>
-</li>
-<li>
 <p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> To give you more flexibility in customizing your article layout a new partial <code>content-header.html</code> is introduced.</p>
-<p>This came out of the requirement to customize the position of article tags, which by default is displayed above the title. A second requirement was to also show additional <a href="https://gohugo.io/content-management/taxonomies/" target="_blank">taxonomies</a> not supported by the theme nativly. While Hugo supports tags and categories by default, the theme only displays tags.</p>
-<p>So how does it work starting from the theme&rsquo;s default where tags are only shown above the title?</p>
+<p>This came out of the requirement to customize the position of article tags, which by default are displayed above the title. A second requirement was to also show additional <a href="https://gohugo.io/content-management/taxonomies/" target="_blank">taxonomies</a> not supported by the theme natively. While Hugo supports tags and categories by default, the theme only displays tags.</p>
+<p>So how to adjust the position of tags starting from the theme&rsquo;s default where tags are only shown above the title?</p>
 <ol>
 <li>Hide tags above title: Overwrite <code>content-header.html</code> with an empty file.</li>
-<li>Show tags below title: Overwrite <code>heading-post.html</code> and add <code>{{- partial &quot;tags.html&quot; . }}</code> to it.</li>
-<li>Show tags below article: Overwrite <code>content-footer.html</code> and add <code>{{- partial &quot;tags.html&quot; . }}</code> to it.</li>
+<li>Show tags between title and content: Overwrite <code>heading-post.html</code> and add <code>{{- partial &quot;tags.html&quot; . }}</code> to it.</li>
+<li>Show tags below content: Overwrite <code>content-footer.html</code> and add <code>{{- partial &quot;tags.html&quot; . }}</code> to it.</li>
 </ol>
+</li>
+<li>
+<p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> The new parameter <code>breadcrumbSeparator</code> is now available in your <code>config.toml</code> to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.</p>
 </li>
 </ul>
 <hr>
@@ -719,8 +719,8 @@
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1684528461" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1684528461" defer></script>
-    <script src="../../js/theme.js?1684528461" defer></script>
+    <script src="../../js/clipboard.min.js?1684529023" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1684529023" defer></script>
+    <script src="../../js/theme.js?1684529023" defer></script>
   </body>
 </html>
