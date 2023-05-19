@@ -2,6 +2,9 @@
 {{- $content := .content }}
 {{- with $page }}
           <article class="home">
+            <header class="headline">
+              {{- partial "content-header.html" . }}
+            </header>
 {{ partial "heading-pre.html" . }}<h1 id="{{ .Title | anchorize }}">{{ .Title }}</h1>{{ partial "heading-post.html" . }}
 
 {{ $content | safeHTML }}

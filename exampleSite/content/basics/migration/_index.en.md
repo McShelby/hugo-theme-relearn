@@ -26,6 +26,16 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new parameter `breadcrumbSeparator` is now available in your `config.toml` to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To give you more flexibility in customizing your article layout a new partial `content-header.html` is introduced.
+
+  This came out of the requirement to customize the position of article tags, which by default is displayed above the title. A second requirement was to also show additional [taxonomies](https://gohugo.io/content-management/taxonomies/) not supported by the theme nativly. While Hugo supports tags and categories by default, the theme only displays tags.
+
+  So how does it work starting from the theme's default where tags are only shown above the title?
+
+  1. Hide tags above title: Overwrite `content-header.html` with an empty file.
+  2. Show tags below title: Overwrite `heading-post.html` and add `{{- partial "tags.html" . }}` to it.
+  3. Show tags below article: Overwrite `content-footer.html` and add `{{- partial "tags.html" . }}` to it.
+
 ---
 
 ## 5.13.0 (2023-05-17)
