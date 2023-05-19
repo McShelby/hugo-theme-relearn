@@ -1,0 +1,24 @@
+{{- partialCached "page-meta.hugo" . .RelPermalink }}
+{{- partial "header.html" . }}
+          <article>
+{{- $page := . }}
+
+{{- $title := i18n .Data.Singular }}
+{{- if not $title }}
+  {{- $title = .Data.Singular | humanize }}
+{{- end }}
+{{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (.Title | humanize) }}
+<h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
+<ul>
+  {{- range sort .Pages "Title" }}
+    {{- $c:=""}}{{/* display pages of a term */}}
+    {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a></li>
+    {{- end }}
+  {{- end }}
+</ul>
+
+            <footer class="footline">
+            </footer>
+          </article>
+{{- partial "footer.html" . }}

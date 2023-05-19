@@ -1,1 +1,30 @@
-{{- partial "_taxonomy.html" . }}
+{{- partialCached "page-meta.hugo" . .RelPermalink }}
+{{- partial "header.html" . }}
+          <article>
+{{- $page := . }}
+
+{{- $title := i18n .Data.Plural }}
+{{- if not $title }}
+  {{- $title = .Data.Plural | humanize }}
+{{- end }}
+<h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
+<ul>
+  {{- range .Data.Terms.Alphabetical }}
+    {{- $c:=""}}{{/* display terms of a taxonomy */}}
+    {{- $len := 0 }}
+    {{- range .Pages }}
+      {{- $c:=""}}{{/* count pages of term */}}
+      {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+        {{- $len = add $len 1 }}
+      {{- end }}
+    {{- end }}
+    {{- if $len }}
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Page.Title }}</a> ({{ $len }})</li>
+    {{- end }}
+  {{- end }}
+</ul>
+
+            <footer class="footline">
+            </footer>
+          </article>
+{{- partial "footer.html" . }}
