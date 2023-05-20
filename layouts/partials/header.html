@@ -13,6 +13,11 @@
     {{- $title := .Title }}
     {{- if eq $outputFormat "searchpage" }}
       {{- $title = T "Search" }}
+    {{- else if eq .Kind "taxonomy" }}
+      {{- $title = i18n .Data.Plural }}
+      {{- if not $title }}
+        {{- $title = .Data.Plural | humanize }}
+      {{- end }}
     {{- else if eq .Kind "term" }}
       {{- $title = i18n .Data.Singular }}
       {{- if not $title }}
@@ -179,10 +184,15 @@
     {{- if $ispublished }}
       {{- $depth = add $depth 1 }}
       {{- $title := $to.Title }}
-      {{- if eq .Kind "term" }}
-        {{- $title = i18n .Data.Singular }}
+      {{- if eq .Kind "taxonomy" }}
+        {{- $title = i18n $to.Data.Plural }}
         {{- if not $title }}
-          {{- $title = .Data.Singular | humanize }}
+          {{- $title = $to.Data.Plural | humanize }}
+        {{- end }}
+      {{- else if eq .Kind "term" }}
+        {{- $title = i18n $to.Data.Singular }}
+        {{- if not $title }}
+          {{- $title = $to.Data.Singular | humanize }}
         {{- end }}
         {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) $to.Title }}
       {{- end }}
