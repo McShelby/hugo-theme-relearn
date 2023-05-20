@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.14.1 (2023-05-19)
+
+### Fixes
+
+- [**bug**] tags: translate breadcrumb and title for taxonomy [#532](https://github.com/McShelby/hugo-theme-relearn/issues/532)
+
+---
+
 ## 5.14.0 (2023-05-19)
 
 ### Enhancements
