@@ -1,5 +1,20 @@
           <div class="default-animation progress">
             <div class="toc-wrapper">
-{{- .TableOfContents }}
+{{- if eq .Kind "taxonomy" }}
+<nav id="TableOfContents">
+  <ul>
+  {{- $lastCapital := "" }}
+  {{- range .Data.Terms.Alphabetical }}
+    {{- $capital := substr .Page.Title 0 1 | upper }}
+    {{- if ne $lastCapital $capital }}
+    <li><a href="#{{ $capital | anchorize }}">{{ $capital }}</a></li>
+    {{- end }}
+    {{- $lastCapital = $capital }}
+  {{- end }}
+  </ul>
+</nav>
+{{- else }}
+  {{- .TableOfContents }}
+{{- end }}
             </div>
           </div>
