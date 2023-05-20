@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.14.3 (2023-05-20)
+
+### Fixes
+
+- [**bug**] tags: show taxonomy toc for standard installation [#533](https://github.com/McShelby/hugo-theme-relearn/issues/533)
+
+---
+
 ## 5.14.2 (2023-05-20)
 
 ### Fixes
