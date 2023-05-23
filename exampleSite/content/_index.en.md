@@ -58,8 +58,8 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Math and chemical formulae using MathJax]({{%relref "shortcodes/math" %}})
   - [Mermaid diagrams for flowcharts, sequences, gantts, pie, etc.]({{%relref "shortcodes/mermaid" %}})
   - [Colorful boxes]({{%relref "shortcodes/notice" %}})
+  - [OpenAPI specifications using Swagger UI]({{%relref "shortcodes/openapi" %}})
   - [Reveal you site's configuration parameter]({{%relref "shortcodes/siteparam" %}})
-  - [Swagger UI for your OpenAPI specifications]({{%relref "shortcodes/openapi" %}})
   - [Tabbed panels]({{%relref "shortcodes/tabs" %}})
 
 ## Support
