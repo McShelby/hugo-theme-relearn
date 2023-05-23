@@ -55,8 +55,8 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Math and chemical formulae using MathJax](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math)
   - [Mermaid diagrams for flowcharts, sequences, gantts, pie, etc.](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/mermaid)
   - [Colorful boxes](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/notice)
+  - [OpenAPI specifications using Swagger UI](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/openapi)
   - [Reveal you site's configuration parameter](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/siteparam)
-  - [Swagger UI for your OpenAPI Specifications](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/openapi)
   - [Tabbed panels](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tabs)
 
 ## Installation & Usage
