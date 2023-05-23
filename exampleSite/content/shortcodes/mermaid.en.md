@@ -524,3 +524,75 @@ C4Context
 
     UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 {{< /mermaid >}}
+
+### Mindmaps
+
+{{% notice note %}}
+Mindmaps need additional files to load [not contained in the standard distribution](https://mermaid.js.org/syntax/mindmap.html#integrating-with-your-library-website). Therfore they will not work with the distribution of this theme.
+{{% /notice %}}
+
+````go
+{{</* mermaid */>}}
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+{{</* /mermaid */>}}
+````
+
+{{< mermaid >}}
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+{{< /mermaid >}}
+
+### Timeline
+
+````go
+{{</* mermaid */>}}
+timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook
+         : Google
+    2005 : Youtube
+    2006 : Twitter
+{{</* /mermaid */>}}
+````
+
+{{< mermaid >}}
+timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook
+         : Google
+    2005 : Youtube
+    2006 : Twitter
+{{< /mermaid >}}
