@@ -7,6 +7,8 @@ You can use a `tab` shortcode to display a single tab.
 
 This is especially useful if you want to flag your code example with an explicit language.
 
+If you want multiple tabs grouped together you can wrap your tabs into the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}).
+
 {{% tab name="c" %}}
 
 ```python

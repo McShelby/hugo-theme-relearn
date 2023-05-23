@@ -7,7 +7,7 @@ The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
 This comes in handy eg. for providing code snippets for multiple languages.
 
-If you only want a single tab in your group, you can instead call the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) standalone.
+If you just want a single tab you can instead call the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) standalone.
 
 {{< tabs >}}
 {{% tab name="python" %}}
@@ -29,6 +29,8 @@ echo "Hello World!"
 ## Usage
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
+
+See the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) for a description of the parameter for nested tabs.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab name="shortcode" %}}
