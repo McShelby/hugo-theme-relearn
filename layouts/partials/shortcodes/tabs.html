@@ -1,5 +1,5 @@
 {{- $context := .context }}
-{{- $tabs := .tabs | default slice }}
+{{- $tabs := .content | default slice }}
 {{- $groupid := .groupid | default (partial "make-random-md5.hugo" $context) }}
 {{- with $context }}
 <div class="tab-panel" data-tab-group="{{ $groupid }}">
@@ -19,8 +19,7 @@
       data-tab-item="{{ .name }}"
       class="tab-content-text{{ cond (eq $idx 0) " active" ""}}"
     >
-{{ .content | safeHTML }}
-    </div>
+{{ .content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
     {{- end }}
   </div>
 </div>

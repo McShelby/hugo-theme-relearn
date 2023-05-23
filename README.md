@@ -57,7 +57,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Colorful boxes](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/notice)
   - [OpenAPI specifications using Swagger UI](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/openapi)
   - [Reveal you site's configuration parameter](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/siteparam)
-  - [Tabbed panels](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tabs)
+  - [Single tabbed panels](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tab) and [multiple tabbed panels](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tabs)
 
 ## Installation & Usage
 

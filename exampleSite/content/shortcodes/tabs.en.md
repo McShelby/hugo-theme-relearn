@@ -3,11 +3,13 @@ description = "Show content in tabbed views"
 title = "Tabs"
 +++
 
-The `tabs` shortcode displays arbitrary content in unlimited number of tabs.
+The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
-This comes in handy eg. for providing code snippets for multiple languages or providing configuration in different formats.
+This comes in handy eg. for providing code snippets for multiple languages.
 
-{{< tabs groupid="tabs-example-language" >}}
+If you only want a single tab in your group, you can instead call the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) standalone.
+
+{{< tabs >}}
 {{% tab name="python" %}}
 
 ```python
@@ -52,7 +54,7 @@ echo "Hello World!"
 ````go
 {{ partial "shortcodes/tabs.html" (dict
   "context" .
-  "tabs" (slice
+  "content" (slice
     (dict
       "name" "python"
       "content" ("```python\nprint(\"Hello World!\")\n```" | markdownify)
@@ -70,28 +72,26 @@ echo "Hello World!"
 
 ### Parameter
 
-| Name                  | Default          | Notes       |
-|:----------------------|:-----------------|:------------|
-| **groupid**           | `default`        | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. This sychronization applies to the whole site! |
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
-
-{{% notice note %}}
-When using tab views with different content sets, make sure to use a common `groupid` for equal sets of tabs but distinct `groupid` for different sets.
-
-The tab selection is restored automatically based on the `groupid` and if it cannot find a tab item because it came from the `'default'` group on a different page then the first tab is selected instead.
-{{% /notice %}}
+| Name                  | Default              | Notes       |
+|:----------------------|:---------------------|:------------|
+| **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab can not be found in a tab group the first tab is selected instead.<br><br>This sychronization applies to the whole site! |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
 ## Examples
 
-### Distinct `groupid`
+### Behavior of the `groupid`
 
+See what happens to the tab views while you select different tabs.
+
+While pressing a tab of group A switches all tab views of group A in sync (if the tab is available), the tabs of group B are left untouched.
+
+{{< tabs >}}
+{{% tab name="Group A, Tab View 1" %}}
 ````go
-{{</* tabs groupid="config" */>}}
+{{</* tabs groupid="a" */>}}
 {{%/* tab name="json" */%}}
 ```json
-{
-  "Hello": "World"
-}
+{ "Hello": "World" }
 ```
 {{%/* /tab */%}}
 {{%/* tab name="XML" */%}}
@@ -106,13 +106,48 @@ Hello = World
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
+{{% /tab %}}
+{{% tab name="Group A, Tab View 2" %}}
+````go
+{{</* tabs groupid="a" */>}}
+{{%/* tab name="json" */%}}
+```json
+{ "Hello": "World" }
+```
+{{%/* /tab */%}}
+{{%/* tab name="XML" */%}}
+```xml
+<Hello>World</Hello>
+```
+{{%/* /tab */%}}
+{{</* /tabs */>}}
+````
+{{% /tab %}}
+{{% tab name="Group B" %}}
+````go
+{{</* tabs groupid="b" */>}}
+{{%/* tab name="json" */%}}
+```json
+{ "Hello": "World" }
+```
+{{%/* /tab */%}}
+{{%/* tab name="XML" */%}}
+```xml
+<Hello>World</Hello>
+```
+{{%/* /tab */%}}
+{{</* /tabs */>}}
+````
+{{% /tab %}}
+{{< /tabs >}}
 
-{{< tabs groupid="tabs-example-config" >}}
+
+#### Group A, Tab View 1
+
+{{< tabs groupid="tab-example-a" >}}
 {{% tab name="json" %}}
 ```json
-{
-  "Hello": "World"
-}
+{ "Hello": "World" }
 ```
 {{% /tab %}}
 {{% tab name="XML" %}}
@@ -127,33 +162,27 @@ Hello = World
 {{% /tab %}}
 {{< /tabs >}}
 
-### Non-Distinct `groupid`
+#### Group A, Tab View 2
 
-See what happens to this tab view if you select **properties** tab from the previous example.
-
-````go
-{{</* tabs groupid="config" */>}}
-{{%/* tab name="json" */%}}
+{{< tabs groupid="tab-example-a" >}}
+{{% tab name="json" %}}
 ```json
-{
-  "Hello": "World"
-}
+{ "Hello": "World" }
 ```
-{{%/* /tab */%}}
-{{%/* tab name="XML" */%}}
+{{% /tab %}}
+{{% tab name="XML" %}}
 ```xml
 <Hello>World</Hello>
 ```
-{{%/* /tab */%}}
-{{</* /tabs */>}}
-````
+{{% /tab %}}
+{{< /tabs >}}
 
-{{< tabs groupid="tabs-example-config" >}}
+#### Group B
+
+{{< tabs groupid="tab-example-b" >}}
 {{% tab name="json" %}}
 ```json
-{
-  "Hello": "World"
-}
+{ "Hello": "World" }
 ```
 {{% /tab %}}
 {{% tab name="XML" %}}

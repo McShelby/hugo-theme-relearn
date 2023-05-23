@@ -18,6 +18,16 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.15.0 (2023-05-23)
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has changed behavior if you haven't set the `groupid` parameter.
+
+  Formerly all tab views without a `groupid` were treated as so they belong to the same group. Now, each tab view is treated as it was given a unique id.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has a new friend the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
+
+---
+
 ## 5.14.0 (2023-05-20)
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The taxonomy pages received some love in this release, making them better leverage available screen space and adding translation support for the taxonomy names.

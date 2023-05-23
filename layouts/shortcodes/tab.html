@@ -1,10 +1,17 @@
 {{- $content := .Inner }}
 {{- $name := (.Get "name") }}
+{{- $tabs := slice }}
+{{- if and .Parent (.Parent.Scratch.Get "tabs") }}
+    {{- $tabs = .Parent.Scratch.Get "tabs" }}
+{{- end }}
+{{- $tabs = $tabs | append (dict "name" (trim $name " ") "content" $content) }}
 {{- if .Parent }}
-    {{- if not (.Parent.Scratch.Get "tabs") }}
-        {{- .Parent.Scratch.Set "tabs" slice }}
-    {{- end }}
-    {{- $.Parent.Scratch.Add "tabs" (dict "name" (trim $name " ") "content" $content ) }}
+    {{- $.Parent.Scratch.Set "tabs" $tabs }}
 {{- else }}
-    {{- errorf "[%s] %q: tab shortcode missing its parent" site.Language.Lang .Page.Path -}}
-{{- end}}
+    {{- $c:=""}}{{/* if no containing tabs shortcode is present, we display this tab as single */}}
+    {{- partial "shortcodes/tabs.html" (dict
+        "context" .Page
+        "groupid" ""
+        "content" $tabs
+    ) }}
+{{- end }}

@@ -61,6 +61,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [OpenAPI specifications using Swagger UI]({{%relref "shortcodes/openapi" %}})
   - [Reveal you site's configuration parameter]({{%relref "shortcodes/siteparam" %}})
   - [Tabbed panels]({{%relref "shortcodes/tabs" %}})
+  - [Single tabbed panels]({{%relref "shortcodes/tab" %}}) and [multiple tabbed panels]({{%relref "shortcodes/tabs" %}})
 
 ## Support
 
