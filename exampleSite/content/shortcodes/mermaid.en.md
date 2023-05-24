@@ -527,10 +527,6 @@ C4Context
 
 ### Mindmaps
 
-{{% notice note %}}
-Mindmaps need additional files to load [not contained in the standard distribution](https://mermaid.js.org/syntax/mindmap.html#integrating-with-your-library-website). Therfore they will not work with the distribution of this theme.
-{{% /notice %}}
-
 ````go
 {{</* mermaid */>}}
 mindmap
