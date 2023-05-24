@@ -32,9 +32,9 @@
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | markdownify }}</div>
   <ul class="box-content attachments-files">
-  {{- $fileLink := printf "%s/%s" (.Language.ContentDir | default "content") .File.Dir }}
+  {{- $fileLink := printf "%s/%s" ($.hugo.workingDir | default "content") .File.Dir }}
   {{- $fileLink = replace (replace $fileLink "\\" "/") "content/" "" }}
-  {{- $fileDir := printf "%s/%s" (.Language.ContentDir | default "content") .File.Dir  }}
+  {{- $fileDir := printf "%s/%s" ($.hugo.workingDir | default "content") .File.Dir  }}
   {{- $fileDir = replace $fileDir "\\" "/" }}
   {{- $filesName := printf "%s.files" .File.BaseFileName }}
   {{- if and (eq .File.BaseFileName "index") (fileExists (printf "%sfiles" $fileDir)) }}
