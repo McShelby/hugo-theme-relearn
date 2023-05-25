@@ -3,7 +3,7 @@
 {{- $minor := int (index $version 1) }}
 {{- $id := "" }}
 {{- if or (and (eq $major 0) (ge $minor 108)) (gt $major 0) }}
-  {{- $id = .Ordinal }}
+  {{- $id = "" }}
 {{- end }}
 {{- partial "shortcodes/openapi.html" (dict
   "context" .Page

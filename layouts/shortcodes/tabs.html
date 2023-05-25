@@ -1,6 +1,13 @@
 {{- $unused := .Inner }}
+{{- $version := split hugo.Version "." }}
+{{- $major := int (index $version 0) }}
+{{- $minor := int (index $version 1) }}
+{{- $groupid := ((.Get "groupid") | default ((.Get "groupId") | default "")) }}
+{{- if or (and (eq $major 0) (ge $minor 108)) (gt $major 0) }}
+  {{- $groupid = $groupid | default "" }}
+{{- end }}
 {{- partial "shortcodes/tabs.html" (dict
   "context" .Page
-  "groupid" ((.Get "groupid") | default (.Get "groupId"))
+  "groupid" $groupid
   "content" (.Scratch.Get "tabs")
 ) }}
