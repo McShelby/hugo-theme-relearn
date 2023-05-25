@@ -26,6 +26,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has a new friend the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now also compatible with {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+
 ---
 
 ## 5.14.0 (2023-05-20)
