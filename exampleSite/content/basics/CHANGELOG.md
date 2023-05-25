@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.15.1 (2023-05-25)
+
+### Fixes
+
+- [**bug**] shortcodes: intermediately use random ids instead of .Ordinal [#543](https://github.com/McShelby/hugo-theme-relearn/issues/543)
+
+---
+
 ## 5.15.0 (2023-05-25)
 
 ### Enhancements
