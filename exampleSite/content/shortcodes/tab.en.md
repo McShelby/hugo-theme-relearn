@@ -67,7 +67,7 @@ printf("Hello World!");
 
 ### Mixed content
 
-{{% tab name="Mixed" %}}
+{{% tab name="_**Mixed**_" %}}
 
 A tab can not only contain code but arbitrary text. In this case text and code will get a margin.
 

@@ -96,7 +96,7 @@ While pressing a tab of group A switches all tab views of group A in sync (if th
 { "Hello": "World" }
 ```
 {{%/* /tab */%}}
-{{%/* tab name="XML" */%}}
+{{%/* tab name="_**XML**_ stuff" */%}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -117,7 +117,7 @@ Hello = World
 { "Hello": "World" }
 ```
 {{%/* /tab */%}}
-{{%/* tab name="XML" */%}}
+{{%/* tab name="XML stuff" */%}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -133,7 +133,7 @@ Hello = World
 { "Hello": "World" }
 ```
 {{%/* /tab */%}}
-{{%/* tab name="XML" */%}}
+{{%/* tab name="XML stuff" */%}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -152,7 +152,7 @@ Hello = World
 { "Hello": "World" }
 ```
 {{% /tab %}}
-{{% tab name="XML" %}}
+{{% tab name="_**XML**_ stuff" %}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -172,7 +172,7 @@ Hello = World
 { "Hello": "World" }
 ```
 {{% /tab %}}
-{{% tab name="XML" %}}
+{{% tab name="XML stuff" %}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -187,7 +187,7 @@ Hello = World
 { "Hello": "World" }
 ```
 {{% /tab %}}
-{{% tab name="XML" %}}
+{{% tab name="XML stuff" %}}
 ```xml
 <Hello>World</Hello>
 ```
