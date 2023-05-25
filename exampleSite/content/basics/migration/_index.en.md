@@ -24,7 +24,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Formerly all tab views without a `groupid` were treated as so they belong to the same group. Now, each tab view is treated as it was given a unique id.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has a new friend the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known `tabs`has a new friend the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
+
+  Additionally for such a use case, the whitespace between a tab outline and the code is removed if only a single code block is contained.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now also compatible with {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
