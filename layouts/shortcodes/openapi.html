@@ -2,7 +2,7 @@
 {{- $major := int (index $version 0) }}
 {{- $minor := int (index $version 1) }}
 {{- $id := "" }}
-{{- if and (ge $major 0) (ge $major 108) }}
+{{- if or (and (eq $major 0) (ge $minor 108)) (gt $major 0) }}
   {{- $id = .Ordinal }}
 {{- end }}
 {{- partial "shortcodes/openapi.html" (dict
