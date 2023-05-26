@@ -4,3 +4,14 @@
               <i class='fas fa-calendar'></i> {{ . | time.Format ":date_medium" }}
   {{- end }}
 {{- end }}
+{{- $page := . }}
+{{- if .Params.categories }}
+              <i class='fas fa-list'></i>
+  {{- $categories := slice | append .Params.categories }}
+  {{- range $idx, $category := sort $categories }}
+    {{- with $page.Site.GetPage (printf "%s%s" ("/categories/" | relURL ) ( $category | anchorize ) ) }}
+      {{- $to := . }}
+              {{ if gt $idx 0 }} | {{ end }}<a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $category }}</a>
+    {{- end }}
+  {{- end }}
+{{- end }}

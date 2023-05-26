@@ -18,6 +18,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.16.0 (2023-05-25)
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Besides the _tag_ [taxonomy]({{% relref "cont/taxonomy" %}}) the theme now also provides the _category_ taxonomy out of the box and shows them in the content footer of each page.
+
+---
+
 ## 5.15.0 (2023-05-25)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has changed behavior if you haven't set the `groupid` parameter.

@@ -31,7 +31,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - In page search
   - [Site search](https://mcshelby.github.io/hugo-theme-relearn/basics/configuration#activate-search)
   - [Dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/basics/configuration#activate-dedicated-search-page)
-  - [Tagging support](https://mcshelby.github.io/hugo-theme-relearn/cont/tags)
+  - [Taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/cont/taxonomy)
   - Hidden pages
   - Unlimited nested menu dependend on your site structure
   - Navigation buttons dependend on your site structure

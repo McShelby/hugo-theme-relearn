@@ -34,7 +34,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - In page search
   - [Site search]({{%relref "basics/configuration#activate-search" %}})
   - [Dedicated search page]({{%relref "basics/configuration#activate-dedicated-search-page" %}})
-  - [Tagging support]({{%relref "cont/tags" %}})
+  - [Taxonomy support]({{%relref "cont/taxonomy" %}})
   - Hidden pages
   - Unlimited nested menu dependend on your site structure
   - Navigation buttons dependend on your site structure
