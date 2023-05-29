@@ -7,6 +7,10 @@ The `attachments` shortcode displays a list of files attached to a page with adj
 
 {{% attachments sort="asc" /%}}
 
+{{% notice warning %}}
+Since Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version < `0.112.0`.
+{{% /notice %}}
+
 ## Usage
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
@@ -48,33 +52,35 @@ While the examples are using shortcodes with named parameter you are free to als
 
 The shortcode lists files found in a specific folder. The name of the folder depends on your page type (either branch bundle, leaf bundle or page).
 
-1. For simple pages, attachments must be placed in a folder named like your page and ending with `.files`.
+1. If your page is a leaf bundle, attachments must be placed in a nested `index.files` folder, accordingly.
+
+    > * content
+    >   * _index.md
+    >   * page
+    >     * _index.md
+    >     * **_index.files**
+    >       * attachment.pdf
+
+2. If your page is a branch bundle, attachments must be placed in a nested `_index.files` folder, accordingly.
+
+    {{% badge style="warning" title=" " %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
+
+    > * content
+    >   * _index.md
+    >   * page
+    >     * index.md
+    >     * **index.files**
+    >       * attachment.pdf
+
+3. For simple pages, attachments must be placed in a folder named like your page and ending with `.files`.
+
+    {{% badge style="warning" title=" " %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
 
     > * content
     >   * _index.md
     >   * **page.files**
-    >      * attachment.pdf
+    >     * attachment.pdf
     >   * page.md
-
-2. If your page is a branch or leaf bundle, attachments must be placed in a nested `_index.files` or `index.files` folder, accordingly.
-
-    For branch bundles:
-
-    > * content
-    >   * _index.md
-    >   * page
-    >      * index.md
-    >      * **index.files**
-    >          * attachment.pdf
-
-    For leaf bundles:
-
-    > * content
-    >   * _index.md
-    >   * page
-    >      * _index.md
-    >      * **_index.files**
-    >          * attachment.pdf
 
 ### Multilingual
 
@@ -83,14 +89,15 @@ Be aware that if you use a multilingual website, you will need to have as many f
 Eg. for a site in English and Piratish:
 
   > * content
-  >   * _index.en.md
-  >   * _index.pir.md
-  >   * **page.en.files**
-  >      * attachment.pdf
-  >   * **page.pir.files**
-  >      * attachment.pdf
-  >   * page.en.md
-  >   * page.pir.md
+  >   * index.en.md
+  >   * index.pir.md
+  >   * page
+  >     * index.en.md
+  >     * index.pir.md
+  >     * **index.en.files**
+  >       * attachment.pdf
+  >     * **index.pir.files**
+  >       * attachment.pdf
 
 ## Examples
 

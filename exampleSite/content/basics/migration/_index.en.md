@@ -20,6 +20,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.15.0 (2023-05-25)
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Now also compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+
+  The [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) has compatiblity issues with newer Hugo versions. You must switch to leaf bundles or are locked to Hugo < `0.112.0` for now.
+
+  It is [planned to refactor](https://github.com/McShelby/hugo-theme-relearn/issues/22) the `attchments` shortcode in the future. This will make it possible to use the shortcode in branch bundles again but not in simple pages anymore. Sadly this most likely will come with a breaking change which requires you to make changes to your project.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has changed behavior if you haven't set the `groupid` parameter.
 
   Formerly all tab views without a `groupid` were treated as so they belong to the same group. Now, each tab view is treated as it was given a unique id.
@@ -27,8 +33,6 @@ This document shows you what's new in the latest release. For a detailed list of
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known `tabs`has a new friend the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
 
   Additionally for such a use case, the whitespace between a tab outline and the code is removed if only a single code block is contained.
-
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now also compatible with {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Besides the _tag_ [taxonomy]({{% relref "cont/taxonomy" %}}) the theme now also provides the _category_ taxonomy out of the box and shows them in the content footer of each page.
 
