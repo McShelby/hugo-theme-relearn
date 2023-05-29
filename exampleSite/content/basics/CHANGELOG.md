@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.15.2 (2023-05-29)
+
+### Enhancements
+
+- [**feature**] taxonomy: add support for category default taxonomy [#541](https://github.com/McShelby/hugo-theme-relearn/issues/541)
+
+### Fixes
+
+- [**bug**] attachments: work for Hugo < 0.112 [#546](https://github.com/McShelby/hugo-theme-relearn/issues/546)
+
+---
+
 ## 5.15.1 (2023-05-25)
 
 ### Fixes

@@ -18,7 +18,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.15.0 (2023-05-25)
+## 5.15.0 (2023-05-29)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Now also compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
