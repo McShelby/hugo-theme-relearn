@@ -18,12 +18,6 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.16.0 (2023-05-25)
-
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Besides the _tag_ [taxonomy]({{% relref "cont/taxonomy" %}}) the theme now also provides the _category_ taxonomy out of the box and shows them in the content footer of each page.
-
----
-
 ## 5.15.0 (2023-05-25)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has changed behavior if you haven't set the `groupid` parameter.
@@ -35,6 +29,8 @@ This document shows you what's new in the latest release. For a detailed list of
   Additionally for such a use case, the whitespace between a tab outline and the code is removed if only a single code block is contained.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now also compatible with {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Besides the _tag_ [taxonomy]({{% relref "cont/taxonomy" %}}) the theme now also provides the _category_ taxonomy out of the box and shows them in the content footer of each page.
 
 ---
 
