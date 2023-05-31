@@ -5,7 +5,19 @@ title = "Expand"
 
 The `expand` shortcode displays an expandable/collapsible section of text.
 
-{{% expand title="Expand me..." %}}Thank you!{{% /expand %}}
+{{% expand title="Expand me..." %}}Thank you!
+
+That's some text with a footnote[^1]
+
+[^1]: And that's the footnote.
+
+That's some more text with a footnote.[^someid]
+
+[^someid]:
+    Anything of interest goes here.
+
+    Blue light glows blue.
+{{% /expand %}}
 
 {{% notice note %}}
 This only works in modern browsers flawlessly. While Internet Explorer 11 has issues in displaying it, the functionality still works.
