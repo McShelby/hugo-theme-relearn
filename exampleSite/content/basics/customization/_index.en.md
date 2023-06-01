@@ -14,8 +14,8 @@ This theme defines the following partials :
 - `footer.html`: the footer of the page. See [output-formats](#output-formats)
 - `body.html`: the body of the page. The body may contain of one or many articles. See [output-formats](#output-formats)
 - `article.html`: the output for a single article, can contain elements around your content. See [output-formats](#output-formats)
-- `menu.html`: left menu. _Not meant to be overwritten_
-- `search.html`: search box. _Not meant to be overwritten_
+- `menu.html`: left menu. *Not meant to be overwritten*
+- `search.html`: search box. *Not meant to be overwritten*
 - `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file.
 - `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding JavaScript. Don't forget to include `javascript` HTML tag directive in your file.
 - `favicon.html`: the favicon
