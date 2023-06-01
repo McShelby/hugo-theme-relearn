@@ -30,6 +30,7 @@ This theme defines the following partials :
 - `content.html`: the content page itself. This can be overridden if you want to display page's meta data above or below the content.
 - `content-header.html`: header above the title, has a default implementation but you can overwrite it if you don't like it.
 - `content-footer.html`: footer below the content, has a default implementation but you can overwrite it if you don't like it.
+
 ## Change the logo
 
 Create a new file in `layouts/partials/` named `logo.html`. Then write any HTML you want.
