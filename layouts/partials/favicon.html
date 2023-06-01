@@ -1,5 +1,17 @@
     {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
-    {{- if (fileExists "/static/images/favicon.svg") }}
+    {{- if or (fileExists "/static/images/favicon-light.svg") (fileExists "/static/images/favicon-dark.svg") }}
+    {{/*
+      Warning: IE and old browser versions do not support media queries necessary for the light & dark theme option.
+      If you have requirements to support IE and/or older browser versions, use one of the other options.
+      Reference: https://caniuse.com/css-media-interaction
+    */}}
+    {{- if (fileExists "/static/images/favicon-light.svg") }}
+    <link href="{{ "images/favicon-light.svg" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)">
+    {{- end }}
+    {{- if (fileExists "/static/images/favicon-dark.svg") }}
+    <link href="{{ "images/favicon-dark.svg" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+    {{- end }}
+    {{- else if (fileExists "/static/images/favicon.svg") }}
     <link href="{{ "images/favicon.svg" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="image/svg+xml">
     {{- else if (fileExists "/static/images/favicon.png") }}
     <link href="{{ "images/favicon.png" | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="image/png">
