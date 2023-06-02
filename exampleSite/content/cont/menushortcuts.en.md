@@ -75,7 +75,7 @@ Example from the current website:
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-    url = "showcase/"
+    pageRef = "showcase/"
     weight = 11
 
   [[languages.en.menu.shortcuts]]
@@ -86,12 +86,12 @@ Example from the current website:
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-    url = "more/credits/"
+    pageRef = "more/credits/"
     weight = 30
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-tags'></i> Tags"
-    url = "tags/"
+    pageRef = "tags/"
     weight = 40
 
   [languages.pir]
@@ -109,7 +109,7 @@ Example from the current website:
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-    url = "showcase/"
+    pageRef = "showcase/"
     weight = 11
 
   [[languages.pir.menu.shortcuts]]
@@ -120,12 +120,12 @@ Example from the current website:
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
-    url = "more/credits/"
+    pageRef = "more/credits/"
     weight = 30
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
-    url = "tags/"
+    pageRef = "tags/"
     weight = 40
 ````
 
@@ -133,7 +133,7 @@ Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multiling
 
 ## Shortcuts to pages inside of your project
 
-If you have shortcuts to pages inside of your project and you don't want them to show up in page menu section, you have two choices:  
+If you have shortcuts to pages inside of your project and you don't want them to show up in page menu section, you have two choices:
 
 1. Make the page file for the shortcut section a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following rontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be ontained in the sitemap.
 
