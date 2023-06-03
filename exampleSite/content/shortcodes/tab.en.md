@@ -39,7 +39,7 @@ printf("Hello World!");
 {{ partial "shortcodes/tab.html" (dict
   "context" .
   "name" "c"
-  "content" ("```c\nprintf(\"Hello World!\")\n```" | markdownify)
+  "content" ("```c\nprintf(\"Hello World!\")\n```" | .RenderString)
 )}}
 ````
 
