@@ -59,11 +59,11 @@ echo "Hello World!"
   "content" (slice
     (dict
       "name" "python"
-      "content" ("```python\nprint(\"Hello World!\")\n```" | markdownify)
+      "content" ("```python\nprint(\"Hello World!\")\n```" | .RenderString)
     )
     (dict
       "name" "bash"
-      "content" ("```bash\necho \"Hello World!\"\n```" | markdownify)
+      "content" ("```bash\necho \"Hello World!\"\n```" | .RenderString)
     )
   )
 )}}

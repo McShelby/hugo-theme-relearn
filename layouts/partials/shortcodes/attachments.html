@@ -30,7 +30,7 @@
 {{- $urlPrefix := strings.TrimRight "/" $context.RelPermalink }}
 {{- with $context }}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | markdownify }}</div>
+  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
   <ul class="box-content attachments-files">
   {{- $version := split hugo.Version "." }}
   {{- $major := int (index $version 0) }}

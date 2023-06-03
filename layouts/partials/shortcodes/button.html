@@ -42,11 +42,11 @@
   {{- else }}
   <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }}>
   {{- end }}
-    {{- if and $icon (eq $iconposition "left") }}
+  {{- if and $icon (eq $iconposition "left") }}
     <i class="{{ $icon }}"></i>
-    {{- end }}
-    {{ $title | markdownify }}
-    {{- if and $icon (eq $iconposition "right") }}
+  {{- end }}
+    {{ $title | .RenderString }}
+  {{- if and $icon (eq $iconposition "right") }}
     <i class="{{ $icon }}"></i>
     {{- end }}
   {{- if $isButton }}

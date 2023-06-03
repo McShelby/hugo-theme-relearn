@@ -17,7 +17,7 @@
 {{- end }}
 {{- with $context }}
 <div class="box notices cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | markdownify }}</div>
+  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
   <div class="box-content">
 {{ $content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
 </div>

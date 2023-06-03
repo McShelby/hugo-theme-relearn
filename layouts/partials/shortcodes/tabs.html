@@ -6,17 +6,17 @@
   <div class="tab-nav">
   {{- range $idx, $tab := $tabs }}
     <button
-      data-tab-item="{{ .name | markdownify | plainify }}"
+      data-tab-item="{{ .name | $context.RenderString | plainify }}"
       class="tab-nav-button{{ cond (eq $idx 0) " active" ""}}"
-      onclick="switchTab('{{ $groupid }}','{{ .name | markdownify | plainify}}')"
+      onclick="switchTab('{{ $groupid }}','{{ .name | $context.RenderString | plainify}}')"
     >
-      <span>{{ .name | markdownify }}</span></button>
+      <span>{{ .name | $context.RenderString }}</span></button>
   {{- end }}
   </div>
   <div class="tab-content">
     {{- range $idx, $tab := $tabs }}
     <div
-      data-tab-item="{{ .name | markdownify | plainify }}"
+      data-tab-item="{{ .name | $context.RenderString | plainify }}"
       class="tab-content-text{{ cond (eq $idx 0) " active" ""}}"
     >
 {{ .content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
