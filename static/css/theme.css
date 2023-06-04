@@ -1,7 +1,67 @@
 @charset "UTF-8";
 
 @import "tags.css";
-@import "tabs.css";
+
+/* until browsers don't let us set length values based on dppx, we
+need a way to calculate them ourself */
+:root {
+    --dpr: 1;
+}
+@media (min-resolution: 105dpi) {
+    :root {
+        --dpr: 1.1;
+    }
+}
+@media (min-resolution: 115dpi) {
+        :root {
+            --dpr: 1.2;
+        }
+    }
+@media (min-resolution: 120dpi) {
+    :root {
+        --dpr: 1.25;
+    }
+}
+@media (min-resolution: 128dpi) {
+    :root {
+        --dpr: 1.333;
+    }
+}
+@media (min-resolution: 144dpi) {
+    :root {
+        --dpr: 1.5;
+    }
+}
+@media (min-resolution: 160dpi) {
+    :root {
+        --dpr: 1.666;
+    }
+}
+@media (min-resolution: 168dpi) {
+    :root {
+        --dpr: 1.75;
+    }
+}
+@media (min-resolution: 192dpi) {
+    :root {
+        --dpr: 2;
+    }
+}
+@media (min-resolution: 240dpi) {
+    :root {
+        --dpr: 2.5;
+    }
+}
+@media (min-resolution: 288dpi) {
+    :root {
+        --dpr: 3;
+    }
+}
+@media (min-resolution: 384dpi) {
+    :root {
+        --dpr: 4;
+    }
+}
 
 html {
     height: 100%;
@@ -1776,4 +1836,73 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
     .columnize{
         column-count: 3;
     }
+}
+
+#body .tab-panel{
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+#body .tab-nav{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#body .tab-nav-button{
+    background-color: transparent;
+    border: 1px solid transparent;
+    display: block;
+    font-size: .9rem;
+    font-weight: 500;
+    line-height: 1.42857143;
+    margin-inline-start: .6rem;
+}
+
+#body .tab-nav-button.active{
+    border-radius: 2px 2px 0 0;
+    cursor: default;
+}
+
+#body .tab-nav-button.active > *{
+    border-radius: 1px 1px 0 0;
+}
+
+#body .tab-nav-button > * > *{
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    padding: .2rem .6rem;
+}
+
+#body .tab-nav-button.active > * > *{
+    border-bottom-color: transparent;
+}
+
+#body .tab-content{
+    border-style: solid;
+    border-width: 1px;
+    display: block;
+    /* if setting a border to 1px, a browser instead sets it to 1dppx which is not
+    usable as a unit yet, so we have to calculate it ourself */
+    margin-top: calc( -1px / var(--dpr) );
+    z-index: 10;
+}
+#body .tab-content-text{
+    display: none;
+    padding: 1rem;
+}
+/* remove margin if only a single code block is contained in the tab */
+#body .tab-content-text:has(> div.highlight:only-child){
+    padding: 0;
+}
+/* remove border from a code block if single  */
+#body .tab-content-text > div.highlight:only-child > pre{
+    border: 0;
+}
+#body .tab-content-text.active{
+    display: block;
+}
+
+#body .tab-content-text pre{
+    margin-bottom: 0;
+    margin-top: 0;
 }

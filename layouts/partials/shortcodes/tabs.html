@@ -2,7 +2,7 @@
 {{- $tabs := .content | default slice }}
 {{- $groupid := .groupid | default (partial "make-random-md5.hugo" $context) }}
 {{- with $context }}
-<div class="tab-panel" data-tab-group="{{ $groupid }}">
+<div class="tab-panel cstyle default" data-tab-group="{{ $groupid }}">
   <div class="tab-nav">
   {{- range $idx, $tab := $tabs }}
     <button
@@ -10,7 +10,8 @@
       class="tab-nav-button{{ cond (eq $idx 0) " active" ""}}"
       onclick="switchTab('{{ $groupid }}','{{ .name | $context.RenderString | plainify}}')"
     >
-      <span>{{ .name | $context.RenderString }}</span></button>
+      <div><div>{{ .name | $context.RenderString }}</div></div>
+    </button>
   {{- end }}
   </div>
   <div class="tab-content">
