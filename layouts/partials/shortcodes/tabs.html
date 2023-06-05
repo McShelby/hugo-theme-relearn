@@ -1,24 +1,74 @@
 {{- $context := .context }}
-{{- $tabs := .content | default slice }}
 {{- $groupid := .groupid | default (partial "make-random-md5.hugo" $context) }}
+{{- $color := .color }}
+{{- $style := .style }}
+{{- $title := .title }}
+{{- $icon := .icon }}
+{{- $tabs := slice }}
+{{- range $tab := (.content | default slice) }}
+  {{- if and (not $tab.title) $tab.name }}
+    {{- warnf "%s: parameter 'name' is deprecated for shortcode 'tab', use 'title' instead" $context.File.Path }}
+    {{- $tab = merge $tab (dict "title" .name) }}
+  {{- end }}
+  {{- with $tab }}
+    {{- $color := .color | default $color }}
+    {{- $style := .style | default $style | default (cond (ne .color "") "filled" "default") }}
+    {{- $title := .title | default ($style | T) }}
+    {{- $title = trim $title " " }}
+    {{- $icon := .icon | default "" }}
+    {{- if and (not $icon) (eq (len $icon) 0) }}
+      {{- if eq $style "info" }}{{ $icon = default "info-circle" }}{{ end }}
+      {{- if eq $style "warning" }}{{ $icon = default "exclamation-triangle" }}{{ end }}
+      {{- if eq $style "note" }}{{ $icon = default "exclamation-circle" }}{{ end }}
+      {{- if eq $style "tip" }}{{ $icon = default "lightbulb" }}{{ end }}
+    {{- end }}
+    {{- $icon = trim $icon " " }}
+    {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+      {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+    {{- end }}
+    {{- $tabs = $tabs | append (dict
+      "color"   $color
+      "content" .content
+      "icon"    $icon
+      "itemid"  (printf "%s%s" ($title | $context.RenderString | plainify) ($icon | plainify))
+      "style"   $style
+      "title"   $title
+    ) }}
+  {{- end }}
+{{- end }}
+{{- $color = .color | default "" }}
+{{- $style = .style | default (cond (ne .color "") "filled" "default") }}
+{{- $title = .title | default ($style | T) }}
+{{- $title = trim $title " " }}
+{{- $icon = .icon | default "" }}
+{{- if and (not $icon) (eq (len $icon) 0) }}
+  {{- if eq $style "info" }}{{ $icon = default "info-circle" }}{{ end }}
+  {{- if eq $style "warning" }}{{ $icon = default "exclamation-triangle" }}{{ end }}
+  {{- if eq $style "note" }}{{ $icon = default "exclamation-circle" }}{{ end }}
+  {{- if eq $style "tip" }}{{ $icon = default "lightbulb" }}{{ end }}
+{{- end }}
+{{- $icon = trim $icon " " }}
+{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+{{- end }}
 {{- with $context }}
 <div class="tab-panel" data-tab-group="{{ $groupid }}">
   <div class="tab-nav">
   {{- range $idx, $tab := $tabs }}
     <button
-      data-tab-item="{{ .name | $context.RenderString | plainify }}"
-      class="tab-nav-button tab-panel-style cstyle default{{ cond (eq $idx 0) " active" ""}}"
-      onclick="switchTab('{{ $groupid }}','{{ .name | $context.RenderString | plainify}}')"
+      data-tab-item="{{ .itemid }}"
+      class="tab-nav-button tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}
+      onclick="switchTab('{{ $groupid }}','{{ .itemid }}')"
     >
-      <div><div>{{ .name | $context.RenderString }}</div></div>
+      <div><div>{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $context.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div></div>
     </button>
   {{- end }}
   </div>
   <div class="tab-content-container">
   {{- range $idx, $tab := $tabs }}
     <div
-      data-tab-item="{{ .name | $context.RenderString | plainify }}"
-      class="tab-content tab-panel-style cstyle default{{ cond (eq $idx 0) " active" ""}}">
+      data-tab-item="{{ .itemid }}"
+      class="tab-content tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}>
       <div class="tab-content-text">
 {{ if ne "<" (substr (strings.TrimLeft " " .content) 0 1) }}<p>{{ end }}<!-- we add a DOM element here if there is none to make collapsing marings work -->
 {{ .content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
