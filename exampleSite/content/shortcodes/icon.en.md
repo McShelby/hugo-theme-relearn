@@ -15,7 +15,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 While the examples are using shortcodes with positional parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{%/* icon icon="exclamation-triangle" */%}}
@@ -24,7 +24,7 @@ While the examples are using shortcodes with positional parameter you are free t
 ````
 
 {{% /tab %}}
-{{% tab name="shortcode (positional)" %}}
+{{% tab title="shortcode (positional)" %}}
 
 ````go
 {{%/* icon exclamation-triangle */%}}
@@ -33,7 +33,7 @@ While the examples are using shortcodes with positional parameter you are free t
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/icon.html" (dict

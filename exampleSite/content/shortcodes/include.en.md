@@ -10,21 +10,21 @@ The `include` shortcode includes other files from your project inside of the cur
 While the examples are using shortcodes with named parameter you are free to use positional aswell or also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{%/* include file="shortcodes/INCLUDE_ME.md" */%}}
 ````
 
 {{% /tab %}}
-{{% tab name="shortcode (positional)" %}}
+{{% tab title="shortcode (positional)" %}}
 
 ````go
 {{%/* include "shortcodes/INCLUDE_ME.md" */%}}
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/include .html" (dict

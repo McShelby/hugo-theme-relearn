@@ -16,14 +16,14 @@ Since Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{%/* attachments sort="asc" /*/%}}
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/attachments.html" (dict

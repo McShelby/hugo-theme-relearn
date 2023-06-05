@@ -144,12 +144,12 @@ graph LR;
 | i |
 |---|
 | {{< tabs >}}
-{{% tab name="python" %}}
+{{% tab title="python" %}}
 ```python
 print("Hello World!")
 ```
 {{% /tab %}}
-{{% tab name="bash" %}}
+{{% tab title="bash" %}}
 ```bash
 echo "Hello World!"
 ```

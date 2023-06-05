@@ -24,7 +24,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 {{% /notice %}}
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="codefence" %}}
+{{% tab title="codefence" %}}
 
 ````md
 ```math { align="center" }
@@ -33,7 +33,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 ````
 
 {{% /tab %}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{</* math align="center" */>}}
@@ -42,7 +42,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/math.html" (dict

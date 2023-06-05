@@ -30,7 +30,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 {{% /notice %}}
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="codefence" %}}
+{{% tab title="codefence" %}}
 
 ````md
 ```mermaid { align="center" zoom="true" }
@@ -41,7 +41,7 @@ graph LR;
 ````
 
 {{% /tab %}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{</* mermaid align="center" zoom="true" */>}}
@@ -52,7 +52,7 @@ graph LR;
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/mermaid.html" (dict

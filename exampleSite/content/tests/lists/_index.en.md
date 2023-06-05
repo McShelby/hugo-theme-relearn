@@ -144,12 +144,12 @@ title = "Lists"
 - one
 - two
 - {{< tabs >}}
-  {{% tab name="python" %}}
+  {{% tab title="python" %}}
   ```python
   print("Hello World!")
   ```
   {{% /tab %}}
-  {{% tab name="bash" %}}
+  {{% tab title="bash" %}}
   ```bash
   echo "Hello World!"
   ```
@@ -157,12 +157,12 @@ title = "Lists"
   {{< /tabs >}}
 
   {{< tabs >}}
-  {{% tab name="python" %}}
+  {{% tab title="python" %}}
   ```python
   print("Hello World!")
   ```
   {{% /tab %}}
-  {{% tab name="bash" %}}
+  {{% tab title="bash" %}}
   ```bash
   echo "Hello World!"
   ```

@@ -16,7 +16,7 @@ The `badge` shortcode displays little markers in your text with adjustable color
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{%/* badge %}}Important{{% /badge */%}}
@@ -27,7 +27,7 @@ While the examples are using shortcodes with named parameter you are free to als
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/badge.html" (dict

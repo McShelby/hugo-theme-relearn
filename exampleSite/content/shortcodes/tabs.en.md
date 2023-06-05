@@ -10,14 +10,14 @@ This comes in handy eg. for providing code snippets for multiple languages.
 If you just want a single tab you can instead call the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) standalone.
 
 {{< tabs >}}
-{{% tab name="python" %}}
+{{% tab title="python" %}}
 
 ```python
 print("Hello World!")
 ```
 
 {{% /tab %}}
-{{% tab name="bash" %}}
+{{% tab title="bash" %}}
 
 ```bash
 echo "Hello World!"
@@ -33,16 +33,16 @@ While the examples are using shortcodes with named parameter you are free to als
 See the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) for a description of the parameter for nested tabs.
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{</* tabs */>}}
-{{%/* tab name="python" */%}}
+{{%/* tab title="python" */%}}
 ```python
 print("Hello World!")
 ```
 {{%/* /tab */%}}
-{{%/* tab name="bash" */%}}
+{{%/* tab title="bash" */%}}
 ```bash
 echo "Hello World!"
 ```
@@ -51,18 +51,18 @@ echo "Hello World!"
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/tabs.html" (dict
   "context" .
   "content" (slice
     (dict
-      "name" "python"
+      "title" "python"
       "content" ("```python\nprint(\"Hello World!\")\n```" | .RenderString)
     )
     (dict
-      "name" "bash"
+      "title" "bash"
       "content" ("```bash\necho \"Hello World!\"\n```" | .RenderString)
     )
   )
@@ -88,20 +88,20 @@ See what happens to the tab views while you select different tabs.
 While pressing a tab of group A switches all tab views of group A in sync (if the tab is available), the tabs of group B are left untouched.
 
 {{< tabs >}}
-{{% tab name="Group A, Tab View 1" %}}
+{{% tab title="Group A, Tab View 1" %}}
 ````go
 {{</* tabs groupid="a" */>}}
-{{%/* tab name="json" */%}}
+{{%/* tab title="json" */%}}
 ```json
 { "Hello": "World" }
 ```
 {{%/* /tab */%}}
-{{%/* tab name="_**XML**_ stuff" */%}}
+{{%/* tab title="_**XML**_ stuff" */%}}
 ```xml
 <Hello>World</Hello>
 ```
 {{%/* /tab */%}}
-{{%/* tab name="properties" */%}}
+{{%/* tab title="properties" */%}}
 ```properties
 Hello = World
 ```
@@ -109,15 +109,15 @@ Hello = World
 {{</* /tabs */>}}
 ````
 {{% /tab %}}
-{{% tab name="Group A, Tab View 2" %}}
+{{% tab title="Group A, Tab View 2" %}}
 ````go
 {{</* tabs groupid="a" */>}}
-{{%/* tab name="json" */%}}
+{{%/* tab title="json" */%}}
 ```json
 { "Hello": "World" }
 ```
 {{%/* /tab */%}}
-{{%/* tab name="XML stuff" */%}}
+{{%/* tab title="XML stuff" */%}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -125,15 +125,15 @@ Hello = World
 {{</* /tabs */>}}
 ````
 {{% /tab %}}
-{{% tab name="Group B" %}}
+{{% tab title="Group B" %}}
 ````go
 {{</* tabs groupid="b" */>}}
-{{%/* tab name="json" */%}}
+{{%/* tab title="json" */%}}
 ```json
 { "Hello": "World" }
 ```
 {{%/* /tab */%}}
-{{%/* tab name="XML stuff" */%}}
+{{%/* tab title="XML stuff" */%}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -147,17 +147,17 @@ Hello = World
 #### Group A, Tab View 1
 
 {{< tabs groupid="tab-example-a" >}}
-{{% tab name="json" %}}
+{{% tab title="json" %}}
 ```json
 { "Hello": "World" }
 ```
 {{% /tab %}}
-{{% tab name="_**XML**_ stuff" %}}
+{{% tab title="_**XML**_ stuff" %}}
 ```xml
 <Hello>World</Hello>
 ```
 {{% /tab %}}
-{{% tab name="properties" %}}
+{{% tab title="properties" %}}
 ```ini
 Hello = World
 ```
@@ -167,12 +167,12 @@ Hello = World
 #### Group A, Tab View 2
 
 {{< tabs groupid="tab-example-a" >}}
-{{% tab name="json" %}}
+{{% tab title="json" %}}
 ```json
 { "Hello": "World" }
 ```
 {{% /tab %}}
-{{% tab name="XML stuff" %}}
+{{% tab title="XML stuff" %}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -182,12 +182,12 @@ Hello = World
 #### Group B
 
 {{< tabs groupid="tab-example-b" >}}
-{{% tab name="json" %}}
+{{% tab title="json" %}}
 ```json
 { "Hello": "World" }
 ```
 {{% /tab %}}
-{{% tab name="XML stuff" %}}
+{{% tab title="XML stuff" %}}
 ```xml
 <Hello>World</Hello>
 ```
@@ -200,30 +200,30 @@ In case you want to nest tabs, the parent tab that contains the subtabs needs to
 
 ````go
 {{</* tabs groupid="main" */>}}
-{{</* tab name="Text" */>}}
+{{</* tab title="Text" */>}}
   Simple text is possible here...
   {{</* tabs groupid="tabs-example-language" */>}}
-  {{%/* tab name="python" */%}}
+  {{%/* tab title="python" */%}}
   Python is **super** easy.
 
   - most of the time.
   - if you don't want to output unicode
   {{%/* /tab */%}}
-  {{%/* tab name="bash" */%}}
+  {{%/* tab title="bash" */%}}
   Bash is for **hackers**.
   {{%/* /tab */%}}
   {{</* /tabs */>}}
 {{</* /tab */>}}
 
-{{</* tab name="Code" */>}}
+{{</* tab title="Code" */>}}
   ...but no markdown
   {{</* tabs groupid="tabs-example-language" */>}}
-  {{%/* tab name="python" */%}}
+  {{%/* tab title="python" */%}}
   ```python
   print("Hello World!")
   ```
   {{%/* /tab */%}}
-  {{%/* tab name="bash" */%}}
+  {{%/* tab title="bash" */%}}
   ```bash
   echo "Hello World!"
   ```
@@ -234,30 +234,30 @@ In case you want to nest tabs, the parent tab that contains the subtabs needs to
 ````
 
 {{< tabs groupid="main" >}}
-{{< tab name="Text" >}}
+{{< tab title="Text" >}}
   Simple text is possible here...
   {{< tabs groupid="tabs-example-language" >}}
-  {{% tab name="python" %}}
+  {{% tab title="python" %}}
   Python is **super** easy.
 
   - most of the time.
   - if you don't want to output unicode
   {{% /tab %}}
-  {{% tab name="bash" %}}
+  {{% tab title="bash" %}}
   Bash is for **hackers**.
   {{% /tab %}}
   {{< /tabs >}}
 {{< /tab >}}
 
-{{< tab name="Code" >}}
+{{< tab title="Code" >}}
   ...but no markdown
   {{< tabs groupid="tabs-example-language" >}}
-  {{% tab name="python" %}}
+  {{% tab title="python" %}}
   ```python
   print("Hello World!")
   ```
   {{% /tab %}}
-  {{% tab name="bash" %}}
+  {{% tab title="bash" %}}
   ```bash
   echo "Hello World!"
   ```

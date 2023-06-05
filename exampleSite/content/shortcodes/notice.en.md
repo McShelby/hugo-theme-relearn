@@ -14,7 +14,7 @@ It is all about the boxes.
 While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{%/* notice style="primary" title="There may be pirates" icon="skull-crossbones" */%}}
@@ -23,7 +23,7 @@ It is all about the boxes.
 ````
 
 {{% /tab %}}
-{{% tab name="shortcode (positional)" %}}
+{{% tab title="shortcode (positional)" %}}
 
 ````go
 {{%/* notice primary "There may be pirates" "skull-crossbones" */%}}
@@ -32,7 +32,7 @@ It is all about the boxes.
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/notice.html" (dict

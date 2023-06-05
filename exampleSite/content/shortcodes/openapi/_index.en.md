@@ -14,14 +14,14 @@ This only works in modern browsers.
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupId="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
 {{</* openapi src="https://petstore3.openapi.io/api/v3/openapi.json" */>}}
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/openapi.html" (dict

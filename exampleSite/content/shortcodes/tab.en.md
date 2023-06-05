@@ -9,7 +9,7 @@ This is especially useful if you want to flag your code example with an explicit
 
 If you want multiple tabs grouped together you can wrap your tabs into the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}).
 
-{{% tab name="c" %}}
+{{% tab title="c" %}}
 
 ```python
 printf("Hello World!");
@@ -22,10 +22,10 @@ printf("Hello World!");
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab name="shortcode" %}}
+{{% tab title="shortcode" %}}
 
 ````go
-{{%/* tab name="c" */%}}
+{{%/* tab title="c" */%}}
 ```c
 printf("Hello World!");
 ```
@@ -33,12 +33,12 @@ printf("Hello World!");
 ````
 
 {{% /tab %}}
-{{% tab name="partial" %}}
+{{% tab title="partial" %}}
 
 ````go
 {{ partial "shortcodes/tab.html" (dict
   "context" .
-  "name" "c"
+  "title" "c"
   "content" ("```c\nprintf(\"Hello World!\")\n```" | .RenderString)
 )}}
 ````
@@ -57,7 +57,7 @@ printf("Hello World!");
 
 ### Code with collapsed margins
 
-{{% tab name="Code" %}}
+{{% tab title="Code" %}}
 
 ```python
 printf("Hello World!");
@@ -67,7 +67,7 @@ printf("Hello World!");
 
 ### Mixed content
 
-{{% tab name="_**Mixed**_" %}}
+{{% tab title="_**Mixed**_" %}}
 
 A tab can not only contain code but arbitrary text. In this case text and code will get a margin.
 
