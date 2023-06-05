@@ -24,6 +24,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   Additionally the `name` parameter was renamed to `title`. You don't need to change anything yet as the old name will be used as a fallback but you will get deprecation warnings while executing Hugo.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports [separate favicons]({{%relref "basics/customization/#change-the-favicon" %}}) for light & dark mode optionally.
+
 ---
 
 ## 5.15.0 (2023-05-29)

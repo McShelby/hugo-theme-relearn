@@ -43,7 +43,7 @@ The size of the logo will adapt automatically
 
 If your favicon is a SVG, PNG or ICO, just drop off your image in your local `static/images/` folder and name it `favicon.svg`, `favicon.png` or `favicon.ico` respectively.
 
-Alternatively, if you want your site to use light & dark theme SVG favicons that follow the OS' (and in some cases, the browser's) color scheme, add the image files to your local `static/images/` folder and name them `favicon-light.svg` and `favicon-dark.svg` respectively.
+Additionally, if you want your site to use light & dark theme favicons that follow the OS' (and in some cases, the browser's) color scheme, add the image files to your local `static/images/` folder and name them eg. `favicon-light.svg` and/or `favicon-dark.svg` respectively corresponding to your file format. In case one of the files is missing, the theme falls back to eg. `favicon.svg` for the missing file. All supplied favicons must be of the same file format.
 
 {{% notice warning %}}
 IE and old browser versions do not support [media queries](https://caniuse.com/css-media-interaction), which are necessary for the light & dark theme favicon option.
