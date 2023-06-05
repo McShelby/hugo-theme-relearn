@@ -2,27 +2,28 @@
 {{- $tabs := .content | default slice }}
 {{- $groupid := .groupid | default (partial "make-random-md5.hugo" $context) }}
 {{- with $context }}
-<div class="tab-panel cstyle default" data-tab-group="{{ $groupid }}">
+<div class="tab-panel" data-tab-group="{{ $groupid }}">
   <div class="tab-nav">
   {{- range $idx, $tab := $tabs }}
     <button
       data-tab-item="{{ .name | $context.RenderString | plainify }}"
-      class="tab-nav-button{{ cond (eq $idx 0) " active" ""}}"
+      class="tab-nav-button tab-panel-style cstyle default{{ cond (eq $idx 0) " active" ""}}"
       onclick="switchTab('{{ $groupid }}','{{ .name | $context.RenderString | plainify}}')"
     >
       <div><div>{{ .name | $context.RenderString }}</div></div>
     </button>
   {{- end }}
   </div>
-  <div class="tab-content">
-    {{- range $idx, $tab := $tabs }}
+  <div class="tab-content-container">
+  {{- range $idx, $tab := $tabs }}
     <div
       data-tab-item="{{ .name | $context.RenderString | plainify }}"
-      class="tab-content-text{{ cond (eq $idx 0) " active" ""}}"
-    >
+      class="tab-content tab-panel-style cstyle default{{ cond (eq $idx 0) " active" ""}}">
+      <div class="tab-content-text">
 {{ if ne "<" (substr (strings.TrimLeft " " .content) 0 1) }}<p>{{ end }}<!-- we add a DOM element here if there is none to make collapsing marings work -->
 {{ .content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
-    {{- end }}
+    </div>
+  {{- end }}
   </div>
 </div>
 {{- end }}
