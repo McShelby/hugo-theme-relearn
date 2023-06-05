@@ -1882,14 +1882,18 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 #body .tab-content{
     border-style: solid;
     border-width: 1px;
-    display: block;
+    display: none;
     /* if setting a border to 1px, a browser instead sets it to 1dppx which is not
     usable as a unit yet, so we have to calculate it ourself */
     margin-top: calc( -1px / var(--dpr) );
     z-index: 10;
 }
+
+#body .tab-content.active{
+    display: block;
+}
+
 #body .tab-content-text{
-    display: none;
     padding: 1rem;
 }
 /* remove margin if only a single code block is contained in the tab */
@@ -1900,10 +1904,6 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 #body .tab-content-text > div.highlight:only-child > pre{
     border: 0;
 }
-#body .tab-content-text.active{
-    display: block;
-}
-
 #body .tab-content-text pre{
     margin-bottom: 0;
     margin-top: 0;
