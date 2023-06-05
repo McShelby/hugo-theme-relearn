@@ -5,42 +5,42 @@
     {{- $ico := dict "ext" "ico" "type" "image/x-icon" }}
     {{- $faviconTypes := slice $svg $png $ico }}
     {{- range $faviconTypes }}
-    {{- if and
-      (eq $faviconMatch false)
-      (or
-        (fileExists (printf "/static/images/favicon-light.%s" .ext))
-        (fileExists (printf "/static/images/favicon-dark.%s"))
-      )
-    }}
-    {{- $faviconMatch = true }}
-    {{/*
-      Warning: IE and old browser versions do not support media queries necessary for the light & dark theme option.
-      If you have requirements to support IE and/or older browser versions, use one of the other options.
-      Reference: https://caniuse.com/css-media-interaction
-    */}}
-    {{- if (fileExists (printf "/static/images/favicon-light.%s" .ext)) }}
+      {{- if and
+        (eq $faviconMatch false)
+        (or
+          (fileExists (printf "/static/images/favicon-light.%s" .ext))
+          (fileExists (printf "/static/images/favicon-dark.%s"))
+        )
+      }}
+        {{- $faviconMatch = true }}
+        {{$c:=""}}{{/*
+          Warning: IE and old browser versions do not support media queries necessary for the light & dark theme option.
+          If you have requirements to support IE and/or older browser versions, use one of the other options.
+          Reference: https://caniuse.com/css-media-interaction
+        */}}
+        {{- if (fileExists (printf "/static/images/favicon-light.%s" .ext)) }}
     <link href="{{ printf "images/favicon-light.%s" .ext | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="{{ .type }}" media="(prefers-color-scheme: light)">
-    {{- end }}
-    {{- if (fileExists (printf "/static/images/favicon-dark.%s" .ext)) }}
+        {{- end }}
+        {{- if (fileExists (printf "/static/images/favicon-dark.%s" .ext)) }}
     <link href="{{ printf "images/favicon-dark.%s" .ext | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="{{ .type }}" media="(prefers-color-scheme: dark)">
-    {{- end }}
-    {{- end }}
+        {{- end }}
+      {{- end }}
     {{- end }}
     {{- range $faviconTypes }}
-    {{- if and
-      (eq $faviconMatch false)
-      (fileExists (printf "/static/images/favicon.%s" .ext))
-    }}
-    {{- $faviconMatch = true }}
+      {{- if and
+        (eq $faviconMatch false)
+        (fileExists (printf "/static/images/favicon.%s" .ext))
+      }}
+        {{- $faviconMatch = true }}
     <link href="{{ printf "images/favicon.%s" .ext | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="{{ .type }}">
-    {{- end }}
+      {{- end }}
     {{- end }}
     {{- range $faviconTypes }}
-    {{- if and
-      (eq $faviconMatch false)
-      (fileExists (printf "/static/images/logo.%s" .ext))
-    }}
-    {{- $faviconMatch := true }}
+      {{- if and
+        (eq $faviconMatch false)
+        (fileExists (printf "/static/images/logo.%s" .ext))
+      }}
+        {{- $faviconMatch := true }}
     <link href="{{ printf "images/logo.%s" .ext | relURL }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="icon" type="{{ .type }}">
-    {{- end }}
+      {{- end }}
     {{- end }}
