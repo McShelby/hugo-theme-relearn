@@ -18,6 +18,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.16.0 (2023-06-05)
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received style, color and icon parameter similar to other shortcodes.
+
+  Additionally the `name` parameter was renamed to `title`. You don't need to change anything yet as the old name will be used as a fallback but you will get deprecation warnings while executing Hugo.
+
+---
+
 ## 5.15.0 (2023-05-29)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Now also compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.

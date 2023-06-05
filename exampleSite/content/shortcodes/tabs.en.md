@@ -77,6 +77,8 @@ echo "Hello World!"
 | Name                  | Default              | Notes       |
 |:----------------------|:---------------------|:------------|
 | **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab can not be found in a tab group the first tab is selected instead.<br><br>This sychronization applies to the whole site! |
+| **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
+| **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
 ## Examples
@@ -194,12 +196,14 @@ Hello = World
 {{% /tab %}}
 {{< /tabs >}}
 
-### Nested Tabs
+### Nested Tabs and Color
 
 In case you want to nest tabs, the parent tab that contains the subtabs needs to be declared with `{{</* tab */>}}` instead of `{{%/* tab */%}}`. Note, that in this case it is not possible to put markdown in the parent tab.
 
+You can also set various color parameter for all tabs or just selected ones. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. 
+
 ````go
-{{</* tabs groupid="main" */>}}
+{{</* tabs groupid="main" style="primary" */>}}
 {{</* tab title="Text" */>}}
   Simple text is possible here...
   {{</* tabs groupid="tabs-example-language" */>}}
@@ -215,7 +219,7 @@ In case you want to nest tabs, the parent tab that contains the subtabs needs to
   {{</* /tabs */>}}
 {{</* /tab */>}}
 
-{{</* tab title="Code" */>}}
+{{</* tab title="Code" style="default" color="fuchsia" */>}}
   ...but no markdown
   {{</* tabs groupid="tabs-example-language" */>}}
   {{%/* tab title="python" */%}}
@@ -233,7 +237,7 @@ In case you want to nest tabs, the parent tab that contains the subtabs needs to
 {{</* /tabs */>}}
 ````
 
-{{< tabs groupid="main" >}}
+{{< tabs groupid="main" style="primary" >}}
 {{< tab title="Text" >}}
   Simple text is possible here...
   {{< tabs groupid="tabs-example-language" >}}
@@ -249,7 +253,7 @@ In case you want to nest tabs, the parent tab that contains the subtabs needs to
   {{< /tabs >}}
 {{< /tab >}}
 
-{{< tab title="Code" >}}
+{{< tab title="Code" style="default" color="fuchsia" >}}
   ...but no markdown
   {{< tabs groupid="tabs-example-language" >}}
   {{% tab title="python" %}}

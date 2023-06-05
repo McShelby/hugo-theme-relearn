@@ -48,14 +48,17 @@ printf("Hello World!");
 
 ### Parameter
 
-| Name                  | Default              | Notes       |
-|:----------------------|:---------------------|:------------|
-| **name**              | _&lt;empty&gt;_      | Arbitrary text for the name of the tab. |
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary text to be displayed in the tab. |
+| Name                  | Default         | Notes       |
+|:----------------------|:----------------|:------------|
+| **style**             | `default`       | The style scheme used for the tab.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent` |
+| **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
+| **title**             | see notes       | Arbitrary title for the tab. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**              | see notes       | [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_ | Arbitrary text to be displayed in the tab. |
 
 ## Examples
 
-### Code with collapsed margins
+### Single Code Block with Collapsed Margins
 
 {{% tab title="Code" %}}
 
@@ -65,7 +68,7 @@ printf("Hello World!");
 
 {{% /tab %}}
 
-### Mixed content
+### Mixed Markdown Content
 
 {{% tab title="_**Mixed**_" %}}
 
@@ -76,3 +79,75 @@ printf("Hello World!");
 ```
 
 {{% /tab %}}
+
+### Understanding `style` and `color` Behavior
+
+The `style` parameter affects how the `color` parameter is applied.
+
+````go
+{{</* tabs */>}}
+{{%/* tab title="just colored style" style="blue" */%}}
+The `style` parameter is set to a color style.
+
+This will set the background to a lighter version of the chosen style color as configured in your theme variant.
+{{%/* /tab */%}}
+{{%/* tab title="just color" color="blue" */%}}
+Only the `color` parameter is set.
+
+This will set the background to a lighter version of the chosen CSS color value.
+{{%/* /tab */%}}
+{{%/* tab title="default style and color" style="default" color="blue" */%}}
+The `style` parameter affects how the `color` parameter is applied.
+
+The `default` style will set the background to your `--MAIN-BG-color` as configured for your theme variant resembling the default style but with different color.
+{{%/* /tab */%}}
+{{%/* tab title="just severity style" style="info" */%}}
+The `style` parameter is set to a severity style.
+
+This will set the background to a lighter version of the chosen style color as configured in your theme variant and also affects the chosen icon.
+{{%/* /tab */%}}
+{{%/* tab title="severity style and color" style="info" color="blue" */%}}
+The `style` parameter affects how the `color` parameter is applied.
+
+This will set the background to a lighter version of the chosen CSS color value and also affects the chosen icon.
+{{%/* /tab */%}}
+{{</* /tabs */>}}
+````
+
+{{< tabs >}}
+{{% tab title="just colored style" style="blue" %}}
+
+The `style` parameter is set to a color style.
+
+This will set the background to a lighter version of the chosen style color as configured in your theme variant.
+
+{{% /tab %}}
+{{% tab title="just color" color="blue" %}}
+
+Only the `color` parameter is set.
+
+This will set the background to a lighter version of the chosen CSS color value.
+
+{{% /tab %}}
+{{% tab title="default style and color" style="default" color="blue" %}}
+
+The `style` parameter affects how the `color` parameter is applied.
+
+The `default` style will set the background to your `--MAIN-BG-color` as configured for your theme variant resembling the default style but with different color.
+
+{{% /tab %}}
+{{% tab title="just severity style" style="info" %}}
+
+The `style` parameter is set to a severity style.
+
+This will set the background to a lighter version of the chosen style color as configured in your theme variant and also affects the chosen icon.
+
+{{% /tab %}}
+{{% tab title="severity style and color" style="info" color="blue" %}}
+
+The `style` parameter affects how the `color` parameter is applied.
+
+This will set the background to a lighter version of the chosen CSS color value and also affects the chosen icon.
+
+{{% /tab %}}
+{{< /tabs >}}
