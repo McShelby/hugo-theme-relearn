@@ -20,9 +20,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.16.0 (2023-06-05)
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received some love and style, color and icon parameter similar to other shortcodes.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received some love and now align with their style, color, title and icon parameter to the other shortcodes.
 
-  If you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
+  The visuals are now slightly different compared to previous versions. Most noteable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
 
   Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback but you will get deprecation warnings while executing Hugo.
 

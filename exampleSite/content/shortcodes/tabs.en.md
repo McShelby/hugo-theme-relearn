@@ -9,18 +9,25 @@ This comes in handy eg. for providing code snippets for multiple languages.
 
 If you just want a single tab you can instead call the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) standalone.
 
-{{< tabs >}}
-{{% tab title="python" %}}
+{{< tabs title="hello." >}}
+{{% tab title="py" %}}
 
 ```python
 print("Hello World!")
 ```
 
 {{% /tab %}}
-{{% tab title="bash" %}}
+{{% tab title="sh" %}}
 
 ```bash
 echo "Hello World!"
+```
+
+{{% /tab %}}
+{{% tab title="c" %}}
+
+```c
+printf("Hello World!");
 ```
 
 {{% /tab %}}
@@ -36,15 +43,20 @@ See the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) for a description of 
 {{% tab title="shortcode" %}}
 
 ````go
-{{</* tabs */>}}
-{{%/* tab title="python" */%}}
+{{</* tabs title="hello." */>}}
+{{%/* tab title="py" */%}}
 ```python
 print("Hello World!")
 ```
 {{%/* /tab */%}}
-{{%/* tab title="bash" */%}}
+{{%/* tab title="sh" */%}}
 ```bash
 echo "Hello World!"
+```
+{{%/* /tab */%}}
+{{%/* tab title="c" */%}}
+```c
+printf"Hello World!");
 ```
 {{%/* /tab */%}}
 {{</* /tabs */>}}
@@ -56,14 +68,19 @@ echo "Hello World!"
 ````go
 {{ partial "shortcodes/tabs.html" (dict
   "context" .
+  "title" "hello."
   "content" (slice
     (dict
-      "title" "python"
+      "title" "py"
       "content" ("```python\nprint(\"Hello World!\")\n```" | .RenderString)
     )
     (dict
-      "title" "bash"
+      "title" "sh"
       "content" ("```bash\necho \"Hello World!\"\n```" | .RenderString)
+    )
+    (dict
+      "title" "c"
+      "content" ("```c\nprintf(\"Hello World!\");\n```" | .RenderString)
     )
   )
 )}}
@@ -79,6 +96,8 @@ echo "Hello World!"
 | **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab can not be found in a tab group the first tab is selected instead.<br><br>This sychronization applies to the whole site! |
 | **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
 | **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
+| **title**             | _&lt;empty&gt;_      | Arbitrary title written in front of the tabs. |
+| **icon**              | _&lt;empty&gt;_      | [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}) set to the left of the title. |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
 ## Examples
@@ -200,10 +219,10 @@ Hello = World
 
 In case you want to nest tabs, the parent tab that contains the subtabs needs to be declared with `{{</* tab */>}}` instead of `{{%/* tab */%}}`. Note, that in this case it is not possible to put markdown in the parent tab.
 
-You can also set various color parameter for all tabs or just selected ones. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. 
+You can also set various color parameter for all tabs or just selected ones. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values.
 
 ````go
-{{</* tabs groupid="main" style="primary" */>}}
+{{</* tabs groupid="main" style="primary" title="Rationale" icon="thumbtack" */>}}
 {{</* tab title="Text" */>}}
   Simple text is possible here...
   {{</* tabs groupid="tabs-example-language" */>}}
@@ -219,7 +238,7 @@ You can also set various color parameter for all tabs or just selected ones. See
   {{</* /tabs */>}}
 {{</* /tab */>}}
 
-{{</* tab title="Code" style="default" color="fuchsia" */>}}
+{{</* tab title="Code" style="default" color="darkorchid" */>}}
   ...but no markdown
   {{</* tabs groupid="tabs-example-language" */>}}
   {{%/* tab title="python" */%}}
@@ -237,7 +256,7 @@ You can also set various color parameter for all tabs or just selected ones. See
 {{</* /tabs */>}}
 ````
 
-{{< tabs groupid="main" style="primary" >}}
+{{< tabs groupid="main" style="primary" title="Rationale" icon="thumbtack" >}}
 {{< tab title="Text" >}}
   Simple text is possible here...
   {{< tabs groupid="tabs-example-language" >}}
@@ -253,7 +272,7 @@ You can also set various color parameter for all tabs or just selected ones. See
   {{< /tabs >}}
 {{< /tab >}}
 
-{{< tab title="Code" style="default" color="fuchsia" >}}
+{{< tab title="Code" style="default" color="darkorchid" >}}
   ...but no markdown
   {{< tabs groupid="tabs-example-language" >}}
   {{% tab title="python" %}}

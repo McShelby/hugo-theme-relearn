@@ -54,6 +54,7 @@
 {{- with $context }}
 <div class="tab-panel" data-tab-group="{{ $groupid }}">
   <div class="tab-nav">
+    <div class="tab-nav-title">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | $context.RenderString }}{{ if (not $title) }}&#8203;{{ end }}</div>
   {{- range $idx, $tab := $tabs }}
     <button
       data-tab-item="{{ .itemid }}"
