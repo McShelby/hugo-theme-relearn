@@ -24,7 +24,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   The visuals are now slightly different compared to previous versions. Most noteable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
 
-  Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback but you will get deprecation warnings while executing Hugo.
+  Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback. Nevertheless you will get deprecation warnings while executing Hugo.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports [separate favicons]({{%relref "basics/customization/#change-the-favicon" %}}) for light & dark mode optionally.
 
