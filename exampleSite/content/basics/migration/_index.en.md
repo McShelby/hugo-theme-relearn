@@ -20,9 +20,11 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.16.0 (2023-06-05)
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received style, color and icon parameter similar to other shortcodes.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received some love and style, color and icon parameter similar to other shortcodes.
 
-  Additionally the `name` parameter was renamed to `title`. You don't need to change anything yet as the old name will be used as a fallback but you will get deprecation warnings while executing Hugo.
+  If you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
+
+  Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback but you will get deprecation warnings while executing Hugo.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports [separate favicons]({{%relref "basics/customization/#change-the-favicon" %}}) for light & dark mode optionally.
 

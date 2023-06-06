@@ -12,7 +12,7 @@
   {{- end }}
   {{- with $tab }}
     {{- $color := .color | default $color }}
-    {{- $style := .style | default $style | default (cond (ne .color "") "filled" "default") }}
+    {{- $style := .style | default $style | default (cond (ne .color "") "filled" "initial") }}
     {{- $title := .title | default ($style | T) }}
     {{- $title = trim $title " " }}
     {{- $icon := .icon | default "" }}
@@ -37,7 +37,7 @@
   {{- end }}
 {{- end }}
 {{- $color = .color | default "" }}
-{{- $style = .style | default (cond (ne .color "") "filled" "default") }}
+{{- $style = .style | default (cond (ne .color "") "filled" "initial") }}
 {{- $title = .title | default ($style | T) }}
 {{- $title = trim $title " " }}
 {{- $icon = .icon | default "" }}
