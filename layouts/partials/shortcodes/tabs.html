@@ -60,7 +60,10 @@
       class="tab-nav-button tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}
       onclick="switchTab('{{ $groupid }}','{{ .itemid }}')"
     >
-      <div><div>{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $context.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div></div>
+      <div>
+        <div class="tab-nav-hidden">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $context.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div>
+        <div class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $context.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div>
+      </div>
     </button>
   {{- end }}
   </div>
