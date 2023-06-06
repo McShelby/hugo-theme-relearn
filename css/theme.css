@@ -1850,6 +1850,8 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 }
 
 #body .tab-nav-button{
+    -webkit-appearance: none;
+    appearance: none;
     background-color: transparent;
     border: 1px solid transparent;
     display: block;
@@ -1864,19 +1866,33 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
     cursor: default;
 }
 
+#body .tab-nav-button > *{
+    position: relative;
+}
+
 #body .tab-nav-button.active > *{
     border-radius: 1px 1px 0 0;
 }
 
 #body .tab-nav-button > * > *{
     border-bottom-style: solid;
-    border-bottom-width: 2px;
-    padding: .2rem .6rem;
+    border-bottom-width: .2rem;
+    padding: .2rem .6rem 0 .6rem;
 }
 
 #body .tab-nav-button.active > * > *{
     border-bottom-color: transparent;
     font-weight: 500;
+}
+
+#body .tab-nav-button > * > .tab-nav-hidden{
+    font-weight: 500;
+    visibility: hidden;
+}
+
+#body .tab-nav-button > * > .tab-nav-text{
+    position: absolute;
+    top: 0;
 }
 
 #body .tab-content{
@@ -1897,7 +1913,8 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
     padding: 1rem;
 }
 /* remove margin if only a single code block is contained in the tab */
-#body .tab-content-text:has(> div.highlight:only-child){
+#body .tab-content-text:has(> div.highlight:only-child),
+#body .tab-content.tab-panel-style.code > .tab-content-text{
     padding: 0;
 }
 /* remove border from a code block if single  */
