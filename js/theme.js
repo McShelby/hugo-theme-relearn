@@ -68,7 +68,7 @@ function adjustContentWidth(){
 function fixCodeTabs(){
     /* if only a single code block is contained in the tab and no style was selected, treat it like style=code */
     var codeTabPanels = Array.from( document.querySelectorAll( '.tab-content.tab-panel-style.initial' ) ).filter( function( tabPanel ){
-        return tabPanel.querySelector( '.tab-content-text > div.highlight:only-child');
+        return tabPanel.querySelector( '.tab-content-text > div.highlight:only-child, .tab-content-text > pre.pre-code:only-child');
     });
 
     codeTabPanels.forEach( function( tabPanel ){
