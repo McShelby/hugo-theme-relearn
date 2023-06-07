@@ -1,6 +1,6 @@
 +++
 description = "Get value of site params"
-title = "Site param"
+title = "Site Param"
 +++
 
 The `siteparam` shortcode prints values of site params.
