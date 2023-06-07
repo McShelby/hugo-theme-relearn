@@ -45,7 +45,8 @@
 						"orange",
 						"red",
 						"default",
-						"transparent"
+						"transparent",
+						"code"
 					],
 					"default": "",
 					"name": "style",
@@ -100,7 +101,8 @@
 						"orange",
 						"red",
 						"default",
-						"transparent"
+						"transparent",
+						"code"
 					],
 					"default": "",
 					"name": "style",
@@ -167,7 +169,8 @@
 						"orange",
 						"red",
 						"default",
-						"transparent"
+						"transparent",
+						"code"
 					],
 					"default": "",
 					"name": "style",
@@ -264,6 +267,23 @@
 					"name": "content",
 					"title": "Text",
 					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "title",
+					"title": "Titel",
+					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "open",
+					"title": "Textblock initial ausklappen",
+					"type": "choice"
 				}
 			]
 		},
@@ -405,7 +425,8 @@
 						"orange",
 						"red",
 						"default",
-						"transparent"
+						"transparent",
+						"code"
 					],
 					"default": "",
 					"name": "style",
@@ -426,7 +447,7 @@
 				}
 			]
 		},
-		"Siteparam": {
+		"Site Param": {
 			"body": [
 				"{{< siteparam [[&name]] >}}"
 			],
@@ -452,13 +473,70 @@
 				}
 			]
 		},
+		"Tab": {
+			"body": [
+				"{{% tab title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" %}}",
+				"[[&content]]",
+				"{{% /tab %}}"
+			],
+			"description": "Zeigt einen einzelnen Tab an",
+			"fields": [
+				{
+					"default": "FM_SELECTED_TEXT",
+					"name": "content",
+					"title": "Text",
+					"type": "string"
+				},
+				{
+					"name": "title",
+					"title": "Titel",
+					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"info",
+						"note",
+						"tip",
+						"warning",
+						"primary",
+						"secondary",
+						"accent",
+						"blue",
+						"green",
+						"gray",
+						"orange",
+						"red",
+						"default",
+						"transparent",
+						"code"
+					],
+					"default": "",
+					"name": "style",
+					"title": "Stil-Schema",
+					"type": "choice"
+				},
+				{
+					"default": "",
+					"name": "color",
+					"title": "CSS-Farbwert",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "icon",
+					"title": "Font Awesome Icon",
+					"type": "string"
+				}
+			]
+		},
 		"Tabs": {
 			"body": [
-				"{{< tabs groupid=\"[[&groupid]]\" >}}",
-				"{{% tab name=\"[[&name1]]\" %}}",
+				"{{< tabs title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" groupid=\"[[&groupid]]\" >}}",
+				"{{% tab title=\"[[&title1]]\" style=\"[[&style1]]\" color=\"[[&color1]]\" icon=\"[[&icon1]]\" %}}",
 				"[[&content1]]",
 				"{{% /tab %}}",
-				"{{% tab name=\"[[&name2]]\" %}}",
+				"{{% tab title=\"[[&title2]]\" style=\"[[&style2]]\" color=\"[[&color2]]\" icon=\"[[&icon2]]\" %}}",
 				"[[&content2]]",
 				"{{% /tab %}}",
 				"{{< /tabs >}}"
@@ -467,13 +545,50 @@
 			"fields": [
 				{
 					"default": "",
-					"name": "groupid",
-					"title": "ID, die zum synchronisieren der Tabauswahl über mehrere Tabs Snippets benutzt werden soll",
+					"name": "title",
+					"title": "Titel der Tabgruppe",
 					"type": "string"
 				},
 				{
-					"name": "name1",
-					"title": "Titel des ersten Tabs",
+					"choices": [
+						"",
+						"info",
+						"note",
+						"tip",
+						"warning",
+						"primary",
+						"secondary",
+						"accent",
+						"blue",
+						"green",
+						"gray",
+						"orange",
+						"red",
+						"default",
+						"transparent",
+						"code"
+					],
+					"default": "",
+					"name": "style",
+					"title": "Standard-Stil-Schema aller Tabs",
+					"type": "choice"
+				},
+				{
+					"default": "",
+					"name": "color",
+					"title": "Standard-CSS-Farbwert aller Tabs",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "icon",
+					"title": "Font Awesome Icon der Tabgruppe",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "groupid",
+					"title": "ID, die zum synchronisieren der Tabauswahl über mehrere Tabgruppen hinweg benutzt werden soll",
 					"type": "string"
 				},
 				{
@@ -483,14 +598,91 @@
 					"type": "string"
 				},
 				{
-					"name": "name2",
-					"title": "Titel des zweiten Tabs",
+					"name": "title1",
+					"title": "Titel des ersten Tabs",
+					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"info",
+						"note",
+						"tip",
+						"warning",
+						"primary",
+						"secondary",
+						"accent",
+						"blue",
+						"green",
+						"gray",
+						"orange",
+						"red",
+						"default",
+						"transparent",
+						"code"
+					],
+					"default": "",
+					"name": "style1",
+					"title": "Stil-Schema des ersten Tabs",
+					"type": "choice"
+				},
+				{
+					"default": "",
+					"name": "color1",
+					"title": "CSS-Farbwert des ersten Tabs",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "icon1",
+					"title": "Font Awesome Icon des ersten Tabs",
 					"type": "string"
 				},
 				{
 					"default": "",
 					"name": "content2",
 					"title": "Text des zweiten Tabs",
+					"type": "string"
+				},
+				{
+					"name": "title2",
+					"title": "Titel des zweiten Tabs",
+					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"info",
+						"note",
+						"tip",
+						"warning",
+						"primary",
+						"secondary",
+						"accent",
+						"blue",
+						"green",
+						"gray",
+						"orange",
+						"red",
+						"default",
+						"transparent",
+						"code"
+					],
+					"default": "",
+					"name": "style2",
+					"title": "Stil-Schema des zweiten Tabs",
+					"type": "choice"
+				},
+				{
+					"default": "",
+					"name": "color2",
+					"title": "CSS-Farbwert des zweiten Tabs",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "icon2",
+					"title": "Font Awesome Icon des zweiten Tabs",
 					"type": "string"
 				}
 			]
