@@ -122,10 +122,8 @@ While pressing a tab of group A switches all tab views of group A in sync (if th
 <Hello>World</Hello>
 ```
 {{%/* /tab */%}}
-{{%/* tab title="properties" */%}}
-```properties
-Hello = World
-```
+{{%/* tab title="text" */%}}
+    Hello World
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
@@ -178,10 +176,10 @@ Hello = World
 <Hello>World</Hello>
 ```
 {{% /tab %}}
-{{% tab title="properties" %}}
-```ini
-Hello = World
-```
+{{% tab title="text" %}}
+
+    Hello World
+
 {{% /tab %}}
 {{< /tabs >}}
 
