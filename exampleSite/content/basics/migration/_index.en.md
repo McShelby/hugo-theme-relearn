@@ -457,13 +457,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   In this case, you must apply one of two options:
 
-  1. Start up a text editor with regular expression support for search and replace. Apply the following conversions in the given order on all `*.md` files. **This is the recommended choice**.
-
-      | Type          | Search                       | Replace by |
-      | ------------- | ---------------------------- | ---------- |
-      | Branch bundle | `(ref\s+"[^"]*)/_index\.md"` | `$1"`      |
-      | Leaf bundle   | `(ref\s+"[^"]*)/index\.md"`  | `$1"`      |
-      | Page          | `(ref\s+"[^"]*)\.md"`        | `$1"`      |
+  1. Start up a text editor with regular expression support for search and replace. Search for `(ref\s+"[^"]*?)(?:/_index|/index)?(?:\.md)?(#[^"]*?)?"` and replace it by `$1$2"` in all `*.md` files. **This is the recommended choice**.
 
   2. Copy the old implementation files `theme/hugo-theme-relearn/layouts/shortcode/ref.html` and `theme/hugo-theme-relearn/layouts/shortcode/relref.html` to your own projects `layouts/shortcode/ref.html` and `layouts/shortcode/relref.html` respectively. **This is not recommended** as your project will still rely on non-standard behavior afterwards.
 
