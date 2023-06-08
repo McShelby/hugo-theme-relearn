@@ -1951,8 +1951,11 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
     padding: 1rem;
 }
 
-/* remove margin if only a single code block is contained in the tab */
-#body .tab-content.tab-panel-style.code > .tab-content-text{
+/* remove margin if only a single code block is contained in the tab (FF without :has using .codify style) */
+#body .tab-content.tab-panel-style.codify > .tab-content-text{
+    padding: 0;
+}
+#body .tab-content-text:has(> div.highlight:only-child){
     padding: 0;
 }
 
