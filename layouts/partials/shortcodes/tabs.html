@@ -7,7 +7,7 @@
 {{- $tabs := slice }}
 {{- range $tab := (.content | default slice) }}
   {{- if and (not $tab.title) $tab.name }}
-    {{- warnf "%s: parameter 'name' is deprecated for shortcode 'tab', use 'title' instead" $context.File.Path }}
+    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160-2023-06-08" $context.File.Path }}
     {{- $tab = merge $tab (dict "title" .name) }}
   {{- end }}
   {{- with $tab }}

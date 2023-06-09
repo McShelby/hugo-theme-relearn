@@ -20,6 +20,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.16.0 (2023-06-08)
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme now provides warnings for deprecated or now unsupported features. The warnings include hints how to fix them and an additional link to the documenation.
+
+  `DEPRECATION` warnings mark features that still work but may be removed in the future.
+
+  `UNSUPPORTED` warnings mark features that will not work anymore.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received some love and now align with their style, color, title and icon parameter to the other shortcodes.
 
   The visuals are now slightly different compared to previous versions. Most noteable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
@@ -329,7 +335,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Previously, if the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `landingPageURL` was removed from `config.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `landingPageURL` was removed from `config.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically and will point to the project's homepage. If you want to support a different link, overwrite the `logo.html` partial.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
 

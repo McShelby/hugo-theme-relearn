@@ -1,6 +1,7 @@
 {{- $page := .page }}
 {{- $content := .content }}
 {{- with $page }}
+  {{- warnf "%q: DEPRECATED usage of old 'chapter' archetype found, remove 'chapter=true' and add 'archetype=\"chapter\"' to your frontmatter and remove the leading h3 and h1 headings; see http://localhost:1313/basics/migration/#500-2022-07-05" $page.File.Path }}
           <article class="chapter deprecated">
             <header class="headline">
               {{- partial "content-header.html" . }}

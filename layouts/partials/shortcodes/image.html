@@ -25,6 +25,9 @@
 	{{- if $dest_url.Query.Get "classes" }}
 		{{- $classes = $classes | append (split ($dest_url.Query.Get "classes") ",") }}
 	{{- end }}
+	{{- if $dest_url.Query.Has "featherlight" }}
+	    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see http://localhost:1313/basics/migration/#5110-2023-02-07" $context.File.Path }}
+	{{- end }}
 	{{- $lightbox = and (ne ($dest_url.Query.Get "lightbox") "false") (ne ($dest_url.Query.Get "featherlight") "false") }}
 	{{- with $dest_url.Query.Get "height" }}
 		{{ $height = . }}

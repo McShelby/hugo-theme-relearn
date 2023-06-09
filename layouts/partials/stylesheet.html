@@ -34,6 +34,7 @@
       {{ "// hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:" | safeJS }}
       {{ "// https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72" | safeJS }}
     {{- with .Site.Home.OutputFormats.Get "JSON" }}
+      {{- warnf "%q: DEPRECATED usage of 'JSON' output format found, use 'SEARCH' instead; see http://localhost:1313/basics/configuration/#activate-search" $page.File.Path }}
       window.index_json_url={{ "index.json" | relLangURL }};
     {{- end }}
     {{- with .Site.Home.OutputFormats.Get "SEARCH" }}

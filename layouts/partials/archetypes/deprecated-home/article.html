@@ -1,6 +1,7 @@
 {{- $page := .page }}
 {{- $content := .content }}
 {{- with $page }}
+  {{- warnf "%q: DEPRECATED usage of old 'home' archetype found, add 'archetype=\"home\"' to your frontmatter and remove the leading h1 heading; see http://localhost:1313/basics/migration/#500-2022-07-05" $page.File.Path }}
           <article class="home deprecated">
             <header class="headline">
               {{- partial "content-header.html" . }}

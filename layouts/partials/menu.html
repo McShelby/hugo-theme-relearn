@@ -17,6 +17,9 @@
         {{- end }}
       </div>
       {{- if not .Site.Params.disableLandingPageButton }}
+        {{- if (ne .Site.Params.landingPageURL nil) }}
+          {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see http://localhost:1313/basics/migration/#420-2022-06-23" .File.Path }}
+        {{- end }}
       <div id="homelinks" class="default-animation">
         <ul>
           <li><a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a></li>
