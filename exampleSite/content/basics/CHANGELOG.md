@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.16.1 (2023-06-09)
+
+### Enhancements
+
+- [**feature**] theme: add deprecation warnings [#565](https://github.com/McShelby/hugo-theme-relearn/issues/565)
+
+### Fixes
+
+- [**bug**] mermaid: allow for YAML frontmatter inside of graph [#564](https://github.com/McShelby/hugo-theme-relearn/issues/564)
+- [**bug**] alias: fix redirect URLs in case of empty BaseURL [#562](https://github.com/McShelby/hugo-theme-relearn/issues/562)
+
+---
+
 ## 5.16.0 (2023-06-08)
 
 ### Enhancements
