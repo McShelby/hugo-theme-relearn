@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {{- $url := replace (replace .Permalink site.BaseURL "/") "//" "/" }}
+    {{- $url := .Permalink }}
+    {{- if site.BaseURL }}
+      {{- $url = replace .Permalink site.BaseURL "/" }}
+    {{- end }}
+    {{- $url = replace $url "//" "/" }}
     {{- with site.Home.GetPage $url }}
       {{- $c := "" }}{{/* if defaultContentLanguageInSubdir=false we are ending here for home page of the default language */}}
       {{- $url = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
