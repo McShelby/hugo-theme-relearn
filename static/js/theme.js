@@ -171,9 +171,22 @@ function initMermaid( update, attrs ) {
     };
 
     var serializeGraph = function( graph ){
+      // See https://github.com/mermaid-js/mermaid/blob/9a080bb975b03b2b1d4ef6b7927d09e6b6b62760/packages/mermaid/src/diagram-api/frontmatter.ts#L10
+      // for reference on the regex originally taken from jekyll
+      const frontMatterRegex = /^-{3}\s*[\n\r](.*?)[\n\r]-{3}\s*[\n\r]+/s;
+      const matches = graph.content.match(frontMatterRegex);
+      // if we find front matter, we need to put this before the `%%{init` directive.
+      if (matches) {
+        const ymlFrontMatter = graph.content.substring(0, matches[0].length);
+        const graphContent = graph.content.slice(matches[0].length);
+        var s = ymlFrontMatter + '\n%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n';
+        s += graphContent;
+        return s;
+      } else {
         var s = '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n';
         s += graph.content;
         return s;
+      }
     };
 
     var init_func = function( attrs ){
