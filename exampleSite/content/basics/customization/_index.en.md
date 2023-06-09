@@ -33,7 +33,7 @@ This theme defines the following partials :
 ## Change the logo
 
 Create a new file in `layouts/partials/` named `logo.html`. Then write any HTML you want.
-You could use an `img` HTML tag and reference an image created under the *static* folder, or you could paste a SVG definition!
+You could use an `img` HTML tag and reference an image created under the _static_ folder, or you could paste a SVG definition!
 
 {{% notice note %}}
 The size of the logo will adapt automatically

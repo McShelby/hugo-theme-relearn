@@ -39,7 +39,7 @@ weight = 2
 languageName = "Arrr! Pirrrates"
 ```
 
-Then, for each new page, append the *id* of the language to the file.
+Then, for each new page, append the _id_ of the language to the file.
 
 - Single file `my-page.md` is split in two files:
     - in English: `my-page.md`
@@ -86,7 +86,7 @@ Keep in mind that the language code required here, is the base language code. E.
 
 ## Overwrite translation strings
 
-Translations strings are used for common default values used in the theme (*Edit* button, *Search placeholder* and so on). Translations are available in English and Piratized English but you may use another language or want to override default values.
+Translations strings are used for common default values used in the theme (_Edit_ button, _Search placeholder_ and so on). Translations are available in English and Piratized English but you may use another language or want to override default values.
 
 To override these values, create a new file in your local i18n folder `i18n/<idlanguage>.toml` and inspire yourself from the theme `themes/hugo-theme-relearn/i18n/en.toml`
 

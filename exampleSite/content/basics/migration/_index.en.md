@@ -411,7 +411,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
-  This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and *Clear history* functionality).
+  This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and _Clear history_ functionality).
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
@@ -423,7 +423,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} For consistency reasons, we renamed `--MENU-SEARCH-BOX-color` to `--MENU-SEARCH-BORDER-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} With this release you are now capable to define your own *dark mode* variants.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} With this release you are now capable to define your own _dark mode_ variants.
 
   To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#theme-variant" %}}). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 

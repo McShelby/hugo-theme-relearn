@@ -7,7 +7,7 @@ In **Hugo**, pages are the core of your site. Once it is configured, pages are d
 
 ## Folders
 
-Organize your site like [any other Hugo project](https://gohugo.io/content/organization/). Typically, you will have a *content* folder with all your pages.
+Organize your site like [any other Hugo project](https://gohugo.io/content/organization/). Typically, you will have a _content_ folder with all your pages.
 
 ````plaintext
 content
@@ -53,7 +53,7 @@ The Relearn theme provides [archetypes]({{%relref "cont/archetypes" %}}) to help
 
 ## Frontmatter Configuration
 
-Each Hugo page has to define a [frontmatter](https://gohugo.io/content/front-matter/) in *toml*, *yaml* or *json*. This site will use *toml* in all cases.
+Each Hugo page has to define a [frontmatter](https://gohugo.io/content/front-matter/) in _toml_, _yaml_ or _json_. This site will use _toml_ in all cases.
 
 The Relearn theme uses the following parameters on top of Hugo ones:
 
