@@ -1,3 +1,4 @@
+@echo off
 setlocal enabledelayedexpansion
 set /p version=<..\layouts\partials\version.txt
 echo %version%>metrics.%version%.log
