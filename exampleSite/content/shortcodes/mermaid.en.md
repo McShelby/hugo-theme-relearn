@@ -117,11 +117,13 @@ mermaidZoom = true
 
 ## Examples
 
-### Flowchart with Non-Default Mermaid Theme
+### Flowchart with YAML-Title
 
 ````go
 {{</* mermaid */>}}
-%%{init:{"theme":"forest"}}%%
+---
+title: Example Diagram
+---
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{<strong>Decision</strong>}
@@ -131,7 +133,9 @@ graph LR;
 ````
 
 {{< mermaid >}}
-%%{init:{"theme":"forest"}}%%
+---
+title: Example Diagram
+---
 graph LR;
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{<strong>Decision</strong>}
@@ -247,10 +251,11 @@ stateDiagram-v2
   closed --> open: Open
 {{< /mermaid >}}
 
-### Entity Relationship Model
+### Entity Relationship Model with Non-Default Mermaid Theme
 
 ````go
 {{</* mermaid */>}}
+%%{init:{"theme":"forest"}}%%
 erDiagram
     CUSTOMER }|..|{ DELIVERY-ADDRESS : has
     CUSTOMER ||--o{ ORDER : places
@@ -264,6 +269,7 @@ erDiagram
 ````
 
 {{< mermaid >}}
+%%{init:{"theme":"forest"}}%%
 erDiagram
     CUSTOMER }|..|{ DELIVERY-ADDRESS : has
     CUSTOMER ||--o{ ORDER : places

@@ -158,35 +158,28 @@ function initMermaid( update, attrs ) {
     };
 
     var parseGraph = function( graph ){
-        var d = /^\s*(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
+        // See https://github.com/mermaid-js/mermaid/blob/9a080bb975b03b2b1d4ef6b7927d09e6b6b62760/packages/mermaid/src/diagram-api/frontmatter.ts#L10
+        // for reference on the regex originally taken from jekyll
+        var YAML=1;
+        var INIT=2;
+        var GRAPH=3;
+        var d = /^(?:\s*[\n\r])*(-{3}\s*[\n\r](?:.*?)[\n\r]-{3}(?:\s*[\n\r]+)+)?(?:\s*(?:%%\s*\{\s*\w+\s*:([^%]*?)%%\s*[\n\r]?))?(.*)$/s
         var m = d.exec( graph );
+        var yaml = '';
         var dir = {};
         var content = graph;
-        if( m && m.length == 3 ){
-            dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
-            content = graph.substring( d.lastIndex );
+        if( m && m.length == 4 ){
+            yaml = m[YAML] ? m[YAML] : yaml;
+            dir = m[INIT] ? JSON.parse( '{ "init": ' + m[INIT] ).init : dir;
+            content = m[GRAPH] ? m[GRAPH] : content;
         }
-        content = content.trim();
-        return { dir: dir, content: content };
+        var ret = { yaml: yaml, dir: dir, content: content.trim() }
+        return ret;
     };
 
     var serializeGraph = function( graph ){
-      // See https://github.com/mermaid-js/mermaid/blob/9a080bb975b03b2b1d4ef6b7927d09e6b6b62760/packages/mermaid/src/diagram-api/frontmatter.ts#L10
-      // for reference on the regex originally taken from jekyll
-      const frontMatterRegex = /^-{3}\s*[\n\r](.*?)[\n\r]-{3}\s*[\n\r]+/s;
-      const matches = graph.content.match(frontMatterRegex);
-      // if we find front matter, we need to put this before the `%%{init` directive.
-      if (matches) {
-        const ymlFrontMatter = graph.content.substring(0, matches[0].length);
-        const graphContent = graph.content.slice(matches[0].length);
-        var s = ymlFrontMatter + '\n%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n';
-        s += graphContent;
+        var s = graph.yaml + '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n' + graph.content;
         return s;
-      } else {
-        var s = '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n';
-        s += graph.content;
-        return s;
-      }
     };
 
     var init_func = function( attrs ){
