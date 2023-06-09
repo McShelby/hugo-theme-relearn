@@ -1,6 +1,5 @@
-@echo off
 setlocal enabledelayedexpansion
-set /p version=<..\layouts\partials\version.log
+set /p version=<..\layouts\partials\version.txt
 echo %version%>metrics.%version%.log
 echo disableAssetsBusting=true>>config.toml
 echo disableGeneratorVersion=true>>config.toml

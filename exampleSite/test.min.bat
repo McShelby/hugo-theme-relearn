@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 set hugo_major=0
 set hugo_minor=95
 set hugo_patch=0
-set /p version=<..\layouts\partials\version.log
+set /p version=<..\layouts\partials\version.txt
 echo %version%>metrics.%version%.hugo.%hugo_major%.%hugo_minor%.%hugo_patch%.log
 echo disableAssetsBusting=true>>config.toml
 echo disableGeneratorVersion=true>>config.toml
