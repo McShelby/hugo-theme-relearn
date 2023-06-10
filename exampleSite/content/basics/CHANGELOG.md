@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.16.2 (2023-06-10)
+
+### Enhancements
+
+- [**feature**] theme: revamp 404 page [#566](https://github.com/McShelby/hugo-theme-relearn/issues/566)
+
+---
+
 ## 5.16.1 (2023-06-09)
 
 ### Enhancements
