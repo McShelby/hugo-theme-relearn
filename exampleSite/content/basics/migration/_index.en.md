@@ -26,6 +26,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   `UNSUPPORTED` warnings mark features that will not work anymore.
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The 404 error page was revamped. Hopefully you will not see this very often.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received some love and now align with their style, color, title and icon parameter to the other shortcodes.
 
   The visuals are now slightly different compared to previous versions. Most noteable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
