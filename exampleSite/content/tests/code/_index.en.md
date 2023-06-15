@@ -49,3 +49,139 @@ Code fences without any selected language
 <pre>
 Some preformatted stuff in HTML elements
 </pre>
+
+## Nested Shortcode
+
+### 1 Shortcode
+
+#### %%
+
+{{% highlight json "linenos=inline" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
+{{% /highlight %}}
+
+#### <>
+
+{{< highlight json "linenos=table" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
+{{< /highlight >}}
+
+### 2 Shortcodes
+
+#### %% %%
+
+{{% tab title="json" %}}
+{{% highlight html "linenos=true" %}}
+<p>my code</p>
+{{% /highlight %}}
+{{% /tab %}}
+
+#### %% <>
+
+{{% tab title="json" %}}
+{{< highlight html "linenos=true" >}}
+<p>my code</p>
+{{< /highlight >}}
+{{% /tab %}}
+
+#### <> %%
+
+{{< tab title="json" >}}
+{{% highlight html "linenos=true" %}}
+<p>my code</p>
+{{% /highlight %}}
+{{< /tab >}}
+
+#### <> <>
+
+{{< tab title="json" >}}
+{{< highlight html "linenos=true" >}}
+<p>my code</p>
+{{< /highlight >}}
+{{< /tab >}}
+
+### 3 Shortcodes
+
+#### %% %% %%
+
+{{% tabs %}}
+{{% tab title="json" %}}
+{{% highlight html "linenos=true" %}}
+<p>my code</p>
+{{% /highlight %}}
+{{% /tab %}}
+{{% /tabs %}}
+
+#### %% %% <>
+
+{{% tabs %}}
+{{% tab title="json" %}}
+{{< highlight html "linenos=true" >}}
+<p>my code</p>
+{{< /highlight >}}
+{{% /tab %}}
+{{% /tabs %}}
+
+#### %% <> %%
+
+{{% tabs %}}
+{{< tab title="json" >}}
+{{% highlight html "linenos=true" %}}
+<p>my code</p>
+{{% /highlight %}}
+{{< /tab >}}
+{{% /tabs %}}
+
+#### %% <> <>
+
+{{% tabs %}}
+{{< tab title="json" >}}
+{{< highlight html "linenos=true" >}}
+<p>my code</p>
+{{< /highlight >}}
+{{< /tab >}}
+{{% /tabs %}}
+
+#### <> %% %%
+
+{{< tabs >}}
+{{% tab title="json" %}}
+{{% highlight html "linenos=true" %}}
+<p>my code</p>
+{{% /highlight %}}
+{{% /tab %}}
+{{< /tabs >}}
+
+#### <> %% <>
+
+{{< tabs >}}
+{{% tab title="json" %}}
+{{< highlight html "linenos=true" >}}
+<p>my code</p>
+{{< /highlight >}}
+{{% /tab %}}
+{{< /tabs >}}
+
+#### <> <> %%
+
+{{< tabs >}}
+{{< tab title="json" >}}
+{{% highlight html "linenos=true" %}}
+<p>my code</p>
+{{% /highlight %}}
+{{< /tab >}}
+{{< /tabs >}}
+
+#### <> <> <>
+
+{{< tabs >}}
+{{< tab title="json" >}}
+{{< highlight html "linenos=true" >}}
+<p>my code</p>
+{{< /highlight >}}
+{{< /tab >}}
+{{< /tabs >}}

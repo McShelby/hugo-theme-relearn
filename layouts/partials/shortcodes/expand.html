@@ -16,7 +16,7 @@
         {{ $title | .RenderString }}
     </label>
     <div id="expandcontent-{{ $id }}" class="expand-content">
-{{ if ne "<" (substr (strings.TrimLeft " " $content) 0 1) }}<p>{{ end }}<!-- we add a DOM element here if there is none to make collapsing marings work -->
+{{ if ne "<" (substr (strings.TrimLeft " \n\r\t" $content) 0 1) }}<p>{{ end }}<!-- we add a DOM element here if there is none to make collapsing marings work -->
 {{ $content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
 </div>
 {{- end }}

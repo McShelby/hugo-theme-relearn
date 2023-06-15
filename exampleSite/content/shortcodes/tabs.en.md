@@ -113,9 +113,9 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 ````go
 {{</* tabs groupid="a" */>}}
 {{%/* tab title="json" */%}}
-```json
+{{</* highlight json "linenos=true" */>}}
 { "Hello": "World" }
-```
+{{</* /highlight */>}}
 {{%/* /tab */%}}
 {{%/* tab title="_**XML**_ stuff" */%}}
 ```xml
@@ -132,9 +132,9 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 ````go
 {{</* tabs groupid="a" */>}}
 {{%/* tab title="json" */%}}
-```json
+{{</* highlight json "linenos=true" */>}}
 { "Hello": "World" }
-```
+{{</* /highlight */>}}
 {{%/* /tab */%}}
 {{%/* tab title="XML stuff" */%}}
 ```xml
@@ -148,9 +148,9 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 ````go
 {{</* tabs groupid="b" */>}}
 {{%/* tab title="json" */%}}
-```json
+{{</* highlight json "linenos=true" */>}}
 { "Hello": "World" }
-```
+{{</* /highlight */>}}
 {{%/* /tab */%}}
 {{%/* tab title="XML stuff" */%}}
 ```xml
@@ -167,9 +167,9 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 
 {{< tabs groupid="tab-example-a" >}}
 {{% tab title="json" %}}
-```json
+{{< highlight json "linenos=true" >}}
 { "Hello": "World" }
-```
+{{< /highlight >}}
 {{% /tab %}}
 {{% tab title="_**XML**_ stuff" %}}
 ```xml
@@ -187,9 +187,9 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 
 {{< tabs groupid="tab-example-a" >}}
 {{% tab title="json" %}}
-```json
+{{< highlight json "linenos=true" >}}
 { "Hello": "World" }
-```
+{{< /highlight >}}
 {{% /tab %}}
 {{% tab title="XML stuff" %}}
 ```xml
@@ -202,9 +202,9 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 
 {{< tabs groupid="tab-example-b" >}}
 {{% tab title="json" %}}
-```json
+{{< highlight json "linenos=true" >}}
 { "Hello": "World" }
-```
+{{< /highlight >}}
 {{% /tab %}}
 {{% tab title="XML stuff" %}}
 ```xml
