@@ -503,7 +503,10 @@ function initCodeClipboard(){
         var code = codeElements[i];
         var text = code.textContent;
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
-        var isLineCell = code.querySelector( '.lnt' ); // avoid copy-to-clipboard for highlight shortcode in table lineno mode
+        // avoid copy-to-clipboard for highlight shortcode in table lineno mode
+        var isLineCell = inPre &&
+            code.parentNode.parentNode.tagName.toLowerCase() == 'td' &&
+            code.parentNode.parentNode.parentNode.querySelector( 'td:nth-child(1) > pre > code' ) == code;
 
         if( !isLineCell && ( inPre || text.length > 5 ) ){
             var clip = new ClipboardJS( '.copy-to-clipboard-button', {
@@ -513,7 +516,7 @@ function initCodeClipboard(){
                     }
                     // if highlight shortcode used in inline lineno mode, remove lineno nodes before generating text
                     var code = trigger.previousElementSibling.cloneNode( true );
-                    Array.from( code.querySelectorAll( '.ln' ) ).forEach( function( lineno ){
+                    Array.from( code.querySelectorAll( '*:scope > span > span:nth-child(1):not(:last-child)' ) ).forEach( function( lineno ){
                         lineno.remove();
                     });
                     var text = code.textContent;
