@@ -503,11 +503,20 @@ function initCodeClipboard(){
         var code = codeElements[i];
         var text = code.textContent;
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
+        var isLineCell = code.querySelector( '.lnt' ); // avoid copy-to-clipboard for highlight shortcode in table lineno mode
 
-        if( inPre || text.length > 5 ){
+        if( !isLineCell && ( inPre || text.length > 5 ) ){
             var clip = new ClipboardJS( '.copy-to-clipboard-button', {
                 text: function( trigger ){
-                    var text = trigger.previousElementSibling && trigger.previousElementSibling.matches( 'code' ) && trigger.previousElementSibling.textContent;
+                    if( !( trigger.previousElementSibling && trigger.previousElementSibling.matches( 'code' ) ) ){
+                        return '';
+                    }
+                    // if highlight shortcode used in inline lineno mode, remove lineno nodes before generating text
+                    var code = trigger.previousElementSibling.cloneNode( true );
+                    Array.from( code.querySelectorAll( '.ln' ) ).forEach( function( lineno ){
+                        lineno.remove();
+                    });
+                    var text = code.textContent;
                     // remove a trailing line break, this may most likely
                     // come from the browser / Hugo transformation
                     text = text.replace( /\n$/, '' );
