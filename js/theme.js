@@ -483,6 +483,16 @@ function initAnchorClipboard(){
 }
 
 function initCodeClipboard(){
+    function getCodeText( node ){
+        var text = node.textContent;
+        // remove a trailing line break, this may most likely
+        // come from the browser / Hugo transformation
+        text = text.replace( /\n$/, '' );
+        // removes leading $ signs from text in an assumption
+        // that this has to be the unix prompt marker - weird
+        return text.replace( /^\$\s/gm, '' );
+    }
+
     function fallbackMessage( action ){
         var actionMsg = '';
         var actionKey = (action === 'cut' ? 'X' : 'C');
@@ -498,34 +508,97 @@ function initCodeClipboard(){
         return actionMsg;
     }
 
-	var codeElements = document.querySelectorAll( 'code' );
+    if( !window.disableHighlightWrapFix ){
+        // if the highlight shortcode was used with table lineno mode, the generated DOM
+        // is a table, containg exactly one row with two cells, the first cell for all linenos
+        // the second with the code;
+        // this does not look nice if the code gets wrapped around, so we reformat the table
+        // by creating a row for each line, containing the two cells but with only the content of
+        // one line
+        var codeTables = Array.from( document.querySelectorAll( 'code' ) ).reduce( function(a, code){
+            // collect all tbody's without duplicates that need our treatment
+            if( code.parentNode.tagName.toLowerCase() == 'pre' &&
+                code.parentNode.parentNode.tagName.toLowerCase() == 'td' &&
+                code.parentNode.parentNode.parentNode.tagName.toLowerCase() == 'tr' &&
+                code.parentNode.parentNode.parentNode.parentNode.tagName.toLowerCase() == 'tbody' &&
+                code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code &&
+                ( !a.length || a[a.length-1] != code.parentNode.parentNode.parentNode.parentNode ) ){
+                var table = code.parentNode.parentNode.parentNode.parentNode;
+                a.push( table );
+            }
+            return a;
+        }, [] );
+        for( var i = 0; i < codeTables.length; i++ ){
+            // now treat the table (tbody);
+            // first we collect some data, setting up our row template and collect the text
+            // representation of the code for later usage with copy-to-clipboard
+            var table = codeTables[i];
+            var text = getCodeText( table.querySelector( 'td:last-child code' ) );
+            var tr = table.querySelector( 'tr' ).cloneNode();
+            tr.appendChild( table.querySelector( 'td:first-child' ).cloneNode() )
+                .appendChild( table.querySelector( 'td:first-child pre' ).cloneNode() )
+                .appendChild( table.querySelector( 'td:first-child code' ).cloneNode() )
+                .classList.add( 'nocode' );
+            tr.appendChild( table.querySelector( 'td:last-child' ).cloneNode() )
+                .appendChild( table.querySelector( 'td:last-child pre' ).cloneNode() )
+                .appendChild( table.querySelector( 'td:last-child code' ).cloneNode() )
+                .classList.add( 'nocode' );
+
+            // select lineno and code cell of first line that contains all the content
+            var linenums = table.querySelectorAll( 'td:first-child code > span' );
+            var codes = table.querySelectorAll( 'td:last-child code > span' );
+            for( var j = 0; j < linenums.length; j++ ){
+                // now create a new table row by cloning our template
+                // and transfering the original content
+                var clonedTr = tr.cloneNode(true);
+                var code1 = clonedTr.querySelector( 'td:first-child code' );
+                var code2 = clonedTr.querySelector( 'td:last-child code' );
+                code1.appendChild( linenums[j] );
+                code2.appendChild( codes[j] );
+                table.appendChild( clonedTr );
+            }
+            // in the end we have an empty first row, that needs to be deleted
+            table.querySelector( 'tr:first-child' ).remove();
+            // we delete the reformat marker of the first code cell to allow the
+            // copy-to-clipboard functionality
+            table.querySelector( 'tr:first-child td:last-child code' ).classList.remove( 'nocode' );
+            // put the text representation into a data attribute
+            table.querySelector( 'tr:first-child td:last-child code' ).dataset[ 'code' ] = text;
+            // finally mark our tbody to apply special CSS styling
+            table.parentNode.parentNode.parentNode.classList.add( 'wrapfix' );
+        }
+    }
+
+    var codeElements = document.querySelectorAll( 'code:not(.nocode)' );
 	for( var i = 0; i < codeElements.length; i++ ){
         var code = codeElements[i];
         var text = code.textContent;
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
         // avoid copy-to-clipboard for highlight shortcode in table lineno mode
-        var isLineCell = inPre &&
+        var isFirstLineCell = inPre &&
             code.parentNode.parentNode.tagName.toLowerCase() == 'td' &&
-            code.parentNode.parentNode.parentNode.querySelector( 'td:nth-child(1) > pre > code' ) == code;
+            code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code;
 
-        if( !isLineCell && ( inPre || text.length > 5 ) ){
+        if( !isFirstLineCell && ( inPre || text.length > 5 ) ){
             var clip = new ClipboardJS( '.copy-to-clipboard-button', {
                 text: function( trigger ){
                     if( !( trigger.previousElementSibling && trigger.previousElementSibling.matches( 'code' ) ) ){
                         return '';
                     }
+                    // if we already have a text representation, return it
+                    var code = trigger.previousElementSibling;
+                    if( code.dataset.code ){
+                        return code.dataset.code;
+                    }
                     // if highlight shortcode used in inline lineno mode, remove lineno nodes before generating text
-                    var code = trigger.previousElementSibling.cloneNode( true );
-                    Array.from( code.querySelectorAll( '*:scope > span > span:nth-child(1):not(:last-child)' ) ).forEach( function( lineno ){
+                    code = code.cloneNode( true );
+                    Array.from( code.querySelectorAll( '*:scope > span > span:first-child:not(:last-child)' ) ).forEach( function( lineno ){
                         lineno.remove();
                     });
-                    var text = code.textContent;
-                    // remove a trailing line break, this may most likely
-                    // come from the browser / Hugo transformation
-                    text = text.replace( /\n$/, '' );
-                    // removes leading $ signs from text in an assumption
-                    // that this has to be the unix prompt marker - weird
-                    return text.replace( /^\$\s/gm, '' );
+                    // generate and save generated text for repeated usage
+                    var text = getCodeText( code );
+                    trigger.previousElementSibling.dataset[ 'code' ] = text;
+                    return text;
                 }
             });
 
