@@ -1976,11 +1976,34 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 }
 
 /* remove border from code block if single in tab */
+#body .tab-content-text > div.highlight.wrapfix:only-child tbody,
 #body .tab-content-text > div.highlight:only-child pre,
 #body .tab-content-text > pre.pre-code:only-child{
     border-width: 0;
 }
-/* re-add border on code column if a single in tab and highlight shortcode was used in table lineno mode */
+/* re-add border on code column if single in tab and highlight shortcode was used in table lineno mode */
 #body .tab-content-text > div.highlight:only-child td:nth-child(2) pre {
     border-left-width: 1px;
+}
+
+/* we may have special treatment if highlight shortcode was used in table lineno mode and
+we want to apply feasible wrapping for long code lines instead of scrolling */
+div.highlight.wrapfix tbody{
+    background-color: var(--INTERNAL-CODE-BLOCK-BG-color);
+    border: 1px solid var(--INTERNAL-CODE-BLOCK-BORDER-color);
+}
+div.highlight.wrapfix tbody tr:not(:first-child) pre{
+    padding-top: 0;
+}
+div.highlight.wrapfix tbody tr:not(:last-child) pre{
+    padding-bottom: 0;
+}
+div.highlight.wrapfix tbody td:first-child:not(last-child){
+    user-select: none;
+}
+div.highlight.wrapfix tbody td:not(:first-child):last-child{
+    border-left: 1px solid var(--INTERNAL-CODE-BLOCK-BORDER-color);
+}
+div.highlight.wrapfix tbody td pre{
+    border: 0;
 }
