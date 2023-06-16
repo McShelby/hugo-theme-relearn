@@ -56,7 +56,7 @@ Some preformatted stuff in HTML elements
 
 #### %%
 
-{{% highlight json "linenos=inline" %}}
+{{% highlight json "linenos=inline,hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -64,7 +64,7 @@ Some preformatted stuff in HTML elements
 
 #### <>
 
-{{< highlight json "linenos=table" >}}
+{{< highlight json "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -75,32 +75,40 @@ Some preformatted stuff in HTML elements
 #### %% %%
 
 {{% tab title="json" %}}
-{{% highlight html "linenos=true" %}}
-<p>my code</p>
+{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{% /highlight %}}
 {{% /tab %}}
 
 #### %% <>
 
 {{% tab title="json" %}}
-{{< highlight html "linenos=true" >}}
-<p>my code</p>
+{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{< /highlight >}}
 {{% /tab %}}
 
 #### <> %%
 
 {{< tab title="json" >}}
-{{% highlight html "linenos=true" %}}
-<p>my code</p>
+{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{% /highlight %}}
 {{< /tab >}}
 
 #### <> <>
 
 {{< tab title="json" >}}
-{{< highlight html "linenos=true" >}}
-<p>my code</p>
+{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{< /highlight >}}
 {{< /tab >}}
 
@@ -110,8 +118,10 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{% tab title="json" %}}
-{{% highlight html "linenos=true" %}}
-<p>my code</p>
+{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{% /highlight %}}
 {{% /tab %}}
 {{% /tabs %}}
@@ -120,8 +130,10 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{% tab title="json" %}}
-{{< highlight html "linenos=true" >}}
-<p>my code</p>
+{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{< /highlight >}}
 {{% /tab %}}
 {{% /tabs %}}
@@ -130,8 +142,10 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{< tab title="json" >}}
-{{% highlight html "linenos=true" %}}
-<p>my code</p>
+{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{% /highlight %}}
 {{< /tab >}}
 {{% /tabs %}}
@@ -140,8 +154,10 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{< tab title="json" >}}
-{{< highlight html "linenos=true" >}}
-<p>my code</p>
+{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{< /highlight >}}
 {{< /tab >}}
 {{% /tabs %}}
@@ -150,8 +166,10 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{% tab title="json" %}}
-{{% highlight html "linenos=true" %}}
-<p>my code</p>
+{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{% /highlight %}}
 {{% /tab %}}
 {{< /tabs >}}
@@ -160,8 +178,10 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{% tab title="json" %}}
-{{< highlight html "linenos=true" >}}
-<p>my code</p>
+{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{< /highlight >}}
 {{% /tab %}}
 {{< /tabs >}}
@@ -170,8 +190,10 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{< tab title="json" >}}
-{{% highlight html "linenos=true" %}}
-<p>my code</p>
+{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{% /highlight %}}
 {{< /tab >}}
 {{< /tabs >}}
@@ -180,8 +202,10 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{< tab title="json" >}}
-{{< highlight html "linenos=true" >}}
-<p>my code</p>
+{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{
+  "Hello": "World" "Hello": "World" "Hello": "World"
+}
 {{< /highlight >}}
 {{< /tab >}}
 {{< /tabs >}}
