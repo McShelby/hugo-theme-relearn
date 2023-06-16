@@ -666,20 +666,54 @@ pre code {
     white-space: inherit;
 }
 
+/* we may have special treatment if highlight shortcode was used in table lineno mode */
+div.highlight > div{
+    border-style: solid;
+    border-width: 1px;
+}
+/* remove default style for usual markdown tables */
+div.highlight > div table{
+    background-color: transparent;
+    border-width: 0;
+    margin: 0;
+}
+div.highlight > div td{
+    border-width: 0;
+    !padding: 0;
+}
+#body div.highlight > div a {
+    line-height: inherit;
+}
+#body div.highlight > div a:after {
+    display: none;
+}
+/* disable selection for lineno cells */
+div.highlight > div td:first-child:not(:last-child){
+    user-select: none;
+}
 /* increase code column to full width if highlight shortcode was used in table lineno mode  */
-div.highlight td:nth-child(2){
+div.highlight > div td:not(:first-child):last-child{
     width: 100%;
 }
-
-/* remove border from lineno column if highlight shortcode was used in table lineno mode */
-div.highlight td > pre:not(.pre-code) {
-    border-bottom-right-radius: 0;
-    border-right-width: 0;
-    border-top-right-radius: 0;
+/* remove border from row cells if highlight shortcode was used in table lineno mode */
+div.highlight > div td > pre {
+    border-radius: 0;
+    border-width: 0;
 }
-div.highlight td:nth-child(2) pre {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
+/* in case of table lineno mode we want to move each row closer together - besides the edges
+this usually applies only to wrapfix tables but it doesn't hurt for non-wrapfix tables too */
+div.highlight > div tr:not(:first-child) pre{
+    padding-top: 0;
+}
+div.highlight > div tr:not(:last-child) pre{
+    padding-bottom: 0;
+}
+/* in case of table lineno mode we want to move each columns closer together on the inside */
+div.highlight > div td:first-child:not(:last-child) pre{
+    padding-right: 0;
+}
+div.highlight > div td:not(:first-child):last-child pre{
+    padding-left: 0;
 }
 
 hr {
@@ -1976,34 +2010,8 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 }
 
 /* remove border from code block if single in tab */
-#body .tab-content-text > div.highlight.wrapfix:only-child tbody,
+#body .tab-content-text > div.highlight:only-child > div,
 #body .tab-content-text > div.highlight:only-child pre,
 #body .tab-content-text > pre.pre-code:only-child{
     border-width: 0;
-}
-/* re-add border on code column if single in tab and highlight shortcode was used in table lineno mode */
-#body .tab-content-text > div.highlight:only-child td:nth-child(2) pre {
-    border-left-width: 1px;
-}
-
-/* we may have special treatment if highlight shortcode was used in table lineno mode and
-we want to apply feasible wrapping for long code lines instead of scrolling */
-div.highlight.wrapfix tbody{
-    background-color: var(--INTERNAL-CODE-BLOCK-BG-color);
-    border: 1px solid var(--INTERNAL-CODE-BLOCK-BORDER-color);
-}
-div.highlight.wrapfix tbody tr:not(:first-child) pre{
-    padding-top: 0;
-}
-div.highlight.wrapfix tbody tr:not(:last-child) pre{
-    padding-bottom: 0;
-}
-div.highlight.wrapfix tbody td:first-child:not(last-child){
-    user-select: none;
-}
-div.highlight.wrapfix tbody td:not(:first-child):last-child{
-    border-left: 1px solid var(--INTERNAL-CODE-BLOCK-BORDER-color);
-}
-div.highlight.wrapfix tbody td pre{
-    border: 0;
 }
