@@ -1,4 +1,5 @@
 +++
+tags = ["config"]
 title = "Configuration"
 weight = 20
 +++
