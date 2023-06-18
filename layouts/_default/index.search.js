@@ -6,12 +6,12 @@
     {{- if eq .Kind "taxonomy" }}
       {{- $title = i18n .Data.Plural }}
       {{- if not $title }}
-        {{- $title = .Data.Plural | humanize }}
+        {{- $title = .Data.Plural }}
       {{- end }}
     {{- else if eq .Kind "term" }}
       {{- $title = i18n .Data.Singular }}
       {{- if not $title }}
-        {{- $title = .Data.Singular | humanize }}
+        {{- $title = .Data.Singular }}
       {{- end }}
       {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Title }}
     {{- end }}
