@@ -544,14 +544,19 @@ div.box > .box-content {
 
 #body table th > :last-child,
 #body table th > :last-child :last-child,
+#body table th > div.highlight:last-child pre,
 #body table td > :last-child,
 #body table td > :last-child :last-child,
+#body table td > div:last-child pre,
 #body div.box > .box-content > :last-child,
 #body div.box > .box-content > :last-child :last-child,
+#body div.box > .box-content > div:last-child pre,
 #body div.expand > .expand-content-text > :last-child,
 #body div.expand > .expand-content-text > :last-child :last-child,
+#body div.expand > .expand-content-text > div:last-child pre,
 #body div.tab-content > .tab-content-text > :last-child,
-#body div.tab-content > .tab-content-text > :last-child :last-child {
+#body div.tab-content > .tab-content-text > :last-child :last-child,
+#body div.tab-content > .tab-content-text > div:last-child pre {
     margin-bottom: 0;
 }
 
@@ -663,14 +668,15 @@ pre code {
     font-size: .9375rem;
     margin: 0;
     padding: 0;
-    white-space: inherit;
 }
 
+div.highlight{
+    position: relative;
+}
 /* we may have special treatment if highlight shortcode was used in table lineno mode */
 div.highlight > div{
     border-style: solid;
     border-width: 1px;
-    position: relative;
 }
 /* remove default style for usual markdown tables */
 div.highlight > div table{
@@ -700,8 +706,14 @@ div.highlight > div table{
     display: block;
     overflow: auto;
 }
-div.highlight > div td:not(:first-child):last-child pre code{
+div.highlight:not(.wrap-code) pre{
+    overflow: auto;
+}
+div.highlight:not(.wrap-code) pre code{
     white-space: pre;
+}
+div.highlight.wrap-code pre code{
+    white-space: pre-wrap;
 }
 /* remove border from row cells if highlight shortcode was used in table lineno mode */
 div.highlight > div td > pre {
@@ -1101,12 +1113,14 @@ span > .copy-to-clipboard-button {
 }
 
 div.highlight > div table + .copy-to-clipboard-button > i,
+div.highlight pre + .copy-to-clipboard-button > i,
 .copy-to-clipboard-code + .copy-to-clipboard-button > i {
     padding-left: 5px;
     padding-right: 5px;
 }
 
 div.highlight > div table + .copy-to-clipboard-button,
+div.highlight pre + .copy-to-clipboard-button,
 pre > .copy-to-clipboard-button {
     background-color: rgba( 160, 160, 160, .2 );
     border-radius: 2px;

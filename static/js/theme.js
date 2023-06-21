@@ -577,6 +577,24 @@ function initCodeClipboard(){
                 table.dataset[ 'code' ] = text;
                 table.parentNode.insertBefore( button, table.nextSibling );
             }
+            else if( inPre ){
+                var pre = code.parentNode;
+                pre.dataset[ 'code' ] = text;
+                var p = pre.parentNode;
+                // indented code blocks are missing the div
+                while( p != document && ( p.tagName.toLowerCase() != 'div' || !p.classList.contains( 'highlight' ) ) ){
+                    p = p.parentNode;
+                }
+                if( p == document ){
+                    var clone = pre.cloneNode( true );
+                    var div = document.createElement( 'div' );
+                    div.classList.add( 'highlight' );
+                    div.appendChild( clone );
+                    pre.parentNode.replaceChild( div, pre );
+                    pre = clone;
+                }
+                pre.parentNode.insertBefore( button, pre.nextSibling );
+            }
             else{
                 code.dataset[ 'code' ] = text;
                 code.parentNode.insertBefore( button, code.nextSibling );

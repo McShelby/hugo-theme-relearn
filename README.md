@@ -25,7 +25,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - Predefined light, dark and color variants
   - [User selectable variants](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#multiple-variants)
   - [Stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/basics/generator)
-  - [Configurable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/cont/syntaxhighlight)
+  - [Configurable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/highlight)
 - **Unique theme features**
   - [Print whole chapters or even the complete site](https://mcshelby.github.io/hugo-theme-relearn/basics/configuration#activate-print-support)
   - In page search

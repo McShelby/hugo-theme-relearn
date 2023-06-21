@@ -1,0 +1,39 @@
+{{- $version := split hugo.Version "." }}
+{{- $major := int (index $version 0) }}
+{{- $minor := int (index $version 1) }}
+{{- $content := "" }}
+{{- if or (and (eq $major 0) (ge $minor 110)) (gt $major 0) }}
+  {{- $content = .InnerDeindent }}
+{{- else }}
+  {{- $content = .Inner }}
+{{- end }}
+{{- $attributes := dict }}
+{{- $options := dict }}
+{{- $stringOptions := "" }}
+{{- $otherOptions := dict }}
+{{- $type := "" }}
+{{- range $k, $v := .Params }}
+  {{- if eq $k 0 }}
+    {{- $type = $v }}
+  {{- else if eq $k 1 }}
+    {{- $stringOptions = trim $v "\n\r\t " }}
+  {{- else if eq $k "type" }}
+    {{- $type = $v }}
+  {{- else if eq $k "wrap" }}
+    {{- $attributes = $attributes | merge (dict $k $v) }}
+  {{- else }}
+    {{- $otherOptions = $otherOptions | merge (dict $k $v) }}
+  {{- end }}
+{{- end }}
+{{- range (split $stringOptions ",") }}
+  {{- $pair := split . "=" }}
+  {{- $options = $options | merge (dict (index $pair 0) (index $pair 1)) }}
+{{- end }}
+{{- $options = $options | merge $otherOptions }}
+{{- partial "shortcodes/highlight.html" (dict
+  "context"    .Page
+  "attributes" $attributes
+  "content"    $content
+  "options"    $options
+  "type"       $type
+) }}

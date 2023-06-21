@@ -18,6 +18,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.17.0 (2023-06-20)
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
+
+  In addition it offers some extensions. Currently only the `wrap` extension option is provided to control whether a code block should be wrapped or scrolled if to long to fit.
+
+---
+
 ## 5.16.0 (2023-06-10)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme now provides warnings for deprecated or now unsupported features. The warnings include hints how to fix them and an additional link to the documenation.

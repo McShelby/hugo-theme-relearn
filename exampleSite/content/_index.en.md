@@ -28,7 +28,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - Predefined light, dark and color variants
   - [User selectable variants]({{%relref "basics/customization#multiple-variants" %}})
   - [Stylesheet generator]({{%relref "basics/generator" %}})
-  - [Configurable syntax highlighting]({{%relref "cont/syntaxhighlight" %}})
+  - [Configurable syntax highlighting]({{%relref "shortcodes/highlight" %}})
 - **Unique theme features**
   - [Print whole chapters or even the complete site]({{%relref "basics/configuration#activate-print-support" %}})
   - In page search

@@ -64,7 +64,7 @@ Some preformatted stuff in HTML elements
 
 #### <>
 
-{{< highlight json "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight json "linenos=true,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -95,7 +95,7 @@ Some preformatted stuff in HTML elements
 #### <> %%
 
 {{< tab title="json" >}}
-{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{{% highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -105,7 +105,7 @@ Some preformatted stuff in HTML elements
 #### <> <>
 
 {{< tab title="json" >}}
-{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -118,7 +118,7 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{% tab title="json" %}}
-{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{{% highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -130,7 +130,7 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{% tab title="json" %}}
-{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -142,7 +142,7 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{< tab title="json" >}}
-{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{{% highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -154,7 +154,7 @@ Some preformatted stuff in HTML elements
 
 {{% tabs %}}
 {{< tab title="json" >}}
-{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -166,7 +166,7 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{% tab title="json" %}}
-{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{{% highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -178,7 +178,7 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{% tab title="json" %}}
-{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -190,7 +190,7 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{< tab title="json" >}}
-{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{{% highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -202,10 +202,78 @@ Some preformatted stuff in HTML elements
 
 {{< tabs >}}
 {{< tab title="json" >}}
-{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight html "linenos=true,hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
 {{< /highlight >}}
 {{< /tab >}}
 {{< /tabs >}}
+
+## With Wrap
+
+### LineNo Table
+
+{{< highlight lineNos="table" type="py" wrap="true" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+### LineNo Inline
+
+{{< highlight lineNos="inline" type="py" wrap="true" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+### No LineNo
+
+{{< highlight type="py" wrap="true" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+### No Type
+
+{{< highlight wrap="true" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+## Without Wrap
+
+### LineNo Table
+
+{{< highlight lineNos="table" type="py" wrap="false" hl_lines="2">}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+### LineNo Inline
+
+{{< highlight lineNos="inline" type="py" wrap="false" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+### No LineNo
+
+{{< highlight type="py" wrap="false" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}
+
+### No Type
+
+{{< highlight wrap="false" hl_lines="2" >}}
+# Quicksort Python One-liner
+lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+# Some more stuff
+{{< /highlight >}}

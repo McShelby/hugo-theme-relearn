@@ -1,0 +1,60 @@
+{{- $context := .context }}
+{{- $attributes := dict }}
+{{- $otherAttributes := dict }}
+{{- $content := "" }}
+{{- $options := dict }}
+{{- $otherOptions := dict }}
+{{- $type := "" }}
+{{- range $k, $v := . }}
+  {{- if eq $k "context" }}
+  {{- else if eq $k "attributes" }}
+    {{- $attributes = $v }}
+  {{- else if eq $k "content" }}
+    {{- $content = trim $v "\n\r" }}
+  {{- else if eq $k "options" }}
+    {{- $options = $v }}
+  {{- else if eq $k "type" }}
+    {{- $type = $v }}
+  {{- else if eq $k "wrap" }}
+    {{- $otherAttributes = $otherAttributes | merge (dict $k $v) }}
+  {{- else }}
+    {{- $otherOptions = $otherOptions | merge (dict $k $v) }}
+  {{- end }}
+{{- end }}
+{{- $options = $options | merge $otherOptions }}
+{{- $otherOptions := dict }}
+{{- range $k, $v := $options }}
+  {{- if eq $k "wrap" }}
+    {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
+  {{- else }}
+    {{- $otherOptions = $otherOptions | merge (dict $k $v) }}
+  {{- end }}
+{{- end }}
+{{- $options = $otherOptions }}
+{{- $attributes = $attributes | merge $otherAttributes }}
+{{- $params := slice }}
+{{- range $k, $v := $options }}
+  {{- $params = $params | append (printf "%s=%s" $k $v) }}
+{{- end }}
+{{- $params = delimit $params ", " }}
+{{- $wrap := true }}
+{{- if isset $context.Site.Params "highlightwrap" }}
+  {{- $wrap = $context.Site.Params.highlightWrap  }}
+{{- end }}
+{{- if isset $context.Params "highlightwrap" }}
+  {{- $wrap = $context.Params.highlightWrap }}
+{{- end }}
+{{- range $k, $v := $attributes }}
+  {{- if eq $k "wrap" }}
+    {{- $wrap = $v }}
+  {{- end }}
+{{- end }}
+{{- if eq (printf "%T" $wrap) "string" }}
+  {{- $wrap = (eq $wrap "true") }}
+{{- end }}
+{{- $content = highlight $content $type $params }}
+{{- $content = replaceRE "^([\\s\\n\\r]*)(<pre\\s+?[\\s\\S]*)$" "${1}<div class=\"highlight\">${2}</div>" $content }}
+{{- if $wrap }}
+  {{- $content = replaceRE "^([\\s\\n\\r]*<div\\s+class=\")" "${1}wrap-code " $content 1 }}
+{{- end }}
+{{- $content | safeHTML }}
