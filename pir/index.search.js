@@ -53,7 +53,7 @@ var relearn_search_index = [
     "uri": "/pir/cont/markdown/index.html"
   },
   {
-    "content": " Cap'n Hugo uses Marrrkdown fer its simple rrrambl'n format. However, there be a lot o' th'ns that Marrrkdown doesn’t support well. Ye could use pure HTML t' expand possibilities.\nBut this happens t' be a bad idea. Everyone uses Marrrkdown because it’s pure an' simple t' read even non-rendered. Ye should avoid HTML t' keep it as simple as poss'ble.\nT' avoid this limitat'ns, Cap'n Hugo created shorrrtcodes. A shortcode be a simple snippet inside a plank.\nTh' Relearrrn theme provides multiple shorrrtcodes on top o' exist'n ones.\nAttachmentsList o' files attached t' a plank\nBadgeMarker badges t' display 'n yer text\nButtonClick'ble buttons\nChildrenList th' child planks o' a plank\nExpandExpandable/collaps'ble sections o' text\nHighlightGenerate diagrams an' flowcharts from text\nAy'conNice ay'cons fer yer plank\nIncludeDisplays rrrambl'n from other files\nMathBeautiful math an' chemical formulae\nMerrrmaidGenerate diagrams an' flowcharts from text\nNoticeDisclaimers t' help ye structure yer plank\nOpenAPIUI fer yer OpenAPI / Swagger specificat'ns\nShip ParamGet value o' ship params\nTabShow rrrambl'n 'n a single tab\nTabsShow rrrambl'n 'n tabbed views\n",
+    "content": " Cap'n Hugo uses Marrrkdown fer its simple rrrambl'n format. However, there be a lot o' th'ns that Marrrkdown doesn’t support well. Ye could use pure HTML t' expand possibilities.\nBut this happens t' be a bad idea. Everyone uses Marrrkdown because it’s pure an' simple t' read even non-rendered. Ye should avoid HTML t' keep it as simple as poss'ble.\nT' avoid this limitat'ns, Cap'n Hugo created shorrrtcodes. A shortcode be a simple snippet inside a plank.\nTh' Relearrrn theme provides multiple shorrrtcodes on top o' exist'n ones.\nAttachmentsList o' files attached t' a plank\nBadgeMarker badges t' display 'n yer text\nButtonClick'ble buttons\nChildrenList th' child planks o' a plank\nExpandExpandable/collaps'ble sections o' text\nHighlightRender code wit' a rules highlighter\nAy'conNice ay'cons fer yer plank\nIncludeDisplays rrrambl'n from other files\nMathBeautiful math an' chemical formulae\nMerrrmaidGenerate diagrams an' flowcharts from text\nNoticeDisclaimers t' help ye structure yer plank\nOpenAPIUI fer yer OpenAPI / Swagger specificat'ns\nShip ParamGet value o' ship params\nTabShow rrrambl'n 'n a single tab\nTabsShow rrrambl'n 'n tabbed views\n",
     "description": "",
     "tags": null,
     "title": "Shorrrtcodes",
@@ -413,7 +413,7 @@ var relearn_search_index = [
   },
   {
     "content": " Arrr! Pirrrates Fello' pirrrates, grog made us dizzy! Be awarrre some stuff may not work in this trrranslat'n. Like see'n Merrrmaids, do'n math or chemistrrry, writ'n docs and stuff.\nTh' highlight shortcode renders yer code wit' a rules highlighter.\n",
-    "description": "",
+    "description": "Render code with a syntax highlighter",
     "tags": null,
     "title": "Highlight",
     "uri": "/pir/shortcodes/highlight/index.html"
