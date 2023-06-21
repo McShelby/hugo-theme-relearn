@@ -557,11 +557,12 @@ function initCodeClipboard(){
                 code.parentNode.classList.add( 'pre-code' );
             }
             else{
-                var parent = code.parentNode;
+                var clone = code.cloneNode( true );
                 var span = document.createElement( 'span' );
                 span.classList.add( 'copy-to-clipboard' );
-                span.appendChild( code );
-                parent.appendChild( span );
+                span.appendChild( clone );
+                code.parentNode.replaceChild( span, code );
+                code = clone;
             }
             var button = document.createElement( 'span' );
             button.classList.add( 'copy-to-clipboard-button' );
