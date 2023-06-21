@@ -1,5 +1,5 @@
 +++
-description = "Generate diagrams and flowcharts from text"
+description = "Render code with a syntax highlighter"
 title = "Highlight"
 +++
 

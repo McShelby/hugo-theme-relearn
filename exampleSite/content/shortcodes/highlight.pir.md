@@ -1,5 +1,5 @@
 +++
-descrption = "Beaut'fl math and chemical formulae"
+description = "Render code with a syntax highlighter"
 title = "Highlight"
 +++
 {{< piratify true >}}
