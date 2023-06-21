@@ -75,7 +75,7 @@ Some preformatted stuff in HTML elements
 #### %% %%
 
 {{% tab title="json" %}}
-{{% highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" %}}
+{{% highlight html "hl_lines=1 2,anchorlinenos=true" %}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }
@@ -85,7 +85,7 @@ Some preformatted stuff in HTML elements
 #### %% <>
 
 {{% tab title="json" %}}
-{{< highlight html "linenos=table,hl_lines=1 2,anchorlinenos=true" >}}
+{{< highlight html "hl_lines=1 2,anchorlinenos=true" >}}
 {
   "Hello": "World" "Hello": "World" "Hello": "World"
 }

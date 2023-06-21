@@ -670,6 +670,7 @@ pre code {
 div.highlight > div{
     border-style: solid;
     border-width: 1px;
+    position: relative;
 }
 /* remove default style for usual markdown tables */
 div.highlight > div table{
@@ -679,7 +680,6 @@ div.highlight > div table{
 }
 div.highlight > div td{
     border-width: 0;
-    !padding: 0;
 }
 #body div.highlight > div a {
     line-height: inherit;
@@ -694,6 +694,14 @@ div.highlight > div td:first-child:not(:last-child){
 /* increase code column to full width if highlight shortcode was used in table lineno mode  */
 div.highlight > div td:not(:first-child):last-child{
     width: 100%;
+}
+/* add scrollbars if highlight shortcode was used in table lineno mode */
+div.highlight > div table{
+    display: block;
+    overflow: auto;
+}
+div.highlight > div td:not(:first-child):last-child pre code{
+    white-space: pre;
 }
 /* remove border from row cells if highlight shortcode was used in table lineno mode */
 div.highlight > div td > pre {
@@ -1077,6 +1085,7 @@ html[dir="rtl"] #body #breadcrumbs {
     border-width: 1px;
     cursor: pointer;
     font-size: .934375rem;
+    line-height: 1.15;
 }
 
 span > .copy-to-clipboard-button {
@@ -1091,11 +1100,13 @@ span > .copy-to-clipboard-button {
     font-weight: 500;
 }
 
+div.highlight > div table + .copy-to-clipboard-button > i,
 .copy-to-clipboard-code + .copy-to-clipboard-button > i {
     padding-left: 5px;
     padding-right: 5px;
 }
 
+div.highlight > div table + .copy-to-clipboard-button,
 pre > .copy-to-clipboard-button {
     background-color: rgba( 160, 160, 160, .2 );
     border-radius: 2px;
