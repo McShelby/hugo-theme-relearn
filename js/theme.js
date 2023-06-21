@@ -484,13 +484,16 @@ function initAnchorClipboard(){
 
 function initCodeClipboard(){
     function getCodeText( node ){
-        var text = node.textContent;
+        // if highlight shortcode is used in inline lineno mode, remove lineno nodes before generating text, otherwise it doesn't hurt
+        var code = node.cloneNode( true );
+        Array.from( code.querySelectorAll( '*:scope > span > span:first-child:not(:last-child)' ) ).forEach( function( lineno ){
+            lineno.remove();
+        });
+        var text = code.textContent;
         // remove a trailing line break, this may most likely
         // come from the browser / Hugo transformation
         text = text.replace( /\n$/, '' );
-        // removes leading $ signs from text in an assumption
-        // that this has to be the unix prompt marker - weird
-        return text.replace( /^\$\s/gm, '' );
+        return text;
     }
 
     function fallbackMessage( action ){
@@ -508,114 +511,41 @@ function initCodeClipboard(){
         return actionMsg;
     }
 
-    if( !window.disableHighlightWrapFix ){
-        // if the highlight shortcode was used with table lineno mode, the generated DOM
-        // is a table, containg exactly one row with two cells, the first cell for all linenos
-        // the second with the code;
-        // this does not look nice if the code gets wrapped around, so we reformat the table
-        // by creating a row for each line, containing the two cells but with only the content of
-        // one line
-        var codeTables = Array.from( document.querySelectorAll( 'code' ) ).reduce( function(a, code){
-            // collect all tbody's without duplicates that need our treatment
-            if( code.parentNode.tagName.toLowerCase() == 'pre' &&
-                code.parentNode.parentNode.tagName.toLowerCase() == 'td' &&
-                code.parentNode.parentNode.parentNode.tagName.toLowerCase() == 'tr' &&
-                code.parentNode.parentNode.parentNode.parentNode.tagName.toLowerCase() == 'tbody' &&
-                code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code &&
-                ( !a.length || a[a.length-1] != code.parentNode.parentNode.parentNode.parentNode ) ){
-                var table = code.parentNode.parentNode.parentNode.parentNode;
-                a.push( table );
-            }
-            return a;
-        }, [] );
-        for( var i = 0; i < codeTables.length; i++ ){
-            // now treat the table (tbody);
-            // first we collect some data, setting up our row template and collect the text
-            // representation of the code for later usage with copy-to-clipboard
-            var table = codeTables[i];
-            var text = getCodeText( table.querySelector( 'td:last-child code' ) );
-            var tr = table.querySelector( 'tr' ).cloneNode();
-            tr.appendChild( table.querySelector( 'td:first-child' ).cloneNode() )
-                .appendChild( table.querySelector( 'td:first-child pre' ).cloneNode() )
-                .appendChild( table.querySelector( 'td:first-child code' ).cloneNode() )
-                .classList.add( 'nocode' );
-            tr.appendChild( table.querySelector( 'td:last-child' ).cloneNode() )
-                .appendChild( table.querySelector( 'td:last-child pre' ).cloneNode() )
-                .appendChild( table.querySelector( 'td:last-child code' ).cloneNode() )
-                .classList.add( 'nocode' );
-
-            // select lineno and code cell of first line that contains all the content
-            var linenums = table.querySelectorAll( 'td:first-child code > span' );
-            var codes = table.querySelectorAll( 'td:last-child code > span' );
-            for( var j = 0; j < linenums.length; j++ ){
-                // now create a new table row by cloning our template
-                // and transfering the original content
-                var clonedTr = tr.cloneNode(true);
-                var code1 = clonedTr.querySelector( 'td:first-child code' );
-                var code2 = clonedTr.querySelector( 'td:last-child code' );
-                code1.appendChild( linenums[j] );
-                code2.appendChild( codes[j] );
-                table.appendChild( clonedTr );
-            }
-            // in the end we have an empty first row, that needs to be deleted
-            table.querySelector( 'tr:first-child' ).remove();
-            // we delete the reformat marker of the first code cell to allow the
-            // copy-to-clipboard functionality
-            table.querySelector( 'tr:first-child td:last-child code' ).classList.remove( 'nocode' );
-            // put the text representation into a data attribute
-            table.querySelector( 'tr:first-child td:last-child code' ).dataset[ 'code' ] = text;
-            // finally mark our tbody to apply special CSS styling
-            table.parentNode.parentNode.parentNode.classList.add( 'wrapfix' );
-        }
-    }
-
-    var codeElements = document.querySelectorAll( 'code:not(.nocode)' );
+    var codeElements = document.querySelectorAll( 'code' );
 	for( var i = 0; i < codeElements.length; i++ ){
         var code = codeElements[i];
-        var text = code.textContent;
+        var text = getCodeText( code );
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
+        var inTable = inPre &&
+           code.parentNode.parentNode.tagName.toLowerCase() == 'td';
         // avoid copy-to-clipboard for highlight shortcode in table lineno mode
-        var isFirstLineCell = inPre &&
-            code.parentNode.parentNode.tagName.toLowerCase() == 'td' &&
+        var isFirstLineCell = inTable &&
             code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code;
 
         if( !isFirstLineCell && ( inPre || text.length > 5 ) ){
             var clip = new ClipboardJS( '.copy-to-clipboard-button', {
                 text: function( trigger ){
-                    if( !( trigger.previousElementSibling && trigger.previousElementSibling.matches( 'code' ) ) ){
+                    if( !trigger.previousElementSibling ){
                         return '';
                     }
-                    // if we already have a text representation, return it
-                    var code = trigger.previousElementSibling;
-                    if( code.dataset.code ){
-                        return code.dataset.code;
-                    }
-                    // if highlight shortcode used in inline lineno mode, remove lineno nodes before generating text
-                    code = code.cloneNode( true );
-                    Array.from( code.querySelectorAll( '*:scope > span > span:first-child:not(:last-child)' ) ).forEach( function( lineno ){
-                        lineno.remove();
-                    });
-                    // generate and save generated text for repeated usage
-                    var text = getCodeText( code );
-                    trigger.previousElementSibling.dataset[ 'code' ] = text;
-                    return text;
+                    return trigger.previousElementSibling.dataset.code || '';
                 }
             });
 
             clip.on( 'success', function( e ){
                 e.clearSelection();
-                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
+                var doBeside = e.trigger.parentNode.tagName.toLowerCase() == 'pre' || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
                 e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isRtl?'e':'w')) );
             });
 
             clip.on( 'error', function( e ){
-                var inPre = e.trigger.parentNode.tagName.toLowerCase() == 'pre';
+                var doBeside = e.trigger.parentNode.tagName.toLowerCase() == 'pre' || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
                 e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isRtl?'e':'w')) );
                 var f = function(){
                     e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (inPre ? 'w' : 's'+(isRtl?'e':'w')) );
+                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isRtl?'e':'w')) );
                     document.removeEventListener( 'copy', f );
                 };
                 document.addEventListener( 'copy', f );
@@ -642,7 +572,33 @@ function initCodeClipboard(){
                 this.removeAttribute( 'aria-label' );
                 this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
             });
-            code.parentNode.insertBefore( button, code.nextSibling );
+            if( inTable ){
+                var table = code.parentNode.parentNode.parentNode.parentNode.parentNode;
+                table.dataset[ 'code' ] = text;
+                table.parentNode.insertBefore( button, table.nextSibling );
+            }
+            else if( inPre ){
+                var pre = code.parentNode;
+                pre.dataset[ 'code' ] = text;
+                var p = pre.parentNode;
+                // indented code blocks are missing the div
+                while( p != document && ( p.tagName.toLowerCase() != 'div' || !p.classList.contains( 'highlight' ) ) ){
+                    p = p.parentNode;
+                }
+                if( p == document ){
+                    var clone = pre.cloneNode( true );
+                    var div = document.createElement( 'div' );
+                    div.classList.add( 'highlight' );
+                    div.appendChild( clone );
+                    pre.parentNode.replaceChild( div, pre );
+                    pre = clone;
+                }
+                pre.parentNode.insertBefore( button, pre.nextSibling );
+            }
+            else{
+                code.dataset[ 'code' ] = text;
+                code.parentNode.insertBefore( button, code.nextSibling );
+            }
         }
     }
 }
