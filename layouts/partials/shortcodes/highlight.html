@@ -12,7 +12,14 @@
   {{- else if eq $k "content" }}
     {{- $content = trim $v "\n\r" }}
   {{- else if eq $k "options" }}
-    {{- $options = $v }}
+    {{- if eq (printf "%T" $v) "string" }}
+      {{- range (split $v ",") }}
+        {{- $pair := split . "=" }}
+        {{- $options = $options | merge (dict (index $pair 0) (index $pair 1)) }}
+      {{- end }}
+    {{- else }}
+      {{- $options = $v }}
+    {{- end }}
   {{- else if eq $k "type" }}
     {{- $type = $v }}
   {{- else if eq $k "wrap" }}
@@ -27,7 +34,7 @@
   {{- if eq $k "wrap" }}
     {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
   {{- else }}
-    {{- $otherOptions = $otherOptions | merge (dict $k $v) }}
+    {{- $otherOptions = (dict $k $v) | merge $otherOptions }}
   {{- end }}
 {{- end }}
 {{- $options = $otherOptions }}
