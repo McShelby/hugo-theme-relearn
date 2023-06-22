@@ -20,6 +20,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.17.0 (2023-06-20)
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
 
   In addition it offers some extensions. Currently only the `wrap` extension option is provided to control whether a code block should be wrapped or scrolled if to long to fit.
@@ -48,7 +50,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.15.0 (2023-05-29)
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Now also compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Now compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
   The [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) has compatiblity issues with newer Hugo versions. You must switch to leaf bundles or are locked to Hugo < `0.112.0` for now.
 
