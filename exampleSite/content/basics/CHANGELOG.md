@@ -1,5 +1,20 @@
 # Changelog
 
+## 5.17.0 (2023-06-22)
+
+### Enhancements
+
+- [**feature**][**change**] highlight: make copy to clipboard appear on hover [#574](https://github.com/McShelby/hugo-theme-relearn/issues/574)
+- [**feature**] highlight: add configurable line breaks [#169](https://github.com/McShelby/hugo-theme-relearn/issues/169)
+
+### Fixes
+
+- [**bug**] theme: support Hugo 0.114.0 [#573](https://github.com/McShelby/hugo-theme-relearn/issues/573)
+- [**bug**] taxonomy: fix number tags [#570](https://github.com/McShelby/hugo-theme-relearn/issues/570)
+- [**bug**] highlight: improve copy to clipboard [#569](https://github.com/McShelby/hugo-theme-relearn/issues/569)
+
+---
+
 ## 5.16.2 (2023-06-10)
 
 ### Enhancements

@@ -18,7 +18,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.17.0 (2023-06-20)
+## 5.17.0 (2023-06-22)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The default behavior for the copy-to-clipboard feature for code blocks has changed.
 
