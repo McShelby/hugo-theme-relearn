@@ -12,7 +12,7 @@
         </div>{{ if $link }}</form>{{ end }}
         {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
         {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Lang }}
-        {{- $contentlangs := (union (slice | append .Site.Params.additionalContentLanguage) (slice $pageBaseLang)) }}
+        {{- $contentlangs := (union (slice | append (.Site.Params.additionalContentLanguage | default slice)) (slice $pageBaseLang)) }}
         {{- $quotedcontentlangs := slice }}
         {{- $missingcontentlangs := slice }}
         {{- range $contentlangs }}
