@@ -42,6 +42,8 @@ Note that some of these parameters are explained in details in other sections of
   disableGeneratorVersion = false
   # Set this to true to disable copy-to-clipboard button for inline code.
   disableInlineCopyToClipBoard = false
+  # Set this to true to disable the hover effect for copy-to-clipboard buttons for block code.
+  disableHoverBlockCopyToClipBoard = false
   # A title for shortcuts in menu is set by default. Set this to true to disable it.
   disableShortcutsTitle = false
   # If set to false, a Home button will appear below the search bar on the menu.

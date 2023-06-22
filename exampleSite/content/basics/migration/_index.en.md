@@ -20,6 +20,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.17.0 (2023-06-20)
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The default behavior for the copy-to-clipboard feature for code blocks has changed.
+
+  The copy-to-clipboard button for code blocks will now only be displayed if the reader hovers the code block.
+
+  If you dislike this new behavior you can turn it off and revert to the old behavior by adding `[params] disableHoverBlockCopyToClipBoard=true` to your `config.toml`.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
