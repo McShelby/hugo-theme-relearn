@@ -5,7 +5,7 @@ title = "Highlight"
 
 The `highlight` shortcode renders your code with a syntax highlighter.
 
-{{< highlight lineNos="table" type="py" wrap="true" >}}
+{{< highlight lineNos="true" type="py" wrap="true" >}}
 print("Hello World!")
 {{< /highlight >}}
 
@@ -24,7 +24,7 @@ While the examples are using shortcodes with named parameter it is recommended t
 {{% tab title="codefence" %}}
 
 ````md
-```py { lineNos="table" wrap="true" }
+```py { lineNos="true" wrap="true" }
 print("Hello World!")
 ```
 ````
@@ -33,7 +33,7 @@ print("Hello World!")
 {{% tab title="shortcode" %}}
 
 ````go
-{{</* highlight lineNos="table" type="py" wrap="true" */>}}
+{{</* highlight lineNos="true" type="py" wrap="true" */>}}
 print("Hello World!")
 {{</* /highlight */>}}
 ````
@@ -42,7 +42,7 @@ print("Hello World!")
 {{% tab title="shortcode (positional)" %}}
 
 ````go
-{{</* highlight py "lineNos=table,wrap=true" */>}}
+{{</* highlight py "lineNos=true,wrap=true" */>}}
 print("Hello World!")
 {{</* /highlight */>}}
 ````
@@ -54,7 +54,7 @@ print("Hello World!")
 {{ partial "shortcodes/highlight.html" (dict
   "context" .
   "content" "print(\"Hello World!\")"
-  "lineNos" "table"
+  "lineNos" "true"
   "type"    "py"
   "wrap"    "true"
 )}}
@@ -68,7 +68,7 @@ print("Hello World!")
 {{ partial "shortcodes/highlight.html" (dict
   "context" .
   "content" "print(\"Hello World!\")"
-  "options" "lineNos=table,wrap=true"
+  "options" "lineNos=true,wrap=true"
   "type"    "py"
 )}}
 
