@@ -40,7 +40,7 @@
   {{- end }}
 {{- end }}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
+  <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | $context.Page.RenderString }}</div>
   <ul class="box-content attachments-files">
   {{- $fileDir := "" }}
   {{- if or (and (eq $major 0) (ge $minor 112)) (gt $major 0) }}
