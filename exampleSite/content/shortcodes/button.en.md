@@ -115,6 +115,22 @@ Once the button is clicked, it opens another browser tab for the given URL.
 
 ### Icon
 
+#### Empty
+
+````go
+{{%/* button href="https://gohugo.io/" icon=" " %}}{{% /button */%}}
+````
+
+{{% button href="https://gohugo.io/" icon=" " %}}{{% /button %}}
+
+#### Only
+
+````go
+{{%/* button href="https://gohugo.io/" icon="download" %}}{{% /button */%}}
+````
+
+{{% button href="https://gohugo.io/" icon="download" %}}{{% /button %}}
+
 #### To the Left
 
 ````go
