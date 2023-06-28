@@ -6,7 +6,8 @@
   {{- $outputFormat = partial "output-format.hugo" $page }}
 {{- end }}
 {{- $archetype := "default" }}
-{{- if $page.Params.archetype }}
+{{- if not $page.File }}
+{{- else if $page.Params.archetype }}
   {{- $archetype = $page.Params.archetype }}
 {{- else if $page.Params.chapter }}
   {{- $archetype = "deprecated-chapter" }}
