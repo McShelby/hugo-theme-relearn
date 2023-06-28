@@ -5,10 +5,10 @@
           {{- end }}
         {{- end }}
 {{- $c:="" }}        {{ if $link }}<form action="{{ $link }}" method="get">{{ end }}<div class="searchbox default-animation">
-          {{ if $link }}<button type="submit" title="{{ T "Search" }} (CTRL+ALT+f)">{{ end }}<i class="fas fa-search"{{ if not $link }} title="{{ T "Search" }} (CTRL+ALT+f)"{{ end }}></i>{{ if $link }}</button>{{ end }}
+          {{ if $link }}<button class="search-detail" type="submit" title="{{ T "Search" }} (CTRL+ALT+f)">{{ end }}<i class="fas fa-search"{{ if not $link }} title="{{ T "Search" }} (CTRL+ALT+f)"{{ end }}></i>{{ if $link }}</button>{{ end }}
           <label class="a11y-only" for="search-by">{{ T "Search" }}</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="{{ T "Search-placeholder" }}">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="{{ T "Clear-search" }}"><i class="fas fa-times" title="{{ T "Clear-search" }}"></i></button>
         </div>{{ if $link }}</form>{{ end }}
         {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
         {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Lang }}
