@@ -70,10 +70,10 @@
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
           <ul>
             <li id="select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">{{ T "Language" }}</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                     {{- $page := .Page }}
@@ -92,14 +92,14 @@
                     {{- end }}
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">{{ T "Theme" }}</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     {{- $firstvariant := true }}
@@ -115,11 +115,20 @@
                     {{- end }}
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>{{ T "Clear-History" }}</button></li>
+            <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">{{ T "Clear-History" }}</button>
+                </div>
+                <div class="clear"></div>
+              </li>
+            </div>
           </ul>
         </div>
         <div id="footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
