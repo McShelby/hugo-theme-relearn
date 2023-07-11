@@ -88,10 +88,17 @@ Built with {{% icon heart %}} by Relearn and Hugo
 
 ### Advanced HTML Usage
 
-While the shortcode simplyfies using standard icons, the icon customisation and other advanced features of the Font Awesome library requires you to use HTML directly. Just paste the `<i>` HTML into markup and Font Awesome will load the relevant icon.
+While the shortcode simplifies using standard icons, the icon customization and other advanced features of the Font Awesome library require you to use HTML directly. Paste the `<i>` HTML into markup, and Font Awesome will load the relevant icon.
 
 ````html
 Built with <i class="fas fa-heart"></i> by Relearn and Hugo
 ````
 
 Built with <i class="fas fa-heart"></i> by Relearn and Hugo
+
+To use these native HTML elements in your Markdown, add this in your `config.toml`:
+
+````toml
+[markup.goldmark.renderer]
+    unsafe = true
+````
