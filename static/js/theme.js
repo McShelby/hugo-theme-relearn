@@ -350,7 +350,7 @@ function initOpenapi( update, attrs ){
                 '</head>' +
                 '<body>' +
                     '<a class="relearn-expander" href="" onclick="return relearn_collapse_all()">Collapse all</a>' +
-                    '<a class="relearn-expander" href="" onclick="return relearn_expand_all()">Exapnd all</a>' +
+                    '<a class="relearn-expander" href="" onclick="return relearn_expand_all()">Expand all</a>' +
                     '<div id="relearn-swagger-ui"></div>' +
                     '<script>' +
                         'function relearn_expand_all(){' +
