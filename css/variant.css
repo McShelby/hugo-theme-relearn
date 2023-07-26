@@ -10,19 +10,16 @@ body {
     font-family: var(--INTERNAL-MAIN-font);
 }
 
-.footerVisitedLinks > *,
 a,
 .anchor,
 #toc-menu,
-#body a.highlight:after,
 #searchresults .autocomplete-suggestion {
     color: var(--INTERNAL-MAIN-LINK-color);
 }
 
 a:hover,
 .anchor:hover,
-#toc-menu:hover,
-#body a.highlight:hover:after {
+#toc-menu:hover {
     color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
@@ -42,8 +39,7 @@ a:hover,
 }
 
 #sidebar .searchbox > :first-child,
-#sidebar .searchbox button,
-.searchbox span {
+#sidebar .searchbox > :last-child {
     color: var(--INTERNAL-MENU-SEARCH-color);
 }
 
@@ -53,18 +49,21 @@ a:hover,
 }
 
 #sidebar .collapsible-menu label,
-#sidebar .select-container,
-#sidebar a,
-#sidebar button {
+#sidebar .menu-control,
+#sidebar a {
     color: var(--INTERNAL-MENU-SECTIONS-LINK-color);
 }
 
 #sidebar select:hover,
 #sidebar .collapsible-menu li:not(.active) > label:hover,
-#sidebar .select-container:hover,
-#sidebar a:hover,
-#sidebar button:hover {
+#sidebar .menu-control:hover,
+#sidebar a:hover {
     color: var(--INTERNAL-MENU-SECTIONS-LINK-HOVER-color);
+}
+
+#sidebar .menu-control button,
+#sidebar .menu-control select{
+    outline-color: var(--INTERNAL-MENU-SECTIONS-LINK-HOVER-color);
 }
 
 #sidebar ul.enlarge > li.parent,
@@ -287,16 +286,17 @@ pre .copy-to-clipboard-button:hover {
     color: var(--INTERNAL-CODE-BLOCK-BG-color);
 }
 
+.expand > input:active,
+.expand > input:focus {
+    outline-color: var(--INTERNAL-MAIN-TEXT-color);
+}
+
 .expand > label {
     color: var(--INTERNAL-MAIN-LINK-color);
 }
 
 .expand > label:hover {
     color: var(--INTERNAL-MAIN-LINK-HOVER-color);
-}
-
-.expand > label:after {
-    background-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
 #homelinks {
@@ -310,14 +310,6 @@ pre .copy-to-clipboard-button:hover {
 
 #homelinks a:hover {
     color: var(--INTERNAL-MENU-HOME-LINK-HOVER-color);
-}
-
-#body a.highlight:after {
-    background-color: var(--INTERNAL-MAIN-LINK-color);
-}
-
-#body a.highlight:hover:after {
-    background-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
 .progress {
@@ -334,8 +326,8 @@ pre .copy-to-clipboard-button:hover {
 }
 
 .btn > *:hover,
-.btn > *:focus,
-.btn > *:active {
+.btn > *:active,
+.btn > *:focus {
     background-color: var(--VARIABLE-BOX-BG-color);
     color: var(--VARIABLE-BOX-TEXT-color);
 }

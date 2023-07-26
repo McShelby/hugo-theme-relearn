@@ -151,6 +151,10 @@ dd {
     width: 18.75rem;
 }
 
+#sidebar a{
+    text-decoration: none;
+}
+
 #header-wrapper {
     border-bottom-style: solid;
     border-bottom-width: 4px;
@@ -186,24 +190,20 @@ dd {
 }
 
 .searchbox > i {
-    top: .5rem;
+    top: .45rem;
 }
 
-.searchbox span {
-    cursor: pointer;
+.searchbox > :last-child {
     inset-inline-end: .5rem;
     position: absolute;
-    top: .25rem;
 }
 
 #sidebar .searchbox > :first-child,
-#sidebar .searchbox button,
-.searchbox span {
+#sidebar .searchbox > :last-child{
     opacity: .65;
 }
 
-#sidebar .searchbox button:hover,
-.searchbox span:hover {
+#sidebar .searchbox button:hover {
     opacity: 1;
 }
 
@@ -353,6 +353,22 @@ dd {
     #body-inner {
         padding: 0 1.25rem .375rem 1.25rem;
     }
+}
+
+.links a:hover,
+.links a:active,
+.links a:focus,
+.links a:hover *,
+.links a:active *,
+.links a:focus *,
+.toc-wrapper a:hover,
+.toc-wrapper a:active,
+.toc-wrapper a:focus,
+article a:hover,
+article a:active,
+article a:focus {
+    outline: none;
+    text-decoration: underline;
 }
 
 #body-inner:focus-visible{
@@ -1185,16 +1201,10 @@ option {
     position: absolute;
 }
 
-.expand > label:after {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 0%;
-    transition: width 0.5s ease;
-}
-
-.expand > label:hover:after {
-    width: 100%;
+.expand > input:active + label,
+.expand > input:focus + label,
+.expand > label:hover {
+    text-decoration: underline;
 }
 
 .expand > label > .fas {
@@ -1298,38 +1308,6 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     display: block;
 }
 
-#body a.highlight,
-#body a.highlight:hover,
-#body a.highlight:focus {
-    outline-style: none;
-    text-decoration: none;
-}
-
-#body a.highlight {
-    display: inline-block;
-    line-height: 1.1;
-}
-
-#body a.highlight:after {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 0%;
-    transition: width 0.5s ease;
-}
-
-#body a.highlight:hover:after,
-#body a.highlight:focus:after {
-    width: 100%;
-}
-
-#body #topbar .navigation a.highlight:after,
-#body #sidebar-toggle-span a.highlight:after,
-#body #top-print-link a.highlight:after,
-#body #top-github-link a.highlight:after {
-    background-color: transparent;
-}
-
 /* Table of contents */
 
 .toc-flyout #toc-overlay{
@@ -1397,6 +1375,10 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     user-select: none;
 }
 
+.btn > a {
+    display: block;
+}
+
 .btn > :where(button) {
     -webkit-appearance: none;
     appearance: none;
@@ -1433,6 +1415,7 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 }
 
 .btn > *:hover,
+.btn > *:active,
 .btn > *:focus {
     text-decoration: none;
 }
@@ -1484,57 +1467,64 @@ h6 a {
     margin-top: 1rem;
 }
 
-.select-container i {
-    padding-top: .25em;
-}
-
-.select-container i,
-.select-container span {
-    display: block;
-    float: left;
-}
-html[dir="rtl"] .select-container i,
-html[dir="rtl"] .select-container span {
-    float: right;
-}
-
-#sidebar ul select {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.select-style {
+.menu-control .control-style {
     border: 0;
     border-radius: 0;
+    cursor: pointer;
     height: 1.574em;
     overflow: hidden;
 }
 
-.select-style select {
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-    background-image: none;
-    width: 100%;
+.menu-control i {
+    padding-top: .25em;
 }
 
-.select-style select:focus {
-    outline: none;
+.menu-control i,
+.menu-control span {
+    cursor: pointer;
+    display: block;
+    float: left;
+}
+html[dir="rtl"] .menu-control i,
+html[dir="rtl"] .menu-control span {
+    float: right;
 }
 
-.select-style :hover {
+.menu-control :hover,
+.menu-control i:hover,
+.menu-control span:hover {
     cursor: pointer;
 }
 
-.select-style option {
+.menu-control select,
+.menu-control button {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+}
+.menu-control select {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.menu-control option {
     color: rgba( 0, 0, 0, 1 );
     padding: 0;
     margin: 0;
 }
 
-.select-clear {
+.menu-control button {
+    background-color: transparent;
+	cursor: pointer;
+    display: block;
+    text-align: start;
+}
+
+.clear {
     clear: both;
 }
 
@@ -1550,16 +1540,6 @@ html[dir="rtl"] .select-container span {
 .showVisitedLinks,
 .showFooter {
     display: initial;
-}
-
-.footerVisitedLinks > * {
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-	cursor: pointer;
-    text-align: start;
-    text-decoration: none;
-    width: 100%;
 }
 
 @media screen and (max-width: 48rem) {
