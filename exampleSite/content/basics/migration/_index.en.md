@@ -32,6 +32,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   In addition it offers some extensions. Currently only the `wrap` extension option is provided to control whether a code block should be wrapped or scrolled if to long to fit.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode]({{% relref "shortcodes/siteparam" %}}) is now capable to display nested params aswell as adding support for text formatting.
+
 ---
 
 ## 5.16.0 (2023-06-10)

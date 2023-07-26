@@ -1,6 +1,6 @@
 +++
 description = "Get value of site params"
-title = "Site Param"
+title = "SiteParam"
 +++
 
 The `siteparam` shortcode prints values of site params.
@@ -52,3 +52,26 @@ While the examples are using shortcodes with named parameter you are free to use
 ```
 
 `editURL` value: {{% siteparam name="editURL" %}}
+
+### Nested parameter with Markdown and HTML formatting
+
+To use formatted parameter, add this in your `config.toml`:
+
+````toml
+[markup.goldmark.renderer]
+    unsafe = true
+````
+
+{{% tab title="config.toml" %}}
+````toml
+[params]
+    [params.siteparam.test]
+        text = "A **nested** parameter <b>with</b> formatting"
+````
+{{% /tab %}}
+
+```go
+Formatted parameter: {{%/* siteparam name="siteparam.test.text" */%}}
+```
+
+Formatted parameter: {{% siteparam name="siteparam.test.text" %}}

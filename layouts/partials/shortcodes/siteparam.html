@@ -1,10 +1,11 @@
 {{- $context := .context }}
-{{- $paramName := .name }}
+{{- $paramNames := split .name "." }}
 {{- with $context }}
-{{- $siteParams := .Site.Params }}
-{{- with $paramName }}
-    {{- with $siteParams }}
-        {{- index . (lower $paramName) }}
+{{- $params := .Site.Params }}
+{{- range $paramName := $paramNames }}
+    {{- with $params }}
+        {{- $params = index . (lower $paramName) }}
     {{- end }}
 {{- end }}
+{{- $params | .RenderString }}
 {{- end }}
