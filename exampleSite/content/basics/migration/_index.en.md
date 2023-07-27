@@ -18,6 +18,22 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.18.0 (2023-07-27)
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme adds additional warnings for deprecated or now unsupported features. The warnings include hints how to fix them and an additional link to the documenation.
+
+  `DEPRECATION` warnings mark features that still work but may be removed in the future.
+
+  `UNSUPPORTED` warnings mark features that will not work anymore.
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} There are visual improvements in displaying text links in your content aswell as to some other clickable areas in the theme. If you've overwritten some theme styles in your own CSS, keep this in mind.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode]({{% relref "shortcodes/siteparam" %}}) is now capable in displaying nested params aswell as supporting text formatting.
+
+---
+
 ## 5.17.0 (2023-06-22)
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The default behavior for the copy-to-clipboard feature for code blocks has changed.
@@ -26,13 +42,11 @@ This document shows you what's new in the latest release. For a detailed list of
 
   If you dislike this new behavior you can turn it off and revert to the old behavior by adding `[params] disableHoverBlockCopyToClipBoard=true` to your `config.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Now compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
 
   In addition it offers some extensions. Currently only the `wrap` extension option is provided to control whether a code block should be wrapped or scrolled if to long to fit.
-
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode]({{% relref "shortcodes/siteparam" %}}) is now capable in displaying nested params aswell as adding support for text formatting.
 
 ---
 
@@ -58,7 +72,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.15.0 (2023-05-29)
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Now compatible with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
   The [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) has compatiblity issues with newer Hugo versions. You must switch to leaf bundles or are locked to Hugo < `0.112.0` for now.
 
