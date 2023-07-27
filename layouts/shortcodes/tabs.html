@@ -3,7 +3,10 @@
 {{- $major := int (index $version 0) }}
 {{- $minor := int (index $version 1) }}
 {{- $color   := (.Get "color") }}
-{{- $groupid := (.Get "groupid") }}
+{{- $groupid := ((.Get "groupid") | default (.Get "groupId")) }}
+{{- if (.Get "groupId") }}
+  {{- warnf "%q: DEPRECATED parameter 'groupId' for shortcode 'tabs' found, use 'groupid' instead" .Page.File.Path }}
+{{- end }}
 {{- $icon    := (.Get "icon") }}
 {{- $style   := (.Get "style") }}
 {{- $title   := (.Get "title") }}
