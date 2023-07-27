@@ -1,10 +1,14 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'icon' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $icon := .icon | default "" }}
 {{- $icon = trim $icon " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
-{{- with $context }}
+{{- with $page }}
   {{- if $icon -}}
 <i class="{{ $icon }}"></i>
   {{- end }}

@@ -28,7 +28,7 @@ While the examples are using shortcodes with named parameter you are free to use
 
 ````go
 {{ partial "shortcodes/include .html" (dict
-  "context" .
+  "page" .
   "file" "shortcodes/INCLUDE_ME.md"
 )}}
 ````

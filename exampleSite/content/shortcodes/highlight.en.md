@@ -52,7 +52,7 @@ print("Hello World!")
 
 ````go
 {{ partial "shortcodes/highlight.html" (dict
-  "context" .
+  "page"    .
   "content" "print(\"Hello World!\")"
   "lineNos" "true"
   "type"    "py"
@@ -66,7 +66,7 @@ print("Hello World!")
 
 ````go
 {{ partial "shortcodes/highlight.html" (dict
-  "context" .
+  "page"    .
   "content" "print(\"Hello World!\")"
   "options" "lineNos=true,wrap=true"
   "type"    "py"

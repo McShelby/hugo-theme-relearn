@@ -37,7 +37,7 @@ printf("Hello World!");
 
 ````go
 {{ partial "shortcodes/tab.html" (dict
-  "context" .
+  "page"  .
   "title" "c"
   "content" ("```c\nprintf(\"Hello World!\")\n```" | .RenderString)
 )}}

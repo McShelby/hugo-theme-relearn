@@ -67,7 +67,7 @@ printf"Hello World!");
 
 ````go
 {{ partial "shortcodes/tabs.html" (dict
-  "context" .
+  "page"  .
   "title" "hello."
   "content" (slice
     (dict

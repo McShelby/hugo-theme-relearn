@@ -1,4 +1,8 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'expand' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $content := .content }}
 {{- $title := .title | default (T "Expand-title") }}
 {{- $title = trim $title " " }}
@@ -6,8 +10,8 @@
 {{- if eq (printf "%T" $expanded) "string" }}
 	{{- $expanded = (eq $expanded "true") }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $context) .id }}
-{{- with $context }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
+{{- with $page }}
 <div class="expand">
     <input type="checkbox" id="expand-{{ $id }}" aria-controls="expandcontent-{{ $id }}" {{ if $expanded }} checked{{ end }}>
     <label class="expand-label" for="expand-{{ $id }}" >

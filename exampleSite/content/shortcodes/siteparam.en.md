@@ -29,7 +29,7 @@ While the examples are using shortcodes with named parameter you are free to use
 
 ````go
 {{ partial "shortcodes/siteparam.html" (dict
-  "context" .
+  "page" .
   "name" "editURL"
 )}}
 ````

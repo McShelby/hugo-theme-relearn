@@ -1,4 +1,8 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'include' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $file := .file }}
 {{- $hideFirstHeading := .hidefirstheading | default false }}
 {{- if eq (printf "%T" $hideFirstHeading) "string" }}
@@ -6,7 +10,7 @@
 {{- end }}
 {{- if and (gt (len (trim $file " ")) 0) (fileExists $file) }}
 	{{- if $hideFirstHeading }}<div class="include hide-first-heading">{{ end }}
-	{{- with $context }}
+	{{- with $page }}
 
 {{ $file | readFile | safeHTML }}
 

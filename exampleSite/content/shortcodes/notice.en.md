@@ -36,7 +36,7 @@ It is all about the boxes.
 
 ````go
 {{ partial "shortcodes/notice.html" (dict
-  "context" .
+  "page"  .
   "style" "primary"
   "title" "There may be pirates"
   "icon" "skull-crossbones"

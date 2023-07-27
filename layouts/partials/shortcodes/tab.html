@@ -1,3 +1,8 @@
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tab' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $tabs := (slice | append (dict
     "color"   .color
     "content" .content
@@ -7,7 +12,7 @@
     "title"   .title
 )) }}
 {{- partial "shortcodes/tabs.html" (dict
-    "context" .context
+    "page"    $page
     "color"   ""
     "content" $tabs
     "groupid" ""

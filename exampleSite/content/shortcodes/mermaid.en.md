@@ -56,7 +56,7 @@ graph LR;
 
 ````go
 {{ partial "shortcodes/mermaid.html" (dict
-  "context" .
+  "page"    .
   "content" "graph LR;\nIf --> Then\nThen --> Else"
   "align"   "center"
   "zoom"    "true"

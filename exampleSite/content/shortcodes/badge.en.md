@@ -31,30 +31,30 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ````go
 {{ partial "shortcodes/badge.html" (dict
-    "context" .
+    "page"    .
     "content" "Important"
 )}}
 {{ partial "shortcodes/badge.html" (dict
-  "context" .
+  "page"  .
   "style" "primary"
   "title" "Version"
   "content" "6.6.6"
 )}}
 {{ partial "shortcodes/badge.html" (dict
-  "context" .
+  "page"  .
   "style" "red"
-  "icon" "angle-double-up"
+  "icon"  "angle-double-up"
   "content" "Captain"
 )}}
 {{ partial "shortcodes/badge.html" (dict
-  "context" .
+  "page"  .
   "style" "info"
   "content" "New"
 )}}
 {{ partial "shortcodes/badge.html" (dict
-  "context" .
+  "page"  .
   "color" "fuchsia"
-  "icon" "fab fa-hackerrank"
+  "icon"  "fab fa-hackerrank"
   "content" "Awesome"
 )}}
 ````

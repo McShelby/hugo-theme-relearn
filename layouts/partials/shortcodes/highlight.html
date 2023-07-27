@@ -1,4 +1,8 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'highlight' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $attributes := dict }}
 {{- $otherAttributes := dict }}
 {{- $content := "" }}
@@ -45,11 +49,11 @@
 {{- end }}
 {{- $params = delimit $params ", " }}
 {{- $wrap := true }}
-{{- if isset $context.Site.Params "highlightwrap" }}
-  {{- $wrap = $context.Site.Params.highlightWrap  }}
+{{- if isset $page.Site.Params "highlightwrap" }}
+  {{- $wrap = $page.Site.Params.highlightWrap  }}
 {{- end }}
-{{- if isset $context.Params "highlightwrap" }}
-  {{- $wrap = $context.Params.highlightWrap }}
+{{- if isset $page.Params "highlightwrap" }}
+  {{- $wrap = $page.Params.highlightWrap }}
 {{- end }}
 {{- range $k, $v := $attributes }}
   {{- if eq $k "wrap" }}

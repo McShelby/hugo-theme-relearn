@@ -25,8 +25,8 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ````go
 {{ partial "shortcodes/openapi.html" (dict
-  "context" .
-  "src" "https://petstore3.openapi.io/api/v3/openapi.json"
+  "page" .
+  "src"  "https://petstore3.openapi.io/api/v3/openapi.json"
 )}}
 ````
 

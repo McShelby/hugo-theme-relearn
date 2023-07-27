@@ -25,12 +25,12 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ````go
 {{ partial "shortcodes/button.html" (dict
-    "context" .
+    "page" .
     "href" "https://gohugo.io/"
     "content" "Get Hugo"
 )}}
 {{ partial "shortcodes/button.html" (dict
-  "context" .
+  "page" .
   "href" "https://gohugo.io/"
   "style" "warning"
   "icon" "dragon"

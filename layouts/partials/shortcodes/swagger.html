@@ -1,6 +1,11 @@
 {{ warnf "%q: DEPRECATED shortcode `swagger`found, use `openapi` instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5130-2023-05-17" .context.File.Path }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'swagger' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- partial "shortcodes/openapi.html" (dict
-  "context" .context
+  "page"    $page
   "src"     .src
   "id"      .id
 ) }}

@@ -46,7 +46,7 @@ While the examples are using shortcodes with named parameter you are free to use
 
 ````go
 {{ partial "shortcodes/expand.html" (dict
-  "context" .
+  "page"  .
   "title" "Expand me..."
   "content" "Thank you!"
 )}}

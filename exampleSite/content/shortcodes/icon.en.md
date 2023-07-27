@@ -37,15 +37,15 @@ While the examples are using shortcodes with positional parameter you are free t
 
 ````go
 {{ partial "shortcodes/icon.html" (dict
-    "context" .
+    "page" .
     "icon" "exclamation-triangle"
 )}}
 {{ partial "shortcodes/icon.html" (dict
-    "context" .
+    "page" .
     "icon" "angle-double-up"
 )}}
 {{ partial "shortcodes/icon.html" (dict
-    "context" .
+    "page" .
     "icon" "skull-crossbones"
 )}}
 ````

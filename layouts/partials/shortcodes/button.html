@@ -1,4 +1,8 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'button' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $color := .color | default "" }}
 {{- $content := .content }}
 {{- $href := (trim .href " ") | default "" }}
@@ -17,8 +21,8 @@
   {{- end }}
 {{- else if and (eq (len $target) 0) (or (strings.HasPrefix $href "http://") (strings.HasPrefix $href "https://") ) }}
   {{- $target = "_blank" }}
-  {{- if isset $context.Site.Params "externallinktarget" }}
-    {{- $target = $context.Site.Params.externalLinkTarget }}
+  {{- if isset $page.Site.Params "externallinktarget" }}
+    {{- $target = $page.Site.Params.externalLinkTarget }}
   {{- end }}
 {{- end }}
 {{- $title := .title | default ($content) | default ($style | T) }}
@@ -35,7 +39,7 @@
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- $iconposition := .iconposition | default "left" }}
-{{- with $context }}
+{{- with $page }}
 <span class="btn cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   {{- if $isButton }}
   <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>

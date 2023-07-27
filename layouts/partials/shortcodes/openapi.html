@@ -1,7 +1,11 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'openapi' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $src := .src }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $context) .id }}
-{{- with $context }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
+{{- with $page }}
 {{- with .Resources.Match $src }}
 	{{- range . }}
 		{{- $src = .RelPermalink }}

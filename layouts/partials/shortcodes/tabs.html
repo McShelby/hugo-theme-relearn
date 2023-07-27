@@ -1,5 +1,9 @@
-{{- $context := .context }}
-{{- $groupid := .groupid | default (partial "make-random-md5.hugo" $context) }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
+{{- $groupid := .groupid | default (partial "make-random-md5.hugo" $page) }}
 {{- $color := .color }}
 {{- $style := .style }}
 {{- $title := .title }}
@@ -7,7 +11,7 @@
 {{- $tabs := slice }}
 {{- range $tab := (.content | default slice) }}
   {{- if and (not $tab.title) $tab.name }}
-    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160-2023-06-08" $context.File.Path }}
+    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160-2023-06-08" $page.File.Path }}
     {{- $tab = merge $tab (dict "title" .name) }}
   {{- end }}
   {{- with $tab }}
@@ -30,7 +34,7 @@
       "color"   $color
       "content" .content
       "icon"    $icon
-      "itemid"  (printf "%s%s" ($title | $context.RenderString | plainify) ($icon | plainify))
+      "itemid"  (printf "%s%s" ($title | $page.RenderString | plainify) ($icon | plainify))
       "style"   $style
       "title"   $title
     ) }}
@@ -51,10 +55,10 @@
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
-{{- with $context }}
+{{- with $page }}
 <div class="tab-panel" data-tab-group="{{ $groupid }}">
   <div class="tab-nav">
-    <div class="tab-nav-title">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | $context.RenderString }}{{ if (not $title) }}&#8203;{{ end }}</div>
+    <div class="tab-nav-title">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | $page.RenderString }}{{ if (not $title) }}&#8203;{{ end }}</div>
   {{- range $idx, $tab := $tabs }}
     <button
       data-tab-item="{{ .itemid }}"
@@ -62,8 +66,8 @@
       onclick="switchTab('{{ $groupid }}','{{ .itemid }}')"
     >
       <div>
-        <div class="tab-nav-hidden">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $context.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div>
-        <div class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $context.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div>
+        <div class="tab-nav-hidden">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $page.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div>
+        <div class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $page.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</div>
       </div>
     </button>
   {{- end }}

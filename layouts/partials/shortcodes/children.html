@@ -1,4 +1,8 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'children' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $showhidden := .showhidden | default false }}
 {{- if eq (printf "%T" $showhidden) "string" }}
 	{{- $showhidden = (eq $showhidden "true") }}
@@ -15,30 +19,30 @@
 	{{- $containerstyle = "div" }}
 {{- end }}
 
-{{- with $context }}
+{{- with $page }}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
 	{{- $pages := .Pages }}
 
 	{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 	{{- $currentOrdersectionsby := $sortTerm | default (.Params.ordersectionsby | default $defaultOrdersectionsby) }}
 	{{- if eq $currentOrdersectionsby "weight" }}
-		{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
+		{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 	{{- else if or (eq $currentOrdersectionsby "name") (eq $currentOrdersectionsby "title") }}
-		{{- template "childs" dict "menu" $pages.ByTitle "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
+		{{- template "childs" dict "menu" $pages.ByTitle "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 	{{- else if eq $currentOrdersectionsby "publishdate" }}
-		{{- template "childs" dict "menu" $pages.ByPublishDate "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
+		{{- template "childs" dict "menu" $pages.ByPublishDate "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 	{{- else if eq $currentOrdersectionsby "date" }}
-		{{- template "childs" dict "menu" $pages.ByDate "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
+		{{- template "childs" dict "menu" $pages.ByDate "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 	{{- else if eq $currentOrdersectionsby "length" }}
-		{{- template "childs" dict "menu" $pages.ByLength "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
+		{{- template "childs" dict "menu" $pages.ByLength "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 	{{- else }}
-		{{- template "childs" dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "context" . }}
+		{{- template "childs" dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 	{{- end }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
 {{- end }}
 
 {{- define "childs" }}
-	{{ $context := .context }}
+	{{ $page := .page }}
 	{{- range .menu }}
 		{{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
         {{- if not $hidden }}
@@ -88,17 +92,17 @@
 				{{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
 				{{- $currentOrdersectionsby := $.sortTerm | default (.Params.ordersectionsby | default $defaultOrdersectionsby) }}
 				{{- if eq $currentOrdersectionsby "weight" }}
-					{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
+					{{- template "childs" dict "menu" $pages.ByWeight "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 				{{- else if or (eq $.currentOrdersectionsby "name") (eq $.currentOrdersectionsby "title") }}
-					{{- template "childs" dict "menu" $pages.ByTitle "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
+					{{- template "childs" dict "menu" $pages.ByTitle "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 				{{- else if eq $.currentOrdersectionsby "publishdate" }}
-					{{- template "childs" dict "menu" $pages.ByPublishDate "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
+					{{- template "childs" dict "menu" $pages.ByPublishDate "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 				{{- else if eq $.currentOrdersectionsby "date" }}
-					{{- template "childs" dict "menu" $pages.ByDate "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
+					{{- template "childs" dict "menu" $pages.ByDate "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 				{{- else if eq $.currentOrdersectionsby "length" }}
-					{{- template "childs" dict "menu" $pages.ByLength "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
+					{{- template "childs" dict "menu" $pages.ByLength "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 				{{- else }}
-					{{- template "childs" dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "context" $context }}
+					{{- template "childs" dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 				{{- end }}
 
 				{{- if eq $.style "li" }}

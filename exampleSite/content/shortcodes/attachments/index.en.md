@@ -27,7 +27,7 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ````go
 {{ partial "shortcodes/attachments.html" (dict
-  "context" .
+  "page" .
   "sort" "asc"
 )}}
 ````

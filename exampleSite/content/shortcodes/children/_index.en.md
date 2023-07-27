@@ -24,7 +24,7 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ````go
 {{ partial "shortcodes/children.html" (dict
-  "context" .
+  "page" .
   "sort" "weight"
 )}}
 ````

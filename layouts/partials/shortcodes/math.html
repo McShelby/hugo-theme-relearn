@@ -1,7 +1,11 @@
-{{- $context := .context }}
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'math' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+{{- end }}
 {{- $content := .content }}
 {{- $align := .align | default "center" }}
-{{- with $context }}
+{{- with $page }}
 <span class="math align-{{ $align }}">
   {{- $content | safeHTML -}}
 </span>
