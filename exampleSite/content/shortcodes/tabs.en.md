@@ -92,7 +92,7 @@ printf"Hello World!");
 ### Parameter
 
 | Name                  | Default              | Notes       |
-|:----------------------|:---------------------|:------------|
+|-----------------------|----------------------|-------------|
 | **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab can not be found in a tab group the first tab is selected instead.<br><br>This sychronization applies to the whole site! |
 | **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
 | **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |

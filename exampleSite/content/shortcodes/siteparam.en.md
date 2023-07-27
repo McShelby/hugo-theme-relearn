@@ -40,7 +40,7 @@ While the examples are using shortcodes with named parameter you are free to use
 ### Parameter
 
 | Name                 | Position | Default          | Notes       |
-|:---------------------|:---------|:-----------------|:------------|
+|----------------------|----------|------------------|-------------|
 | **name**             | 1        | _&lt;empty&gt;_  | The name of the site param to be displayed. |
 
 ## Examples

@@ -56,7 +56,7 @@ While the examples are using shortcodes with positional parameter you are free t
 ### Parameter
 
 | Name                  | Position | Default         | Notes       |
-|:----------------------|:---------|:----------------|:------------|
+|-----------------------|----------|-----------------|-------------|
 | **icon**              | 1        | _&lt;empty&gt;_ | [Font Awesome icon name]({{%relref "#finding-an-icon" %}}) to be displayed. It will be displayed in the text color of its according context. |
 
 ### Finding an icon

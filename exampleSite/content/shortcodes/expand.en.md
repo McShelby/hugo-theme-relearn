@@ -58,7 +58,7 @@ While the examples are using shortcodes with named parameter you are free to use
 ### Parameter
 
 | Name                  | Position | Default          | Notes       |
-|:----------------------|:---------|:-----------------|:------------|
+|-----------------------|----------|------------------|-------------|
 | **title**             | 1        | `"Expand me..."` | Arbitrary text to appear next to the expand/collapse icon. |
 | **open**              | 2        | `false`          | When `true` the content text will be initially shown as expanded. |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Arbitrary text to be displayed on expand. |

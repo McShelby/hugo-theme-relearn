@@ -377,7 +377,7 @@ In GFM (GitHub Flavored Markdown) you can create tables by adding pipes as divid
 
 ````markdown
 | Option | Description |
-| ------ | ----------- |
+|--------|-------------|
 | data   | path to data files to supply the data that will be passed into templates. |
 | engine | engine to be used for processing templates. Handlebars is the default. |
 | ext    | extension to be used for dest files. |
@@ -385,7 +385,7 @@ In GFM (GitHub Flavored Markdown) you can create tables by adding pipes as divid
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
 | Option | Description |
-| ------ | ----------- |
+|--------|-------------|
 | data   | path to data files to supply the data that will be passed into templates. |
 | engine | engine to be used for processing templates. Handlebars is the default. |
 | ext    | extension to be used for dest files. |
@@ -397,7 +397,7 @@ Adding a colon on the left and/or right side of the dashes below any heading wil
 
 ````markdown
 | Option | Number | Description |
-| ------:|:------:|:----------- |
+|-------:|:------:|:------------|
 | data   | 1      | path to data files to supply the data that will be passed into templates. |
 | engine | 2      | engine to be used for processing templates. Handlebars is the default. |
 | ext    | 3      | extension to be used for dest files. |
@@ -405,7 +405,7 @@ Adding a colon on the left and/or right side of the dashes below any heading wil
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
 | Option | Number | Description |
-| ------:|:------:|:----------- |
+|-------:|:------:|:------------|
 | data   | 1      | path to data files to supply the data that will be passed into templates. |
 | engine | 2      | engine to be used for processing templates. Handlebars is the default. |
 | ext    | 3      | extension to be used for dest files. |

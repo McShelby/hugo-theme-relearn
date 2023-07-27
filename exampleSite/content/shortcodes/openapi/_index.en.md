@@ -36,7 +36,7 @@ While the examples are using shortcodes with named parameter you are free to als
 ### Parameter
 
 | Name                 | Default          | Notes       |
-|:---------------------|:-----------------|:------------|
+|----------------------|------------------|-------------|
 | **src**              | _&lt;empty&gt;_  | The URL to the OpenAPI specification file. This can be relative to the URL of your page if it is a leaf or branch bundle. |
 
 {{% notice note %}}

@@ -120,7 +120,7 @@ Related to each archetype, several _hook_ partial files in the form of `<hook>.h
 The following hooks are used:
 
 | Name                 | Notes       |
-|:---------------------|:------------|
+|----------------------|-------------|
 | styleclass           | Defines a set of CSS classes to be added to the HTML's `<main>` element. You can use these classes to define own CSS rules in your `custom-header.html` |
 | article              | Defines the HTML how to render your content |
 

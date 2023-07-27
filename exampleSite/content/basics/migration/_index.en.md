@@ -265,7 +265,7 @@ This document shows you what's new in the latest release. For a detailed list of
   If you have used HTML directly in your Markdown files, this now has the downside that it doesn't respect the effect query parameter anymore. In this case you have to migrate all your HTML `img` URLs manually to the respective HTML attributes.
 
   | Old                                                    | New                                                             |
-  | ------------------------------------------------------ | --------------------------------------------------------------- |
+  |--------------------------------------------------------|-----------------------------------------------------------------|
   | `<img src="pic.png?width=20vw&classes=shadow,border">` | `<img src="pic.png" style="width:20vw;" class="shadow border">` |
 
 ---
@@ -464,7 +464,7 @@ This document shows you what's new in the latest release. For a detailed list of
   In a standard compliant form you must not link to the `*.md` file but to its logical name. You'll see, referencing other pages becomes much easier. All three types result in the same reference:
 
   | Type          | Non-Standard                     | Standard               |
-  | ------------- | -------------------------------- | ---------------------- |
+  |---------------|----------------------------------|------------------------|
   | Branch bundle | `basics/configuration/_index.md` | `basics/configuration` |
   | Leaf bundle   | `basics/configuration/index.md`  | `basics/configuration` |
   | Page          | `basics/configuration.md`        | `basics/configuration` |
