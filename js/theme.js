@@ -13,6 +13,7 @@ else{
 var isPrint = document.querySelector( 'body' ).classList.contains( 'print' );
 
 var isRtl = document.querySelector( 'html' ).getAttribute( 'dir' ) == 'rtl';
+var lang = document.querySelector( 'html' ).getAttribute( 'lang' );
 var dir_padding_start = 'padding-left';
 var dir_padding_end = 'padding-right';
 var dir_key_start = 37;
@@ -341,7 +342,7 @@ function initOpenapi( update, attrs ){
         oi.classList.toggle('sc-openapi-iframe', true);
         oi.srcdoc =
             '<!doctype html>' +
-            '<html lang="en">' +
+            '<html lang="' + lang + '" dir="' + (isRtl ? 'rtl' : 'ltr') + '">' +
                 '<head>' +
                     '<link rel="stylesheet" href="' + window.themeUseOpenapi.css + '">' +
                     '<link rel="stylesheet" href="' + theme + '">' +
