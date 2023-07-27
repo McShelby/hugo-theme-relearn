@@ -9,7 +9,7 @@ The `siteparam` shortcode prints values of site params.
 
 While the examples are using shortcodes with named parameter you are free to use positional aswell or call this shortcode from your own partials.
 
-{{< tabs groupId="shortcode-parameter">}}
+{{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
 

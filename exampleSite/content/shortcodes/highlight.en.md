@@ -20,7 +20,7 @@ You are free to also call this shortcode from your own partials. In this case it
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports codefences (eg. GitHub) and so your markdown becomes more portable.
 
 
-{{< tabs groupId="shortcode-parameter">}}
+{{< tabs groupid="shortcode-parameter">}}
 {{% tab title="codefence" %}}
 
 ````md

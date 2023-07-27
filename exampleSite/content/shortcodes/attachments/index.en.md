@@ -15,7 +15,7 @@ Since Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
-{{< tabs groupId="shortcode-parameter">}}
+{{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
 ````go

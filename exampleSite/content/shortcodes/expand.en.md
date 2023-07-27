@@ -27,7 +27,7 @@ This only works in modern browsers flawlessly. While Internet Explorer 11 has is
 
 While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
 
-{{< tabs groupId="shortcode-parameter">}}
+{{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
 ````go

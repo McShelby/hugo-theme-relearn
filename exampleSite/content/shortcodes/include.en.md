@@ -9,7 +9,7 @@ The `include` shortcode includes other files from your project inside of the cur
 
 While the examples are using shortcodes with named parameter you are free to use positional aswell or also call this shortcode from your own partials.
 
-{{< tabs groupId="shortcode-parameter">}}
+{{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
 ````go
