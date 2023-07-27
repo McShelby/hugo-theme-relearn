@@ -22,6 +22,7 @@
 			{{- $c = $content }}
 		{{- else if eq $pagefield "Content" }}
 			{{- $c = .Content }}
+			{{- $srcPage = . }}
 		{{- else if eq $pagefield "TableOfContents" }}
 			{{- $c = .TableOfContents }}
 		{{- end }}
@@ -32,7 +33,7 @@
 	{{- if $writenotice }}
 		{{- partial "shortcodes/notice.html" (dict
 			"context" $context
-			"content" "<p>Fello' pirrrates, grog made us dizzy! Be awarrre <b>some stuff may not work</b> in this trrranslat'n. Like see'n <b>Merrrmaids</b>, do'n <b>math or chemistrrry</b>, writ'n docs and stuff.</p>\n"
+			"content" "<p>Fello' pirrrates, grog made us dizzy! Be awarrre <b>some stuff may look weird</b> in this trrranslat'n. Like <b>Merrrmaids</b>, do'n <b>math or chemistrrry</b> and stuff.</p>\n"
 			"icon" "skull-crossbones"
 			"style" "warning"
 			"title" "Arrr! Pirrrates"
@@ -72,7 +73,6 @@
 		"Where" "Whar'"
 		"where" "whar'"
 		"After" "Aft"
-		"after" "aft"
 		"And" "An'"
 		"and" "an'"
 		"Load" "Board"
@@ -127,5 +127,10 @@
 		{{- $c = replaceRE "(src|href)=\"(images/[^\"]*?\")" (printf "${1}=\"%s${2}" $l) $c }}
 	{{- end }}
 	{{- $c = replaceRE (printf "(src|href)=\"([^\"]*?)/%s/([^\"]*?.files/[^\"]*?\")" $langtrg) "${1}=\"${2}/${3}" $c }}
+	{{- if $srcPage }}
+		{{- $context.Store.Set "hasMathJax" (or ($context.Store.Get "hasMathJax") ($srcPage.Store.Get "hasMathJax")) }}
+		{{- $context.Store.Set "hasMermaid" (or ($context.Store.Get "hasMermaid") ($srcPage.Store.Get "hasMermaid")) }}
+		{{- $context.Store.Set "hasOpenapi" (or ($context.Store.Get "hasOpenapi") ($srcPage.Store.Get "hasOpenapi")) }}
+	{{- end }}
 {{- end }}
 {{ $c | safeHTML }}
