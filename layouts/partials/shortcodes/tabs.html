@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180-2023-07-27" $page.File.Path }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180" $page.File.Path }}
 {{- end }}
 {{- $groupid := .groupid | default (partial "make-random-md5.hugo" $page) }}
 {{- $color := .color }}
@@ -11,7 +11,7 @@
 {{- $tabs := slice }}
 {{- range $tab := (.content | default slice) }}
   {{- if and (not $tab.title) $tab.name }}
-    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160-2023-06-08" $page.File.Path }}
+    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160" $page.File.Path }}
     {{- $tab = merge $tab (dict "title" .name) }}
   {{- end }}
   {{- with $tab }}
