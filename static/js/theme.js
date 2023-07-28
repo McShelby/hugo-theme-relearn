@@ -179,10 +179,10 @@ function initMermaid( update, attrs ) {
     };
 
     var serializeGraph = function( graph ){
-        if (JSON.stringify(graph.dir) === "{}") {
-            return "---\n" + jsyaml.dump(graph.yaml) + "---\n" + graph.content;
+        if (JSON.stringify(graph.dir) === '{}') {
+            return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + graph.content;
         }
-        return "---\n" + jsyaml.dump(graph.yaml) + "---\n" + "%%{init: " + JSON.stringify(graph.dir) + "}%%\n" + graph.content;
+        return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n' + graph.content;
     };
 
     var init_func = function( attrs ){
@@ -191,18 +191,18 @@ function initMermaid( update, attrs ) {
         document.querySelectorAll('.mermaid').forEach( function( element ){
             var parse = parseGraph( decodeHTML( element.innerHTML ) );
 
-            if (JSON.stringify(parse.dir) === "{}") {
-                if (parse.yaml.theme) {
+            if( JSON.stringify(parse.dir) === '{}' ){
+                if( parse.yaml.theme ){
                     parse.yaml.relearn_user_theme = true;
                 }
-                if (!parse.yaml.relearn_user_theme) {
+                if( !parse.yaml.relearn_user_theme ){
                     parse.yaml.theme = theme;
                 }
             } else {
-                if (parse.dir.theme) {
+                if( parse.dir.theme ){
                     parse.dir.relearn_user_theme = true;
                 }
-                if (!parse.dir.relearn_user_theme) {
+                if( !parse.dir.relearn_user_theme ){
                     parse.dir.theme = theme;
                 }
             }
@@ -226,11 +226,11 @@ function initMermaid( update, attrs ) {
             var code = e.querySelector( '.mermaid-code' );
             var parse = parseGraph( decodeHTML( code.innerHTML ) );
 
-            if (parse.dir.relearn_user_theme || parse.yaml.relearn_user_theme) {
-              return;
+            if( parse.dir.relearn_user_theme || parse.yaml.relearn_user_theme ){
+                return;
             }
-            if (parse.dir.theme == theme || parse.yaml.theme == theme) {
-              return;
+            if( parse.dir.theme == theme || parse.yaml.theme == theme ){
+                return;
             }
             is_initialized = true;
 
