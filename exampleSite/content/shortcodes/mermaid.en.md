@@ -7,8 +7,8 @@ The `mermaid` shortcode generates diagrams and flowcharts from text, in a simila
 
 {{< mermaid align="center">}}
 graph LR;
-    If --> Then
-    Then --> Else
+If --> Then
+Then --> Else
 {{< /mermaid >}}
 
 {{% notice note %}}
@@ -43,18 +43,18 @@ graph LR;
 {{% /tab %}}
 {{% tab title="shortcode" %}}
 
-````go
+```go
 {{</* mermaid align="center" zoom="true" */>}}
 graph LR;
     If --> Then
     Then --> Else
 {{</* /mermaid */>}}
-````
+```
 
 {{% /tab %}}
 {{% tab title="partial" %}}
 
-````go
+```go
 {{ partial "shortcodes/mermaid.html" (dict
   "page"    .
   "content" "graph LR;\nIf --> Then\nThen --> Else"
@@ -62,7 +62,7 @@ graph LR;
   "zoom"    "true"
 )}}
 
-````
+```
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -71,11 +71,11 @@ The generated graphs can be be panned by dragging them and zoomed by using the m
 
 ### Parameter
 
-| Name                  | Default          | Notes       |
-|-----------------------|------------------|-------------|
-| **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
-| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the `mermaidZoom` setting of the [site](#global-configuration-file) or the [pages frontmatter](#pages-frontmatter) or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
+| Name                  | Default         | Notes                                                                                                                                                                                                                                                                                                   |
+| --------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **align**             | `center`        | Allowed values are `left`, `center` or `right`.                                                                                                                                                                                                                                                         |
+| **zoom**              | see notes       | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the `mermaidZoom` setting of the [site](#global-configuration-file) or the [pages frontmatter](#pages-frontmatter) or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_ | Your Mermaid graph.                                                                                                                                                                                                                                                                                     |
 
 ## Configuration
 
@@ -93,7 +93,7 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
 
 ### Global Configuration File
 
-````toml
+```toml
 [params]
   mermaidInitialize = "{ \"theme\": \"dark\" }"
   mermaidZoom = true
@@ -104,22 +104,22 @@ To use codefence syntax you have to turn off `guessSyntax` for the `markup.highl
     # was given BUT Mermaid and Math codefences will not work anymore! So this is a
     # mandatory setting for your site if you want to use Mermaid codefences
     guessSyntax = false
-````
+```
 
 ### Page's Frontmatter
 
-````toml
+```toml
 +++
 mermaidInitialize = "{ \"theme\": \"dark\" }"
 mermaidZoom = true
 +++
-````
+```
 
 ## Examples
 
 ### Flowchart with YAML-Title
 
-````go
+```go
 {{</* mermaid */>}}
 ---
 title: Example Diagram
@@ -130,22 +130,22 @@ graph LR;
     C -->|One| D[Result one]
     C -->|Two| E[Result two]
 {{</* /mermaid */>}}
-````
+```
 
-{{< mermaid >}}
----
-title: Example Diagram
----
+## {{< mermaid >}}
+
+## title: Example Diagram
+
 graph LR;
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{<strong>Decision</strong>}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
+A[Hard edge] -->|Link text| B(Round edge)
+B --> C{<strong>Decision</strong>}
+C -->|One| D[Result one]
+C -->|Two| E[Result two]
 {{< /mermaid >}}
 
 ### Sequence Diagram with Configuration Directive
 
-````go
+```go
 {{</* mermaid */>}}
 %%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
 sequenceDiagram
@@ -158,19 +158,19 @@ sequenceDiagram
     John->>Bob: How about you?
     Bob-->>John: Jolly good!
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 %%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
 sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
+Alice->>John: Hello John, how are you?
+loop Healthcheck
+John->>John: Fight against hypochondria
+end
+Note right of John: Rational thoughts!
+John-->>Alice: Great!
+John->>Bob: How about you?
+Bob-->>John: Jolly good!
 {{< /mermaid >}}
 
 ### Class Diagram with Codefence Syntax
@@ -201,7 +201,7 @@ classDiagram
 ```
 ````
 
-````mermaid
+```mermaid
 classDiagram
     Animal <|-- Duck
     Animal <|-- Fish
@@ -223,11 +223,11 @@ classDiagram
       +bool is_wild
       +run()
     }
-````
+```
 
 ### State Diagram Aligned to the Right
 
-````go
+```go
 {{</* mermaid align="right" */>}}
 stateDiagram-v2
     open: Open Door
@@ -238,22 +238,22 @@ stateDiagram-v2
     locked --> closed: Unlock
     closed --> open: Open
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid align="right" >}}
 stateDiagram-v2
-  open: Open Door
-  closed: Closed Door
-  locked: Locked Door
-  open   --> closed: Close
-  closed --> locked: Lock
-  locked --> closed: Unlock
-  closed --> open: Open
+open: Open Door
+closed: Closed Door
+locked: Locked Door
+open --> closed: Close
+closed --> locked: Lock
+locked --> closed: Unlock
+closed --> open: Open
 {{< /mermaid >}}
 
 ### Entity Relationship Model with Non-Default Mermaid Theme
 
-````go
+```go
 {{</* mermaid */>}}
 %%{init:{"theme":"forest"}}%%
 erDiagram
@@ -266,24 +266,24 @@ erDiagram
     PRODUCT-CATEGORY ||--|{ PRODUCT : contains
     PRODUCT ||--o{ ORDER-ITEM : "ordered in"
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 %%{init:{"theme":"forest"}}%%
 erDiagram
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : has
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER ||--o{ INVOICE : "liable for"
-    DELIVERY-ADDRESS ||--o{ ORDER : receives
-    INVOICE ||--|{ ORDER : covers
-    ORDER ||--|{ ORDER-ITEM : includes
-    PRODUCT-CATEGORY ||--|{ PRODUCT : contains
-    PRODUCT ||--o{ ORDER-ITEM : "ordered in"
+CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+CUSTOMER ||--o{ ORDER : places
+CUSTOMER ||--o{ INVOICE : "liable for"
+DELIVERY-ADDRESS ||--o{ ORDER : receives
+INVOICE ||--|{ ORDER : covers
+ORDER ||--|{ ORDER-ITEM : includes
+PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+PRODUCT ||--o{ ORDER-ITEM : "ordered in"
 {{< /mermaid >}}
 
 ### User Journey
 
-````go
+```go
 {{</* mermaid */>}}
 journey
     title My working day
@@ -295,23 +295,23 @@ journey
       Go downstairs: 5: Me
       Sit down: 3: Me
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 journey
-    title My working day
-    section Go to work
-      Make tea: 5: Me
-      Go upstairs: 3: Me
-      Do work: 1: Me, Cat
-    section Go home
-      Go downstairs: 5: Me
-      Sit down: 3: Me
+title My working day
+section Go to work
+Make tea: 5: Me
+Go upstairs: 3: Me
+Do work: 1: Me, Cat
+section Go home
+Go downstairs: 5: Me
+Sit down: 3: Me
 {{< /mermaid >}}
 
 ### GANTT Chart
 
-````go
+```go
 {{</* mermaid */>}}
 gantt
         dateFormat  YYYY-MM-DD
@@ -329,47 +329,47 @@ gantt
         Create tests for renderer           :2d
         Add to Mermaid                      :1d
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 gantt
-        dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to Mermaid
-        section A section
-        Completed task            :done,    des1, 2014-01-06,2014-01-08
-        Active task               :active,  des2, 2014-01-09, 3d
-        Future task               :         des3, after des2, 5d
-        Future task2              :         des4, after des3, 5d
-        section Critical tasks
-        Completed task in the critical line :crit, done, 2014-01-06,24h
-        Implement parser and jison          :crit, done, after des1, 2d
-        Create tests for parser             :crit, active, 3d
-        Future task in critical line        :crit, 5d
-        Create tests for renderer           :2d
-        Add to Mermaid                      :1d
+dateFormat YYYY-MM-DD
+title Adding GANTT diagram functionality to Mermaid
+section A section
+Completed task :done, des1, 2014-01-06,2014-01-08
+Active task :active, des2, 2014-01-09, 3d
+Future task : des3, after des2, 5d
+Future task2 : des4, after des3, 5d
+section Critical tasks
+Completed task in the critical line :crit, done, 2014-01-06,24h
+Implement parser and jison :crit, done, after des1, 2d
+Create tests for parser :crit, active, 3d
+Future task in critical line :crit, 5d
+Create tests for renderer :2d
+Add to Mermaid :1d
 {{< /mermaid >}}
 
 ### Pie Chart without Zoom
 
-````go
+```go
 {{</* mermaid zoom="false" */>}}
 pie title Pets adopted by volunteers
     "Dogs" : 386
     "Cats" : 85
     "Rats" : 15
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid zoom="false" >}}
 pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15
+"Dogs" : 386
+"Cats" : 85
+"Rats" : 15
 {{< /mermaid >}}
 
 ### Requirement Diagram
 
-````go
+```go
 {{</* mermaid */>}}
     requirementDiagram
 
@@ -386,10 +386,10 @@ pie title Pets adopted by volunteers
 
     test_entity - satisfies -> test_req
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
-    requirementDiagram
+requirementDiagram
 
     requirement test_req {
     id: 1
@@ -403,11 +403,12 @@ pie title Pets adopted by volunteers
     }
 
     test_entity - satisfies -> test_req
+
 {{< /mermaid >}}
 
 ### Git Graph
 
-````go
+```go
 {{</* mermaid */>}}
 gitGraph
     commit
@@ -421,25 +422,25 @@ gitGraph
     commit
     commit
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 gitGraph
-    commit
-    commit
-    branch develop
-    checkout develop
-    commit
-    commit
-    checkout main
-    merge develop
-    commit
-    commit
+commit
+commit
+branch develop
+checkout develop
+commit
+commit
+checkout main
+merge develop
+commit
+commit
 {{< /mermaid >}}
 
 ### C4 Diagrams
 
-````go
+```go
 {{</* mermaid */>}}
 C4Context
     title System Context diagram for Internet Banking System
@@ -484,15 +485,15 @@ C4Context
 
     UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 C4Context
-    title System Context diagram for Internet Banking System
-    Enterprise_Boundary(b0, "BankBoundary0") {
-    Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
-    Person(customerB, "Banking Customer B")
-    Person_Ext(customerC, "Banking Customer C", "desc")
+title System Context diagram for Internet Banking System
+Enterprise_Boundary(b0, "BankBoundary0") {
+Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
+Person(customerB, "Banking Customer B")
+Person_Ext(customerC, "Banking Customer C", "desc")
 
     Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
 
@@ -529,11 +530,12 @@ C4Context
     UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
 
     UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
 {{< /mermaid >}}
 
 ### Mindmaps
 
-````go
+```go
 {{</* mermaid */>}}
 mindmap
   root((mindmap))
@@ -553,31 +555,31 @@ mindmap
       Pen and paper
       Mermaid
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
+root((mindmap))
+Origins
+Long history
+::icon(fa fa-book)
+Popularisation
+British popular psychology author Tony Buzan
+Research
+On effectiveness<br/>and features
+On Automatic creation
+Uses
+Creative techniques
+Strategic planning
+Argument mapping
+Tools
+Pen and paper
+Mermaid
 {{< /mermaid >}}
 
 ### Timeline
 
-````go
+```go
 {{</* mermaid */>}}
 timeline
     title History of Social Media Platform
@@ -587,14 +589,36 @@ timeline
     2005 : Youtube
     2006 : Twitter
 {{</* /mermaid */>}}
-````
+```
 
 {{< mermaid >}}
 timeline
-    title History of Social Media Platform
-    2002 : LinkedIn
-    2004 : Facebook
-         : Google
-    2005 : Youtube
-    2006 : Twitter
+title History of Social Media Platform
+2002 : LinkedIn
+2004 : Facebook
+: Google
+2005 : Youtube
+2006 : Twitter
+{{< /mermaid >}}
+
+### Sankey
+
+```go
+{{</* mermaid */>}}
+sankey-beta
+
+%% source,target,value
+Electricity grid,Over generation / exports,104.453
+Electricity grid,Heating and cooling - homes,113.726
+Electricity grid,H2 conversion,27.14
+{{</* /mermaid */>}}
+```
+
+{{< mermaid >}}
+sankey-beta
+
+%% source,target,value
+Electricity grid,Over generation / exports,104.453
+Electricity grid,Heating and cooling - homes,113.726
+Electricity grid,H2 conversion,27.14
 {{< /mermaid >}}
