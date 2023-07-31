@@ -41,7 +41,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Configurable shortcut links]({{%relref "cont/menushortcuts" %}})
 - **Multi language support**
   - [Full support for languages written right to left]({{%relref "cont/i18n" %}})
-  - [Available languages]({{%relref "cont/i18n#basic-configuration" %}}): Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
+  - [Available languages]({{%relref "cont/i18n#basic-configuration" %}}): Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
   - [Search support for mixed language content]({{%relref "cont/i18n#search" %}})
 - **Additional Markdown features**
   - [Support for GFM (GitHub Flavored Markdown]({{%relref "cont/markdown" %}})
