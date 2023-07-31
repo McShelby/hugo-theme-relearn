@@ -166,11 +166,11 @@ function initMermaid( update, attrs ) {
         var GRAPH=3;
         var d = /^(?:\s*[\n\r])*(-{3}\s*[\n\r](?:.*?)[\n\r]-{3}(?:\s*[\n\r]+)+)?(?:\s*(?:%%\s*\{\s*\w+\s*:([^%]*?)%%\s*[\n\r]?))?(.*)$/s
         var m = d.exec( graph );
-        var yaml = '';
+        var yaml = {};
         var dir = {};
         var content = graph;
         if( m && m.length == 4 ){
-            yaml = m[YAML] ? m[YAML] : yaml;
+            yaml = m[YAML] ? jsyaml.load(m[YAML].replaceAll("---", "")) : yaml;
             dir = m[INIT] ? JSON.parse( '{ "init": ' + m[INIT] ).init : dir;
             content = m[GRAPH] ? m[GRAPH] : content;
         }
@@ -179,8 +179,10 @@ function initMermaid( update, attrs ) {
     };
 
     var serializeGraph = function( graph ){
-        var s = graph.yaml + '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n' + graph.content;
-        return s;
+        if (JSON.stringify(graph.dir) === '{}') {
+            return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + graph.content;
+        }
+        return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n' + graph.content;
     };
 
     var init_func = function( attrs ){
@@ -189,11 +191,20 @@ function initMermaid( update, attrs ) {
         document.querySelectorAll('.mermaid').forEach( function( element ){
             var parse = parseGraph( decodeHTML( element.innerHTML ) );
 
-            if( parse.dir.theme ){
-                parse.dir.relearn_user_theme = true;
-            }
-            if( !parse.dir.relearn_user_theme ){
-                parse.dir.theme = theme;
+            if( JSON.stringify(parse.dir) === '{}' ){
+                if( parse.yaml.theme ){
+                    parse.yaml.relearn_user_theme = true;
+                }
+                if( !parse.yaml.relearn_user_theme ){
+                    parse.yaml.theme = theme;
+                }
+            } else {
+                if( parse.dir.theme ){
+                    parse.dir.relearn_user_theme = true;
+                }
+                if( !parse.dir.relearn_user_theme ){
+                    parse.dir.theme = theme;
+                }
             }
             is_initialized = true;
 
@@ -215,10 +226,10 @@ function initMermaid( update, attrs ) {
             var code = e.querySelector( '.mermaid-code' );
             var parse = parseGraph( decodeHTML( code.innerHTML ) );
 
-            if( parse.dir.relearn_user_theme ){
+            if( parse.dir.relearn_user_theme || parse.yaml.relearn_user_theme ){
                 return;
             }
-            if( parse.dir.theme == theme ){
+            if( parse.dir.theme == theme || parse.yaml.theme == theme ){
                 return;
             }
             is_initialized = true;
