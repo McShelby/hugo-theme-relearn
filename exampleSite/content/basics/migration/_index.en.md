@@ -18,6 +18,12 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.19.0 (0000-00-00) {#000}
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Hungarian.
+
+---
+
 ## 5.18.0 (2023-07-27) {#5180}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme adds additional warnings for deprecated or now unsupported features. The warnings include hints how to fix them and an additional link to the documenation.
@@ -170,7 +176,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. While Internet Explorer 11 has issues in displaying it, the functionality still works.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Czech. This language is not supported for search.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Czech. This language is not supported for search.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [GitHub releases](https://github.com/McShelby/hugo-theme-relearn/tags) are also now tagged for the main version (eg. `1.2.x`), major version (eg. `1.x`) and the latest (just `x`) release making it easier for you to pin the theme to a certain version.
 
@@ -296,7 +302,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic). This is only implemented for the content area but not the navigation sidebar. This feature is not available in Internet Explorer 11.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Finnish (Suomi).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Finnish (Suomi).
 
 ---
 
@@ -397,7 +403,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Polish. This language is not supported for search.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Polish. This language is not supported for search.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The documentation for all shortcodes were revised.
 
@@ -411,7 +417,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support]({{%relref "basics/configuration#activate-print-support" %}}) in your `config.toml` to add the capability to print whole chapters or even the complete site.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation for Traditional Chinese.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Traditional Chinese.
 
 ---
 
