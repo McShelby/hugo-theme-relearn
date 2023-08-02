@@ -135,7 +135,7 @@ Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multiling
 
 If you have shortcuts to pages inside of your project and you don't want them to show up in page menu section, you have two choices:
 
-1. Make the page file for the shortcut section a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following rontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be ontained in the sitemap.
+1. Make the page file for the shortcut section a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be ontained in the sitemap.
 
     ````toml
     [_build]
