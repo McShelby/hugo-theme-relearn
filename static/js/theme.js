@@ -277,7 +277,7 @@ function initMermaid( update, attrs ) {
     }
     var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
     if( is_initialized ){
-        mermaid.init();
+        mermaid.init({theme: attrs.theme});
         // zoom for Mermaid
         // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
         var svgs = d3.selectAll( '.mermaid.zoom svg' );
@@ -1347,7 +1347,7 @@ function useMermaid( config ){
         return;
     }
     if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false     }, config ) );
+        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false }, config ) );
         if( config.theme && variants ){
             var write_style = variants.findLoadedStylesheet( 'variant-style' );
             write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
