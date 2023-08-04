@@ -179,10 +179,15 @@ function initMermaid( update, attrs ) {
     };
 
     var serializeGraph = function( graph ){
-        if (JSON.stringify(graph.dir) === '{}') {
-            return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + graph.content;
+        yamlPart = '';
+        dirPart = '';
+        if (JSON.stringify(graph.dir) !== '{}') {
+            dirPart = '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n';
         }
-        return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n' + graph.content;
+        if (JSON.stringify(graph.yaml) !== '{}') {
+            yamlPart = '---\n' + jsyaml.dump(graph.yaml) + '---\n';
+        }
+        return yamlPart + dirPart + graph.content;
     };
 
     var init_func = function( attrs ){
