@@ -10,7 +10,7 @@ Many thanks to [Mathieu Cornic](https://github.com/matcornic) for his work on po
 
 Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav.
 
-## Packages and Libraries
+## Theme Dependencies
 
 - [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
 - [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard
@@ -24,7 +24,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - [d3-transition](https://github.com/d3/d3-transition) - Animated transitions for D3 selections
   - [d3-drag](https://github.com/d3/d3-drag) - Drag and drop SVG, HTML or Canvas using mouse or touch input
 - [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
-- [github-buttons](https://github.com/buttons/github-buttons) - Unofficial github:buttons
+- [js-yaml](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper
 - [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
 - [Lunr Languages](https://github.com/MihaiValentin/lunr-languages) - A collection of languages stemmers and stopwords for Lunr Javascript library
 - [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
@@ -33,7 +33,11 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 - [SwaggerUI](https://github.com/swagger-api/swagger-ui) - Generate beautiful documentation from a Swagger-compliant API
 - [WorkSans](https://weiweihuanghuang.github.io/Work-Sans/) - Work Sans is a 9 weight typeface family based loosely on early Grotesques
 
-## Tooling
+## Docs Dependencies
+
+- [github-buttons](https://github.com/buttons/github-buttons) - Unofficial github:buttons
+
+## Tooling Dependencies
 
 - [GitHub](https://github.com) - Continuous deployment, testing and hosting of this project's sources and its documentation
 - Various GitHub Actions
