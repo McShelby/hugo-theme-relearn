@@ -164,13 +164,13 @@ function initMermaid( update, attrs ) {
         var YAML=1;
         var INIT=2;
         var GRAPH=3;
-        var d = /^(?:\s*[\n\r])*(-{3}\s*[\n\r](?:.*?)[\n\r]-{3}(?:\s*[\n\r]+)+)?(?:\s*(?:%%\s*\{\s*\w+\s*:([^%]*?)%%\s*[\n\r]?))?(.*)$/s
+        var d = /^(?:\s*[\n\r])*(?:-{3}(\s*[\n\r](?:.*?)[\n\r])-{3}(?:\s*[\n\r]+)+)?(?:\s*(?:%%\s*\{\s*\w+\s*:([^%]*?)%%\s*[\n\r]?))?(.*)$/s
         var m = d.exec( graph );
         var yaml = {};
         var dir = {};
         var content = graph;
         if( m && m.length == 4 ){
-            yaml = m[YAML] ? jsyaml.load(m[YAML].replaceAll("---", "")) : yaml;
+            yaml = m[YAML] ? jsyaml.load( m[YAML] ) : yaml;
             dir = m[INIT] ? JSON.parse( '{ "init": ' + m[INIT] ).init : dir;
             content = m[GRAPH] ? m[GRAPH] : content;
         }
@@ -179,13 +179,13 @@ function initMermaid( update, attrs ) {
     };
 
     var serializeGraph = function( graph ){
-        yamlPart = '';
-        dirPart = '';
-        if (JSON.stringify(graph.dir) !== '{}') {
-            dirPart = '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n';
+        var yamlPart = '';
+        if( Object.keys( graph.yaml ).length ){
+            yamlPart = '---\n' + jsyaml.dump( graph.yaml ) + '---\n';
         }
-        if (JSON.stringify(graph.yaml) !== '{}') {
-            yamlPart = '---\n' + jsyaml.dump(graph.yaml) + '---\n';
+        var dirPart = '';
+        if( Object.keys( graph.dir ).length ){
+            dirPart = '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n';
         }
         return yamlPart + dirPart + graph.content;
     };
