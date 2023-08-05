@@ -179,10 +179,15 @@ function initMermaid( update, attrs ) {
     };
 
     var serializeGraph = function( graph ){
-        if (JSON.stringify(graph.dir) === '{}') {
-            return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + graph.content;
+        yamlPart = '';
+        dirPart = '';
+        if (JSON.stringify(graph.dir) !== '{}') {
+            dirPart = '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n';
         }
-        return '---\n' + jsyaml.dump(graph.yaml) + '---\n' + '%%{init: ' + JSON.stringify(graph.dir) + '}%%\n' + graph.content;
+        if (JSON.stringify(graph.yaml) !== '{}') {
+            yamlPart = '---\n' + jsyaml.dump(graph.yaml) + '---\n';
+        }
+        return yamlPart + dirPart + graph.content;
     };
 
     var init_func = function( attrs ){
@@ -277,7 +282,7 @@ function initMermaid( update, attrs ) {
     }
     var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
     if( is_initialized ){
-        mermaid.init();
+        mermaid.init({theme: attrs.theme});
         // zoom for Mermaid
         // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
         var svgs = d3.selectAll( '.mermaid.zoom svg' );
@@ -1347,7 +1352,7 @@ function useMermaid( config ){
         return;
     }
     if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false     }, config ) );
+        mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false }, config ) );
         if( config.theme && variants ){
             var write_style = variants.findLoadedStylesheet( 'variant-style' );
             write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
