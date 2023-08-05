@@ -196,20 +196,14 @@ function initMermaid( update, attrs ) {
         document.querySelectorAll('.mermaid').forEach( function( element ){
             var parse = parseGraph( decodeHTML( element.innerHTML ) );
 
-            if( JSON.stringify(parse.dir) === '{}' ){
-                if( parse.yaml.theme ){
-                    parse.yaml.relearn_user_theme = true;
-                }
-                if( !parse.yaml.relearn_user_theme ){
-                    parse.yaml.theme = theme;
-                }
-            } else {
-                if( parse.dir.theme ){
-                    parse.dir.relearn_user_theme = true;
-                }
-                if( !parse.dir.relearn_user_theme ){
-                    parse.dir.theme = theme;
-                }
+            if( parse.yaml.theme ){
+                parse.yaml.relearn_user_theme = true;
+            }
+            if( parse.dir.theme ){
+                parse.dir.relearn_user_theme = true;
+            }
+            if( !parse.yaml.relearn_user_theme && !parse.dir.relearn_user_theme ){
+                parse.yaml.theme = theme;
             }
             is_initialized = true;
 
@@ -239,7 +233,7 @@ function initMermaid( update, attrs ) {
             }
             is_initialized = true;
 
-            parse.dir.theme = theme;
+            parse.yaml.theme = theme;
             var graph = serializeGraph( parse );
             element.removeAttribute('data-processed');
             element.innerHTML = graph;
