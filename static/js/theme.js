@@ -231,10 +231,10 @@ function initMermaid( update, attrs ) {
             var code = e.querySelector( '.mermaid-code' );
             var parse = parseGraph( decodeHTML( code.innerHTML ) );
 
-            if( parse.dir.relearn_user_theme || parse.yaml.relearn_user_theme ){
+            if( parse.yaml.relearn_user_theme || parse.dir.relearn_user_theme ){
                 return;
             }
-            if( parse.dir.theme == theme || parse.yaml.theme == theme ){
+            if( parse.yaml.theme == theme || parse.dir.theme == theme ){
                 return;
             }
             is_initialized = true;
@@ -282,7 +282,7 @@ function initMermaid( update, attrs ) {
     }
     var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
     if( is_initialized ){
-        mermaid.init({theme: attrs.theme});
+        mermaid.init( {theme: attrs.theme} );
         // zoom for Mermaid
         // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
         var svgs = d3.selectAll( '.mermaid.zoom svg' );
