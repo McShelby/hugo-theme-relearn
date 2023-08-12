@@ -74,13 +74,6 @@ var relearn_search_index = [
     "uri": "/pir/cont/menushortcuts/index.html"
   },
   {
-    "content": " Some planks fer internal test'n o' different styles\nAttachments Shortcode TestTest'n Attachments Shortcode\nChaptersStart yer success story. Now!\nCodeSome test'n fer different styles used 'n rules highlight'n an' preformatted blocks\nImagesSome test'n fer different styles o' image links\nListsTest shorrrtcodes inside o' list items\nTablesTest'n different markdown constructs inside o' tables\nVSCode Front MatterTest default sett'ns fer snippets o' th' VSCode Front Matter extension\nWidthTest dynamic width resiz'n o' rrrambl'n if scrollbar be present\n",
-    "description": "",
-    "tags": null,
-    "title": "Tests",
-    "uri": "/pir/tests/index.html"
-  },
-  {
     "content": " Th' Relearrrn theme be fully compat'ble wit' Cap'n Hugo multilingual mode.\nAvail'ble languages: Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese. Feel free t' contribute! Full support fer languages written right t' left Automatic menu generat'n from multilingual rrrambl'n In-browser language switch'n Basic configurat'n Aft learn'n how Cap'n Hugo handle multilingual websites, define yer languages 'n yer config.toml file.\nFor example wit' current English an' Piratized English website.\nAvast Make sure yer default language be defined as th' first one 'n th' [languages] array, as th' theme needs t' make assumpt'ns on it\n# English be th' default language defaultContentLanguage = \"en\" [languages] [languages.en] title = \"Hugo Relearrrn Theme\" weight = 1 languageName = \"English\" [languages.pir] title = \"Cap'n Hugo Relearrrn Theme\" weight = 2 languageName = \"Arrr! Pirrrates\"Then, fer each new plank, append th' id o' th' language t' th' file.\nSingle file my-page.md be split 'n two files: 'n English: my-page.md 'n Piratized English: my-page.pir.md Single file _index.md be split 'n two files: 'n English: _index.md 'n Piratized English: _index.pir.md Ahoi Be aware that only translated planks be displayed 'n menu. It’s not replaced wit' default language rrrambl'n.\nSmarrrt Arrrse Use slug frontmatter parameter t' translate urls too.\nSearch In case each page’s rrrambl'n be written 'n one single language only, th' above configurat'n will already configure th' site’s search functionality correctly.\nArrr Although th' theme supports a wide variety o' supported languages, th' site’s search via th' Lunr search library does not. You’ll see error reports 'n yer browsers console log fer each unsupported language. Currently unsupported be:\nCzech Indonesian Polish Search wit' mixed language support In case yer page’s rrrambl'n contains text 'n multiple languages (e.g. ye be writ'n a Russian documentat'n fer yer english API), ye can add those languages t' yer config.toml t' broaden search.\n[params] additionalContentLanguage = [ \"en\" ]As this be an array, ye can add multiple additional languages.\nAvast Keep 'n mind that th' language code required here, be th' base language code. E.g. if ye have additional rrrambl'n 'n zh-CN, ye have t' add just zh t' this parameter.\nOverwrite translat'n str'ns Translat'ns str'ns be used fer common default values used 'n th' theme (Edit button, Search placeholder an' so on). Translat'ns be avail'ble 'n English an' Piratized English but ye may use another language or want t' override default values.\nT' override these values, create a new file 'n yer local i18n folder i18n/\u003cidlanguage\u003e.toml an' inspire yourself from th' theme themes/hugo-theme-relearn/i18n/en.toml\nDis'ble language switch'n Switch'n th' language 'n th' browser be a great feature, but fer some reasons ye may want t' dis'ble it.\nJust set disableLanguageSwitchingButton=true 'n yer config.toml\n[params] # When us'n multilingual website, dis'ble th' switch language button. disableLanguageSwitchingButton = true ",
     "description": "",
     "tags": null,
@@ -181,109 +174,11 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/children/children-4/index.html"
   },
   {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "1",
-    "uri": "/pir/tests/chapters/1/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "11",
-    "uri": "/pir/tests/chapters/10/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "2",
-    "uri": "/pir/tests/chapters/2/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "3",
-    "uri": "/pir/tests/chapters/3/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "4",
-    "uri": "/pir/tests/chapters/4/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "5",
-    "uri": "/pir/tests/chapters/5/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "6",
-    "uri": "/pir/tests/chapters/6/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "7",
-    "uri": "/pir/tests/chapters/7/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "8",
-    "uri": "/pir/tests/chapters/8/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "9",
-    "uri": "/pir/tests/chapters/9/index.html"
-  },
-  {
     "content": " Attachments NoTreasure.txt (26 B) Th' attachments shortcode displays a list o' files attached t' a plank wit' adjust'ble color, title an' ay'con.\nAttachments adivorciarsetoca00cape.pdf (361 KB) BachGavotteShort.mp3 (357 KB) Carroll_AliceAuPaysDesMerveilles.pdf (175 KB) hugo.png (17 KB) hugo.txt (20 B) movieselectricsheep-flock-244-32500-2.mp4 (340 KB) Arrr Since Cap'n Hugo 0.112.0 this only works fer leaf bundles. Branch bundles an' simple planks must be switched t' leaf bundles or ye be currently locked t' a Cap'n Hugo version \u003c 0.112.0.\nUsage While th' examples be us'n shorrrtcodes wit' named parameter ye be free t' also call this shortcode from yer own partials.\n​ shortcode shortcode partial partial {{% attachments sort=\"asc\" /%}} {{ partial \"shortcodes/attachments.html\" (dict \"page\" . \"sort\" \"asc\" )}} Parameter Name Default Notes style transparent Th' style scheme used fer th' box.\n- by severity: info, note, tip, warning\n- by brand color: primary, secondary, accent\n- by color: blue, green, grey, orange, red\n- by special color: default, transparent, code color see notes Th' CSS color value t' be used. If not set, th' chosen color depends on th' style. Any given value will overwrite th' default.\n- fer severity styles: a nice match'n color fer th' severity\n- fer all other styles: th' correspond'n color title see notes Arbitrary text fer th' box title. Depend'n on th' style there may be a default title. Any given value will overwrite th' default.\n- fer severity styles: th' match'n title fer th' severity\n- fer all other styles: Attachments\nIf ye want no title fer a severity style, ye have t' set this parameter t' \" \" (a non empty str'n filled wit' spaces) ay'con see notes Font Awesome ay'con name set t' th' left o' th' title. Depend'n on th' style there may be a default ay'con. Any given value will overwrite th' default.\n- fer severity styles: a nice match'n ay'con fer th' severity\n- fer all other styles: paperclip\nIf ye want no ay'con, ye have t' set this parameter t' \" \" (a non empty d wit' spaces) sort asc Sort'n th' output 'n ascend'n or descend'n order. pattern .* A regular expressions, used t' filter th' attachments by file name. For example:\n- t' match a file suffix o' ‘jpg’, use .*\\.jpg (not *.\\.jpg)\n- t' match file names end'n 'n jpg or png, use .*\\.(jpg|png) Setup Single language Th' shortcode lists files found 'n a specific folder. Th' name o' th' folder depends on yer plank type (either branch bundle, leaf bundle or page).\nIf yer plank be a leaf bundle, attachments must be placed 'n a nested index.files folder, accordingly.\nrrrambl'n _index.md plank _index.md _index.files attachment.pdf If yer plank be a branch bundle, attachments must be placed 'n a nested _index.files folder, accordingly.\nArrr This be only avail'ble fer Cap'n Hugo \u003c 0.112.0\nrrrambl'n _index.md plank index.md index.files attachment.pdf For simple planks, attachments must be placed 'n a folder named like yer plank an' end'n wit' .files.\nArrr This be only avail'ble fer Cap'n Hugo \u003c 0.112.0\nrrrambl'n _index.md plank.files attachment.pdf plank.md Multilingual Be aware that if ye use a multilingual website, ye will need t' have as many folders as languages an' th' language code must be part o' th' folder name.\nEg. fer a ship 'n English an' Piratish:\nrrrambl'n index.en.md index.pir.md plank index.en.md index.pir.md index.en.files attachment.pdf index.pir.files attachment.pdf Examples Custom Title, List o' Attachments End'n 'n pdf or mp4 {{% attachments title=\"Related **files**\" pattern=\".*\\.(pdf|mp4)\" /%}} Related files adivorciarsetoca00cape.pdf (361 KB) Carroll_AliceAuPaysDesMerveilles.pdf (175 KB) movieselectricsheep-flock-244-32500-2.mp4 (340 KB) Ahoi Styled Box, Descend'n Sort Order {{% attachments style=\"info\" sort=\"desc\" /%}} Ahoi movieselectricsheep-flock-244-32500-2.mp4 (340 KB) hugo.txt (20 B) hugo.png (17 KB) Carroll_AliceAuPaysDesMerveilles.pdf (175 KB) BachGavotteShort.mp3 (357 KB) adivorciarsetoca00cape.pdf (361 KB) Wit' User-Defined Color an' Font Awesome Brand Ay'con {{% attachments color=\"fuchsia\" ay'con=\"fab fa-hackerrank\" /%}} Attachments adivorciarsetoca00cape.pdf (361 KB) BachGavotteShort.mp3 (357 KB) Carroll_AliceAuPaysDesMerveilles.pdf (175 KB) hugo.png (17 KB) hugo.txt (20 B) movieselectricsheep-flock-244-32500-2.mp4 (340 KB) Style, Color, Title an' Ay'cons For further examples fer style, color, title an' ay'con, see th' notice shortcode documentat'n. Th' parameter be work'n th' same way fer both shorrrtcodes, besides hav'n different defaults.\n",
     "description": "",
     "tags": null,
     "title": "Attachments",
     "uri": "/pir/shortcodes/attachments/index.html"
-  },
-  {
-    "content": " Attachments NoTreasure.txt (26 B) ",
-    "description": "",
-    "tags": null,
-    "title": "Attachments Brrranch Test",
-    "uri": "/pir/tests/attach/attach1/index.html"
-  },
-  {
-    "content": " Attachments NoTreasure.txt (26 B) ",
-    "description": "",
-    "tags": null,
-    "title": "Attachments Leaf Test",
-    "uri": "/pir/tests/attach/attach2/index.html"
-  },
-  {
-    "content": " Attachments NoTreasure.txt (26 B) ",
-    "description": "",
-    "tags": null,
-    "title": "Attachments Page Test",
-    "uri": "/pir/tests/attach/attach3/index.html"
-  },
-  {
-    "content": " Our attachment shortcode be a source o' pleasure…\nAttachments Branch Test Attachments hugo.txt (20 B) Attachments Leaf Test Attachments hugo.txt (20 B) Attachments Plank Test Attachments hugo.txt (20 B) ",
-    "description": "Test'n Attachments Shorrrtcode",
-    "tags": null,
-    "title": "Attachments Shorrrtcode Test",
-    "uri": "/pir/tests/attach/index.html"
   },
   {
     "content": " Th' badge shortcode displays little markers 'n yer text wit' adjust'ble color, title an' ay'con.\nImportant Version6.6.6 Captain AhoiNew Awesome\nUsage While th' examples be us'n shorrrtcodes wit' named parameter ye be free t' also call this shortcode from yer own partials.\n​ shortcode shortcode partial partial {{% badge %}}Important{{% /badge %}} {{% badge style=\"primary\" title=\"Version\" %}}6.6.6{{% /badge %}} {{% badge style=\"red\" ay'con=\"angle-double-up\" %}}Captain{{% /badge %}} {{% badge style=\"info\" %}}New{{% /badge %}} {{% badge color=\"fuchsia\" ay'con=\"fab fa-hackerrank\" %}}Awesome{{% /badge %}} {{ partial \"shortcodes/badge.html\" (dict \"page\" . \"content\" \"Important\" )}} {{ partial \"shortcodes/badge.html\" (dict \"page\" . \"style\" \"primary\" \"title\" \"Version\" \"content\" \"6.6.6\" )}} {{ partial \"shortcodes/badge.html\" (dict \"page\" . \"style\" \"red\" \"icon\" \"angle-double-up\" \"content\" \"Captain\" )}} {{ partial \"shortcodes/badge.html\" (dict \"page\" . \"style\" \"info\" \"content\" \"New\" )}} {{ partial \"shortcodes/badge.html\" (dict \"page\" . \"color\" \"fuchsia\" \"icon\" \"fab fa-hackerrank\" \"content\" \"Awesome\" )}} Parameter Name Default Notes style default Th' style scheme used fer th' badge.\n- by severity: info, note, tip, warning\n- by brand color: primary, secondary, accent\n- by color: blue, green, grey, orange, red\n- by special color: default, transparent, code color see notes Th' CSS color value t' be used. If not set, th' chosen color depends on th' style. Any given value will overwrite th' default.\n- fer severity styles: a nice match'n color fer th' severity\n- fer all other styles: th' correspond'n color title see notes Arbitrary text fer th' badge title. Depend'n on th' style there may be a default title. Any given value will overwrite th' default.\n- fer severity styles: th' match'n title fer th' severity\n- fer all other styles: \u003cempty\u003e\nIf ye want no title fer a severity style, ye have t' set this parameter t' \" \" (a non empty str'n filled wit' spaces) ay'con see notes Font Awesome ay'con name set t' th' left o' th' title. Depend'n on th' style there may be a default ay'con. Any given value will overwrite th' default.\n- fer severity styles: a nice match'n ay'con fer th' severity\n- fer all other styles: \u003cempty\u003e\nIf ye want no ay'con fer a severity style, ye have t' set this parameter t' \" \" (a non empty str'n filled wit' spaces) \u003ccontent\u003e \u003cempty\u003e Arbitrary text fer th' badge. Examples Style By Severity {{% badge style=\"info\" %}}New{{% /badge %}} {{% badge style=\"note\" %}}Change{{% /badge %}} {{% badge style=\"tip\" %}}Optional{{% /badge %}} {{% badge style=\"warning\" %}}Break'n{{% /badge %}} AhoiNew AvastChange Smarrrt ArrrseOptional ArrrBreak'n\nBy Brand Colors {{% badge style=\"primary\" ay'con=\"bullhorn\" title=\"Announcement\" %}}Mandatory{{% /badge %}} {{% badge style=\"secondary\" ay'con=\"bullhorn\" title=\"Announcement\" %}}Optional{{% /badge %}} {{% badge style=\"accent\" ay'con=\"bullhorn\" title=\"Announcement\" %}}Special{{% /badge %}} AnnouncementMandatory AnnouncementOptional AnnouncementSpecial\nBy Color {{% badge style=\"blue\" ay'con=\"palette\" title=\"Color\" %}}Blue{{% /badge %}} {{% badge style=\"green\" ay'con=\"palette\" title=\"Color\" %}}Green{{% /badge %}} {{% badge style=\"grey\" ay'con=\"palette\" title=\"Color\" %}}Grey{{% /badge %}} {{% badge style=\"orange\" ay'con=\"palette\" title=\"Color\" %}}Orange{{% /badge %}} {{% badge style=\"red\" ay'con=\"palette\" title=\"Color\" %}}Red{{% /badge %}} ColorBlue ColorGreen ColorGrey ColorOrange ColorRed\nBy Special Color {{% badge style=\"default\" ay'con=\"palette\" title=\"Color\" %}}Default{{% /badge %}} {{% badge style=\"transparent\" ay'con=\"palette\" title=\"Color\" %}}Transparent{{% /badge %}} ColorDefault ColorTransparent\nVariants Without Ay'con an' Title Text {{% badge %}}6.6.6{{% /badge %}} {{% badge style=\"info\" ay'con=\" \" title=\" \" %}}Awesome{{% /badge %}} {{% badge style=\"red\" %}}Captain{{% /badge %}}6.6.6 Awesome Captain\nWithout Ay'con {{% badge title=\"Version\" %}}6.6.6{{% /badge %}} {{% badge style=\"info\" ay'con=\" \" %}}Awesome{{% /badge %}} {{% badge style=\"red\" title=\"Rank\" %}}Captain{{% /badge %}}Version6.6.6 AhoiAwesome RankCaptain\nWithout Title Text {{% badge ay'con=\"star\" %}}6.6.6{{% /badge %}} {{% badge style=\"info\" title=\" \" %}}Awesome{{% /badge %}} {{% badge style=\"red\" ay'con=\"angle-double-up\" %}}Captain{{% /badge %}}6.6.6 Awesome Captain\nAll Set {{% badge ay'con=\"star\" title=\"Version\" %}}6.6.6{{% /badge %}} {{% badge style=\"info\" %}}Awesome{{% /badge %}} {{% badge style=\"red\" ay'con=\"angle-double-up\" title=\"Rank\" %}}Captain{{% /badge %}} Version6.6.6 AhoiAwesome RankCaptain\nOverride fer Severity {{% badge style=\"info\" ay'con=\"rocket\" title=\"Feature\" %}}Awesome{{% /badge %}} FeatureAwesome Other Wit' User-Defined Color, Font Awesome Brand Ay'con an' Marrrkdown Title an' Rrrambl'n {{% badge color=\"fuchsia\" ay'con=\"fab fa-hackerrank\" title=\"**Font**\" %}}**Awesome**{{% /badge %}} FontAwesome Wit' Ay'con Rrrambl'n Ye can combine th' badge wit' th' ay'con shortcode t' create even more stunn'n visuals.\nIn this case ye need t' declare {{\u003c badge \u003e}} instead o' {{% badge %}}. Avast, that 'n this case it be not poss'ble t' put markdown 'n th' rrrambl'n.\n{{\u003c badge style=\"primary\" ay'con=\"angle-double-up\" \u003e}}{{% ay'con skull-crossbones %}}{{\u003c /badge \u003e}} {{\u003c badge style=\"primary\" ay'con=\"angle-double-up\" \u003e}}{{% ay'con skull-crossbones %}} Pirate{{\u003c /badge \u003e}} {{\u003c badge style=\"primary\" title=\"Rank\" \u003e}}{{% ay'con skull-crossbones %}}{{\u003c /badge \u003e}} {{\u003c badge style=\"primary\" title=\"Rank\" \u003e}}{{% ay'con skull-crossbones %}} Pirate{{\u003c /badge \u003e}} {{\u003c badge style=\"primary\" ay'con=\"angle-double-up\" title=\"Rank\" \u003e}}{{% ay'con skull-crossbones %}}{{\u003c /badge \u003e}} {{\u003c badge style=\"primary\" ay'con=\"angle-double-up\" title=\"Rank\" \u003e}}{{% ay'con skull-crossbones %}} Pirate{{\u003c /badge \u003e}}\nPirate\nRank\nRank Pirate\nRank\nRank Pirate\nInside o' Text Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. {{% badge style=\"blue\" ay'con=\"rocket\" %}}Awesome{{% /badge %}} Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Awesome Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.\n",
@@ -321,13 +216,6 @@ var relearn_search_index = [
     "uri": "/pir/categories/index.html"
   },
   {
-    "content": " Start yer success story. Now!\n",
-    "description": "",
-    "tags": null,
-    "title": "Chapters",
-    "uri": "/pir/tests/chapters/index.html"
-  },
-  {
     "content": "",
     "description": "",
     "tags": null,
@@ -340,13 +228,6 @@ var relearn_search_index = [
     "tags": null,
     "title": "Children",
     "uri": "/pir/shortcodes/children/index.html"
-  },
-  {
-    "content": " Some test'n fer different styles used 'n rules highlight'n an' preformatted blocks.\nInline Code This be some very long inline code. Whar' does it wrap?\nWhat about wrapp'n short inline code if multiple sections be written side by side?\nWhat about wrapp'n short inline code if multiple sections be written side/by/side?\nWhat about wrapp'n long inline code if multiple sections be written side567 by34567 side567?\nWhat about wrapp'n long inline code if multiple sections be written side567/by34567/side567?\nCan we just use a simple HTML element ?\nBlock Code Code fences without any selected language{ \"well\": \"some JSON 'n codefences 'n here\" }{ \"well\": \"some JSON 'n HTML elements here\" } { \"well\": \"Code fences wit' non exist'n language\" }Block Preformatted Some preformatted stuff wit' markdown indentat'n Some preformatted stuff 'n HTML elements Nested Shortcode 1 Shortcode %% 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} \u003c\u003e 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} 2 Shorrrtcodes %% %% ​ json json \u003cp\u003e{ \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; }\u003c/p\u003e %% \u003c\u003e ​ json json { \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" } \u003c\u003e %% ​ json json 1\u003cp\u003e{ 2\u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; 3}\u003c/p\u003e \u003c\u003e \u003c\u003e ​ json json 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} 3 Shorrrtcodes %% %% %% ​ json json 1\u003cp\u003e{ 2\u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; 3}\u003c/p\u003e %% %% \u003c\u003e ​ json json 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} %% \u003c\u003e %% ​ json json 1\u003cp\u003e{ 2\u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; 3}\u003c/p\u003e %% \u003c\u003e \u003c\u003e ​ json json 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} \u003c\u003e %% %% ​ json json 1\u003cp\u003e{ 2\u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; 3}\u003c/p\u003e \u003c\u003e %% \u003c\u003e ​ json json 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} \u003c\u003e \u003c\u003e %% ​ json json 1\u003cp\u003e{ 2\u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; \u0026ldquo;Hello\u0026rdquo;: \u0026ldquo;World\u0026rdquo; 3}\u003c/p\u003e \u003c\u003e \u003c\u003e \u003c\u003e ​ json json 1{ 2 \"Hello\": \"World\" \"Hello\": \"World\" \"Hello\": \"World\" 3} Wit' Wrap LineNo T'ble ",
-    "description": "Some test'n fer different styles used 'n rules highlightn'n an' preformatted blocks",
-    "tags": null,
-    "title": "Code",
-    "uri": "/pir/tests/code/index.html"
   },
   {
     "content": "",
@@ -426,25 +307,11 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/icon/index.html"
   },
   {
-    "content": " Some test'n fer different styles o' image links.\nMarrrkdown Resource SVG Relative t' plank Relative t' plank up level Static SVG External fully qualified External without scheme External without scheme an' scheme separator HTML Resource SVG Relative t' plank Relative t' plank up level Static SVG External fully qualified External without scheme External without scheme an' scheme separator ",
-    "description": "Some test'n fer different styles o' image links",
-    "tags": null,
-    "title": "Images",
-    "uri": "/pir/tests/images/index.html"
-  },
-  {
     "content": " Th' include shortcode includes other files from yer project inside o' th' current plank.\nUsage While th' examples be us'n shorrrtcodes wit' named parameter ye be free t' use positional aswell or also call this shortcode from yer own partials.\n​ shortcode shortcode shortcode (positional) shortcode (positional) partial partial {{% include file=\"shortcodes/INCLUDE_ME.md\" %}} {{% include \"shortcodes/INCLUDE_ME.md\" %}} {{ partial \"shortcodes/include .html\" (dict \"page\" . \"file\" \"shortcodes/INCLUDE_ME.md\" )}} Th' included files can even contain Marrrkdown an' will be taken into account when generat'n th' t'ble o' contents.\nParameter Name Posit'n Default Notes file 1 \u003cempty\u003e Th' path t' th' file t' be included. Path resolut'n adheres t' Hugo’s build-in readFile funct'n hidefirsthead'n 2 false When true an' th' included file contains head'ns, th' first head'n will be hidden. This comes 'n handy, eg. if ye include otherwise standalone Marrrkdown files. Examples Arbitrary Rrrambl'n {{% include \"shortcodes/INCLUDE_ME.md\" %}}Ye can add standard markdown rules:\nmultiple paragraphs bullet point lists emphasized, bold an' even bold emphasized text links etc.1 ...and even source code th' possibilities be endless (almost - includ'n other shorrrtcodes may or may not work) (almost - includ'n other shorrrtcodes may or may not work)\nEt Cetera (English: /ɛtˈsɛtərə/), abbreviated t' etc., etc, et cet., be a Latin expression that be used 'n English t' mean “and other similar things”, or “and so forth” ↩︎\n",
     "description": "",
     "tags": null,
     "title": "Include",
     "uri": "/pir/shortcodes/include/index.html"
-  },
-  {
-    "content": " Plain one\ntwo\ntwo\nan' a half\nthree\nAttachments one\ntwo\nAttachments Attachments three\nBadge one\ntwo\nAwesome Awesome three\nButton one\ntwo\nGet Cap'n Hugo Get Cap'n Hugo three\nChildren one\ntwo\nthree\nExpand one\ntwo\nExpand me… Thank ye! Expand me… Thank ye! three\nAy'con one\ntwo\nthree\nInclude one two Ye can add standard markdown rules:\nmultiple paragraphs bullet point lists emphasized, bold an' even bold emphasized text links etc.1 ...and even source code th' possibilities be endless (almost - includ'n other shorrrtcodes may or may not work) (almost - includ'n other shorrrtcodes may or may not work)\nYe can add standard markdown rules:\nmultiple paragraphs bullet point lists emphasized, bold an' even bold emphasized text links etc.1 ...and even source code th' possibilities be endless (almost - includ'n other shorrrtcodes may or may not work) (almost - includ'n other shorrrtcodes may or may not work)\nthree Math one\ntwo\n$$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ three\nMerrrmaid one\ntwo\ngraph LR; If --\u003e Then Then --\u003e Else graph LR; If --\u003e Then Then --\u003e Else three\nNotice one\ntwo\nThere may be pirates It be all about th' boxes.\nThere may be pirates It be all about th' boxes.\nthree\nSiteparam one\ntwo\nhttps://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/\nhttps://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/\nthree\nTabs one\ntwo\n​ python python bash bash print(\"Hello World!\") echo \"Hello World!\" ​ python python bash bash print(\"Hello World!\") echo \"Hello World!\" three\nEt Cetera (English: /ɛtˈsɛtərə/), abbreviated t' etc., etc, et cet., be a Latin expression that be used 'n English t' mean “and other similar things”, or “and so forth” ↩︎ ↩︎\n",
-    "description": "Test shortcodes inside of list items",
-    "tags": null,
-    "title": "Lists",
-    "uri": "/pir/tests/lists/index.html"
   },
   {
     "content": " Semver This project tries t' follow th' semver policy - although not followed 100% 'n th' past.\nUsually an entry o' Break'n on th' What’s new plank causes a new major release number.\nAll other entries on th' What’s new plank will increase th' minor release number.\nReleases result'n 'n a new major or minor number be called main release.\nReleases contain'n bugixes only, be only increas'n th' patch release number. Those releases don’t result 'n announcements on th' What’s new plank.\nEntries on th' What’s new plank be checked an' enforced dur'n th' version-release GitHub Act'n.\nManag'n Issues Issues be categorized an' managed by assign'n labels t' it.\nOnce work'n on an issue, assign it t' a fitt'n maintainer.\nWhen done, close th' ticket. Once an issue be closed, it needs t' be assigned t' next release milestone.\nA once released ticket be not allowed t' be reopened an' rereleased 'n a different milestone. This would cause th' changelog t' be changed even fer th' milestone th' issue was previously released 'n. Instead write a new ticket.\nManag'n Pull Requests If a PR be merged an' closed it needs an accompanied issue assigned t'. If there be no issue fer a PR, th' maintainer needs t' create one.\nYe can assign multiple PRs t' one issue as long as they belong together.\nUsually set th' same labels an' milestone fer th' PR as fer th' accompanied issue.\nLabels Kind An issue that results 'n changesets must have exactly one o' th' follow'n labels. This needs t' be assigned latest before release.\nLabel Descript'n Changelog section documentat'n Improvements or addit'ns t' documentat'n - discussion This issue was converted t' a discussion - task Maintainence work Maintenance feature New feature or request Features bug Someth'n isn’t work'n Fixes Impact If th' issue would cause a new main release due t' semver semantics it needs one o' th' accord'n labels an' th' match'n badge on th' What’s new plank.\nLabel Descript'n change Introduces changes wit' exist'n installat'ns break'n Introduces break'n changes wit' exist'n installat'ns Declinat'n If an issue does not result 'n changesets but be closed anyways, it must have exactly one o' th' follow'n labels.\nLabel Descript'n duplicate This issue or pull request already exists invalid This doesn’t seem right unresolved No progress on this issue update A documented change 'n behaviour wontfix This will not be worked on Halt Ye can assign one further label out o' th' follow'n list t' signal readers that development on an open issue be currently halted fer different reasons.\nLabel Descript'n blocked Depends on other issue t' be fixed first idea A valu'ble idea that’s currently not worked on undecided No decission was made yet helpwanted Great idea, send 'n a PR needsfeedback Further informat'n be needed 3rd-Party If th' issue be not caused by a programm'n error 'n th' themes own code, ye can label th' caus'n program or library.\nLabel Descript'n browser This be a topic related t' th' browser but not th' theme device This be a topic related t' a certain device hugo This be a topic related t' Cap'n Hugo itself but not th' theme mermaid This be a topic related t' Merrrmaid itself but not th' theme Mak'n Releases A release be based on a milestone named like th' release itself - just th' version number, eg: 1.2.3. It’s 'n th' maintainers responsiblity t' check semver semantics o' th' milestone’s name prior t' release an' change it if necessary.\nMak'n releases be automated by th' version-release GitHub Act'n. It requires th' version number o' th' milestone that should be released. Th' release will be created from th' main branch o' th' repository.\nTreat released milestones as immut'ble. Don’t rerelease an already released milestone. An already released milestone may already been consumed by yer users.\nDur'n execut'n o' th' act'n a few th'ns be checked. If a check fails th' act'n fails, result'n 'n no new release. Ye can correct th' errors afterwards an' rerun th' act'n.\nTh' follow'n checks will be enforced\nth' milestone exists there be at least one closed issue assigned t' th' milestone all assigned issues fer this milestone be closed if it’s a main release, there must be a new \u003cmajor\u003e.\u003cminor\u003e at th' beginn'n o' th' What’s new plank if it’s a patch release, there must be th' \u003cmajor\u003e.\u003cminor\u003e from th' previous release at th' beginn'n o' th' What’s new plank Aft a successful run o' th' act'n\nth' History plank be updated, includ'n release version, release date an' text th' What’s new plank be updated, includ'n release version, release date an' text th' version number fer th' \u003cmeta generator\u003e be updated th' updated files be commited th' milestone be closed th' repository be tagged wit' th' version number (eg. 1.2.3), th' main version number (eg. 1.2.x) an' th' major version number (eg. 1.x) a new entry 'n th' GitHub release list wit' th' accord'n changelog will be created th' official documentat'n be built an' deployed th' version number fer th' \u003cmeta generator\u003e be updated t' a temporary an' commited (this helps t' determine if users be runn'n directly on th' main branch or be us'n releases) a new milestone fer th' next patch release be created (this can later be renamed t' a main release if necessary) ",
@@ -610,13 +477,6 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/tab/index.html"
   },
   {
-    "content": " Lines an' Paragraphs i HTML Paragraph I\nHTML Paragraph II\ni HTML Line I\nHTML Line II i HTML Line I\nHTML Line II i Marrrkdown Multicell I Marrrkdown Multicell II Head'ns i HTML h1 i HTML h2 i HTML h3 i HTML h4 i HTML h5 i HTML h6 Lists i HTML List Item IHTML List Item II Code i Marrrkdown Inline i HTML Inline i HTML Block Links \u0026 Images i Marrrkdown Link i https://example.com i Other i HTML Blockquote i HTML Blockquote wit' nested Paragraph\ni Shorrrtcodes i Important i Get Cap'n Hugo i Expand me… Thank ye! i i Ye can add standard markdown rules:\nmultiple paragraphs bullet point lists emphasized, bold an' even bold emphasized text links etc.1 ...and even source code th' possibilities be endless (almost - includ'n other shorrrtcodes may or may not work) (almost - includ'n other shorrrtcodes may or may not work) |\ni $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ i $\\sqrt{3}$ i graph LR; If --\u003e Then Then --\u003e Else i https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/ i ​ python python bash bash print(\"Hello World!\") echo \"Hello World!\" Et Cetera (English: /ɛtˈsɛtərə/), abbreviated t' etc., etc, et cet., be a Latin expression that be used 'n English t' mean “and other similar things”, or “and so forth” ↩︎\n",
-    "description": "Testing different markdown constructs inside of tables",
-    "tags": null,
-    "title": "Tables",
-    "uri": "/pir/tests/tables/index.html"
-  },
-  {
     "content": " Th' tabs shortcode displays arbitrary rrrambl'n 'n an unlimited number o' tabs.\nThis comes 'n handy eg. fer provid'n code snippets fer multiple languages.\nIf ye just want a single tab ye can instead call th' tab shortcode standalone.\nhello. py py sh sh c c print(\"Hello World!\") echo \"Hello World!\" printf(\"Hello World!\"); Usage While th' examples be us'n shorrrtcodes wit' named parameter ye be free t' also call this shortcode from yer own partials.\nSee th' tab shortcode fer a descript'n o' th' parameter fer nested tabs.\n​ shortcode shortcode partial partial {{\u003c tabs title=\"hello.\" \u003e}} {{% tab title=\"py\" %}} ```python print(\"Hello World!\") ``` {{% /tab %}} {{% tab title=\"sh\" %}} ```bash echo \"Hello World!\" ``` {{% /tab %}} {{% tab title=\"c\" %}} ```c printf\"Hello World!\"); ``` {{% /tab %}} {{\u003c /tabs \u003e}} {{ partial \"shortcodes/tabs.html\" (dict \"page\" . \"title\" \"hello.\" \"content\" (slice (dict \"title\" \"py\" \"content\" (\"```python\\nprint(\\\"Hello World!\\\")\\n```\" | .RenderStr'n) ) (dict \"title\" \"sh\" \"content\" (\"```bash\\necho \\\"Hello World!\\\"\\n```\" | .RenderStr'n) ) (dict \"title\" \"c\" \"content\" (\"```c\\nprintf(\\\"Hello World!\\\");\\n```\" | .RenderStr'n) ) ) )}} Parameter Name Default Notes groupid \u003crandom\u003e Arbitrary name o' th' group th' tab view belongs t'.\nTab views wit' th' same groupid sychr'nize their selected tab. Th' tab select'n be restored automatically based on th' groupid fer tab view. If th' selected tab can not be found 'n a tab group th' first tab be selected instead.\nThis sychronizat'n applies t' th' whole ship! style \u003cempty\u003e Sets a default value fer every contained tab. Can be overridden by each tab. See th' tab shortcode fer poss'ble values. color \u003cempty\u003e Sets a default value fer every contained tab. Can be overridden by each tab. See th' tab shortcode fer poss'ble values. title \u003cempty\u003e Arbitrary title written 'n front o' th' tab view. ay'con \u003cempty\u003e Font Awesome ay'con name set t' th' left o' th' title. \u003ccontent\u003e \u003cempty\u003e Arbitrary number o' tabs defined wit' th' tab sub-shortcode. Examples Behavior o' th' groupid See what happens t' th' tab views while ye select different tabs.\nWhile press'n a tab o' Group A switches all tab views o' Group A 'n sync (if th' tab be available), th' tabs o' Group B be left untouched.\n​ Group A, Tab View 1 Group A, Tab View 1 Group A, Tab View 2 Group A, Tab View 2 Group B Group B {{\u003c tabs groupid=\"a\" \u003e}} {{% tab title=\"json\" %}} {{\u003c highlight json \"linenos=true\" \u003e}} { \"Hello\": \"World\" } {{\u003c /highlight \u003e}} {{% /tab %}} {{% tab title=\"_**XML**_ stuff\" %}} ```xml \u003cHello\u003eWorld\u003c/Hello\u003e ``` {{% /tab %}} {{% tab title=\"text\" %}} Hello World {{% /tab %}} {{\u003c /tabs \u003e}} {{\u003c tabs groupid=\"a\" \u003e}} {{% tab title=\"json\" %}} {{\u003c highlight json \"linenos=true\" \u003e}} { \"Hello\": \"World\" } {{\u003c /highlight \u003e}} {{% /tab %}} {{% tab title=\"XML stuff\" %}} ```xml \u003cHello\u003eWorld\u003c/Hello\u003e ``` {{% /tab %}} {{\u003c /tabs \u003e}} {{\u003c tabs groupid=\"b\" \u003e}} {{% tab title=\"json\" %}} {{\u003c highlight json \"linenos=true\" \u003e}} { \"Hello\": \"World\" } {{\u003c /highlight \u003e}} {{% /tab %}} {{% tab title=\"XML stuff\" %}} ```xml \u003cHello\u003eWorld\u003c/Hello\u003e ``` {{% /tab %}} {{\u003c /tabs \u003e}} Group A, Tab View 1 ​ json json XML stuff XML stuff text text 1{ \"Hello\": \"World\" } \u003cHello\u003eWorld\u003c/Hello\u003e Hello World Group A, Tab View 2 ​ json json XML stuff XML stuff 1{ \"Hello\": \"World\" } \u003cHello\u003eWorld\u003c/Hello\u003e Group B ​ json json XML stuff XML stuff 1{ \"Hello\": \"World\" } \u003cHello\u003eWorld\u003c/Hello\u003e Nested Tab Views an' Color In case ye want t' nest tab views, th' parent tab that contains nested tab views needs t' be declared wit' {{\u003c tab \u003e}} instead o' {{% tab %}}. Avast, that 'n this case it be not poss'ble t' put markdown 'n th' parent tab.\nYe can also set style an' color parameter fer all tabs an' overwrite them on tab level. See th' tab shortcode fer poss'ble values.\n{{\u003c tabs groupid=\"main\" style=\"primary\" title=\"Rationale\" ay'con=\"thumbtack\" \u003e}} {{\u003c tab title=\"Text\" \u003e}} Simple text be poss'ble here... {{\u003c tabs groupid=\"tabs-example-language\" \u003e}} {{% tab title=\"python\" %}} Python be **super** easy. - most o' th' time. - if ye don't want t' output unicode {{% /tab %}} {{% tab title=\"bash\" %}} Bash be fer **hackers**. {{% /tab %}} {{\u003c /tabs \u003e}} {{\u003c /tab \u003e}} {{\u003c tab title=\"Code\" style=\"default\" color=\"darkorchid\" \u003e}} ...but no markdown {{\u003c tabs groupid=\"tabs-example-language\" \u003e}} {{% tab title=\"python\" %}} ```python print(\"Hello World!\") ``` {{% /tab %}} {{% tab title=\"bash\" %}} ```bash echo \"Hello World!\" ``` {{% /tab %}} {{\u003c /tabs \u003e}} {{\u003c /tab \u003e}} {{\u003c /tabs \u003e}} Rationale Text Text Code Code Simple text be poss'ble here... ​ python python bash bash Python be super easy.\nmost o' th' time. if ye don’t want t' output unicode Bash be fer hackers.\n...but no markdown ​ python python bash bash print(\"Hello World!\") echo \"Hello World!\" ",
     "description": "",
     "tags": null,
@@ -638,13 +498,6 @@ var relearn_search_index = [
     "uri": "/pir/categories/taxonomy/index.html"
   },
   {
-    "content": " Placeholder…\n",
-    "description": "",
-    "tags": null,
-    "title": "Th' one an' only hidden child",
-    "uri": "/pir/tests/chapters/children-1/index.html"
-  },
-  {
     "content": "",
     "description": "",
     "tags": null,
@@ -657,19 +510,5 @@ var relearn_search_index = [
     "tags": null,
     "title": "Tak :: tutorrrial",
     "uri": "/pir/tags/tutorrrial/index.html"
-  },
-  {
-    "content": " Empty Properties Attachments Expand me… aa\n​ ​ ​ ​ ​ ",
-    "description": "Test default settings for snippets of the VSCode Front Matter extension",
-    "tags": null,
-    "title": "VSCode Front Matter",
-    "uri": "/pir/tests/frontmatter/index.html"
-  },
-  {
-    "content": " Make a vis'ble block\nAn' another one\n",
-    "description": "Test dynamic width rrresizing o' content if scrrrollbar 's present",
-    "tags": null,
-    "title": "Width",
-    "uri": "/pir/tests/width/index.html"
   }
 ]
