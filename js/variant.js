@@ -75,8 +75,7 @@ var variants = {
 		var interval_id = setInterval( function(){
 			if( this.isVariantLoaded() ){
 				clearInterval( interval_id );
-				initMermaid( true );
-				initOpenapi( true );
+				updateTheme({ variant: variant });
 			}
 		}.bind( this ), 25 );
 		// remove selection, because if some uses an arrow navigation"

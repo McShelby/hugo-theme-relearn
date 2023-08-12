@@ -13,20 +13,20 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/customization/index.html" rel="alternate" hreflang="pir">
     <link href="../../basics/customization/index.xml" rel="alternate" type="application/rss+xml" title="Customization :: Hugo Relearn Theme">
     <link href="../../basics/customization/index.print.html" rel="alternate" type="text/html" title="Customization :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1691849471" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1691874879" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1691849471" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1691849471" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1691849471" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1691849471" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1691849471" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1691849471" rel="stylesheet">
-    <link href="../../css/fonts.css?1691849471" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1691849471" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1691849471" rel="stylesheet">
-    <link href="../../css/theme-auto.css?1691849471" rel="stylesheet" id="variant-style">
-    <link href="../../css/variant.css?1691849471" rel="stylesheet">
-    <link href="../../css/print.css?1691849471" rel="stylesheet" media="print">
-    <link href="../../css/ie.css?1691849471" rel="stylesheet">
-    <script src="../../js/url.js?1691849471"></script>
-    <script src="../../js/variant.js?1691849471"></script>
+    <link href="../../css/fontawesome-all.min.css?1691874879" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1691874879" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1691874879" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1691874879" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1691874879" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1691874879" rel="stylesheet">
+    <link href="../../css/fonts.css?1691874879" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1691874879" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1691874879" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1691874879" rel="stylesheet" id="variant-style">
+    <link href="../../css/variant.css?1691874879" rel="stylesheet">
+    <link href="../../css/print.css?1691874879" rel="stylesheet" media="print">
+    <link href="../../css/ie.css?1691874879" rel="stylesheet">
+    <script src="../../js/url.js?1691874879"></script>
+    <script src="../../js/variant.js?1691874879"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -94,6 +94,7 @@
         <li><a href="#single-variant">Single variant</a></li>
         <li><a href="#multiple-variants">Multiple variants</a></li>
         <li><a href="#adjust-to-os-settings">Adjust to OS Settings</a></li>
+        <li><a href="#javascript">JavaScript</a></li>
         <li><a href="#roll-your-own">Roll your own</a></li>
         <li><a href="#output-formats">Output formats</a></li>
       </ul>
@@ -195,7 +196,11 @@ If you have requirements to support IE and/or older browser versions, use one of
 <p>This is not supported for Internet Explorer 11, which still displays in the <code>relearn-light</code> variant.</p>
 </div>
 </div>
-<h3 id="roll-your-own">Roll your own</h3>
+<h3 id="javascript">JavaScript</h3>
+<p>Once a variant is fully loaded, either initially or by switching the variant manually with the variant selector, the custom event <code>themeVariantLoaded</code> on the <code>document</code> will be dispatched. You can add an event listener and react to changes.</p>
+<div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span> <span class="s1">&#39;themeVariantLoaded&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">e</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">variant</span> <span class="p">);</span> <span class="c1">// `relearn-light`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span></span></span></code></pre></div><h3 id="roll-your-own">Roll your own</h3>
 <p>If you are not happy with the shipped variants you can either copy and rename one of the shipped files from <code>themes/hugo-theme-relearn/static/css</code> to <code>static/css</code>, edit them afterwards to your liking in a text editor and configure the <code>themeVariant</code> parameter in your <code>config.toml</code> or just use the <a href="../../basics/generator/">interactive variant generator</a>.</p>
 <h3 id="output-formats">Output formats</h3>
 <p>Certain parts of the theme can be changed for support of your own <a href="https://gohugo.io/templates/output-formats/" target="_blank">output formats</a>. Eg. if you define a new output format <code>PLAINTEXT</code> in your <code>config.toml</code>, you can add a file <code>layouts/partials/header.plaintext.html</code> to change the way, the page header should look like for that output format.</p>
@@ -288,12 +293,12 @@ If you have requirements to support IE and/or older browser versions, use one of
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1691849471" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1691849471" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1691849471" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1691849471" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1691849471" defer></script>
-        <script src="../../js/search.js?1691849471" defer></script>
+        <script src="../../js/auto-complete.js?1691874880" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1691874880" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1691874880" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1691874880" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1691874880" defer></script>
+        <script src="../../js/search.js?1691874880" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -419,16 +424,38 @@ If you have requirements to support IE and/or older browser versions, use one of
               margin: 0;
             }
           </style>
-          <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/archive/main.zip" data-icon="octicon-cloud-download" aria-label="Download McShelby/hugo-theme-relearn on GitHub">Download</a>
-          <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
-          <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
+          <span class="github-buttons">
+          </span>
           <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          <script async src="../../js/buttons.js?1691849471"></script>
+          <script>
+            document.addEventListener( 'themeVariantLoaded', function( e ){
+              console.log( e );
+              var scheme = 'light';
+              var colorPropertyValue = window.getComputedStyle( document.querySelector( '#sidebar' ) ).getPropertyValue( 'background-color' );
+              var colorValues = colorPropertyValue.match( /\d+/g ).map( function( e ){ return parseInt(e,10); });
+              if( colorValues.length === 3 && ((0.2126 * colorValues[0]) + (0.7152 * colorValues[1]) + (0.0722 * colorValues[2]) < 165) ){
+                
+                scheme = 'dark';
+              }
+              var githubButtonsHTML = `
+                <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/archive/main.zip" data-color-scheme="${scheme}" data-icon="octicon-cloud-download" aria-label="Download McShelby/hugo-theme-relearn on GitHub">Download</a>
+                <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-color-scheme="${scheme}" data-icon="octicon-star" data-show-count="true" aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
+                <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-color-scheme="${scheme}" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
+               `;
+              document.querySelector( '.github-buttons' ).innerHTML = githubButtonsHTML;
+              document.querySelectorAll( '.github-button' ).forEach( function( anchor ){
+                window.githubButtons.render( anchor, function( el ){
+                  anchor.parentNode.replaceChild( el, anchor );
+                });
+              });
+            });
+          </script>
+          <script async src="../../js/github-buttons.js?1691874880"></script>
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1691849471" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1691849471" defer></script>
-    <script src="../../js/theme.js?1691849471" defer></script>
+    <script src="../../js/clipboard.min.js?1691874880" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1691874880" defer></script>
+    <script src="../../js/theme.js?1691874880" defer></script>
   </body>
 </html>
