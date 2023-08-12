@@ -18,7 +18,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.19.0 (0000-00-00) {#000}
+## 5.19.0 (2023-08-12) {#5190}
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) now accepts the new parameter `title`. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}). This is also available using codefences and makes it much easier to write nicer code samples.
 
