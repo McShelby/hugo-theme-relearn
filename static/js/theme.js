@@ -1328,6 +1328,19 @@ function initSearch() {
     window.relearn.runInitialSearch && window.relearn.runInitialSearch();
 }
 
+function updateTheme( detail ){
+    if( window.relearn.lastVariant == detail.variant ){
+        return;
+    }
+    window.relearn.lastVariant = detail.variant;
+
+    initMermaid( true );
+    initOpenapi( true );
+    document.dispatchEvent( new CustomEvent( 'themeVariantLoaded', {
+        detail: detail
+    }));
+}
+
 ready( function(){
     initArrowNav();
     initMermaid();

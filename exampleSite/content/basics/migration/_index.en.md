@@ -22,6 +22,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now [dispatches the custom event]({{%relref "basics/customization/#javascript" %}}) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.3.1. This adds support for the [sankey diagram type]({{% relref "shortcodes/mermaid#sankey" %}}) and now comes with full support for YAML inside Mermaid graphs (previously, the theme ignored explicit Mermaid theme settings in YAML).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Hungarian.
