@@ -60,6 +60,14 @@ printf("Hello World!");
 
 ### Single Code Block with Collapsed Margins
 
+````go
+{{%/* tab title="Code" */%}}
+```python
+printf("Hello World!");
+```
+{{%/* /tab */%}}
+````
+
 {{% tab title="Code" %}}
 
 ```python
@@ -70,9 +78,18 @@ printf("Hello World!");
 
 ### Mixed Markdown Content
 
+````go
+{{%/* tab title="_**Mixed**_" */%}}
+A tab can not only contain code but arbitrary text. In this case text **and** code will get a margin.
+```python
+printf("Hello World!");
+```
+{{%/* /tab */%}}
+````
+
 {{% tab title="_**Mixed**_" %}}
 
-A tab can not only contain code but arbitrary text. In this case text and code will get a margin.
+A tab can not only contain code but arbitrary text. In this case text **and** code will get a margin.
 
 ```python
 printf("Hello World!");
