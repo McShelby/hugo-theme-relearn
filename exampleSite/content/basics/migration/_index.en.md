@@ -20,7 +20,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.19.0 (0000-00-00) {#000}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) now accepts the new parameter `title`. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}). This is also available using codefences and makes it much easier to write nicer code samples.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`. Check it out!
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now [dispatches the custom event]({{%relref "basics/customization/#javascript" %}}) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
 

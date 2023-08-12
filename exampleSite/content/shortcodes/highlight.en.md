@@ -5,26 +5,25 @@ title = "Highlight"
 
 The `highlight` shortcode renders your code with a syntax highlighter.
 
-{{< highlight lineNos="true" type="py" wrap="true" >}}
+{{< highlight lineNos="true" type="py" wrap="true" title="python" >}}
 print("Hello World!")
 {{< /highlight >}}
 
 ## Usage
 
-This shortcode is compatible with Hugo's [`highlight` shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) but offers some extensions.
+This shortcode is fully compatible with Hugo's [`highlight` shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) but **offers some extensions**.
 
-You can call it interchangeably in the same way as Hugo's own shortcode using positional parameter or by simply using codefences.
+It is called interchangeably in the same way as Hugo's own shortcode providing positional parameter or by simply using codefences.
 
-You are free to also call this shortcode from your own partials. In this case it somewhat resemble Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call this shortcode as a partial using compatiblity syntax.
+You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call this shortcode as a partial using compatiblity syntax.
 
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports codefences (eg. GitHub) and so your markdown becomes more portable.
-
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="codefence" %}}
 
 ````md
-```py { lineNos="true" wrap="true" }
+```py { lineNos="true" wrap="true" title="python" }
 print("Hello World!")
 ```
 ````
@@ -33,7 +32,7 @@ print("Hello World!")
 {{% tab title="shortcode" %}}
 
 ````go
-{{</* highlight lineNos="true" type="py" wrap="true" */>}}
+{{</* highlight lineNos="true" type="py" wrap="true" title="python" */>}}
 print("Hello World!")
 {{</* /highlight */>}}
 ````
@@ -42,7 +41,7 @@ print("Hello World!")
 {{% tab title="shortcode (positional)" %}}
 
 ````go
-{{</* highlight py "lineNos=true,wrap=true" */>}}
+{{</* highlight py "lineNos=true,wrap=true,title=python" */>}}
 print("Hello World!")
 {{</* /highlight */>}}
 ````
@@ -57,8 +56,8 @@ print("Hello World!")
   "lineNos" "true"
   "type"    "py"
   "wrap"    "true"
+  "title"   "python"
 )}}
-
 ````
 
 {{% /tab %}}
@@ -68,10 +67,9 @@ print("Hello World!")
 {{ partial "shortcodes/highlight.html" (dict
   "page"    .
   "content" "print(\"Hello World!\")"
-  "options" "lineNos=true,wrap=true"
+  "options" "lineNos=true,wrap=true,title=python"
   "type"    "py"
 )}}
-
 ````
 
 {{% /tab %}}
@@ -82,7 +80,8 @@ print("Hello World!")
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
 | **type**              | _&lt;empty&gt;_  | The language of the code to highlight. Choose from one of the [supported languages](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages). Case-insensitive. |
-| **wrap**              | see notes        | _Extension_. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `config.toml` and overwritten via frontmatter. [See below](#configuration). |
+| **title**             | _&lt;empty&gt;_  | **Extension**. Arbitrary title for code. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}). |
+| **wrap**              | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `config.toml` and overwritten via frontmatter. [See below](#configuration). |
 | **options**           | _&lt;empty&gt;_  | An optional, comma-separated list of zero or more [Hugo supported options](https://gohugo.io/functions/highlight/#options) as well as extension parameter from this table. |
 | _**&lt;option&gt;**_  | _&lt;empty&gt;_  | Any of [Hugo's supported options](https://gohugo.io/functions/highlight/#options). |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your code to highlight. |
@@ -135,23 +134,44 @@ highlightWrap = true
 
 ## Examples
 
-### Line Numbers
+### Line Numbers with Starting Offset
 
 As mentioned above, line numbers in a `table` layout will shift if code is wrapping, so better use `inline`. To make things easier for you, set `lineNumbersInTable = false` in your `config.toml` and add `lineNos = true` when calling the shortcode instead of the specific values `table` or `inline`.
 
 ````go
-{{</* highlight lineNos="true" type="py" */>}}
-# Quicksort Python One-liner
-lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
-# Some more stuff
+{{</* highlight lineNos="true" lineNoStart="666" type="py" */>}}
+# the hardest part is to start writing code; here's a kickstart; just copy and paste this; it's free; the next lines will cost you serious credits
+print("Hello")
+print(" ")
+print("World")
+print("!")
 {{</* /highlight */>}}
 ````
 
-{{< highlight lineNos="true" type="py" >}}
-# Quicksort Python One-liner
-lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
-# Some more stuff
+{{< highlight lineNos="true" lineNoStart="666" type="py" >}}
+# the hardest part is to start writing code; here's a kickstart; just copy and paste this; it's free; the next lines will cost you serious credits
+print("Hello")
+print(" ")
+print("World")
+print("!")
 {{< /highlight >}}
+
+### Codefence with Title
+
+
+````markdown
+```py { title="python" }
+# a bit shorter
+print("Hello World!")
+```
+````
+
+```py { title="python" }
+# a bit shorter
+print("Hello World!")
+```
+
+
 
 ### With Wrap
 
