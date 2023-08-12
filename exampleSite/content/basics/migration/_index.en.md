@@ -20,7 +20,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.19.0 (0000-00-00) {#000}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.3.0. This adds support for the [sankey diagram type]({{% relref "shortcodes/mermaid#sankey" %}}) and now comes with full support for YAML inside Mermaid graphs (previously, the theme ignored explicit Mermaid theme settings in YAML).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.3.1. This adds support for the [sankey diagram type]({{% relref "shortcodes/mermaid#sankey" %}}) and now comes with full support for YAML inside Mermaid graphs (previously, the theme ignored explicit Mermaid theme settings in YAML).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Hungarian.
 
