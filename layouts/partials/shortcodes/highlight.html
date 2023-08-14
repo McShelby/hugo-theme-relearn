@@ -47,6 +47,15 @@
 {{- end }}
 {{- $options = $otherOptions }}
 {{- $attributes = $attributes | merge $otherAttributes }}
+{{- $hl_inline := false }}
+{{- if and (isset $page.Params "markup") (isset $page.Params.markup "highlight") (isset $page.Params.markup.highlight "hl_inline") }}
+  {{- $hl_inline = $page.Params.markup.highlight.hl_inline }}
+{{- end }}
+{{- range $k, $v := $options }}
+  {{- if eq $k "hl_inline" }}
+    {{- $hl_inline = $v }}
+  {{- end }}
+{{- end }}
 {{- $params := slice }}
 {{- range $k, $v := $options }}
   {{- $params = $params | append (printf "%s=%s" $k $v) }}
@@ -75,7 +84,7 @@
 {{- if $wrap }}
   {{- $content = replaceRE "^([\\s\\n\\r]*<div\\s+class=\")" "${1}wrap-code " $content 1 }}
 {{- end }}
-{{- if $title }}
+{{- if and $title (not $hl_inline) }}
   {{ partial "shortcodes/tab.html" (dict
     "page"  $page
     "title" $title

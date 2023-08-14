@@ -80,7 +80,7 @@ print("Hello World!")
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
 | **type**              | _&lt;empty&gt;_  | The language of the code to highlight. Choose from one of the [supported languages](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages). Case-insensitive. |
-| **title**             | _&lt;empty&gt;_  | **Extension**. Arbitrary title for code. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}). |
+| **title**             | _&lt;empty&gt;_  | **Extension**. Arbitrary title for code. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}) if `hl_inline=false` (which is Hugos default). |
 | **wrap**              | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `config.toml` and overwritten via frontmatter. [See below](#configuration). |
 | **options**           | _&lt;empty&gt;_  | An optional, comma-separated list of zero or more [Hugo supported options](https://gohugo.io/functions/highlight/#options) as well as extension parameter from this table. |
 | _**&lt;option&gt;**_  | _&lt;empty&gt;_  | Any of [Hugo's supported options](https://gohugo.io/functions/highlight/#options). |
