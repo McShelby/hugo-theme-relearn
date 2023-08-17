@@ -18,6 +18,23 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.20.0 (0000-00-00) {#0}
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}).
+
+  With this comes a change in the light variants of `Relearn Bright`, `Relearn Light` and `Zen Light` of the theme by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the style used by the theme variants itself.
+
+  Additionally, the syntaxhighlightning inside of openapi for printing was switched to a light scheme for all theme variants.
+
+  If you dislike this change, you can revert this in your theme variants CSS by adding
+
+    ````css
+    --OPENAPI-CODE-theme: obsidian;
+    --PRINT-OPENAPI-CODE-theme: obsidian;
+    ````
+
+---
+
 ## 5.19.0 (2023-08-12) {#5190}
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) now accepts the new parameter `title`. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}). This is also available using codefences and makes it much easier to write nicer code samples.
