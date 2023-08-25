@@ -43,6 +43,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects]({{% relref "cont/markdown#image-effects" %}}) are [now configurable]({{% relref "cont/imageeffects" %}}) for your whole site via `config.toml` or for each page thru frontmatter.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
+
 ---
 
 ## 5.19.0 (2023-08-12) {#5190}
