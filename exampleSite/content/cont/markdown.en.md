@@ -677,3 +677,14 @@ Add the query parameter `lightbox=false` to the image link to disable the lightb
 {{% notice style="secondary" icon="eye" title="Result" %}}
 ![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&lightbox=false)
 {{% /notice %}}
+
+{{% notice note %}}
+If you want to wrap an image in a link and `lightbox=true` is your default setting, you have to explicitly disable the lightbox to avoid it to hijacking your link like:
+
+````markdown
+[![Homercat](https://octodex.github.com/images/homercat.png?lightbox=false)](https://octodex.github.com/#homercat)
+````
+
+[![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&lightbox=false)](https://octodex.github.com/#homercat)
+
+{{% /notice %}}
