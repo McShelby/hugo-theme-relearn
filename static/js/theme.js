@@ -987,7 +987,7 @@ function initSwipeHandler(){
 }
 
 function initImage(){
-    document.querySelectorAll( '.lightbox' ).forEach( function(e){ e.addEventListener("keydown", imageEscapeHandler); }, false);
+    document.querySelectorAll( '.lightbox-back' ).forEach( function(e){ e.addEventListener("keydown", imageEscapeHandler); }, false);
 }
 
 function clearHistory() {
@@ -1098,7 +1098,7 @@ function mark() {
 		topbarLinks[i].classList.add( 'highlight' );
 	}
 
-	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox)' );
+	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)' );
 	for( var i = 0; i < bodyInnerLinks.length; i++ ){
 		bodyInnerLinks[i].classList.add( 'highlight' );
 	}

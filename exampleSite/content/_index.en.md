@@ -45,8 +45,8 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Search support for mixed language content]({{%relref "cont/i18n#search" %}})
 - **Additional Markdown features**
   - [Support for GFM (GitHub Flavored Markdown]({{%relref "cont/markdown" %}})
-  - [Image styling like sizing, shadow, border and alignment]({{%relref "cont/markdown#further-image-formatting" %}})
-  - [Image lightbox]({{%relref "cont/markdown#further-image-formatting#lightbox" %}})
+  - [Image effects like sizing, shadow, border and alignment]({{%relref "cont/markdown#image-effects" %}})
+  - [Image lightbox]({{%relref "cont/markdown#lightbox" %}})
 - **Shortcodes galore**
   - [Display files attached to page bundles]({{%relref "shortcodes/attachments" %}})
   - [Marker badges]({{%relref "shortcodes/badge" %}})

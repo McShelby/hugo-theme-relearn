@@ -42,8 +42,8 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Search support for mixed language content](https://mcshelby.github.io/hugo-theme-relearn/cont/i18n#search)
 - **Additional Markdown features**
   - [Support for GFM (GitHub Flavored Markdown](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown)
-  - [Image styling like sizing, shadow, border and alignment](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown#further-image-formatting)
-  - [Image lightbox](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown#further-image-formatting#lightbox)
+  - [Image effects like sizing, shadow, border and alignment](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown#image-effects)
+  - [Image lightbox](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown#lightbox)
 - **Shortcodes galore**
   - [Display files attached to page bundles](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments)
   - [Marker badges](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/badge)

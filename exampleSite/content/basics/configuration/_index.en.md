@@ -91,6 +91,11 @@ Note that some of these parameters are explained in details in other sections of
   disableExplicitIndexURLs = false
   # For external links you can define how they are opened in your browser; this setting will only be applied to the content area but not the shortcut menu
   externalLinkTarget = "_blank"
+  # Override default values for image effects, you can even add your own arbitrary effects to the list
+  [params.imageEffects]
+    border = false
+    lightbox = true
+    shadow = false
 ```
 
 ## Serving your page from a subfolder

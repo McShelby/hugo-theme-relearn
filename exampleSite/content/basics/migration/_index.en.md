@@ -41,6 +41,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
   For existing variants nothing has changed visually.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects]({{% relref "cont/markdown#image-effects" %}}) are [now configurable]({{% relref "cont/imageeffects" %}}) for your whole site via `config.toml` or for each page thru frontmatter.
+
 ---
 
 ## 5.19.0 (2023-08-12) {#5190}
@@ -313,7 +315,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.
 
-  For that the JavaScript code to handle the [lightbox and image effects]({{% relref "cont/markdown#further-image-formatting" %}}) on the client side was removed in favour for static generation of those effects on the server.
+  For that the JavaScript code to handle the [lightbox and image effects]({{% relref "cont/markdown#image-effects" %}}) on the client side was removed in favour for static generation of those effects on the server.
 
   If you have used HTML directly in your Markdown files, this now has the downside that it doesn't respect the effect query parameter anymore. In this case you have to migrate all your HTML `img` URLs manually to the respective HTML attributes.
 

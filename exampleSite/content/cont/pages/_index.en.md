@@ -82,6 +82,11 @@ hidden = false
 LastModifierDisplayName = ""
 # Email of this page modifier. If set with LastModifierDisplayName, it will be displayed in the footer
 LastModifierEmail = ""
+# Override default values for image effects, you can even add your own arbitrary effects to the list
+[params.imageEffects]
+  border = false
+  lightbox = true
+  shadow = false
 +++
 ```
 
