@@ -71,7 +71,7 @@ Note that some of these parameters are explained in details in other sections of
   disableOpenapi = false
   # Specifies the remote location of the swagger-ui js
   customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
-  # Hide Next and Previous page buttons normally displayed full height beside content
+  # Hide Next and Previous page buttons displayed in topbar
   disableNextPrev = true
   # Order sections in menu by "weight" or "title". Default to "weight";
   # this can be overridden in the pages frontmatter
