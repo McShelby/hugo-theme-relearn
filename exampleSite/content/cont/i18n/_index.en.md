@@ -10,7 +10,7 @@ The Relearn theme is fully compatible with Hugo multilingual mode.
 - Automatic menu generation from multilingual content
 - In-browser language switching
 
-![I18n menu](i18n-menu.gif?classes=shadow&width=18.75rem)
+![I18n menu](i18n-menu.gif?width=18.75rem)
 
 ## Basic configuration
 

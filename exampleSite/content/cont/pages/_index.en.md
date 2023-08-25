@@ -101,7 +101,7 @@ menuPre = "<i class='fab fa-github'></i> "
 +++
 ```
 
-![Title with icon](frontmatter-icon.png?classes=shadow&width=18.75rem)
+![Title with icon](frontmatter-icon.png?width=18.75rem)
 
 ### Ordering sibling menu/page entries
 

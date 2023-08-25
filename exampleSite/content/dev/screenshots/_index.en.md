@@ -43,7 +43,7 @@ The location is mandatory due to Hugo's theme site builder.
 
 ### Preview `images/screenshot.png`
 
-![Screenshot](/images/screenshot.png?classes=shadow&width=100%25&height=100%25)
+![Screenshot](/images/screenshot.png?width=100%25&height=100%25)
 
 ## Hero Image
 
@@ -80,8 +80,8 @@ The location of `images/tn.png` is mandatory due to Hugo's theme site builder.
 
 ### Preview `images/hero.png`
 
-![Hero](/images/hero.png?classes=shadow&width=100%25&height=100%25)
+![Hero](/images/hero.png?width=100%25&height=100%25)
 
 ### Preview `images/tn.png`
 
-![tn](/images/tn.png?classes=shadow&width=100%25&height=100%25)
+![tn](/images/tn.png?width=100%25&height=100%25)

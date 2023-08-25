@@ -533,7 +533,7 @@ Images have a similar syntax to links but include a preceding exclamation mark.
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Spock](https://octodex.github.com/images/spocktocat.png?width=20vw&classes=bg-white)
+![Spock](https://octodex.github.com/images/spocktocat.png?width=20vw)
 {{% /notice %}}
 
 ### Image with Tooltip
@@ -577,7 +577,7 @@ Add query parameter `width` and/or `height` to the link image to resize the imag
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Minion](https://octodex.github.com/images/minion.png?width=20vw&classes=bg-white)
+![Minion](https://octodex.github.com/images/minion.png?width=20vw)
 {{% /notice %}}
 
 ````markdown
@@ -585,7 +585,7 @@ Add query parameter `width` and/or `height` to the link image to resize the imag
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Minion](https://octodex.github.com/images/minion.png?height=50px&classes=bg-white)
+![Minion](https://octodex.github.com/images/minion.png?height=50px)
 {{% /notice %}}
 
 ````markdown
@@ -593,7 +593,7 @@ Add query parameter `width` and/or `height` to the link image to resize the imag
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Minion](https://octodex.github.com/images/minion.png?height=50px&width=40vw&classes=bg-white)
+![Minion](https://octodex.github.com/images/minion.png?height=50px&width=40vw)
 {{% /notice %}}
 
 #### CSS Classes
@@ -607,7 +607,7 @@ Add a query parameter `classes` to the link image to add CSS classes. Add some o
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Spidertocat](https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,bg-white)
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder)
 {{% /notice %}}
 
 ##### Border
@@ -617,7 +617,7 @@ Add a query parameter `classes` to the link image to add CSS classes. Add some o
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![DrOctocat](https://octodex.github.com/images/droctocat.png?width=20vw&classes=border)
+![DrOctocat](https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow)
 {{% /notice %}}
 
 ##### Left
@@ -650,7 +650,7 @@ Add a query parameter `classes` to the link image to add CSS classes. Add some o
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Spidertocat](https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline,bg-white)
+![Spidertocat](https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline)
 ![DrOctocat](https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline)
 ![Supertocat](https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline)
 ![Riddlocat](https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline)
@@ -675,5 +675,5 @@ Add the query parameter `lightbox=false` to the image link to disable the lightb
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&lightbox=false&classes=bg-white)
+![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&lightbox=false)
 {{% /notice %}}

@@ -57,5 +57,5 @@ This ends up in the following HTML where the parameter are converted to CSS clas
 As you can see in the above example, the `bg-white` parameter is not initially supported in the themes default settings. Nevertheless you are free to define arbitrary parameter by just adding them to the URL query parameter or set them in your `config.toml` or pages frontmatter.
 
 {{% notice note %}}
-If no extended parameter like `bg-white` in the example is set on the URL, a `classes="nobg-white"` in the HTML will only be generated if a default value was set in the `config.toml` or pages frontmatter.
+If no extended parameter like `bg-white` in the example is set on the URL, a `class="nobg-white"` in the HTML will only be generated if a default value was set in the `config.toml` or pages frontmatter.
 {{% /notice %}}
