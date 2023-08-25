@@ -15,10 +15,6 @@ graph LR;
 This only works in modern browsers.
 {{% /notice %}}
 
-{{% notice warning %}}
-Due to limitations with [Mermaid](https://github.com/mermaid-js/mermaid/issues/1846), it is currently not possible to use Mermaid code fences in an initially collapsed `expand` shortcode. This is a know issue and [can't be fixed by this theme](https://github.com/McShelby/hugo-theme-relearn/issues/187).
-{{% /notice %}}
-
 ## Usage
 
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.
