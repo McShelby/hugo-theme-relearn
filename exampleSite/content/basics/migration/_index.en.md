@@ -22,7 +22,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}).
 
-  With this comes a change in the light variants of `Relearn Bright`, `Relearn Light` and `Zen Light` of the theme by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the style used by the theme variants itself.
+  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the style used by the theme variants itself.
 
   Additionally, the syntaxhighlightning inside of openapi for printing was switched to a light scheme for all theme variants.
 
@@ -32,6 +32,14 @@ This document shows you what's new in the latest release. For a detailed list of
     --OPENAPI-CODE-theme: obsidian;
     --PRINT-OPENAPI-CODE-theme: obsidian;
     ````
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} For consistency reasons, we renamed the CSS variable `--MENU-SECTION-HR-color` to `--MENU-SECTION-SEPARATOR-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme variants `Zen Light` and `Zen Dark` now add more contrast between menu, topbar and content by adding thin borders.
+
+  Those borders are now configurable by using the CSS variables `--MAIN-TOPBAR-BORDER-color`, `--MENU-BORDER-color`, `--MENU-TOPBAR-BORDER-color`, `--MENU-TOPBAR-SEPARATOR-color`, `--MENU-HEADER-SEPARATOR-color` and `--MENU-SECTION-ACTIVE-CATEGORY-BORDER-color`.
+
+  For existing variants nothing has changed visually.
 
 ---
 

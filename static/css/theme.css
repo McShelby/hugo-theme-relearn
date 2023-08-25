@@ -7,89 +7,104 @@ need a way to calculate them ourself */
 :root {
     --dpr: 1;
     --bpx: 1;
+    --bpx1: 1;
 }
 @media (min-resolution: 105dpi) {
     :root {
         --dpr: 1.1;
         --bpx: 1.1;
+        --bpx1: calc(1/1.1);
     }
 }
 @media (min-resolution: 115dpi) {
     :root {
         --dpr: 1.2;
         --bpx: 1.2;
+        --bpx1: calc(1/1.2);
     }
 }
 @media (min-resolution: 120dpi) {
     :root {
         --dpr: 1.25;
         --bpx: 1.25;
+        --bpx1: calc(1/1.25);
     }
 }
 @media (min-resolution: 128dpi) {
     :root {
         --dpr: 1.333;
         --bpx: 1.333;
+        --bpx1: calc(1/1.333);
     }
 }
 @media (min-resolution: 144dpi) {
     :root {
         --dpr: 1.5;
         --bpx: 1.5;
+        --bpx1: calc(1/1.5);
     }
 }
 @media (min-resolution: 160dpi) {
     :root {
         --dpr: 1.666;
         --bpx: 1.666;
+        --bpx1: calc(1/1.666);
     }
 }
 @media (min-resolution: 168dpi) {
     :root {
         --dpr: 1.75;
         --bpx: 1.75;
+        --bpx1: calc(1/1.75);
     }
 }
 @media (min-resolution: 192dpi) {
     :root {
         --dpr: 2;
         --bpx: 1;
+        --bpx1: 1;
     }
 }
 @media (min-resolution: 240dpi) {
     :root {
         --dpr: 2.5;
         --bpx: 1.25;
+        --bpx1: calc(1/1.25);
     }
 }
 @media (min-resolution: 288dpi) {
     :root {
         --dpr: 3;
         --bpx: 1;
+        --bpx1: 1;
     }
 }
 @media (min-resolution: 384dpi) {
     :root {
         --dpr: 4;
         --bpx: 1;
+        --bpx1: 1;
     }
 }
 @media (min-resolution: 480dpi) {
     :root {
         --dpr: 5;
         --bpx: 1.25;
+        --bpx1: calc(1/1.25);
     }
 }
 @media (min-resolution: 576dpi) {
     :root {
         --dpr: 6;
         --bpx: 1.5;
+        --bpx1: calc(1/1.5);
     }
 }
 @media (min-resolution: 768dpi) {
     :root {
         --dpr: 8;
         --bpx: 1;
+        --bpx1: 1;
     }
 }
 
@@ -156,11 +171,14 @@ dd {
 }
 
 #header-wrapper {
-    border-bottom-style: solid;
-    border-bottom-width: 4px;
     text-align: center;
     padding: 1rem;
     position: relative;
+}
+#header {
+    border-block-end: 1px solid transparent;
+    position: relative;
+    z-index: 1;
 }
 #header a {
     display: inline-block;
@@ -278,10 +296,10 @@ dd {
 }
 
 #sidebar .footermargin {
-    margin-top: auto;
+    flex-grow: 1;
 }
 
-#sidebar hr {
+#content-wrapper hr {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     margin: 1.5rem 1rem 1rem 1rem;
@@ -923,11 +941,6 @@ td {
     top: 50%;
 }
 
-#sidebar .highlightable {
-    padding: 1rem 0 1rem;
-    position: relative;
-}
-
 #topbar {
     min-height: 3rem;
     position: relative;
@@ -984,9 +997,11 @@ span.nav i{
 }
 
 #body #breadcrumbs {
+    border-inline-start-style: solid;
+    border-inline-start-width: 1px;
     float: left;
     height: auto;
-    line-height: 1.4;
+    line-height: 1.2;
     margin-bottom: 0;
     overflow: hidden;
     position: relative;
@@ -1001,6 +1016,7 @@ html[dir="rtl"] #body #breadcrumbs {
 }
 @media screen and (max-width: 48rem) {
     #body #breadcrumbs {
+        border-inline-start-color: transparent;
         text-overflow: unset;
     }
 }
@@ -1170,9 +1186,15 @@ pre > .copy-to-clipboard-button {
 }
 
 #homelinks {
+    padding: 0;
+}
+#homelinks ul {
+    margin: .5rem 0;
+}
+#homelinks hr {
     border-bottom-style: solid;
-    border-bottom-width: 4px;
-    padding: .5rem 0;
+    border-bottom-width: 1px;
+    margin: 0 1rem 3px 1rem;
 }
 
 option {
@@ -1539,7 +1561,7 @@ html[dir="rtl"] .menu-control span {
 .showVariantSwitch,
 .showVisitedLinks,
 .showFooter {
-    display: initial;
+    display: block;
 }
 
 @media screen and (max-width: 48rem) {
@@ -2030,4 +2052,48 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 #body .tab-content-text > div.highlight:only-child pre,
 #body .tab-content-text > pre.pre-code:only-child{
     border-width: 0;
+}
+
+/* bordering the menu and topbar */
+
+#topbar {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+#header-topbar {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-inline-end-style: solid;
+    border-inline-end-width: 1px;
+    height: 3rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#header-wrapper,
+#homelinks,
+#content-wrapper > * {
+    border-inline-end-style: solid;
+    border-inline-end-width: 1px;
+}
+
+#topics > ul {
+    margin-top: 1rem;
+}
+
+#sidebar ul.collapsible-menu li.active > a{
+    border-style: solid;
+    border-width: 1px;
+    padding-bottom: calc( .25rem - var(--bpx1)*1px);
+    padding-left: calc( 1rem - var(--bpx1)*1px);
+    padding-right: calc( 1rem - var(--bpx1)*1px);
+    padding-top: calc( .25rem - var(--bpx1)*1px);
+    width: calc(100% + var(--bpx1)*1px);
+}
+
+#menu-footer {
+    padding-bottom: 1rem;
 }

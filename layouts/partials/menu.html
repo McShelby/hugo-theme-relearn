@@ -8,6 +8,7 @@
     {{- end }}
     <aside id="sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
       {{- $currentNode := . }}
+      <div id="header-topbar" class="default-animation"></div>
       <div id="header-wrapper" class="default-animation">
         <div id="header" class="default-animation">
 {{ partial "logo.html" . }}
@@ -16,31 +17,34 @@
 {{ partial "search.html" . }}
         {{- end }}
       </div>
+      <div id="homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
       {{- if not .Site.Params.disableLandingPageButton }}
         {{- if (ne .Site.Params.landingPageURL nil) }}
           {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420" .File.Path }}
         {{- end }}
-      <div id="homelinks" class="default-animation">
         <ul>
           <li><a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a></li>
         </ul>
-      </div>
       {{- end }}
+        <hr class="padding">
+      </div>
       <div id="content-wrapper" class="highlightable">
-        <ul class="topics enlarge morespace{{ if .Site.Params.collapsibleMenu }} collapsible-menu{{ end }}">
-          {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-          {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
-          {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
-          {{- if eq $currentOrdersectionsby "title" }}
-            {{- range .Site.Home.Pages.ByTitle }}
-              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
+        <div id="topics">
+          <ul class="enlarge morespace{{ if .Site.Params.collapsibleMenu }} collapsible-menu{{ end }}">
+            {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
+            {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
+            {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
+            {{- if eq $currentOrdersectionsby "title" }}
+              {{- range .Site.Home.Pages.ByTitle }}
+                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
+              {{- end }}
+            {{- else }}
+              {{- range .Site.Home.Pages.ByWeight }}
+                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
+              {{- end }}
             {{- end }}
-          {{- else }}
-            {{- range .Site.Home.Pages.ByWeight }}
-              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-            {{- end }}
-          {{- end }}
-        </ul>
+          </ul>
+        </div>
         {{- $page := . }}
         {{- $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle }}
         {{- with .Site.Menus.shortcuts }}
@@ -66,73 +70,75 @@
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}"></div>
-        <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}">
-        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
-          <ul>
-            <li id="select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
-              <div class="padding menu-control">
-                <i class="fas fa-language fa-fw"></i>
-                <span>&nbsp;</span>
-                <div class="control-style">
-                  <label class="a11y-only" for="select-language">{{ T "Language" }}</label>
-                  <select id="select-language" onchange="location = baseUri + this.value;">
-                    {{- $page := .Page }}
-                    {{- $pageLang := .Page.Lang }}
-                    {{- range .Page.AllTranslations }}
-                      {{- $translation := . }}
-                      {{- range $siteLanguages }}
-                        {{- if eq $translation.Lang .Lang }}
-                          {{- if eq $pageLang .Lang }}
-                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" selected>{{ .LanguageName }}</option>
-                          {{- else }}
-                    <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}">{{ .LanguageName }}</option>
+        <div id="menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}">
+          <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
+            <ul>
+              <li id="select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
+                <div class="padding menu-control">
+                  <i class="fas fa-language fa-fw"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="select-language">{{ T "Language" }}</label>
+                    <select id="select-language" onchange="location = baseUri + this.value;">
+                      {{- $page := .Page }}
+                      {{- $pageLang := .Page.Lang }}
+                      {{- range .Page.AllTranslations }}
+                        {{- $translation := . }}
+                        {{- range $siteLanguages }}
+                          {{- if eq $translation.Lang .Lang }}
+                            {{- if eq $pageLang .Lang }}
+                      <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" selected>{{ .LanguageName }}</option>
+                            {{- else }}
+                      <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}">{{ .LanguageName }}</option>
+                            {{- end }}
                           {{- end }}
                         {{- end }}
                       {{- end }}
-                    {{- end }}
-                  </select>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-              </div>
-            </li>
-            <li id="select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
-              <div class="padding menu-control">
-                <i class="fas fa-paint-brush fa-fw"></i>
-                <span>&nbsp;</span>
-                <div class="control-style">
-                  <label class="a11y-only" for="select-variant">{{ T "Theme" }}</label>
-                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
-                    {{- $firstvariant := true }}
-                    {{- range $themevariants }}
-                      {{- $themevariant := . }}
-                      {{- $variantname := replaceRE "[-_]+" " " $themevariant }}
-                      {{- if $firstvariant }}
-                        {{- $firstvariant = false }}
-                    <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
-                      {{- else }}
-                    <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
+              </li>
+              <li id="select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
+                <div class="padding menu-control">
+                  <i class="fas fa-paint-brush fa-fw"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="select-variant">{{ T "Theme" }}</label>
+                    <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      {{- $firstvariant := true }}
+                      {{- range $themevariants }}
+                        {{- $themevariant := . }}
+                        {{- $variantname := replaceRE "[-_]+" " " $themevariant }}
+                        {{- if $firstvariant }}
+                          {{- $firstvariant = false }}
+                      <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
+                        {{- else }}
+                      <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
+                        {{- end }}
                       {{- end }}
-                    {{- end }}
-                  </select>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-              </div>
-              <script>window.variants && variants.markSelectedVariant();</script>
-            </li>
-            <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}">
-              <div class="padding menu-control">
-                <i class="fas fa-history fa-fw"></i>
-                <span>&nbsp;</span>
-                <div class="control-style">
-                  <button onclick="clearHistory();">{{ T "Clear-History" }}</button>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}">
+                <div class="padding menu-control">
+                  <i class="fas fa-history fa-fw"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">{{ T "Clear-History" }}</button>
+                  </div>
+                  <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div id="footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
-          {{- $footer }}
+              </li>
+            </ul>
+          </div>
+          <div id="footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
+            {{- $footer }}
+          </div>
         </div>
       </div>
     </aside>
