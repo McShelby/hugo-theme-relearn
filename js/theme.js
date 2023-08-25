@@ -114,6 +114,8 @@ function switchTab(tabGroup, tabId) {
     allTabItems && allTabItems.forEach( function( e ){ e.classList.remove( 'active' ); });
     targetTabItems && targetTabItems.forEach( function( e ){ e.classList.add( 'active' ); });
 
+    initMermaid( true );
+
     if(isButtonEvent){
       // reset screen to the same position relative to clicked button to prevent page jump
       var yposButtonDiff = event.target.getBoundingClientRect().top - yposButton;
@@ -209,6 +211,9 @@ function initMermaid( update, attrs ) {
 
             var graph = serializeGraph( parse );
             element.innerHTML = graph;
+            if( element.offsetParent !== null ){
+                element.classList.add( 'mermaid-render' );
+            }
             var new_element = document.createElement( 'div' );
             new_element.classList.add( 'mermaid-container' );
             new_element.innerHTML = '<div class="mermaid-code">' + graph + '</div>' + element.outerHTML;
@@ -225,10 +230,19 @@ function initMermaid( update, attrs ) {
             var code = e.querySelector( '.mermaid-code' );
             var parse = parseGraph( decodeHTML( code.innerHTML ) );
 
-            if( parse.yaml.relearn_user_theme || parse.dir.relearn_user_theme ){
-                return;
+            if( element.classList.contains( 'mermaid-render' ) ){
+                if( parse.yaml.relearn_user_theme || parse.dir.relearn_user_theme ){
+                    return;
+                }
+                if( parse.yaml.theme == theme || parse.dir.theme == theme ){
+                    return;
+                }
             }
-            if( parse.yaml.theme == theme || parse.dir.theme == theme ){
+            if( element.offsetParent !== null ){
+                element.classList.add( 'mermaid-render' );
+            }
+            else{
+                element.classList.remove( 'mermaid-render' );
                 return;
             }
             is_initialized = true;
@@ -292,7 +306,7 @@ function initMermaid( update, attrs ) {
                     svg.call( zoom );
                 });
             },
-            querySelector: '.mermaid',
+            querySelector: '.mermaid.mermaid-render',
             suppressErrors: true
         });
     }
@@ -987,7 +1001,11 @@ function initSwipeHandler(){
 }
 
 function initImage(){
-    document.querySelectorAll( '.lightbox-back' ).forEach( function(e){ e.addEventListener("keydown", imageEscapeHandler); }, false);
+    document.querySelectorAll( '.lightbox-back' ).forEach( function(e){ e.addEventListener( 'keydown', imageEscapeHandler ); });
+}
+
+function initExpand(){
+    document.querySelectorAll( '.expand > input' ).forEach( function(e){ e.addEventListener( 'change', initMermaid.bind( null, true, null ) ); });
 }
 
 function clearHistory() {
@@ -1355,6 +1373,7 @@ ready( function(){
     initHistory();
     initSearch();
     initImage();
+    initExpand();
     initScrollPositionSaver();
     scrollToPositions();
 });
