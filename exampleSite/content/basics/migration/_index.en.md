@@ -18,7 +18,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.20.0 (0000-00-00) {#0}
+## 5.20.0 (2023-08-26) {#5200}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}).
 
