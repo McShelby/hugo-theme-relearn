@@ -45,6 +45,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions lower than {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.111.0{{% /badge %}} for the [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}). This does not change the minimum required Hugo version.
+
 ---
 
 ## 5.19.0 (2023-08-12) {#5190}
