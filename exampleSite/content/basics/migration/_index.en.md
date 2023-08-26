@@ -22,7 +22,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}).
 
-  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the style used by the theme variants itself.
+  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the code style used by the theme variants itself.
 
   Additionally, the syntaxhighlightning inside of openapi for printing was switched to a light scheme for all theme variants.
 
