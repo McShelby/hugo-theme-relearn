@@ -37,6 +37,10 @@ var psm;
 var pst;
 var elc = document.querySelector('#body-inner');
 
+function regexEscape( s ){
+    return s.replace( /[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&' );
+}
+
 function documentFocus(){
     elc.focus();
     psc && psc.scrollbarY.focus();
@@ -1082,6 +1086,7 @@ function scrollToPositions() {
 
     var search = sessionStorage.getItem( baseUriFull+'search-value' );
     if( search && search.length ){
+        search = regexEscape( search );
         var found = elementContains( search, elc );
         var searchedElem = found.length && found[ 0 ];
         if( searchedElem ){
@@ -1169,7 +1174,7 @@ function highlight( es, words, options ){
         return word != '';
     });
     words = words.map( function( word, i ){
-        return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        return regexEscape( word );
     });
     if( words.length == 0 ){ return this; }
 
