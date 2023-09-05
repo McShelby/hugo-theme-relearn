@@ -18,6 +18,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.21.0 (2023-09-03) {#5210}
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to review the styling (eg. margins/paddings) in your partial.
+
+  This change was made to simplify common use cases. Care was taken not to break your existing overwritten footer.
+
+---
+
 ## 5.20.0 (2023-08-26) {#5200}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}).
