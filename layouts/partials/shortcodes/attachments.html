@@ -53,7 +53,7 @@
     {{- $fileDir = printf "%s/%s" (path.Clean (.Language.ContentDir | default "content")) (path.Clean .File.Dir) }}
   {{- end }}
   {{- $fileDir = printf "%s/" (path.Clean (strings.TrimPrefix "/" $fileDir)) }}
-  {{- $fileLink := $fileDir }}
+  {{- $fileLink := lower ($fileDir) }}
   {{- $fileLink = strings.TrimPrefix "content/" $fileLink }}
   {{- $filesName := printf "%s.files" .File.BaseFileName }}
   {{- if and (eq .File.BaseFileName "index") (fileExists (printf "%sfiles" $fileDir)) }}
