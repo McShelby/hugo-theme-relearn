@@ -71,59 +71,62 @@
       <div id="toc-overlay"></div>
       <nav id="topbar" class="highlightable">
         <div>
-        {{- $File := .File }}
-        {{- $Site := .Site }}
         {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
         {{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
-          {{- $parent := .Parent }}
-          {{- $ispublished := true }}
-          {{- if $parent }}
-            {{- $ispublished = gt (int (len $parent.Permalink)) 0 }}
-          {{- end }}
-          {{- $startarrow := "&#129104;" }}
-          {{- $endarrow := "&#129106;" }}
+          {{- $startarrow := "🡐" }}
+          {{- $endarrow := "🡒" }}
           {{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
-            {{- $startarrow = "&#129106;" }}
-            {{- $endarrow = "&#129104;" }}
+            {{- $startarrow = "🡒" }}
+            {{- $endarrow = "🡐" }}
           {{- end }}
-          <div class="navigation">
+          {{- $ispublished := true }}
+          {{- with .Parent }}
+            {{- $ispublished = gt (int (len .Permalink)) 0 }}
+          {{- end }}
+          {{- $next := "" }}
           {{- if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnNextPage"))) }}
-            <span class="nav nav-next topbar-link"><i class="fa fa-chevron-right fa-fw"></i></span>
           {{- else }}
-            {{- with ($.Scratch.Get "relearnNextPage") }}
-            <a class="nav nav-next topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} ({{ $endarrow | safeHTML }})"><i class="fas fa-chevron-right fa-fw"></i></a>
-            {{- end }}
+            {{- $next = $.Scratch.Get "relearnNextPage" }}
           {{- end }}
-          </div>
-          <div class="navigation">
+          {{- partial "topbar-button.html" (dict
+            "page" $page
+            "class" "topbar-next"
+            "href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $next))
+            "icon" "chevron-right"
+            "title" (printf "%s (%s)" ($next | default $page).Title ($endarrow | safeHTML))
+          )}}
+          {{- $prev := "" }}
           {{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
-            <span class="nav nav-prev topbar-link"><i class="fa fa-chevron-left fa-fw"></i></span>
-          {{- else if or (ne $outputFormat "html") (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) }}
-            {{- with .Site.Home }}
-            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} ({{ $startarrow | safeHTML }})"><i class="fas fa-chevron-left fa-fw"></i></a>
-            {{- end }}
+          {{- else if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") }}
+            {{- $prev = .Site.Home }}
           {{- else }}
-            {{- with ($.Scratch.Get "relearnPrevPage") }}
-            <a class="nav nav-prev topbar-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" title="{{.Title}} ({{ $startarrow | safeHTML }})"><i class="fas fa-chevron-left fa-fw"></i></a>
-            {{- end}}
+            {{- $prev = $.Scratch.Get "relearnPrevPage" }}
           {{- end}}
-          </div>
+          {{- partial "topbar-button.html" (dict
+            "page" $page
+            "class" "topbar-prev"
+            "href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $prev))
+            "icon" "chevron-left"
+            "title" (printf "%s (%s)" ($prev | default $page).Title ($startarrow | safeHTML))
+          )}}
         {{- end }}
         {{- with and (eq $outputFormat "html") (.OutputFormats.Get "PRINT") }}
-          <div id="top-print-link">
-            <a class="print-link topbar-link" title='{{ T "Print-this-chapter" }} (CTRL+ALT+p)' href="{{ .RelPermalink }}">
-              <i class="fas fa-print fa-fw"></i>
-            </a>
-          </div>
+          {{- partial "topbar-button.html" (dict
+            "page" $page
+            "class" "topbar-print"
+            "href" .RelPermalink
+            "icon" "print"
+            "title" (printf "%s (CTRL+ALT+p)" (T "Print-this-chapter"))
+          )}}
         {{- end -}}
-        {{- if and (eq $outputFormat "html") .Site.Params.editURL $File }}
-          {{- with $File.Path }}
-          <div id="top-github-link">
-            <a class="github-link topbar-link" title='{{ T "Edit-this-page" }} (CTRL+ALT+w)' href="{{ $Site.Params.editURL }}{{ strings.TrimLeft "/" (replace $File.Dir "\\" "/") }}{{ $File.LogicalName }}" target="_blank">
-              <i class="fas fa-pen fa-fw"></i>
-            </a>
-          </div>
-          {{- end }}
+        {{- with and (eq $outputFormat "html") .Site.Params.editURL $.File }}
+          {{- partial "topbar-button.html" (dict
+            "page" $page
+            "class" "topbar-edit"
+            "href" (printf "%s%s%s" $.Site.Params.editURL (strings.TrimLeft "/" (replace .Dir "\\" "/")) .LogicalName)
+            "icon" "pen"
+            "title" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
+          )}}
         {{- end }}
         {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
         {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}

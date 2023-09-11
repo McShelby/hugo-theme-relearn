@@ -1,0 +1,41 @@
+{{- $page := .page }}
+{{- $class := .class | default "" }}
+{{- $href := (trim .href " ") | default "" }}
+{{- $target := .target | default "" }}
+{{- $type := .type | default "" }}
+{{- $isDisabled := not $href }}
+{{- $isButton := false }}
+{{- if or (not $href) (strings.HasPrefix $href "javascript:") }}
+  {{- $isButton = true }}
+  {{- $href = substr $href (len "javascript:") }}
+  {{- if not $type }}
+    {{- $type = "button" }}
+  {{- end }}
+{{- else if and (eq (len $target) 0) (or (strings.HasPrefix $href "http://") (strings.HasPrefix $href "https://") ) }}
+  {{- $target = "_blank" }}
+  {{- if isset $page.Site.Params "externallinktarget" }}
+    {{- $target = $page.Site.Params.externalLinkTarget }}
+  {{- end }}
+{{- end }}
+{{- $title := (trim .title " ") | default "" }}
+{{- $icon := (trim .icon " ") | default "" }}
+{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+{{- end }}
+<div class="topbar-button {{ $class }}">
+{{- if $isDisabled }}
+	<span>
+{{- else if $isButton }}
+	<button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
+{{- else }}
+	<a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
+{{- end }}
+	  	<i class="{{ $icon }}"></i>
+{{- if $isDisabled }}
+	</span>
+{{- else if $isButton }}
+	</button>
+{{- else }}
+	</a>
+{{- end }}
+</div>

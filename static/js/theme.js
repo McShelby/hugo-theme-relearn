@@ -644,9 +644,9 @@ function initArrowNav(){
     }
 
     // button navigation
-    var prev = document.querySelector( 'a.nav-prev' );
+    var prev = document.querySelector( '.topbar-prev a' );
     prev && prev.addEventListener( 'click', navPrev );
-    var next = document.querySelector( 'a.nav-next' );
+    var next = document.querySelector( '.topbar-next a' );
     next && next.addEventListener( 'click', navNext );
 
     // keyboard navigation
@@ -906,26 +906,26 @@ function showToc(){
 }
 
 function showEdit(){
-    var l = document.querySelector( '#top-github-link a' );
+    var l = document.querySelector( '.topbar-edit a' );
     if( l ){
         l.click();
     }
 }
 
 function showPrint(){
-    var l = document.querySelector( '#top-print-link a' );
+    var l = document.querySelector( '.topbar-print a' );
     if( l ){
         l.click();
     }
 }
 
 function navPrev(){
-    var e = document.querySelector( 'a.nav-prev' );
+    var e = document.querySelector( '.topbar-prev a' );
     location.href = e && e.getAttribute( 'href' );
 };
 
 function navNext(){
-    var e = document.querySelector( 'a.nav-next' );
+    var e = document.querySelector( '.topbar-next a' );
     location.href = e && e.getAttribute( 'href' );
 };
 
@@ -1116,7 +1116,7 @@ function scrollToPositions() {
 
 function mark() {
 	// mark some additional stuff as searchable
-	var topbarLinks = document.querySelectorAll( '#topbar a:not(.topbar-link):not(.btn)' );
+	var topbarLinks = document.querySelectorAll( '#topbar :not(.topbar-button) a' );
 	for( var i = 0; i < topbarLinks.length; i++ ){
 		topbarLinks[i].classList.add( 'highlight' );
 	}
