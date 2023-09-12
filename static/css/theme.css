@@ -395,12 +395,12 @@ dd {
     }
 }
 
-.links a:hover,
-.links a:active,
-.links a:focus,
-.links a:hover *,
-.links a:active *,
-.links a:focus *,
+.breadcrumbs a:hover,
+.breadcrumbs a:active,
+.breadcrumbs a:focus,
+.breadcrumbs a:hover *,
+.breadcrumbs a:active *,
+.breadcrumbs a:focus *,
 .toc-wrapper a:hover,
 .toc-wrapper a:active,
 .toc-wrapper a:focus,
@@ -982,44 +982,49 @@ td {
 
 .topbar-button {
     display: block;
-    float: right;
     position: relative;
+}
+.topbar-right .topbar-button {
+    float: right;
     top: 50%;
     transform: translateY(-50%);
 }
-html[dir="rtl"] .topbar-button {
+html[dir="rtl"] .topbar-right .topbar-button {
     float: left;
+}
+.topbar-left .topbar-button {
+    float: left;
+}
+html[dir="rtl"] .topbar-left .topbar-button {
+    float: right;
 }
 
 .topbar-button > * {
-    border-inline-start: thin solid rgba( 134, 134, 134, .333 );
+    display: inline-block;
     padding-left: 1rem;
     padding-right: 1rem;
 }
-html[dir="rtl"] .topbar-prev i,
-html[dir="rtl"] .topbar-next i {
-    transform: scaleX(-1);
+.topbar-right .topbar-button > * {
+    border-inline-start: thin solid rgba( 134, 134, 134, .333 );
 }
+.topbar-left .topbar-button > * {
+    border-inline-end: thin solid rgba( 134, 134, 134, .333 );
+}
+
 .topbar-button span i{
     color: rgba( 134, 134, 134, .333 );
 }
-
-#toc-menu{
-    cursor: pointer;
-}
-#toc-menu,
-#sidebar-toggle-span {
-    border-inline-end: thin solid rgba( 134, 134, 134, .333 );
-    padding-left: 1rem;
-    padding-right: 1rem;
+.topbar-button button{
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
 }
 
-#body #breadcrumbs {
+#body .topbar-left {
     border-inline-start-style: solid;
     border-inline-start-width: 1px;
     float: left;
     height: auto;
-    line-height: 1.2;
     margin-bottom: 0;
     overflow: hidden;
     position: relative;
@@ -1029,55 +1034,61 @@ html[dir="rtl"] .topbar-next i {
     white-space: nowrap;
     width: calc(100% - 5*3.25rem);
 }
-html[dir="rtl"] #body #breadcrumbs {
+html[dir="rtl"] #body .topbar-left {
     float: right;
 }
 @media screen and (max-width: 48rem) {
-    #body #breadcrumbs {
+    #body .topbar-left {
         border-inline-start-color: transparent;
         text-overflow: unset;
     }
 }
 
-#sidebar-toggle-span {
+html[dir="rtl"] .topbar-prev i,
+html[dir="rtl"] .topbar-next i {
+    transform: scaleX(-1);
+}
+.topbar-sidebar {
     display: none;
 }
+
 .progress {
     inset-inline-start: 1rem;
     top: 1rem;
 }
 @media screen and (max-width: 48rem) {
-    .mobile-support #sidebar-toggle-span {
-        display: inline;
+    .mobile-support .topbar-sidebar {
+        display: block;
     }
     .progress {
         inset-inline-start: 4.25rem;
     }
 }
 
-#body #breadcrumbs .links {
+#body .topbar-left .breadcrumbs {
     display: inline;
-    padding: 0 .75rem;
+    line-height: 1.2;
+    padding: 0 1rem;
 }
 @media screen and (max-width: 48rem) {
-    #body #breadcrumbs .links {
+    #body .topbar-left .breadcrumbs {
         /* we just hide the breadcrumbs instead of display: none;
         this makes sure that the breadcrumbs are still usable for
         accessability */
-        visibility: hidden;
+        margin-left: -1000px;
     }
 }
 
-#body #breadcrumbs .links * {
+#body .topbar-left .breadcrumbs * {
     display: inline-block;
     padding: 0;
 }
 
-#body #breadcrumbs .links meta {
+#body .topbar-left .breadcrumbs meta {
     display: none;
 }
 
-#body #breadcrumbs .links li:last-of-type {
+#body .topbar-left .breadcrumbs li:last-of-type {
     cursor: text;
 }
 
@@ -1583,7 +1594,7 @@ html[dir="rtl"] .menu-control span {
 }
 
 @media screen and (max-width: 48rem) {
-    #breadcrumbs .links {
+    .topbar-left .breadcrumbs {
         display: none;
     }
 }

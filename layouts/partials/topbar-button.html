@@ -22,20 +22,20 @@
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
-<div class="topbar-button {{ $class }}">
+            <div class="topbar-button {{ $class }}">
 {{- if $isDisabled }}
 	<span>
 {{- else if $isButton }}
-	<button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
+              <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
 {{- else }}
-	<a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
+              <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
 {{- end }}
-	  	<i class="{{ $icon }}"></i>
+                <i class="{{ $icon }}"></i>
 {{- if $isDisabled }}
-	</span>
+              </span>
 {{- else if $isButton }}
-	</button>
+              </button>
 {{- else }}
-	</a>
+              </a>
 {{- end }}
-</div>
+            </div>

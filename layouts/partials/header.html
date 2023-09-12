@@ -69,88 +69,100 @@
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
-      <nav id="topbar" class="highlightable">
+      <nav id="topbar">
         <div>
-        {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
-        {{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
-          {{- $startarrow := "🡐" }}
-          {{- $endarrow := "🡒" }}
-          {{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
-            {{- $startarrow = "🡒" }}
-            {{- $endarrow = "🡐" }}
-          {{- end }}
-          {{- $ispublished := true }}
-          {{- with .Parent }}
-            {{- $ispublished = gt (int (len .Permalink)) 0 }}
-          {{- end }}
-          {{- $next := "" }}
-          {{- if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnNextPage"))) }}
-          {{- else }}
-            {{- $next = $.Scratch.Get "relearnNextPage" }}
-          {{- end }}
-          {{- partial "topbar-button.html" (dict
-            "page" $page
-            "class" "topbar-next"
-            "href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $next))
-            "icon" "chevron-right"
-            "title" (printf "%s (%s)" ($next | default $page).Title ($endarrow | safeHTML))
-          )}}
-          {{- $prev := "" }}
-          {{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
-          {{- else if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") }}
-            {{- $prev = .Site.Home }}
-          {{- else }}
-            {{- $prev = $.Scratch.Get "relearnPrevPage" }}
-          {{- end}}
-          {{- partial "topbar-button.html" (dict
-            "page" $page
-            "class" "topbar-prev"
-            "href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $prev))
-            "icon" "chevron-left"
-            "title" (printf "%s (%s)" ($prev | default $page).Title ($startarrow | safeHTML))
-          )}}
-        {{- end }}
-        {{- with and (eq $outputFormat "html") (.OutputFormats.Get "PRINT") }}
-          {{- partial "topbar-button.html" (dict
-            "page" $page
-            "class" "topbar-print"
-            "href" .RelPermalink
-            "icon" "print"
-            "title" (printf "%s (CTRL+ALT+p)" (T "Print-this-chapter"))
-          )}}
-        {{- end -}}
-        {{- with and (eq $outputFormat "html") .Site.Params.editURL $.File }}
-          {{- partial "topbar-button.html" (dict
-            "page" $page
-            "class" "topbar-edit"
-            "href" (printf "%s%s%s" $.Site.Params.editURL (strings.TrimLeft "/" (replace .Dir "\\" "/")) .LogicalName)
-            "icon" "pen"
-            "title" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
-          )}}
-        {{- end }}
-        {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
-        {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
-        {{- $toc_content := partial "toc.html" . }}
-        {{- $hastoc := not (eq 0 (int (len (trim ($toc_content | plainify) "\n\t ")))) }}
-        {{- $toc := and $hastoc (not $currentDisableToc) (eq $outputFormat "html") }}
-          <div id="breadcrumbs">
-            <span id="sidebar-toggle-span">
-              <a href="#" id="sidebar-toggle" title='{{ T "Navigation-toggle" }} (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
-            </span>
-          {{- if $toc }}
-            <span id="toc-menu" title='{{ T "Toc-toggle" }} (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
-          {{- end }}
-          {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
-          {{- if $showBreadcrumb }}
-            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span class="topbar-right">
+            {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
+            {{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
+              {{- $startarrow := "🡐" }}
+              {{- $endarrow := "🡒" }}
+              {{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
+                {{- $startarrow = "🡒" }}
+                {{- $endarrow = "🡐" }}
+              {{- end }}
+              {{- $ispublished := true }}
+              {{- with .Parent }}
+                {{- $ispublished = gt (int (len .Permalink)) 0 }}
+              {{- end }}
+              {{- $next := "" }}
+              {{- if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnNextPage"))) }}
+              {{- else }}
+                {{- $next = $.Scratch.Get "relearnNextPage" }}
+              {{- end }}
+              {{- partial "topbar-button.html" (dict
+                "page" $page
+                "class" "topbar-next"
+                "href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $next))
+                "icon" "chevron-right"
+                "title" (printf "%s (%s)" ($next | default $page).Title ($endarrow | safeHTML))
+              )}}
+              {{- $prev := "" }}
+              {{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
+              {{- else if or (ne $outputFormat "html") (not (and $ispublished ($.Scratch.Get "relearnPrevPage"))) (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") }}
+                {{- $prev = .Site.Home }}
+              {{- else }}
+                {{- $prev = $.Scratch.Get "relearnPrevPage" }}
+              {{- end}}
+              {{- partial "topbar-button.html" (dict
+                "page" $page
+                "class" "topbar-prev"
+                "href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $prev))
+                "icon" "chevron-left"
+                "title" (printf "%s (%s)" ($prev | default $page).Title ($startarrow | safeHTML))
+              )}}
+            {{- end }}
+            {{- with and (eq $outputFormat "html") (.OutputFormats.Get "PRINT") }}
+              {{- partial "topbar-button.html" (dict
+                "page" $page
+                "class" "topbar-print"
+                "href" .RelPermalink
+                "icon" "print"
+                "title" (printf "%s (CTRL+ALT+p)" (T "Print-this-chapter"))
+              )}}
+            {{- end -}}
+            {{- with and (eq $outputFormat "html") .Site.Params.editURL $.File }}
+              {{- partial "topbar-button.html" (dict
+                "page" $page
+                "class" "topbar-edit"
+                "href" (printf "%s%s%s" $.Site.Params.editURL (strings.TrimLeft "/" (replace .Dir "\\" "/")) .LogicalName)
+                "icon" "pen"
+                "title" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
+              )}}
+            {{- end }}
+          </span>
+          <span class="topbar-left">
+            {{- partial "topbar-button.html" (dict
+              "page" $page
+              "class" "topbar-sidebar"
+              "href" "javascript:showNav()"
+              "icon" "bars"
+              "title" (printf "%s (CTRL+ALT+n)" (T "Navigation-toggle"))
+            )}}
+            {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
+            {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
+            {{- $toc_content := partial "toc.html" . }}
+            {{- $hastoc := not (eq 0 (int (len (trim ($toc_content | plainify) "\n\t ")))) }}
+            {{- $toc := and $hastoc (not $currentDisableToc) (eq $outputFormat "html") }}
+            {{- if $toc }}
+              {{- partial "topbar-button.html" (dict
+                "page" $page
+                "class" "topbar-toc"
+                "href" "javascript:showToc()"
+                "icon" "list-alt"
+                "title" (printf "%s (CTRL+ALT+t)" (T "Toc-toggle"))
+              )}}
+            {{- end }}
+            {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
+            {{- if $showBreadcrumb }}
+            <ol class="breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
               {{- template "breadcrumb" dict "page" . "to" . }}
             </ol>
-          {{- else }}
-            <span class="links">
+            {{- else }}
+            <span class="breadcrumbs highlightable">
               {{ .Title }}
             </span>
-          {{- end }}
-          </div>
+            {{- end }}
+          </span>
         {{- if $toc }}
 {{ $toc_content }}
         {{- end }}

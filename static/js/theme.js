@@ -886,7 +886,7 @@ function showNav(){
 }
 
 function showToc(){
-    var t = document.querySelector( '#toc-menu' );
+    var t = document.querySelector( '.topbar-toc' );
     if( !t ){
         // we may not have a toc
         return;
@@ -941,13 +941,10 @@ function initToc(){
     document.addEventListener( 'keydown', tocShortcutHandler );
 
     document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
-    document.querySelector( '#sidebar-toggle' ).addEventListener( 'click', showNav );
     document.querySelector( '#toc-overlay' ).addEventListener( 'click', showToc );
-    var t = document.querySelector( '#toc-menu' );
     var p = document.querySelector( '.progress' );
-    if( t && p ){
+    if( p ){
         // we may not have a toc
-        t.addEventListener( 'click', showToc );
         p.addEventListener( 'click', showToc );
     }
 
@@ -1116,11 +1113,6 @@ function scrollToPositions() {
 
 function mark() {
 	// mark some additional stuff as searchable
-	var topbarLinks = document.querySelectorAll( '#topbar :not(.topbar-button) a' );
-	for( var i = 0; i < topbarLinks.length; i++ ){
-		topbarLinks[i].classList.add( 'highlight' );
-	}
-
 	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)' );
 	for( var i = 0; i < bodyInnerLinks.length; i++ ){
 		bodyInnerLinks[i].classList.add( 'highlight' );
