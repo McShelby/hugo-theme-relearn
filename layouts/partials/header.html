@@ -71,7 +71,7 @@
       <div id="toc-overlay"></div>
       <nav id="topbar">
         <div>
-          <span class="topbar-right">
+          <div class="topbar-right">
             {{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
             {{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
               {{- $startarrow := "🡐" }}
@@ -129,8 +129,8 @@
                 "title" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
               )}}
             {{- end }}
-          </span>
-          <span class="topbar-left">
+          </div>
+          <div class="topbar-left">
             {{- partial "topbar-button.html" (dict
               "page" $page
               "class" "topbar-sidebar"
@@ -162,7 +162,7 @@
               {{ .Title }}
             </span>
             {{- end }}
-          </span>
+          </div>
         {{- if $toc }}
 {{ $toc_content }}
         {{- end }}
