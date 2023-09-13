@@ -67,8 +67,6 @@
   </head>
   <body class="mobile-support {{ $outputFormat }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
     <div id="body" class="default-animation">
-      <div id="sidebar-overlay"></div>
-      <div id="toc-overlay"></div>
       <nav id="topbar">
         <div>
           <div class="topbar-sidebar-divider"></div>
@@ -80,6 +78,7 @@
               "icon" "bars"
               "title" (printf "%s (CTRL+ALT+n)" (T "Navigation-toggle"))
             )}}
+            <div id="sidebar-overlay"></div>
             {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
             {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
             {{- $toc_content := partial "toc.html" . }}
@@ -94,6 +93,7 @@
                 "title" (printf "%s (CTRL+ALT+t)" (T "Toc-toggle"))
               )}}
 {{ $toc_content }}
+            <div id="toc-overlay"></div>
             {{- end }}
           </div>
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}

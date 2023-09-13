@@ -940,11 +940,15 @@ function initToc(){
     document.addEventListener( 'keydown', searchShortcutHandler );
     document.addEventListener( 'keydown', tocShortcutHandler );
 
-    document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
-    document.querySelector( '#toc-overlay' ).addEventListener( 'click', showToc );
+    var s = document.querySelector( '#sidebar-overlay' );
+    if( s ){
+        s.addEventListener( 'click', showNav );
+    }
+    var o = document.querySelector( '#toc-overlay' );
     var p = document.querySelector( '.progress' );
-    if( p ){
+    if( o && p ){
         // we may not have a toc
+        o.addEventListener( 'click', showToc );
         p.addEventListener( 'click', showToc );
     }
 
@@ -990,13 +994,14 @@ function initSwipeHandler(){
         return false;
     };
 
-    document.querySelector( '#sidebar-overlay' ).addEventListener("touchstart", handleStartX, false);
+    var s = document.querySelector( '#sidebar-overlay' );
+    s && s.addEventListener("touchstart", handleStartX, false);
     document.querySelector( '#sidebar' ).addEventListener("touchstart", handleStartX, false);
     document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
-    document.querySelector( '#sidebar-overlay' ).addEventListener("touchmove", handleMoveX, false);
+    s && s.addEventListener("touchmove", handleMoveX, false);
     document.querySelector( '#sidebar' ).addEventListener("touchmove", handleMoveX, false);
     document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX); }, false);
-    document.querySelector( '#sidebar-overlay' ).addEventListener("touchend", handleEndX, false);
+    s && s.addEventListener("touchend", handleEndX, false);
     document.querySelector( '#sidebar' ).addEventListener("touchend", handleEndX, false);
     document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
 }
