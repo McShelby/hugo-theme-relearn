@@ -35,16 +35,14 @@ pre {
     padding-left: 0; /* for print, we want to align with the footer to ease the layout */
     padding-right: 0;
 }
-.topbar-button {
-    /* we don't need this while printing */
+#body .topbar-button {
+    /* we don't need the buttons while printing */
     display: none;
 }
-#body .topbar-left {
-    width: 100%;
-}
-#body .topbar-left .breadcrumbs {
-    overflow-x: hidden;
-    visibility: visible;
+@media screen and (max-width: 48rem) {
+    #body .topbar-breadcrumbs {
+        visibility: visible;
+    }
 }
 #body .copy-to-clipboard-button {
     display: none;
@@ -129,9 +127,6 @@ body,
 }
 #body .topbar-left {
     border-width: 0;
-}
-.topbar-left .breadcrumbs {
-    display: inline;
 }
 .tags {
     display: none;

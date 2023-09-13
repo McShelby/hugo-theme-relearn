@@ -395,12 +395,12 @@ dd {
     }
 }
 
-.breadcrumbs a:hover,
-.breadcrumbs a:active,
-.breadcrumbs a:focus,
-.breadcrumbs a:hover *,
-.breadcrumbs a:active *,
-.breadcrumbs a:focus *,
+.topbar-breadcrumbs a:hover,
+.topbar-breadcrumbs a:active,
+.topbar-breadcrumbs a:focus,
+.topbar-breadcrumbs a:hover *,
+.topbar-breadcrumbs a:active *,
+.topbar-breadcrumbs a:focus *,
 .toc-wrapper a:hover,
 .toc-wrapper a:active,
 .toc-wrapper a:focus,
@@ -976,27 +976,17 @@ td {
 }
 
 #topbar > div {
+    align-items: center;
     background-color: rgba( 134, 134, 134, .066 );
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
     height: 100%;
 }
 
 .topbar-button {
-    display: block;
+    display: inline-block;
     position: relative;
-}
-.topbar-right .topbar-button {
-    float: right;
-    top: 50%;
-    transform: translateY(-50%);
-}
-html[dir="rtl"] .topbar-right .topbar-button {
-    float: left;
-}
-.topbar-left .topbar-button {
-    float: left;
-}
-html[dir="rtl"] .topbar-left .topbar-button {
-    float: right;
 }
 
 .topbar-button > * {
@@ -1004,11 +994,11 @@ html[dir="rtl"] .topbar-left .topbar-button {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-.topbar-right .topbar-button > * {
-    border-inline-start: thin solid rgba( 134, 134, 134, .333 );
-}
 .topbar-left .topbar-button > * {
-    border-inline-end: thin solid rgba( 134, 134, 134, .333 );
+    border-inline-end: 1px solid rgba( 134, 134, 134, .333 );
+}
+.topbar-right .topbar-button > * {
+    border-inline-start: 1px solid rgba( 134, 134, 134, .333 );
 }
 
 .topbar-button span i{
@@ -1020,32 +1010,29 @@ html[dir="rtl"] .topbar-left .topbar-button {
     background-color: transparent;
 }
 
-#body .topbar-right {
-    display: inline;
-}
-#body .topbar-left {
+.topbar-sidebar-divider {
     border-inline-start-style: solid;
     border-inline-start-width: 1px;
-    display: inline;
-    float: left;
-    height: auto;
-    margin-bottom: 0;
-    overflow: hidden;
-    position: relative;
-    text-overflow: ellipsis;
-    top: 50%;
-    transform: translateY(-50%);
-    white-space: nowrap;
-    width: calc(100% - 5*3.25rem);
+    margin-inline-end: -1px;
+    width: 1px;
 }
-html[dir="rtl"] #body .topbar-left {
-    float: right;
+.topbar-sidebar-divider::after {
+    content: "\00a0";
 }
 @media screen and (max-width: 48rem) {
-    #body .topbar-left {
+    .topbar-sidebar-divider {
         border-inline-start-color: transparent;
-        text-overflow: unset;
     }
+}
+.topbar-left {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+.topbar-right {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
 }
 
 html[dir="rtl"] .topbar-prev i,
@@ -1055,44 +1042,51 @@ html[dir="rtl"] .topbar-next i {
 .topbar-sidebar {
     display: none;
 }
+@media screen and (max-width: 48rem) {
+    .mobile-support .topbar-sidebar {
+        display: inline-block;
+    }
+}
 
 .progress {
     inset-inline-start: 1rem;
     top: 1rem;
 }
 @media screen and (max-width: 48rem) {
-    .mobile-support .topbar-sidebar {
-        display: block;
-    }
     .progress {
         inset-inline-start: 4.25rem;
     }
 }
 
-#body .topbar-left .breadcrumbs {
-    display: inline;
+.topbar-breadcrumbs {
+    flex-grow: 1;
     line-height: 1.2;
+    margin: 0;
+    min-width: 0;
+    overflow: hidden;
     padding: 0 1rem;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
 }
 @media screen and (max-width: 48rem) {
-    #body .topbar-left .breadcrumbs {
+    .topbar-breadcrumbs {
         /* we just hide the breadcrumbs instead of display: none;
         this makes sure that the breadcrumbs are still usable for
         accessability */
-        margin-left: -1000px;
+        visibility: hidden;
     }
 }
 
-#body .topbar-left .breadcrumbs * {
-    display: inline-block;
-    padding: 0;
-}
-
-#body .topbar-left .breadcrumbs meta {
+.topbar-breadcrumbs meta {
     display: none;
 }
 
-#body .topbar-left .breadcrumbs li:last-of-type {
+.topbar-breadcrumbs li {
+    display: inline-block;
+}
+
+.topbar-breadcrumbs li:last-of-type {
     cursor: text;
 }
 
@@ -1145,6 +1139,7 @@ html[dir="rtl"] .topbar-next i {
         background-color: rgba( 134, 134, 134, .5 );
         bottom: 0;
         cursor: pointer;
+        height: 100vh;
         left: 0;
         position: absolute;
         right: 0;
@@ -1368,10 +1363,11 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 .toc-flyout #toc-overlay{
     bottom: 0;
     cursor: pointer;
+    height: calc(100vh - 3rem);
     left: 0;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 3rem;
     z-index: 160;
 }
 
@@ -1595,12 +1591,6 @@ html[dir="rtl"] .menu-control span {
 .showVisitedLinks,
 .showFooter {
     display: block;
-}
-
-@media screen and (max-width: 48rem) {
-    .topbar-left .breadcrumbs {
-        display: none;
-    }
 }
 
 /* clears the 'X' from Chrome's search input */
@@ -2096,6 +2086,7 @@ html[dir="rtl"] #sidebar ul.collapsible-menu > li > label > i.fa-chevron-right {
 }
 
 #header-topbar {
+    border-bottom-color: transparent;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-inline-end-style: solid;
