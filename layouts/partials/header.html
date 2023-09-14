@@ -67,6 +67,7 @@
   </head>
   <body class="mobile-support {{ $outputFormat }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
     <div id="body" class="default-animation">
+      <div id="body-overlay"></div>
       <nav id="topbar">
         <div>
           <div class="topbar-sidebar-divider"></div>
@@ -74,26 +75,24 @@
             {{- partial "topbar-button.html" (dict
               "page" $page
               "class" "topbar-sidebar"
-              "href" "javascript:showNav()"
+              "href" "javascript:toggleNav()"
               "icon" "bars"
               "title" (printf "%s (CTRL+ALT+n)" (T "Navigation-toggle"))
             )}}
-            <div id="sidebar-overlay"></div>
             {{- $defaultDisableToc := .Site.Params.disableToc | default false }}
             {{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
-            {{- $toc_content := partial "toc.html" . }}
-            {{- $hastoc := not (eq 0 (int (len (trim ($toc_content | plainify) "\n\t ")))) }}
+            {{- $toc_content := partial "toc-class.html" . }}
+            {{- $hastoc := not (eq 0 (int (len (trim ($toc_content | plainify) "\n\r\t ")))) }}
             {{- $toc := and $hastoc (not $currentDisableToc) (eq $outputFormat "html") }}
             {{- if $toc }}
               {{- partial "topbar-button.html" (dict
                 "page" $page
                 "class" "topbar-toc"
-                "href" "javascript:showToc()"
+                "href" "javascript:toggleTopbarFlyout(this)"
                 "icon" "list-alt"
                 "title" (printf "%s (CTRL+ALT+t)" (T "Toc-toggle"))
+                "content" $toc_content
               )}}
-{{ $toc_content }}
-            <div id="toc-overlay"></div>
             {{- end }}
           </div>
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
@@ -168,6 +167,7 @@
         </div>
       </nav>
       {{- $hook := "styleclass" }}
+      <div id="main-overlay"></div>
       <main id="body-inner" class="highlightable {{ partialCached "archetype.hugo" (dict "hook" $hook "page" . "parameter" . "outputFormat" $outputFormat) .RelPermalink $outputFormat $hook }}" tabindex="-1">
         <div class="flex-block-wrapper">
 {{- define "breadcrumb" }}

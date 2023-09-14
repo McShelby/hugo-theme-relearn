@@ -22,13 +22,14 @@
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
+{{- $content := .content }}
             <div class="topbar-button {{ $class }}">
 {{- if $isDisabled }}
-              <span>
+              <span class="topbar-button-control">
 {{- else if $isButton }}
-              <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
+              <button class="topbar-button-control"{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
 {{- else }}
-              <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
+              <a class="topbar-button-control"{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
 {{- end }}
                 <i class="{{ $icon }}"></i>
 {{- if $isDisabled }}
@@ -37,5 +38,12 @@
               </button>
 {{- else }}
               </a>
+{{- end }}
+{{- if $content }}
+              <div class="topbar-button-flyout">
+                <div class="topbar-button-flyout-wrapper">
+                  {{- $content }}
+                </div>
+              </div>
 {{- end }}
             </div>
