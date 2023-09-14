@@ -401,9 +401,9 @@ dd {
 .topbar-breadcrumbs a:hover *,
 .topbar-breadcrumbs a:active *,
 .topbar-breadcrumbs a:focus *,
-.toc-wrapper a:hover,
-.toc-wrapper a:active,
-.toc-wrapper a:focus,
+.topbar-button-flyout a:hover,
+.topbar-button-flyout a:active,
+.topbar-button-flyout a:focus,
 article a:hover,
 article a:active,
 article a:focus {
@@ -989,15 +989,15 @@ td {
     position: relative;
 }
 
-.topbar-button > * {
+.topbar-button > .topbar-button-control {
     display: inline-block;
     padding-left: 1rem;
     padding-right: 1rem;
 }
-.topbar-left .topbar-button > * {
+.topbar-left .topbar-button > .topbar-button-control {
     border-inline-end: 1px solid rgba( 134, 134, 134, .333 );
 }
-.topbar-right .topbar-button > * {
+.topbar-right .topbar-button > .topbar-button-control {
     border-inline-start: 1px solid rgba( 134, 134, 134, .333 );
 }
 
@@ -1048,14 +1048,14 @@ html[dir="rtl"] .topbar-next i {
     }
 }
 
-.progress {
-    inset-inline-start: 1rem;
-    top: 1rem;
+.topbar-button-flyout {
+    top: .75rem;
 }
-@media screen and (max-width: 48rem) {
-    .progress {
-        inset-inline-start: 4.25rem;
-    }
+.topbar-left .topbar-button-flyout {
+    inset-inline-start: 1.5rem;
+}
+.topbar-right .topbar-button-flyout {
+    inset-inline-end: 1.5rem;
 }
 
 .topbar-breadcrumbs {
@@ -1135,7 +1135,7 @@ html[dir="rtl"] .topbar-next i {
         margin-inline-start: 14.375rem;
         overflow: hidden;
     }
-    .mobile-support.sidebar-flyout #sidebar-overlay{
+    .mobile-support.sidebar-flyout #body-overlay{
         background-color: rgba( 134, 134, 134, .5 );
         bottom: 0;
         cursor: pointer;
@@ -1360,10 +1360,9 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 
 /* Table of contents */
 
-.toc-flyout #toc-overlay{
+.topbar-flyout #main-overlay{
     bottom: 0;
     cursor: pointer;
-    height: calc(100vh - 3rem);
     left: 0;
     position: absolute;
     right: 0;
@@ -1371,7 +1370,7 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     z-index: 160;
 }
 
-.progress {
+.topbar-button-flyout {
     border: 0 solid rgba( 134, 134, 134, .166 );
     box-shadow: 1px 2px 5px 1px rgba( 134, 134, 134, .2 );
     height: 0;
@@ -1382,33 +1381,48 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     z-index: 180;
 }
 
-.toc-flyout .progress {
+.topbar-button.topbar-flyout .topbar-button-flyout {
     border-width: 1px;
     height: auto;
     opacity: 1;
     width: auto;
 }
 
-.progress .toc-wrapper {
+.topbar-button-flyout .topbar-button-flyout-wrapper {
     background-color: rgba( 134, 134, 134, .066 );
 }
 
-.progress ul {
+.topbar-button-flyout-wrapper {
+    --ps-rail-hover-color: rgba( 176, 176, 176, .25 );
+    max-height: 90vh;
+    overflow: hidden;
+    padding: 1rem 1rem;
+    position: relative; /* PS */
+}
+
+#TableOfContents,
+.TableOfContents {
+    font-size: .8125rem;
+}
+#TableOfContents ul,
+.TableOfContents ul {
     list-style: none;
     margin: 0;
     padding: 0 1rem;
 }
 
-#TableOfContents {
-    --ps-rail-hover-color: rgba( 176, 176, 176, .25 );
-    font-size: .8125rem !important;
-    max-height: 90vh;
-    overflow: hidden;
-    padding: 1rem .375rem !important;
-    position: relative; /* PS */
+#TableOfContents > ul,
+.TableOfContents > ul {
+    padding: 0;
 }
 
-#TableOfContents > ul > li > a {
+#TableOfContents li,
+.TableOfContents li {
+    white-space: nowrap;
+}
+
+#TableOfContents > ul > li > a,
+.TableOfContents > ul > li > a {
     font-weight: 500;
 }
 

@@ -34,7 +34,7 @@ var formelements = 'button, datalist, fieldset, input, label, legend, meter, opt
 // PerfectScrollbar
 var psc;
 var psm;
-var pst;
+var pst = new Map();
 var elc = document.querySelector('#body-inner');
 
 function regexEscape( s ){
@@ -709,7 +709,7 @@ function initMenuScrollbar(){
     }
 
     var elm = document.querySelector('#content-wrapper');
-    var elt = document.querySelector('#TableOfContents');
+    var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-button-flyout-wrapper');
 
     var autofocus = true;
     document.addEventListener('keydown', function(event){
@@ -737,10 +737,11 @@ function initMenuScrollbar(){
             // if we are showing the sidebar as a flyout we
             // want to scroll the content-wrapper, otherwise we want
             // to scroll the body
-            var nt = document.querySelector('body').matches('.toc-flyout');
+            var nt = document.querySelector('body').matches('.topbar-flyout');
             var nm = document.querySelector('body').matches('.sidebar-flyout');
             if( nt ){
-                pst && pst.scrollbarY.focus();
+                var psb = pst.get( document.querySelector('.topbar-button.topbar-flyout') );
+                psb && psb.scrollbarY.focus();
             }
             else if( nm ){
                 psm && psm.scrollbarY.focus();
@@ -756,7 +757,15 @@ function initMenuScrollbar(){
     // PSC removed for #242 #243 #244
     // psc = elc && new PerfectScrollbar('#body-inner');
     psm = elm && new PerfectScrollbar('#content-wrapper');
-    pst = elt && new PerfectScrollbar('#TableOfContents');
+    document.querySelectorAll('.topbar-button .topbar-button-flyout-wrapper').forEach( function( e ){
+        var button = getTopbarButtonParent( e );
+        if( !button ){
+            return;
+        }
+        pst.set( button, new PerfectScrollbar( e ) );
+        e.addEventListener( 'click', toggleTopbarFlyoutEvent );
+    });
+
     document.addEventListener('keydown', function(){
         // if we facked initial scrolling, we want to
         // remove the focus to not leave visual markers on
@@ -764,14 +773,18 @@ function initMenuScrollbar(){
         if( autofocus ){
             psc && psc.scrollbarY.blur();
             psm && psm.scrollbarY.blur();
-            pst && pst.scrollbarY.blur();
+            pst.forEach( function( psb ){
+                psb.scrollbarY.blur();
+            });
             autofocus = false;
         }
     });
     // on resize, we have to redraw the scrollbars to let new height
     // affect their size
     window.addEventListener('resize', function(){
-        pst && setTimeout( function(){ pst.update(); }, 10 );
+        pst.forEach( function( psb ){
+            setTimeout( function(){ psb.update(); }, 10 );
+        });
         psm && setTimeout( function(){ psm.update(); }, 10 );
         psc && setTimeout( function(){ psc.update(); }, 10 );
     });
@@ -784,7 +797,9 @@ function initMenuScrollbar(){
     });
     // bugfix for PS in RTL mode: the initial scrollbar position is off;
     // calling update() once, fixes this
-    pst && setTimeout( function(){ pst.update(); }, 10 );
+    pst.forEach( function( psb ){
+        setTimeout( function(){ psb.update(); }, 10 );
+    });
     psm && setTimeout( function(){ psm.update(); }, 10 );
     psc && setTimeout( function(){ psc.update(); }, 10 );
 
@@ -800,27 +815,9 @@ function imageEscapeHandler( event ){
     }
 }
 
-function sidebarEscapeHandler( event ){
-    if( event.key == "Escape" ){
-        var b = document.querySelector( 'body' );
-        b.classList.remove( 'sidebar-flyout' );
-        document.removeEventListener( 'keydown', sidebarEscapeHandler );
-        documentFocus();
-    }
-}
-
-function tocEscapeHandler( event ){
-    if( event.key == "Escape" ){
-        var b = document.querySelector( 'body' );
-        b.classList.remove( 'toc-flyout' );
-        document.removeEventListener( 'keydown', tocEscapeHandler );
-        documentFocus();
-    }
-}
-
-function sidebarShortcutHandler( event ){
+function navShortcutHandler( event ){
     if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 78 /* n */ ){
-        showNav();
+        toggleNav();
     }
 }
 
@@ -832,7 +829,7 @@ function searchShortcutHandler( event ){
 
 function tocShortcutHandler( event ){
     if( !event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 84 /* t */ ){
-        showToc();
+        toggleToc();
     }
 }
 
@@ -856,53 +853,125 @@ function showSearch(){
     var b = document.querySelector( 'body' );
     if( s == document.activeElement ){
         if( b.classList.contains( 'sidebar-flyout' ) ){
-            showNav();
+            closeNav();
         }
         documentFocus();
     } else {
         if( !b.classList.contains( 'sidebar-flyout' ) ){
-            showNav();
+            openNav();
         }
         s.focus();
     }
 }
 
-function showNav(){
-    if( !document.querySelector( '#sidebar-overlay' ) ){
-        // we may not have a flyout
-        return;
-    }
+function openNav(){
+    closeSomeTopbarButtonFlyout();
     var b = document.querySelector( 'body' );
-    b.classList.toggle( 'sidebar-flyout' );
-    if( b.classList.contains( 'sidebar-flyout' ) ){
-        b.classList.remove( 'toc-flyout' );
-        document.removeEventListener( 'keydown', tocEscapeHandler );
-        document.addEventListener( 'keydown', sidebarEscapeHandler );
-    }
-    else{
-        document.removeEventListener( 'keydown', sidebarEscapeHandler );
-        documentFocus();
+    b.classList.add( 'sidebar-flyout' );
+    psm && setTimeout( function(){ psm.update(); }, 10 );
+    psm && psm.scrollbarY.focus();
+    var a = document.querySelector( '#sidebar a' )
+    if( a ){
+        a.focus();
     }
 }
 
-function showToc(){
-    var t = document.querySelector( '.topbar-toc' );
-    if( !t ){
-        // we may not have a toc
-        return;
-    }
+function closeNav(){
     var b = document.querySelector( 'body' );
-    b.classList.toggle( 'toc-flyout' );
-    if( b.classList.contains( 'toc-flyout' ) ){
-        pst && setTimeout( function(){ pst.update(); }, 10 );
-        pst && pst.scrollbarY.focus();
-        document.querySelector( '.toc-wrapper ul a' ).focus();
-        document.addEventListener( 'keydown', tocEscapeHandler );
+    b.classList.remove( 'sidebar-flyout' );
+    documentFocus();
+}
+
+function toggleNav(){
+    var b = document.querySelector( 'body' );
+    if( b.classList.contains( 'sidebar-flyout' ) ){
+        closeNav();
     }
     else{
-        document.removeEventListener( 'keydown', tocEscapeHandler );
-        documentFocus();
+        openNav();
     }
+}
+
+function navEscapeHandler( event ){
+    if( event.key == "Escape" ){
+        closeNav();
+    }
+}
+
+function getTopbarButtonParent( e ){
+    var button = e;
+    while( button && !button.classList.contains( 'topbar-button' ) ){
+        button = button.parentElement;
+    }
+    return button;
+}
+
+function openTopbarButtonFlyout( button ){
+    closeNav();
+    var body = document.querySelector( 'body' );
+    button.classList.add( 'topbar-flyout' );
+    body.classList.add( 'topbar-flyout' );
+    var psb = pst.get( button );
+    psb && setTimeout( function(){ psb.update(); }, 10 );
+    psb && psb.scrollbarY.focus();
+    var a = button.querySelector( '.topbar-button-flyout-wrapper a' );
+    if( a ){
+        a.focus();
+    }
+}
+
+function closeTopbarButtonFlyout( button ){
+    var body = document.querySelector( 'body' );
+    button.classList.remove( 'topbar-flyout' );
+    body.classList.remove( 'topbar-flyout' );
+    documentFocus();
+}
+
+function closeSomeTopbarButtonFlyout(){
+    var someButton = document.querySelector( '.topbar-button.topbar-flyout' );
+    if( someButton ){
+        closeTopbarButtonFlyout( someButton );
+    };
+    return someButton
+}
+
+function toggleTopbarButtonFlyout( button ){
+    var someButton = closeSomeTopbarButtonFlyout();
+    if( button && button != someButton ){
+        openTopbarButtonFlyout( button );
+    }
+}
+
+function toggleTopbarFlyout( e ){
+    var button = getTopbarButtonParent( e );
+    if( !button ){
+        return;
+    }
+    toggleTopbarButtonFlyout( button );
+}
+
+function toggleTopbarFlyoutEvent( event ){
+    if( event.target.classList.contains( 'topbar-button-flyout' )
+        || event.target.classList.contains( 'topbar-button-flyout-wrapper' )
+        || event.target.classList.contains( 'ps__rail-x' )
+        || event.target.classList.contains( 'ps__rail-y' )
+        || event.target.classList.contains( 'ps__thumb-x' )
+        || event.target.classList.contains( 'ps__thumb-y' )
+        ){
+        // the scrollbar was used, don't close flyout
+        return;
+    }
+    toggleTopbarFlyout( event.target )
+}
+
+function topbarFlyoutEscapeHandler( event ){
+    if( event.key == "Escape" ){
+        closeSomeTopbarButtonFlyout();
+    }
+}
+
+function toggleToc(){
+    toggleTopbarButtonFlyout( document.querySelector( '.topbar-toc' ) );
 }
 
 function showEdit(){
@@ -935,21 +1004,20 @@ function initToc(){
     }
 
     document.addEventListener( 'keydown', editShortcutHandler );
+    document.addEventListener( 'keydown', navShortcutHandler );
     document.addEventListener( 'keydown', printShortcutHandler );
-    document.addEventListener( 'keydown', sidebarShortcutHandler );
     document.addEventListener( 'keydown', searchShortcutHandler );
     document.addEventListener( 'keydown', tocShortcutHandler );
+    document.addEventListener( 'keydown', navEscapeHandler );
+    document.addEventListener( 'keydown', topbarFlyoutEscapeHandler );
 
-    var s = document.querySelector( '#sidebar-overlay' );
-    if( s ){
-        s.addEventListener( 'click', showNav );
+    var b = document.querySelector( '#body-overlay' );
+    if( b ){
+        b.addEventListener( 'click', closeNav );
     }
-    var o = document.querySelector( '#toc-overlay' );
-    var p = document.querySelector( '.progress' );
-    if( o && p ){
-        // we may not have a toc
-        o.addEventListener( 'click', showToc );
-        p.addEventListener( 'click', showToc );
+    var m = document.querySelector( '#main-overlay' );
+    if( m ){
+        m.addEventListener( 'click', closeSomeTopbarButtonFlyout );
     }
 
     // finally give initial focus to allow keyboard scrolling in FF
@@ -980,10 +1048,7 @@ function initSwipeHandler(){
             else if( diffx > 30 ){
                 startx = null;
                 starty = null;
-                var b = document.querySelector( 'body' );
-                b.classList.remove( 'sidebar-flyout' );
-                document.removeEventListener( 'keydown', sidebarEscapeHandler );
-                documentFocus();
+                closeNav();
             }
         }
         return false;
@@ -994,7 +1059,7 @@ function initSwipeHandler(){
         return false;
     };
 
-    var s = document.querySelector( '#sidebar-overlay' );
+    var s = document.querySelector( '#body-overlay' );
     s && s.addEventListener("touchstart", handleStartX, false);
     document.querySelector( '#sidebar' ).addEventListener("touchstart", handleStartX, false);
     document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
