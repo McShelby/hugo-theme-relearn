@@ -12,6 +12,7 @@ Nevertheless, your requirements may differ from this configuration. Luckily the 
 {{% notice tip %}}
 All mentioned file names below can be clicked and show you the implementation for a better understanding.
 {{% /notice %}}
+
 ## Areas
 
 The default configuration comes with three predefined areas that may contain an arbitrary set of buttons.
