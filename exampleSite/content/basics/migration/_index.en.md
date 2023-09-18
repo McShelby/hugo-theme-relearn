@@ -20,7 +20,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.21.0 (2023-09-03) {#5210}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may want to review the styling (eg. margins/paddings) of your partial.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may want to review the styling (eg. margins/paddings) of your partial.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with an awesome new feature, that allows you to customize your topbar buttons, change behavior, reorder them or define entirely new ones, unique to your installation. See [the documentation]({{%relref "basics/topbar" %}}) for further details.
 

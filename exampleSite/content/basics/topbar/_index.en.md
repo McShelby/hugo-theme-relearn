@@ -68,9 +68,9 @@ Depending on the screen width you can configure how the button should behave. Sc
 
 For each width class, you can configure one of the following actions:
 
-- **show**: the button is displayed in its configured area
-- **hide**: the button is hidden
-- **area-XXX**: the button is moved from its configured area into the area `XXX`; eg. this is used to move buttons to the _more_ area in the mobile layout
+- `show`: the button is displayed in its configured area
+- `hide`: the button is hidden
+- `area-XXX`: the button is moved from its configured area into the area `XXX`; eg. this is used to move buttons to the _more_ area in the mobile layout
 
 #### Hiding and Disabling Stuff
 
@@ -82,8 +82,8 @@ Another prefered condition for hiding a button is, if the displayed overlay is e
 
 This parameter can have one of the following values:
 
-- **hide**: the button is hidden if the overlay is empty
-- **disable**: the button is disabled if the overlay is empty
+- `hide`: the button is hidden if the overlay is empty
+- `disable`: the button is disabled if the overlay is empty
 
 If you want to disable a button containing _no overlay_, this can be achieved by an empty `href` parameter. An example can be seen in the _prev_ button (see `layouts/partials/topbar/button/prev.html`) where the URL for the previous site may be empty.
 
@@ -130,7 +130,7 @@ The predefined buttons by the theme (all other buttons besides the _more_ and _t
 | Name                  | Default           | Notes       |
 |-----------------------|-------------------|-------------|
 | **page**              | _&lt;empty&gt;_   | Mandatory reference to the page. |
-| **onwidths**          | _&lt;varying&gt;_ | The action, that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its configured area<br>- `hide_&lt;varying&gt;_ is hidden.<br>- `area-XXX`: The button is moved from its configured area into the area `XXX`. |
+| **onwidths**          | _&lt;varying&gt;_ | The action, that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its configured area<br>- `hide`: The button is hidden.<br>- `area-XXX`: The button is moved from its configured area into the area `XXX`. |
 | **onwidthm**          | _&lt;varying&gt;_ | See above. |
 | **onwidthl**          | _&lt;varying&gt;_ | See above. |
 
