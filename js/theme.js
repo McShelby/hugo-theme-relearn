@@ -644,9 +644,9 @@ function initArrowNav(){
     }
 
     // button navigation
-    var prev = document.querySelector( '.topbar-prev a' );
+    var prev = document.querySelector( '.topbar-button-prev a' );
     prev && prev.addEventListener( 'click', navPrev );
-    var next = document.querySelector( '.topbar-next a' );
+    var next = document.querySelector( '.topbar-button-next a' );
     next && next.addEventListener( 'click', navNext );
 
     // keyboard navigation
@@ -709,7 +709,7 @@ function initMenuScrollbar(){
     }
 
     var elm = document.querySelector('#content-wrapper');
-    var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-button-flyout-wrapper');
+    var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-content-wrapper');
 
     var autofocus = true;
     document.addEventListener('keydown', function(event){
@@ -757,7 +757,7 @@ function initMenuScrollbar(){
     // PSC removed for #242 #243 #244
     // psc = elc && new PerfectScrollbar('#body-inner');
     psm = elm && new PerfectScrollbar('#content-wrapper');
-    document.querySelectorAll('.topbar-button .topbar-button-flyout-wrapper').forEach( function( e ){
+    document.querySelectorAll('.topbar-button .topbar-content-wrapper').forEach( function( e ){
         var button = getTopbarButtonParent( e );
         if( !button ){
             return;
@@ -914,7 +914,7 @@ function openTopbarButtonFlyout( button ){
     var psb = pst.get( button );
     psb && setTimeout( function(){ psb.update(); }, 10 );
     psb && psb.scrollbarY.focus();
-    var a = button.querySelector( '.topbar-button-flyout-wrapper a' );
+    var a = button.querySelector( '.topbar-content-wrapper a' );
     if( a ){
         a.focus();
     }
@@ -951,8 +951,8 @@ function toggleTopbarFlyout( e ){
 }
 
 function toggleTopbarFlyoutEvent( event ){
-    if( event.target.classList.contains( 'topbar-button-flyout' )
-        || event.target.classList.contains( 'topbar-button-flyout-wrapper' )
+    if( event.target.classList.contains( 'topbar-content' )
+        || event.target.classList.contains( 'topbar-content-wrapper' )
         || event.target.classList.contains( 'ps__rail-x' )
         || event.target.classList.contains( 'ps__rail-y' )
         || event.target.classList.contains( 'ps__thumb-x' )
@@ -971,30 +971,30 @@ function topbarFlyoutEscapeHandler( event ){
 }
 
 function toggleToc(){
-    toggleTopbarButtonFlyout( document.querySelector( '.topbar-toc' ) );
+    toggleTopbarButtonFlyout( document.querySelector( '.topbar-button-toc' ) );
 }
 
 function showEdit(){
-    var l = document.querySelector( '.topbar-edit a' );
+    var l = document.querySelector( '.topbar-button-edit a' );
     if( l ){
         l.click();
     }
 }
 
 function showPrint(){
-    var l = document.querySelector( '.topbar-print a' );
+    var l = document.querySelector( '.topbar-button-print a' );
     if( l ){
         l.click();
     }
 }
 
 function navPrev(){
-    var e = document.querySelector( '.topbar-prev a' );
+    var e = document.querySelector( '.topbar-button-prev a' );
     location.href = e && e.getAttribute( 'href' );
 };
 
 function navNext(){
-    var e = document.querySelector( '.topbar-next a' );
+    var e = document.querySelector( '.topbar-button-next a' );
     location.href = e && e.getAttribute( 'href' );
 };
 
@@ -1426,25 +1426,6 @@ function updateTheme( detail ){
     }));
 }
 
-ready( function(){
-    initArrowNav();
-    initMermaid();
-    initOpenapi();
-    initMenuScrollbar();
-    initToc();
-    initAnchorClipboard();
-    initCodeClipboard();
-    fixCodeTabs();
-    restoreTabSelections();
-    initSwipeHandler();
-    initHistory();
-    initSearch();
-    initImage();
-    initExpand();
-    initScrollPositionSaver();
-    scrollToPositions();
-});
-
 function useMermaid( config ){
     if( !Object.assign ){
         // We don't support Mermaid for IE11 anyways, so bail out early
@@ -1471,3 +1452,164 @@ function useOpenapi( config ){
 if( window.themeUseOpenapi ){
     useOpenapi( window.themeUseOpenapi );
 }
+
+ready( function(){
+    initArrowNav();
+    initMermaid();
+    initOpenapi();
+    initMenuScrollbar();
+    initToc();
+    initAnchorClipboard();
+    initCodeClipboard();
+    fixCodeTabs();
+    restoreTabSelections();
+    initSwipeHandler();
+    initHistory();
+    initSearch();
+    initImage();
+    initExpand();
+    initScrollPositionSaver();
+    scrollToPositions();
+});
+
+(function(){
+    var body = document.querySelector( 'body' );
+    var topbar = document.querySelector( '#topbar' );
+    function addTopbarButtonInfos(){
+        // initially add some management infos to buttons and areas
+        var areas = body.querySelectorAll( '.topbar-area' );
+        areas.forEach( function( area ){
+            area.dataset.area = 'area-' + area.dataset.area;
+            var buttons = area.querySelectorAll( ':scope > .topbar-button' );
+            buttons.forEach( function( button ){
+                button.dataset.origin = area.dataset.area;
+                button.dataset.action = 'show';
+                var placeholder = document.createElement( 'div' );
+                placeholder.classList.add( 'topbar-placeholder' );
+                placeholder.dataset.action = 'show';
+                button.insertAdjacentElement( 'afterend', placeholder );
+            });
+            var placeholder = document.createElement( 'div' );
+            area.insertAdjacentElement( 'beforeend', placeholder );
+            var hidden = document.createElement( 'div' );
+            hidden.classList.add( 'topbar-hidden' );
+            hidden.dataset.area = area.dataset.area;
+            var hplaceholder = document.createElement( 'div' );
+            hidden.insertAdjacentElement( 'beforeend', hplaceholder );
+            area.insertAdjacentElement( 'afterend', hidden );
+        });
+    }
+    function moveAreaTopbarButtons( width ){
+        topbar.querySelectorAll( '.topbar-hidden .topbar-button' ).forEach( function( button ){
+            // move hidden to origins area
+            var placeholder = button.parentNode.parentNode.querySelector( ':scope > .topbar-area .topbar-placeholder[data-action="hide"]' );
+            placeholder.dataset.action = 'show';
+            button.dataset.action = 'show';
+            placeholder.insertAdjacentElement( 'beforebegin', button );
+        });
+        topbar.querySelectorAll( '.topbar-area .topbar-button' ).forEach( function( button ){
+            var current_area = button.dataset.action;
+            var origin_area = button.dataset.origin;
+            if( current_area != 'show' && origin_area != current_area ){
+                // move moved to origins area
+                var placeholder = topbar.querySelector( '.topbar-area[data-area="' + origin_area + '"] > .topbar-placeholder[data-action="' + current_area + '"]' );
+                placeholder.dataset.action = 'show';
+                button.dataset.action = 'show';
+                placeholder.insertAdjacentElement( 'beforebegin', button );
+            }
+        });
+        Array.from( topbar.querySelectorAll( '.topbar-area .topbar-button' ) ).reverse().forEach( function( button ){
+            var parent = button.parentElement;
+            var current_area = parent.dataset.area;
+            var action = button.dataset[ 'width' + width.toUpperCase() ];
+            if( action == 'show' ){
+            }
+            else if( action == 'hide' ){
+                // move to origins hidden
+                var hidden = button.parentNode.parentNode.querySelector( ':scope > .topbar-hidden > *' );
+                var placeholder = button.nextSibling;
+                placeholder.dataset.action = action;
+                button.dataset.action = action;
+                hidden.insertAdjacentElement( 'beforebegin', button );
+            }
+            else if( action != current_area ){
+                // move to action area
+                var dest = button.parentNode.parentNode.querySelector( '.topbar-area[data-area="' + action + '"] > *' );
+                if( dest ){
+                    var placeholder = button.nextSibling;
+                    placeholder.dataset.action = action;
+                    button.dataset.action = action;
+                    dest.insertAdjacentElement( 'beforebegin', button );
+                }
+            }
+        });
+    }
+    function moveTopbarButtons(){
+        var isS = body.classList.contains( 'width-s' );
+        var isM = body.classList.contains( 'width-m' );
+        var isL = body.classList.contains( 'width-l' );
+        // move buttons once, width has a distinct value
+        if( isS && !isM && !isL ){
+            moveAreaTopbarButtons( 's' )
+        }
+        else if( !isS && isM && !isL ){
+            moveAreaTopbarButtons( 'm' )
+        }
+        else if( !isS && !isM && isL ){
+            moveAreaTopbarButtons( 'l' )
+        }
+    }
+    function adjustEmptyTopbarContents(){
+        var buttons = Array.from( document.querySelectorAll( '.topbar-button > .topbar-content > .topbar-content-wrapper' ) );
+        // we have to reverse order to make sure to handle innermost areas first
+        buttons.reverse().forEach( function( wrapper ){
+            var button = getTopbarButtonParent( wrapper );
+            if( button ){
+                var isEmpty = true;
+                var area = wrapper.querySelector( ':scope > .topbar-area');
+                if( area ){
+                    // if it's an area, we have to check each contained button
+                    // manually for its display property
+                    var areabuttons = area.querySelectorAll( ':scope > .topbar-button' );
+                    isEmpty = true;
+                    areabuttons.forEach( function( ab ){
+                        if( ab.style.display != 'none' ){
+                            isEmpty = false;
+                        }
+                    })
+                }
+                else{
+                    var clone = wrapper.cloneNode( true );
+                    var irrelevant = clone.querySelectorAll( "div.ps__rail-x, div.ps__rail-y" );
+                    irrelevant.forEach(function( e ) {
+                        e.parentNode.removeChild( e );
+                    });
+                    isEmpty = !clone.innerHTML.trim();
+                }
+                button.querySelector( 'button' ).disabled = isEmpty;
+                button.style.display = isEmpty && button.dataset.contentEmpty == 'hide' ? 'none' : 'inline-block';
+            }
+        })
+    }
+    function setWidthS(e){ body.classList[ e.matches ? "add" : "remove" ]( 'width-s' ); }
+    function setWidthM(e){ body.classList[ e.matches ? "add" : "remove" ]( 'width-m' ); }
+    function setWidthL(e){ body.classList[ e.matches ? "add" : "remove" ]( 'width-l' ); }
+    function onWidthChange( setWidth, e ){
+        setWidth( e );
+        moveTopbarButtons();
+        adjustEmptyTopbarContents();
+    }
+    var mqs = window.matchMedia( 'only screen and (max-width: 48rem)' );
+    mqs.addEventListener( 'change', onWidthChange.bind( null, setWidthS ) );
+    var mqm = window.matchMedia( 'only screen and (min-width: 48rem) and (max-width: 60rem)' );
+    mqm.addEventListener( 'change', onWidthChange.bind( null, setWidthM ) );
+    var mql = window.matchMedia( 'only screen and (min-width: 60rem)' );
+    mql.addEventListener( 'change', onWidthChange.bind( null, setWidthL ) );
+
+    addTopbarButtonInfos();
+    setWidthS( mqs );
+    setWidthM( mqm );
+    setWidthL( mql );
+    moveTopbarButtons();
+    adjustEmptyTopbarContents();
+})();
