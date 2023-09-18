@@ -1,6 +1,10 @@
 {{- $page := .page }}
 {{- $class := .class | default "" }}
 {{- $href := (trim .href " ") | default "" }}
+{{- $onempty := cond (isset . "onempty") .onempty "disable" }}
+{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
+{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
+{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- $target := .target | default "" }}
 {{- $type := .type | default "" }}
 {{- $isDisabled := not $href }}
@@ -23,13 +27,13 @@
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- $content := .content }}
-            <div class="topbar-button {{ $class }}">
+            <div class="topbar-button {{ $class }}" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}">
 {{- if $isDisabled }}
-              <span class="topbar-button-control">
+              <span class="topbar-control">
 {{- else if $isButton }}
-              <button class="topbar-button-control"{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
+              <button class="topbar-control"{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
 {{- else }}
-              <a class="topbar-button-control"{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
+              <a class="topbar-control"{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
 {{- end }}
                 <i class="{{ $icon }}"></i>
 {{- if $isDisabled }}
@@ -40,8 +44,8 @@
               </a>
 {{- end }}
 {{- if $content }}
-              <div class="topbar-button-flyout">
-                <div class="topbar-button-flyout-wrapper">
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
                   {{- $content }}
                 </div>
               </div>

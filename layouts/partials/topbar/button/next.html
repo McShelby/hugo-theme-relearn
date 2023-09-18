@@ -1,0 +1,33 @@
+{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
+{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
+{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
+{{- with .page }}
+	{{- $format := partial "get-format.hugo" . }}
+	{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+	{{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
+	{{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
+		{{- $endarrow := "🡒" }}
+		{{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
+			{{- $endarrow = "🡐" }}
+		{{- end }}
+		{{- $ispublished := true }}
+		{{- with .Parent }}
+			{{- $ispublished = gt (int (len .Permalink)) 0 }}
+		{{- end }}
+		{{- $next := "" }}
+		{{- if or (ne $outputFormat "html") (not (and $ispublished (.Scratch.Get "relearnNextPage"))) }}
+		{{- else }}
+			{{- $next = .Scratch.Get "relearnNextPage" }}
+		{{- end }}
+		{{- partial "topbar/func/button.html" (dict
+			"page" .
+			"class" "topbar-button-next"
+			"href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $next))
+			"icon" "chevron-right"
+			"onwidths" $onwidths
+			"onwidthm" $onwidthm
+			"onwidthl" $onwidthl
+			"title" (printf "%s (%s)" ($next | default .).Title ($endarrow | safeHTML))
+		)}}
+	{{- end }}
+{{- end }}

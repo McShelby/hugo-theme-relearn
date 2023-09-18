@@ -1,0 +1,20 @@
+{{- $onwidths := cond (isset . "onwidths") .onwidths "area-more" }}
+{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
+{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
+{{- with .page }}
+	{{- $format := partial "get-format.hugo" . }}
+	{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+	{{- $editURL := .Site.Params.editURL | default "" }}
+	{{- if and (eq $outputFormat "html") $editURL .File }}
+		{{- partial "topbar/func/button.html" (dict
+			"page" .
+			"class" "topbar-button-edit"
+			"href" (printf "%s%s%s" $editURL (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName)
+			"icon" "pen"
+			"onwidths" $onwidths
+			"onwidthm" $onwidthm
+			"onwidthl" $onwidthl
+			"title" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
+		)}}
+	{{- end }}
+{{- end }}

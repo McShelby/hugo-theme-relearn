@@ -69,7 +69,7 @@ To get support, feel free to open a new [discussion topic](https://github.com/Mc
 
 ## Contributions
 
-Feel free to contribute to this documentation by just clicking the {{% button style="transparent" icon="pen" %}}{{% /button %}} button displayed on top right of each page.
+Feel free to contribute to this documentation by just clicking the {{% button style="transparent" icon="pen" %}}{{% /button %}} _edit_ button displayed on top right of each page.
 
 You are most welcome to contribute bugfixes or new features by making pull requests to the [official repository](https://github.com/McShelby/hugo-theme-relearn). Check the [contribution guidelines]({{%relref "dev/contributing" %}}) first before starting.
 

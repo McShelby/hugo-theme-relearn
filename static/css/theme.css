@@ -401,9 +401,9 @@ dd {
 .topbar-breadcrumbs a:hover *,
 .topbar-breadcrumbs a:active *,
 .topbar-breadcrumbs a:focus *,
-.topbar-button-flyout a:hover,
-.topbar-button-flyout a:active,
-.topbar-button-flyout a:focus,
+.topbar-content a:hover,
+.topbar-content a:active,
+.topbar-content a:focus,
 article a:hover,
 article a:active,
 article a:focus {
@@ -975,7 +975,7 @@ td {
     z-index: 170;
 }
 
-#topbar > div {
+#topbar > .topbar-wrapper {
     align-items: center;
     background-color: rgba( 134, 134, 134, .066 );
     display: flex;
@@ -988,20 +988,24 @@ td {
     display: inline-block;
     position: relative;
 }
+.topbar-button:not([data-origin]) {
+    display: none;
+}
 
-.topbar-button > .topbar-button-control {
+.topbar-button > .topbar-control {
     display: inline-block;
     padding-left: 1rem;
     padding-right: 1rem;
 }
-.topbar-left .topbar-button > .topbar-button-control {
+.topbar-wrapper > .topbar-area-start > .topbar-button > .topbar-control {
     border-inline-end: 1px solid rgba( 134, 134, 134, .333 );
 }
-.topbar-right .topbar-button > .topbar-button-control {
+.topbar-wrapper > .topbar-area-end > .topbar-button > .topbar-control {
     border-inline-start: 1px solid rgba( 134, 134, 134, .333 );
 }
 
-.topbar-button span i{
+.topbar-button > button:disabled i,
+.topbar-button > span i {
     color: rgba( 134, 134, 134, .333 );
 }
 .topbar-button button{
@@ -1024,38 +1028,37 @@ td {
         border-inline-start-color: transparent;
     }
 }
-.topbar-left {
+.topbar-wrapper > .topbar-area-start {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
 }
-.topbar-right {
+.topbar-wrapper > .topbar-area-end {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
 }
-
-html[dir="rtl"] .topbar-prev i,
-html[dir="rtl"] .topbar-next i {
-    transform: scaleX(-1);
-}
-.topbar-sidebar {
+.topbar-wrapper > .topbar-hidden {
     display: none;
 }
-@media screen and (max-width: 48rem) {
-    .mobile-support .topbar-sidebar {
-        display: inline-block;
-    }
+
+html[dir="rtl"] .topbar-button-prev i,
+html[dir="rtl"] .topbar-button-next i {
+    transform: scaleX(-1);
 }
 
-.topbar-button-flyout {
+.topbar-content {
     top: .75rem;
 }
-.topbar-left .topbar-button-flyout {
+.topbar-wrapper > .topbar-area-start .topbar-content {
     inset-inline-start: 1.5rem;
 }
-.topbar-right .topbar-button-flyout {
+.topbar-wrapper > .topbar-area-end .topbar-content {
     inset-inline-end: 1.5rem;
+}
+.topbar-content .topbar-content{
+    /* we don't allow flyouts in flyouts; come on, don't get funny... */
+    display: none;
 }
 
 .topbar-breadcrumbs {
@@ -1370,7 +1373,7 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     z-index: 160;
 }
 
-.topbar-button-flyout {
+.topbar-content {
     border: 0 solid rgba( 134, 134, 134, .166 );
     box-shadow: 1px 2px 5px 1px rgba( 134, 134, 134, .2 );
     height: 0;
@@ -1381,23 +1384,32 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     z-index: 180;
 }
 
-.topbar-button.topbar-flyout .topbar-button-flyout {
+.topbar-button.topbar-flyout .topbar-content {
     border-width: 1px;
     height: auto;
     opacity: 1;
     width: auto;
 }
 
-.topbar-button-flyout .topbar-button-flyout-wrapper {
+.topbar-content .topbar-content-wrapper {
     background-color: rgba( 134, 134, 134, .066 );
 }
 
-.topbar-button-flyout-wrapper {
+.topbar-content-wrapper {
     --ps-rail-hover-color: rgba( 176, 176, 176, .25 );
     max-height: 90vh;
     overflow: hidden;
-    padding: 1rem 1rem;
+    padding: .5rem 1rem;
     position: relative; /* PS */
+}
+
+.topbar-content .topbar-button .topbar-control {
+    border-width: 0;
+    padding: 0;
+}
+.topbar-content .topbar-button .topbar-control {
+    border-width: 0;
+    padding: .5rem 0;
 }
 
 #TableOfContents,

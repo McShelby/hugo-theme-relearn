@@ -1,0 +1,35 @@
+{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
+{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
+{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
+{{- with .page }}
+	{{- $format := partial "get-format.hugo" . }}
+	{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+	{{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
+	{{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
+		{{- $startarrow := "🡐" }}
+		{{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
+			{{- $startarrow = "🡒" }}
+		{{- end }}
+		{{- $ispublished := true }}
+		{{- with .Parent }}
+			{{- $ispublished = gt (int (len .Permalink)) 0 }}
+		{{- end }}
+		{{- $prev := "" }}
+		{{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
+		{{- else if or (ne $outputFormat "html") (not (and $ispublished (.Scratch.Get "relearnPrevPage"))) (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") }}
+			{{- $prev = .Site.Home }}
+		{{- else }}
+			{{- $prev = .Scratch.Get "relearnPrevPage" }}
+		{{- end}}
+		{{- partial "topbar/func/button.html" (dict
+			"page" .
+			"class" "topbar-button-prev"
+			"href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $prev))
+			"icon" "chevron-left"
+			"onwidths" $onwidths
+			"onwidthm" $onwidthm
+			"onwidthl" $onwidthl
+			"title" (printf "%s (%s)" ($prev | default .).Title ($startarrow | safeHTML))
+		)}}
+	{{- end }}
+{{- end }}
