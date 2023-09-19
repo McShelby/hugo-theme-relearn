@@ -57,8 +57,8 @@ Eg. you can redefine the predefined _end_ area by adding the file [`layouts/part
 
 The theme distingushies between two types of buttons:
 
-- **button**: a clickable button that either browses to another site or triggers a user defined script
-- **area-button**: the template for the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button, to define your own area overlay buttons
+- [**button**](#button): a clickable button that either browses to another site or triggers a user defined script
+- [**area-button**](#area-button): the template for the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button, to define your own area overlay buttons
 
 ### Button Parameter
 
