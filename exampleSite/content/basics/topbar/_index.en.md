@@ -122,6 +122,8 @@ Contains the basic functionality to display area overlay buttons ([`layouts/part
 
 Call this from your own button templates if you want to implement a button with an overlay area like the _more_ button ([`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)).
 
+#### Parameter
+
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
@@ -137,7 +139,7 @@ Call this from your own button templates if you want to implement a button with 
 
 The predefined buttons by the theme (all other buttons besides the _more_ and _toc_ button in [`layouts/partials/topbar/button`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button)).
 
-Call these from your own redefined area templates if you want to offer some of the default button behavior.
+Call these from your own redefined area templates if you want to use default button behavior.
 
 | Name                  | Default           | Notes       |
 |-----------------------|-------------------|-------------|
@@ -150,7 +152,9 @@ Call these from your own redefined area templates if you want to offer some of t
 
 The predefined buttons by the theme that open an overlay (the _more_ and _toc_ button in [`layouts/partials/topbar/button`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button)).
 
-Call these from your own redefined area templates if you want to offer some of the default area button behavior.
+Call these from your own redefined area templates if you want to use default button behavior utilizing overlay functionality.
+
+#### Parameter
 
 | Name                  | Default           | Notes       |
 |-----------------------|-------------------|-------------|
