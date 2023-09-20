@@ -76,7 +76,7 @@
           </div>
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
-          <ol class="topbar-breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
             {{- template "breadcrumb" dict "page" . "to" . }}
           </ol>
           {{- else }}
@@ -96,6 +96,7 @@
 {{- define "breadcrumb" }}
   {{- $breadcrumb := slice }}
   {{- $page := .page }}
+  {{- $pageurl := partial "relLangPrettyUglyURL.hugo" (dict "to" $page) }}
   {{- $to := .to }}
   {{- $breadcrumb = $breadcrumb | append $to }}
   {{- $depth := int (partial "get-page-depth.hugo" (dict "page" $page)) }}
@@ -112,12 +113,10 @@
   {{- range seq $len }}
     {{- $breadcrumbReversed = $breadcrumbReversed | append (index $breadcrumb (sub $len .)) }}
   {{- end }}
-  {{- $remaining := $len }}
   {{- $depth := 0 }}
   {{- range $i, $e := $breadcrumbReversed }}
     {{- $to := $e }}
     {{- $ispublished := gt (int (len $to.Permalink)) 0 }}
-    {{- $remaining = sub $remaining 1 }}
     {{- if $ispublished }}
       {{- $depth = add $depth 1 }}
       {{- $title := $to.Title }}
@@ -136,7 +135,11 @@
       {{- if not $title }}
         {{- $title = $to.Site.Title }}
       {{- end }}
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $remaining }}<a itemprop="item" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{end}}<span itemprop="name">{{ $title }}</span>{{ if $remaining }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if $remaining }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
+        {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}
+        {{- $last := eq $url $pageurl }}
+        {{- $link := and $url (not $last) }}
+              {{- printf "<li" | safeHTML }}
+              itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $link }}<a itemprop="item" href="{{ $url }}">{{end}}<span itemprop="name">{{ $title }}</span>{{ if $link }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if not $last }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
     {{- end }}
   {{- end }}
 {{- end }}
