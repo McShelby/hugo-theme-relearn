@@ -135,20 +135,28 @@ Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multiling
 
 If you have shortcuts to pages inside of your project and you don't want them to show up in page menu section, you have two choices:
 
-1. Make the page file for the shortcut section a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be ontained in the sitemap.
+1. Make the page file for the shortcut a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
     ````toml
+    title = "Showcase"
+    [_build]
+      render = "always"
+      list = "never"
+      publishResources = true
+    ````
+
+2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`).
+
+    ````toml
+    # title = "More" ### ATTENTION: Don't give this page a title as this will cause it to be in the breadcrumbs - a thing you most likely don't want
     [_build]
       render = "never"
       list = "never"
       publishResources = false
     ````
 
-2. Store the page file for the shortcut section below a parent headless branch bundle and add the following frontmatter to he **parent**. In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's content/more/` and `content/more/credits`). This causes its content to be contained in the sitemap.
+    In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/credits.en.md`). This causes its content to be contained in the sitemap.
 
     ````toml
-    [_build]
-      render = "always"
-      list = "never"
-      publishResources = true
+    title = "Credits"
     ````

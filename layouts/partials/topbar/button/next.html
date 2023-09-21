@@ -10,12 +10,8 @@
 		{{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
 			{{- $endarrow = "🡐" }}
 		{{- end }}
-		{{- $ispublished := true }}
-		{{- with .Parent }}
-			{{- $ispublished = gt (int (len .Permalink)) 0 }}
-		{{- end }}
 		{{- $next := "" }}
-		{{- if or (ne $outputFormat "html") (not (and $ispublished (.Scratch.Get "relearnNextPage"))) }}
+		{{- if or (ne $outputFormat "html") (not (.Scratch.Get "relearnNextPage")) }}
 		{{- else }}
 			{{- $next = .Scratch.Get "relearnNextPage" }}
 		{{- end }}

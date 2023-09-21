@@ -20,12 +20,12 @@
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" (.Site.Params.ordersectionsby | default "weight") }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
-	{{- $isSelf := eq $currentNode.RelPermalink .node.RelPermalink }}
+	{{- $isSelf := eq $currentNode .node }}
 	{{- $isDescendant := and (not $isSelf) (.node.IsDescendant $currentNode) }}
 	{{- $isAncestor := and (not $isSelf) (.node.IsAncestor $currentNode) }}
 	{{- $isOther := and (not $isDescendant) (not $isSelf) (not $isAncestor) }}
 
-	{{- $isChildren := and (.node.Parent) (eq $currentNode.RelPermalink .node.Parent.RelPermalink) }}
+	{{- $isChildren := eq $currentNode .node.Parent }}
 	{{- if $isSelf }}
 		{{- $currentNode.Scratch.Set "relearnIsSelfFound" true }}
 	{{- end}}
@@ -44,9 +44,9 @@
 	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenFrom" .node.RelPermalink $hidden_current_stem }}
 
 	{{- if not $hidden_from_current }}
-		{{- if $isPreSelf }}
+		{{- if and $isPreSelf .node.RelPermalink }}
 			{{- $currentNode.Scratch.Set "relearnPrevPage" .node }}
-		{{- else if and $isPostSelf (eq ($currentNode.Scratch.Get "relearnNextPage") nil) }}
+		{{- else if and $isPostSelf .node.RelPermalink (eq ($currentNode.Scratch.Get "relearnNextPage") nil) }}
 			{{- $currentNode.Scratch.Set "relearnNextPage" .node }}
 		{{- end}}
 	{{- end }}

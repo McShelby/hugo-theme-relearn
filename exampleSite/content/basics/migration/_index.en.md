@@ -18,6 +18,20 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
+## 5.22.0 (2023-09-21) {#5220}
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} You can now have structural sections in the hierarchical menu without generating a page for it.
+
+  This can come in handy, if content for such a section page doesn't make much sense to you. See [the documentation]({{% relref "cont/pages#disable-section-pages" %}}) for how to do this.
+
+  This feature may require you to make changes to your existing installation if you are already using _[shortcuts to pages inside of your project]({{% relref "cont/menushortcuts#shortcuts-to-pages-inside-of-your-project" %}})_ with a _headless branch parent_.
+
+  In this case it is advised to remove the `title` from the headless branch parent's frontmatter, as it will otherwise appear in your breadcrumbs.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The above change has a nice side effect. It is now possible to overwrite the setting for `collapsibleMenu` of your `config.toml` inside of a page's frontmatter.
+
+---
+
 ## 5.21.0 (2023-09-18) {#5210}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may want to review the styling (eg. margins/paddings) of your partial.
@@ -245,24 +259,32 @@ This document shows you what's new in the latest release. For a detailed list of
 
   It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu aswell.
 
-  To get rid of this undesired behavior you have two choices:
+  To [get rid]/]({{% relref "cont/menushortcuts#shortcuts-to-pages-inside-of-your-project" %}}) of this undesired behavior you have two choices:
 
-  1. Make the page file for the `More` section a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase`). This causes its content to **not** be contained in the sitemap.
+  1. Make the page file a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
       ````toml
+      title = "Showcase"
+      [_build]
+        render = "always"
+        list = "never"
+        publishResources = true
+      ````
+
+  2. Store the page file for below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`).
+
+      ````toml
+      # title = "More" ### ATTENTION: Don't give this page a title as this will cause it to be in the breadcrumbs - a thing you most likely don't want
       [_build]
         render = "never"
         list = "never"
         publishResources = false
       ````
 
-  2. Store the page file for the `More` section below a parent headless branch bundle and add the following frontmatter to the **parent**. In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/` and `content/more/credits`). This causes its content to be contained in the sitemap.
+      In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/credits.en.md`). This causes its content to be contained in the sitemap.
 
       ````toml
-      [_build]
-        render = "always"
-        list = "never"
-        publishResources = true
+      title = "Credits"
       ````
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The required folder name for the [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) was changed for leaf bundles.

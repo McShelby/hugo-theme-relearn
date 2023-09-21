@@ -10,13 +10,9 @@
 		{{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
 			{{- $startarrow = "🡒" }}
 		{{- end }}
-		{{- $ispublished := true }}
-		{{- with .Parent }}
-			{{- $ispublished = gt (int (len .Permalink)) 0 }}
-		{{- end }}
 		{{- $prev := "" }}
 		{{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
-		{{- else if or (ne $outputFormat "html") (not (and $ispublished (.Scratch.Get "relearnPrevPage"))) (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") }}
+		{{- else if or (ne $outputFormat "html") (not (.Scratch.Get "relearnPrevPage")) (eq .Page.Kind "taxonomy") (eq .Page.Kind "term") }}
 			{{- $prev = .Site.Home }}
 		{{- else }}
 			{{- $prev = .Scratch.Get "relearnPrevPage" }}

@@ -24,7 +24,7 @@
     {{- $len := 0 }}
     {{- range .Pages }}
       {{- $c:=""}}{{/* count pages of term */}}
-      {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+      {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
         {{- $len = add $len 1 }}
       {{- end }}
     {{- end }}

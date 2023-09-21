@@ -64,6 +64,8 @@ The Relearn theme uses the following parameters on top of Hugo ones:
 disableToc = false
 # If set, this will be used for the page's menu entry (instead of the `title` attribute)
 menuTitle = ""
+# If set to true, the menu in the sidebar will be displayed in a collapsible tree view. Although the functionality works with old browsers (IE11), the display of the expander icons is limited to modern browsers
+collapsibleMenu = false
 # If set, this will explicitly override common rules for the expand state of a page's menu entry
 alwaysopen = true
 # If set, this will explicitly override common rules for the sorting order of a page's submenu entries
@@ -146,3 +148,17 @@ The theme generates the menu based on the following rules:
 - all remaining entries are not shown
 
 You can see this feature in action on the example page for [children shortcode]({{< relref "shortcodes/children" >}}) and its children pages.
+
+## Disable Section Pages
+
+You may want to structure your pages in a hierachical way but don't want to generate pages for those sections? The theme got you covered.
+
+To stay with the initial example: Suppose you want `level-one` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
+
+For this, open `content/level-one/_index.md` and add the following frontmatter
+
+````toml
+collapsibleMenu = true # this adds the expander to the menu entry if not already set in your config.toml
+[_build]
+  render = "never" # no page will be generated so the page does not have a url
+````

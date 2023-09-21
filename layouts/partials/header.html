@@ -103,7 +103,9 @@
   {{- range seq $depth }}
     {{- $to = $to.Parent }}
     {{- if $to }}
-      {{- $breadcrumb = $breadcrumb | append $to }}
+      {{- if $to.Title }}
+        {{- $breadcrumb = $breadcrumb | append $to }}
+      {{- end }}
     {{- else }}
       {{- break }}
     {{- end }}
@@ -116,30 +118,27 @@
   {{- $depth := 0 }}
   {{- range $i, $e := $breadcrumbReversed }}
     {{- $to := $e }}
-    {{- $ispublished := gt (int (len $to.Permalink)) 0 }}
-    {{- if $ispublished }}
-      {{- $depth = add $depth 1 }}
-      {{- $title := $to.Title }}
-      {{- if eq .Kind "taxonomy" }}
-        {{- $title = i18n $to.Data.Plural }}
-        {{- if not $title }}
-          {{- $title = $to.Data.Plural }}
-        {{- end }}
-      {{- else if eq .Kind "term" }}
-        {{- $title = i18n $to.Data.Singular }}
-        {{- if not $title }}
-          {{- $title = $to.Data.Singular }}
-        {{- end }}
-        {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) $to.Title }}
-      {{- end }}
+    {{- $depth = add $depth 1 }}
+    {{- $title := $to.Title }}
+    {{- if eq .Kind "taxonomy" }}
+      {{- $title = i18n $to.Data.Plural }}
       {{- if not $title }}
-        {{- $title = $to.Site.Title }}
+        {{- $title = $to.Data.Plural }}
       {{- end }}
-        {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}
-        {{- $last := eq $url $pageurl }}
-        {{- $link := and $url (not $last) }}
-              {{- printf "<li" | safeHTML }}
-              itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $link }}<a itemprop="item" href="{{ $url }}">{{end}}<span itemprop="name">{{ $title }}</span>{{ if $link }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if not $last }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
+    {{- else if eq .Kind "term" }}
+      {{- $title = i18n $to.Data.Singular }}
+      {{- if not $title }}
+        {{- $title = $to.Data.Singular }}
+      {{- end }}
+      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) $to.Title }}
     {{- end }}
+    {{- if not $title }}
+      {{- $title = $to.Site.Title }}
+    {{- end }}
+    {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}
+    {{- $last := eq $url $pageurl }}
+    {{- $link := and $url (not $last) }}
+    {{- printf "<li" | safeHTML }}
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $link }}<a itemprop="item" href="{{ $url }}">{{end}}<span itemprop="name">{{ $title }}</span>{{ if $link }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if not $last }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
   {{- end }}
 {{- end }}
