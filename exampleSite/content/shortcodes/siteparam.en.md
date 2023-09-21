@@ -12,7 +12,6 @@ While the examples are using shortcodes with named parameter you are free to use
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
-
 ````go
 {{%/* siteparam name="editURL" */%}}
 ````
