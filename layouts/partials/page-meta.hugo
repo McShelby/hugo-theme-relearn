@@ -34,8 +34,8 @@
 	{{- $isPostSelf := and ($isSelfFound) (not $isSelf) }}
 
 	{{- $hidden_node := or (.node.Params.hidden) (eq .node.Title "") }}
-	{{- $hidden_stem:= or $hidden_node .hiddenstem }}
-	{{- $hidden_current_stem:= or $hidden_node .hiddencurrent }}
+	{{- $hidden_stem := or $hidden_node .hiddenstem }}
+	{{- $hidden_current_stem := or $hidden_node .hiddencurrent }}
 	{{- $hidden_from_current := or (and $hidden_node (not $isAncestor) (not $isSelf) ) (and .hiddencurrent (or $isPreSelf $isPostSelf $isDescendant) ) }}
 	{{- if $isSelf }}
 		{{- $currentNode.Scratch.Set "relearnIsHiddenNode" $hidden_node }}
