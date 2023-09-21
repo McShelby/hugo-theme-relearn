@@ -432,7 +432,7 @@ function initOpenapi( update, attrs ){
                             activated: true,
                             theme: swagger_code_theme,
                         },
-                        url: oc.getAttribute('openapi-url'),
+                        url: oc.dataset.openapiUrl,
                         validatorUrl: 'none',
                     });
                 })
