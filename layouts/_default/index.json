@@ -1,7 +1,7 @@
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- $pages := slice }}
 {{- range .Site.Pages }}
-  {{- if and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
+  {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
     {{- $title := .Title }}
     {{- if eq .Kind "taxonomy" }}
       {{- $title = i18n .Data.Plural }}
