@@ -17,7 +17,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
 
 - **Wide set of usage scenarios**
   - Responsive design for mobile usage
-  - Looks nice on paper (if you have to)
+  - Looks nice on paper (if it has to)
   - Usable offline, no external dependencies
   - [Usable from your local file system via `file://` protocol]({{%relref "basics/configuration#serving-your-page-from-the-filesystem" %}})
   - Support for the [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
