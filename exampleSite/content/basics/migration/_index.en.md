@@ -32,7 +32,11 @@ This document shows you what's new in the latest release. For a detailed list of
 
   In this case it is advised to remove the `title` from the headless branch parent's frontmatter, as it will otherwise appear in your breadcrumbs.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The above change has a nice side effect. It is now possible to overwrite the setting for `collapsibleMenu` of your `config.toml` inside of a page's frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your `config.toml` inside of a page's frontmatter.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to remove the root breadcrumb by setting `disableRootBreadcrumb=true` in your `config.toml`.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The output of the dedicated search page now displays the result's breadcrumb.
 
 ---
 

@@ -213,17 +213,26 @@ function searchDetail( value ) {
                 item.matches.map( function(match){return match.replace(/\W/g, '\\$&')} ).join('|') +
                 ')\\b\\S*(?: +\\S+){0,' + numContextWords + '}';
             var context = page.content.match(new RegExp(contextPattern, 'i'));
-            var divcontext = document.createElement('div');
-            divcontext.className = 'context';
-            divcontext.innerText = (context || '');
             var divsuggestion = document.createElement('a');
             divsuggestion.className = 'autocomplete-suggestion';
             divsuggestion.setAttribute('data-term', value);
             divsuggestion.setAttribute('data-title', page.title);
             divsuggestion.setAttribute('href', baseUri + page.uri);
             divsuggestion.setAttribute('data-context', context);
-            divsuggestion.innerText = '» ' + page.title;
-            divsuggestion.appendChild(divcontext);
+            var divtitle = document.createElement('div');
+            divtitle.className = 'title';
+            divtitle.innerText = '» ' + page.title;
+            divsuggestion.appendChild( divtitle );
+            var divbreadcrumb = document.createElement('div');
+            divbreadcrumb.className = 'breadcrumbs';
+            divbreadcrumb.innerText = (page.breadcrumb || '');
+            divsuggestion.appendChild( divbreadcrumb );
+            if( context ){
+                var divcontext = document.createElement('div');
+                divcontext.className = 'context';
+                divcontext.innerText = (context || '');
+                divsuggestion.appendChild( divcontext );
+            }
             results.appendChild( divsuggestion );
         });
         window.relearn.markSearch();
@@ -276,17 +285,22 @@ function startSearch(){
                 item.matches.map( function(match){return match.replace(/\W/g, '\\$&')} ).join('|') +
                 ')\\b\\S*(?: +\\S+){0,' + numContextWords + '}';
             var context = page.content.match(new RegExp(contextPattern, 'i'));
-            var divcontext = document.createElement('div');
-            divcontext.className = 'context';
-            divcontext.innerText = (context || '');
             var divsuggestion = document.createElement('div');
             divsuggestion.className = 'autocomplete-suggestion';
             divsuggestion.setAttribute('data-term', term);
             divsuggestion.setAttribute('data-title', page.title);
             divsuggestion.setAttribute('data-uri', baseUri + page.uri);
             divsuggestion.setAttribute('data-context', context);
-            divsuggestion.innerText = '» ' + page.title;
-            divsuggestion.appendChild(divcontext);
+            var divtitle = document.createElement('div');
+            divtitle.className = 'title';
+            divtitle.innerText = '» ' + page.title;
+            divsuggestion.appendChild( divtitle );
+            if( context ){
+                var divcontext = document.createElement('div');
+                divcontext.className = 'context';
+                divcontext.innerText = (context || '');
+                divsuggestion.appendChild( divcontext );
+            }
             return divsuggestion.outerHTML;
         },
         /* onSelect callback fires when a search suggestion is chosen */
