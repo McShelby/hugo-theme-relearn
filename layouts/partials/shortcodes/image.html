@@ -66,10 +66,10 @@
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
 {{- if $effects.lightbox -}}
-<a href="#image-{{ $id }}" class="lightbox-link">
+<a href="#R-image-{{ $id }}" class="lightbox-link">
 {{- end -}}
 <img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} class="figure-image {{ delimit $classes " " }}" style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
 {{- if $effects.lightbox -}}
 </a>
-<a href="javascript:history.back();" class="lightbox-back" id="image-{{ $id }}"><img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} class="lightbox-image {{ delimit $classes " " }}" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}"><img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} class="lightbox-image {{ delimit $classes " " }}" loading="lazy"></a>
 {{- end }}

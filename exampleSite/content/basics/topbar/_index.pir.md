@@ -1,5 +1,5 @@
 +++
-title = "Topbarrr modificat'n"
+title = "Topbarrr Modificat'n"
 weight = 27
 +++
 {{< piratify >}}

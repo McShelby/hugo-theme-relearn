@@ -6,18 +6,18 @@
     {{- if ne $outputFormat "html" }}
       {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
     {{- end }}
-    <aside id="sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
+    <aside id="R-sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
       {{- $currentNode := . }}
-      <div id="header-topbar" class="default-animation"></div>
-      <div id="header-wrapper" class="default-animation">
-        <div id="header" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
 {{ partial "logo.html" . }}
         </div>
         {{- if not .Site.Params.disableSearch }}
 {{ partial "search.html" . }}
         {{- end }}
       </div>
-      <div id="homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
+      <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
       {{- if not .Site.Params.disableLandingPageButton }}
         {{- if (ne .Site.Params.landingPageURL nil) }}
           {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420" .File.Path }}
@@ -28,8 +28,8 @@
       {{- end }}
         <hr class="padding">
       </div>
-      <div id="content-wrapper" class="highlightable">
-        <div id="topics">
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
           <ul class="enlarge morespace collapsible-menu">
             {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
             {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
@@ -48,7 +48,7 @@
         {{- $page := . }}
         {{- $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle }}
         {{- with .Site.Menus.shortcuts }}
-        <div id="shortcuts">
+        <div id="R-shortcuts">
           <div class="nav-title padding">{{ if not $disableShortcutsTitle }}{{ T "Shortcuts-Title" }}{{ end }}</div>
           <ul class="space">
             {{- range sort . "Weight" }}
@@ -70,17 +70,17 @@
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}"></div>
-        <div id="menu-footer">
+        <div id="R-menu-footer">
           <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}">
-          <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
             <ul>
-              <li id="select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
+              <li id="R-select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
                 <div class="padding menu-control">
                   <i class="fas fa-language fa-fw"></i>
                   <span>&nbsp;</span>
                   <div class="control-style">
-                    <label class="a11y-only" for="select-language">{{ T "Language" }}</label>
-                    <select id="select-language" onchange="location = baseUri + this.value;">
+                    <label class="a11y-only" for="R-select-language">{{ T "Language" }}</label>
+                    <select id="R-select-language" onchange="location = baseUri + this.value;">
                       {{- $page := .Page }}
                       {{- $pageLang := .Page.Lang }}
                       {{- range .Page.AllTranslations }}
@@ -88,9 +88,9 @@
                         {{- range $siteLanguages }}
                           {{- if eq $translation.Lang .Lang }}
                             {{- if eq $pageLang .Lang }}
-                      <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" selected>{{ .LanguageName }}</option>
+                      <option lang="{{ $translation.Lang }}" id="R-{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" selected>{{ .LanguageName }}</option>
                             {{- else }}
-                      <option lang="{{ $translation.Lang }}" id="{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}">{{ .LanguageName }}</option>
+                      <option lang="{{ $translation.Lang }}" id="R-{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}">{{ .LanguageName }}</option>
                             {{- end }}
                           {{- end }}
                         {{- end }}
@@ -100,22 +100,22 @@
                   <div class="clear"></div>
                 </div>
               </li>
-              <li id="select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
+              <li id="R-select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
                 <div class="padding menu-control">
                   <i class="fas fa-paint-brush fa-fw"></i>
                   <span>&nbsp;</span>
                   <div class="control-style">
-                    <label class="a11y-only" for="select-variant">{{ T "Theme" }}</label>
-                    <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <label class="a11y-only" for="R-select-variant">{{ T "Theme" }}</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                       {{- $firstvariant := true }}
                       {{- range $themevariants }}
                         {{- $themevariant := . }}
                         {{- $variantname := replaceRE "[-_]+" " " $themevariant }}
                         {{- if $firstvariant }}
                           {{- $firstvariant = false }}
-                      <option id="{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
+                      <option id="R-{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
                         {{- else }}
-                      <option id="{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
+                      <option id="R-{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
                         {{- end }}
                       {{- end }}
                     </select>
@@ -136,7 +136,7 @@
               </li>
             </ul>
           </div>
-          <div id="footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
+          <div id="R-footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
             {{- $footer }}
           </div>
         </div>
@@ -174,9 +174,9 @@
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
             {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-          <li data-nav-id="{{ $url }}" class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen{{end}}">{{ if $isCollapsible }}<input type="checkbox" id="section-{{ $pageHash }}" aria-controls="subsections-{{ $pageHash }}"{{ if $isOpen }} checked{{ end }}><label for="section-{{ $pageHash }}"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+          <li data-nav-id="R-{{ $url }}" class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen{{end}}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageHash }}" aria-controls="#R-subsections-{{ $pageHash }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageHash }}"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
             {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
-            {{- if $url }}{{ if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="subsections-{{ $pageHash }}" class="morespace collapsible-menu">
+            {{- if $url }}{{ if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageHash }}" class="morespace collapsible-menu">
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
             {{- if eq $currentOrdersectionsby "title" }}
               {{- range $pages.ByTitle }}
