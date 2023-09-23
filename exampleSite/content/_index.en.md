@@ -35,10 +35,10 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Site search]({{%relref "basics/configuration#activate-search" %}})
   - [Dedicated search page]({{%relref "basics/configuration#activate-dedicated-search-page" %}})
   - [Taxonomy support]({{%relref "cont/taxonomy" %}})
-  - Hidden pages
-  - Unlimited nested menu dependend on your site structure
-  - Navigation buttons dependend on your site structure
+  - [Configurable topbar buttons]({{%relref "basics/topbar" %}})
+  - [Unlimited nested menu items]({{%relref "cont/pages" %}})
   - [Configurable shortcut links]({{%relref "cont/menushortcuts" %}})
+  - Hidden pages
 - **Multi language support**
   - [Full support for languages written right to left]({{%relref "cont/i18n" %}})
   - [Available languages]({{%relref "cont/i18n#basic-configuration" %}}): Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese

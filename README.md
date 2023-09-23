@@ -32,10 +32,10 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Site search](https://mcshelby.github.io/hugo-theme-relearn/basics/configuration#activate-search)
   - [Dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/basics/configuration#activate-dedicated-search-page)
   - [Taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/cont/taxonomy)
-  - Hidden pages
-  - Unlimited nested menu dependend on your site structure
-  - Navigation buttons dependend on your site structure
+  - [Configurable topbar buttons](https://mcshelby.github.io/hugo-theme-relearn/basics/topbar)
+  - [Unlimited nested menu items](https://mcshelby.github.io/hugo-theme-relearn/cont/pages)
   - [Configurable shortcut links](https://mcshelby.github.io/hugo-theme-relearn/cont/menushortcuts)
+  - Hidden pages
 - **Multi language support**
   - [Full support for languages written right to left](https://mcshelby.github.io/hugo-theme-relearn/cont/i18n)
   - [Available languages](https://mcshelby.github.io/hugo-theme-relearn/cont/i18n#basic-configuration): Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Turkish, Vietnamese
