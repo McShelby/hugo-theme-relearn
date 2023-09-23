@@ -38,6 +38,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The output of the dedicated search page now displays the result's breadcrumb.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Table rows now change their background color on every even row.
+
 ---
 
 ## 5.21.0 (2023-09-18) {#5210}
