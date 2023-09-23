@@ -230,7 +230,7 @@ var relearn_search_index = [
     "uri": "/tags/children/index.html"
   },
   {
-    "content": "The children shortcode lists the child pages of the current page and its descendants.\npage X page 1 page 2 page 3 Usage While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.\n​ shortcode shortcode partial partial {{% children sort=\"weight\" %}} {{ partial \"shortcodes/children.html\" (dict \"page\" . \"sort\" \"weight\" )}} Parameter Name Default Notes containerstyle ul Choose the style used to group all children. It could be any HTML tag name. style li Choose the style used to display each descendant. It could be any HTML tag name. showhidden false When true, child pages hidden from the menu will be displayed as well. description false When true shows a short text under each page in the list. When no description or summary exists for the page, the first 70 words of the content is taken - read more info about summaries on gohugo.io. depth 1 The depth of descendants to display. For example, if the value is 2, the shortcode will display two levels of child pages. To get all descendants, set this value to a high number eg. 999. sort see notes The sort order of the displayed list.\nIf not set it is sorted by the ordersectionsby setting of the site and the pages frontmatter\n- weight: to sort on menu order\n- title: to sort alphabetically on menu label. Examples All Default {{% children %}} page X page 1 page 2 page 3 With Description {{% children description=\"true\" %}} page XThis is a plain page test, and the beginning of a YAML multiline description... page 1This is a demo child page\npage 2This is a demo child page with no description. So its content is used as description.\npage 3This is a demo child page\nInfinite Depth and Hidden Pages {{% children depth=\"999\" showhidden=\"true\" %}} page X page 1 page 1-1 page 1-1-1 (hidden) page 1-1-1-1 page 1-1-1-1-1 (hidden) page 1-1-1-1-1-1 page 1-1-2 page 1-1-2-1 page 1-1-2-2 page 1-1-3 page 2 page 3 page 3-1 page 4 (hidden) Heading Styles for Container and Elements {{% children containerstyle=\"div\" style=\"h2\" depth=\"3\" description=\"true\" %}} page XThis is a plain page test, and the beginning of a YAML multiline description... page 1This is a demo child page\npage 1-1This is a demo child page\npage 1-1-2This is a demo child page\npage 1-1-3This is a demo child page\npage 2This is a demo child page with no description. So its content is used as description.\npage 3This is a demo child page\npage 3-1This is a plain page test nested in a parent\nDivs for Group and Element Styles {{% children containerstyle=\"div\" style=\"div\" depth=\"3\" %}} page X page 1 page 1-1 page 1-1-2 page 1-1-3 page 2 page 3 page 3-1 ",
+    "content": "The children shortcode lists the child pages of the current page and its descendants.\npage X page 1 page 2 page 3 Usage While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.\n​ shortcode shortcode partial partial {{% children sort=\"weight\" %}} {{ partial \"shortcodes/children.html\" (dict \"page\" . \"sort\" \"weight\" )}} Parameter Name Default Notes containerstyle ul Choose the style used to group all children. It could be any HTML tag name. style li Choose the style used to display each descendant. It could be any HTML tag name. showhidden false When true, child pages hidden from the menu will be displayed as well. description false When true shows a short text under each page in the list. When no description or summary exists for the page, the first 70 words of the content is taken - read more info about summaries on gohugo.io. depth 1 The depth of descendants to display. For example, if the value is 2, the shortcode will display two levels of child pages. To get all descendants, set this value to a high number eg. 999. sort see notes The sort order of the displayed list.\nIf not set it is sorted by the ordersectionsby setting of the site and the pages frontmatter\n- weight: to sort on menu order\n- title: to sort alphabetically on menu label. Examples All Default {{% children %}} page X page 1 page 2 page 3 With Description {{% children description=\"true\" %}} page XThis is a plain page test, and the beginning of a YAML multiline description... page 1This is a demo child page\npage 2This is a demo child page with no description. So its content is used as description.\npage 3This is a demo child page\nInfinite Depth and Hidden Pages {{% children depth=\"999\" showhidden=\"true\" %}} page X page 1 page 1-1 page 1-1-1 (hidden) page 1-1-1-1 page 1-1-1-1-1 (hidden) page 1-1-1-1-1-1 page 1-1-2 (headless) page 1-1-2-1 page 1-1-2-2 page 1-1-3 page 2 page 3 page 3-1 page 4 (hidden) Heading Styles for Container and Elements {{% children containerstyle=\"div\" style=\"h2\" depth=\"3\" description=\"true\" %}} page XThis is a plain page test, and the beginning of a YAML multiline description... page 1This is a demo child page\npage 1-1This is a demo child page\npage 1-1-2 (headless)This is a demo child page\npage 1-1-3This is a demo child page\npage 2This is a demo child page with no description. So its content is used as description.\npage 3This is a demo child page\npage 3-1This is a plain page test nested in a parent\nDivs for Group and Element Styles {{% children containerstyle=\"div\" style=\"div\" depth=\"3\" %}} page X page 1 page 1-1 page 1-1-2 (headless) page 1-1-3 page 2 page 3 page 3-1 ",
     "description": "List the child pages of a page",
     "tags": null,
     "title": "Children",
@@ -291,6 +291,13 @@ var relearn_search_index = [
     "tags": null,
     "title": "Expand",
     "uri": "/shortcodes/expand/index.html"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tag :: headless",
+    "uri": "/tags/headless/index.html"
   },
   {
     "content": "",
@@ -370,7 +377,7 @@ var relearn_search_index = [
     "uri": "/shortcodes/openapi/index.html"
   },
   {
-    "content": "This is a demo child page with a hidden child. You can still access the hidden child directly or via the search.\nSubpages of this page page 1-1-1 (hidden) page 1-1-2 page 1-1-3 ",
+    "content": "This is a demo child page with a hidden child. You can still access the hidden child directly or via the search.\nSubpages of this page page 1-1-1 (hidden) page 1-1-2 (headless) page 1-1-3 ",
     "description": "This is a demo child page",
     "tags": [
       "children",
@@ -418,16 +425,6 @@ var relearn_search_index = [
     ],
     "title": "page 1-1-1-1-1-1",
     "uri": "/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/children-1-1-1-1-1-1/index.html"
-  },
-  {
-    "content": "This is a plain demo child page.\nSubpages of this page page 1-1-2-1 page 1-1-2-2 ",
-    "description": "This is a demo child page",
-    "tags": [
-      "children",
-      "non-hidden"
-    ],
-    "title": "page 1-1-2",
-    "uri": "/shortcodes/children/children-1/children-1-1/children-1-1-2/index.html"
   },
   {
     "content": "This is a plain demo child page.\n",

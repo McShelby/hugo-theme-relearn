@@ -237,7 +237,7 @@ var relearn_search_index = [
     "uri": "/pir/tags/children/index.html"
   },
   {
-    "content": " Th' children shortcode lists th' child planks o' th' current plank an' its descendants.\nplank X plank 1 plank 2 plank 3 Usage While th' examples be us'n shorrrtcodes wit' named parameter ye be free t' also call this shortcode from yer own partials.\n​ shortcode shortcode partial partial {{% children sort=\"weight\" %}} {{ partial \"shortcodes/children.html\" (dict \"page\" . \"sort\" \"weight\" )}} Parameter Name Default Notes containerstyle ul Choose th' style used t' group all children. It could be any HTML tag name. style li Choose th' style used t' display each descendant. It could be any HTML tag name. showhidden false When true, child planks hidden from th' menu will be displayed as well. descript'n false When true shows a short text under each plank 'n th' list. When no descript'n or summary exists fer th' plank, th' first 70 words o' th' rrrambl'n be taken - read more info about summaries on gohugo.io. depth 1 Th' depth o' descendants t' display. For example, if th' value be 2, th' shortcode will display two levels o' child planks. T' get all descendants, set this value t' a high number eg. 999. sort see notes Th' sort order o' th' displayed list.\nIf not set it be sorted by th' ordersectionsby sett'n o' th' ship an' th' planks frontmatter\n- weight: t' sort on menu order\n- title: t' sort alphabetically on menu label. Examples All Default {{% children %}} plank X plank 1 plank 2 plank 3 Wit' Descript'n {{% children descript'n=\"true\" %}} plank XThis be a plain plank test, an' th' beginn'n o' a YAML multiline descript'n... plank 1This be a demo child plank\nplank 2This be a demo child plank wit' no descript'n. So its rrrambl'n be used as descript'n.\nplank 3This be a demo child plank\nInfinite Depth an' Hidden Planks {{% children depth=\"999\" showhidden=\"true\" %}} plank X plank 1 plank 1-1 plank 1-1-1 (hidden) plank 1-1-1-1 plank 1-1-1-1-1 (hidden) plank 1-1-1-1-1-1 plank 1-1-2 plank 1-1-2-1 plank 1-1-2-2 plank 1-1-3 plank 2 plank 3 plank 3-1 plank 4 (hidden) Head'n Styles fer Container an' Elements {{% children containerstyle=\"div\" style=\"h2\" depth=\"3\" descript'n=\"true\" %}} plank XThis be a plain plank test, an' th' beginn'n o' a YAML multiline descript'n... plank 1This be a demo child plank\nplank 1-1This be a demo child plank\nplank 1-1-2This be a demo child plank\nplank 1-1-3This be a demo child plank\nplank 2This be a demo child plank wit' no descript'n. So its rrrambl'n be used as descript'n.\nplank 3This be a demo child plank\nplank 3-1This be a plain plank test nested 'n a parent\nDivs fer Group an' Element Styles {{% children containerstyle=\"div\" style=\"div\" depth=\"3\" %}} plank X plank 1 plank 1-1 plank 1-1-2 plank 1-1-3 plank 2 plank 3 plank 3-1 ",
+    "content": " Th' children shortcode lists th' child planks o' th' current plank an' its descendants.\nplank X plank 1 plank 2 plank 3 Usage While th' examples be us'n shorrrtcodes wit' named parameter ye be free t' also call this shortcode from yer own partials.\n​ shortcode shortcode partial partial {{% children sort=\"weight\" %}} {{ partial \"shortcodes/children.html\" (dict \"page\" . \"sort\" \"weight\" )}} Parameter Name Default Notes containerstyle ul Choose th' style used t' group all children. It could be any HTML tag name. style li Choose th' style used t' display each descendant. It could be any HTML tag name. showhidden false When true, child planks hidden from th' menu will be displayed as well. descript'n false When true shows a short text under each plank 'n th' list. When no descript'n or summary exists fer th' plank, th' first 70 words o' th' rrrambl'n be taken - read more info about summaries on gohugo.io. depth 1 Th' depth o' descendants t' display. For example, if th' value be 2, th' shortcode will display two levels o' child planks. T' get all descendants, set this value t' a high number eg. 999. sort see notes Th' sort order o' th' displayed list.\nIf not set it be sorted by th' ordersectionsby sett'n o' th' ship an' th' planks frontmatter\n- weight: t' sort on menu order\n- title: t' sort alphabetically on menu label. Examples All Default {{% children %}} plank X plank 1 plank 2 plank 3 Wit' Descript'n {{% children descript'n=\"true\" %}} plank XThis be a plain plank test, an' th' beginn'n o' a YAML multiline descript'n... plank 1This be a demo child plank\nplank 2This be a demo child plank wit' no descript'n. So its rrrambl'n be used as descript'n.\nplank 3This be a demo child plank\nInfinite Depth an' Hidden Planks {{% children depth=\"999\" showhidden=\"true\" %}} plank X plank 1 plank 1-1 plank 1-1-1 (hidden) plank 1-1-1-1 plank 1-1-1-1-1 (hidden) plank 1-1-1-1-1-1 plank 1-1-2 (headless) plank 1-1-2-1 plank 1-1-2-2 plank 1-1-3 plank 2 plank 3 plank 3-1 plank 4 (hidden) Head'n Styles fer Container an' Elements {{% children containerstyle=\"div\" style=\"h2\" depth=\"3\" descript'n=\"true\" %}} plank XThis be a plain plank test, an' th' beginn'n o' a YAML multiline descript'n... plank 1This be a demo child plank\nplank 1-1This be a demo child plank\nplank 1-1-2 (headless)This be a demo child plank\nplank 1-1-3This be a demo child plank\nplank 2This be a demo child plank wit' no descript'n. So its rrrambl'n be used as descript'n.\nplank 3This be a demo child plank\nplank 3-1This be a plain plank test nested 'n a parent\nDivs fer Group an' Element Styles {{% children containerstyle=\"div\" style=\"div\" depth=\"3\" %}} plank X plank 1 plank 1-1 plank 1-1-2 (headless) plank 1-1-3 plank 2 plank 3 plank 3-1 ",
     "description": "",
     "tags": null,
     "title": "Children",
@@ -298,6 +298,13 @@ var relearn_search_index = [
     "tags": null,
     "title": "Expand",
     "uri": "/pir/shortcodes/expand/index.html"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tak :: headless",
+    "uri": "/pir/tags/headless/index.html"
   },
   {
     "content": "",
@@ -370,7 +377,7 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/openapi/index.html"
   },
   {
-    "content": " This be a demo child plank wit' a hidden child. Ye can still access th' hidden child directly or via th' search.\nSubpages o' this plank plank 1-1-1 (hidden) plank 1-1-2 plank 1-1-3 ",
+    "content": " This be a demo child plank wit' a hidden child. Ye can still access th' hidden child directly or via th' search.\nSubpages o' this plank plank 1-1-1 (hidden) plank 1-1-2 (headless) plank 1-1-3 ",
     "description": "",
     "tags": [
       "children",
@@ -418,16 +425,6 @@ var relearn_search_index = [
     ],
     "title": "plank 1-1-1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/children-1-1-1-1-1-1/index.html"
-  },
-  {
-    "content": " This be a plain demo child plank.\nSubpages o' this plank plank 1-1-2-1 plank 1-1-2-2 ",
-    "description": "",
-    "tags": [
-      "children",
-      "non-hidden"
-    ],
-    "title": "plank 1-1-2",
-    "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-2/index.html"
   },
   {
     "content": " This be a plain demo child plank.\n",
