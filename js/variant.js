@@ -64,7 +64,7 @@ var variants = {
 
 	markSelectedVariant: function(){
 		var variant = this.getVariant();
-		var select = document.querySelector( '#select-variant' );
+		var select = document.querySelector( '#R-select-variant' );
 		if( !select ){
 			return;
 		}
@@ -102,7 +102,7 @@ var variants = {
 		if( !variantbase ){
 			return;
 		}
-		var select = document.querySelector( '#select-variant' );
+		var select = document.querySelector( '#R-select-variant' );
 		if( !select ){
 			return;
 		}
@@ -146,12 +146,12 @@ var variants = {
 		// temp styles to document
 		var head = document.querySelector( 'head' );
 		var style = document.createElement( 'style' );
-		style.id = 'custom-variant-style';
+		style.id = 'R-custom-variant-style';
 		style.appendChild( document.createTextNode( stylesheet ) );
 		head.appendChild( style );
 
 		var interval_id = setInterval( function(){
-			if( this.findLoadedStylesheet( 'variant-style' ) ){
+			if( this.findLoadedStylesheet( 'R-variant-style' ) ){
 				clearInterval( interval_id );
 				// save the styles to the current variant stylesheet
 				this.variantvariables.forEach( function( e ){
@@ -183,7 +183,7 @@ var variants = {
 	},
 
 	switchStylesheet: function( variant, without_check ){
-		var link = document.querySelector( '#variant-style' );
+		var link = document.querySelector( '#R-variant-style' );
 		if( !link ){
 			return;
 		}
@@ -193,7 +193,7 @@ var variants = {
 
 		// Chrome needs a new element to trigger the load callback again
 		var new_link = document.createElement( 'link' );
-		new_link.id = 'variant-style';
+		new_link.id = 'R-variant-style';
 		new_link.rel = 'stylesheet';
 		new_link.onload = this.onLoadStylesheet;
 		new_link.setAttribute( 'href', new_path );
@@ -358,8 +358,8 @@ var variants = {
 			return;
 		}
 
-		var read_style = this.findLoadedStylesheet( 'custom-variant-style' );
-		var write_style = this.findLoadedStylesheet( 'variant-style' );
+		var read_style = this.findLoadedStylesheet( 'R-custom-variant-style' );
+		var write_style = this.findLoadedStylesheet( 'R-variant-style' );
 		if( !read_style ){
 			read_style = write_style;
 		}
@@ -419,8 +419,8 @@ var variants = {
 	},
 
 	generateStylesheet: function(){
-		var read_style = this.findLoadedStylesheet( 'custom-variant-style' );
-		var write_style = this.findLoadedStylesheet( 'variant-style' );
+		var read_style = this.findLoadedStylesheet( 'R-custom-variant-style' );
+		var write_style = this.findLoadedStylesheet( 'R-variant-style' );
 		if( !read_style ){
 			read_style = write_style;
 		}
@@ -435,10 +435,10 @@ var variants = {
 	},
 
 	styleGraphGroup: function( selector, colorvar ){
-		this.adjustCSSRules( '#body svg '+selector+' > rect', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
-		this.adjustCSSRules( '#body svg '+selector+' > .label .nodeLabel', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
-		this.adjustCSSRules( '#body svg '+selector+' > .cluster-label .nodeLabel', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
-		this.adjustCSSRules( '#body svg '+selector+' .nodeLabel', 'filter: grayscale(1) invert(1) contrast(10000);' );
+		this.adjustCSSRules( '#R-body svg '+selector+' > rect', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
+		this.adjustCSSRules( '#R-body svg '+selector+' > .label .nodeLabel', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
+		this.adjustCSSRules( '#R-body svg '+selector+' > .cluster-label .nodeLabel', 'color: var(--INTERNAL-'+colorvar+'); fill: var(--INTERNAL-'+colorvar+'); stroke: #80808080;' );
+		this.adjustCSSRules( '#R-body svg '+selector+' .nodeLabel', 'filter: grayscale(1) invert(1) contrast(10000);' );
 	},
 
 	styleGraph: function(){

@@ -2,7 +2,7 @@ window.relearn = window.relearn || {};
 
 window.relearn.runInitialSearch = function(){
     if( window.relearn.isSearchInit && window.relearn.isLunrInit ){
-        var input = document.querySelector('#search-by-detail');
+        var input = document.querySelector('#R-search-by-detail');
         if( !input ){
             return;
         }
@@ -45,7 +45,7 @@ function initLunrIndex( index ){
 }
 
 function triggerSearch(){
-    var input = document.querySelector('#search-by-detail');
+    var input = document.querySelector('#R-search-by-detail');
     if( !input ){
         return;
     }
@@ -97,7 +97,7 @@ window.addEventListener( 'popstate', function ( event ){
     }
 });
 
-var input = document.querySelector('#search-by-detail');
+var input = document.querySelector('#R-search-by-detail');
 if( input ){
     input.addEventListener( 'keydown', function(event) {
         // if we are pressing ESC in the searchdetail our focus will
@@ -199,7 +199,7 @@ function resolvePlaceholders( s, args ) {
 };
 
 function searchDetail( value ) {
-    var results = document.querySelector('#searchresults');
+    var results = document.querySelector('#R-searchresults');
     var hint = document.querySelector('.searchhint');
     hint.innerText = '';
     results.textContent = '';
@@ -252,7 +252,7 @@ initLunrJson();
 initLunrJs();
 
 function startSearch(){
-    var input = document.querySelector('#search-by-detail');
+    var input = document.querySelector('#R-search-by-detail');
     if( input ){
         var state = window.history.state || {};
         state = Object.assign( {}, ( typeof state === 'object' ) ? state : {} );
@@ -262,8 +262,8 @@ function startSearch(){
 
     var searchList = new autoComplete({
         /* selector for the search box element */
-        selectorToInsert: '#header-wrapper',
-        selector: '#search-by',
+        selectorToInsert: '#R-header-wrapper',
+        selector: '#R-search-by',
         /* source is the callback to perform the search */
         source: function(term, response) {
             response(search(term));

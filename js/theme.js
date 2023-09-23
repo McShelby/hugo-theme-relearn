@@ -35,7 +35,7 @@ var formelements = 'button, datalist, fieldset, input, label, legend, meter, opt
 var psc;
 var psm;
 var pst = new Map();
-var elc = document.querySelector('#body-inner');
+var elc = document.querySelector('#R-body-inner');
 
 function regexEscape( s ){
     return s.replace( /[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&' );
@@ -356,7 +356,7 @@ function initOpenapi( update, attrs ){
     function renderOpenAPI(oc) {
         var buster = window.themeUseOpenapi.assetsBuster ? '?' + window.themeUseOpenapi.assetsBuster : '';
         var print = isPrint || attrs.isPrintPreview ? "PRINT-" : "";
-		var theme = print ? `${baseUri}/css/theme-relearn-light.css` : document.querySelector( '#variant-style' ).attributes.href.value
+		var theme = print ? `${baseUri}/css/theme-relearn-light.css` : document.querySelector( '#R-variant-style' ).attributes.href.value
         var swagger_theme = variants.getColorValue( print + 'OPENAPI-theme' );
         var swagger_code_theme = variants.getColorValue( print + 'OPENAPI-CODE-theme' );
 
@@ -652,7 +652,7 @@ function initArrowNav(){
     // keyboard navigation
     // avoid prev/next navigation if we are not at the start/end of the
     // horizontal area
-    var el = document.querySelector('#body-inner');
+    var el = document.querySelector('#R-body-inner');
     var scrollStart = 0;
     var scrollEnd = 0;
     document.addEventListener('keydown', function(event){
@@ -708,7 +708,7 @@ function initMenuScrollbar(){
         return;
     }
 
-    var elm = document.querySelector('#content-wrapper');
+    var elm = document.querySelector('#R-content-wrapper');
     var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-content-wrapper');
 
     var autofocus = true;
@@ -747,7 +747,7 @@ function initMenuScrollbar(){
                 psm && psm.scrollbarY.focus();
             }
             else{
-                document.querySelector('#body-inner').focus();
+                document.querySelector('#R-body-inner').focus();
                 psc && psc.scrollbarY.focus();
             }
         }
@@ -755,8 +755,8 @@ function initMenuScrollbar(){
     // scrollbars will install their own keyboard handlers
     // that need to be executed inbetween our own handlers
     // PSC removed for #242 #243 #244
-    // psc = elc && new PerfectScrollbar('#body-inner');
-    psm = elm && new PerfectScrollbar('#content-wrapper');
+    // psc = elc && new PerfectScrollbar('#R-body-inner');
+    psm = elm && new PerfectScrollbar('#R-content-wrapper');
     document.querySelectorAll('.topbar-button .topbar-content-wrapper').forEach( function( e ){
         var button = getTopbarButtonParent( e );
         if( !button ){
@@ -790,7 +790,7 @@ function initMenuScrollbar(){
     });
     // now that we may have collapsible menus, we need to call a resize
     // for the menu scrollbar if sections are expanded/collapsed
-    document.querySelectorAll('#sidebar .collapsible-menu input').forEach( function(e){
+    document.querySelectorAll('#R-sidebar .collapsible-menu input').forEach( function(e){
         e.addEventListener('change', function(){
             psm && setTimeout( function(){ psm.update(); }, 10 );
         });
@@ -846,7 +846,7 @@ function printShortcutHandler( event ){
 }
 
 function showSearch(){
-    var s = document.querySelector( '#search-by' );
+    var s = document.querySelector( '#R-search-by' );
     if( !s ){
         return;
     }
@@ -870,7 +870,7 @@ function openNav(){
     b.classList.add( 'sidebar-flyout' );
     psm && setTimeout( function(){ psm.update(); }, 10 );
     psm && psm.scrollbarY.focus();
-    var a = document.querySelector( '#sidebar a' )
+    var a = document.querySelector( '#R-sidebar a' )
     if( a ){
         a.focus();
     }
@@ -1011,11 +1011,11 @@ function initToc(){
     document.addEventListener( 'keydown', navEscapeHandler );
     document.addEventListener( 'keydown', topbarFlyoutEscapeHandler );
 
-    var b = document.querySelector( '#body-overlay' );
+    var b = document.querySelector( '#R-body-overlay' );
     if( b ){
         b.addEventListener( 'click', closeNav );
     }
-    var m = document.querySelector( '#main-overlay' );
+    var m = document.querySelector( '#R-main-overlay' );
     if( m ){
         m.addEventListener( 'click', closeSomeTopbarButtonFlyout );
     }
@@ -1059,16 +1059,16 @@ function initSwipeHandler(){
         return false;
     };
 
-    var s = document.querySelector( '#body-overlay' );
+    var s = document.querySelector( '#R-body-overlay' );
     s && s.addEventListener("touchstart", handleStartX, false);
-    document.querySelector( '#sidebar' ).addEventListener("touchstart", handleStartX, false);
-    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
+    document.querySelector( '#R-sidebar' ).addEventListener("touchstart", handleStartX, false);
+    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
     s && s.addEventListener("touchmove", handleMoveX, false);
-    document.querySelector( '#sidebar' ).addEventListener("touchmove", handleMoveX, false);
-    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX); }, false);
+    document.querySelector( '#R-sidebar' ).addEventListener("touchmove", handleMoveX, false);
+    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX); }, false);
     s && s.addEventListener("touchend", handleEndX, false);
-    document.querySelector( '#sidebar' ).addEventListener("touchend", handleEndX, false);
-    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
+    document.querySelector( '#R-sidebar' ).addEventListener("touchend", handleEndX, false);
+    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
 }
 
 function initImage(){
@@ -1126,7 +1126,7 @@ function initScrollPositionSaver(){
 function scrollToPositions() {
     // show active menu entry
     window.setTimeout( function(){
-        var e = document.querySelector( '#sidebar li.active a' );
+        var e = document.querySelector( '#R-sidebar li.active a' );
         if( e && e.scrollIntoView ){
             e.scrollIntoView({
                 block: 'center',
@@ -1183,7 +1183,7 @@ function scrollToPositions() {
 
 function mark() {
 	// mark some additional stuff as searchable
-	var bodyInnerLinks = document.querySelectorAll( '#body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)' );
+	var bodyInnerLinks = document.querySelectorAll( '#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)' );
 	for( var i = 0; i < bodyInnerLinks.length; i++ ){
 		bodyInnerLinks[i].classList.add( 'highlight' );
 	}
@@ -1435,7 +1435,7 @@ function useMermaid( config ){
     if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
         mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false }, config ) );
         if( config.theme && variants ){
-            var write_style = variants.findLoadedStylesheet( 'variant-style' );
+            var write_style = variants.findLoadedStylesheet( 'R-variant-style' );
             write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
         }
     }
@@ -1474,7 +1474,7 @@ ready( function(){
 
 (function(){
     var body = document.querySelector( 'body' );
-    var topbar = document.querySelector( '#topbar' );
+    var topbar = document.querySelector( '#R-topbar' );
     function addTopbarButtonInfos(){
         // initially add some management infos to buttons and areas
         var areas = body.querySelectorAll( '.topbar-area' );
