@@ -602,7 +602,7 @@ function initCodeClipboard(){
             var button = document.createElement( 'span' );
             button.classList.add( 'copy-to-clipboard-button' );
             button.setAttribute( 'title', window.T_Copy_to_clipboard );
-            button.innerHTML = '<i class="fas fa-copy"></i>';
+            button.innerHTML = '<i class="far fa-copy"></i>';
             button.addEventListener( 'mouseleave', function() {
                 this.removeAttribute( 'aria-label' );
                 this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
