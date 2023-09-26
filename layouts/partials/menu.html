@@ -174,7 +174,7 @@
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
             {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-          <li data-nav-id="{{ $url }}" class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen{{end}}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageHash }}" aria-controls="#R-subsections-{{ $pageHash }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageHash }}"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+          <li data-nav-id="{{ $url }}" class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen{{end}}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageHash }}" aria-controls="R-subsections-{{ $pageHash }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageHash }}"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
             {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
             {{- if $url }}{{ if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageHash }}" class="morespace collapsible-menu">
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
