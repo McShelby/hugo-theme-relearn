@@ -118,9 +118,9 @@ function switchTab(tabGroup, tabId) {
     allTabItems && allTabItems.forEach( function( e ){ e.classList.remove( 'active' ); });
     targetTabItems && targetTabItems.forEach( function( e ){ e.classList.add( 'active' ); });
 
-    initMermaid( true );
-
     if(isButtonEvent){
+      initMermaid( true );
+
       // reset screen to the same position relative to clicked button to prevent page jump
       var yposButtonDiff = event.target.getBoundingClientRect().top - yposButton;
       window.scrollTo(window.scrollX, window.scrollY+yposButtonDiff);
@@ -220,6 +220,18 @@ function initMermaid( update, attrs ) {
             }
             var new_element = document.createElement( 'div' );
             new_element.classList.add( 'mermaid-container' );
+            if( element.classList.contains( 'align-right' ) ){
+                new_element.classList.add( 'align-right' );
+                element.classList.remove( 'align-right' );
+            }
+            if( element.classList.contains( 'align-center' ) ){
+                new_element.classList.add( 'align-center' );
+                element.classList.remove( 'align-center' );
+            }
+            if( element.classList.contains( 'align-left' ) ){
+                new_element.classList.add( 'align-left' );
+                element.classList.remove( 'align-left' );
+            }
             new_element.innerHTML = '<div class="mermaid-code">' + graph + '</div>' + element.outerHTML;
             element.parentNode.replaceChild( new_element, element );
         });
@@ -296,18 +308,27 @@ function initMermaid( update, attrs ) {
     if( is_initialized ){
         mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false }, window.relearn.mermaidConfig, { theme: attrs.theme } ) );
         mermaid.run({
-            postRenderCallback: function(){
+            postRenderCallback: function( id ){
                 // zoom for Mermaid
                 // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
-                var svgs = d3.selectAll( '.mermaid.zoom svg' );
+                var svgs = d3.selectAll( 'body:not(.print) .mermaid.zoom > #' + id );
                 svgs.each( function(){
                     var svg = d3.select( this );
                     svg.html( '<g>' + svg.html() + '</g>' );
                     var inner = svg.select( 'g' );
                     var zoom = d3.zoom().on( 'zoom', function( e ){
-                        inner.attr( 'transform', e.transform);
+                        inner.attr( 'transform', e.transform );
                     });
                     svg.call( zoom );
+                    var parent = this.parentElement;
+                    // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
+                    parent.style.maxWidth = this.style.maxWidth;
+                    parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
+                    parent.querySelector( '.svg-reset-button' ).addEventListener( 'click', function( event ){
+                        inner.transition()
+                            .duration( 350 )
+                            .call( zoom.transform, d3.zoomIdentity );
+                    });
                 });
             },
             querySelector: '.mermaid.mermaid-render',

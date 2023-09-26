@@ -1317,18 +1317,50 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     margin-top: 1.7rem;
 }
 
-.mermaid > svg {
+.mermaid {
     border: 1px solid transparent;
+    display: inline;
+    padding: .5rem .5rem 0 .5rem;
+}
+.mermaid.zoom {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.mermaid.zoom:hover {
+    border-color: rgba( 134, 134, 134, .333 );
+}
+
+.mermaid > svg {
     /* remove inline height from generated diagram */
     height: initial !important;
 }
-
 .mermaid.zoom > svg {
     cursor: pointer;
 }
 
-.mermaid.zoom > svg:hover {
-    border-color: rgba( 134, 134, 134, .333 );
+.svg-reset-button {
+    background-color: rgba( 160, 160, 160, .2 );
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: none;
+    font-size: .934375rem;
+    line-height: 1.15;
+    padding: 5px 3px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+.mermaid:hover .svg-reset-button {
+    display: block;
+}
+
+.svg-reset-button > i {
+    font-size: .859625rem;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .mermaid-code {
@@ -1684,22 +1716,16 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 */
 
-.mermaid-container .align-right > *  {
-    display: block;
-    margin-left: auto;
-    margin-right: 0;
+.mermaid-container.align-right  {
+    text-align: right;
 }
 
-.mermaid-container .align-center > *  {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.mermaid-container.align-center  {
+    text-align: center;
 }
 
-.mermaid-container .align-left > * {
-    display: block;
-    margin-left: 0;
-    margin-right: auto;
+.mermaid-container.align-left {
+    text-align: left;
 }
 
 .searchform {
