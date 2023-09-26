@@ -27,8 +27,10 @@
 {{- range seq $len }}
   {{- $breadcrumbReversed = $breadcrumbReversed | append (index $breadcrumb (sub $len .)) }}
 {{- end }}
+{{- $depth := 0 }}
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e }}
+  {{- $depth = add $depth 1 }}
   {{- $title := $to.Title }}
   {{- if eq .Kind "taxonomy" }}
     {{- $title = i18n $to.Data.Plural }}
