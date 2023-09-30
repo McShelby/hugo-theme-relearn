@@ -73,7 +73,7 @@ function adjustContentWidth(){
 function fixCodeTabs(){
     /* if only a single code block is contained in the tab and no style was selected, treat it like style=code */
     var codeTabContents = Array.from( document.querySelectorAll( '.tab-content.tab-panel-style' ) ).filter( function( tabContent ){
-        return tabContent.querySelector( '*:scope > .tab-content-text > div.highlight:only-child, *:scope > .tab-content-text > pre.pre-code:only-child');
+        return tabContent.querySelector( '*:scope > .tab-content-text > div.highlight:only-child, *:scope > .tab-content-text > pre:not(.mermaid).pre-code:only-child');
     });
 
     codeTabContents.forEach( function( tabContent ){

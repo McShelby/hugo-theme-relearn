@@ -606,19 +606,19 @@ p:empty {
 
 #R-body table th > :nth-last-child(1 of :not(:empty)),
 #R-body table th > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body table th > div.highlight:last-child pre,
+#R-body table th > div.highlight:last-child pre:not(.mermaid),
 #R-body table td > :nth-last-child(1 of :not(:empty)),
 #R-body table td > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body table td > div:last-child pre,
+#R-body table td > div:last-child pre:not(.mermaid),
 #R-body div.box > .box-content > :nth-last-child(1 of :not(:empty)),
 #R-body div.box > .box-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.box > .box-content > div:last-child pre,
+#R-body div.box > .box-content > div:last-child pre:not(.mermaid),
 #R-body div.expand > .expand-content-text > :nth-last-child(1 of :not(:empty)),
 #R-body div.expand > .expand-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content-text > div:last-child pre,
+#R-body div.expand > .expand-content-text > div:last-child pre:not(.mermaid),
 #R-body div.tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)),
 #R-body div.tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.tab-content > .tab-content-text > div:last-child pre {
+#R-body div.tab-content > .tab-content-text > div:last-child pre:not(.mermaid) {
     margin-bottom: 0;
 }
 
@@ -675,7 +675,7 @@ div.attachments .box-content {
 
 code,
 kbd,
-pre,
+pre:not(.mermaid),
 samp {
     font-size: .934375rem;
     vertical-align: baseline;
@@ -703,7 +703,7 @@ code.copy-to-clipboard-code {
     border-inline-end-width: 0;
 }
 
-pre {
+pre:not(.mermaid) {
     border-radius: 2px;
     border-style: solid;
     border-width: 1px;
@@ -714,14 +714,14 @@ pre {
     position: relative;
 }
 
-/* pre:has( code ), */
+/* pre:not(.mermaid):has( code ), */
 /* the :has() operator isn't available in FF yet, so we patch this by JS */
-pre.pre-code {
+pre:not(.mermaid).pre-code {
     direction: ltr;
     text-align: left;
 }
 
-pre code {
+pre:not(.mermaid) code {
     background-color: inherit;
     border: 0;
     color: inherit;
@@ -768,33 +768,33 @@ div.highlight > div table{
     display: block;
     overflow: auto;
 }
-div.highlight:not(.wrap-code) pre{
+div.highlight:not(.wrap-code) pre:not(.mermaid){
     overflow: auto;
 }
-div.highlight:not(.wrap-code) pre code{
+div.highlight:not(.wrap-code) pre:not(.mermaid) code{
     white-space: pre;
 }
-div.highlight.wrap-code pre code{
+div.highlight.wrap-code pre:not(.mermaid) code{
     white-space: pre-wrap;
 }
 /* remove border from row cells if highlight shortcode was used in table lineno mode */
-div.highlight > div td > pre {
+div.highlight > div td > pre:not(.mermaid) {
     border-radius: 0;
     border-width: 0;
 }
 /* in case of table lineno mode we want to move each row closer together - besides the edges
 this usually applies only to wrapfix tables but it doesn't hurt for non-wrapfix tables too */
-div.highlight > div tr:not(:first-child) pre{
+div.highlight > div tr:not(:first-child) pre:not(.mermaid){
     padding-top: 0;
 }
-div.highlight > div tr:not(:last-child) pre{
+div.highlight > div tr:not(:last-child) pre:not(.mermaid){
     padding-bottom: 0;
 }
 /* in case of table lineno mode we want to move each columns closer together on the inside */
-div.highlight > div td:first-child:not(:last-child) pre{
+div.highlight > div td:first-child:not(:last-child) pre:not(.mermaid){
     padding-right: 0;
 }
-div.highlight > div td:not(:first-child):last-child pre{
+div.highlight > div td:not(:first-child):last-child pre:not(.mermaid){
     padding-left: 0;
 }
 
@@ -802,7 +802,7 @@ hr {
     border-bottom: 4px solid rgba( 134, 134, 134, .125 );
 }
 
-#R-body-inner pre {
+#R-body-inner pre:not(.mermaid) {
     white-space: pre-wrap;
 }
 
@@ -1188,15 +1188,15 @@ div.highlight:hover .copy-to-clipboard-button {
 }
 
 div.highlight > div table + .copy-to-clipboard-button > i,
-div.highlight pre + .copy-to-clipboard-button > i,
+div.highlight pre:not(.mermaid) + .copy-to-clipboard-button > i,
 .copy-to-clipboard-code + .copy-to-clipboard-button > i {
     padding-left: 5px;
     padding-right: 5px;
 }
 
 div.highlight > div table + .copy-to-clipboard-button,
-div.highlight pre + .copy-to-clipboard-button,
-pre > .copy-to-clipboard-button {
+div.highlight pre:not(.mermaid) + .copy-to-clipboard-button,
+pre:not(.mermaid) > .copy-to-clipboard-button {
     background-color: rgba( 160, 160, 160, .2 );
     border-radius: 2px;
     border-style: solid;
@@ -2139,8 +2139,8 @@ html[dir="rtl"] #R-sidebar ul.collapsible-menu > li > label > i.fa-chevron-right
 
 /* remove border from code block if single in tab */
 #R-body .tab-content-text > div.highlight:only-child > div,
-#R-body .tab-content-text > div.highlight:only-child pre,
-#R-body .tab-content-text > pre.pre-code:only-child{
+#R-body .tab-content-text > div.highlight:only-child pre:not(.mermaid),
+#R-body .tab-content-text > pre:not(.mermaid).pre-code:only-child{
     border-width: 0;
 }
 
