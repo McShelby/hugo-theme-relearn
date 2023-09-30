@@ -322,7 +322,9 @@ function initMermaid( update, attrs ) {
                     svg.call( zoom );
                     var parent = this.parentElement;
                     // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
-                    parent.style.maxWidth = this.style.maxWidth;
+                    parent.style.maxWidth = this.style.maxWidth || this.getAttribute( 'width' );
+                    // if no unit is given for the width
+                    parent.style.maxWidth = parent.style.maxWidth || this.getAttribute( 'width' ) + 'px';
                     parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
                     parent.querySelector( '.svg-reset-button' ).addEventListener( 'click', function( event ){
                         inner.transition()
