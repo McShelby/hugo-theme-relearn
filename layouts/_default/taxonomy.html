@@ -9,7 +9,7 @@
 {{- if not $title }}
   {{- $title = .Data.Plural }}
 {{- end }}
-<h1 id="{{ $title | anchorize }}">{{ $title }}</h1>
+<h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- $lastCapital := "" }}
 {{- range .Data.Terms.Alphabetical }}
   {{- $capital := substr .Page.Title 0 1 | upper }}
@@ -17,7 +17,7 @@
     {{- if ne $lastCapital "" }}
 </ul>
     {{- end }}
-<h2 id="{{ $capital | anchorize }}">{{ $capital }}</h2>
+<h2 id="{{ $capital | plainify | anchorize }}">{{ $capital }}</h2>
 <ul class="columnize">
   {{- end }}
     {{- $c:=""}}{{/* display terms of a taxonomy */}}

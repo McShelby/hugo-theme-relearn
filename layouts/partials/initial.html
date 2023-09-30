@@ -1,6 +1,6 @@
 {{- if not .Title }}
   {{- $title := .Site.Title }}
-  {{- partial "heading-pre.html" . }}<h1 id="{{ $title | anchorize }}">{{ $title }}</h1>{{ partial "heading-post.html" . }}
+  {{- partial "heading-pre.html" . }}<h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>{{ partial "heading-post.html" . }}
 {{- end }}
 
 {{- "layouts/partials/initial.md" | readFile | .RenderString }}

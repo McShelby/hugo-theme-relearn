@@ -5,7 +5,7 @@
   {{- range .Data.Terms.Alphabetical }}
     {{- $capital := substr .Page.Title 0 1 | upper }}
     {{- if ne $lastCapital $capital }}
-    <li><a href="#{{ $capital | anchorize }}">{{ $capital }}</a></li>
+    <li><a href="#{{ $capital | plainify | anchorize }}">{{ $capital }}</a></li>
     {{- end }}
     {{- $lastCapital = $capital }}
   {{- end }}

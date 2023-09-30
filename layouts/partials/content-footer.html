@@ -9,7 +9,7 @@
               <i class='fas fa-list'></i>
   {{- $categories := slice | append .Params.categories }}
   {{- range $idx, $category := sort $categories }}
-    {{- with $page.Site.GetPage (printf "%s%s" ("/categories/" | relURL ) ( $category | anchorize ) ) }}
+    {{- with $page.Site.GetPage (printf "%s%s" ("/categories/" | relURL ) ( $category | plainify | anchorize ) ) }}
       {{- $to := . }}
               {{ if gt $idx 0 }} | {{ end }}<a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $category }}</a>
     {{- end }}
