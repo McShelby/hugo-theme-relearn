@@ -155,7 +155,7 @@ function restoreTabSelections() {
 }
 
 function initMermaid( update, attrs ) {
-    var doBeside = false;
+    var doBeside = true;
     var isImageRtl = false;
 
     // we are either in update or initialization mode;
@@ -551,7 +551,6 @@ function initAnchorClipboard(){
 }
 
 function initCodeClipboard(){
-    var isCodeRtl = false;
     function getCodeText( node ){
         // if highlight shortcode is used in inline lineno mode, remove lineno nodes before generating text, otherwise it doesn't hurt
         var code = node.cloneNode( true );
@@ -586,7 +585,7 @@ function initCodeClipboard(){
         var text = getCodeText( code );
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
         var inTable = inPre &&
-           code.parentNode.parentNode.tagName.toLowerCase() == 'td';
+            code.parentNode.parentNode.tagName.toLowerCase() == 'td';
         // avoid copy-to-clipboard for highlight shortcode in table lineno mode
         var isFirstLineCell = inTable &&
             code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code;
@@ -603,13 +602,17 @@ function initCodeClipboard(){
 
             clip.on( 'success', function( e ){
                 e.clearSelection();
-                var doBeside = e.trigger.parentNode.tagName.toLowerCase() == 'pre' || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
+                var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
+                var isCodeRtl = !inPre ? isRtl : false;
+                var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
                 e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
                 e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
             });
 
             clip.on( 'error', function( e ){
-                var doBeside = e.trigger.parentNode.tagName.toLowerCase() == 'pre' || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
+                var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
+                var isCodeRtl = !inPre ? isRtl : false;
+                var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
                 e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
                 e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
                 var f = function(){
