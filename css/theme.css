@@ -1663,6 +1663,15 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
 
+@supports selector(.math:has(> mjx-container)){
+    .math{
+        visibility: hidden;
+    }
+    .math:has(> mjx-container){
+        visibility: visible;
+    }
+}
+
 .math.align-left > mjx-container{
     text-align: left !important;
 }
