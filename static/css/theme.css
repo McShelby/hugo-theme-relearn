@@ -2084,36 +2084,23 @@ html[dir="rtl"] #R-sidebar ul.collapsible-menu > li > label > i.fa-chevron-right
     cursor: default;
 }
 
-#R-body .tab-nav-button > *{
-    display: block;
-    position: relative;
-}
-
-#R-body .tab-nav-button.active > *{
-    border-radius: 1px 1px 0 0;
-}
-
-#R-body .tab-nav-button > * > *{
+#R-body .tab-nav-button > .tab-nav-text{
     border-bottom-style: solid;
     border-bottom-width: .2rem;
+    display: block;
     padding: .2rem .6rem 0 .6rem;
 }
-
-#R-body .tab-nav-button.active > * > *{
+/* https://stackoverflow.com/a/46452396 */
+#R-body .tab-nav-button.active > .tab-nav-text{
     border-bottom-color: transparent;
-    font-weight: 500;
+    border-radius: 1px 1px 0 0;
+    text-shadow: -0.06ex 0 0 currentColor, 0.06ex 0 0 currentColor;
 }
-
-#R-body .tab-nav-button > * > .tab-nav-hidden{
-    display: block;
-    font-weight: 500;
-    visibility: hidden;
-}
-
-#R-body .tab-nav-button > * > .tab-nav-text{
-    display: block;
-    position: absolute;
-    top: 0;
+@supports (-webkit-text-stroke-width: 0.04ex){
+    #R-body .tab-nav-button.active > .tab-nav-text{
+        text-shadow: -0.03ex 0 0 currentColor, 0.03ex 0 0 currentColor;
+        -webkit-text-stroke-width: 0.04ex;
+    }
 }
 
 #R-body .tab-content{
