@@ -155,6 +155,9 @@ function restoreTabSelections() {
 }
 
 function initMermaid( update, attrs ) {
+    var doBeside = false;
+    var isImageRtl = false;
+
     // we are either in update or initialization mode;
     // during initialization, we want to edit the DOM;
     // during update we only want to execute if something changed
@@ -324,12 +327,19 @@ function initMermaid( update, attrs ) {
                     // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
                     parent.style.maxWidth = this.style.maxWidth || this.getAttribute( 'width' );
                     // if no unit is given for the width
-                    parent.style.maxWidth = parent.style.maxWidth || this.getAttribute( 'width' ) + 'px';
+                    parent.style.maxWidth = parent.style.maxWidth || 'calc( ' + this.getAttribute( 'width' ) + 'px + 1rem )';
                     parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
-                    parent.querySelector( '.svg-reset-button' ).addEventListener( 'click', function( event ){
+                    var button = parent.querySelector( '.svg-reset-button' );
+                    button.addEventListener( 'click', function( event ){
                         inner.transition()
                             .duration( 350 )
                             .call( zoom.transform, d3.zoomIdentity );
+                        this.setAttribute( 'aria-label', window.T_View_reset );
+                        this.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isImageRtl?'e':'w')) );
+                    });
+                    button.addEventListener( 'mouseleave', function() {
+                        this.removeAttribute( 'aria-label' );
+                        this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
                     });
                 });
             },
@@ -541,6 +551,7 @@ function initAnchorClipboard(){
 }
 
 function initCodeClipboard(){
+    var isCodeRtl = false;
     function getCodeText( node ){
         // if highlight shortcode is used in inline lineno mode, remove lineno nodes before generating text, otherwise it doesn't hurt
         var code = node.cloneNode( true );
@@ -594,16 +605,16 @@ function initCodeClipboard(){
                 e.clearSelection();
                 var doBeside = e.trigger.parentNode.tagName.toLowerCase() == 'pre' || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
                 e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isRtl?'e':'w')) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
             });
 
             clip.on( 'error', function( e ){
                 var doBeside = e.trigger.parentNode.tagName.toLowerCase() == 'pre' || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
                 e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isRtl?'e':'w')) );
+                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
                 var f = function(){
                     e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isRtl?'e':'w')) );
+                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
                     document.removeEventListener( 'copy', f );
                 };
                 document.addEventListener( 'copy', f );
