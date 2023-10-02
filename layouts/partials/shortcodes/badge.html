@@ -6,7 +6,13 @@
 {{- $color := .color | default "" }}
 {{- $content := .content }}
 {{- $style := .style | default "default" }}
-{{- $title := .title | default ($style | T) }}
+{{- $title := .title }}
+{{- if not $title }}
+  {{- if eq $style "info" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "warning" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "note" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "tip" }}{{ $title = $style | T }}{{ end }}
+{{- end }}
 {{- $title = trim $title " " }}
 {{- $icon := .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}

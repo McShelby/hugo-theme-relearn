@@ -4,7 +4,7 @@
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180" $page.File.Path }}
 {{- end }}
 {{- $groupid := .groupid | default (partial "make-random-md5.hugo" $page) | plainify | anchorize }}
- {{- $color := .color }}
+{{- $color := .color }}
 {{- $style := .style }}
 {{- $title := .title }}
 {{- $icon := .icon }}
@@ -17,7 +17,13 @@
   {{- with $tab }}
     {{- $color := .color | default $color | default "" }}
     {{- $style := .style | default $style | default (cond (ne $color "") "filled" "initial") }}
-    {{- $title := .title | default ($style | T) }}
+    {{- $title := .title }}
+    {{- if not $title }}
+      {{- if eq $style "info" }}{{ $title = $style | T }}{{ end }}
+      {{- if eq $style "warning" }}{{ $title = $style | T }}{{ end }}
+      {{- if eq $style "note" }}{{ $title = $style | T }}{{ end }}
+      {{- if eq $style "tip" }}{{ $title = $style | T }}{{ end }}
+    {{- end }}
     {{- $title = trim $title " " }}
     {{- $icon := .icon | default "" }}
     {{- if and (not $icon) (eq (len $icon) 0) }}
@@ -42,7 +48,13 @@
 {{- end }}
 {{- $color = .color | default "" }}
 {{- $style = .style | default (cond (ne $color "") "filled" "initial") }}
-{{- $title = .title | default ($style | T) }}
+{{- $title = .title }}
+{{- if not $title }}
+  {{- if eq $style "info" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "warning" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "note" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "tip" }}{{ $title = $style | T }}{{ end }}
+{{- end }}
 {{- $title = trim $title " " }}
 {{- $icon = .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}

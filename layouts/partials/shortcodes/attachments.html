@@ -12,8 +12,14 @@
 {{- if and (not $color) (eq (len $color) 0) }}
   {{- $style = .style | default "transparent" }}
 {{- end }}
-{{- $title := .title | default ($style | T) | default ("Attachments-label" | T) }}
-{{- $title = trim $title " " }}
+{{- $title := .title }}
+{{- if not $title }}
+  {{- if eq $style "info" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "warning" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "note" }}{{ $title = $style | T }}{{ end }}
+  {{- if eq $style "tip" }}{{ $title = $style | T }}{{ end }}
+{{- end }}
+{{- $title = trim ($title | default ("Attachments-label" | T)) " " }}
 {{- $icon := .icon | default "" }}
 {{- if and (not $icon) (eq (len $icon) 0) }}
   {{- $icon = "paperclip" }}
