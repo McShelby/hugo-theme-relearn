@@ -42,6 +42,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Table rows now change their background color on every even row.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Swahili. This language is not supported for search.
+
 ---
 
 ## 5.21.0 (2023-09-18) {#5210}
