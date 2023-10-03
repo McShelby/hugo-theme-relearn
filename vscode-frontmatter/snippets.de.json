@@ -2,7 +2,7 @@
 	"frontMatter.content.snippets": {
 		"Attachments": {
 			"body": [
-				"{{< attachments title=\"[[&title]]\" pattern=\"[[&pattern]]\" sort=\"[[&sort]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" />}}"
+				"{{% attachments title=\"[[&title]]\" pattern=\"[[&pattern]]\" sort=\"[[&sort]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" /%}}"
 			],
 			"description": "Zeigt eine Liste der Dateianhänge der Seite an",
 			"fields": [
@@ -69,7 +69,7 @@
 		},
 		"Badge": {
 			"body": [
-				"{{< badge title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" >}}[[&content]]{{< /badge >}}"
+				"{{% badge title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" %}}[[&content]]{{% /badge %}}"
 			],
 			"description": "Zeigt einen kleinen Marker im Text an",
 			"fields": [
@@ -125,7 +125,7 @@
 		},
 		"Button": {
 			"body": [
-				"{{< button href=\"[[&href]]\" target=\"[[&target]]\" type=\"[[&type]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" iconposition=\"[[&iconposition]]\" >}}[[&content]]{{< /button >}}"
+				"{{% button href=\"[[&href]]\" target=\"[[&target]]\" type=\"[[&type]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" iconposition=\"[[&iconposition]]\" %}}[[&content]]{{% /button %}}"
 			],
 			"description": "Zeigt eine anklickbare Schaltfläche an",
 			"fields": [
@@ -204,7 +204,7 @@
 		},
 		"Children": {
 			"body": [
-				"{{< children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" containerstyle=\"[[&containerstyle]]\" style=\"[[&style]]\" >}}"
+				"{{% children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" containerstyle=\"[[&containerstyle]]\" style=\"[[&style]]\" %}}"
 			],
 			"description": "Zeigt eine Liste der Unterseiten dieser Seite an",
 			"fields": [
@@ -287,9 +287,81 @@
 				}
 			]
 		},
+		"Highlight": {
+			"body": [
+				"````[[&type]] title=\"[[&title]]\" wrap=\"[[&wrap]]\" lineNos=\"[[&lineNos]]\" anchorLineNos=\"[[&anchorLineNos]]\" lineAnchors=\"[[&lineAnchors]]\" lineNoStart=\"[[&lineNoStart]]\" hl_Lines=\"[[&hl_Lines]]\"",
+				"[[&content]]",
+				"````"
+			],
+			"description": "Zeigt formatierten Code an",
+			"fields": [
+				{
+					"default": "FM_SELECTED_TEXT",
+					"name": "content",
+					"title": "Text",
+					"type": "string"
+				},
+				{
+					"name": "title",
+					"title": "Titel",
+					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "wrap",
+					"title": "Zeilen umbrechen",
+					"type": "choice"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "lineNos",
+					"title": "Zeilennummern anzeigen",
+					"type": "choice"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "anchorLineNos",
+					"title": "Zeilennummern verlinkbar",
+					"type": "choice"
+				},
+				{
+					"default": "",
+					"name": "lineAnchors",
+					"title": "Eindeutiges Prefix für verlinkbare Zeilennummern",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "lineNoStart",
+					"title": "Erste Zeilennummer",
+					"type": "string"
+				},
+				{
+					"default": "",
+					"name": "hl_Lines",
+					"title": "Zu markierende Zeilen",
+					"type": "string"
+				}
+			]
+		},
 		"Icon": {
 			"body": [
-				"{{< icon [[&icon]] >}}"
+				"{{% icon [[&icon]] %}}"
 			],
 			"description": "Zeigt ein Font Awesome Icon an",
 			"fields": [
@@ -302,7 +374,7 @@
 		},
 		"Include": {
 			"body": [
-				"{{< include file=\"[[&file]]\" hidefirstheading=\"[[&hidefirstheading]]\" >}}"
+				"{{% include file=\"[[&file]]\" hidefirstheading=\"[[&hidefirstheading]]\" %}}"
 			],
 			"description": "Zeigt den Inhalt einer Datei an",
 			"fields": [
@@ -447,19 +519,6 @@
 				}
 			]
 		},
-		"Site Param": {
-			"body": [
-				"{{< siteparam [[&name]] >}}"
-			],
-			"description": "Zeigt einen \"site parameter\" an",
-			"fields": [
-				{
-					"name": "name",
-					"title": "Name des \"site parameter\"",
-					"type": "string"
-				}
-			]
-		},
 		"OpenAPI": {
 			"body": [
 				"{{< openapi src=\"[[&src]]\" >}}"
@@ -469,6 +528,19 @@
 				{
 					"name": "src",
 					"title": "URL zur OpenAPI Specifikation",
+					"type": "string"
+				}
+			]
+		},
+		"Site Param": {
+			"body": [
+				"{{% siteparam name=\"[[&name]]\" %}}"
+			],
+			"description": "Zeigt einen \"site parameter\" an",
+			"fields": [
+				{
+					"name": "name",
+					"title": "Name des \"site parameter\"",
 					"type": "string"
 				}
 			]
