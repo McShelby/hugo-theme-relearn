@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/cont/taxonomy/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/cont/taxonomy/index.html" rel="canonical" type="text/html" title="Taxonomy :: Hugo Relearn Theme">
     <link href="../../cont/taxonomy/index.xml" rel="alternate" type="application/rss+xml" title="Taxonomy :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1696362807" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1696366255" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1696362808" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1696362808" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1696362808" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1696362808" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1696362808" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1696362808" rel="stylesheet">
-    <link href="../../css/fonts.css?1696362808" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1696362808" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1696362808" rel="stylesheet">
-    <link href="../../css/theme-auto.css?1696362808" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/variant.css?1696362808" rel="stylesheet">
-    <link href="../../css/print.css?1696362808" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1696362808" rel="stylesheet">
-    <link href="../../css/ie.css?1696362808" rel="stylesheet">
-    <script src="../../js/url.js?1696362808"></script>
-    <script src="../../js/variant.js?1696362808"></script>
+    <link href="../../css/fontawesome-all.min.css?1696366256" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1696366256" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1696366256" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1696366256" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1696366256" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1696366256" rel="stylesheet">
+    <link href="../../css/fonts.css?1696366256" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1696366256" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1696366256" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1696366256" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/variant.css?1696366256" rel="stylesheet">
+    <link href="../../css/print.css?1696366256" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1696366256" rel="stylesheet">
+    <link href="../../css/ie.css?1696366256" rel="stylesheet">
+    <script src="../../js/url.js?1696366256"></script>
+    <script src="../../js/variant.js?1696366256"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -79,7 +79,7 @@
         <div class="flex-block-wrapper">
           <article class="default">
             <header class="headline">
-<div class=" taxonomy-tags term-list tags" title="Tags">
+<div class=" taxonomy-tags term-list cstyle  tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
   <ul>
     <li><a class="term-link" href="../../tags/tutorial/index.html">tutorial</a></li>
   </ul>
@@ -135,7 +135,17 @@
 <tr>
 <td><strong>class</strong></td>
 <td><em>&lt;empty&gt;</em></td>
-<td>Additional CSS classes set on the outermost generated HTML element.</td>
+<td>Additional CSS classes set on the outermost generated HTML element.<br><br>If set to <code>tags</code> you will get the visuals for displaying the <em>tags</em> taxonomy, otherwise it will be a simple list of links as for the <em>categories</em> taxonomy.</td>
+</tr>
+<tr>
+<td><strong>style</strong></td>
+<td><code>primary</code></td>
+<td>The style scheme used if <strong>class</strong> is <code>tags</code>.<br><br>- by severity: <code>info</code>, <code>note</code>, <code>tip</code>, <code>warning</code><br>- by brand color: <code>primary</code>, <code>secondary</code>, <code>accent</code><br>- by color: <code>blue</code>, <code>green</code>, <code>grey</code>, <code>orange</code>, <code>red</code><br>- by special color: <code>default</code>, <code>transparent</code>, <code>code</code></td>
+</tr>
+<tr>
+<td><strong>color</strong></td>
+<td>see notes</td>
+<td>The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank">CSS color value</a> to be used if <strong>class</strong> is <code>tags</code>. If not set, the chosen color depends on the <strong>style</strong>. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color</td>
 </tr>
 <tr>
 <td><strong>icon</strong></td>
@@ -146,7 +156,7 @@
 </table>
 
             <footer class="footline">
-<div class=" taxonomy-categories term-list " title="Categories">
+<div class=" taxonomy-categories term-list cstyle  " title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
   <i class="fa-fw fas fa-cubes"></i>
   <ul>
     <li><a class="term-link" href="../../categories/content/index.html">content</a></li>
@@ -159,8 +169,8 @@
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1696362808" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1696362808" defer></script>
-    <script src="../../js/theme.js?1696362808" defer></script>
+    <script src="../../js/clipboard.min.js?1696366256" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1696366256" defer></script>
+    <script src="../../js/theme.js?1696366256" defer></script>
   </body>
 </html>
