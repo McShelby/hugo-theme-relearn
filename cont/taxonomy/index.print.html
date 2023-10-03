@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/cont/taxonomy/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/cont/taxonomy/index.html" rel="canonical" type="text/html" title="Taxonomy :: Hugo Relearn Theme">
     <link href="../../cont/taxonomy/index.xml" rel="alternate" type="application/rss+xml" title="Taxonomy :: Hugo Relearn Theme">
-    <link href="../../images/logo.svg?1696292003" rel="icon" type="image/svg+xml">
+    <link href="../../images/logo.svg?1696332088" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../css/fontawesome-all.min.css?1696292004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1696292004" rel="stylesheet"></noscript>
-    <link href="../../css/nucleus.css?1696292004" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1696292004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1696292004" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1696292004" rel="stylesheet">
-    <link href="../../css/fonts.css?1696292004" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1696292004" rel="stylesheet"></noscript>
-    <link href="../../css/theme.css?1696292004" rel="stylesheet">
-    <link href="../../css/theme-auto.css?1696292004" rel="stylesheet" id="R-variant-style">
-    <link href="../../css/variant.css?1696292004" rel="stylesheet">
-    <link href="../../css/print.css?1696292004" rel="stylesheet" media="print">
-    <link href="../../css/format-print.css?1696292004" rel="stylesheet">
-    <link href="../../css/ie.css?1696292004" rel="stylesheet">
-    <script src="../../js/url.js?1696292004"></script>
-    <script src="../../js/variant.js?1696292004"></script>
+    <link href="../../css/fontawesome-all.min.css?1696332089" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1696332089" rel="stylesheet"></noscript>
+    <link href="../../css/nucleus.css?1696332089" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1696332089" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1696332089" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1696332089" rel="stylesheet">
+    <link href="../../css/fonts.css?1696332089" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fonts.css?1696332089" rel="stylesheet"></noscript>
+    <link href="../../css/theme.css?1696332089" rel="stylesheet">
+    <link href="../../css/theme-auto.css?1696332089" rel="stylesheet" id="R-variant-style">
+    <link href="../../css/variant.css?1696332089" rel="stylesheet">
+    <link href="../../css/print.css?1696332089" rel="stylesheet" media="print">
+    <link href="../../css/format-print.css?1696332089" rel="stylesheet">
+    <link href="../../css/ie.css?1696332089" rel="stylesheet">
+    <script src="../../js/url.js?1696332089"></script>
+    <script src="../../js/variant.js?1696332089"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -79,8 +79,10 @@
         <div class="flex-block-wrapper">
           <article class="default">
             <header class="headline">
-<div class="tags">
-  <a class="tag-link" href="../../tags/tutorial/index.html">tutorial</a>
+<div class=" taxononmy-tags term-list tags">
+  <ul>
+    <li><a class="term-link" href="../../tags/tutorial/index.html">tutorial</a></li>
+  </ul>
 </div>
             </header>
 <h1 id="taxonomy">Taxonomy</h1>
@@ -104,20 +106,61 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">shortcuts</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&lt;i class=&#39;fas fa-list&#39;&gt;&lt;/i&gt; Categories&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories&#34;</span></span></span></code></pre></div>
-            <footer class="footline">
-              <i class='fas fa-list'></i>
-              <a class="tag-link" href="../../categories/content/index.html">content</a>
-               | <a class="tag-link" href="../../categories/taxonomy/index.html">taxonomy</a>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories&#34;</span></span></span></code></pre></div><h2 id="customization">Customization</h2>
+<p>If you define <a href="https://gohugo.io/content-management/taxonomies/#configure-taxonomies" target="_blank">custom taxonomies</a> and want to display a list of them somewhere on your page (often in the <code>layouts/partials/content-footer.html</code>) you can call a partial that does the job for you:</p>
+<div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{- partial &#34;term-list.html&#34; (dict
+</span></span><span class="line"><span class="cl">  &#34;page&#34; .
+</span></span><span class="line"><span class="cl">  &#34;taxonomy&#34; &#34;categories&#34;
+</span></span><span class="line"><span class="cl">  &#34;icon&#34; &#34;list&#34;
+</span></span><span class="line"><span class="cl">) }}</span></span></code></pre></div><h3 id="parameter">Parameter</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>page</strong></td>
+<td><em>&lt;empty&gt;</em></td>
+<td>Mandatory reference to the page.</td>
+</tr>
+<tr>
+<td><strong>taxonomy</strong></td>
+<td><em>&lt;empty&gt;</em></td>
+<td>The plural name of the taxonomy to display as used in your frontmatter.</td>
+</tr>
+<tr>
+<td><strong>class</strong></td>
+<td><em>&lt;empty&gt;</em></td>
+<td>Additional CSS classes set on the outermost generated HTML element.</td>
+</tr>
+<tr>
+<td><strong>icon</strong></td>
+<td><em>&lt;empty&gt;</em></td>
+<td>An optional <a href="../../shortcodes/icon/#finding-an-icon">Font Awesome icon name</a> set to the left of the list.</td>
+</tr>
+</tbody>
+</table>
 
+            <footer class="footline">
+<div class=" taxononmy-categories term-list ">
+  <i class="fa-fw fas fa-list" title="Categories"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/content/index.html">content</a></li>
+    <li><a class="term-link" href="../../categories/taxonomy/index.html">taxonomy</a></li>
+  </ul>
+</div>
             </footer>
           </article>
 
         </div>
       </main>
     </div>
-    <script src="../../js/clipboard.min.js?1696292004" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1696292004" defer></script>
-    <script src="../../js/theme.js?1696292004" defer></script>
+    <script src="../../js/clipboard.min.js?1696332089" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1696332089" defer></script>
+    <script src="../../js/theme.js?1696332089" defer></script>
   </body>
 </html>
