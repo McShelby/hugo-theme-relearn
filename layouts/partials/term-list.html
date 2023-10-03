@@ -1,6 +1,11 @@
 {{- $page := .page }}
 {{- $taxonomy := .taxonomy }}
 {{- $class := .class }}
+{{- $color := .color | default "" }}
+{{- $style := .style | default "" }}
+{{- if and (not $style) (eq (len $style) 0) }}
+  {{- $color = .color | default "var(--INTERNAL-TAG-BG-color)" }}
+{{- end }}
 {{- $icon := .icon | default "" }}
 {{- $icon = trim $icon " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -24,7 +29,7 @@
   {{- end }}
 {{- end }}
 {{- with $term_pages }}
-<div class=" taxonomy-{{ $taxonomy }} term-list {{ $class }}" title="{{ $taxonomy_page.Title }}">
+<div class=" taxonomy-{{ $taxonomy }} term-list cstyle {{ $style }} {{ $class }}" title="{{ $taxonomy_page.Title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}
   <i class="{{ $icon }}"></i>
   {{- end }}
