@@ -7,11 +7,11 @@
 {{- $page := . }}
 {{- if .Params.categories }}
               <i class='fas fa-list'></i>
-  {{- $categories := slice | append .Params.categories }}
-  {{- range $idx, $category := sort $categories }}
-    {{- with $page.Site.GetPage (printf "%s%s" ("/categories/" | relURL ) ( $category | plainify | anchorize ) ) }}
+  {{- $terms := slice | append .Params.categories }}
+  {{- range $idx, $term := sort $terms }}
+    {{- with ($page.Site.GetPage (printf "%s%s" ("/categories/" | relURL) ($term | plainify | anchorize)) | default ($page.Site.GetPage (printf "%s%s" ("/categories/" | relURL) ($term | urlize)))) }}
       {{- $to := . }}
-              {{ if gt $idx 0 }} | {{ end }}<a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $category }}</a>
+              {{ if gt $idx 0 }} | {{ end }}<a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $term }}</a>
     {{- end }}
   {{- end }}
 {{- end }}

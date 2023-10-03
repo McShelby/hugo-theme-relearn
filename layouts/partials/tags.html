@@ -2,12 +2,11 @@
 {{- $page := . }}
 {{- if .Params.tags }}
 <div class="tags">
-  {{- $tags := slice | append .Params.tags }}
-  {{- range sort $tags }}
-    {{- $tag := . }}
-    {{- with $page.Site.GetPage (printf "%s%s" ("/tags/" | relURL ) ( $tag | plainify | anchorize ) ) }}
+  {{- $terms := slice | append .Params.tags }}
+  {{- range $term := sort $terms }}
+    {{- with ($page.Site.GetPage (printf "%s%s" ("/tags/" | relURL) ($term | plainify | anchorize)) | default ($page.Site.GetPage (printf "%s%s" ("/tags/" | relURL) ($term | urlize)))) }}
       {{- $to := . }}
-  <a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $tag }}</a>
+  <a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $term }}</a>
     {{- end }}
   {{- end }}
 </div>
