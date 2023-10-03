@@ -40,3 +40,24 @@ url = "/tags"
 name = "<i class='fas fa-list'></i> Categories"
 url = "/categories"
 ```
+
+## Customization
+
+If you define [custom taxonomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and want to display a list of them somewhere on your page (often in the `layouts/partials/content-footer.html`) you can call a partial that does the job for you:
+
+````markdown
+{{- partial "term-list.html" (dict
+  "page" .
+  "taxonomy" "categories"
+  "icon" "list"
+) }}
+````
+
+### Parameter
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
+| **taxonomy**          | _&lt;empty&gt;_ | The plural name of the taxonomy to display as used in your frontmatter. |
+| **class**             | _&lt;empty&gt;_ | Additional CSS classes set on the outermost generated HTML element. |
+| **icon**              | _&lt;empty&gt;_ | An optional [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}) set to the left of the list. |

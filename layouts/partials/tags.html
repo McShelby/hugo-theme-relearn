@@ -1,13 +1,6 @@
 
-{{- $page := . }}
-{{- if .Params.tags }}
-<div class="tags">
-  {{- $terms := slice | append .Params.tags }}
-  {{- range $term := sort $terms }}
-    {{- with ($page.Site.GetPage (printf "%s%s" ("/tags/" | relURL) ($term | plainify | anchorize)) | default ($page.Site.GetPage (printf "%s%s" ("/tags/" | relURL) ($term | urlize)))) }}
-      {{- $to := . }}
-  <a class="tag-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $term }}</a>
-    {{- end }}
-  {{- end }}
-</div>
-{{- end }}
+{{- partial "term-list.html" (dict
+  "page" .
+  "taxonomy" "tags"
+  "class" "tags"
+) }}
