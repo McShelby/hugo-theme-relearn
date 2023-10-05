@@ -160,10 +160,10 @@ dd {
     inset-inline-start: 0;
     line-height: 1.574;
     min-height: 100%;
-    min-width: 18.75rem;
-    max-width: 18.75rem;
     position: fixed;
-    width: 18.75rem;
+    min-width: var(--INTERNAL-MENU-WIDTH-L);
+    max-width: var(--INTERNAL-MENU-WIDTH-L);
+    width: var(--INTERNAL-MENU-WIDTH-L);
 }
 
 #R-sidebar a{
@@ -333,13 +333,13 @@ dd {
     flex-grow: 1;
     flex-shrink: 0;
     height: 100%;
-    margin-inline-start: 18.75rem;
+    margin-inline-start: var(--INTERNAL-MENU-WIDTH-L);
     min-height: 100%;
-    min-width: calc( 100% - 18.75rem);
-    max-width: calc( 100% - 18.75rem);
     overflow-wrap: break-word; /* avoid x-scrolling of body if it is to large to fit */
     position: relative; /* PS */
-    width: calc( 100% - 18.75rem);
+    min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-L) );
+    max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-L) );
+    width: calc( 100% - var(--INTERNAL-MENU-WIDTH-L) );
     z-index: 70;
 }
 
@@ -424,20 +424,19 @@ article a:focus {
 #R-body .flex-block-wrapper {
     margin-left: auto;
     margin-right: auto;
-    max-width: calc( 81.25rem - 18.75rem - 2 * 3.25rem );
+    max-width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem );
     width: 100%;
 }
 body:not(.print) #R-body .narrow .flex-block-wrapper {
-    max-width: calc( 81.25rem - 18.75rem - 2 * 9.75rem );
+    max-width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem );
 }
-
 /* we limit width if we have large screens */
 @media screen and ( min-width: 81.25rem ){ /* #R-sidebar/width + ./max-width */
     #R-body .flex-block-wrapper {
-        width: calc( 81.25rem - 18.75rem - 2 * 3.25rem );
+        width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem );
     }
     body:not(.print) #R-body .narrow .flex-block-wrapper {
-        width: calc( 81.25rem - 18.75rem - 2 * 9.75rem );
+        width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem );
     }
 }
 
@@ -1098,21 +1097,21 @@ html[dir="rtl"] .topbar-button-next i {
 
 @media screen and (max-width: 59.999rem) {
     #R-sidebar {
-        min-width: 14.375rem;
-        max-width: 14.375rem;
-        width: 14.375rem;
+        min-width: var(--INTERNAL-MENU-WIDTH-M);
+        max-width: var(--INTERNAL-MENU-WIDTH-M);
+        width: var(--INTERNAL-MENU-WIDTH-M);
     }
     #R-body {
-        margin-inline-start: 14.375rem;
-        min-width: calc( 100% - 14.375rem);
-        max-width: calc( 100% - 14.375rem);
-        width: calc( 100% - 14.375rem);
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-M);
+        min-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-M) );
+        max-width: calc( 100% - var(--INTERNAL-MENU-WIDTH-M) );
+        width: calc( 100% - var(--INTERNAL-MENU-WIDTH-M) );
     }
 }
 @media screen and (max-width: 47.999rem) {
     /* we don't support sidebar flyout in mobile */
     .mobile-support #R-sidebar {
-        inset-inline-start: -14.375rem;
+        inset-inline-start: calc( -1 * var(--INTERNAL-MENU-WIDTH-M) );
     }
     .mobile-support #navshow{
         display: inline;
@@ -1133,7 +1132,7 @@ html[dir="rtl"] .topbar-button-next i {
         z-index: 90;
     }
     .mobile-support.sidebar-flyout #R-body {
-        margin-inline-start: 14.375rem;
+        margin-inline-start: var(--INTERNAL-MENU-WIDTH-M);
         overflow: hidden;
     }
     .mobile-support.sidebar-flyout #R-body-overlay{

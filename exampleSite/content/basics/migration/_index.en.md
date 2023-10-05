@@ -22,6 +22,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in you page. [See the docs]({{% relref "cont/taxonomy#customization" %}}).
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs]({{% relref "basics/customization#change-the-menu-width" %}}).
+
 ---
 
 ## 5.22.0 (2023-10-02) {#5220}
