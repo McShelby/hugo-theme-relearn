@@ -37,7 +37,7 @@ name = "<i class='fas fa-tags'></i> Tags"
 url = "/tags"
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-list'></i> Categories"
+name = "<i class='fas fa-layer-group'></i> Categories"
 url = "/categories"
 ```
 
