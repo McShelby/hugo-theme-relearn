@@ -1636,9 +1636,9 @@ ready( function(){
         moveTopbarButtons();
         adjustEmptyTopbarContents();
     }
-    var mqs = window.matchMedia( 'only screen and (max-width: 48rem)' );
+    var mqs = window.matchMedia( 'only screen and (max-width: 47.999rem)' );
     mqs.addEventListener( 'change', onWidthChange.bind( null, setWidthS ) );
-    var mqm = window.matchMedia( 'only screen and (min-width: 48rem) and (max-width: 60rem)' );
+    var mqm = window.matchMedia( 'only screen and (min-width: 48rem) and (max-width: 59.999rem)' );
     mqm.addEventListener( 'change', onWidthChange.bind( null, setWidthM ) );
     var mql = window.matchMedia( 'only screen and (min-width: 60rem)' );
     mql.addEventListener( 'change', onWidthChange.bind( null, setWidthL ) );
