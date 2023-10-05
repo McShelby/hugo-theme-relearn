@@ -61,13 +61,22 @@ If you need to change this default behavior, create a new file in `layouts/parti
 
 ## Change the Menu Width
 
-If you want to adjust the menu width you can define the following CSS variables in you `custom-header.html`. Note that `--MENU-WIDTH-S` isn't adjustable because the menu is
-hidden for small screen widths.
+The menu width adjusts automatically for different screen sizes.
+
+| Name | Screen Width  | Menu Width |
+| ---- | ------------- | ---------- |
+| S    | < 48rem       | 0          |
+| M    | 48rem - 60rem | 14.375rem  |
+| L    | >= 60rem      | 18.75rem   |
+
+The values for the screen width breakpoints aren't configurable.
+
+If you want to adjust the menu width you can define the following CSS variables in your `custom-header.html`. Note that `--MENU-WIDTH-S` doesn't exist as the menu is always hidden for small screen sizes.
 
 ````css
 :root {
-    --MENU-WIDTH-M: 15rem;
-    --MENU-WIDTH-L: 20rem;
+    --MENU-WIDTH-M: 14.375rem;
+    --MENU-WIDTH-L: 18.75rem;
 }
 ````
 
