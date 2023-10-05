@@ -49,7 +49,7 @@ If you define [custom taxonomies](https://gohugo.io/content-management/taxonomie
 {{- partial "term-list.html" (dict
   "page" .
   "taxonomy" "categories"
-  "icon" "cubes"
+  "icon" "layer-group"
 ) }}
 ````
 
