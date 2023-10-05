@@ -13,21 +13,21 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/customization/index.html" rel="alternate" hreflang="pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/basics/customization/index.html" rel="canonical" type="text/html" title="Customizat&#39;n :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="../../../pir/basics/customization/index.xml" rel="alternate" type="application/rss+xml" title="Customizat&#39;n :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="../../../images/logo.svg?1696510839" rel="icon" type="image/svg+xml">
+    <link href="../../../images/logo.svg?1696522501" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../../../css/fontawesome-all.min.css?1696510842" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fontawesome-all.min.css?1696510842" rel="stylesheet"></noscript>
-    <link href="../../../css/nucleus.css?1696510842" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1696510842" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/auto-complete.css?1696510842" rel="stylesheet"></noscript>
-    <link href="../../../css/perfect-scrollbar.min.css?1696510842" rel="stylesheet">
-    <link href="../../../css/fonts.css?1696510842" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fonts.css?1696510842" rel="stylesheet"></noscript>
-    <link href="../../../css/theme.css?1696510842" rel="stylesheet">
-    <link href="../../../css/theme-auto.css?1696510842" rel="stylesheet" id="R-variant-style">
-    <link href="../../../css/variant.css?1696510842" rel="stylesheet">
-    <link href="../../../css/print.css?1696510842" rel="stylesheet" media="print">
-    <link href="../../../css/format-print.css?1696510842" rel="stylesheet">
-    <link href="../../../css/ie.css?1696510842" rel="stylesheet">
-    <script src="../../../js/url.js?1696510842"></script>
-    <script src="../../../js/variant.js?1696510842"></script>
+    <link href="../../../css/fontawesome-all.min.css?1696522504" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fontawesome-all.min.css?1696522504" rel="stylesheet"></noscript>
+    <link href="../../../css/nucleus.css?1696522504" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1696522504" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/auto-complete.css?1696522504" rel="stylesheet"></noscript>
+    <link href="../../../css/perfect-scrollbar.min.css?1696522504" rel="stylesheet">
+    <link href="../../../css/fonts.css?1696522504" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../../css/fonts.css?1696522504" rel="stylesheet"></noscript>
+    <link href="../../../css/theme.css?1696522504" rel="stylesheet">
+    <link href="../../../css/theme-auto.css?1696522504" rel="stylesheet" id="R-variant-style">
+    <link href="../../../css/variant.css?1696522504" rel="stylesheet">
+    <link href="../../../css/print.css?1696522504" rel="stylesheet" media="print">
+    <link href="../../../css/format-print.css?1696522504" rel="stylesheet">
+    <link href="../../../css/ie.css?1696522504" rel="stylesheet">
+    <script src="../../../js/url.js?1696522504"></script>
+    <script src="../../../js/variant.js?1696522504"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -134,11 +134,38 @@ If ye have requirements t' support IE and/or older browser versions, use one o' 
 <p>If no favicon file be found, th' theme will lookup th' alternative filename <code>logo</code> 'n th' same locat'n an' will repeat th' search fer th' list o' supported file types.</p>
 <p>If ye need t' change this default behavior, create a new file 'n <code>layouts/partials/</code> named <code>favicon.html</code>. Then write someth'n like this:</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;icon&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/images/favicon.bmp&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;image/bmp&#34;</span><span class="p">&gt;</span></span></span></code></pre></div><h2 id="change-the-menu-width">Change th' Menu Width</h2>
-<p>If ye want t' adjust th' menu width ye can define th' follow'n CSS variables 'n ye <code>custom-header.html</code>. Avast that <code>--MENU-WIDTH-S</code> isn&rsquo;t adjust'ble because th' menu be
-hidden fer small screen widths.</p>
+<p>Th' menu width adjusts automatically fer different screen sizes.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Screen Width</th>
+<th>Menu Width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>&lt; 48rem</td>
+<td>0</td>
+</tr>
+<tr>
+<td>M</td>
+<td>48rem - 60rem</td>
+<td>14.375rem</td>
+</tr>
+<tr>
+<td>L</td>
+<td>&gt;= 60rem</td>
+<td>18.75rem</td>
+</tr>
+</tbody>
+</table>
+<p>Th' values fer th' screen width breakpoints aren&rsquo;t configur'ble.</p>
+<p>If ye want t' adjust th' menu width ye can define th' follow'n CSS variables 'n yer <code>custom-header.html</code>. Avast that <code>--MENU-WIDTH-S</code> doesn&rsquo;t exist as th' menu be always hidden fer small screen sizes.</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-M</span><span class="p">:</span> <span class="mi">15</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-L</span><span class="p">:</span> <span class="mi">20</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-M</span><span class="p">:</span> <span class="mf">14.375</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-L</span><span class="p">:</span> <span class="mf">18.75</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><h2 id="theme-variant">Change th' Colors</h2>
 <p>Th' Relearrrn theme lets ye choose between some predefined color variants 'n light or dark mode, but feel free t' add one yourself!</p>
 <p>Ye can preview th' shipped variants by chang'n them 'n th' variant selector at th' bottom o' th' menu.</p>
@@ -197,8 +224,8 @@ hidden fer small screen widths.</p>
         </div>
       </main>
     </div>
-    <script src="../../../js/clipboard.min.js?1696510842" defer></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1696510842" defer></script>
-    <script src="../../../js/theme.js?1696510842" defer></script>
+    <script src="../../../js/clipboard.min.js?1696522504" defer></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1696522504" defer></script>
+    <script src="../../../js/theme.js?1696522504" defer></script>
   </body>
 </html>
