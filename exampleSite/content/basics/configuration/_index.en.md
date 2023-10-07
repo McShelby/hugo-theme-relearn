@@ -144,7 +144,7 @@ This will generate a search index file at the root of your public folder ready t
 
 ### Activate dedicated search page
 
-You can add a dedicated search page for your page by adding the `SEARCHPAGE` outputformat to your home page by adding the following lines in your `config.toml` file.
+You can add a dedicated search page for your page by adding the `SEARCHPAGE` outputformat to your home page by adding the following lines in your `config.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
 
 ```toml
 [outputs]
@@ -154,6 +154,12 @@ You can add a dedicated search page for your page by adding the `SEARCHPAGE` out
 You can access this page by either clicking on the magnifier glass or by typing some search term and pressing `ENTER` inside of the menu's search box .
 
 ![Screenshot of the dedicated search page](search_page.png?&width=60pc)
+
+{{% notice note %}}
+To have Hugo create the dedicated search page successfully, you must not generate the URL `http://example.com/mysite/search.html` from your own content. This can happen if you set `uglyURLs=true` in your `config.toml` and defining a Markdown file `content/search.md`.
+
+To make sure, there is no duplicate content for any given URL of your project, run `hugo --printPathWarnings`.
+{{% /notice %}}
 
 ## Activate print support
 
