@@ -133,9 +133,10 @@
 	{{- end }}
 	{{- $c = replaceRE (printf "(src|href)=\"([^\"]*?)/%s/([^\"]*?.files/[^\"]*?\")" $langtrg) "${1}=\"${2}/${3}" $c }}
 	{{- if $srcPage }}
-		{{- $page.Store.Set "hasMathJax" (or ($page.Store.Get "hasMathJax") ($srcPage.Store.Get "hasMathJax")) }}
-		{{- $page.Store.Set "hasMermaid" (or ($page.Store.Get "hasMermaid") ($srcPage.Store.Get "hasMermaid")) }}
-		{{- $page.Store.Set "hasOpenapi" (or ($page.Store.Get "hasOpenapi") ($srcPage.Store.Get "hasOpenapi")) }}
+		{{- range $page.Site.Params.relearn.dependencies }}
+			{{- $has := printf "has%s" .name }}
+			{{- $page.Store.Set $has (or ($page.Store.Get $has) ($srcPage.Store.Get $has)) }}
+		{{- end }}
 	{{- end }}
 {{- end }}
 {{ $c | safeHTML }}

@@ -64,8 +64,10 @@
   {{- with .sect }}
     {{- $page := . }}
     {{- partialCached "nested-content.hugo" (dict "page" $page "outputFormat" $outputFormat) $page.RelPermalink "outputFormat" $outputFormat }}
-    {{- $currentNode.Page.Store.Set "nestedHasMathJax" (or ($currentNode.Page.Store.Get "nestedHasMathJax") (.Page.Store.Get "hasMathJax")) }}
-    {{- $currentNode.Page.Store.Set "nestedHasMermaid" (or ($currentNode.Page.Store.Get "nestedHasMermaid") (.Page.Store.Get "hasMermaid")) }}
-    {{- $currentNode.Page.Store.Set "nestedHasOpenapi" (or ($currentNode.Page.Store.Get "nestedHasOpenapi") (.Page.Store.Get "hasOpenapi")) }}
+    {{- range $page.Site.Params.relearn.dependencies }}
+      {{- $has := printf "has%s" .name }}
+      {{- $nestedhas := printf "nestedHas%s" .name }}
+      {{- $currentNode.Page.Store.Set $nestedhas (or ($currentNode.Page.Store.Get $nestedhas) ($page.Page.Store.Get $has)) }}
+      {{- end }}
   {{- end }}
 {{- end }}

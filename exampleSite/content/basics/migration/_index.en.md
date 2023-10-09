@@ -24,6 +24,8 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs]({{% relref "basics/customization#change-the-menu-width" %}}).
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you. This comes in handy if you want to add your own shortcodes that require additional JavaScript code to be loaded. [See the docs]({{% relref "basics/customization#own-shortcodes-with-javascript-dependencies" %}}).
+
 ---
 
 ## 5.22.0 (2023-10-02) {#5220}

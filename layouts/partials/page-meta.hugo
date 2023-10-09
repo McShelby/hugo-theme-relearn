@@ -5,17 +5,13 @@
 {{- $currentNode.Scratch.Delete "relearnIsHiddenNode" }}{{/* the node itself is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenStem" }}{{/* the node or one of its parents is flagged as hidden */}}
 {{- $currentNode.Scratch.Delete "relearnIsHiddenFrom" }}{{/* the node is hidden from the current page */}}
-{{- $wantsMathjax := or (and (ne $currentNode.Params.disableMathjax nil) (not $currentNode.Params.disableMathjax)) (and (ne .Site.Params.disableMathjax nil) (not .Site.Params.disableMathjax)) }}
-{{- if $wantsMathjax }}
-	{{- $currentNode.Store.Set "hasMathJax" true }}
-{{- end }}
-{{- $wantsMermaid := or (and (ne $currentNode.Params.disableMermaid nil) (not $currentNode.Params.disableMermaid)) (and (ne .Site.Params.disableMermaid nil) (not .Site.Params.disableMermaid)) }}
-{{- if $wantsMermaid }}
-	{{- $currentNode.Store.Set "hasMermaid" true }}
-{{- end }}
-{{- $wantsOpenapi := or (and (ne $currentNode.Params.disableOpenapi nil) (not $currentNode.Params.disableOpenapi)) (and (ne .Site.Params.disableOpenapi nil) (not .Site.Params.disableOpenapi)) }}
-{{- if $wantsOpenapi }}
-	{{- $currentNode.Store.Set "hasOpenapi" true }}
+{{- range $currentNode.Site.Params.relearn.dependencies }}
+	{{- $has := printf "has%s" .name }}
+	{{- $disable := printf "disable%s" .name }}
+	{{- $wants := or (and (ne (index $currentNode.Params $disable) nil) (not (index $currentNode.Params $disable))) (and (ne (index .Site.Params $disable) nil) (not (index .Site.Params $disable))) }}
+	{{- if $wants }}
+		{{- $currentNode.Store.Set $has true }}
+	{{- end }}
 {{- end }}
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" (.Site.Params.ordersectionsby | default "weight") }}
 {{- define "relearn-structure" }}

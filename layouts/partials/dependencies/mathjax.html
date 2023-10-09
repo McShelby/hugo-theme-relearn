@@ -1,0 +1,45 @@
+{{- $page := .page }}
+{{- with $page }}
+  {{- if isset .Params "mathjaxinitialize" }}
+    {{- $.Scratch.Set "mathJaxInitialize" .Params.mathJaxInitialize }}
+  {{- else if isset .Site.Params "mathjaxinitialize" }}
+    {{- $.Scratch.Set "mathJaxInitialize" .Site.Params.mathJaxInitialize }}
+  {{- else }}
+    {{- $.Scratch.Set "mathJaxInitialize" "{}" }}
+  {{- end }}
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          // We don't support MathJax for IE11 anyways, so bail out early
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], // allow for single dollars as we set startup.elements
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false // avoid translation hassle for context menu
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse({{ $.Scratch.Get "mathJaxInitialize" }}) );
+    </script>
+  {{- if isset .Params "custommathjaxurl" }}
+    <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
+  {{- else if isset .Site.Params "custommathjaxurl" }}
+    <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
+  {{- else }}
+    <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+  {{- end }}
+{{- end }}

@@ -150,6 +150,40 @@ document.addEventListener( 'themeVariantLoaded', function( e ){
 
 If you are not happy with the shipped variants you can either copy and rename one of the shipped files from `themes/hugo-theme-relearn/static/css` to `static/css`, edit them afterwards to your liking in a text editor and configure the `themeVariant` parameter in your `config.toml` or just use the [interactive variant generator]({{%relref "basics/generator" %}}).
 
-### Output Formats
+## Own Shortcodes with JavaScript Dependencies
+
+Certain shortcodes make use of additional JavaScript files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files. To provide this behavior to the user and extending it for his own shortcodes this can be configured.
+
+Say you want to add a shortcode `myshortcode` that also requires the `jquery` JavaScript library.
+
+1. Write the shortcode file `layouts/partials/shortcode/myshortcode.html` and add the following line
+
+    ````go
+   {{- .Store.Set "hasMyShortcode" true }}
+    ````
+
+1. Add the following snippet to your `config.toml`
+
+    ````go
+    [params.relearn.dependencies]
+      [params.relearn.dependencies.myshortcode]
+        name = "MyShortcode"
+        location = "footer"
+    ````
+
+1. Add the dependency loader file `layouts/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `config.toml`.
+
+    ````html
+    <script src="https://www.unpkg.com/jquery/dist/jquery.js"></script>
+    ````
+
+Character casing is relevant!
+
+- the `name` setting in your `config.toml` must match the key you used for the store in your `layouts/partials/shortcode/myshortcode.html`.
+- the key on `params.relearn.dependencies` in your `config.toml` must match the file name of your loader file.
+
+See the `math`, `mermaid` and `openapi` shortcodes for examples.
+
+## Output Formats
 
 Certain parts of the theme can be changed for support of your own [output formats](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `config.toml`, you can add a file `layouts/partials/header.plaintext.html` to change the way, the page header should look like for that output format.

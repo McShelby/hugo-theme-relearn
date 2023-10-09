@@ -1,0 +1,23 @@
+{{- $page := .page }}
+{{- with $page }}
+  {{- $urlOpenapi := "" }}
+  {{- if isset .Params "customopenapiurl" }}
+    {{- $urlOpenapi = .Params.customOpenapiURL }}
+  {{- else if isset .Site.Params "customopenapiurl" }}
+    {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
+  {{- else }}
+    {{- $urlOpenapi = "js/swagger-ui/swagger-ui-bundle.js" | relURL }}
+    {{- if not .Site.Params.disableAssetsBusting }}
+      {{- $urlOpenapi = printf "%s?%d" $urlOpenapi now.Unix }}
+    {{- end }}
+  {{- end }}
+    <script>window.noZensmooth = true;</script>
+    <script src="{{ $urlOpenapi }}" defer></script>
+  {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
+    <script src="{{ $urlOpenapi }}" defer></script>
+  {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-standalone-preset" "swagger-ui" }}
+  {{- $urlOpenapi := replace $urlOpenapi ".js" ".css" }}
+    <script>
+      window.themeUseOpenapi = { css: {{ $urlOpenapi }}, assetsBuster: {{ cond (not .Site.Params.disableAssetsBusting) now.Unix 0 }} };
+    </script>
+{{- end }}
