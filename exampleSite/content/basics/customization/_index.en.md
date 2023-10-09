@@ -171,7 +171,7 @@ Say you want to add a shortcode `myshortcode` that also requires the `jquery` Ja
         location = "footer"
     ````
 
-1. Add the dependency loader file `layouts/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `config.toml`.
+1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `config.toml`.
 
     ````html
     <script src="https://www.unpkg.com/jquery/dist/jquery.js"></script>
@@ -179,8 +179,8 @@ Say you want to add a shortcode `myshortcode` that also requires the `jquery` Ja
 
 Character casing is relevant!
 
-- the `name` setting in your `config.toml` must match the key you used for the store in your `layouts/partials/shortcode/myshortcode.html`.
-- the key on `params.relearn.dependencies` in your `config.toml` must match the file name of your loader file.
+- the `name` setting in your `config.toml` must match the key (with a `has` prefixed) you used for the store in your `layouts/partials/shortcode/myshortcode.html`.
+- the key on `params.relearn.dependencies` in your `config.toml` must match the base file name of your loader file.
 
 See the `math`, `mermaid` and `openapi` shortcodes for examples.
 
