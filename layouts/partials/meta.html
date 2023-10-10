@@ -17,5 +17,4 @@
     {{- with .Site.Params.author }}
     <meta name="author" content="{{ . }}">
     {{- end }}
-    {{- template "_internal/opengraph.html" . }}
-    {{- template "_internal/twitter_cards.html" . }}
+    {{- replace (trim (partial "social.html" .) " \n\r") "<meta " "    <meta "| safeHTML }}
