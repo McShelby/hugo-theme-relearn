@@ -49,7 +49,7 @@ Hugo provides a `new` command to create a new website.
 hugo new site <new_project>
 ```
 
-The Relearn theme provides [archetypes]({{%relref "cont/archetypes" %}}) to help you create this kind of pages.
+The Relearn theme provides [archetypes]({{% relref "cont/archetypes" %}}) to help you create this kind of pages.
 
 ## Frontmatter Configuration
 
@@ -147,7 +147,7 @@ The theme generates the menu based on the following rules:
 - all visible entries show their immediate children entries if `alwaysopen=true`; this proceeds recursively
 - all remaining entries are not shown
 
-You can see this feature in action on the example page for [children shortcode]({{< relref "shortcodes/children" >}}) and its children pages.
+You can see this feature in action on the example page for [children shortcode]({{% relref "shortcodes/children" %}}) and its children pages.
 
 ## Disable Section Pages
 

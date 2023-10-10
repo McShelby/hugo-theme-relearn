@@ -182,7 +182,7 @@ Nevertheless, if you're unhappy with the resulting URLs you can manually redefin
 
 ## MathJax
 
-The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Math]({{< relref "shortcodes/math" >}}) for additional documentation.
+The MathJax configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Math]({{% relref "shortcodes/math" %}}) for additional documentation.
 
 ### Example {#math-example}
 
@@ -194,7 +194,7 @@ You also can disable MathJax for specific pages while globally enabled.
 
 ## Mermaid
 
-The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{< relref "shortcodes/mermaid" >}}) for additional documentation.
+The Mermaid configuration parameters can also be set on a specific page. In this case, the global parameter would be overwritten by the local one. See [Mermaid]({{% relref "shortcodes/mermaid" %}}) for additional documentation.
 
 ### Example {#mermaid-example}
 
