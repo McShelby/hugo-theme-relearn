@@ -156,7 +156,7 @@ Certain shortcodes make use of additional JavaScript files. The theme only loads
 
 Say you want to add a shortcode `myshortcode` that also requires the `jquery` JavaScript library.
 
-1. Write the shortcode file `layouts/shortcode/myshortcode.html` and add the following line
+1. Write the shortcode file `layouts/shortcodes/myshortcode.html` and add the following line
 
     ````go
    {{- .Store.Set "hasMyShortcode" true }}
@@ -179,7 +179,7 @@ Say you want to add a shortcode `myshortcode` that also requires the `jquery` Ja
 
 Character casing is relevant!
 
-- the `name` setting in your `config.toml` must match the key (that needs to be prefixed with a `has`) you used for the store in your `layouts/shortcode/myshortcode.html`.
+- the `name` setting in your `config.toml` must match the key (that needs to be prefixed with a `has`) you used for the store in your `layouts/shortcodes/myshortcode.html`.
 - the key on `params.relearn.dependencies` in your `config.toml` must match the base file name of your loader file.
 
 See the `math`, `mermaid` and `openapi` shortcodes for examples.
