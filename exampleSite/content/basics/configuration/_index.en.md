@@ -234,3 +234,7 @@ landingPageName = "<i class='fas fa-home'></i> Home"
 The home button is going to look like this:
 
 ![Default Home Button](home_button_defaults.png?width=18.75rem)
+
+## Social Media Meta Tags
+
+You can add social media meta tags for the [Open Graph](https://gohugo.io/templates/internal/#open-graph) and [Twitter Cards](https://gohugo.io/templates/internal/#twitter-cards) to your site. These are configured as mentioned in the Hugo docs.
