@@ -26,7 +26,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you. This comes in handy if you want to add your own shortcodes that require additional JavaScript code to be loaded. [See the docs]({{% relref "basics/customization#own-shortcodes-with-javascript-dependencies" %}}).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags provided by Hugo for the [Open Graph](https://gohugo.io/templates/internal/#open-graph) and [Twitter Cards](https://gohugo.io/templates/internal/#twitter-cards) to your site.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs]({{% relref "basics/configuration#social-media-meta-tags" %}}).
 
 ---
 
