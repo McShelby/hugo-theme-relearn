@@ -1,0 +1,109 @@
+{{- /* based on Hugo 0.119.0 _internal/opengraph.html but with modified title */}}
+{{- $format := partial "get-format.hugo" . }}
+{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+{{- $page := . }}
+{{- $title := .Title }}
+{{- if eq $outputFormat "searchpage" }}
+    {{- $title = T "Search" }}
+{{- else if eq .Kind "taxonomy" }}
+    {{- $title = i18n .Data.Plural }}
+    {{- if not $title }}
+        {{- $title = .Data.Plural }}
+    {{- end }}
+{{- else if eq .Kind "term" }}
+    {{- $title = i18n .Data.Singular }}
+    {{- if not $title }}
+        {{- $title = .Data.Singular }}
+    {{- end }}
+    {{- $title = printf "%s %s %s" .Title (default "::" .Site.Params.titleSeparator) $title }}
+{{- end }}
+{{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
+  {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
+{{- end }}
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+{{- with $.Params.images }}
+    {{- range first 6 . }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{- end }}
+{{- else }}
+    {{- $images := $.Resources.ByType "image" }}
+    {{- $featured := $images.GetMatch "*feature*" }}
+    {{- if not $featured }}
+        {{- $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}
+    {{- end }}
+    {{- with $featured }}
+    <meta property="og:image" content="{{ $featured.Permalink }}">
+    {{- else }}
+        {{- with $.Site.Params.images }}
+    <meta property="og:image" content="{{ index . 0 | absURL }}">
+        {{- end }}
+    {{- end }}
+{{- end }}
+{{- if .IsPage }}
+    {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
+    {{- with .Parent }}
+    {{- $page := . }}
+    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
+    {{- $title := .Title }}
+    {{- if eq $outputFormat "searchpage" }}
+        {{- $title = T "Search" }}
+    {{- else if eq .Kind "taxonomy" }}
+        {{- $title = i18n .Data.Plural }}
+        {{- if not $title }}
+            {{- $title = .Data.Plural }}
+        {{- end }}
+    {{- else if eq .Kind "term" }}
+        {{- $title = i18n .Data.Singular }}
+        {{- if not $title }}
+            {{- $title = .Data.Singular }}
+        {{- end }}
+        {{- $title = printf "%s %s %s" .Title (default "::" .Site.Params.titleSeparator) $title }}
+    {{- end }}
+    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
+      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
+    {{- end }}
+    <meta property="article:section" content="{{ $title }}">
+    {{- end }}
+    {{- with .PublishDate }}
+    <meta property="article:published_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
+    {{- end }}
+    {{- with .Lastmod }}
+    <meta property="article:modified_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
+    {{- end }}
+{{- end }}
+{{- with .Params.audio }}
+    <meta property="og:audio" content="{{ . }}">
+{{- end }}
+{{- with .Params.locale }}
+    <meta property="og:locale" content="{{ . }}">
+{{- end }}
+{{- with .Site.Title }}
+    <meta property="og:site_name" content="{{ . }}">
+{{- end }}
+{{- with .Params.videos }}
+    {{- range . }}
+    <meta property="og:video" content="{{ . | absURL }}">
+    {{- end }}
+{{- end }}
+{{- /* If it is part of a series, link to related articles */}}
+{{- $permalink := .Permalink }}
+{{- $siteSeries := .Site.Taxonomies.series }}
+{{- if $siteSeries }}
+    {{- with .Params.series }}
+        {{- range $name := . }}
+            {{- $series := index $siteSeries ($name | urlize) }}
+            {{- range $page := first 6 $series.Pages }}
+                {{- if ne $page.Permalink $permalink }}
+    <meta property="og:see_also" content="{{ $page.Permalink }}">
+                {{ end }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+{{- /* Facebook Page Admin ID for Domain Insights */}}
+{{- with .Site.Social.facebook_admin }}
+    <meta property="fb:admins" content="{{ . }}">
+{{- end }}

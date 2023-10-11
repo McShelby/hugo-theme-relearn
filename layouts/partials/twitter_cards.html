@@ -1,0 +1,48 @@
+{{- /* based on Hugo 0.119.0 _internal/twitter_cardss.html but with modified title */}}
+{{- $format := partial "get-format.hugo" . }}
+{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+{{- $page := . }}
+{{- $title := .Title }}
+{{- if eq $outputFormat "searchpage" }}
+    {{- $title = T "Search" }}
+{{- else if eq .Kind "taxonomy" }}
+    {{- $title = i18n .Data.Plural }}
+    {{- if not $title }}
+        {{- $title = .Data.Plural }}
+    {{- end }}
+{{- else if eq .Kind "term" }}
+    {{- $title = i18n .Data.Singular }}
+    {{- if not $title }}
+        {{- $title = .Data.Singular }}
+    {{- end }}
+    {{- $title = printf "%s %s %s" .Title (default "::" .Site.Params.titleSeparator) $title }}
+{{- end }}
+{{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
+  {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
+{{- end }}
+{{- with $.Params.images }}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ index . 0 | absURL }}">
+{{- else }}
+    {{- $images := $.Resources.ByType "image" }}
+    {{- $featured := $images.GetMatch "*feature*" }}
+    {{- if not $featured }}
+        {{- $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}
+    {{- end }}
+    {{- with $featured }}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ $featured.Permalink }}">
+    {{- else }}
+        {{- with $.Site.Params.images }}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ index . 0 | absURL }}">
+        {{- else }}
+    <meta name="twitter:card" content="summary">
+        {{- end }}
+    {{- end }}
+{{- end }}
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+{{- with .Site.Social.twitter }}
+    <meta name="twitter:site" content="@{{ . }}">
+{{- end }}
