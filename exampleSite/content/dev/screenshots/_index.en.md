@@ -31,7 +31,7 @@ The content should be:
 
 - Hugo Themes info: https://themes.gohugo.io/themes/hugo-theme-relearn/ _1000 x 1500 @ 1_
 
-**Page URL**: [Screenshot Link]({{% relref "/shortcodes/include" %}})
+**Page URL**: [Screenshot Link]({{% relref "/shortcodes/notice" %}})
 
 **Creation**:
 
@@ -41,7 +41,7 @@ The content should be:
 
 The location is mandatory due to Hugo's theme site builder.
 
-### Preview `images/screenshot.png`
+**Preview** `images/screenshot.png`:
 
 ![Screenshot](/images/screenshot.png?width=100%25&height=100%25)
 
@@ -63,7 +63,7 @@ The content should be:
 - GitHub project site: https://github.com/McShelby/hugo-theme-relearn                  _1280 x 640_
 - GitHub social media preview: https://github.com/McShelby/hugo-theme-relearn/settings _1280 x 640_
 
-**Page URL**: [Hero Image Link]({{% relref "/shortcodes/include" %}})
+**Page URL**: [Hero Image Link]({{% relref "/shortcodes/notice" %}})
 
 **Creation**:
 
@@ -78,10 +78,10 @@ The content should be:
 
 The location of `images/tn.png` is mandatory due to Hugo's theme site builder.
 
-### Preview `images/hero.png`
+**Preview** `images/hero.png`:
 
 ![Hero](/images/hero.png?width=100%25&height=100%25)
 
-### Preview `images/tn.png`
+**Preview** `images/tn.png`:
 
 ![tn](/images/tn.png?width=100%25&height=100%25)
