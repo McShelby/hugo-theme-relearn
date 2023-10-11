@@ -1,6 +1,10 @@
 {{- /* based on Hugo 0.119.0 _internal/opengraph.html but with modified title */}}
 {{- $format := partial "get-format.hugo" . }}
 {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+{{- $basename := "index" }}
+{{- if eq $outputFormat "searchpage" }}
+  {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
+{{- end }}
 {{- $page := . }}
 {{- $title := .Title }}
 {{- if eq $outputFormat "searchpage" }}
@@ -23,7 +27,7 @@
     <meta property="og:title" content="{{ $title }}">
     <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:url" content="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename) }}">
 {{- with $.Params.images }}
     {{- range first 6 . }}
     <meta property="og:image" content="{{ . | absURL }}">
@@ -45,26 +49,26 @@
 {{- if .IsPage }}
     {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
     {{- with .Parent }}
-    {{- $page := . }}
-    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
-    {{- $title := .Title }}
-    {{- if eq $outputFormat "searchpage" }}
-        {{- $title = T "Search" }}
-    {{- else if eq .Kind "taxonomy" }}
-        {{- $title = i18n .Data.Plural }}
-        {{- if not $title }}
-            {{- $title = .Data.Plural }}
+        {{- $page := . }}
+        {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
+        {{- $title := .Title }}
+        {{- if eq $outputFormat "searchpage" }}
+            {{- $title = T "Search" }}
+        {{- else if eq .Kind "taxonomy" }}
+            {{- $title = i18n .Data.Plural }}
+            {{- if not $title }}
+                {{- $title = .Data.Plural }}
+            {{- end }}
+        {{- else if eq .Kind "term" }}
+            {{- $title = i18n .Data.Singular }}
+            {{- if not $title }}
+                {{- $title = .Data.Singular }}
+            {{- end }}
+            {{- $title = printf "%s %s %s" .Title (default "::" .Site.Params.titleSeparator) $title }}
         {{- end }}
-    {{- else if eq .Kind "term" }}
-        {{- $title = i18n .Data.Singular }}
-        {{- if not $title }}
-            {{- $title = .Data.Singular }}
+        {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
+          {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
         {{- end }}
-        {{- $title = printf "%s %s %s" .Title (default "::" .Site.Params.titleSeparator) $title }}
-    {{- end }}
-    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
-      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
-    {{- end }}
     <meta property="article:section" content="{{ $title }}">
     {{- end }}
     {{- with .PublishDate }}
