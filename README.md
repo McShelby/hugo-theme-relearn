@@ -19,6 +19,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Usable from your local file system via `file://` protocol](https://mcshelby.github.io/hugo-theme-relearn/basics/configuration#serving-your-page-from-the-filesystem)
   - Support for the [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
   - Support for Internet Explorer 11
+  - Support for Open Graph and Twitter Cards
 - **Configurable theming and visuals**
   - [Configurable brand images](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#change-the-logo)
   - [Automatic switch for light/dark variant dependend on your OS settings](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#adjusting-to-os-settings)
