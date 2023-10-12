@@ -9,7 +9,7 @@
 {{- range $currentNode.Site.Params.relearn.dependencies }}
 	{{- $has := printf "has%s" .name }}
 	{{- $disable := printf "disable%s" .name }}
-	{{- $wants := or (and (ne (index $currentNode.Params $disable) nil) (not (index $currentNode.Params $disable))) (and (ne (index .Site.Params $disable) nil) (not (index .Site.Params $disable))) }}
+	{{- $wants := or (and (ne (index $currentNode.Params $disable) nil) (not (index $currentNode.Params $disable))) (and (ne (index $currentNode.Site.Params $disable) nil) (not (index $currentNode.Site.Params $disable))) }}
 	{{- if $wants }}
 		{{- $currentNode.Store.Set $has true }}
 	{{- end }}
