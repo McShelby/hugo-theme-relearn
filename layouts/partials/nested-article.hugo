@@ -3,22 +3,14 @@
 {{- $page.Page.Store.Set (printf "%sIsNested" $outputFormat) true }}
 {{- with $page }}
   {{- $currentNode := . }}
-  {{- $pages := .Pages }}
-  {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-  {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
+	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
   {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
   {{- if $pages }}
           <section>
             <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
   {{- end }}
-  {{- if eq $currentOrdersectionsby "title" }}
-    {{- range $pages.ByTitle }}
-      {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
-    {{- end }}
-  {{- else }}
-    {{- range $pages.ByWeight }}
-      {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
-    {{- end }}
+  {{- range $pages }}
+    {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
   {{- end }}
   {{- if $pages }}
           </section>
@@ -31,26 +23,18 @@
   {{- with .sect }}
     {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
     {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
-    {{- $pages := .Pages }}
+  	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
     {{- else }}
-      {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-      {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
       {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
       {{- if $pages }}
           <section>
             <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
       {{- end }}
-      {{- if eq $currentOrdersectionsby "title" }}
-        {{- range $pages.ByTitle }}
-          {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
-        {{- end }}
-      {{- else }}
-        {{- range $pages.ByWeight }}
-          {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
-        {{- end }}
+      {{- range $pages }}
+        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
       {{- end }}
       {{- if $pages }}
           </section>

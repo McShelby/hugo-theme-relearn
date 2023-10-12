@@ -31,17 +31,10 @@
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-topics">
           <ul class="enlarge morespace collapsible-menu">
-            {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-            {{- $currentOrdersectionsby := .Site.Home.Params.ordersectionsby | default $defaultOrdersectionsby }}
+            {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .Site.Home "hidden" true) }}
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
-            {{- if eq $currentOrdersectionsby "title" }}
-              {{- range .Site.Home.Pages.ByTitle }}
-                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-              {{- end }}
-            {{- else }}
-              {{- range .Site.Home.Pages.ByWeight }}
-                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-              {{- end }}
+            {{- range $pages }}
+              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}
           </ul>
         </div>
@@ -151,7 +144,7 @@
         {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
-        {{- $pages := .Pages }}
+        {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}
@@ -168,8 +161,6 @@
           {{- if $numberOfVisibleChildren }}
             {{- $title := or .Params.menuTitle .LinkTitle .Title }}
             {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
-            {{- $defaultOrdersectionsby := .Site.Params.ordersectionsby | default "weight" }}
-            {{- $currentOrdersectionsby := .Params.ordersectionsby | default $defaultOrdersectionsby }}
             {{- $isCollapsible := or (.Params.collapsibleMenu | default .Site.Params.collapsibleMenu) (not $url) }}
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
@@ -178,14 +169,8 @@
             {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
             {{- if $url }}{{ if $showvisitedlinks }}<i class="fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageHash }}" class="morespace collapsible-menu">
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
-            {{- if eq $currentOrdersectionsby "title" }}
-              {{- range $pages.ByTitle }}
-                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-              {{- end }}
-            {{- else }}
-              {{- range $pages.ByWeight }}
-                {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
-              {{- end }}
+            {{- range $pages }}
+              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}</ul></li>
           {{- else }}
             {{- $title := or .Params.menuTitle .LinkTitle .Title }}

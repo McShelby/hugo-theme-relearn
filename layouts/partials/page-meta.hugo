@@ -14,14 +14,13 @@
 		{{- $currentNode.Store.Set $has true }}
 	{{- end }}
 {{- end }}
-{{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false "defaultOrdersectionsby" (.Site.Params.ordersectionsby | default "weight") }}
+{{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
 	{{- $isSelf := eq $currentNode .node }}
 	{{- $isDescendant := and (not $isSelf) (.node.IsDescendant $currentNode) }}
 	{{- $isAncestor := and (not $isSelf) (.node.IsAncestor $currentNode) }}
 	{{- $isOther := and (not $isDescendant) (not $isSelf) (not $isAncestor) }}
-
 	{{- $isChildren := eq $currentNode .node.Parent }}
 	{{- if $isSelf }}
 		{{- $currentNode.Scratch.Set "relearnIsSelfFound" true }}
@@ -48,15 +47,8 @@
 		{{- end}}
 	{{- end }}
 
-	{{- $pages := .node.Pages }}
-	{{- $defaultOrdersectionsby := .defaultOrdersectionsby }}
-	{{- $currentOrdersectionsby := .node.Params.ordersectionsby | default $defaultOrdersectionsby }}
-	{{- if eq $currentOrdersectionsby "title"}}
-		{{- $pages = $pages.ByTitle }}
-	{{- else}}
-		{{- $pages = $pages.ByWeight }}
-	{{- end }}
+	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .node "hidden" true) }}
 	{{- range $pages }}
-		{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current "defaultOrdersectionsby" $defaultOrdersectionsby }}
+		{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current }}
 	{{- end}}
 {{- end }}

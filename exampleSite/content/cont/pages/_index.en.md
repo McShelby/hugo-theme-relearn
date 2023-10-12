@@ -69,7 +69,7 @@ collapsibleMenu = false
 # If set, this will explicitly override common rules for the expand state of a page's menu entry
 alwaysopen = true
 # If set, this will explicitly override common rules for the sorting order of a page's submenu entries
-ordersectionsby = "title"
+ordersectionsby = "weight"
 # The title of the page heading will be prefixed by this HTML content
 headingPre = ""
 # The title of the page heading will be postfixed by this HTML content

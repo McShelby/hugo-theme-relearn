@@ -75,7 +75,7 @@ Note that some of these parameters are explained in details in other sections of
   customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
   # Hide Next and Previous page buttons displayed in topbar
   disableNextPrev = true
-  # Order sections in menu by "weight" or "title". Default to "weight";
+  # Order menu sections by "weight", "title", "linktitle", "modifieddate", "expirydate", "publishdate", "date", "length" or "default" (adhering to Hugo's default sort order). Default to "weight";
   # this can be overridden in the pages frontmatter
   ordersectionsby = "weight"
   # Change default color scheme with a variant one. Eg. can be "auto", "red", "blue", "green" or an array like [ "blue", "green" ].
