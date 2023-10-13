@@ -15,7 +15,20 @@ if not exist "%versionFile%" (
 set /p version=<"%versionFile%"
 echo %version%>"metrics.%version%%hugo_prefix%%hugo_version%.log"
 
-hugo%hugo_version% --environment testing --templateMetrics --templateMetricsHints --cleanDestinationDir --destination "public.%version%%hugo_prefix%%hugo_version%" >> "metrics.%version%%hugo_prefix%%hugo_version%.log"
+set config=--environment testing
+if exist "config\testing" (
+    rem Seems we are in the themes exampleSite, no need to copy anything
+) else if exist "config.toml" (
+    set config=--config config.toml,..\hugo-theme-relearn\exampleSite\config\testing\config.toml
+) else if exist "hugo.toml" (
+    set config=--config hugo.toml,..\hugo-theme-relearn\exampleSite\config\testing\config.toml
+) else if exist "config" (
+    copy /e /i /y "..\hugo-theme-relearn\exampleSite\config\testing" "config\testing"
+) else if exist "hugo" (
+    copy /e /i /y "..\hugo-theme-relearn\exampleSite\config\testing" "hugo\testing"
+)
+
+hugo%hugo_version% %config% --templateMetrics --templateMetricsHints --cleanDestinationDir --destination "public.%version%%hugo_prefix%%hugo_version%" >> "metrics.%version%%hugo_prefix%%hugo_version%.log"
 
 set "start_dir=%CD%\public.%version%%hugo_prefix%%hugo_version%"
 set "output_file=dir.%version%%hugo_prefix%%hugo_version%.log"
