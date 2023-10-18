@@ -318,7 +318,7 @@ function initMermaid( update, attrs ) {
                 svgs.each( function(){
                     var svg = d3.select( this );
                     svg.html( '<g>' + svg.html() + '</g>' );
-                    var inner = svg.select( 'g' );
+                    var inner = svg.select( '*:scope > g' );
                     var zoom = d3.zoom().on( 'zoom', function( e ){
                         inner.attr( 'transform', e.transform );
                     });
@@ -331,7 +331,7 @@ function initMermaid( update, attrs ) {
                     parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
                     var button = parent.querySelector( '.svg-reset-button' );
                     button.addEventListener( 'click', function( event ){
-                        inner.transition()
+                        svg.transition()
                             .duration( 350 )
                             .call( zoom.transform, d3.zoomIdentity );
                         this.setAttribute( 'aria-label', window.T_View_reset );
