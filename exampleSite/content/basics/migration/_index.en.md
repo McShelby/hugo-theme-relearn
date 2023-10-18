@@ -18,7 +18,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ---
 
-## 5.23.0 (2023-10-03) {#5230}
+## 5.23.0-beta {#5230}
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in you page. [See the docs]({{% relref "cont/taxonomy#customization" %}}).
 
