@@ -316,31 +316,36 @@ function initMermaid( update, attrs ) {
                 // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
                 var svgs = d3.selectAll( 'body:not(.print) .mermaid.zoom > #' + id );
                 svgs.each( function(){
-                    var svg = d3.select( this );
-                    svg.html( '<g>' + svg.html() + '</g>' );
-                    var inner = svg.select( '*:scope > g' );
-                    var zoom = d3.zoom().on( 'zoom', function( e ){
-                        inner.attr( 'transform', e.transform );
-                    });
-                    svg.call( zoom );
                     var parent = this.parentElement;
                     // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
                     parent.style.maxWidth = this.style.maxWidth || this.getAttribute( 'width' );
                     // if no unit is given for the width
                     parent.style.maxWidth = parent.style.maxWidth || 'calc( ' + this.getAttribute( 'width' ) + 'px + 1rem )';
-                    parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
-                    var button = parent.querySelector( '.svg-reset-button' );
-                    button.addEventListener( 'click', function( event ){
-                        svg.transition()
-                            .duration( 350 )
-                            .call( zoom.transform, d3.zoomIdentity );
-                        this.setAttribute( 'aria-label', window.T_View_reset );
-                        this.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isImageRtl?'e':'w')) );
+                    var svg = d3.select( this );
+                    svg.html( '<g>' + svg.html() + '</g>' );
+                    var inner = svg.select( '*:scope > g' );
+                    var zoom = d3.zoom().on( 'zoom', function( e ){
+                        inner.attr( 'transform', e.transform );
+                        if( parent.querySelector( '.svg-reset-button' ) ){
+                            return;
+                        }
+                        parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
+                        var button = parent.querySelector( '.svg-reset-button' );
+                        button.addEventListener( 'click', function( event ){
+                            svg.transition()
+                                .duration( 350 )
+                                .call( zoom.transform, d3.zoomIdentity );
+                            this.setAttribute( 'aria-label', window.T_View_reset );
+                            this.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isImageRtl?'e':'w')) );
+                        });
+                        button.addEventListener( 'mouseleave', function() {
+                            this.removeAttribute( 'aria-label' );
+                            if( this.classList.contains( 'tooltipped' ) ){
+                                this.remove();
+                            }
+                        });
                     });
-                    button.addEventListener( 'mouseleave', function() {
-                        this.removeAttribute( 'aria-label' );
-                        this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
-                    });
+                    svg.call( zoom );
                 });
             },
             querySelector: '.mermaid.mermaid-render',
