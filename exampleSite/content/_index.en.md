@@ -22,7 +22,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Usable from your local file system via `file://` protocol]({{%relref "basics/configuration#serving-your-page-from-the-filesystem" %}})
   - Support for the [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
   - Support for Internet Explorer 11
-  - Support for Open Graph and Twitter Cards
+  - [Support for Open Graph and Twitter Cards]({{% relref "basics/configuration/#social-media-meta-tags" %}})
 - **Configurable theming and visuals**
   - [Configurable brand images]({{%relref "basics/customization#change-the-logo" %}})
   - [Automatic switch for light/dark variant dependend on your OS settings]({{%relref "basics/customization#adjusting-to-os-settings" %}})
