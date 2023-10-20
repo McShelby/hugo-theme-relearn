@@ -20,8 +20,6 @@ Note that some of these parameters are explained in details in other sections of
   # Useful to give opportunity to people to create merge request for your doc.
   # See the config.toml file from this documentation site to have an example.
   editURL = ""
-  # Author of the site, will be used in meta information
-  author = ""
   # Description of the site, will be used in meta information
   description = ""
   # Shows a checkmark for visited pages on the menu
@@ -93,6 +91,9 @@ Note that some of these parameters are explained in details in other sections of
   disableExplicitIndexURLs = false
   # For external links you can define how they are opened in your browser; this setting will only be applied to the content area but not the shortcut menu
   externalLinkTarget = "_blank"
+  # Author of the site, will be used in meta information
+  [params.author]
+    name = ""
   # Override default values for image effects, you can even add your own arbitrary effects to the list
   [params.imageEffects]
     border = false

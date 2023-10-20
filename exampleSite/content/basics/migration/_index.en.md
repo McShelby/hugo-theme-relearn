@@ -20,6 +20,24 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.23.0-beta {#5230}
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Hugo 0.120 moves the author settings into the `[params]` array in your `config.toml`. Because this collides with the previous way, the theme expected author informations, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
+
+  Change your previous setting from
+
+    ````toml
+    [params]
+      author = "Hugo"
+    ````
+
+  to
+
+    ````toml
+    [params]
+      [params.author]
+        name = "Hugo"
+    ````
+
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in you page. [See the docs]({{% relref "cont/taxonomy#customization" %}}).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs]({{% relref "basics/customization#change-the-menu-width" %}}).
