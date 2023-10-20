@@ -115,7 +115,10 @@
 {{- else }}
   {{- with site.Social.facebook_admin }}
     {{- $facebookAdmin = . }}
-    {{- warnf "The social key in site configuration is deprecated. Use params.social.facebook_admin instead." }}
+    {{- $hugoVersion := "0.120.0" }}
+    {{- if ge hugo.Version $hugoVersion }}
+        {{- warnf "The social key in site configuration is deprecated. Use params.social.facebook_admin instead." }}
+    {{- end }}
   {{- end }}
 {{- end }}
 

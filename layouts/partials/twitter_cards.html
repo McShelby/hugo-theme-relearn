@@ -51,7 +51,10 @@
 {{- else }}
   {{- with site.Social.twitter }}
     {{- $twitterSite = . }}
-    {{- warnf "The social key in site configuration is deprecated. Use params.social.twitter instead." }}
+    {{- $hugoVersion := "0.120.0" }}
+    {{- if ge hugo.Version $hugoVersion }}
+      {{- warnf "The social key in site configuration is deprecated. Use params.social.twitter instead." }}
+    {{- end }}
   {{- end }}
 {{- end }}
 
