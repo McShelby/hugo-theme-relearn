@@ -11,15 +11,7 @@
 {{- end }}
 
 {{- /* Deprecate site.Author.name in favor of site.Params.author.name */}}
-{{- $authorName := "" }}
-{{- if and .Site.Params.author (reflect.IsMap .Site.Params.author) .Site.Params.author.name }}
-  {{- $authorName = .Site.Params.author.name }}
-{{- else }}
-  {{- with .Site.Author.name }}
-    {{- $authorName = . }}
-    {{- warnf "The author key in site configuration is deprecated. Use params.author.name instead." }}
-  {{- end }}
-{{- end }}
+{{- $authorName := partialCached "authorname.hugo" . }}
 
 {{- $pages := .Page.Pages }}
 {{- $limit := .Site.Config.Services.RSS.Limit }}
