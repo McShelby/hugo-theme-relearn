@@ -14,8 +14,22 @@
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
-    {{- with .Site.Params.author }}
-    <meta name="author" content="{{ . }}">
+    {{- $authorName := "" }}
+    {{- if .Site.Params.author }}
+      {{- if reflect.IsMap .Site.Params.author }}
+        {{- with .Site.Params.author.name }}
+          {{- $authorName = . }}
+        {{- end }}
+      {{- else }}
+        {{- warnf "According to Hugo 0.120.0 the author key in params configuration should now be a map and contain of name and email fields." }}
+        {{- $authorName = .Site.Params.author }}
+      {{- end }}
+    {{- else }}
+      {{- with .Site.Author.name }}
+        {{- $authorName = . }}
+        {{- warnf "The author key in site configuration is deprecated. Use params.author.name instead." }}
+      {{- end }}
     {{- end }}
+    <meta name="author" content="{{ $authorName }}">
     {{- partial "twitter_cards.html" . }}
     {{- partial "opengraph.html" . }}
