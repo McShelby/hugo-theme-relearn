@@ -20,7 +20,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.23.0-beta {#5230}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Hugo 0.120 moves the author settings into the `[params]` array in your `config.toml`. Because this collides with the previous way, the theme expected author informations, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `config.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
 
   Change your previous setting from
 
