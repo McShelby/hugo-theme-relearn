@@ -6,7 +6,10 @@
 {{- else }}
   {{- with .Site.Author.email }}
     {{- $authorEmail = . }}
-    {{- warnf "The author key in site configuration is deprecated. Use params.author.email instead." }}
+    {{- $hugoVersion := "0.120.0" }}
+    {{- if ge hugo.Version $hugoVersion }}
+      {{- warnf "The author key in site configuration is deprecated. Use params.author.email instead." }}
+    {{- end }}
   {{- end }}
 {{- end }}
 
