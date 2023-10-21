@@ -33,8 +33,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
     ````toml
     [params]
-      [params.author]
-        name = "Hugo"
+      author.name = "Hugo"
     ````
 
 
