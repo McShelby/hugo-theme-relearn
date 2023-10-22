@@ -304,7 +304,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu aswell.
 
-  To [get rid]/]({{% relref "cont/menushortcuts#shortcuts-to-pages-inside-of-your-project" %}}) of this undesired behavior you have two choices:
+  To [get rid]({{% relref "cont/menushortcuts#shortcuts-to-pages-inside-of-your-project" %}}) of this undesired behavior you have two choices:
 
   1. Make the page file a [headless branch bundle](https://gohugo.io/content-management/age-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
