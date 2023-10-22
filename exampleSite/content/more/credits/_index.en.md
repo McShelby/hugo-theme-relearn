@@ -41,6 +41,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 
 - [GitHub](https://github.com) - Continuous deployment, testing and hosting of this project's sources and its documentation
 - Various GitHub Actions
+  - https://github.com/actions/checkout
   - https://github.com/actions/setup-node
   - https://github.com/Akkjon/close-milestone
   - https://github.com/andstor/file-reader-action
