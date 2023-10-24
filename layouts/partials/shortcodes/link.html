@@ -16,5 +16,41 @@
   {{- if isset $page.Site.Params "externallinktarget" }}
     {{- $target = $page.Site.Params.externalLinkTarget }}
   {{- end }}
-{{- end -}}
+{{- else }}
+  {{- $url = urls.Parse $url }}
+  {{- if and $url.Path (not (strings.HasSuffix $url.Path ".html")) (not (strings.HasSuffix $url.Path ".md")) }}
+    {{- /* ignore old style links with  given extension */}}
+    {{- $found := false }}
+    {{- $fragment := "" }}
+    {{- with $url.Fragment }}
+      {{- $fragment = printf "#%s" . }}
+    {{- end }}
+    {{- $path := strings.TrimSuffix ".html" $url.Path }}
+    {{- $path := $url.Path }}
+    {{- with $page.Page.GetPage $path }}
+      {{- $url = printf "%s%s" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) $fragment }}
+      {{- $found = true }}
+    {{- else }}
+      {{- /* is it a link into another translation? */}}
+      {{- range $page.Site.Languages }}
+        {{- $lang := .Lang }}
+        {{- $prefix := printf "/%s" $lang }}
+        {{- if strings.HasPrefix $prefix $path }}
+          {{- $path := strings.TrimPrefix $prefix $path }}
+          {{- with $page.Page.GetPage $path }}
+            {{- range .Page.AllTranslations }}
+              {{- if eq $lang .Lang }}
+                {{- $url = printf "%s%s" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) $fragment }}
+                {{- $found = true }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- if not $found }}
+      {{- warnf "%q: no page was found for link '%s'" $page.File.Path $url.Path }}
+    {{- end }}
+  {{- end }}
+{{- end }}
 <a href="{{ $url | safeURL }}"{{ if $title }} title="{{ $title }}"{{ end }}{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ $content | safeHTML }}</a>

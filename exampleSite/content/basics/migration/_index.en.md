@@ -47,6 +47,23 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode]({{% relref "shortcodes/children" %}}). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable links.
+
+  Previously it was not possible to use pure Markdown links in a configuration independend way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, wheather you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (eg. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
+
+  You could work around this by using the `relref` shortcode (eg `[generator]({{%/* relref "../generator" */%}})`) which works but results in non-portable Markdown.
+
+  Now it's possible to use the same path of a call to `relref` in a plain Markdown link (eg `[generator](../generator)`). This is independend of any configuration settings or the page types involved in linking. Note, that this requires your links to be given without any extension, so `[generator](generator/index.html)` will work as before.
+
+  The following types of linking are supported:
+
+  | link                             | description                     |
+  | -------------------------------- | ------------------------------- |
+  | `[generator](basics/generator)`  | absolute from your project root |
+  | `[generator](/basics/generator)` | absolute from your project root |
+  | `[generator](./../generator)`    | relative from the current page  |
+  | `[generator](../generator)`      | relative from the current page  |
+
 ---
 
 ## 5.22.0 (2023-10-02) {#5220}
