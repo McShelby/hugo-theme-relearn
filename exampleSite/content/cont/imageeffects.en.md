@@ -3,7 +3,7 @@ title = "Image Effects"
 weight = 4
 +++
 
-The theme supports non-standard [image effects]({{% relref "cont/markdown#image-effects" %}}).
+The theme supports non-standard [image effects](cont/markdown#image-effects).
 
 As described, you can add this to the URL query parameter, but this may be cumbersome to do it consistently for the whole page.
 

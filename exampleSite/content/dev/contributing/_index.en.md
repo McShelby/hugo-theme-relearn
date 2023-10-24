@@ -15,7 +15,7 @@ Stay close to the Hugo way.
 
 Don't use npm or any preprocessing, our contributors may not be front-end developers.
 
-Document new features in the exampleSite. This also contains entries to the [What's new]({{% relref "basics/migration" %}}) page.
+Document new features in the exampleSite. This also contains entries to the [What's new](basics/migration) page.
 
 Don't break existing features if you don't have to.
 

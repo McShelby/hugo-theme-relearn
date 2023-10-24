@@ -7,7 +7,7 @@ The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
 This comes in handy eg. for providing code snippets for multiple languages.
 
-If you just want a single tab you can instead call the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) standalone.
+If you just want a single tab you can instead call the [`tab` shortcode](shortcodes/tab) standalone.
 
 {{< tabs title="hello." >}}
 {{% tab title="py" %}}
@@ -37,7 +37,7 @@ printf("Hello World!");
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
-See the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) for a description of the parameter for nested tabs.
+See the [`tab` shortcode](shortcodes/tab) for a description of the parameter for nested tabs.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
@@ -94,10 +94,10 @@ printf"Hello World!");
 | Name                  | Default              | Notes       |
 |-----------------------|----------------------|-------------|
 | **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab can not be found in a tab group the first tab is selected instead.<br><br>This sychronization applies to the whole site! |
-| **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
-| **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values. |
+| **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values. |
+| **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values. |
 | **title**             | _&lt;empty&gt;_      | Arbitrary title written in front of the tab view. |
-| **icon**              | _&lt;empty&gt;_      | [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}) set to the left of the title. |
+| **icon**              | _&lt;empty&gt;_      | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
 
 ## Examples
@@ -217,7 +217,7 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 
 In case you want to nest tab views, the parent tab that contains nested tab views needs to be declared with `{{</* tab */>}}` instead of `{{%/* tab */%}}`. Note, that in this case it is not possible to put markdown in the parent tab.
 
-You can also set style and color parameter for all tabs and overwrite them on tab level. See the [`tab` shortcode]({{% relref "shortcodes/tab#parameter" %}}) for possible values.
+You can also set style and color parameter for all tabs and overwrite them on tab level. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values.
 
 ````go
 {{</* tabs groupid="main" style="primary" title="Rationale" icon="thumbtack" */>}}

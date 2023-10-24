@@ -4,7 +4,7 @@ title = "What's New"
 weight = 2
 +++
 
-This document shows you what's new in the latest release. For a detailed list of changes, see the [history page]({{%relref "basics/history" %}}).
+This document shows you what's new in the latest release. For a detailed list of changes, see the [history page](basics/history).
 
 {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} The minimum required Hugo version.
 
@@ -37,15 +37,15 @@ This document shows you what's new in the latest release. For a detailed list of
     ````
 
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in you page. [See the docs]({{% relref "cont/taxonomy#customization" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in you page. [See the docs](cont/taxonomy#customization).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs]({{% relref "basics/customization#change-the-menu-width" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs](basics/customization#change-the-menu-width).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you. This comes in handy if you want to add your own shortcodes that require additional JavaScript code to be loaded. [See the docs]({{% relref "basics/customization#own-shortcodes-with-javascript-dependencies" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you. This comes in handy if you want to add your own shortcodes that require additional JavaScript code to be loaded. [See the docs](basics/customization#own-shortcodes-with-javascript-dependencies).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs]({{% relref "basics/configuration#social-media-meta-tags" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs](basics/configuration#social-media-meta-tags).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode]({{% relref "shortcodes/children" %}}). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode](shortcodes/children). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable links.
 
@@ -74,9 +74,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} You can now have structural sections in the hierarchical menu without generating a page for it.
 
-  This can come in handy, if content for such a section page doesn't make much sense to you. See [the documentation]({{% relref "cont/pages#disable-section-pages" %}}) for how to do this.
+  This can come in handy, if content for such a section page doesn't make much sense to you. See [the documentation](cont/pages#disable-section-pages) for how to do this.
 
-  This feature may require you to make changes to your existing installation if you are already using _[shortcuts to pages inside of your project]({{% relref "cont/menushortcuts#shortcuts-to-pages-inside-of-your-project" %}})_ with a _headless branch parent_.
+  This feature may require you to make changes to your existing installation if you are already using _[shortcuts to pages inside of your project](cont/menushortcuts#shortcuts-to-pages-inside-of-your-project)_ with a _headless branch parent_.
 
   In this case it is advised to remove the `title` from the headless branch parent's frontmatter, as it will otherwise appear in your breadcrumbs.
 
@@ -96,17 +96,17 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.21.0 (2023-09-18) {#5210}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may want to review the styling (eg. margins/paddings) of your partial.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden](basics/customization), you may want to review the styling (eg. margins/paddings) of your partial.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with an awesome new feature, that allows you to customize your topbar buttons, change behavior, reorder them or define entirely new ones, unique to your installation. See [the documentation]({{%relref "basics/topbar" %}}) for further details.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with an awesome new feature, that allows you to customize your topbar buttons, change behavior, reorder them or define entirely new ones, unique to your installation. See [the documentation](basics/topbar) for further details.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Swagger dependency to 5.7.2 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}). This brings support for OpenAPI Specification 3.1.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Swagger dependency to 5.7.2 for the [`openapi` shortcode](shortcodes/openapi). This brings support for OpenAPI Specification 3.1.
 
 ---
 
 ## 5.20.0 (2023-08-26) {#5200}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}).
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode](shortcodes/openapi).
 
   With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the code style used by the theme variants itself.
 
@@ -127,23 +127,23 @@ This document shows you what's new in the latest release. For a detailed list of
 
   For existing variants nothing has changed visually.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects]({{% relref "cont/markdown#image-effects" %}}) are [now configurable]({{% relref "cont/imageeffects" %}}) for your whole site via `config.toml` or for each page thru frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `config.toml` or for each page thru frontmatter.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions lower than {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.111.0{{% /badge %}} for the [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}). This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions lower than {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.111.0{{% /badge %}} for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 
 ---
 
 ## 5.19.0 (2023-08-12) {#5190}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) now accepts the new parameter `title`. This displays the code like a [single tab]({{% relref "shortcodes/tab" %}}). This is also available using codefences and makes it much easier to write nicer code samples.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode](shortcodes/highlight) now accepts the new parameter `title`. This displays the code like a [single tab](shortcodes/tab). This is also available using codefences and makes it much easier to write nicer code samples.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`. Check it out!
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now [dispatches the custom event]({{%relref "basics/customization/#javascript" %}}) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now [dispatches the custom event](basics/customization/#javascript) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.3.1. This adds support for the [sankey diagram type]({{% relref "shortcodes/mermaid#sankey" %}}) and now comes with full support for YAML inside Mermaid graphs (previously, the theme ignored explicit Mermaid theme settings in YAML).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.3.1. This adds support for the [sankey diagram type](shortcodes/mermaid#sankey) and now comes with full support for YAML inside Mermaid graphs (previously, the theme ignored explicit Mermaid theme settings in YAML).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Hungarian.
 
@@ -161,7 +161,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode]({{% relref "shortcodes/siteparam" %}}) is now capable in displaying nested params aswell as supporting text formatting.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode](shortcodes/siteparam) is now capable in displaying nested params aswell as supporting text formatting.
 
 ---
 
@@ -175,7 +175,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode]({{% relref "shortcodes/highlight" %}}) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode](shortcodes/highlight) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
 
   In addition it offers some extensions. Currently only the `wrap` extension option is provided to control whether a code block should be wrapped or scrolled if to long to fit.
 
@@ -191,13 +191,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The 404 error page was revamped. Hopefully you will not see this very often.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) and the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) received some love and now align with their style, color, title and icon parameter to the other shortcodes.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode](shortcodes/tabs) and the [`tab` shortcode](shortcodes/tab) received some love and now align with their style, color, title and icon parameter to the other shortcodes.
 
   The visuals are now slightly different compared to previous versions. Most noteable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
 
   Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback. Nevertheless you will get deprecation warnings while executing Hugo.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now optionally supports [separate favicons]({{%relref "basics/customization/#change-the-favicon" %}}) for light & dark mode.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now optionally supports [separate favicons](basics/customization/#change-the-favicon) for light & dark mode.
 
 ---
 
@@ -205,19 +205,19 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
-  The [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) has compatiblity issues with newer Hugo versions. You must switch to leaf bundles or are locked to Hugo < `0.112.0` for now.
+  The [`attachments` shortcode](shortcodes/attachments) has compatiblity issues with newer Hugo versions. You must switch to leaf bundles or are locked to Hugo < `0.112.0` for now.
 
   It is [planned to refactor](https://github.com/McShelby/hugo-theme-relearn/issues/22) the `attchments` shortcode in the future. This will make it possible to use the shortcode in branch bundles again but not in simple pages anymore. This will most likely come with a breaking change.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) has changed behavior if you haven't set the `groupid` parameter.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`tabs` shortcode](shortcodes/tabs) has changed behavior if you haven't set the `groupid` parameter.
 
   Formerly all tab views without a `groupid` were treated as so they belong to the same group. Now, each tab view is treated as it was given a unique id.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known `tabs`has a new friend the [`tab` shortcode]({{% relref "shortcodes/tab" %}}) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The already known `tabs`has a new friend the [`tab` shortcode](shortcodes/tab) to make it easier to create a tab view in case you only need one single tab. Really handy if you want to flag your code examples with a language identifier.
 
   Additionally for such a use case, the whitespace between a tab outline and the code is removed if only a single code block is contained.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Besides the _tag_ [taxonomy]({{% relref "cont/taxonomy" %}}) the theme now also provides the _category_ taxonomy out of the box and shows them in the content footer of each page.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Besides the _tag_ [taxonomy](cont/taxonomy) the theme now also provides the _category_ taxonomy out of the box and shows them in the content footer of each page.
 
 ---
 
@@ -243,7 +243,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.13.0 (2023-05-17) {#5130}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `swagger` shortcode was deprecated in favor for the  [`openapi` shortcode]({{% relref "shortcodes/openapi" %}}). You don't need to change anything yet as the old name will be used as a fallback. It is planned to remove the `swagger` shortcode in the next major release.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `swagger` shortcode was deprecated in favor for the  [`openapi` shortcode](shortcodes/openapi). You don't need to change anything yet as the old name will be used as a fallback. It is planned to remove the `swagger` shortcode in the next major release.
 
   Additionally, the implemantion of this shortcode was switched from RapiDoc to [SwaggerUI](https://github.com/swagger-api/swagger-ui).
 
@@ -267,7 +267,7 @@ This document shows you what's new in the latest release. For a detailed list of
   }
   ````
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic) is now complete and extended to the menu, the top navigation bar and print. You can experience this in the [pirate translation]({{%relref path="basics/migration" lang="pir" %}}). This feature is not available in Internet Explorer 11.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic) is now complete and extended to the menu, the top navigation bar and print. You can experience this in the [pirate translation](/pir). This feature is not available in Internet Explorer 11.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The scrollbars are now colored according to their variant color scheme to better fit into the visuals.
 
@@ -283,11 +283,11 @@ This document shows you what's new in the latest release. For a detailed list of
   <script src="{{"js/jquery.min.js"| relURL}}" defer></script>
   ````
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} [Mermaid]({{% relref "shortcodes/mermaid#parameter" %}}) diagrams can now be configured for pan and zoom on site-, page-level or individually for each graph.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [Mermaid](shortcodes/mermaid#parameter) diagrams can now be configured for pan and zoom on site-, page-level or individually for each graph.
 
   The default setting of `on`, in effect since 1.1.0, changed back to `off` as there was interference with scrolling on mobile and big pages.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting]({{%relref "basics/customization/#adjust-to-os-settings" %}}).
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting](basics/customization/#adjust-to-os-settings).
 
   This is also the new default setting if you haven't configured `themeVariant` in your `config.toml`.
 
@@ -297,9 +297,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The JavaScript code for handling image lightboxes (provided by [Featherlight](https://noelboss.github.io/featherlight)) was replaced by a CSS-only solution.
 
-  This also changed the [lightbox effects]({{% relref "cont/markdown#lightbox" %}}) parameter from `featherlight=false` to `lightbox=false`. Nevertheless you don't need to change anything as the old name will be used as a fallback.
+  This also changed the [lightbox effects](cont/markdown#lightbox) parameter from `featherlight=false` to `lightbox=false`. Nevertheless you don't need to change anything as the old name will be used as a fallback.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode]({{% relref "shortcodes/expand" %}}) was changed. While Internet Explorer 11 has issues in displaying it, the functionality still works.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the [`expand` shortcode](shortcodes/expand) was changed. While Internet Explorer 11 has issues in displaying it, the functionality still works.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Czech. This language is not supported for search.
 
@@ -309,7 +309,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.10.0 (2023-01-25) {#5100}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`attachments`]({{% relref "shortcodes/attachments" %}}), [`badge`]({{% relref "shortcodes/badge" %}}), [`button`]({{% relref "shortcodes/button" %}}) and [`notice`]({{% relref "shortcodes/notice" %}}) shortcodes have a new parameter `color` to set arbitrary CSS color values.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`attachments`](shortcodes/attachments), [`badge`](shortcodes/badge), [`button`](shortcodes/button) and [`notice`](shortcodes/notice) shortcodes have a new parameter `color` to set arbitrary CSS color values.
 
   Additionally the `--ACCENT-color` brand color introduced in version 5.8.0 is now supported with these shortcodes.
 
@@ -321,7 +321,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
   It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu aswell.
 
-  To [get rid]({{% relref "cont/menushortcuts#shortcuts-to-pages-inside-of-your-project" %}}) of this undesired behavior you have two choices:
+  To [get rid](cont/menushortcuts#shortcuts-to-pages-inside-of-your-project) of this undesired behavior you have two choices:
 
   1. Make the page file a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
@@ -349,7 +349,7 @@ This document shows you what's new in the latest release. For a detailed list of
       title = "Credits"
       ````
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The required folder name for the [`attachments` shortcode]({{% relref "shortcodes/attachments" %}}) was changed for leaf bundles.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The required folder name for the [`attachments` shortcode](shortcodes/attachments) was changed for leaf bundles.
 
   Previously, the attachments for leaf bundles in non-multilang setups were required to be in a `files` subdirectory. For page bundles and leaf bundles in multilang setups they were always required to be in a `_index.<LANGCODE>.files` or `index.<LANGCODE>.files` subdirectory accordingly.
 
@@ -365,11 +365,11 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.8.0 (2022-12-08) {#580}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`badge` shortcode]({{% relref "shortcodes/badge" %}}) is now available to add highly configurable markers to your content as you can see it on this page.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`badge` shortcode](shortcodes/badge) is now available to add highly configurable markers to your content as you can see it on this page.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`icon` shortcode]({{% relref "shortcodes/icon" %}}) simplyfies the usage of icons. This can even be combined with also new `badge` shortcode.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`icon` shortcode](shortcodes/icon) simplyfies the usage of icons. This can even be combined with also new `badge` shortcode.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hugo Markdown extensions, namely [task lists]({{% relref "cont/markdown#tasks" %}}), [defintion lists]({{% relref "cont/markdown#defintions" %}}) and [footnotes]({{% relref "cont/markdown#footnotes" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hugo Markdown extensions, namely [task lists](cont/markdown#tasks), [defintion lists](cont/markdown#defintions) and [footnotes](cont/markdown#footnotes).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} A new color `--ACCENT-color` was introduced which is used for highlightning search results on the page. In case you simply don't care, you don't need to change anything in your variant stylesheet as the old `yellow` color is still used as default.
 
@@ -379,7 +379,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The Korean language translation for this theme is now available with the language code `ko`. Formerly the country code `kr` was used instead.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`button` shortcode]({{% relref "shortcodes/button" %}}) can now also be used as a real button inside of HTML forms - although this is a pretty rare use case. The documentation was updated accordingly.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`button` shortcode](shortcodes/button) can now also be used as a real button inside of HTML forms - although this is a pretty rare use case. The documentation was updated accordingly.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The search now supports the Korean language.
 
@@ -389,7 +389,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
 
-  To activate this feature, you need to [configure it]({{% relref "basics/configuration#activate-dedicated-search-page" %}}) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+  To activate this feature, you need to [configure it](basics/configuration#activate-dedicated-search-page) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
   You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
 
@@ -401,7 +401,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
 
-  To [configure this]({{% relref "basics/configuration#global-site-parameters" %}}) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+  To [configure this](basics/configuration#global-site-parameters) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Creation of your project gets a little bit faster with this release.
 
@@ -413,7 +413,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The way images are processed has changed. Now images are lazy loaded by default which speeds up page load on slow networks and/or big pages and also the print preview.
 
-  For that the JavaScript code to handle the [lightbox and image effects]({{% relref "cont/markdown#image-effects" %}}) on the client side was removed in favour for static generation of those effects on the server.
+  For that the JavaScript code to handle the [lightbox and image effects](cont/markdown#image-effects) on the client side was removed in favour for static generation of those effects on the server.
 
   If you have used HTML directly in your Markdown files, this now has the downside that it doesn't respect the effect query parameter anymore. In this case you have to migrate all your HTML `img` URLs manually to the respective HTML attributes.
 
@@ -425,13 +425,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 5.4.0 (2022-11-01) {#540}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings]({{% relref "basics/configuration#serving-your-page-from-the-filesystem" %}}) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/configuration#serving-your-page-from-the-filesystem) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
 
   Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `config.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`button` shortcode]({{% relref "shortcodes/button" %}}) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`button` shortcode](shortcodes/button) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`math` shortcode]({{% relref "shortcodes/math" %}}) and [`mermaid` shortcode]({{% relref "shortcodes/mermaid" %}}) now also support the `align` parameter if codefence syntax is used.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`math` shortcode](shortcodes/math) and [`mermaid` shortcode](shortcodes/mermaid) now also support the `align` parameter if codefence syntax is used.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic). This is only implemented for the content area but not the navigation sidebar. This feature is not available in Internet Explorer 11.
 
@@ -443,9 +443,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. The functionality of the new implementation does not work with old browsers (Internet Explorer 11).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting]({{% relref "cont/markdown#add-css-classes" %}}) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting](cont/markdown#add-css-classes) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode]({{% relref "shortcodes/openapi" %}}) was optimized to expand sections that are usually closed in interactive mode. This requires [print support]({{%relref "basics/configuration#activate-print-support" %}}) to be configured.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode](shortcodes/openapi) was optimized to expand sections that are usually closed in interactive mode. This requires [print support](basics/configuration#activate-print-support) to be configured.
 
 ---
 
@@ -484,7 +484,7 @@ This document shows you what's new in the latest release. For a detailed list of
   <script defer src="myscript.js"></script>
   ````
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The way [archetypes]({{% relref "cont/archetypes" %}}) are used to generate output has changed. The new systems allows you, to redefine existing archetypes or even generate your own ones.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The way [archetypes](cont/archetypes) are used to generate output has changed. The new systems allows you, to redefine existing archetypes or even generate your own ones.
 
   Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade. Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
 
@@ -496,17 +496,17 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Adding new partials `heading-pre.html` / `heading-post.html` and according frontmatter options `headingPre` / `headingPost` to modify the way your page`s main heading gets styled.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation]({{% relref "shortcodes/math" %}}) for available features. This feature will not work with Internet Explorer 11.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation](shortcodes/math) for available features. This feature will not work with Internet Explorer 11.
 
 ---
 
 ## 4.2.0 (2022-06-23) {#420}
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The second parameter for the [`include` shortcode]({{% relref "shortcodes/include" %}}) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The second parameter for the [`include` shortcode](shortcodes/include) was switched in meaning and was renamed from `showfirstheading` to `hidefirstheading`. If you haven't used this parameter in your shortcode, the default behavior hasn't changed and you don't need to change anything.
 
   If you've used the second boolean parameter, you have to rename it and invert its value to achieve the same behavior.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Previously, if the [`tabs` shortcode]({{% relref "shortcodes/tabs" %}}) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Previously, if the [`tabs` shortcode](shortcodes/tabs) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The `landingPageURL` was removed from `config.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically and will point to the project's homepage. If you want to support a different link, overwrite the `logo.html` partial.
 
@@ -516,7 +516,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 4.1.0 (2022-06-12) {#410}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} While fixing issues with the search functionality for non Latin languages, you can now [configure to have multiple languages on a single page]({{% relref "cont/i18n/#search-with-mixed-language-support" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} While fixing issues with the search functionality for non Latin languages, you can now [configure to have multiple languages on a single page](cont/i18n/#search-with-mixed-language-support).
 
 ---
 
@@ -528,9 +528,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} All shortcodes now support named parameter. The positional parameter are still supported but will not be enhanced with new features, so you don't need to change anything in your installation.
 
-  This applies to [`expand`]({{% relref "shortcodes/expand" %}}), [`include`]({{% relref "shortcodes/include" %}}), [`notice`]({{% relref "shortcodes/notice" %}}) and [`siteparam`]({{% relref "shortcodes/siteparam" %}}).
+  This applies to [`expand`](shortcodes/expand), [`include`](shortcodes/include), [`notice`](shortcodes/notice) and [`siteparam`](shortcodes/siteparam).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`button`]({{% relref "shortcodes/button" %}}) shortcode received some love and now has a parameter for the color style similar to other shortcodes.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`button`](shortcodes/button) shortcode received some love and now has a parameter for the color style similar to other shortcodes.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. Shortcodes with a color style can now have `primary` or `secondary` as additional values.
 
@@ -548,7 +548,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you prefer expandable/collapsible menu items, you can now set `collapsibleMenu=true` in your `config.toml`. This will add arrows to all menu items that contain sub menus. The menu will expand/collapse without navigation if you click on an arrow.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support]({{%relref "basics/configuration#activate-print-support" %}}) in your `config.toml` to add the capability to print whole chapters or even the complete site.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support](basics/configuration#activate-print-support) in your `config.toml` to add the capability to print whole chapters or even the complete site.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Traditional Chinese.
 
@@ -556,9 +556,9 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 3.3.0 (2022-03-28) {#330}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Introduction of new CSS variables to set the font. The theme distinguishes between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for all available variables.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Introduction of new CSS variables to set the font. The theme distinguishes between `--MAIN-font` for all content text and `--CODE-font` for inline or block code. There are additional overrides for all headings. See the [theme variant generator](basics/generator) of the exampleSite for all available variables.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `swagger` is available to include a UI for REST OpenAPI specifications. See the [documentation]({{% relref "shortcodes/openapi" %}}) for available features. This feature will not work with Internet Explorer 11.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `swagger` is available to include a UI for REST OpenAPI specifications. See the [documentation](shortcodes/openapi) for available features. This feature will not work with Internet Explorer 11.
 
 ---
 
@@ -568,7 +568,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
-  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your frontmatter to force the library to be loaded. See the [theme variant generator]({{%relref "basics/generator" %}}) of the exampleSite for an example.
+  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your frontmatter to force the library to be loaded. See the [theme variant generator](basics/generator) of the exampleSite for an example.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional color variant variable `--MERMAID-theme` to set the variant's Mermaid theme. This causes the Mermaid theme to switch with the color variant if it defers from the setting of the formerly selected color variant.
 
@@ -576,19 +576,19 @@ This document shows you what's new in the latest release. For a detailed list of
 
 ## 3.1.0 (2022-03-15) {#310}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`attachment`]({{% relref "shortcodes/attachments" %}}) and [`notice`]({{% relref "shortcodes/notice" %}}) shortcodes have a new parameter to override the default icon. Allowed values are all [Font Awesome 5 Free](https://fontawesome.com/v5/search?m=free) icons.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`attachment`](shortcodes/attachments) and [`notice`](shortcodes/notice) shortcodes have a new parameter to override the default icon. Allowed values are all [Font Awesome 5 Free](https://fontawesome.com/v5/search?m=free) icons.
 
 ---
 
 ## 3.0.0 (2022-02-22) {#300}
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden]({{%relref "basics/customization" %}}), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden](basics/customization), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
   This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and _Clear history_ functionality).
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
-  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant]({{%relref "basics/customization/#theme-variant" %}}), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant](basics/customization/#theme-variant), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
@@ -598,13 +598,13 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} With this release you are now capable to define your own _dark mode_ variants.
 
-  To make this possible, we have introduced a lot more color variables you can use in [your color variants]({{%relref "basics/customization/#theme-variant" %}}). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+  To make this possible, we have introduced a lot more color variables you can use in [your color variants](basics/customization/#theme-variant). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
   To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator]({{%relref "basics/generator" %}}). This feature will not work with Internet Explorer 11.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator](basics/generator). This feature will not work with Internet Explorer 11.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant switch will be shown in the menu footer. See the [documentation]({{%relref "basics/customization/#multiple-variants" %}}) for configuration.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant switch will be shown in the menu footer. See the [documentation](basics/customization/#multiple-variants) for configuration.
 
   Note, that the new variant switch will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant switcher will not be displayed with Internet Explorer 11.
 
@@ -646,21 +646,21 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for Czech.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box]({{% relref "basics/customization/#change-the-favicon" %}}). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](basics/customization/#change-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `config.toml`. For an example see [the example configuration]({{%relref "basics/configuration/#global-site-parameters" %}}).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `config.toml`. For an example see [the example configuration](basics/configuration/#global-site-parameters).
 
 ---
 
 ## 2.7.0 (2021-10-24) {#270}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Optional second parameter for [`notice`]({{% relref "shortcodes/notice" %}}) shortcode to set title in box header.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Optional second parameter for [`notice`](shortcodes/notice) shortcode to set title in box header.
 
 ---
 
 ## 2.6.0 (2021-10-21) {#260}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation]({{% relref "basics/configuration/#a-word-on-running-your-site-in-a-subfolder" %}}) for a detailed example.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation](basics/configuration/#a-word-on-running-your-site-in-a-subfolder) for a detailed example.
 
 ---
 
@@ -676,7 +676,7 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `config.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `config.toml`. Please see further [documentation]({{%relref "cont/pages/#override-expand-state-rules-for-menu-entries" %}}) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `config.toml`. Please see further [documentation](cont/pages/#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New frontmatter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
 
@@ -726,27 +726,27 @@ This document shows you what's new in the latest release. For a detailed list of
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} A page without a `title` will be treated as `hidden=true`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation]({{%relref "cont/pages/#override-expand-state-rules-for-menu-entries" %}}) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation](cont/pages/#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partials for defining pre/post content for menu items and the content. See [documentation]({{% relref "basics/customization" %}}) for further reading.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partials for defining pre/post content for menu items and the content. See [documentation](basics/customization) for further reading.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcode [`children`]({{% relref "shortcodes/children" %}}) with new parameter `containerstyle`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcode [`children`](shortcodes/children) with new parameter `containerstyle`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New shortcode [`include`]({{% relref "shortcodes/include" %}}) to include arbitrary file content into a page.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New shortcode [`include`](shortcodes/include) to include arbitrary file content into a page.
 
 ---
 
 ## 1.2.0 (2021-07-26) {#120}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcode [`expand`]({{% relref "shortcodes/expand" %}}) with new parameter to open on page load.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcode [`expand`](shortcodes/expand) with new parameter to open on page load.
 
 ---
 
 ## 1.1.0 (2021-07-02) {#110}
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} [Mermaid]({{% relref "shortcodes/mermaid" %}}) diagrams can now be panned and zoomed. This isn't configurable yet.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} [Mermaid](shortcodes/mermaid) diagrams can now be panned and zoomed. This isn't configurable yet.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`Mermaid`]({{% relref "shortcodes/mermaid#configuration" %}}) config options can be set in `config.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`Mermaid`](shortcodes/mermaid#configuration) config options can be set in `config.toml`.
 
 ---
 

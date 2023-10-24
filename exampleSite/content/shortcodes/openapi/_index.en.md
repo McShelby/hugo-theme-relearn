@@ -42,7 +42,7 @@ While the examples are using shortcodes with named parameter you are free to als
 {{% notice note %}}
 If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.
 
-Instead, open the [print preview]({{% relref "basics/configuration/#activate-print-support" %}}) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
+Instead, open the [print preview](basics/configuration/#activate-print-support) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
 {{% /notice %}}
 
 ## Example

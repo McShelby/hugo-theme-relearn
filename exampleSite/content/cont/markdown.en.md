@@ -323,7 +323,7 @@ If you want to gain more control of your code block you can enclose your code by
 
 In GFM (GitHub Flavored Markdown) you can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
 
-See [Code Highlighting]({{% relref "shortcodes/highlight" %}}) for additional documentation.
+See [Code Highlighting](shortcodes/highlight) for additional documentation.
 
 ````plaintext
 ```js
@@ -566,7 +566,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable]({{% relref "cont/imageeffects" %}}) thru your `config.toml` or frontmatter parameter.
+This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `config.toml` or frontmatter parameter.
 
 #### Resizing
 

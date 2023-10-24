@@ -69,7 +69,7 @@ While the examples are using shortcodes with named parameter you are free to als
 | **style**             | `default`       | The style scheme used for the badge.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **title**             | see notes       | Arbitrary text for the badge title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| **icon**              | see notes       | [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_ | Arbitrary text for the badge. |
 
 ## Examples
@@ -198,7 +198,7 @@ While the examples are using shortcodes with named parameter you are free to als
 
 #### With Icon Content
 
-You can combine the badge with the [`icon` shortcode]({{% relref "shortcodes/icon" %}}) to create even more stunning visuals.
+You can combine the badge with the [`icon` shortcode](shortcodes/icon) to create even more stunning visuals.
 
 In this case you need to declare `{{</* badge */>}}` instead of `{{%/* badge */%}}`. Note, that in this case it is not possible to put markdown in the content.
 

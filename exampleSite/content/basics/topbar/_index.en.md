@@ -31,8 +31,8 @@ The theme ships with the following predefined buttons (from left to right in the
 
 - {{% button style="transparent" icon="bars" %}}{{% /button %}} [**sidebar**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/sidebar.html): opens the sidebar flyout if in mobile layout
 - {{% button style="transparent" icon="list-alt" %}}{{% /button %}} [**toc**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html): opens the table of contents in an overlay
-- {{% button style="transparent" icon="pen" %}}{{% /button %}} [**edit**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/edit.html): browses to the editable page if the `editURL` [parameter is set]({{% relref "/basics/configuration/#global-site-parameters" %}})
-- {{% button style="transparent" icon="print" %}}{{% /button %}} [**print**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html): browses to the chapters printable page if [print support]({{% relref "/basics/configuration/#activate-print-support" %}}) was activated
+- {{% button style="transparent" icon="pen" %}}{{% /button %}} [**edit**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/edit.html): browses to the editable page if the `editURL` [parameter is set](/basics/configuration/#global-site-parameters)
+- {{% button style="transparent" icon="print" %}}{{% /button %}} [**print**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html): browses to the chapters printable page if [print support](/basics/configuration/#activate-print-support) was activated
 - {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} [**prev**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/prev.html): browses to the previous page if there is one
 - {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} [**next**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/next.html): browses to the next page if there is one
 - {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html): opens the overlay for the _more_ area
@@ -111,7 +111,7 @@ For displaying an area in the button's overlay, see [Area-Button](#area-button).
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
 | **class**             | _&lt;empty&gt;_ | Mandatory unique class name for this button. Displaying two buttons with the same value for **class** is undefined. |
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL<br>- if empty the button will be displayed in disabled state regardless of its **content** |
-| **icon**              | _&lt;empty&gt;_ | Mandatory [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}). |
+| **icon**              | _&lt;empty&gt;_ | Mandatory [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
 | **onempty**           | `disable`       | Defines what to do with the button if **href** is not empty but the content overlay is empty:<br><br>- `disable`: The button is displayed in disabled state.<br>- `hide`: The button is removed. |
 | **onwidths**          | `show`          | The action, that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
 | **onwidthm**          | `show`          | See above. |
@@ -131,7 +131,7 @@ Call this from your own button templates if you want to implement a button with 
 |-----------------------|-----------------|-------------|
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
 | **area**              | _&lt;empty&gt;_ | Mandatory unique area name for this area. Displaying two areas with the same value for **area** is undefined. |
-| **icon**              | _&lt;empty&gt;_ | Mandatory [Font Awesome icon name]({{%relref "shortcodes/icon#finding-an-icon" %}}). |
+| **icon**              | _&lt;empty&gt;_ | Mandatory [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
 | **onempty**           | `disable`       | Defines what to do with the button if the content overlay is empty:<br><br>- `disable`: The button is displayed in disabled state.<br>- `hide`: The button is removed. |
 | **onwidths**          | `show`          | The action, that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
 | **onwidthm**          | `show`          | See above. |
