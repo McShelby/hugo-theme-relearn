@@ -57,12 +57,14 @@ This document shows you what's new in the latest release. For a detailed list of
 
   The following types of linking are supported:
 
-  | link                             | description                     |
-  | -------------------------------- | ------------------------------- |
-  | `[generator](basics/generator)`  | absolute from your project root |
-  | `[generator](/basics/generator)` | absolute from your project root |
-  | `[generator](./../generator)`    | relative from the current page  |
-  | `[generator](../generator)`      | relative from the current page  |
+  | link                               | description                                 |
+  | ---------------------------------- | ------------------------------------------- |
+  | `[generator](en/basics/generator)` | absolute from your project root (multilang) |
+  | `[generator](/en/basics/generator)`| absolute from your project root (multilang) |
+  | `[generator](basics/generator)`    | absolute from your current language root    |
+  | `[generator](/basics/generator)`   | absolute from your current language root    |
+  | `[generator](./../generator)`      | relative from the current page              |
+  | `[generator](../generator)`        | relative from the current page              |
 
 ---
 

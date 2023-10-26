@@ -25,19 +25,18 @@
     {{- with $url.Fragment }}
       {{- $fragment = printf "#%s" . }}
     {{- end }}
-    {{- $path := strings.TrimSuffix ".html" $url.Path }}
-    {{- $path := $url.Path }}
-    {{- with $page.Page.GetPage $path }}
+    {{- $path := printf "%s/" (strings.TrimPrefix "/" (strings.TrimSuffix "/" $url.Path)) }}
+    {{- with $page.Page.GetPage (strings.TrimSuffix "/" $path | default "/") }}
       {{- $url = printf "%s%s" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) $fragment }}
       {{- $found = true }}
     {{- else }}
       {{- /* is it a link into another translation? */}}
       {{- range $page.Site.Languages }}
         {{- $lang := .Lang }}
-        {{- $prefix := printf "/%s" $lang }}
-        {{- if strings.HasPrefix $prefix $path }}
-          {{- $path := strings.TrimPrefix $prefix $path }}
-          {{- with $page.Page.GetPage $path }}
+        {{- $prefix := printf "%s/" $lang }}
+        {{- if strings.HasPrefix $path $prefix }}
+          {{- $path = strings.TrimPrefix $prefix $path | default "/" }}
+          {{- with $page.Site.GetPage (strings.TrimSuffix "/" $path | default "/") }}
             {{- range .Page.AllTranslations }}
               {{- if eq $lang .Lang }}
                 {{- $url = printf "%s%s" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) $fragment }}
