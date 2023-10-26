@@ -1175,6 +1175,12 @@ span > .copy-to-clipboard-button {
 div.highlight .copy-to-clipboard-button {
     display: none;
 }
+@media (any-hover: none) {
+    /* if there is at least one input device that does not support hover, we want to force the copy button */
+    div.highlight .copy-to-clipboard-button {
+        display: block;
+    }
+}
 div.highlight:hover .copy-to-clipboard-button {
     display: block;
 }
@@ -1544,6 +1550,12 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     margin-top: .9em;
     position: absolute;
     visibility: hidden;
+}
+@media (any-hover: none) {
+    /* if there is at least one input device that does not support hover, we want to force the copy button */
+    .anchor {
+        visibility: visible;
+    }
 }
 
 h2:hover .anchor,
