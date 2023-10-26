@@ -17,14 +17,13 @@
   {{- else }}
     <script src="{{"js/mermaid.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
   {{- end }}
+  {{- $init := "{}" }}
   {{- if isset .Params "mermaidinitialize" }}
-    {{- $.Scratch.Set "mermaidInitialize" .Params.mermaidInitialize }}
+    {{- $init = .Params.mermaidInitialize }}
   {{- else if isset .Site.Params "mermaidinitialize" }}
-    {{- $.Scratch.Set "mermaidInitialize" .Site.Params.mermaidInitialize }}
-  {{- else }}
-    {{- $.Scratch.Set "mermaidInitialize" "{}" }}
+    {{- $init = .Site.Params.mermaidInitialize }}
   {{- end }}
     <script>
-      window.themeUseMermaid = JSON.parse({{ $.Scratch.Get "mermaidInitialize" }});
+      window.themeUseMermaid = JSON.parse({{ $init }});
     </script>
 {{- end }}

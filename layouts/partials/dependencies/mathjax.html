@@ -1,11 +1,10 @@
 {{- $page := .page }}
 {{- with $page }}
+  {{- $init := "{}" }}
   {{- if isset .Params "mathjaxinitialize" }}
-    {{- $.Scratch.Set "mathJaxInitialize" .Params.mathJaxInitialize }}
+    {{- $init = .Params.mathJaxInitialize }}
   {{- else if isset .Site.Params "mathjaxinitialize" }}
-    {{- $.Scratch.Set "mathJaxInitialize" .Site.Params.mathJaxInitialize }}
-  {{- else }}
-    {{- $.Scratch.Set "mathJaxInitialize" "{}" }}
+    {{- $init = .Site.Params.mathJaxInitialize }}
   {{- end }}
     <script>
       function useMathJax( config ){
@@ -33,7 +32,7 @@
           }
         }, config );
       }
-      useMathJax( JSON.parse({{ $.Scratch.Get "mathJaxInitialize" }}) );
+      useMathJax( JSON.parse({{ $init }}) );
     </script>
   {{- if isset .Params "custommathjaxurl" }}
     <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
