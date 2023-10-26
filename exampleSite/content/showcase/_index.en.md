@@ -14,7 +14,7 @@ A collection of poems with requirements for improved taxonomy support, adjusted 
 
 ## [GoboLinux Wiki](https://wiki.gobolinux.org/) by NEONsys.org
 
-A Linux distribution documentation with customized CSS and the inspiration for the theme's Neon variant.
+A Linux distribution wiki with customized CSS and the inspiration for the theme's Neon variant.
 
 ![GoboLinux image](gobolinux.png?width=60pc)
 
