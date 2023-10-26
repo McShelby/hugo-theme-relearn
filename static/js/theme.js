@@ -324,26 +324,25 @@ function initMermaid( update, attrs ) {
                     var svg = d3.select( this );
                     svg.html( '<g>' + svg.html() + '</g>' );
                     var inner = svg.select( '*:scope > g' );
+                    parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
+                    var button = parent.querySelector( '.svg-reset-button' );
                     var zoom = d3.zoom().on( 'zoom', function( e ){
                         inner.attr( 'transform', e.transform );
-                        if( parent.querySelector( '.svg-reset-button' ) ){
-                            return;
+                        button.classList.add( "zoom" );
+                    });
+                    button.addEventListener( 'click', function( event ){
+                        svg.transition()
+                            .duration( 350 )
+                            .call( zoom.transform, d3.zoomIdentity );
+                        this.setAttribute( 'aria-label', window.T_View_reset );
+                        this.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isImageRtl?'e':'w')) );
+                    });
+                    button.addEventListener( 'mouseleave', function() {
+                        this.removeAttribute( 'aria-label' );
+                        if( this.classList.contains( 'tooltipped' ) ){
+                            this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
+                            this.classList.remove( "zoom" );
                         }
-                        parent.insertAdjacentHTML( 'beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>' );
-                        var button = parent.querySelector( '.svg-reset-button' );
-                        button.addEventListener( 'click', function( event ){
-                            svg.transition()
-                                .duration( 350 )
-                                .call( zoom.transform, d3.zoomIdentity );
-                            this.setAttribute( 'aria-label', window.T_View_reset );
-                            this.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isImageRtl?'e':'w')) );
-                        });
-                        button.addEventListener( 'mouseleave', function() {
-                            this.removeAttribute( 'aria-label' );
-                            if( this.classList.contains( 'tooltipped' ) ){
-                                this.remove();
-                            }
-                        });
                     });
                     svg.call( zoom );
                 });
