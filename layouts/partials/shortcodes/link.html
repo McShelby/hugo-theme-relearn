@@ -31,18 +31,14 @@
       {{- $found = true }}
     {{- else }}
       {{- /* is it a link into another translation? */}}
-      {{- range $page.Site.Languages }}
-        {{- $lang := .Lang }}
+      {{- range $page.Sites }}
+        {{- $lang := .Language.Lang }}
         {{- $prefix := printf "%s/" $lang }}
         {{- if strings.HasPrefix $path $prefix }}
           {{- $path = strings.TrimPrefix $prefix $path | default "/" }}
-          {{- with $page.Site.GetPage (strings.TrimSuffix "/" $path | default "/") }}
-            {{- range .Page.AllTranslations }}
-              {{- if eq $lang .Lang }}
-                {{- $url = printf "%s%s" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) $fragment }}
-                {{- $found = true }}
-              {{- end }}
-            {{- end }}
+          {{- with .GetPage (strings.TrimSuffix "/" $path | default "/") }}
+            {{- $url = printf "%s%s" (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) $fragment }}
+            {{- $found = true }}
           {{- end }}
         {{- end }}
       {{- end }}
