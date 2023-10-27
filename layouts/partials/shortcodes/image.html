@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'image' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180" $page.File.Path }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'image' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180" $page.File.Filename }}
 {{- end }}
 {{- $url := .url }}
 {{- $title := .title }}
@@ -44,7 +44,7 @@
     {{- end }}
   {{- end }}
   {{- if $dest_url.Query.Has "featherlight" }}
-    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5110" $page.File.Path }}
+    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5110" $page.File.Filename }}
     {{- $effects = merge $effects (dict "lightbox" (ne ($dest_url.Query.Get "featherlight") "false")) }}
   {{- end }}
   {{- range $k, $v := $effects }}

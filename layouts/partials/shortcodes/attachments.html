@@ -4,7 +4,7 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'attachments' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180" $page.File.Path }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'attachments' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180" $page.File.Filename }}
 {{- end }}
 {{- $color := .color | default "" }}
 {{- $content := .content }}
@@ -44,9 +44,9 @@
 {{- with $page }}
 {{- if ne .BundleType "leaf" }}
   {{- if or (and (eq $major 0) (ge $minor 112)) (gt $major 0) }}
-    {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Path }}
+    {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Filename }}
   {{- else }}
-    {{- warnf "%q: DEPRECATED usage of 'attachments' shortcode found which will not be compatible while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Path }}
+    {{- warnf "%q: DEPRECATED usage of 'attachments' shortcode found which will not be compatible while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Filename }}
   {{- end }}
 {{- end }}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>

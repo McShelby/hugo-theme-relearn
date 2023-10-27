@@ -20,7 +20,7 @@
       <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
       {{- if not .Site.Params.disableLandingPageButton }}
         {{- if (ne .Site.Params.landingPageURL nil) }}
-          {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420" .File.Path }}
+          {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420" .File.Filename }}
         {{- end }}
         <ul>
           <li><a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fas fa-home"></i> Home` | safeHTML }}</a></li>
