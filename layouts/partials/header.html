@@ -23,7 +23,7 @@
       {{- if not $title }}
         {{- $title = .Data.Singular }}
       {{- end }}
-      {{- $title = printf "%s %s %s" .Title (default "::" .Site.Params.titleSeparator) $title }}
+      {{- $title = printf "%s %s %s" (default .Data.Term .Title) (default "::" .Site.Params.titleSeparator) $title }}
     {{- end }}
     {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
       {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}

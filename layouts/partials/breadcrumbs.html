@@ -14,7 +14,7 @@
 {{- $breadcrumb := slice }}
 {{- range seq $depth }}
   {{- if $to }}
-    {{- if $to.Title }}
+    {{- if (default $to.Data.Term $to.Title) }}
       {{- $breadcrumb = $breadcrumb | append $to }}
     {{- end }}
   {{- else }}
@@ -32,17 +32,17 @@
   {{- $to := $e }}
   {{- $depth = add $depth 1 }}
   {{- $title := $to.Title }}
-  {{- if eq .Kind "taxonomy" }}
+  {{- if eq $to.Kind "taxonomy" }}
     {{- $title = i18n $to.Data.Plural }}
     {{- if not $title }}
       {{- $title = $to.Data.Plural }}
     {{- end }}
-  {{- else if eq .Kind "term" }}
+  {{- else if eq $to.Kind "term" }}
     {{- $title = i18n $to.Data.Singular }}
     {{- if not $title }}
       {{- $title = $to.Data.Singular }}
     {{- end }}
-    {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) $to.Title }}
+    {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (default $to.Data.Term $to.Title) }}
   {{- end }}
   {{- if not $title }}
     {{- $title = $to.Site.Title }}

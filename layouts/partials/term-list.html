@@ -36,7 +36,7 @@
   <ul>
   {{- range $term_page := . }}
     {{- $to := . }}
-    <li><a class="term-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ $to.Title }}</a></li>
+    <li><a class="term-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ default $to.Data.Term $to.Title }}</a></li>
   {{- end }}
   </ul>
 </div>
