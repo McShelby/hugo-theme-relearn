@@ -48,7 +48,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode](shortcodes/children). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable Markdoen links.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable Markdown links.
 
   Previously it was not possible to use pure Markdown links in a configuration independend way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, wheather you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (eg. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
 
