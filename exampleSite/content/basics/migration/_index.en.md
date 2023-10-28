@@ -42,11 +42,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs](basics/customization#change-the-menu-width).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you only if it is needed. This comes in handy if you want to add own shortcodes that depend on additional JavaScript code to be loaded. [See the docs](basics/customization#own-shortcodes-with-javascript-dependencies).
-
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs](basics/configuration#social-media-meta-tags).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode](shortcodes/children). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you only if it is needed. This comes in handy if you want to add own shortcodes that depend on additional JavaScript code to be loaded. [See the docs](basics/customization#own-shortcodes-with-javascript-dependencies).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable Markdown links.
 
