@@ -12,7 +12,7 @@
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- $lastCapital := "" }}
 {{- range .Data.Terms.Alphabetical }}
-  {{- $capital := substr (default .Page.Data.Term .Page.Title) 0 1 | upper }}
+  {{- $capital := substr .Page.Data.Term 0 1 | upper }}
   {{- if ne $lastCapital $capital }}
     {{- if ne $lastCapital "" }}
 </ul>
@@ -29,7 +29,7 @@
       {{- end }}
     {{- end }}
     {{- if $len }}
-  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ (default .Page.Data.Term .Page.Title) }}</a> ({{ $len }})</li>
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ (default .Page.Data.Term .Page.Title) }}{{ if and .Page.Title (ne .Page.Data.Term .Page.Title) }} ({{ .Page.Data.Term }}){{ end }}</a> ({{ $len }})</li>
     {{- end }}
   {{- $lastCapital = $capital }}
 {{- end }}
