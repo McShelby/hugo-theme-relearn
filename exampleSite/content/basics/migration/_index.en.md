@@ -4,15 +4,15 @@ title = "What's New"
 weight = 2
 +++
 
-This document shows you what's new in the latest release. For a detailed list of changes, see the [history page](basics/history).
+This document shows you what's new in the latest release and flags it with one of the following badges. For a detailed list of changes, see the [history page](basics/history).
 
-{{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} The minimum required Hugo version.
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} The minimum required Hugo version.
 
-{{% badge style="warning" title=" " %}}Breaking{{% /badge %}} A change that requires action by you after upgrading to assure the site is still functional.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} A change that requires action by you after upgrading to assure the site is still functional.
 
-{{% badge style="note" title=" " %}}Change{{% /badge %}} A change in default behavior that may requires action by you if you want to revert it.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} A change in default behavior that may requires action by you if you want to revert it.
 
-{{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Marks new behavior you might find interesting or comes configurable.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Marks new behavior you might find interesting or comes configurable.
 
 <!--GH-ACTION-RELEASE-MILESTONE-->
 
@@ -36,18 +36,19 @@ This document shows you what's new in the latest release. For a detailed list of
       author.name = "Hugo"
     ````
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term) are now allowed to contain content. This is added inbetween the title and the page list.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in you page. [See the docs](cont/taxonomy#customization).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in your page. [See the docs](cont/taxonomy#customization).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs](basics/customization#change-the-menu-width).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you. This comes in handy if you want to add your own shortcodes that require additional JavaScript code to be loaded. [See the docs](basics/customization#own-shortcodes-with-javascript-dependencies).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now provides a mechanism to load further JavaScript dependencies defined by you only if it is needed. This comes in handy if you want to add own shortcodes that depend on additional JavaScript code to be loaded. [See the docs](basics/customization#own-shortcodes-with-javascript-dependencies).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs](basics/configuration#social-media-meta-tags).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode](shortcodes/children). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable links.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable Markdoen links.
 
   Previously it was not possible to use pure Markdown links in a configuration independend way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, wheather you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (eg. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
 

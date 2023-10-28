@@ -11,6 +11,7 @@
 {{- end }}
 {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Title }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
+{{- .Content }}
 <ul class="columnize">
   {{- range sort .Pages "Title" }}
     {{- $c:=""}}{{/* display pages of a term */}}
