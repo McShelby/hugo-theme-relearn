@@ -11,27 +11,31 @@
 {{- end }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- $lastCapital := "" }}
-{{- range .Data.Terms.Alphabetical }}
-  {{- $capital := substr .Page.Data.Term 0 1 | upper }}
-  {{- if ne $lastCapital $capital }}
-    {{- if ne $lastCapital "" }}
-</ul>
+{{- $terms := slice }}
+{{- range .Data.Terms }}
+  {{- $terms = $terms | append (dict "Title" (default .Page.Data.Term .Page.Title) "Term" . )}}
+{{- end }}
+{{- range sort $terms ".Title" }}
+  {{- $capital := substr .Title 0 1 | upper }}
+  {{- $len := 0 }}
+  {{- range .Term.Pages }}
+    {{- $c:=""}}{{/* count pages of term */}}
+    {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+      {{- $len = add $len 1 }}
     {{- end }}
+  {{- end }}
+  {{- if $len }}
+    {{- if ne $lastCapital $capital }}
+      {{- if ne $lastCapital "" }}
+</ul>
+      {{- end }}
 <h2 id="{{ $capital | plainify | anchorize }}">{{ $capital }}</h2>
 <ul class="columnize">
-  {{- end }}
+    {{- end }}
     {{- $c:=""}}{{/* display terms of a taxonomy */}}
-    {{- $len := 0 }}
-    {{- range .Pages }}
-      {{- $c:=""}}{{/* count pages of term */}}
-      {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-        {{- $len = add $len 1 }}
-      {{- end }}
-    {{- end }}
-    {{- if $len }}
-  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ (default .Page.Data.Term .Page.Title) }}{{ if and .Page.Title (ne .Page.Data.Term .Page.Title) }} ({{ .Page.Data.Term }}){{ end }}</a> ({{ $len }})</li>
-    {{- end }}
-  {{- $lastCapital = $capital }}
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Term.Page) }}">{{ .Title }}</a> ({{ $len }})</li>
+    {{- $lastCapital = $capital }}
+  {{- end }}
 {{- end }}
 {{- if ne $lastCapital "" }}
 </ul>
