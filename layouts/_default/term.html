@@ -12,14 +12,29 @@
 {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (default .Data.Term .Title) }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
-<ul class="columnize">
-  {{- range sort .Pages "Title" }}
-    {{- $c:=""}}{{/* display pages of a term */}}
-    {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a></li>
-    {{- end }}
+{{- $lastCapital := "" }}
+{{- $pages := slice }}
+{{- range .Pages }}
+  {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+    {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
   {{- end }}
+{{- end }}
+{{- range sort $pages ".Title" }}
+  {{- $capital := substr .Title 0 1 | upper }}
+  {{- if ne $lastCapital $capital }}
+    {{- if ne $lastCapital "" }}
 </ul>
+    {{- end }}
+<h2 id="{{ $capital | plainify | anchorize }}">{{ $capital }}</h2>
+<ul class="columnize">
+  {{- end }}
+  {{- $c:=""}}{{/* display pages of a term */}}
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Title }}</a></li>
+  {{- $lastCapital = $capital }}
+{{- end }}
+{{- if ne $lastCapital "" }}
+</ul>
+{{- end }}
 
             <footer class="footline">
             </footer>
