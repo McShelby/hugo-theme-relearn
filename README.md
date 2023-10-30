@@ -42,7 +42,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Available languages](https://mcshelby.github.io/hugo-theme-relearn/cont/i18n#basic-configuration): Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Swahili, Turkish, Vietnamese
   - [Search support for mixed language content](https://mcshelby.github.io/hugo-theme-relearn/cont/i18n#search)
 - **Additional Markdown features**
-  - [Support for GFM (GitHub Flavored Markdown](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown)
+  - [Support for GFM (GitHub Flavored Markdown)](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown)
   - [Image effects like sizing, shadow, border and alignment](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown#image-effects)
   - [Image lightbox](https://mcshelby.github.io/hugo-theme-relearn/cont/markdown#lightbox)
 - **Shortcodes galore**

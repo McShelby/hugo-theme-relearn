@@ -45,7 +45,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Available languages](cont/i18n#basic-configuration): Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Swahili, Turkish, Vietnamese
   - [Search support for mixed language content](cont/i18n#search)
 - **Additional Markdown features**
-  - [Support for GFM (GitHub Flavored Markdown](cont/markdown)
+  - [Support for GFM (GitHub Flavored Markdown)](cont/markdown)
   - [Image effects like sizing, shadow, border and alignment](cont/markdown#image-effects)
   - [Image lightbox](cont/markdown#lightbox)
 - **Shortcodes galore**
