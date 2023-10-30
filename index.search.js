@@ -206,7 +206,7 @@ var relearn_search_index = [
     "description": "This is a hidden demo child page",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "page 4 (hidden)",
     "uri": "/shortcodes/children/children-4/index.html"
@@ -217,7 +217,7 @@ var relearn_search_index = [
     "description": "",
     "tags": null,
     "title": "Tag :: a secret",
-    "uri": "/tags/hidden/index.html"
+    "uri": "/tags/its-hidden/index.html"
   },
   {
     "breadcrumb": "Shortcodes",
@@ -444,7 +444,7 @@ var relearn_search_index = [
     "description": "This is a hidden demo child page",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "page 1-1-1 (hidden)",
     "uri": "/shortcodes/children/children-1/children-1-1/children-1-1-1/index.html"
@@ -455,7 +455,7 @@ var relearn_search_index = [
     "description": "This is a non-hidden demo child page of a hidden parent page",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "page 1-1-1-1",
     "uri": "/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/index.html"
@@ -466,7 +466,7 @@ var relearn_search_index = [
     "description": "This is a hidden demo child page",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "page 1-1-1-1-1 (hidden)",
     "uri": "/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/index.html"
@@ -477,7 +477,7 @@ var relearn_search_index = [
     "description": "This is a non-hidden demo child page of a hidden parent page",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "page 1-1-1-1-1-1",
     "uri": "/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/children-1-1-1-1-1-1/index.html"

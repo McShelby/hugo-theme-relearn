@@ -206,7 +206,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "plank 4 (hidden)",
     "uri": "/pir/shortcodes/children/children-4/index.html"
@@ -436,7 +436,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "plank 1-1-1 (hidden)",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/index.html"
@@ -447,7 +447,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "plank 1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/index.html"
@@ -458,7 +458,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "plank 1-1-1-1-1 (hidden)",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/index.html"
@@ -469,7 +469,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "hidden"
+      "it's hidden"
     ],
     "title": "plank 1-1-1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/children-1-1-1-1-1-1/index.html"
