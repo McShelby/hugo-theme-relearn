@@ -28,7 +28,7 @@ if exist "config\testing" (
     copy /e /i /y "..\hugo-theme-relearn\exampleSite\config\testing" "hugo\testing"
 )
 
-hugo%hugo_version% %config% --templateMetrics --templateMetricsHints --cleanDestinationDir --destination "public.%version%%hugo_prefix%%hugo_version%" >> "metrics.%version%%hugo_prefix%%hugo_version%.log"
+hugo%hugo_version% %config% --templateMetrics --templateMetricsHints --printI18nWarnings --printPathWarnings --printUnusedTemplates --printMemoryUsage --cleanDestinationDir --destination "public.%version%%hugo_prefix%%hugo_version%" >> "metrics.%version%%hugo_prefix%%hugo_version%.log"
 
 set "start_dir=%CD%\public.%version%%hugo_prefix%%hugo_version%"
 set "output_file=dir.%version%%hugo_prefix%%hugo_version%.log"
