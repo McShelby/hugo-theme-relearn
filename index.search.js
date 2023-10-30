@@ -213,7 +213,7 @@ var relearn_search_index = [
   },
   {
     "breadcrumb": "Tags",
-    "content": "This lists all pages that are hidden from the home page. This includes pages that define hidden=true in their frontmatter as weill as descendents of hidden pages.\nThis tag also has a title. While internally it is called hidden, it is referenced in the resulting pages as a secret.\nJust an example heading The TOC will contain this heading and the index headings below.\n",
+    "content": "This lists all pages that are hidden from the home page. This includes pages that define hidden=true in their frontmatter as well as descendents of hidden pages.\nWhen giving term pages, you should give it a title. Otherwise it will print out a warning and will use the urlized title, which may looks weird.\nWhile internally this term is called hidden, it is referenced in the resulting english pages as a secret and as hush, matey in the piratish translation.\nJust an example heading The TOC will contain this heading and the index headings below.\n",
     "description": "",
     "tags": null,
     "title": "Tag :: a secret",
