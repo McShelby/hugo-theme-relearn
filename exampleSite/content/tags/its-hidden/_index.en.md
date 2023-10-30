@@ -2,9 +2,12 @@
 title = "a secret"
 +++
 
-This lists all pages that are hidden from the home page. This includes pages that define `hidden=true` in their frontmatter as weill as descendents of hidden pages.
+This lists all pages that are hidden from the home page. This includes pages that define `hidden=true` in their frontmatter as well as descendents of hidden pages.
 
-This tag also has a title. While internally it is called `hidden`, it is referenced in the resulting pages as `a secret`.
+When giving term pages, you should give it a title. Otherwise it will print out a warning and will use the urlized title, which may looks weird.
+
+While internally this term is called `hidden`, it is referenced in the resulting english pages as `a secret` and as `hush, matey` in the piratish translation.
+
 
 ## Just an example heading
 
