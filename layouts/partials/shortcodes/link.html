@@ -18,7 +18,7 @@
   {{- end }}
 {{- else }}
   {{- $url = urls.Parse $url }}
-  {{- if and $url.Path (not (strings.HasSuffix $url.Path ".html")) (not (strings.HasSuffix $url.Path ".md")) }}
+  {{- if and $url.Path (not (path.Ext $url.Path)) }}
     {{- /* ignore old style links with  given extension */}}
     {{- $found := false }}
     {{- $fragment := "" }}
