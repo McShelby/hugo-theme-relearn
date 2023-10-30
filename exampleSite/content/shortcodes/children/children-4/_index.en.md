@@ -2,7 +2,7 @@
 alwaysopen = false
 description = "This is a hidden demo child page"
 hidden = true
-tags = ["children", "hidden"]
+tags = ["children", "it's hidden"]
 title = "page 4 (hidden)"
 weight = 40
 +++
