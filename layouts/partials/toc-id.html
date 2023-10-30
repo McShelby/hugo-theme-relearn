@@ -25,8 +25,6 @@
   </ul>
 </nav>
 {{- else if eq .Kind "term" }}
-<nav id="TableOfContents">
-  <ul>
   {{- $lastCapital := "" }}
   {{- $pages := slice }}
   {{- range .Pages }}
@@ -34,15 +32,26 @@
       {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
     {{- end }}
   {{- end }}
+  {{- $toc_term := "" }}
   {{- range sort $pages ".Title" }}
     {{- $capital := substr .Title 0 1 | upper }}
     {{- if ne $lastCapital $capital }}
-    <li><a href="#{{ $capital | plainify | anchorize }}">{{ $capital }}</a></li>
+    {{- $toc_term = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_term ($capital | plainify | anchorize) $capital }}
     {{- end }}
     {{- $lastCapital = $capital }}
   {{- end }}
-  </ul>
-</nav>
+  {{- $toc := trim (partial "toc.html" .) " \n\r\t" }}
+  {{- if and (not $toc) $toc_term }}
+    {{- $toc = printf "<nav id=\"TableOfContents\"></nav>" }}
+  {{- end }}
+  {{- if and $toc $toc_term }}
+    {{- $toc = replaceRE "^(<nav id=\"TableOfContents\">)[\\s]*" "${1}\n  <ul>\n" $toc }}
+    {{- $toc = replaceRE "^(<nav id=\"TableOfContents\">[\\s]*<ul>)[\\s]*<ul>[\\n\\r]*" "${1}\n" $toc }}
+    {{- $toc = replaceRE "[\\s]*(</nav>)$" "\n  </ul>\n${1}" $toc }}
+    {{- $toc = replaceRE "[ \\t]*</ul>[\\s]*(</ul>[\\s]*</nav>)$" "  ${1}" $toc }}
+    {{- $toc = replaceRE "([ \\t]*</ul>[\\s]*</nav>)$" (printf "%s${1}" $toc_term) $toc }}
+  {{- end }}
+{{ $toc | safeHTML }}
 {{- else }}
   {{- partial "toc.html" . }}
 {{- end }}
