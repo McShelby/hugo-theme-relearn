@@ -1,0 +1,48 @@
+{{- if eq .Kind "taxonomy" }}
+<nav id="TableOfContents">
+  <ul>
+  {{- $lastCapital := "" }}
+  {{- $terms := slice }}
+  {{- range .Data.Terms }}
+    {{- $terms = $terms | append (dict "Title" (default .Page.Data.Term .Page.Title) "Term" . )}}
+  {{- end }}
+  {{- range sort $terms ".Title" }}
+    {{- $capital := substr .Title 0 1 | upper }}
+    {{- $len := 0 }}
+    {{- range .Term.Pages }}
+      {{- $c:=""}}{{/* count pages of term */}}
+      {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+        {{- $len = add $len 1 }}
+      {{- end }}
+    {{- end }}
+    {{- if $len }}
+      {{- if ne $lastCapital $capital }}
+    <li><a href="#{{ $capital | plainify | anchorize }}">{{ $capital }}</a></li>
+      {{- end }}
+      {{- $lastCapital = $capital }}
+    {{- end }}
+  {{- end }}
+  </ul>
+</nav>
+{{- else if eq .Kind "term" }}
+<nav id="TableOfContents">
+  <ul>
+  {{- $lastCapital := "" }}
+  {{- $pages := slice }}
+  {{- range .Pages }}
+    {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+      {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
+    {{- end }}
+  {{- end }}
+  {{- range sort $pages ".Title" }}
+    {{- $capital := substr .Title 0 1 | upper }}
+    {{- if ne $lastCapital $capital }}
+    <li><a href="#{{ $capital | plainify | anchorize }}">{{ $capital }}</a></li>
+    {{- end }}
+    {{- $lastCapital = $capital }}
+  {{- end }}
+  </ul>
+</nav>
+{{- else }}
+  {{- partial "toc.html" . }}
+{{- end }}
