@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.23.0 (2023-10-29) {#5230}
+## 5.23.0 (2023-10-30) {#5230}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `config.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
 
