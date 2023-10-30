@@ -18,12 +18,6 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.24.0-beta {#5240}
-
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The term page of a taxonomy now adds the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `config.toml` by adding `disableTermBreadcrumbs=true`.
-
----
-
 ## 5.23.0 (2023-10-29) {#5230}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `config.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
@@ -42,7 +36,9 @@ This document shows you what's new in the latest release and flags it with one o
       author.name = "Hugo"
     ````
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term) are now allowed to contain content. This is added inbetween the title and the page list.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `config.toml` by adding `disableTermBreadcrumbs=true`.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy term pages are now allowed to contain content. This is added inbetween the title and the page list.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in your page. [See the docs](cont/taxonomy#customization).
 
