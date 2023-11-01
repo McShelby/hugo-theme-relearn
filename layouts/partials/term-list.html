@@ -13,19 +13,20 @@
 {{- end }}
 {{- $taxonomy_page := $page.Site.GetPage $taxonomy }}
 {{- $terms := slice | append (index $page.Params $taxonomy) }}
-{{- $term_pages := dict }}
-{{- range sort $terms }}
+{{- $term_pages := slice }}
+{{- range $terms }}
   {{- $term := trim . " " }}
   {{- if not $term }}
     {{- continue }}
   {{- end }}
   {{- $term_key := ($term | plainify | anchorize) }}
   {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-    {{- $term_pages = $term_pages | merge (dict $term_key .) }}
-  {{- end }}
-  {{- $term_key = ($term | urlize) }}
-  {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-    {{- $term_pages = $term_pages | merge (dict $term_key .) }}
+    {{- $term_pages = $term_pages | append (dict "Title" (default .Data.Term .Title) "Term" . )}}
+  {{- else }}
+    {{- $term_key = ($term | urlize) }}
+    {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
+      {{- $term_pages = $term_pages | append (dict "Title" (default .Data.Term .Title) "Term" . )}}
+    {{- end }}
   {{- end }}
 {{- end }}
 {{- with $term_pages }}
@@ -34,9 +35,9 @@
   <i class="{{ $icon }}"></i>
   {{- end }}
   <ul>
-  {{- range $term_page := . }}
-    {{- $to := . }}
-    <li><a class="term-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ default $to.Data.Term $to.Title }}</a></li>
+  {{- range sort . ".Title" }}
+    {{- $to := .Term }}
+    <li><a class="term-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ .Title }}</a></li>
   {{- end }}
   </ul>
 </div>
