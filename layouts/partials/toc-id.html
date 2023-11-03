@@ -1,55 +1,44 @@
-{{- if eq .Kind "taxonomy" }}
-<nav id="TableOfContents">
-  <ul>
-  {{- $lastCapital := "" }}
-  {{- $terms := slice }}
-  {{- range .Data.Terms }}
-    {{- $terms = $terms | append (dict "Title" (default .Page.Data.Term .Page.Title) "Term" . )}}
-  {{- end }}
-  {{- range sort $terms ".Title" }}
-    {{- $capital := substr .Title 0 1 | upper }}
-    {{- $len := 0 }}
-    {{- range .Term.Pages }}
-      {{- $c:=""}}{{/* count pages of term */}}
-      {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-        {{- $len = add $len 1 }}
-      {{- end }}
-    {{- end }}
-    {{- if $len }}
-      {{- if ne $lastCapital $capital }}
-    <li><a href="#{{ $capital | plainify | anchorize }}">{{ $capital }}</a></li>
-      {{- end }}
-      {{- $lastCapital = $capital }}
-    {{- end }}
-  {{- end }}
-  </ul>
-</nav>
-{{- else if eq .Kind "term" }}
+{{- if or (eq .Kind "taxonomy") (eq .Kind "term") }}
   {{- $lastCapital := "" }}
   {{- $pages := slice }}
-  {{- range .Pages }}
-    {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-      {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
+  {{- if eq .Kind "taxonomy" }}
+    {{- range .Data.Terms }}
+      {{- $len := 0 }}
+      {{- range .Pages }}
+        {{- $c:=""}}{{/* count pages of term */}}
+        {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+          {{- $len = add $len 1 }}
+        {{- end }}
+      {{- end }}
+      {{- if $len }}
+        {{- $pages = $pages| append (dict "Title" (default .Page.Data.Term .Page.Title) "Page" . "Len" $len )}}
+      {{- end }}
+    {{- end }}
+  {{- else if eq .Kind "term" }}
+    {{- range .Pages }}
+      {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+        {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
+      {{- end }}
     {{- end }}
   {{- end }}
-  {{- $toc_term := "" }}
+  {{- $toc_pages := "" }}
   {{- range sort $pages ".Title" }}
     {{- $capital := substr .Title 0 1 | upper }}
     {{- if ne $lastCapital $capital }}
-    {{- $toc_term = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_term ($capital | plainify | anchorize) $capital }}
+      {{- $toc_pages = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_pages ($capital | plainify | anchorize) $capital }}
     {{- end }}
     {{- $lastCapital = $capital }}
   {{- end }}
   {{- $toc := trim (partial "toc.html" .) " \n\r\t" }}
-  {{- if and (not $toc) $toc_term }}
+  {{- if and (not $toc) $toc_pages }}
     {{- $toc = printf "<nav id=\"TableOfContents\"></nav>" }}
   {{- end }}
-  {{- if and $toc $toc_term }}
+  {{- if and $toc $toc_pages }}
     {{- $toc = replaceRE "^(<nav id=\"TableOfContents\">)[\\s]*" "${1}\n  <ul>\n" $toc }}
     {{- $toc = replaceRE "^(<nav id=\"TableOfContents\">[\\s]*<ul>)[\\s]*<ul>[\\n\\r]*" "${1}\n" $toc }}
     {{- $toc = replaceRE "[\\s]*(</nav>)$" "\n  </ul>\n${1}" $toc }}
     {{- $toc = replaceRE "[ \\t]*</ul>[\\s]*(</ul>[\\s]*</nav>)$" "  ${1}" $toc }}
-    {{- $toc = replaceRE "([ \\t]*</ul>[\\s]*</nav>)$" (printf "%s${1}" $toc_term) $toc }}
+    {{- $toc = replaceRE "([ \\t]*</ul>[\\s]*</nav>)$" (printf "%s${1}" $toc_pages) $toc }}
   {{- end }}
 {{ $toc | safeHTML }}
 {{- else }}

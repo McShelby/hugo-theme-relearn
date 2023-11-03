@@ -9,34 +9,31 @@
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
 {{- $lastCapital := "" }}
-{{- $terms := slice }}
+{{- $pages := slice }}
 {{- range .Data.Terms }}
-  {{- $terms = $terms | append (dict "Title" (default .Page.Data.Term .Page.Title) "Term" . )}}
-  {{- if not .Page.Title }}
-    {{- warnf "%q: You have not given a 'title' in the frontmatter of your term page, the urlized title will be used instead" .Page.File.Filename }}
-  {{- end }}
-{{- end }}
-{{- range sort $terms ".Title" }}
-  {{- $capital := substr .Title 0 1 | upper }}
   {{- $len := 0 }}
-  {{- range .Term.Pages }}
+  {{- range .Pages }}
     {{- $c:=""}}{{/* count pages of term */}}
     {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
       {{- $len = add $len 1 }}
     {{- end }}
   {{- end }}
   {{- if $len }}
-    {{- if ne $lastCapital $capital }}
-      {{- if ne $lastCapital "" }}
+    {{- $pages = $pages| append (dict "Title" (default .Page.Data.Term .Page.Title) "Page" . "Len" $len )}}
+  {{- end }}
+{{- end }}
+{{- range sort $pages ".Title" }}
+  {{- $capital := substr .Title 0 1 | upper }}
+  {{- if ne $lastCapital $capital }}
+    {{- if ne $lastCapital "" }}
 </ul>
-      {{- end }}
+    {{- end }}
 <h2 id="{{ $capital | plainify | anchorize }}">{{ $capital }}</h2>
 <ul class="columnize">
-    {{- end }}
-    {{- $c:=""}}{{/* display terms of a taxonomy */}}
-  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Term.Page) }}">{{ .Title }}</a> ({{ $len }})</li>
-    {{- $lastCapital = $capital }}
   {{- end }}
+  {{- $c:=""}}{{/* display terms of a taxonomy */}}
+  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Term.Page) }}">{{ .Title }}</a> ({{ .Len }})</li>
+  {{- $lastCapital = $capital }}
 {{- end }}
 {{- if ne $lastCapital "" }}
 </ul>
