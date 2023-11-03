@@ -5,10 +5,8 @@
             </header>
 {{- $page := . }}
 
-{{- $title := i18n .Data.Singular }}
-{{- if not $title }}
-  {{- $title = .Data.Singular }}
-{{- end }}
+{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
+{{- $title := default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
 {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (default .Data.Term .Title) }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}

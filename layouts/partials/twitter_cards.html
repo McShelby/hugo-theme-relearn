@@ -6,15 +6,10 @@
 {{- if eq $outputFormat "searchpage" }}
     {{- $title = T "Search" }}
 {{- else if eq .Kind "taxonomy" }}
-    {{- $title = i18n .Data.Plural }}
-    {{- if not $title }}
-        {{- $title = .Data.Plural }}
-    {{- end }}
+    {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Title }}
 {{- else if eq .Kind "term" }}
-    {{- $title = i18n .Data.Singular }}
-    {{- if not $title }}
-        {{- $title = .Data.Singular }}
-    {{- end }}
+    {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
+    {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
     {{- $title = printf "%s %s %s" (default .Data.Term .Title) (default "::" .Site.Params.titleSeparator) $title }}
 {{- end }}
 {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
