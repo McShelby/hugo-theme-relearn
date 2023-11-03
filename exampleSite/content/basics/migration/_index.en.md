@@ -38,7 +38,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `config.toml` by adding `disableTermBreadcrumbs=true`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy term pages are now allowed to contain content. This is added inbetween the title and the page list.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy and term pages are now allowed to contain content. This is added inbetween the title and the page list.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to print custom taxonomies anywhere in your page. [See the docs](cont/taxonomy#customization).
 
