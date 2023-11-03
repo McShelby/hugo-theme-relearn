@@ -228,7 +228,7 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/badge/index.html"
   },
   {
-    "breadcrumb": "Categorrries",
+    "breadcrumb": "Categories",
     "content": "",
     "description": "",
     "tags": null,
@@ -256,15 +256,15 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrries",
+    "title": "Categories",
     "uri": "/pir/categories/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Children",
+    "title": "Tagga :: Children",
     "uri": "/pir/tags/children/index.html"
   },
   {
@@ -276,15 +276,15 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/children/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: config",
+    "title": "Tagga :: config",
     "uri": "/pir/tags/config/index.html"
   },
   {
-    "breadcrumb": "Categorrries",
+    "breadcrumb": "Categories",
     "content": "",
     "description": "",
     "tags": null,
@@ -292,11 +292,11 @@ var relearn_search_index = [
     "uri": "/pir/categories/content/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: Content",
+    "title": "Tagga :: Content",
     "uri": "/pir/tags/content/index.html"
   },
   {
@@ -316,7 +316,7 @@ var relearn_search_index = [
     "uri": "/pir/more/credits/index.html"
   },
   {
-    "breadcrumb": "Categorrries",
+    "breadcrumb": "Categories",
     "content": "",
     "description": "",
     "tags": null,
@@ -324,11 +324,11 @@ var relearn_search_index = [
     "uri": "/pir/categories/custom/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: documentat'n",
+    "title": "Tagga :: documentat'n",
     "uri": "/pir/tags/documentatn/index.html"
   },
   {
@@ -340,11 +340,11 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/expand/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: headless",
+    "title": "Tagga :: headless",
     "uri": "/pir/tags/headless/index.html"
   },
   {
@@ -356,11 +356,11 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/highlight/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": " This lists all planks that be hidden from th' home plank. This includes planks that define hidden=true 'n their frontmatter as well as descendents o' hidden planks.\nWhen giv'n term planks, ye should give it a title. Otherwise it will print out a warning an' will use th' urlized title, which may looks weird.\nWhile internally this term be called hidden, it be referenced 'n th' result'n english planks as a secret an' as hush, matey 'n th' piratish translat'n.\nJust an example head'n Th' TOC will contain this head'n an' th' index head'ns below.\n",
     "description": "",
     "tags": null,
-    "title": "Tak :: hush, matey",
+    "title": "Tagga :: hush, matey",
     "uri": "/pir/tags/its-hidden/index.html"
   },
   {
@@ -404,11 +404,11 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/mermaid/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: non-hidden",
+    "title": "Tagga :: non-hidden",
     "uri": "/pir/tags/non-hidden/index.html"
   },
   {
@@ -560,14 +560,14 @@ var relearn_search_index = [
   },
   {
     "breadcrumb": "",
-    "content": "",
+    "content": " Ye can define optional rrrambl'n 'n yer overridden taxonomy plank. Aswell ye can define optional title an' singulartitle that will override th' values from yer config.toml or o' yer translat'n files.\nJust an example head'n Th' TOC will contain this head'n an' th' index head'ns below.\n",
     "description": "",
     "tags": null,
-    "title": "Taks",
+    "title": "Tag-a-taggs",
     "uri": "/pir/tags/index.html"
   },
   {
-    "breadcrumb": "Categorrries",
+    "breadcrumb": "Categories",
     "content": "",
     "description": "",
     "tags": null,
@@ -575,7 +575,7 @@ var relearn_search_index = [
     "uri": "/pir/categories/taxonomy/index.html"
   },
   {
-    "breadcrumb": "Categorrries",
+    "breadcrumb": "Categories",
     "content": "",
     "description": "",
     "tags": null,
@@ -583,11 +583,11 @@ var relearn_search_index = [
     "uri": "/pir/categories/theming/index.html"
   },
   {
-    "breadcrumb": "Taks",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tak :: tutorrrial",
+    "title": "Tagga :: tutorrrial",
     "uri": "/pir/tags/tutorrrial/index.html"
   }
 ]
