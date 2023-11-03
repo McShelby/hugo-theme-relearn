@@ -212,7 +212,7 @@ var relearn_search_index = [
     "uri": "/shortcodes/children/children-4/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "This lists all pages that are hidden from the home page. This includes pages that define hidden=true in their frontmatter as well as descendents of hidden pages.\nWhen giving term pages, you should give it a title. Otherwise it will print out a warning and will use the urlized title, which may looks weird.\nWhile internally this term is called hidden, it is referenced in the resulting english pages as a secret and as hush, matey in the piratish translation.\nJust an example heading The TOC will contain this heading and the index headings below.\n",
     "description": "",
     "tags": null,
@@ -260,7 +260,7 @@ var relearn_search_index = [
     "uri": "/categories/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
@@ -276,7 +276,7 @@ var relearn_search_index = [
     "uri": "/shortcodes/children/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
@@ -292,7 +292,7 @@ var relearn_search_index = [
     "uri": "/categories/content/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
@@ -324,7 +324,7 @@ var relearn_search_index = [
     "uri": "/categories/custom/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
@@ -340,7 +340,7 @@ var relearn_search_index = [
     "uri": "/shortcodes/expand/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
@@ -404,7 +404,7 @@ var relearn_search_index = [
     "uri": "/shortcodes/mermaid/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
@@ -575,7 +575,7 @@ var relearn_search_index = [
     "uri": "/categories/theming/index.html"
   },
   {
-    "breadcrumb": "",
+    "breadcrumb": "Tags",
     "content": "",
     "description": "",
     "tags": null,
