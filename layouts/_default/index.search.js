@@ -8,7 +8,7 @@
     {{- else if eq .Kind "term" }}
       {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
       {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (default .Data.Term .Title) }}
+      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) (default (humanize .Data.Term) .Title) }}
     {{- end }}
     {{- $pages = $pages | append (dict
       "uri" (partial "relLangPrettyUglyURL.hugo" (dict "to" .))

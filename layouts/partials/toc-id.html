@@ -11,7 +11,7 @@
         {{- end }}
       {{- end }}
       {{- if $len }}
-        {{- $pages = $pages| append (dict "Title" (default .Page.Data.Term .Page.Title) "Page" . "Len" $len )}}
+        {{- $pages = $pages| append (dict "Title" (default (humanize .Page.Data.Term) .Page.Title) "Page" . "Len" $len )}}
       {{- end }}
     {{- end }}
   {{- else if eq .Kind "term" }}

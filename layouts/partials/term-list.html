@@ -21,11 +21,11 @@
   {{- end }}
   {{- $term_key := ($term | plainify | anchorize) }}
   {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-    {{- $term_pages = $term_pages | append (dict "Title" (default .Data.Term .Title) "Term" . )}}
+    {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term) .Title) "Term" . )}}
   {{- else }}
     {{- $term_key = ($term | urlize) }}
     {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-      {{- $term_pages = $term_pages | append (dict "Title" (default .Data.Term .Title) "Term" . )}}
+      {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term) .Title) "Term" . )}}
     {{- end }}
   {{- end }}
 {{- end }}

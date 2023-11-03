@@ -18,7 +18,7 @@
     {{- else if eq .Kind "term" }}
       {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
       {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-      {{- $title = printf "%s %s %s" (default .Data.Term .Title) (default "::" .Site.Params.titleSeparator) $title }}
+      {{- $title = printf "%s %s %s" (default (humanize .Data.Term) .Title) (default "::" .Site.Params.titleSeparator) $title }}
     {{- end }}
     {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
       {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
