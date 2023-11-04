@@ -23,6 +23,9 @@
     {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
       {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
     {{- end }}
+    {{- if .Params.menuTitle }}
+      {{- warnf "%q: DEPRECATED frontmatter 'menutitle' found, use 'linktitle' instead" $page.File.Filename }}
+    {{- end }}
     <title>{{ $title }}</title>
 
     {{- if .IsTranslated -}}
