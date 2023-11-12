@@ -61,7 +61,6 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Colorful boxes](shortcodes/notice)
   - [OpenAPI specifications using Swagger UI](shortcodes/openapi)
   - [Reveal you site's configuration parameter](shortcodes/siteparam)
-  - [Tabbed panels](shortcodes/tabs)
   - [Single tabbed panels](shortcodes/tab) and [multiple tabbed panels](shortcodes/tabs)
 
 ## Support
