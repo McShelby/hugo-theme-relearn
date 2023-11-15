@@ -191,6 +191,7 @@ title = "Hugo Relearn Theme"
   [[module.mounts]]
     source = 'i18n'
     target = 'i18n'
+  # just for this documentation to expose the GitHub hero image in the docs
   [[module.mounts]]
     source = '../images'
     target = 'static/images'
@@ -203,36 +204,13 @@ title = "Hugo Relearn Theme"
   [[module.mounts]]
     source = 'static'
     target = 'static'
+  # just for this documentation to expose our config in the docs
+  [[module.mounts]]
+    source = 'config'
+    target = 'static/config'
 
-# settings specific to this theme's features; choose to your likings and
-# consult this documentation for explaination
 [params]
-  images = ["images/hero.png"]
-  editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
-  description = "Documentation for Hugo Relearn Theme"
-  author.name = "Sören Weber"
-  showVisitedLinks = true
-  collapsibleMenu = true
-  disableBreadcrumb = false
-  disableRootBreadcrumb = true
-  disableInlineCopyToClipBoard = true
-  disableNextPrev = false
-  disableLandingPageButton = true
-  breadcrumbSeparator = ">"
-  titleSeparator = "::"
-  themeVariant = [ "auto", "relearn-bright", "relearn-light", "relearn-dark", "zen-light", "zen-dark", "neon", "learn", "blue", "green", "red" ]
-  themeVariantAuto = [ "relearn-light", "relearn-dark" ]
-  disableSeoHiddenPages = true
-  # this is to index search for your native language in other languages, too (eg.
-  # pir in this showcase)
-  additionalContentLanguage = [ "en" ]
-  # this is for the stylesheet generator to allow for interactivity in Mermaid
-  # graphs; you usually will not need it and you should remove this for
-  # security reasons
-  mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
-  mermaidZoom = true
-  [params.siteparam.test]
-    text = "A **nested** parameter <b>with</b> formatting"
-  [params.imageEffects]
-    bg-white = true # extension, not supported by the theme
-    border = true
+  # Demo setting for displaying the siteparam shortcode the docs.
+  siteparam.test.text = "A **nested** option <b>with</b> formatting"
+  # Extension to the image effects only for the docs.
+  imageEffects.bg-white = true
