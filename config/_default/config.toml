@@ -1,0 +1,216 @@
+# this is a required setting for this theme to appear on https://themes.gohugo.io/
+# change this to a value appropriate for you; if your site is served from a subdirectory
+# set it like "https://example.com/mysite/"
+baseURL = "https://example.com/"
+
+# canonicalization will only be used for the sitemap.xml and index.xml files;
+# if set to false, a site served from a subdirectory will generate wrong links
+# inside of the above mentioned files; if you serve the page from the servers root
+# you are free to set the value to false as recommended by the official Hugo documentation
+canonifyURLs = true # true -> all relative URLs would instead be canonicalized using baseURL
+# required value to serve this page from a webserver AND the file system;
+# if you don't want to serve your page from the file system, you can also set this value
+# to false
+relativeURLs = true # true -> rewrite all relative URLs to be relative to the current content
+# if you set uglyURLs to false, this theme will append 'index.html' to any branch bundle link
+# so your page can be also served from the file system; if you don't want that,
+# set disableExplicitIndexURLs=true in the [params] section
+uglyURLs = false     # true -> basic/index.html -> basic.html
+
+# the directory where Hugo reads the themes from; this is specific to your
+# installation and most certainly needs be deleted or changed
+themesdir = "../.."
+# yeah, well, obviously a mandatory setting for your site, if you want to
+# use this theme ;-)
+theme = "hugo-theme-relearn"
+
+# the main language of this site; also an automatic pirrrate translation is
+# available in this showcase
+languageCode = "en"
+# make sure your defaultContentLanguage is the first one in the [languages]
+# array below, as the theme needs to make assumptions on it
+defaultContentLanguage = "en"
+# if you want to get rrrid o' ourrr pirrrates nonsense uncomment th' next line
+# disableLanguages = ['pir']
+
+# the site's title of this showcase; you should change this ;-)
+title = "Hugo Relearn Theme"
+
+[outputs]
+  # add JSON to the home to support Lunr search; This is a mandatory setting
+  # for the search functionality
+  # add PRINT to home, section and page to activate the feature to print whole
+  # chapters
+  home = ["HTML", "RSS", "PRINT", "SEARCH", "SEARCHPAGE"]
+  section = ["HTML", "RSS", "PRINT"]
+  page = ["HTML", "RSS", "PRINT"]
+
+[markup]
+  [markup.highlight]
+    # line numbers in a table layout will shift if code is wrapping, so better
+    # not use it; visually both layouts have the same look and behavior
+    lineNumbersInTable = false
+
+    # if `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT Mermaid and Math codefences will not work anymore! So this is a
+    # mandatory setting for your site if you want to use Mermaid or Math codefences
+    guessSyntax = false
+
+    # the shipped variants come with their own modified chroma syntax highlightning
+    # style which is imported in theme-relearn-light.css, theme-relearn-dark.css, etc.;
+    # if you want to use a predefined style instead:
+    # - remove `noClasses` or set `noClasses = true`
+    # - set `style` to a predefined style name
+    noClasses = false
+    # style = "tango"
+
+  [markup.goldmark.renderer]
+    # activated for this showcase to use HTML and JavaScript; decide on your own needs;
+    # if in doubt, remove this line
+    unsafe = true
+
+# allows `hugo server` to display this showcase in IE11; this is used for testing, as we
+# are still supporting IE11 - although with degraded experience; if you don't care about
+# `hugo server` or browsers of ancient times, fell free to remove this whole block
+[server]
+  [[server.headers]]
+    for = "**.html"
+    [server.headers.values]
+       X-UA-Compatible = "IE=edge"
+
+# showcase of the menu shortcuts; you can use relative URLs linking
+# to your content or use fully-quallified URLs to link outside of
+# your project
+[languages]
+  [languages.en]
+    title = "Hugo Relearn Theme"
+    weight = 1
+    languageName = "English"
+    # Language dependend settings:
+    # Use case https://gohugo.io/content-management/multilingual/#translation-by-content-directory
+    #contentDir = "content/en"
+    [languages.en.params]
+      landingPageName = "<i class='fas fa-home'></i> Home"
+
+  [[languages.en.menu.shortcuts]]
+    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    identifier = "ds"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
+    weight = 10
+
+  [[languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+    pageRef = "showcase/"
+    weight = 20
+
+  [[languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+    pageRef = "more/credits/"
+    weight = 30
+
+  [[languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-tags'></i> Tags"
+    pageRef = "tags/"
+    weight = 40
+
+  [[languages.en.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-layer-group'></i> Categories"
+    pageRef = "categories/"
+    weight = 50
+
+  # this is ourrr way t' showcase th' multilang settings by
+  # doing autotrrranlat'n of th' english content; we are
+  # lazy and don't supporrt furrrther trrranslations; arrr,
+  # don't take it t' serrrious, fello'; it's prrretty hacky and:
+  # NOT MEANT FER PRRRODUCTION! ARRR!
+
+  [languages.pir]
+    title = "Cap'n Hugo Relearrrn Theme"
+    weight = 2
+    languageName = "Arrr! ☠ Pirrrates ☠"
+    # Language dependend settings:
+    # Use case https://gohugo.io/content-management/multilingual/#translation-by-content-directory
+    #contentDir = "content/pir"
+    [languages.pir.params]
+      landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
+
+  [[languages.pir.menu.shortcuts]]
+    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    identifier = "ds"
+    url = "https://github.com/McShelby/hugo-theme-relearn"
+    weight = 10
+
+  [[languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+    pageRef = "showcase/"
+    weight = 20
+
+  [[languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
+    pageRef = "more/credits/"
+    weight = 30
+
+  [[languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
+    pageRef = "tags/"
+    weight = 40
+
+  [[languages.pir.menu.shortcuts]]
+    name = "<i class='fas fa-fw fa-layer-group'></i> Categorrries"
+    pageRef = "categories/"
+    weight = 50
+
+# mounts are only needed in this showcase to access the publicly available screenshots;
+# remove this section if you don't need further mounts
+[module]
+  [[module.mounts]]
+    source = 'archetypes'
+    target = 'archetypes'
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+
+  # Language dependend settings:
+  # Use case https://gohugo.io/content-management/multilingual/#translation-by-filename
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+  # Use case https://gohugo.io/content-management/multilingual/#translation-by-content-directory
+  #[[module.mounts]]
+  #  lang = 'en'
+  #  source = 'content/en'
+  #  target = 'content'
+  #[[module.mounts]]
+  #  lang = 'pir'
+  #  source = 'content/pir'
+  #  target = 'content'
+
+  [[module.mounts]]
+    source = 'data'
+    target = 'data'
+  [[module.mounts]]
+    source = 'i18n'
+    target = 'i18n'
+  # just for this documentation to expose the GitHub hero image in the docs
+  [[module.mounts]]
+    source = '../images'
+    target = 'static/images'
+  [[module.mounts]]
+    source = 'static/images'
+    target = 'static/images'
+  [[module.mounts]]
+    source = 'layouts'
+    target = 'layouts'
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
+  # just for this documentation to expose our config in the docs
+  [[module.mounts]]
+    source = 'config'
+    target = 'static/config'
+
+[params]
+  # Demo setting for displaying the siteparam shortcode the docs.
+  siteparam.test.text = "A **nested** option <b>with</b> formatting"
+  # Extension to the image effects only for the docs.
+  imageEffects.bg-white = true
