@@ -10,7 +10,8 @@ On top of [Hugo global configuration](https://gohugo.io/overview/configuration/)
 
 Note that some of these parameters are explained in details in other sections of this documentation.
 
-````toml {title="params.toml"}
+````toml {title="config.toml"}
+[params]
 {{% include "config/_default/params.toml" %}}
 ````
 
