@@ -42,21 +42,22 @@
     {{- end }}
       var root_url="/";
       var baseUri=root_url.replace(/\/$/, '');
-      {{ "// translations" | safeJS }}
-      window.T_Copy_to_clipboard = '{{ T "Copy-to-clipboard" | safeJS }}';
-      window.T_Copied_to_clipboard = '{{ T "Copied-to-clipboard" | safeJS }}';
-      window.T_Copy_link_to_clipboard = '{{ T "Copy-link-to-clipboard" | safeJS }}';
-      window.T_Link_copied_to_clipboard = '{{ T "Link-copied-to-clipboard" | safeJS }}';
-      window.T_Reset_view = '{{ T "Reset-view" | safeJS }}';
-      window.T_View_reset = '{{ T "View-reset" | safeJS }}';
-      window.T_No_results_found = '{{ T "No-results-found" | safeJS }}';
-      window.T_N_results_found = '{{ T "N-results-found" | safeJS }}';
-      {{ "// some further base stuff" | safeJS }}
-      var baseUriFull='{{ trim .Site.BaseURL "/" | safeJS }}/';
+      window.relearn = window.relearn || {};
+      window.relearn.baseUriFull='{{ trim .Site.BaseURL "/" | safeJS }}/';
+      {{ "// variant stuff" | safeJS }}
       {{- $quotedthemevariants := slice }}
       {{- range $themevariants }}
         {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .) }}
       {{- end }}
       window.variants && variants.init( [ {{ delimit $quotedthemevariants ", " | safeJS }} ] );
+      {{ "// translations" | safeJS }}
+      {{ printf "window.T_Copy_to_clipboard = `%s`;" (T `Copy-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Copied_to_clipboard = `%s`;" (T `Copied-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Copy_link_to_clipboard = `%s`;" (T `Copy-link-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Link_copied_to_clipboard = `%s`;" (T `Link-copied-to-clipboard`) | safeJS }}
+      {{ printf "window.T_Reset_view = `%s`;" (T `Reset-view`) | safeJS }}
+      {{ printf "window.T_View_reset = `%s`;" (T `View-reset`) | safeJS }}
+      {{ printf "window.T_No_results_found = `%s`;" (T "No-results-found") | safeJS }}
+      {{ printf "window.T_N_results_found = `%s`;" (T "N-results-found") | safeJS }}
     </script>
   {{- end }}
