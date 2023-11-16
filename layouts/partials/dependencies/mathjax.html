@@ -34,9 +34,9 @@
       }
       useMathJax( JSON.parse({{ $init }}) );
     </script>
-  {{- if isset .Params "custommathjaxurl" }}
+  {{- if and (isset .Params "custommathjaxurl") .Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
-  {{- else if isset .Site.Params "custommathjaxurl" }}
+  {{- else if and (isset .Site.Params "custommathjaxurl") .Site.Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
   {{- else }}
     <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>

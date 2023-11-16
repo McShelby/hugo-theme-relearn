@@ -10,9 +10,9 @@
     <script src="{{"js/d3/d3-transition.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/d3/d3-zoom.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
     <script src="{{"js/js-yaml.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
-  {{- if isset .Params "custommermaidurl" }}
+  {{- if and (isset .Params "custommermaidurl") .Params.customMermaidURL }}
     <script src="{{ .Params.customMermaidURL }}" defer></script>
-  {{- else if isset .Site.Params "custommermaidurl" }}
+  {{- else if and (isset .Site.Params "custommermaidurl") .Site.Params.customMermaidURL }}
     <script src="{{ .Site.Params.customMermaidURL }}" defer></script>
   {{- else }}
     <script src="{{"js/mermaid.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>

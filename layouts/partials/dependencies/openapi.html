@@ -1,9 +1,9 @@
 {{- $page := .page }}
 {{- with $page }}
   {{- $urlOpenapi := "" }}
-  {{- if isset .Params "customopenapiurl" }}
+  {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
     {{- $urlOpenapi = .Params.customOpenapiURL }}
-  {{- else if isset .Site.Params "customopenapiurl" }}
+  {{- else if and (isset .Site.Params "customopenapiurl") .Site.Params.customOpenapiURL }}
     {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
   {{- else }}
     {{- $urlOpenapi = "js/swagger-ui/swagger-ui-bundle.js" | relURL }}
