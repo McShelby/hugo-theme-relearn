@@ -17,7 +17,7 @@ author.name = "Sören Weber"
 # This is used for generating social media meta information for the opengraph
 # protocol and twitter cards.
 # This can be overridden in the page's frontmatter.
-images = ["images/hero.png"]
+images = [ "images/hero.png" ]
 
 # The description of your site.
 # Default: not set
@@ -25,6 +25,13 @@ images = ["images/hero.png"]
 # for the opengraph protocol and twitter cards.
 # This can be overridden in the page's frontmatter.
 description = "Documentation for Hugo Relearn Theme"
+
+# Admin options for social media.
+# Default: not set
+# Configuration for the Open Graph protocol and Twitter Cards adhere to Hugo's
+# implementation. See the Hugo docs for possible values.
+social.facebook_admin = ""
+social.twitter = ""
 
 ###############################################################################
 # Relearn Theme
@@ -78,6 +85,14 @@ disableAssetsBusting = false
 # meta tag into your home page anyways.
 disableGeneratorVersion = false
 
+# Avoid unique IDs.
+# Default: false
+# In various situations the theme generates non stable unique ids to be used
+# in HTML fragment links. This can be undesirable for example when testing
+# the output for changes. If you disable the random id generation, the theme
+# may not function correctly anymore.
+disableRandomIds = false
+
 # Generate link URLs the Hugo way.
 # Default: false
 # If set to true, the theme behaves like a standard Hugo installation and
@@ -93,6 +108,14 @@ disableExplicitIndexURLs = false
 # This is handy for example if you are writing in Spanish but have lots of
 # source code on your page which typically uses English terminology.
 additionalContentLanguage = [ "en" ]
+
+# Additional code dependencies.
+# Default: See config.toml of the theme
+# The theme provides a mechanism to load further JavaScript and CSS
+# dependencies on demand only if they are needed. This comes in handy if you
+# want to add own shortcodes that depend on additional code to be loaded.
+# See te docs how tihs works.
+# [relearn.dependencies]
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Topbar
@@ -156,7 +179,7 @@ ordersectionsby = "weight"
 # levels are set to true. This can be overridden in the page's frontmatter.
 # If the displayed page has submenus, they will always been displayed expanded
 # regardless of this option.
-alwaysopen = "" # this has the effect as if not set at all
+alwaysopen = ""
 
 # Shows expander for submenus.
 # Default: false
@@ -262,6 +285,20 @@ disableHoverBlockCopyToClipBoard = false
 # default value opens external links in a separate browser tab. If you want
 # to open those links in the same tab, use "_self".
 externalLinkTarget = "_blank"
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Highlight
+# These options configure how syntaxhighlighted code is displayed.
+
+# Wrap for code blocks.
+# Default: true
+# By default lines of code blocks wrap around if the line is too long to be
+# displayed on screen. If you dislike this behavior, you can reconfigure it
+# here.
+# Note that lines always wrap in print mode regardless of this option.
+# This can be overridden in the page's frontmatter or given as a parameter to
+# individual code blocks.
+highlightWrap = true
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Images
