@@ -1320,20 +1320,17 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 
 .mermaid {
     border: 1px solid transparent;
+    display: inline-block;
+    padding: .5rem .5rem 0 .5rem;
+    position: relative;
     /* don't use display: none, as this will cause no renderinge by Mermaid */
     visibility: hidden;
-    padding: .5rem .5rem 0 .5rem;
-}
-.mermaid.mermaid-render {
-    display: inline;
-    visibility: visible;
-}
-.mermaid.mermaid-render.zoom {
-    display: inline-block;
-    position: relative;
     width: 100%;
 }
-.mermaid.zoom:hover {
+.mermaid.mermaid-render {
+    visibility: visible;
+}
+.mermaid.zoomable:hover {
     border-color: rgba( 134, 134, 134, .333 );
 }
 
@@ -1341,8 +1338,8 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     /* remove inline height from generated diagram */
     height: initial !important;
 }
-.mermaid.zoom > svg {
-    cursor: pointer;
+.mermaid.zoomable > svg {
+    cursor: grab;
 }
 
 .svg-reset-button {
@@ -1359,14 +1356,14 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
     right: 4px;
     top: 4px;
 }
-@media (any-hover: none) {
-    /* if there is at least one input device that does not support hover, we want to force the reset button */
-    .svg-reset-button.zoom {
+.mermaid:hover .svg-reset-button.zoomed {
+    display: block;
+}
+@media (any-hover: some) {
+    /* if there is at least one input device that does not support hover, we want to force the reset button if zoomed */
+    .svg-reset-button.zoomed {
         display: block;
     }
-}
-.mermaid:hover .svg-reset-button {
-    display: block;
 }
 
 .svg-reset-button > i {

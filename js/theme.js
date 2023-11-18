@@ -314,7 +314,7 @@ function initMermaid( update, attrs ) {
             postRenderCallback: function( id ){
                 // zoom for Mermaid
                 // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
-                var svgs = d3.selectAll( 'body:not(.print) .mermaid.zoom > #' + id );
+                var svgs = d3.selectAll( 'body:not(.print) .mermaid.zoomable > #' + id );
                 svgs.each( function(){
                     var parent = this.parentElement;
                     // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
@@ -328,7 +328,12 @@ function initMermaid( update, attrs ) {
                     var button = parent.querySelector( '.svg-reset-button' );
                     var zoom = d3.zoom().on( 'zoom', function( e ){
                         inner.attr( 'transform', e.transform );
-                        button.classList.add( "zoom" );
+                        if( e.transform.k == 1 ){
+                            button.classList.remove( 'zoomed' );
+                        }
+                        else{
+                            button.classList.add( 'zoomed' );
+                        }
                     });
                     button.addEventListener( 'click', function( event ){
                         svg.transition()
@@ -338,10 +343,9 @@ function initMermaid( update, attrs ) {
                         this.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isImageRtl?'e':'w')) );
                     });
                     button.addEventListener( 'mouseleave', function() {
-                        this.removeAttribute( 'aria-label' );
                         if( this.classList.contains( 'tooltipped' ) ){
                             this.classList.remove( 'tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw' );
-                            this.classList.remove( "zoom" );
+                            this.removeAttribute( 'aria-label' );
                         }
                     });
                     svg.call( zoom );
