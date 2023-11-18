@@ -74,7 +74,7 @@
   {{- range $idx, $tab := $tabs }}
     <button
       data-tab-item="{{ .itemid }}"
-      class="tab-nav-button tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}
+      class="tab-nav-button tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}{{ if eq $idx 0 }} tabindex="-1"{{ end }}
       onclick="switchTab('{{ $groupid }}','{{ .itemid }}')"
     >
       <span class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $page.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</span>

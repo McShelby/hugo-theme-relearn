@@ -115,8 +115,8 @@ function switchTab(tabGroup, tabId) {
       var yposButton = event.target.getBoundingClientRect().top;
     }
 
-    allTabItems && allTabItems.forEach( function( e ){ e.classList.remove( 'active' ); });
-    targetTabItems && targetTabItems.forEach( function( e ){ e.classList.add( 'active' ); });
+    allTabItems && allTabItems.forEach( function( e ){ e.classList.remove( 'active' ); e.removeAttribute( 'tabindex' ); });
+    targetTabItems && targetTabItems.forEach( function( e ){ e.classList.add( 'active' ); e.setAttribute( 'tabindex', '-1' ); });
 
     if(isButtonEvent){
       initMermaid( true );
