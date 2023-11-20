@@ -58,7 +58,7 @@
         {{- end }}
         {{- $siteLanguages := .Site.Languages }}
         {{- $showlangswitch := and .Site.IsMultiLingual (not .Site.Params.disableLanguageSwitchingButton) (gt (int (len $siteLanguages)) 1) }}
-        {{- $themevariants := slice | append (.Site.Params.themeVariant | default "auto" ) }}
+        {{- $themevariants := partial "get-theme-variants.hugo" . }}
         {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
@@ -103,13 +103,8 @@
                       {{- $firstvariant := true }}
                       {{- range $themevariants }}
                         {{- $themevariant := . }}
-                        {{- $variantname := replaceRE "[-_]+" " " $themevariant }}
-                        {{- if $firstvariant }}
-                          {{- $firstvariant = false }}
-                      <option id="R-{{ $themevariant }}" value="{{ $themevariant }}" selected>{{ $variantname | title }}</option>
-                        {{- else }}
-                      <option id="R-{{ $themevariant }}" value="{{ $themevariant }}">{{ $variantname | title }}</option>
-                        {{- end }}
+                      <option id="R-{{ $themevariant.identifier }}" value="{{ $themevariant.identifier }}"{{- if $firstvariant }} selected{{ end }}>{{ $themevariant.name }}</option>
+                        {{- $firstvariant = false }}
                       {{- end }}
                     </select>
                   </div>

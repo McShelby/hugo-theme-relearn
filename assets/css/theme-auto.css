@@ -1,11 +1,11 @@
-{{- $themevariants := slice | append (.Site.Params.themeVariant | default "auto") -}}
+{{- $themevariants := partial "get-theme-variants.hugo" . -}}
 {{- $themevariantsauto := slice | append (.Site.Params.themeVariantAuto | default slice) -}}
 {{- $i := 0 -}}
 {{- if eq (int (len $themevariantsauto)) 0 -}}
 	{{- range $themevariants -}}
 		{{- $i = add $i 1 -}}
-		{{- if ne . "auto" -}}
-			{{- $themevariantsauto = $themevariantsauto | append . -}}
+		{{- if ne .identifier "auto" -}}
+			{{- $themevariantsauto = $themevariantsauto | append .identifier -}}
 			{{- break -}}
 		{{- end -}}
 	{{- end -}}
@@ -16,8 +16,8 @@
 {{- if eq (int (len $themevariantsauto)) 1 -}}
 	{{- $poppedthemevariants := last (sub (len $themevariants) $i) $themevariants -}}
 	{{- range $poppedthemevariants -}}
-		{{- if ne . "auto" -}}
-			{{- $themevariantsauto = $themevariantsauto | append . -}}
+		{{- if ne .identifier "auto" -}}
+			{{- $themevariantsauto = $themevariantsauto | append .identifier -}}
 			{{- break -}}
 		{{- end -}}
 	{{- end -}}

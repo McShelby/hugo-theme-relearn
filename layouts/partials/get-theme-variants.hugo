@@ -1,0 +1,13 @@
+{{- $themevariants := slice }}
+{{- $tempthemevariants := slice | append (.Site.Params.themeVariant | default "auto" ) }}
+{{- range $tempthemevariant := $tempthemevariants }}
+  {{- $themevariant := $tempthemevariant }}
+  {{- if not (reflect.IsMap $themevariant) }}
+    {{- $themevariant = dict "identifier" $tempthemevariant }}
+  {{- end }}
+  {{- if not $themevariant.name }}
+    {{- $themevariant = collections.Merge $themevariant (dict "name" ($themevariant.identifier | humanize | strings.Title)) }}
+  {{- end }}
+  {{- $themevariants = $themevariants | append $themevariant }}
+{{- end }}
+{{- return $themevariants }}
