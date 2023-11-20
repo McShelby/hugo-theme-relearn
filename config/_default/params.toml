@@ -44,8 +44,14 @@ social.twitter = ""
 # Used color variants.
 # Default: "auto"
 # This sets one or more color variants, available to your readers to choose
-# from. You can either set a single value eg. "zen-light" or an array like
-# [ "neon", "learn" ]. If the array has more than one entry, a variant selector
+# from. You can
+# - set a single value eg. "zen-light"
+# - an array like [ "neon", "learn" ]
+# - an array with options like [ { identifier = "neon" },{ identifier = "learn" } ]
+# The last form allows to set further options for each variant.
+# The `identifier` is mandatory. You can also set `name` which overrides the
+# value displayed in the variant selector.
+# If the array has more than one entry, a variant selector
 # is shown in the lower part of the menu. The first entry in the array is the
 # default variant, used for first time visitors.
 # The theme ships with the following variants: "auto", "relearn-bright",
@@ -54,7 +60,18 @@ social.twitter = ""
 # option for themeVariantAuto below.
 # You can also define your own variants. See the docs how this works. Also,
 # the docs provide an interactive theme generator to help you with this task.
-themeVariant = [ "auto", "relearn-bright", "relearn-light", "relearn-dark", "zen-light", "zen-dark", "neon", "learn", "blue", "green", "red" ]
+themeVariant = [
+	{ identifier = "auto"          },
+	{ identifier = "relearn-light" },
+	{ identifier = "relearn-dark"  },
+	{ identifier = "zen-light"     },
+	{ identifier = "zen-dark"      },
+	{ identifier = "neon"          },
+	{ identifier = "learn"         },
+	{ identifier = "blue"          },
+	{ identifier = "green"         },
+	{ identifier = "red"           }
+]
 
 # The color variants used for auto mode.
 # Default: [ "relearn-light", "relearn-dark" ], overwritten by the first
@@ -107,7 +124,7 @@ additionalContentLanguage = [ "en" ]
 # The theme provides a mechanism to load further JavaScript and CSS
 # dependencies on demand only if they are needed. This comes in handy if you
 # want to add own shortcodes that depend on additional code to be loaded.
-# See te docs how tihs works.
+# See the docs how this works.
 # [relearn.dependencies]
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
