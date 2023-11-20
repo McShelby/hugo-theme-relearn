@@ -8,7 +8,7 @@ weight = 26
 This interactive tool may help you to generate your own color variant stylesheet.
 
 {{% expand "Show usage instructions" %}}
-To get started, first select a color variant from the variant switch in the lower left sidebar that fits you best as a starting point.
+To get started, first select a color variant from the variant selector in the lower left sidebar that fits you best as a starting point.
 
 The graph is interactive and reflect the current colors. You can click on any of the colored boxes to adjust the respective color. The graph **and the page** will update accordingly.
 
@@ -16,7 +16,7 @@ The arrowed lines reflect how colors are inherited thru different parts of the t
 
 To better understand this select the `neon` variant and modify the different heading colors. There, colors for the heading `h2`, `h3` and `h4` are explicitly set. `h5` is not set and inherits its value from `h4`. `h6` is also not set and inherits its value from `h5`.
 
-Once you've changed a color, the variant switch will show a "My custom variant" entry and your changes are stored in the browser. You can **browse to other pages** and even close the browser **without losing your changes**.
+Once you've changed a color, the variant selector will show a "My custom variant" entry and your changes are stored in the browser. You can **browse to other pages** and even close the browser **without losing your changes**.
 
 Once you are satisfied, you can download the new variants file and copy it into your site's `static/css` directory. Afterwards you have to adjust the `themeVariant` parameter in your `config.toml` to your chosen file name.
 

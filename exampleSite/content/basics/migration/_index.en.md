@@ -46,7 +46,7 @@ This document shows you what's new in the latest release and flags it with one o
       author.name = "Hugo"
     ````
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies/#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `config.toml` by adding `disableTermBreadcrumbs=true`.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `config.toml` by adding `disableTermBreadcrumbs=true`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy and term pages are now allowed to contain content. This is added inbetween the title and the page list.
 
@@ -54,7 +54,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to adjust the menu width for your whole site. [See the docs](basics/customization#change-the-menu-width).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs](basics/configuration#social-media-meta-tags).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds social media meta tags for the Open Graph protocol and Twitter Cards to your site. [See the docs](basics/customization#social-media-meta-tags).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with additional sort options for the menu and the [`children` shortcode](shortcodes/children). Both will now accept the following values: `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
 
@@ -113,7 +113,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.21.0 (2023-09-18) {#5210}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden](basics/customization), you may want to review the styling (eg. margins/paddings) of your partial.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden](basics/customization#partials), you may want to review the styling (eg. margins/paddings) of your partial.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with an awesome new feature, that allows you to customize your topbar buttons, change behavior, reorder them or define entirely new ones, unique to your installation. See [the documentation](basics/topbar) for further details.
 
@@ -158,7 +158,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`. Check it out!
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now [dispatches the custom event](basics/customization/#javascript) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now [dispatches the custom event](basics/customization#react-to-variant-switches-in-javascript) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.3.1. This adds support for the [sankey diagram type](shortcodes/mermaid#sankey) and now comes with full support for YAML inside Mermaid graphs (previously, the theme ignored explicit Mermaid theme settings in YAML).
 
@@ -210,7 +210,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback. Nevertheless you will get deprecation warnings while executing Hugo.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now optionally supports [separate favicons](basics/customization/#change-the-favicon) for light & dark mode.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now optionally supports [separate favicons](basics/customization#change-the-favicon) for light & dark mode.
 
 ---
 
@@ -300,7 +300,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   The default setting of `on`, in effect since 1.1.0, changed back to `off` as there was interference with scrolling on mobile and big pages.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting](basics/customization/#adjust-to-os-settings).
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting](basics/branding#adjust-to-os-settings).
 
   This is also the new default setting if you haven't configured `themeVariant` in your `config.toml`.
 
@@ -402,7 +402,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
 
-  To activate this feature, you need to [configure it](basics/configuration#activate-dedicated-search-page) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+  To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
   You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
 
@@ -414,7 +414,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
 
-  To [configure this](basics/configuration#global-site-parameters) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+  To [configure this](basics/configuration) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Creation of your project gets a little bit faster with this release.
 
@@ -438,7 +438,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.4.0 (2022-11-01) {#540}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/configuration#serving-your-page-from-the-filesystem) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/customization#serving-your-page-from-the-filesystem) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
 
   Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `config.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
 
@@ -458,7 +458,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting](cont/markdown#add-css-classes) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode](shortcodes/openapi) was optimized to expand sections that are usually closed in interactive mode. This requires [print support](basics/configuration#activate-print-support) to be configured.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode](shortcodes/openapi) was optimized to expand sections that are usually closed in interactive mode. This requires [print support](basics/customization#activate-print-support) to be configured.
 
 ---
 
@@ -529,7 +529,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 4.1.0 (2022-06-12) {#410}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} While fixing issues with the search functionality for non Latin languages, you can now [configure to have multiple languages on a single page](cont/i18n/#search-with-mixed-language-support).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} While fixing issues with the search functionality for non Latin languages, you can now [configure to have multiple languages on a single page](cont/i18n#search-with-mixed-language-support).
 
 ---
 
@@ -561,7 +561,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you prefer expandable/collapsible menu items, you can now set `collapsibleMenu=true` in your `config.toml`. This will add arrows to all menu items that contain sub menus. The menu will expand/collapse without navigation if you click on an arrow.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support](basics/configuration#activate-print-support) in your `config.toml` to add the capability to print whole chapters or even the complete site.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support](basics/customization#activate-print-support) in your `config.toml` to add the capability to print whole chapters or even the complete site.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Traditional Chinese.
 
@@ -595,13 +595,13 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 3.0.0 (2022-02-22) {#300}
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden](basics/customization), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden](basics/customization#partials), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
   This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and _Clear history_ functionality).
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
-  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant](basics/customization/#theme-variant), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant](basics/branding#theme-variant), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
@@ -611,15 +611,15 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} With this release you are now capable to define your own _dark mode_ variants.
 
-  To make this possible, we have introduced a lot more color variables you can use in [your color variants](basics/customization/#theme-variant). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+  To make this possible, we have introduced a lot more color variables you can use in [your color variants](basics/branding#theme-variant). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
   To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator](basics/generator). This feature will not work with Internet Explorer 11.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant switch will be shown in the menu footer. See the [documentation](basics/customization/#multiple-variants) for configuration.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](basics/branding#multiple-variants) for configuration.
 
-  Note, that the new variant switch will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant switcher will not be displayed with Internet Explorer 11.
+  Note, that the new variant selector will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant selector will not be displayed with Internet Explorer 11.
 
 ---
 
@@ -659,9 +659,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for Czech.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](basics/customization/#change-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](basics/customization#change-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `config.toml`. For an example see [the example configuration](basics/configuration/#global-site-parameters).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `config.toml`. For an example see [the example configuration](basics/configuration).
 
 ---
 
@@ -673,7 +673,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.6.0 (2021-10-21) {#260}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation](basics/configuration/#a-word-on-running-your-site-in-a-subfolder) for a detailed example.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation](basics/customization#serving-your-page-from-a-subfolder) for a detailed example.
 
 ---
 
@@ -689,7 +689,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `config.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `config.toml`. Please see further [documentation](cont/pages/#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `config.toml`. Please see further [documentation](cont/pages#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New frontmatter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
 
@@ -739,9 +739,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} A page without a `title` will be treated as `hidden=true`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation](cont/pages/#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation](cont/pages#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partials for defining pre/post content for menu items and the content. See [documentation](basics/customization) for further reading.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partials for defining pre/post content for menu items and the content. See [documentation](basics/customization#partials) for further reading.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcode [`children`](shortcodes/children) with new parameter `containerstyle`.
 

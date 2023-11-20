@@ -19,10 +19,10 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - Responsive design for mobile usage
   - Looks nice on paper (if it has to)
   - Usable offline, no external dependencies
-  - [Usable from your local file system via `file://` protocol](basics/configuration#serving-your-page-from-the-filesystem)
+  - [Usable from your local file system via `file://` protocol](basics/customization#serving-your-page-from-the-filesystem)
   - Support for the [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
   - Support for Internet Explorer 11
-  - [Support for Open Graph and Twitter Cards](basics/configuration/#social-media-meta-tags)
+  - [Support for Open Graph and Twitter Cards](basics/customization#social-media-meta-tags)
 - **Configurable theming and visuals**
   - [Configurable brand images](basics/customization#change-the-logo)
   - [Automatic switch for light/dark variant dependend on your OS settings](basics/customization#adjusting-to-os-settings)
@@ -31,10 +31,10 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Stylesheet generator](basics/generator/)
   - [Configurable syntax highlighting](shortcodes/highlight)
 - **Unique theme features**
-  - [Print whole chapters or even the complete site](basics/configuration#activate-print-support)
+  - [Print whole chapters or even the complete site](basics/customization#activate-print-support)
   - In page search
-  - [Site search](basics/configuration#activate-search)
-  - [Dedicated search page](basics/configuration#activate-dedicated-search-page)
+  - [Site search](basics/customization#activate-search)
+  - [Dedicated search page](basics/customization#activate-dedicated-search-page)
   - [Taxonomy support](cont/taxonomy)
   - [Configurable topbar buttons](basics/topbar)
   - [Unlimited nested menu items](cont/pages)
