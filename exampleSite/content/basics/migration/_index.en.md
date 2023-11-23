@@ -22,9 +22,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure options for every theme variant in your `config.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `config.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
-  The advanced functionality allows you to set an explicit name for a theme variant, set different colors (if you are using monochrome SVGs) or even different icons (handy if you want to adjust colors for PNGs, GIFs or JPGs) and provide an extended way to configure the automatic switch of variants based on your OS settings.
+  The advanced functionality allows you to set an explicit name for a theme variant, set different colors (if you are using monochrome SVGs) or even different icons (handy if you want to adjust colors for PNGs, GIFs or JPGs) and now allows for multiple auto mode variants that adjust to the light/dark preference of your OS settings.
 
 ---
 

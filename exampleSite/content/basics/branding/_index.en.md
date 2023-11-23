@@ -47,7 +47,7 @@ Although all options documented here are still working, the advanced configurati
 
 ## Adjust to OS Settings
 
-You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `themeVariant` to `auto`. That's it.
+You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `themeVariant` to `auto` to become an auto mode variant. That's it.
 
 You can use the `auto` value with the single or multiple variants option. If you are using multiple variants, you can drop `auto` at any position in the option's array, but usually it makes sense to set it in the first position and make it the default.
 
@@ -128,3 +128,28 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 |-----------------------|-----------------|-------------|
 | identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `static/css/theme-<IDENTIFIER>.css`. |
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
+| auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
+
+### Example Configuration of This Site
+
+````toml
+[params]
+  [[params.themeVariant]]
+    identifier = "relearn-auto"
+    name = "Relearn Light/Dark"
+    auto = []
+  [[params.themeVariant]]
+    identifier = "relearn-light"
+  [[params.themeVariant]]
+    identifier = "relearn-dark"
+  [[params.themeVariant]]
+    identifier = "zen-auto"
+    name = "Zen Light/Dark"
+    auto = [ "zen-light", "zen-dark" ]
+  [[params.themeVariant]]
+    identifier = "zen-light"
+  [[params.themeVariant]]
+    identifier = "zen-dark"
+  [[params.themeVariant]]
+    identifier = "neon"
+````
