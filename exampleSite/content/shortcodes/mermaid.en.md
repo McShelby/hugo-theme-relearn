@@ -21,10 +21,6 @@ While the examples are using shortcodes with named parameter it is recommended t
 
 You are free to also call this shortcode from your own partials.
 
-{{% notice note %}}
-To use codefence syntax you have to turn off `guessSyntax` for the `markup.highlight` setting ([see the configuration section](#configuration)).
-{{% /notice %}}
-
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="codefence" %}}
 
@@ -83,23 +79,12 @@ See [Mermaid documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=merm
 
 The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `config.toml`, frontmatter or diagram directives.
 
-{{% notice note %}}
-To use codefence syntax you have to turn off `guessSyntax` for the `markup.highlight` setting.
-{{% /notice %}}
-
 ### Global Configuration File
 
 ````toml
 [params]
   mermaidInitialize = "{ \"theme\": \"dark\" }"
   mermaidZoom = true
-
-[markup]
-  [markup.highlight]
-    # if `guessSyntax = true`, there will be no unstyled code even if no language
-    # was given BUT Mermaid and Math codefences will not work anymore! So this is a
-    # mandatory setting for your site if you want to use Mermaid codefences
-    guessSyntax = false
 ````
 
 ### Page's Frontmatter
