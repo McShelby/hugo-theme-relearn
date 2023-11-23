@@ -353,17 +353,17 @@ var variants = {
 
 	changeColor: function( c, without_prompt ){
 		var with_prompt = !(without_prompt || false);
-		if( this.getVariant() == 'auto' ){
-			if( with_prompt ){
-				alert( 'The Auto variant can not be changed. Please select the light/dark variant directly to make changes' );
-			}
-			return;
-		}
 
 		var read_style = this.findLoadedStylesheet( 'R-custom-variant-style' );
 		var write_style = this.findLoadedStylesheet( 'R-variant-style' );
 		if( !read_style ){
 			read_style = write_style;
+		}
+		if( !read_style ){
+			if( with_prompt ){
+				alert( 'A auto mode variant can not be changed. Please select its light/dark variant directly to make changes' );
+			}
+			return;
 		}
 
 		var e = this.findColor( c );
