@@ -26,7 +26,7 @@ Eg. if your new variants file is named `theme-my-custom-variant.css`, you have t
 {{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}
 {{% button style="warning" icon="trash" href="javascript:window.variants&&variants.resetVariant();this.blur();" %}}Reset variant{{% /button %}}
 
-<div id="R-vargenerator" class="mermaid zoom" style="background-color: var(--INTERNAL-MAIN-TEXT-color);">Graph</div>
+<div id="R-vargenerator" class="mermaid zoomable" style="background-color: var(--INTERNAL-MAIN-TEXT-color);">Graph</div>
 
 {{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}
 {{% button style="warning" icon="trash" href="javascript:window.variants&&variants.resetVariant();this.blur();" %}}Reset variant{{% /button %}}
