@@ -89,7 +89,7 @@ Create a new file in `layouts/partials/logo.html` of your site. Then write any H
 The size of the logo will adapt automatically.
 {{% /notice %}}
 
-## Syntax highlightning
+## Syntax Highlightning
 
 If you want to switch the syntax highlighting theme together with your color variant, you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/) and provide a syntax highlighting stylesheet file.
 

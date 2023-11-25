@@ -94,6 +94,8 @@ Default values for extension options can be set via params settings in your `con
 
 ### Global Configuration File
 
+You can configure the color style used for code blocks in your [color variants stylesheet](basics/branding#syntax-highlightning) file.
+
 #### Recommended Settings
 
 ````toml
@@ -104,10 +106,14 @@ Default values for extension options can be set via params settings in your `con
     lineNumbersInTable = false
 
     # the shipped variants come with their own modified chroma syntax highlightning
-    # style which is imported in theme-relearn-light.css, theme-relearn-dark.css, etc.;
-    # if you want to use a predefined style instead:
+    # stylesheets which are linked in your generated HTML pages; you can use Hugo to generate
+    # own stylesheets to your liking and use them in your variant;
+    # if you want to use Hugo's internal styles instead of the shipped stylesheets:
     # - remove `noClasses` or set `noClasses = true`
     # - set `style` to a predefined style name
+    # note: with using the internal styles, the `--CODE-theme` setting in your variant
+    # stylesheet will be ignored and the internal style is used for all variants and
+    # even print
     noClasses = false
     # style = "tango"
 ````
