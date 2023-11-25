@@ -91,11 +91,11 @@ The size of the logo will adapt automatically.
 
 ## Syntax highlightning
 
-If you want to switch the syntax highlighting theme together with your color variant, generate a syntax highlighting stylesheet and configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/). Then, `@import` the syntax highlightning stylesheet in your color variant stylesheet.
+If you want to switch the syntax highlighting theme together with your color variant, you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/) and provide a syntax highlighting stylesheet file.
 
-For an example, take a look into `theme-relearn-light.css` and `config.toml` of the exampleSite.
+You can use a one of the shipped stylesheet files or use Hugo to generate a file for you. The file must be written to `static/css/chroma-<NAME>.css`. To use it with your color variant you have to define `--CODE-theme: <NAME>` in the color variant stylesheet file.
 
-If you want to reconfigure just the syntax highlighting of an existing color variant, you need to copy the file to your site's directory and adjust it accordingly.
+For an example, take a look into [`theme-relearn-light.css`](https://github.com/McShelby/hugo-theme-relearn/blob/main/static/css/theme-relearn-light.css) and [`config.toml`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/config/_default/config.toml) of the exampleSite.
 
 ## Change the Variant (Advanced) {#theme-variant-advanced}
 

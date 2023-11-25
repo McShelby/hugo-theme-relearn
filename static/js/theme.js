@@ -683,6 +683,14 @@ function initCodeClipboard(){
     }
 }
 
+function initChroma( update ){
+    var chroma = variants.getColorValue( 'CODE-theme' );
+    var link = document.querySelector( '#R-variant-chroma-style' );
+    var old_path = link.getAttribute( 'href' );
+	var new_path = old_path.replace( /^(.*\/chroma-).*?(\.css.*)$/, '$1' + chroma + '$2' );
+    link.setAttribute( 'href', new_path );
+}
+
 function initArrowNav(){
     if( isPrint ){
         return;
@@ -1464,6 +1472,7 @@ function updateTheme( detail ){
     }
     window.relearn.lastVariant = detail.variant;
 
+    initChroma( true );
     initMermaid( true );
     initOpenapi( true );
     document.dispatchEvent( new CustomEvent( 'themeVariantLoaded', {

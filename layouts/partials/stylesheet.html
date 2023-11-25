@@ -14,22 +14,14 @@
     <link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
     <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- $themevariants := partial "get-theme-variants.hugo" . }}
-    {{- if $page.IsHome }}
-      {{- $autotemplate := resources.Get "css/theme-auto.css" }}
-      {{- range $themevariants }}
-        {{- if collections.IsSet . "auto" }}
-          {{- $autocss := $autotemplate | resources.ExecuteAsTemplate (printf "css/theme-%s.css" .identifier) . }}
-          {{- /* the following line causes Hugo to generate our theme css file - although it is in comments */}}<!-- link href="{{ $autocss.RelPermalink }}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"-->
-        {{- end }}
-      {{- end }}
-    {{- end }}
     {{- with index $themevariants 0 }}
+    <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-chroma-style">
     <link href="{{(printf "css/theme-%s.css" .identifier) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-style">
     {{- end }}
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
     {{- $f := printf "/static/css/format-%s.css" $outputFormat }}
-    {{- if partialCached "fileExists.hugo" $f $f }}
+    {{- if or (partialCached "fileExists.hugo" $f $f) (resources.Get (printf "/css/format-%s.css" $outputFormat)) }}
     <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
