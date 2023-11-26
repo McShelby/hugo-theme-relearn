@@ -20,7 +20,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.24.0.beta {#5240}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `config.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
