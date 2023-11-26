@@ -1,10 +1,4 @@
-{{- $version := split hugo.Version "." }}
-{{- $major := int (index $version 0) }}
-{{- $minor := int (index $version 1) }}
 {{- $id := "" }}
-{{- if or (and (eq $major 0) (ge $minor 108)) (gt $major 0) }}
-  {{- $id = "" }}
-{{- end }}
 {{- partial "shortcodes/openapi.html" (dict
   "page"    .Page
   "src"     (.Get "src")

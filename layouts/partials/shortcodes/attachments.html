@@ -1,6 +1,3 @@
-{{- $version := split hugo.Version "." }}
-{{- $major := int (index $version 0) }}
-{{- $minor := int (index $version 1) }}
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
@@ -43,7 +40,8 @@
 {{- $urlPrefix := strings.TrimRight "/" $page.RelPermalink }}
 {{- with $page }}
 {{- if ne .BundleType "leaf" }}
-  {{- if or (and (eq $major 0) (ge $minor 112)) (gt $major 0) }}
+  {{- $hugoVersion := "0.112.0" }}
+  {{- if ge hugo.Version $hugoVersion }}
     {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Filename }}
   {{- else }}
     {{- warnf "%q: DEPRECATED usage of 'attachments' shortcode found which will not be compatible while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Filename }}
@@ -53,7 +51,8 @@
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
   <ul class="box-content attachments-files">
   {{- $fileDir := "" }}
-  {{- if or (and (eq $major 0) (ge $minor 112)) (gt $major 0) }}
+  {{- $hugoVersion := "0.112.0" }}
+  {{- if ge hugo.Version $hugoVersion }}
     {{- $fileDir = path.Dir (strings.TrimPrefix (path.Clean hugo.WorkingDir) (path.Clean .File.Filename)) }}
   {{- else }}
     {{- $fileDir = printf "%s/%s" (path.Clean (.Language.ContentDir | default "content")) (path.Clean .File.Dir) }}

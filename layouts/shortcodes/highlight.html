@@ -1,12 +1,5 @@
-{{- $version := split hugo.Version "." }}
-{{- $major := int (index $version 0) }}
-{{- $minor := int (index $version 1) }}
 {{- $content := "" }}
-{{- if or (and (eq $major 0) (ge $minor 110)) (gt $major 0) }}
-  {{- $content = .InnerDeindent }}
-{{- else }}
-  {{- $content = .Inner }}
-{{- end }}
+{{- $content = .InnerDeindent }}
 {{- $attributes := dict }}
 {{- $options := dict }}
 {{- $type := "" }}
