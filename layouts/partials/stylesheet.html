@@ -15,8 +15,8 @@
     <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- $themevariants := partialCached "get-theme-variants.hugo" . }}
     {{- with index $themevariants 0 }}
-    <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-chroma-style">
     <link href="{{(printf "css/theme-%s.css" .identifier) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-style">
+    <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-chroma-style">
     {{- end }}
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">

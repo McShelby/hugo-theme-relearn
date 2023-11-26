@@ -48,28 +48,8 @@ Non-auto run
 {{- range $tempthemevariant := $tempthemevariants }}
   {{- $themevariant := $tempthemevariant }}
   {{- if not (collections.IsSet $themevariant "auto") }}
-    {{- $themecontent := "" }}
-    {{- with resources.Get (printf "css/theme-%s.css" $themevariant.identifier) }}
-      {{- $themecontent = .Content}}
-    {{- else }}
-      {{- $themecontent = readFile (printf "static/css/theme-%s.css" $themevariant.identifier) }}
-    {{- end }}
-    {{- $chroma := "" }}
-    {{- range findRESubmatch `[ \t]*--CODE-theme\s*:\s*([^;]*?)\s*;` $themecontent 1 }}
-      {{- $chroma = index . 1 }}
-    {{- else }}
-      {{- range findRESubmatch `[ \t]*@import\s+[^$]*?chroma-([^.]*?)\.css` $themecontent 1 }}
-        {{- $chroma = index . 1 }}
-        {{- warnf "\"theme-%s.css\": DEPRECATED use of @import for chroma stylesheet, instead use '--CODE-theme: %s;'" $themevariant.identifier $chroma }}
-        {{- $themecontent = replaceRE `[ \t]*@import\s+[^$]*?chroma-[^.]*?\.css.*?\n` "" $themecontent }}
-      {{- else }}
-        {{- $chroma = "relearn-light" }}
-      {{- end }}
-      {{- $themecontent = replaceRE `(:root\s*\{[ \t]*)(\s*)` (printf "${1}${2}--CODE-theme: %s;${2}" $chroma) $themecontent }}
-    {{- end }}
+    {{- $chroma := partial "get-theme-chroma.html" $themevariant.identifier }}
     {{- $themevariant = collections.Merge $themevariant (dict "chroma" $chroma) }}
-    {{- $cssres := $themecontent | resources.FromString (printf "css/theme-%s.css" $themevariant.identifier) }}
-    {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -127,4 +107,39 @@ Auto run
 {{- $cssres := $printres | resources.ExecuteAsTemplate "css/format-print.css" (index (collections.Where $themevariants "identifier" "relearn-light") 0) }}
 {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 
-{{- return collections.Where $tempthemevariants "config" true }}
+{{- return collections.Where $themevariants "config" true }}
+
+{{ define "partials/get-theme-chroma.html" }}
+  {{- $identifier := . }}
+  {{- $themecontent := "" }}
+  {{- with resources.Get (printf "css/theme-%s.css" $identifier) }}
+    {{- $themecontent = .Content}}
+  {{- else }}
+    {{- if fileExists (printf "static/css/theme-%s.css" $identifier) }}
+      {{- $themecontent = readFile (printf "static/css/theme-%s.css" $identifier) }}
+    {{- else }}
+      {{- errorf "\"theme-%s.css\": file not found neither in \"static/css\" and \"assets/css\"" $identifier }}
+    {{- end }}
+  {{- end }}
+  {{- $chroma := "" }}
+  {{- range findRESubmatch `[ \t]*--CODE-theme\s*:\s*([^;]*?)\s*;` $themecontent }}
+    {{- $chroma = index . 1 }}
+  {{- else }}
+    {{- range findRESubmatch `[ \t]*@import\s+[^$]*?chroma-([^.]*?)\.css` $themecontent }}
+      {{- $chroma = index . 1 }}
+      {{- warnf "\"theme-%s.css\": DEPRECATED use of @import for chroma stylesheet, instead use '--CODE-theme: %s;'" $identifier $chroma }}
+      {{- $themecontent = replaceRE `[ \t]*@import\s+[^$]*?chroma-[^.]*?\.css.*?\n` "" $themecontent }}
+    {{- else }}
+      {{- range findRESubmatch `[ \t]*@import\s+[^$]*?theme-([^.]*?)\.css` $themecontent }}
+        {{- $subidentifier := index . 1 }}
+        {{- $chroma = partial "get-theme-chroma.html" $subidentifier }}
+      {{- else }}
+        {{- $chroma = "relearn-light" }}
+      {{- end }}
+    {{- end }}
+    {{- $themecontent = replaceRE `(:root\s*\{[ \t]*)(\s*)` (printf "${1}${2}--CODE-theme: %s;${2}" $chroma) $themecontent }}
+  {{- end }}
+  {{- $cssres := $themecontent | resources.FromString (printf "css/theme-%s.css" $identifier) }}
+  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+  {{- return $chroma }}
+{{- end }}
