@@ -58,7 +58,7 @@
         {{- end }}
         {{- $siteLanguages := .Site.Languages }}
         {{- $showlangswitch := and .Site.IsMultiLingual (not .Site.Params.disableLanguageSwitchingButton) (gt (int (len $siteLanguages)) 1) }}
-        {{- $themevariants := partial "get-theme-variants.hugo" . }}
+        {{- $themevariants := partialCached "get-theme-variants.hugo" . }}
         {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
