@@ -3,11 +3,12 @@
 {{- $printres := resources.Get "css/format-print.css" }}
 
 {{- /*
-First run:
+Config run:
 - convert from old forms to slice of dicts
 - convert auto property to slice
 - add name property
 */}}
+{{- $refthemevariants := slice | append "relearn-light" | append "relearn-dark" }}
 {{- $tempthemevariants := slice | append (.Site.Params.themeVariant | default "auto" ) }}
 {{- $themevariants := slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
@@ -20,12 +21,25 @@ First run:
   {{- end }}
   {{- if eq $themevariant.identifier "auto" }}
     {{- $themevariant = collections.Merge $themevariant (dict "auto" ($themevariant.auto | default slice)) }}
+    {{- $refthemevariants = $refthemevariants | append $themevariant.auto }}
   {{- end }}
+  {{- $themevariant = collections.Merge $themevariant (dict "config" true) }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
 
 {{- /*
-Second run, handle non-auto variants
+Ref run:
+- add non-configured but referenced variants
+*/}}
+{{- range $refthemevariant := $refthemevariants }}
+  {{- if not (index (collections.Where $themevariants "identifier" $refthemevariant) 0) }}
+    {{- $themevariant := (dict "identifier" $refthemevariant "name" ($refthemevariant | humanize | strings.Title) "config" false) }}
+    {{- $themevariants = $themevariants | append $themevariant }}
+  {{- end }}
+{{- end }}
+
+{{- /*
+Non-auto run
 - fix and regenerate theme css for advanced config mode
 - add chroma property from stylesheet
 */}}
@@ -61,7 +75,7 @@ Second run, handle non-auto variants
 {{- end }}
 
 {{- /*
-Third run, handle auto variants
+Auto run
 - fill up auto property
 - fill up chroma property
 - generate theme and chroma css files from template
@@ -113,4 +127,4 @@ Third run, handle auto variants
 {{- $cssres := $printres | resources.ExecuteAsTemplate "css/format-print.css" (index (collections.Where $themevariants "identifier" "relearn-light") 0) }}
 {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 
-{{- return $themevariants }}
+{{- return collections.Where $tempthemevariants "config" true }}
