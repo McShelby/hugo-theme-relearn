@@ -6,7 +6,7 @@ weight = 2
 
 This document shows you what's new in the latest release and flags it with one of the following badges. For a detailed list of changes, see the [history page](basics/history).
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} The minimum required Hugo version.
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.110.0{{% /badge %}} The minimum required Hugo version.
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} A change that requires action by you after upgrading to assure the site is still functional.
 
@@ -19,6 +19,8 @@ This document shows you what's new in the latest release and flags it with one o
 ---
 
 ## 5.24.0.beta {#5240}
+
+- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.110.0{{% /badge %}} The minimum required Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
