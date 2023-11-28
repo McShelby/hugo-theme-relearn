@@ -10,9 +10,15 @@
 {{- else if $page.Params.archetype }}
   {{- $archetype = $page.Params.archetype }}
 {{- else if $page.Params.chapter }}
-  {{- $archetype = "deprecated-chapter" }}
+  {{- $archetype = "chapter" }}
+  {{- if findRE `(?s)<h1.*?>.*?</h1>` .Content }}
+    {{- $archetype = "deprecated-chapter" }}
+  {{- end }}
 {{- else if $page.IsHome }}
-  {{- $archetype = "deprecated-home" }}
+  {{- $archetype = "home" }}
+  {{- if findRE `(?s)<h1.*?>.*?</h1>` .Content }}
+    {{- $archetype = "deprecated-home" }}
+  {{- end }}
 {{- end }}
 {{- $f := printf "/layouts/partials/archetypes/%s" $archetype }}
 {{- if not (partialCached "fileExists.hugo" $f $f) }}
