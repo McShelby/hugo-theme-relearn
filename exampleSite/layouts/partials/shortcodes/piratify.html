@@ -7,7 +7,7 @@
 {{- $pagefield := cond (ne $content nil) nil (.pagefield | default "Content") }}
 {{- $writenotice := cond (ne .writenotice nil) .writenotice false }}
 {{- $langtrg := "pir" }}
-{{- $langsrc := cond (eq $page.Lang $langtrg) (.langsrc | default "en") $page.Lang }}
+{{- $langsrc := cond (eq $page.Language.Lang $langtrg) (.langsrc | default "en") $page.Language.Lang }}
 {{- $baseURL := urls.Parse site.BaseURL }}
 {{- $baseURLpath := $baseURL.Path | default "/" }}
 {{- $l := $page.RelPermalink }}
@@ -34,7 +34,7 @@
 		{{- break }}
 	{{- end }}
 {{- end }}
-{{- if eq $page.Lang $langtrg }}
+{{- if eq $page.Language.Lang $langtrg }}
 	{{- if $writenotice }}
 		{{- partial "shortcodes/notice.html" (dict
 			"page" $page

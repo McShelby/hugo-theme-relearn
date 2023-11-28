@@ -75,18 +75,9 @@
                     <label class="a11y-only" for="R-select-language">{{ T "Language" }}</label>
                     <select id="R-select-language" onchange="location = baseUri + this.value;">
                       {{- $page := .Page }}
-                      {{- $pageLang := .Page.Lang }}
+                      {{- $pageLang := .Page.Language.Lang }}
                       {{- range .Page.AllTranslations }}
-                        {{- $translation := . }}
-                        {{- range $siteLanguages }}
-                          {{- if eq $translation.Lang .Lang }}
-                            {{- if eq $pageLang .Lang }}
-                      <option id="R-{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" lang="{{ $translation.Lang }}" selected>{{ .LanguageName }}</option>
-                            {{- else }}
-                      <option id="R-{{ $translation.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $translation "basename" $basename) }}" lang="{{ $translation.Lang }}">{{ .LanguageName }}</option>
-                            {{- end }}
-                          {{- end }}
-                        {{- end }}
+                      <option id="R-{{ .Language.Lang }}" value="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "basename" $basename) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected{{ end }}>{{ .Language.LanguageName }}</option>
                       {{- end }}
                     </select>
                   </div>

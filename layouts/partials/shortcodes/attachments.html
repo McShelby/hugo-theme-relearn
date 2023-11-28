@@ -33,7 +33,7 @@
 {{- $pattern := .pattern | default "" }}
 {{- $defaultUrlPrefix := strings.TrimRight "/" $page.RelPermalink }}
 {{- if .IsTranslated -}}
-  {{- $defaultLanguage := (index $page.Site.Home.AllTranslations 0).Lang }}
+  {{- $defaultLanguage := (index $page.Site.Home.AllTranslations 0).Language.Lang }}
   {{- $defaultLanguagePage := index (where $page.AllTranslations "Language.Lang" $defaultLanguage) 0 }}
   {{- $defaultUrlPrefix = strings.TrimRight "/" $defaultLanguagePage.RelPermalink }}
 {{- end }}

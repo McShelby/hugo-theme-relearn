@@ -11,7 +11,7 @@
           <button class="search-clear" type="button" data-search-clear="" title="{{ T "Clear-search" }}"><i class="fas fa-times" title="{{ T "Clear-search" }}"></i></button>
         </div>{{ if $link }}</form>{{ end }}
         {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
-        {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Lang }}
+        {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Language.LanguageCode }}
         {{- $contentlangs := (union (slice | append (.Site.Params.additionalContentLanguage | default slice)) (slice $pageBaseLang)) }}
         {{- $quotedcontentlangs := slice }}
         {{- $missingcontentlangs := slice }}
