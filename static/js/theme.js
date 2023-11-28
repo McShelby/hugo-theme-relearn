@@ -1087,7 +1087,6 @@ function initSwipeHandler(){
     var handleStartX = function(evt) {
         startx = evt.touches[0].clientX;
         starty = evt.touches[0].clientY;
-        return false;
     };
     var handleMoveX = function(evt) {
         if( startx !== null ){
@@ -1104,24 +1103,22 @@ function initSwipeHandler(){
                 closeNav();
             }
         }
-        return false;
     };
     var handleEndX = function(evt) {
         startx = null;
         starty = null;
-        return false;
     };
 
     var s = document.querySelector( '#R-body-overlay' );
-    s && s.addEventListener("touchstart", handleStartX, false);
-    document.querySelector( '#R-sidebar' ).addEventListener("touchstart", handleStartX, false);
-    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
-    s && s.addEventListener("touchmove", handleMoveX, false);
-    document.querySelector( '#R-sidebar' ).addEventListener("touchmove", handleMoveX, false);
-    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX); }, false);
-    s && s.addEventListener("touchend", handleEndX, false);
-    document.querySelector( '#R-sidebar' ).addEventListener("touchend", handleEndX, false);
-    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
+    s && s.addEventListener("touchstart", handleStartX, { capture: false, passive: true});
+    document.querySelector( '#R-sidebar' ).addEventListener("touchstart", handleStartX, { capture: false, passive: true});
+    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX, { capture: false, passive: true}) });
+    s && s.addEventListener("touchmove", handleMoveX, { capture: false, passive: true});
+    document.querySelector( '#R-sidebar' ).addEventListener("touchmove", handleMoveX, { capture: false, passive: true});
+    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX, { capture: false, passive: true}) });
+    s && s.addEventListener("touchend", handleEndX, { capture: false, passive: true});
+    document.querySelector( '#R-sidebar' ).addEventListener("touchend", handleEndX, { capture: false, passive: true});
+    document.querySelectorAll( '#R-sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX, { capture: false, passive: true}) });
 }
 
 function initImage(){
