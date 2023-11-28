@@ -19,7 +19,7 @@
     {{- end }}
   {{- end }}
   {{- if $len }}
-    {{- $pages = $pages| append (dict "Title" (default (humanize .Page.Data.Term) .Page.Title) "Page" . "Len" $len )}}
+    {{- $pages = $pages| append (dict "Title" (default (humanize .Page.Data.Term | strings.Title) .Page.Title) "Page" . "Len" $len )}}
   {{- end }}
   {{- if not .Page.Title }}
     {{- warnf "%q: You have not given a 'title' in the frontmatter of your term page, the humanized term will be used instead" .Page.File.Filename }}
