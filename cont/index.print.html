@@ -23,22 +23,22 @@
     <link href="https://McShelby.github.io/hugo-theme-relearn/pir/cont/index.html" rel="alternate" hreflang="art-pir">
     <link href="https://McShelby.github.io/hugo-theme-relearn/cont/index.html" rel="canonical" type="text/html" title="Content :: Hugo Relearn Theme">
     <link href="../cont/index.xml" rel="alternate" type="application/rss+xml" title="Content :: Hugo Relearn Theme">
-    <link href="../images/logo.svg?1701207962" rel="icon" type="image/svg+xml">
+    <link href="../images/logo.svg?1701211966" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="../css/fontawesome-all.min.css?1701207963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1701207963" rel="stylesheet"></noscript>
-    <link href="../css/nucleus.css?1701207963" rel="stylesheet">
-    <link href="../css/auto-complete.css?1701207963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1701207963" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1701207963" rel="stylesheet">
-    <link href="../css/fonts.css?1701207963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1701207963" rel="stylesheet"></noscript>
-    <link href="../css/theme.css?1701207963" rel="stylesheet">
-    <link href="../css/theme-relearn-auto.css?1701207963" rel="stylesheet" id="R-variant-style">
-    <link href="../css/chroma-relearn-auto.css?1701207963" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="../css/variant.css?1701207963" rel="stylesheet">
-    <link href="../css/print.css?1701207963" rel="stylesheet" media="print">
-    <link href="../css/format-print.css?1701207963" rel="stylesheet">
-    <link href="../css/ie.css?1701207963" rel="stylesheet">
-    <script src="../js/url.js?1701207963"></script>
-    <script src="../js/variant.js?1701207963"></script>
+    <link href="../css/fontawesome-all.min.css?1701211967" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1701211967" rel="stylesheet"></noscript>
+    <link href="../css/nucleus.css?1701211967" rel="stylesheet">
+    <link href="../css/auto-complete.css?1701211967" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1701211967" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1701211967" rel="stylesheet">
+    <link href="../css/fonts.css?1701211967" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fonts.css?1701211967" rel="stylesheet"></noscript>
+    <link href="../css/theme.css?1701211967" rel="stylesheet">
+    <link href="../css/theme-relearn-auto.css?1701211967" rel="stylesheet" id="R-variant-style">
+    <link href="../css/chroma-relearn-auto.css?1701211967" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="../css/variant.css?1701211967" rel="stylesheet">
+    <link href="../css/print.css?1701211967" rel="stylesheet" media="print">
+    <link href="../css/format-print.css?1701211967" rel="stylesheet">
+    <link href="../css/ie.css?1701211967" rel="stylesheet">
+    <script src="../js/url.js?1701211967"></script>
+    <script src="../js/variant.js?1701211967"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -144,54 +144,285 @@
 <p>The following steps are here to help you initialize your new website. If you don&rsquo;t know Hugo at all, we strongly suggest you to train by following <a href="https://gohugo.io/overview/quickstart/" target="_blank">great documentation for beginners</a>.</p>
 <p>Hugo provides a <code>new</code> command to create a new website.</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new site &lt;new_project&gt;</span></span></code></pre></div><p>The Relearn theme provides <a href="../cont/archetypes/index.html">archetypes</a> to help you create this kind of pages.</p>
-<h2 id="frontmatter-configuration">Frontmatter Configuration</h2>
-<p>Each Hugo page has to define a <a href="https://gohugo.io/content/front-matter/" target="_blank">frontmatter</a> in <em>toml</em>, <em>yaml</em> or <em>json</em>. This site will use <em>toml</em> in all cases.</p>
-<p>The Relearn theme uses the following parameters on top of Hugo ones:</p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="frontmatter">Frontmatter</h1>
+
+<p>Each Hugo page has to define a <a href="https://gohugo.io/content/front-matter/" target="_blank">frontmatter</a> in <em>toml</em>, <em>yaml</em> or <em>json</em>. This site will use <em>toml</em> for documentation in all cases.</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
-</span></span><span class="line"><span class="cl"><span class="c"># Table of contents (toc) is enabled by default. Set this parameter to true to disable it.</span>
-</span></span><span class="line"><span class="cl"><span class="c"># Note: Toc is always disabled for chapter pages</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If an option value is said to be not set, you can achieve the same behavior</span>
+</span></span><span class="line"><span class="cl"><span class="c"># by given it an empty string value.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">###############################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Hugo</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options usually apply to other themes aswell.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The social media image of your page.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># This is used for generating social media meta information for the opengraph</span>
+</span></span><span class="line"><span class="cl"><span class="c"># protocol and twitter cards.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">images</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;images/hero.png&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The title of your page.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># A page without a title is treated as a hidden page.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Example Page&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The description of your page.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># This is used for generating HTML meta tags, social media meta information</span>
+</span></span><span class="line"><span class="cl"><span class="c"># for the opengraph protocol and twitter cards.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used for the html</span>
+</span></span><span class="line"><span class="cl"><span class="c"># meta tag, social media meta information for the opengraph protocol and</span>
+</span></span><span class="line"><span class="cl"><span class="c"># twitter cards.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">###############################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Relearn Theme</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options are specific to the Relearn theme.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Topbar</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options modify the topbar appearance.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Hide the table of contents button.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If the TOC button is hidden, also the keyboard shortcut is disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">disableToc</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl"><span class="c"># If set, this will be used for the page&#39;s menu entry (instead of the `title` attribute)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Hide the breadcrumbs.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If the breadcrumbs are hidden, the title of the displayed page will still be</span>
+</span></span><span class="line"><span class="cl"><span class="c"># shown in the topbar.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disableBreadcrumb</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Hide Next and Previous navigation buttons.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If the navigation buttons are hidden, also the keyboard shortcuts are</span>
+</span></span><span class="line"><span class="cl"><span class="c"># disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disableNextPrev</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Menu</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options modify the menu apperance.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The title in main menu.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: &lt;title&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If set, this will be used for the page&#39;s menu entry instead of the `title`</span>
+</span></span><span class="line"><span class="cl"><span class="c"># option.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">menuTitle</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># If set to true, the menu in the sidebar will be displayed in a collapsible tree view. Although the functionality works with old browsers (IE11), the display of the expander icons is limited to modern browsers</span>
-</span></span><span class="line"><span class="cl"><span class="nx">collapsibleMenu</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl"><span class="c"># If set, this will explicitly override common rules for the expand state of a page&#39;s menu entry</span>
-</span></span><span class="line"><span class="cl"><span class="nx">alwaysopen</span> <span class="p">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl"><span class="c"># If set, this will explicitly override common rules for the sorting order of a page&#39;s submenu entries</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ordersectionsby</span> <span class="p">=</span> <span class="s2">&#34;weight&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># The title of the page heading will be prefixed by this HTML content</span>
-</span></span><span class="line"><span class="cl"><span class="nx">headingPre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># The title of the page heading will be postfixed by this HTML content</span>
-</span></span><span class="line"><span class="cl"><span class="nx">headingPost</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># The title of the page in menu will be prefixed by this HTML content</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Prefix for the title in main menu.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># The title of the page in the menu will be prefixed by this HTML content.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">menuPre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># The title of the page in menu will be postfixed by this HTML content</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Suffix for the title in main menu.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># The title of the page in the menu will be suffixed by this HTML content.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">menuPost</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># Hide a menu entry by setting this to true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The order of main menu submenus.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: &#34;weight&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Submenus can be ordered by &#34;weight&#34;, &#34;title&#34;, &#34;linktitle&#34;, &#34;modifieddate&#34;,</span>
+</span></span><span class="line"><span class="cl"><span class="c"># &#34;expirydate&#34;, &#34;publishdate&#34;, &#34;date&#34;, &#34;length&#34; or &#34;default&#34; (adhering to</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Hugo&#39;s default sort order).</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the value of the parent menu entry is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ordersectionsby</span> <span class="p">=</span> <span class="s2">&#34;weight&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The initial expand state of submenus.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># This controls whether submenus will be expanded (true), or collapsed (false)</span>
+</span></span><span class="line"><span class="cl"><span class="c"># in the menu. If not set, the first menu level is set to false, all others</span>
+</span></span><span class="line"><span class="cl"><span class="c"># levels are set to true. If not set, the value of the parent menu entry is used.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If the displayed page has submenus, they will always been displayed expanded</span>
+</span></span><span class="line"><span class="cl"><span class="c"># regardless of this option.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alwaysopen</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Shows expander for submenus.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If set to true, a submenu in the sidebar will be displayed in a collapsible</span>
+</span></span><span class="line"><span class="cl"><span class="c"># tree view and a clickable expander is set in front of the entry.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">collapsibleMenu</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Hidden pages</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options configure how hidden pages are treated.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># A page flagged as hidden, is only removed from the main menu if you are</span>
+</span></span><span class="line"><span class="cl"><span class="c"># currently not on this page or the hidden page is not part of current page&#39;s</span>
+</span></span><span class="line"><span class="cl"><span class="c"># ancestors. For all other functionality in Hugo a hidden page behaves like any</span>
+</span></span><span class="line"><span class="cl"><span class="c"># other page if not otherwise configured.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Hide a page&#39;s menu entry.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If this value is true, the page is hidden from the menu.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">hidden</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl"><span class="c"># Display name of this page modifier. If set, it will be displayed in the footer.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Content</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options modify how your content is displayed.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Prefix for the title in the content area.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># The title of the page heading will be prefixed by this HTML content.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">headingPre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Suffix for the title in the content area.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># The title of the page heading will be suffixed by this HTML content.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">headingPost</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Display name of the page&#39;s last editor.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If set, it will be displayed in the default footer.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">LastModifierDisplayName</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># Email of this page modifier. If set with LastModifierDisplayName, it will be displayed in the footer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Email address of the page&#39;s last editor.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If set together with LastModifierDisplayName, it will be displayed in the</span>
+</span></span><span class="line"><span class="cl"><span class="c"># default footer.</span>
 </span></span><span class="line"><span class="cl"><span class="nx">LastModifierEmail</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c"># Override default values for image effects, you can even add your own arbitrary effects to the list</span>
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">imageEffects</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">border</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">lightbox</span> <span class="p">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">shadow</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><h3 id="add-icon-to-a-menu-entry">Add icon to a menu entry</h3>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Highlight</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options configure how code is displayed.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Wrap for code blocks.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: true</span>
+</span></span><span class="line"><span class="cl"><span class="c"># By default lines of code blocks wrap around if the line is too long to be</span>
+</span></span><span class="line"><span class="cl"><span class="c"># displayed on screen. If you dislike this behavior, you can reconfigure it</span>
+</span></span><span class="line"><span class="cl"><span class="c"># here.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Note that lines always wrap in print mode regardless of this option.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used or given as a</span>
+</span></span><span class="line"><span class="cl"><span class="c"># parameter to individual code blocks.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">highlightWrap</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Images</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options configure how images are displayed.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Image effects.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># See the documentation for how you can even add your own arbitrary effects to</span>
+</span></span><span class="line"><span class="cl"><span class="c"># the list.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># All effect values default to the values of your site&#39;s config.toml and can be</span>
+</span></span><span class="line"><span class="cl"><span class="c"># overridden thru URL parameter given to the image. See the documentation for</span>
+</span></span><span class="line"><span class="cl"><span class="c"># details.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">imageEffects</span><span class="p">.</span><span class="nx">border</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">imageEffects</span><span class="p">.</span><span class="nx">lightbox</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">imageEffects</span><span class="p">.</span><span class="nx">shadow</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># MathJax</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options configure how math formulae are displayed.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Initialization options for MathJax.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># A JSON value. See the MathJaxdocumentation for possible parameter.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mathJaxInitialize</span> <span class="p">=</span> <span class="s2">&#34;{}&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Only load MathJax if needed.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: true</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If a Math shortcode is found, the option will be ignored and</span>
+</span></span><span class="line"><span class="cl"><span class="c"># MathJax will be loaded regardlessly. The option is still useful in case you</span>
+</span></span><span class="line"><span class="cl"><span class="c"># are using scripting to set up your graph. In this case no shortcode or</span>
+</span></span><span class="line"><span class="cl"><span class="c"># codefence is involved and the library is not loaded by default. In this case</span>
+</span></span><span class="line"><span class="cl"><span class="c"># you can set `disableMathJax=false` in your frontmatter to force the library to</span>
+</span></span><span class="line"><span class="cl"><span class="c"># be loaded.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disableMathJax</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># URL for external MathJax library.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Specifies the remote location of the MathJax library. By default the shipped</span>
+</span></span><span class="line"><span class="cl"><span class="c"># version will be used.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">customMathJaxURL</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span> <span class="c"># &#34;https://unpkg.com/mathjax/es5/tex-mml-chtml.js&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Mermaid</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options configure how Mermaid graphs are displayed.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Make graphs panable and zoomable</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># For huge graphs it can be helpful to make them zoomable. Zoomable graphs come</span>
+</span></span><span class="line"><span class="cl"><span class="c"># with a reset button for the zoom.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used or given as a</span>
+</span></span><span class="line"><span class="cl"><span class="c"># parameter to individual graphs.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mermaidZoom</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Initialization options for Mermaid.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># A JSON value. See the Mermaid documentation for possible parameter.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mermaidInitialize</span> <span class="p">=</span> <span class="s2">&#34;{ \&#34;securityLevel\&#34;: \&#34;loose\&#34; }&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Only load Mermaid if needed.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: true</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If a Mermaid shortcode or codefence is found, the option will be ignored and</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Mermaid will be loaded regardlessly. The option is still useful in case you</span>
+</span></span><span class="line"><span class="cl"><span class="c"># are using scripting to set up your graph. In this case no shortcode or</span>
+</span></span><span class="line"><span class="cl"><span class="c"># codefence is involved and the library is not loaded by default. In this case</span>
+</span></span><span class="line"><span class="cl"><span class="c"># you can set `disableMermaid=false` in your frontmatter to force the library to</span>
+</span></span><span class="line"><span class="cl"><span class="c"># be loaded.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disableMermaid</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># URL for external Mermaid library.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Specifies the remote location of the Mermaid library. By default the shipped</span>
+</span></span><span class="line"><span class="cl"><span class="c"># version will be used.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">customMermaidURL</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span> <span class="c"># &#34;https://unpkg.com/mermaid/dist/mermaid.min.js&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+</span></span><span class="line"><span class="cl"><span class="c"># OpenApi</span>
+</span></span><span class="line"><span class="cl"><span class="c"># These options configure how OpenAPI specifications are displayed.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Only load OpenAPI if needed.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: true</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If a OpenAPI shortcode is found, the option will be ignored and</span>
+</span></span><span class="line"><span class="cl"><span class="c"># OpenAPI will be loaded regardlessly. The option is still useful in case you</span>
+</span></span><span class="line"><span class="cl"><span class="c"># are using scripting to set up your graph. In this case no shortcode or</span>
+</span></span><span class="line"><span class="cl"><span class="c"># codefence is involved and the library is not loaded by default. In this case</span>
+</span></span><span class="line"><span class="cl"><span class="c"># you can set `disableOpenapi=false` in your frontmatter to force the library to</span>
+</span></span><span class="line"><span class="cl"><span class="c"># be loaded.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disableOpenapi</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># URL for external OpenAPI library.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Default: not set</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Specifies the remote location of the OpenAPI library. By default the shipped</span>
+</span></span><span class="line"><span class="cl"><span class="c"># version will be used.</span>
+</span></span><span class="line"><span class="cl"><span class="c"># If not set, the set value of your site&#39;s config.toml is used.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">customOpenapiURL</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span> <span class="c"># &#34;https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><h2 id="some-detailed-examples">Some Detailed Examples</h2>
+<h3 id="add-icon-to-a-menu-entry">Add Icon to a Menu Entry</h3>
 <p>In the page frontmatter, add a <code>menuPre</code> param to insert any HTML code before the menu label. The example below uses the GitHub icon.</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
 </span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;GitHub repo&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">menuPre</span> <span class="p">=</span> <span class="s2">&#34;&lt;i class=&#39;fab fa-github&#39;&gt;&lt;/i&gt; &#34;</span>
-</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><p><a href="#R-image-09e8c6fca2403c4d005ac3b53e151145" class="lightbox-link"><img src="../cont/pages/frontmatter-icon.png?width=18.75rem" alt="Title with icon" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 18.75rem;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-09e8c6fca2403c4d005ac3b53e151145"><img src="../cont/pages/frontmatter-icon.png?width=18.75rem" alt="Title with icon" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
-<h3 id="ordering-sibling-menupage-entries">Ordering sibling menu/page entries</h3>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><p><a href="#R-image-35ac876adadeffbd470c803e96d94a48" class="lightbox-link"><img src="../cont/frontmatter/frontmatter-icon.png?width=18.75rem" alt="Title with icon" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 18.75rem;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-35ac876adadeffbd470c803e96d94a48"><img src="../cont/frontmatter/frontmatter-icon.png?width=18.75rem" alt="Title with icon" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<h3 id="ordering-sibling-menupage-entries">Ordering Sibling Menu/Page Entries</h3>
 <p>Hugo provides a <a href="https://gohugo.io/content/ordering/" target="_blank">flexible way</a> to handle order for your pages.</p>
 <p>The simplest way is to set <code>weight</code> parameter to a number.</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
 </span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;My page&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">weight</span> <span class="p">=</span> <span class="mi">5</span>
-</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><h3 id="using-a-custom-title-for-menu-entries">Using a custom title for menu entries</h3>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><h3 id="using-a-custom-title-for-menu-entries">Using a Custom Title for Menu Entries</h3>
 <p>By default, the Relearn theme will use a page&rsquo;s <code>title</code> attribute for the menu item (or <code>linkTitle</code> if defined).</p>
 <p>But a page&rsquo;s title has to be descriptive on its own while the menu is a hierarchy.
 We&rsquo;ve added the <code>menuTitle</code> parameter for that purpose:</p>
@@ -199,7 +430,7 @@ We&rsquo;ve added the <code>menuTitle</code> parameter for that purpose:</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
 </span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Install on Linux&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">menuTitle</span> <span class="p">=</span> <span class="s2">&#34;Linux&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><h3 id="override-expand-state-rules-for-menu-entries">Override expand state rules for menu entries</h3>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div><h3 id="override-expand-state-rules-for-menu-entries">Override Expand State Rules for Menu Entries</h3>
 <p>You can change how the theme expands menu entries on the side of the content with the <code>alwaysopen</code> setting on a per page basis. If <code>alwaysopen=false</code> for any given entry, its children will not be shown in the menu as long as it is not necessary for the sake of navigation.</p>
 <p>The theme generates the menu based on the following rules:</p>
 <ul>
@@ -215,9 +446,11 @@ We&rsquo;ve added the <code>menuTitle</code> parameter for that purpose:</p>
 <p>You may want to structure your pages in a hierachical way but don&rsquo;t want to generate pages for those sections? The theme got you covered.</p>
 <p>To stay with the initial example: Suppose you want <code>level-one</code> appear in the sidebar but don&rsquo;t want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.</p>
 <p>For this, open <code>content/level-one/_index.md</code> and add the following frontmatter</p>
-<div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">collapsibleMenu</span> <span class="p">=</span> <span class="kc">true</span> <span class="c"># this adds the expander to the menu entry if not already set in your config.toml</span>
+<div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">collapsibleMenu</span> <span class="p">=</span> <span class="kc">true</span> <span class="c"># this adds the expander to the menu entry if not already set in your config.toml</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span> <span class="c"># no page will be generated so the page does not have a url</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s2">&#34;never&#34;</span> <span class="c"># no page will be generated so the page does not have a url</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
             <footer class="footline">
             </footer>
           </article>
@@ -232,8 +465,8 @@ We&rsquo;ve added the <code>menuTitle</code> parameter for that purpose:</p>
 <h2 id="predefined-archetypes">Predefined Archetypes</h2>
 <h3 id="archetypes-home">Home</h3>
 <p>A <strong>Home</strong> page is the starting page of your project. It&rsquo;s best to have only one page of this kind in your project.</p>
-<p><a href="#R-image-bfa0517889c43b9754667d7ce864aff4" class="lightbox-link"><img src="../cont/archetypes/pages-home.png?width=60pc" alt="Home page" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 60pc;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-bfa0517889c43b9754667d7ce864aff4"><img src="../cont/archetypes/pages-home.png?width=60pc" alt="Home page" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-1d0f3b0db6161a6a7824e0b9ed3d1f86" class="lightbox-link"><img src="../cont/archetypes/pages-home.png?width=60pc" alt="Home page" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 60pc;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1d0f3b0db6161a6a7824e0b9ed3d1f86"><img src="../cont/archetypes/pages-home.png?width=60pc" alt="Home page" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 <p>To create a home page, run the following command</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new --kind home _index.md</span></span></code></pre></div><p>This leads to a file with the following content</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">+++
@@ -243,8 +476,8 @@ We&rsquo;ve added the <code>menuTitle</code> parameter for that purpose:</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Lorem Ipsum.</span></span></code></pre></div><h3 id="archetypes-chapter">Chapter</h3>
 <p>A <strong>Chapter</strong> displays a page meant to be used as introduction for a set of child pages. Commonly, it contains a simple title and a catch line to define content that can be found below it.</p>
-<p><a href="#R-image-60bf4aaa106607790a9fdab0b6a2f9ef" class="lightbox-link"><img src="../cont/archetypes/pages-chapter.png?width=60pc" alt="Chapter page" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 60pc;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-60bf4aaa106607790a9fdab0b6a2f9ef"><img src="../cont/archetypes/pages-chapter.png?width=60pc" alt="Chapter page" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-5e3189d1d03fe953bdc980f8e362c61d" class="lightbox-link"><img src="../cont/archetypes/pages-chapter.png?width=60pc" alt="Chapter page" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 60pc;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5e3189d1d03fe953bdc980f8e362c61d"><img src="../cont/archetypes/pages-chapter.png?width=60pc" alt="Chapter page" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 <p>To create a chapter page, run the following command</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new --kind chapter &lt;name&gt;/_index.md</span></span></code></pre></div><p>This leads to a file with the following content</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">+++
@@ -256,8 +489,8 @@ We&rsquo;ve added the <code>menuTitle</code> parameter for that purpose:</p>
 </span></span><span class="line"><span class="cl">Lorem Ipsum.</span></span></code></pre></div><p>Replace the <code>X</code> with a number. Because this number will be used to generate the subtitle of the chapter page, set the number to a consecutive value starting at 1 for each new chapter level.</p>
 <h3 id="archetypes-default">Default</h3>
 <p>A <strong>Default</strong> page is any other content page. If you set an unknown archetype in your frontmatter, this archetype will be used to generate the page.</p>
-<p><a href="#R-image-60315db97db856e979b4aba58ae5ca6e" class="lightbox-link"><img src="../cont/archetypes/pages-default.png?width=60pc" alt="Default page" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 60pc;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-60315db97db856e979b4aba58ae5ca6e"><img src="../cont/archetypes/pages-default.png?width=60pc" alt="Default page" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-6c297905fca97f1d752c3f6706be98c1" class="lightbox-link"><img src="../cont/archetypes/pages-default.png?width=60pc" alt="Default page" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 60pc;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6c297905fca97f1d752c3f6706be98c1"><img src="../cont/archetypes/pages-default.png?width=60pc" alt="Default page" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 <p>To create a default page, run either one of the following commands</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new &lt;chapter&gt;/&lt;name&gt;/_index.md</span></span></code></pre></div><p>or</p>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new &lt;chapter&gt;/&lt;name&gt;.md</span></span></code></pre></div><p>This leads to a file with the following content</p>
@@ -829,8 +1062,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-d3a2e53476026dce9bf18c9c1f5d5e01" class="lightbox-link"><img src="https://octodex.github.com/images/spocktocat.png?width=20vw" alt="Spock" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d3a2e53476026dce9bf18c9c1f5d5e01"><img src="https://octodex.github.com/images/spocktocat.png?width=20vw" alt="Spock" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-8bef853a7acd397a00cf54349f067a61" class="lightbox-link"><img src="https://octodex.github.com/images/spocktocat.png?width=20vw" alt="Spock" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8bef853a7acd397a00cf54349f067a61"><img src="https://octodex.github.com/images/spocktocat.png?width=20vw" alt="Spock" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h3 id="image-with-tooltip">Image with Tooltip</h3>
@@ -840,8 +1073,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-6c37137143a503bfb0f37a16d2573c84" class="lightbox-link"><img src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" alt="Picard" title="Jean Luc Picard" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6c37137143a503bfb0f37a16d2573c84"><img src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" alt="Picard" title="Jean Luc Picard" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-41a8ccbccfd3d0958bb6287c55858b2d" class="lightbox-link"><img src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" alt="Picard" title="Jean Luc Picard" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-41a8ccbccfd3d0958bb6287c55858b2d"><img src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" alt="Picard" title="Jean Luc Picard" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h3 id="image-references">Image References</h3>
@@ -853,8 +1086,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-d219c776e75132360b8ef5f965809b13" class="lightbox-link"><img src="https://octodex.github.com/images/trekkie.jpg?width=20vw" alt="La Forge" title="Geordi La Forge" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d219c776e75132360b8ef5f965809b13"><img src="https://octodex.github.com/images/trekkie.jpg?width=20vw" alt="La Forge" title="Geordi La Forge" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-1da1f386b4a8e303b52b30a4f9f7e967" class="lightbox-link"><img src="https://octodex.github.com/images/trekkie.jpg?width=20vw" alt="La Forge" title="Geordi La Forge" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1da1f386b4a8e303b52b30a4f9f7e967"><img src="https://octodex.github.com/images/trekkie.jpg?width=20vw" alt="La Forge" title="Geordi La Forge" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h3 id="image-effects">Image Effects</h3>
@@ -866,8 +1099,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-29813b7fbd1ce1095a3f0d3fb8c6aa4c" class="lightbox-link"><img src="https://octodex.github.com/images/minion.png?width=20vw" alt="Minion" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-29813b7fbd1ce1095a3f0d3fb8c6aa4c"><img src="https://octodex.github.com/images/minion.png?width=20vw" alt="Minion" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-5b98ad36280b3eae5b4364313dda6232" class="lightbox-link"><img src="https://octodex.github.com/images/minion.png?width=20vw" alt="Minion" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5b98ad36280b3eae5b4364313dda6232"><img src="https://octodex.github.com/images/minion.png?width=20vw" alt="Minion" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px</span>)</span></span></code></pre></div>
@@ -875,8 +1108,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-decf845872d7ce5bd7cfbc88d18e09d5" class="lightbox-link"><img src="https://octodex.github.com/images/minion.png?height=50px" alt="Minion" class="figure-image bg-white border lightbox noshadow" style="height: 50px; width: auto;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-decf845872d7ce5bd7cfbc88d18e09d5"><img src="https://octodex.github.com/images/minion.png?height=50px" alt="Minion" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-fa0eda274b8214c8b0cfabc4e2e9ead5" class="lightbox-link"><img src="https://octodex.github.com/images/minion.png?height=50px" alt="Minion" class="figure-image bg-white border lightbox noshadow" style="height: 50px; width: auto;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fa0eda274b8214c8b0cfabc4e2e9ead5"><img src="https://octodex.github.com/images/minion.png?height=50px" alt="Minion" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw</span>)</span></span></code></pre></div>
@@ -884,8 +1117,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-5cd45d5f454f73c7a9b38e84fbc6246b" class="lightbox-link"><img src="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw" alt="Minion" class="figure-image bg-white border lightbox noshadow" style="height: 50px; width: 40vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5cd45d5f454f73c7a9b38e84fbc6246b"><img src="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw" alt="Minion" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-9d42c958dc122c253492f670e1362f17" class="lightbox-link"><img src="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw" alt="Minion" class="figure-image bg-white border lightbox noshadow" style="height: 50px; width: 40vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d42c958dc122c253492f670e1362f17"><img src="https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw" alt="Minion" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h4 id="css-classes">CSS Classes</h4>
@@ -896,8 +1129,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-443abb9651a9b0f268f4418a3f899a3a" class="lightbox-link"><img src="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow,noborder" alt="Spidertocat" class="figure-image bg-white border lightbox noborder shadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-443abb9651a9b0f268f4418a3f899a3a"><img src="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow,noborder" alt="Spidertocat" class="lightbox-image bg-white border lightbox noborder shadow" loading="lazy"></a></p>
+<p><a href="#R-image-43746d3efcc476cde5359ec8e68e51b3" class="lightbox-link"><img src="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow,noborder" alt="Spidertocat" class="figure-image bg-white border lightbox noborder shadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-43746d3efcc476cde5359ec8e68e51b3"><img src="https://octodex.github.com/images/spidertocat.png?width=20vw&amp;classes=shadow,noborder" alt="Spidertocat" class="lightbox-image bg-white border lightbox noborder shadow" loading="lazy"></a></p>
 </div>
 </div>
 <h5 id="border">Border</h5>
@@ -906,8 +1139,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-1adcc2e122e479501391baa429f0e2b5" class="lightbox-link"><img src="https://octodex.github.com/images/droctocat.png?width=20vw&amp;classes=border,noshadow" alt="DrOctocat" class="figure-image bg-white border lightbox noshadow noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1adcc2e122e479501391baa429f0e2b5"><img src="https://octodex.github.com/images/droctocat.png?width=20vw&amp;classes=border,noshadow" alt="DrOctocat" class="lightbox-image bg-white border lightbox noshadow noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-bce9dbc0ee19d03cd97f0f389c2c6958" class="lightbox-link"><img src="https://octodex.github.com/images/droctocat.png?width=20vw&amp;classes=border,noshadow" alt="DrOctocat" class="figure-image bg-white border lightbox noshadow noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bce9dbc0ee19d03cd97f0f389c2c6958"><img src="https://octodex.github.com/images/droctocat.png?width=20vw&amp;classes=border,noshadow" alt="DrOctocat" class="lightbox-image bg-white border lightbox noshadow noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h5 id="left">Left</h5>
@@ -916,8 +1149,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-33eedd8fd87c974671c13763529a501d" class="lightbox-link"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&amp;classes=left" alt="Supertocat" class="figure-image bg-white border left lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-33eedd8fd87c974671c13763529a501d"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&amp;classes=left" alt="Supertocat" class="lightbox-image bg-white border left lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-5976ff06a7ecbeef005e0fb621495196" class="lightbox-link"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&amp;classes=left" alt="Supertocat" class="figure-image bg-white border left lightbox noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5976ff06a7ecbeef005e0fb621495196"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&amp;classes=left" alt="Supertocat" class="lightbox-image bg-white border left lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h5 id="right">Right</h5>
@@ -926,8 +1159,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-dfde6b8c63b6147b5bf99901a523a39c" class="lightbox-link"><img src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&amp;classes=right" alt="Riddlocat" class="figure-image bg-white border lightbox right noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-dfde6b8c63b6147b5bf99901a523a39c"><img src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&amp;classes=right" alt="Riddlocat" class="lightbox-image bg-white border lightbox right noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-362e050ff19c37f549c5d7b77067d47c" class="lightbox-link"><img src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&amp;classes=right" alt="Riddlocat" class="figure-image bg-white border lightbox right noshadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-362e050ff19c37f549c5d7b77067d47c"><img src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&amp;classes=right" alt="Riddlocat" class="lightbox-image bg-white border lightbox right noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h5 id="inline">Inline</h5>
@@ -939,14 +1172,14 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-081d51ee671eedf04769ef137d816e86" class="lightbox-link"><img src="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline" alt="Spidertocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-081d51ee671eedf04769ef137d816e86"><img src="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline" alt="Spidertocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a>
-<a href="#R-image-53e621a9f60c1983e4dd3ef5e956f831" class="lightbox-link"><img src="https://octodex.github.com/images/droctocat.png?width=10vw&amp;classes=inline" alt="DrOctocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-53e621a9f60c1983e4dd3ef5e956f831"><img src="https://octodex.github.com/images/droctocat.png?width=10vw&amp;classes=inline" alt="DrOctocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a>
-<a href="#R-image-9cee02b49e30fc36fbb6266d98c609da" class="lightbox-link"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&amp;classes=inline" alt="Supertocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9cee02b49e30fc36fbb6266d98c609da"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&amp;classes=inline" alt="Supertocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a>
-<a href="#R-image-ef8c119fa3f57fa2ca9db6b51455b903" class="lightbox-link"><img src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&amp;classes=inline" alt="Riddlocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ef8c119fa3f57fa2ca9db6b51455b903"><img src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&amp;classes=inline" alt="Riddlocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-bb78ea968a2a32c74658bf1d84beb654" class="lightbox-link"><img src="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline" alt="Spidertocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bb78ea968a2a32c74658bf1d84beb654"><img src="https://octodex.github.com/images/spidertocat.png?width=10vw&amp;classes=inline" alt="Spidertocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a>
+<a href="#R-image-fcb05b1a25359cb723b13e71c421ac44" class="lightbox-link"><img src="https://octodex.github.com/images/droctocat.png?width=10vw&amp;classes=inline" alt="DrOctocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fcb05b1a25359cb723b13e71c421ac44"><img src="https://octodex.github.com/images/droctocat.png?width=10vw&amp;classes=inline" alt="DrOctocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a>
+<a href="#R-image-b779dbc7b6516cbd5b6bdb14136b866e" class="lightbox-link"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&amp;classes=inline" alt="Supertocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b779dbc7b6516cbd5b6bdb14136b866e"><img src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&amp;classes=inline" alt="Supertocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a>
+<a href="#R-image-338df0312258339ece4c97adc4c2c658" class="lightbox-link"><img src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&amp;classes=inline" alt="Riddlocat" class="figure-image bg-white border inline lightbox noshadow" style="height: auto; width: 10vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-338df0312258339ece4c97adc4c2c658"><img src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&amp;classes=inline" alt="Riddlocat" class="lightbox-image bg-white border inline lightbox noshadow" loading="lazy"></a></p>
 </div>
 </div>
 <h5 id="combination">Combination</h5>
@@ -955,8 +1188,8 @@ line 3 of code
   <div class="box-label"><i class="fa-fw fas fa-eye"></i> Result</div>
   <div class="box-content">
 
-<p><a href="#R-image-c0333f49c9e51d91e00ee7510baa0a2a" class="lightbox-link"><img src="https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left" alt="X-tocat" class="figure-image bg-white border left lightbox shadow" style="height: auto; width: 20vw;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c0333f49c9e51d91e00ee7510baa0a2a"><img src="https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left" alt="X-tocat" class="lightbox-image bg-white border left lightbox shadow" loading="lazy"></a></p>
+<p><a href="#R-image-9a47ebaf2fc8535bf507a5a998a7714a" class="lightbox-link"><img src="https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left" alt="X-tocat" class="figure-image bg-white border left lightbox shadow" style="height: auto; width: 20vw;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9a47ebaf2fc8535bf507a5a998a7714a"><img src="https://octodex.github.com/images/xtocat.jpg?width=20vw&amp;classes=shadow,border,left" alt="X-tocat" class="lightbox-image bg-white border left lightbox shadow" loading="lazy"></a></p>
 </div>
 </div>
 <h4 id="lightbox">Lightbox</h4>
@@ -995,13 +1228,13 @@ line 3 of code
 <p>Without any settings in your <code>config.toml</code> this defaults to</p>
 
   
-<div class="tab-panel" data-tab-group="28ab00c40a639ca184d9cdf5a731582a">
+<div class="tab-panel" data-tab-group="faffccd259406ccc85e8fb33c21b6432">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="configtoml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('28ab00c40a639ca184d9cdf5a731582a','configtoml')"
+      onclick="switchTab('faffccd259406ccc85e8fb33c21b6432','configtoml')"
     >
       <span class="tab-nav-text">config.toml</span>
     </button>
@@ -1022,13 +1255,13 @@ line 3 of code
 </div><p>This can be overridden in a pages frontmatter by eg.</p>
 
   
-<div class="tab-panel" data-tab-group="eec134743cae60ce76e3db66b440c069">
+<div class="tab-panel" data-tab-group="20e8f93e3485d1d4bda10b2916bfbb86">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="frontmatter"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('eec134743cae60ce76e3db66b440c069','frontmatter')"
+      onclick="switchTab('20e8f93e3485d1d4bda10b2916bfbb86','frontmatter')"
     >
       <span class="tab-nav-text">frontmatter</span>
     </button>
@@ -1048,13 +1281,13 @@ line 3 of code
 </div><p>Or by explicitly override settings by URL query parameter</p>
 
   
-<div class="tab-panel" data-tab-group="ae3cd084028ad445c4acc0c2d29137c3">
+<div class="tab-panel" data-tab-group="c56d98a96f5a7a8b7d98164a912aa15b">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="url"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('ae3cd084028ad445c4acc0c2d29137c3','url')"
+      onclick="switchTab('c56d98a96f5a7a8b7d98164a912aa15b','url')"
     >
       <span class="tab-nav-text">URL</span>
     </button>
@@ -1071,13 +1304,13 @@ line 3 of code
 </div><p>The settings applied to the above image would be</p>
 
   
-<div class="tab-panel" data-tab-group="1119c213779a3787167e272fbb5912ea">
+<div class="tab-panel" data-tab-group="10948eba33b52d0e5ccd763a454362f2">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="result"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('1119c213779a3787167e272fbb5912ea','result')"
+      onclick="switchTab('10948eba33b52d0e5ccd763a454362f2','result')"
     >
       <span class="tab-nav-text">Result</span>
     </button>
@@ -1097,13 +1330,13 @@ line 3 of code
 </div><p>This ends up in the following HTML where the parameter are converted to CSS classes.</p>
 
   
-<div class="tab-panel" data-tab-group="28cba85a15a3e2d1aaee2bb5f59609e1">
+<div class="tab-panel" data-tab-group="8aad83509208966b026fd73d001184f5">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="html"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('28cba85a15a3e2d1aaee2bb5f59609e1','html')"
+      onclick="switchTab('8aad83509208966b026fd73d001184f5','html')"
     >
       <span class="tab-nav-text">HTML</span>
     </button>
@@ -1278,8 +1511,8 @@ However, if you want to keep the title but change its value, it can be overridde
 <li>Automatic menu generation from multilingual content</li>
 <li>In-browser language switching</li>
 </ul>
-<p><a href="#R-image-5c63940a4547d8b78cd9dd4b3b225b3d" class="lightbox-link"><img src="../cont/i18n/i18n-menu.gif?width=18.75rem" alt="I18n menu" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 18.75rem;" loading="lazy"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5c63940a4547d8b78cd9dd4b3b225b3d"><img src="../cont/i18n/i18n-menu.gif?width=18.75rem" alt="I18n menu" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
+<p><a href="#R-image-933681562c1867af733d44ce6dda6926" class="lightbox-link"><img src="../cont/i18n/i18n-menu.gif?width=18.75rem" alt="I18n menu" class="figure-image bg-white border lightbox noshadow" style="height: auto; width: 18.75rem;" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-933681562c1867af733d44ce6dda6926"><img src="../cont/i18n/i18n-menu.gif?width=18.75rem" alt="I18n menu" class="lightbox-image bg-white border lightbox noshadow" loading="lazy"></a></p>
 <h2 id="basic-configuration">Basic configuration</h2>
 <p>After learning <a href="https://gohugo.io/content-management/multilingual" target="_blank">how Hugo handle multilingual websites</a>, define your languages in your <code>config.toml</code> file.</p>
 <p>For example with current English and Piratized English website.</p>
@@ -1469,8 +1702,8 @@ You&rsquo;ll see error reports in your browsers console log for each unsupported
         </div>
       </main>
     </div>
-    <script src="../js/clipboard.min.js?1701207963" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1701207963" defer></script>
-    <script src="../js/theme.js?1701207963" defer></script>
+    <script src="../js/clipboard.min.js?1701211967" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1701211967" defer></script>
+    <script src="../js/theme.js?1701211967" defer></script>
   </body>
 </html>
