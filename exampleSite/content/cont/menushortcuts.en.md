@@ -1,6 +1,6 @@
 +++
 title = "Menu extra shortcuts"
-weight = 5
+weight = 6
 +++
 
 You can define additional menu entries or shortcuts in the navigation menu without any link to content.

@@ -2,6 +2,6 @@
 categories = ["taxonomy", "content"]
 tags = "tutorrrial"
 title = "Taxonomy"
-weight = 7
+weight = 8
 +++
 {{< piratify >}}

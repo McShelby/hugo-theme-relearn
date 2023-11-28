@@ -1,6 +1,6 @@
 +++
 title = "Image Effects"
-weight = 4
+weight = 5
 +++
 
 The theme supports non-standard [image effects](cont/markdown#image-effects).

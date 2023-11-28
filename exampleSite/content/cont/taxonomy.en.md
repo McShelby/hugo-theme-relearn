@@ -2,7 +2,7 @@
 categories = ["taxonomy", "content"]
 tags = "tutorial"
 title = "Taxonomy"
-weight = 7
+weight = 8
 +++
 
 The Relearn theme supports Hugo's default taxonomies _tag_ and _category_ out of the box.
