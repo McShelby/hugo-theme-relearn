@@ -7,7 +7,7 @@
 	{{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
 	{{- if and (or (eq $outputFormat "html") (eq $outputFormat "searchpage")) $showPrevNext }}
 		{{- $startarrow := "🡐" }}
-		{{- if eq (T "Reading-direction" | default "ltr") "rtl" }}
+		{{- if eq (.Language.LanguageDirection | default (T "Reading-direction") | default "ltr") "rtl" }}
 			{{- $startarrow = "🡒" }}
 		{{- end }}
 		{{- $prev := "" }}
