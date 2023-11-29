@@ -45,9 +45,9 @@
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- $iconposition := .iconposition | default "left" }}
-{{- with $page }}
+{{- with $page -}}
 <span class="btn cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-  {{- if $isButton }}
+  {{- if $isButton -}}
   <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
   {{- else -}}
   <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }}>
@@ -61,6 +61,6 @@
   </button>
   {{- else -}}
   </a>
-  {{- end }}
+  {{- end -}}
 </span>
 {{- end }}
