@@ -6,11 +6,11 @@ weight = 24
 
 The Relearn theme provides configuration options to change your your site's colors, favicon and logo. This allows you to easily align your site visuals to your desired style. Most of these options are exposed thru so called color variants.
 
-A color variant lets you customize various visual effects of your site like almost any color, used fonts, color schemes of print, syntax highligtning, Mermaid and the OpenAPI shortcode, etc. It contains of a CSS file and optional configuration options in your `config.toml`.
+A color variant lets you customize various visual effects of your site like almost any color, used fonts, color schemes of print, syntax highligtning, Mermaid and the OpenAPI shortcode, etc. It contains of a CSS file and optional configuration options in your `hugo.toml`.
 
 The Relearn theme ships with a wide set of different color variants. You can use them as-is, copy them over and use them as a starting point for your customizations or just create completely new variants unique to your site. The [interactive variant generator](basics/generator) may help you with this task.
 
-Once configured in your `config.toml`, you can select them with the variant selector at the bottom of the menu.
+Once configured in your `hugo.toml`, you can select them with the variant selector at the bottom of the menu.
 
 ## Change the Variant (Simple) {#theme-variant}
 
@@ -18,7 +18,7 @@ Once configured in your `config.toml`, you can select them with the variant sele
 
 Set the `themeVariant` value to the name of your theme file. That's it! Your site will be displayed in this variant only.
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   themeVariant = "relearn-light"
 ````
@@ -34,7 +34,7 @@ If you want to make changes to a shipped color variant, create a copy in your si
 
 You can also set multiple variants. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   themeVariant = [ "relearn-light", "relearn-dark" ]
 ````
@@ -51,7 +51,7 @@ You can also cause the site to adjust to your OS settings for light/dark mode. J
 
 You can use the `auto` value with the single or multiple variants option. If you are using multiple variants, you can drop `auto` at any position in the option's array, but usually it makes sense to set it in the first position and make it the default.
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   themeVariant = [ "auto", "red" ]
 ````
@@ -62,7 +62,7 @@ In the above example, you would end with `red` for light mode and the default of
 
 If you don't like that behavior, you can explicitly set `themeVariantAuto`. The first entry in the array is the color variant for light mode, the second for dark mode.
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   themeVariantAuto = [ "learn", "neon" ]
 ````
@@ -95,7 +95,7 @@ If you want to switch the syntax highlighting theme together with your color var
 
 You can use a one of the shipped stylesheet files or use Hugo to generate a file for you. The file must be written to `static/css/chroma-<NAME>.css`. To use it with your color variant you have to define `--CODE-theme: <NAME>` in the color variant stylesheet file.
 
-For an example, take a look into [`theme-relearn-light.css`](https://github.com/McShelby/hugo-theme-relearn/blob/main/static/css/theme-relearn-light.css) and [`config.toml`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/config/_default/config.toml) of the exampleSite.
+For an example, take a look into [`theme-relearn-light.css`](https://github.com/McShelby/hugo-theme-relearn/blob/main/static/css/theme-relearn-light.css) and [`hugo.toml`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/config/_default/hugo.toml) of the exampleSite.
 
 ## Change the Variant (Advanced) {#theme-variant-advanced}
 
@@ -105,14 +105,14 @@ Like with the [multiple variants](#multiple-variants) option, you are defining y
 
 Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   themeVariant = [ "relearn-light", "relearn-dark" ]
 ````
 
 you now write it that way:
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   [[params.themeVariant]]
     identifier = "relearn-light"
@@ -132,7 +132,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 
 ### Example Configuration of This Site
 
-````toml {title="config.toml"}
+````toml {title="hugo.toml"}
 [params]
   [[params.themeVariant]]
     identifier = "relearn-auto"
@@ -160,11 +160,11 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
 1. Copy and change
 
-    You can copy the shipped variant file from the theme's `static/css` directory to the site's `static/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `config.toml` by the choosen name.
+    You can copy the shipped variant file from the theme's `static/css` directory to the site's `static/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `hugo.toml` by the choosen name.
 
 2. Create and import
 
-    You can create a new variant file in the site's `static/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `config.toml` by the choosen name.
+    You can create a new variant file in the site's `static/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `hugo.toml` by the choosen name.
 
     For example, you want to use the `relearn-light` variant but want to change the syntax highlightning schema to the one used in the `neon` variant. For that, create a new `static/css/theme-my-branding.css` in your site's directory and add the following lines:
 
@@ -178,9 +178,9 @@ In case you like a shipped variant but only want to tweak some aspects, you have
     }
     ````
 
-    Afterwards put this in your `config.toml` to use your new variant:
+    Afterwards put this in your `hugo.toml` to use your new variant:
 
-    ````toml {title="config.toml"}
+    ````toml {title="hugo.toml"}
     [params]
       themeVariant = "my-branding"
     ````

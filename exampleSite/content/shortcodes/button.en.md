@@ -202,7 +202,7 @@ If your JavaScript action does not change the focus afterwards, make sure to cal
 
 #### Button within a `form` Element
 
-To use native HTML elements in your Markdown, add this in your `config.toml`
+To use native HTML elements in your Markdown, add this in your `hugo.toml`
 
 ````toml
 [markup.goldmark.renderer]

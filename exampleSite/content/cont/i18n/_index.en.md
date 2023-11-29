@@ -14,7 +14,7 @@ The Relearn theme is fully compatible with Hugo multilingual mode.
 
 ## Basic configuration
 
-After learning [how Hugo handle multilingual websites](https://gohugo.io/content-management/multilingual), define your languages in your `config.toml` file.
+After learning [how Hugo handle multilingual websites](https://gohugo.io/content-management/multilingual), define your languages in your `hugo.toml` file.
 
 For example with current English and Piratized English website.
 
@@ -72,7 +72,7 @@ You'll see error reports in your browsers console log for each unsupported langu
 
 ### Search with mixed language support
 
-In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your english API), you can add those languages to your `config.toml` to broaden search.
+In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your english API), you can add those languages to your `hugo.toml` to broaden search.
 
 ```toml
 [params]
@@ -95,7 +95,7 @@ To override these values, create a new file in your local i18n folder `i18n/<idl
 
 Switching the language in the browser is a great feature, but for some reasons you may want to disable it.
 
-Just set `disableLanguageSwitchingButton=true` in your `config.toml`
+Just set `disableLanguageSwitchingButton=true` in your `hugo.toml`
 
 ```toml
 [params]

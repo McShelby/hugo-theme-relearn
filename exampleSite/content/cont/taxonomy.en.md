@@ -29,7 +29,7 @@ Each item is a link to a taxonomy page displaying all the articles with the give
 
 ## List all the tags
 
-In the `config.toml`  file you can add a shortcut to display all the tags and categories
+In the `hugo.toml`  file you can add a shortcut to display all the tags and categories
 
 ```toml
 [[menu.shortcuts]]

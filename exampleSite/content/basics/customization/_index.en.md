@@ -5,7 +5,7 @@ weight = 25
 
 ## Serving your page from a subfolder
 
-If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `config.toml`
+If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `hugo.toml`
 
 ````toml
 baseURL = "https://example.com/mysite/"
@@ -17,13 +17,13 @@ Without `canonifyURLs=true` URLs in sublemental pages (like `sitemap.xml`, `rss.
 
 ## Serving your page from the filesystem
 
-If you want your page served from the filesystem by using URLs starting with `file://` you'll need the following configuration in your `config.toml`:
+If you want your page served from the filesystem by using URLs starting with `file://` you'll need the following configuration in your `hugo.toml`:
 
 ````toml
 relativeURLs = true
 ````
 
-The theme will append an additional `index.html` to all page bundle links by default to make the page be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can also generate the links without this change by adding this to your `config.toml`
+The theme will append an additional `index.html` to all page bundle links by default to make the page be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can also generate the links without this change by adding this to your `hugo.toml`
 
 ````toml
 [params]
@@ -36,7 +36,7 @@ If you want to use the search feature from the file system using an older instal
 
 ## Activate search
 
-If not already present, add the following lines in your `config.toml` file.
+If not already present, add the following lines in your `hugo.toml` file.
 
 ```toml
 [outputs]
@@ -47,7 +47,7 @@ This will generate a search index file at the root of your public folder ready t
 
 ### Activate dedicated search page
 
-You can add a dedicated search page for your page by adding the `SEARCHPAGE` outputformat to your home page by adding the following lines in your `config.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
+You can add a dedicated search page for your page by adding the `SEARCHPAGE` outputformat to your home page by adding the following lines in your `hugo.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
 
 ```toml
 [outputs]
@@ -59,14 +59,14 @@ You can access this page by either clicking on the magnifier glass or by typing 
 ![Screenshot of the dedicated search page](search_page.png?&width=60pc)
 
 {{% notice note %}}
-To have Hugo create the dedicated search page successfully, you must not generate the URL `http://example.com/mysite/search.html` from your own content. This can happen if you set `uglyURLs=true` in your `config.toml` and defining a Markdown file `content/search.md`.
+To have Hugo create the dedicated search page successfully, you must not generate the URL `http://example.com/mysite/search.html` from your own content. This can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.
 
 To make sure, there is no duplicate content for any given URL of your project, run `hugo --printPathWarnings`.
 {{% /notice %}}
 
 ## Activate print support
 
-You can activate print support to add the capability to print whole chapters or even the complete site. Just add the `PRINT` output format to your home, section and page in your `config.toml` as seen below:
+You can activate print support to add the capability to print whole chapters or even the complete site. Just add the `PRINT` output format to your home, section and page in your `hugo.toml` as seen below:
 
 ```toml
 [outputs]
@@ -78,9 +78,9 @@ You can activate print support to add the capability to print whole chapters or 
 This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
 
 {{% notice note %}}
-The resulting URL will not be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) in terms of [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls) even if you've set `uglyURLs=true` in your `config.toml`. This is due to the fact that for one mime type only one suffix can be configured.
+The resulting URL will not be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) in terms of [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls) even if you've set `uglyURLs=true` in your `hugo.toml`. This is due to the fact that for one mime type only one suffix can be configured.
 
-Nevertheless, if you're unhappy with the resulting URLs you can manually redefine `outputFormats.PRINT` in your own `config.toml` to your liking.
+Nevertheless, if you're unhappy with the resulting URLs you can manually redefine `outputFormats.PRINT` in your own `hugo.toml` to your liking.
 {{% /notice %}}
 
 ## Home Button Configuration
@@ -150,7 +150,7 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
    {{- .Store.Set "hasMyShortcode" true }}
     ````
 
-1. Add the following snippet to your `config.toml`
+1. Add the following snippet to your `hugo.toml`
 
     ````go
     [params.relearn.dependencies]
@@ -159,7 +159,7 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
         location = "footer"
     ````
 
-1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `config.toml`.
+1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `hugo.toml`.
 
     ````html
     <script src="https://www.unpkg.com/jquery/dist/jquery.js"></script>
@@ -167,14 +167,14 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
 
 Character casing is relevant!
 
-- the `name` setting in your `config.toml` must match the key (that needs to be prefixed with a `has`) you used for the store in your `layouts/shortcodes/myshortcode.html`.
-- the key on `params.relearn.dependencies` in your `config.toml` must match the base file name of your loader file.
+- the `name` setting in your `hugo.toml` must match the key (that needs to be prefixed with a `has`) you used for the store in your `layouts/shortcodes/myshortcode.html`.
+- the key on `params.relearn.dependencies` in your `hugo.toml` must match the base file name of your loader file.
 
 See the `math`, `mermaid` and `openapi` shortcodes for examples.
 
 ## Output Formats
 
-Certain parts of the theme can be changed for support of your own [output formats](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `config.toml`, you can add a file `layouts/partials/header.plaintext.html` to change the way, the page header should look like for that output format.
+Certain parts of the theme can be changed for support of your own [output formats](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `hugo.toml`, you can add a file `layouts/partials/header.plaintext.html` to change the way, the page header should look like for that output format.
 
 ## React to Variant Switches in JavaScript
 

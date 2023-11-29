@@ -24,7 +24,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `config.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `hugo.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
   The advanced functionality allows you to set an explicit name for a theme variant, set different colors (if you are using monochrome SVGs) or even different icons (handy if you want to adjust colors for PNGs, GIFs or JPGs) and now allows for multiple auto mode variants that adjust to the light/dark preference of your OS settings.
 
@@ -32,7 +32,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.23.0 (2023-11-03) {#5230}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `config.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `hugo.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
 
   Change your previous setting from
 
@@ -48,7 +48,7 @@ This document shows you what's new in the latest release and flags it with one o
       author.name = "Hugo"
     ````
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `config.toml` by adding `disableTermBreadcrumbs=true`.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `hugo.toml` by adding `disableTermBreadcrumbs=true`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Taxonomy and term pages are now allowed to contain content. This is added inbetween the title and the page list.
 
@@ -99,11 +99,11 @@ This document shows you what's new in the latest release and flags it with one o
 
   In this case it is advised to remove the `title` from the headless branch parent's frontmatter, as it will otherwise appear in your breadcrumbs.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your `config.toml` inside of a page's frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your `hugo.toml` inside of a page's frontmatter.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If a Mermaid graph is zoomable a button to reset the view is now added to the upper right corner. The button is only shown once the mouse is moved over the graph.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to remove the root breadcrumb by setting `disableRootBreadcrumb=true` in your `config.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to remove the root breadcrumb by setting `disableRootBreadcrumb=true` in your `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The output of the dedicated search page now displays the result's breadcrumb.
 
@@ -146,7 +146,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   For existing variants nothing has changed visually.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `config.toml` or for each page thru frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `hugo.toml` or for each page thru frontmatter.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 
@@ -186,7 +186,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   The copy-to-clipboard button for code blocks will now only be displayed if the reader hovers the code block.
 
-  If you dislike this new behavior you can turn it off and revert to the old behavior by adding `[params] disableHoverBlockCopyToClipBoard=true` to your `config.toml`.
+  If you dislike this new behavior you can turn it off and revert to the old behavior by adding `[params] disableHoverBlockCopyToClipBoard=true` to your `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
@@ -240,7 +240,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The taxonomy pages received some love in this release, making them better leverage available screen space and adding translation support for the taxonomy names.
 
-  Hugo's default taxonmies `tags` and `categories` are already contained in the theme's i18n files. If you have self-defined taxonomies, you can add translations by adding them to your own i18n files. If you don't provide translations, the singualar and plural forms are taken as configured in your `config.toml`.
+  Hugo's default taxonmies `tags` and `categories` are already contained in the theme's i18n files. If you have self-defined taxonomies, you can add translations by adding them to your own i18n files. If you don't provide translations, the singualar and plural forms are taken as configured in your `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To give you more flexibility in customizing your article layout a new partial `content-header.html` is introduced.
 
@@ -252,7 +252,7 @@ This document shows you what's new in the latest release and flags it with one o
   2. Show tags between title and content: Overwrite `heading-post.html` and add `{{- partial "tags.html" . }}` to it.
   3. Show tags below content: Overwrite `content-footer.html` and add `{{- partial "tags.html" . }}` to it.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new parameter `breadcrumbSeparator` is now available in your `config.toml` to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new parameter `breadcrumbSeparator` is now available in your `hugo.toml` to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.
 
 ---
 
@@ -304,7 +304,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting](basics/branding#adjust-to-os-settings).
 
-  This is also the new default setting if you haven't configured `themeVariant` in your `config.toml`.
+  This is also the new default setting if you haven't configured `themeVariant` in your `hugo.toml`.
 
   Additionally you can configure the variants to be taken for light/dark mode with the new `themeVariantAuto` parameter.
 
@@ -372,7 +372,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Absolute links prefixed with `http://` or `https://` are now opened in a separate browser tab.
 
-  You can revert back to the old behavior by defining `externalLinkTarget="_self"` in the `params` section of your `config.toml`.
+  You can revert back to the old behavior by defining `externalLinkTarget="_self"` in the `params` section of your `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports [Hugo's module system](https://gohugo.io/hugo-modules/).
 
@@ -404,7 +404,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
 
-  To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `config.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+  To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `hugo.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
   You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
 
@@ -416,7 +416,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
 
-  To [configure this](basics/configuration) in your `config.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+  To [configure this](basics/configuration) in your `hugo.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Creation of your project gets a little bit faster with this release.
 
@@ -440,9 +440,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.4.0 (2022-11-01) {#540}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/customization#serving-your-page-from-the-filesystem) in your `config.toml` your page is now servable from the local file system using `file://` URLs.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/customization#serving-your-page-from-the-filesystem) in your `hugo.toml` your page is now servable from the local file system using `file://` URLs.
 
-  Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `config.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
+  Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `hugo.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`button` shortcode](shortcodes/button) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
 
@@ -466,7 +466,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.2.0 (2022-08-03) {#520}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} If you've set `collapsibleMenu = true` in your `config.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} If you've set `collapsibleMenu = true` in your `hugo.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
 
 ---
 
@@ -476,7 +476,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
-  You can revert this behavior by overwriting the PRINT output format setting in your `config.toml`to:
+  You can revert this behavior by overwriting the PRINT output format setting in your `hugo.toml`to:
 
   ````toml
   [outputFormats]
@@ -523,7 +523,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Previously, if the [`tabs` shortcode](shortcodes/tabs) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `landingPageURL` was removed from `config.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically and will point to the project's homepage. If you want to support a different link, overwrite the `logo.html` partial.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The `landingPageURL` was removed from `hugo.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically and will point to the project's homepage. If you want to support a different link, overwrite the `logo.html` partial.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} All shortcodes can now be also called from your partials. Examples for this are added to the documentation of each shortcode.
 
@@ -561,9 +561,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} If you had previously overwritten the `custom-footer.html` partial to add visual elements below the content of your page, you have to move this content to the new partial `content-footer.html`. `custom-footer.html` was never meant to contain HTML other than additional styles and JavaScript.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you prefer expandable/collapsible menu items, you can now set `collapsibleMenu=true` in your `config.toml`. This will add arrows to all menu items that contain sub menus. The menu will expand/collapse without navigation if you click on an arrow.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you prefer expandable/collapsible menu items, you can now set `collapsibleMenu=true` in your `hugo.toml`. This will add arrows to all menu items that contain sub menus. The menu will expand/collapse without navigation if you click on an arrow.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support](basics/customization#activate-print-support) in your `config.toml` to add the capability to print whole chapters or even the complete site.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can activate [print support](basics/customization#activate-print-support) in your `hugo.toml` to add the capability to print whole chapters or even the complete site.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Traditional Chinese.
 
@@ -603,7 +603,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
-  This change will only affect your installation if you've not set the `themeVariant` parameter in your `config.toml`. [If you still want to use the Learn color variant](basics/branding#theme-variant), you have to explicitly set `themeVariant="learn"` in your `config.toml`.
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your `hugo.toml`. [If you still want to use the Learn color variant](basics/branding#theme-variant), you have to explicitly set `themeVariant="learn"` in your `hugo.toml`.
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it can not be reconfigured as Internet Explorer does not support CSS variables.
 
@@ -619,7 +619,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator](basics/generator). This feature will not work with Internet Explorer 11.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can now configure multiple color variants in your `config.toml`. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](basics/branding#multiple-variants) for configuration.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can now configure multiple color variants in your `hugo.toml`. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](basics/branding#multiple-variants) for configuration.
 
   Note, that the new variant selector will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant selector will not be displayed with Internet Explorer 11.
 
@@ -663,7 +663,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](basics/customization#change-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `config.toml`. For an example see [the example configuration](basics/configuration).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `hugo.toml`. For an example see [the example configuration](basics/configuration).
 
 ---
 
@@ -675,7 +675,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.6.0 (2021-10-21) {#260}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `config.toml`. See the [documentation](basics/customization#serving-your-page-from-a-subfolder) for a detailed example.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `hugo.toml`. See the [documentation](basics/customization#serving-your-page-from-a-subfolder) for a detailed example.
 
 ---
 
@@ -689,9 +689,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Creation of customized stylesheets was simplified down to only contain the CSS variables. Everything else can and should be deleted from your custom stylesheet to assure everything works fine. For the predefined stylesheet variants, this change is already included.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `config.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `hugo.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `config.toml`. Please see further [documentation](cont/pages#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `hugo.toml`. Please see further [documentation](cont/pages#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New frontmatter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
 
@@ -709,7 +709,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.2.0 (2021-09-09) {#220}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in the sitemap generated by Hugo and are therefore visible for search engine indexing. You can now turn off this behavior by setting `disableSeoHiddenPages=true` in your `config.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in the sitemap generated by Hugo and are therefore visible for search engine indexing. You can now turn off this behavior by setting `disableSeoHiddenPages=true` in your `hugo.toml`.
 
 ---
 
@@ -719,7 +719,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In case the site's structure contains additional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages=true` in your `config.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages=true` in your `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If a search term is found in an `expand` shortcode, the expand will be opened.
 
@@ -761,7 +761,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} [Mermaid](shortcodes/mermaid) diagrams can now be panned and zoomed. This isn't configurable yet.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`Mermaid`](shortcodes/mermaid#configuration) config options can be set in `config.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [`Mermaid`](shortcodes/mermaid#configuration) config options can be set in `hugo.toml`.
 
 ---
 

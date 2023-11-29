@@ -61,9 +61,9 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 
 ## Configuration
 
-MathJax is configured with default settings. You can customize MathJax's default settings for all of your files thru a JSON object in your `config.toml` or override these settings per page thru your pages frontmatter.
+MathJax is configured with default settings. You can customize MathJax's default settings for all of your files thru a JSON object in your `hugo.toml` or override these settings per page thru your pages frontmatter.
 
-The JSON object of your `config.toml` / frontmatter is forwarded into MathJax's configuration object.
+The JSON object of your `hugo.toml` / frontmatter is forwarded into MathJax's configuration object.
 
 See [MathJax documentation](https://docs.mathjax.org/en/latest/options/index.html) for all allowed settings.
 

@@ -34,7 +34,7 @@ Besides the usual version tags (eg `1.2.3`) there are also tags for the main ver
 
 ## Basic configuration
 
-When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the configuration file (`config.toml`) and set the theme as the default. You can also add the `[outputs]` section to enable the search functionality.
+When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the configuration file (`hugo.toml`) and set the theme as the default. You can also add the `[outputs]` section to enable the search functionality.
 
 ```toml
 # Change the default theme to be use when building the site with Hugo

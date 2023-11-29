@@ -566,7 +566,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `config.toml` or frontmatter parameter.
+This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `hugo.toml` or frontmatter parameter.
 
 #### Resizing
 

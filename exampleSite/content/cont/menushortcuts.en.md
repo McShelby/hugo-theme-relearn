@@ -7,7 +7,7 @@ You can define additional menu entries or shortcuts in the navigation menu witho
 
 ## Basic configuration
 
-Edit the website configuration `config.toml` and add a `[[menu.shortcuts]]` entry for each link your want to add.
+Edit the website configuration `hugo.toml` and add a `[[menu.shortcuts]]` entry for each link your want to add.
 
 Example from the current website:
 
@@ -54,7 +54,7 @@ Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo i18n tran
 
 ## Configuration for Multilingual mode {#i18n}
 
-When using a multilingual website, you can set different menus for each language. In the `config.toml` file, prefix your menu configuration by `Languages.<language-id>`.
+When using a multilingual website, you can set different menus for each language. In the `hugo.toml` file, prefix your menu configuration by `Languages.<language-id>`.
 
 Example from the current website:
 

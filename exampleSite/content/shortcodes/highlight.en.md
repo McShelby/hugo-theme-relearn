@@ -81,16 +81,16 @@ print("Hello World!")
 |-----------------------|--------- | -----------------|-------------|
 | **type**              | 1        | _&lt;empty&gt;_  | The language of the code to highlight. Choose from one of the [supported languages](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages). Case-insensitive. |
 | **title**             |          | _&lt;empty&gt;_  | **Extension**. Arbitrary title for code. This displays the code like a [single tab](shortcodes/tab) if `hl_inline=false` (which is Hugos default). |
-| **wrap**              |          | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `config.toml` and overwritten via frontmatter. [See below](#configuration). |
+| **wrap**              |          | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `hugo.toml` and overwritten via frontmatter. [See below](#configuration). |
 | **options**           | 2        | _&lt;empty&gt;_  | An optional, comma-separated list of zero or more [Hugo supported options](https://gohugo.io/functions/highlight/#options) as well as extension parameter from this table. |
 | _**&lt;option&gt;**_  |          | _&lt;empty&gt;_  | Any of [Hugo's supported options](https://gohugo.io/functions/highlight/#options). |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Your code to highlight. |
 
 ## Configuration
 
-Default values for [Hugo's supported options](https://gohugo.io/functions/highlight/#options) can be set via [goldmark settings](https://gohugo.io/getting-started/configuration-markup/#highlight) in your `config.toml`
+Default values for [Hugo's supported options](https://gohugo.io/functions/highlight/#options) can be set via [goldmark settings](https://gohugo.io/getting-started/configuration-markup/#highlight) in your `hugo.toml`
 
-Default values for extension options can be set via params settings in your `config.toml` or be overwritten by frontmatter for each individual page.
+Default values for extension options can be set via params settings in your `hugo.toml` or be overwritten by frontmatter for each individual page.
 
 ### Global Configuration File
 
@@ -137,7 +137,7 @@ highlightWrap = true
 
 ### Line Numbers with Starting Offset
 
-As mentioned above, line numbers in a `table` layout will shift if code is wrapping, so better use `inline`. To make things easier for you, set `lineNumbersInTable = false` in your `config.toml` and add `lineNos = true` when calling the shortcode instead of the specific values `table` or `inline`.
+As mentioned above, line numbers in a `table` layout will shift if code is wrapping, so better use `inline`. To make things easier for you, set `lineNumbersInTable = false` in your `hugo.toml` and add `lineNos = true` when calling the shortcode instead of the specific values `table` or `inline`.
 
 ````go
 {{</* highlight lineNos="true" lineNoStart="666" type="py" */>}}

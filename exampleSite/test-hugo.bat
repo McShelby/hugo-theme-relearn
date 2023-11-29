@@ -19,9 +19,9 @@ set config=--environment testing
 if exist "config\testing" (
     rem Seems we are in the themes exampleSite, no need to copy anything
 ) else if exist "config.toml" (
-    set config=--config config.toml,..\hugo-theme-relearn\exampleSite\config\testing\config.toml
+    set config=--config config.toml,..\hugo-theme-relearn\exampleSite\config\testing\hugo.toml
 ) else if exist "hugo.toml" (
-    set config=--config hugo.toml,..\hugo-theme-relearn\exampleSite\config\testing\config.toml
+    set config=--config hugo.toml,..\hugo-theme-relearn\exampleSite\config\testing\hugo.toml
 ) else if exist "config" (
     copy /e /i /y "..\hugo-theme-relearn\exampleSite\config\testing" "config\testing"
 ) else if exist "hugo" (

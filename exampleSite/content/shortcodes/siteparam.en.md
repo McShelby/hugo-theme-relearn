@@ -44,7 +44,7 @@ While the examples are using shortcodes with named parameter you are free to use
 
 ## Examples
 
-### `editURL` from `config.toml`
+### `editURL` from `hugo.toml`
 
 ```go
 `editURL` value: {{%/* siteparam name="editURL" */%}}
@@ -54,14 +54,14 @@ While the examples are using shortcodes with named parameter you are free to use
 
 ### Nested parameter with Markdown and HTML formatting
 
-To use formatted parameter, add this in your `config.toml`:
+To use formatted parameter, add this in your `hugo.toml`:
 
 ````toml
 [markup.goldmark.renderer]
     unsafe = true
 ````
 
-{{% tab title="config.toml" %}}
+{{% tab title="hugo.toml" %}}
 ````toml
 [params]
     [params.siteparam.test]

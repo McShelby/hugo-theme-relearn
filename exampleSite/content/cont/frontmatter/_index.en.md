@@ -18,7 +18,7 @@ Each Hugo page has to define a [frontmatter](https://gohugo.io/content/front-mat
 # Default: not set
 # This is used for generating social media meta information for the opengraph
 # protocol and twitter cards.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 images = [ "images/hero.png" ]
 
 # The title of your page.
@@ -30,7 +30,7 @@ title = "Example Page"
 # Default: not set
 # This is used for generating HTML meta tags, social media meta information
 # for the opengraph protocol and twitter cards.
-# If not set, the set value of your site's config.toml is used for the html
+# If not set, the set value of your site's hugo.toml is used for the html
 # meta tag, social media meta information for the opengraph protocol and
 # twitter cards.
 description = ""
@@ -46,7 +46,7 @@ description = ""
 # Hide the table of contents button.
 # Default: false
 # If the TOC button is hidden, also the keyboard shortcut is disabled.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 disableToc = false
 
 # Hide the breadcrumbs.
@@ -152,7 +152,7 @@ LastModifierEmail = ""
 # displayed on screen. If you dislike this behavior, you can reconfigure it
 # here.
 # Note that lines always wrap in print mode regardless of this option.
-# If not set, the set value of your site's config.toml is used or given as a
+# If not set, the set value of your site's hugo.toml is used or given as a
 # parameter to individual code blocks.
 highlightWrap = true
 
@@ -163,7 +163,7 @@ highlightWrap = true
 # Image effects.
 # See the documentation for how you can even add your own arbitrary effects to
 # the list.
-# All effect values default to the values of your site's config.toml and can be
+# All effect values default to the values of your site's hugo.toml and can be
 # overridden thru URL parameter given to the image. See the documentation for
 # details.
 
@@ -181,7 +181,7 @@ imageEffects.shadow = false
 # Initialization options for MathJax.
 # Default: not set
 # A JSON value. See the MathJaxdocumentation for possible parameter.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 mathJaxInitialize = "{}"
 
 # Only load MathJax if needed.
@@ -192,14 +192,14 @@ mathJaxInitialize = "{}"
 # codefence is involved and the library is not loaded by default. In this case
 # you can set `disableMathJax=false` in your frontmatter to force the library to
 # be loaded.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 disableMathJax = true
 
 # URL for external MathJax library.
 # Default: not set
 # Specifies the remote location of the MathJax library. By default the shipped
 # version will be used.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 customMathJaxURL = "" # "https://unpkg.com/mathjax/es5/tex-mml-chtml.js"
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -210,14 +210,14 @@ customMathJaxURL = "" # "https://unpkg.com/mathjax/es5/tex-mml-chtml.js"
 # Default: false
 # For huge graphs it can be helpful to make them zoomable. Zoomable graphs come
 # with a reset button for the zoom.
-# If not set, the set value of your site's config.toml is used or given as a
+# If not set, the set value of your site's hugo.toml is used or given as a
 # parameter to individual graphs.
 mermaidZoom = true
 
 # Initialization options for Mermaid.
 # Default: not set
 # A JSON value. See the Mermaid documentation for possible parameter.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
 
 # Only load Mermaid if needed.
@@ -228,14 +228,14 @@ mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
 # codefence is involved and the library is not loaded by default. In this case
 # you can set `disableMermaid=false` in your frontmatter to force the library to
 # be loaded.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 disableMermaid = true
 
 # URL for external Mermaid library.
 # Default: not set
 # Specifies the remote location of the Mermaid library. By default the shipped
 # version will be used.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 customMermaidURL = "" # "https://unpkg.com/mermaid/dist/mermaid.min.js"
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -250,14 +250,14 @@ customMermaidURL = "" # "https://unpkg.com/mermaid/dist/mermaid.min.js"
 # codefence is involved and the library is not loaded by default. In this case
 # you can set `disableOpenapi=false` in your frontmatter to force the library to
 # be loaded.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 disableOpenapi = true
 
 # URL for external OpenAPI library.
 # Default: not set
 # Specifies the remote location of the OpenAPI library. By default the shipped
 # version will be used.
-# If not set, the set value of your site's config.toml is used.
+# If not set, the set value of your site's hugo.toml is used.
 customOpenapiURL = "" # "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
 +++
 ````
@@ -331,7 +331,7 @@ For this, open `content/level-one/_index.md` and add the following frontmatter
 
 ````toml
 +++
-collapsibleMenu = true # this adds the expander to the menu entry if not already set in your config.toml
+collapsibleMenu = true # this adds the expander to the menu entry if not already set in your hugo.toml
 [_build]
   render = "never" # no page will be generated so the page does not have a url
 +++

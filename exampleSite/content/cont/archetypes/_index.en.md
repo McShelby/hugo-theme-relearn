@@ -128,4 +128,4 @@ Take a look at the existing archetypes of this theme to get an idea how to utili
 
 #### Output formats
 
-Each hook file can be overridden of a specific [output format](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `config.toml`, you can add a file `layouts/partials/archetypes/default.plaintext.html` to change the way how normal content is written for that output format.
+Each hook file can be overridden of a specific [output format](https://gohugo.io/templates/output-formats/). Eg. if you define a new output format `PLAINTEXT` in your `hugo.toml`, you can add a file `layouts/partials/archetypes/default.plaintext.html` to change the way how normal content is written for that output format.
