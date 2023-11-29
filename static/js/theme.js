@@ -599,38 +599,6 @@ function initCodeClipboard(){
             code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code;
 
         if( !isFirstLineCell && ( inPre || text.length > 5 ) ){
-            var clip = new ClipboardJS( '.copy-to-clipboard-button', {
-                text: function( trigger ){
-                    if( !trigger.previousElementSibling ){
-                        return '';
-                    }
-                    return trigger.previousElementSibling.dataset.code || '';
-                }
-            });
-
-            clip.on( 'success', function( e ){
-                e.clearSelection();
-                var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
-                var isCodeRtl = !inPre ? isRtl : false;
-                var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
-                e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
-            });
-
-            clip.on( 'error', function( e ){
-                var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
-                var isCodeRtl = !inPre ? isRtl : false;
-                var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
-                e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
-                e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
-                var f = function(){
-                    e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
-                    e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
-                    document.removeEventListener( 'copy', f );
-                };
-                document.addEventListener( 'copy', f );
-            });
-
             code.classList.add( 'copy-to-clipboard-code' );
             if( inPre ){
                 code.classList.add( 'copy-to-clipboard' );
@@ -681,6 +649,38 @@ function initCodeClipboard(){
             }
         }
     }
+
+    var clip = new ClipboardJS( '.copy-to-clipboard-button', {
+        text: function( trigger ){
+            if( !trigger.previousElementSibling ){
+                return '';
+            }
+            return trigger.previousElementSibling.dataset.code || '';
+        }
+    });
+
+    clip.on( 'success', function( e ){
+        e.clearSelection();
+        var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
+        var isCodeRtl = !inPre ? isRtl : false;
+        var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
+        e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
+        e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
+    });
+
+    clip.on( 'error', function( e ){
+        var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
+        var isCodeRtl = !inPre ? isRtl : false;
+        var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table' );
+        e.trigger.setAttribute( 'aria-label', fallbackMessage(e.action) );
+        e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
+        var f = function(){
+            e.trigger.setAttribute( 'aria-label', window.T_Copied_to_clipboard );
+            e.trigger.classList.add( 'tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's'+(isCodeRtl?'e':'w')) );
+            document.removeEventListener( 'copy', f );
+        };
+        document.addEventListener( 'copy', f );
+    });
 }
 
 function initChroma( update ){
