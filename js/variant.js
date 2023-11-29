@@ -585,9 +585,9 @@ var variants = {
 		{ name: 'CODE-INLINE-BORDER-color',              group: 'inline code',    default: '#fbf0cb',                     tooltip: 'border color of inline code', },
 
 		{ name: 'BROWSER-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the theme for browser scrollbars of the main section', },
-		{ name: 'MERMAID-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Mermaid theme for this variant, can be overridden in config.toml', },
-		{ name: 'OPENAPI-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the default OpenAPI theme for this variant, can be overridden in config.toml', },
-		{ name: 'OPENAPI-CODE-theme',                    group: '3rd party',      default: 'obsidian',                    tooltip: 'name of the default OpenAPI code theme for this variant, can be overridden in config.toml', },
+		{ name: 'MERMAID-theme',                         group: '3rd party',      default: 'default',                     tooltip: 'name of the default Mermaid theme for this variant, can be overridden in hugo.toml', },
+		{ name: 'OPENAPI-theme',                         group: '3rd party',      default: 'light',                       tooltip: 'name of the default OpenAPI theme for this variant, can be overridden in hugo.toml', },
+		{ name: 'OPENAPI-CODE-theme',                    group: '3rd party',      default: 'obsidian',                    tooltip: 'name of the default OpenAPI code theme for this variant, can be overridden in hugo.toml', },
 
 		{ name: 'MENU-BORDER-color',                     group: 'header',         default: 'transparent',                 tooltip: 'border color between menu and content', },
 		{ name: 'MENU-TOPBAR-BORDER-color',              group: 'header',        fallback: 'MENU-HEADER-BG-color',        tooltip: 'border color of vertical line between menu and topbar', },
