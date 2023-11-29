@@ -27,7 +27,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Configurable brand images](basics/branding#change-the-logo)
   - [Automatic switch for light/dark variant dependend on your OS settings](basics/branding#adjust-to-os-settings)
   - Predefined light, dark and color variants
-  - [User selectable variants](basics/customization#multiple-variants)
+  - [User selectable variants](basics/branding#multiple-variants)
   - [Stylesheet generator](basics/generator/)
   - [Configurable syntax highlighting](shortcodes/highlight)
 - **Unique theme features**
