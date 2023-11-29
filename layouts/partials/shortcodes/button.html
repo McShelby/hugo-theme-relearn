@@ -13,17 +13,22 @@
 {{- $target := .target | default "" }}
 {{- $type := .type | default "" }}
 {{- $isButton := false }}
-{{- if or (not $href) (strings.HasPrefix $href "javascript:") }}
+{{- $isLink := false }}
+{{- if or $type (strings.HasPrefix $href "javascript:") }}
   {{- $isButton = true }}
   {{- $href = substr $href (len "javascript:") }}
   {{- if not $type }}
     {{- $type = "button" }}
   {{- end }}
+{{- else if not $href }}
 {{- else if and (eq (len $target) 0) (or (strings.HasPrefix $href "http://") (strings.HasPrefix $href "https://") ) }}
+  {{- $isLink = true }}
   {{- $target = "_blank" }}
   {{- if isset $page.Site.Params "externallinktarget" }}
     {{- $target = $page.Site.Params.externalLinkTarget }}
   {{- end }}
+{{- else }}
+  {{- $isLink = true }}
 {{- end }}
 {{- $title := .title | default ($content) }}
 {{- if not $title }}
@@ -46,11 +51,13 @@
 {{- end }}
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $page -}}
-<span class="btn cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
+<span class="btn cstyle {{ if or $isButton $isLink }}interactive {{ end }}{{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   {{- if $isButton -}}
-  <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
+  <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
+  {{- else if $isLink -}}
+  <a href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>
   {{- else -}}
-  <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }}>
+  <span>
   {{- end }}
   {{- if and $icon (eq $iconposition "left") }}<i class="{{ $icon }}"></i>{{ end }}
   {{- if and $icon (eq $iconposition "left") $title }} {{ end }}
@@ -59,8 +66,10 @@
   {{- if and $icon (eq $iconposition "right") }}<i class="{{ $icon }}"></i>{{ end }}
   {{- if $isButton -}}
   </button>
-  {{- else -}}
+  {{- else if $isLink -}}
   </a>
+  {{- else -}}
+  </span>
   {{- end -}}
 </span>
 {{- end }}
