@@ -24,8 +24,8 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - Support for Internet Explorer 11
   - [Support for Open Graph and Twitter Cards](basics/customization#social-media-meta-tags)
 - **Configurable theming and visuals**
-  - [Configurable brand images](basics/customization#change-the-logo)
-  - [Automatic switch for light/dark variant dependend on your OS settings](basics/customization#adjusting-to-os-settings)
+  - [Configurable brand images](basics/branding#change-the-logo)
+  - [Automatic switch for light/dark variant dependend on your OS settings](basics/branding#adjust-to-os-settings)
   - Predefined light, dark and color variants
   - [User selectable variants](basics/customization#multiple-variants)
   - [Stylesheet generator](basics/generator/)

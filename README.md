@@ -21,10 +21,10 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - Support for Internet Explorer 11
   - [Support for Open Graph and Twitter Cards](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#social-media-meta-tags)
 - **Configurable theming and visuals**
-  - [Configurable brand images](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#change-the-logo)
-  - [Automatic switch for light/dark variant dependend on your OS settings](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#adjusting-to-os-settings)
+  - [Configurable brand images](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#change-the-logo)
+  - [Automatic switch for light/dark variant dependend on your OS settings](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#adjust-to-os-settings)
   - Predefined light, dark and color variants
-  - [User selectable variants](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#multiple-variants)
+  - [User selectable variants](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#multiple-variants)
   - [Stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/basics/generator)
   - [Configurable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/highlight)
 - **Unique theme features**
