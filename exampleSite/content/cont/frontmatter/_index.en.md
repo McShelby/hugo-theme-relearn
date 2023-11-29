@@ -102,6 +102,7 @@ alwaysopen = ""
 # Default: false
 # If set to true, a submenu in the sidebar will be displayed in a collapsible
 # tree view and a clickable expander is set in front of the entry.
+# If not set, the set value of your site's hugo.toml is used.
 collapsibleMenu = true
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
