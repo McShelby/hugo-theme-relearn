@@ -49,19 +49,17 @@
 <span class="btn cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   {{- if $isButton }}
   <button{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
-  {{- else }}
+  {{- else -}}
   <a{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }}>
   {{- end }}
-  {{- if and $icon (eq $iconposition "left") }}
-    <i class="{{ $icon }}"></i>
-  {{- end }}
-    {{ $title | safeHTML }}
-  {{- if and $icon (eq $iconposition "right") }}
-    <i class="{{ $icon }}"></i>
-    {{- end }}
-  {{- if $isButton }}
+  {{- if and $icon (eq $iconposition "left") }}<i class="{{ $icon }}"></i>{{ end }}
+  {{- if and $icon (eq $iconposition "left") $title }} {{ end }}
+  {{- $title | safeHTML }}
+  {{- if and $icon (eq $iconposition "right") $title }} {{ end }}
+  {{- if and $icon (eq $iconposition "right") }}<i class="{{ $icon }}"></i>{{ end }}
+  {{- if $isButton -}}
   </button>
-  {{- else }}
+  {{- else -}}
   </a>
   {{- end }}
 </span>
