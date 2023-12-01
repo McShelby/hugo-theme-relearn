@@ -14,7 +14,7 @@
 		{{- if eq .Page.Kind "taxonomy" }}
 			{{- /* go to first term page */}}
 			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" . . }}
-			{{- $next = (index $pages 0).Page.Page }}
+			{{- $next = (index $pages 0).Page }}
 		{{- else if eq .Page.Kind "term" }}
 			{{- /* go to next term page */}}
 			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
