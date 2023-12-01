@@ -9,23 +9,8 @@
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
 {{- $lastCapital := "" }}
-{{- $pages := slice }}
-{{- range .Data.Terms }}
-  {{- $len := 0 }}
-  {{- range .Pages }}
-    {{- $c:=""}}{{/* count pages of term */}}
-    {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-      {{- $len = add $len 1 }}
-    {{- end }}
-  {{- end }}
-  {{- if $len }}
-    {{- $pages = $pages| append (dict "Title" (default (humanize .Page.Data.Term | strings.Title) .Page.Title) "Page" . "Len" $len )}}
-  {{- end }}
-  {{- if not .Page.Title }}
-    {{- warnf "%q: You have not given a 'title' in the frontmatter of your term page, the humanized term will be used instead" .Page.File.Filename }}
-  {{- end }}
-{{- end }}
-{{- range sort $pages ".Title" }}
+{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" . . }}
+{{- range $pages }}
   {{- $capital := substr .Title 0 1 | upper }}
   {{- if ne $lastCapital $capital }}
     {{- if ne $lastCapital "" }}

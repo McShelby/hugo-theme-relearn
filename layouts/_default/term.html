@@ -11,13 +11,8 @@
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
 {{- $lastCapital := "" }}
-{{- $pages := slice }}
-{{- range .Pages }}
-  {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-    {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
-  {{- end }}
-{{- end }}
-{{- range sort $pages ".Title" }}
+{{- $pages := partialCached "partials/pageHelper/termPages.html" . . }}
+{{- range $pages }}
   {{- $capital := substr .Title 0 1 | upper }}
   {{- if ne $lastCapital $capital }}
     {{- if ne $lastCapital "" }}

@@ -2,27 +2,12 @@
   {{- $lastCapital := "" }}
   {{- $pages := slice }}
   {{- if eq .Kind "taxonomy" }}
-    {{- range .Data.Terms }}
-      {{- $len := 0 }}
-      {{- range .Pages }}
-        {{- $c:=""}}{{/* count pages of term */}}
-        {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-          {{- $len = add $len 1 }}
-        {{- end }}
-      {{- end }}
-      {{- if $len }}
-        {{- $pages = $pages| append (dict "Title" (default (humanize .Page.Data.Term | strings.Title) .Page.Title) "Page" . "Len" $len )}}
-      {{- end }}
-    {{- end }}
+    {{- $pages = partialCached "partials/pageHelper/taxonomyPages.html" . . }}
   {{- else if eq .Kind "term" }}
-    {{- range .Pages }}
-      {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
-        {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
-      {{- end }}
-    {{- end }}
+    {{- $pages = partialCached "partials/pageHelper/termPages.html" . . }}
   {{- end }}
   {{- $toc_pages := "" }}
-  {{- range sort $pages ".Title" }}
+  {{- range $pages }}
     {{- $capital := substr .Title 0 1 | upper }}
     {{- if ne $lastCapital $capital }}
       {{- $toc_pages = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_pages ($capital | plainify | anchorize) $capital }}

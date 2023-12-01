@@ -1,0 +1,15 @@
+{{- $pages := slice }}
+{{- range .Data.Terms }}
+  {{- $len := 0 }}
+  {{- range .Pages }}
+    {{- $c:=""}}{{/* count pages of term */}}
+    {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableTagHiddenPages true) ) }}
+      {{- $len = add $len 1 }}
+    {{- end }}
+  {{- end }}
+  {{- if $len }}
+    {{- $pages = $pages| append (dict "Title" (default (humanize .Page.Data.Term | strings.Title) .Page.Title) "Page" . "Len" $len )}}
+  {{- end }}
+{{- end }}
+{{- $pages = sort $pages ".Title" }}
+{{- return $pages }}
