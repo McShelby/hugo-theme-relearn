@@ -203,6 +203,7 @@ This theme defines the following partials :
 - `custom-header.html`: custom headers in page. Meant to be overwritten when adding CSS imports. Don't forget to include `style` HTML tag directive in your file.
 - `custom-footer.html`:  custom footer in page. Meant to be overwritten when adding JavaScript. Don't forget to include `javascript` HTML tag directive in your file.
 - `favicon.html`: the favicon
+- `heading.html`: side-wide configuration to change the pages title headings.
 - `heading-pre.html`: side-wide configuration to prepend to pages title headings. If you override this, it is your responsibility to take the page's `headingPre` setting into account.
 - `heading-post.html`: side-wide configuration to append to pages title headings. If you override this, it is your responsibility to take the page's `headingPost` setting into account.
 - `logo.html`: the logo, on top left hand corner

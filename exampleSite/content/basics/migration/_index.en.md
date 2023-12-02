@@ -28,6 +28,8 @@ This document shows you what's new in the latest release and flags it with one o
 
   The advanced functionality allows you to set an explicit name for a theme variant, set different colors (if you are using monochrome SVGs) or even different icons (handy if you want to adjust colors for PNGs, GIFs or JPGs) and now allows for multiple auto mode variants that adjust to the light/dark preference of your OS settings.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partial for defining the heading. See [documentation](basics/customization#partials) for further reading.
+
 ---
 
 ## 5.23.0 (2023-11-03) {#5230}
