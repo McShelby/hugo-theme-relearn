@@ -576,7 +576,7 @@ var variants = {
 		{ name: 'MAIN-TITLES-H5-font',                   group: 'headings',      fallback: 'MAIN-TITLES-H4-font',         tooltip: 'text font of h5-h6 titles', },
 		{ name: 'MAIN-TITLES-H6-font',                   group: 'headings',      fallback: 'MAIN-TITLES-H5-font',         tooltip: 'text font of h6 titles', },
 
-		{ name: 'CODE-theme',                            group: 'code',           default: 'relearn-light',               tooltip: 'name of the chroma styleheet file', },
+		{ name: 'CODE-theme',                            group: 'code',           default: 'relearn-light',               tooltip: 'name of the chroma stylesheet file', },
 		{ name: 'CODE-font',                             group: 'code',           default: '"Consolas", menlo, monospace', tooltip: 'text font of code', },
 		{ name: 'CODE-BLOCK-color',                      group: 'code blocks',    default: '#000000',                     tooltip: 'fallback text color of block code; should be adjusted to your selected chroma style', },
 		{ name: 'CODE-BLOCK-BG-color',                   group: 'code blocks',    default: '#f8f8f8',                     tooltip: 'fallback background color of block code; should be adjusted to your selected chroma style', },
