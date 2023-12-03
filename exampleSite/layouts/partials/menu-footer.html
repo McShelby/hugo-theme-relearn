@@ -36,5 +36,8 @@
               // we have to wait until the CSS class .default-animation has settled and and the buttons have loaded to recalculate the scheme again
               setTimeout( githubButtonsInit, 400 );
             });
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+              setTimeout( githubButtonsInit, 400 );
+            });
           </script>
           <script async src="{{"js/github-buttons.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
