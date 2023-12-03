@@ -1478,6 +1478,14 @@ function updateTheme( detail ){
     }));
 }
 
+(function(){
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        initChroma( true );
+        initMermaid( true );
+        initOpenapi( true );
+    });
+})();
+
 function useMermaid( config ){
     if( !Object.assign ){
         // We don't support Mermaid for IE11 anyways, so bail out early
@@ -1664,10 +1672,4 @@ ready( function(){
     setWidthL( mql );
     moveTopbarButtons();
     adjustEmptyTopbarContents();
-})();
-
-(function(){
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        initOpenapi( true );
-    });
 })();
