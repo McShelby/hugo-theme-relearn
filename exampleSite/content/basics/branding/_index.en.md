@@ -172,7 +172,7 @@ In case you like a shipped variant but only want to tweak some aspects, you have
     @import "theme-relearn-light.css";
 
     :root {
-      --CODE-theme: learn; /* name of the chroma styleheet file */
+      --CODE-theme: neon; /* name of the chroma stylesheet file */
       --CODE-BLOCK-color: rgba( 226, 228, 229, 1 ); /* fallback color for code text */
       --CODE-BLOCK-BG-color: rgba( 40, 42, 54, 1 ); /* fallback color for code background */
     }
