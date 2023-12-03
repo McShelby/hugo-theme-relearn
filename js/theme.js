@@ -1665,3 +1665,9 @@ ready( function(){
     moveTopbarButtons();
     adjustEmptyTopbarContents();
 })();
+
+(function(){
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        initOpenapi( true );
+    });
+})();
