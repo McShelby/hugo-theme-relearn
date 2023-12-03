@@ -49,8 +49,9 @@ Non-auto run
 {{- range $tempthemevariant := $tempthemevariants }}
   {{- $themevariant := $tempthemevariant }}
   {{- if not (collections.IsSet $themevariant "auto") }}
-    {{- $chroma := partial "get-theme-chroma.html" (dict "identifier" $themevariant.identifier "mod" $mod)}}
-    {{- $themevariant = collections.Merge $themevariant (dict "chroma" $chroma) }}
+    {{- $themevariant = partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $themevariant.identifier "mod" $mod)}}
+    {{- $cssres := $themevariant.themecontent | resources.FromString (printf "css/theme-%s%s.css" $themevariant.identifier $mod) }}
+    {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -110,7 +111,8 @@ Auto run
 
 {{- return collections.Where $themevariants "config" true }}
 
-{{ define "partials/get-theme-chroma.html" }}
+{{ define "partials/get-theme-details.html" }}
+  {{- $themevariant := .themevariant }}
   {{- $identifier := .identifier }}
   {{- $mod := .mod }}
   {{- $themecontent := "" }}
@@ -135,14 +137,15 @@ Auto run
     {{- else }}
       {{- range findRESubmatch (printf `[ \t]*@import\s+[^$]*?theme-([^.]*?)%s\.css` (replace $mod "." "\\.")) $themecontent }}
         {{- $subidentifier := index . 1 }}
-        {{- $chroma = partial "get-theme-chroma.html" (dict "identifier" $subidentifier "mod" $mod) }}
+        {{- $themevariant = partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $subidentifier "mod" $mod) }}
+        {{- $chroma = $themevariant.chroma }}
       {{- else }}
         {{- $chroma = "relearn-light" }}
       {{- end }}
     {{- end }}
     {{- $themecontent = replaceRE `(:root\s*\{[ \t]*)(\s*)` (printf "${1}${2}--CODE-theme: %s;${2}" $chroma) $themecontent }}
   {{- end }}
-  {{- $cssres := $themecontent | resources.FromString (printf "css/theme-%s%s.css" $identifier $mod) }}
-  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
-  {{- return $chroma }}
+  {{- $themevariant = collections.Merge $themevariant (dict "themecontent" $themecontent) }}
+  {{- $themevariant = collections.Merge $themevariant (dict "chroma" $chroma) }}
+  {{- return $themevariant }}
 {{- end }}
