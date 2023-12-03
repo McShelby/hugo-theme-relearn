@@ -34,7 +34,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} On taxonomy and term pages you can now use prev/next navigation as within the normal page structure.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Improvements for accessibilty when tabbing thru the page for images, links and tab handles.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Improvements for accessibility when tabbing thru the page for images, links and tab handles.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The themes [config](basics/configuration) and [frontmatter](cont/frontmatter) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.toml`.
 
