@@ -30,6 +30,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partial for defining the heading. See [documentation](basics/customization#partials) for further reading.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for Hugo's built-in [`figure` shortcode](https://gohugo.io/content-management/shortcodes/#figure).
+
 ---
 
 ## 5.23.0 (2023-11-03) {#5230}
