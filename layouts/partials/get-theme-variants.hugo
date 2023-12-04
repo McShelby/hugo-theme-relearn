@@ -50,8 +50,6 @@ Non-auto run
   {{- $themevariant := $tempthemevariant }}
   {{- if not (collections.IsSet $themevariant "auto") }}
     {{- $themevariant = partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $themevariant.identifier "mod" $mod)}}
-    {{- $cssres := $themevariant.themecontent | resources.FromString (printf "css/theme-%s%s.css" $themevariant.identifier $mod) }}
-    {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -145,7 +143,8 @@ Auto run
     {{- end }}
     {{- $themecontent = replaceRE `(:root\s*\{[ \t]*)(\s*)` (printf "${1}${2}--CODE-theme: %s;${2}" $chroma) $themecontent }}
   {{- end }}
-  {{- $themevariant = collections.Merge $themevariant (dict "themecontent" $themecontent) }}
   {{- $themevariant = collections.Merge $themevariant (dict "chroma" $chroma) }}
+  {{- $cssres := $themecontent | resources.FromString (printf "css/theme-%s%s.css" $identifier $mod) }}
+  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
   {{- return $themevariant }}
 {{- end }}
