@@ -17,7 +17,7 @@
 {{- $width := "auto" }}
 {{- $dest_url := urls.Parse $url }}
 {{- $dest_path := $dest_url.Path }}
-{{- $image := $page.Resources.GetMatch $dest_path }}
+{{- $image := $page.Resources.GetMatch (path.Clean $dest_url.Path) }}
 {{- if not $image }}
   {{- $image = .Resources.GetMatch $dest_path }}
 {{- end }}
@@ -28,6 +28,11 @@
   {{- $url = $image.RelPermalink }}
   {{- if $dest_url.RawQuery }}
     {{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
+  {{- end }}
+{{- end }}
+{{- if not $image }}
+  {{- if and ($page.Site.Params.render_hooks.errorlevel "warning")  (not (or (strings.HasPrefix .url "http://") (strings.HasPrefix .url "https://") )) }}
+    {{- warnf "%q: Image %s is not a resource but linked anyways." $page.File.Filename .url }}
   {{- end }}
 {{- end }}
 {{- if $dest_url.RawQuery }}
