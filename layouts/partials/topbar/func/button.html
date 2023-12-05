@@ -22,25 +22,28 @@
   {{- end }}
 {{- end }}
 {{- $title := (trim .title " ") | default "" }}
+{{- $hint := (trim .hint " ") | default "" }}
 {{- $icon := (trim .icon " ") | default "" }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- $content := .content }}
             <div class="topbar-button {{ $class }}" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}">
-{{- if $isDisabled }}
+{{- if $isDisabled -}}
               <span class="topbar-control">
-{{- else if $isButton }}
-              <button class="topbar-control"{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $title }}">
-{{- else }}
-              <a class="topbar-control"{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $title }}">
+{{- else if $isButton -}}
+              <button class="topbar-control"{{ if $href }} onclick="{{ $href | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }} title="{{ $hint }}">
+{{- else -}}
+              <a class="topbar-control"{{ if $href }} href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}{{ end }} title="{{ $hint }}">
 {{- end }}
-                <i class="{{ $icon }}"></i>
-{{- if $isDisabled }}
+{{- if and $icon }}<i class="{{ $icon }}"></i>{{ end }}
+{{- if and $icon $title }} {{ end }}
+{{- $title | safeHTML }}
+{{- if $isDisabled -}}
               </span>
-{{- else if $isButton }}
+{{- else if $isButton -}}
               </button>
-{{- else }}
+{{- else -}}
               </a>
 {{- end }}
 {{- if $content }}

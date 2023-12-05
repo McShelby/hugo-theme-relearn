@@ -111,12 +111,13 @@ For displaying an area in the button's overlay, see [Area-Button](#area-button).
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
 | **class**             | _&lt;empty&gt;_ | Mandatory unique class name for this button. Displaying two buttons with the same value for **class** is undefined. |
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL<br>- if empty the button will be displayed in disabled state regardless of its **content** |
-| **icon**              | _&lt;empty&gt;_ | Mandatory [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
+| **icon**              | _&lt;empty&gt;_ | [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
 | **onempty**           | `disable`       | Defines what to do with the button if **href** is not empty but the content overlay is empty:<br><br>- `disable`: The button is displayed in disabled state.<br>- `hide`: The button is removed. |
 | **onwidths**          | `show`          | The action, that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
 | **onwidthm**          | `show`          | See above. |
 | **onwidthl**          | `show`          | See above. |
-| **title**             | _&lt;empty&gt;_ | Arbitrary text for title, displayed in the tooltip. |
+| **hint**              | _&lt;empty&gt;_ | Arbitrary text displayed in the tooltip. |
+| **title**             | _&lt;empty&gt;_ | Arbitrary text for the button. |
 | **content**           | _&lt;empty&gt;_ | Arbitrary HTML to put into the content overlay. This parameter may be empty. In this case no overlay will be generated. |
 
 ### Area-Button
@@ -131,12 +132,13 @@ Call this from your own button templates if you want to implement a button with 
 |-----------------------|-----------------|-------------|
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
 | **area**              | _&lt;empty&gt;_ | Mandatory unique area name for this area. Displaying two areas with the same value for **area** is undefined. |
-| **icon**              | _&lt;empty&gt;_ | Mandatory [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
+| **icon**              | _&lt;empty&gt;_ | [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
 | **onempty**           | `disable`       | Defines what to do with the button if the content overlay is empty:<br><br>- `disable`: The button is displayed in disabled state.<br>- `hide`: The button is removed. |
 | **onwidths**          | `show`          | The action, that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
 | **onwidthm**          | `show`          | See above. |
 | **onwidthl**          | `show`          | See above. |
-| **title**             | _&lt;empty&gt;_ | Arbitrary text for title, displayed in the tooltip. |
+| **hint**              | _&lt;empty&gt;_ | Arbitrary text displayed in the tooltip. |
+| **title**             | _&lt;empty&gt;_ | Arbitrary text for the button. |
 
 ### Predefined Buttons
 
