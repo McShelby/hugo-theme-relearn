@@ -59,7 +59,7 @@
 {{- end }}
 {{- $params := slice }}
 {{- range $k, $v := $options }}
-  {{- $params = $params | append (printf "%s=%s" $k $v) }}
+  {{- $params = $params | append (printf "%s=%s" $k (string $v)) }}
 {{- end }}
 {{- $params = delimit $params ", " }}
 {{- $title := "" }}

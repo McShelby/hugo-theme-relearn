@@ -40,6 +40,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The themes [config](basics/configuration) and [frontmatter](cont/frontmatter) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.toml`.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
+
 ---
 
 ## 5.23.0 (2023-11-03) {#5230}
