@@ -147,7 +147,7 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
 1. Write the shortcode file `layouts/shortcodes/myshortcode.html` and add the following line
 
     ````go
-   {{- .Store.Set "hasMyShortcode" true }}
+   {{- .Page.Store.Set "hasMyShortcode" true }}
     ````
 
 1. Add the following snippet to your `hugo.toml`
