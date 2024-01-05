@@ -25,7 +25,7 @@ import re
 # the standard input in the form:
 # <local ref> <local sha1> <remote ref> <remote sha1>
 # This hook prevents the push of commits that belong to branches starting with
-# an "#" (whiwork in progress).
+# an "#" (which are work in progress).
 
 def main():
     local_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
