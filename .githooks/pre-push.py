@@ -10,6 +10,7 @@
 # Linux, Windows and MacOS)
 
 #	#!/bin/sh
+#   echo 'execute .githooks/pre-push.py' >> .githooks/hooks.log
 #	python3 .githooks/pre-push.py
 
 import subprocess
@@ -28,13 +29,12 @@ import re
 
 def main():
     local_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
-    wip_prefix = "^#\d+(?:\b.*)$"
-    message = 'The branch {local_branch} can not be pushed as it starts with a '#' which marks it as work in progress'
-
+    wip_prefix = '^#\\d+(?:\\b.*)$'
     if re.match(wip_prefix, local_branch):
-        print(message)
+        print(f'The branch {local_branch} can not be pushed as it starts with a "#" which marks it as work in progress', file=open(".githooks/hooks.log", "a"))
+        print(f'The branch {local_branch} can not be pushed as it starts with a "#" which marks it as work in progress')
         exit(1)
-
+    print(f'Pushing branch {local_branch}', file=open(".githooks/hooks.log", "a"))
     exit(0)
 
 if __name__ == "__main__":
