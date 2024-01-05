@@ -5,16 +5,16 @@ window.relearn = window.relearn || {};
 
 // polyfill this rotten piece of sh...oftware
 if( typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype.forEach ){
-    NodeList.prototype.forEach = Array.prototype.forEach;
+	NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
 if (!String.prototype.startsWith) {
-    Object.defineProperty(String.prototype, 'startsWith', {
-        value: function(search, rawPos) {
-            var pos = rawPos > 0 ? rawPos|0 : 0;
-            return this.substring(pos, pos + search.length) === search;
-        }
-    });
+	Object.defineProperty(String.prototype, 'startsWith', {
+		value: function(search, rawPos) {
+			var pos = rawPos > 0 ? rawPos|0 : 0;
+			return this.substring(pos, pos + search.length) === search;
+		}
+	});
 }
 
 "function"!=typeof Object.assign&&(Object.assign=function(n,t){"use strict";if(null==n)throw new TypeError("Cannot convert undefined or null to object");for(var r=Object(n),e=1;e<arguments.length;e++){var o=arguments[e];if(null!=o)for(var c in o)Object.prototype.hasOwnProperty.call(o,c)&&(r[c]=o[c])}return r});
@@ -89,7 +89,7 @@ var variants = {
 	},
 
 	generateVariantPath: function( variant, old_path ){
-        var mod = window.relearn.themeVariantModifier.replace( '.', '\\.' );
+		var mod = window.relearn.themeVariantModifier.replace( '.', '\\.' );
 		var new_path = old_path.replace( new RegExp(`^(.*\/theme-).*?(${mod}\.css.*)$`), '$1' + variant + '$2' );
 		return new_path;
 	},
@@ -264,50 +264,50 @@ var variants = {
 	},
 
 	adjustCSSRules: function(selector, props, sheets) {
-    // get stylesheet(s)
-    if (!sheets) sheets = [].concat(Array.from(document.styleSheets));else if (sheets.sup) {
-      // sheets is a string
-      var absoluteURL = new URL(sheets, document.baseURI).href;
-      sheets = [].concat(document.styleSheets).filter(function (i) {
-        return i.href == absoluteURL;
-      });
-    } else sheets = [sheets]; // sheets is a stylesheet
-    // CSS (& HTML) reduce spaces in selector to one.
+	// get stylesheet(s)
+	if (!sheets) sheets = [].concat(Array.from(document.styleSheets));else if (sheets.sup) {
+	  // sheets is a string
+	  var absoluteURL = new URL(sheets, document.baseURI).href;
+	  sheets = [].concat(document.styleSheets).filter(function (i) {
+		return i.href == absoluteURL;
+	  });
+	} else sheets = [sheets]; // sheets is a stylesheet
+	// CSS (& HTML) reduce spaces in selector to one.
 
-    selector = selector.replace(/\s+/g, ' ');
+	selector = selector.replace(/\s+/g, ' ');
 
-    var findRule = function findRule(s) {
-      return [].concat(s.cssRules).reverse().find(function (i) {
-        return i.selectorText == selector;
-      });
-    };
+	var findRule = function findRule(s) {
+	  return [].concat(s.cssRules).reverse().find(function (i) {
+		return i.selectorText == selector;
+	  });
+	};
 
-    var rule = sheets.map(findRule).filter(function (i) {
-      return i;
-    }).pop();
-    var propsArr = props.sup ? props.split(/\s*;\s*/).map(function (i) {
-      return i.split(/\s*:\s*/);
-    }) // from string
-    : Object.entries(props); // from Object
+	var rule = sheets.map(findRule).filter(function (i) {
+	  return i;
+	}).pop();
+	var propsArr = props.sup ? props.split(/\s*;\s*/).map(function (i) {
+	  return i.split(/\s*:\s*/);
+	}) // from string
+	: Object.entries(props); // from Object
 
-    if (rule) {
-      for (var _iterator = _createForOfIteratorHelperLoose(propsArr), _step; !(_step = _iterator()).done;) {
-        var _rule$style;
-        var _step$value = _step.value,
-            prop = _step$value[0],
-            val = _step$value[1];
-        // rule.style[prop] = val; is against the spec, and does not support !important.
-        (_rule$style = rule.style).setProperty.apply(_rule$style, [prop].concat(val.split(/ *!(?=important)/)));
-      }
-    } else {
-      sheet = sheets.pop();
-      if (!props.sup) props = propsArr.reduce(function (str, _ref) {
-        var k = _ref[0],
-            v = _ref[1];
-        return str + "; " + k + ": " + v;
-      }, '');
-      sheet.insertRule(selector + " { " + props + " }", sheet.cssRules.length);
-    }
+	if (rule) {
+	  for (var _iterator = _createForOfIteratorHelperLoose(propsArr), _step; !(_step = _iterator()).done;) {
+		var _rule$style;
+		var _step$value = _step.value,
+			prop = _step$value[0],
+			val = _step$value[1];
+		// rule.style[prop] = val; is against the spec, and does not support !important.
+		(_rule$style = rule.style).setProperty.apply(_rule$style, [prop].concat(val.split(/ *!(?=important)/)));
+	  }
+	} else {
+	  sheet = sheets.pop();
+	  if (!props.sup) props = propsArr.reduce(function (str, _ref) {
+		var k = _ref[0],
+			v = _ref[1];
+		return str + "; " + k + ": " + v;
+	  }, '');
+	  sheet.insertRule(selector + " { " + props + " }", sheet.cssRules.length);
+	}
   },
 
 	normalizeColor: function( c ){

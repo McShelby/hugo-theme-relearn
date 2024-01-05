@@ -292,10 +292,10 @@ function initMermaid( update, attrs ) {
             initMermaid( true, {
                 'theme': variants.getColorValue( 'PRINT-MERMAID-theme' ),
             });
-		}.bind( this ) );
-		window.addEventListener( 'afterprint', function(){
+        }.bind( this ) );
+        window.addEventListener( 'afterprint', function(){
             initMermaid( true );
-		}.bind( this ) );
+        }.bind( this ) );
     }
 
     attrs = attrs || {
@@ -398,7 +398,7 @@ function initOpenapi( update, attrs ){
         var mod = window.relearn.themeVariantModifier;
         var buster = window.themeUseOpenapi.assetsBuster ? '?' + window.themeUseOpenapi.assetsBuster : '';
         var print = isPrint || attrs.isPrintPreview ? "PRINT-" : "";
-		var theme = print ? `${baseUri}/css/theme-relearn-light${mod}.css${buster}` : document.querySelector( '#R-variant-style' ).attributes.href.value
+        var theme = print ? `${baseUri}/css/theme-relearn-light${mod}.css${buster}` : document.querySelector( '#R-variant-style' ).attributes.href.value
         var swagger_theme = variants.getColorValue( print + 'OPENAPI-theme' );
         var swagger_code_theme = variants.getColorValue( print + 'OPENAPI-CODE-theme' );
 
@@ -589,7 +589,7 @@ function initCodeClipboard(){
     }
 
     var codeElements = document.querySelectorAll( 'code' );
-	for( var i = 0; i < codeElements.length; i++ ){
+    for( var i = 0; i < codeElements.length; i++ ){
         var code = codeElements[i];
         var text = getCodeText( code );
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
@@ -688,7 +688,7 @@ function initChroma( update ){
     var chroma = variants.getColorValue( 'CODE-theme' );
     var link = document.querySelector( '#R-variant-chroma-style' );
     var old_path = link.getAttribute( 'href' );
-	var new_path = old_path.replace( /^(.*\/chroma-).*?(\.css.*)$/, '$1' + chroma + '$2' );
+    var new_path = old_path.replace( /^(.*\/chroma-).*?(\.css.*)$/, '$1' + chroma + '$2' );
     link.setAttribute( 'href', new_path );
 }
 
@@ -1233,39 +1233,39 @@ function scrollToPositions() {
 }
 
 function mark() {
-	// mark some additional stuff as searchable
-	var bodyInnerLinks = document.querySelectorAll( '#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)' );
-	for( var i = 0; i < bodyInnerLinks.length; i++ ){
-		bodyInnerLinks[i].classList.add( 'highlight' );
-	}
+    // mark some additional stuff as searchable
+    var bodyInnerLinks = document.querySelectorAll( '#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)' );
+    for( var i = 0; i < bodyInnerLinks.length; i++ ){
+        bodyInnerLinks[i].classList.add( 'highlight' );
+    }
 
-	var value = sessionStorage.getItem( window.relearn.baseUriFull + 'search-value' );
+    var value = sessionStorage.getItem( window.relearn.baseUriFull + 'search-value' );
     var highlightableElements = document.querySelectorAll( '.highlightable' );
     highlight( highlightableElements, value, { element: 'mark' } );
 
-	var markedElements = document.querySelectorAll( 'mark' );
-	for( var i = 0; i < markedElements.length; i++ ){
-		var parent = markedElements[i].parentNode;
-		while( parent && parent.classList ){
-			if( parent.classList.contains( 'expand' ) ){
-				var expandInputs = parent.querySelectorAll( 'input:not(.expand-marked)' );
-				if( expandInputs.length ){
-					expandInputs[0].classList.add( 'expand-marked' );
-					expandInputs[0].dataset.checked = expandInputs[0].checked ? 'true' : 'false';
-					expandInputs[0].checked = true;
-				}
-			}
-			if( parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains( 'collapsible-menu' )){
-				var toggleInputs = parent.querySelectorAll( 'input:not(.menu-marked)' );
-				if( toggleInputs.length ){
-					toggleInputs[0].classList.add( 'menu-marked' );
-					toggleInputs[0].dataset.checked = toggleInputs[0].checked ? 'true' : 'false';
-					toggleInputs[0].checked = true;
-				}
-			}
-			parent = parent.parentNode;
-		}
-	}
+    var markedElements = document.querySelectorAll( 'mark' );
+    for( var i = 0; i < markedElements.length; i++ ){
+        var parent = markedElements[i].parentNode;
+        while( parent && parent.classList ){
+            if( parent.classList.contains( 'expand' ) ){
+                var expandInputs = parent.querySelectorAll( 'input:not(.expand-marked)' );
+                if( expandInputs.length ){
+                    expandInputs[0].classList.add( 'expand-marked' );
+                    expandInputs[0].dataset.checked = expandInputs[0].checked ? 'true' : 'false';
+                    expandInputs[0].checked = true;
+                }
+            }
+            if( parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains( 'collapsible-menu' )){
+                var toggleInputs = parent.querySelectorAll( 'input:not(.menu-marked)' );
+                if( toggleInputs.length ){
+                    toggleInputs[0].classList.add( 'menu-marked' );
+                    toggleInputs[0].dataset.checked = toggleInputs[0].checked ? 'true' : 'false';
+                    toggleInputs[0].checked = true;
+                }
+            }
+            parent = parent.parentNode;
+        }
+    }
     psm && setTimeout( function(){ psm.update(); }, 10 );
 }
 window.relearn.markSearch = mark;
@@ -1298,9 +1298,9 @@ function highlight( es, words, options ){
     }
     var re = new RegExp( pattern, flag );
 
-	for( var i = 0; i < es.length; i++ ){
+    for( var i = 0; i < es.length; i++ ){
         highlightNode( es[i], re, settings.element, settings.className );
-	}
+    }
 };
 
 function highlightNode( node, re, nodeName, className ){
@@ -1327,32 +1327,32 @@ function highlightNode( node, re, nodeName, className ){
 };
 
 function unmark() {
-	sessionStorage.removeItem( window.relearn.baseUriFull + 'search-value' );
-	var markedElements = document.querySelectorAll( 'mark' );
-	for( var i = 0; i < markedElements.length; i++ ){
-		var parent = markedElements[i].parentNode;
-		while( parent && parent.classList ){
-			if( parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains( 'collapsible-menu' )){
-				var toggleInputs = parent.querySelectorAll( 'input.menu-marked' );
-				if( toggleInputs.length ){
-					toggleInputs[0].checked = toggleInputs[0].dataset.checked === 'true';
-					toggleInputs[0].dataset.checked = null;
-					toggleInputs[0].classList.remove( 'menu-marked' );
-				}
-			}
-			if( parent.classList.contains( 'expand' ) ){
-				var expandInputs = parent.querySelectorAll( 'input.expand-marked' );
-				if( expandInputs.length ){
-					expandInputs[0].checked = expandInputs[0].dataset.checked === 'true';
-					expandInputs[0].dataset.checked = null;
-					expandInputs[0].classList.remove( 'expand-marked' );
-				}
-			}
-			parent = parent.parentNode;
-		}
-	}
+    sessionStorage.removeItem( window.relearn.baseUriFull + 'search-value' );
+    var markedElements = document.querySelectorAll( 'mark' );
+    for( var i = 0; i < markedElements.length; i++ ){
+        var parent = markedElements[i].parentNode;
+        while( parent && parent.classList ){
+            if( parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains( 'collapsible-menu' )){
+                var toggleInputs = parent.querySelectorAll( 'input.menu-marked' );
+                if( toggleInputs.length ){
+                    toggleInputs[0].checked = toggleInputs[0].dataset.checked === 'true';
+                    toggleInputs[0].dataset.checked = null;
+                    toggleInputs[0].classList.remove( 'menu-marked' );
+                }
+            }
+            if( parent.classList.contains( 'expand' ) ){
+                var expandInputs = parent.querySelectorAll( 'input.expand-marked' );
+                if( expandInputs.length ){
+                    expandInputs[0].checked = expandInputs[0].dataset.checked === 'true';
+                    expandInputs[0].dataset.checked = null;
+                    expandInputs[0].classList.remove( 'expand-marked' );
+                }
+            }
+            parent = parent.parentNode;
+        }
+    }
 
-	var highlighted = document.querySelectorAll( '.highlightable' );
+    var highlighted = document.querySelectorAll( '.highlightable' );
     unhighlight( highlighted, { element: 'mark' } );
     psm && setTimeout( function(){ psm.update(); }, 10 );
 }
@@ -1364,14 +1364,14 @@ function unhighlight( es, options ){
     };
     Object.assign( settings, options );
 
-	for( var i = 0; i < es.length; i++ ){
+    for( var i = 0; i < es.length; i++ ){
         var highlightedElements = es[i].querySelectorAll( settings.element + '.' + settings.className );
         for( var j = 0; j < highlightedElements.length; j++ ){
             var parent = highlightedElements[j].parentNode;
             parent.replaceChild( highlightedElements[j].firstChild, highlightedElements[j] );
             parent.normalize();
         }
-	}
+    }
 };
 
 // replace jQuery.createPseudo with https://stackoverflow.com/a/66318392
