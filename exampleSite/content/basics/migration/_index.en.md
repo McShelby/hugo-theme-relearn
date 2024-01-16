@@ -107,7 +107,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} You can now have structural sections in the hierarchical menu without generating a page for it.
 
-  This can come in handy, if content for such a section page doesn't make much sense to you. See [the documentation](cont/pages#disable-section-pages) for how to do this.
+  This can come in handy, if content for such a section page doesn't make much sense to you. See [the documentation](cont/frontmatter#disable-section-pages) for how to do this.
 
   This feature may require you to make changes to your existing installation if you are already using _[shortcuts to pages inside of your project](cont/menushortcuts#shortcuts-to-pages-inside-of-your-project)_ with a _headless branch parent_.
 
@@ -705,7 +705,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `hugo.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `hugo.toml`. Please see further [documentation](cont/pages#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `hugo.toml`. Please see further [documentation](cont/frontmatter#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New frontmatter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
 
@@ -755,7 +755,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} A page without a `title` will be treated as `hidden=true`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation](cont/pages#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation](cont/frontmatter#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partials for defining pre/post content for menu items and the content. See [documentation](basics/customization#partials) for further reading.
 
