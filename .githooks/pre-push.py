@@ -33,10 +33,10 @@ def main():
     local_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
     wip_prefix = '^#\\d+(?:\\b.*)$'
     if re.match(wip_prefix, local_branch):
-        print(f'{time}: The branch {local_branch} can not be pushed as it starts with a "#" which marks it as work in progress', file=open(".githooks/hooks.log", "a"))
-        print(f'The branch {local_branch} can not be pushed as it starts with a "#" which marks it as work in progress')
+        print(f'{time}: Branch "{local_branch}" was not pushed because its name starts with a "#" which marks it as work in progress', file=open(".githooks/hooks.log", "a"))
+        print(f'Branch "{local_branch}" was not pushed because its name starts with a "#" which marks it as work in progress')
         exit(1)
-    print(f'{time}: Pushing branch {local_branch}', file=open(".githooks/hooks.log", "a"))
+    print(f'{time}: Branch "{local_branch}" was pushed', file=open(".githooks/hooks.log", "a"))
     exit(0)
 
 if __name__ == "__main__":
