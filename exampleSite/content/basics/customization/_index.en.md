@@ -129,10 +129,11 @@ The menu width adjusts automatically for different screen sizes.
 
 The values for the screen width breakpoints aren't configurable.
 
-If you want to adjust the menu width you can define the following CSS variables in your `custom-header.html`. Note that `--MENU-WIDTH-S` doesn't exist as the menu is always hidden for small screen sizes.
+If you want to adjust the menu width you can define the following CSS variables in your `custom-header.html`. Note that `--MENU-WIDTH-S` applies to the menu flyout width in mobile mode for small screen sizes.
 
 ````css
 :root {
+    --MENU-WIDTH-S: 14.375rem;
     --MENU-WIDTH-M: 14.375rem;
     --MENU-WIDTH-L: 18.75rem;
 }
