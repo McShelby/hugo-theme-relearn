@@ -123,7 +123,7 @@ The menu width adjusts automatically for different screen sizes.
 
 | Name | Screen Width  | Menu Width |
 | ---- | ------------- | ---------- |
-| S    | < 48rem       | 0          |
+| S    | < 48rem       | 14.375rem  |
 | M    | 48rem - 60rem | 14.375rem  |
 | L    | >= 60rem      | 18.75rem   |
 
