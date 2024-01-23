@@ -4,12 +4,12 @@
 {{- with .page }}
 	{{- $format := partial "get-format.hugo" . }}
 	{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
-	{{- $editURL := .Site.Params.editURL | default "" }}
-	{{- if and (eq $outputFormat "html") $editURL .File }}
+	{{- if and (eq $outputFormat "html") (or .Site.Params.editURL .Params.editURL) .File }}
+		{{- $href := or .Params.editURL (printf "%s%s%s" .Site.Params.editURL (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName) }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-edit"
-			"href" (printf "%s%s%s" $editURL (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName)
+			"href" $href
 			"icon" "pen"
 			"onwidths" $onwidths
 			"onwidthm" $onwidthm
