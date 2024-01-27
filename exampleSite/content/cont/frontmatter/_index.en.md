@@ -61,6 +61,19 @@ disableBreadcrumb = false
 # disabled.
 disableNextPrev = false
 
+# The URL prefix to edit a page.
+# Default: not set
+# If set, an edit button will be shown in the topbar. If the button is hidden,
+# also the keyboard shortcuts are disabled. The value can contain the macro
+# `${FilePath}` which will be replaced by the file path of your displayed page.
+# If not set, the set value of your site's hugo.toml is used. If the global
+# parameter is given but you want to hide the button for the displayed page,
+# you can set the value to an empty string. If instead of hiding you want to have
+# an disabled button, you can set the value to a string containing just spaces.
+# This is useful if you want to give the opportunity for people to create merge
+# request for your content.
+editURL = ""
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Menu
 # These options modify the menu apperance.
