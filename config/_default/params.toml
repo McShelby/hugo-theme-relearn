@@ -157,11 +157,13 @@ disableNextPrev = false
 # The URL prefix to edit a page.
 # Default: not set
 # If set, an edit button will be shown in the topbar. If the button is hidden,
-# also the keyboard shortcuts are disabled. The given URL is prepended to the
-# relative file path of a the displayed page. The URL must end with a `/`.
-# This is useful if you wnat to give the opportunity for people to create merge
-#  request for your content.
-editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
+# also the keyboard shortcuts are disabled. The value can contain the macro
+# `${FilePath}` which will be replaced by the file path of your displayed page.
+# If no `${FilePath}` is given in the value, the value is treated as if the
+# `${FilePath}` was appended at the end of the value. This can be overridden
+# in the pages frontmatter. This is useful if you want to give the opportunity
+# for people to create merge request for your content.
+editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}"
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Menu
