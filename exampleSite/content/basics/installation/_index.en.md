@@ -42,7 +42,7 @@ theme = "hugo-theme-relearn"
 
 # For search functionality
 [outputs]
-home = [ "HTML", "RSS", "SEARCH"]
+home = [ "html", "rss", "search"]
 ```
 
 ## Create your first chapter page

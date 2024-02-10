@@ -46,6 +46,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}} or higher for theme specific [output formats](basics/customization). This does not change the minimum required Hugo version.
+
 ---
 
 ## 5.23.0 (2023-11-03) {#5230}
@@ -422,7 +424,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
 
-  To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `hugo.toml` as a new outputformat `SEARCHPAGE` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+  To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `hugo.toml` as a new outputformat `searchpage` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
   You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
 
@@ -460,7 +462,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/customization#serving-your-page-from-the-filesystem) in your `hugo.toml` your page is now servable from the local file system using `file://` URLs.
 
-  Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `hugo.toml` from `JSON` to `SEARCH`. The now deprecated `JSON` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
+  Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `hugo.toml` from `json` to `search`. The now deprecated `json` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`button` shortcode](shortcodes/button) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
 
@@ -494,12 +496,12 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
-  You can revert this behavior by overwriting the PRINT output format setting in your `hugo.toml`to:
+  You can revert this behavior by overwriting the `print` output format setting in your `hugo.toml`to:
 
   ````toml
   [outputFormats]
-    [outputFormats.PRINT]
-      name= "PRINT"
+    [outputFormats.print]
+      name= "print"
       baseName = "index"
       path = "_print"
       isHTML = true

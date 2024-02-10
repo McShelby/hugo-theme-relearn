@@ -31,7 +31,7 @@ The theme will append an additional `index.html` to all page bundle links by def
 ````
 
 {{% notice note %}}
-If you want to use the search feature from the file system using an older installation of the theme make sure to change your outputformat for the homepage from the now deprecated `JSON` to `SEARCH` [as seen below](#activate-search).
+If you want to use the search feature from the file system using an older installation of the theme make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
 {{% /notice %}}
 
 ## Activate search
@@ -40,18 +40,18 @@ If not already present, add the following lines in your `hugo.toml` file.
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "SEARCH"]
+  home = ["html", "rss", "search"]
 ```
 
-This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library. Note that the `SEARCH` outputformat was named `JSON` in previous releases but was implemented differently. Although `JSON` still works, it is now deprecated.
+This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library. Note that the `search` outputformat was named `json` in previous releases but was implemented differently. Although `json` still works, it is now deprecated.
 
 ### Activate dedicated search page
 
-You can add a dedicated search page for your page by adding the `SEARCHPAGE` outputformat to your home page by adding the following lines in your `hugo.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
+You can add a dedicated search page for your page by adding the `searchpage` outputformat to your home page by adding the following lines in your `hugo.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "SEARCH", "SEARCHPAGE"]
+  home = ["html", "rss", "search", "searchpage"]
 ```
 
 You can access this page by either clicking on the magnifier glass or by typing some search term and pressing `ENTER` inside of the menu's search box .
@@ -66,13 +66,13 @@ To make sure, there is no duplicate content for any given URL of your project, r
 
 ## Activate print support
 
-You can activate print support to add the capability to print whole chapters or even the complete site. Just add the `PRINT` output format to your home, section and page in your `hugo.toml` as seen below:
+You can activate print support to add the capability to print whole chapters or even the complete site. Just add the `print` output format to your home, section and page in your `hugo.toml` as seen below:
 
 ```toml
 [outputs]
-  home = ["HTML", "RSS", "PRINT", "SEARCH"]
-  section = ["HTML", "RSS", "PRINT"]
-  page = ["HTML", "RSS", "PRINT"]
+  home = ["html", "rss", "print", "search"]
+  section = ["html", "rss", "print"]
+  page = ["html", "rss", "print"]
 ```
 
 This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
@@ -80,7 +80,7 @@ This will add a little printer icon in the top bar. It will switch the page to p
 {{% notice note %}}
 The resulting URL will not be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) in terms of [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls) even if you've set `uglyURLs=true` in your `hugo.toml`. This is due to the fact that for one mime type only one suffix can be configured.
 
-Nevertheless, if you're unhappy with the resulting URLs you can manually redefine `outputFormats.PRINT` in your own `hugo.toml` to your liking.
+Nevertheless, if you're unhappy with the resulting URLs you can manually redefine `outputFormats.print` in your own `hugo.toml` to your liking.
 {{% /notice %}}
 
 ## Home Button Configuration
