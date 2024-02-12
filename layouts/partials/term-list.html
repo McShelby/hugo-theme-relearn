@@ -15,17 +15,23 @@
 {{- $terms := slice | append (index $page.Params $taxonomy) }}
 {{- $term_pages := slice }}
 {{- range $terms }}
-  {{- $term := trim . " " }}
-  {{- if not $term }}
-    {{- continue }}
-  {{- end }}
-  {{- $term_key := ($term | plainify | anchorize) }}
+  {{- $term := . }}
+  {{- $term_key := $term }}
   {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
     {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term | strings.Title) .Title) "Term" . )}}
   {{- else }}
-    {{- $term_key = ($term | urlize) }}
+    {{- $term = trim $term " " }}
+    {{- if not $term }}
+      {{- continue }}
+    {{- end }}
+    {{- $term_key = ($term | plainify | anchorize) }}
     {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
       {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term | strings.Title) .Title) "Term" . )}}
+    {{- else }}
+      {{- $term_key = ($term | urlize) }}
+      {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
+        {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term | strings.Title) .Title) "Term" . )}}
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
