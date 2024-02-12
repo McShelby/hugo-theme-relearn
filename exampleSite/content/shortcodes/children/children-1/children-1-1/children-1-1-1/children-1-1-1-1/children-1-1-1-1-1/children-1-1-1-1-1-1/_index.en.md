@@ -1,6 +1,6 @@
 +++
 description = "This is a non-hidden demo child page of a hidden parent page"
-tags = ["children", "it's hidden"]
+tags = ["children", "the hidden"]
 title = "page 1-1-1-1-1-1"
 +++
 

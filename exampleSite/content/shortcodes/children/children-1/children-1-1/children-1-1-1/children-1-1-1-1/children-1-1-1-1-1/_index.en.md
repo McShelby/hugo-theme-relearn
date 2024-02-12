@@ -1,7 +1,7 @@
 +++
 description = "This is a hidden demo child page"
 hidden = true
-tags = ["children", "it's hidden"]
+tags = ["children", "the hidden"]
 title = "page 1-1-1-1-1 (hidden)"
 +++
 
