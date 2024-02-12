@@ -222,7 +222,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "it's hidden"
+      "the hidden"
     ],
     "title": "plank 4 (hidden)",
     "uri": "/pir/shortcodes/children/children-4/index.html"
@@ -377,7 +377,7 @@ var relearn_search_index = [
     "description": "",
     "tags": null,
     "title": "Tagga :: hush, matey",
-    "uri": "/pir/tags/its-hidden/index.html"
+    "uri": "/pir/tags/the-hidden/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes",
@@ -460,7 +460,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "it's hidden"
+      "the hidden"
     ],
     "title": "plank 1-1-1 (hidden)",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/index.html"
@@ -471,7 +471,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "it's hidden"
+      "the hidden"
     ],
     "title": "plank 1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/index.html"
@@ -482,7 +482,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "it's hidden"
+      "the hidden"
     ],
     "title": "plank 1-1-1-1-1 (hidden)",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/index.html"
@@ -493,7 +493,7 @@ var relearn_search_index = [
     "description": "",
     "tags": [
       "children",
-      "it's hidden"
+      "the hidden"
     ],
     "title": "plank 1-1-1-1-1-1",
     "uri": "/pir/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/children-1-1-1-1-1-1/index.html"
