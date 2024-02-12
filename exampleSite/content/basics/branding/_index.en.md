@@ -40,7 +40,7 @@ You can also set multiple variants. In this case, the first variant is the defau
 ````
 
 {{% notice tip %}}
-The theme provides an advanced configuration mode, combining the functionality for multiple variants with the below possibilities of adjusting to your OS settings, logo and syntax highlightning and even more!
+The theme provides an advanced configuration mode, combining the functionality for multiple variants with the below possibilities of adjusting to your OS settings and syntax highlightning and even more!
 
 Although all options documented here are still working, the advanced configuration options are the recommended way to configure your color variants. [See below](#theme-variant-advanced).
 {{% /notice %}}
