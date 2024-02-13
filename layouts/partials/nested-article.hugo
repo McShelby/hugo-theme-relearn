@@ -3,7 +3,7 @@
 {{- $page.Page.Store.Set (printf "%sIsNested" $outputFormat) true }}
 {{- with $page }}
   {{- $currentNode := . }}
-	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
+  {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
   {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
   {{- if $pages }}
           <section>
@@ -23,7 +23,7 @@
   {{- with .sect }}
     {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
     {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
-  	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
+    {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
