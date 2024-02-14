@@ -11,9 +11,11 @@
 			{{- $startarrow = "🡒" }}
 		{{- end }}
 		{{- $prev := "" }}
+		{{- $prevTitle := .Title }}
 		{{- if and (eq .RelPermalink .Site.Home.RelPermalink) (eq $outputFormat "html") }}
 		{{- else if eq .Page.Kind "taxonomy" }}
 			{{- $prev = .Site.Home }}
+			{{- $prevTitle = $prev.Title }}
 		{{- else if eq .Page.Kind "term" }}
 			{{- /* go to previous term page or taxonomy page if it is the first term */}}
 			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
@@ -21,11 +23,17 @@
 			{{- $prev = partial "partials/pageHelper/prev.html" (dict "collection" $pages "item" .) }}
 			{{- if not $prev }}
 				{{- $prev = $taxonomy_page }}
+				{{- $prevTitle = default (default $prev.Data.Plural (i18n $prev.Data.Plural)) $prev.Params.Title }}
+			{{- else }}
+				{{- $prevTitle = default (default $prev.Data.Singular (i18n $prev.Data.Singular)) $taxonomy_page.Params.SingularTitle }}
+				{{- $prevTitle = printf "%s %s %s" $prevTitle (default "::" $prev.Site.Params.titleSeparator) (default (humanize $prev.Data.Term | strings.Title) $prev.Title) }}
 			{{- end }}
 		{{- else if or (ne $outputFormat "html") (not (.Scratch.Get "relearnPrevPage")) }}
 			{{- $prev = .Site.Home }}
+			{{- $prevTitle = $prev.Title }}
 		{{- else }}
 			{{- $prev = .Scratch.Get "relearnPrevPage" }}
+			{{- $prevTitle = $prev.Title }}
 		{{- end}}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
@@ -35,7 +43,7 @@
 			"onwidths" $onwidths
 			"onwidthm" $onwidthm
 			"onwidthl" $onwidthl
-			"hint" (printf "%s (%s)" ($prev | default .).Title ($startarrow | safeHTML))
+			"hint" (printf "%s (%s)" $prevTitle ($startarrow | safeHTML))
 		)}}
 	{{- end }}
 {{- end }}

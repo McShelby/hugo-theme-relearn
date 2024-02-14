@@ -11,18 +11,29 @@
 			{{- $endarrow = "🡐" }}
 		{{- end }}
 		{{- $next := "" }}
+		{{- $nextTitle := .Title }}
 		{{- if eq .Page.Kind "taxonomy" }}
 			{{- /* go to first term page */}}
 			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" . . }}
 			{{- $next = (index $pages 0).Page }}
+			{{- if $next }}
+				{{- $taxonomy_page := .Page }}
+				{{- $nextTitle = default (default $next.Data.Singular (i18n $next.Data.Singular)) $taxonomy_page.Params.SingularTitle }}
+				{{- $nextTitle = printf "%s %s %s" $nextTitle (default "::" $next.Site.Params.titleSeparator) (default (humanize $next.Data.Term | strings.Title) $next.Title) }}
+			{{- end }}
 		{{- else if eq .Page.Kind "term" }}
 			{{- /* go to next term page */}}
 			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
 			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" $taxonomy_page $taxonomy_page }}
 			{{- $next = partial "partials/pageHelper/next.html" (dict "collection" $pages "item" .) }}
+			{{- if $next }}
+				{{- $nextTitle = default (default $next.Data.Singular (i18n $next.Data.Singular)) $taxonomy_page.Params.SingularTitle }}
+				{{- $nextTitle = printf "%s %s %s" $nextTitle (default "::" $next.Site.Params.titleSeparator) (default (humanize $next.Data.Term | strings.Title) $next.Title) }}
+			{{- end }}
 		{{- else if or (ne $outputFormat "html") (not (.Scratch.Get "relearnNextPage")) }}
 		{{- else }}
 			{{- $next = .Scratch.Get "relearnNextPage" }}
+			{{- $nextTitle = $next.Title }}
 		{{- end }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
@@ -32,7 +43,7 @@
 			"onwidths" $onwidths
 			"onwidthm" $onwidthm
 			"onwidthl" $onwidthl
-			"hint" (printf "%s (%s)" ($next | default .).Title ($endarrow | safeHTML))
+			"hint" (printf "%s (%s)" $nextTitle ($endarrow | safeHTML))
 		)}}
 	{{- end }}
 {{- end }}
