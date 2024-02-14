@@ -4,7 +4,7 @@
   {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
     {{- $title := .Title }}
     {{- if eq .Kind "taxonomy" }}
-      {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Title }}
+      {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
     {{- else if eq .Kind "term" }}
       {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
       {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}

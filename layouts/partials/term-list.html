@@ -35,7 +35,7 @@
     {{- end }}
   {{- end }}
 {{- end }}
-{{- $taxonomy_title := default (default $taxonomy_page.Data.Plural (i18n $taxonomy_page.Data.Plural)) $taxonomy_page.Title }}
+{{- $taxonomy_title := default (default $taxonomy_page.Data.Plural (i18n $taxonomy_page.Data.Plural)) $taxonomy_page.Params.Title }}
 {{- with $term_pages }}
 <div class=" taxonomy-{{ $taxonomy }} term-list cstyle {{ $style }} {{ $class }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}

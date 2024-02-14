@@ -20,7 +20,7 @@
     {{- if eq $outputFormat "searchpage" }}
       {{- $title = T "Search" }}
     {{- else if eq .Kind "taxonomy" }}
-      {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Title }}
+      {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
     {{- else if eq .Kind "term" }}
       {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
       {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
