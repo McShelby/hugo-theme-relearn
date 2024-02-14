@@ -244,7 +244,7 @@ var relearn_search_index = [
     "uri": "/pir/shortcodes/badge/index.html"
   },
   {
-    "breadcrumb": "Categories",
+    "breadcrumb": "Categorrries",
     "content": "",
     "description": "",
     "tags": null,
@@ -272,7 +272,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categories",
+    "title": "Categorrries",
     "uri": "/pir/categories/index.html"
   },
   {
@@ -300,7 +300,7 @@ var relearn_search_index = [
     "uri": "/pir/tags/config/index.html"
   },
   {
-    "breadcrumb": "Categories",
+    "breadcrumb": "Categorrries",
     "content": "",
     "description": "",
     "tags": null,
@@ -332,7 +332,7 @@ var relearn_search_index = [
     "uri": "/pir/more/credits/index.html"
   },
   {
-    "breadcrumb": "Categories",
+    "breadcrumb": "Categorrries",
     "content": "",
     "description": "",
     "tags": null,
@@ -583,7 +583,7 @@ var relearn_search_index = [
     "uri": "/pir/tags/index.html"
   },
   {
-    "breadcrumb": "Categories",
+    "breadcrumb": "Categorrries",
     "content": "",
     "description": "",
     "tags": null,
@@ -591,7 +591,7 @@ var relearn_search_index = [
     "uri": "/pir/categories/taxonomy/index.html"
   },
   {
-    "breadcrumb": "Categories",
+    "breadcrumb": "Categorrries",
     "content": "",
     "description": "",
     "tags": null,
