@@ -4,13 +4,13 @@
 {{- $page := . }}
 {{- $title := .Title }}
 {{- if eq $outputFormat "searchpage" }}
-    {{- $title = T "Search" }}
+  {{- $title = T "Search" }}
 {{- else if eq .Kind "taxonomy" }}
-    {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
+  {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
 {{- else if eq .Kind "term" }}
-    {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-    {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-    {{- $title = printf "%s %s %s" (default (humanize .Data.Term | strings.Title) .Title) (default "::" .Site.Params.titleSeparator) $title }}
+  {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
+  {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
+  {{- $title = printf "%s %s %s" (default (humanize .Data.Term | strings.Title) .Title) (default "::" .Site.Params.titleSeparator) $title }}
 {{- end }}
 {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
   {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
@@ -19,22 +19,22 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ index . 0 | absURL }}">
 {{- else }}
-    {{- $images := $.Resources.ByType "image" }}
-    {{- $featured := $images.GetMatch "*feature*" }}
-    {{- if not $featured }}
-        {{- $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}
-    {{- end }}
-    {{- with $featured }}
+  {{- $images := $.Resources.ByType "image" }}
+  {{- $featured := $images.GetMatch "*feature*" }}
+  {{- if not $featured }}
+    {{- $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}
+  {{- end }}
+  {{- with $featured }}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ $featured.Permalink }}">
-    {{- else }}
-        {{- with $.Site.Params.images }}
+  {{- else }}
+    {{- with $.Site.Params.images }}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ index . 0 | absURL }}">
-        {{- else }}
+    {{- else }}
     <meta name="twitter:card" content="summary">
-        {{- end }}
     {{- end }}
+  {{- end }}
 {{- end }}
     <meta name="twitter:title" content="{{ $title }}">
     <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
