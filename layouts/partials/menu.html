@@ -3,7 +3,7 @@
     {{- $format := partial "get-format.hugo" . }}
     {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
     {{- $basename := "index" }}
-    {{- if ne $outputFormat "html" }}
+    {{- if eq $outputFormat "searchpage" }}
       {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
     {{- end }}
     <aside id="R-sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
