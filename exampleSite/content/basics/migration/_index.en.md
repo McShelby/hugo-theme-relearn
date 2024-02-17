@@ -46,7 +46,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}} or higher for theme specific [output formats](basics/customization). This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}} or higher for theme specific [output formats](basics/customization) and handling of taxonomy and term titles. This does not change the minimum required Hugo version.
 
 ---
 
