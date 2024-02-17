@@ -78,12 +78,6 @@ editURL = ""
 # Menu
 # These options modify the menu apperance.
 
-# The title in main menu.
-# Default: <title>
-# If set, this will be used for the page's menu entry instead of the `title`
-# option.
-menuTitle = ""
-
 # Prefix for the title in main menu.
 # Default: not set
 # The title of the page in the menu will be prefixed by this HTML content.
@@ -306,17 +300,16 @@ weight = 5
 
 ### Using a Custom Title for Menu Entries
 
-By default, the Relearn theme will use a page's `title` attribute for the menu item (or `linkTitle` if defined).
+By default, the Relearn theme will use a page's `title` attribute for the menu item.
 
-But a page's title has to be descriptive on its own while the menu is a hierarchy.
-We've added the `menuTitle` parameter for that purpose:
+But a page's title has to be descriptive on its own while the menu is a hierarchy. Hugo adds the `linkTitle` parameter for that purpose:
 
 For example (for a page named `content/install/linux.md`):
 
 ````toml
 +++
 title = "Install on Linux"
-menuTitle = "Linux"
+linkTitle = "Linux"
 +++
 ````
 

@@ -26,6 +26,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The frontmatter option `menuTitle` is now deprecated in favor for Hugo's own `linkTitle`. You don't need to change anything as the old `menuTitle` option is still supported.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `hugo.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
   The advanced functionality allows you to set an explicit name for a theme variant and now allows for multiple auto mode variants that adjust to the light/dark preference of your OS settings.
