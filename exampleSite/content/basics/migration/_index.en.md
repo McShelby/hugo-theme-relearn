@@ -18,14 +18,6 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.24.1 (2024-02-17) {#5241}
-
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme can not resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
-
-  Please note that a page link will generate false negatives if `uglyURLs=true` and it references an ordinary page before {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}.
-
-  Please note that an image link will generate false negatives if the file resides in your `static` directory.
-
 ---
 
 ## 5.24.0 (2024-02-17) {#5240}
@@ -34,9 +26,15 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The topbar button received a way to add text next to the icon. For this, the original `title` option was renamed to `hint` while the new `title` option is now displayed next to the icon.
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The frontmatter option `menuTitle` is now deprecated in favor for Hugo's own `linkTitle`. You don't need to change anything as the old `menuTitle` option is still supported.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The frontmatter option `menuTitle` is now deprecated in favor for Hugo's own `linkTitle`. You don't need to change anything as the old `menuTitle` option is still supported.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme can not resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
+
+  Please note that a page link will generate false negatives if `uglyURLs=true` and it references an ordinary page before {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}.
+
+  Please note that an image link will generate false negatives if the file resides in your `static` directory.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `hugo.toml`. This allows for optional [advanced functionality](basics/branding#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
