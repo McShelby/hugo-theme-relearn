@@ -30,9 +30,11 @@
     {{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
   {{- end }}
 {{- end }}
-{{- if not $image }}
-  {{- if and ($page.Site.Params.render_hooks.errorlevel "warning")  (not (or (strings.HasPrefix .url "http://") (strings.HasPrefix .url "https://") )) }}
-    {{- warnf "%q: Image %s is not a resource but linked anyways." $page.File.Filename .url }}
+{{- if and (not $image) (not $dest_url.IsAbs) }}
+  {{- if eq $page.Site.Params.image.errorlevel "warning" }}
+    {{- warnf "%q: image '%s' is not a resource but linked anyways" $page.File.Filename .url }}
+  {{- else if eq $page.Site.Params.image.errorlevel "error" }}
+    {{- errorf "%q: image '%s' is not a resource" $page.File.Filename .url }}
   {{- end }}
 {{- end }}
 {{- if $dest_url.RawQuery }}

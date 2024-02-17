@@ -59,7 +59,11 @@
       {{- $href = printf "%s#%s" $href . }}
     {{- end }}
   {{- else }}
-    {{- warnf "%q: no page was found for link '%s'" $page.File.Filename $u.Path }}
+    {{- if eq $page.Site.Params.link.errorlevel "warning" }}
+      {{- warnf "%q: link '%s' is not a page but linked anyways" $page.File.Filename $u.Path }}
+    {{- else if eq $page.Site.Params.link.errorlevel "error" }}
+      {{- errorf "%q: link '%s' is not a page" $page.File.Filename $u.Path }}
+    {{- end }}
   {{- end }}
 {{- end }}
 {{- $attributes = $attributes | merge (dict "href" $href) -}}

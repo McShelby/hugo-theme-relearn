@@ -18,6 +18,16 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
+## 5.24.1 (2024-02-17) {#5241}
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme can not resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
+
+  Please note that a page link will generate false negatives if `uglyURLs=true` and it references an ordinary page before {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}.
+
+  Please note that an image link will generate false negatives if the file resides in your `static` directory.
+
+---
+
 ## 5.24.0 (2024-02-17) {#5240}
 
 - {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} This release requires a newer Hugo version.

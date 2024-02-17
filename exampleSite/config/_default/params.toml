@@ -312,6 +312,16 @@ highlightWrap = true
 # Images
 # These options configure how images are displayed.
 
+# What to do when local image link is not resolved.
+# Default: ""
+# You can control what should happen if a local image can not be resolved to as
+# a resource. If not set, the unresolved link is written as given into the resulting
+# output. If set to `warning` the same happens and an additional warning is
+# printed. If set to `error` an error message is printed and the build is
+# aborted.
+# Please note that this can not resolve files inside of your `static` directory.
+image.errorlevel = "warning"
+
 # Image effects.
 # See the documentation for how you can even add your own arbitrary effects to
 # the list.
@@ -328,6 +338,17 @@ imageEffects.shadow = false
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Links
 # These options configure how links are displayed.
+
+# What to do when local page link is not resolved.
+# Default: ""
+# You can control what should happen if a local link can not be resolved to a
+# page. If not set, the unresolved link is written as given into the resulting
+# output. If set to `warning` the same happens and an additional warning is
+# printed. If set to `error` an error message is printed and the build is
+# aborted.
+# Please note that with Hugo < 0.123.0 + `uglyURLs=true` this can lead to false
+# negatives.
+link.errorlevel = "warning"
 
 # How to open external links.
 # Default: "_blank"
