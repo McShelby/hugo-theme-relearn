@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.24.1 (2024-02-17)
+
+### Enhancements
+
+- [**feature**] link: make resolution reporting configurable [#774](https://github.com/McShelby/hugo-theme-relearn/issues/774)
+
+---
+
 ## 5.24.0 (2024-02-17)
 
 ### Enhancements
