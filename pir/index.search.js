@@ -248,7 +248,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: basic",
+    "title": "Categorrry :: Basic",
     "uri": "/pir/categories/basic/index.html"
   },
   {
@@ -296,16 +296,8 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tagga :: config",
+    "title": "Tagga :: Config",
     "uri": "/pir/tags/config/index.html"
-  },
-  {
-    "breadcrumb": "Categorrries",
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "Categorrry :: content",
-    "uri": "/pir/categories/content/index.html"
   },
   {
     "breadcrumb": "Tag-a-taggs",
@@ -314,6 +306,14 @@ var relearn_search_index = [
     "tags": null,
     "title": "Tagga :: Content",
     "uri": "/pir/tags/content/index.html"
+  },
+  {
+    "breadcrumb": "Categorrries",
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Categorrry :: Content",
+    "uri": "/pir/categories/content/index.html"
   },
   {
     "breadcrumb": "Development",
@@ -336,7 +336,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: custom",
+    "title": "Categorrry :: Custom",
     "uri": "/pir/categories/custom/index.html"
   },
   {
@@ -344,7 +344,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tagga :: documentat'n",
+    "title": "Tagga :: Documentat'n",
     "uri": "/pir/tags/documentatn/index.html"
   },
   {
@@ -354,14 +354,6 @@ var relearn_search_index = [
     "tags": null,
     "title": "Expand",
     "uri": "/pir/shortcodes/expand/index.html"
-  },
-  {
-    "breadcrumb": "Tag-a-taggs",
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "Tagga :: headless",
-    "uri": "/pir/tags/headless/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes",
@@ -424,7 +416,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tagga :: non-hidden",
+    "title": "Tagga :: Non-Hidden",
     "uri": "/pir/tags/non-hidden/index.html"
   },
   {
@@ -587,7 +579,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: taxonomy",
+    "title": "Categorrry :: Taxonomy",
     "uri": "/pir/categories/taxonomy/index.html"
   },
   {
@@ -595,7 +587,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Categorrry :: theming",
+    "title": "Categorrry :: Theming",
     "uri": "/pir/categories/theming/index.html"
   },
   {
@@ -603,7 +595,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tagga :: tutorrrial",
+    "title": "Tagga :: Tutorrrial",
     "uri": "/pir/tags/tutorrrial/index.html"
   }
 ]

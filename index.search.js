@@ -256,7 +256,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: basic",
+    "title": "Category :: Basic",
     "uri": "/categories/basic/index.html"
   },
   {
@@ -296,16 +296,8 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: config",
+    "title": "Tag :: Config",
     "uri": "/tags/config/index.html"
-  },
-  {
-    "breadcrumb": "Categories",
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "Category :: content",
-    "uri": "/categories/content/index.html"
   },
   {
     "breadcrumb": "Tags",
@@ -314,6 +306,14 @@ var relearn_search_index = [
     "tags": null,
     "title": "Tag :: Content",
     "uri": "/tags/content/index.html"
+  },
+  {
+    "breadcrumb": "Categories",
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Category :: Content",
+    "uri": "/categories/content/index.html"
   },
   {
     "breadcrumb": "Development",
@@ -336,7 +336,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: custom",
+    "title": "Category :: Custom",
     "uri": "/categories/custom/index.html"
   },
   {
@@ -344,7 +344,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: documentation",
+    "title": "Tag :: Documentation",
     "uri": "/tags/documentation/index.html"
   },
   {
@@ -354,14 +354,6 @@ var relearn_search_index = [
     "tags": null,
     "title": "Expand",
     "uri": "/shortcodes/expand/index.html"
-  },
-  {
-    "breadcrumb": "Tags",
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "Tag :: headless",
-    "uri": "/tags/headless/index.html"
   },
   {
     "breadcrumb": "Shortcodes",
@@ -424,7 +416,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: non-hidden",
+    "title": "Tag :: Non-Hidden",
     "uri": "/tags/non-hidden/index.html"
   },
   {
@@ -579,7 +571,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: taxonomy",
+    "title": "Category :: Taxonomy",
     "uri": "/categories/taxonomy/index.html"
   },
   {
@@ -587,7 +579,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Category :: theming",
+    "title": "Category :: Theming",
     "uri": "/categories/theming/index.html"
   },
   {
@@ -595,7 +587,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "Tag :: tutorial",
+    "title": "Tag :: Tutorial",
     "uri": "/tags/tutorial/index.html"
   }
 ]
