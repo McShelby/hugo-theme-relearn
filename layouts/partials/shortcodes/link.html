@@ -16,7 +16,9 @@
 {{- $u := urls.Parse $url }}
 {{- $href := $u.String }}
 {{- $path := $u.Path }}
-{{- if $u.IsAbs }}
+{{- if strings.HasPrefix $href "#" }}
+  {{- $href = printf "%s#%s" $page.Page.RelPermalink $u.Fragment }}
+{{- else if $u.IsAbs }}
   {{- $target = "_blank" }}
   {{- if isset $page.Site.Params "externallinktarget" }}
     {{- $target = $page.Site.Params.externalLinkTarget }}
