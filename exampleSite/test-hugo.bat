@@ -49,7 +49,7 @@ if exist "config\testing" (
 )
 
 echo on
-hugo%hugo_version% %config% --printPathWarnings --templateMetrics --templateMetricsHints --cleanDestinationDir --destination "public%version%%hugo_prefix%%hugo_version%" >> "metrics%version%%hugo_prefix%%hugo_version%.log"
+hugo%hugo_version% %config% --printPathWarnings --templateMetrics --templateMetricsHints --cleanDestinationDir --logLevel info --destination "public%version%%hugo_prefix%%hugo_version%" >> "metrics%version%%hugo_prefix%%hugo_version%.log"
 @echo off
 
 set "start_dir=%CD%\public%version%%hugo_prefix%%hugo_version%"
