@@ -17,22 +17,24 @@
 {{- $width := "auto" }}
 {{- $dest_url := urls.Parse $url }}
 {{- $dest_path := $dest_url.Path }}
-{{- $image := "" }}
-{{- if not $dest_url.IsAbs }}
-  {{- with or ($page.Resources.Get $dest_url.Path) (resources.Get $dest_url.Path) }}
-    {{- $image = . }}
+{{- $image := $page.Resources.GetMatch (path.Clean $dest_url.Path) }}
+{{- if not $image }}
+  {{- $image = .Resources.GetMatch $dest_path }}
+{{- end }}
+{{- if not $image }}
+  {{- $image = .Resources.GetRemote $url }}
+{{- end }}
+{{- if $image }}
+  {{- $url = $image.RelPermalink }}
+  {{- if $dest_url.RawQuery }}
+    {{- $url = printf "%s?%s" $url $dest_url.RawQuery }}
   {{- end }}
-  {{- with $image }}
-    {{- $url = $image.RelPermalink }}
-    {{- with $dest_url.RawQuery }}
-      {{- $url = printf "%s?%s" $url . }}
-    {{- end }}
-  {{- else }}
-    {{- if eq $page.Site.Params.image.errorlevel "warning" }}
-      {{- warnf "%q: image '%s' is not a resource but linked anyways" $page.File.Filename .url }}
-    {{- else if eq $page.Site.Params.image.errorlevel "error" }}
-      {{- errorf "%q: image '%s' is not a resource" $page.File.Filename .url }}
-    {{- end }}
+{{- end }}
+{{- if and (not $image) (not $dest_url.IsAbs) }}
+  {{- if eq $page.Site.Params.image.errorlevel "warning" }}
+    {{- warnf "%q: image '%s' is not a resource but linked anyways" $page.File.Filename .url }}
+  {{- else if eq $page.Site.Params.image.errorlevel "error" }}
+    {{- errorf "%q: image '%s' is not a resource" $page.File.Filename .url }}
   {{- end }}
 {{- end }}
 {{- if $dest_url.RawQuery }}
