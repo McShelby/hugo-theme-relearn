@@ -16,41 +16,43 @@
 {{- $u := urls.Parse $url }}
 {{- $href := $u.String }}
 {{- $path := $u.Path }}
-{{- if strings.HasPrefix $href "#" }}
-  {{- $href = printf "%s#%s" $page.Page.RelPermalink $u.Fragment }}
-{{- else if $u.IsAbs }}
+{{- $linkPage := "" }}
+{{- if $u.IsAbs }}
   {{- $target = "_blank" }}
   {{- if isset $page.Site.Params "externallinktarget" }}
     {{- $target = $page.Site.Params.externalLinkTarget }}
   {{- end }}
   {{- $attributes = $attributes | merge (dict "target" $target) }}
-{{- else if $path }}
-  {{- $linkPage := "" }}
-  {{- with or
-    ($page.Page.GetPage $path)
-    ($page.Page.Resources.Get $path)
-    (resources.Get $path)
-  }}
-    {{- $linkPage = . }}
-  {{- else }}
-    {{- /* is it a link into another translation? */}}
-    {{- if strings.HasPrefix $path "/" }}
-      {{- range $page.Sites }}
-        {{- $lang := .Language.Lang }}
-        {{- $prefix := printf "/%s" $lang }}
-        {{- $suffix := strings.TrimPrefix $prefix $path | default "/" }}
-        {{- if and (strings.HasPrefix $path $prefix) (strings.HasPrefix $suffix "/") }}
-          {{- with or
-            (.GetPage $suffix)
-            (.Resources.Get $suffix)
-            (resources.Get $suffix)
-          }}
-            {{- $linkPage = . }}
-            {{- break }}
+{{- else }}
+  {{- if $path }}
+    {{- with or
+      ($page.Page.GetPage $path)
+      ($page.Page.Resources.Get $path)
+      (resources.Get $path)
+    }}
+      {{- $linkPage = . }}
+    {{- else }}
+      {{- /* is it a link into another translation? */}}
+      {{- if strings.HasPrefix $path "/" }}
+        {{- range $page.Sites }}
+          {{- $lang := .Language.Lang }}
+          {{- $prefix := printf "/%s" $lang }}
+          {{- $suffix := strings.TrimPrefix $prefix $path | default "/" }}
+          {{- if and (strings.HasPrefix $path $prefix) (strings.HasPrefix $suffix "/") }}
+            {{- with or
+              (.GetPage $suffix)
+              (.Resources.Get $suffix)
+              (resources.Get $suffix)
+            }}
+              {{- $linkPage = . }}
+              {{- break }}
+            {{- end }}
           {{- end }}
         {{- end }}
       {{- end }}
     {{- end }}
+  {{- else }}
+    {{- $linkPage = $page.Page }}
   {{- end }}
   {{- with $linkPage }}
     {{- $href = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
@@ -62,9 +64,9 @@
     {{- end }}
   {{- else }}
     {{- if eq $page.Site.Params.link.errorlevel "warning" }}
-      {{- warnf "%q: link '%s' is not a page but linked anyways" $page.File.Filename $u.Path }}
+      {{- warnf "%q: link '%s' is not a page but linked anyways" $page.File.Filename $url }}
     {{- else if eq $page.Site.Params.link.errorlevel "error" }}
-      {{- errorf "%q: link '%s' is not a page" $page.File.Filename $u.Path }}
+      {{- errorf "%q: link '%s' is not a page" $page.File.Filename $url }}
     {{- end }}
   {{- end }}
 {{- end }}
