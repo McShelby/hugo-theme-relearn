@@ -31,7 +31,7 @@ The content should be:
 
 - Hugo Themes info: https://themes.gohugo.io/themes/hugo-theme-relearn/ _1000 x 1500 @ 1_
 
-**Page URL**: [Screenshot Link](/shortcodes/notice)
+**Page URL**: [Screenshot Link](shortcodes/notice)
 
 **Creation**:
 
@@ -63,7 +63,7 @@ The content should be:
 - GitHub project site: https://github.com/McShelby/hugo-theme-relearn                  _1280 x 640_
 - GitHub social media preview: https://github.com/McShelby/hugo-theme-relearn/settings _1280 x 640_
 
-**Page URL**: [Hero Image Link](/shortcodes/notice)
+**Page URL**: [Hero Image Link](shortcodes/notice)
 
 **Creation**:
 
