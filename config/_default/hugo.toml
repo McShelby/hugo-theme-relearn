@@ -60,10 +60,13 @@ title = "Hugo Relearn Theme"
     noClasses = false
     # style = "tango"
 
-  [markup.goldmark.renderer]
+  [markup.goldmark]
+    # this is required for the themes exampleSite to make the piratify shortcode work
+    duplicateResourceFiles = true
+
     # activated for this showcase to use HTML and JavaScript; decide on your own needs;
     # if in doubt, remove this line
-    unsafe = true
+    renderer.unsafe = true
 
 # allows `hugo server` to display this showcase in IE11; this is used for testing, as we
 # are still supporting IE11 - although with degraded experience; if you don't care about
@@ -189,13 +192,6 @@ title = "Hugo Relearn Theme"
   [[module.mounts]]
     source = 'i18n'
     target = 'i18n'
-  # just for this documentation to expose the GitHub hero image in the docs
-  [[module.mounts]]
-    source = '../images'
-    target = 'static/images'
-  [[module.mounts]]
-    source = 'static/images'
-    target = 'static/images'
   [[module.mounts]]
     source = 'layouts'
     target = 'layouts'
@@ -206,6 +202,10 @@ title = "Hugo Relearn Theme"
   [[module.mounts]]
     source = 'config'
     target = 'static/config'
+  # just for this documentation to expose the GitHub hero image in the docs
+  [[module.mounts]]
+    source = '../images'
+    target = 'static/images'
 
 [params]
   # Demo setting for displaying the siteparam shortcode the docs.
