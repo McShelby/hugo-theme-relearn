@@ -16,7 +16,6 @@
 {{- $u := urls.Parse $url }}
 {{- $href := $u.String }}
 {{- $path := $u.Path }}
-{{- $linkPage := "" }}
 {{- if $u.IsAbs }}
   {{- $target = "_blank" }}
   {{- if isset $page.Site.Params "externallinktarget" }}
@@ -24,6 +23,7 @@
   {{- end }}
   {{- $attributes = $attributes | merge (dict "target" $target) }}
 {{- else }}
+  {{- $linkPage := "" }}
   {{- if $path }}
     {{- with or
       ($page.Page.GetPage $path)
