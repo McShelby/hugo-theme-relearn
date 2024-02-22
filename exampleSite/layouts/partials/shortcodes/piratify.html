@@ -8,8 +8,6 @@
 {{- $writenotice := cond (ne .writenotice nil) .writenotice false }}
 {{- $langtrg := "pir" }}
 {{- $langsrc := cond (eq $page.Language.Lang $langtrg) (.langsrc | default "en") $page.Language.Lang }}
-{{- $baseURL := urls.Parse site.BaseURL }}
-{{- $baseURLpath := $baseURL.Path | default "/" }}
 {{- $l := $page.RelPermalink }}
 {{- $c := "" }}
 {{- $srcPage := "" }}
@@ -34,6 +32,7 @@
 		{{- break }}
 	{{- end }}
 {{- end }}
+{{- $y := $c }}
 {{- if eq $page.Language.Lang $langtrg }}
 	{{- if $writenotice }}
 		{{- partial "shortcodes/notice.html" (dict
@@ -111,7 +110,9 @@
 		"(\\w)(?:[aeiou])mizes([\\s\\n<.,;?!:])" "'mizes"
 		"(\\w)(?:[aeiou])nize([\\s\\n<.,;?!:])" "'nize"
 		"(\\w)(?:[aeiou])nizes([\\s\\n<.,;?!:])" "'nizes"
-		(printf "(href)=\"%s([^\"]*?\")" $baseURLpath)  (printf "=\"%s%s/" $baseURLpath $langtrg)
+	-}}
+	{{- $links := slice
+		"href"
 	-}}
 	{{- $fix := dict
 		"warn'n" "warning"
@@ -125,13 +126,21 @@
 	{{- range $from, $to := $specials }}
 		{{- $c = replaceRE $from (printf "${1}%s${2}" $to) $c }}
 	{{- end }}
+	{{- range $attr := $links }}
+		{{- $c = replaceRE (printf "\\b(%s)(=\"[^\"]*?\")" $attr) "${1} data-piratify${2}" $c }}
+		{{- $m := findRESubmatch (printf "%s data-piratify=\"([^\"]*?)\"" $attr) $c }}
+		{{- range $m }}
+			{{- $r := printf "%s=\"%s\"" $attr (index . 1) }}
+			{{- $u := urls.Parse (index . 1) }}
+			{{- if and (not $u.IsAbs) $u.Path }}
+				{{- $r = printf "%s=\"/%s%s\"" $attr $langtrg (index . 1) }}
+			{{- end }}
+			{{- $c = replace $c (index . 0) $r }}
+		{{- end }}
+	{{- end }}
 	{{- range $from, $to := $fix }}
 		{{- $c = replace $c $from $to }}
 	{{- end }}
-	{{- if (int (len $l)) }}
-		{{- $c = replaceRE "(src|href)=\"(images/[^\"]*?\")" (printf "${1}=\"%s${2}" $l) $c }}
-	{{- end }}
-	{{- $c = replaceRE (printf "(src|href)=\"([^\"]*?)/%s/([^\"]*?.files/[^\"]*?\")" $langtrg) "${1}=\"${2}/${3}" $c }}
 	{{- if $srcPage }}
 		{{- range $page.Site.Params.relearn.dependencies }}
 			{{- $has := printf "has%s" .name }}
