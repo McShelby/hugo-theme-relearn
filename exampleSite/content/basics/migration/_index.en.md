@@ -703,7 +703,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.6.0 (2021-10-21) {#260}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` and `canonifyURLs=true` in your `hugo.toml`. See the [documentation](basics/customization#serving-your-page-from-a-subfolder) for a detailed example.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` in your `hugo.toml`. See the [documentation](basics/customization#serving-your-page-from-a-subfolder) for a detailed example.
 
 ---
 

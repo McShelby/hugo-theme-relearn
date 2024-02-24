@@ -9,11 +9,8 @@ If your site is served from a subfolder, eg. `https://example.com/mysite/`, you 
 
 ````toml
 baseURL = "https://example.com/mysite/"
-canonifyURLs = true
-relativeURLs = true
 ````
 
-Without `canonifyURLs=true` URLs in sublemental pages (like `sitemap.xml`, `rss.xml`) will be generated falsly while your HTML files will still work. See https://github.com/gohugoio/hugo/issues/5226.
 
 ## Serving your page from the filesystem
 
@@ -31,7 +28,11 @@ The theme will append an additional `index.html` to all page bundle links by def
 ````
 
 {{% notice note %}}
-If you want to use the search feature from the file system using an older installation of the theme make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
+Sublemental pages (like `sitemap.xml`, `rss.xml`) will always be generated with fully quallyfied URLs and will not work if your site is served from the filesystem.
+{{% /notice %}}
+
+{{% notice note %}}
+If you want to use the search feature from the file system, migrating from an older installation of the theme, make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
 {{% /notice %}}
 
 ## Activate search
