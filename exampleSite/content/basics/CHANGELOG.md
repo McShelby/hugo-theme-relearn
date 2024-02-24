@@ -486,7 +486,7 @@
 ### Fixes
 
 - [**bug**] i18n: write code ltr even for rtl languages [#492](https://github.com/McShelby/hugo-theme-relearn/issues/492)
-- [**bug**] anchor: fix link in FF when served from filesystem [#482](https://github.com/McShelby/hugo-theme-relearn/issues/482)
+- [**bug**] anchor: fix link in FF when served from file system [#482](https://github.com/McShelby/hugo-theme-relearn/issues/482)
 - [**bug**] shortcodes: don't break build and render for invalid parameters [#480](https://github.com/McShelby/hugo-theme-relearn/issues/480)
 - [**bug**] nav: restore scroll position on browser back [#476](https://github.com/McShelby/hugo-theme-relearn/issues/476)
 - [**bug**] variant: avoid style leak for auto style [#473](https://github.com/McShelby/hugo-theme-relearn/issues/473)

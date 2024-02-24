@@ -468,7 +468,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.4.0 (2022-11-01) {#540}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/customization#serving-your-page-from-the-filesystem) in your `hugo.toml` your page is now servable from the local file system using `file://` URLs.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} [With the proper settings](basics/customization#file-system) in your `hugo.toml` your page is now servable from the local file system using `file://` URLs.
 
   Please note that the searchbox will only work for this if you reconfigure your outputformat for the homepage in your `hugo.toml` from `json` to `search`. The now deprecated `json` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
 

@@ -3,41 +3,56 @@ title = "Customization"
 weight = 25
 +++
 
-## Serving your page from a subfolder
+## Usage scenarios
 
-If your site is served from a subfolder, eg. `https://example.com/mysite/`, you have to set the following lines to your `hugo.toml`
+The theme is usable in different scenarios, requiring the following mandatory settings in your `hugo.toml`. All settings not mentioned can be set to your liking.
+
+### Public Webserver from Root
+
+````toml
+baseURL = "https://example.com/"
+````
+
+### Public Webserver from Subdirectory
 
 ````toml
 baseURL = "https://example.com/mysite/"
+relativeURLs = false
 ````
 
-## Serving your page from the filesystem
+### Private Webserver (LAN)
 
-If you want your page served from the filesystem by using URLs starting with `file://` you'll need the following configuration in your `hugo.toml`:
+The same settings as with any of the public webserver usage scenarios or
 
 ````toml
+baseURL = "/"
 relativeURLs = true
 ````
 
-The theme will append an additional `index.html` to all page bundle links by default to make the page be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can also generate the links without this change by adding this to your `hugo.toml`
+### File System
+
+````toml
+baseURL = "/"
+relativeURLs = true
+````
+
+{{% notice warning %}}
+Using a `baseURL` with a subdirectory and `relativeURLs=true` are mutally exclusive due to the fact, that [Hugo does not apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130).
+
+If you need both, you have to generate your site twice but with different settings into separate directories.
+{{% /notice %}}
+
+{{% notice note %}}
+Sublemental pages (like `sitemap.xml`, `rss.xml`) and generated social media links inside of your pages will always be generated with absolute URLs and will not work if you set `relativeURLs=true`.
+{{% /notice %}}
+
+{{% notice info %}}
+If you are using `uglyURLs=false` (Hugo's default), the theme will append an additional `index.html` to all page links to make your site be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can generate the links without this:
 
 ````toml
 [params]
   disableExplicitIndexURLs = true
 ````
-
-{{% notice note %}}
-Sublemental pages (like `sitemap.xml`, `rss.xml`) will always be generated with fully quallyfied URLs and will not work if your site is served from the filesystem.
-{{% /notice %}}
-
-{{% notice note %}}
-If you want to use the search feature from the file system, migrating from an older installation of the theme, make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
-{{% /notice %}}
-
-{{% notice warning %}}
-[Serving your page from a subfolder](#serving-your-page-from-a-subfolder) and [Serving your page from the filesystem](#serving-your-page-from-the-filesystem) are mutally exclusive due to the fact, that [Hugo does not apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130).
-
-If you need both, you have to generate your site twice but with different settings into separate directories.
 {{% /notice %}}
 
 ## Activate search
@@ -50,6 +65,10 @@ If not already present, add the following lines in your `hugo.toml` file.
 ```
 
 This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library. Note that the `search` outputformat was named `json` in previous releases but was implemented differently. Although `json` still works, it is now deprecated.
+
+{{% notice note %}}
+If you want to use the search feature from the file system, migrating from an older installation of the theme, make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
+{{% /notice %}}
 
 ### Activate dedicated search page
 
