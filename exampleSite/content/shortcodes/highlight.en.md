@@ -15,7 +15,7 @@ This shortcode is fully compatible with Hugo's [`highlight` shortcode](https://g
 
 It is called interchangeably in the same way as Hugo's own shortcode providing positional parameter or by simply using codefences.
 
-You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call this shortcode as a partial using compatiblity syntax.
+You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call this shortcode as a partial using compatibility syntax.
 
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports codefences (eg. GitHub) and so your markdown becomes more portable.
 

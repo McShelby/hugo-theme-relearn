@@ -12,7 +12,7 @@
 
 ### Enhancements
 
-- [**feature**] theme: compatiblity with Hugo 0.123 [#771](https://github.com/McShelby/hugo-theme-relearn/issues/771)
+- [**feature**] theme: compatibility with Hugo 0.123 [#771](https://github.com/McShelby/hugo-theme-relearn/issues/771)
 - [**feature**] topbar: support editURL in frontmatter [#764](https://github.com/McShelby/hugo-theme-relearn/issues/764)
 - [**feature**] menu: use --MENU-WIDTH-S to adjust mobile flyout [#761](https://github.com/McShelby/hugo-theme-relearn/issues/761)
 - [**feature**] figure: support built-in shortcode [#746](https://github.com/McShelby/hugo-theme-relearn/issues/746)
@@ -1486,7 +1486,7 @@
 
 ### Maintenance
 
-- [**task**] theme: ensure IE11 compatiblity [#89](https://github.com/McShelby/hugo-theme-relearn/issues/89)
+- [**task**] theme: ensure IE11 compatibility [#89](https://github.com/McShelby/hugo-theme-relearn/issues/89)
 - [**task**] docs: Arrr! showcase multilang featurrre [#87](https://github.com/McShelby/hugo-theme-relearn/issues/87)
 
 ---
