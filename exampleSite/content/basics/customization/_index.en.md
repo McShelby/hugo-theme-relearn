@@ -11,7 +11,6 @@ If your site is served from a subfolder, eg. `https://example.com/mysite/`, you 
 baseURL = "https://example.com/mysite/"
 ````
 
-
 ## Serving your page from the filesystem
 
 If you want your page served from the filesystem by using URLs starting with `file://` you'll need the following configuration in your `hugo.toml`:
@@ -33,6 +32,12 @@ Sublemental pages (like `sitemap.xml`, `rss.xml`) will always be generated with 
 
 {{% notice note %}}
 If you want to use the search feature from the file system, migrating from an older installation of the theme, make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
+{{% /notice %}}
+
+{{% notice warning %}}
+[Serving your page from a subfolder](#serving-your-page-from-a-subfolder) and [Serving your page from the filesystem](#serving-your-page-from-the-filesystem) are mutally exclusive due to the fact, that [Hugo does not apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130).
+
+If you need both, you have to generate your site twice but with different settings into separate directories.
 {{% /notice %}}
 
 ## Activate search
