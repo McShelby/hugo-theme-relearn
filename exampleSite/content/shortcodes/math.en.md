@@ -57,7 +57,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
 | **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your formuale. |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your formulae. |
 
 ## Configuration
 
