@@ -118,7 +118,7 @@ A **notice** disclaimer
 ````go
 {{%/* notice style="tip" */%}}
 A **tip** disclaimer
-{{% /notice %}}
+{{%/* /notice */%}}
 ````
 
 {{% notice style="tip" %}}
