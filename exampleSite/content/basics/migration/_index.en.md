@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.24.0 (2024-02-24) {#5240}
+## 5.24.0 (2024-02-28) {#5240}
 
 - {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} This release requires a newer Hugo version.
 

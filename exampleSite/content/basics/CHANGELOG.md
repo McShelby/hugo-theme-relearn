@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.24.3 (2024-02-28)
+
+### Fixes
+
+- [**bug**] theme: avoid crash on 404 if author settings want to warn [#785](https://github.com/McShelby/hugo-theme-relearn/issues/785)
+
+---
+
 ## 5.24.2 (2024-02-24)
 
 ### Enhancements
