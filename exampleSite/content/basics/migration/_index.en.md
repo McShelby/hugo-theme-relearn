@@ -18,6 +18,10 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
+## 5.25.0.beta (XXX) {#5250}
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} If you run Hugo with [GitInfo](https://gohugo.io/methods/page/gitinfo/) configured, the default page footer now prints out name, email address and date of the last commit. If you want to turn this off you either have to run Hugo without GitInfo (which is the default) or overwrite the `content-footer.html' partial.
+
 ## 5.24.0 (2024-02-28) {#5240}
 
 - {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} This release requires a newer Hugo version.
