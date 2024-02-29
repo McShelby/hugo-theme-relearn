@@ -24,22 +24,22 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/attachments/index.html" rel="alternate" hreflang="art-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html" rel="canonical" type="text/html" title="Attachments :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/shortcodes/attachments/index.xml" rel="alternate" type="application/rss+xml" title="Attachments :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1709219065" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/images/logo.svg?1709235994" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1709219066" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1709219066" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/nucleus.css?1709219066" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1709219066" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1709219066" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1709219066" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fonts.css?1709219066" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fonts.css?1709219066" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.css?1709219066" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-auto.css?1709219066" rel="stylesheet" id="R-variant-style">
-    <link href="/hugo-theme-relearn/css/chroma-relearn-auto.css?1709219066" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/hugo-theme-relearn/css/variant.css?1709219066" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1709219066" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/format-print.css?1709219066" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/ie.css?1709219066" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/url.js?1709219066"></script>
-    <script src="/hugo-theme-relearn/js/variant.js?1709219066"></script>
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1709235994" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1709235994" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/nucleus.css?1709235994" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1709235994" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1709235994" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1709235994" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fonts.css?1709235994" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fonts.css?1709235994" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/theme.css?1709235994" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-auto.css?1709235994" rel="stylesheet" id="R-variant-style">
+    <link href="/hugo-theme-relearn/css/chroma-relearn-auto.css?1709235994" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/hugo-theme-relearn/css/variant.css?1709235994" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1709235994" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/format-print.css?1709235994" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/ie.css?1709235994" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/url.js?1709235994"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1709235994"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -95,6 +95,7 @@
 
 <p>The <code>attachments</code> shortcode displays a list of files attached to a page with adjustable color, title and icon.</p>
 
+
 <div class="box attachments cstyle transparent">
   <div class="box-label"><i class="fa-fw fas fa-paperclip"></i> Attachments</div>
   <ul class="box-content attachments-files">
@@ -111,10 +112,28 @@
   <div class="box-label"><i class="fa-fw fas fa-exclamation-triangle"></i> Warning</div>
   <div class="box-content">
 
+<p>This shortcode is deprecated in favor of the new the <a href="/hugo-theme-relearn/shortcodes/resources/index.html"><code>resources</code> shortcode</a>. See <a href="/hugo-theme-relearn/shortcodes/attachments/index.html#migration">migration instructions</a> below.</p>
+</div>
+</div>
+<h2 id="migration">Migration</h2>
+<p>While this shortcode will still be available for some time, it does not receive support anymore. Start to migrate early, as it will be removed with the next major update of the theme.</p>
+<p>The <code>resources</code> shortcode leverages Hugo&rsquo;s resource feature for page bundles. It has all the same parameter as the <code>attachments</code> shortcode but applies the <code>pattern</code> directly on a resources <code>Name</code> attribute.</p>
+<p>To migrate your pages apply the following steps:</p>
+<ol>
+<li>If a page is not already a <a href="https://gohugo.io/content-management/page-bundles/" target="_blank">page bundle</a> convert it</li>
+<li>Move your files to a valid destination inside of your page bundle (depending if you have a branch or a leaf bundle)</li>
+<li>Change the calls from the <code>attachments</code> shortcode to the <a href="/hugo-theme-relearn/shortcodes/resources/index.html"><code>resources</code> shortcode</a> and adjust the <code>pattern</code> parameter to the new directory layout and the resources <a href="https://gohugo.io/methods/resource/name/" target="_blank"><code>Name</code> attribute</a>.</li>
+</ol>
+<p>Multilanguage features are not supported directly by the shortcode anymore but rely on Hugo&rsquo;s handling for resource translations.</p>
+<h2 id="usage">Usage</h2>
+
+<div class="box notices cstyle warning">
+  <div class="box-label"><i class="fa-fw fas fa-exclamation-triangle"></i> Warning</div>
+  <div class="box-content">
+
 <p>Since Hugo <span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fab fa-hackerrank"></i></span><span class="badge-content" style="background-color: fuchsia;">0.112.0</span></span> this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version &lt; <code>0.112.0</code>.</p>
 </div>
 </div>
-<h2 id="usage">Usage</h2>
 <p>While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.</p>
 
 <div class="tab-panel" data-tab-group="shortcode-parameter">
@@ -298,6 +317,7 @@
 <h2 id="examples">Examples</h2>
 <h3 id="custom-title-list-of-attachments-ending-in-pdf-or-mp4">Custom Title, List of Attachments Ending in pdf or mp4</h3>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">attachments</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;Related **files**&#34;</span> <span class="nx">pattern</span><span class="p">=</span><span class="s">&#34;.*\.(pdf|mp4)&#34;</span> <span class="o">/%</span><span class="p">}}</span></span></span></code></pre></div>
+
 <div class="box attachments cstyle transparent">
   <div class="box-label"><i class="fa-fw fas fa-paperclip"></i> Related <strong>files</strong></div>
   <ul class="box-content attachments-files">
@@ -308,6 +328,7 @@
 </div>
 <h3 id="info-styled-box-descending-sort-order">Info Styled Box, Descending Sort Order</h3>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">attachments</span> <span class="nx">style</span><span class="p">=</span><span class="s">&#34;info&#34;</span> <span class="nx">sort</span><span class="p">=</span><span class="s">&#34;desc&#34;</span> <span class="o">/%</span><span class="p">}}</span></span></span></code></pre></div>
+
 <div class="box attachments cstyle info">
   <div class="box-label"><i class="fa-fw fas fa-info-circle"></i> Info</div>
   <ul class="box-content attachments-files">
@@ -321,6 +342,7 @@
 </div>
 <h3 id="with-user-defined-color-and-font-awesome-brand-icon">With User-Defined Color and Font Awesome Brand Icon</h3>
 <div class="wrap-code highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">attachments</span> <span class="nx">color</span><span class="p">=</span><span class="s">&#34;fuchsia&#34;</span> <span class="nx">icon</span><span class="p">=</span><span class="s">&#34;fab fa-hackerrank&#34;</span> <span class="o">/%</span><span class="p">}}</span></span></span></code></pre></div>
+
 <div class="box attachments cstyle default" style="--VARIABLE-BOX-color: fuchsia;">
   <div class="box-label"><i class="fab fa-hackerrank"></i> Attachments</div>
   <ul class="box-content attachments-files">
@@ -342,8 +364,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1709219066" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1709219066" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1709219066" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1709235994" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1709235994" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1709235994" defer></script>
   </body>
 </html>
