@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.25.0.beta (XXX) {#5250}
+## 5.25.0 (2024-02-29) {#5250}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} This release deprecates the [`attachments` shortcode](shortcodes/attachments) in favor of the new the [`resources` shortcode](shortcodes/resources).
 
