@@ -49,7 +49,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Image effects like sizing, shadow, border and alignment](cont/markdown#image-effects)
   - [Image lightbox](cont/markdown#lightbox)
 - **Shortcodes galore**
-  - [Display files attached to page bundles](shortcodes/attachments)
+  - [Display resources contained in a page bundle](shortcodes/resources)
   - [Marker badges](shortcodes/badge)
   - [Configurable buttons](shortcodes/button)
   - [List child pages](shortcodes/children)

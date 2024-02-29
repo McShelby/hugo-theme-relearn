@@ -1,5 +1,6 @@
 +++
 description = "List of files attached to a page"
+hidden = "true"
 title = "Attachments"
 +++
 
@@ -8,10 +9,28 @@ The `attachments` shortcode displays a list of files attached to a page with adj
 {{% attachments sort="asc" /%}}
 
 {{% notice warning %}}
-Since Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version < `0.112.0`.
+This shortcode is deprecated in favor of the new the [`resources` shortcode](shortcodes/resources). See [migration instructions](#migration) below.
 {{% /notice %}}
 
+## Migration
+
+While this shortcode will still be available for some time, it does not receive support anymore. Start to migrate early, as it will be removed with the next major update of the theme.
+
+The `resources` shortcode leverages Hugo's resource feature for page bundles. It has all the same parameter as the `attachments` shortcode but applies the `pattern` directly on a resources `Name` attribute.
+
+To migrate your pages apply the following steps:
+
+1. If a page is not already a [page bundle](https://gohugo.io/content-management/page-bundles/) convert it
+2. Move your files to a valid destination inside of your page bundle (depending if you have a branch or a leaf bundle)
+3. Change the calls from the `attachments` shortcode to the [`resources` shortcode](shortcodes/resources) and adjust the `pattern` parameter to the new directory layout and the resources [`Name` attribute](https://gohugo.io/methods/resource/name/).
+
+Multilanguage features are not supported directly by the shortcode anymore but rely on Hugo's handling for resource translations.
+
 ## Usage
+
+{{% notice warning %}}
+Since Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version < `0.112.0`.
+{{% /notice %}}
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
