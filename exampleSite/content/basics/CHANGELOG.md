@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.25.0 (2024-02-29)
+
+### Enhancements
+
+- [**feature**][**change**] theme: print out GitInfo in page footer if configured [#786](https://github.com/McShelby/hugo-theme-relearn/issues/786)
+- [**feature**][**change**] resources: new shortcode to deprecate attachments shortcode [#22](https://github.com/McShelby/hugo-theme-relearn/issues/22)
+
+### Fixes
+
+- [**bug**] swagger: fix compat warning [#787](https://github.com/McShelby/hugo-theme-relearn/issues/787)
+
+---
+
 ## 5.24.3 (2024-02-28)
 
 ### Fixes
