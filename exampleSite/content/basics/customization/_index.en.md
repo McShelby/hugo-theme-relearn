@@ -174,12 +174,12 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
 
 1. Add the following snippet to your `hugo.toml`
 
-    ````go
+    {{< multiconfig file=hugo >}}
     [params.relearn.dependencies]
       [params.relearn.dependencies.myshortcode]
         name = "MyShortcode"
         location = "footer"
-    ````
+    {{< /multiconfig >}}
 
 1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `hugo.toml`.
 

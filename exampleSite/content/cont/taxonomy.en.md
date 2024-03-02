@@ -43,8 +43,8 @@ url = "/categories"
 
 If you define [custom taxonomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and want to display a list of them somewhere on your page (often in the `layouts/partials/content-footer.html`) you can call a partial that does the job for you:
 
-````md
-{{- partial "term-list.html" (dict
+````go
+{{ partial "term-list.html" (dict
   "page" .
   "taxonomy" "categories"
   "icon" "layer-group"

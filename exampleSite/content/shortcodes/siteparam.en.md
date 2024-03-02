@@ -58,15 +58,15 @@ To use formatted parameter, add this in your `hugo.toml`:
 
 {{< multiconfig file=hugo >}}
 [markup.goldmark.renderer]
-    unsafe = true
+  unsafe = true
 {{< /multiconfig >}}
 
 Now values containing Markdown will be formatted correctly.
 
 {{< multiconfig file=hugo >}}
 [params]
-    [params.siteparam.test]
-        text = "A **nested** parameter <b>with</b> formatting"
+  [params.siteparam.test]
+    text = "A **nested** parameter <b>with</b> formatting"
 {{< /multiconfig >}}
 
 ```go

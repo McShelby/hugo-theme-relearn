@@ -49,8 +49,8 @@ The below example sets an explicit value for the `onempty` parameter, overriding
 
 ````go
 {{ partial "topbar/button/more.html" (dict
-    "page" .
-    "onempty" "disable"
+  "page" .
+  "onempty" "disable"
 )}}
 ````
 

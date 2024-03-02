@@ -74,17 +74,17 @@ This document shows you what's new in the latest release and flags it with one o
 
   Change your previous setting from
 
-    ````toml
+    {{< multiconfig file=hugo >}}
     [params]
       author = "Hugo"
-    ````
+    {{< /multiconfig >}}
 
   to
 
-    ````toml
+    {{< multiconfig file=hugo >}}
     [params]
       author.name = "Hugo"
-    ````
+    {{< /multiconfig >}}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `hugo.toml` by adding `disableTermBreadcrumbs=true`.
 
@@ -287,8 +287,8 @@ This document shows you what's new in the latest release and flags it with one o
   So how to adjust the position of tags starting from the theme's default where tags are only shown above the title?
 
   1. Hide tags above title: Overwrite `content-header.html` with an empty file.
-  2. Show tags between title and content: Overwrite `heading-post.html` and add `{{- partial "tags.html" . }}` to it.
-  3. Show tags below content: Overwrite `content-footer.html` and add `{{- partial "tags.html" . }}` to it.
+  2. Show tags between title and content: Overwrite `heading-post.html` and add `{{ partial "tags.html" . }}` to it.
+  3. Show tags below content: Overwrite `content-footer.html` and add `{{ partial "tags.html" . }}` to it.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new parameter `breadcrumbSeparator` is now available in your `hugo.toml` to change the - well - separator of the breadcrumb items. An appropriate default is in place if you do not configure anything.
 
@@ -310,7 +310,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   The theme provides Front Matter snippets for its shortcodes. Currently only English and German is supported. Put a reference into your `frontmatter.json` like this
 
-  ````json
+  ````json {title="frontmatter.json"}
   {
     ...
     "frontMatter.extends": [
@@ -332,7 +332,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   In case you made changes to the theme that are dependend on this library you can place a copy of jQuery into your `static/js` directory and load it from your own `layouts/partials/custom-header.html` like this:
 
-  ````html
+  ````html {title="layouts/partials/custom-header.html"}
   <script src="{{"js/jquery.min.js"| relURL}}" defer></script>
   ````
 
@@ -378,29 +378,28 @@ This document shows you what's new in the latest release and flags it with one o
 
   1. Make the page file a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
-      ````toml
+      {{< multiconfig fm=true >}}
       title = "Showcase"
       [_build]
         render = "always"
         list = "never"
         publishResources = true
-      ````
+      {{< /multiconfig >}}
 
-  2. Store the page file for below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`).
+  2. Store the page file for below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
 
-      ````toml
-      # title = "More" ### ATTENTION: Don't give this page a title as this will cause it to be in the breadcrumbs - a thing you most likely don't want
+      {{< multiconfig fm=true >}}
       [_build]
         render = "never"
         list = "never"
         publishResources = false
-      ````
+      {{< /multiconfig >}}
 
       In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/credits.en.md`). This causes its content to be contained in the sitemap.
 
-      ````toml
+      {{< multiconfig fm=true >}}
       title = "Credits"
-      ````
+      {{< /multiconfig >}}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The required folder name for the [`attachments` shortcode](shortcodes/attachments) was changed for leaf bundles.
 
@@ -516,7 +515,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   You can revert this behavior by overwriting the `print` output format setting in your `hugo.toml`to:
 
-  ````toml
+  {{< multiconfig file=hugo >}}
   [outputFormats]
     [outputFormats.print]
       name= "print"
@@ -525,7 +524,7 @@ This document shows you what's new in the latest release and flags it with one o
       isHTML = true
       mediaType = 'text/html'
       permalinkable = false
-  ````
+  {{< /multiconfig >}}
 
 ---
 

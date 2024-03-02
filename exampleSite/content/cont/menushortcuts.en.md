@@ -145,7 +145,7 @@ If you have shortcuts to pages inside of your project and you don't want them to
       publishResources = true
     {{< /multiconfig >}}
 
-2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). _Don't give this page a `title` as this will cause it to be in the breadcrumbs - a thing you most likely don't want.
+2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
 
     {{< multiconfig fm=true >}}
     [_build]

@@ -97,6 +97,5 @@ Just set `disableLanguageSwitchingButton=true` in your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
 [params]
-  # When using multilingual website, disable the switch language button.
   disableLanguageSwitchingButton = true
 {{< /multiconfig >}}
