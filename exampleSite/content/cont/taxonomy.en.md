@@ -11,13 +11,11 @@ The Relearn theme supports Hugo's default taxonomies _tag_ and _category_ out of
 
 Just add tags and/or categories to any page. They can be given as a single string or an array of strings.
 
-```toml
-+++
+{{< multiconfig fm=true >}}
 categories = ["taxonomy", "content"]
 tags = "tutorial"
 title = "Taxonomy"
-+++
-```
+{{< /multiconfig >}}
 
 ## Behavior
 
@@ -31,7 +29,7 @@ Each item is a link to a taxonomy page displaying all the articles with the give
 
 In the `hugo.toml`  file you can add a shortcut to display all the tags and categories
 
-```toml
+{{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
 name = "<i class='fas fa-tags'></i> Tags"
 url = "/tags"
@@ -39,13 +37,13 @@ url = "/tags"
 [[menu.shortcuts]]
 name = "<i class='fas fa-layer-group'></i> Categories"
 url = "/categories"
-```
+{{< /multiconfig >}}
 
 ## Customization
 
 If you define [custom taxonomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and want to display a list of them somewhere on your page (often in the `layouts/partials/content-footer.html`) you can call a partial that does the job for you:
 
-````markdown
+````md
 {{- partial "term-list.html" (dict
   "page" .
   "taxonomy" "categories"

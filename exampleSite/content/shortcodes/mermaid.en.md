@@ -81,20 +81,18 @@ The `theme` setting can also be set by your used color variant. This will be the
 
 ### Global Configuration File
 
-````toml
+{{< multiconfig file=hugo >}}
 [params]
   mermaidInitialize = "{ \"theme\": \"dark\" }"
   mermaidZoom = true
-````
+{{< /multiconfig >}}
 
 ### Page's Frontmatter
 
-````toml
-+++
+{{< multiconfig fm=true >}}
 mermaidInitialize = "{ \"theme\": \"dark\" }"
 mermaidZoom = true
-+++
-````
+{{< /multiconfig >}}
 
 ## Examples
 

@@ -17,20 +17,20 @@ A **Home** page is the starting page of your project. It's best to have only one
 
 To create a home page, run the following command
 
-```shell
+````shell
 hugo new --kind home _index.md
-```
+````
 
 This leads to a file with the following content
 
-```markdown
+````toml {title="_index.md"}
 +++
 archetype = "home"
 title = "{{ replace .Name "-" " " | title }}"
 +++
 
 Lorem Ipsum.
-```
+````
 
 ### Chapter {#archetypes-chapter}
 
@@ -40,13 +40,13 @@ A **Chapter** displays a page meant to be used as introduction for a set of chil
 
 To create a chapter page, run the following command
 
-```shell
+````shell
 hugo new --kind chapter <name>/_index.md
-```
+````
 
 This leads to a file with the following content
 
-```markdown
+````toml {title="_index.md"}
 +++
 archetype = "chapter"
 title = "{{ replace .Name "-" " " | title }}"
@@ -54,7 +54,7 @@ weight = X
 +++
 
 Lorem Ipsum.
-```
+````
 
 Replace the `X` with a number. Because this number will be used to generate the subtitle of the chapter page, set the number to a consecutive value starting at 1 for each new chapter level.
 
@@ -66,26 +66,26 @@ A **Default** page is any other content page. If you set an unknown archetype in
 
 To create a default page, run either one of the following commands
 
-```shell
+````shell
 hugo new <chapter>/<name>/_index.md
-```
+````
 
 or
 
-```shell
+````shell
 hugo new <chapter>/<name>.md
-```
+````
 
 This leads to a file with the following content
 
-```markdown
+````toml {title="*.md"}
 +++
 title = "{{ replace .Name "-" " " | title }}"
 weight = X
 +++
 
 Lorem Ipsum.
-```
+````
 
 Replace the `X` with a number or delete the whole `weight` parameter entirely.
 
@@ -97,7 +97,7 @@ If you are in need of further archetypes you can define your own or even redefin
 
 Define a template file in your project at `archetypes/<kind>.md` and make sure it has at least the frontmatter parameter for that archetype like
 
-````markdown
+````toml {title="&lt;kind&gt;.md"}
 +++
 archetype = "<kind>"
 +++
@@ -105,9 +105,9 @@ archetype = "<kind>"
 
 Afterwards you can generate new content files of that kind with the following command
 
-```shell
+````shell
 hugo new --kind <kind> <name>/_index.md
-```
+````
 
 ### Partials
 

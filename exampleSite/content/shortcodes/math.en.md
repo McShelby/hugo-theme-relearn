@@ -69,18 +69,16 @@ See [MathJax documentation](https://docs.mathjax.org/en/latest/options/index.htm
 
 ### Global Configuration File
 
-````toml
+{{< multiconfig file=hugo >}}
 [params]
   mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" } }"
-````
+{{< /multiconfig >}}
 
 ### Page's Frontmatter
 
-````toml
-+++
+{{< multiconfig fm=true >}}
 mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" } }"
-+++
-````
+{{< /multiconfig >}}
 
 ## Examples
 

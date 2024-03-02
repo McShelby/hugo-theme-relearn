@@ -683,7 +683,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   You may see errors on the console after the update in the form:
 
-  ````sh
+  ````shell
   ERROR 2021/11/19 22:29:10 [en] REF_NOT_FOUND: Ref "basics/configuration/_index.md": "hugo-theme-relearn\exampleSite\content\_index.en.md:19:22": page not found
   ````
 

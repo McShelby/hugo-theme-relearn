@@ -9,32 +9,32 @@ The theme is usable in different scenarios, requiring the following mandatory se
 
 ### Public Webserver from Root
 
-````toml
+{{< multiconfig file=hugo >}}
 baseURL = "https://example.com/"
-````
+{{< /multiconfig >}}
 
 ### Public Webserver from Subdirectory
 
-````toml
+{{< multiconfig file=hugo >}}
 baseURL = "https://example.com/mysite/"
 relativeURLs = false
-````
+{{< /multiconfig >}}
 
 ### Private Webserver (LAN)
 
 The same settings as with any of the public webserver usage scenarios or
 
-````toml
+{{< multiconfig file=hugo >}}
 baseURL = "/"
 relativeURLs = true
-````
+{{< /multiconfig >}}
 
 ### File System
 
-````toml
+{{< multiconfig file=hugo >}}
 baseURL = "/"
 relativeURLs = true
-````
+{{< /multiconfig >}}
 
 {{% notice warning %}}
 Using a `baseURL` with a subdirectory and `relativeURLs=true` are mutally exclusive due to the fact, that [Hugo does not apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130).
@@ -49,20 +49,20 @@ Sublemental pages (like `sitemap.xml`, `rss.xml`) and generated social media lin
 {{% notice info %}}
 If you are using `uglyURLs=false` (Hugo's default), the theme will append an additional `index.html` to all page links to make your site be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can generate the links without this:
 
-````toml
+{{< multiconfig file=hugo >}}
 [params]
   disableExplicitIndexURLs = true
-````
+{{< /multiconfig >}}
 {{% /notice %}}
 
 ## Activate search
 
 If not already present, add the following lines in your `hugo.toml` file.
 
-```toml
+{{< multiconfig file=hugo >}}
 [outputs]
   home = ["html", "rss", "search"]
-```
+{{< /multiconfig >}}
 
 This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library. Note that the `search` outputformat was named `json` in previous releases but was implemented differently. Although `json` still works, it is now deprecated.
 
@@ -74,10 +74,10 @@ If you want to use the search feature from the file system, migrating from an ol
 
 You can add a dedicated search page for your page by adding the `searchpage` outputformat to your home page by adding the following lines in your `hugo.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
 
-```toml
+{{< multiconfig file=hugo >}}
 [outputs]
   home = ["html", "rss", "search", "searchpage"]
-```
+{{< /multiconfig >}}
 
 You can access this page by either clicking on the magnifier glass or by typing some search term and pressing `ENTER` inside of the menu's search box .
 
@@ -93,12 +93,12 @@ To make sure, there is no duplicate content for any given URL of your project, r
 
 You can activate print support to add the capability to print whole chapters or even the complete site. Just add the `print` output format to your home, section and page in your `hugo.toml` as seen below:
 
-```toml
+{{< multiconfig file=hugo >}}
 [outputs]
   home = ["html", "rss", "print", "search"]
   section = ["html", "rss", "print"]
   page = ["html", "rss", "print"]
-```
+{{< /multiconfig >}}
 
 This will add a little printer icon in the top bar. It will switch the page to print preview when clicked. You can then send this page to the printer by using your browser's usual print functionality.
 
@@ -114,25 +114,21 @@ If the `disableLandingPageButton` option is set to `false`, a Home button will a
 on the left menu. It is an alternative for clicking on the logo. To edit the
 appearance, you will have to configure the `landingPageName` for the defined languages:
 
-```toml
+{{< multiconfig file=hugo >}}
 [languages]
 [languages.en]
-...
 [languages.en.params]
 landingPageName = "<i class='fas fa-home'></i> Home"
-...
 [languages.pir]
-...
 [languages.pir.params]
 landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
-...
-```
+{{< /multiconfig >}}
 
 If this option is not configured for a specific language, they will get their default values:
 
-```toml
+{{< multiconfig >}}
 landingPageName = "<i class='fas fa-home'></i> Home"
-```
+{{< /multiconfig >}}
 
 The home button is going to look like this:
 

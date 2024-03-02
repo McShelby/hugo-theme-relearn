@@ -56,18 +56,18 @@ While the examples are using shortcodes with named parameter you are free to use
 
 To use formatted parameter, add this in your `hugo.toml`:
 
-````toml
+{{< multiconfig file=hugo >}}
 [markup.goldmark.renderer]
     unsafe = true
-````
+{{< /multiconfig >}}
 
-{{% tab title="hugo.toml" %}}
-````toml
+Now values containing Markdown will be formatted correctly.
+
+{{< multiconfig file=hugo >}}
 [params]
     [params.siteparam.test]
         text = "A **nested** parameter <b>with</b> formatting"
-````
-{{% /tab %}}
+{{< /multiconfig >}}
 
 ```go
 Formatted parameter: {{%/* siteparam name="siteparam.test.text" */%}}

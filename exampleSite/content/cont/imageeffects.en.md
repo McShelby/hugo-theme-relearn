@@ -13,37 +13,35 @@ Explicitly set URL query parameter will override the defaults in effect for a pa
 
 Without any settings in your `hugo.toml` this defaults to
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   [params.imageEffects]
     border = false
     lightbox = true
     shadow = false
-````
+{{< /multiconfig >}}
 
 This can be overridden in a pages frontmatter by eg.
 
-````toml {title="frontmatter"}
-+++
+{{< multiconfig fm=true >}}
 [imageEffects]
   border = true
-+++
-````
+{{< /multiconfig >}}
 
 Or by explicitly override settings by URL query parameter
 
-````markdown {title="URL"}
+````md {title="URL"}
 ![Minion](https://octodex.github.com/images/minion.png?lightbox=false&bg-white=true)
 ````
 
 The settings applied to the above image would be
 
-````toml {title="Result"}
-  border = true
-  lightbox = false
-  shadow = false
-  bg-white = true
-````
+{{< multiconfig >}}
+border = true
+lightbox = false
+shadow = false
+bg-white = true
+{{< /multiconfig >}}
 
 This ends up in the following HTML where the parameter are converted to CSS classes.
 

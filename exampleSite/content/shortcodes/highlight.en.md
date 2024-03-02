@@ -98,40 +98,25 @@ You can configure the color style used for code blocks in your [color variants s
 
 #### Recommended Settings
 
-````toml
+{{< multiconfig file=hugo >}}
 [markup]
   [markup.highlight]
-    # line numbers in a table layout will shift if code is wrapping, so better
-    # use inline; besides that visually both layouts have the same look and behavior
     lineNumbersInTable = false
-
-    # the shipped variants come with their own modified chroma syntax highlightning
-    # stylesheets which are linked in your generated HTML pages; you can use Hugo to generate
-    # own stylesheets to your liking and use them in your variant;
-    # if you want to use Hugo's internal styles instead of the shipped stylesheets:
-    # - remove `noClasses` or set `noClasses = true`
-    # - set `style` to a predefined style name
-    # note: with using the internal styles, the `--CODE-theme` setting in your variant
-    # stylesheet will be ignored and the internal style is used for all variants and
-    # even print
     noClasses = false
-    # style = "tango"
-````
+{{< /multiconfig >}}
 
 #### Optional Settings
 
-````toml
+{{< multiconfig file=hugo >}}
 [params]
   highlightWrap = true
-````
+{{< /multiconfig >}}
 
 ### Page's Frontmatter
 
-````toml
-+++
+{{< multiconfig fm=true >}}
 highlightWrap = true
-+++
-````
+{{< /multiconfig >}}
 
 ## Examples
 
@@ -160,7 +145,7 @@ print("!")
 ### Codefence with Title
 
 
-````markdown
+````md
 ```py { title="python" }
 # a bit shorter
 print("Hello World!")

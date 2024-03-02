@@ -22,9 +22,7 @@ For example with current English and Piratized English website.
 Make sure your default language is defined as the first one in the `[languages]` array, as the theme needs to make assumptions on it
 {{% /notice %}}
 
-
-```toml
-# English is the default language
+{{< multiconfig file=hugo >}}
 defaultContentLanguage = "en"
 
 [languages]
@@ -37,16 +35,16 @@ languageName = "English"
 title = "Cap'n Hugo Relearrrn Theme"
 weight = 2
 languageName = "Arrr! Pirrrates"
-```
+{{< /multiconfig >}}
 
 Then, for each new page, append the _id_ of the language to the file.
 
 - Single file `my-page.md` is split in two files:
-    - in English: `my-page.md`
-    - in Piratized English: `my-page.pir.md`
+  - in English: `my-page.md`
+  - in Piratized English: `my-page.pir.md`
 - Single file `_index.md` is split in two files:
-    - in English: `_index.md`
-    - in Piratized English: `_index.pir.md`
+  - in English: `_index.md`
+  - in Piratized English: `_index.pir.md`
 
 {{% notice info %}}
 Be aware that only translated pages are displayed in menu. It's not replaced with default language content.
@@ -74,10 +72,10 @@ You'll see error reports in your browsers console log for each unsupported langu
 
 In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your english API), you can add those languages to your `hugo.toml` to broaden search.
 
-```toml
+{{< multiconfig file=hugo >}}
 [params]
   additionalContentLanguage = [ "en" ]
-````
+{{< /multiconfig >}}
 
 As this is an array, you can add multiple additional languages.
 
@@ -97,8 +95,8 @@ Switching the language in the browser is a great feature, but for some reasons y
 
 Just set `disableLanguageSwitchingButton=true` in your `hugo.toml`
 
-```toml
+{{< multiconfig file=hugo >}}
 [params]
   # When using multilingual website, disable the switch language button.
   disableLanguageSwitchingButton = true
-```
+{{< /multiconfig >}}

@@ -11,7 +11,7 @@ Edit the website configuration `hugo.toml` and add a `[[menu.shortcuts]]` entry 
 
 Example from the current website:
 
-````toml
+{{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
 identifier = "ds"
@@ -38,14 +38,14 @@ weight = 30
 name = "<i class='fas fa-fw fa-tags'></i> Tags"
 url = "tags/"
 weight = 40
-````
+{{< /multiconfig >}}
 
 By default, shortcuts are preceded by a title. This title can be disabled by setting `disableShortcutsTitle=true`.
 However, if you want to keep the title but change its value, it can be overridden by changing your local i18n translation string configuration.
 
 For example, in your local `i18n/en.toml` file, add the following content
 
-````toml
+````toml {title="en.toml"}
 [Shortcuts-Title]
 other = "<Your value>"
 ````
@@ -58,7 +58,7 @@ When using a multilingual website, you can set different menus for each language
 
 Example from the current website:
 
-````toml
+{{< multiconfig file=hugo >}}
 [languages]
   [languages.en]
     title = "Hugo Relearn Theme"
@@ -127,7 +127,7 @@ Example from the current website:
     name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
     pageRef = "tags/"
     weight = 40
-````
+{{< /multiconfig >}}
 
 Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multilingual menus](https://gohugo.io/content-management/multilingual/#menus)
 
@@ -137,26 +137,25 @@ If you have shortcuts to pages inside of your project and you don't want them to
 
 1. Make the page file for the shortcut a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
-    ````toml
+    {{< multiconfig fm=true >}}
     title = "Showcase"
     [_build]
       render = "always"
       list = "never"
       publishResources = true
-    ````
+    {{< /multiconfig >}}
 
-2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`).
+2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). _Don't give this page a `title` as this will cause it to be in the breadcrumbs - a thing you most likely don't want.
 
-    ````toml
-    # title = "More" ### ATTENTION: Don't give this page a title as this will cause it to be in the breadcrumbs - a thing you most likely don't want
+    {{< multiconfig fm=true >}}
     [_build]
       render = "never"
       list = "never"
       publishResources = false
-    ````
+    {{< /multiconfig >}}
 
     In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/credits.en.md`). This causes its content to be contained in the sitemap.
 
-    ````toml
+    {{< multiconfig fm=true >}}
     title = "Credits"
-    ````
+    {{< /multiconfig >}}

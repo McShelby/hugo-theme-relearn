@@ -18,26 +18,25 @@ Once configured in your `hugo.toml`, you can select them with the variant select
 
 Set the `themeVariant` value to the name of your theme file. That's it! Your site will be displayed in this variant only.
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   themeVariant = "relearn-light"
-````
+{{< /multiconfig >}}
 
 {{% notice note %}}
 Your theme variant file must reside in your site's `static/css` directory or in the theme's `static/css` directory and the file name must start with `theme-` and end wit `.css`. In the above example, the path of your theme file must be `static/css/theme-relearn-light.css`.
 
 If you want to make changes to a shipped color variant, create a copy in your site's `static/css` directory. Don't edit the file in the theme's directory!
-
 {{% /notice %}}
 
 ### Multiple Variants
 
 You can also set multiple variants. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   themeVariant = [ "relearn-light", "relearn-dark" ]
-````
+{{< /multiconfig >}}
 
 {{% notice tip %}}
 The theme provides an advanced configuration mode, combining the functionality for multiple variants with the below possibilities of adjusting to your OS settings and syntax highlightning and even more!
@@ -51,10 +50,10 @@ You can also cause the site to adjust to your OS settings for light/dark mode. J
 
 You can use the `auto` value with the single or multiple variants option. If you are using multiple variants, you can drop `auto` at any position in the option's array, but usually it makes sense to set it in the first position and make it the default.
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   themeVariant = [ "auto", "red" ]
-````
+{{< /multiconfig >}}
 
 If you don't configure anything else, the theme will default to use `relearn-light` for light mode and `relearn-dark` for dark mode. These defaults are overwritten by the first two non-auto options of your `themeVariant` option if present.
 
@@ -62,10 +61,10 @@ In the above example, you would end with `red` for light mode and the default of
 
 If you don't like that behavior, you can explicitly set `themeVariantAuto`. The first entry in the array is the color variant for light mode, the second for dark mode.
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   themeVariantAuto = [ "learn", "neon" ]
-````
+{{< /multiconfig >}}
 
 ## Change the Favicon
 
@@ -105,20 +104,20 @@ Like with the [multiple variants](#multiple-variants) option, you are defining y
 
 Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   themeVariant = [ "relearn-light", "relearn-dark" ]
-````
+{{< /multiconfig >}}
 
 you now write it that way:
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   [[params.themeVariant]]
     identifier = "relearn-light"
   [[params.themeVariant]]
     identifier = "relearn-dark"
-````
+{{< /multiconfig >}}
 
 The `identifier` option is mandatory and equivalent to the string in the first example. Further options can be configured, see the table below.
 
@@ -132,7 +131,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 
 ### Example Configuration of This Site
 
-````toml {title="hugo.toml"}
+{{< multiconfig file=hugo >}}
 [params]
   [[params.themeVariant]]
     identifier = "relearn-auto"
@@ -152,7 +151,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
     identifier = "zen-dark"
   [[params.themeVariant]]
     identifier = "neon"
-````
+{{< /multiconfig >}}
 
 ## Modify Shipped Variants
 
@@ -180,9 +179,9 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
     Afterwards put this in your `hugo.toml` to use your new variant:
 
-    ````toml {title="hugo.toml"}
+    {{< multiconfig file=hugo >}}
     [params]
       themeVariant = "my-branding"
-    ````
+    {{< /multiconfig >}}
 
     In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant but keep your modifications.
