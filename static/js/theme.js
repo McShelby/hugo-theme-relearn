@@ -594,7 +594,8 @@ function initCodeClipboard(){
         var text = getCodeText( code );
         var inPre = code.parentNode.tagName.toLowerCase() == 'pre';
         var inTable = inPre &&
-            code.parentNode.parentNode.tagName.toLowerCase() == 'td';
+            code.parentNode.parentNode.tagName.toLowerCase() == 'td' &&
+            code.parentNode.parentNode.classList.contains('lntd');
         // avoid copy-to-clipboard for highlight shortcode in table lineno mode
         var isFirstLineCell = inTable &&
             code.parentNode.parentNode.parentNode.querySelector( 'td:first-child > pre > code' ) == code;
