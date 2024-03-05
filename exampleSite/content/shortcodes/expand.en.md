@@ -19,10 +19,6 @@ That's some more text with a footnote.[^someid]
     Blue light glows blue.
 {{% /expand %}}
 
-{{% notice note %}}
-This only works in modern browsers flawlessly. While Internet Explorer 11 has issues in displaying it, the functionality still works.
-{{% /notice %}}
-
 ## Usage
 
 While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.

@@ -25,8 +25,6 @@
     {{- if or (partialCached "fileExists.hugo" $f $f) (resources.Get (printf "/css/format-%s.css" $outputFormat)) }}
     <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- end }}
-    <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <script src="{{"js/url.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>
       window.relearn = window.relearn || {};

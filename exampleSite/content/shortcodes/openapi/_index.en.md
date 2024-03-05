@@ -5,10 +5,6 @@ title: "OpenAPI"
 
 The `openapi` shortcode uses the [Swagger UI](https://github.com/swagger-api/swagger-ui) library to display your OpenAPI / Swagger specifications.
 
-{{% notice note %}}
-This only works in modern browsers.
-{{% /notice %}}
-
 ## Usage
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.

@@ -23,14 +23,6 @@ Remove reported issue from the browser's console.
 
 Check for unnecessary whitespace and correct indention of your resulting HTML.
 
-Be compatible to IE11, at least for main functionality, this means:
-
-- test in IE11
-- check caniuse.com
-- don't use JavaScript arrow functions
-- don't use JavaScript template literals
-- don't use other fancy JavaScript ES5/6 stuff
-
 ## Conventional Commits
 
 Write commit messages in the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format.
