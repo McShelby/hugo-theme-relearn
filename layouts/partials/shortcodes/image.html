@@ -19,13 +19,19 @@
 {{- $dest_path := $dest_url.Path }}
 {{- $image := "" }}
 {{- if not $dest_url.IsAbs }}
-  {{- with or ($page.Resources.Get $dest_url.Path) (resources.Get $dest_url.Path) }}
+  {{- with or
+    ($page.Resources.Get $dest_url.Path)
+    (resources.Get $dest_url.Path)
+  }}
     {{- $image = . }}
   {{- end }}
   {{- with $image }}
     {{- $url = $image.RelPermalink }}
     {{- with $dest_url.RawQuery }}
       {{- $url = printf "%s?%s" $url . }}
+    {{- end }}
+    {{- with $dest_url.Fragment }}
+      {{- $url = printf "%s#%s" $url . }}
     {{- end }}
   {{- else }}
     {{- if eq $page.Site.Params.image.errorlevel "warning" }}
@@ -69,12 +75,27 @@
   {{- $c := printf "%s%s" (cond $v "" "no") $k }}
   {{- $classes = $classes | append $c }}
 {{- end }}
+{{- $attributes := merge .attributes (dict "alt" $alt "src" $url "title" $title "loading" "lazy") }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
 {{- if $effects.lightbox -}}
 <a href="#R-image-{{ $id }}" class="lightbox-link">
-{{- end -}}
-<img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} class="figure-image {{ delimit $classes " " }}" style="height: {{ $height }}; width: {{ $width }};" loading="lazy">
+{{- end }}
+{{- $attributes_figure := merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "figure-image" $classes) " ")) }}
+{{- $attributes_figure = merge $attributes_figure (dict "style" (delimit (slice (index $attributes "style") (printf "height: %s; width: %s;" $height $width)) " ")) -}}
+<img
+  {{- range $k, $v := $attributes_figure }}
+    {{- if $v }}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- end }}
+  {{- end }}>
 {{- if $effects.lightbox -}}
 </a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}"><img src="{{ $url | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} class="lightbox-image {{ delimit $classes " " }}" loading="lazy"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}">
+{{- $attributes_lightbox := merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "lightbox-image" $classes) " ")) -}}
+<img
+  {{- range $k, $v := $attributes_lightbox }}
+    {{- if $v }}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- end }}
+  {{- end }}></a>
 {{- end }}
