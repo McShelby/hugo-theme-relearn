@@ -217,23 +217,18 @@ function initMermaid( update, attrs ) {
             is_initialized = true;
 
             var graph = serializeGraph( parse );
+            var new_element = document.createElement( 'div' );
+            for( var attr of element.attributes ){
+                new_element.setAttribute( attr.name, attr.value );
+                element.removeAttribute( attr.name );
+            }
+            new_element.classList.add( 'mermaid-container' );
+            new_element.classList.remove( 'mermaid' );
+            element.classList.add( 'mermaid' );
+
             element.innerHTML = graph;
             if( element.offsetParent !== null ){
                 element.classList.add( 'mermaid-render' );
-            }
-            var new_element = document.createElement( 'div' );
-            new_element.classList.add( 'mermaid-container' );
-            if( element.classList.contains( 'align-right' ) ){
-                new_element.classList.add( 'align-right' );
-                element.classList.remove( 'align-right' );
-            }
-            if( element.classList.contains( 'align-center' ) ){
-                new_element.classList.add( 'align-center' );
-                element.classList.remove( 'align-center' );
-            }
-            if( element.classList.contains( 'align-left' ) ){
-                new_element.classList.add( 'align-left' );
-                element.classList.remove( 'align-left' );
             }
             new_element.innerHTML = '<div class="mermaid-code">' + graph + '</div>' + element.outerHTML;
             element.parentNode.replaceChild( new_element, element );
@@ -314,7 +309,7 @@ function initMermaid( update, attrs ) {
             postRenderCallback: function( id ){
                 // zoom for Mermaid
                 // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
-                var svgs = d3.selectAll( 'body:not(.print) .mermaid.zoomable > #' + id );
+                var svgs = d3.selectAll( 'body:not(.print) .mermaid-container.zoomable > .mermaid > #' + id );
                 svgs.each( function(){
                     var parent = this.parentElement;
                     // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
