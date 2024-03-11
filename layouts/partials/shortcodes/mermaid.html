@@ -18,9 +18,30 @@
     {{- $zoom = (eq . "true") }}
   {{- end }}
 {{- end }}
+
+{{- /* separate shortcode attributes from rest */}}
+{{- $attributes := .attributes | default dict }}
+{{- $otherAttributes := dict }}
+{{- range $k, $v := $attributes }}
+  {{- if eq $k "align" }}
+  {{- else if eq $k "zoom" }}
+  {{- else }}
+    {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
+  {{- end }}
+{{- end }}
+{{- $attributes = $otherAttributes }}
+
+{{- /* enrich attributes */}}
+{{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "mermaid" slice) " ")) }}
+{{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "align-%s" $align) slice) " ")) }}
+{{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "%s" (cond $zoom "zoomable" "")) slice) " ")) }}
+
 {{- with $page }}
-<pre class="mermaid align-{{ $align }}{{ if $zoom }} zoomable{{ end }}">
-  {{- replaceRE "&#39;" "'" ( replaceRE "&#34;" "\"" ( $content | safeHTML ) ) -}}
-</pre>
+<pre
+  {{- range $k, $v := $attributes }}
+    {{- if $v }}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- end }}
+  {{- end }}>{{ replaceRE "&#39;" "'" ( replaceRE "&#34;" "\"" ( $content | safeHTML ) ) }}</pre>
 {{- .Store.Set "hasMermaid" true }}
 {{- end }}
