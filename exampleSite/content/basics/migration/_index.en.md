@@ -18,6 +18,12 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
+## 5.26.0.beta (XXX) {#5260}
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Images and Codefences are now respecting [Hugo's Markdown attributes](https://gohugo.io/content-management/markdown-attributes/).
+
+---
+
 ## 5.25.0 (2024-02-29) {#5250}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} This release deprecates the [`attachments` shortcode](shortcodes/attachments) in favor of the new the [`resources` shortcode](shortcodes/resources).
