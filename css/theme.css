@@ -1370,25 +1370,26 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 
 .mermaid {
     display: inline-block;
+    border: 1px solid transparent;
     padding: .5rem .5rem 0 .5rem;
     position: relative;
     /* don't use display: none, as this will cause no renderinge by Mermaid */
     visibility: hidden;
     width: 100%;
 }
+.mermaid-container.zoomable > .mermaid:hover {
+    border-color: rgba( 134, 134, 134, .333 );
+}
 .mermaid.mermaid-render {
     visibility: visible;
 }
+
 .mermaid > svg {
     /* remove inline height from generated diagram */
-    border: 1px solid transparent;
     height: initial !important;
 }
 .mermaid-container.zoomable > .mermaid > svg {
     cursor: grab;
-}
-.mermaid-container.zoomable > .mermaid:hover > svg{
-    border-color: rgba( 134, 134, 134, .333 );
 }
 
 .svg-reset-button {
