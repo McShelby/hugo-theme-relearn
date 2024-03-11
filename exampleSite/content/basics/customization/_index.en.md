@@ -160,6 +160,18 @@ If you want to adjust the menu width you can define the following CSS variables 
 }
 ````
 
+## Change the Main Area's Max Width
+
+By default the main area width will only grow to a certain extent if more vertical screen space is available. This is done for readability purposes as long line are usually harder to read.
+
+If you are unhappy with the default, you can define the following CSS variable in your `custom-header.html` and set the value to your liking. If you want to use all available space, select a really big value like `1000rem`;
+
+````css
+:root {
+    --MAIN-WIDTH-MAX: 80.25rem;
+}
+````
+
 ## Own Shortcodes with JavaScript Dependencies
 
 Certain shortcodes make use of additional JavaScript files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.

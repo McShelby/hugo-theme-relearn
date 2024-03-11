@@ -470,20 +470,18 @@ article a:focus > img:only-child:empty{
 #R-body .flex-block-wrapper {
     margin-left: auto;
     margin-right: auto;
-    max-width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem );
+    max-width: calc( var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem );
     width: 100%;
 }
 body:not(.print) #R-body .narrow .flex-block-wrapper {
-    max-width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem );
+    max-width: calc( var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem );
 }
 /* we limit width if we have large screens */
-@media screen and ( min-width: 81.25rem ){ /* #R-sidebar/width + ./max-width */
-    #R-body .flex-block-wrapper {
-        width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem );
-    }
-    body:not(.print) #R-body .narrow .flex-block-wrapper {
-        width: calc( 81.25rem - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem );
-    }
+body.main-width-max #R-body .flex-block-wrapper {
+    width: calc( var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem );
+}
+body.main-width-max:not(.print) #R-body .narrow .flex-block-wrapper {
+    width: calc( var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem );
 }
 
 body:not(.print) #R-body-inner.narrow {

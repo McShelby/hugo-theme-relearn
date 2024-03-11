@@ -1601,9 +1601,9 @@ ready( function(){
         });
     }
     function moveTopbarButtons(){
-        var isS = body.classList.contains( 'width-s' );
-        var isM = body.classList.contains( 'width-m' );
-        var isL = body.classList.contains( 'width-l' );
+        var isS = body.classList.contains( 'menu-width-s' );
+        var isM = body.classList.contains( 'menu-width-m' );
+        var isL = body.classList.contains( 'menu-width-l' );
         // move buttons once, width has a distinct value
         if( isS && !isM && !isL ){
             moveAreaTopbarButtons( 's' )
@@ -1647,9 +1647,9 @@ ready( function(){
             }
         })
     }
-    function setWidthS(e){ body.classList[ e.matches ? "add" : "remove" ]( 'width-s' ); }
-    function setWidthM(e){ body.classList[ e.matches ? "add" : "remove" ]( 'width-m' ); }
-    function setWidthL(e){ body.classList[ e.matches ? "add" : "remove" ]( 'width-l' ); }
+    function setWidthS(e){ body.classList[ e.matches ? "add" : "remove" ]( 'menu-width-s' ); }
+    function setWidthM(e){ body.classList[ e.matches ? "add" : "remove" ]( 'menu-width-m' ); }
+    function setWidthL(e){ body.classList[ e.matches ? "add" : "remove" ]( 'menu-width-l' ); }
     function onWidthChange( setWidth, e ){
         setWidth( e );
         moveTopbarButtons();
@@ -1668,4 +1668,16 @@ ready( function(){
     setWidthL( mql );
     moveTopbarButtons();
     adjustEmptyTopbarContents();
+})();
+
+(function(){
+    var body = document.querySelector( 'body' );
+    function setWidth(e){ body.classList[ e.matches ? "add" : "remove" ]( 'main-width-max' ); }
+    function onWidthChange( setWidth, e ){
+        setWidth( e );
+    }
+    var width = variants.getColorValue( 'MAIN-WIDTH-MAX' );
+    var mqm = window.matchMedia( 'screen and ( min-width: ' + width + ')' );
+    mqm.addEventListener( 'change', onWidthChange.bind( null, setWidth ) );
+    setWidth( mqm );
 })();
