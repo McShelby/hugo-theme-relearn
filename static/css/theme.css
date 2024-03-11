@@ -1369,7 +1369,6 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 }
 
 .mermaid {
-    border: 1px solid transparent;
     display: inline-block;
     padding: .5rem .5rem 0 .5rem;
     position: relative;
@@ -1380,16 +1379,16 @@ html[dir="rtl"] .expand > .expand-label > i.fa-chevron-right {
 .mermaid.mermaid-render {
     visibility: visible;
 }
-.mermaid.zoomable:hover {
-    border-color: rgba( 134, 134, 134, .333 );
-}
-
 .mermaid > svg {
     /* remove inline height from generated diagram */
+    border: 1px solid transparent;
     height: initial !important;
 }
-.mermaid.zoomable > svg {
+.mermaid-container.zoomable > .mermaid > svg {
     cursor: grab;
+}
+.mermaid-container.zoomable > .mermaid:hover > svg{
+    border-color: rgba( 134, 134, 134, .333 );
 }
 
 .svg-reset-button {
