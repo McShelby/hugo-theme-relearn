@@ -35,10 +35,19 @@
     {{- $otherOptions = $otherOptions | merge (dict $k $v) }}
   {{- end }}
 {{- end }}
+
+{{- /* separate attributes from options */}}
+{{- $hl_inline := false }}
+{{- if and (isset $page.Params "markup") (isset $page.Params.markup "highlight") (isset $page.Params.markup.highlight "hl_inline") }}
+  {{- $hl_inline = $page.Params.markup.highlight.hl_inline }}
+{{- end }}
 {{- $options = $options | merge $otherOptions }}
 {{- $otherOptions := dict }}
 {{- range $k, $v := $options }}
-  {{- if eq $k "title" }}
+  {{- if eq $k "hl_inline" }}
+    {{- $hl_inline = $v }}
+    {{- $otherOptions = (dict $k $v) | merge $otherOptions }}
+  {{- else if eq $k "title" }}
     {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
   {{- else if eq $k "wrap" }}
     {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
@@ -47,21 +56,8 @@
   {{- end }}
 {{- end }}
 {{- $options = $otherOptions }}
-{{- $attributes = $attributes | merge $otherAttributes }}
-{{- $hl_inline := false }}
-{{- if and (isset $page.Params "markup") (isset $page.Params.markup "highlight") (isset $page.Params.markup.highlight "hl_inline") }}
-  {{- $hl_inline = $page.Params.markup.highlight.hl_inline }}
-{{- end }}
-{{- range $k, $v := $options }}
-  {{- if eq $k "hl_inline" }}
-    {{- $hl_inline = $v }}
-  {{- end }}
-{{- end }}
-{{- $params := slice }}
-{{- range $k, $v := $options }}
-  {{- $params = $params | append (printf "%s=%s" $k (string $v)) }}
-{{- end }}
-{{- $params = delimit $params ", " }}
+
+{{- /* separate shortcode attributes from rest and put it back to options */}}
 {{- $title := "" }}
 {{- $wrap := true }}
 {{- if isset $page.Site.Params "highlightwrap" }}
@@ -70,23 +66,40 @@
 {{- if isset $page.Params "highlightwrap" }}
   {{- $wrap = $page.Params.highlightWrap }}
 {{- end }}
+{{- $attributes = $attributes | merge $otherAttributes }}
+{{- $otherAttributes := dict }}
 {{- range $k, $v := $attributes }}
   {{- if eq $k "title" }}
     {{- $title = $v }}
   {{- else if eq $k "wrap" }}
     {{- $wrap = $v }}
+  {{- else }}
+    {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
   {{- end }}
 {{- end }}
+{{- $attributes = $otherAttributes }}
 {{- if eq (printf "%T" $wrap) "string" }}
   {{- $wrap = (eq $wrap "true") }}
 {{- end }}
-{{- $content = highlight $content $type $params }}
-{{- $content = replaceRE "^([\\s\\n\\r]*)(<pre\\s+?[\\s\\S]*)$" "${1}<div class=\"highlight\">${2}</div>" $content }}
+
+{{- /* enrich options */}}
+{{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "highlight" slice) " ")) }}
 {{- if $wrap }}
-  {{- $content = replaceRE "^([\\s\\n\\r]*<div\\s+class=\")" "${1}wrap-code " $content 1 }}
+  {{- $attributes = merge $options (dict "class" (delimit (append (index $attributes "class" | default slice) "wrap-code" slice) " ")) }}
 {{- end }}
+
+{{- /* print da shtuff */}}
+{{- $div := slice }}
+{{- range $k, $v := $attributes }}
+  {{- if $v }}
+    {{- $div = $div | append (printf "%s=%q" $k $v | safeHTMLAttr) }}
+  {{- end }}
+{{- end }}
+{{- $content = highlight $content $type $options }}
+{{- $content = replaceRE "^([\\s\\n\\r]*)(<pre\\s+?[\\s\\S]*)$" "${1}<div class=\"highlight\">${2}</div>" $content }}
+{{- $content = replaceRE "(class=\")([^\"]*)\"" (printf "%s" (delimit $div " ")) $content 1 }}
 {{- if and $title (not $hl_inline) }}
-  {{ partial "shortcodes/tab.html" (dict
+  {{- partial "shortcodes/tab.html" (dict
     "page"  $page
     "title" $title
     "content" $content
