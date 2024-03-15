@@ -50,13 +50,13 @@ This leads to a file with the following content
 +++
 archetype = "chapter"
 title = "{{ replace .Name "-" " " | title }}"
-weight = X
+weight = 1
 +++
 
 Lorem Ipsum.
 ````
 
-Replace the `X` with a number. Because this number will be used to generate the subtitle of the chapter page, set the number to a consecutive value starting at 1 for each new chapter level.
+The `weight` number will be used to generate the subtitle of the chapter page, set the number to a consecutive value starting at 1 for each new chapter level.
 
 ### Default {#archetypes-default}
 
@@ -81,13 +81,10 @@ This leads to a file with the following content
 ````toml {title="*.md"}
 +++
 title = "{{ replace .Name "-" " " | title }}"
-weight = X
 +++
 
 Lorem Ipsum.
 ````
-
-Replace the `X` with a number or delete the whole `weight` parameter entirely.
 
 ## Self defined Archetypes
 

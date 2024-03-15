@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "{{ replace .Name "-" " " | title }}"
-weight = X
+weight = 1
 +++
 
-Lorem Ipsum.
+This is a new chapter.
