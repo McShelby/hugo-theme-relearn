@@ -1,23 +1,26 @@
 {{- $page := .page }}
 {{- with $page }}
   {{- $urlOpenapi := "" }}
+  {{- $relOpenapi := "" }}
+  {{- $cssInProject := false }}
   {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
     {{- $urlOpenapi = .Params.customOpenapiURL }}
+    {{- $relOpenapi = .Params.customOpenapiURL }}
   {{- else if and (isset .Site.Params "customopenapiurl") .Site.Params.customOpenapiURL }}
     {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
+    {{- $relOpenapi = .Site.Params.customOpenapiURL }}
   {{- else }}
-    {{- $urlOpenapi = "js/swagger-ui/swagger-ui-bundle.js" | relURL }}
-    {{- if not .Site.Params.disableAssetsBusting }}
-      {{- $urlOpenapi = printf "%s?%d" $urlOpenapi now.Unix }}
+    {{- $urlOpenapi = printf "%s%s" ("js/swagger-ui/swagger-ui-bundle.js" | relURL) (cond .Site.Params.disableAssetsBusting "" (printf "?%d" now.Unix)) }}
+    {{- $relOpenapi = printf "%s%s" ("/js/swagger-ui/swagger-ui-bundle.js") (cond .Site.Params.disableAssetsBusting "" (printf "?%d" now.Unix)) }}
+    {{- $cssInProject = true }}
     {{- end }}
-  {{- end }}
     <script>window.noZensmooth = true;</script>
     <script src="{{ $urlOpenapi }}" defer></script>
   {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
     <script src="{{ $urlOpenapi }}" defer></script>
-  {{- $urlOpenapi := replace $urlOpenapi "swagger-ui-standalone-preset" "swagger-ui" }}
-  {{- $urlOpenapi := replace $urlOpenapi ".js" ".css" }}
+  {{- $relOpenapi := replace $relOpenapi "swagger-ui-bundle" "swagger-ui" }}
+  {{- $relOpenapi := replace $relOpenapi ".js" ".css" }}
     <script>
-      window.themeUseOpenapi = { css: {{ $urlOpenapi }}, assetsBuster: {{ cond (not .Site.Params.disableAssetsBusting) now.Unix 0 }} };
+      window.themeUseOpenapi = { css: {{ $relOpenapi }}, cssInProject: {{ $cssInProject | safeJS }}, assetsBuster: {{ cond (not .Site.Params.disableAssetsBusting) now.Unix 0 }} };
     </script>
 {{- end }}
