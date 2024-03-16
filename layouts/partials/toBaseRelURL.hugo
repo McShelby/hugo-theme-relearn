@@ -1,7 +1,8 @@
-{{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
-{{- $url = path.Clean $url }}
+{{- $url := .RelPermalink }}
 {{- $url = replaceRE "/[^/]*$" "" $url }}
-{{- $url = replaceRE "/[^/]*" "/.." $url }}
-{{- $url = replaceRE "^/" "" $url }}
-{{- $url = replaceRE "/$" "" $url }}
-{{- return $url }}
+{{- $home_url := .Site.Home.RelPermalink }}
+{{- $home_url = replaceRE "/[^/]*$" "" $home_url }}
+{{- $rel_url := strings.TrimPrefix $home_url $url }}
+{{- $rel_url = replaceRE "/[^/]*" "/.." $rel_url }}
+{{- $rel_url = trim $rel_url "/" }}
+{{- return $rel_url }}
