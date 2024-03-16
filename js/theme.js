@@ -446,7 +446,7 @@ function initOpenapi( update, attrs ){
             const openapiPromise = new Promise( function(resolve){ resolve() });
             openapiPromise
                 .then( function(){
-                    SwaggerUIBundle({
+                    var options = {
                         defaultModelsExpandDepth: 2,
                         defaultModelExpandDepth: 2,
                         docExpansion: isPrint || attrs.isPrintPreview ? 'full' : 'list',
@@ -470,9 +470,15 @@ function initOpenapi( update, attrs ){
                             activated: true,
                             theme: swagger_code_theme,
                         },
-                        url: oc.dataset.openapiUrl,
                         validatorUrl: 'none',
-                    });
+                    };
+                    if( oc.dataset.openapiSpec ){
+                        Object.assign( options, { spec: JSON.parse( oc.dataset.openapiSpec ) });
+                    }
+                    else{
+                        Object.assign( options, { url: oc.dataset.openapiUrl });
+                    }
+                    SwaggerUIBundle( options );
                 })
                 .then( function(){
                     let observerCallback = function () {
