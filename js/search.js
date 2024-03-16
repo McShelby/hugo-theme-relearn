@@ -217,7 +217,7 @@ function searchDetail( value ) {
             divsuggestion.className = 'autocomplete-suggestion';
             divsuggestion.setAttribute('data-term', value);
             divsuggestion.setAttribute('data-title', page.title);
-            divsuggestion.setAttribute('href', baseUri + page.uri);
+            divsuggestion.setAttribute('href', window.relearn.baseUri + page.uri);
             divsuggestion.setAttribute('data-context', context);
             var divtitle = document.createElement('div');
             divtitle.className = 'title';
@@ -289,7 +289,7 @@ function startSearch(){
             divsuggestion.className = 'autocomplete-suggestion';
             divsuggestion.setAttribute('data-term', term);
             divsuggestion.setAttribute('data-title', page.title);
-            divsuggestion.setAttribute('data-uri', baseUri + page.uri);
+            divsuggestion.setAttribute('data-uri', window.relearn.baseUri + page.uri);
             divsuggestion.setAttribute('data-context', context);
             var divtitle = document.createElement('div');
             divtitle.className = 'title';
