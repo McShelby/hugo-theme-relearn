@@ -1523,6 +1523,9 @@ if( window.themeUseMermaid ){
 }
 
 function useOpenapi( config ){
+    if( config.css && config.css.startsWith( '/' ) ){
+        config.css = window.relearn.baseUri + config.css;
+    }
 }
 if( window.themeUseOpenapi ){
     useOpenapi( window.themeUseOpenapi );

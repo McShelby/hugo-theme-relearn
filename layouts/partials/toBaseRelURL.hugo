@@ -1,0 +1,7 @@
+{{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+{{- $url = path.Clean $url }}
+{{- $url = replaceRE "/[^/]*$" "" $url }}
+{{- $url = replaceRE "/[^/]*" "/.." $url }}
+{{- $url = replaceRE "^/" "" $url }}
+{{- $url = replaceRE "/$" "" $url }}
+{{- return $url }}
