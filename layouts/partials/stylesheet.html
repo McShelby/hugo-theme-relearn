@@ -28,9 +28,13 @@
     <link href="{{"css/ie.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     <script src="{{"js/url.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
-    <script>
+    <script id="R-inline-script" data-root-url="/">
       {{ "// hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:" | safeJS }}
       {{ "// https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72" | safeJS }}
+      var root_url=document.querySelector( '#R-inline-script' ).dataset.rootUrl;
+      window.relearn = window.relearn || {};
+      window.relearn.baseUri=root_url.replace(/\/*$/, '');
+      window.relearn.baseUriFull='{{ .Site.BaseURL | safeJS }}/'.replace(/\/*$/, '');
     {{- with .Site.Home.OutputFormats.Get "json" }}
       {{- warnf "%q: DEPRECATED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-search" $page.File.Filename }}
       window.index_json_url={{ "index.json" | relLangURL }};
@@ -38,10 +42,6 @@
     {{- with .Site.Home.OutputFormats.Get "search" }}
       window.index_js_url={{ "index.search.js" | relLangURL }};
     {{- end }}
-      var root_url="/";
-      window.relearn = window.relearn || {};
-      window.relearn.baseUri=root_url.replace(/\/$/, '');
-      window.relearn.baseUriFull='{{ trim .Site.BaseURL "/" | safeJS }}/';
       {{ "// variant stuff" | safeJS }}
       window.relearn.themeVariantModifier='{{ $themevariantmodifier }}';
       {{- $quotedthemevariants := slice }}
