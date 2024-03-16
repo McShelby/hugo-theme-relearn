@@ -1523,7 +1523,7 @@ if( window.themeUseMermaid ){
 }
 
 function useOpenapi( config ){
-    if( config.css && config.css.startsWith( '/' ) ){
+    if( config.css && config.cssInProject ){
         config.css = window.relearn.baseUri + config.css;
     }
 }
