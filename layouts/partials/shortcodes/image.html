@@ -6,7 +6,7 @@
 {{- $url := .url }}
 {{- $title := .title }}
 {{- $alt := .alt }}
-{{- $effects := dict "border" false "lightbox" true "shadow" false }}
+{{- $effects := dict "border" false "lazy" true "lightbox" true "shadow" false }}
 {{- if $page.Site.Params.imageeffects }}
   {{- $effects = merge $effects $page.Site.Params.imageeffects }}
 {{- end }}
@@ -75,8 +75,11 @@
   {{- $c := printf "%s%s" (cond $v "" "no") $k }}
   {{- $classes = $classes | append $c }}
 {{- end }}
-{{- $attributes := merge .attributes (dict "alt" $alt "src" $url "title" $title "loading" "lazy") }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
+{{- $attributes := merge .attributes (dict "alt" $alt "src" $url "title" $title) }}
+{{- if $effects.lazy }}
+  {{- $attributes = merge $attributes (dict "loading" "lazy") }}
+{{- end }}
 {{- if $effects.lightbox -}}
 <a href="#R-image-{{ $id }}" class="lightbox-link">
 {{- end }}

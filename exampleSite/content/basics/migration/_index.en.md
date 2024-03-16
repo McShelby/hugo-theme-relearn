@@ -20,6 +20,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.26.0.beta (XXX) {#5260}
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The lazy loading of images is now configurable by using the new `lazy` [image effect](cont/imageeffects). The default value hasn't changed in comparison to older versions, you don't need to change anything.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to [adjust the max width of the main area](basics/customization#change-the-main-areas-max-width), eg. in case you want to use the full page width for your content.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Images and Codefences are now respecting [Hugo's Markdown attributes](https://gohugo.io/content-management/markdown-attributes/).
