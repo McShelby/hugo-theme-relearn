@@ -390,6 +390,7 @@ function initOpenapi( update, attrs ){
 
     }
     function renderOpenAPI(oc) {
+        var baseUri = window.relearn.baseUri;
         var mod = window.relearn.themeVariantModifier;
         var buster = window.themeUseOpenapi.assetsBuster ? '?' + window.themeUseOpenapi.assetsBuster : '';
         var print = isPrint || attrs.isPrintPreview ? "PRINT-" : "";
@@ -1523,7 +1524,7 @@ if( window.themeUseMermaid ){
 
 function useOpenapi( config ){
     if( config.css && config.css.startsWith( '/' ) ){
-        config.css = baseUri + config.css;
+        config.css = window.relearn.baseUri + config.css;
     }
 }
 if( window.themeUseOpenapi ){
