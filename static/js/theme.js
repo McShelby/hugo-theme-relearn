@@ -479,7 +479,7 @@ function initOpenapi( update, attrs ){
                             try{
                                 Object.assign( options, { spec: jsyaml.load( oc.dataset.openapiSpec ) });
                             } catch( err ){
-                                console.log( err );
+                                console.error( 'OpenAPI: file "' + oc.dataset.openapiUrl + '" could not be parsed as JSON or YAML');
                             }
                         }
                     }
