@@ -473,7 +473,15 @@ function initOpenapi( update, attrs ){
                         validatorUrl: 'none',
                     };
                     if( oc.dataset.openapiSpec ){
-                        Object.assign( options, { spec: JSON.parse( oc.dataset.openapiSpec ) });
+                        try{
+                            Object.assign( options, { spec: JSON.parse( oc.dataset.openapiSpec ) });
+                        } catch( err ){
+                            try{
+                                Object.assign( options, { spec: jsyaml.load( oc.dataset.openapiSpec ) });
+                            } catch( err ){
+                                console.log( err );
+                            }
+                        }
                     }
                     else{
                         Object.assign( options, { url: oc.dataset.openapiUrl });
