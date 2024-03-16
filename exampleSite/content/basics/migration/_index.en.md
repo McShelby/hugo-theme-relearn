@@ -26,6 +26,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.6.0. This adds support for [block diagrams](shortcodes/mermaid#block-diagram).
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where the page wasn't repositioning correctly when going forward or backward in your browser history.
+
 ---
 
 ## 5.25.0 (2024-02-29) {#5250}
