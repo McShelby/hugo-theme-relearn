@@ -1167,7 +1167,19 @@ function initScrollPositionSaver(){
         state.contentScrollTop = +elc.scrollTop;
         window.history.replaceState( state, '', window.location );
     };
-    window.addEventListener( 'pagehide', savePosition );
+
+    var ticking = false;
+    elc.addEventListener( 'scroll', function( event ){
+        if( !ticking ){
+            window.requestAnimationFrame( function(){
+                savePosition();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    document.addEventListener( "click", savePosition );
 }
 
 function scrollToPositions() {
@@ -1227,6 +1239,15 @@ function scrollToPositions() {
         return;
     }
 }
+
+window.addEventListener( 'popstate', function ( event ){
+    scrollToPositions();
+});
+
+const observer = new PerformanceObserver( function(){
+    scrollToPositions();
+});
+observer.observe({ type: "navigation" });
 
 function mark() {
     // mark some additional stuff as searchable
@@ -1525,7 +1546,6 @@ ready( function(){
     initImage();
     initExpand();
     initScrollPositionSaver();
-    scrollToPositions();
 });
 
 (function(){
