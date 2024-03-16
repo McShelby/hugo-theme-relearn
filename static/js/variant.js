@@ -238,7 +238,7 @@ var variants = {
 		graphs.forEach( function( e ){ e.innerHTML = graphDefinition; });
 
 		var interval_id = setInterval( function(){
-			if( document.querySelectorAll( vargenerator + '.mermaid > svg' ).length ){
+			if( document.querySelectorAll( vargenerator + ' .mermaid > svg' ).length ){
 				clearInterval( interval_id );
 				this.styleGraph();
 			}
