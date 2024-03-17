@@ -218,10 +218,10 @@ function initMermaid( update, attrs ) {
 
             var graph = serializeGraph( parse );
             var new_element = document.createElement( 'div' );
-            for( var attr of element.attributes ){
+            Array.from( element.attributes ).forEach( function( attr ){
                 new_element.setAttribute( attr.name, attr.value );
                 element.removeAttribute( attr.name );
-            }
+            });
             new_element.classList.add( 'mermaid-container' );
             new_element.classList.remove( 'mermaid' );
             element.classList.add( 'mermaid' );
