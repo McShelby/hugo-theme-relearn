@@ -323,7 +323,7 @@ function initMermaid( update, attrs ) {
                     var button = parent.querySelector( '.svg-reset-button' );
                     var zoom = d3.zoom().on( 'zoom', function( e ){
                         inner.attr( 'transform', e.transform );
-                        if( e.transform.k == 1 ){
+                        if( e.transform.k == 1 && e.transform.x == 0 && e.transform.y == 0 ){
                             button.classList.remove( 'zoomed' );
                         }
                         else{
