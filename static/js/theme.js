@@ -634,12 +634,12 @@ function initCodeClipboard(){
             });
             if( inTable ){
                 var table = code.parentNode.parentNode.parentNode.parentNode.parentNode;
-                table.dataset[ 'code' ] = text;
+                table.dataset.code = text;
                 table.parentNode.insertBefore( button, table.nextSibling );
             }
             else if( inPre ){
                 var pre = code.parentNode;
-                pre.dataset[ 'code' ] = text;
+                pre.dataset.code = text;
                 var p = pre.parentNode;
                 // indented code blocks are missing the div
                 while( p != document && ( p.tagName.toLowerCase() != 'div' || !p.classList.contains( 'highlight' ) ) ){
@@ -656,7 +656,7 @@ function initCodeClipboard(){
                 pre.parentNode.insertBefore( button, pre.nextSibling );
             }
             else{
-                code.dataset[ 'code' ] = text;
+                code.dataset.code = text;
                 code.parentNode.insertBefore( button, code.nextSibling );
             }
         }
