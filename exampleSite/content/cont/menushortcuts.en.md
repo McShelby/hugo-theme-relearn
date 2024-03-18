@@ -13,29 +13,29 @@ Example from the current website:
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
-name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
 identifier = "ds"
 url = "https://github.com/McShelby/hugo-theme-relearn"
 weight = 10
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+name = "<i class='fa-fw fas fa-camera'></i> Showcases"
 url = "showcase/"
 weight = 11
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
+name = "<i class='fa-fw fas fa-bookmark'></i> Hugo Documentation"
 identifier = "hugodoc"
 url = "https://gohugo.io/"
 weight = 20
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+name = "<i class='fa-fw fas fa-bullhorn'></i> Credits"
 url = "more/credits/"
 weight = 30
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-tags'></i> Tags"
+name = "<i class='fa-fw fas fa-tags'></i> Tags"
 url = "tags/"
 weight = 40
 {{< /multiconfig >}}
@@ -65,32 +65,32 @@ Example from the current website:
     weight = 1
     languageName = "English"
     [languages.en.params]
-      landingPageName = "<i class='fas fa-home'></i> Home"
+      landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
 
   [[languages.en.menu.shortcuts]]
-    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
   [[languages.en.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+    name = "<i class='fa-fw fas fa-camera'></i> Showcases"
     pageRef = "showcase/"
     weight = 11
 
   [[languages.en.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
+    name = "<i class='fa-fw fas fa-bookmark'></i> Hugo Documentation"
     identifier = "hugodoc"
     url = "https://gohugo.io/"
     weight = 20
 
   [[languages.en.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+    name = "<i class='fa-fw fas fa-bullhorn'></i> Credits"
     pageRef = "more/credits/"
     weight = 30
 
   [[languages.en.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-tags'></i> Tags"
+    name = "<i class='fa-fw fas fa-tags'></i> Tags"
     pageRef = "tags/"
     weight = 40
 
@@ -99,32 +99,32 @@ Example from the current website:
     weight = 1
     languageName = "Arrr! Pirrrates"
     [languages.pir.params]
-      landingPageName = "<i class='fas fa-home'></i> Arrr! Home"
+      landingPageName = "<i class='fa-fw fas fa-home'></i> Arrr! Home"
 
   [[languages.pir.menu.shortcuts]]
-    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
 
   [[languages.pir.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+    name = "<i class='fa-fw fas fa-camera'></i> Showcases"
     pageRef = "showcase/"
     weight = 11
 
   [[languages.pir.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-bookmark'></i> Cap'n Hugo Documentat'n"
+    name = "<i class='fa-fw fas fa-bookmark'></i> Cap'n Hugo Documentat'n"
     identifier = "hugodoc"
     url = "https://gohugo.io/"
     weight = 20
 
   [[languages.pir.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-bullhorn'></i> Crrredits"
+    name = "<i class='fa-fw fas fa-bullhorn'></i> Crrredits"
     pageRef = "more/credits/"
     weight = 30
 
   [[languages.pir.menu.shortcuts]]
-    name = "<i class='fas fa-fw fa-tags'></i> Arrr! Tags"
+    name = "<i class='fa-fw fas fa-tags'></i> Arrr! Tags"
     pageRef = "tags/"
     weight = 40
 {{< /multiconfig >}}

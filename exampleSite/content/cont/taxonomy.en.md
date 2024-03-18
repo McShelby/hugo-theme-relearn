@@ -31,11 +31,11 @@ In the `hugo.toml`  file you can add a shortcut to display all the tags and cate
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
-name = "<i class='fas fa-tags'></i> Tags"
+name = "<i class='fa-fw fas fa-tags'></i> Tags"
 url = "/tags"
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-layer-group'></i> Categories"
+name = "<i class='fa-fw fas fa-layer-group'></i> Categories"
 url = "/categories"
 {{< /multiconfig >}}
 

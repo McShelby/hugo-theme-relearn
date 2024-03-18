@@ -118,16 +118,16 @@ appearance, you will have to configure the `landingPageName` for the defined lan
 [languages]
 [languages.en]
 [languages.en.params]
-landingPageName = "<i class='fas fa-home'></i> Home"
+landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
 [languages.pir]
 [languages.pir.params]
-landingPageName = "<i class='fas fa-home'></i> Arrr! Homme"
+landingPageName = "<i class='fa-fw fas fa-home'></i> Arrr! Homme"
 {{< /multiconfig >}}
 
 If this option is not configured for a specific language, they will get their default values:
 
 {{< multiconfig >}}
-landingPageName = "<i class='fas fa-home'></i> Home"
+landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
 {{< /multiconfig >}}
 
 The home button is going to look like this:
