@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.26.0 (2024-03-17) {#5260}
+## 5.26.0 (2024-03-18) {#5260}
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The lazy loading of images is now configurable by using the new `lazy` [image effect](cont/imageeffects). The default value hasn't changed in comparison to older versions, you don't need to change anything.
 
