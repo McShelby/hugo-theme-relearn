@@ -127,21 +127,21 @@ function switchTab(tabGroup, tabId) {
 
       // Store the selection to make it persistent
       if(window.localStorage){
-          var selectionsJSON = window.localStorage.getItem(window.relearn.baseUriFull+"/tab-selections");
+          var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri+"/tab-selections");
           if(selectionsJSON){
             var tabSelections = JSON.parse(selectionsJSON);
           }else{
             var tabSelections = {};
           }
           tabSelections[tabGroup] = tabId;
-          window.localStorage.setItem(window.relearn.baseUriFull+"/tab-selections", JSON.stringify(tabSelections));
+          window.localStorage.setItem(window.relearn.absBaseUri+"/tab-selections", JSON.stringify(tabSelections));
       }
     }
 }
 
 function restoreTabSelections() {
     if(window.localStorage){
-        var selectionsJSON = window.localStorage.getItem(window.relearn.baseUriFull+"/tab-selections");
+        var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri+"/tab-selections");
         if(selectionsJSON){
           var tabSelections = JSON.parse(selectionsJSON);
         }else{
@@ -299,7 +299,7 @@ function initMermaid( update, attrs ) {
 
     var search;
     if( update ){
-        search = sessionStorage.getItem( window.relearn.baseUriFull+'/search-value' );
+        search = sessionStorage.getItem( window.relearn.absBaseUri+'/search-value' );
         unmark();
     }
     var is_initialized = ( update ? update_func( attrs ) : init_func( attrs ) );
@@ -351,7 +351,7 @@ function initMermaid( update, attrs ) {
         });
     }
     if( update && search && search.length ){
-        sessionStorage.setItem( window.relearn.baseUriFull+'/search-value', search );
+        sessionStorage.setItem( window.relearn.absBaseUri+'/search-value', search );
         mark();
     }
 }
@@ -390,11 +390,11 @@ function initOpenapi( update, attrs ){
 
     }
     function renderOpenAPI(oc) {
-        var baseUri = window.relearn.baseUri;
+        var relBasePath = window.relearn.relBasePath;
         var mod = window.relearn.themeVariantModifier;
         var buster = window.themeUseOpenapi.assetsBuster ? '?' + window.themeUseOpenapi.assetsBuster : '';
         var print = isPrint || attrs.isPrintPreview ? "PRINT-" : "";
-        var theme = print ? `${baseUri}/css/theme-relearn-light${mod}.css${buster}` : document.querySelector( '#R-variant-style' ).attributes.href.value
+        var theme = print ? `${relBasePath}/css/theme-relearn-light${mod}.css${buster}` : document.querySelector( '#R-variant-style' ).attributes.href.value
         var swagger_theme = variants.getColorValue( print + 'OPENAPI-theme' );
         var swagger_code_theme = variants.getColorValue( print + 'OPENAPI-CODE-theme' );
 
@@ -418,8 +418,8 @@ function initOpenapi( update, attrs ){
                 '<head>' +
                     '<link rel="stylesheet" href="' + window.themeUseOpenapi.css + '">' +
                     '<link rel="stylesheet" href="' + theme + '">' +
-                    '<link rel="stylesheet" href="' + baseUri + '/css/swagger.css' + buster + '">' +
-                    '<link rel="stylesheet" href="' + baseUri + '/css/swagger-' + swagger_theme + '.css' + buster + '">' +
+                    '<link rel="stylesheet" href="' + relBasePath + '/css/swagger.css' + buster + '">' +
+                    '<link rel="stylesheet" href="' + relBasePath + '/css/swagger-' + swagger_theme + '.css' + buster + '">' +
                 '</head>' +
                 '<body>' +
                     '<a class="relearn-expander" href="" onclick="return relearn_collapse_all()">Collapse all</a>' +
@@ -634,12 +634,12 @@ function initCodeClipboard(){
             });
             if( inTable ){
                 var table = code.parentNode.parentNode.parentNode.parentNode.parentNode;
-                table.dataset[ 'code' ] = text;
+                table.dataset.code = text;
                 table.parentNode.insertBefore( button, table.nextSibling );
             }
             else if( inPre ){
                 var pre = code.parentNode;
-                pre.dataset[ 'code' ] = text;
+                pre.dataset.code = text;
                 var p = pre.parentNode;
                 // indented code blocks are missing the div
                 while( p != document && ( p.tagName.toLowerCase() != 'div' || !p.classList.contains( 'highlight' ) ) ){
@@ -656,7 +656,7 @@ function initCodeClipboard(){
                 pre.parentNode.insertBefore( button, pre.nextSibling );
             }
             else{
-                code.dataset[ 'code' ] = text;
+                code.dataset.code = text;
                 code.parentNode.insertBefore( button, code.nextSibling );
             }
         }
@@ -1142,7 +1142,7 @@ function initExpand(){
 }
 
 function clearHistory() {
-    var visitedItem = window.relearn.baseUriFull + '/visited-url/'
+    var visitedItem = window.relearn.absBaseUri + '/visited-url/'
     for( var item in sessionStorage ){
         if( item.substring( 0, visitedItem.length ) === visitedItem ){
             sessionStorage.removeItem( item );
@@ -1158,7 +1158,7 @@ function clearHistory() {
 }
 
 function initHistory() {
-    var visitedItem = window.relearn.baseUriFull + '/visited-url/'
+    var visitedItem = window.relearn.absBaseUri + '/visited-url/'
     sessionStorage.setItem( visitedItem+document.querySelector( 'body' ).dataset.url, 1);
 
     // loop through the sessionStorage and see if something should be marked as visited
@@ -1225,7 +1225,7 @@ function scrollToPositions() {
         return;
     }
 
-    var search = sessionStorage.getItem( window.relearn.baseUriFull+'/search-value' );
+    var search = sessionStorage.getItem( window.relearn.absBaseUri+'/search-value' );
     if( search && search.length ){
         search = regexEscape( search );
         var found = elementContains( search, elc );
@@ -1271,7 +1271,7 @@ function mark() {
         bodyInnerLinks[i].classList.add( 'highlight' );
     }
 
-    var value = sessionStorage.getItem( window.relearn.baseUriFull + '/search-value' );
+    var value = sessionStorage.getItem( window.relearn.absBaseUri + '/search-value' );
     var highlightableElements = document.querySelectorAll( '.highlightable' );
     highlight( highlightableElements, value, { element: 'mark' } );
 
@@ -1359,7 +1359,7 @@ function highlightNode( node, re, nodeName, className ){
 };
 
 function unmark() {
-    sessionStorage.removeItem( window.relearn.baseUriFull + '/search-value' );
+    sessionStorage.removeItem( window.relearn.absBaseUri + '/search-value' );
     var markedElements = document.querySelectorAll( 'mark' );
     for( var i = 0; i < markedElements.length; i++ ){
         var parent = markedElements[i].parentNode;
@@ -1425,7 +1425,7 @@ function elementContains( txt, e ){
 function searchInputHandler( value ){
     unmark();
     if( value.length ){
-        sessionStorage.setItem( window.relearn.baseUriFull+'/search-value', value );
+        sessionStorage.setItem( window.relearn.absBaseUri+'/search-value', value );
         mark();
     }
 }
@@ -1437,7 +1437,7 @@ function initSearch() {
         e.addEventListener( 'keydown', function( event ){
             if( event.key == 'Escape' ){
                 var input = event.target;
-                var search = sessionStorage.getItem( window.relearn.baseUriFull+'/search-value' );
+                var search = sessionStorage.getItem( window.relearn.absBaseUri+'/search-value' );
                 if( !search || !search.length ){
                     input.blur();
                 }
@@ -1477,13 +1477,13 @@ function initSearch() {
     var urlParams = new URLSearchParams( window.location.search );
     var value = urlParams.get( 'search-by' );
     if( value ){
-        sessionStorage.setItem( window.relearn.baseUriFull+'/search-value', value );
+        sessionStorage.setItem( window.relearn.absBaseUri+'/search-value', value );
     }
     mark();
 
     // set initial search value for inputs on page load
-    if( sessionStorage.getItem( window.relearn.baseUriFull+'/search-value' ) ){
-        var search = sessionStorage.getItem( window.relearn.baseUriFull+'/search-value' );
+    if( sessionStorage.getItem( window.relearn.absBaseUri+'/search-value' ) ){
+        var search = sessionStorage.getItem( window.relearn.absBaseUri+'/search-value' );
         inputs.forEach( function( e ){
             e.value = search;
             var event = document.createEvent( 'Event' );
@@ -1538,7 +1538,7 @@ if( window.themeUseMermaid ){
 
 function useOpenapi( config ){
     if( config.css && config.cssInProject ){
-        config.css = window.relearn.baseUri + config.css;
+        config.css = window.relearn.relBasePath + config.css;
     }
 }
 if( window.themeUseOpenapi ){
