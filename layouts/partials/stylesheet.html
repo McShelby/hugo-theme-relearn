@@ -30,8 +30,8 @@
     <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.baseUri='{{ partial "toBaseRelURL.hugo" $page | safeJS }}';
       window.relearn.baseUriFull='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
+      window.relearn.relBasePath='{{ partial "relBasePath.hugo" $page | safeJS }}';
     {{- with .Site.Home.OutputFormats.Get "json" }}
       {{- warnf "%q: DEPRECATED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-search" $page.File.Filename }}
       window.index_json_url={{ "index.json" | relLangURL }};

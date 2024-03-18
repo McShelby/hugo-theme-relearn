@@ -390,11 +390,11 @@ function initOpenapi( update, attrs ){
 
     }
     function renderOpenAPI(oc) {
-        var baseUri = window.relearn.baseUri;
+        var relBasePath = window.relearn.relBasePath;
         var mod = window.relearn.themeVariantModifier;
         var buster = window.themeUseOpenapi.assetsBuster ? '?' + window.themeUseOpenapi.assetsBuster : '';
         var print = isPrint || attrs.isPrintPreview ? "PRINT-" : "";
-        var theme = print ? `${baseUri}/css/theme-relearn-light${mod}.css${buster}` : document.querySelector( '#R-variant-style' ).attributes.href.value
+        var theme = print ? `${relBasePath}/css/theme-relearn-light${mod}.css${buster}` : document.querySelector( '#R-variant-style' ).attributes.href.value
         var swagger_theme = variants.getColorValue( print + 'OPENAPI-theme' );
         var swagger_code_theme = variants.getColorValue( print + 'OPENAPI-CODE-theme' );
 
@@ -418,8 +418,8 @@ function initOpenapi( update, attrs ){
                 '<head>' +
                     '<link rel="stylesheet" href="' + window.themeUseOpenapi.css + '">' +
                     '<link rel="stylesheet" href="' + theme + '">' +
-                    '<link rel="stylesheet" href="' + baseUri + '/css/swagger.css' + buster + '">' +
-                    '<link rel="stylesheet" href="' + baseUri + '/css/swagger-' + swagger_theme + '.css' + buster + '">' +
+                    '<link rel="stylesheet" href="' + relBasePath + '/css/swagger.css' + buster + '">' +
+                    '<link rel="stylesheet" href="' + relBasePath + '/css/swagger-' + swagger_theme + '.css' + buster + '">' +
                 '</head>' +
                 '<body>' +
                     '<a class="relearn-expander" href="" onclick="return relearn_collapse_all()">Collapse all</a>' +
@@ -1538,7 +1538,7 @@ if( window.themeUseMermaid ){
 
 function useOpenapi( config ){
     if( config.css && config.cssInProject ){
-        config.css = window.relearn.baseUri + config.css;
+        config.css = window.relearn.relBasePath + config.css;
     }
 }
 if( window.themeUseOpenapi ){
