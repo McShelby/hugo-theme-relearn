@@ -1,4 +1,5 @@
 +++
+linktitle = "Multilingual"
 title = "Multilingual and i18n"
 weight = 7
 +++

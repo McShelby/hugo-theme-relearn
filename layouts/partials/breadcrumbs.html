@@ -31,7 +31,7 @@
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e }}
   {{- $depth = add $depth 1 }}
-  {{- $title := $to.Title }}
+  {{- $title := or $to.Params.menuTitle $to.LinkTitle $to.Title }}
   {{- if eq $to.Kind "taxonomy" }}
     {{- $title = default (default $to.Data.Plural (i18n $to.Data.Plural)) $to.Params.Title }}
   {{- else if eq $to.Kind "term" }}
