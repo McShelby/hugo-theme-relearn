@@ -703,7 +703,57 @@ function initChroma( update ){
     link.setAttribute( 'href', new_path );
 }
 
-function initArrowNav(){
+function initArrowVerticalNav(){
+    var topMain = 0;
+    if( !isPrint ){
+        topMain = document.querySelector("main").getClientRects()[0].top;
+    }
+
+    document.addEventListener('keydown', function(event){
+        var elems = Array.from( document.querySelectorAll( `main :not(.include.hide-first-heading) > :where(
+                .article-subheading,
+                :not(.article-subheading) + h1:not(.a11y-only),
+                h1:not(.a11y-only):first-child,
+                h2, h3, h4, h5, h6
+            ),
+            main .include.hide-first-heading > :where( h1, h2, h3, h4, h5, h6 ) ~ :where( h1, h2, h3, h4, h5, h6 )
+        ` ));
+        if( !event.shiftKey && !event.ctrlKey && event.altKey && !event.metaKey ){
+            if( event.which == 38 ){ // up
+                var target = isPrint ? document.querySelector( '#R-body' ) : document.querySelector( '.flex-block-wrapper' );
+                elems.some( function( elem, i ){
+                    var top = elem.getBoundingClientRect().top;
+                    var topBoundary = top - topMain;
+                    if( topBoundary > -1 ){
+                        target.scrollIntoView();
+                        return true;
+                    }
+                    target = elem
+                })
+            }
+            else if( event.which == 40 ){ // down
+                elems.some( function( elem, i ){
+                    var top = elem.getBoundingClientRect().top;
+                    var topBoundary = top - topMain;
+                    if( topBoundary > -1 && topBoundary < 1 ){
+                        if( i+1 < elems.length ){
+                            var target = elems[ i+1 ];
+                            target.scrollIntoView();
+                        }
+                        return true;
+                    }
+                    if( topBoundary >= 1 ){
+                        var target = elem;
+                        target.scrollIntoView();
+                        return true;
+                    }
+                })
+            }
+        }
+    });
+}
+
+function initArrowHorizontalNav(){
     if( isPrint ){
         return;
     }
@@ -1546,7 +1596,8 @@ if( window.themeUseOpenapi ){
 }
 
 ready( function(){
-    initArrowNav();
+    initArrowVerticalNav();
+    initArrowHorizontalNav();
     initMermaid();
     initOpenapi();
     initMenuScrollbar();

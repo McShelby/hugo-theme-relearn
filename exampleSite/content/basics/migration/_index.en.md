@@ -20,6 +20,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.27.0.beta (XXXX-XX-XX) {#5270}
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can scroll forward and backward thru all headings of a page by using `ALT + 🡑` and `ALT + 🡓`. This also works for the `PRINT` output format
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The breadcrumbs used in the topbar, search results and the taxonomy term lists are now using the pages frontmatter `linktitle` instead of `title` if set.
 
 ---
