@@ -871,13 +871,13 @@ function initMenuScrollbar(){
     // that need to be executed inbetween our own handlers
     // PSC removed for #242 #243 #244
     // psc = elc && new PerfectScrollbar('#R-body-inner');
-    psm = elm && new PerfectScrollbar('#R-content-wrapper');
+    psm = elm && new PerfectScrollbar('#R-content-wrapper', { scrollingThreshold: 2000, swipeEasing: false, wheelPropagation: false });
     document.querySelectorAll('.topbar-button .topbar-content-wrapper').forEach( function( e ){
         var button = getTopbarButtonParent( e );
         if( !button ){
             return;
         }
-        pst.set( button, new PerfectScrollbar( e ) );
+        pst.set( button, new PerfectScrollbar( e, { scrollingThreshold: 2000, swipeEasing: false, wheelPropagation: false }) );
         e.addEventListener( 'click', toggleTopbarFlyoutEvent );
     });
 
