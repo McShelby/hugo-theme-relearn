@@ -174,13 +174,13 @@ If you are unhappy with the default, you can define the following CSS variable i
 
 ## Own Shortcodes with JavaScript Dependencies
 
-Certain shortcodes make use of additional JavaScript files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.
+Certain shortcodes make use of additional dependencies like JavaScript and CSS files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.
 
 You can you use this mechanism in your own shortcodes. Say you want to add a shortcode `myshortcode` that also requires the `jquery` JavaScript library.
 
 1. Write the shortcode file `layouts/shortcodes/myshortcode.html` and add the following line
 
-    ````go
+    ````go {title="layouts/shortcodes/myshortcode.html"}
    {{- .Page.Store.Set "hasMyShortcode" true }}
     ````
 
@@ -190,13 +190,17 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
     [params.relearn.dependencies]
       [params.relearn.dependencies.myshortcode]
         name = "MyShortcode"
-        location = "footer"
     {{< /multiconfig >}}
 
-1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be appended to your header or footer, dependend on the `location` setting in your `hugo.toml`.
+1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be called from multiple locations inside of the theme with the parameter `page` containing the current [page](https://gohugo.io/methods/page/) variable and `location` with one of the currently defined locations
 
-    ````html
-    <script src="https://www.unpkg.com/jquery/dist/jquery.js"></script>
+    * `header`: if called at the end of the HTML `head` element
+    * `footer`: if called at the end of the HTML `body` element
+
+    ````go {title="layouts/partials/dependencies/myshortcode.html"}
+    {{- if eq .location "footer" }}
+      <script src="https://www.unpkg.com/jquery/dist/jquery.js"></script>
+    {{- end }}
     ````
 
 Character casing is relevant!
@@ -205,6 +209,15 @@ Character casing is relevant!
 - the key on `params.relearn.dependencies` in your `hugo.toml` must match the base file name of your loader file.
 
 See the `math`, `mermaid` and `openapi` shortcodes for examples.
+
+{{% notice note %}}
+If you are really into customization of the theme and want to use the dependency loader for your own locations, you can do this by simply calling it from inside of your overriden partials
+
+````go
+{{- partial "dependencies.html" (dict "page" . "location" "mylocation") }}
+````
+
+{{% /notice %}}
 
 ## Output Formats
 

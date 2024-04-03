@@ -1,11 +1,13 @@
 {{- $page := .page }}
-{{- with $page }}
-  {{- $init := "{}" }}
-  {{- if isset .Params "mathjaxinitialize" }}
-    {{- $init = .Params.mathJaxInitialize }}
-  {{- else if isset .Site.Params "mathjaxinitialize" }}
-    {{- $init = .Site.Params.mathJaxInitialize }}
-  {{- end }}
+{{- $location := .location }}
+{{- if eq $location "footer" }}
+  {{- with $page }}
+    {{- $init := "{}" }}
+    {{- if isset .Params "mathjaxinitialize" }}
+      {{- $init = .Params.mathJaxInitialize }}
+    {{- else if isset .Site.Params "mathjaxinitialize" }}
+      {{- $init = .Site.Params.mathJaxInitialize }}
+    {{- end }}
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -34,11 +36,12 @@
       }
       useMathJax( JSON.parse({{ $init }}) );
     </script>
-  {{- if and (isset .Params "custommathjaxurl") .Params.customMathJaxURL }}
+    {{- if and (isset .Params "custommathjaxurl") .Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
-  {{- else if and (isset .Site.Params "custommathjaxurl") .Site.Params.customMathJaxURL }}
+    {{- else if and (isset .Site.Params "custommathjaxurl") .Site.Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
-  {{- else }}
+    {{- else }}
     <script id="MathJax-script" async src="{{"js/mathjax/tex-mml-chtml.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    {{- end }}
   {{- end }}
 {{- end }}

@@ -20,6 +20,14 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.27.0.beta (XXXX-XX-XX) {#5270}
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [dependency loader](basics/customization#own-shortcodes-with-javascript-dependencies) was made more versatile.
+
+  The configuration in your `hugo.toml` does not require the `location` parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don't need to change anything, yet.
+
+  With the new mechanism, your dependency loader now receives an additional `location` parameter instead that you can query to inject your dependencies in the desired location.
+
+  By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct `location` parameter. In addition your injected files can now be spread to multiple locations which wasn't previously possible.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can scroll forward and backward thru all headings of a page by using `ALT + 🡑` and `ALT + 🡓`. This also works for the `PRINT` output format
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The breadcrumbs used in the topbar, search results and the taxonomy term lists are now using the pages frontmatter `linktitle` instead of `title` if set.
