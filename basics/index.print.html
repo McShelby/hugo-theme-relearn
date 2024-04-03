@@ -23,22 +23,22 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/basics/index.html" rel="alternate" hreflang="art-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/basics/index.html" rel="canonical" type="text/html" title="Basics :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/basics/index.xml" rel="alternate" type="application/rss+xml" title="Basics :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1712082734" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/images/logo.svg?1712179890" rel="icon" type="image/svg+xml">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1712082736" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1712082736" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/nucleus.css?1712082736" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1712082736" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1712082736" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1712082736" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/fonts.css?1712082736" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fonts.css?1712082736" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.css?1712082736" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme-relearn-auto.css?1712082736" rel="stylesheet" id="R-variant-style">
-    <link href="/hugo-theme-relearn/css/chroma-relearn-auto.css?1712082736" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/hugo-theme-relearn/css/variant.css?1712082736" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/print.css?1712082736" rel="stylesheet" media="print">
-    <link href="/hugo-theme-relearn/css/format-print.css?1712082736" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/ie.css?1712082736" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/url.js?1712082736"></script>
-    <script src="/hugo-theme-relearn/js/variant.js?1712082736"></script>
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1712179891" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1712179891" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/nucleus.css?1712179891" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1712179891" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1712179891" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1712179891" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/fonts.css?1712179891" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fonts.css?1712179891" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/theme.css?1712179891" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme-relearn-auto.css?1712179891" rel="stylesheet" id="R-variant-style">
+    <link href="/hugo-theme-relearn/css/chroma-relearn-auto.css?1712179891" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/hugo-theme-relearn/css/variant.css?1712179891" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/print.css?1712179891" rel="stylesheet" media="print">
+    <link href="/hugo-theme-relearn/css/format-print.css?1712179891" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/ie.css?1712179891" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/url.js?1712179891"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1712179891"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -122,6 +122,12 @@
 <hr>
 <h2 id="5270">5.27.0.beta (XXXX-XX-XX)</h2>
 <ul>
+<li>
+<p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> The <a href="/hugo-theme-relearn/basics/customization/index.html#own-shortcodes-with-javascript-dependencies">dependency loader</a> was made more versatile.</p>
+<p>The configuration in your <code>hugo.toml</code> does not require the <code>location</code> parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don&rsquo;t need to change anything, yet.</p>
+<p>With the new mechanism, your dependency loader now receives an additional <code>location</code> parameter instead that you can query to inject your dependencies in the desired location.</p>
+<p>By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct <code>location</code> parameter. In addition your injected files can now be spread to multiple locations which wasn&rsquo;t previously possible.</p>
+</li>
 <li>
 <p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> You now can scroll forward and backward thru all headings of a page by using <code>ALT + 🡑</code> and <code>ALT + 🡓</code>. This also works for the <code>PRINT</code> output format</p>
 </li>
@@ -604,13 +610,13 @@
 <p><span class="badge cstyle info badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Support for the great <a href="https://github.com/estruyf/vscode-front-matter" target="_blank">VSCode Front Matter extension</a> which provides on-premise CMS capabilties to Hugo.</p>
 <p>The theme provides Front Matter snippets for its shortcodes. Currently only English and German is supported. Put a reference into your <code>frontmatter.json</code> like this</p>
 
-<div class="tab-panel" data-tab-group="4b679dd076bd9192f9a42e07e5efe3c5">
+<div class="tab-panel" data-tab-group="27be99607952ac9acc7426371a7eb2d1">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="frontmatterjson"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('4b679dd076bd9192f9a42e07e5efe3c5','frontmatterjson')"
+      onclick="switchTab('27be99607952ac9acc7426371a7eb2d1','frontmatterjson')"
     >
       <span class="tab-nav-text">frontmatter.json</span>
     </button>
@@ -645,13 +651,13 @@
 <p><span class="badge cstyle note badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> The theme removed the popular <a href="https://jquery.com" target="_blank">jQuery</a> library from its distribution.</p>
 <p>In case you made changes to the theme that are dependend on this library you can place a copy of jQuery into your <code>static/js</code> directory and load it from your own <code>layouts/partials/custom-header.html</code> like this:</p>
 
-<div class="tab-panel" data-tab-group="1bad491b5f70d358e9e7ce0db1daed05">
+<div class="tab-panel" data-tab-group="65a465b179dcd95a042f4796d368d2db">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialscustom-headerhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('1bad491b5f70d358e9e7ce0db1daed05','layoutspartialscustom-headerhtml')"
+      onclick="switchTab('65a465b179dcd95a042f4796d368d2db','layoutspartialscustom-headerhtml')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
@@ -1585,8 +1591,8 @@
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Basics
 </span></span></span><span class="line"><span class="cl"><span class="gh"></span>
 </span></span><span class="line"><span class="cl">Discover what this Hugo theme is all about and the core concepts behind it.</span></span></code></pre></div><p>renders as</p>
-<p><a href="#R-image-28f6234d022d7e7c43d2003a69130e2b" class="lightbox-link"><img alt="A Chapter" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/installation/chapter.png?width=60pc" style=" height: auto; width: 60pc;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-28f6234d022d7e7c43d2003a69130e2b"><img alt="A Chapter" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/installation/chapter.png?width=60pc"></a></p>
+<p><a href="#R-image-01da8d007456b1f2fae70f86c00a4dbe" class="lightbox-link"><img alt="A Chapter" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/installation/chapter.png?width=60pc" style=" height: auto; width: 60pc;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-01da8d007456b1f2fae70f86c00a4dbe"><img alt="A Chapter" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/installation/chapter.png?width=60pc"></a></p>
 <p>Begin by creating your first chapter page with the following command:</p>
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new --kind chapter basics/_index.md</span></span></code></pre></div><p>By opening the given file, you should see the property <code>archetype=chapter</code> on top, meaning this page is a <em>chapter</em>.</p>
 <p>The <code>weight</code> number will be used to generate the subtitle of the chapter page, set the number to a consecutive value starting at 1 for each new chapter level.</p>
@@ -1963,13 +1969,13 @@
 </div>
 <h2 id="annotated-config-options">Annotated config options</h2>
 
-<div class="tab-panel" data-tab-group="95c9e5eb2eaaa4afecdb40dcc1eb7c07">
+<div class="tab-panel" data-tab-group="8be3b11acc73bdb4d35e463e338d3b3e">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="hugotoml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('95c9e5eb2eaaa4afecdb40dcc1eb7c07','hugotoml')"
+      onclick="switchTab('8be3b11acc73bdb4d35e463e338d3b3e','hugotoml')"
     >
       <span class="tab-nav-text">hugo.toml</span>
     </button>
@@ -2725,13 +2731,13 @@
 <p>If no favicon file is found, the theme will lookup the alternative filename <code>logo</code> in the same location and will repeat the search for the list of supported file types.</p>
 <p>If you need to change this default behavior, create a new file <code>layouts/partials/favicon.html</code> in your site&rsquo;s directory and write something like this:</p>
 
-<div class="tab-panel" data-tab-group="f9ef14310e9ec0517fb642df1cf178ba">
+<div class="tab-panel" data-tab-group="ed2d6c0aafadb13112025481d87006d6">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialsfaviconhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('f9ef14310e9ec0517fb642df1cf178ba','layoutspartialsfaviconhtml')"
+      onclick="switchTab('ed2d6c0aafadb13112025481d87006d6','layoutspartialsfaviconhtml')"
     >
       <span class="tab-nav-text">layouts/partials/favicon.html</span>
     </button>
@@ -3056,13 +3062,13 @@
 <p>You can create a new variant file in the site&rsquo;s <code>static/css</code> directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your <code>hugo.toml</code> by the choosen name.</p>
 <p>For example, you want to use the <code>relearn-light</code> variant but want to change the syntax highlightning schema to the one used in the <code>neon</code> variant. For that, create a new <code>static/css/theme-my-branding.css</code> in your site&rsquo;s directory and add the following lines:</p>
 
-<div class="tab-panel" data-tab-group="e48378a810c90bb4ff2f99acca586f3c">
+<div class="tab-panel" data-tab-group="91a785a20e81832202d518115d2284e7">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="staticcsstheme-my-brandingcss"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('e48378a810c90bb4ff2f99acca586f3c','staticcsstheme-my-brandingcss')"
+      onclick="switchTab('91a785a20e81832202d518115d2284e7','staticcsstheme-my-brandingcss')"
     >
       <span class="tab-nav-text">static/css/theme-my-branding.css</span>
     </button>
@@ -3602,8 +3608,8 @@
   </div>
 </div>
 <p>You can access this page by either clicking on the magnifier glass or by typing some search term and pressing <code>ENTER</code> inside of the menu&rsquo;s search box .</p>
-<p><a href="#R-image-fcab24b8f900722761106a36abba8841" class="lightbox-link"><img alt="Screenshot of the dedicated search page" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/search_page.png?&width=60pc" style=" height: auto; width: 60pc;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fcab24b8f900722761106a36abba8841"><img alt="Screenshot of the dedicated search page" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/search_page.png?&width=60pc"></a></p>
+<p><a href="#R-image-db5ab68e390e6e84209afe090c786745" class="lightbox-link"><img alt="Screenshot of the dedicated search page" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/search_page.png?&width=60pc" style=" height: auto; width: 60pc;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-db5ab68e390e6e84209afe090c786745"><img alt="Screenshot of the dedicated search page" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/search_page.png?&width=60pc"></a></p>
 
 <div class="box notices cstyle note">
   <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
@@ -3844,8 +3850,8 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
   </div>
 </div>
 <p>The home button is going to look like this:</p>
-<p><a href="#R-image-b01f93328acbd8f386045435e5ac9ebd" class="lightbox-link"><img alt="Default Home Button" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/home_button_defaults.png?width=18.75rem" style=" height: auto; width: 18.75rem;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b01f93328acbd8f386045435e5ac9ebd"><img alt="Default Home Button" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/home_button_defaults.png?width=18.75rem"></a></p>
+<p><a href="#R-image-a56a4c39dae009dafdb80760c2fc661a" class="lightbox-link"><img alt="Default Home Button" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/home_button_defaults.png?width=18.75rem" style=" height: auto; width: 18.75rem;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a56a4c39dae009dafdb80760c2fc661a"><img alt="Default Home Button" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/customization/home_button_defaults.png?width=18.75rem"></a></p>
 <h2 id="social-media-meta-tags">Social Media Meta Tags</h2>
 <p>You can add social media meta tags for the <a href="https://gohugo.io/templates/internal/#open-graph" target="_blank">Open Graph</a> protocol and <a href="https://gohugo.io/templates/internal/#twitter-cards" target="_blank">Twitter Cards</a> to your site. These are configured as mentioned in the Hugo docs.</p>
 <h2 id="change-the-menu-width">Change the Menu Width</h2>
@@ -3888,12 +3894,33 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">--MAIN-WIDTH-MAX</span><span class="p">:</span> <span class="mf">80.25</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div><h2 id="own-shortcodes-with-javascript-dependencies">Own Shortcodes with JavaScript Dependencies</h2>
-<p>Certain shortcodes make use of additional JavaScript files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.</p>
+<p>Certain shortcodes make use of additional dependencies like JavaScript and CSS files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.</p>
 <p>You can you use this mechanism in your own shortcodes. Say you want to add a shortcode <code>myshortcode</code> that also requires the <code>jquery</code> JavaScript library.</p>
 <ol>
 <li>
 <p>Write the shortcode file <code>layouts/shortcodes/myshortcode.html</code> and add the following line</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span> <span class="p">.</span><span class="nx">Page</span><span class="p">.</span><span class="nx">Store</span><span class="p">.</span><span class="nx">Set</span> <span class="s">&#34;hasMyShortcode&#34;</span> <span class="kc">true</span> <span class="p">}}</span></span></span></code></pre></div></li>
+
+<div class="tab-panel" data-tab-group="f2d2585bdfeb29e507b17af02ac10d01">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="layoutsshortcodesmyshortcodehtml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('f2d2585bdfeb29e507b17af02ac10d01','layoutsshortcodesmyshortcodehtml')"
+    >
+      <span class="tab-nav-text">layouts/shortcodes/myshortcode.html</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="layoutsshortcodesmyshortcodehtml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span> <span class="p">.</span><span class="nx">Page</span><span class="p">.</span><span class="nx">Store</span><span class="p">.</span><span class="nx">Set</span> <span class="s">&#34;hasMyShortcode&#34;</span> <span class="kc">true</span> <span class="p">}}</span></span></span></code></pre></div></div>
+    </div>
+  </div>
+</div></li>
 <li>
 <p>Add the following snippet to your <code>hugo.toml</code></p>
 
@@ -3932,7 +3959,6 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 </span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">relearn</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">relearn</span><span class="p">.</span><span class="nx">dependencies</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">relearn</span><span class="p">.</span><span class="nx">dependencies</span><span class="p">.</span><span class="nx">myshortcode</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">location</span> <span class="p">=</span> <span class="s1">&#39;footer&#39;</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;MyShortcode&#39;</span></span></span></code></pre></div></div>
     </div>
     <div
@@ -3944,7 +3970,6 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">relearn</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">myshortcode</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l">footer</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">MyShortcode</span></span></span></code></pre></div></div>
     </div>
     <div
@@ -3957,7 +3982,6 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;relearn&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">         <span class="nt">&#34;dependencies&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;myshortcode&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">               <span class="nt">&#34;location&#34;</span><span class="p">:</span> <span class="s2">&#34;footer&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">               <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;MyShortcode&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">         <span class="p">}</span>
@@ -3969,8 +3993,35 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 </div>
 </li>
 <li>
-<p>Add the dependency loader file <code>layouts/partials/dependencies/myshortcode.html</code>. The loader file will be appended to your header or footer, dependend on the <code>location</code> setting in your <code>hugo.toml</code>.</p>
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://www.unpkg.com/jquery/dist/jquery.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></span></span></code></pre></div></li>
+<p>Add the dependency loader file <code>layouts/partials/dependencies/myshortcode.html</code>. The loader file will be called from multiple locations inside of the theme with the parameter <code>page</code> containing the current <a href="https://gohugo.io/methods/page/" target="_blank">page</a> variable and <code>location</code> with one of the currently defined locations</p>
+<ul>
+<li><code>header</code>: if called at the end of the HTML <code>head</code> element</li>
+<li><code>footer</code>: if called at the end of the HTML <code>body</code> element</li>
+</ul>
+
+<div class="tab-panel" data-tab-group="eb00d7df3377e305cc198b405c4ace4a">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="layoutspartialsdependenciesmyshortcodehtml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('eb00d7df3377e305cc198b405c4ace4a','layoutspartialsdependenciesmyshortcodehtml')"
+    >
+      <span class="tab-nav-text">layouts/partials/dependencies/myshortcode.html</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="layoutspartialsdependenciesmyshortcodehtml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="nx">eq</span> <span class="p">.</span><span class="nx">location</span> <span class="s">&#34;footer&#34;</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://www.unpkg.com/jquery/dist/jquery.js&#34;</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span> <span class="nx">end</span> <span class="p">}}</span></span></span></code></pre></div></div>
+    </div>
+  </div>
+</div></li>
 </ol>
 <p>Character casing is relevant!</p>
 <ul>
@@ -3978,6 +4029,14 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 <li>the key on <code>params.relearn.dependencies</code> in your <code>hugo.toml</code> must match the base file name of your loader file.</li>
 </ul>
 <p>See the <code>math</code>, <code>mermaid</code> and <code>openapi</code> shortcodes for examples.</p>
+
+<div class="box notices cstyle note">
+  <div class="box-label"><i class="fa-fw fas fa-exclamation-circle"></i> Note</div>
+  <div class="box-content">
+
+<p>If you are really into customization of the theme and want to use the dependency loader for your own locations, you can do this by simply calling it from inside of your overriden partials</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span> <span class="nx">partial</span> <span class="s">&#34;dependencies.html&#34;</span> <span class="p">(</span><span class="nx">dict</span> <span class="s">&#34;page&#34;</span> <span class="p">.</span> <span class="s">&#34;location&#34;</span> <span class="s">&#34;mylocation&#34;</span><span class="p">)</span> <span class="p">}}</span></span></span></code></pre></div></div>
+</div>
 <h2 id="output-formats">Output Formats</h2>
 <p>Certain parts of the theme can be changed for support of your own <a href="https://gohugo.io/templates/output-formats/" target="_blank">output formats</a>. Eg. if you define a new output format <code>PLAINTEXT</code> in your <code>hugo.toml</code>, you can add a file <code>layouts/partials/header.plaintext.html</code> to change the way, the page header should look like for that output format.</p>
 <h2 id="react-to-variant-switches-in-javascript">React to Variant Switches in JavaScript</h2>
@@ -4024,13 +4083,13 @@ appearance, you will have to configure the <code>landingPageName</code> for the 
 <p>This interactive tool may help you to generate your own color variant stylesheet.</p>
 
 <div class="expand">
-    <input type="checkbox" id="R-expand-3e2a605df4a50dcbe3bdaec2bc5d8b74" aria-controls="R-expandcontent-3e2a605df4a50dcbe3bdaec2bc5d8b74" >
-    <label class="expand-label" for="R-expand-3e2a605df4a50dcbe3bdaec2bc5d8b74" >
+    <input type="checkbox" id="R-expand-ec7aa936d5cfb97a7d7facbc895d959f" aria-controls="R-expandcontent-ec7aa936d5cfb97a7d7facbc895d959f" >
+    <label class="expand-label" for="R-expand-ec7aa936d5cfb97a7d7facbc895d959f" >
         <i class="fa-fw fas fa-chevron-down"></i>
         <i class="fa-fw fas fa-chevron-right"></i>
         Show usage instructions
     </label>
-    <div id="R-expandcontent-3e2a605df4a50dcbe3bdaec2bc5d8b74" class="expand-content">
+    <div id="R-expandcontent-ec7aa936d5cfb97a7d7facbc895d959f" class="expand-content">
 
 <p>To get started, first select a color variant from the variant selector in the lower left sidebar that fits you best as a starting point.</p>
 <p>The graph is interactive and reflect the current colors. You can click on any of the colored boxes to adjust the respective color. The graph <strong>and the page</strong> will update accordingly.</p>
@@ -4066,8 +4125,8 @@ window.variants && variants.generator( '#R-vargenerator' );
 <h1 id="topbar-modification">Topbar Modification</h1>
 
 <p>The theme comes with a reasonably configured topbar.</p>
-<p><a href="#R-image-8791556349b95d078b8eb9ca88c253c9" class="lightbox-link"><img alt="Topbar on mobile devices" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-closed.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8791556349b95d078b8eb9ca88c253c9"><img alt="Topbar on mobile devices" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-closed.png"></a></p>
+<p><a href="#R-image-7bb2956d5957e1fd18e0370835b89b14" class="lightbox-link"><img alt="Topbar on mobile devices" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-closed.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7bb2956d5957e1fd18e0370835b89b14"><img alt="Topbar on mobile devices" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-closed.png"></a></p>
 <p>Nevertheless, your requirements may differ from this configuration. Luckily the theme got you covered as the themebar, its buttons and the functionality behind these buttons is fully configurable by you.</p>
 
 <div class="box notices cstyle tip">
@@ -4079,8 +4138,8 @@ window.variants && variants.generator( '#R-vargenerator' );
 </div>
 <h2 id="areas">Areas</h2>
 <p>The default configuration comes with three predefined areas that may contain an arbitrary set of buttons.</p>
-<p><a href="#R-image-e9a3ec41ff00dfa4c1017cf39feb0ec4" class="lightbox-link"><img alt="Topbar with default areas marked" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-areas.png" style=" height: auto; width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e9a3ec41ff00dfa4c1017cf39feb0ec4"><img alt="Topbar with default areas marked" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-areas.png"></a></p>
+<p><a href="#R-image-27a4b6374bab721f0c77c1c6455aed9d" class="lightbox-link"><img alt="Topbar with default areas marked" class="bg-white border lazy lightbox noshadow figure-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-areas.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-27a4b6374bab721f0c77c1c6455aed9d"><img alt="Topbar with default areas marked" class="bg-white border lazy lightbox noshadow lightbox-image" loading="lazy" src="/hugo-theme-relearn/basics/topbar/topbar-areas.png"></a></p>
 <ul>
 <li><a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/start.html" target="_blank"><strong>start</strong></a>: shown between menu and breadcrumb</li>
 <li><a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/end.html" target="_blank"><strong>end</strong></a>: shown on the opposite breadcrumb side in comparison to the <em>start</em> area</li>
@@ -5797,22 +5856,22 @@ window.variants && variants.generator( '#R-vargenerator' );
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-color.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-dispatch.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-drag.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-ease.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-interpolate.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-selection.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-timer.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-transition.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/d3/d3-zoom.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/js-yaml.min.js?1712082736" defer></script>
-    <script src="/hugo-theme-relearn/js/mermaid.min.js?1712082736" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-color.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-dispatch.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-drag.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-ease.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-interpolate.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-selection.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-timer.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-transition.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/d3/d3-zoom.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/js-yaml.min.js?1712179891" defer></script>
+    <script src="/hugo-theme-relearn/js/mermaid.min.js?1712179891" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
     </script>
-    <script src="/hugo-theme-relearn/js/theme.js?1712082736" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1712179891" defer></script>
   </body>
 </html>
