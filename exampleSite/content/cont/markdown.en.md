@@ -34,7 +34,7 @@ If not otherwise noted, the showed examples adhere to the [Commonmark](https://c
 
 - {{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Extension on top of standard Markdown adhering to [PHP Markdown](https://michelf.ca/projects/php-markdown/extra/).
 
-- {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber and his company Daring Fireball adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
+- {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
 
 - {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed in your `hugo.toml` the theme supports styling for further elements not accessible using Markdown alone.
 
