@@ -9,7 +9,7 @@ The `badge` shortcode displays little markers in your text with adjustable color
 {{% badge style="primary" title="Version" %}}6.6.6{{% /badge %}}
 {{% badge style="red" icon="angle-double-up" %}}Captain{{% /badge %}}
 {{% badge style="info" %}}New{{% /badge %}}
-{{% badge color="fuchsia" icon="fab fa-hackerrank" %}}Awesome{{% /badge %}}
+{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Awesome{{% /badge %}}
 
 ## Usage
 
@@ -23,7 +23,7 @@ While the examples are using shortcodes with named parameter you are free to als
 {{%/* badge style="primary" title="Version" %}}6.6.6{{% /badge */%}}
 {{%/* badge style="red" icon="angle-double-up" %}}Captain{{% /badge */%}}
 {{%/* badge style="info" %}}New{{% /badge */%}}
-{{%/* badge color="fuchsia" icon="fab fa-hackerrank" %}}Awesome{{% /badge */%}}
+{{%/* badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Awesome{{% /badge */%}}
 ````
 
 {{% /tab %}}
@@ -191,10 +191,10 @@ While the examples are using shortcodes with named parameter you are free to als
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown Title and Content
 
 ````go
-{{%/* badge color="fuchsia" icon="fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge */%}}
+{{%/* badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge */%}}
 ````
 
-{{% badge color="fuchsia" icon="fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge %}}
+{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge %}}
 
 #### With Icon Content
 

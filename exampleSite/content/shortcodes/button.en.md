@@ -169,10 +169,10 @@ Once the button is clicked, it opens another browser tab for the given URL.
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown Title
 
 ````go
-{{%/* button href="https://gohugo.io/" color="fuchsia" icon="fab fa-hackerrank" %}}Get **Hugo**{{% /button */%}}
+{{%/* button href="https://gohugo.io/" color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Get **Hugo**{{% /button */%}}
 ````
 
-{{% button href="https://gohugo.io/" color="fuchsia" icon="fab fa-hackerrank" %}}Get **Hugo**{{% /button %}}
+{{% button href="https://gohugo.io/" color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Get **Hugo**{{% /button %}}
 
 #### Severity Style with All Defaults
 

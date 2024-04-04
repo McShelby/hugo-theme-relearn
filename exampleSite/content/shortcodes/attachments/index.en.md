@@ -29,7 +29,7 @@ Multilanguage features are not supported directly by the shortcode anymore but r
 ## Usage
 
 {{% notice warning %}}
-Since Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version < `0.112.0`.
+Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version < `0.112.0`.
 {{% /notice %}}
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
@@ -139,10 +139,10 @@ Eg. for a site in English and Piratish:
 ### With User-Defined Color and Font Awesome Brand Icon
 
 ````go
-{{%/* attachments color="fuchsia" icon="fab fa-hackerrank" /*/%}}
+{{%/* attachments color="fuchsia" icon="fa-fw fab fa-hackerrank" /*/%}}
 ````
 
-{{% attachments color="fuchsia" icon="fab fa-hackerrank" /%}}
+{{% attachments color="fuchsia" icon="fa-fw fab fa-hackerrank" /%}}
 
 ### Style, Color, Title and Icons
 

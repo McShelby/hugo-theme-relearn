@@ -68,10 +68,10 @@ Multilanguage features are not supported directly by the shortcode but rely on H
 ### With User-Defined Color and Font Awesome Brand Icon
 
 ````go
-{{%/* resources color="fuchsia" icon="fab fa-hackerrank" /*/%}}
+{{%/* resources color="fuchsia" icon="fa-fw fab fa-hackerrank" /*/%}}
 ````
 
-{{% resources color="fuchsia" icon="fab fa-hackerrank" /%}}
+{{% resources color="fuchsia" icon="fa-fw fab fa-hackerrank" /%}}
 
 ### Style, Color, Title and Icons
 

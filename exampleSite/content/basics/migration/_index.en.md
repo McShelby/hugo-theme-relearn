@@ -6,7 +6,7 @@ weight = 2
 
 This document shows you what's new in the latest release and flags it with one of the following badges. For a detailed list of changes, see the [history page](basics/history).
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} The minimum required Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} The minimum required Hugo version.
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} A change that requires action by you after upgrading to assure the site is still functional.
 
@@ -52,7 +52,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} This release deprecates the [`attachments` shortcode](shortcodes/attachments) in favor of the new the [`resources` shortcode](shortcodes/resources).
 
-  If you are using Hugo below {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}, you don't need to change anything as the old shortcode still works (but may generate warnings).
+  If you are using Hugo below {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}, you don't need to change anything as the old shortcode still works (but may generate warnings).
 
   Anyways, users are strongly advised to migrate as the `attachments` shortcode will not receive support anymore. Migration instructions are listed on the [`attachments` shortcode page](shortcodes/attachments#migration).
 
@@ -60,7 +60,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.24.0 (2024-02-28) {#5240}
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} This release requires a newer Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The topbar button received a way to add text next to the icon. For this, the original `title` option was renamed to `hint` while the new `title` option is now displayed next to the icon.
 
@@ -70,7 +70,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme can not resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
 
-  Please note that a page link will generate false negatives if `uglyURLs=true` and it references an ordinary page before {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}.
+  Please note that a page link will generate false negatives if `uglyURLs=true` and it references an ordinary page before {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}}.
 
   Please note that an image link will generate false negatives if the file resides in your `static` directory.
 
@@ -92,15 +92,15 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The themes [config](basics/configuration) and [frontmatter](cont/frontmatter) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}} or higher for theme specific [output formats](basics/customization) and handling of taxonomy and term titles. This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.123.0{{% /badge %}} or higher for theme specific [output formats](basics/customization) and handling of taxonomy and term titles. This does not change the minimum required Hugo version.
 
 ---
 
 ## 5.23.0 (2023-11-03) {#5230}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `hugo.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} With {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `hugo.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
 
   Change your previous setting from
 
@@ -218,7 +218,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions lower than {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.111.0{{% /badge %}} for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions lower than {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.111.0{{% /badge %}} for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 
 ---
 
@@ -242,7 +242,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} There are visual improvements in displaying text links in your content aswell as to some other clickable areas in the theme. If you've overwritten some theme styles in your own CSS, keep this in mind.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode](shortcodes/siteparam) is now capable in displaying nested params aswell as supporting text formatting.
 
@@ -256,7 +256,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   If you dislike this new behavior you can turn it off and revert to the old behavior by adding `[params] disableHoverBlockCopyToClipBoard=true` to your `hugo.toml`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.114.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`highlight` shortcode](shortcodes/highlight) replaces Hugo's default implementation and is fully compatible. So you don't need to change anything.
 
@@ -286,7 +286,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.15.0 (2023-05-29) {#5150}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
   The [`attachments` shortcode](shortcodes/attachments) has compatibility issues with newer Hugo versions. You must switch to leaf bundles or are locked to Hugo < `0.112.0` for now.
 
@@ -539,7 +539,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.1.0 (2022-07-15) {#510}
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} This release requires a newer Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
@@ -646,7 +646,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 3.2.0 (2022-03-19) {#320}
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.93.0{{% /badge %}} This release requires a newer Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.93.0{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
@@ -768,7 +768,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.3.0 (2021-09-13) {#230}
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.81.0{{% /badge %}} This release requires a newer Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.81.0{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Showcase multilanguage features by providing a documentation translation "fer us pirrrates". There will be no other translations besides the original English one and the Pirates one due to maintenance constraints.
 
@@ -782,7 +782,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.1.0 (2021-09-07) {#210}
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.69.0{{% /badge %}} This release requires a newer Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.69.0{{% /badge %}} This release requires a newer Hugo version.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In case the site's structure contains additional *.md files not part of the site (eg files that are meant to be included by site pages - see `CHANGELOG.md` in the exampleSite), they will now be ignored by the search.
 
@@ -834,6 +834,6 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 1.0.0 (2021-07-01) {#100}
 
-- {{% badge color="fuchsia" icon="fab fa-hackerrank" title=" " %}}0.65.0{{% /badge %}} The requirement for the Hugo version of this theme is the same as for the Learn theme version 2.5.0 on 2021-07-01.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.65.0{{% /badge %}} The requirement for the Hugo version of this theme is the same as for the Learn theme version 2.5.0 on 2021-07-01.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Initial fork of the [Learn theme](https://github.com/matcornic/hugo-theme-learn) based on Learn 2.5.0 on 2021-07-01. This introduces no new features besides a global rename to `Relearn` and a new logo. For the reasons behind forking the Learn theme, see [this comment](https://github.com/matcornic/hugo-theme-learn/issues/442#issuecomment-907863495) in the Learn issues.
