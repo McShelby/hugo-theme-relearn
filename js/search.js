@@ -271,7 +271,7 @@ function startSearch(){
 
     var searchList = new autoComplete({
         /* selector for the search box element */
-        selectorToInsert: '#R-header-wrapper',
+        selectorToInsert: 'search:has(.searchbox)',
         selector: '#R-search-by',
         /* source is the callback to perform the search */
         source: function(term, response) {
