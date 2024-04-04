@@ -22,11 +22,15 @@ John Gruber, the author of Markdown, puts it like this:
 > The overriding design goal for Markdown’s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. While Markdown’s syntax has been influenced by several existing text-to-HTML filters, the single biggest source of inspiration for Markdown’s syntax is the format of plain text email.
 > <cite>John Gruber</cite>
 
-Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like:
-
 {{% notice tip %}}
 {{% icon bookmark %}} Bookmark this page and the [official Commonmark reference](https://commonmark.org/help/) for easy future reference!
 {{% /notice %}}
+
+## Support and Extensions
+
+If not otherwise noted, the showed examples adhere to the Commonmark standard. In addition the theme supports the following extensions:
+
+- {{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} GitHub Flavored Markdown allows further constructs on top of standard Markdown.
 
 ## Paragraphs
 
@@ -129,7 +133,7 @@ I am rendered with _italicized text_
 
 ### Strikethrough
 
-In GFM (GitHub Flavored Markdown) you can do strikethroughs by enclosing text with two tildes `~~`.
+{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`.
 
 ````md
 ~~Strike through this text~~
@@ -227,7 +231,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Tasks
 
-In GFM (GitHub Flavored Markdown) you can add task lists resulting in checked or unchecked non-clickable items
+{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can add task lists resulting in checked or unchecked non-clickable items
 
 ````md
 - [x] Basic Test
@@ -321,7 +325,7 @@ Be impressed by my advanced code:
 
 If you want to gain more control of your code block you can enclose your code by at least three backticks ```` ``` ```` a so called fence.
 
-In GFM (GitHub Flavored Markdown) you can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
+{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
 
 See [Code Highlighting](shortcodes/highlight) for additional documentation.
 
@@ -373,7 +377,7 @@ grunt.initConfig({
 
 ## Tables
 
-In GFM (GitHub Flavored Markdown) you can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
+{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
 
 ````md
 | Option | Description |
@@ -437,7 +441,7 @@ Blockquotes can also be nested.
 
 ### Autolink
 
-In GFM (GitHub Flavored Markdown) absolute URLs will automatically be converted into a link.
+{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} Absolute URLs will automatically be converted into a link.
 
 ````md
 This is a link to https://example.com.
