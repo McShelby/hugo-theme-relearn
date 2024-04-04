@@ -28,7 +28,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct `location` parameter. In addition your injected files can now be spread to multiple locations which wasn't previously possible.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional styling was added for the native HTML elements `<mark>` and `<kbd>`. To use them you must allow the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) in your `hugo.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional styling was added for the native HTML elements `<mark>` and `<kbd>`. To use them you must allow the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) in your `hugo.toml`. The [Markdown documentation](cont/markdown/#standard-and-extensions) was enhanced for this.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can scroll forward and backward thru all headings of a page by using <kbd>ALT</kbd> <kbd>🡑</kbd> and <kbd>ALT</kbd> <kbd>🡓</kbd>. This also works for the `PRINT` output format.
 
