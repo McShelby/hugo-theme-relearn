@@ -1,6 +1,6 @@
 +++
 tags = ["Content"]
-title = "Markdown syntax"
+title = "Markdown Syntax"
 weight = 4
 +++
 
@@ -23,14 +23,20 @@ John Gruber, the author of Markdown, puts it like this:
 > <cite>John Gruber</cite>
 
 {{% notice tip %}}
-{{% icon bookmark %}} Bookmark this page and the [official Commonmark reference](https://commonmark.org/help/) for easy future reference!
+{{% icon bookmark %}} Bookmark this page for easy future reference!
 {{% /notice %}}
 
-## Support and Extensions
+## Standard and Extensions
 
-If not otherwise noted, the showed examples adhere to the Commonmark standard. In addition the theme supports the following extensions:
+If not otherwise noted, the showed examples adhere to the [Commonmark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions:
 
-- {{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} GitHub Flavored Markdown allows further constructs on top of standard Markdown.
+- {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
+
+- {{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Extension on top of standard Markdown adhering to [PHP Markdown](https://michelf.ca/projects/php-markdown/extra/).
+
+- {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber and his company Daring Fireball adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
+
+- {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed in your `hugo.toml` the theme supports styling for further elements not accessible using Markdown alone.
 
 ## Paragraphs
 
@@ -133,7 +139,7 @@ I am rendered with _italicized text_
 
 ### Strikethrough
 
-{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`.
 
 ````md
 ~~Strike through this text~~
@@ -143,9 +149,24 @@ I am rendered with _italicized text_
 ~~Strike through this text~~
 {{% /notice %}}
 
-## Text substitution
+### Marked Text
 
-This Markdown dialect supports an extension to combine multiple punctuation characters to single typographic entities. This will only be applied to text outside of code blocks or inline code.
+{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can mark text in the predefined accent color of your stylesheet.
+
+````html
+<mark>Parts</mark> of this text <mark>are marked!</mark>
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+<mark>Parts</mark> of this text <mark>are marked!</mark>
+{{% /notice %}}
+
+
+## Special Typesetting
+
+### Text Substitution
+
+{{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} You can combine multiple punctuation characters to single typographic entities. This will only be applied to text outside of code blocks or inline code.
 
 ````md
 Double quotes `"` and single quotes `'` of enclosed text are replaced by **"double curly quotes"** and **'single curly quotes'**.
@@ -165,6 +186,30 @@ Double dashes `--` and triple dashes `---` are replaced by en-dash **--** and em
 Double arrows pointing left `<<` or right `>>` are replaced by arrow **<<** and **>>** entities.
 
 Three consecutive dots `...` are replaced by an ellipsis **...** entity.
+{{% /notice %}}
+
+### Keyboard Shortcuts
+
+{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can use the `<kbd>` element to style keyboard shortcuts.
+
+````html
+Press <kbd>STRG</kbd> <kbd>ALT</kbd> <kbd>DEL</kbd> to end your shift early.
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+Press <kbd>STRG</kbd> <kbd>ALT</kbd> <kbd>DEL</kbd> to end your shift early.
+{{% /notice %}}
+
+### Sub and Super Script
+
+{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use the `<sub>` and `<sup>` elements. For more complex stuff or if your configuration does not allow HTML, you can use the [`math` shortcode](shortcodes/math).
+
+````html
+How many liters H<sub>2</sub>O fit into 1dm<sup>3</sup>?
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+How many liters H<sub>2</sub>O fit into 1dm<sup>3</sup>?
 {{% /notice %}}
 
 ## Lists
@@ -231,7 +276,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Tasks
 
-{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can add task lists resulting in checked or unchecked non-clickable items
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can add task lists resulting in checked or unchecked non-clickable items
 
 ````md
 - [x] Basic Test
@@ -251,7 +296,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Definitions
 
-This Markdown dialect supports an extension to add definition lists. Definition lists are made of terms and definitions of these terms, much like in a dictionary.
+{{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Definition lists are made of terms and definitions of these terms, much like in a dictionary.
 
 A definition list in Markdown Extra is made of a single-line term followed by a colon and the definition for that term. You can also associate more than one term to a definition.
 
@@ -325,59 +370,47 @@ Be impressed by my advanced code:
 
 If you want to gain more control of your code block you can enclose your code by at least three backticks ```` ``` ```` a so called fence.
 
-{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
 
 See [Code Highlighting](shortcodes/highlight) for additional documentation.
 
 ````plaintext
 ```js
-grunt.initConfig({
-  assemble: {
-    options: {
-      assets: 'docs/assets',
-      data: 'src/data/*.{json,yml}',
-      helpers: 'src/custom-helpers.js',
-      partials: ['src/partials/**/*.{hbs,md}']
+{
+    name: "Claus",
+    surname: "Santa",
+    profession: "courier",
+    age: 666,
+    address: {
+        city: "North Pole",
+        postalCode: 1,
+        country: "Arctic"
     },
-    pages: {
-      options: {
-        layout: 'default.hbs'
-      },
-      files: {
-        './': ['src/templates/pages/index.hbs']
-      }
-    }
-  }
+    friends: [ "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donder", "Blitzen", "Rudolph" ]
 };
 ```
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
 ```js
-grunt.initConfig({
-  assemble: {
-    options: {
-      assets: 'docs/assets',
-      data: 'src/data/*.{json,yml}',
-      helpers: 'src/custom-helpers.js',
-      partials: ['src/partials/**/*.{hbs,md}']
+{
+    name: "Claus",
+    surname: "Santa",
+    profession: "courier",
+    age: 666,
+    address: {
+        city: "North Pole",
+        postalCode: 1,
+        country: "Arctic"
     },
-    pages: {
-      options: {
-        layout: 'default.hbs'
-      },
-      files: {
-        './': ['src/templates/pages/index.hbs']
-      }
-    }
-  }
+    friends: [ "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donder", "Blitzen", "Rudolph" ]
 };
 ```
 {{% /notice %}}
 
 ## Tables
 
-{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} You can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
 
 ````md
 | Option | Description |
@@ -441,7 +474,7 @@ Blockquotes can also be nested.
 
 ### Autolink
 
-{{% badge color="lightslategray" icon="fa-fw fab fa-github" %}}GFN{{% /badge %}} Absolute URLs will automatically be converted into a link.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Absolute URLs will automatically be converted into a link.
 
 ````md
 This is a link to https://example.com.
@@ -494,7 +527,7 @@ Links can be simplyfied for recurring reuse by using a reference ID to later def
 
 ### Footnotes
 
-Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.
+{{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.
 
 Usually the list of footnotes will be shown at the end of your document. If we use a footnote in a notice box it will instead be listed at the end of its box.
 
