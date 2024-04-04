@@ -1323,9 +1323,9 @@ function mark() {
 
     var value = sessionStorage.getItem( window.relearn.absBaseUri + '/search-value' );
     var highlightableElements = document.querySelectorAll( '.highlightable' );
-    highlight( highlightableElements, value, { element: 'mark' } );
+    highlight( highlightableElements, value, { element: 'mark', className: 'search' } );
 
-    var markedElements = document.querySelectorAll( 'mark' );
+    var markedElements = document.querySelectorAll( 'mark.search' );
     for( var i = 0; i < markedElements.length; i++ ){
         var parent = markedElements[i].parentNode;
         while( parent && parent.classList ){
@@ -1410,7 +1410,7 @@ function highlightNode( node, re, nodeName, className ){
 
 function unmark() {
     sessionStorage.removeItem( window.relearn.absBaseUri + '/search-value' );
-    var markedElements = document.querySelectorAll( 'mark' );
+    var markedElements = document.querySelectorAll( 'mark.search' );
     for( var i = 0; i < markedElements.length; i++ ){
         var parent = markedElements[i].parentNode;
         while( parent && parent.classList ){
@@ -1435,7 +1435,7 @@ function unmark() {
     }
 
     var highlighted = document.querySelectorAll( '.highlightable' );
-    unhighlight( highlighted, { element: 'mark' } );
+    unhighlight( highlighted, { element: 'mark', className: 'search' } );
     psm && setTimeout( function(){ psm.update(); }, 10 );
 }
 
