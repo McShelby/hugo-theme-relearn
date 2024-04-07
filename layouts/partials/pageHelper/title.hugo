@@ -6,7 +6,7 @@
   {{- $format := $.format | default (partial "get-format.hugo" .) }}
   {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
   {{- $title = .Title }}
-  {{- if $.useLinkTitle }}
+  {{- if $.linkTitle }}
     {{- $title = or $.page.Params.menuTitle $.page.LinkTitle $title }}
   {{- end }}
 
@@ -20,12 +20,22 @@
     {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
     {{- $taxonomy_title := default (default $taxonomy_page.Data.Singular (i18n $taxonomy_page.Data.Singular)) $taxonomy_page.Params.SingularTitle }}
     {{- $term_title := default (humanize .Data.Term | strings.Title) .Title }}
-    {{- if $.useLinkTitle }}
+    {{- if $.linkTitle }}
       {{- $title = printf "%s" $term_title }}
-    {{- else if $.invert }}
+    {{- else if $.reverse }}
       {{- $title = printf "%s %s %s" $term_title (default "::" .Site.Params.titleSeparator) $taxonomy_title }}
     {{- else }}
       {{- $title = printf "%s %s %s" $taxonomy_title (default "::" .Site.Params.titleSeparator) $term_title }}
+    {{- end }}
+  {{- end }}
+
+  {{- if $.fullyQualified }}
+    {{- if and $title site.Title (not (eq $title site.Title)) }}
+      {{- if $.reverse }}
+        {{- $title = printf "%s %s %s" $title (default "::" site.Params.titleSeparator) site.Title }}
+      {{- else }}
+        {{- $title = printf "%s %s %s" site.Title (default "::" site.Params.titleSeparator) $title }}
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}

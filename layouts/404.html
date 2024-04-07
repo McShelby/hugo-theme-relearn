@@ -4,7 +4,7 @@
 <html lang="{{ .Page.Language.LanguageCode | default "en" }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}
-    {{- $title := partial "pageHelper/fullTitle.hugo" (dict "page" . "invert" true) }}
+    {{- $title := partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}
     <title>{{ $title }}</title>
     <base href="{{ .Site.BaseURL }}">
     {{- partialCached "favicon.html" . }}
