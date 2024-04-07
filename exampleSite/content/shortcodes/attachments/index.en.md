@@ -9,7 +9,7 @@ The `attachments` shortcode displays a list of files attached to a page with adj
 {{% attachments sort="asc" /%}}
 
 {{% notice warning %}}
-This shortcode is deprecated in favor of the new the [`resources` shortcode](shortcodes/resources). See [migration instructions](#migration) below.
+This shortcode is deprecated in favor of the new [`resources` shortcode](shortcodes/resources). See [migration instructions](#migration) below.
 {{% /notice %}}
 
 ## Migration
@@ -27,10 +27,6 @@ To migrate your pages apply the following steps:
 Multilanguage features are not supported directly by the shortcode anymore but rely on Hugo's handling for resource translations.
 
 ## Usage
-
-{{% notice warning %}}
-Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.0{{% /badge %}} this only works for leaf bundles. Branch bundles and simple pages must be switched to leaf bundles or you are currently locked to a Hugo version < `0.112.0`.
-{{% /notice %}}
 
 While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
@@ -76,8 +72,8 @@ The shortcode lists files found in a specific folder. The name of the folder dep
     > * content
     >   * _index.md
     >   * page
-    >     * _index.md
-    >     * **_index.files**
+    >     * index.md
+    >     * **index.files**
     >       * attachment.pdf
 
 2. If your page is a branch bundle, attachments must be placed in a nested `_index.files` folder, accordingly.
@@ -87,8 +83,8 @@ The shortcode lists files found in a specific folder. The name of the folder dep
     > * content
     >   * _index.md
     >   * page
-    >     * index.md
-    >     * **index.files**
+    >     * _index.md
+    >     * **_index.files**
     >       * attachment.pdf
 
 3. For simple pages, attachments must be placed in a folder named like your page and ending with `.files`.
