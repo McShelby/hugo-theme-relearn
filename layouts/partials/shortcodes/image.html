@@ -15,6 +15,7 @@
 {{- end }}
 {{- $height := "auto" }}
 {{- $width := "auto" }}
+{{- $attributes := .attributes | default dict }}
 {{- $dest_url := urls.Parse $url }}
 {{- $dest_path := $dest_url.Path }}
 {{- $image := "" }}
@@ -76,7 +77,7 @@
   {{- $classes = $classes | append $c }}
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
-{{- $attributes := merge .attributes (dict "alt" $alt "src" $url "title" $title) }}
+{{- $attributes = merge $attributes (dict "alt" $alt "src" $url "title" $title) }}
 {{- if $effects.lazy }}
   {{- $attributes = merge $attributes (dict "loading" "lazy") }}
 {{- end }}
