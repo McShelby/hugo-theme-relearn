@@ -6,7 +6,7 @@
 
 - [**feature**] theme: simplify title generation [#825](https://github.com/McShelby/hugo-theme-relearn/issues/825)
 - [**feature**] theme: adjust to Hugo's build-in code [#824](https://github.com/McShelby/hugo-theme-relearn/issues/824)
-- [**feature**] link: warn if fragment is not found [#823](https://github.com/McShelby/hugo-theme-relearn/issues/823)
+- [**feature**][**change**] link: warn if fragment is not found [#823](https://github.com/McShelby/hugo-theme-relearn/issues/823)
 - [**feature**] theme: add styling for selected HTML elements [#822](https://github.com/McShelby/hugo-theme-relearn/issues/822)
 - [**feature**] a11y: improve search box [#821](https://github.com/McShelby/hugo-theme-relearn/issues/821)
 - [**feature**][**change**] dependencies: make loader more versatile [#820](https://github.com/McShelby/hugo-theme-relearn/issues/820)
