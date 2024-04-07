@@ -7,7 +7,7 @@
   {{- $to = $page }}
   {{- $lasturl = partial "relLangPrettyUglyURL.hugo" (dict "to" $page) }}
 {{- end }}
-{{- $depth := add 1 (int (partial "get-page-depth.hugo" (dict "page" $page))) }}
+{{- $depth := add 1 (int (partial "pageHelper/depth.hugo" (dict "page" $page))) }}
 {{- if .page.Site.Params.disableRootBreadcrumb }}
   {{- $depth = add $depth -1 }}
 {{- end }}
