@@ -36,7 +36,7 @@ If not otherwise noted, the showed examples adhere to the [Commonmark](https://c
 
 - {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
 
-- {{% badge style="primary" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} Extension specific to this theme.
+- {{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} Extension specific to this theme.
 
 - {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed in your `hugo.toml` the theme supports styling for further elements not accessible using Markdown alone.
 
@@ -605,7 +605,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-{{% badge style="primary" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `hugo.toml` or frontmatter parameter.
+{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `hugo.toml` or frontmatter parameter.
 
 #### Resizing
 
