@@ -63,6 +63,14 @@
       {{- $href = printf "%s?%s" $href . }}
     {{- end }}
     {{- with $u.Fragment }}
+      {{- $ctx := dict
+        "contentPath" $page.File.Filename
+        "errorLevel" $page.Site.Params.link.errorlevel
+        "page" $linkPage
+        "parsedURL" $u
+        "renderHookName" "link"
+      }}
+      {{- partial "inline/h-rh-l/validate-fragment.html" $ctx }}
       {{- $href = printf "%s#%s" $href . }}
     {{- end }}
   {{- else }}
@@ -80,3 +88,55 @@
       {{- printf " %s=%q" $k $v | safeHTMLAttr }}
     {{- end }}
   {{- end }}>{{ $content | safeHTML }}</a>
+
+{{- define "partials/inline/h-rh-l/validate-fragment.html" }}
+  {{- /*
+  Validates the fragment portion of a link destination.
+
+  @context {string} contentPath The page containing the link.
+  @context {string} errorLevel The error level when unable to resolve destination; ignore (default), warning, or error.
+  @context {page} page The page corresponding to the link destination
+  @context {struct} parsedURL The link destination parsed by urls.Parse.
+  @context {string} renderHookName The name of the render hook.
+  */}}
+
+  {{- /* Initialize. */}}
+  {{- $contentPath := .contentPath }}
+  {{- $errorLevel := .errorLevel }}
+  {{- $p := .page }}
+  {{- $u := .parsedURL }}
+  {{- $renderHookName := .renderHookName }}
+
+  {{- /* Validate. */}}
+  {{- with $u.Fragment }}
+    {{- if $p.Fragments.Identifiers.Contains . }}
+      {{- if gt ($p.Fragments.Identifiers.Count .) 1 }}
+        {{- $msg := printf "%q: duplicate heading ID %q found" $contentPath . }}
+        {{- if eq $errorLevel "warning" }}
+          {{- warnf $msg }}
+        {{- else if eq $errorLevel "error" }}
+          {{- errorf $msg }}
+        {{- end }}
+      {{- end }}
+    {{- else }}
+      {{- /* Determine target path for warning and error message. */}}
+      {{- $targetPath := "" }}
+      {{- with $p.File }}
+        {{- $targetPath = .Path }}
+      {{- else }}
+        {{- $targetPath = .Path }}
+      {{- end }}
+      {{- /* Set common message. */}}
+      {{- $msg := printf "%q: heading ID %q not found in %q" $contentPath . $targetPath }}
+      {{- if eq $targetPath $contentPath }}
+        {{- $msg := printf "%q: heading ID %q not found" $contentPath . }}
+      {{- end }}
+      {{- /* Throw warning or error. */}}
+      {{- if eq $errorLevel "warning" }}
+        {{- warnf $msg }}
+      {{- else if eq $errorLevel "error" }}
+        {{- errorf $msg }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

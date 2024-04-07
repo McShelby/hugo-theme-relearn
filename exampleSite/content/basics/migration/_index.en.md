@@ -20,6 +20,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.27.0.beta (XXXX-XX-XX) {#5270}
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme is configured to to generate warnings or errors during build by setting `image.errorlevel` to either `warning` or `error` in your `hugo.toml`, it will now also generate output if a link fragment is not found in the target page.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [dependency loader](basics/customization#own-shortcodes-with-javascript-dependencies) was made more versatile.
 
   The configuration in your `hugo.toml` does not require the `location` parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don't need to change anything, yet.
