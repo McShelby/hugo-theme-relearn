@@ -20,6 +20,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.27.0.beta (XXXX-XX-XX) {#5270}
 
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} This release requires a newer Hugo version.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme is configured to to generate warnings or errors during build by setting `image.errorlevel` to either `warning` or `error` in your `hugo.toml`, it will now also generate output if a link fragment is not found in the target page.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [dependency loader](basics/customization#own-shortcodes-with-javascript-dependencies) was made more versatile.
