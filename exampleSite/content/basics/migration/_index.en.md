@@ -6,7 +6,7 @@ weight = 2
 
 This document shows you what's new in the latest release and flags it with one of the following badges. For a detailed list of changes, see the [history page](basics/history).
 
-- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} The minimum required Hugo version.
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} The minimum required Hugo version.
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} A change that requires action by you after upgrading to assure the site is still functional.
 
