@@ -31,17 +31,7 @@
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e }}
   {{- $depth = add $depth 1 }}
-  {{- $title := or $to.Params.menuTitle $to.LinkTitle $to.Title }}
-  {{- if eq $to.Kind "taxonomy" }}
-    {{- $title = default (default $to.Data.Plural (i18n $to.Data.Plural)) $to.Params.Title }}
-  {{- else if eq $to.Kind "term" }}
-    {{- $taxonomy_page := $to.Site.GetPage $to.Data.Plural }}
-    {{- $title = default (default $to.Data.Singular (i18n $to.Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-    {{- $title = printf "%s %s %s" $title (default "::" $to.Site.Params.titleSeparator) (default (humanize $to.Data.Term | strings.Title) $to.Title) }}
-  {{- end }}
-  {{- if not $title }}
-    {{- $title = $to.Site.Title }}
-  {{- end }}
+  {{- $title := partial "pageHelper/title.hugo" (dict "page" $to "useLinkTitle" true) }}
   {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}
   {{- $isPage := eq $url $pageurl }}
   {{- $isLast := eq $url $lasturl }}

@@ -16,22 +16,7 @@
     {{- partial "meta.html" . }}
     {{- $page := . }}
     {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
-    {{- $title := .Title }}
-    {{- if eq $outputFormat "searchpage" }}
-      {{- $title = T "Search" }}
-    {{- else if eq .Kind "taxonomy" }}
-      {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
-    {{- else if eq .Kind "term" }}
-      {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-      {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-      {{- $title = printf "%s %s %s" (default (humanize .Data.Term | strings.Title) .Title) (default "::" .Site.Params.titleSeparator) $title }}
-    {{- end }}
-    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
-      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
-    {{- end }}
-    {{- if .Params.menuTitle }}
-      {{- warnf "%q: DEPRECATED frontmatter 'menutitle' found, use 'linktitle' instead" $page.File.Filename }}
-    {{- end }}
+    {{- $title := partial "pageHelper/fullTitle.hugo" (dict "page" . "invert" true "format" $format "outputFormat" $outputFormat) }}
     <title>{{ $title }}</title>
 
     {{- if .IsTranslated -}}

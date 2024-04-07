@@ -5,7 +5,7 @@
             </header>
 {{- $page := . }}
 
-{{- $title := default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
+{{- $title := partial "pageHelper/title.hugo" (dict "page" .) }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
 {{- $lastCapital := "" }}

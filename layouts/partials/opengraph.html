@@ -5,25 +5,12 @@
 {{- if eq $outputFormat "searchpage" }}
   {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
 {{- end }}
-{{- $title := .Title }}
-{{- if eq $outputFormat "searchpage" }}
-  {{- $title = T "Search" }}
-{{- else if eq .Kind "taxonomy" }}
-  {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
-{{- else if eq .Kind "term" }}
-  {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-  {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-  {{- $title = printf "%s %s %s" (default (humanize .Data.Term | strings.Title) .Title) (default "::" .Site.Params.titleSeparator) $title }}
-{{- end }}
-{{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
-  {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
-{{- end }}
     <meta property="og:url" content="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename) }}">
 
 {{- with or site.Title site.Params.title | plainify }}
     <meta property="og:site_name" content="{{ . }}">
 {{- end }}
-    <meta property="og:title" content="{{ $title | plainify }}">
+    <meta property="og:title" content="{{ partial "pageHelper/fullTitle.hugo" (dict "page" . "invert" true "format" $format "outputFormat" $outputFormat) | plainify }}">
 
 {{- with or .Description .Summary site.Params.description | plainify }}
     <meta property="og:description" content="{{ . }}">
@@ -36,20 +23,7 @@
 {{- if .IsPage }}
     <meta property="og:type" content="article">
   {{- with .FirstSection }}
-    {{- $title := .Title }}
-    {{- if eq $outputFormat "searchpage" }}
-      {{- $title = T "Search" }}
-    {{- else if eq .Kind "taxonomy" }}
-      {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
-    {{- else if eq .Kind "term" }}
-      {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-      {{- $title = default (default .Data.Singular (i18n .Data.Singular)) $taxonomy_page.Params.SingularTitle }}
-      {{- $title = printf "%s %s %s" (default (humanize .Data.Term | strings.Title) .Title) (default "::" .Site.Params.titleSeparator) $title }}
-    {{- end }}
-    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
-      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
-    {{- end }}
-    <meta property="article:section" content="{{ $title | plainify }}">
+    <meta property="article:section" content="{{ partial "pageHelper/fullTitle.hugo" (dict "page" . "invert" true "format" $format "outputFormat" $outputFormat) | plainify }}">
   {{- end }}
   {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
   {{- with .PublishDate }}

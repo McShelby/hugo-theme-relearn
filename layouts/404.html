@@ -4,13 +4,7 @@
 <html lang="{{ .Page.Language.LanguageCode | default "en" }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}
-    {{- $title := .Title }}
-    {{- if eq .Site.Data.titles .Title }}
-      {{- $title = (index .Site.Data.titles .Title).title }}
-    {{- end }}
-    {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
-      {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
-    {{- end }}
+    {{- $title := partial "pageHelper/fullTitle.hugo" (dict "page" . "invert" true) }}
     <title>{{ $title }}</title>
     <base href="{{ .Site.BaseURL }}">
     {{- partialCached "favicon.html" . }}

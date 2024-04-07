@@ -14,6 +14,7 @@
 		{{- $currentNode.Store.Set $has true }}
 	{{- end }}
 {{- end }}
+
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false }}
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
@@ -24,7 +25,7 @@
 	{{- $isChildren := eq $currentNode .node.Parent }}
 	{{- if $isSelf }}
 		{{- $currentNode.Scratch.Set "relearnIsSelfFound" true }}
-	{{- end}}
+	{{- end }}
 	{{- $isSelfFound := eq ($currentNode.Scratch.Get "relearnIsSelfFound") true }}
 	{{- $isPreSelf := and (not $isSelfFound) (not $isSelf) }}
 	{{- $isPostSelf := and ($isSelfFound) (not $isSelf) }}
@@ -36,19 +37,21 @@
 	{{- if $isSelf }}
 		{{- $currentNode.Scratch.Set "relearnIsHiddenNode" $hidden_node }}
 		{{- $currentNode.Scratch.Set "relearnIsHiddenStem" $hidden_stem }}
-	{{- end}}
+	{{- end }}
 	{{- $currentNode.Scratch.SetInMap "relearnIsHiddenFrom" .node.RelPermalink $hidden_current_stem }}
 
-	{{- if not $hidden_from_current }}
-		{{- if and $isPreSelf .node.RelPermalink }}
-			{{- $currentNode.Scratch.Set "relearnPrevPage" .node }}
-		{{- else if and $isPostSelf .node.RelPermalink (eq ($currentNode.Scratch.Get "relearnNextPage") nil) }}
-			{{- $currentNode.Scratch.Set "relearnNextPage" .node }}
-		{{- end}}
+	{{- if or (eq $currentNode.Kind "home") (eq $currentNode.Kind "section") (eq $currentNode.Kind "page") }}
+		{{- if not $hidden_from_current }}
+			{{- if and $isPreSelf .node.RelPermalink }}
+				{{- $currentNode.Scratch.Set "relearnPrevPage" .node }}
+			{{- else if and $isPostSelf .node.RelPermalink (eq ($currentNode.Scratch.Get "relearnNextPage") nil) }}
+				{{- $currentNode.Scratch.Set "relearnNextPage" .node }}
+			{{- end }}
+		{{- end }}
 	{{- end }}
 
 	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .node "hidden" true) }}
 	{{- range $pages }}
 		{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current }}
-	{{- end}}
+	{{- end }}
 {{- end }}

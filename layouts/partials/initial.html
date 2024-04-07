@@ -1,5 +1,6 @@
-{{- if not .Title }}
-  {{- $title := .Site.Title }}
+{{- $title := partial "pageHelper/title.hugo" (dict "page" .) }}
+{{- if not $title }}
+  {{- $title := site.Title }}
   <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- end }}
 
