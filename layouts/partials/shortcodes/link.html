@@ -17,6 +17,7 @@
 {{- $href := $u.String }}
 {{- $path := $u.Path }}
 {{- if $u.IsAbs }}
+  {{- $attributes = merge $attributes (dict "rel" "external") }}
   {{- $target = "_blank" }}
   {{- if isset $page.Site.Params "externallinktarget" }}
     {{- $target = $page.Site.Params.externalLinkTarget }}
@@ -27,7 +28,9 @@
   {{- if $path }}
     {{- with or
       ($page.Page.GetPage $path)
+      ($page.Page.GetPage (strings.TrimRight "/" $path))
       ($page.Page.Resources.Get $path)
+      (and (ne $page.Page.BundleType "leaf") ($page.Page.CurrentSection.Resources.Get $path))
       (resources.Get $path)
     }}
       {{- $linkPage = . }}
@@ -44,7 +47,9 @@
           {{- if and (strings.HasPrefix $path $prefix) (strings.HasPrefix $suffix "/") }}
             {{- with or
               (.GetPage $suffix)
+              (.GetPage (strings.TrimRight "/" $suffix))
               (.Resources.Get $suffix)
+              (and (ne .BundleType "leaf") (.CurrentSection.Resources.Get $suffix))
               (resources.Get $suffix)
             }}
               {{- $linkPage = . }}
