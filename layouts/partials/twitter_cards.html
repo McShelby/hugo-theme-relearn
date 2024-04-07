@@ -1,7 +1,6 @@
-{{- /* based on Hugo 0.119.0 _internal/twitter_cardss.html but with modified title */}}
+{{- /* based on Hugo 0.125.0 _internal/twitter_cardss.html but with modified title */}}
 {{- $format := partial "get-format.hugo" . }}
 {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
-{{- $page := . }}
 {{- $title := .Title }}
 {{- if eq $outputFormat "searchpage" }}
   {{- $title = T "Search" }}
@@ -15,31 +14,17 @@
 {{- if and $title .Site.Title (not (eq $title .Site.Title)) }}
   {{- $title = printf "%s %s %s" $title (default "::" .Site.Params.titleSeparator) .Site.Title }}
 {{- end }}
-{{- with $.Params.images }}
+
+{{- $images := partial "_funcs/get-page-images" . }}
+{{- with index $images 0 }}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ index . 0 | absURL }}">
+    <meta name="twitter:image" content="{{ .Permalink }}">
 {{- else }}
-  {{- $images := $.Resources.ByType "image" }}
-  {{- $featured := $images.GetMatch "*feature*" }}
-  {{- if not $featured }}
-    {{- $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}
-  {{- end }}
-  {{- with $featured }}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ $featured.Permalink }}">
-  {{- else }}
-    {{- with $.Site.Params.images }}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ index . 0 | absURL }}">
-    {{- else }}
     <meta name="twitter:card" content="summary">
-    {{- end }}
-  {{- end }}
 {{- end }}
     <meta name="twitter:title" content="{{ $title }}">
     <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 
-{{- /* Deprecate site.Social.twitter in favor of site.Params.social.twitter */}}
 {{- $twitterSite := "" }}
 {{- with site.Params.social.twitter }}
   {{- $twitterSite = . }}
@@ -54,5 +39,9 @@
 {{- end }}
 
 {{- with $twitterSite }}
-    <meta name="twitter:site" content="@{{ . }}">
+  {{- $content := . }}
+  {{- if not (strings.HasPrefix . "@") }}
+    {{- $content = printf "@%v" . }}
+  {{- end }}
+    <meta name="twitter:site" content="{{ $content }}">
 {{- end }}
