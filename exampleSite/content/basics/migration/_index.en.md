@@ -22,7 +22,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} This release requires a newer Hugo version.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} If the theme is configured to to generate warnings or errors during build by setting `image.errorlevel` to either `warning` or `error` in your `hugo.toml`, it will now also generate output if a link fragment is not found in the target page.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} If the theme is configured to generate warnings or errors during build by setting `image.errorlevel` to either `warning` or `error` in your `hugo.toml`, it will now also generate output if a link fragment is not found in the target page.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [dependency loader](basics/customization#own-shortcodes-with-javascript-dependencies) was made more versatile.
 
@@ -485,7 +485,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   Pressing `CTRL+ALT+t` now will not only toggle the TOC overlay but also places the focus to the first heading on opening. Subsequently this makes it possible to easily select headings by using the `TAB` key.
 
-  The search received its own brand new keyboard shortcut `CTRL+ALT+f`. This will focus the cursor inside of the the search box so you can immediately start your search by typing.
+  The search received its own brand new keyboard shortcut `CTRL+ALT+f`. This will focus the cursor inside of the search box so you can immediately start your search by typing.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
 

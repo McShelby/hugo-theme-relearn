@@ -59,7 +59,7 @@ graph LR;
 {{% /tab %}}
 {{< /tabs >}}
 
-The generated graphs can be be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
+The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
 
 ### Parameter
 

@@ -4,7 +4,7 @@ title = "Branding"
 weight = 24
 +++
 
-The Relearn theme provides configuration options to change your your site's colors, favicon and logo. This allows you to easily align your site visuals to your desired style. Most of these options are exposed thru so called color variants.
+The Relearn theme provides configuration options to change your site's colors, favicon and logo. This allows you to easily align your site visuals to your desired style. Most of these options are exposed thru so called color variants.
 
 A color variant lets you customize various visual effects of your site like almost any color, used fonts, color schemes of print, syntax highligtning, Mermaid and the OpenAPI shortcode, etc. It contains of a CSS file and optional configuration options in your `hugo.toml`.
 

@@ -455,7 +455,7 @@ For quoting blocks of content from another source within your document add `>` b
 Blockquotes can also be nested.
 
 ````md
-> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
+> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue, aliquam non hendrerit ac, commodo vel nisi.
 >
 > > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 >
@@ -463,7 +463,7 @@ Blockquotes can also be nested.
 ````
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
-> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
+> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue, aliquam non hendrerit ac, commodo vel nisi.
 >
 > > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 >
