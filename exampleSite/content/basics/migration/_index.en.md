@@ -284,7 +284,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback. Nevertheless you will get deprecation warnings while executing Hugo.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now optionally supports [separate favicons](basics/customization#change-the-favicon) for light & dark mode.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now optionally supports [separate favicons](basics/branding#change-the-favicon) for light & dark mode.
 
 ---
 
@@ -455,7 +455,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new [`icon` shortcode](shortcodes/icon) simplyfies the usage of icons. This can even be combined with also new `badge` shortcode.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hugo Markdown extensions, namely [task lists](cont/markdown#tasks), [defintion lists](cont/markdown#defintions) and [footnotes](cont/markdown#footnotes).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hugo Markdown extensions, namely [task lists](cont/markdown#tasks), [defintion lists](cont/markdown#definitions) and [footnotes](cont/markdown#footnotes).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} A new color `--ACCENT-color` was introduced which is used for highlightning search results on the page. In case you simply don't care, you don't need to change anything in your variant stylesheet as the old `yellow` color is still used as default.
 
@@ -529,7 +529,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed. The functionality of the new implementation does not work with old browsers (Internet Explorer 11).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting](cont/markdown#add-css-classes) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} [Image formatting](cont/markdown#css-classes) has two new classes to align images to the `left` or `right`. Additionally, the already existing `inline` option is now documented.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Printing for the [`swagger` shortcode](shortcodes/openapi) was optimized to expand sections that are usually closed in interactive mode. This requires [print support](basics/customization#activate-print-support) to be configured.
 
@@ -732,7 +732,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Although never officially documented, this release removes the font `Novacento`/`Novecento`. If you use it in an overwritten CSS please replace it with `Work Sans`. This change was necessary as Novacento did not provide all Latin special characters and lead to mixed styled character text eg. for Czech.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](basics/customization#change-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](basics/branding#change-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `hugo.toml`. For an example see [the example configuration](basics/configuration).
 
@@ -746,7 +746,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.6.0 (2021-10-21) {#260}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` in your `hugo.toml`. See the [documentation](basics/customization#serving-your-page-from-a-subfolder) for a detailed example.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` in your `hugo.toml`. See the [documentation](basics/customization#public-webserver-from-subdirectory) for a detailed example.
 
 ---
 
