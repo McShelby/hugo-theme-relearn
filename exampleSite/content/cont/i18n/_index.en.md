@@ -6,7 +6,7 @@ weight = 7
 
 The Relearn theme is fully compatible with Hugo multilingual mode.
 
-- Available languages: Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Swahili, Turkish, Vietnamese. Feel free to contribute!
+- Available languages: Arabic, Simplified Chinese, Traditional Chinese, Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Romania, Russian, Spanish, Swahili, Turkish, Vietnamese. Feel free to contribute!
 - Full support for languages written right to left
 - Automatic menu generation from multilingual content
 - In-browser language switching
