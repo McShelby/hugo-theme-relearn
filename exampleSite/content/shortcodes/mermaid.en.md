@@ -66,18 +66,18 @@ The generated graphs can be panned by dragging them and zoomed by using the mous
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
 | **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
-| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the `mermaidZoom` setting of the [site](#global-configuration-file) or the [pages frontmatter](#pages-frontmatter) or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
+| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the `mermaidZoom` setting of the [site](#global-configuration-file) or the [pages front matter](#pages-frontmatter) or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
 
 ## Configuration
 
-Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files thru a JSON object in your `hugo.toml`, override these settings per page thru your pages frontmatter or override these setting per diagramm thru [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives).
+Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files through a JSON object in your 'hugo.toml', override these settings per page through your page's front matter or override these setting per diagram through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives).
 
-The JSON object of your `hugo.toml` / frontmatter is forwarded into Mermaid's `mermaid.initialize()` function.
+The JSON object of your `hugo.toml` / front matter is forwarded into Mermaid's `mermaid.initialize()` function.
 
 See [Mermaid documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
 
-The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `hugo.toml`, frontmatter or diagram directives.
+The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `hugo.toml`, front matter or diagram directives.
 
 ### Global Configuration File
 
@@ -87,7 +87,7 @@ The `theme` setting can also be set by your used color variant. This will be the
   mermaidZoom = true
 {{< /multiconfig >}}
 
-### Page's Frontmatter
+### Page's Front matter
 
 {{< multiconfig fm=true >}}
 mermaidInitialize = "{ \"theme\": \"dark\" }"

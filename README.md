@@ -22,7 +22,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Support for Open Graph and Twitter Cards](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#social-media-meta-tags)
 - **Configurable theming and visuals**
   - [Configurable brand images](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#change-the-logo)
-  - [Automatic switch for light/dark variant dependend on your OS settings](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#adjust-to-os-settings)
+  - [Automatic switch for light/dark variant dependent on your OS settings](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#adjust-to-os-settings)
   - Predefined light, dark and color variants
   - [User selectable variants](https://mcshelby.github.io/hugo-theme-relearn/basics/branding#multiple-variants)
   - [Stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/basics/generator)
@@ -33,7 +33,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Site search](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-search)
   - [Dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-dedicated-search-page)
   - [Taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/cont/taxonomy)
-  - [Configurable topbar buttons](https://mcshelby.github.io/hugo-theme-relearn/basics/topbar)
+  - [Configurable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/basics/topbar)
   - [Unlimited nested menu items](https://mcshelby.github.io/hugo-theme-relearn/cont/pages)
   - [Configurable shortcut links](https://mcshelby.github.io/hugo-theme-relearn/cont/menushortcuts)
   - Hidden pages

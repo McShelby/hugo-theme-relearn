@@ -3,11 +3,11 @@ title = "Topbar Modification"
 weight = 27
 +++
 
-The theme comes with a reasonably configured topbar.
+The theme comes with a reasonably configured top bar.
 
 ![Topbar on mobile devices](topbar-closed.png)
 
-Nevertheless, your requirements may differ from this configuration. Luckily the theme got you covered as the themebar, its buttons and the functionality behind these buttons is fully configurable by you.
+Nevertheless, your requirements may differ from this configuration. Luckily the theme got you covered as the theme bar, its buttons and the functionality behind these buttons is fully configurable by you.
 
 {{% notice tip %}}
 All mentioned file names below can be clicked and show you the implementation for a better understanding.
@@ -21,9 +21,9 @@ The default configuration comes with three predefined areas that may contain an 
 
 - [**start**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/start.html): shown between menu and breadcrumb
 - [**end**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/end.html): shown on the opposite breadcrumb side in comparison to the _start_ area
-- [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/more.html): shown when pressing the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button in the topbar
+- [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/more.html): shown when pressing the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button in the top bar
 
-While you can not add additional areas in the topbar, you are free to configure addtional buttons that behave like the _more_ button, providing further user defined areas.
+While you can not add additional areas in the top bar, you are free to configure additional buttons that behave like the _more_ button, providing further user defined areas.
 
 ## Buttons
 
@@ -58,7 +58,7 @@ The below example sets an explicit value for the `onempty` parameter, overriding
 
 ### Button Types
 
-The theme distingushies between two types of buttons:
+The theme distinguishes between two types of buttons:
 
 - [**button**](#button): a clickable button that either browses to another site, triggers a user defined script or opens an overlay containing user defined content
 - [**area-button**](#area-button): the template for the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button, to define your own area overlay buttons
@@ -85,7 +85,7 @@ While hiding a button dependend on the screen size can be configured with the ab
 
 For example, the _print_ button in its default configuration should only be displayed if print support was configured. This is done in your button template by checking the conditions first before displaying the button (see [`layouts/partials/topbar/button/print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html)).
 
-Another prefered condition for hiding a button is, if the displayed overlay is empty. This is the case for the _toc_ (see [`layouts/partials/topbar/button/toc.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html)) aswell as the _more_ button (see [`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)) and controlled by the parameter `onempty`.
+Another preferred condition for hiding a button is, if the displayed overlay is empty. This is the case for the _toc_ (see [`layouts/partials/topbar/button/toc.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html)) as well as the _more_ button (see [`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)) and controlled by the parameter `onempty`.
 
 This parameter can have one of the following values:
 

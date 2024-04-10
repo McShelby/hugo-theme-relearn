@@ -133,4 +133,4 @@ hugo
 
 A `public` folder will be generated, containing all content and assets for your website. It can now be deployed on any web server.
 
-Now it's time to deploy your page by simply uploading your project to some webserver or by using one of [Hugo's many deployment options](https://gohugo.io/hosting-and-deployment/).
+Now it's time to deploy your page by simply uploading your project to some web server or by using one of [Hugo's many deployment options](https://gohugo.io/hosting-and-deployment/).

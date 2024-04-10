@@ -5,7 +5,7 @@ title = "Contributing"
 
 ## Code Quality
 
-A new release can happen at any time from the `main` branch of the [GitHub project](https://github.com/McShelby/hugo-theme-relearn) without further accknowledgment. This makes it necessary that, every pushed set of changesets into the `main` branch **must** be self-contained and correct, resulting in a releasable version.
+A new release can happen at any time from the `main` branch of the [GitHub project](https://github.com/McShelby/hugo-theme-relearn) without further acknowledgment. This makes it necessary that, every pushed set of changesets into the `main` branch **must** be self-contained and correct, resulting in a releasable version.
 
 Stay simple for the user by focusing on the mantra "convention over configuration".
 
@@ -35,7 +35,7 @@ Be compatible to IE11, at least for main functionality, this means:
 
 Write commit messages in the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
-Following is an impomplete list of some of the used conventional commit types. Be creative.
+Following is an incomplete list of some of the used conventional commit types. Be creative.
 
 | Common     | Feature    | Structure       | Shortcodes  |
 |------------|------------|-----------------|-------------|

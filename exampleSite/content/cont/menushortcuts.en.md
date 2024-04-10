@@ -135,7 +135,7 @@ Read more about [hugo menu](https://gohugo.io/extras/menus/) and [hugo multiling
 
 If you have shortcuts to pages inside of your project and you don't want them to show up in page menu section, you have two choices:
 
-1. Make the page file for the shortcut a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
+1. Make the page file for the shortcut a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following front matter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
 
     {{< multiconfig fm=true >}}
     title = "Showcase"
@@ -145,7 +145,7 @@ If you have shortcuts to pages inside of your project and you don't want them to
       publishResources = true
     {{< /multiconfig >}}
 
-2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
+2. Store the page file for the shortcut below a parent headless branch bundle and add the following front matter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
 
     {{< multiconfig fm=true >}}
     [_build]

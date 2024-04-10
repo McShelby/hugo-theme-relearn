@@ -1,19 +1,19 @@
 +++
-title = "Frontmatter"
+title = "Front matter"
 weight = 2
 +++
 
-Each Hugo page **has to define** a [frontmatter](https://gohugo.io/content/front-matter/).
+Each Hugo page **has to define** a [front matter](https://gohugo.io/content/front-matter/).
 
-## All Frontmatter Options
+## All Front matter Options
 
 The values reflect example options. The defaults can be taken from the [annotated example](#annotated-frontmatter-options) below.
 
 {{< multiconfig fm=true >}}
-{{% include "cont/frontmatter/frontmatter.toml" %}}
+{{% include "cont/front matter/frontmatter.toml" %}}
 {{< /multiconfig >}}
 
-## Annotated Frontmatter Options
+## Annotated Front matter Options
 
 ````toml {title="toml"}
 +++
@@ -24,7 +24,7 @@ The values reflect example options. The defaults can be taken from the [annotate
 
 ### Add Icon to a Menu Entry
 
-In the page frontmatter, add a `menuPre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
+In the page front matter, add a `menuPre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
 
 {{< multiconfig fm=true >}}
 title = "GitHub repo"
@@ -74,11 +74,11 @@ You can see this feature in action on the example page for [children shortcode](
 
 ## Disable Section Pages
 
-You may want to structure your pages in a hierachical way but don't want to generate pages for those sections? The theme got you covered.
+You may want to structure your pages in a hierarchical way but don't want to generate pages for those sections? The theme got you covered.
 
 To stay with the initial example: Suppose you want `level-one` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
 
-For this, open `content/level-one/_index.md` and add the following frontmatter
+For this, open `content/level-one/_index.md` and add the following front matter
 
 {{< multiconfig fm=true >}}
 collapsibleMenu = true

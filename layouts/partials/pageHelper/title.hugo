@@ -1,7 +1,7 @@
 {{- $title := "" }}
 {{- with .page }}
   {{- if .Params.menuTitle }}
-    {{- warnf "%q: DEPRECATED frontmatter 'menutitle' found, use 'linktitle' instead" $.File.Filename }}
+    {{- warnf "%q: DEPRECATED front matter 'menutitle' found, use 'linktitle' instead" $.File.Filename }}
   {{- end }}
   {{- $format := $.format | default (partial "get-format.hugo" .) }}
   {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}

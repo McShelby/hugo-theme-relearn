@@ -36,7 +36,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Site search](basics/customization#activate-search)
   - [Dedicated search page](basics/customization#activate-dedicated-search-page)
   - [Taxonomy support](cont/taxonomy)
-  - [Configurable topbar buttons](basics/topbar)
+  - [Configurable top bar buttons](basics/topbar)
   - [Unlimited nested menu items](cont/pages)
   - [Configurable shortcut links](cont/menushortcuts)
   - Hidden pages

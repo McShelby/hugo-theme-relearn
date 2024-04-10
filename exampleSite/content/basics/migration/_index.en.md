@@ -30,13 +30,13 @@ This document shows you what's new in the latest release and flags it with one o
 
   With the new mechanism, your dependency loader now receives an additional `location` parameter instead that you can query to inject your dependencies in the desired location.
 
-  By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct `location` parameter. In addition your injected files can now be spread to multiple locations which wasn't previously possible.
+  By that you can now call the dependency mechanism in your own overridden partials by giving it a distinct `location` parameter. In addition your injected files can now be spread to multiple locations which wasn't previously possible.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional styling was added for the native HTML elements `<mark>` and `<kbd>`. To use them you must allow the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) in your `hugo.toml`. The [Markdown documentation](cont/markdown/#standard-and-extensions) was enhanced for this.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can scroll forward and backward thru all headings of a page by using <kbd>ALT</kbd> <kbd>🡑</kbd> and <kbd>ALT</kbd> <kbd>🡓</kbd>. This also works for the `PRINT` output format.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The breadcrumbs used in the topbar, search results and the taxonomy term lists are now using the pages frontmatter `linktitle` instead of `title` if set.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The breadcrumbs used in the top bar, search results and the taxonomy term lists are now using the pages front matter `linktitle` instead of `title` if set.
 
 ---
 
@@ -68,11 +68,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.112.4{{% /badge %}} This release requires a newer Hugo version.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The topbar button received a way to add text next to the icon. For this, the original `title` option was renamed to `hint` while the new `title` option is now displayed next to the icon.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The top bar button received a way to add text next to the icon. For this, the original `title` option was renamed to `hint` while the new `title` option is now displayed next to the icon.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The frontmatter option `menuTitle` is now deprecated in favor for Hugo's own `linkTitle`. You don't need to change anything as the old `menuTitle` option is still supported.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The front matter option `menuTitle` is now deprecated in favor for Hugo's own `linkTitle`. You don't need to change anything as the old `menuTitle` option is still supported.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntax highlighting was changed to the more colorful MonokaiLight. This brings the syntax highlighting in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme can not resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
 
@@ -90,13 +90,13 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} On taxonomy and term pages you can now use prev/next navigation as within the normal page structure.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} In additiion to the existing [menu width customization](basics/customization#change-the-menu-width), it is now also possible to set the width of the menu flyout for small screen sizes with the `--MENU-WIDTH-S` CSS property.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} In addition to the existing [menu width customization](basics/customization#change-the-menu-width), it is now also possible to set the width of the menu flyout for small screen sizes with the `--MENU-WIDTH-S` CSS property.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Improvements for accessibility when tabbing thru the page for images, links and tab handles.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The `editURL` config parameter is now [overwritable in your pages frontmatter](cont/frontmatter). In addition it received more versatility by letting you control where to put the file path into the URL. This is achieved by replacing the variable `${FilePath}` in your URL by the pages file path. You don't need to change anything in your existing configuration as the old way without the replacement variable still works.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The `editURL` config parameter is now [overwrite in your pages front matter](cont/frontmatter). In addition it received more versatility by letting you control where to put the file path into the URL. This is achieved by replacing the variable `${FilePath}` in your URL by the pages file path. You don't need to change anything in your existing configuration as the old way without the replacement variable still works.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The themes [config](basics/configuration) and [frontmatter](cont/frontmatter) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.toml`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The themes [config](basics/configuration) and [front matter](cont/frontmatter) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 
@@ -140,11 +140,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable Markdown links.
 
-  Previously it was not possible to use pure Markdown links in a configuration independend way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, wheather you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (eg. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
+  Previously, it was not possible to use pure Markdown links in a configuration independent way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, whether you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (E.g.. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
 
   You could work around this by using the `relref` shortcode (eg `[generator]({{%/* relref "../generator" */%}})`) which works but results in non-portable Markdown.
 
-  Now it's possible to use the same path of a call to `relref` in a plain Markdown link (eg `[generator](../generator)`). This is independend of any configuration settings or the page types involved in linking. Note, that this requires your links to be given without any extension, so `[generator](generator/index.html)` will work as before.
+  Now it's possible to use the same path of a call to `relref` in a plain Markdown link (eg `[generator](../generator)`). This is independent of any configuration settings or the page types involved in linking. Note, that this requires your links to be given without any extension, so `[generator](generator/index.html)` will work as before.
 
   The following types of linking are supported:
 
@@ -171,9 +171,9 @@ This document shows you what's new in the latest release and flags it with one o
 
   This feature may require you to make changes to your existing installation if you are already using _[shortcuts to pages inside of your project](cont/menushortcuts#shortcuts-to-pages-inside-of-your-project)_ with a _headless branch parent_.
 
-  In this case it is advised to remove the `title` from the headless branch parent's frontmatter, as it will otherwise appear in your breadcrumbs.
+  In this case it is advised to remove the `title` from the headless branch parent's front matter, as it will otherwise appear in your breadcrumbs.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your `hugo.toml` inside of a page's frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your `hugo.toml` inside of a page's front matter.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If a Mermaid graph is zoomable a button to reset the view is now added to the upper right corner. The button is only shown once the mouse is moved over the graph.
 
@@ -191,7 +191,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} We made changes to the menu footer to improve alignment with the menu items in most cases. Care was taken not to break your existing overwritten footer. Anyways, if you have your `menu-footer.html` [partial overridden](basics/customization#partials), you may want to review the styling (eg. margins/paddings) of your partial.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with an awesome new feature, that allows you to customize your topbar buttons, change behavior, reorder them or define entirely new ones, unique to your installation. See [the documentation](basics/topbar) for further details.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release comes with an awesome new feature, that allows you to customize your top bar buttons, change behavior, reorder them or define entirely new ones, unique to your installation. See [the documentation](basics/topbar) for further details.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Swagger dependency to 5.7.2 for the [`openapi` shortcode](shortcodes/openapi). This brings support for OpenAPI Specification 3.1.
 
@@ -201,9 +201,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode](shortcodes/openapi).
 
-  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the code style used by the theme variants itself.
+  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntax highlighting inside of openapi to a light scheme. This brings it more in sync with the code style used by the theme variants itself.
 
-  Additionally, the syntaxhighlightning inside of openapi for printing was switched to a light scheme for all theme variants.
+  Additionally, the syntax highlighting inside of openapi for printing was switched to a light scheme for all theme variants.
 
   If you dislike this change, you can revert this in your theme variants CSS by adding
 
@@ -214,13 +214,13 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} For consistency reasons, we renamed the CSS variable `--MENU-SECTION-HR-color` to `--MENU-SECTION-SEPARATOR-color`. You don't need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme variants `Zen Light` and `Zen Dark` now add more contrast between menu, topbar and content by adding thin borders.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme variants `Zen Light` and `Zen Dark` now add more contrast between menu, top bar and content by adding thin borders.
 
   Those borders are now configurable by using the CSS variables `--MAIN-TOPBAR-BORDER-color`, `--MENU-BORDER-color`, `--MENU-TOPBAR-BORDER-color`, `--MENU-TOPBAR-SEPARATOR-color`, `--MENU-HEADER-SEPARATOR-color` and `--MENU-SECTION-ACTIVE-CATEGORY-BORDER-color`.
 
   For existing variants nothing has changed visually.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `hugo.toml` or for each page thru frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `hugo.toml` or for each page thru front matter.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 
@@ -246,11 +246,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme adds additional warnings for deprecated or now unsupported features.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} There are visual improvements in displaying text links in your content aswell as to some other clickable areas in the theme. If you've overwritten some theme styles in your own CSS, keep this in mind.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} There are visual improvements in displaying text links in your content as well as to some other clickable areas in the theme. If you've overwritten some theme styles in your own CSS, keep this in mind.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode](shortcodes/siteparam) is now capable in displaying nested params aswell as supporting text formatting.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode](shortcodes/siteparam) is now capable in displaying nested params as well as supporting text formatting.
 
 ---
 
@@ -282,7 +282,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`tabs` shortcode](shortcodes/tabs) and the [`tab` shortcode](shortcodes/tab) received some love and now align with their style, color, title and icon parameter to the other shortcodes.
 
-  The visuals are now slightly different compared to previous versions. Most noteable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
+  The visuals are now slightly different compared to previous versions. Most notable, if you now display a single code block in a tab, its default styling will adapt to that of a code block but with a tab handle at the top.
 
   Additionally the `name` parameter was renamed to `title` but you don't need to change anything yet as the old name will be used as a fallback. Nevertheless you will get deprecation warnings while executing Hugo.
 
@@ -314,7 +314,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The taxonomy pages received some love in this release, making them better leverage available screen space and adding translation support for the taxonomy names.
 
-  Hugo's default taxonmies `tags` and `categories` are already contained in the theme's i18n files. If you have self-defined taxonomies, you can add translations by adding them to your own i18n files. If you don't provide translations, the singualar and plural forms are taken as configured in your `hugo.toml`.
+  Hugo's default taxonomies `tags` and `categories` are already contained in the theme's i18n files. If you have self-defined taxonomies, you can add translations by adding them to your own i18n files. If you don't provide translations, the singular and plural forms are taken as configured in your `hugo.toml`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To give you more flexibility in customizing your article layout a new partial `content-header.html` is introduced.
 
@@ -342,11 +342,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In the effort to comply with WCAG standards, the implementation of the collapsible menu was changed (again). While Internet Explorer 11 has issues in displaying it, the functionality still works.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for the great [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) which provides on-premise CMS capabilties to Hugo.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for the great [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) which provides on-premise CMS capabilities to Hugo.
 
   The theme provides Front Matter snippets for its shortcodes. Currently only English and German is supported. Put a reference into your `frontmatter.json` like this
 
-  ````json {title="frontmatter.json"}
+  ````json {title="front matter.json"}
   {
     ...
     "frontMatter.extends": [
@@ -366,7 +366,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme removed the popular [jQuery](https://jquery.com) library from its distribution.
 
-  In case you made changes to the theme that are dependend on this library you can place a copy of jQuery into your `static/js` directory and load it from your own `layouts/partials/custom-header.html` like this:
+  In case you made changes to the theme that are dependent on this library you can place a copy of jQuery into your `static/js` directory and load it from your own `layouts/partials/custom-header.html` like this:
 
   ````html {title="layouts/partials/custom-header.html"}
   <script src="{{"js/jquery.min.js"| relURL}}" defer></script>
@@ -408,11 +408,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} With this version it is now possible to not only have sections on the first menu level but also pages.
 
-  It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu aswell.
+  It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu as well.
 
   To [get rid](cont/menushortcuts#shortcuts-to-pages-inside-of-your-project) of this undesired behavior you have two choices:
 
-  1. Make the page file a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be ontained in the sitemap.
+  1. Make the page file a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following front matter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be obtained in the sitemap.
 
       {{< multiconfig fm=true >}}
       title = "Showcase"
@@ -422,7 +422,7 @@ This document shows you what's new in the latest release and flags it with one o
         publishResources = true
       {{< /multiconfig >}}
 
-  2. Store the page file for below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
+  2. Store the page file for below a parent headless branch bundle and add the following front matter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
 
       {{< multiconfig fm=true >}}
       [_build]
@@ -489,7 +489,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
 
-  To [configure this](basics/configuration) in your `hugo.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+  To [configure this](basics/configuration) in your `hugo.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automatically.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Creation of your project gets a little bit faster with this release.
 
@@ -576,13 +576,13 @@ This document shows you what's new in the latest release and flags it with one o
 
   Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade. Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
 
-  - for your home page, add the frontmatter parameter `archetype = "home"` and remove the leading heading
+  - for your home page, add the front matter parameter `archetype = "home"` and remove the leading heading
 
-  - for all files containing the deprecated frontmatter parameter `chapter = true`, replace it with `archetype = "chapter"` and remove the leading headings
+  - for all files containing the deprecated front matter parameter `chapter = true`, replace it with `archetype = "chapter"` and remove the leading headings
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The frontmatter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The front matter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Adding new partials `heading-pre.html` / `heading-post.html` and according frontmatter options `headingPre` / `headingPost` to modify the way your page`s main heading gets styled.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Adding new partials `heading-pre.html` / `heading-post.html` and according front matter options `headingPre` / `headingPost` to modify the way your page`s main heading gets styled.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The new shortcode `math` is available to add beautiful math and chemical formulae. See the [documentation](shortcodes/math) for available features. This feature will not work with Internet Explorer 11.
 
@@ -656,7 +656,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
-  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your frontmatter to force the library to be loaded. See the [theme variant generator](basics/generator) of the exampleSite for an example.
+  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your front matter to force the library to be loaded. See the [theme variant generator](basics/generator) of the exampleSite for an example.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional color variant variable `--MERMAID-theme` to set the variant's Mermaid theme. This causes the Mermaid theme to switch with the color variant if it defers from the setting of the formerly selected color variant.
 
@@ -672,7 +672,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We made changes to the menu footer. If you have your `menu-footer.html` [partial overridden](basics/customization#partials), you may have to review the styling (eg. margins/paddings) in your partial. For a reference take a look into the `menu-footer.html` partial that is coming with the exampleSite.
 
-  This change was made to allow your own menu footer to be placed right after the so called prefooter that comes with the theme (containing the language switch and _Clear history_ functionality).
+  This change was made to allow your own menu footer to be placed right after the so called pre footer that comes with the theme (containing the language switch and _Clear history_ functionality).
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
@@ -700,7 +700,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.9.0 (2021-11-19) {#290}
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release removes the themes implementation of `ref`/`relref` in favor for Hugo's standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
 
   In a standard compliant form you must not link to the `*.md` file but to its logical name. You'll see, referencing other pages becomes much easier. All three types result in the same reference:
 
@@ -712,7 +712,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   If you've linked from a page of one language to a page of another language, conversion is a bit more difficult but [Hugo got you covered](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) as well.
 
-  Also, the old themes implementation allowed refs to non-existing content. This will cause Hugos implementation to show the error below and abort the generation. If your project relies on this old behavior, you can [reconfigure the error handling](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) of Hugos implementation.
+  Also, the old themes implementation allowed refs to non-existing content. This will cause Hugo's implementation to show the error below and abort the generation. If your project relies on this old behavior, you can [reconfigure the error handling](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) of Hugo's implementation.
 
   In the best case your usage of the old implementation is already standard compliant and you don't need to change anything. You'll notice this very easily once you've started `hugo server` after an upgrade and no errors are written to the console.
 
@@ -766,7 +766,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `hugo.toml`. Please see further [documentation](cont/frontmatter#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New frontmatter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New front matter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Alternate content of a page is now advertised in the HTML meta tags. See [Hugo documentation](https://gohugo.io/templates/rss/#reference-your-rss-feed-in-head).
 
@@ -814,7 +814,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} A page without a `title` will be treated as `hidden=true`.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the frontmatter. Please see further [documentation](cont/frontmatter#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You can define the expansion state of your menus in the front matter. Please see further [documentation](cont/frontmatter#override-expand-state-rules-for-menu-entries) for possible values and default behavior.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} New partials for defining pre/post content for menu items and the content. See [documentation](basics/customization#partials) for further reading.
 

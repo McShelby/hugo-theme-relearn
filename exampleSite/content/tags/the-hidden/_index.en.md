@@ -2,7 +2,7 @@
 title = "a secret"
 +++
 
-This lists all pages that are hidden from the home page. This includes pages that define `hidden=true` in their frontmatter as well as descendents of hidden pages.
+This lists all pages that are hidden from the home page. This includes pages that define `hidden=true` in their front matter as well as descendents of hidden pages.
 
 When giving term pages, you should give it a title. Otherwise it will print out a warning and will use the urlized title, which may looks weird.
 

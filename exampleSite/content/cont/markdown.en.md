@@ -605,7 +605,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `hugo.toml` or frontmatter parameter.
+{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](cont/imageeffects) thru your `hugo.toml` or front matter parameter.
 
 #### Resizing
 
