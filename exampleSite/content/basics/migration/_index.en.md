@@ -40,7 +40,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional styling was added for the native HTML elements `<mark>` and `<kbd>`. To use them you must allow the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) in your `hugo.toml`. The [Markdown documentation](cont/markdown/#standard-and-extensions) was enhanced for this.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can scroll forward and backward thru all headings of a page by using <kbd>ALT</kbd> <kbd>🡑</kbd> and <kbd>ALT</kbd> <kbd>🡓</kbd>. This also works for the `PRINT` output format.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} You now can scroll forward and backward through all headings of a page by using <kbd>ALT</kbd> <kbd>🡑</kbd> and <kbd>ALT</kbd> <kbd>🡓</kbd>. This also works for the `PRINT` output format.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The breadcrumbs used in the topbar, search results and the taxonomy term lists are now using the pages frontmatter `linktitle` instead of `title` if set.
 
@@ -78,7 +78,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The frontmatter option `menuTitle` is now deprecated in favor for Hugo's own `linkTitle`. You don't need to change anything as the old `menuTitle` option is still supported.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlightning in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The light themes have a bit more contrast for content text and headings. Also the syntaxhighlighting was changed to the more colorful MonokaiLight. This brings the syntaxhighlighting in sync with the corresponding dark theme variants, which are using Monokai. If you dislike this, you can create your own color variant file as [described here](basics/branding#modify-shipped-variants).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If the theme can not resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
 
@@ -98,7 +98,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} In additiion to the existing [menu width customization](basics/customization#change-the-menu-width), it is now also possible to set the width of the menu flyout for small screen sizes with the `--MENU-WIDTH-S` CSS property.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Improvements for accessibility when tabbing thru the page for images, links and tab handles.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Improvements for accessibility when tabbing through the page for images, links and tab handles.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The `editURL` config parameter is now [overwritable in your pages frontmatter](cont/frontmatter). In addition it received more versatility by letting you control where to put the file path into the URL. This is achieved by replacing the variable `${FilePath}` in your URL by the pages file path. You don't need to change anything in your existing configuration as the old way without the replacement variable still works.
 
@@ -146,11 +146,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release adds portable Markdown links.
 
-  Previously it was not possible to use pure Markdown links in a configuration independend way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, wheather you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (eg. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
+  Previously it was not possible to use pure Markdown links in a configuration independent way to link to pages inside of your project. It always required you to know how your `uglyURLs` setting is, wheather you link to a page or page bundle and in case of relative links if your current page is a page or page bundle. (eg. `[generator](generator/index.html)` vs. `[generator](generator.html)`). This is a hassle as you have to change these links manually once you change your `uglyURLs` setting or change the type of a page.
 
   You could work around this by using the `relref` shortcode (eg `[generator]({{%/* relref "../generator" */%}})`) which works but results in non-portable Markdown.
 
-  Now it's possible to use the same path of a call to `relref` in a plain Markdown link (eg `[generator](../generator)`). This is independend of any configuration settings or the page types involved in linking. Note, that this requires your links to be given without any extension, so `[generator](generator/index.html)` will work as before.
+  Now it's possible to use the same path of a call to `relref` in a plain Markdown link (eg `[generator](../generator)`). This is independent of any configuration settings or the page types involved in linking. Note, that this requires your links to be given without any extension, so `[generator](generator/index.html)` will work as before.
 
   The following types of linking are supported:
 
@@ -207,9 +207,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme has updated its Swagger dependency to 5.4.1 for the [`openapi` shortcode](shortcodes/openapi).
 
-  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlightning inside of openapi to a light scheme. This brings it more in sync with the code style used by the theme variants itself.
+  With this comes a change in the light theme variants of `Relearn Bright`, `Relearn Light` and `Zen Light` by switching the syntaxhighlighting inside of openapi to a light scheme. This brings it more in sync with the code style used by the theme variants itself.
 
-  Additionally, the syntaxhighlightning inside of openapi for printing was switched to a light scheme for all theme variants.
+  Additionally, the syntaxhighlighting inside of openapi for printing was switched to a light scheme for all theme variants.
 
   If you dislike this change, you can revert this in your theme variants CSS by adding
 
@@ -226,7 +226,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   For existing variants nothing has changed visually.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `hugo.toml` or for each page thru frontmatter.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The default values for the [image effects](cont/markdown#image-effects) are [now configurable](cont/imageeffects) for your whole site via `hugo.toml` or for each page through frontmatter.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release fixes a long outstanding bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 
@@ -252,11 +252,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme adds additional warnings for deprecated or now unsupported features.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} There are visual improvements in displaying text links in your content aswell as to some other clickable areas in the theme. If you've overwritten some theme styles in your own CSS, keep this in mind.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} There are visual improvements in displaying text links in your content as well as to some other clickable areas in the theme. If you've overwritten some theme styles in your own CSS, keep this in mind.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Restored compatibility with Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.95.0{{% /badge %}} or higher. This does not change the minimum required Hugo version.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode](shortcodes/siteparam) is now capable in displaying nested params aswell as supporting text formatting.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`siteparam` shortcode](shortcodes/siteparam) is now capable in displaying nested params as well as supporting text formatting.
 
 ---
 
@@ -372,7 +372,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The theme removed the popular [jQuery](https://jquery.com) library from its distribution.
 
-  In case you made changes to the theme that are dependend on this library you can place a copy of jQuery into your `static/js` directory and load it from your own `layouts/partials/custom-header.html` like this:
+  In case you made changes to the theme that are depending on this library you can place a copy of jQuery into your `static/js` directory and load it from your own `layouts/partials/custom-header.html` like this:
 
   ````html {title="layouts/partials/custom-header.html"}
   <script src="{{"js/jquery.min.js"| relURL}}" defer></script>
@@ -414,7 +414,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} With this version it is now possible to not only have sections on the first menu level but also pages.
 
-  It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu aswell.
+  It was later discovered, that this causes pages only meant to be displayed in the `More` section of the menu and stored directly inside your `content` directory to now show up in the menu as well.
 
   To [get rid](cont/menushortcuts#shortcuts-to-pages-inside-of-your-project) of this undesired behavior you have two choices:
 
@@ -465,7 +465,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now supports some of GFM (GitHub Flavored Markdown) syntax and Hugo Markdown extensions, namely [task lists](cont/markdown#tasks), [defintion lists](cont/markdown#definitions) and [footnotes](cont/markdown#footnotes).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} A new color `--ACCENT-color` was introduced which is used for highlightning search results on the page. In case you simply don't care, you don't need to change anything in your variant stylesheet as the old `yellow` color is still used as default.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} A new color `--ACCENT-color` was introduced which is used for highlighting search results on the page. In case you simply don't care, you don't need to change anything in your variant stylesheet as the old `yellow` color is still used as default.
 
 ---
 
@@ -481,7 +481,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.6.0 (2022-11-18) {#560}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning thru large number of results.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning through large number of results.
 
   To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `hugo.toml` as a new outputformat `searchpage` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
@@ -706,7 +706,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.9.0 (2021-11-19) {#290}
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release removes the themes implementation of `ref`/`relref` in favor for Hugos standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release removes the themes implementation of `ref`/`relref` in favor for Hugo's standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
 
   In a standard compliant form you must not link to the `*.md` file but to its logical name. You'll see, referencing other pages becomes much easier. All three types result in the same reference:
 
@@ -718,7 +718,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   If you've linked from a page of one language to a page of another language, conversion is a bit more difficult but [Hugo got you covered](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) as well.
 
-  Also, the old themes implementation allowed refs to non-existing content. This will cause Hugos implementation to show the error below and abort the generation. If your project relies on this old behavior, you can [reconfigure the error handling](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) of Hugos implementation.
+  Also, the old themes implementation allowed refs to non-existing content. This will cause Hugo's implementation to show the error below and abort the generation. If your project relies on this old behavior, you can [reconfigure the error handling](https://gohugo.io/content-management/cross-references/#link-to-another-language-version) of Hugo's implementation.
 
   In the best case your usage of the old implementation is already standard compliant and you don't need to change anything. You'll notice this very easily once you've started `hugo server` after an upgrade and no errors are written to the console.
 
@@ -754,13 +754,13 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 2.6.0 (2021-10-21) {#260}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` in your `hugo.toml`. See the [documentation](basics/customization#public-webserver-from-subdirectory) for a detailed example.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Your site can now be served from a subfolder if you set `baseURL` in your `hugo.toml`. See the [documentation](basics/customization#public-web-server-from-subdirectory) for a detailed example.
 
 ---
 
 ## 2.5.0 (2021-10-08) {#250}
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} New colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` were added to provide a fallback for Hugos syntax highlighting in case no language was given or the language is unsupported. Ideally the colors are set to the same values as the ones from your chosen chroma style.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} New colors `--CODE-BLOCK-color` and `--CODE-BLOCK-BG-color` were added to provide a fallback for Hugo's syntax highlighting in case no language was given or the language is unsupported. Ideally the colors are set to the same values as the ones from your chosen chroma style.
 
 ---
 

@@ -71,7 +71,7 @@ The generated graphs can be panned by dragging them and zoomed by using the mous
 
 ## Configuration
 
-Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files thru a JSON object in your `hugo.toml`, override these settings per page thru your pages frontmatter or override these setting per diagramm thru [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives).
+Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files through a JSON object in your `hugo.toml`, override these settings per page through your pages frontmatter or override these setting per diagramm through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives).
 
 The JSON object of your `hugo.toml` / frontmatter is forwarded into Mermaid's `mermaid.initialize()` function.
 

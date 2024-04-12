@@ -7,7 +7,7 @@ weight = 15
 The following steps are here to help you initialize your new website. If you don't know Hugo at all, we strongly suggest you learn more about it by following this [great documentation for beginners](https://gohugo.io/overview/quickstart/).
 
 {{% notice tip %}}
-The following tutorial leads you thru the steps of creating a first, minimal new site.
+The following tutorial leads you through the steps of creating a first, minimal new site.
 
 You don't need to edit any files besides your `hugo.toml` and only need to execute the commands in the given order.
 {{% /notice %}}
@@ -133,4 +133,4 @@ hugo
 
 A `public` folder will be generated, containing all content and assets for your website. It can now be deployed on any web server.
 
-Now it's time to deploy your page by simply uploading your project to some webserver or by using one of [Hugo's many deployment options](https://gohugo.io/hosting-and-deployment/).
+Now it's time to deploy your page by simply uploading your project to some web server or by using one of [Hugo's many deployment options](https://gohugo.io/hosting-and-deployment/).

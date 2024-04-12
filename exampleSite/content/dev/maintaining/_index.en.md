@@ -13,7 +13,7 @@ All other entries on the [What's new](basics/migration) page will increase the m
 
 Releases resulting in a new major or minor number are called main release.
 
-Releases containing bugixes only, are only increasing the patch release number. Those releases don't result in announcements on the [What's new](basics/migration) page.
+Releases containing bugfixes only, are only increasing the patch release number. Those releases don't result in announcements on the [What's new](basics/migration) page.
 
 Entries on the [What's new](basics/migration) page are checked and enforced during the `version-release` GitHub Action.
 
@@ -68,7 +68,7 @@ If an issue does not result in changesets but is closed anyways, it must have ex
 | {{% badge color="#9fa2a5" %}}invalid{{% /badge %}}    | This doesn't seem right                   |
 | {{% badge color="#9fa2a5" %}}support{{% /badge %}}    | Solved by reconfiguring the authors site  |
 | {{% badge color="#9fa2a5" %}}unresolved{{% /badge %}} | No progress on this issue                 |
-| {{% badge color="#9fa2a5" %}}update{{% /badge %}}     | A documented change in behaviour          |
+| {{% badge color="#9fa2a5" %}}update{{% /badge %}}     | A documented change in behavior           |
 | {{% badge color="#9fa2a5" %}}wontfix{{% /badge %}}    | This will not be worked on                |
 
 ### Halt

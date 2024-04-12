@@ -14,7 +14,7 @@ The theme supports non-standard [image effects](cont/markdown#image-effects).
 
 As [described](cont/markdown#image-effects), you can add this to the URL query parameter, but this may be cumbersome to be done consistently for the whole page.
 
-Instead, you can configure the defaults in your `hugo.toml` aswell as overriding these default in the pages frontmatter.
+Instead, you can configure the defaults in your `hugo.toml` as well as overriding these default in the pages frontmatter.
 
 Explicitly set URL query parameter will override the defaults in effect for a page.
 

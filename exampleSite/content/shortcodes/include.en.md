@@ -7,7 +7,7 @@ The `include` shortcode includes other files from your project inside of the cur
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to use positional aswell or also call this shortcode from your own partials.
+While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}

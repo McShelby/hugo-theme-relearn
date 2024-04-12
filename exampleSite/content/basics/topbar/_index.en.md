@@ -23,7 +23,7 @@ The default configuration comes with three predefined areas that may contain an 
 - [**end**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/end.html): shown on the opposite breadcrumb side in comparison to the _start_ area
 - [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/more.html): shown when pressing the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button in the topbar
 
-While you can not add additional areas in the topbar, you are free to configure addtional buttons that behave like the _more_ button, providing further user defined areas.
+While you can not add additional areas in the topbar, you are free to configure additional buttons that behave like the _more_ button, providing further user defined areas.
 
 ## Buttons
 
@@ -58,7 +58,7 @@ The below example sets an explicit value for the `onempty` parameter, overriding
 
 ### Button Types
 
-The theme distingushies between two types of buttons:
+The theme distinguishes between two types of buttons:
 
 - [**button**](#button): a clickable button that either browses to another site, triggers a user defined script or opens an overlay containing user defined content
 - [**area-button**](#area-button): the template for the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button, to define your own area overlay buttons
@@ -81,11 +81,11 @@ For each width class, you can configure one of the following actions:
 
 #### Hiding and Disabling Stuff
 
-While hiding a button dependend on the screen size can be configured with the above described _hide_ action, you may want to hide the button on certain other conditions aswell.
+While hiding a button depending on the screen size can be configured with the above described _hide_ action, you may want to hide the button on certain other conditions as well.
 
 For example, the _print_ button in its default configuration should only be displayed if print support was configured. This is done in your button template by checking the conditions first before displaying the button (see [`layouts/partials/topbar/button/print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html)).
 
-Another prefered condition for hiding a button is, if the displayed overlay is empty. This is the case for the _toc_ (see [`layouts/partials/topbar/button/toc.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html)) aswell as the _more_ button (see [`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)) and controlled by the parameter `onempty`.
+Another preferred condition for hiding a button is, if the displayed overlay is empty. This is the case for the _toc_ (see [`layouts/partials/topbar/button/toc.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html)) as well as the _more_ button (see [`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)) and controlled by the parameter `onempty`.
 
 This parameter can have one of the following values:
 

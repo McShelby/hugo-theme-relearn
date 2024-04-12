@@ -7,22 +7,22 @@ weight = 25
 
 The theme is usable in different scenarios, requiring the following mandatory settings in your `hugo.toml`. All settings not mentioned can be set to your liking.
 
-### Public Webserver from Root
+### Public Web Server from Root
 
 {{< multiconfig file=hugo >}}
 baseURL = "https://example.com/"
 {{< /multiconfig >}}
 
-### Public Webserver from Subdirectory
+### Public Web Server from Subdirectory
 
 {{< multiconfig file=hugo >}}
 baseURL = "https://example.com/mysite/"
 relativeURLs = false
 {{< /multiconfig >}}
 
-### Private Webserver (LAN)
+### Private Web Server (LAN)
 
-The same settings as with any of the public webserver usage scenarios or
+The same settings as with any of the public web server usage scenarios or
 
 {{< multiconfig file=hugo >}}
 baseURL = "/"
@@ -37,7 +37,7 @@ relativeURLs = true
 {{< /multiconfig >}}
 
 {{% notice warning %}}
-Using a `baseURL` with a subdirectory and `relativeURLs=true` are mutally exclusive due to the fact, that [Hugo does not apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130).
+Using a `baseURL` with a subdirectory and `relativeURLs=true` are mutually exclusive due to the fact, that [Hugo does not apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130).
 
 If you need both, you have to generate your site twice but with different settings into separate directories.
 {{% /notice %}}
@@ -47,7 +47,7 @@ Sublemental pages (like `sitemap.xml`, `rss.xml`) and generated social media lin
 {{% /notice %}}
 
 {{% notice info %}}
-If you are using `uglyURLs=false` (Hugo's default), the theme will append an additional `index.html` to all page links to make your site be servable from the file system. If you don't care about the file system and only serve your page via a webserver you can generate the links without this:
+If you are using `uglyURLs=false` (Hugo's default), the theme will append an additional `index.html` to all page links to make your site be servable from the file system. If you don't care about the file system and only serve your page via a web server you can generate the links without this:
 
 {{< multiconfig file=hugo >}}
 [params]

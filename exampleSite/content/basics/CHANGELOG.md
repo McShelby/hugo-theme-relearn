@@ -113,7 +113,7 @@
 - [**feature**] menu: use --MENU-WIDTH-S to adjust mobile flyout [#761](https://github.com/McShelby/hugo-theme-relearn/issues/761)
 - [**feature**] figure: support built-in shortcode [#746](https://github.com/McShelby/hugo-theme-relearn/issues/746)
 - [**feature**] theme: make heading a template [#744](https://github.com/McShelby/hugo-theme-relearn/issues/744)
-- [**feature**] taxonomy: make arrow nav browse thru terms [#742](https://github.com/McShelby/hugo-theme-relearn/issues/742)
+- [**feature**] taxonomy: make arrow nav browse through terms [#742](https://github.com/McShelby/hugo-theme-relearn/issues/742)
 - [**feature**] theme: switch from config.toml to hugo.toml [#741](https://github.com/McShelby/hugo-theme-relearn/issues/741)
 - [**feature**] button: make non-interactive if used as mock [#740](https://github.com/McShelby/hugo-theme-relearn/issues/740)
 - [**feature**][**change**] topbar: allow text for button [#739](https://github.com/McShelby/hugo-theme-relearn/issues/739)
@@ -315,7 +315,7 @@
 - [**feature**][**change**] shortcodes: add more deprecation warnings [#598](https://github.com/McShelby/hugo-theme-relearn/issues/598)
 - [**feature**][**change**] shortcodes: change `context` parameter to `page` if called as partial [#595](https://github.com/McShelby/hugo-theme-relearn/issues/595)
 - [**feature**] siteparam: support nested parameters and text formatting [#590](https://github.com/McShelby/hugo-theme-relearn/issues/590)
-- [**feature**][**change**] a11y: improve when tabbing thru links [#581](https://github.com/McShelby/hugo-theme-relearn/issues/581)
+- [**feature**][**change**] a11y: improve when tabbing through links [#581](https://github.com/McShelby/hugo-theme-relearn/issues/581)
 
 ### Fixes
 
@@ -380,7 +380,7 @@
 - [**feature**] tabs: add title and icon option [#552](https://github.com/McShelby/hugo-theme-relearn/issues/552)
 - [**feature**] shortcodes: add style option to mimic code box color scheme [#551](https://github.com/McShelby/hugo-theme-relearn/issues/551)
 - [**feature**] tabs: support color options [#550](https://github.com/McShelby/hugo-theme-relearn/issues/550)
-- [**feature**] favicon: add light & dark option for OS's prefered color scheme [#549](https://github.com/McShelby/hugo-theme-relearn/issues/549)
+- [**feature**] favicon: add light & dark option for OS's preferred color scheme [#549](https://github.com/McShelby/hugo-theme-relearn/issues/549)
 
 ### Fixes
 
@@ -1508,7 +1508,7 @@
 
 ### Fixes
 
-- [**bug**] security: fix XSS for malicioius image URLs [#117](https://github.com/McShelby/hugo-theme-relearn/issues/117)
+- [**bug**] security: fix XSS for malicious image URLs [#117](https://github.com/McShelby/hugo-theme-relearn/issues/117)
 
 ---
 
@@ -1520,7 +1520,7 @@
 
 ### Fixes
 
-- [**bug**] security: fix XSS for malicioius URLs [#114](https://github.com/McShelby/hugo-theme-relearn/issues/114)
+- [**bug**] security: fix XSS for malicious URLs [#114](https://github.com/McShelby/hugo-theme-relearn/issues/114)
 - [**bug**] menu: write correct local shortcut links [#112](https://github.com/McShelby/hugo-theme-relearn/issues/112)
 
 ---

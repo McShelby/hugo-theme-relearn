@@ -4,7 +4,7 @@ title = "Branding"
 weight = 24
 +++
 
-The Relearn theme provides configuration options to change your site's colors, favicon and logo. This allows you to easily align your site visuals to your desired style. Most of these options are exposed thru so called color variants.
+The Relearn theme provides configuration options to change your site's colors, favicon and logo. This allows you to easily align your site visuals to your desired style. Most of these options are exposed through so called color variants.
 
 A color variant lets you customize various visual effects of your site like almost any color, used fonts, color schemes of print, syntax highligtning, Mermaid and the OpenAPI shortcode, etc. It contains of a CSS file and optional configuration options in your `hugo.toml`.
 
@@ -39,7 +39,7 @@ You can also set multiple variants. In this case, the first variant is the defau
 {{< /multiconfig >}}
 
 {{% notice tip %}}
-The theme provides an advanced configuration mode, combining the functionality for multiple variants with the below possibilities of adjusting to your OS settings and syntax highlightning and even more!
+The theme provides an advanced configuration mode, combining the functionality for multiple variants with the below possibilities of adjusting to your OS settings and syntax highlighting and even more!
 
 Although all options documented here are still working, the advanced configuration options are the recommended way to configure your color variants. [See below](#theme-variant-advanced).
 {{% /notice %}}
@@ -88,7 +88,7 @@ Create a new file in `layouts/partials/logo.html` of your site. Then write any H
 The size of the logo will adapt automatically.
 {{% /notice %}}
 
-## Syntax Highlightning
+## Syntax Highlighting
 
 If you want to switch the syntax highlighting theme together with your color variant, you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/) and provide a syntax highlighting stylesheet file.
 
@@ -159,13 +159,13 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
 1. Copy and change
 
-    You can copy the shipped variant file from the theme's `static/css` directory to the site's `static/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `hugo.toml` by the choosen name.
+    You can copy the shipped variant file from the theme's `static/css` directory to the site's `static/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
 
 2. Create and import
 
-    You can create a new variant file in the site's `static/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `hugo.toml` by the choosen name.
+    You can create a new variant file in the site's `static/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
 
-    For example, you want to use the `relearn-light` variant but want to change the syntax highlightning schema to the one used in the `neon` variant. For that, create a new `static/css/theme-my-branding.css` in your site's directory and add the following lines:
+    For example, you want to use the `relearn-light` variant but want to change the syntax highlighting schema to the one used in the `neon` variant. For that, create a new `static/css/theme-my-branding.css` in your site's directory and add the following lines:
 
     ````css {title="static/css/theme-my-branding.css"}
     @import "theme-relearn-light.css";

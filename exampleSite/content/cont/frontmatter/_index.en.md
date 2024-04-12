@@ -74,7 +74,7 @@ You can see this feature in action on the example page for [children shortcode](
 
 ## Disable Section Pages
 
-You may want to structure your pages in a hierachical way but don't want to generate pages for those sections? The theme got you covered.
+You may want to structure your pages in a hierarchical way but don't want to generate pages for those sections? The theme got you covered.
 
 To stay with the initial example: Suppose you want `level-one` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
 
