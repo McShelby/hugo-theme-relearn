@@ -71,7 +71,7 @@ function triggerSearch(){
 }
 
 window.addEventListener( 'popstate', function ( event ){
-    // restart search if browsed thru history
+    // restart search if browsed through history
     if( event.state ){
         var state = window.history.state || {};
         state = Object.assign( {}, ( typeof state === 'object' ) ? state : {} );
