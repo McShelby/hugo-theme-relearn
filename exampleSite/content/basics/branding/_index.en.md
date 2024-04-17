@@ -44,6 +44,13 @@ The theme provides an advanced configuration mode, combining the functionality f
 Although all options documented here are still working, the advanced configuration options are the recommended way to configure your color variants. [See below](#theme-variant-advanced).
 {{% /notice %}}
 
+#### Custom Theme Selection Icon
+
+{{< multiconfig file=hugo >}}
+[params]
+  themeSelectIcon = "fa-adjust" # defaults to "fa-paint-brush"
+{{< /multiconfig >}}
+
 ## Adjust to OS Settings
 
 You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `themeVariant` to `auto` to become an auto mode variant. That's it.
