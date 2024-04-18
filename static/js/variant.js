@@ -60,8 +60,7 @@ var variants = {
 	},
 
 	generateVariantPath: function( variant, old_path ){
-		var mod = window.relearn.themeVariantModifier.replace( '.', '\\.' );
-		var new_path = old_path.replace( new RegExp(`^(.*\/theme-).*?(${mod}\.css.*)$`), '$1' + variant + '$2' );
+		var new_path = old_path.replace( new RegExp(`^(.*\/theme-).*?(\.css.*)$`), '$1' + variant + '$2' );
 		return new_path;
 	},
 

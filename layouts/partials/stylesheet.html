@@ -14,9 +14,8 @@
     <link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
     <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
     {{- $themevariants := partialCached "get-theme-variants.hugo" . }}
-    {{- $themevariantmodifier := .Site.Params.themeVariantModifier | default "" }}
     {{- with index $themevariants 0 }}
-    <link href="{{(printf "css/theme-%s%s.css" .identifier $themevariantmodifier) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-style">
+    <link href="{{(printf "css/theme-%s.css" .identifier) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-style">
     <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-chroma-style">
     {{- end }}
     <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -39,7 +38,6 @@
       window.index_js_url={{ "index.search.js" | relLangURL }};
     {{- end }}
       {{ "// variant stuff" | safeJS }}
-      window.relearn.themeVariantModifier='{{ $themevariantmodifier }}';
       {{- $quotedthemevariants := slice }}
       {{- range $themevariants }}
         {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
