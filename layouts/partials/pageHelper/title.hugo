@@ -1,13 +1,13 @@
 {{- $title := "" }}
 {{- with .page }}
   {{- if .Params.menuTitle }}
-    {{- warnf "%q: DEPRECATED frontmatter 'menutitle' found, use 'linktitle' instead" $.File.Filename }}
+    {{- warnf "%q: UNSUPPORTED frontmatter 'menutitle' found, use 'linktitle' instead" $.File.Filename }}
   {{- end }}
   {{- $format := $.format | default (partial "get-format.hugo" .) }}
   {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
   {{- $title = .Title }}
   {{- if $.linkTitle }}
-    {{- $title = or $.page.Params.menuTitle $.page.LinkTitle $title }}
+    {{- $title = or $.page.LinkTitle $title }}
   {{- end }}
 
   {{- if eq $outputFormat "searchpage" }}
