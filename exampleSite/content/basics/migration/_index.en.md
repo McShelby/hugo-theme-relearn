@@ -18,7 +18,21 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 5.28.0.beta (XXXX-XX-XX) {#5280}
+## 6.0.0.beta (XXXX-XX-XX) {#600}
+
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release requires you to move your self-defined variant (`theme-*.css`) and chroma stylesheets (`chroma-*.css`) from `static/css` to `assets/css`.
+
+  This was necessary to avoid permission errors on build if running in certain Unix configurations.
+
+  In addition it is not allowed anymore to `@import` your chroma stylesheet from inside of your variant stylesheet.
+
+  Say, your chroma stylesheet is named `chroma-monokai.css`, you have to add the following inside your variant stylesheet:
+
+    ````css
+    --CODE-theme: monokai;
+    ````
+
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Support for Internet Explorer 11 was finally dropped.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Romanian.
 
