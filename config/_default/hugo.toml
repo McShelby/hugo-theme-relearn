@@ -63,6 +63,19 @@ title = "Hugo Relearn Theme"
     # if in doubt, remove this line
     renderer.unsafe = true
 
+  [markup.goldmark.extensions]
+
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+
+      [markup.goldmark.extensions.passthrough.delimiters]
+        # the settings chosen here match the default initialization
+        # of the MathJax library chosen by the theme;
+        # if you want to adjust to different values you also need
+        # to set them in `[params] mathJaxInitialize`
+        inline = [['\(', '\)'], ['$',  '$']]
+        block  = [['\[', '\]'], ['$$', '$$']]
+
 # showcase of the menu shortcuts; you can use relative URLs linking
 # to your content or use fully-qualified URLs to link outside of
 # your project
