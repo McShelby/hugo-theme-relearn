@@ -34,9 +34,11 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Support for Internet Explorer 11 was finally dropped.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Removing support for Internet Explorer 11 finally allowed the theme to upgradte to Font Awesome 6.5.2.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Removing support for Internet Explorer 11 allowed to upgrade Font Awesome to version 6.5.2.
 
   You may experience slight changes for some icons. In addition you have additional ~1700 icons [to chose](https://fontawesome.com/v6/search?m=free) from.
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Romanian.
 

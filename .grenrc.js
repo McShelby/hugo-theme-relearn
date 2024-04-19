@@ -1,5 +1,5 @@
 module.exports = {
-  changelogFilename: "exampleSite/content/basics/CHANGELOG.md",
+  changelogFilename: "CHANGELOG.md",
   dataSource: "milestones",
   groupBy: {
     "Enhancements": [
