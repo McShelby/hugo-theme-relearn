@@ -92,7 +92,7 @@ mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \
 
 ### Passthrough Configuration
 
-Since {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.120.0{{% /badge %}} you can use your math without enclosing it in a shortcode or codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1) in your `hugo.toml`:
+You can use your math without enclosing it in a shortcode or codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1) in your `hugo.toml`:
 
 {{< multiconfig file=hugo >}}
 [markup]
@@ -101,8 +101,8 @@ Since {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.12
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
-          block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)']]
+          inline = [['\(', '\)'], ['$',  '$']]
+          block  = [['\[', '\]'], ['$$', '$$']]
 {{< /multiconfig >}}
 
 In this case you have to tell the theme that your page contains math by setting this in your page's frontmatter:
