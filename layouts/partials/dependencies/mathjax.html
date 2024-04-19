@@ -11,19 +11,9 @@
     <script>
       function useMathJax( config ){
         window.MathJax = Object.assign( window.MathJax || {}, {
-          loader: {
-            load: ['[tex]/mhchem']
-          },
-          startup: {
-            elements: [
-              '.math'
-            ]
-          },
           tex: {
-            inlineMath: [
-              ['$', '$'], // allow for single dollars as we set startup.elements
-              ['\\(', '\\)']
-            ]
+            inlineMath:  [['\\(', '\\)'], ['$',  '$']],  // inline
+            displayMath: [['\\[', '\\]'], ['$$', '$$']], // block
           },
           options: {
             enableMenu: false // avoid translation hassle for context menu

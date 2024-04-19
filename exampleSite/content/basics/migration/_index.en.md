@@ -40,6 +40,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Math is now usable without enclosing it in a shortcode or codefence by using Hugo's [passthrough configuration](shortcodes/math#passthrough-configuration).
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Romanian.
 
 ---
