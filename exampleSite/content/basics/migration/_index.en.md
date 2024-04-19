@@ -34,6 +34,10 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Support for Internet Explorer 11 was finally dropped.
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} Removing support for Internet Explorer 11 finally allowed the theme to upgradte to Font Awesome 6.5.2.
+
+  You may experience slight changes for some icons. In addition you have additional ~1700 icons [to chose](https://fontawesome.com/v6/search?m=free) from.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Romanian.
 
 ---
