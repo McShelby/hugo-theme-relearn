@@ -11,10 +11,6 @@ graph LR;
     Then --> Else
 {{< /mermaid >}}
 
-{{% notice note %}}
-This only works in modern browsers.
-{{% /notice %}}
-
 ## Usage
 
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.

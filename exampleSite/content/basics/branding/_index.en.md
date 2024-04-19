@@ -24,9 +24,9 @@ Set the `themeVariant` value to the name of your theme file. That's it! Your sit
 {{< /multiconfig >}}
 
 {{% notice note %}}
-Your theme variant file must reside in your site's `static/css` directory or in the theme's `static/css` directory and the file name must start with `theme-` and end wit `.css`. In the above example, the path of your theme file must be `static/css/theme-relearn-light.css`.
+Your theme variant file must reside in your site's `assets/css` directory and the file name must start with `theme-` and end in `.css`. In the above example, the path of your theme file must be `assets/css/theme-relearn-light.css`.
 
-If you want to make changes to a shipped color variant, create a copy in your site's `static/css` directory. Don't edit the file in the theme's directory!
+If you want to make changes to a shipped color variant, create a copy in your site's `assets/css` directory. Don't edit the file in the theme's directory!
 {{% /notice %}}
 
 ### Multiple Variants
@@ -92,9 +92,9 @@ The size of the logo will adapt automatically.
 
 If you want to switch the syntax highlighting theme together with your color variant, you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/) and provide a syntax highlighting stylesheet file.
 
-You can use a one of the shipped stylesheet files or use Hugo to generate a file for you. The file must be written to `static/css/chroma-<NAME>.css`. To use it with your color variant you have to define `--CODE-theme: <NAME>` in the color variant stylesheet file.
+You can use a one of the shipped stylesheet files or use Hugo to generate a file for you. The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your color variant you have to define `--CODE-theme: <NAME>` in the color variant stylesheet file.
 
-For an example, take a look into [`theme-relearn-light.css`](https://github.com/McShelby/hugo-theme-relearn/blob/main/static/css/theme-relearn-light.css) and [`hugo.toml`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/config/_default/hugo.toml) of the exampleSite.
+For an example, take a look into [`theme-relearn-light.css`](https://github.com/McShelby/hugo-theme-relearn/blob/main/assets/css/theme-relearn-light.css) and [`hugo.toml`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/config/_default/hugo.toml) of the exampleSite.
 
 ## Change the Variant (Advanced) {#theme-variant-advanced}
 
@@ -125,7 +125,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `static/css/theme-<IDENTIFIER>.css`. |
+| identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `assets/css/theme-<IDENTIFIER>.css`. |
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
 | auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
 
@@ -159,15 +159,15 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
 1. Copy and change
 
-    You can copy the shipped variant file from the theme's `static/css` directory to the site's `static/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
+    You can copy the shipped variant file from the theme's `assets/css` directory to the site's `assets/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
 
 2. Create and import
 
-    You can create a new variant file in the site's `static/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
+    You can create a new variant file in the site's `assets/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
 
-    For example, you want to use the `relearn-light` variant but want to change the syntax highlighting schema to the one used in the `neon` variant. For that, create a new `static/css/theme-my-branding.css` in your site's directory and add the following lines:
+    For example, you want to use the `relearn-light` variant but want to change the syntax highlighting schema to the one used in the `neon` variant. For that, create a new `assets/css/theme-my-branding.css` in your site's directory and add the following lines:
 
-    ````css {title="static/css/theme-my-branding.css"}
+    ````css {title="assets/css/theme-my-branding.css"}
     @import "theme-relearn-light.css";
 
     :root {

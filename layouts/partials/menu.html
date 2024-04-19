@@ -145,7 +145,7 @@
           {{- end }}
           {{- safeHTML .Params.head }}
           {{- if $numberOfVisibleChildren }}
-            {{- $title := or .Params.menuTitle .LinkTitle .Title }}
+            {{- $title := or .LinkTitle .Title }}
             {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
             {{- $isCollapsible := or (.Params.collapsibleMenu | default .Site.Params.collapsibleMenu) (not $url) }}
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
