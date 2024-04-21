@@ -157,7 +157,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 
 This works for block as well as inline math but is only available if you are using the [passthrough configuration](#passthrough-configuration).
 
-With passthrough configuration you can just drop your math without enclosing shortcodes or codefences but no settings from the [parameter table](#parameter) are available.
+With passthrough configuration you can just drop your math without enclosed by shortcodes or codefences but no settings from the [parameter table](#parameter) are available.
 
 ````md
 $$\left|
