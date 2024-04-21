@@ -5,8 +5,6 @@ title = "Math"
 
 The `math` shortcode generates beautiful formatted math and chemical formulae using the [MathJax](https://mathjax.org/) library.
 
-Math is also [usable without enclosing it](https://gohugo.io/content-management/mathematics) in a shortcode or codefence but [requires configuration](#passthrough-configuration) by you.
-
 {{< math align="center" >}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{< /math >}}
@@ -16,6 +14,8 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Math codefences (eg. GitHub) and so your markdown becomes more portable.
 
 You are free to also call this shortcode from your own partials.
+
+Math is also usable without enclosing it in a shortcode or codefence but [requires configuration](#passthrough-configuration) by you. In this case no parameter from the below table are available.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="codefence" %}}
@@ -111,6 +111,8 @@ In this case you have to tell the theme that your page contains math by setting 
 disableMathJax = false
 {{< /multiconfig >}}
 
+See the [example](#passthrough) on how it makes using math really easy.
+
 ## Examples
 
 ### Inline Math
@@ -152,6 +154,10 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 ````
 
 ### Passthrough
+
+This works for block as well as inline math but is only available if you are using the [passthrough configuration](#passthrough-configuration).
+
+With passthrough configuration you can just drop your math without enclosing shortcodes or codefences but no settings from the [parameter table](#parameter) are available.
 
 ````md
 $$\left|
