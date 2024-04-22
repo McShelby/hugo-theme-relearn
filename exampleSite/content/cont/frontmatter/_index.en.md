@@ -10,14 +10,14 @@ Each Hugo page **has to define** a [frontmatter](https://gohugo.io/content/front
 The values reflect example options. The defaults can be taken from the [annotated example](#annotated-frontmatter-options) below.
 
 {{< multiconfig fm=true >}}
-{{% include "cont/frontmatter/frontmatter.toml" %}}
+{{% include "frontmatter.toml" %}}
 {{< /multiconfig >}}
 
 ## Annotated Frontmatter Options
 
 ````toml {title="toml"}
 +++
-{{% include "cont/frontmatter/frontmatter.toml" %}}+++
+{{% include "frontmatter.toml" %}}+++
 ````
 
 ## Some Detailed Examples

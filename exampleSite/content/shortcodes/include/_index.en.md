@@ -13,14 +13,14 @@ While the examples are using shortcodes with named parameter you are free to use
 {{% tab title="shortcode" %}}
 
 ````go
-{{%/* include file="shortcodes/INCLUDE_ME.md" */%}}
+{{%/* include file="shortcodes/include/INCLUDE_ME.md" */%}}
 ````
 
 {{% /tab %}}
 {{% tab title="shortcode (positional)" %}}
 
 ````go
-{{%/* include "shortcodes/INCLUDE_ME.md" */%}}
+{{%/* include "shortcodes/include/INCLUDE_ME.md" */%}}
 ````
 
 {{% /tab %}}
@@ -29,7 +29,7 @@ While the examples are using shortcodes with named parameter you are free to use
 ````go
 {{ partial "shortcodes/include .html" (dict
   "page" .
-  "file" "shortcodes/INCLUDE_ME.md"
+  "file" "shortcodes/include/INCLUDE_ME.md"
 )}}
 ````
 
@@ -50,7 +50,7 @@ The included files can even contain Markdown and will be taken into account when
 ### Arbitrary Content
 
 ````go
-{{%/* include "shortcodes/INCLUDE_ME.md" */%}}
+{{%/* include "shortcodes/include/INCLUDE_ME.md" */%}}
 ````
 
-{{% include "shortcodes/INCLUDE_ME.md" %}}
+{{% include "shortcodes/include/INCLUDE_ME.md" %}}
