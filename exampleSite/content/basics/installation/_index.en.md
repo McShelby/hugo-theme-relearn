@@ -134,7 +134,7 @@ You should notice a few things:
 
 ## Build and Deploy your Website
 
-When your site is ready to deploy, run the following command:
+When your site is ready to be deployed, run the following command:
 
 ````shell
 hugo
@@ -143,3 +143,5 @@ hugo
 A `public` directory will be generated, containing all content and assets for your web site.
 
 It now can be deployed to any web server by simply uploading its contents or you can check out one of [Hugo's many other deployment options](https://gohugo.io/hosting-and-deployment/).
+
+If you are storing your web site in git, commit all but the `public` directory.
