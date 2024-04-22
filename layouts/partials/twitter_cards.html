@@ -1,4 +1,4 @@
-{{- /* based on Hugo 0.125.0 _internal/twitter_cardss.html but with modified title */}}
+{{- /* based on Hugo 0.125.3 twitter_cards.html */}}
 {{- $images := partial "_funcs/get-page-images" . }}
 {{- with index $images 0 }}
     <meta name="twitter:card" content="summary_large_image">
@@ -10,22 +10,14 @@
     <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 
 {{- $twitterSite := "" }}
-{{- with site.Params.social.twitter }}
-  {{- $twitterSite = . }}
-{{- else }}
-  {{- with site.Social.twitter }}
-    {{- $twitterSite = . }}
-    {{- $hugoVersion := "0.120.0" }}
-    {{- if ge hugo.Version $hugoVersion }}
-      {{- warnf "The social key in site configuration is deprecated. Use params.social.twitter instead." }}
+{{- with site.Params.social }}
+  {{- if reflect.IsMap . }}
+    {{- with .twitter }}
+      {{- $content := . }}
+      {{- if not (strings.HasPrefix . "@") }}
+        {{- $content = printf "@%v" . }}
+      {{- end }}
+  <meta name="twitter:site" content="{{ $content }}"/>
     {{- end }}
   {{- end }}
-{{- end }}
-
-{{- with $twitterSite }}
-  {{- $content := . }}
-  {{- if not (strings.HasPrefix . "@") }}
-    {{- $content = printf "@%v" . }}
-  {{- end }}
-    <meta name="twitter:site" content="{{ $content }}">
 {{- end }}

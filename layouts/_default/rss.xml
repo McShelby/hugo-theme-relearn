@@ -1,3 +1,4 @@
+{{- /* based on Hugo 0.125.3 rss.xml */}}
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- /* Deprecate site.Author.email in favor of site.Params.author.email */}}
 {{- $authorEmail := "" }}
@@ -29,15 +30,15 @@
     <title>{{ if eq .Title .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ .Site.Title }}{{ end }}</title>
     <link>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</link>
     <description>Recent content {{ if ne .Title .Site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ .Site.Title }}</description>
-    <generator>Hugo -- gohugo.io</generator>{{ with .Site.LanguageCode }}
-    <language>{{ . }}</language>{{end}}{{ with $authorEmail }}
+    <generator>Hugo</generator>
+    <language>{{ site.Language.LanguageCode }}</language>{{ with $authorEmail }}
     <managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
     <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with .Site.Copyright }}
     <copyright>{{ . }}</copyright>{{ end }}{{ if not .Date.IsZero }}
     <lastBuildDate>{{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     {{- with .OutputFormats.Get "rss" }}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" ( partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true)) .MediaType | safeHTML }}
-    {{- end -}}
+    {{- end }}
     {{- range $pages }}
       {{- $relearnIsHiddenFrom := index ($page.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
   	  {{- if and .Permalink .Title (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableSeoHiddenPages true) ) }}

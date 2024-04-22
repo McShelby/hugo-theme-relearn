@@ -1,3 +1,4 @@
+{{- /* based on Hugo 0.125.3 render-link.html */}}
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
@@ -10,7 +11,7 @@
 {{- $attributes := dict }}
 {{- $title := .title | default "" }}
 {{- $title = trim $title " " }}
-{{- $attributes = $attributes | merge (dict "title" $title) }}
+{{- $attributes = $attributes | merge (dict "title" ($title | transform.HTMLEscape)) }}
 {{- $content := .content }}
 {{- $target := .target | default "" }}
 {{- $u := urls.Parse $url }}

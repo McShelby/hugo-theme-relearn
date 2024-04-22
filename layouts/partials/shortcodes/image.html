@@ -1,3 +1,4 @@
+{{- /* based on Hugo 0.125.3 render-image.html */}}
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
@@ -77,7 +78,7 @@
   {{- $classes = $classes | append $c }}
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
-{{- $attributes = merge $attributes (dict "alt" $alt "src" $url "title" $title) }}
+{{- $attributes = merge $attributes (dict "alt" $alt "src" $url "title" ($title | transform.HTMLEscape)) }}
 {{- if $effects.lazy }}
   {{- $attributes = merge $attributes (dict "loading" "lazy") }}
 {{- end }}

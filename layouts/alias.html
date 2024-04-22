@@ -1,3 +1,4 @@
+{{- /* based on Hugo 0.125.3 alias.html */}}
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,9 +23,9 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <meta http-equiv="refresh" content="0; url={{ $url }}">
-    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
+    {{- $link := "<link href=\"%s\" rel=\"%s\">" }}
     <title>{{ $url }}</title>
 
-    {{ (printf $link $url "canonical" "text/html" ($url | htmlEscape)) | safeHTML }}
+    {{ (printf $link $url "canonical" ($url | htmlEscape)) | safeHTML }}
   </head>
 </html>
