@@ -112,7 +112,7 @@ hugo new basics/third-content.md
 
 Feel free to edit those files by adding some sample content and replacing the `title` value in the beginning of the files.
 
-{{% notice note%}}
+{{% notice note %}}
 Please note that Hugo overrides the default archetype template coming with this theme when using `hugo new site my-new-site`. To actually see your page later, you have to remove the `draft=true` from the page's frontmatter.
 {{% /notice %}}
 
@@ -144,4 +144,6 @@ A `public` directory will be generated, containing all content and assets for yo
 
 It now can be deployed to any web server by simply uploading its contents or you can check out one of [Hugo's many other deployment options](https://gohugo.io/hosting-and-deployment/).
 
+{{% notice note %}}
 If you are storing your web site in git, commit all but the `public` directory.
+{{% /notice %}}
