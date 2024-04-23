@@ -32,6 +32,10 @@ This document shows you what's new in the latest release and flags it with one o
     --CODE-theme: monokai;
     ````
 
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The frontmatter option `menuTitle` is now unsupported in favor for Hugo’s own `linkTitle`.
+
+  Additionally, if set `linkTitle` will now be used instead of `title` to generate the breadcrumb.
+
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Support for Internet Explorer 11 was finally dropped.
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} Removing support for Internet Explorer 11 allowed to upgrade Font Awesome to version 6.5.2.
