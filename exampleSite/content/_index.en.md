@@ -11,7 +11,7 @@ A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
 ## Motivation
 
-The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adapting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for the Learn theme.
+The Relearn theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo-theme-learn) with the aim of fixing long outstanding bugs and adapting to latest Hugo features. As far as possible this theme tries to be a drop-in replacement for the Learn theme.
 
 ## Features
 
@@ -27,7 +27,7 @@ The theme is a fork of the great [Learn theme](https://github.com/matcornic/hugo
   - [Automatic switch for light/dark variant depending on your OS settings](basics/branding#adjust-to-os-settings)
   - Predefined light, dark and color variants
   - [User selectable variants](basics/branding#multiple-variants)
-  - [Stylesheet generator](basics/generator/)
+  - [Stylesheet generator](basics/generator)
   - [Configurable syntax highlighting](shortcodes/highlight)
 - **Unique theme features**
   - [Print whole chapters or even the complete site](basics/customization#activate-print-support)
