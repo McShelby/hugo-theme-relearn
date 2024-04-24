@@ -52,7 +52,7 @@
   {{- $fileLink = strings.TrimPrefix "content/" $fileLink }}
   {{- $filesName := printf "%s.files" .File.BaseFileName }}
   {{- if and (eq .File.BaseFileName "index") (fileExists (printf "%sfiles" $fileDir)) }}
-    {{- $c := "" }}{{/* backward compat to < 5.9.0 behavior */}}
+    {{- /* backward compat to < 5.9.0 behavior */}}
     {{- $filesName = "files" }}
   {{- end }}
   {{- $dir := printf "%s%s" $fileDir $filesName }}
@@ -71,7 +71,7 @@
         {{- end }}
         {{- $unitsymbol := $unit | T }}
         {{- $link := (printf "%s%s/%s" $fileLink $filesName .Name) | relLangURL }}
-        {{- $c := "" }}{{/* Hugo stores the attachments always in the default language subdirectory */}}
+        {{- /* Hugo stores the attachments always in the default language subdirectory */}}
         {{- $link = replace $link $urlPrefix $defaultUrlPrefix 1 }}
       <li><a href="{{ $link }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
       {{- end }}

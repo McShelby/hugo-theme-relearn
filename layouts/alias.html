@@ -8,15 +8,15 @@
     {{- end }}
     {{- $url = replace $url "//" "/" }}
     {{- with site.Home.GetPage $url }}
-      {{- $c := "" }}{{/* if defaultContentLanguageInSubdir=false we are ending here for home page of the default language */}}
+      {{- /* if defaultContentLanguageInSubdir=false we are ending here for home page of the default language */}}
       {{- $url = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
     {{- else }}
       {{- $url_alt := replaceRE "^/[^/]*(/.*)" "${1}" $url }}
       {{- with site.Home.GetPage $url_alt }}
-        {{- $c := "" }}{{/* if defaultContentLanguageInSubdir=true we are ending here for home page */}}
+        {{- /* if defaultContentLanguageInSubdir=true we are ending here for home page */}}
         {{- $url = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
       {{- else }}
-        {{- $c := "" }}{{/* for regular aliases we are ending here with no original page found */}}
+        {{- /* for regular aliases we are ending here with no original page found */}}
         {{- $url = partial "relLangPrettyUglyURL.hugo" (dict "link" $url) }}
       {{- end }}
     {{- end }}
