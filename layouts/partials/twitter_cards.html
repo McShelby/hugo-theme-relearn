@@ -7,7 +7,7 @@
     <meta name="twitter:card" content="summary">
 {{- end }}
     <meta name="twitter:title" content="{{ partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}">
-    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <meta name="twitter:description" content="{{ with or .Description .Summary site.Params.Description }}{{ . }}{{ end }}">
 
 {{- $twitterSite := "" }}
 {{- with site.Params.social }}

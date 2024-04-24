@@ -37,30 +37,24 @@
 					{{- $numn := add $num $.count }}
 {{ (printf "<h%d>" $numn)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}{{ (printf "</h%d>" $numn)|safeHTML }}
 {{- if $.description }}
-	{{- if .Description -}}
-<p>{{ .Description }}</p>
-	{{- else -}}
-<p>{{ .Summary }}</p>
+	{{- with or .Description .Summary site.Params.Description -}}
+<p>{{ . }}</p>
 	{{- end }}
 {{- end }}
 
 				{{- else if eq $.style "li" }}
 {{ (printf "<%s>" $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}
 {{- if $.description }}
-	{{- if .Description -}}
-<p>{{ .Description }}</p>
-	{{- else -}}
-<p>{{ .Summary }}</p>
+	{{- with or .Description .Summary site.Params.Description -}}
+<p>{{ . }}</p>
 	{{- end }}
 {{- end }}
 
 				{{- else }}
 {{ (printf "<%s>" $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
 {{- if $.description }}
-	{{- if .Description -}}
-<p>{{ .Description }}</p>
-	{{- else -}}
-<p>{{ .Summary }}</p>
+	{{- with or .Description .Summary site.Params.Description -}}
+<p>{{ . }}</p>
 	{{- end }}
 {{- end }}
 

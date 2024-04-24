@@ -7,7 +7,7 @@
       "title" (partial "pageHelper/title.hugo" (dict "page" .))
       "tags" .Params.tags
       "breadcrumb" (trim ((partial "breadcrumbs.html" (dict "page" . "dirOnly" true)) | plainify | htmlUnescape) "\n\r\t ")
-      "description" .Description
+      "description" (or .Description .Summary site.Params.Description)
       "content" (.Plain | htmlUnescape)
     ) }}
   {{- end }}

@@ -42,7 +42,13 @@ This document shows you what's new in the latest release and flags it with one o
 
   You may experience slight changes for some icons. In addition you have additional ~1700 icons [to chose](https://fontawesome.com/v6/search?m=free) from.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`children` shortcode](shortcodes/children) was fixed to adhere to its documentation generating the description based on this rule: When no description or summary exists for the page, the first 70 words of the content is taken.
+
+  Previously, the summary erroneously was ignored which now can lead to different output if you set `description=true` as a parameter.
+
+  In addition, all places where descriptions are printed, now behave in the same way.
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Math is now usable without enclosing it in a shortcode or codefence by using Hugo's [passthrough configuration](shortcodes/math#passthrough-configuration).
 
