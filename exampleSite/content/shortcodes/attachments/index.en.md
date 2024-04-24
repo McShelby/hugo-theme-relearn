@@ -4,19 +4,19 @@ hidden = "true"
 title = "Attachments"
 +++
 
-The `attachments` shortcode displays a list of files attached to a page with adjustable color, title and icon.
-
-{{% attachments sort="asc" /%}}
-
 {{% notice warning %}}
 This shortcode is deprecated in favor of the new [`resources` shortcode](shortcodes/resources). See [migration instructions](#migration) below.
 {{% /notice %}}
+
+The `attachments` shortcode displays a list of files attached to a page with adjustable color, title and icon.
+
+{{% attachments sort="asc" /%}}
 
 ## Migration
 
 While this shortcode will still be available for some time, it does not receive support anymore. Start to migrate early, as it will be removed with the next major update of the theme.
 
-The `resources` shortcode leverages Hugo's resource feature for page bundles. It has all the same parameter as the `attachments` shortcode but applies the `pattern` directly on a resources `Name` attribute.
+The [`resources` shortcode](shortcodes/resources) leverages Hugo's resource feature for page bundles. It has all the same parameter as the `attachments` shortcode but applies the `pattern` directly on a resources `Name` attribute.
 
 To migrate your pages apply the following steps:
 
@@ -113,33 +113,3 @@ Eg. for a site in English and Piratish:
   >       * attachment.pdf
   >     * **index.pir.files**
   >       * attachment.pdf
-
-## Examples
-
-### Custom Title, List of Attachments Ending in pdf or mp4
-
-````go
-{{%/* attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /*/%}}
-````
-
-{{% attachments title="Related **files**" pattern=".*\.(pdf|mp4)" /%}}
-
-### Info Styled Box, Descending Sort Order
-
-````go
-{{%/* attachments style="info" sort="desc" /*/%}}
-````
-
-{{% attachments style="info" sort="desc" /%}}
-
-### With User-Defined Color and Font Awesome Brand Icon
-
-````go
-{{%/* attachments color="fuchsia" icon="fa-fw fab fa-hackerrank" /*/%}}
-````
-
-{{% attachments color="fuchsia" icon="fa-fw fab fa-hackerrank" /%}}
-
-### Style, Color, Title and Icons
-
-For further examples for **style**, **color**, **title** and **icon**, see the [`notice` shortcode](shortcodes/notice) documentation. The parameter are working the same way for both shortcodes, besides having different defaults.
