@@ -1,6 +1,6 @@
 +++
 alwaysopen = false
-descrption = "List th' child planks on a plank"
+description = "List th' child planks on a plank"
 title = "Children"
 +++
 {{< piratify >}}

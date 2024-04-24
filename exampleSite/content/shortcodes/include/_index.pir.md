@@ -1,5 +1,5 @@
 +++
-descrption = "Displays content from other Marrrkdown files"
+description = "Displays content from other Marrrkdown files"
 title = "Include"
 +++
 {{< piratify >}}

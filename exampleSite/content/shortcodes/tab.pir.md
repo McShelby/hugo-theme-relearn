@@ -1,5 +1,5 @@
 +++
-descrption = "Show rrrambl'n 'n a single tab"
+description = "Show rrrambl'n 'n a single tab"
 title = "Tab"
 +++
 {{< piratify >}}

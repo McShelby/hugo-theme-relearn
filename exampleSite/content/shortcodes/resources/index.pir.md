@@ -1,5 +1,5 @@
 +++
-descrption = "List Rrresources shorrrtcode contained in a plank bundle"
+description = "List Rrresources shorrrtcode contained in a plank bundle"
 title = "Resources"
 [[resources]]
   name = 'MaybeTreasure.txt'
