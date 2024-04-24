@@ -11,6 +11,9 @@
     {{- errorf "The Relearn theme requires Hugo %s or later" $hugoVersion }}
   {{- end }}
 {{- end }}
+{{- if .Site.Params.description }}
+  {{- warnf "UNSUPPORTED usage of 'params.description' config parameter found, move it to the frontmatter of your home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#600" }}
+{{- end }}
 <html lang="{{ .Page.Language.LanguageCode | default "en" }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}">
   <head>
     {{- partial "meta.html" . }}

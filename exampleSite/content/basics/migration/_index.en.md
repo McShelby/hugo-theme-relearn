@@ -32,6 +32,12 @@ This document shows you what's new in the latest release and flags it with one o
     --CODE-theme: monokai;
     ````
 
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The parameter `description` in your `hugo.toml` will now been ignored.
+
+  With the newly introduces unified handling of descriptions throughout the theme, the only place the old parameter would have been used was your home page.
+
+  For migration, move the `description` parameter of your `hugo.toml` into the frontmatter section of your home page.
+
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The frontmatter option `menuTitle` is now unsupported in favor for Hugo’s own `linkTitle`.
 
   Additionally, if set `linkTitle` will now be used instead of `title` to generate the breadcrumb.
@@ -45,8 +51,6 @@ This document shows you what's new in the latest release and flags it with one o
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`children` shortcode](shortcodes/children) was fixed to adhere to its documentation generating the description based on this rule: When no description or summary exists for the page, the first 70 words of the content is taken.
 
   Previously, the summary erroneously was ignored which now can lead to different output if you set `description=true` as a parameter.
-
-  In addition, all places where descriptions are printed, now behave in the same way.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
 
