@@ -44,7 +44,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Support for Internet Explorer 11 was finally dropped.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} Wit the removal of support for Internet Explorer 11, Font Awesome was upgraded to version 6.5.2.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} With the removal of support for Internet Explorer 11, Font Awesome was upgraded to version 6.5.2.
 
   You may experience slight changes for some icons. In addition you have additional ~1700 icons [to chose](https://fontawesome.com/v6/search?m=free) from.
 
