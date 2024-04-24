@@ -1,7 +1,7 @@
 {{- $title := "" }}
 {{- with .page }}
   {{- if .Params.menuTitle }}
-    {{- warnf "%q: UNSUPPORTED frontmatter 'menutitle' found, use 'linktitle' instead" $.File.Filename }}
+    {{- warnf "%q: UNSUPPORTED frontmatter 'menutitle' found, use 'linktitle' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#600" $.File.Filename }}
   {{- end }}
   {{- $format := $.format | default (partial "get-format.hugo" .) }}
   {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
