@@ -30,10 +30,6 @@
       window.relearn.relBasePath='{{ partial "relBasePath.hugo" $page | safeJS }}';
       window.relearn.relBaseUri='{{ partial "relBaseUri.hugo" $page | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
-    {{- with .Site.Home.OutputFormats.Get "json" }}
-      {{- warnf "DEPRECATED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-search" }}
-      window.index_json_url={{ "index.json" | relLangURL }};
-    {{- end }}
     {{- with .Site.Home.OutputFormats.Get "search" }}
       window.index_js_url={{ "index.search.js" | relLangURL }};
     {{- end }}

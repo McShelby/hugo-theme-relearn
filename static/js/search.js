@@ -109,30 +109,6 @@ if( input ){
     });
 }
 
-function initLunrJson() {
-    // old way to load the search index via XHR;
-    // this does not work if pages are served via
-    // file:// protocol; this is only left for
-    // backward compatiblity if the user did not
-    // define the `search` output format for the homepage
-    if( window.index_json_url && !window.index_js_url ){
-        xhr = new XMLHttpRequest;
-        xhr.onreadystatechange = function(){
-            if( xhr.readyState == 4 ){
-                if( xhr.status == 200 ){
-                    initLunrIndex( JSON.parse( xhr.responseText ) );
-                }
-                else{
-                    var err = xhr.status;
-                    console.error( 'Error getting Hugo index file: ', err );
-                }
-            }
-        }
-        xhr.open( 'GET', index_json_url );
-        xhr.send();
-    }
-}
-
 function initLunrJs() {
     // new way to load our search index
     if( window.index_js_url ){
@@ -257,7 +233,6 @@ function searchDetail( value ) {
     }
 }
 
-initLunrJson();
 initLunrJs();
 
 function startSearch(){

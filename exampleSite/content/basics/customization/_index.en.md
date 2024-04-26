@@ -64,11 +64,7 @@ If not already present, add the following lines in your `hugo.toml` file.
   home = ["html", "rss", "search"]
 {{< /multiconfig >}}
 
-This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library. Note that the `search` outputformat was named `json` in previous releases but was implemented differently. Although `json` still works, it is now deprecated.
-
-{{% notice note %}}
-If you want to use the search feature from the file system, migrating from an older installation of the theme, make sure to change your outputformat for the homepage from the now deprecated `json` to `search` [as seen below](#activate-search).
-{{% /notice %}}
+This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library.
 
 ### Activate dedicated search page
 

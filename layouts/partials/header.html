@@ -38,17 +38,8 @@
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
         {{- else if eq $outputFormat "searchpage" }}
         {{- else if eq .Name "searchpage" }}
-        {{- else if and (ne .Name "json") (ne .Name "search") }}
+        {{- else if ne .Name "search" }}
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
-        {{- end }}
-      {{- end }}
-    {{- end }}
-
-    {{- if and (ne .Site.Params.disableSeoHiddenPages true) (ne .Site.Params.disableSearchHiddenPages true) }}
-      {{- range .AlternativeOutputFormats }}
-        {{- if eq .Name "searchpage" }}
-        {{- else if eq .Name "json" }}
-    {{ (printf $link (.Permalink | relURL) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
         {{- end }}
       {{- end }}
     {{- end }}

@@ -32,6 +32,10 @@ This document shows you what's new in the latest release and flags it with one o
     --CODE-theme: monokai;
     ````
 
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Search support for the deprecated outputformat `json` was removed.
+
+  Change it to `search` for the homepage in your `hugo.toml`. See the docs for [detailed configuration](basics/customization#activate-search).
+
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The parameter `description` in your `hugo.toml` will now be ignored.
 
   With the newly introduced unified handling of descriptions throughout the theme, the only place the old parameter would have been used was your home page.

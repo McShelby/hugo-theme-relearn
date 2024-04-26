@@ -1,5 +1,8 @@
         {{- $link := "" }}
-        {{- if or (.Site.Home.OutputFormats.Get "json") (.Site.Home.OutputFormats.Get "search") }}
+        {{- with .Site.Home.OutputFormats.Get "json" }}
+          {{- warnf "UNSUPPORTED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#600" }}
+        {{- end }}
+        {{- if .Site.Home.OutputFormats.Get "search" }}
           {{- with .Site.Home.OutputFormats.Get "searchpage" }}
             {{- $link = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
           {{- end }}
