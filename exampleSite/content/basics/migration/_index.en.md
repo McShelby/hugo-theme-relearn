@@ -32,19 +32,21 @@ This document shows you what's new in the latest release and flags it with one o
     --CODE-theme: monokai;
     ````
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Search support for the deprecated outputformat `json` was removed.
-
-  Change it to `search` for the homepage in your `hugo.toml`. See the docs for [detailed configuration](basics/customization#activate-search).
-
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The parameter `description` in your `hugo.toml` will now be ignored.
 
   With the newly introduced unified handling of descriptions throughout the theme, the only place the old parameter would have been used was your home page.
 
   For migration, move the `description` parameter of your `hugo.toml` into the frontmatter section of your home page.
 
-- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The frontmatter option `menuTitle` is now unsupported in favor for Hugo’s own `linkTitle`.
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Search support for the `json` outputformat [deprecated in 5.4.0](#540) was removed.
+
+  Change it to `search` for the homepage in your `hugo.toml`. See the docs for [detailed configuration](basics/customization#activate-search).
+
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The frontmatter option `menuTitle` [deprecated in 5.24.0](#5240) was removed in favor for Hugo’s own `linkTitle`.
 
   Additionally, if set, `linkTitle` will now be used instead of `title` to generate the breadcrumb.
+
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The `swagger` shortcode [deprecated in 5.13.0](#5130) was removed in favor for the  [`openapi` shortcode](shortcodes/openapi) with the same set of parameter.
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Support for Internet Explorer 11 was finally dropped.
 
