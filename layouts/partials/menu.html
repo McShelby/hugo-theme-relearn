@@ -159,7 +159,7 @@
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}</ul></li>
           {{- else }}
-            {{- $title := or .Params.menuTitle .LinkTitle .Title }}
+            {{- $title := or .LinkTitle .Title }}
             {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
           <li data-nav-id="{{ $url }}" class="{{if $isActive }}active{{end}}">{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
               {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
