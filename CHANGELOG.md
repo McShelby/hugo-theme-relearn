@@ -1,5 +1,33 @@
 # Changelog
 
+## 6.0.0 (2024-04-27)
+
+### Enhancements
+
+- [**feature**][**breaking**] theme: unify description [#845](https://github.com/McShelby/hugo-theme-relearn/issues/845)
+- [**feature**] schema: add schema support in meta data [#844](https://github.com/McShelby/hugo-theme-relearn/issues/844)
+- [**feature**] include: use Hugo's resources [#835](https://github.com/McShelby/hugo-theme-relearn/issues/835)
+- [**feature**] math: allow to work with Hugo's passthrough configuration [#832](https://github.com/McShelby/hugo-theme-relearn/issues/832)
+- [**feature**] i18n: add Romanian translation [#828](https://github.com/McShelby/hugo-theme-relearn/issues/828)
+- [**feature**][**breaking**] menu: remove menuTitle frontmatter [#714](https://github.com/McShelby/hugo-theme-relearn/issues/714)
+- [**feature**][**breaking**] theme: end support for Internet Explorer 11 [#584](https://github.com/McShelby/hugo-theme-relearn/issues/584)
+
+### Fixes
+
+- [**bug**] frontmatter: move frontmatter config for exampleSite out of root [#843](https://github.com/McShelby/hugo-theme-relearn/issues/843)
+- [**bug**] images: color outline using primary color [#838](https://github.com/McShelby/hugo-theme-relearn/issues/838)
+- [**bug**][**breaking**] variant: avoid Hugo permission errors on build [#831](https://github.com/McShelby/hugo-theme-relearn/issues/831)
+- [**bug**] theme: unwanted paragraph break with AsciiDoc [#829](https://github.com/McShelby/hugo-theme-relearn/issues/829)
+
+### Maintenance
+
+- [**task**][**breaking**] swagger: remove shortcode [#847](https://github.com/McShelby/hugo-theme-relearn/issues/847)
+- [**task**][**breaking**] search: remove JSON outputformat for search index [#846](https://github.com/McShelby/hugo-theme-relearn/issues/846)
+- [**task**] theme: sync to Hugo's implementation [#841](https://github.com/McShelby/hugo-theme-relearn/issues/841)
+- [**task**][**change**] fontawesome: update to 6.5.2 [#834](https://github.com/McShelby/hugo-theme-relearn/issues/834)
+
+---
+
 ## 5.27.0 (2024-04-07)
 
 ### Enhancements
@@ -268,7 +296,7 @@
 
 - [**feature**][**change**] theme: support for colored borders between menu and content [#626](https://github.com/McShelby/hugo-theme-relearn/issues/626)
 - [**feature**] image: allow option to apply image effects globally [#623](https://github.com/McShelby/hugo-theme-relearn/issues/623)
-- [**feature**][**change**] openapi: switch to light syntaxhighlightning where applicable [#621](https://github.com/McShelby/hugo-theme-relearn/issues/621)
+- [**feature**][**change**] openapi: switch to light syntaxhighlighting where applicable [#621](https://github.com/McShelby/hugo-theme-relearn/issues/621)
 - [**feature**] images: document usage of images with links [#576](https://github.com/McShelby/hugo-theme-relearn/issues/576)
 
 ### Fixes
@@ -1126,7 +1154,7 @@
 
 ### Fixes
 
-- [**bug**] swagger: avoid builtin syntax-highlightning [#280](https://github.com/McShelby/hugo-theme-relearn/issues/280)
+- [**bug**] swagger: avoid builtin syntaxhighlighting [#280](https://github.com/McShelby/hugo-theme-relearn/issues/280)
 - [**bug**] search: fix console message for missing lunr translations [#278](https://github.com/McShelby/hugo-theme-relearn/issues/278)
 - [**bug**] tabs: fix wrapping when having many tabs [#272](https://github.com/McShelby/hugo-theme-relearn/issues/272)
 
@@ -1365,7 +1393,7 @@
 - [**feature**] variant: add a variant selector [#178](https://github.com/McShelby/hugo-theme-relearn/issues/178)
 - [**feature**][**breaking**] menu: rework footer UX [#177](https://github.com/McShelby/hugo-theme-relearn/issues/177)
 - [**feature**] theme: support for dark mode [#175](https://github.com/McShelby/hugo-theme-relearn/issues/175)
-- [**feature**] docs: use light syntax highlightning theme [#174](https://github.com/McShelby/hugo-theme-relearn/issues/174)
+- [**feature**] docs: use light syntax highlighting theme [#174](https://github.com/McShelby/hugo-theme-relearn/issues/174)
 - [**feature**] notice: tweak dull colors [#173](https://github.com/McShelby/hugo-theme-relearn/issues/173)
 - [**feature**] theme: rework header UX [#151](https://github.com/McShelby/hugo-theme-relearn/issues/151)
 
@@ -1481,7 +1509,7 @@
 ### Fixes
 
 - [**bug**] mermaid: assert that window.mermaid is actually mermaid [#136](https://github.com/McShelby/hugo-theme-relearn/issues/136)
-- [**bug**] menu: remove usage of Hugos UniqueID [#131](https://github.com/McShelby/hugo-theme-relearn/issues/131)
+- [**bug**] menu: remove usage of Hugo's UniqueID [#131](https://github.com/McShelby/hugo-theme-relearn/issues/131)
 - [**bug**] theme: reduce margin for children shortcode [#130](https://github.com/McShelby/hugo-theme-relearn/issues/130)
 - [**bug**] theme: left-align h3 in chapters [#129](https://github.com/McShelby/hugo-theme-relearn/issues/129)
 - [**bug**] theme: align copy link to clipboard [#128](https://github.com/McShelby/hugo-theme-relearn/issues/128)
@@ -1610,7 +1638,7 @@
 - [**feature**] search: open expand if it contains search term [#80](https://github.com/McShelby/hugo-theme-relearn/issues/80)
 - [**feature**] menu: scroll active item into view [#79](https://github.com/McShelby/hugo-theme-relearn/issues/79)
 - [**feature**] search: disable search in hidden pages [#76](https://github.com/McShelby/hugo-theme-relearn/issues/76)
-- [**feature**] search: improve readablility of index.json [#75](https://github.com/McShelby/hugo-theme-relearn/issues/75)
+- [**feature**] search: improve readability of index.json [#75](https://github.com/McShelby/hugo-theme-relearn/issues/75)
 - [**feature**] search: increase performance [#74](https://github.com/McShelby/hugo-theme-relearn/issues/74)
 - [**feature**] search: improve search context preview [#73](https://github.com/McShelby/hugo-theme-relearn/issues/73)
 

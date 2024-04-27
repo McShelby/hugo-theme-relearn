@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 6.0.0.beta (XXXX-XX-XX) {#600}
+## 6.0.0 (2024-04-27) {#600}
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release requires you to move your self-defined variant (`theme-*.css`) and chroma stylesheets (`chroma-*.css`) from `static/css` to `assets/css`.
 
