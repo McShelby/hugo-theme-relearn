@@ -22,7 +22,7 @@
   {{- /* display pages of a term */}}
   {{- $breadcrumb := "" }}
   {{- if (ne .Page.Site.Params.disableTermBreadcrumbs true) }}
-    {{- $breadcrumb = (trim ((partial "breadcrumbs.html" (dict "page" .Page "dirOnly" true)) | plainify | htmlUnescape) "\n\r\t ") }}
+    {{- $breadcrumb = partial "breadcrumbs.html" (dict "page" .Page "dirOnly" true) | plainify | htmlUnescape | chomp }}
   {{- end }}
   <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Title }}</a>{{ with $breadcrumb }}<div class="breadcrumbs highlightable" title="{{ . }}">{{ . }}</div>{{ end }}</li>
   {{- $lastCapital = $capital }}

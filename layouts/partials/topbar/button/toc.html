@@ -9,7 +9,7 @@
 	{{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
 	{{- if and (eq $outputFormat "html") (not $currentDisableToc) }}
 		{{- $content := partial "toc-class.html" . }}
-		{{- $hascontent := not (eq 0 (int (len (trim ($content | plainify) "\n\r\t ")))) }}
+		{{- $hascontent := not (eq 0 (int (len ($content | plainify | chomp)))) }}
 		{{- if not $hascontent }}
 			{{- $content = " " }}
 		{{- end }}

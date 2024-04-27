@@ -1,4 +1,6 @@
 {{- $page := .page }}
+{{- $format := partial "get-format.hugo" $page }}
+{{- $outputFormat := partial "output-format.hugo" (dict "page" $page "format" $format) }}
 {{- $taxonomy := .taxonomy }}
 {{- $class := .class }}
 {{- $color := .color | default "" }}
@@ -18,7 +20,7 @@
   {{- $term := . }}
   {{- $term_key := $term }}
   {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-    {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term | strings.Title) .Title) "Term" . )}}
+    {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
   {{- else }}
     {{- $term = trim $term " " }}
     {{- if not $term }}
@@ -26,16 +28,16 @@
     {{- end }}
     {{- $term_key = ($term | plainify | anchorize) }}
     {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-      {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term | strings.Title) .Title) "Term" . )}}
+      {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
     {{- else }}
       {{- $term_key = ($term | urlize) }}
       {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-        {{- $term_pages = $term_pages | append (dict "Title" (default (humanize .Data.Term | strings.Title) .Title) "Term" . )}}
+        {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
       {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
-{{- $taxonomy_title := default (default $taxonomy_page.Data.Plural (i18n $taxonomy_page.Data.Plural)) $taxonomy_page.Params.Title }}
+{{- $taxonomy_title := partial "pageHelper/title.hugo" (dict "page" $taxonomy_page "format" $format "outputFormat" $outputFormat) }}
 {{- with $term_pages }}
 <div class=" taxonomy-{{ $taxonomy }} term-list cstyle {{ $style }} {{ $class }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}
