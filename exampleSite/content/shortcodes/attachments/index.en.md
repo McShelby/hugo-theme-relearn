@@ -6,11 +6,11 @@ title = "Attachments"
 
 {{% notice warning %}}
 This shortcode is deprecated in favor of the new [`resources` shortcode](shortcodes/resources). See [migration instructions](#migration) below.
+
+The examples on this page were removed.
 {{% /notice %}}
 
 The `attachments` shortcode displays a list of files attached to a page with adjustable color, title and icon.
-
-{{% attachments sort="asc" /%}}
 
 ## Migration
 

@@ -3,6 +3,4 @@ description = "Th' Attachments shorrrtcode displays a list o' files attached t' 
 hidden = "true"
 title = "Attachments"
 +++
-{{% attachments sort="asc" /%}}
-
 {{< piratify >}}
