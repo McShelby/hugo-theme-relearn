@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- $outputFormat := partial "output-format.hugo" . }}
-<html lang="{{ .Page.Language.LanguageCode | default "en" }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}">
+<html lang="{{ .Page.Language.LanguageCode | default "en" }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article">
   <head>
     {{- partial "meta.html" . }}
     {{- $title := partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}
