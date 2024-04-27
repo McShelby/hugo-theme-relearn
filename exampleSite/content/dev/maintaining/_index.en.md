@@ -66,10 +66,10 @@ If an issue does not result in changesets but is closed anyways, it must have ex
 |-------------------------------------------------------|-------------------------------------------
 | {{% badge color="#9fa2a5" %}}duplicate{{% /badge %}}  | This issue or pull request already exists |
 | {{% badge color="#9fa2a5" %}}invalid{{% /badge %}}    | This doesn't seem right                   |
-| {{% badge color="#9fa2a5" %}}support{{% /badge %}}    | Solved by reconfiguring the authors site  |
+| {{% badge color="#9fa2a5" %}}support{{% /badge %}}    | Request for achieving a special goal      |
 | {{% badge color="#9fa2a5" %}}unresolved{{% /badge %}} | No progress on this issue                 |
-| {{% badge color="#9fa2a5" %}}update{{% /badge %}}     | A documented change in behavior           |
-| {{% badge color="#9fa2a5" %}}wontfix{{% /badge %}}    | This will not be worked on                |
+| {{% badge color="#9fa2a5" %}}update{{% /badge %}}     | A change in behavior after updat          |
+| {{% badge color="#9fa2a5" %}}wontchange{{% /badge %}} | This will not be worked on                |
 
 ### Halt
 
@@ -87,12 +87,13 @@ You can assign one further label out of the following list to signal readers tha
 
 If the issue is not caused by a programming error in the themes own code, you can label the causing program or library.
 
-| Label                                              | Description                                                 |
-|----------------------------------------------------|-------------------------------------------------------------|
-| {{% badge color="#e550a7" %}}browser{{% /badge %}} | This is a topic related to the browser but not the theme    |
-| {{% badge color="#e550a7" %}}device{{% /badge %}}  | This is a topic related to a certain device                 |
-| {{% badge color="#e550a7" %}}hugo{{% /badge %}}    | This is a topic related to Hugo itself but not the theme    |
-| {{% badge color="#e550a7" %}}mermaid{{% /badge %}} | This is a topic related to Mermaid itself but not the theme |
+| Label                                               | Description                                                 |
+|-----------------------------------------------------|-------------------------------------------------------------|
+| {{% badge color="#e550a7" %}}asciidoc{{% /badge %}} | This is a topic related to processing of AsciiDoc           |
+| {{% badge color="#e550a7" %}}browser{{% /badge %}}  | This is a topic related to the browser but not the theme    |
+| {{% badge color="#e550a7" %}}device{{% /badge %}}   | This is a topic related to a certain device                 |
+| {{% badge color="#e550a7" %}}hugo{{% /badge %}}     | This is a topic related to Hugo itself but not the theme    |
+| {{% badge color="#e550a7" %}}mermaid{{% /badge %}}  | This is a topic related to Mermaid itself but not the theme |
 
 ## Making Releases
 
