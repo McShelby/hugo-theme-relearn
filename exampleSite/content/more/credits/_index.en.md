@@ -24,7 +24,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - [d3-transition](https://github.com/d3/d3-transition) - Animated transitions for D3 selections
   - [d3-drag](https://github.com/d3/d3-drag) - Drag and drop SVG, HTML or Canvas using mouse or touch input
 - [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
-- [js-yaml](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper
+- [JS-YAML](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper
 - [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
 - [Lunr Languages](https://github.com/MihaiValentin/lunr-languages) - A collection of languages stemmers and stopwords for Lunr Javascript library
 - [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
