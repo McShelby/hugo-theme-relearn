@@ -14,28 +14,9 @@
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- $taxonomy_page := $page.Site.GetPage $taxonomy }}
-{{- $terms := slice | append (index $page.Params $taxonomy) }}
 {{- $term_pages := slice }}
-{{- range $terms }}
-  {{- $term := . }}
-  {{- $term_key := $term }}
-  {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-    {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
-  {{- else }}
-    {{- $term = trim $term " " }}
-    {{- if not $term }}
-      {{- continue }}
-    {{- end }}
-    {{- $term_key = ($term | plainify | anchorize) }}
-    {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-      {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
-    {{- else }}
-      {{- $term_key = ($term | urlize) }}
-      {{- with $page.Site.GetPage (printf "%s/%s" $taxonomy $term_key) }}
-        {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
-      {{- end }}
-    {{- end }}
-  {{- end }}
+{{- range $page.GetTerms $taxonomy }}
+  {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true "format" $format "outputFormat" $outputFormat)) "Term" . )}}
 {{- end }}
 {{- $taxonomy_title := partial "pageHelper/title.hugo" (dict "page" $taxonomy_page "format" $format "outputFormat" $outputFormat) }}
 {{- with $term_pages }}
