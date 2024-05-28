@@ -28,7 +28,7 @@ John Gruber, the author of Markdown, puts it like this:
 
 ## Standard and Extensions
 
-If not otherwise noted, the showed examples adhere to the [Commonmark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions:
+If not otherwise noted, the showed examples adhere to the [Commonmark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
 
 - {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
@@ -36,9 +36,11 @@ If not otherwise noted, the showed examples adhere to the [Commonmark](https://c
 
 - {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
 
+- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} [Hugo Extra Extension](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) supported by Hugo.
+
 - {{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} Extension specific to this theme.
 
-- {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed in your `hugo.toml` the theme supports styling for further elements not accessible using Markdown alone.
+- {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed, the theme supports styling for further HTML elements.
 
 ## Paragraphs
 
@@ -139,21 +141,17 @@ I am rendered with _italicized text_
 I am rendered with _italicized text_
 {{% /notice %}}
 
-### Strikethrough
-
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`.
-
-````md
-~~Strike through this text~~
-````
-
-{{% notice style="secondary" icon="eye" title="Result" %}}
-~~Strike through this text~~
-{{% /notice %}}
-
 ### Marked Text
 
-{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can mark text in the predefined accent color of your stylesheet.
+You can mark text in the predefined accent color of your stylesheet.
+
+{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+
+````md
+==Parts== of this text ==are marked!==
+````
+
+{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
 
 ````html
 <mark>Parts</mark> of this text <mark>are marked!</mark>
@@ -163,6 +161,37 @@ I am rendered with _italicized text_
 <mark>Parts</mark> of this text <mark>are marked!</mark>
 {{% /notice %}}
 
+### Inserted Text
+
+You can mark text additions to existing text.
+
+{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+
+````md
+The ++hot, new++ stuff
+````
+
+{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
+
+````html
+The <ins>hot, new</ins> stuff
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+The ++hot, new++ stuff
+{{% /notice %}}
+
+### Deleted Text
+
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`.
+
+````md
+~~Strike through~~ this text
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+~~Strike through~~ this text
+{{% /notice %}}
 
 ## Special Typesetting
 
@@ -190,6 +219,26 @@ Double arrows pointing left `<<` or right `>>` are replaced by arrow **<<** and 
 Three consecutive dots `...` are replaced by an ellipsis **...** entity.
 {{% /notice %}}
 
+### Subscript and Superscript
+
+You can also use  subscript and superscript text. For more complex stuff, you can use the [`math` shortcode](shortcodes/math).
+
+{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+
+````md
+How many liters H~2~O fit into 1dm^3^?
+````
+
+{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
+
+````html
+How many liters H<sub>2</sub>O fit into 1dm<sup>3</sup>?
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+How many liters H~2~O fit into 1dm^3^?
+{{% /notice %}}
+
 ### Keyboard Shortcuts
 
 {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can use the `<kbd>` element to style keyboard shortcuts.
@@ -200,18 +249,6 @@ Press <kbd>STRG</kbd> <kbd>ALT</kbd> <kbd>DEL</kbd> to end your shift early.
 
 {{% notice style="secondary" icon="eye" title="Result" %}}
 Press <kbd>STRG</kbd> <kbd>ALT</kbd> <kbd>DEL</kbd> to end your shift early.
-{{% /notice %}}
-
-### Sub and Super Script
-
-{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use the `<sub>` and `<sup>` elements. For more complex stuff or if your configuration does not allow HTML, you can use the [`math` shortcode](shortcodes/math).
-
-````html
-How many liters H<sub>2</sub>O fit into 1dm<sup>3</sup>?
-````
-
-{{% notice style="secondary" icon="eye" title="Result" %}}
-How many liters H<sub>2</sub>O fit into 1dm<sup>3</sup>?
 {{% /notice %}}
 
 ## Lists
