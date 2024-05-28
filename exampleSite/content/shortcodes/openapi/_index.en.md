@@ -33,7 +33,7 @@ While the examples are using shortcodes with named parameter you are free to als
 
 | Name                 | Default          | Notes       |
 |----------------------|------------------|-------------|
-| **src**              | _&lt;empty&gt;_  | The URL to the OpenAPI specification file. This can be relative to the URL of your page if it is a leaf or branch bundle. |
+| **src**              | _&lt;empty&gt;_  | The path to the to the OpenAPI specification resource or URL to be used. Resource paths adhere to [Hugo's logical path](https://gohugo.io/methods/page/path/). |
 
 {{% notice note %}}
 If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.

@@ -3,16 +3,27 @@
   {{- $page = .context }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'openapi' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#5180" $page.File.Filename }}
 {{- end }}
-{{- $src := .src }}
+{{- $u := urls.Parse .src }}
+{{- $src := $u.String }}
 {{- $spec := "" }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
-{{- with $page }}
-{{- with or
-  (.Resources.Get $src)
-  (resources.Get $src)
-}}
-  {{- $spec = .Content }}
+{{- if not $u.IsAbs }}
+  {{- $path := strings.TrimPrefix "./" $u.Path }}
+  {{- with or
+    ($page.Resources.Get $path)
+    (resources.Get $path)
+  }}
+    {{- $src = "" }}
+    {{- $spec = .Content }}
+  {{- else }}
+    {{- if eq $page.Site.Params.openapi.errorlevel "warning" }}
+      {{- warnf "%q: OpenAPI spec link '%s' is not a resource but linked anyways" $page.File.Filename .url }}
+    {{- else if eq $page.Site.Params.openapi.errorlevel "error" }}
+      {{- errorf "%q: OpenAPI spec link '%s' is not a resource" $page.File.Filename .url }}
+    {{- end }}
+  {{- end }}
 {{- end }}
+{{- with $page }}
 <div class="sc-openapi-wrapper is-loading helper-loading-container">
   <div
     class="sc-openapi-container"

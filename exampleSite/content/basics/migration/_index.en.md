@@ -22,6 +22,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to pages as well as resources or files in the file system (the old behavior).
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`openapi` shortcode](shortcodes/openapi) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `openapi.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
+
 ---
 
 ## 6.0.0 (2024-04-27) {#600}
