@@ -3,21 +3,24 @@
   {{- $page = .context }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'include' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#5180" $page.File.Filename }}
 {{- end }}
-{{- $file := .file }}
+{{- $u := urls.Parse .file }}
+{{- $path := strings.TrimPrefix "./" $u.Path }}
 {{- $content := "" }}
 {{- with or
-  ($page.Resources.Get $file)
-  (resources.Get $file)
+  ($page.Page.GetPage $path)
+  ($page.Page.GetPage (strings.TrimRight "/" $path))
+  ($page.Page.Resources.Get $path)
+  (resources.Get $path)
 }}
   {{- $content = .Content }}
 {{- else }}
-  {{- if (fileExists $file) }}
-    {{- $content = $file | readFile }}
+  {{- if (fileExists .file) }}
+    {{- $content = .file | readFile }}
   {{- else }}
     {{- if eq $page.Site.Params.include.errorlevel "warning" }}
-      {{- warnf "%q: file '%s' is not a resource nor accessible via file system" $page.File.Filename $file }}
+      {{- warnf "%q: included file '%s' is not a page, resource or accessible via file system" $page.File.Filename .file }}
     {{- else if eq $page.Site.Params.include.errorlevel "error" }}
-      {{- errorf "%q: image '%s' is not a resource nor accessible via file system" $page.File.Filename $file }}
+      {{- errorf "%q: included file '%s' is not a page, resource or accessible via file system" $page.File.Filename .file }}
     {{- end }}
   {{- end }}
 {{- end }}

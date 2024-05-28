@@ -3,7 +3,7 @@ description = "Displays content from other files"
 title = "Include"
 +++
 
-The `include` shortcode includes other files from your project inside of the current page.
+The `include` shortcode includes other pages, resources or files from your project.
 
 ## Usage
 
@@ -42,7 +42,7 @@ The included files can even contain Markdown and will be taken into account when
 
 | Name                 | Position | Default          | Notes       |
 |----------------------|----------|------------------|-------------|
-| **file**             | 1        | _&lt;empty&gt;_  | The path to the file to be included. Path resolution adheres to [Hugo's build-in `readFile` function](https://gohugo.io/functions/readfile/) |
+| **file**             | 1        | _&lt;empty&gt;_  | The path to the page, resource or file to be included. Page and resource paths adhere to [Hugo's logical path](https://gohugo.io/methods/page/path/). If not found by logical path it falls back to [Hugo's build-in `readFile` function](https://gohugo.io/functions/readfile/) |
 | **hidefirstheading** | 2        | `false`          | When `true` and the included file contains headings, the first heading will be hidden. This comes in handy, eg. if you include otherwise standalone Markdown files. |
 
 ## Examples
