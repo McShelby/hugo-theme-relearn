@@ -86,7 +86,9 @@
               </li>
               <li id="R-select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
                 <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
+                  {{- $themeselecticon := "fa-paint-brush" -}}
+                  {{- with .Site.Params.themeSelectIcon -}}{{- $themeselecticon = . -}}{{- end -}}
+                  <i class="fa-fw fas {{ $themeselecticon }}"></i>
                   <span>&nbsp;</span>
                   <div class="control-style">
                     <label class="a11y-only" for="R-select-variant">{{ T "Theme" }}</label>
