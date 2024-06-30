@@ -47,7 +47,7 @@
     <item>
       <title>{{ partial "pageHelper/title.hugo" (dict "page" . "format" $format "outputFormat" $outputFormat) }}</title>
       <link>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</link>
-      <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <pubDate>{{ (or .PublishDate .Date).Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
       <guid>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</guid>
       <description>{{ or .Description .Summary | plainify | htmlUnescape | chomp | transform.XMLEscape | safeHTML }}</description>

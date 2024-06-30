@@ -29,7 +29,7 @@
     <meta property="article:section" content="{{ partial "pageHelper/title.hugo" (dict "page" . "format" $format "outputFormat" $outputFormat) | plainify }}">
   {{- end }}
   {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
-  {{- with .PublishDate }}
+  {{- with or .PublishDate .Date }}
     <meta property="article:published_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
   {{- end }}
   {{- with .Lastmod }}
