@@ -39,7 +39,6 @@ Auto run:
 - save variants referenced by auto configuration
 - write variant CSS file based on auto template
 - add chroma property
-- write chroma CSS file based on auto template
 */}}
 {{- $defaultautothemevariants := slice }}
 {{- $defaultautothemevariants = $defaultautothemevariants | append (index .Site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
@@ -56,8 +55,6 @@ Auto run:
     {{- $cssres := $autores | resources.ExecuteAsTemplate (printf "css/theme-%s.css" $themevariant.identifier) (dict "prefix" "theme" "light" $light "dark" $dark) }}
     {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
     {{- $themevariant = collections.Merge $themevariant (dict "chroma" $themevariant.identifier) }}
-    {{- $cssres = $autores | resources.ExecuteAsTemplate (printf "css/chroma-%s.css" $themevariant.chroma) (dict "prefix" "chroma" "light" $light "dark" $dark) }}
-    {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -93,6 +90,22 @@ Non-auto run:
     {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
+{{- end }}
+
+{{- /*
+Chroma auto run:
+- write chroma CSS file based on auto template
+*/}}
+{{- range $tempthemevariant := $themevariants }}
+  {{- $themevariant := $tempthemevariant }}
+  {{- if collections.IsSet $themevariant "auto" }}
+    {{- $lighttheme := index $themevariant.auto 0 | default (index $defaultautothemevariants 0) }}
+    {{- $darktheme := index $themevariant.auto 1 | default (index $defaultautothemevariants 1) }}
+    {{- $light := (index (collections.Where $themevariants "identifier" $lighttheme) 0).chroma }}
+    {{- $dark := (index (collections.Where $themevariants "identifier" $darktheme) 0).chroma }}
+    {{- $cssres := $autores | resources.ExecuteAsTemplate (printf "css/chroma-%s.css" $themevariant.chroma) (dict "prefix" "chroma" "light" $light "dark" $dark) }}
+    {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+  {{- end }}
 {{- end }}
 
 {{- $cssres := $printres | resources.ExecuteAsTemplate "css/format-print.css" (dict "themevariant" (index (collections.Where $themevariants "identifier" "relearn-light") 0)) }}
