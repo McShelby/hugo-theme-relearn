@@ -2,7 +2,8 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    <script src="{{"js/js-yaml.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" defer></script>
+    {{- $assetBusting := partialCached "assetbusting.hugo" . }}
+    <script src="{{"js/js-yaml.min.js" | relURL}}{{ $assetBusting }}" defer></script>
     {{- $urlOpenapi := "" }}
     {{- $relOpenapi := "" }}
     {{- $cssInProject := false }}
@@ -13,8 +14,8 @@
       {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
       {{- $relOpenapi = .Site.Params.customOpenapiURL }}
     {{- else }}
-      {{- $urlOpenapi = printf "%s%s" ("js/swagger-ui/swagger-ui-bundle.js" | relURL) (cond .Site.Params.disableAssetsBusting "" (printf "?%d" now.Unix)) }}
-      {{- $relOpenapi = printf "%s%s" ("/js/swagger-ui/swagger-ui-bundle.js") (cond .Site.Params.disableAssetsBusting "" (printf "?%d" now.Unix)) }}
+      {{- $urlOpenapi = printf "%s%s" ("js/swagger-ui/swagger-ui-bundle.js" | relURL) $assetBusting }}
+      {{- $relOpenapi = printf "%s%s" ("/js/swagger-ui/swagger-ui-bundle.js") $assetBusting }}
       {{- $cssInProject = true }}
       {{- end }}
     <script>window.noZensmooth = true;</script>
@@ -24,7 +25,7 @@
     {{- $relOpenapi := replace $relOpenapi "swagger-ui-bundle" "swagger-ui" }}
     {{- $relOpenapi := replace $relOpenapi ".js" ".css" }}
     <script>
-      window.themeUseOpenapi = { css: {{ $relOpenapi }}, cssInProject: {{ $cssInProject | safeJS }}, assetsBuster: {{ cond (not .Site.Params.disableAssetsBusting) now.Unix 0 }} };
+      window.themeUseOpenapi = { css: {{ $relOpenapi }}, cssInProject: {{ $cssInProject | safeJS }}, assetsBuster: "{{ $assetBusting }}" };
     </script>
   {{- end }}
 {{- end }}

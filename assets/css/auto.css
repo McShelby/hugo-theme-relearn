@@ -1,2 +1,3 @@
-@import "{{ printf "%s-%s.css" .prefix .light }}" screen and (prefers-color-scheme: light);
-@import "{{ printf "%s-%s.css" .prefix .dark }}" screen and (prefers-color-scheme: dark);
+{{- $assetBusting := partialCached "assetbusting.hugo" . -}}
+@import "{{ printf "%s-%s.css%s" .prefix .light $assetBusting }}" screen and (prefers-color-scheme: light);
+@import "{{ printf "%s-%s.css%s" .prefix .dark $assetBusting }}" screen and (prefers-color-scheme: dark);

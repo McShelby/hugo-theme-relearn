@@ -5,33 +5,33 @@
     {{- $outputFormat = partial "output-format.hugo" $page }}
   {{- end }}
   {{- with $page }}
-    {{- $assetBusting := not .Site.Params.disableAssetsBusting }}
+    {{- $assetBusting := partialCached "assetbusting.hugo" . }}
     {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
-    <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
-    <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/auto-complete.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
-    <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fonts.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet"></noscript>
-    <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
+    <link href="{{"css/nucleus.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
+    <link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
+    <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
+    <link href="{{"css/fonts.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fonts.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
+    <link href="{{"css/theme.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
     {{- $themevariants := partialCached "get-theme-variants.hugo" . }}
     {{- with index $themevariants 0 }}
-    <link href="{{(printf "css/theme-%s.css" .identifier) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-style">
-    <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="{{(printf "css/theme-%s.css" .identifier) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-variant-style">
+    <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-variant-chroma-style">
     {{- end }}
-    <link href="{{"css/variant.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
-    <link href="{{"css/print.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" media="print">
+    <link href="{{"css/variant.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
+    <link href="{{"css/print.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print">
     {{- $f := printf "/static/css/format-%s.css" $outputFormat }}
     {{- if or (partialCached "fileExists.hugo" $f $f) (resources.Get (printf "/css/format-%s.css" $outputFormat)) }}
-    <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ $assetBusting }}" rel="stylesheet">
     {{- end }}
-    <script src="{{"js/variant.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
+    <script src="{{"js/variant.js" | relURL}}{{ $assetBusting }}"></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='{{ partial "relBasePath.hugo" $page | safeJS }}';
       window.relearn.relBaseUri='{{ partial "relBaseUri.hugo" $page | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
     {{- with .Site.Home.OutputFormats.Get "search" }}
-      window.index_js_url={{ "index.search.js" | relLangURL }};
+      window.index_js_url={{ (printf "index.search.js%s" $assetBusting) | relLangURL }};
     {{- end }}
       {{ "// variant stuff" | safeJS }}
       {{- $quotedthemevariants := slice }}

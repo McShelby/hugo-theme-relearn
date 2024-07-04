@@ -1,5 +1,6 @@
-@import "{{ printf "theme-%s.css" .themevariant.identifier }}";
-@import "{{ printf "chroma-%s.css" .themevariant.chroma }}";
+{{- $assetBusting := partialCached "assetbusting.hugo" . -}}
+@import "{{ printf "theme-%s.css%s" .themevariant.identifier $assetBusting }}";
+@import "{{ printf "chroma-%s.css%s" .themevariant.chroma $assetBusting }}";
 
 #R-sidebar {
     display: none;

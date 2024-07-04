@@ -1,7 +1,8 @@
+{{- $assetBusting := partialCached "assetbusting.hugo" . -}}
 /* Styles to make Swagger-UI fit into our theme */
 
-@import "fonts.css";
-@import "variant-internal.css";
+@import "{{ printf "fonts.css%s" $assetBusting }}";
+@import "{{ printf "variables.css%s" $assetBusting }}";
 
 body{
     line-height: 1.574;

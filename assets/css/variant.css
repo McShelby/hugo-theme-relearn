@@ -1,4 +1,5 @@
-@import "variant-internal.css";
+{{- $assetBusting := partialCached "assetbusting.hugo" . -}}
+@import "{{ printf "variables.css%s" $assetBusting }}";
 
 html {
     color-scheme: only var(--INTERNAL-BROWSER-theme);
