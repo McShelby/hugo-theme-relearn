@@ -21,7 +21,7 @@
 
 {{- with $page }}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
-	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
+	{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
 	{{- template "childs" dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
 {{- end }}
@@ -66,7 +66,7 @@
 {{- (printf "<%s>" $.containerstyle)|safeHTML }}
 				{{- end }}
 
-				{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
+				{{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
 				{{- template "childs" dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
 
 				{{- if eq $.style "li" }}

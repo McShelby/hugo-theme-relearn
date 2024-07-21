@@ -32,14 +32,4 @@
 	{{- $pages = $page.Pages }}
 {{- end }}
 
-{{- if not $hidden }}
-	{{- $nonhiddenpages := slice }}
-	{{- range $page := $pages }}
-		{{- if not (partial "pageHelper/isHidden.html" $page) }}
-			{{- $nonhiddenpages := $nonhiddenpages | append $page }}
-		{{- end }}
-	{{- end }}
-	{{- $pages = $nonhiddenpages }}
-{{- end }}
-
 {{- return $pages }}

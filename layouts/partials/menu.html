@@ -31,7 +31,7 @@
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-topics">
           <ul class="enlarge morespace collapsible-menu">
-            {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .Site.Home "hidden" true) }}
+            {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .Site.Home) }}
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
             {{- range $pages }}
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
@@ -130,7 +130,7 @@
         {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
-        {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "hidden" true) }}
+        {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}
