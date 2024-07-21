@@ -143,10 +143,10 @@
             {{- $subHidden := and $relearnIsSubHiddenFrom (not $.showhidden) (not $isSelfSub) (not $isAncestorSub) }}
             {{- $numberOfVisibleChildren = add $numberOfVisibleChildren (int (not $subHidden)) }}
           {{- end }}
+          {{- $title := partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true) }}
+          {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
           {{- safeHTML .Params.head }}
           {{- if $numberOfVisibleChildren }}
-            {{- $title := or .LinkTitle .Title }}
-            {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
             {{- $isCollapsible := or (.Params.collapsibleMenu | default .Site.Params.collapsibleMenu) (not $url) }}
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
@@ -159,8 +159,6 @@
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}</ul></li>
           {{- else }}
-            {{- $title := or .LinkTitle .Title }}
-            {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
           <li data-nav-id="{{ $url }}" class="{{if $isActive }}active{{end}}">{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
               {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
               {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>

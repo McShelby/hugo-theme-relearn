@@ -10,7 +10,7 @@
         {{- $ver := printf "<meta name=\"generator\" content=\"%s %s\">" "Relearn" $ver }}
     {{ $ver | safeHTML }}
     {{- end }}
-    {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
+    {{- if not (and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
     <meta name="description" content="{{ with or .Description .Summary | plainify | htmlUnescape | chomp }}{{ . }}{{ end }}">

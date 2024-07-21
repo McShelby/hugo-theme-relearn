@@ -14,8 +14,13 @@
 		{{- $currentNode.Store.Set $has true }}
 	{{- end }}
 {{- end }}
-
 {{- template "relearn-structure" dict "node" .Site.Home "currentnode" $currentNode "hiddenstem" false "hiddencurrent" false }}
+{{- if not ($currentNode.Scratch.Get "relearnIsSelfFound") }}
+	{{- if not $currentNode.IsHome }}
+		{{- $currentNode.Scratch.Set "relearnPrevPage" .Site.Home }}
+	{{- end }}
+{{- end }}
+
 {{- define "relearn-structure" }}
 	{{- $currentNode := .currentnode }}
 	{{- $isSelf := eq $currentNode .node }}

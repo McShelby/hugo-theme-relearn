@@ -3,18 +3,19 @@
   {{- if .Params.menuTitle }}
     {{- warnf "%q: UNSUPPORTED frontmatter 'menutitle' found, use 'linktitle' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#600" $.File.Filename }}
   {{- end }}
-  {{- $format := $.format | default (partial "get-format.hugo" .) }}
-  {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
   {{- $siteTitle := site.Title }}
   {{- $title = .Title }}
   {{- if $.linkTitle }}
-    {{- $title = or $.page.LinkTitle $title }}
+    {{- $title = or .LinkTitle $title }}
   {{- end }}
 
-  {{- if eq $outputFormat "searchpage" }}
-    {{- $title = T "Search" }}
-  {{- else if eq .Kind "home" }}
-    {{- $title = or $title $siteTitle }}
+  {{- if eq .Kind "home" }}
+    {{- $title = $title | default $siteTitle }}
+    {{- $format := $.format | default (partial "get-format.hugo" .) }}
+    {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
+    {{- if eq $outputFormat "searchpage" }}
+      {{- $title = T "Search" }}
+    {{- end }}
   {{- else if eq .Kind "taxonomy" }}
     {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
   {{- else if eq .Kind "term" }}

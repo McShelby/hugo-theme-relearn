@@ -31,7 +31,7 @@
       {{- end }}
     {{- end }}
 
-    {{- if not (and .Title (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
+    {{- if not (and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     {{- else }}
       {{- range .AlternativeOutputFormats }}
         {{- if eq .Rel "canonical" }}

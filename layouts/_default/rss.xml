@@ -42,8 +42,14 @@
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" ( partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true)) .MediaType | safeHTML }}
     {{- end }}
     {{- range $pages }}
+      {{- $visible := true }}
       {{- $relearnIsHiddenFrom := index ($page.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
-  	  {{- if and .Permalink .Title (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableSeoHiddenPages true) ) }}
+      {{- if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+        {{- $visible = and .Title .Permalink (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableTagHiddenPages true) ) }}
+      {{- else }}
+        {{- $visible = and .Title .Permalink (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableSeoHiddenPages true) ) }}
+      {{- end }}
+  	  {{- if $visible }}
     <item>
       <title>{{ partial "pageHelper/title.hugo" (dict "page" . "format" $format "outputFormat" $outputFormat) }}</title>
       <link>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</link>

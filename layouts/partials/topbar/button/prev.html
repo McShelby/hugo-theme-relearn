@@ -10,16 +10,17 @@
 		{{- if eq (.Language.LanguageDirection | default (T "Reading-direction") | default "ltr") "rtl" }}
 			{{- $startarrow = "🡒" }}
 		{{- end }}
-		{{- $prev := .Scratch.Get "relearnPrevPage" | default .Site.Home }}
+		{{- $prev := .Scratch.Get "relearnPrevPage" }}
 		{{- if eq $outputFormat "searchpage" }}
 			{{- $outputFormat = "html" }}
-		{{- else if eq .Page.Kind "home" }}
-			{{- $prev = "" }}
+			{{- $prev = .Site.Home }}
 		{{- else if eq .Page.Kind "term" }}
 			{{- /* go to previous term page or taxonomy page if it is the first term */}}
 			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
 			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" $taxonomy_page $taxonomy_page }}
 			{{- $prev = partial "partials/pageHelper/prev.html" (dict "collection" $pages "item" .) | default $taxonomy_page }}
+		{{- else if eq .Page.Kind "taxonomy" }}
+			{{- $prev = .Site.Home }}
 		{{- end }}
 		{{- $prevTitle := partial "pageHelper/title.hugo" (dict "page" $prev "format" $format "outputFormat" $outputFormat) }}
 		{{- partial "topbar/func/button.html" (dict
