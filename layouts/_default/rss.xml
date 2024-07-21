@@ -1,7 +1,5 @@
 {{- /* based on Hugo 0.125.5 rss.xml */}}
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
-{{- $format := partial "get-format.hugo" . }}
-{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
 {{- /* Deprecate site.Author.email in favor of site.Params.author.email */}}
 {{- $authorEmail := "" }}
 {{- if and .Site.Params.author (reflect.IsMap .Site.Params.author) .Site.Params.author.email }}
@@ -29,7 +27,7 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true "format" $format "outputFormat" $outputFormat) }}</title>
+    <title>{{ partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}</title>
     <link>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</link>
     <description>{{ or .Description .Summary | plainify | htmlUnescape | chomp | transform.XMLEscape | safeHTML }}</description>
     <generator>Hugo</generator>
@@ -51,7 +49,7 @@
       {{- end }}
   	  {{- if $visible }}
     <item>
-      <title>{{ partial "pageHelper/title.hugo" (dict "page" . "format" $format "outputFormat" $outputFormat) }}</title>
+      <title>{{ partial "pageHelper/title.hugo" (dict "page" .) }}</title>
       <link>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</link>
       <pubDate>{{ (or .PublishDate .Date).Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}

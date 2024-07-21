@@ -1,9 +1,11 @@
 {{- /* based on Hugo 0.125.5 opengraph.html */}}
-{{- $format := partial "get-format.hugo" . }}
-{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
 {{- $basename := "index" }}
-{{- if eq $outputFormat "searchpage" }}
-  {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
+{{- if eq .Kind "home" }}
+  {{- $format := partial "get-format.hugo" . }}
+  {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+  {{- if eq $outputFormat "searchpage" }}
+    {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
+  {{- end }}
 {{- end }}
     <meta property="og:url" content="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename) }}">
 
@@ -11,7 +13,7 @@
     <meta property="og:site_name" content="{{ . }}">
 {{- end }}
 
-{{- with partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true "format" $format "outputFormat" $outputFormat) | plainify }}
+{{- with partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) | plainify }}
     <meta property="og:title" content="{{ . }}">
 {{- end }}
 
@@ -26,7 +28,7 @@
 {{- if .IsPage }}
     <meta property="og:type" content="article">
   {{- with .FirstSection }}
-    <meta property="article:section" content="{{ partial "pageHelper/title.hugo" (dict "page" . "format" $format "outputFormat" $outputFormat) | plainify }}">
+    <meta property="article:section" content="{{ partial "pageHelper/title.hugo" (dict "page" .) | plainify }}">
   {{- end }}
   {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
   {{- with or .PublishDate .Date }}
@@ -36,7 +38,7 @@
     <meta property="article:modified_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
   {{- end }}
   {{- range .GetTerms "tags" | first 6 }}
-    <meta property="article:tag" content="{{ partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true "format" $format "outputFormat" $outputFormat) | plainify }}">
+    <meta property="article:tag" content="{{ partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true) | plainify }}">
   {{- end }}
 {{- else }}
     <meta property="og:type" content="website">

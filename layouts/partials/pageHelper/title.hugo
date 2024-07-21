@@ -11,8 +11,11 @@
 
   {{- if eq .Kind "home" }}
     {{- $title = $title | default $siteTitle }}
-    {{- $format := $.format | default (partial "get-format.hugo" .) }}
-    {{- $outputFormat := $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
+    {{- $outputFormat := $.outputFormat }}
+    {{- if not $outputFormat }}
+      {{- $format := $.format | default (partial "get-format.hugo" .) }}
+      {{- $outputFormat = $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
+    {{- end }}
     {{- if eq $outputFormat "searchpage" }}
       {{- $title = T "Search" }}
     {{- end }}

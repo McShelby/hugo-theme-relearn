@@ -2,8 +2,10 @@
 {{- $format := partial "get-format.hugo" . }}
 {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
 {{- $basename := "index" }}
-{{- if eq $outputFormat "searchpage" }}
-  {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
+{{- if eq .Kind "home" }}
+  {{- if eq $outputFormat "searchpage" }}
+    {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
+  {{- end }}
 {{- end }}
 {{- if eq . .Site.Sites.First.Home }}
   {{- $hugoVersion := "0.121.0" }}
@@ -19,7 +21,7 @@
     {{- partial "meta.html" . }}
     {{- $page := . }}
     {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
-    {{- $title := partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true "format" $format "outputFormat" $outputFormat) }}
+    {{- $title := partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}
     <title>{{ $title }}</title>
 
     {{- if .IsTranslated -}}
