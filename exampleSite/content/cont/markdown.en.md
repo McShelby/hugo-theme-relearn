@@ -183,7 +183,7 @@ The ++hot, new++ stuff
 
 ### Deleted Text
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`. See [Hugo's documentation remarks](https://gohugo.io/getting-started/configuration-markup/#extras) if you want to use this together with the subscript syntax.
 
 ````md
 ~~Strike through~~ this text
