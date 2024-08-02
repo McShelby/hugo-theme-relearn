@@ -26,6 +26,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`openapi` shortcode](shortcodes/openapi) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `openapi.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Shortcodes supporting an `errorlevel` configuration can now have overridden values in the [frontmatter](cont/frontmatter/) section of each individual page.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now comes with its own overridden version of the `relref` shortcode.
 
   While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may use it. In configurations using a `baseURL` with a subdirectory, the default `relref` implementation of Hugo was failing, so an overridden shortcode was necessary.

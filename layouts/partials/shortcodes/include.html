@@ -17,9 +17,10 @@
   {{- if (fileExists .file) }}
     {{- $content = .file | readFile }}
   {{- else }}
-    {{- if eq $page.Site.Params.include.errorlevel "warning" }}
+    {{- $errorlevel := or $page.Params.include.errorlevel $page.Site.Params.include.errorlevel }}
+    {{- if eq $errorlevel "warning" }}
       {{- warnf "%q: included file '%s' is not a page, resource or accessible via file system" $page.File.Filename .file }}
-    {{- else if eq $page.Site.Params.include.errorlevel "error" }}
+    {{- else if eq $errorlevel "error" }}
       {{- errorf "%q: included file '%s' is not a page, resource or accessible via file system" $page.File.Filename .file }}
     {{- end }}
   {{- end }}

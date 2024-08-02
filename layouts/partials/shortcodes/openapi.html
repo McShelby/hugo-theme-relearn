@@ -16,9 +16,10 @@
     {{- $src = "" }}
     {{- $spec = .Content }}
   {{- else }}
-    {{- if eq $page.Site.Params.openapi.errorlevel "warning" }}
+    {{- $errorlevel := or $page.Params.openapi.errorlevel $page.Site.Params.openapi.errorlevel }}
+    {{- if eq $errorlevel "warning" }}
       {{- warnf "%q: OpenAPI spec link '%s' is not a resource but linked anyways" $page.File.Filename .url }}
-    {{- else if eq $page.Site.Params.openapi.errorlevel "error" }}
+    {{- else if eq $errorlevel "error" }}
       {{- errorf "%q: OpenAPI spec link '%s' is not a resource" $page.File.Filename .url }}
     {{- end }}
   {{- end }}

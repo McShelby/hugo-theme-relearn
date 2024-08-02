@@ -156,8 +156,33 @@ LastModifierEmail = ""
 highlightWrap = true
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Include
+# These options configure how the include shortcode works.
+
+# What to do when path is not resolved.
+# Default: ""
+# You can control what should happen if a path can not be resolved to as
+# a resource or via the file system. If not set, no output will be written
+# for the unresolved path. If set to `warning` the same happens and an additional
+# warning is printed. If set to `error` an error message is printed and the build
+# is aborted.
+# If not set, the set value of your site's hugo.toml is used.
+include.errorlevel = ""
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Images
 # These options configure how images are displayed.
+
+# What to do when local image link is not resolved.
+# Default: ""
+# You can control what should happen if a local image can not be resolved to as
+# a resource. If not set, the unresolved link is written as given into the resulting
+# output. If set to `warning` the same happens and an additional warning is
+# printed. If set to `error` an error message is printed and the build is
+# aborted.
+# Please note that this can not resolve files inside of your `static` directory.
+# If not set, the set value of your site's hugo.toml is used.
+image.errorlevel = ""
 
 # Image effects.
 # See the documentation for how you can even add your own arbitrary effects to
@@ -174,6 +199,22 @@ imageEffects.lazy = true
 imageEffects.lightbox = true
 # Default: false
 imageEffects.shadow = false
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Links
+# These options configure how links are displayed.
+
+# What to do when local page link is not resolved.
+# Default: ""
+# You can control what should happen if a local link can not be resolved to a
+# page. If not set, the unresolved link is written as given into the resulting
+# output. If set to `warning` the same happens and an additional warning is
+# printed. If set to `error` an error message is printed and the build is
+# aborted.
+# Please note that with Hugo < 0.123.0 + `uglyURLs=true` this can lead to false
+# negatives.
+# If not set, the set value of your site's hugo.toml is used.
+link.errorlevel = ""
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # MathJax
@@ -260,3 +301,14 @@ disableOpenapi = true
 # version will be used.
 # If not set, the set value of your site's hugo.toml is used.
 customOpenapiURL = "" # "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
+
+# What to do when a local OpenAPI spec link is not resolved.
+# Default: ""
+# You can control what should happen if a local OpenAPI spec link can not be resolved
+# to a resource. If not set, the unresolved link is written as given into the resulting
+# output. If set to `warning` the same happens and an additional warning is
+# printed. If set to `error` an error message is printed and the build is
+# aborted.
+# Please note that this can not resolve files inside of your `static` directory.
+# If not set, the set value of your site's hugo.toml is used.
+openapi.errorlevel = ""

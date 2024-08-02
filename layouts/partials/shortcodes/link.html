@@ -60,6 +60,7 @@
   {{- else }}
     {{- $linkPage = $page.Page }}
   {{- end }}
+  {{- $errorlevel := or $page.Params.link.errorlevel $page.Site.Params.link.errorlevel }}
   {{- with $linkPage }}
     {{- $href = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
     {{- with $u.RawQuery }}
@@ -68,7 +69,7 @@
     {{- with $u.Fragment }}
       {{- $ctx := dict
         "contentPath" $page.File.Filename
-        "errorLevel" $page.Site.Params.link.errorlevel
+        "errorLevel" $errorlevel
         "page" $linkPage
         "parsedURL" $u
         "renderHookName" "link"
@@ -77,9 +78,9 @@
       {{- $href = printf "%s#%s" $href . }}
     {{- end }}
   {{- else }}
-    {{- if eq $page.Site.Params.link.errorlevel "warning" }}
+    {{- if eq $errorlevel "warning" }}
       {{- warnf "%q: link '%s' is not a page or a resource but linked anyways" $page.File.Filename .url }}
-    {{- else if eq $page.Site.Params.link.errorlevel "error" }}
+    {{- else if eq $errorlevel "error" }}
       {{- errorf "%q: link '%s' is not a page or a resource" $page.File.Filename .url }}
     {{- end }}
   {{- end }}
