@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 6.1.0.beta (XXXX-XX-XX) {#610}
+## 6.1.0 (2024-08-02) {#610}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to pages as well as resources or files in the file system (the old behavior).
 
