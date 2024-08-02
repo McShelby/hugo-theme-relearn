@@ -30,7 +30,16 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme now comes with its own overridden version of the `relref` shortcode.
 
-  While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may use it. In configurations using a `baseURL` with a subdirectory, the default `relref` implementation of Hugo was failing, so an overridden shortcode was necessary.
+  While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may use it. In configurations using a `baseURL` with a subdirectory, and having `relativeURLs=false` (the default) Hugo's standard `relref` implementation was failing.
+
+  The shortcode is deactivated by default and can be activated by setting
+
+    {{< multiconfig file=hugo >}}
+    [params]
+      disableDefaultRelref = true
+    {{< /multiconfig >}}
+
+  in your `hugo.toml`. Only do this if your site fulfills **all of the above assumptions**.
 
 ---
 
