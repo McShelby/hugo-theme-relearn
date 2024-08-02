@@ -1,0 +1,5 @@
+{{- if site.Params.useDefaultRelref }}
+	{{- relref . .Params }}
+{{- else }}
+	{{- .Get "path" | default (.Get 0) }}
+{{- end }}
