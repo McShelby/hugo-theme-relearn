@@ -95,7 +95,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path can not be resolved.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Math is now usable without enclosing it in a shortcode or codefence by using Hugo's [passthrough configuration](shortcodes/math#passthrough-configuration).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Math is now usable without enclosing it in a shortcode or Markdown codefence by using Hugo's [passthrough configuration](shortcodes/math#passthrough-configuration).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Translation into Romanian.
 
@@ -129,7 +129,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to [adjust the max width of the main area](basics/customization#change-the-main-areas-max-width), eg. in case you want to use the full page width for your content.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Images and Codefences are now respecting [Hugo's Markdown attributes](https://gohugo.io/content-management/markdown-attributes/).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Images and Markdown codefences are now respecting [Hugo's Markdown attributes](https://gohugo.io/content-management/markdown-attributes/).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 10.6.0. This adds support for [block diagrams](shortcodes/mermaid#block-diagram).
 
@@ -313,7 +313,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 5.19.0 (2023-08-12) {#5190}
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode](shortcodes/highlight) now accepts the new parameter `title`. This displays the code like a [single tab](shortcodes/tab). This is also available using codefences and makes it much easier to write nicer code samples.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`highlight` shortcode](shortcodes/highlight) now accepts the new parameter `title`. This displays the code like a [single tab](shortcodes/tab). This is also available using Markdown codefences and makes it much easier to write nicer code samples.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`. Check it out!
 
@@ -602,7 +602,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`button` shortcode](shortcodes/button) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`math` shortcode](shortcodes/math) and [`mermaid` shortcode](shortcodes/mermaid) now also support the `align` parameter if codefence syntax is used.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`math` shortcode](shortcodes/math) and [`mermaid` shortcode](shortcodes/mermaid) now also support the `align` parameter if Markdown codefences are used.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Support for languages that are written right to left (like Arabic). This is only implemented for the content area but not the navigation sidebar. This feature is not available in Internet Explorer 11.
 
@@ -737,9 +737,9 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.93.0{{% /badge %}} This release requires a newer Hugo version.
 
-- {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Mermaid codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Markdown codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or Markdown codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
-  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your frontmatter to force the library to be loaded. See the [theme variant generator](basics/generator) of the exampleSite for an example.
+  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or Markdown codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your frontmatter to force the library to be loaded. See the [theme variant generator](basics/generator) of the exampleSite for an example.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} Additional color variant variable `--MERMAID-theme` to set the variant's Mermaid theme. This causes the Mermaid theme to switch with the color variant if it defers from the setting of the formerly selected color variant.
 

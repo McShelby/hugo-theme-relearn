@@ -13,12 +13,12 @@ graph LR;
 
 ## Usage
 
-While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Mermaid codefences (eg. GitHub) and so your markdown becomes more portable.
+While the examples are using shortcodes with named parameter it is recommended to use Markdown codefences instead. This is because more and more other software supports Mermaid Markdown codefences (eg. GitHub) and so your markdown becomes more portable.
 
 You are free to also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="codefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```mermaid { align="center" zoom="true" }
@@ -148,7 +148,7 @@ sequenceDiagram
     Bob-->>John: Jolly good!
 {{< /mermaid >}}
 
-### Class Diagram with Codefence Syntax
+### Class Diagram with Markdown Codefence Syntax
 
 ````go
 ```mermaid

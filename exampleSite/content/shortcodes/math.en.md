@@ -11,14 +11,14 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 
 ## Usage
 
-While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports Math codefences (eg. GitHub) and so your markdown becomes more portable.
+While the examples are using shortcodes with named parameter it is recommended to use Markdown codefences instead. This is because more and more other software supports Markdown codefences (eg. GitHub) and so your markdown becomes more portable.
 
 You are free to also call this shortcode from your own partials.
 
-Math is also usable without enclosing it in a shortcode or codefence but [requires configuration](#passthrough-configuration) by you. In this case no parameter from the below table are available.
+Math is also usable without enclosing it in a shortcode or Markdown codefence but [requires configuration](#passthrough-configuration) by you. In this case no parameter from the below table are available.
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="codefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```math { align="center" }
@@ -92,7 +92,7 @@ mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \
 
 ### Passthrough Configuration
 
-You can use your math without enclosing it in a shortcode or codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1) in your `hugo.toml`:
+You can use your math without enclosing it in a shortcode or Markdown codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1) in your `hugo.toml`:
 
 {{< multiconfig file=hugo >}}
 [markup]
@@ -139,9 +139,9 @@ If you delimit your formulae by two consecutive `$$` it generates a new block.
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
 {{< /math >}}
 
-### Codefence
+### Markdown Codefence
 
-You can also use codefences.
+You can also use Markdown codefences.
 
 ````md
 ```math
@@ -157,7 +157,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 
 This works for block as well as inline math but is only available if you are using the [passthrough configuration](#passthrough-configuration).
 
-With passthrough configuration you can just drop your math without enclosed by shortcodes or codefences but no settings from the [parameter table](#parameter) are available.
+With passthrough configuration you can just drop your math without enclosed by shortcodes or Markdown codefences but no settings from the [parameter table](#parameter) are available.
 
 ````md
 $$\left|

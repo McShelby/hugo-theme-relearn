@@ -13,14 +13,14 @@ print("Hello World!")
 
 This shortcode is fully compatible with Hugo's [`highlight` shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) but **offers some extensions**.
 
-It is called interchangeably in the same way as Hugo's own shortcode providing positional parameter or by simply using codefences.
+It is called interchangeably in the same way as Hugo's own shortcode providing positional parameter or by simply using Markdown codefences.
 
 You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call this shortcode as a partial using compatibility syntax.
 
-While the examples are using shortcodes with named parameter it is recommended to use codefences instead. This is because more and more other software supports codefences (eg. GitHub) and so your markdown becomes more portable.
+While the examples are using shortcodes with named parameter it is recommended to use Markdown codefences instead. This is because more and more other software supports Markdown codefences (eg. GitHub) and so your Markdown becomes more portable.
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="codefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```py { lineNos="true" wrap="true" title="python" }
@@ -142,7 +142,7 @@ print("World")
 print("!")
 {{< /highlight >}}
 
-### Codefence with Title
+### Markdown Codefence with Title
 
 
 ````md
