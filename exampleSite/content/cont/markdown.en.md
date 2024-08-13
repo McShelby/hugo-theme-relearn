@@ -28,7 +28,7 @@ John Gruber, the author of Markdown, puts it like this:
 
 ## Standard and Extensions
 
-If not otherwise noted, the showed examples adhere to the [Commonmark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
+If not otherwise noted, the shown examples adhere to the [Commonmark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
 
 - {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
@@ -139,6 +139,11 @@ Blockquotes can also be nested.
 
 ## Alerts
 
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} GitHub styled alerts are also supported.
+
+If you are in need of more advanced options to style your alerts, use the [notice shortcode](shortcodes/notice).
+
+````md
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 
@@ -156,6 +161,27 @@ Blockquotes can also be nested.
 
 > [!WARNING]
 > Urgent info that needs immediate user attention to avoid problems.
+````
+
+{{% notice style="code" icon="eye" title="Result" %}}
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!INFO]
+> Information that users might find interesting.
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+{{% /notice %}}
 
 ## Text Markers
 
