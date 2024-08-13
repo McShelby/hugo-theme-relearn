@@ -573,6 +573,11 @@ var variants = {
 		{ name: 'BOX-BLUE-TEXT-color',                   group: 'colored boxes', fallback: 'BOX-TEXT-color',              tooltip: 'text color of blue boxes', },
 		{ name: 'BOX-INFO-TEXT-color',                   group: 'colored boxes', fallback: 'BOX-BLUE-TEXT-color',         tooltip: 'text color of info boxes', },
 
+		{ name: 'BOX-CYAN-color',                        group: 'colored boxes',  default: 'rgba( 45, 190, 200, 1 )',     tooltip: 'background color of cyan boxes', },
+		{ name: 'BOX-IMPORTANT-color',                   group: 'colored boxes', fallback: 'BOX-CYAN-color',              tooltip: 'background color of info boxes', },
+		{ name: 'BOX-CYAN-TEXT-color',                   group: 'colored boxes', fallback: 'BOX-TEXT-color',              tooltip: 'text color of cyan boxes', },
+		{ name: 'BOX-IMPORTANT-TEXT-color',              group: 'colored boxes', fallback: 'BOX-CYAN-TEXT-color',         tooltip: 'text color of info boxes', },
+
 		{ name: 'BOX-GREEN-color',                       group: 'colored boxes',  default: 'rgba( 42, 178, 24, 1 )',      tooltip: 'background color of green boxes', },
 		{ name: 'BOX-TIP-color',                         group: 'colored boxes', fallback: 'BOX-GREEN-color',             tooltip: 'background color of tip boxes', },
 		{ name: 'BOX-GREEN-TEXT-color',                  group: 'colored boxes', fallback: 'BOX-TEXT-color',              tooltip: 'text color of green boxes', },
@@ -582,6 +587,11 @@ var variants = {
 		{ name: 'BOX-NEUTRAL-color',                     group: 'colored boxes', fallback: 'BOX-GREY-color',              tooltip: 'background color of neutral boxes', },
 		{ name: 'BOX-GREY-TEXT-color',                   group: 'colored boxes', fallback: 'BOX-TEXT-color',              tooltip: 'text color of grey boxes', },
 		{ name: 'BOX-NEUTRAL-TEXT-color',                group: 'colored boxes', fallback: 'BOX-GREY-TEXT-color',         tooltip: 'text color of neutral boxes', },
+
+		{ name: 'BOX-MAGENTA-color',                     group: 'colored boxes',  default: 'rgba( 229, 50, 210, 1 )',     tooltip: 'background color of magenta boxes', },
+		{ name: 'BOX-CAUTION-color',                     group: 'colored boxes', fallback: 'BOX-MAGENTA-color',           tooltip: 'background color of info boxes', },
+		{ name: 'BOX-MAGENTA-TEXT-color',                group: 'colored boxes', fallback: 'BOX-TEXT-color',              tooltip: 'text color of magenta boxes', },
+		{ name: 'BOX-CAUTION-TEXT-color',                group: 'colored boxes', fallback: 'BOX-MAGENTA-TEXT-color',      tooltip: 'text color of info boxes', },
 
 		{ name: 'BOX-ORANGE-color',                      group: 'colored boxes',  default: 'rgba( 237, 153, 9, 1 )',      tooltip: 'background color of orange boxes', },
 		{ name: 'BOX-NOTE-color',                        group: 'colored boxes', fallback: 'BOX-ORANGE-color',            tooltip: 'background color of note boxes', },
