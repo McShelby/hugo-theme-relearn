@@ -63,12 +63,16 @@ Once the button is clicked, it opens another browser tab for the given URL.
 #### By Severity
 
 ````go
+{{%/* button href="https://gohugo.io/" style="caution" %}}Get Hugo{{% /button */%}}
+{{%/* button href="https://gohugo.io/" style="important" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="info" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="note" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="tip" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="warning" %}}Get Hugo{{% /button */%}}
 ````
 
+{{% button href="https://gohugo.io/" style="caution" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" style="important" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="info" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="note" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="tip" %}}Get Hugo{{% /button %}}
@@ -91,15 +95,19 @@ Once the button is clicked, it opens another browser tab for the given URL.
 
 ````go
 {{%/* button href="https://gohugo.io/" style="blue" %}}Get Hugo{{% /button */%}}
+{{%/* button href="https://gohugo.io/" style="cyan" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="green" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="grey" %}}Get Hugo{{% /button */%}}
+{{%/* button href="https://gohugo.io/" style="magenta" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="orange" %}}Get Hugo{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="red" %}}Get Hugo{{% /button */%}}
 ````
 
 {{% button href="https://gohugo.io/" style="blue" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" style="cyan" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="green" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="grey" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" style="magenta" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="orange" %}}Get Hugo{{% /button %}}
 {{% button href="https://gohugo.io/" style="red" %}}Get Hugo{{% /button %}}
 
