@@ -24,7 +24,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, all shortcodes that support severity levels with their `style` parameter were expanded with the new severities `caution` and `important` and the `color` parameter was expanded with `cyan` and `magenta`. Please note, that coloring and icons of severities may defer from the [display you see on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, the new severities and their according colors are also available ass CSS variables `BOX-MAGENTA-color`, `BOX-MAGENTA-TEXT-color`, `BOX-CAUTION-color`, `BOX-CAUTION-TEXT-color`, `BOX-CYAN-color`, `BOX-CYAN-TEXT-color`, `BOX-IMPORTANT-color`, `BOX-IMPORTANT-TEXT-color`. You don't need to change anything in your custom color stylesheet as appropriate default colors will be used.
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, the new severities and their according colors are also available as CSS variables `BOX-MAGENTA-color`, `BOX-MAGENTA-TEXT-color`, `BOX-CAUTION-color`, `BOX-CAUTION-TEXT-color`, `BOX-CYAN-color`, `BOX-CYAN-TEXT-color`, `BOX-IMPORTANT-color`, `BOX-IMPORTANT-TEXT-color`. You don't need to change anything in your custom color stylesheet as appropriate default colors will be used.
 
 ---
 
