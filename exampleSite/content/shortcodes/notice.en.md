@@ -51,7 +51,7 @@ It is all about the boxes.
 
 | Name      | Position | Default   | Notes       |
 |-----------|----------|-----------|-------------|
-| **style** | 1        | `default` | The style scheme used for the box.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
+| **style** | 1        | `default` | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
 | **color** |          | see notes | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **title** | 2        | see notes | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **icon**  | 3        | see notes | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
@@ -61,11 +61,11 @@ It is all about the boxes.
 
 ### By Severity
 
-#### Info with markup
+#### Caution with markup
 
 ````go
-{{%/* notice style="info" */%}}
-An **information** disclaimer
+{{%/* notice style="caution" */%}}
+An **caution** disclaimer
 
 You can add standard markdown syntax:
 
@@ -83,8 +83,8 @@ You can add standard markdown syntax:
 {{%/* /notice */%}}
 ````
 
-{{% notice style="info" %}}
-An **information** disclaimer
+{{% notice style="caution" %}}
+An **caution** disclaimer
 
 You can add standard markdown syntax:
 
@@ -99,6 +99,30 @@ You can add standard markdown syntax:
 ```
 
 > the possibilities are endless (almost - including other shortcodes may or may not work)
+{{% /notice %}}
+
+#### Important
+
+````go
+{{%/* notice style="important" */%}}
+A **important** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% notice style="important" %}}
+A **important** disclaimer
+{{% /notice %}}
+
+#### Info
+
+````go
+{{%/* notice style="info" */%}}
+A **information** disclaimer
+{{%/* /notice */%}}
+````
+
+{{% notice style="info" %}}
+A **information** disclaimer
 {{% /notice %}}
 
 #### Note

@@ -18,6 +18,16 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
+## 6.2.0.beta (XXXX-XX-XX) {#620}
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you are running Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.132.0{{% /badge %}} or later, the theme is now capable to print [GitHub styled alerts](cont/markdown#alerts).
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, all shortcodes that support severity levels with their `style` parameter were expanded with the new severities `caution` and `important` and the `color` parameter was expanded with `cyan` and `magenta`. Please note, that coloring and icons of severities may defer from the [display you see on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).
+
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, the new severities and their according colors are also available ass CSS variables `BOX-MAGENTA-color`, `BOX-MAGENTA-TEXT-color`, `BOX-CAUTION-color`, `BOX-CAUTION-TEXT-color`, `BOX-CYAN-color`, `BOX-CYAN-TEXT-color`, `BOX-IMPORTANT-color`, `BOX-IMPORTANT-TEXT-color`. You don't need to change anything in your custom color stylesheet as appropriate default colors will be used.
+
+---
+
 ## 6.1.0 (2024-08-02) {#610}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to pages as well as resources or files in the file system (the old behavior).

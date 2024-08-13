@@ -115,6 +115,48 @@ Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus.
 Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
 {{% /notice %}}
 
+## Blockquotes
+
+For quoting blocks of content from another source within your document add `>` before any text you want to quote.
+
+Blockquotes can also be nested.
+
+````md
+> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue, aliquam non hendrerit ac, commodo vel nisi.
+>
+> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+>
+> Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
+````
+
+{{% notice style="secondary" icon="eye" title="Result" %}}
+> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue, aliquam non hendrerit ac, commodo vel nisi.
+>
+> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+>
+> Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
+{{% /notice %}}
+
+## Alerts
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!INFO]
+> Information that users might find interesting.
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
 ## Text Markers
 
 ### Bold
@@ -485,28 +527,6 @@ Adding a colon on the left and/or right side of the dashes below any heading wil
 | data   | 1      | path to data files to supply the data that will be passed into templates. |
 | engine | 2      | engine to be used for processing templates. Handlebars is the default. |
 | ext    | 3      | extension to be used for dest files. |
-{{% /notice %}}
-
-## Blockquotes
-
-For quoting blocks of content from another source within your document add `>` before any text you want to quote.
-
-Blockquotes can also be nested.
-
-````md
-> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue, aliquam non hendrerit ac, commodo vel nisi.
->
-> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
->
-> Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
-````
-
-{{% notice style="secondary" icon="eye" title="Result" %}}
-> Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. Nunc augue, aliquam non hendrerit ac, commodo vel nisi.
->
-> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
->
-> Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
 {{% /notice %}}
 
 ## Links

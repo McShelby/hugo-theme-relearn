@@ -1,0 +1,19 @@
+{{- $alerttype := .AlertType }}
+{{- $text := .Text }}
+{{- if not site.Params.disableBlockquoteNoticeSupport }}
+  {{- range findRESubmatch "^(<p>)?\\[!(\\w+)\\]\\n(.*?)(</p>)?\\s*$" $text 1 }}
+    {{- $alerttype = lower (index . 2) }}
+    {{- $text = printf "%s%s%s" (index . 1) (index . 3) (index . 4) }}
+  {{- end }}
+{{- end }}
+{{- if $alerttype }}
+  {{- partial "shortcodes/notice.html" (dict
+    "page" .Page
+    "style" $alerttype
+    "content" $text
+  ) }}
+{{- else }}
+<blockquote>
+  {{- $text | safeHTML }}
+</blockquote>
+{{- end }}

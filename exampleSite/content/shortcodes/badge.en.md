@@ -66,7 +66,7 @@ While the examples are using shortcodes with named parameter you are free to als
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| **style**             | `default`       | The style scheme used for the badge.<br><br>- by severity: `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `green`, `grey`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
+| **style**             | `default`       | The style scheme used for the badge.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **title**             | see notes       | Arbitrary text for the badge title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
@@ -79,16 +79,20 @@ While the examples are using shortcodes with named parameter you are free to als
 #### By Severity
 
 ````go
-{{%/* badge style="info" %}}New{{% /badge */%}}
-{{%/* badge style="note" %}}Change{{% /badge */%}}
-{{%/* badge style="tip" %}}Optional{{% /badge */%}}
-{{%/* badge style="warning" %}}Breaking{{% /badge */%}}
+{{%/* badge style="caution" %}}Magenta{{% /badge */%}}
+{{%/* badge style="important" %}}Cyan{{% /badge */%}}
+{{%/* badge style="info" %}}Blue{{% /badge */%}}
+{{%/* badge style="note" %}}Orange{{% /badge */%}}
+{{%/* badge style="tip" %}}Green{{% /badge */%}}
+{{%/* badge style="warning" %}}Red{{% /badge */%}}
 ````
 
-{{% badge style="info" %}}New{{% /badge %}}
-{{% badge style="note" %}}Change{{% /badge %}}
-{{% badge style="tip" %}}Optional{{% /badge %}}
-{{% badge style="warning" %}}Breaking{{% /badge %}}
+{{% badge style="caution" %}}Magenta{{% /badge %}}
+{{% badge style="important" %}}Cyan{{% /badge %}}
+{{% badge style="info" %}}Blue{{% /badge %}}
+{{% badge style="note" %}}Orange{{% /badge %}}
+{{% badge style="tip" %}}Green{{% /badge %}}
+{{% badge style="warning" %}}Red{{% /badge %}}
 
 #### By Brand Colors
 
@@ -106,15 +110,19 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ````go
 {{%/* badge style="blue" icon="palette" title="Color" %}}Blue{{% /badge */%}}
+{{%/* badge style="cyan" icon="palette" title="Color" %}}Cyan{{% /badge */%}}
 {{%/* badge style="green" icon="palette" title="Color" %}}Green{{% /badge */%}}
 {{%/* badge style="grey" icon="palette" title="Color" %}}Grey{{% /badge */%}}
+{{%/* badge style="magenta" icon="palette" title="Color" %}}Magenta{{% /badge */%}}
 {{%/* badge style="orange" icon="palette" title="Color" %}}Orange{{% /badge */%}}
 {{%/* badge style="red" icon="palette" title="Color" %}}Red{{% /badge */%}}
 ````
 
 {{% badge style="blue" icon="palette" title="Color" %}}Blue{{% /badge %}}
+{{% badge style="cyan" icon="palette" title="Color" %}}Cyan{{% /badge %}}
 {{% badge style="green" icon="palette" title="Color" %}}Green{{% /badge %}}
 {{% badge style="grey" icon="palette" title="Color" %}}Grey{{% /badge %}}
+{{% badge style="magenta" icon="palette" title="Color" %}}Magenta{{% /badge %}}
 {{% badge style="orange" icon="palette" title="Color" %}}Orange{{% /badge %}}
 {{% badge style="red" icon="palette" title="Color" %}}Red{{% /badge %}}
 
