@@ -151,7 +151,7 @@ If you are in need of more advanced options to style your alerts, use the [notic
 > Key information users need to know to achieve their goal.
 
 > [!INFO]
-> Information that users might find interesting.
+> Information that users <ins>_might_</ins> find interesting.
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
@@ -171,7 +171,7 @@ If you are in need of more advanced options to style your alerts, use the [notic
 > Key information users need to know to achieve their goal.
 
 > [!INFO]
-> Information that users might find interesting.
+> Information that users <ins>_might_</ins> find interesting.
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
