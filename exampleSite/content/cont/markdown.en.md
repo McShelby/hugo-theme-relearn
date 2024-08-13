@@ -139,7 +139,7 @@ Blockquotes can also be nested.
 
 ## Alerts
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} GitHub styled alerts are also supported.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} [GitHub styled alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
 
 If you are in need of more advanced options to style your alerts, use the [notice shortcode](shortcodes/notice).
 
