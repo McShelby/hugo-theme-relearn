@@ -168,6 +168,26 @@ If you are unhappy with the default, you can define the following CSS variable i
 }
 ````
 
+## Change Heading Anchor Behavior
+
+Each heading may have an anchor link that is displayed when the heading is hovered.
+
+The behavior what should happen if the anchor icon is clicked is configurable in your `hugo.toml`. By default all options are activated. If you deactivate all options, no link will be shown on hover.
+
+{{< multiconfig file=hugo >}}
+[params]
+disableAnchorCopy = false
+disableAnchorScrolling = false
+{{< /multiconfig >}}
+
+### `disableAnchorCopy`
+
+If set to `true`, this disables the copying of anchor links to the clipboard.
+
+### `disableAnchorScrolling`
+
+If set to `true`, this disables the scrolling to the beginning of the heading when clicked.
+
 ## Own Shortcodes with JavaScript Dependencies
 
 Certain shortcodes make use of additional dependencies like JavaScript and CSS files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.

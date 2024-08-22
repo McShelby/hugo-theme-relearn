@@ -20,6 +20,12 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 6.2.0.beta (XXXX-XX-XX) {#620}
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The heading anchor links are extended in functionality.
+
+  If you now click on it, not only is the link copied to the clipboard (previous behavior) but also the heading scrolls to the top of the page.
+
+  If you dislike the new behavior, you can deactivate it by setting `disableAnchorScrolling=true` in your `hugo.toml`. See the [docs for further options](basics/customization#change-heading-anchor-behavior).
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you are running Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.132.0{{% /badge %}} or later, the theme is now capable to print [GitHub styled alerts](cont/markdown#alerts).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, all shortcodes that support severity levels with their `style` parameter were expanded with the new severities `caution` and `important` and the `color` parameter was expanded with `cyan` and `magenta`. Please note, that coloring and icons of severities may defer from the [display you see on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).

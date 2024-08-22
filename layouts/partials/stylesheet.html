@@ -30,6 +30,8 @@
       window.relearn.relBasePath='{{ partial "relBasePath.hugo" $page | safeJS }}';
       window.relearn.relBaseUri='{{ partial "relBaseUri.hugo" $page | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
+      window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
+      window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};
     {{- with .Site.Home.OutputFormats.Get "search" }}
       window.index_js_url={{ (printf "index.search.js%s" $assetBusting) | relLangURL }};
     {{- end }}
