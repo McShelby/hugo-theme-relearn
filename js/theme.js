@@ -782,6 +782,10 @@ function initArrowHorizontalNav(){
     var scrollEnd = 0;
     document.addEventListener('keydown', function(event){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
+            var f = event.target.matches( formelements );
+            if( f ){
+                return;
+            }
             if( event.which == dir_key_start ){
                 if( !scrollStart && +el.scrollLeft.toFixed()*dir_scroll <= 0 ){
                     prev && prev.click();
@@ -804,6 +808,10 @@ function initArrowHorizontalNav(){
     });
     document.addEventListener('keyup', function(event){
         if( !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey ){
+            var f = event.target.matches( formelements );
+            if( f ){
+                return;
+            }
             if( event.which == dir_key_start ){
                 // check for false indication if keyup is delayed after navigation
                 if( scrollStart == -1 ){
@@ -816,15 +824,6 @@ function initArrowHorizontalNav(){
                 }
             }
         }
-    });
-
-    // avoid keyboard navigation for input fields
-    document.querySelectorAll( formelements ).forEach( function( e ){
-        e.addEventListener( 'keydown', function( event ){
-            if( event.which == dir_key_start || event.which == dir_key_end ){
-                event.stopPropagation();
-            }
-        });
     });
 }
 
