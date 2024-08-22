@@ -67,7 +67,7 @@ git init
 Now add the theme as a submodule by:
 
 ````shell
-git submodule add https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
+git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
 ````
 
 Afterwards add this at the end of your `hugo.toml`.
