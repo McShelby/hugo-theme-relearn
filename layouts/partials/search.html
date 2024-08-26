@@ -8,8 +8,8 @@
           {{- warnf "UNSUPPORTED usage of 'searchpage' output format found, remove it from your config; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#700" }}
         {{- end }}
         {{- if not .Site.Params.disableSearchIndex }}
-          {{- $url := path.Join .Site.LanguagePrefix (trim (or .Site.Params.searchIndexURL "search_index.js") "/") }}
-          {{- $templateres := resources.Get "_relearn_search_index.js" }}
+          {{- $url := path.Join .Site.LanguagePrefix (trim (or .Site.Params.searchIndexURL "searchindex.js") "/") }}
+          {{- $templateres := resources.Get "_relearn_searchindex.js" }}
           {{- $resultres := $templateres | resources.ExecuteAsTemplate $url .Site.Home }}
           {{- /* the following code causes Hugo to generate our file - although it is in comments */}}<!-- {{ $resultres.RelPermalink }} -->
         <script>

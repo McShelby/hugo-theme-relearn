@@ -73,7 +73,7 @@ By default all three levels are enabled. You can disable each level by the follo
 
 By default the following files will be created for each level, relative to each languages home page but can be overwritten:
 
-- search popup: `search_index.js`, configured by `searchIndexURL`
+- search popup: `searchindex.js`, configured by `searchIndexURL`
 - dedicated search page: either `/search.html` or `search/index.html` depending on your settings for `uglyURLs`, configured by `searchPageURL`
 
 {{% notice note %}}

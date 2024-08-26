@@ -16,4 +16,4 @@
     ) }}
   {{- end }}
 {{- end -}}
-var relearn_search_index = {{ $pages | jsonify (dict "indent" "  ") }}
+var relearn_searchindex = {{ $pages | jsonify (dict "indent" "  ") }}
