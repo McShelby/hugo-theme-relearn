@@ -55,32 +55,29 @@ If you are using `uglyURLs=false` (Hugo's default), the theme will append an add
 {{< /multiconfig >}}
 {{% /notice %}}
 
-## Activate search
+## Configure Search
 
-If not already present, add the following lines in your `hugo.toml` file.
+The theme comes with three levels of search, all provided through the search form in the menu:
 
-{{< multiconfig file=hugo >}}
-[outputs]
-  home = ["html", "rss"]
-{{< /multiconfig >}}
+- in-page search: a found search term will be marked in the currently displayed page
+- search popup: if a search index is generated, a popup will open during typing in the search form, if the term is found in other pages of your site
+- dedicated search page: access the dedicated search page by either clicking on the magnifier glass or by typing some search term in the search form and pressing `ENTER`
 
-This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library.
+Each level depends on the previous level to be enabled, eg. the dedicated search page is only available, if you have search popup and in-page search enabled.
 
-### Activate dedicated search page
+By default all three levels are enabled. You can disable each level by the following settings in your `hugo.toml`:
 
-You can add a dedicated search page for your page by adding the `searchpage` outputformat to your home page by adding the following lines in your `hugo.toml` file. This will cause Hugo to generate a new file `http://example.com/mysite/search.html`.
+- in-page search: `disableSearch=true`
+- search popup: `disableSearchIndex=true`
+- dedicated search page: `disableSearchPage=true`
 
-{{< multiconfig file=hugo >}}
-[outputs]
-  home = ["html", "rss"]
-{{< /multiconfig >}}
+By default the following files will be created for each level, relative to each languages home page but can be overwritten:
 
-You can access this page by either clicking on the magnifier glass or by typing some search term and pressing `ENTER` inside of the menu's search box .
-
-![Screenshot of the dedicated search page](search_page.png?&width=60pc)
+- search popup: `search_index.js`, configured by `searchIndexURL`
+- dedicated search page: either `/search.html` or `search/index.html` depending on your settings for `uglyURLs`, configured by `searchPageURL`
 
 {{% notice note %}}
-To have Hugo create the dedicated search page successfully, you must not generate the URL `http://example.com/mysite/search.html` from your own content. This can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.
+You only need to reconfigure the file / page URLs if you have own content at those URLs in your project. Eg. this can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.
 
 To make sure, there is no duplicate content for any given URL of your project, run `hugo --printPathWarnings`.
 {{% /notice %}}

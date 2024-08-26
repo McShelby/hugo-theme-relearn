@@ -28,9 +28,7 @@ The Relearn theme is a fork of the great [Learn theme](https://github.com/matcor
   - [Configurable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/highlight)
 - **Unique theme features**
   - [Print whole chapters or even the complete site](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-print-support)
-  - In page search
-  - [Site search](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-search)
-  - [Dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#activate-dedicated-search-page)
+  - [In-page search, search popup and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/basics/customization#configure-search)
   - [Taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/cont/taxonomy)
   - [Configurable topbar buttons](https://mcshelby.github.io/hugo-theme-relearn/basics/topbar)
   - [Unlimited nested menu items](https://mcshelby.github.io/hugo-theme-relearn/cont/pages)

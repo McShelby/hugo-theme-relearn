@@ -18,6 +18,31 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
+## 7.0.0 (XXXX-XX-XX) {#700}
+
+- {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} This release changes the way, the search index and the dedicated search page are generated and require reconfiguration by you to not break your build.
+
+  You need to remove the `search` and `searchpage` output format from `outputs.home` in your `hugo.toml`, resulting in something similar to
+
+    {{< multiconfig file=hugo >}}
+    [outputs]
+      home = ["html", "rss", "print"]
+    {{< /multiconfig >}}
+
+  After that, your build will succeed but causes new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are active by default.
+
+  You can disable search completely, causing no search field in the menu by adding `disableSearch=true` to your `hugo.toml`.
+
+  You can limit your site to only providing in-page search by disabling generation of the search index and search page using `disableSearchIndex=true` in your `hugo.toml`.
+
+  You can limit your site to only providing in-page search and the search popup by disabling generation of the search page using `disableSearchPage=true` in your `hugo.toml`.
+
+  In addition you are now able to overwrite the default file and page names of the search index and the search page by changing `searchIndexURL` and `searchPageURL` respectivly in your `hugo.toml`.
+
+  See the [updated documentation](basics/customization#configure-search) for reference.
+
+---
+
 ## 6.4.0 (2024-10-11) {#640}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} If you now display a single code block in a `notice` box, its [margin and border will be removed](shortcodes/notice#code-with-collapsed-colored-borders) so only the colored notice border is visible.
@@ -105,7 +130,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} Search support for the `json` outputformat [deprecated in 5.4.0](#540) was removed.
 
-  Change it to `search` for the homepage in your `hugo.toml`. See the docs for [detailed configuration](basics/customization#activate-search).
+  Change it to `search` for the homepage in your `hugo.toml`. See the docs for [detailed configuration](basics/customization#configure-search).
 
 - {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} The frontmatter option `menuTitle` [deprecated in 5.24.0](#5240) was removed in favor for Hugo’s own `linkTitle`.
 
@@ -590,7 +615,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning through large number of results.
 
-  To activate this feature, you need to [configure it](basics/customization#activate-dedicated-search-page) in your `hugo.toml` as a new outputformat `searchpage` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+  To activate this feature, you need to [configure it](basics/customization#configure-search) in your `hugo.toml` as a new outputformat `searchpage` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
   You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
 
