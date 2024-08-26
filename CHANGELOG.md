@@ -1,5 +1,22 @@
 # Changelog
 
+## 6.2.0 (2024-08-22)
+
+### Enhancements
+
+- [**feature**][**change**] anchor: add option to scroll into view [#886](https://github.com/McShelby/hugo-theme-relearn/issues/886)
+- [**feature**] theme: support for GitHub styled alerts [#885](https://github.com/McShelby/hugo-theme-relearn/issues/885)
+
+### Fixes
+
+- [**bug**] arrownav: avoid rude event handling for form elements [#887](https://github.com/McShelby/hugo-theme-relearn/issues/887)
+
+### Maintenance
+
+- [**task**] 404: move styles to separate file [#889](https://github.com/McShelby/hugo-theme-relearn/issues/889)
+
+---
+
 ## 6.1.1 (2024-08-02)
 
 ### Fixes

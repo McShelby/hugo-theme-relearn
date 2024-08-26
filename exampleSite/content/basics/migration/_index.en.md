@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 6.2.0.beta (XXXX-XX-XX) {#620}
+## 6.2.0 (2024-08-26) {#620}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The heading anchor links are extended in functionality.
 
