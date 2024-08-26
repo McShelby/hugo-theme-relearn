@@ -98,15 +98,6 @@ disableGeneratorVersion = false
 # may not function correctly anymore.
 disableRandomIds = false
 
-# Multilanguage content.
-# Default: not set
-# If your pages contain further languages besides the main one used, add all
-# those auxiliary languages here. This will create a search index with
-# support for all used languages of your site.
-# This is handy for example if you are writing in Spanish but have lots of
-# source code on your page which typically uses English terminology.
-additionalContentLanguage = [ "en" ]
-
 # Additional code dependencies.
 # Default: See hugo.toml of the theme
 # The theme provides a mechanism to load further JavaScript and CSS
@@ -147,17 +138,56 @@ disableNextPrev = false
 # in the pages frontmatter. This is useful if you want to give the opportunity
 # for people to create merge request for your content.
 editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}"
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Search
+# These options modify various aspects of the search functionality.
+
+# Disable the search.
+# Default: false
+# If the search is disabled, no search box will be displayed in the menu,
+# nor in-page search, search popup or dedicated search page will be available.
+# This will also cause the keyboard shortcut to be disabled.
+disableSearch = false
+
+# Disable the search index generation.
+# Default: false
+# `disableSearch=false` must be set to let the generation of the search index
+# file to be affected by this option. If the search index is disabled, no
+# search popup or dedicated search page will be available.
+disableSearchIndex = false
+
+# URL of the search index file relative to the language home.
+# Default: "search_index.js"
+# You have to set this option if your page already has a content file named
+# `search_index.js` in the language home.
+searchIndexURL = "search_index.js"
+
+# Disable the dedicated search page.
+# Default: false
+# `disableSearch=false` and `disableSearchIndex=false` must be set to let the
+# generation of the dedicated search page to be affected by this option.
+disableSearchPage = false
+
+# URL of the dedicated search page relative to the language home.
+# Default: "search"
+# In its basic form the search page URL is named the same for all languages
+# but you are free to override it in each language options to localised the
+# URL. You also need to set this option if your page already has a content
+# page named `search`.
+searchPageURL = "search"
+
+# Multilanguage content.
+# Default: not set
+# If the search index is enabled and your pages contain further languages
+# besides the main one used, add all those auxiliary languages here. This
+# will create a search index with support for all used languages of your site.
+# This is handy for example if you are writing in Spanish but have lots of
+# source code on your page which typically uses English terminology.
+additionalContentLanguage = [ "en" ]
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Menu
 # These options modify the menu appearance.
-
-# Hide the search box.
-# Default: false
-# If the search box is disabled, the search functionality is disabled too.
-# This will also cause the keyboard shortcut to be disabled and the dedicated
-# search page is not linked although it mighty be configured.
-disableSearch = false
 
 # Hide the Home entry.
 # Default: false

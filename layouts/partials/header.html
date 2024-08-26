@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 {{- $format := partial "get-format.hugo" . }}
 {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
-{{- $basename := "index" }}
-{{- if eq .Kind "home" }}
-  {{- if eq $outputFormat "searchpage" }}
-    {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
-  {{- end }}
-{{- end }}
 {{- if eq . .Site.Sites.First.Home }}
   {{- $hugoVersion := "0.121.0" }}
   {{- if lt hugo.Version $hugoVersion }}
@@ -27,9 +21,9 @@
     {{- if .IsTranslated -}}
       {{- range $index, $trans := .AllTranslations }}
         {{- if eq $index 0 }}
-    <link href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename) }}" rel="alternate" hreflang="x-default">
+    <link href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}" rel="alternate" hreflang="x-default">
         {{- end }}
-    <link href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename) }}" rel="alternate" hreflang="{{ .Language.LanguageCode }}">
+    <link href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}" rel="alternate" hreflang="{{ .Language.LanguageCode }}">
       {{- end }}
     {{- end }}
 
@@ -37,10 +31,8 @@
     {{- else }}
       {{- range .AlternativeOutputFormats }}
         {{- if eq .Rel "canonical" }}
-    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
-        {{- else if eq $outputFormat "searchpage" }}
-        {{- else if eq .Name "searchpage" }}
-        {{- else if ne .Name "search" }}
+    {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
+        {{- else }}
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
         {{- end }}
       {{- end }}

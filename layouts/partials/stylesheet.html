@@ -32,9 +32,6 @@
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
       window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
       window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};
-    {{- with .Site.Home.OutputFormats.Get "search" }}
-      window.index_js_url={{ (printf "index.search.js%s" $assetBusting) | relLangURL }};
-    {{- end }}
       {{ "// variant stuff" | safeJS }}
       {{- $quotedthemevariants := slice }}
       {{- range $themevariants }}

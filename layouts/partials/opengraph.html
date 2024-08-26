@@ -1,13 +1,5 @@
 {{- /* based on Hugo 0.125.5 opengraph.html */}}
-{{- $basename := "index" }}
-{{- if eq .Kind "home" }}
-  {{- $format := partial "get-format.hugo" . }}
-  {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
-  {{- if eq $outputFormat "searchpage" }}
-    {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
-  {{- end }}
-{{- end }}
-    <meta property="og:url" content="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true "basename" $basename) }}">
+    <meta property="og:url" content="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}">
 
 {{- with site.Title | plainify }}
     <meta property="og:site_name" content="{{ . }}">

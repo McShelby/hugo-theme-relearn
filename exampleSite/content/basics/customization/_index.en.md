@@ -61,7 +61,7 @@ If not already present, add the following lines in your `hugo.toml` file.
 
 {{< multiconfig file=hugo >}}
 [outputs]
-  home = ["html", "rss", "search"]
+  home = ["html", "rss"]
 {{< /multiconfig >}}
 
 This will generate a search index file at the root of your public folder ready to be consumed by the Lunr search library.
@@ -72,7 +72,7 @@ You can add a dedicated search page for your page by adding the `searchpage` out
 
 {{< multiconfig file=hugo >}}
 [outputs]
-  home = ["html", "rss", "search", "searchpage"]
+  home = ["html", "rss"]
 {{< /multiconfig >}}
 
 You can access this page by either clicking on the magnifier glass or by typing some search term and pressing `ENTER` inside of the menu's search box .
@@ -91,7 +91,7 @@ You can activate print support to add the capability to print whole chapters or 
 
 {{< multiconfig file=hugo >}}
 [outputs]
-  home = ["html", "rss", "print", "search"]
+  home = ["html", "rss", "print"]
   section = ["html", "rss", "print"]
   page = ["html", "rss", "print"]
 {{< /multiconfig >}}

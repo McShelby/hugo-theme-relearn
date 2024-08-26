@@ -1,10 +1,24 @@
+      {{- if not .Site.Params.disableSearch }}
+        {{- $assetBusting := partialCached "assetbusting.hugo" . }}
         {{- $link := "" }}
         {{- with .Site.Home.OutputFormats.Get "json" }}
           {{- warnf "UNSUPPORTED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#600" }}
         {{- end }}
-        {{- if .Site.Home.OutputFormats.Get "search" }}
-          {{- with .Site.Home.OutputFormats.Get "searchpage" }}
-            {{- $link = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+        {{- with .Site.Home.OutputFormats.Get "searchpage" }}
+          {{- warnf "UNSUPPORTED usage of 'searchpage' output format found, remove it from your config; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#700" }}
+        {{- end }}
+        {{- if not .Site.Params.disableSearchIndex }}
+          {{- $url := path.Join .Site.LanguagePrefix (trim (or .Site.Params.searchIndexURL "search_index.js") "/") }}
+          {{- $templateres := resources.Get "_relearn_search_index.js" }}
+          {{- $resultres := $templateres | resources.ExecuteAsTemplate $url .Site.Home }}
+          {{- /* the following code causes Hugo to generate our file - although it is in comments */}}<!-- {{ $resultres.RelPermalink }} -->
+        <script>
+          window.index_js_url={{ (printf "%s%s" $url $assetBusting) | relLangURL }};
+        </script>
+          {{- if not .Site.Params.disableSearchPage }}
+            {{- with .Site.GetPage "_relearn_searchpage" }}
+              {{- $link = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+            {{- end }}
           {{- end }}
         {{- end }}
         <search>{{ if $link }}<form action="{{ $link }}" method="get">{{ end }}
@@ -15,7 +29,6 @@
             <button class="search-clear" type="button" data-search-clear="" title="{{ T "Clear-search" }}"><i class="fas fa-times" title="{{ T "Clear-search" }}"></i></button>
           </div>
         {{ if $link }}</form>{{ end }}</search>
-        {{- $assetBusting := partialCached "assetbusting.hugo" . }}
         {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Language.LanguageCode }}
         {{- $contentlangs := (union (slice | append (.Site.Params.additionalContentLanguage | default slice)) (slice $pageBaseLang)) }}
         {{- $quotedcontentlangs := slice }}
@@ -51,3 +64,4 @@
         <script src="{{ $file | relURL}}{{ $assetBusting }}" defer></script>
         {{- end }}
         <script src="{{ "js/search.js" | relURL }}{{ $assetBusting }}" defer></script>
+      {{- end }}

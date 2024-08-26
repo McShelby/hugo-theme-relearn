@@ -11,14 +11,6 @@
 
   {{- if eq .Kind "home" }}
     {{- $title = $title | default $siteTitle }}
-    {{- $outputFormat := $.outputFormat }}
-    {{- if not $outputFormat }}
-      {{- $format := $.format | default (partial "get-format.hugo" .) }}
-      {{- $outputFormat = $.outputFormat | default (partial "output-format.hugo" (dict "page" . "format" $format)) }}
-    {{- end }}
-    {{- if eq $outputFormat "searchpage" }}
-      {{- $title = T "Search" }}
-    {{- end }}
   {{- else if eq .Kind "taxonomy" }}
     {{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
   {{- else if eq .Kind "term" }}

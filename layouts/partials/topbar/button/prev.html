@@ -9,13 +9,7 @@
 			{{- $startarrow = "🡒" }}
 		{{- end }}
 		{{- $prev := .Scratch.Get "relearnPrevPage" }}
-		{{- if eq .Page.Kind "home" }}
-			{{- $format := partial "get-format.hugo" .Page }}
-			{{- $outputFormat := partial "output-format.hugo" (dict "page" .Page "format" $format) }}
-			{{- if eq $outputFormat "searchpage" }}
-				{{- $prev = .Site.Home }}
-			{{- end }}
-		{{- else if eq .Page.Kind "term" }}
+		{{- if eq .Page.Kind "term" }}
 			{{- /* go to previous term page or taxonomy page if it is the first term */}}
 			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
 			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" $taxonomy_page $taxonomy_page }}

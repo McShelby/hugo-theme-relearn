@@ -1,13 +1,5 @@
 
     {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
-    {{- $basename := "index" }}
-    {{- if eq .Kind "home" }}
-      {{- $format := partial "get-format.hugo" . }}
-      {{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
-      {{- if eq $outputFormat "searchpage" }}
-        {{- $basename = partial "BaseName.hugo" $format.RelPermalink }}
-      {{- end }}
-    {{- end }}
     <aside id="R-sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
       {{- $currentNode := . }}
       <div id="R-header-topbar" class="default-animation"></div>
@@ -15,9 +7,7 @@
         <div id="R-header" class="default-animation">
 {{ partial "logo.html" . }}
         </div>
-        {{- if not .Site.Params.disableSearch }}
 {{ partial "search.html" . }}
-        {{- end }}
       </div>
       <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
       {{- if not .Site.Params.disableLandingPageButton }}
@@ -79,7 +69,7 @@
                       {{- $page := .Page }}
                       {{- $pageLang := .Page.Language.Lang }}
                       {{- range .Page.AllTranslations }}
-                      <option id="R-select-language-{{ .Language.Lang }}" value="#R-select-language-{{ .Language.Lang }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "basename" $basename) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected{{ end }}>{{ .Language.LanguageName }}</option>
+                      <option id="R-select-language-{{ .Language.Lang }}" value="#R-select-language-{{ .Language.Lang }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected{{ end }}>{{ .Language.LanguageName }}</option>
                       {{- end }}
                     </select>
                   </div>
