@@ -11,7 +11,7 @@
     <meta name="twitter:title" content="{{ . }}">
 {{- end }}
 
-{{- with or .Description .Summary | plainify | htmlUnescape | chomp }}
+{{- with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}
     <meta name="twitter:description" content="{{ . }}">
 {{- end }}
 

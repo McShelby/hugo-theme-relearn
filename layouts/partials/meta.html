@@ -13,7 +13,7 @@
     {{- if not (and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
-    <meta name="description" content="{{ with or .Description .Summary | plainify | htmlUnescape | chomp }}{{ . }}{{ end }}">
+    <meta name="description" content="{{ with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}{{ . }}{{ end }}">
     {{- $authorName := partialCached "authorname.hugo" . }}
     <meta name="author" content="{{ $authorName }}">
     {{- partial "twitter_cards.html" . }}

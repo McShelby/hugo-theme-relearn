@@ -3,7 +3,7 @@
     <meta itemprop="name" content="{{ . }}">
 {{- end }}
 
-{{- with or .Description .Summary | plainify | htmlUnescape | chomp }}
+{{- with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}
     <meta itemprop="description" content="{{ . }}">
 {{- end }}
 

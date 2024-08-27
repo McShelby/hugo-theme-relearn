@@ -29,7 +29,7 @@
   <channel>
     <title>{{ partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}</title>
     <link>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</link>
-    <description>{{ or .Description .Summary | plainify | htmlUnescape | chomp | transform.XMLEscape | safeHTML }}</description>
+    <description>{{ trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " | transform.XMLEscape | safeHTML }}</description>
     <generator>Hugo</generator>
     <language>{{ site.Language.LanguageCode }}</language>{{ with $authorEmail }}
     <managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
@@ -54,7 +54,7 @@
       <pubDate>{{ (or .PublishDate .Date).Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
       <guid>{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}</guid>
-      <description>{{ or .Description .Summary | plainify | htmlUnescape | chomp | transform.XMLEscape | safeHTML }}</description>
+      <description>{{ trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " | transform.XMLEscape | safeHTML }}</description>
     </item>
       {{- end }}
     {{- end }}

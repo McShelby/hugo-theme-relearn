@@ -10,9 +10,9 @@
       "uri" (partial "relLangPrettyUglyURL.hugo" (dict "to" .))
       "title" (partial "pageHelper/title.hugo" (dict "page" .) | plainify)
       "tags" $tags
-      "breadcrumb" (partial "breadcrumbs.html" (dict "page" . "dirOnly" true) | plainify | htmlUnescape | chomp)
-      "description" (or .Description .Summary | plainify | htmlUnescape | chomp)
-      "content" (.Plain | htmlUnescape | chomp)
+      "breadcrumb" (trim (partial "breadcrumbs.html" (dict "page" . "dirOnly" true) | plainify | htmlUnescape) "\n\r\t ")
+      "description" (trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " )
+      "content" (trim (.Plain | htmlUnescape) "\n\r\t ")
     ) }}
   {{- end }}
 {{- end -}}
