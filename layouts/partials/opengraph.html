@@ -17,7 +17,7 @@
     <meta property="og:locale" content="{{ replace . `-` `_` }}">
 {{- end }}
 
-{{- if .IsPage }}
+{{- if and .IsPage (not (partial "pageHelper/isRelearnSpecialPage.html" .)) }}
     <meta property="og:type" content="article">
   {{- with .FirstSection }}
     <meta property="article:section" content="{{ partial "pageHelper/title.hugo" (dict "page" .) | plainify }}">

@@ -3,7 +3,11 @@
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
 	{{- $printFormat := .OutputFormats.Get "print" }}
-	{{- if $printFormat }}
+	{{- $show := $printFormat }}
+	{{- if $show }}
+		{{- $show = not (partial "pageHelper/isRelearnSpecialPage.html" .) }}
+	{{- end }}
+	{{- if $show }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-print"

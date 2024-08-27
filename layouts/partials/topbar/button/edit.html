@@ -2,7 +2,11 @@
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
-	{{- if .File }}
+	{{- $show := .File }}
+	{{- if $show }}
+		{{- $show = not (partial "pageHelper/isRelearnSpecialPage.html" .) }}
+	{{- end }}
+	{{- if $show }}
 		{{- $filePath := printf "%s%s" (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName }}
 		{{- $href := "" }}
 		{{- if .Site.Params.editURL }}

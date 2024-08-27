@@ -14,7 +14,9 @@
 {{- $breadcrumb := slice }}
 {{- range seq $depth }}
   {{- if $to }}
-    {{- if or $to.Title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
+    {{- if partial "pageHelper/isRelearnSpecialPage.html" $to }}
+      {{- break }}
+    {{- else if or $to.Title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
       {{- $breadcrumb = $breadcrumb | append $to }}
     {{- end }}
   {{- else }}

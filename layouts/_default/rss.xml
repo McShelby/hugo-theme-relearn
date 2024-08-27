@@ -42,7 +42,9 @@
     {{- range $pages }}
       {{- $visible := true }}
       {{- $relearnIsHiddenFrom := index ($page.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
-      {{- if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+      {{- if partial "pageHelper/isRelearnSpecialPage.html" . }}
+        {{- $visible = false }}
+      {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
         {{- $visible = and .Title .Permalink (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableTagHiddenPages true) ) }}
       {{- else }}
         {{- $visible = and .Title .Permalink (or (not $relearnIsHiddenFrom) (ne .Site.Params.disableSeoHiddenPages true) ) }}

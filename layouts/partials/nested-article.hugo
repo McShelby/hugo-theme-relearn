@@ -1,20 +1,5 @@
-{{- $page := .page }}
-{{- $page.Page.Store.Set "relearnIsNested" true }}
-{{- with $page }}
-  {{- $currentNode := . }}
-  {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
-  {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
-  {{- if $pages }}
-          <section>
-            <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
-  {{- end }}
-  {{- range $pages }}
-    {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode }}
-  {{- end }}
-  {{- if $pages }}
-          </section>
-  {{- end }}
-{{- end }}
+{{- .page.Page.Store.Set "relearnIsNested" true }}
+{{- template "section-tree-print" dict "sect" .page "currentnode" .page }}
 {{- define "section-tree-print" }}
   {{- $currentNode := .currentnode }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}

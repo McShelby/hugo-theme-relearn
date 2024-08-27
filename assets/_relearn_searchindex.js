@@ -1,7 +1,8 @@
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
 {{- $pages := slice }}
 {{- range .Site.Pages }}
-  {{- if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
+  {{- if partial "pageHelper/isRelearnSpecialPage.html" . }}
+  {{- else if and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSearchHiddenPages true) ) }}
     {{- $tags := slice }}
     {{- range .GetTerms "tags" }}
       {{- $tags = $tags | append (partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true) | plainify) }}

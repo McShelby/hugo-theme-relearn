@@ -31,4 +31,11 @@
 	{{- $pages = $page.Pages }}
 {{- end }}
 
-{{- return $pages }}
+{{- $filtered_pages := slice }}
+{{- range $pages }}
+	{{- if not (partial "pageHelper/isRelearnSpecialPage.html" .) }}
+		{{- $filtered_pages = $filtered_pages | append . }}
+	{{- end }}
+{{- end }}
+
+{{- return $filtered_pages }}

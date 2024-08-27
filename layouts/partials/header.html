@@ -31,7 +31,7 @@
       {{- range .AlternativeOutputFormats }}
         {{- if eq .Rel "canonical" }}
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
-        {{- else }}
+        {{- else if not (partial "pageHelper/isRelearnSpecialPage.html" $page) }}
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
         {{- end }}
       {{- end }}
