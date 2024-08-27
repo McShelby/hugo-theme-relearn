@@ -2,9 +2,7 @@
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
-	{{- $format := partial "get-format.hugo" . }}
-	{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
-	{{- if and (eq $outputFormat "html") .File }}
+	{{- if .File }}
 		{{- $filePath := printf "%s%s" (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName }}
 		{{- $href := "" }}
 		{{- if .Site.Params.editURL }}

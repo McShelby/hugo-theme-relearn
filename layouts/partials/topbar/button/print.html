@@ -2,10 +2,8 @@
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
-	{{- $format := partial "get-format.hugo" . }}
-	{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
 	{{- $printFormat := .OutputFormats.Get "print" }}
-	{{- if and (eq $outputFormat "html") $printFormat }}
+	{{- if $printFormat }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-print"

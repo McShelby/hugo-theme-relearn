@@ -1,10 +1,4 @@
-  {{- $page := .page }}
-  {{- $outputFormat := .outputFormat }}
-  {{- if not $page }}
-    {{- $page = . }}
-    {{- $outputFormat = partial "output-format.hugo" $page }}
-  {{- end }}
-  {{- with $page }}
+    {{- $outputFormat := partial "output-format.hugo" . }}
     {{- $assetBusting := partialCached "assetbusting.hugo" . }}
     {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
@@ -27,8 +21,8 @@
     <script src="{{"js/variant.js" | relURL}}{{ $assetBusting }}"></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.relBasePath='{{ partial "relBasePath.hugo" $page | safeJS }}';
-      window.relearn.relBaseUri='{{ partial "relBaseUri.hugo" $page | safeJS }}';
+      window.relearn.relBasePath='{{ partial "relBasePath.hugo" . | safeJS }}';
+      window.relearn.relBaseUri='{{ partial "relBaseUri.hugo" . | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
       window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
       window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};
@@ -48,4 +42,3 @@
       {{ printf "window.T_No_results_found = `%s`;" (T "No-results-found") | safeJS }}
       {{ printf "window.T_N_results_found = `%s`;" (T "N-results-found") | safeJS }}
     </script>
-  {{- end }}

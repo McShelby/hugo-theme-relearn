@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {{- partialCached "page-meta.hugo" . .RelPermalink }}
-{{- $outputFormat := partial "output-format.hugo" . }}
 <html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article">
   <head>
     {{- partial "meta.html" . }}
@@ -8,7 +7,7 @@
     <title>{{ $title }}</title>
     <base href="{{ .Site.BaseURL }}">
     {{- partialCached "favicon.html" . }}
-    {{- partial "stylesheet.html" (dict "page" . "outputFormat" $outputFormat) }}
+    {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
   </head>
   <body class="mobile-support html notfound" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
