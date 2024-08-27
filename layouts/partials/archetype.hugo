@@ -1,10 +1,6 @@
 {{- $hook := .hook }}
 {{- $page := .page }}
 {{- $parameter := .parameter }}
-{{- $outputFormat := .outputFormat }}
-{{- if not $outputFormat }}
-  {{- $outputFormat = partial "output-format.hugo" $page }}
-{{- end }}
 {{- $archetype := "default" }}
 {{- if not $page.File }}
 {{- else if $page.Params.archetype }}
@@ -24,4 +20,4 @@
 {{- if not (partialCached "fileExists.hugo" $f $f) }}
   {{- $archetype = "default" }}
 {{- end }}
-{{- partial "output-partial.hugo" (dict "base" (printf "archetypes/%s/%s" $archetype $hook) "page" $page "parameter" $parameter "outputFormat" $outputFormat) }}
+{{- partial "output-partial.hugo" (dict "base" (printf "archetypes/%s/%s" $archetype $hook) "page" $page "parameter" $parameter) }}

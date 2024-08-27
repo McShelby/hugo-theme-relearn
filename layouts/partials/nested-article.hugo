@@ -1,16 +1,15 @@
 {{- $page := .page }}
-{{- $outputFormat := .outputFormat }}
 {{- $page.Page.Store.Set "relearnIsNested" true }}
 {{- with $page }}
   {{- $currentNode := . }}
   {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
-  {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
+  {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
   {{- if $pages }}
           <section>
             <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
   {{- end }}
   {{- range $pages }}
-    {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
+    {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode }}
   {{- end }}
   {{- if $pages }}
           </section>
@@ -18,7 +17,6 @@
 {{- end }}
 {{- define "section-tree-print" }}
   {{- $currentNode := .currentnode }}
-  {{- $outputFormat := .outputFormat }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
   {{- with .sect }}
     {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
@@ -28,13 +26,13 @@
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
     {{- else }}
-      {{- template "section-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
+      {{- template "section-print" dict "sect" . "currentnode" $currentNode }}
       {{- if $pages }}
           <section>
             <h1 class="a11y-only">{{ T "Subsections" .Title }}</h1>
       {{- end }}
       {{- range $pages }}
-        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode "outputFormat" $outputFormat }}
+        {{- template "section-tree-print" dict "sect" . "currentnode" $currentNode }}
       {{- end }}
       {{- if $pages }}
           </section>
@@ -44,10 +42,9 @@
 {{- end }}
 {{- define "section-print" }}
   {{- $currentNode := .currentnode }}
-  {{- $outputFormat := .outputFormat }}
   {{- with .sect }}
     {{- $page := . }}
-    {{- partialCached "nested-content.hugo" (dict "page" $page "outputFormat" $outputFormat) $page.RelPermalink "outputFormat" $outputFormat }}
+    {{- partialCached "nested-content.hugo" (dict "page" $page) $page.RelPermalink }}
     {{- range $page.Site.Params.relearn.dependencies }}
       {{- $has := printf "has%s" .name }}
       {{- $hasnested := printf "relearnHasNested%s" .name }}

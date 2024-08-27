@@ -2,8 +2,7 @@
       </main><!-- #R-body-inner -->
 {{- partial "custom-comments.html" . }}
     </div><!-- #R-body -->
-{{- $outputFormat := partial "output-format.hugo" .Page }}
-{{- partial "output-partial.hugo" (dict "base" "menu" "page" . "parameter" . "outputFormat" $outputFormat) }}
+{{- partial "output-partial.hugo" (dict "base" "menu" "page" . "parameter" .) }}
 {{- $assetBusting := partialCached "assetbusting.hugo" . }}
     <script src="{{"js/clipboard.min.js" | relURL}}{{ $assetBusting }}" defer></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ $assetBusting }}" defer></script>

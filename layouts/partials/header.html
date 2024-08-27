@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-{{- $format := partial "get-format.hugo" . }}
-{{- $outputFormat := partial "output-format.hugo" (dict "page" . "format" $format) }}
+{{- $outputFormat := partial "output-format.hugo" . }}
 {{- if eq . .Site.Sites.First.Home }}
   {{- $hugoVersion := "0.126.0" }}
   {{- if lt hugo.Version $hugoVersion }}
@@ -69,5 +68,5 @@
       </nav>
       {{- $hook := "styleclass" }}
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable {{ partialCached "archetype.hugo" (dict "hook" $hook "page" . "parameter" . "outputFormat" $outputFormat) .RelPermalink $outputFormat $hook }}" tabindex="-1">
+      <main id="R-body-inner" class="highlightable {{ partialCached "archetype.hugo" (dict "hook" $hook "page" . "parameter" .) .RelPermalink $hook }}" tabindex="-1">
         <div class="flex-block-wrapper">
