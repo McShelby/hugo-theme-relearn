@@ -1,6 +1,6 @@
 {{- $page := .page }}
 {{- $outputFormat := .outputFormat }}
-{{- $page.Page.Store.Set (printf "%sIsNested" $outputFormat) true }}
+{{- $page.Page.Store.Set "relearnIsNested" true }}
 {{- with $page }}
   {{- $currentNode := . }}
   {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
@@ -50,8 +50,8 @@
     {{- partialCached "nested-content.hugo" (dict "page" $page "outputFormat" $outputFormat) $page.RelPermalink "outputFormat" $outputFormat }}
     {{- range $page.Site.Params.relearn.dependencies }}
       {{- $has := printf "has%s" .name }}
-      {{- $nestedhas := printf "nestedHas%s" .name }}
-      {{- $currentNode.Page.Store.Set $nestedhas (or ($currentNode.Page.Store.Get $nestedhas) ($page.Page.Store.Get $has)) }}
+      {{- $hasnested := printf "relearnHasNested%s" .name }}
+      {{- $currentNode.Page.Store.Set $hasnested (or ($currentNode.Page.Store.Get $hasnested) ($page.Page.Store.Get $has)) }}
       {{- end }}
   {{- end }}
 {{- end }}
