@@ -18,7 +18,7 @@
 {{- end }}
 {{- $taxonomy_title := partial "pageHelper/title.hugo" (dict "page" $taxonomy_page) }}
 {{- with $term_pages }}
-<div class=" taxonomy-{{ $taxonomy }} term-list cstyle {{ $style }} {{ $class }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
+<div class="R-taxonomy taxonomy-{{ $taxonomy }} cstyle{{ with $style }} {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}
   <i class="{{ $icon }}"></i>
   {{- end }}

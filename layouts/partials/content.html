@@ -1,1 +1,4 @@
-{{- .Content }}
+{{- /* the following check avoids to print out content of headless bundles if called from nested-content.html */}}
+{{- if partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+	{{- .Content }}
+{{- end }}

@@ -1,15 +1,12 @@
-{{- $page := .page }}
-{{- $content := .content }}
-{{- with $page }}
-          <article class="home">
+
+          <article class="default">
             <header class="headline">
               {{- partial "content-header.html" . }}
             </header>
 {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
 
-{{ $content | safeHTML }}
+{{ partial "content.html" . | safeHTML }}
             <footer class="footline">
               {{- partial "content-footer.html" . }}
             </footer>
           </article>
-{{- end }}

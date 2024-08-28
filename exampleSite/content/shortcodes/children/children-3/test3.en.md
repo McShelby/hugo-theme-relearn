@@ -4,4 +4,4 @@ tags = ["children", "non-hidden"]
 title = "page 3-1"
 +++
 
-This is a plain demo child page.
+This is a plain demo child page 3-1.

@@ -7,4 +7,4 @@ title: "page X"
 weight: 1
 ---
 
-This is a plain demo child page.
+This is a plain demo child page X.

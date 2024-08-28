@@ -1,5 +1,6 @@
+{{- partialCached "page-meta.hugo" . .RelPermalink -}}
 <!DOCTYPE html>
-{{- $outputFormat := partial "output-format.hugo" . }}
+{{- block "storeOutputFormat" . }}{{ end }}
 {{- if eq . .Site.Sites.First.Home }}
   {{- $hugoVersion := "0.126.0" }}
   {{- if lt hugo.Version $hugoVersion }}
@@ -12,11 +13,10 @@
 <html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article">
   <head>
     {{- partial "meta.html" . }}
-    {{- $page := . }}
-    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
     {{- $title := partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}
     <title>{{ $title }}</title>
 
+    {{- /* multilingual stuff */}}
     {{- if .IsTranslated -}}
       {{- range $index, $trans := .AllTranslations }}
         {{- if eq $index 0 }}
@@ -26,8 +26,11 @@
       {{- end }}
     {{- end }}
 
+    {{- /* output formats */}}
     {{- if not (and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
     {{- else }}
+      {{- $page := . }}
+      {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
       {{- range .AlternativeOutputFormats }}
         {{- if eq .Rel "canonical" }}
     {{ (printf $link (partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
@@ -36,13 +39,12 @@
         {{- end }}
       {{- end }}
     {{- end }}
-
     {{- partialCached "favicon.html" . }}
     {{- partial "stylesheet.html" . }}
     {{- partial "dependencies.html" (dict "page" . "location" "header") }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support {{ $outputFormat }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
+  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -58,7 +60,7 @@
           </ol>
           {{- else }}
           <span class="topbar-breadcrumbs highlightable">
-            {{ .Title }}
+            {{ partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true) }}
           </span>
           {{- end }}
           <div class="topbar-area topbar-area-end" data-area="end">
@@ -66,7 +68,20 @@
           </div>
         </div>
       </nav>
-      {{- $hook := "styleclass" }}
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable {{ partialCached "archetype.hugo" (dict "hook" $hook "page" . "parameter" .) .RelPermalink $hook }}" tabindex="-1">
+      <main id="R-body-inner" class="highlightable{{ with or .Type "default" }} {{ . }}{{ end }}" tabindex="-1">
         <div class="flex-block-wrapper">
+{{- block "body" . }}{{ end }}
+        </div>
+      </main>
+{{- partial "custom-comments.html" . }}
+    </div>
+{{- block "menu" . }}{{ end }}
+{{- $assetBusting := partialCached "assetbusting.hugo" . }}
+    <script src="{{"js/clipboard.min.js" | relURL}}{{ $assetBusting }}" defer></script>
+    <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ $assetBusting }}" defer></script>
+{{- partial "dependencies.html" (dict "page" . "location" "footer") }}
+    <script src="{{"js/theme.js" | relURL}}{{ $assetBusting }}" defer></script>
+{{- partial "custom-footer.html" . }}
+  </body>
+</html>

@@ -1,7 +1,7 @@
 +++
-archetype = "chapter"
 hidden = true
 title = "Development"
+type = "chapter"
 weight = 4
 +++
 

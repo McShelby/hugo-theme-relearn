@@ -1,5 +1,5 @@
-{{- .page.Page.Store.Set "relearnIsNested" true }}
-{{- template "section-tree-print" dict "sect" .page "currentnode" .page }}
+{{- .Store.Set "relearnIsNested" true }}
+{{- template "section-tree-print" dict "sect" . "currentnode" . }}
 {{- define "section-tree-print" }}
   {{- $currentNode := .currentnode }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
@@ -29,7 +29,7 @@
   {{- $currentNode := .currentnode }}
   {{- with .sect }}
     {{- $page := . }}
-    {{- partialCached "nested-content.hugo" (dict "page" $page) $page.RelPermalink }}
+    {{- partialCached "nested-content.hugo" $page $page.RelPermalink }}
     {{- range $page.Site.Params.relearn.dependencies }}
       {{- $has := printf "has%s" .name }}
       {{- $hasnested := printf "relearnHasNested%s" .name }}

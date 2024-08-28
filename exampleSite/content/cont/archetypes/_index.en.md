@@ -25,8 +25,8 @@ This leads to a file with the following content
 
 ````toml {title="_index.md"}
 +++
-archetype = "home"
 title = "{{ replace .Name "-" " " | title }}"
+type = "home"
 +++
 
 Lorem Ipsum.
@@ -48,8 +48,8 @@ This leads to a file with the following content
 
 ````toml {title="_index.md"}
 +++
-archetype = "chapter"
 title = "{{ replace .Name "-" " " | title }}"
+type = "chapter"
 weight = 1
 +++
 
@@ -96,7 +96,7 @@ Define a template file in your project at `archetypes/<kind>.md` and make sure i
 
 ````toml {title="&lt;kind&gt;.md"}
 +++
-archetype = "<kind>"
+type = "<kind>"
 +++
 ````
 
