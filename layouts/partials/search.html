@@ -9,9 +9,11 @@
         {{- end }}
         {{- if not .Site.Params.disableSearchIndex }}
           {{- $url := path.Join .Site.LanguagePrefix (trim (or .Site.Params.searchIndexURL "searchindex.js") "/") }}
-          {{- $templateres := resources.Get "_relearn_searchindex.js" }}
-          {{- $resultres := $templateres | resources.ExecuteAsTemplate $url .Site.Home }}
-          {{- /* the following code causes Hugo to generate our file - although it is in comments */}}<!-- {{ $resultres.RelPermalink }} -->
+          {{- if .IsHome }}
+            {{- $templateres := resources.Get "_relearn_searchindex.js" }}
+            {{- $resultres := $templateres | resources.ExecuteAsTemplate $url .Site.Home }}
+            {{- /* the following code causes Hugo to generate our file - although it is in comments */}}<!-- {{ $resultres.RelPermalink }} -->
+          {{- end }}
         <script>
           window.index_js_url={{ (printf "%s%s" $url $assetBusting) | relLangURL }};
         </script>
