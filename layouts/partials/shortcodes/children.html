@@ -21,7 +21,7 @@
 
 {{- with $page -}}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
-  {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "by" $sortTerm) }}
+  {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
   {{- template "childs" dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
 {{- end }}
@@ -35,11 +35,11 @@
         {{- if hasPrefix $.style "h" }}
           {{- $num := sub ( int (trim $.style "h") ) 1 }}
           {{- $numn := add $num $.count }}
-{{ (printf "  <h%d>" $numn)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}{{ (printf "</h%d>" $numn)|safeHTML }}
+{{ (printf "  <h%d>" $numn)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}{{ (printf "</h%d>" $numn)|safeHTML }}
         {{- else if eq $.style "li" }}
-{{ (printf "  <%s>" $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}
+{{ (printf "  <%s>" $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}
         {{- else }}
-{{ (printf "  <%s>" $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
+{{ (printf "  <%s>" $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .Title }}</a>{{ else }}<span>{{ .Title }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
         {{- end }}
         {{- if $.description }}
           {{- with or .Description .Summary -}}
@@ -51,7 +51,7 @@
         {{- if eq $.style "li" }}
 {{- (printf "<%s>" $.containerstyle)|safeHTML }}
         {{- end }}
-        {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" . "by" $.sortTerm) }}
+        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
         {{- template "childs" dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
         {{- if eq $.style "li" }}
 {{- (printf "</%s>" $.containerstyle)|safeHTML }}

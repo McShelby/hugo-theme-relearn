@@ -3,11 +3,11 @@
             <header class="headline">
             </header>
 
-{{- $title := partial "pageHelper/title.hugo" (dict "page" .) }}
+{{- $title := partial "title.gotmpl" (dict "page" .) }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
 {{- $lastCapital := "" }}
-{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" . . }}
+{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . . }}
 {{- range $pages }}
   {{- $capital := substr .Title 0 1 | upper }}
   {{- if ne $lastCapital $capital }}
@@ -18,7 +18,7 @@
 <ul class="columnize">
   {{- end }}
   {{- /* display terms of a taxonomy */}}
-  <li><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Page) }}">{{ .Title }}</a> ({{ .Count }})</li>
+  <li><a href="{{ partial "permalink.gotmpl" (dict "to" .Page) }}">{{ .Title }}</a> ({{ .Count }})</li>
   {{- $lastCapital = $capital }}
 {{- end }}
 {{- if ne $lastCapital "" }}

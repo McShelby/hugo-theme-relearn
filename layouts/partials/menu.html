@@ -15,7 +15,7 @@
           {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#420" .File.Filename }}
         {{- end }}
         <ul>
-          <li><a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fa-fw fas fa-home"></i> Home` | safeHTML }}</a></li>
+          <li><a class="padding" href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fa-fw fas fa-home"></i> Home` | safeHTML }}</a></li>
         </ul>
       {{- end }}
         <hr class="padding">
@@ -23,7 +23,7 @@
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-topics">
           <ul class="enlarge morespace collapsible-menu">
-            {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .Site.Home) }}
+            {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" .Site.Home) }}
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
             {{- range $pages }}
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
@@ -40,7 +40,7 @@
               {{- $shortcut := . }}
               {{- with $page.Site.GetPage (printf "%s" $shortcut.URL ) }}
                 {{- $to := . }}
-            <li>{{ $shortcut.Pre }}<a class="padding" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ safeHTML $shortcut.Name }}</a>{{ $shortcut.Post }}</li>
+            <li>{{ $shortcut.Pre }}<a class="padding" href="{{ partial "permalink.gotmpl" (dict "to" $to) }}">{{ safeHTML $shortcut.Name }}</a>{{ $shortcut.Post }}</li>
               {{- else }}
             <li>{{ $shortcut.Pre }}<a class="padding" href="{{ $shortcut.URL | relLangURL }}">{{ safeHTML $shortcut.Name }}</a>{{ $shortcut.Post }}</li>
               {{- end }}
@@ -50,7 +50,7 @@
         {{- end }}
         {{- $siteLanguages := .Site.Languages }}
         {{- $showlangswitch := and hugo.IsMultilingual (not .Site.Params.disableLanguageSwitchingButton) (gt (int (len $siteLanguages)) 1) }}
-        {{- $themevariants := partialCached "get-theme-variants.hugo" . }}
+        {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
         {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
         {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
@@ -69,7 +69,7 @@
                       {{- $page := .Page }}
                       {{- $pageLang := .Page.Language.Lang }}
                       {{- range .Page.AllTranslations }}
-                      <option id="R-select-language-{{ .Language.Lang }}" value="#R-select-language-{{ .Language.Lang }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected{{ end }}>{{ .Language.LanguageName }}</option>
+                      <option id="R-select-language-{{ .Language.Lang }}" value="#R-select-language-{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected{{ end }}>{{ .Language.LanguageName }}</option>
                       {{- end }}
                     </select>
                   </div>
@@ -122,7 +122,7 @@
         {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
-        {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
+        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" .) }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}
@@ -135,8 +135,8 @@
             {{- $subHidden := and $relearnIsSubHiddenFrom (not $.showhidden) (not $isSelfSub) (not $isAncestorSub) }}
             {{- $numberOfVisibleChildren = add $numberOfVisibleChildren (int (not $subHidden)) }}
           {{- end }}
-          {{- $title := partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true) }}
-          {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+          {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
+          {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
           {{- safeHTML .Params.head }}
           {{- if $numberOfVisibleChildren }}
             {{- $isCollapsible := or (.Params.collapsibleMenu | default .Site.Params.collapsibleMenu) (not $url) }}

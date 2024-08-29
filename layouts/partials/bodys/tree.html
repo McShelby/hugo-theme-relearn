@@ -6,7 +6,7 @@
   {{- with .sect }}
     {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
     {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
-    {{- $pages := partial "pageHelper/pagesBy.html" (dict "page" .) }}
+    {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" .) }}
     {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
     {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
     {{- if $hidden }}
@@ -29,11 +29,11 @@
   {{- $currentNode := .currentnode }}
   {{- with .sect }}
     {{- $page := . }}
-    {{- partialCached "nested-content.hugo" $page $page.RelPermalink }}
+    {{- partialCached "_relearn/nestedContent.gotmpl" $page $page.RelPermalink }}
     {{- range $page.Site.Params.relearn.dependencies }}
       {{- $has := printf "has%s" .name }}
       {{- $hasnested := printf "relearnHasNested%s" .name }}
       {{- $currentNode.Page.Store.Set $hasnested (or ($currentNode.Page.Store.Get $hasnested) ($page.Page.Store.Get $has)) }}
-      {{- end }}
+    {{- end }}
   {{- end }}
 {{- end }}

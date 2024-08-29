@@ -18,7 +18,7 @@
 {{- if eq (printf "%T" $expanded) "string" }}
 	{{- $expanded = (eq $expanded "true") }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
 {{- with $page }}
   {{- if $hasContent -}}
 <div class="expand">

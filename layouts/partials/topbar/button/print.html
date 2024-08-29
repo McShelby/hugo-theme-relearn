@@ -5,7 +5,7 @@
 	{{- $printFormat := .OutputFormats.Get "print" }}
 	{{- $show := $printFormat }}
 	{{- if $show }}
-		{{- $show = not (partial "pageHelper/isRelearnSpecialPage.html" .) }}
+		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
 	{{- end }}
 	{{- if $show }}
 		{{- partial "topbar/func/button.html" (dict

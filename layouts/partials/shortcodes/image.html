@@ -74,7 +74,7 @@
   {{- $c := printf "%s%s" (cond $v "" "no") $k }}
   {{- $classes = $classes | append $c }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
 {{- $attributes = merge $attributes (dict "alt" $alt "src" $src "title" ($title | transform.HTMLEscape)) }}
 {{- if $effects.lazy }}
   {{- $attributes = merge $attributes (dict "loading" "lazy") }}

@@ -6,7 +6,7 @@
 {{- $u := urls.Parse .src }}
 {{- $src := $u.String }}
 {{- $spec := "" }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
 {{- if not $u.IsAbs }}
   {{- $path := strings.TrimPrefix "./" $u.Path }}
   {{- with or

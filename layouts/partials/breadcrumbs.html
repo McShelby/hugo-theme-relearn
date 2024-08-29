@@ -1,20 +1,20 @@
 {{- $page := .page }}
 {{- $to := $page }}
-{{- $pageurl := partial "relLangPrettyUglyURL.hugo" (dict "to" $page) }}
-{{- $lasturl := partial "relLangPrettyUglyURL.hugo" (dict "to" $page) }}
+{{- $pageurl := partial "permalink.gotmpl" (dict "to" $page) }}
+{{- $lasturl := partial "permalink.gotmpl" (dict "to" $page) }}
 {{- if .dirOnly }}
   {{- $page = $page.Parent }}
   {{- $to = $page }}
-  {{- $lasturl = partial "relLangPrettyUglyURL.hugo" (dict "to" $page) }}
+  {{- $lasturl = partial "permalink.gotmpl" (dict "to" $page) }}
 {{- end }}
-{{- $depth := add 1 (int (partial "pageHelper/depth.hugo" (dict "page" $page))) }}
+{{- $depth := add 1 (int (partial "_relearn/pageDepth.gotmpl" (dict "page" $page))) }}
 {{- if .page.Site.Params.disableRootBreadcrumb }}
   {{- $depth = add $depth -1 }}
 {{- end }}
 {{- $breadcrumb := slice }}
 {{- range seq $depth }}
   {{- if $to }}
-    {{- if partial "pageHelper/isRelearnSpecialPage.html" $to }}
+    {{- if partial "_relearn/pageIsSpecial.gotmpl" $to }}
       {{- break }}
     {{- else if or $to.Title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
       {{- $breadcrumb = $breadcrumb | append $to }}
@@ -33,8 +33,8 @@
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e }}
   {{- $depth = add $depth 1 }}
-  {{- $title := partial "pageHelper/title.hugo" (dict "page" $to "linkTitle" true) }}
-  {{- $url := partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}
+  {{- $title := partial "title.gotmpl" (dict "page" $to "linkTitle" true) }}
+  {{- $url := partial "permalink.gotmpl" (dict "to" $to) }}
   {{- $isPage := eq $url $pageurl }}
   {{- $isLast := eq $url $lasturl }}
   {{- $link := and $url (not $isPage) }}

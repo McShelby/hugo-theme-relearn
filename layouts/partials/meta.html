@@ -14,7 +14,7 @@
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
     <meta name="description" content="{{ with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}{{ . }}{{ end }}">
-    {{- $authorName := partialCached "authorname.hugo" . }}
+    {{- $authorName := partialCached "_relearn/authorName.gotmpl" . }}
     <meta name="author" content="{{ $authorName }}">
     {{- partial "twitter_cards.html" . }}
     {{- partial "opengraph.html" . }}

@@ -12,18 +12,18 @@
 		{{- if eq .Page.Kind "term" }}
 			{{- /* go to next term page */}}
 			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" $taxonomy_page $taxonomy_page }}
-			{{- $next = partial "partials/pageHelper/next.html" (dict "collection" $pages "item" .) }}
+			{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" $taxonomy_page $taxonomy_page }}
+			{{- $next = partial "partials/_relearn/pageNext.gotmpl" (dict "collection" $pages "item" .) }}
 		{{- else if eq .Page.Kind "taxonomy" }}
 			{{- /* go to first term page */}}
-			{{- $pages := partialCached "partials/pageHelper/taxonomyPages.html" . . }}
+			{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . . }}
 			{{- $next = (index $pages 0).Page }}
 		{{- end }}
-		{{- $nextTitle := partial "pageHelper/title.hugo" (dict "page" $next "outputFormat" "html") }}
+		{{- $nextTitle := partial "title.gotmpl" (dict "page" $next "outputFormat" "html") }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-next"
-			"href" (partial "relLangPrettyUglyURL.hugo" (dict "to" $next))
+			"href" (partial "permalink.gotmpl" (dict "to" $next))
 			"icon" "chevron-right"
 			"onwidths" $onwidths
 			"onwidthm" $onwidthm

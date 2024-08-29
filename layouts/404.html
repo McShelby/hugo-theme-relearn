@@ -1,10 +1,10 @@
-{{- partialCached "page-meta.hugo" . .RelPermalink }}
+{{- partialCached "relearn-meta.gotmpl" . .RelPermalink }}
 {{- .Store.Set "relearnOutputFormat" "notfound" -}}
 <!DOCTYPE html>
 <html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article">
   <head>
     {{- partial "meta.html" . }}
-    {{- $title := partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) }}
+    {{- $title := partial "title.gotmpl" (dict "page" . "fullyQualified" true "reverse" true) }}
     <title>{{ $title }}</title>
 
     {{- /* because this file can be called from literally any URL inside your project, we need to base all relative URLs to make them work */}}
@@ -14,7 +14,7 @@
     {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}" data-url="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}">
+  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
     <div id="R-body" class="default-animation">
       <main id="R-body-inner" class="highlightable chapter" tabindex="-1">
         <div class="flex-block-wrapper">
@@ -24,7 +24,7 @@
             <p></p>
             <p>{{ T "message-404" }}</p>
             <p></p>
-            <p><a href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" .Site.Home) }}">{{ T "Go-to-homepage" }}</a></p>
+            <p><a href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">{{ T "Go-to-homepage" }}</a></p>
             <p id="shrug">
               <svg xmlns="http://www.w3.org/2000/svg"
  viewBox="0 0 512.000000 512.000000"

@@ -1,11 +1,11 @@
 {{- /* based on Hugo 0.125.5 opengraph.html */}}
-    <meta property="og:url" content="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" . "abs" true) }}">
+    <meta property="og:url" content="{{ partial "permalink.gotmpl" (dict "to" . "abs" true) }}">
 
 {{- with site.Title | plainify }}
     <meta property="og:site_name" content="{{ . }}">
 {{- end }}
 
-{{- with partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) | plainify }}
+{{- with partial "title.gotmpl" (dict "page" . "fullyQualified" true "reverse" true) | plainify }}
     <meta property="og:title" content="{{ . }}">
 {{- end }}
 
@@ -17,10 +17,10 @@
     <meta property="og:locale" content="{{ replace . `-` `_` }}">
 {{- end }}
 
-{{- if and .IsPage (not (partial "pageHelper/isRelearnSpecialPage.html" .)) }}
+{{- if and .IsPage (not (partial "_relearn/pageIsSpecial.gotmpl" .)) }}
     <meta property="og:type" content="article">
   {{- with .FirstSection }}
-    <meta property="article:section" content="{{ partial "pageHelper/title.hugo" (dict "page" .) | plainify }}">
+    <meta property="article:section" content="{{ partial "title.gotmpl" (dict "page" .) | plainify }}">
   {{- end }}
   {{- $iso8601 := "2006-01-02T15:04:05-07:00" }}
   {{- with or .PublishDate .Date }}
@@ -30,7 +30,7 @@
     <meta property="article:modified_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
   {{- end }}
   {{- range .GetTerms "tags" | first 6 }}
-    <meta property="article:tag" content="{{ partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true) | plainify }}">
+    <meta property="article:tag" content="{{ partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify }}">
   {{- end }}
 {{- else }}
     <meta property="og:type" content="website">

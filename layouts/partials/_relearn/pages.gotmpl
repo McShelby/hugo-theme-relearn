@@ -33,7 +33,7 @@
 
 {{- $filtered_pages := slice }}
 {{- range $pages }}
-	{{- if not (partial "pageHelper/isRelearnSpecialPage.html" .) }}
+	{{- if not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
 		{{- $filtered_pages = $filtered_pages | append . }}
 	{{- end }}
 {{- end }}

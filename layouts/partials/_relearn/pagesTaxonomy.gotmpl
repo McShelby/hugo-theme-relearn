@@ -8,7 +8,7 @@
     {{- end }}
   {{- end }}
   {{- if $count }}
-    {{- $pages = $pages| append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true)) "Page" .Page "Count" $count )}}
+    {{- $pages = $pages| append (dict "Title" (partial "title.gotmpl" (dict "page" .Page "linkTitle" true)) "Page" .Page "Count" $count )}}
   {{- end }}
 {{- end }}
 {{- $pages = sort $pages ".Title" }}

@@ -3,7 +3,7 @@
   {{- $page = .context }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#5180" $page.File.Filename }}
 {{- end }}
-{{- $groupid := .groupid | default (partial "make-random-md5.hugo" $page) | plainify | anchorize }}
+{{- $groupid := .groupid | default (partial "_relearn/makeRandomMd5.gotmpl" $page) | plainify | anchorize }}
 {{- $color := .color }}
 {{- $style := .style }}
 {{- $title := .title }}

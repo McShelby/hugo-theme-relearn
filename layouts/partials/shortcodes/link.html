@@ -62,7 +62,7 @@
   {{- end }}
   {{- $errorlevel := or $page.Params.link.errorlevel $page.Site.Params.link.errorlevel }}
   {{- with $linkPage }}
-    {{- $href = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+    {{- $href = partial "permalink.gotmpl" (dict "to" .) }}
     {{- with $u.RawQuery }}
       {{- $href = printf "%s?%s" $href . }}
     {{- end }}

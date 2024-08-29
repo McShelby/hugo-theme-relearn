@@ -3,7 +3,7 @@
 {{- $depth := .depth | default 0 }}
 {{- with $page.Parent }}
   {{- $depth = add $depth 1 }}
-  {{- partial "pageHelper/depth.hugo" (dict "page" . "depth" $depth) }}
+  {{- partial "_relearn/pageDepth.gotmpl" (dict "page" . "depth" $depth) }}
 {{- else }}
   {{- $depth }}
 {{- end }}

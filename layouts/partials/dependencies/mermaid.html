@@ -2,7 +2,7 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- $assetBusting := partialCached "assetbusting.hugo" . }}
+    {{- $assetBusting := partialCached "_relearn/assetbusting.gotmpl" . }}
     <script src="{{"js/d3/d3-color.min.js" | relURL}}{{ $assetBusting }}" defer></script>
     <script src="{{"js/d3/d3-dispatch.min.js" | relURL}}{{ $assetBusting }}" defer></script>
     <script src="{{"js/d3/d3-drag.min.js" | relURL}}{{ $assetBusting }}" defer></script>

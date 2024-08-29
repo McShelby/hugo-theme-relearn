@@ -1,5 +1,5 @@
 {{- /* based on Hugo 0.125.5 schema.html */}}
-{{- with partial "pageHelper/title.hugo" (dict "page" . "fullyQualified" true "reverse" true) | plainify }}
+{{- with partial "title.gotmpl" (dict "page" . "fullyQualified" true "reverse" true) | plainify }}
     <meta itemprop="name" content="{{ . }}">
 {{- end }}
 
@@ -36,17 +36,17 @@ Keywords precedence:
 */}}
 {{- $keywords := slice }}
 {{- range .GetTerms "keywords" }}
-  {{- $keywords = $keywords | append (partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true) | plainify) }}
+  {{- $keywords = $keywords | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify) }}
 {{- else }}
   {{- with .Keywords }}
     {{- $keywords = . }}
   {{- else }}
     {{- range .GetTerms "tags" }}
-      {{- $keywords = $keywords | append (partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true) | plainify) }}
+      {{- $keywords = $keywords | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify) }}
     {{- else }}
       {{- range $taxonomy, $_ := site.Taxonomies }}
         {{- range $.GetTerms $taxonomy }}
-          {{- $keywords = $keywords | append (partial "pageHelper/title.hugo" (dict "page" .Page "linkTitle" true) | plainify) }}
+          {{- $keywords = $keywords | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify) }}
         {{- end }}
       {{- end }}
     {{- end }}

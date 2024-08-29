@@ -14,9 +14,9 @@
 {{- $taxonomy_page := $page.Site.GetPage $taxonomy }}
 {{- $term_pages := slice }}
 {{- range $page.GetTerms $taxonomy }}
-  {{- $term_pages = $term_pages | append (dict "Title" (partial "pageHelper/title.hugo" (dict "page" . "linkTitle" true)) "Term" . )}}
+  {{- $term_pages = $term_pages | append (dict "Title" (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "Term" . )}}
 {{- end }}
-{{- $taxonomy_title := partial "pageHelper/title.hugo" (dict "page" $taxonomy_page) }}
+{{- $taxonomy_title := partial "title.gotmpl" (dict "page" $taxonomy_page) }}
 {{- with $term_pages }}
 <div class="R-taxonomy taxonomy-{{ $taxonomy }} cstyle{{ with $style }} {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}
@@ -25,7 +25,7 @@
   <ul>
   {{- range sort . ".Title" }}
     {{- $to := .Term }}
-    <li><a class="term-link" href="{{ partial "relLangPrettyUglyURL.hugo" (dict "to" $to) }}">{{ .Title }}</a></li>
+    <li><a class="term-link" href="{{ partial "permalink.gotmpl" (dict "to" $to) }}">{{ .Title }}</a></li>
   {{- end }}
   </ul>
 </div>

@@ -1,5 +1,5 @@
       {{- if not .Site.Params.disableSearch }}
-        {{- $assetBusting := partialCached "assetbusting.hugo" . }}
+        {{- $assetBusting := partialCached "_relearn/assetbusting.gotmpl" . }}
         {{- $link := "" }}
         {{- with .Site.Home.OutputFormats.Get "json" }}
           {{- warnf "UNSUPPORTED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#600" }}
@@ -17,7 +17,7 @@
         </script>
           {{- if not .Site.Params.disableSearchPage }}
             {{- with .Site.GetPage "_relearn_searchpage" }}
-              {{- $link = partial "relLangPrettyUglyURL.hugo" (dict "to" .) }}
+              {{- $link = partial "permalink.gotmpl" (dict "to" .) }}
             {{- end }}
           {{- end }}
         {{- end }}
@@ -35,7 +35,7 @@
         {{- $missingcontentlangs := slice }}
         {{- range $contentlangs }}
           {{- $f := printf "/static/js/lunr/lunr.%s.min.js" . }}
-          {{- if partialCached "fileExists.hugo" $f $f }}
+          {{- if partialCached "_relearn/fileExists.gotmpl" $f $f }}
             {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
           {{- else }}
             {{- $missingcontentlangs = $missingcontentlangs | append . }}
