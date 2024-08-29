@@ -1,7 +1,8 @@
----
-description: "UI for your OpenAPI / Swagger specifications"
-title: "OpenAPI"
----
++++
+aliases = "/shortcodes/swagger"
+description = "UI for your OpenAPI / Swagger specifications"
+title = "OpenAPI"
++++
 
 The `openapi` shortcode uses the [Swagger UI](https://github.com/swagger-api/swagger-ui) library to display your OpenAPI / Swagger specifications.
 

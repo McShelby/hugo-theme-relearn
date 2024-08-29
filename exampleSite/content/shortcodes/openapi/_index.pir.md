@@ -1,5 +1,6 @@
----
-description: "Adds UI fer yer OpenAPI / Swaggerrr Specificat'ns"
-title: "OpenAPI"
----
++++
+aliases = "/pir/shortcodes/swagger"
+description = "Adds UI fer yer OpenAPI / Swaggerrr Specificat'ns"
+title = "OpenAPI"
++++
 {{< piratify >}}
