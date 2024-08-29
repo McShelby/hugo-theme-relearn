@@ -157,6 +157,11 @@ function initMermaid( update, attrs ) {
         txt.innerHTML = html;
         return txt.value;
     };
+    var encodeHTML = function( text ){
+        var html = document.createElement( 'textarea' );
+        html.textContent = text;
+        return html.innerHTML;
+    };
 
     var parseGraph = function( graph ){
         // See https://github.com/mermaid-js/mermaid/blob/9a080bb975b03b2b1d4ef6b7927d09e6b6b62760/packages/mermaid/src/diagram-api/frontmatter.ts#L10
@@ -207,7 +212,7 @@ function initMermaid( update, attrs ) {
             }
             is_initialized = true;
 
-            var graph = serializeGraph( parse );
+            var graph = encodeHTML( serializeGraph( parse ) );
             var new_element = document.createElement( 'div' );
             Array.from( element.attributes ).forEach( function( attr ){
                 new_element.setAttribute( attr.name, attr.value );
@@ -253,7 +258,7 @@ function initMermaid( update, attrs ) {
             is_initialized = true;
 
             parse.yaml.theme = theme;
-            var graph = serializeGraph( parse );
+            var graph = encodeHTML( serializeGraph( parse ) );
             element.removeAttribute('data-processed');
             element.innerHTML = graph;
             code.innerHTML = graph;
