@@ -23,7 +23,7 @@
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-topics">
           <ul class="enlarge morespace collapsible-menu">
-            {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" .Site.Home) }}
+            {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .Site.Home) .Site.Home.Path }}
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
             {{- range $pages }}
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
@@ -122,7 +122,7 @@
         {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
-        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" .) }}
+        {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}

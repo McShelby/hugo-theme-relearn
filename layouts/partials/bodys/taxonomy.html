@@ -7,7 +7,7 @@
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
 {{- .Content }}
 {{- $lastCapital := "" }}
-{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . . }}
+{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . .Path }}
 {{- range $pages }}
   {{- $capital := substr .Title 0 1 | upper }}
   {{- if ne $lastCapital $capital }}

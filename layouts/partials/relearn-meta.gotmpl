@@ -65,7 +65,7 @@ section: {{- .Section }}
 		{{- end }}
 	{{- end }}
 
-	{{- $pages := partial "_relearn/pages.gotmpl" (dict "page" .node) }}
+	{{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .node) .node.Path }}
 	{{- range $pages }}
 		{{- template "relearn-structure" dict "node" . "currentnode" $currentNode "hiddenstem" $hidden_stem "hiddencurrent" $hidden_from_current }}
 	{{- end }}
