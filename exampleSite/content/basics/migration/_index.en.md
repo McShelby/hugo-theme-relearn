@@ -20,6 +20,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 ## 6.3.0.beta (XXXX-XX-XX) {#630}
 
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`expand` shortcode](shortcodes/expand) changed the naming of the `open` parameter to `expanded`. You don't need to change anything yet but may get deprecation warnings.
+
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} If the content for the [`notice` shortcode](shortcodes/notice) is empty, now only the title bar will be displayed. Previously an empty content box was displayed.
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`notice` shortcode](shortcodes/notice) has a new parameter `expanded` to make the content collapsible.
