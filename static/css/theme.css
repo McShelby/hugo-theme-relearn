@@ -710,7 +710,9 @@ div.box {
 
 div.box > .box-label {
     font-weight: 500;
-    padding: .2rem .6rem;
+    margin-left: .6rem;
+    margin-right: .6rem;
+    padding: .2rem 0;
 }
 
 div.box > .box-content {
@@ -732,8 +734,8 @@ p:empty {
 #R-body table td > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
 #R-body div.box > .box-content > :nth-child(1 of :not(:empty)),
 #R-body div.box > .box-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content-text > :nth-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
+#R-body div.expand > .expand-content > :nth-child(1 of :not(:empty)),
+#R-body div.expand > .expand-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
 #R-body div.tab-content > .tab-content-text > :nth-child(1 of :not(:empty)),
 #R-body div.tab-content > .tab-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
     margin-top: 0;
@@ -748,9 +750,9 @@ p:empty {
 #R-body div.box > .box-content > :nth-last-child(1 of :not(:empty)),
 #R-body div.box > .box-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body div.box > .box-content > div:last-child pre:not(.mermaid),
-#R-body div.expand > .expand-content-text > :nth-last-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content-text > div:last-child pre:not(.mermaid),
+#R-body div.expand > .expand-content > :nth-last-child(1 of :not(:empty)),
+#R-body div.expand > .expand-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body div.expand > .expand-content > div:last-child pre:not(.mermaid),
 #R-body div.tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)),
 #R-body div.tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body div.tab-content > .tab-content-text > div:last-child pre:not(.mermaid) {
@@ -1390,8 +1392,6 @@ option {
     display: inline;
     font-weight: 300;
     inset-inline-start: 0;
-    line-height: 1.1;
-    margin-top: .2rem;
     position: absolute;
 }
 
@@ -1401,7 +1401,7 @@ option {
     text-decoration: underline;
 }
 
-.expand > label > .fas {
+.expand > label > .expander-icon {
     font-size: .8rem;
     width: .6rem;
 }
@@ -1410,8 +1410,16 @@ option {
     margin-inline-start: 1rem;
     margin-top: .5rem;
 }
+.box.expand > .expand-content {
+    margin-inline-start: 0;
+    margin-top: .4rem;
+}
+.box.expand > .box-spacer {
+    margin-bottom: .4rem;
+}
+
 /* closed expander */
-.expand > input + label + div {
+.expand > input + label ~ .expand-content {
     display: none;
 }
 
@@ -1423,7 +1431,7 @@ option {
 }
 
 /* open expander */
-.expand > input:checked + label + div {
+.expand > input:checked + label ~ .expand-content {
 	display: block;
 }
 

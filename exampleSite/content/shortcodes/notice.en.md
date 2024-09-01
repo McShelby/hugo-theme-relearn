@@ -59,12 +59,13 @@ It is all about the boxes.
 
 ### Parameter
 
-| Name      | Position | Default   | Notes       |
-|-----------|----------|-----------|-------------|
-| **style** | 1        | `default` | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
-| **color** |          | see notes | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
-| **title** | 2        | see notes | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| **icon**  | 3        | see notes | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| Name                  | Position | Default         | Notes       |
+|-----------------------|----------|-----------------|-------------|
+| **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
+| **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
+| **title**             | 2        | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **expanded**          |          | _&lt;empty&gt;_ | Whether to draw an expander and how the content is displayed.<br><br>- _&lt;empty&gt;_: the content is shown but not collapsible<br>- `true`: the expander is drawn and the content is initially shown<br>- `false`: the expander is drawn and the content is initially hidden |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
 
 ## Configuration
@@ -82,139 +83,59 @@ This example reflects the default configuration also used if you don't set anyth
 
 ## Examples
 
-### By Severity
+### By Severity Using Markdown Syntax
 
-#### Caution with markup
+````md
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 
-````go
-{{%/* notice style="caution" */%}}
-An **caution** disclaimer
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
-You can add standard markdown syntax:
+> [!INFO]
+> Information that users <ins>_might_</ins> find interesting.
 
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even ***bold emphasized*** text
-- [links](https://example.com)
-- etc.
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
 
-```plaintext
-...and even source code
-```
+> [!TIP]
+> Helpful advice for doing things better or more easily.
 
-> the possibilities are endless (almost - including other shortcodes may or may not work)
-{{%/* /notice */%}}
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
 ````
 
-{{% notice style="caution" %}}
-An **caution** disclaimer
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 
-You can add standard markdown syntax:
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even **_bold emphasized_** text
-- [links](https://example.com)
-- etc.
+> [!INFO]
+> Information that users <ins>_might_</ins> find interesting.
 
-```plaintext
-...and even source code
-```
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
 
-> the possibilities are endless (almost - including other shortcodes may or may not work)
-{{% /notice %}}
+> [!TIP]
+> Helpful advice for doing things better or more easily.
 
-#### Important
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
 
-````go
-{{%/* notice style="important" */%}}
-A **important** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="important" %}}
-A **important** disclaimer
-{{% /notice %}}
-
-#### Info
-
-````go
-{{%/* notice style="info" */%}}
-A **information** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="info" %}}
-A **information** disclaimer
-{{% /notice %}}
-
-#### Note
-
-````go
-{{%/* notice style="note" */%}}
-A **notice** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="note" %}}
-A **notice** disclaimer
-{{% /notice %}}
-
-#### Tip
-
-````go
-{{%/* notice style="tip" */%}}
-A **tip** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="tip" %}}
-A **tip** disclaimer
-{{% /notice %}}
-
-#### Warning
-
-````go
-{{%/* notice style="warning" */%}}
-A **warning** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="warning" %}}
-A **warning** disclaimer
-{{% /notice %}}
-
-#### Warning with Non-Default Title and Icon
-
-````go
-{{%/* notice style="warning" title="Here are dragons" icon="dragon" */%}}
-A **warning** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="warning" title="Here are dragons" icon="dragon" %}}
-A **warning** disclaimer
-{{% /notice %}}
-
-#### Warning without a Title and Icon
-
-````go
-{{%/* notice style="warning" title=" " icon=" " */%}}
-A **warning** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="warning" title=" " icon=" " %}}
-A **warning** disclaimer
-{{% /notice %}}
-
-### By Brand Colors
-
-#### Primary with Title only
+### By Brand Colors with Title and Icon Variantion
 
 ````go
 {{%/* notice style="primary" title="Primary" */%}}
 A **primary** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="secondary" icon="stopwatch" */%}}
+A **secondary** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="accent" */%}}
+An **accent** disclaimer
 {{%/* /notice */%}}
 ````
 
@@ -222,37 +143,43 @@ A **primary** disclaimer
 A **primary** disclaimer
 {{% /notice %}}
 
-#### Secondary with Icon only
-
-````go
-{{%/* notice style="secondary" icon="stopwatch" */%}}
-A **secondary** disclaimer
-{{%/* /notice */%}}
-````
-
 {{% notice style="secondary" icon="stopwatch" %}}
 A **secondary** disclaimer
 {{% /notice %}}
-
-#### Accent
-
-````go
-{{%/* notice style="accent" */%}}
-An **accent** disclaimer
-{{%/* /notice */%}}
-````
 
 {{% notice style="accent" %}}
 An **accent** disclaimer
 {{% /notice %}}
 
-### By Color
-
-#### Blue without a Title and Icon
+### By Color with Title and Icon Variantion
 
 ````go
 {{%/* notice style="blue" */%}}
 A **blue** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="cyan" title="Cyan" */%}}
+A **cyan** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="green" title="Green" */%}}
+A **green** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="grey" icon="bug" */%}}
+A **grey** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="magenta" title="Magenta" */%}}
+A **magenta** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="orange" title="Orange" icon="bug" */%}}
+A **orange** disclaimer
+{{%/* /notice */%}}
+
+{{%/* notice style="red" */%}}
+A **red** disclaimer
 {{%/* /notice */%}}
 ````
 
@@ -260,49 +187,25 @@ A **blue** disclaimer
 A **blue** disclaimer
 {{% /notice %}}
 
-#### Green with Title only
-
-````go
-{{%/* notice style="green" title="Green" */%}}
-A **green** disclaimer
-{{%/* /notice */%}}
-````
+{{% notice style="cyan" title="Cyan" %}}
+A **cyan** disclaimer
+{{% /notice %}}
 
 {{% notice style="green" title="Green" %}}
 A **green** disclaimer
 {{% /notice %}}
 
-#### Grey with Icon only
-
-````go
-{{%/* notice style="grey" icon="bug" */%}}
-A **grey** disclaimer
-{{%/* /notice */%}}
-````
-
 {{% notice style="grey" icon="bug" %}}
 A **grey** disclaimer
 {{% /notice %}}
 
-#### Orange with Title and Icon
-
-````go
-{{%/* notice style="orange" title="Orange" icon="bug" */%}}
-A **orange** disclaimer
-{{%/* /notice */%}}
-````
+{{% notice style="magenta" title="Magenta" %}}
+A **magenta** disclaimer
+{{% /notice %}}
 
 {{% notice style="orange" title="Orange" icon="bug" %}}
 A **orange** disclaimer
 {{% /notice %}}
-
-#### Red without a Title and Icon
-
-````go
-{{%/* notice style="red" */%}}
-A **red** disclaimer
-{{%/* /notice */%}}
-````
 
 {{% notice style="red" %}}
 A **red** disclaimer
@@ -334,14 +237,41 @@ Some serious information.
 Some serious information.
 {{% /notice %}}
 
-### With User-Defined Color, Font Awesome Brand Icon and Markdown Title
+### Various Features
+
+#### With User-Defined Color, Font Awesome Brand Icon and Markdown in Title and Content
 
 ````go
-{{%/* notice color="fuchsia" title="**Hugo**" icon="fa-fw fab fa-hackerrank" */%}}
-Victor? Is it you?
+{{% include "shortcodes/include/INCLUDE_ME.md" %}}
+````
+
+{{% notice color="fuchsia" title="**Hugo** is _awesome_" icon="fa-fw fab fa-hackerrank" %}}
+{{% include "shortcodes/include/INCLUDE_ME.md" %}}
+{{% /notice %}}
+
+#### Expandable Content Area
+
+````go
+{{%/* notice style="primary" title="Expand me..." expanded="true" */%}}
+No need to press you!
 {{%/* /notice */%}}
 ````
 
-{{% notice color="fuchsia" title="**Hugo**" icon="fa-fw fab fa-hackerrank" %}}
-Victor? Is it you?
+{{% notice style="primary" title="Expand me..." expanded="true" %}}
+No need to press you!
+{{% /notice %}}
+
+````go
+{{%/* notice style="primary" title="Expand me..." expanded="false" */%}}
+Thank you!
+{{%/* /notice */%}}
+````
+
+{{% notice style="primary" title="Expand me..." expanded="false" %}}
+Thank you!
+{{% /notice %}}
+
+#### No Content
+
+{{% notice style="accent" title="Just a bar" %}}
 {{% /notice %}}
