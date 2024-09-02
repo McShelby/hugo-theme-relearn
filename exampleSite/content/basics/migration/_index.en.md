@@ -26,6 +26,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`notice` shortcode](shortcodes/notice) has a new parameter `expanded` to make the content collapsible.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 11.1.0. This adds support for [packet](shortcodes/mermaid#packet) and [architecture](shortcodes/mermaid#architecture) diagrams.
+
 ---
 
 ## 6.2.0 (2024-08-26) {#620}
