@@ -279,10 +279,10 @@ Just a box
 #### Markdown Styled Alerts
 
 ````go
-> [!tip] Callouts can have custom titles
+> [!caution] Callouts can have custom titles
 > Like this one.
 
-> [!tip] Title-only callout
+> [!caution] Title-only callout
 
 > [!note]- Are callouts foldable?
 > Yes! In a foldable callout, the contents are hidden when the callout is collapsed
@@ -290,9 +290,9 @@ Just a box
 > [!note]+ Are callouts foldable?
 > Yes! In a foldable callout, the contents are hidden when the callout is collapsed
 
-> [!important] Can callouts be nested?
-> > [!note] Yes!, they can.
-> > > [!important]  You can even use multiple layers of nesting.
+> [!info] Can callouts be nested?
+> > [!important] Yes!, they can.
+> > > [!tip]  You can even use multiple layers of nesting.
 ````
 
 > [!caution] Callouts can have custom titles
@@ -306,6 +306,6 @@ Just a box
 > [!note]+ Are callouts foldable?
 > Yes! In a foldable callout, the contents are hidden when the callout is collapsed
 
-> [!blue] Can callouts be nested?
-> > [!cyan] Yes!, they can.
-> > > [!green]  You can even use multiple layers of nesting.
+> [!info] Can callouts be nested?
+> > [!important] Yes!, they can.
+> > > [!tip]  You can even use multiple layers of nesting.
