@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 6.3.0.beta (XXXX-XX-XX) {#630}
+## 6.3.0 (2024-09-03) {#630}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`expand` shortcode](shortcodes/expand) changed the naming of the `open` parameter to `expanded`. You don't need to change anything yet but may get deprecation warnings.
 
