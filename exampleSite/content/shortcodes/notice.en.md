@@ -17,7 +17,7 @@ While the examples are using shortcodes with named parameter you are free to use
 {{% tab title="markdown" %}}
 
 ````md
-> [!NOTE]
+> [!primary] There may be pirates
 > It is all about the boxes.
 ````
 
@@ -295,10 +295,10 @@ Just a box
 > > > [!important]  You can even use multiple layers of nesting.
 ````
 
-> [!tip] Callouts can have custom titles
+> [!caution] Callouts can have custom titles
 > Like this one.
 
-> [!tip] Title-only callout
+> [!caution] Title-only callout
 
 > [!note]- Are callouts foldable?
 > Yes! In a foldable callout, the contents are hidden when the callout is collapsed
@@ -306,6 +306,6 @@ Just a box
 > [!note]+ Are callouts foldable?
 > Yes! In a foldable callout, the contents are hidden when the callout is collapsed
 
-> [!important] Can callouts be nested?
-> > [!note] Yes!, they can.
-> > > [!important]  You can even use multiple layers of nesting.
+> [!blue] Can callouts be nested?
+> > [!cyan] Yes!, they can.
+> > > [!green]  You can even use multiple layers of nesting.
