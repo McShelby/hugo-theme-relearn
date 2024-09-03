@@ -38,9 +38,11 @@ If not otherwise noted, the shown examples adhere to the [Commonmark](https://co
 
 - {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} [Hugo Extra Extension](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) supported by Hugo.
 
-- {{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} Extension specific to this theme.
+- {{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Extension implemented by [Obsidian](https://obsidian.md/).
 
 - {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed, the theme supports styling for further HTML elements.
+
+- {{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} Extension specific to this theme.
 
 ## Paragraphs
 
@@ -117,6 +119,8 @@ Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis in
 
 ## Blockquotes
 
+### Quotations
+
 For quoting blocks of content from another source within your document add `>` before any text you want to quote.
 
 Blockquotes can also be nested.
@@ -137,7 +141,7 @@ Blockquotes can also be nested.
 > Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
 {{% /notice %}}
 
-## Alerts
+### GitHub Styled Alerts
 
 {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} [GitHub styled alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
 
@@ -181,6 +185,36 @@ If you are in need of more advanced options to style your alerts, use the [notic
 
 > [!WARNING]
 > Urgent info that needs immediate user attention to avoid problems.
+{{% /notice %}}
+
+### Obsidian Styled Alerts
+
+{{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.134.0{{% /badge %}} [Obsidian styled alerts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
+
+````md
+> [!tip] Callouts can have custom titles
+> Like this one.
+
+> [!tip] Title-only callout
+
+> [!note]- Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+
+> [!note]+ Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+````
+
+{{% notice style="code" icon="eye" title="Result" %}}
+> [!tip] Callouts can have custom titles
+> Like this one.
+
+> [!tip] Title-only callout
+
+> [!note]- Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+
+> [!note]+ Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
 {{% /notice %}}
 
 ## Text Markers

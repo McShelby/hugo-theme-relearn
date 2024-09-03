@@ -11,9 +11,7 @@ It is all about the boxes.
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to use positional as well, use it as [GitHub styled alerts](/cont/markdown#alerts) or also call this shortcode from your own partials.
-
-Note that if you want to use GitHub styled alerts Markdown, this is only available starting with Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.132.0{{% /badge %}}. In this case no parameter from the below table are available.
+While the examples are using shortcodes with named parameter you are free to use positional as well, use it as [GitHub](/cont/markdown#github-styled-alerts) or [Obsidian](/cont/markdown#obsidian-styled-alerts) styled alerts and also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="markdown" %}}
@@ -68,19 +66,6 @@ It is all about the boxes.
 | **expanded**          |          | _&lt;empty&gt;_ | Whether to draw an expander and how the content is displayed.<br><br>- _&lt;empty&gt;_: the content is shown but not collapsible<br>- `true`: the expander is drawn and the content is initially shown<br>- `false`: the expander is drawn and the content is initially hidden |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
 
-## Configuration
-
-If you are using [GitHub styled alerts](/cont/markdown#alerts), by default the theme also accepts alert levels like `info` not known to GitHub's implementation. If this interferes with your layout, you can turn this extension off by setting `disableBlockquoteNoticeSupport=true` in your `hugo.toml`.
-
-### Global Configuration File
-
-This example reflects the default configuration also used if you don't set anything explicitly.
-
-{{< multiconfig file=hugo >}}
-[params]
-  disableBlockquoteNoticeSupport = false
-{{< /multiconfig >}}
-
 ## Examples
 
 ### By Severity Using Markdown Syntax
@@ -130,11 +115,11 @@ This example reflects the default configuration also used if you don't set anyth
 A **primary** disclaimer
 {{%/* /notice */%}}
 
-{{%/* notice style="secondary" icon="stopwatch" */%}}
+{{%/* notice style="secondary" title="Secondary" */%}}
 A **secondary** disclaimer
 {{%/* /notice */%}}
 
-{{%/* notice style="accent" */%}}
+{{%/* notice style="accent" icon="stopwatch" */%}}
 An **accent** disclaimer
 {{%/* /notice */%}}
 ````
@@ -143,18 +128,18 @@ An **accent** disclaimer
 A **primary** disclaimer
 {{% /notice %}}
 
-{{% notice style="secondary" icon="stopwatch" %}}
+{{% notice style="secondary" title="Secondary" %}}
 A **secondary** disclaimer
 {{% /notice %}}
 
-{{% notice style="accent" %}}
+{{% notice style="accent" icon="stopwatch" %}}
 An **accent** disclaimer
 {{% /notice %}}
 
-### By Color with Title and Icon Variantion
+### By Color
 
 ````go
-{{%/* notice style="blue" */%}}
+{{%/* notice style="blue" title="Blue"*/%}}
 A **blue** disclaimer
 {{%/* /notice */%}}
 
@@ -178,12 +163,12 @@ A **magenta** disclaimer
 A **orange** disclaimer
 {{%/* /notice */%}}
 
-{{%/* notice style="red" */%}}
+{{%/* notice style="red" title="Red" */%}}
 A **red** disclaimer
 {{%/* /notice */%}}
 ````
 
-{{% notice style="blue" %}}
+{{% notice style="blue" title="Blue" %}}
 A **blue** disclaimer
 {{% /notice %}}
 
@@ -207,34 +192,36 @@ A **magenta** disclaimer
 A **orange** disclaimer
 {{% /notice %}}
 
-{{% notice style="red" %}}
+{{% notice style="red" title="Red" %}}
 A **red** disclaimer
 {{% /notice %}}
 
 ### By Special Color
 
-#### Default with Positional Parameter
-
 ````go
-{{%/* notice default "Pay Attention to this Note!" "skull-crossbones" */%}}
-Some serious information.
+{{%/* notice style="default" title="Default" icon="skull-crossbones" */%}}
+Just some grey default color.
+{{%/* /notice */%}}
+
+{{%/* notice style="code" title="Code" icon="skull-crossbones" */%}}
+Colored like a code fence.
+{{%/* /notice */%}}
+
+{{%/* notice style="transparent" title="Transparent" icon="skull-crossbones" */%}}
+No visible borders.
 {{%/* /notice */%}}
 ````
 
-{{% notice default "Pay Attention to this Note!" "skull-crossbones" %}}
-Some serious information.
+{{% notice style="default" title="Default" icon="skull-crossbones" %}}
+Just some grey default color.
 {{% /notice %}}
 
-#### Transparent with Title and Icon
+{{% notice style="code" title="Code" icon="skull-crossbones" %}}
+Colored like a code fence.
+{{% /notice %}}
 
-````go
-{{%/* notice style="transparent" title="Pay Attention to this Note!" icon="skull-crossbones" */%}}
-Some serious information.
-{{%/* /notice */%}}
-````
-
-{{% notice style="transparent" title="Pay Attention to this Note!" icon="skull-crossbones" %}}
-Some serious information.
+{{% notice style="transparent" title="Transparent" icon="skull-crossbones" %}}
+No visible borders.
 {{% /notice %}}
 
 ### Various Features
@@ -242,7 +229,9 @@ Some serious information.
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown in Title and Content
 
 ````go
+{{%/* notice color="fuchsia" title="**Hugo** is _awesome_" icon="fa-fw fab fa-hackerrank" */%}}
 {{% include "shortcodes/include/INCLUDE_ME.md" %}}
+{{%/* /notice */%}}
 ````
 
 {{% notice color="fuchsia" title="**Hugo** is _awesome_" icon="fa-fw fab fa-hackerrank" %}}
@@ -252,26 +241,71 @@ Some serious information.
 #### Expandable Content Area
 
 ````go
-{{%/* notice style="primary" title="Expand me..." expanded="true" */%}}
+{{%/* notice style="green" title="Expand me..." expanded="true" */%}}
 No need to press you!
+{{%/* /notice */%}}
+
+{{%/* notice style="red" title="Expand me..." expanded="false" */%}}
+Thank you!
 {{%/* /notice */%}}
 ````
 
-{{% notice style="primary" title="Expand me..." expanded="true" %}}
+{{% notice style="green" title="Expand me..." expanded="true" %}}
 No need to press you!
 {{% /notice %}}
+
+{{% notice style="red" title="Expand me..." expanded="false" %}}
+Thank you!
+{{% /notice %}}
+
+#### No Content or No Title
 
 ````go
-{{%/* notice style="primary" title="Expand me..." expanded="false" */%}}
-Thank you!
+{{%/* notice style="accent" title="Just a bar" */%}}
+{{%/* /notice */%}}
+
+{{%/* notice style="accent" */%}}
+Just a box
 {{%/* /notice */%}}
 ````
-
-{{% notice style="primary" title="Expand me..." expanded="false" %}}
-Thank you!
-{{% /notice %}}
-
-#### No Content
 
 {{% notice style="accent" title="Just a bar" %}}
 {{% /notice %}}
+
+{{% notice style="accent" %}}
+Just a box
+{{% /notice %}}
+
+#### Obsidian Styled Alerts
+
+````go
+> [!tip] Callouts can have custom titles
+> Like this one.
+
+> [!tip] Title-only callout
+
+> [!note]- Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+
+> [!note]+ Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+
+> [!important] Can callouts be nested?
+> > [!note] Yes!, they can.
+> > > [!important]  You can even use multiple layers of nesting.
+````
+
+> [!tip] Callouts can have custom titles
+> Like this one.
+
+> [!tip] Title-only callout
+
+> [!note]- Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+
+> [!note]+ Are callouts foldable?
+> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+
+> [!important] Can callouts be nested?
+> > [!note] Yes!, they can.
+> > > [!important]  You can even use multiple layers of nesting.

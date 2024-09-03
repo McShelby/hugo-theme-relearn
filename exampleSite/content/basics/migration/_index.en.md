@@ -26,6 +26,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`notice` shortcode](shortcodes/notice) has a new parameter `expanded` to make the content collapsible.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you are running Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.134.0{{% /badge %}} or later, the theme now supports [Obsidian styled alerts](cont/markdown#obsidian-styled-alerts).
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 11.1.0. This adds support for [packet](shortcodes/mermaid#packet) and [architecture](shortcodes/mermaid#architecture) diagrams.
 
 ---
@@ -38,7 +40,7 @@ This document shows you what's new in the latest release and flags it with one o
 
   If you dislike the new behavior, you can deactivate it by setting `disableAnchorScrolling=true` in your `hugo.toml`. See the [docs for further options](basics/customization#change-heading-anchor-behavior).
 
-- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you are running Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.132.0{{% /badge %}} or later, the theme is now capable to print [GitHub styled alerts](cont/markdown#alerts).
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} If you are running Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.132.0{{% /badge %}} or later, the theme is now capable to print [GitHub styled alerts](cont/markdown#github-styled-alerts).
 
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} To support new severity levels for GitHub styled alerts, all shortcodes that support severity levels with their `style` parameter were expanded with the new severities `caution` and `important` and the `color` parameter was expanded with `cyan` and `magenta`. Please note, that coloring and icons of severities may defer from the [display you see on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).
 
