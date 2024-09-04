@@ -18,6 +18,12 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
+## 6.4.0.beta (XXXX-XX-XX) {#640}
+
+- {{% badge style="note" title=" " %}}Change{{% /badge %}} If you now display a single code block in a `notice` box, its [margin and border will be removed](shortcodes/notice#code-with-collapsed-colored-borders) so only the colored notice border is visible.
+
+---
+
 ## 6.3.0 (2024-09-03) {#630}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} The [`expand` shortcode](shortcodes/expand) changed the naming of the `open` parameter to `expanded`. You don't need to change anything yet but may get deprecation warnings.

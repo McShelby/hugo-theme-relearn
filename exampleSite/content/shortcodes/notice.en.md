@@ -309,3 +309,31 @@ Just a box
 > [!info] Can callouts be nested?
 > > [!important] Yes!, they can.
 > > > [!tip]  You can even use multiple layers of nesting.
+
+#### Code with Collapsed Colored Borders
+
+````
+```c
+// Normal code:
+printf( "Hello world\n" )
+```
+
+{{%/* notice style="red" title="" */%}}
+```c
+// With colored border
+printf( "Hello world\n" )
+```
+{{%/* /notice */%}}
+````
+
+```c
+// Normal code:
+printf( "Hello world\n" )
+```
+
+{{% notice style="red" title="" %}}
+```c
+// With colored border
+printf( "Hello world\n" )
+```
+{{% /notice %}}

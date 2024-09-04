@@ -721,6 +721,14 @@ div.box > .box-content {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+/* remove margin if only a single code block is contained in the tab */
+#R-body .box-content:has(> div.highlight:only-child){
+    padding: 0;
+}
+/* remove border from a code block if single  */
+#R-body .box-content > div.highlight:only-child > pre{
+    border: 0;
+}
 
 p:empty {
     /* in case of image render hook, Hugo may generate empty <p>s that we want to ignore */
