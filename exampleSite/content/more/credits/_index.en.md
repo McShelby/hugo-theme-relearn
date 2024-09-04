@@ -36,6 +36,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 ## Docs Dependencies
 
 - [github-buttons](https://github.com/buttons/github-buttons) - Unofficial github:buttons
+- [Octodex](https://octodex.github.com/) - Playground and home for all octocats
 
 ## Tooling Dependencies
 
