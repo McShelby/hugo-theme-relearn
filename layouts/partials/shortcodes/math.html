@@ -21,7 +21,7 @@
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "math" slice) " ")) }}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "align-%s" $align) slice) " ")) }}
 
-{{- with $page }}
+{{- with $page -}}
 <span
   {{- range $k, $v := $attributes }}
     {{- if $v }}

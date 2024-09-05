@@ -5,7 +5,6 @@
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'attachments' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#5180" $page.File.Filename }}
 {{- end }}
 {{- $color := .color | default "" }}
-{{- $content := .content }}
 {{- $style := .style | default "default" }}
 {{- if and (not $color) (eq (len $color) 0) }}
   {{- $style = .style | default "transparent" }}
@@ -46,7 +45,7 @@
 {{- with $page }}
 {{- if ne .BundleType "leaf" }}
   {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Filename }}
-{{- end }}
+{{- end -}}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
   <ul class="box-content attachments-files">
@@ -82,6 +81,5 @@
     {{- end }}
   {{- end }}
   </ul>
-  {{- $content }}
 </div>
 {{- end }}

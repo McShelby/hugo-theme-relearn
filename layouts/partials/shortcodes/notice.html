@@ -4,8 +4,11 @@
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'notice' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#5180" $page.File.Filename }}
 {{- end }}
 {{- $color := .color | default "" }}
-{{- $content := .content }}
-{{- $hasContent := ne (strings.TrimLeft "<p>" (trim $content "\n\r\t ")) "" }}
+{{- $content := trim .content "\n\r\t " }}
+{{- $hasContent := ne (strings.TrimLeft "<p>" $content) "" }}
+{{- if not (hasPrefix $content "<") }}
+  {{- $content = printf "<p>\n%s" $content }}
+{{- end }}
 {{- $style := .style | default "default" }}
 {{- $title := .title }}
 {{- if not $title }}
@@ -44,10 +47,10 @@
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "make-random-md5.hugo" $page) .id }}
 {{- with $page }}
-  {{- if or $icon $title $hasContent }}
+  {{- if or $icon $title $hasContent -}}
 <div class="{{ if $expander }}expand {{ end }}box notices cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
     {{- if $expander }}
-  <input type="checkbox" id="R-expand-{{ $id }}" aria-controls="R-expandcontent-{{ $id }}" {{ if $expanded }} checked{{ end }}>
+  <input type="checkbox" id="R-expand-{{ $id }}" aria-controls="R-expandcontent-{{ $id }}"{{ if $expanded }} checked{{ end }}>
   <label class="expand-label box-label" for="R-expand-{{ $id }}">
     <i class="expander-icon fa-fw fas fa-chevron-down"></i>
     <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}
@@ -60,8 +63,8 @@
     {{- end }}
     {{- if $hasContent }}
   <div{{ if $expander }} id="R-expandcontent-{{ $id }}"{{ end }} class="{{ if $expander }}expand-content {{ end }}box-content">
-{{ if ne "<" (substr (strings.TrimLeft "\n\r\t " $content) 0 1) }}<p>{{ end }}<!-- we add a DOM element here if there is none to make collapsing marings work -->
-{{ $content | safeHTML }}</div><!-- no line break allowed here because of awkward behavior of Hugo 110 or this theme when tag shortcode is called standalone outside of tags shortcode ? -->
+{{ $content | safeHTML }}
+  </div>
     {{- end }}
 </div>
   {{- end }}
