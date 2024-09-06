@@ -316,13 +316,13 @@ Just a box
 > [!secondary]
 > ```c
 > // With colored border in Markdown syntax
-> printf( "Hello world\n" )
+> printf("Hello World!");
 > ```
 
 {{%/* notice style="red" */%}}
 ```c
 // With colored border in Shortcode syntax
-printf( "Hello world\n" )
+printf("Hello World!");
 ```
 {{%/* /notice */%}}
 ````
@@ -330,12 +330,12 @@ printf( "Hello world\n" )
 > [!secondary]
 > ```c
 > // With colored border in Markdown syntax
-> printf( "Hello world\n" )
+> printf("Hello World!");
 > ```
 
 {{% notice style="red" %}}
 ```c
 // With colored border in Shortcode syntax
-printf( "Hello world\n" )
+printf("Hello World!");
 ```
 {{% /notice %}}
