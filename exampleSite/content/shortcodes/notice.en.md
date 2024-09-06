@@ -313,7 +313,7 @@ Just a box
 #### Code with Collapsed Colored Borders
 
 ````
-> [!orange]
+> [!secondary]
 > ```c
 > // With colored border in Markdown syntax
 > printf( "Hello world\n" )
@@ -327,7 +327,7 @@ printf( "Hello world\n" )
 {{%/* /notice */%}}
 ````
 
-> [!orange]
+> [!secondary]
 > ```c
 > // With colored border in Markdown syntax
 > printf( "Hello world\n" )
