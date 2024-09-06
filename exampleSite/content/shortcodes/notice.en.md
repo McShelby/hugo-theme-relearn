@@ -313,27 +313,29 @@ Just a box
 #### Code with Collapsed Colored Borders
 
 ````
-```c
-// Normal code:
-printf( "Hello world\n" )
-```
+> [!orange]
+> ```c
+> // With colored border in Markdown syntax
+> printf( "Hello world\n" )
+> ```
 
-{{%/* notice style="red" title="" */%}}
+{{%/* notice style="red" */%}}
 ```c
-// With colored border
+// With colored border in Shortcode syntax
 printf( "Hello world\n" )
 ```
 {{%/* /notice */%}}
 ````
 
-```c
-// Normal code:
-printf( "Hello world\n" )
-```
+> [!orange]
+> ```c
+> // With colored border in Markdown syntax
+> printf( "Hello world\n" )
+> ```
 
-{{% notice style="red" title="" %}}
+{{% notice style="red" %}}
 ```c
-// With colored border
+// With colored border in Shortcode syntax
 printf( "Hello world\n" )
 ```
 {{% /notice %}}
