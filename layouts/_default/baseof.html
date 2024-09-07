@@ -27,16 +27,13 @@
     {{- end }}
 
     {{- /* output formats */}}
-    {{- if not (and .Title .RelPermalink (or (ne (.Scratch.Get "relearnIsHiddenStem") true) (ne .Site.Params.disableSeoHiddenPages true) ) ) }}
-    {{- else }}
-      {{- $page := . }}
-      {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
-      {{- range .AlternativeOutputFormats }}
-        {{- if eq .Rel "canonical" }}
+    {{- $page := . }}
+    {{- $link := "<link href=\"%s\" rel=\"%s\" type=\"%s\" title=\"%s\">" }}
+    {{- range .AlternativeOutputFormats }}
+      {{- if eq .Rel "canonical" }}
     {{ (printf $link (partial "permalink.gotmpl" (dict "to" . "abs" true)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
-        {{- else if not (partial "_relearn/pageIsSpecial.gotmpl" $page) }}
+      {{- else if not (partial "_relearn/pageIsSpecial.gotmpl" $page) }}
     {{ (printf $link (partial "permalink.gotmpl" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
-        {{- end }}
       {{- end }}
     {{- end }}
     {{- partialCached "favicon.html" . }}
