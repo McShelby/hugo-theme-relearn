@@ -8,17 +8,7 @@
 		{{- if eq (.Language.LanguageDirection | default (T "Reading-direction") | default "ltr") "rtl" }}
 			{{- $endarrow = "🡐" }}
 		{{- end }}
-		{{- $next := .Scratch.Get "relearnNextPage" }}
-		{{- if eq .Page.Kind "term" }}
-			{{- /* go to next term page */}}
-			{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-			{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" $taxonomy_page $taxonomy_page.Path }}
-			{{- $next = partial "partials/_relearn/pageNext.gotmpl" (dict "collection" $pages "item" .) }}
-		{{- else if eq .Page.Kind "taxonomy" }}
-			{{- /* go to first term page */}}
-			{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . .Path }}
-			{{- $next = (index $pages 0).Page }}
-		{{- end }}
+        {{- $next := partialCached "_relearn/pageNext.gotmpl" . .Path }}
 		{{- $nextTitle := partial "title.gotmpl" (dict "page" $next "outputFormat" "html") }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .

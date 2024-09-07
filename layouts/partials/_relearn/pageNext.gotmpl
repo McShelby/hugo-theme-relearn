@@ -1,13 +1,30 @@
-{{- $collection := .collection }}
-{{- $item := .item }}
-{{- $found := false }}
-{{- $result := "" }}
-{{- range $collection }}
-  {{- if $found }}
-    {{- $result = .Page.Page }}
-    {{- break }}
-  {{- else if eq $item .Page.Page }}
-    {{- $found = true }}
-  {{- end }}
+{{- $next := "" }}
+{{- if eq .Page.Kind "term" }}
+  {{- /* go to next term page */}}
+  {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
+  {{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" $taxonomy_page $taxonomy_page.Path }}
+  {{- $next = partial "inline/next-term" (dict "collection" $pages "item" .) }}
+{{- else if eq .Page.Kind "taxonomy" }}
+  {{- /* go to first term page */}}
+  {{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . .Path }}
+  {{- $next = (index $pages 0).Page }}
+{{- else }}
+  {{- $next = .Scratch.Get "relearnNextPage" }}
 {{- end }}
-{{- return $result }}
+{{- return $next }}
+
+{{- define "partials/inline/next-term" }}
+  {{- $collection := .collection }}
+  {{- $item := .item }}
+  {{- $found := false }}
+  {{- $result := "" }}
+  {{- range $collection }}
+    {{- if $found }}
+      {{- $result = .Page.Page }}
+      {{- break }}
+    {{- else if eq $item .Page.Page }}
+      {{- $found = true }}
+    {{- end }}
+  {{- end }}
+  {{- return $result }}
+{{- end }}
