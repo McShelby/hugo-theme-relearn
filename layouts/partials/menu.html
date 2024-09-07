@@ -12,7 +12,7 @@
       <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
       {{- if not .Site.Params.disableLandingPageButton }}
         {{- if (ne .Site.Params.landingPageURL nil) }}
-          {{- warnf "%q: UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#420" .File.Filename }}
+          {{- warnf "UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/basics/migration#420" }}
         {{- end }}
         <ul>
           <li><a class="padding" href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">{{ .Site.Params.landingPageName | default `<i class="fa-fw fas fa-home"></i> Home` | safeHTML }}</a></li>
@@ -123,6 +123,7 @@
         {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
         {{- $isActive := $isSelf }}
         {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+        {{- $isHidden := or (.Params.hidden) (eq .Title "") }}
         {{- $relearnIsHiddenFrom := index ($currentNode.Scratch.Get "relearnIsHiddenFrom") .RelPermalink }}
         {{- $hidden := and $relearnIsHiddenFrom (not $.showhidden) (not $isSelf) (not $isAncestor) }}
         {{- if $hidden }}
@@ -143,15 +144,15 @@
             {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
             {{- $pageHash := md5 .Page }}
             {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-          <li data-nav-id="{{ $url }}" class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen{{end}}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageHash }}" aria-controls="R-subsections-{{ $pageHash }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageHash }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+            <li class="{{if $isHidden }}hidden {{end}}{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageHash }}" aria-controls="R-subsections-{{ $pageHash }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageHash }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
             {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
-            {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageHash }}" class="morespace collapsible-menu">
+            {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageHash }}" class="collapsible-menu">
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
             {{- range $pages }}
               {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen }}
             {{- end }}</ul></li>
           {{- else }}
-          <li data-nav-id="{{ $url }}" class="{{if $isActive }}active{{end}}">{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+            <li class="{{if $isHidden }}hidden {{end}}{{if $isActive }}active {{end}}" data-nav-id="{{ $url }}">{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
               {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
               {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
           {{- end }}
