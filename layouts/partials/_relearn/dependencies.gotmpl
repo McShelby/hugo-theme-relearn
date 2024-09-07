@@ -1,0 +1,8 @@
+{{- range .Site.Params.relearn.dependencies }}
+	{{- $has := printf "has%s" .name }}
+	{{- $disable := printf "disable%s" .name }}
+	{{- $wants := or (and (ne (index $.Params $disable) nil) (not (index $.Params $disable))) (and (ne (index $.Site.Params $disable) nil) (not (index $.Site.Params $disable))) }}
+	{{- if $wants }}
+		{{- $.Store.Set $has true }}
+	{{- end }}
+{{- end }}
