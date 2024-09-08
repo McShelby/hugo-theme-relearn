@@ -1,1 +1,4 @@
-{{- return or (.Params.hidden) (eq .Title "") }}
+{{- return or
+	.Params.hidden
+	(and .RelPermalink (not (or .Title (partial "title.gotmpl" (dict "page" . "linkTitle" true)))))
+}}

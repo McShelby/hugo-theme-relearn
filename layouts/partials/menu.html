@@ -26,7 +26,14 @@
             {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .Site.Home) .Site.Home.Path }}
             {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default false }}
             {{- range $pages }}
-              {{- partial "inline/menu-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen) }}
+              {{- $isSubSelf := eq . $currentNode }}
+              {{- $isSubAncestor := and (not $isSubSelf) (.IsAncestor $currentNode) }}
+              {{- $isSubHidden := or (.Params.hidden) (eq .Title "") }}
+              {{- if or $isSubSelf $isSubAncestor }}
+                {{- partial "partials/inline/menu-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden ) }}
+              {{- else if not $isSubHidden }}
+                {{- partialCached "partials/inline/menu-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) .Path }}
+              {{- end }}
             {{- end }}
           </ul>
         </div>
@@ -118,42 +125,47 @@
   {{- $showvisitedlinks := .showvisitedlinks }}
   {{- $alwaysopen := .alwaysopen }}
   {{- $currentFileRelPermalink := .currentnode.RelPermalink }}
+  {{- $isSelf := .isSelf }}
+  {{- $isAncestor := .isAncestor }}
+  {{- $isHidden := .isHidden }}
   {{- with .sect }}
-    {{- $isSelf := eq .RelPermalink $currentFileRelPermalink }}
-    {{- $isAncestor := and (not $isSelf) (.IsAncestor $currentNode) }}
-    {{- $isHidden := or (.Params.hidden) (eq .Title "") }}
-    {{- if or $isAncestor $isSelf (not $isHidden) }}
-      {{- $isActive := $isSelf }}
-      {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
-      {{- $hasVisibleChildren := false }}
+    {{- $isActive := $isSelf }}
+    {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+    {{- $hasVisibleChildren := false }}
+    {{- range $pages }}
+      {{- $isSubSelf := eq . $currentNode }}
+      {{- $isSubAncestor := and (not $isSubSelf) (.IsAncestor $currentNode) }}
+      {{- $isSubHidden := or (.Params.hidden) (eq .Title "") }}
+      {{- if or $isSubAncestor $isSubSelf (not $isSubHidden) }}
+        {{- $hasVisibleChildren = true }}
+        {{- break }}
+      {{- end }}
+    {{- end }}
+    {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
+    {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
+    {{- if $hasVisibleChildren }}
+      {{- $isCollapsible := or (.Params.collapsibleMenu | default .Site.Params.collapsibleMenu) (not $url) }}
+      {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
+      {{- $pageId := md5 .Page }}
+      {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
+            <li class="{{if $isHidden }}hidden {{end}}{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageId }}" aria-controls="R-subsections-{{ $pageId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageId }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+      {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
+      {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageId }}" class="collapsible-menu">
+      {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
       {{- range $pages }}
         {{- $isSubSelf := eq . $currentNode }}
         {{- $isSubAncestor := and (not $isSubSelf) (.IsAncestor $currentNode) }}
         {{- $isSubHidden := or (.Params.hidden) (eq .Title "") }}
-        {{- if or $isSubAncestor $isSubSelf (not $isSubHidden) }}
-          {{- $hasVisibleChildren = true }}
-          {{- break }}
+        {{- if or $isSubSelf $isSubAncestor }}
+          {{- partial "partials/inline/menu-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) }}
+        {{- else if not $isSubHidden }}
+          {{- partialCached "partials/inline/menu-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) .Path }}
         {{- end }}
-      {{- end }}
-      {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
-      {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
-      {{- if $hasVisibleChildren }}
-        {{- $isCollapsible := or (.Params.collapsibleMenu | default .Site.Params.collapsibleMenu) (not $url) }}
-        {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
-        {{- $pageId := md5 .Page }}
-        {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-            <li class="{{if $isHidden }}hidden {{end}}{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">{{ if $isCollapsible }}<input type="checkbox" id="R-section-{{ $pageId }}" aria-controls="R-subsections-{{ $pageId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $pageId }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
-        {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
-        {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $pageId }}" class="collapsible-menu">
-        {{- $defaultAlwaysopen := .Site.Params.alwaysopen | default true }}
-        {{- range $pages }}
-          {{- partial "inline/menu-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen) }}
-        {{- end }}</ul></li>
-      {{- else }}
+      {{- end }}</ul></li>
+    {{- else }}
             <li class="{{if $isHidden }}hidden {{end}}{{if $isActive }}active {{end}}" data-nav-id="{{ $url }}">{{ if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
-        {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
-        {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
-      {{- end }}
+      {{- partial "menu-pre.html" . }}{{ $title }}{{ partial "menu-post.html" . }}
+      {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
     {{- end }}
   {{- end }}
 {{- end }}
