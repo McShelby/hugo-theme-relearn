@@ -199,7 +199,7 @@
 		},
 		"Expand": {
 			"body": [
-				"{{% expand title=\"[[&title]]\" open=\"[[&open]]\" %}}[[&content]]{{% /expand %}}"
+				"{{% expand title=\"[[&title]]\" expanded=\"[[&expanded]]\" %}}[[&content]]{{% /expand %}}"
 			],
 			"description": "Zeigt einen ein-/ausklappbaren Textblock an",
 			"fields": [
@@ -222,8 +222,8 @@
 						"true"
 					],
 					"default": "",
-					"name": "open",
-					"title": "Textblock initial ausklappen",
+					"name": "expanded",
+					"title": "Inhalt initial ausklappen",
 					"type": "choice"
 				}
 			]
@@ -406,7 +406,7 @@
 		},
 		"Notice": {
 			"body": [
-				"{{% notice title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" %}}[[&content]]{{% /notice %}}"
+				"{{% notice title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" expanded=\"[[&expanded]]\" %}}[[&content]]{{% /notice %}}"
 			],
 			"description": "Zeigt eine konfigurierbare Text-Box an",
 			"fields": [
@@ -461,6 +461,17 @@
 					"name": "icon",
 					"title": "Font Awesome Icon",
 					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "expanded",
+					"title": "Inhalt initial ausklappen",
+					"type": "choice"
 				}
 			]
 		},
@@ -479,7 +490,7 @@
 		},
 		"Resources": {
 			"body": [
-				"{{% resources title=\"[[&title]]\" pattern=\"[[&pattern]]\" sort=\"[[&sort]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" /%}}"
+				"{{% resources title=\"[[&title]]\" pattern=\"[[&pattern]]\" sort=\"[[&sort]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" expanded=\"[[&expanded]]\" /%}}"
 			],
 			"description": "Zeigt eine Liste von Resourcen eines Page Bundles an",
 			"fields": [
@@ -545,6 +556,17 @@
 					"name": "icon",
 					"title": "Font Awesome Icon",
 					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "expanded",
+					"title": "Resourceliste initial ausklappen",
+					"type": "choice"
 				}
 			]
 		},

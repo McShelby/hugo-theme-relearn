@@ -199,7 +199,7 @@
 		},
 		"Expand": {
 			"body": [
-				"{{% expand title=\"[[&title]]\" open=\"[[&open]]\" %}}[[&content]]{{% /expand %}}"
+				"{{% expand title=\"[[&title]]\" expanded=\"[[&expanded]]\" %}}[[&content]]{{% /expand %}}"
 			],
 			"description": "Displays an expandable/collapsable section of text",
 			"fields": [
@@ -222,8 +222,8 @@
 						"true"
 					],
 					"default": "",
-					"name": "open",
-					"title": "Initially expand section",
+					"name": "expanded",
+					"title": "Initially expand content",
 					"type": "choice"
 				}
 			]
@@ -406,7 +406,7 @@
 		},
 		"Notice": {
 			"body": [
-				"{{% notice title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" %}}[[&content]]{{% /notice %}}"
+				"{{% notice title=\"[[&title]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" expanded=\"[[&expanded]]\" %}}[[&content]]{{% /notice %}}"
 			],
 			"description": "Displays a configurable box of text",
 			"fields": [
@@ -461,6 +461,17 @@
 					"name": "icon",
 					"title": "Font Awesome icon",
 					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "expanded",
+					"title": "Initially expand content",
+					"type": "choice"
 				}
 			]
 		},
@@ -479,7 +490,7 @@
 		},
 		"Resources": {
 			"body": [
-				"{{% resources title=\"[[&title]]\" pattern=\"[[&pattern]]\" sort=\"[[&sort]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" /%}}"
+				"{{% resources title=\"[[&title]]\" pattern=\"[[&pattern]]\" sort=\"[[&sort]]\" style=\"[[&style]]\" color=\"[[&color]]\" icon=\"[[&icon]]\" expanded=\"[[&expanded]]\" /%}}"
 			],
 			"description": "Displays a list of resources contained in a page bundle",
 			"fields": [
@@ -545,6 +556,17 @@
 					"name": "icon",
 					"title": "Font Awesome icon",
 					"type": "string"
+				},
+				{
+					"choices": [
+						"",
+						"false",
+						"true"
+					],
+					"default": "",
+					"name": "expanded",
+					"title": "Initially expand resource list",
+					"type": "choice"
 				}
 			]
 		},
