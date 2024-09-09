@@ -1,7 +1,7 @@
 {{- partialCached "relearn-meta.gotmpl" . .Path -}}
 <!DOCTYPE html>
 {{- block "storeOutputFormat" . }}{{ end }}
-{{- if eq . .Site.Sites.First.Home }}
+{{- if .IsHome }}
   {{- $hugoVersion := "0.126.0" }}
   {{- if lt hugo.Version $hugoVersion }}
     {{- errorf "The Relearn theme requires Hugo %s or later" $hugoVersion }}
