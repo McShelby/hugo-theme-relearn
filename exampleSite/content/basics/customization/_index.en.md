@@ -57,11 +57,11 @@ If you are using `uglyURLs=false` (Hugo's default), the theme will append an add
 
 ## Configure Search
 
-The theme comes with three levels of search, all provided through the search form in the menu:
+The theme comes with three levels of search, all provided through the search form in the menu
 
-- in-page search: a found search term will be marked in the currently displayed page
-- search popup: if a search index is generated, a popup will open during typing in the search form, if the term is found in other pages of your site
-- dedicated search page: access the dedicated search page by either clicking on the magnifier glass or by typing some search term in the search form and pressing `ENTER`
+- in-page search: a search term will be marked if found in the currently displayed page
+- search popup: a popup will open during typing if the term is found in other pages of your site
+- dedicated search page: you can access a dedicated search page by either clicking on the magnifier glass or by typing and pressing <kbd>ENTER</kbd>
 
 Each level depends on the previous level to be enabled, eg. the dedicated search page is only available, if you have search popup and in-page search enabled.
 
@@ -71,7 +71,7 @@ By default all three levels are enabled. You can disable each level by the follo
 - search popup: `disableSearchIndex=true`
 - dedicated search page: `disableSearchPage=true`
 
-By default the following files will be created for each level, relative to each languages home page but can be overwritten:
+By default the following files will be created, relative to each languages home page but can be overwritten:
 
 - search popup: `searchindex.js`, configured by `searchIndexURL`
 - dedicated search page: either `/search.html` or `search/index.html` depending on your settings for `uglyURLs`, configured by `searchPageURL`
