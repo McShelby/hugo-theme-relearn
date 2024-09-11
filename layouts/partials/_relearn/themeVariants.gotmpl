@@ -125,7 +125,7 @@ Chroma auto run:
 {{- end }}
 
 {{- with resources.Get "css/variant.css" }}
-  {{- $assetBusting := partialCached "relearn/assetbusting.hugo" . }}
+  {{- $assetBusting := partialCached "assetbusting.hugo" . }}
   {{- $variantcontent := print `@import "variables.css` $assetBusting `";` "\n\n" .Content }}
   {{- range $page.Site.Params.boxStyle }}
     {{- $identifier := upper .identifier }}
