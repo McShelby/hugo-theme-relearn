@@ -9,7 +9,7 @@
   {{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . .Path }}
   {{- $next = (index $pages 0).Page }}
 {{- else }}
-  {{- $next = .Scratch.Get "relearnNextPage" }}
+  {{- $next = partial "inline/next-page" . }}
 {{- end }}
 {{- return $next }}
 
@@ -27,4 +27,93 @@
     {{- end }}
   {{- end }}
   {{- return $result }}
+{{- end }}
+
+{{- define "partials/inline/next-page" }}
+  {{- $nextVisible := "" }}
+  {{- $currentNode := . }}
+  {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" $currentNode) $currentNode.Path }}
+  {{- range $pages }}
+    {{- $nextVisible = partial "inline/leftmost_descendant" . }}
+    {{- if $nextVisible }}
+      {{- break }}
+    {{- end }}
+  {{- end }}
+  {{- if not $nextVisible }}
+    {{- $nextVisible = partial "inline/next_sibling_or_ancestor" $currentNode }}
+  {{- end }}
+  {{- return $nextVisible }}
+{{- end }}
+
+{{- define "partials/inline/next_sibling_or_ancestor" }}
+  {{- $currentNode := . }}
+  {{- $nextSibling := "" }}
+  {{- with partial "inline/parent" $currentNode }}
+    {{- $parent := . }}
+    {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" $parent) $parent.Path }}
+    {{- $nextVisible := partial "inline/next_sibling" (dict "siblings" $pages "currentNode" $currentNode) }}
+    {{- if $nextVisible }}
+      {{- $nextSibling = partial "inline/leftmost_descendant" $nextVisible }}
+      {{- if not $nextSibling }}
+        {{- $nextSibling = partial "inline/next_sibling_or_ancestor" $parent }}
+      {{- end }}
+    {{- else }}
+      {{- $nextSibling = partial "inline/next_sibling_or_ancestor" $parent }}
+    {{- end }}
+  {{- end }}
+  {{- return $nextSibling }}
+{{- end }}
+
+{{- define "partials/inline/next_sibling" }}
+  {{- $siblings := .siblings }}
+  {{- $currentNode := .currentNode }}
+  {{- $nextSibling := "" }}
+  {{- $currentFound := false }}
+  {{- range $siblings }}
+    {{- if eq . $currentNode }}
+      {{- $currentFound = true }}
+    {{- else if $currentFound }}
+      {{- $nextSibling = . }}
+      {{- break }}
+    {{- end }}
+  {{- end }}
+  {{- return $nextSibling }}
+{{- end }}
+
+{{- define "partials/inline/leftmost_descendant" }}
+  {{- $leftmostVisible := "" }}
+  {{- if not (or (.Params.hidden) (eq .Title "")) }}
+    {{- if .RelPermalink }}
+      {{- $leftmostVisible = . }}
+    {{- else }}
+      {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+      {{- range $pages }}
+        {{- with partial "inline/leftmost_descendant" . }}
+          {{- $leftmostVisible = . }}
+          {{- break }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- return $leftmostVisible }}
+{{- end }}
+
+{{- define "partials/inline/parent" }}
+  {{- $nonheadless := "" }}
+  {{- $page := . }}
+  {{- $parent := .Parent }}
+  {{- if not (partial "_relearn/pageIsSpecial.gotmpl" $page) }}
+    {{- with $parent }}
+      {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+      {{- range $pages }}
+        {{- if eq . $page }}
+          {{- $nonheadless = $parent }}
+          {{- break }}
+        {{- end }}
+      {{- end }}
+    {{- else }}
+      {{- $nonheadless = $parent }}
+    {{- end }}
+  {{- end }}
+  {{- return $nonheadless }}
 {{- end }}

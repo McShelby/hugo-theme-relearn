@@ -1,4 +1,3 @@
-{{- partialCached "relearn-meta.gotmpl" . .Path }}
 {{- $pages := slice }}
 {{- range .Site.Pages }}
   {{- if partial "_relearn/pageIsSpecial.gotmpl" . }}
