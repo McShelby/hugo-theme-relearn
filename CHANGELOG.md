@@ -1,6 +1,30 @@
 # Changelog
 
+## 6.4.0 (2024-09-12)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#640)
+
+### Enhancements
+
+- [**feature**] notice: support user defined box styles [#913](https://github.com/McShelby/hugo-theme-relearn/issues/913)
+- [**feature**] frontmatter: add `expanded` parameter for shortcodes [#911](https://github.com/McShelby/hugo-theme-relearn/issues/911)
+- [**feature**] resources: add `expanded` parameter [#908](https://github.com/McShelby/hugo-theme-relearn/issues/908)
+- [**feature**][**change**] notice: collapse borders if single code block is displayed [#906](https://github.com/McShelby/hugo-theme-relearn/issues/906)
+
+### Fixes
+
+- [**bug**] include: don't erroneously remove headings if `hidefirstheading=true` [#914](https://github.com/McShelby/hugo-theme-relearn/issues/914)
+
+### Maintenance
+
+- [**task**] build: add link for migration into changelog [#915](https://github.com/McShelby/hugo-theme-relearn/issues/915)
+- [**task**] shortcodes: fix whitespace issues [#907](https://github.com/McShelby/hugo-theme-relearn/issues/907)
+
+---
+
 ## 6.3.0 (2024-09-03)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#630)
 
 ### Enhancements
 
@@ -23,6 +47,8 @@
 
 ## 6.2.0 (2024-08-26)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#620)
+
 ### Enhancements
 
 - [**feature**][**change**] anchor: add option to scroll into view [#886](https://github.com/McShelby/hugo-theme-relearn/issues/886)
@@ -40,6 +66,8 @@
 
 ## 6.1.1 (2024-08-02)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#610)
+
 ### Fixes
 
 - [**bug**] link: link resolving stopped working in certain configurations [#882](https://github.com/McShelby/hugo-theme-relearn/issues/882)
@@ -47,6 +75,8 @@
 ---
 
 ## 6.1.0 (2024-08-02)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#610)
 
 ### Enhancements
 
@@ -80,6 +110,8 @@
 
 ## 6.0.0 (2024-04-27)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#600)
+
 ### Enhancements
 
 - [**feature**][**breaking**] theme: unify description [#845](https://github.com/McShelby/hugo-theme-relearn/issues/845)
@@ -108,6 +140,8 @@
 
 ## 5.27.0 (2024-04-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5270)
+
 ### Enhancements
 
 - [**feature**] theme: simplify title generation [#825](https://github.com/McShelby/hugo-theme-relearn/issues/825)
@@ -127,6 +161,8 @@
 
 ## 5.26.2 (2024-03-18)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5260)
+
 ### Enhancements
 
 - [**feature**] icons: use fixed width to ease layout [#812](https://github.com/McShelby/hugo-theme-relearn/issues/812)
@@ -140,6 +176,8 @@
 
 ## 5.26.1 (2024-03-17)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5260)
+
 ### Fixes
 
 - [**bug**] mermaid: show reset button after pan [#807](https://github.com/McShelby/hugo-theme-relearn/issues/807)
@@ -149,6 +187,8 @@
 ---
 
 ## 5.26.0 (2024-03-16)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5260)
 
 ### Enhancements
 
@@ -171,6 +211,8 @@
 
 ## 5.25.0 (2024-02-29)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5250)
+
 ### Enhancements
 
 - [**feature**][**change**] theme: print out GitInfo in page footer if configured [#786](https://github.com/McShelby/hugo-theme-relearn/issues/786)
@@ -184,6 +226,8 @@
 
 ## 5.24.3 (2024-02-28)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5240)
+
 ### Fixes
 
 - [**bug**] theme: avoid crash on 404 if author settings want to warn [#785](https://github.com/McShelby/hugo-theme-relearn/issues/785)
@@ -191,6 +235,8 @@
 ---
 
 ## 5.24.2 (2024-02-24)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5240)
 
 ### Enhancements
 
@@ -204,6 +250,8 @@
 
 ## 5.24.1 (2024-02-18)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5240)
+
 ### Enhancements
 
 - [**feature**] link: make resolution reporting configurable [#774](https://github.com/McShelby/hugo-theme-relearn/issues/774)
@@ -211,6 +259,8 @@
 ---
 
 ## 5.24.0 (2024-02-17)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5240)
 
 ### Enhancements
 
@@ -250,6 +300,8 @@
 
 ## 5.23.2 (2023-11-03)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5230)
+
 ### Enhancements
 
 - [**feature**] taxonomy: improve taxonomy page [#712](https://github.com/McShelby/hugo-theme-relearn/issues/712)
@@ -263,6 +315,8 @@
 
 ## 5.23.1 (2023-10-30)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5230)
+
 ### Enhancements
 
 - [**feature**] taxonomy: improve term page [#705](https://github.com/McShelby/hugo-theme-relearn/issues/705)
@@ -275,6 +329,8 @@
 ---
 
 ## 5.23.0 (2023-10-29)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5230)
 
 ### Enhancements
 
@@ -311,6 +367,8 @@
 
 ## 5.22.1 (2023-10-02)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5220)
+
 ### Enhancements
 
 - [**feature**] i18n: add Swahili translation [#666](https://github.com/McShelby/hugo-theme-relearn/issues/666)
@@ -332,6 +390,8 @@
 
 ## 5.22.0 (2023-09-26)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5220)
+
 ### Enhancements
 
 - [**feature**] mermaid: add pan&zoom reset [#651](https://github.com/McShelby/hugo-theme-relearn/issues/651)
@@ -351,6 +411,8 @@
 
 ## 5.21.0 (2023-09-18)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5210)
+
 ### Enhancements
 
 - [**feature**] topbar: make buttons configurable [#639](https://github.com/McShelby/hugo-theme-relearn/issues/639)
@@ -369,6 +431,8 @@
 ---
 
 ## 5.20.0 (2023-08-26)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5200)
 
 ### Enhancements
 
@@ -393,6 +457,8 @@
 
 ## 5.19.0 (2023-08-12)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5190)
+
 ### Enhancements
 
 - [**feature**] highlight: add title parameter [#616](https://github.com/McShelby/hugo-theme-relearn/issues/616)
@@ -416,6 +482,8 @@
 
 ## 5.18.0 (2023-07-27)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5180)
+
 ### Enhancements
 
 - [**feature**][**change**] shortcodes: add more deprecation warnings [#598](https://github.com/McShelby/hugo-theme-relearn/issues/598)
@@ -438,6 +506,8 @@
 
 ## 5.17.1 (2023-06-22)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5170)
+
 ### Enhancements
 
 - [**feature**][**change**] highlight: make copy to clipboard appear on hover [#574](https://github.com/McShelby/hugo-theme-relearn/issues/574)
@@ -445,6 +515,8 @@
 ---
 
 ## 5.17.0 (2023-06-22)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5170)
 
 ### Enhancements
 
@@ -460,6 +532,8 @@
 
 ## 5.16.2 (2023-06-10)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160)
+
 ### Enhancements
 
 - [**feature**] theme: revamp 404 page [#566](https://github.com/McShelby/hugo-theme-relearn/issues/566)
@@ -467,6 +541,8 @@
 ---
 
 ## 5.16.1 (2023-06-09)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160)
 
 ### Enhancements
 
@@ -480,6 +556,8 @@
 ---
 
 ## 5.16.0 (2023-06-08)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5160)
 
 ### Enhancements
 
@@ -499,6 +577,8 @@
 
 ## 5.15.2 (2023-05-29)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5150)
+
 ### Enhancements
 
 - [**feature**] taxonomy: add support for category default taxonomy [#541](https://github.com/McShelby/hugo-theme-relearn/issues/541)
@@ -511,6 +591,8 @@
 
 ## 5.15.1 (2023-05-25)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5150)
+
 ### Fixes
 
 - [**bug**] shortcodes: intermediately use random ids instead of .Ordinal [#543](https://github.com/McShelby/hugo-theme-relearn/issues/543)
@@ -518,6 +600,8 @@
 ---
 
 ## 5.15.0 (2023-05-25)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5150)
 
 ### Enhancements
 
@@ -539,6 +623,8 @@
 
 ## 5.14.3 (2023-05-20)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5140)
+
 ### Fixes
 
 - [**bug**] tags: show taxonomy toc for standard installation [#533](https://github.com/McShelby/hugo-theme-relearn/issues/533)
@@ -547,6 +633,8 @@
 
 ## 5.14.2 (2023-05-20)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5140)
+
 ### Fixes
 
 - [**bug**] tags: translate breadcrumb and title for taxonomy [#532](https://github.com/McShelby/hugo-theme-relearn/issues/532)
@@ -554,11 +642,15 @@
 ---
 
 ## 5.14.1 (2023-05-20)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5140)
 *No changelog for this release.*
 
 ---
 
 ## 5.14.0 (2023-05-19)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5140)
 
 ### Enhancements
 
@@ -577,6 +669,8 @@
 
 ## 5.13.2 (2023-05-17)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5130)
+
 ### Fixes
 
 - [**bug**] print: enable print for pages with _build options [#522](https://github.com/McShelby/hugo-theme-relearn/issues/522)
@@ -585,6 +679,8 @@
 
 ## 5.13.1 (2023-05-16)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5130)
+
 ### Fixes
 
 - [**bug**] openapi: allow toc to scroll page [#526](https://github.com/McShelby/hugo-theme-relearn/issues/526)
@@ -592,6 +688,8 @@
 ---
 
 ## 5.13.0 (2023-05-14)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5130)
 
 ### Enhancements
 
@@ -604,6 +702,8 @@
 ---
 
 ## 5.12.6 (2023-05-04)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
 
 ### Enhancements
 
@@ -619,6 +719,8 @@
 
 ## 5.12.5 (2023-03-28)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
+
 ### Fixes
 
 - [**bug**] expand: not properly exanded when used in bullet point list [#508](https://github.com/McShelby/hugo-theme-relearn/issues/508)
@@ -627,6 +729,8 @@
 
 ## 5.12.4 (2023-03-24)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
+
 ### Fixes
 
 - [**bug**] theme: disableExplicitIndexURLs param is not working as expected [#505](https://github.com/McShelby/hugo-theme-relearn/issues/505)
@@ -634,6 +738,8 @@
 ---
 
 ## 5.12.3 (2023-03-14)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
 
 ### Fixes
 
@@ -644,6 +750,8 @@
 
 ## 5.12.2 (2023-03-03)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
+
 ### Fixes
 
 - [**bug**] menu: fix state for alwaysopen=false + collapsibleMenu=false [#498](https://github.com/McShelby/hugo-theme-relearn/issues/498)
@@ -651,6 +759,8 @@
 ---
 
 ## 5.12.1 (2023-02-26)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
 
 ### Enhancements
 
@@ -663,6 +773,8 @@
 ---
 
 ## 5.12.0 (2023-02-24)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5120)
 
 ### Enhancements
 
@@ -689,6 +801,8 @@
 
 ## 5.11.2 (2023-02-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5110)
+
 ### Fixes
 
 - [**bug**] tabs: nested tabs content is not displayed [#468](https://github.com/McShelby/hugo-theme-relearn/issues/468)
@@ -697,6 +811,8 @@
 
 ## 5.11.1 (2023-02-06)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5110)
+
 ### Fixes
 
 - [**bug**] variant: include missing `theme-auto.css` in distribution [#467](https://github.com/McShelby/hugo-theme-relearn/issues/467)
@@ -704,6 +820,8 @@
 ---
 
 ## 5.11.0 (2023-02-05)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5110)
 
 ### Enhancements
 
@@ -732,6 +850,8 @@
 
 ## 5.10.2 (2023-01-25)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5100)
+
 ### Fixes
 
 - [**bug**] nav: fix breadcrumb for huge installations [#446](https://github.com/McShelby/hugo-theme-relearn/issues/446)
@@ -740,6 +860,8 @@
 
 ## 5.10.1 (2023-01-25)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5100)
+
 ### Fixes
 
 - [**bug**] print: fix image links with relative path [#444](https://github.com/McShelby/hugo-theme-relearn/issues/444)
@@ -747,6 +869,8 @@
 ---
 
 ## 5.10.0 (2023-01-25)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#5100)
 
 ### Enhancements
 
@@ -763,6 +887,8 @@
 
 ## 5.9.4 (2023-01-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#590)
+
 ### Fixes
 
 - [**bug**] variant: fix search icon and text color [#437](https://github.com/McShelby/hugo-theme-relearn/issues/437)
@@ -770,6 +896,8 @@
 ---
 
 ## 5.9.3 (2023-01-22)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#590)
 
 ### Fixes
 
@@ -784,6 +912,8 @@
 
 ## 5.9.2 (2022-12-30)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#590)
+
 ### Fixes
 
 - [**bug**] search: apply dependency scripts for Hindi and Japanese [#427](https://github.com/McShelby/hugo-theme-relearn/issues/427)
@@ -792,6 +922,8 @@
 
 ## 5.9.1 (2022-12-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#590)
+
 ### Enhancements
 
 - [**feature**] theme: make external link target configurable [#426](https://github.com/McShelby/hugo-theme-relearn/issues/426)
@@ -799,6 +931,8 @@
 ---
 
 ## 5.9.0 (2022-12-23)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#590)
 
 ### Enhancements
 
@@ -813,6 +947,8 @@
 
 ## 5.8.1 (2022-12-11)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#580)
+
 ### Fixes
 
 - [**bug**] theme: fix alias for home page if defaultContentLanguageInSubdir=true [#414](https://github.com/McShelby/hugo-theme-relearn/issues/414)
@@ -820,6 +956,8 @@
 ---
 
 ## 5.8.0 (2022-12-08)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#580)
 
 ### Enhancements
 
@@ -835,6 +973,8 @@
 ---
 
 ## 5.7.0 (2022-11-29)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#570)
 
 ### Enhancements
 
@@ -854,6 +994,8 @@
 
 ## 5.6.6 (2022-11-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
+
 ### Enhancements
 
 - [**feature**] search: make build and js forgiving against config errors [#400](https://github.com/McShelby/hugo-theme-relearn/issues/400)
@@ -867,6 +1009,8 @@
 
 ## 5.6.5 (2022-11-19)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
+
 ### Fixes
 
 - [**bug**] menu: relax usage of background color [#399](https://github.com/McShelby/hugo-theme-relearn/issues/399)
@@ -874,6 +1018,8 @@
 ---
 
 ## 5.6.4 (2022-11-19)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
 
 ### Fixes
 
@@ -883,6 +1029,8 @@
 
 ## 5.6.3 (2022-11-19)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
+
 ### Fixes
 
 - [**bug**] theme: be compatible with Hugo >= 0.95.0 [#397](https://github.com/McShelby/hugo-theme-relearn/issues/397)
@@ -890,6 +1038,8 @@
 ---
 
 ## 5.6.2 (2022-11-19)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
 
 ### Fixes
 
@@ -899,6 +1049,8 @@
 
 ## 5.6.1 (2022-11-19)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
+
 ### Fixes
 
 - [**bug**] theme: fix image distortion [#395](https://github.com/McShelby/hugo-theme-relearn/issues/395)
@@ -906,6 +1058,8 @@
 ---
 
 ## 5.6.0 (2022-11-18)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#560)
 
 ### Enhancements
 
@@ -933,6 +1087,8 @@
 
 ## 5.5.3 (2022-11-10)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#550)
+
 ### Fixes
 
 - [**bug**] tags: fix non-latin tag display on pages [#378](https://github.com/McShelby/hugo-theme-relearn/issues/378)
@@ -940,6 +1096,8 @@
 ---
 
 ## 5.5.2 (2022-11-08)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#550)
 
 ### Fixes
 
@@ -950,6 +1108,8 @@
 
 ## 5.5.1 (2022-11-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#550)
+
 ### Fixes
 
 - [**bug**] theme: fix overflowing issue with anchors and tooltips [#364](https://github.com/McShelby/hugo-theme-relearn/issues/364)
@@ -957,6 +1117,8 @@
 ---
 
 ## 5.5.0 (2022-11-06)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#550)
 
 ### Enhancements
 
@@ -971,6 +1133,8 @@
 
 ## 5.4.3 (2022-11-05)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#540)
+
 ### Enhancements
 
 - [**feature**] history: refactor for a11y [#341](https://github.com/McShelby/hugo-theme-relearn/issues/341)
@@ -983,6 +1147,8 @@
 
 ## 5.4.2 (2022-11-05)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#540)
+
 ### Maintenance
 
 - [**task**] build: change set-output to env vars [#348](https://github.com/McShelby/hugo-theme-relearn/issues/348)
@@ -991,6 +1157,8 @@
 
 ## 5.4.1 (2022-11-05)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#540)
+
 ### Fixes
 
 - [**bug**] mermaid: fix Gantt chart width [#365](https://github.com/McShelby/hugo-theme-relearn/issues/365)
@@ -998,6 +1166,8 @@
 ---
 
 ## 5.4.0 (2022-11-01)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#540)
 
 ### Enhancements
 
@@ -1012,6 +1182,8 @@
 
 ## 5.3.3 (2022-10-09)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#530)
+
 ### Fixes
 
 - [**bug**] archetypes: fix frontmatter on home.md template [#346](https://github.com/McShelby/hugo-theme-relearn/issues/346)
@@ -1019,6 +1191,8 @@
 ---
 
 ## 5.3.2 (2022-10-08)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#530)
 
 ### Fixes
 
@@ -1028,6 +1202,8 @@
 
 ## 5.3.1 (2022-10-08)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#530)
+
 ### Enhancements
 
 - [**feature**] i18n: update Spanish translation [#343](https://github.com/McShelby/hugo-theme-relearn/issues/343)
@@ -1036,6 +1212,8 @@
 ---
 
 ## 5.3.0 (2022-10-07)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#530)
 
 ### Enhancements
 
@@ -1055,6 +1233,8 @@
 
 ## 5.2.4 (2022-10-02)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#520)
+
 ### Fixes
 
 - [**bug**] theme: remove HTML5 validator errors [#329](https://github.com/McShelby/hugo-theme-relearn/issues/329)
@@ -1062,6 +1242,8 @@
 ---
 
 ## 5.2.3 (2022-09-12)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#520)
 
 ### Fixes
 
@@ -1071,6 +1253,8 @@
 
 ## 5.2.2 (2022-08-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#520)
+
 ### Fixes
 
 - [**bug**] print: fix urls for uglyURLs=true [#322](https://github.com/McShelby/hugo-theme-relearn/issues/322)
@@ -1078,6 +1262,8 @@
 ---
 
 ## 5.2.1 (2022-08-05)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#520)
 
 ### Enhancements
 
@@ -1095,6 +1281,8 @@
 
 ## 5.2.0 (2022-08-03)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#520)
+
 ### Enhancements
 
 - [**feature**][**change**] menu: expand collapsed menus if search term is found in submenus [#312](https://github.com/McShelby/hugo-theme-relearn/issues/312)
@@ -1108,6 +1296,8 @@
 
 ## 5.1.2 (2022-07-18)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#510)
+
 ### Fixes
 
 - [**bug**] print: reset mermaid theme to light [#313](https://github.com/McShelby/hugo-theme-relearn/issues/313)
@@ -1117,6 +1307,8 @@
 
 ## 5.1.1 (2022-07-15)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#510)
+
 ### Fixes
 
 - [**bug**] tags: don't count tags if page is hidden [#310](https://github.com/McShelby/hugo-theme-relearn/issues/310)
@@ -1124,6 +1316,8 @@
 ---
 
 ## 5.1.0 (2022-07-15)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#510)
 
 ### Enhancements
 
@@ -1134,6 +1328,8 @@
 
 ## 5.0.3 (2022-07-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#500)
+
 ### Fixes
 
 - [**bug**] ie11: no styles after rework of archetypes [#306](https://github.com/McShelby/hugo-theme-relearn/issues/306)
@@ -1141,6 +1337,8 @@
 ---
 
 ## 5.0.2 (2022-07-07)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#500)
 
 ### Fixes
 
@@ -1150,6 +1348,8 @@
 
 ## 5.0.1 (2022-07-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#500)
+
 ### Enhancements
 
 - [**feature**][**breaking**] theme: optimize loading of js and css [#303](https://github.com/McShelby/hugo-theme-relearn/issues/303)
@@ -1157,6 +1357,8 @@
 ---
 
 ## 5.0.0 (2022-07-05)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#500)
 
 ### Enhancements
 
@@ -1189,6 +1391,8 @@
 
 ## 4.2.5 (2022-06-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420)
+
 ### Fixes
 
 - [**bug**] swagger: javascript code does not load in documentation [#285](https://github.com/McShelby/hugo-theme-relearn/issues/285)
@@ -1199,6 +1403,8 @@
 
 ## 4.2.4 (2022-06-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420)
+
 ### Fixes
 
 - [**bug**] theme: fix url for logo and home button [#282](https://github.com/McShelby/hugo-theme-relearn/issues/282)
@@ -1207,6 +1413,8 @@
 
 ## 4.2.3 (2022-06-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420)
+
 ### Fixes
 
 - [**bug**][**breaking**] include: second parameter is ignored [#281](https://github.com/McShelby/hugo-theme-relearn/issues/281)
@@ -1214,16 +1422,22 @@
 ---
 
 ## 4.2.2 (2022-06-23)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420)
 *No changelog for this release.*
 
 ---
 
 ## 4.2.1 (2022-06-23)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420)
 *No changelog for this release.*
 
 ---
 
 ## 4.2.0 (2022-06-23)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#420)
 
 ### Enhancements
 
@@ -1240,6 +1454,8 @@
 
 ## 4.1.1 (2022-06-18)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#410)
+
 ### Fixes
 
 - [**bug**] notice: fix layout when content starts with heading [#275](https://github.com/McShelby/hugo-theme-relearn/issues/275)
@@ -1247,6 +1463,8 @@
 ---
 
 ## 4.1.0 (2022-06-12)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#410)
 
 ### Enhancements
 
@@ -1256,6 +1474,8 @@
 
 ## 4.0.5 (2022-06-12)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#400)
+
 ### Fixes
 
 - [**bug**] i18n: Vietnamese language with wrong lang code [#270](https://github.com/McShelby/hugo-theme-relearn/issues/270)
@@ -1264,6 +1484,8 @@
 ---
 
 ## 4.0.4 (2022-06-07)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#400)
 
 ### Enhancements
 
@@ -1284,6 +1506,8 @@
 
 ## 4.0.3 (2022-06-05)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#400)
+
 ### Enhancements
 
 - [**feature**] toc: add scrollbar [#262](https://github.com/McShelby/hugo-theme-relearn/issues/262)
@@ -1292,6 +1516,8 @@
 
 ## 4.0.2 (2022-06-05)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#400)
+
 ### Fixes
 
 - [**bug**] theme: let browser scroll page on CTRL+f  [#242](https://github.com/McShelby/hugo-theme-relearn/issues/242)
@@ -1299,11 +1525,15 @@
 ---
 
 ## 4.0.1 (2022-06-05)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#400)
 *No changelog for this release.*
 
 ---
 
 ## 4.0.0 (2022-06-05)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#400)
 
 ### Enhancements
 
@@ -1330,6 +1560,8 @@
 
 ## 3.4.1 (2022-04-03)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#340)
+
 ### Fixes
 
 - [**bug**] theme: fix IE11 incompatibilities [#234](https://github.com/McShelby/hugo-theme-relearn/issues/234)
@@ -1337,6 +1569,8 @@
 ---
 
 ## 3.4.0 (2022-04-03)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#340)
 
 ### Enhancements
 
@@ -1353,6 +1587,8 @@
 
 ## 3.3.0 (2022-03-28)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#330)
+
 ### Enhancements
 
 - [**feature**] theme: add CSS font variables [#227](https://github.com/McShelby/hugo-theme-relearn/issues/227)
@@ -1366,6 +1602,8 @@
 
 ## 3.2.1 (2022-03-25)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#320)
+
 ### Fixes
 
 - [**bug**] print: fix minor inconsistencies [#225](https://github.com/McShelby/hugo-theme-relearn/issues/225)
@@ -1375,6 +1613,8 @@
 ---
 
 ## 3.2.0 (2022-03-19)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#320)
 
 ### Enhancements
 
@@ -1389,6 +1629,8 @@
 
 ## 3.1.1 (2022-03-16)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#310)
+
 ### Enhancements
 
 - [**feature**] i18n: add Korean translation [#217](https://github.com/McShelby/hugo-theme-relearn/issues/217)
@@ -1396,6 +1638,8 @@
 ---
 
 ## 3.1.0 (2022-03-15)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#310)
 
 ### Enhancements
 
@@ -1411,6 +1655,8 @@
 ---
 
 ## 3.0.4 (2022-02-24)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#300)
 
 ### Enhancements
 
@@ -1429,6 +1675,8 @@
 
 ## 3.0.3 (2022-02-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#300)
+
 ### Enhancements
 
 - [**feature**] tags: show tag count in taxonomy list [#195](https://github.com/McShelby/hugo-theme-relearn/issues/195)
@@ -1443,6 +1691,8 @@
 
 ## 3.0.2 (2022-02-23)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#300)
+
 ### Enhancements
 
 - [**feature**] tags: sort by name [#193](https://github.com/McShelby/hugo-theme-relearn/issues/193)
@@ -1450,6 +1700,8 @@
 ---
 
 ## 3.0.1 (2022-02-23)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#300)
 
 ### Enhancements
 
@@ -1462,6 +1714,8 @@
 ---
 
 ## 3.0.0 (2022-02-22)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#300)
 
 ### Enhancements
 
@@ -1487,6 +1741,8 @@
 
 ## 2.9.6 (2022-02-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
+
 ### Fixes
 
 - [**bug**] menu: remove debug output [#171](https://github.com/McShelby/hugo-theme-relearn/issues/171)
@@ -1494,6 +1750,8 @@
 ---
 
 ## 2.9.5 (2022-02-07)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
 
 ### Fixes
 
@@ -1503,6 +1761,8 @@
 
 ## 2.9.4 (2022-02-06)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
+
 ### Fixes
 
 - [**bug**] exampleSite: fix links in official documentation [#168](https://github.com/McShelby/hugo-theme-relearn/issues/168)
@@ -1511,6 +1771,8 @@
 
 ## 2.9.3 (2022-02-06)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
+
 ### Fixes
 
 - [**bug**] menu: invalid URL when the shortcut is an internal link [#163](https://github.com/McShelby/hugo-theme-relearn/issues/163)
@@ -1518,6 +1780,8 @@
 ---
 
 ## 2.9.2 (2021-11-26)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
 
 ### Enhancements
 
@@ -1531,6 +1795,8 @@
 
 ## 2.9.1 (2021-11-22)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
+
 ### Fixes
 
 - [**bug**] menu: fix significantly low performance for collecting of meta info [#157](https://github.com/McShelby/hugo-theme-relearn/issues/157)
@@ -1538,6 +1804,8 @@
 ---
 
 ## 2.9.0 (2021-11-19)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#290)
 
 ### Fixes
 
@@ -1552,6 +1820,8 @@
 
 ## 2.8.3 (2021-11-09)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#280)
+
 ### Fixes
 
 - [**bug**] mermaid: let zoom reset to initial size [#145](https://github.com/McShelby/hugo-theme-relearn/issues/145)
@@ -1561,6 +1831,8 @@
 
 ## 2.8.2 (2021-11-08)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#280)
+
 ### Fixes
 
 - [**bug**] mermaid: always load javascript to avoid break if code fences are used [#142](https://github.com/McShelby/hugo-theme-relearn/issues/142)
@@ -1569,6 +1841,8 @@
 
 ## 2.8.1 (2021-11-04)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#280)
+
 ### Fixes
 
 - [**bug**] search: don't break JS in multilang setup if search is disabled [#140](https://github.com/McShelby/hugo-theme-relearn/issues/140)
@@ -1576,6 +1850,8 @@
 ---
 
 ## 2.8.0 (2021-11-03)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#280)
 
 ### Enhancements
 
@@ -1596,6 +1872,8 @@
 
 ## 2.7.0 (2021-10-24)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#270)
+
 ### Enhancements
 
 - [**feature**] notice: support custom titles [#124](https://github.com/McShelby/hugo-theme-relearn/issues/124)
@@ -1603,6 +1881,8 @@
 ---
 
 ## 2.6.0 (2021-10-21)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#260)
 
 ### Fixes
 
@@ -1612,6 +1892,8 @@
 
 ## 2.5.1 (2021-10-12)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#250)
+
 ### Fixes
 
 - [**bug**] security: fix XSS for malicious image URLs [#117](https://github.com/McShelby/hugo-theme-relearn/issues/117)
@@ -1619,6 +1901,8 @@
 ---
 
 ## 2.5.0 (2021-10-08)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#250)
 
 ### Enhancements
 
@@ -1633,6 +1917,8 @@
 
 ## 2.4.1 (2021-10-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#240)
+
 ### Fixes
 
 - [**bug**] theme: remove runtime styles from print [#111](https://github.com/McShelby/hugo-theme-relearn/issues/111)
@@ -1641,12 +1927,15 @@
 
 ## 2.4.0 (2021-10-07)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#240)
+
 ### Enhancements
 
 - [**feature**] lang: add vietnamese translation [#109](https://github.com/McShelby/hugo-theme-relearn/issues/109)
 - [**feature**][**change**] theme: simplify stylesheet for color variants [#107](https://github.com/McShelby/hugo-theme-relearn/issues/107)
 - [**feature**] hidden pages: remove from RSS feed, JSON, taxonomy etc [#102](https://github.com/McShelby/hugo-theme-relearn/issues/102)
 - [**feature**] theme: announce alternative content in header [#101](https://github.com/McShelby/hugo-theme-relearn/issues/101)
+- [**feature**] menu: frontmatter option to change sort predicate [#98](https://github.com/McShelby/hugo-theme-relearn/issues/98)
 - [**feature**] menu: frontmatter option to change sort predicate [#98](https://github.com/McShelby/hugo-theme-relearn/issues/98)
 - [**feature**] menu: add default setting for menu expansion [#97](https://github.com/McShelby/hugo-theme-relearn/issues/97)
 - [**feature**] theme: improve print style [#93](https://github.com/McShelby/hugo-theme-relearn/issues/93)
@@ -1666,6 +1955,8 @@
 
 ## 2.3.2 (2021-09-20)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#230)
+
 ### Fixes
 
 - [**bug**] docs: rename history pirate translation [#91](https://github.com/McShelby/hugo-theme-relearn/issues/91)
@@ -1674,6 +1965,8 @@
 
 ## 2.3.1 (2021-09-20)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#230)
+
 ### Fixes
 
 - [**bug**] docs: rename english pirate translation to avoid crash on rendering [#90](https://github.com/McShelby/hugo-theme-relearn/issues/90)
@@ -1681,6 +1974,8 @@
 ---
 
 ## 2.3.0 (2021-09-13)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#230)
 
 ### Fixes
 
@@ -1694,6 +1989,8 @@
 ---
 
 ## 2.2.0 (2021-09-09)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#220)
 
 ### Enhancements
 
@@ -1710,6 +2007,8 @@
 ---
 
 ## 2.1.0 (2021-09-07)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#210)
 
 ### Enhancements
 
@@ -1728,6 +2027,8 @@
 ---
 
 ## 2.0.0 (2021-08-28)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#200)
 
 ### Enhancements
 
@@ -1762,6 +2063,8 @@
 
 ## 1.2.0 (2021-07-26)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#120)
+
 ### Enhancements
 
 - [**feature**] theme: adjust copy-to-clipboard [#29](https://github.com/McShelby/hugo-theme-relearn/issues/29)
@@ -1789,6 +2092,8 @@
 
 ## 1.1.1 (2021-07-04)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#110)
+
 ### Maintenance
 
 - [**task**] theme: prepare for new hugo theme registration [#13](https://github.com/McShelby/hugo-theme-relearn/issues/13)
@@ -1796,6 +2101,8 @@
 ---
 
 ## 1.1.0 (2021-07-02)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#110)
 
 ### Enhancements
 
@@ -1817,6 +2124,8 @@
 
 ## 1.0.1 (2021-07-01)
 
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#100)
+
 ### Maintenance
 
 - [**task**] Prepare for hugo showcase [#3](https://github.com/McShelby/hugo-theme-relearn/issues/3)
@@ -1824,6 +2133,8 @@
 ---
 
 ## 1.0.0 (2021-07-01)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#100)
 
 ### Maintenance
 
