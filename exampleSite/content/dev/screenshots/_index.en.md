@@ -29,21 +29,27 @@ The content should be:
 
 **Used by**:
 
-- Hugo Themes info: https://themes.gohugo.io/themes/hugo-theme-relearn/ _1000 x 1500 @ 1_
+- Hugo Themes info: https://themes.gohugo.io/themes/hugo-theme-relearn/ _1000 x 1500 @ 1_ (`images/screenshot.png`)
+- Hugo Themes gallery: https://themes.gohugo.io/tags/docs/ _900 x 600_ @ 1 (`images/tn.png`)
 
 **Page URL**: [Screenshot Link](shortcodes/notice)
 
 **Creation**:
 
 - save as `images/screenshot.png`
+- from original screenshot, scale to _900 x 600_ and save as `images/tn.png`
 
 **Remarks**:
 
-The location is mandatory due to Hugo's theme site builder.
+The locations are mandatory due to Hugo's theme site builder.
 
 **Preview** `images/screenshot.png`:
 
 ![Screenshot](/images/screenshot.png?width=50%25&height=50%25)
+
+**Preview** `images/tn.png`:
+
+![tn](/images/tn.png?width=50%25&height=50%25)
 
 ## Hero Image
 
@@ -58,7 +64,6 @@ The content should be:
 
 **Used by**:
 
-- Hugo Themes gallery: https://themes.gohugo.io/tags/docs/                              _900 x 600_
 - Hugo Themes notes: https://themes.gohugo.io/themes/hugo-theme-relearn/               _1280 x 640_
 - GitHub project site: https://github.com/McShelby/hugo-theme-relearn                  _1280 x 640_
 - GitHub social media preview: https://github.com/McShelby/hugo-theme-relearn/settings _1280 x 640_
@@ -71,17 +76,8 @@ The content should be:
 - Desktop: light theme _1440 x 900 @ 1_
 - Tablet: light theme _778 x 1038 @ 1_
 - Phone: dark theme _450 x 801 @ .666_
-- From original template size resize to _2700 x 1800_ centered, scale to _900 x 600_ and save as `images/tn.png`
-- From original template size resize to _3000 x 1500_ offset y: _-330_, scale to _1280 x 640_ and save as `images/hero.png`
-
-**Remarks**:
-
-The location of `images/tn.png` is mandatory due to Hugo's theme site builder.
+- From original template resize to _3000 x 1500_ offset y: _-330_, scale to _1280 x 640_ and save as `images/hero.png`
 
 **Preview** `images/hero.png`:
 
 ![Hero](/images/hero.png?width=50%25&height=50%25)
-
-**Preview** `images/tn.png`:
-
-![tn](/images/tn.png?width=50%25&height=50%25)
