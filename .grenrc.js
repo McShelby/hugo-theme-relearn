@@ -45,6 +45,6 @@ module.exports = {
   onlyMilestones: true,
   template: {
     group: "\n### {{heading}}\n",
-    release: ({ body, date, release }) => `## ${release} (` + date.replace( /(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1' ) + `)\n${body}`,
+    release: ({ body, date, release }) => `## ${release} (` + date.replace( /(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1' ) + `)\n\n[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#` + release.replace( /(\d+)\.(\d+)\.(\d+)/, '$1$2$3' ) + `)\n${body}`,
   },
 };
