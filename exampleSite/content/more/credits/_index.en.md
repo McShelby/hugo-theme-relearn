@@ -37,6 +37,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 
 - [github-buttons](https://github.com/buttons/github-buttons) - Unofficial github:buttons
 - [Octodex](https://octodex.github.com/) - Playground and home for all octocats
+- [Pixeden Club](https://www.pixeden.com/) - Inspired Design Resources for Creatives
 
 ## Tooling Dependencies
 
