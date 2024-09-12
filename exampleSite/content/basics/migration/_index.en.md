@@ -21,7 +21,7 @@ This document shows you what's new in the latest release and flags it with one o
 ## 7.0.0 (XXXX-XX-XX) {#700}
 
 > [!secondary]
-> The release you didn't know you want!
+> {{% icon fire-flame-curved %}} The release you didn't know you want! {{% icon fire-flame-curved %}}
 
 - {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.126.0{{% /badge %}} This release requires a newer Hugo version.
 
@@ -30,7 +30,7 @@ This document shows you what's new in the latest release and flags it with one o
   - suffered from poor build performance for sites with 1000 or more pages
   - reinvented the wheel instead of using available Hugo mechanisms
 
-  What do I gain, you may ask. A significant performance boost during build! Usually the build time has been cut in half. It is now possible to build even larger sites with 5000 or more pages. This was previously almost impossible due to rapidly increasing build time the more pages you've introduced. For even bigger sites, the theme now has configurable performance optimizations (at the price of feature limitations).
+  _What do I gain_, you may ask. A significant performance boost during build! Usually the build time has been cut in half. It is now possible to build even larger sites with 5000 or more pages. This was previously almost impossible due to rapidly increasing build time the more pages you've introduced. For even bigger sites, the theme now has configurable performance optimizations (at the price of feature limitations).
 
   If you haven't done customizations to any partials, you can update right away.
 
@@ -41,7 +41,7 @@ This document shows you what's new in the latest release and flags it with one o
   - overwritten the `header.html`, `menu.html` or `footer.html` partials
   - self-defined output formats that display HTML
   - defined archetype partials in `layouts/partials/archetypes`
-  - redefined prev/next topbar buttons
+  - overwritten prev/next topbar buttons
 
   There is a separate section in the documentation covering these cases.
 
@@ -54,7 +54,7 @@ This document shows you what's new in the latest release and flags it with one o
       home = ["html", "rss", "print"]
     {{< /multiconfig >}}
 
-  After that, your build will succeed but will most likely cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default.
+  After that, your build will succeed but will most likely cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
 
   In addition you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing `searchIndexURL` and `searchPageURL` respectively in your `hugo.toml`.
 
