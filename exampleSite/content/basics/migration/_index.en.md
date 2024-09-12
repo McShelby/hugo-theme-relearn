@@ -22,6 +22,8 @@ This document shows you what's new in the latest release and flags it with one o
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} If you now display a single code block in a `notice` box, its [margin and border will be removed](shortcodes/notice#code-with-collapsed-colored-borders) so only the colored notice border is visible.
 
+- {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} It is now possible to have user-defined styles for all shortcodes that accept the `style` parameter. See the [`notice` shortcode](shortcodes/notice#configuration) for configuration.
+
 - {{% badge style="info" icon="plus-circle" title=" " %}}New{{% /badge %}} The [`resources` shortcode](shortcodes/resources) has a new parameter `expanded` to make the resource list collapsible.
 
 ---

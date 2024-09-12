@@ -9,27 +9,9 @@
 {{- if and (not $color) (eq (len $color) 0) }}
   {{- $style = .style | default "transparent" }}
 {{- end }}
-{{- $title := .title }}
-{{- if not $title }}
-  {{- if eq $style "caution" }}{{ $title = $style | T }}{{ end }}
-  {{- if eq $style "important" }}{{ $title = $style | T }}{{ end }}
-  {{- if eq $style "info" }}{{ $title = $style | T }}{{ end }}
-  {{- if eq $style "note" }}{{ $title = $style | T }}{{ end }}
-  {{- if eq $style "tip" }}{{ $title = $style | T }}{{ end }}
-  {{- if eq $style "warning" }}{{ $title = $style | T }}{{ end }}
-{{- end }}
-{{- $title = trim ($title | default ("Attachments-label" | T)) " " }}
-{{- $icon := .icon | default "" }}
-{{- if and (not $icon) (eq (len $icon) 0) }}
-  {{- $icon = "paperclip" }}
-  {{- if eq $style "caution" }}{{ $icon = default "hand" }}{{ end }}
-  {{- if eq $style "important" }}{{ $icon = default "bolt" }}{{ end }}
-  {{- if eq $style "info" }}{{ $icon = default "info-circle" }}{{ end }}
-  {{- if eq $style "note" }}{{ $icon = default "exclamation-circle" }}{{ end }}
-  {{- if eq $style "tip" }}{{ $icon = default "lightbulb" }}{{ end }}
-  {{- if eq $style "warning" }}{{ $icon = default "exclamation-triangle" }}{{ end }}
-{{- end }}
-{{- $icon = trim $icon " " }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+{{- $title := trim ($boxStyle.title | default ("Attachments-label" | T)) " " }}
+{{- $icon := trim ($boxStyle.icon | default "paperclip") " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}

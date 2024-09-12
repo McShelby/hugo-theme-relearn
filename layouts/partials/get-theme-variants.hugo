@@ -107,20 +107,53 @@ Chroma auto run:
   {{- end }}
 {{- end }}
 
-{{- $swaggerres := resources.Get "css/swagger.css" }}
-{{- $cssres := $swaggerres | resources.ExecuteAsTemplate "css/swagger.css" (dict) }}
-{{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+{{- /*
+- Add box styles to variables and variants
+*/}}
+{{- with resources.Get "css/variables.css" }}
+  {{- $variablescontent := print ":root {\n" .Content }}
+  {{- range $page.Site.Params.boxStyle }}
+    {{- $identifier := upper .identifier }}
+    {{- $variablescontent = print $variablescontent "\n"
+      "\n    --INTERNAL-BOX-" $identifier "-color: var(--BOX-" $identifier "-color, " .color ");"
+      "\n    --INTERNAL-BOX-" $identifier "-TEXT-color: var(--BOX-" $identifier "-TEXT-color, var(--INTERNAL-BOX-TEXT-color));"
+    }}
+  {{- end }}
+  {{- $variablescontent = print $variablescontent "\n}" }}
+  {{- $cssres := $variablescontent | resources.FromString "css/variables.css" }}
+  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+{{- end }}
 
-{{- $variantres := resources.Get "css/variant.css" }}
-{{- $cssres := $variantres | resources.ExecuteAsTemplate "css/variant.css" (dict) }}
-{{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+{{- with resources.Get "css/variant.css" }}
+  {{- $assetBusting := partialCached "assetbusting.hugo" . }}
+  {{- $variantcontent := print `@import "variables.css` $assetBusting `";` "\n\n" .Content }}
+  {{- range $page.Site.Params.boxStyle }}
+    {{- $identifier := upper .identifier }}
+    {{- $identifierl := lower .identifier }}
+    {{- $variantcontent = print $variantcontent
+      "\n.cstyle." $identifierl " {"
+      "\n    --VARIABLE-BOX-color: var(--INTERNAL-BOX-" $identifier "-color);"
+      "\n    --VARIABLE-BOX-TEXT-color: var(--INTERNAL-BOX-" $identifier "-TEXT-color);"
+      "\n}\n"
+    }}
+  {{- end }}
+  {{- $cssres := $variantcontent | resources.FromString "css/variant.css" }}
+  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+{{- end }}
 
+{{- /*
+- The ugly rest
+*/}}
 {{- $printres := resources.Get "css/print.css" }}
 {{- $cssres := $printres | resources.ExecuteAsTemplate "css/print.css" (dict) }}
 {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 
 {{- $formatprintres := resources.Get "css/format-print.css" }}
 {{- $cssres := $formatprintres | resources.ExecuteAsTemplate "css/format-print.css" (dict "themevariant" (index (collections.Where $themevariants "identifier" "relearn-light") 0)) }}
+{{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+
+{{- $swaggerres := resources.Get "css/swagger.css" }}
+{{- $cssres := $swaggerres | resources.ExecuteAsTemplate "css/swagger.css" (dict) }}
 {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 
 {{- return collections.Where $themevariants "config" true }}

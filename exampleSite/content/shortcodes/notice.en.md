@@ -66,6 +66,23 @@ It is all about the boxes.
 | **expanded**          |          | _&lt;empty&gt;_ | Whether to draw an expander and how the content is displayed.<br><br>- _&lt;empty&gt;_: no expander is drawn and the content is permanently shown<br>- `true`: the expander is drawn and the content is initially shown<br>- `false`: the expander is drawn and the content is initially hidden |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
 
+## Configuration
+
+Besides the predefined `style` values, you are able to define your own in the `hugo.toml`.
+
+{{< multiconfig file=hugo >}}
+[params]
+boxStyle = [
+	{ identifier = "magic", i18n = "", title = "Magic", icon = "rainbow", color = "gold" }
+]
+{{< /multiconfig >}}
+
+The `style` parameter must match the `identifier`. The title for the style will be determined from the `title`. If no `title` but a `i18n` is set, the title will be taken from the translation files by that key. The `title` may be empty in which case, the box does not contain a default title. `icon` and `color` are working similar.
+
+You can also redefine the predefined styles here, if you're not satisfied by the default settings.
+
+Below is a [usage example](#user-defined-style).
+
 ## Examples
 
 ### By Severity Using Markdown Syntax
@@ -339,3 +356,15 @@ printf("Hello World!");
 printf("Hello World!");
 ```
 {{% /notice %}}
+
+#### User-defined Style
+
+Self-defined styles can be [configured](#configuration) in your `hugo.toml` and used for every shortcode, that accepts a `style` parameter.
+
+````
+> [!magic]
+> Maaagic!
+````
+
+> [!magic]
+> Maaagic!
