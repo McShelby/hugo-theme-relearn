@@ -48,6 +48,14 @@ runs:
       with:
         path: layouts/partials/version.txt
 
+    - name: Get old major version number
+      id: oldmajorvers
+      uses: ashley-taylor/regex-property-action@v1
+      with:
+        value: ${{ steps.oldvers.outputs.contents }}
+        regex: (\d+)\.\d+\.\d+.*
+        replacement: '$1'
+
     - name: Get old main version number
       id: oldmainvers
       uses: ashley-taylor/regex-property-action@v1
@@ -66,18 +74,18 @@ runs:
         regex: \d+\.\d+\.(\d+)
         replacement: "$1"
 
-    - name: Get migration notes
-      id: migrationnotes
+    - name: Get releasenotes
+      id: releasenotes
       uses: andstor/file-reader-action@v1
       with:
-        path: exampleSite/content/basics/migration/_index.en.md
+        path: exampleSite/content/basics/releasenotes/${{ steps.oldmajorvers.outputs.value }}.x/_index.en.md
 
-    - name: Check for old migration notes
+    - name: Check for old releasenotes
       id: hasoldnotes
       uses: ashley-taylor/regex-property-action@v1
       with:
-        value: ${{ steps.migrationnotes.outputs.contents }}
-        regex: '.*?[\n\r\s]*<!--GH-ACTION-RELEASE-MILESTONE-->[\n\r\s]*-*\s*[\n\r\s]*?[\n\r]+##\s+${{ steps.oldmainvers.outputs.value }}\.0\s+.*?[\n\r][\n\r\s]*.*'
+        value: ${{ steps.releasenotes.outputs.contents }}
+        regex: '.*?[\n\r\s]*<!--GH-ACTION-RELEASE-MILESTONE-->[\n\r\s]*[\n\r]+##\s+${{ steps.oldmainvers.outputs.value }}\.0\s+.*?[\n\r][\n\r\s]*.*'
         flags: gs
         replacement: '1'
 
@@ -94,12 +102,12 @@ runs:
     - name: Log results and exit
       shell: bash
       run: |
-        echo outcome            : ${{ steps.outcome.outputs.outcome }}
-        echo has closed issues  : ${{ fromJSON(steps.closed_issues.outputs.data).search.issueCount > 0 }}
-        echo has open issues    : ${{ fromJSON(steps.open_issues.outputs.data).search.issueCount > 0 }}
-        echo is patch version   : ${{ steps.patchvers.outputs.value != '0' }}
-        echo has old main notes : ${{ steps.hasoldnotes.outputs.value == '1' }}
-        echo are notes okay     : ${{ (steps.patchvers.outputs.value!='0'&&steps.hasoldnotes.outputs.value=='1') || (steps.patchvers.outputs.value=='0'&&steps.hasoldnotes.outputs.value!='1') }}
+        echo outcome              : ${{ steps.outcome.outputs.outcome }}
+        echo has closed issues    : ${{ fromJSON(steps.closed_issues.outputs.data).search.issueCount > 0 }}
+        echo has open issues      : ${{ fromJSON(steps.open_issues.outputs.data).search.issueCount > 0 }}
+        echo is patch version     : ${{ steps.patchvers.outputs.value != '0' }}
+        echo has old releasenotes : ${{ steps.hasoldnotes.outputs.value == '1' }}
+        echo are notes okay       : ${{ (steps.patchvers.outputs.value!='0'&&steps.hasoldnotes.outputs.value=='1') || (steps.patchvers.outputs.value=='0'&&steps.hasoldnotes.outputs.value!='1') }}
         if [ "${{ steps.outcome.outputs.outcome }}" = "failure" ]; then
           exit 1
         fi

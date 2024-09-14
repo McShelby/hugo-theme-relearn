@@ -2,7 +2,7 @@
 
 A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
-[★ What's new in the latest release ★](https://mcshelby.github.io/hugo-theme-relearn/basics/migration)
+[★ What's new in the latest release ★](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes)
 
 ![Image of the Relearn theme in light and dark mode on phone, tablet and desktop](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/hero.png)
 
@@ -63,7 +63,7 @@ For a detailed description of the theme's capabilities visit the [official docum
 
 ## Changelog
 
-See the [What's New](https://mcshelby.github.io/hugo-theme-relearn/basics/migration) page for release highlights or the detailed [change history](https://mcshelby.github.io/hugo-theme-relearn/basics/history) for a complete list of changes.
+See the [What's New](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes) page for release highlights or the detailed [change history](https://mcshelby.github.io/hugo-theme-relearn/basics/history) for a complete list of changes.
 
 ## Contributions
 

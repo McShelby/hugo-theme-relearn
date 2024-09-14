@@ -7,15 +7,15 @@ title = "Maintaining"
 
 This project tries to follow the [semver policy](https://semver.org/) - although not followed 100% in the past.
 
-Usually an entry of {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} on the [What's new](basics/migration) page causes a new major release number.
+Usually an entry of {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} on the [What's new](basics/releasenotes) page causes a new major release number.
 
-All other entries on the [What's new](basics/migration) page will increase the minor release number.
+All other entries on the [What's new](basics/releasenotes) page will increase the minor release number.
 
 Releases resulting in a new major or minor number are called main release.
 
-Releases containing bugfixes only, are only increasing the patch release number. Those releases don't result in announcements on the [What's new](basics/migration) page.
+Releases containing bugfixes only, are only increasing the patch release number. Those releases don't result in announcements on the [What's new](basics/releasenotes) page.
 
-Entries on the [What's new](basics/migration) page are checked and enforced during the `version-release` GitHub Action.
+Entries on the [What's new](basics/releasenotes) page are checked and enforced during the `version-release` GitHub Action.
 
 ## Managing Issues
 
@@ -51,7 +51,7 @@ An issue that results in changesets must have exactly one of the following label
 
 ### Impact
 
-If the issue would cause a new main release due to [semver semantics](#semver) it needs one of the according labels and the matching badge on the [What's new](basics/migration) page.
+If the issue would cause a new main release due to [semver semantics](#semver) it needs one of the according labels and the matching badge on the [What's new](basics/releasenotes) page.
 
 | Label                                               | Description                                             |
 |-----------------------------------------------------|---------------------------------------------------------|
@@ -110,13 +110,13 @@ The following checks will be enforced
 - the milestone exists
 - there is at least one closed issue assigned to the milestone
 - all assigned issues for this milestone are closed
-- if it's a main release, there must be a new `<major>.<minor>` at the beginning of the [What's new](basics/migration) page
-- if it's a patch release, there must be the `<major>.<minor>` from the previous release at the beginning of the [What's new](basics/migration) page
+- if it's a main release, there must be a new `<major>.<minor>` at the beginning of the [What's new](basics/releasenotes) page
+- if it's a patch release, there must be the `<major>.<minor>` from the previous release at the beginning of the [What's new](basics/releasenotes) page
 
 After a successful run of the action
 
 - the [History](https://mcshelby.github.io/hugo-theme-relearn/basics/history/index.html) page is updated, including release version, release date and text
-- the [What's new](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/index.html) page is updated, including release version, release date and text
+- the [What's new](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/index.html) page is updated, including release version, release date and text
 - the version number for the `<meta generator>` is updated
 - the updated files are committed
 - the milestone is closed

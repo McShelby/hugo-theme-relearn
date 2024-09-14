@@ -29,6 +29,16 @@ runs:
       with:
         format: 'YYYY-MM-DD'
 
+    - name: Get current major version number
+      id: majorvers
+      uses: ashley-taylor/regex-property-action@v1
+      env:
+        MILESTONE: ${{ inputs.milestone }}
+      with:
+        value: ${{ env.MILESTONE }}
+        regex: (\d+)\.\d+\.\d+
+        replacement: "$1"
+
     - name: Get current main version number
       id: mainvers
       uses: ashley-taylor/regex-property-action@v1
@@ -36,8 +46,8 @@ runs:
         MILESTONE: ${{ inputs.milestone }}
       with:
         value: ${{ env.MILESTONE }}
-        regex: (\d+\.\d+)\.\d+
-        replacement: "$1"
+        regex: (\d+)\.(\d+)\.\d+
+        replacement: "$1.$2"
 
     - name: Get current main version number for anchoring
       id: mainanchor
@@ -48,16 +58,6 @@ runs:
         value: ${{ env.MILESTONE }}
         regex: (\d+)\.(\d+)\.\d+
         replacement: "$1$2"
-
-    - name: Get current major version number
-      id: majorvers
-      uses: ashley-taylor/regex-property-action@v1
-      env:
-        MILESTONE: ${{ inputs.milestone }}
-      with:
-        value: ${{ env.MILESTONE }}
-        regex: (\d+)\.\d+\.\d+
-        replacement: "$1"
 
     - name: Get next version number
       id: nextvers
@@ -87,12 +87,12 @@ runs:
         git tag  --force --message "" "$MILESTONE"
         git push --force origin "$MILESTONE"
 
-    - name: Update migration docs
+    - name: Update releasenotes
       uses: mingjun97/file-regex-replace@v1
       with:
-        regex: '(.)[\n\r\s]*<!--GH-ACTION-RELEASE-MILESTONE-->[\n\r\s]*-*\s*[\n\r\s]*?[\n\r]+##\s*.*?[\n\r][\n\r\s]*(.)'
-        replacement: "$1\n\n<!--GH-ACTION-RELEASE-MILESTONE-->\n\n---\n\n## ${{ steps.mainvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.mainanchor.outputs.value }}0}\n\n$2"
-        include: exampleSite/content/basics/migration/_index.en.md
+        regex: '(.)[\n\r\s]*<!--GH-ACTION-RELEASE-MILESTONE-->[\n\r\s]*[\n\r]+##\s*.*?[\n\r][\n\r\s]*(.)'
+        replacement: "$1\n\n<!--GH-ACTION-RELEASE-MILESTONE-->\n\n## ${{ steps.mainvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.mainanchor.outputs.value }}0}\n\n$2"
+        include: exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}.x/_index.en.md
 
     - name: Update generator version
       shell: bash
