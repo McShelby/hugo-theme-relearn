@@ -52,13 +52,24 @@
     {{- $parent := . }}
     {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" $parent) $parent.Path }}
     {{- $nextVisible := partial "inline/next_sibling" (dict "siblings" $pages "currentNode" $currentNode) }}
-    {{- if $nextVisible }}
+    {{- range $pages }}
+      {{- if not $nextVisible }}
+        {{- break }}
+      {{- end }}
       {{- $nextSibling = partial "inline/leftmost_descendant" $nextVisible }}
+      {{- if $nextSibling }}
+        {{- break }}
+      {{- else }}
+        {{- $nextVisible = partial "inline/next_sibling" (dict "siblings" $pages "currentNode" $nextVisible) }}
+      {{- end }}
+    {{- end }}
+    {{- if not $nextSibling }}
+      {{- if $nextVisible }}
+        {{- $nextSibling = partial "inline/leftmost_descendant" $nextVisible }}
+      {{- end }}
       {{- if not $nextSibling }}
         {{- $nextSibling = partial "inline/next_sibling_or_ancestor" $parent }}
       {{- end }}
-    {{- else }}
-      {{- $nextSibling = partial "inline/next_sibling_or_ancestor" $parent }}
     {{- end }}
   {{- end }}
   {{- return $nextSibling }}
