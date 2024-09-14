@@ -9,6 +9,9 @@
 {{- with or
   ($page.Page.GetPage $path)
   ($page.Page.GetPage (strings.TrimRight "/" $path))
+}}
+  {{- $content = .RenderShortcodes }}
+{{- else with or
   ($page.Page.Resources.Get $path)
   (resources.Get $path)
 }}
