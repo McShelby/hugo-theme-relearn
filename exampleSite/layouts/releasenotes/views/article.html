@@ -5,39 +5,7 @@
   </header>
 {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
 
-<p>This document shows you what's new in the release and flags it with one of the following badges. For a detailed list of changes, see the {{ partial "shortcodes/link.html" (dict
-  "page" .
-  "url" "basics/history"
-  "content" "history page"
-) }}.</p>
-<ul>
-<li><p>{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "color" "fuchsia"
-  "icon"  "fa-fw fab fa-hackerrank"
-  "content" "0.126.0"
-)}} The minimum required Hugo version.</p></li>
-<li><p>{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "style" "warning"
-  "title"  " "
-  "content" "Breaking"
-)}} A change that requires action by you after upgrading to assure the site is still functional.</p></li>
-<li><p>{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "style" "note"
-  "title"  " "
-  "content" "Change"
-)}} A change in default behavior that may requires action by you if you want to revert it.</p></li>
-<li><p>{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "style" "info"
-  "title"  " "
-  "icon"   "plus-circle"
-  "content" "New"
-)}} Marks new behavior you might find interesting or comes configurable.</p></li>
-</ul>
-<hr>
+{{ partial "partials/shortcodes/include.html" (dict "page" . "file" "basics/releasenotes/legend") | .RenderString }}
 
 {{ partial "article-content.html" . }}
   <footer class="footline">
