@@ -1,7 +1,6 @@
 +++
 [_build]
   list = "never"
-  publishResources = false
 +++
 
 For a detailed list of changes, see the [history page](basics/history).
