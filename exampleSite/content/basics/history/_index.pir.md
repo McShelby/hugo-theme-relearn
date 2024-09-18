@@ -1,6 +1,7 @@
 +++
 disableToc = false
-title = "Historrry"
+title = "Changelog"
+type = "changelog"
 weight = 30
 +++
 {{< piratify >}}

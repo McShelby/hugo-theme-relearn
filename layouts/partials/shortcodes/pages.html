@@ -14,22 +14,36 @@
 {{- if eq (printf "%T" $hidevisible) "string" }}
   {{- $hidevisible = (eq $hidevisible "true") }}
 {{- end }}
+{{- $reverse := .reverse | default false }}
+{{- if eq (printf "%T" $reverse) "string" }}
+  {{- $reverse = (eq $reverse "true") }}
+{{- end }}
 
-{{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .page) }}
+{{- $pages := .page.Pages }}
+{{- if $reverse }}
+  {{- $pages = $pages.Reverse }}
+{{- end }}
 {{- $needsdivider := false }}
+
 {{- range $pages }}
   {{- $display := or
-    (and $.showhidden (or .Params.hidden (eq .Title "")) )
-    (and (not $.hidevisible) (not (or .Params.hidden (eq .Title ""))) )
+    (and $showhidden (or .Params.hidden (eq .Title "")) )
+    (and (not $hidevisible) (not (or .Params.hidden (eq .Title ""))) )
   }}
-{{- if $display }}
-{{ if and $.showdivider $needsdivider }}
+  {{- if $display }}
+{{- if and $showdivider $needsdivider }}
+
 ---
+
 {{ end }}
-{{ if and $.showtitle .Title }}
+{{ if and $showtitle .Title }}
+
 # {{ .Title }}
+
 {{ end }}
+
 {{ .RenderShortcodes }}
-{{ end }}
-  {{- $needsdivider = true }}
+
+{{ $needsdivider = true }}
+  {{- end }}
 {{- end }}

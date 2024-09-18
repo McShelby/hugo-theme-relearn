@@ -1,6 +1,14 @@
 +++
 disableToc = false
-title = "History"
+title = "Changelog"
+type = "changelog"
 weight = 30
 +++
-{{% include "CHANGELOG.md" true %}}
+
+{{% pages showdivider="true" showhidden="true" hidevisible="true" showtitle="true" %}}
+
+---
+
+## Older Versions
+
+{{% children %}}
