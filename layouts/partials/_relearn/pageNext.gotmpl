@@ -7,7 +7,9 @@
 {{- else if eq .Page.Kind "taxonomy" }}
   {{- /* go to first term page */}}
   {{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . .Path }}
-  {{- $next = (index $pages 0).Page }}
+  {{- with index $pages 0 }}
+    {{- $next = .Page }}
+  {{- end }}
 {{- else }}
   {{- $next = partial "inline/next-page" . }}
 {{- end }}
