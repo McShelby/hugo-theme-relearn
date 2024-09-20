@@ -74,7 +74,7 @@ By default all three levels are enabled. You can disable each level by the follo
 By default the following files will be created, relative to each languages home page but can be overwritten:
 
 - search popup: `searchindex.js`, configured by `searchIndexURL`
-- dedicated search page: either `/search.html` or `search/index.html` depending on your settings for `uglyURLs`, configured by `searchPageURL`
+- dedicated search page: `search/index.html`, configured by `searchPageURL`
 
 {{% notice note %}}
 You only need to reconfigure the file / page URLs if you have own content at those URLs in your project. Eg. this can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.
