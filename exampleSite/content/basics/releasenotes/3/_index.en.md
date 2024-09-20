@@ -5,4 +5,4 @@ type = "releasenotes"
 weight = -3
 +++
 
-{{% pages showdivider="true" showhidden="true" reverse="true" %}}
+{{% pages showhidden="true" showdivider="true" %}}

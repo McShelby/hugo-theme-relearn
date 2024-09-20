@@ -108,7 +108,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse="true" %}}\n" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
 
     - name: Update releasenotes front matter
       uses: surahmansada/file-regex-replace@v1
@@ -138,8 +138,8 @@ runs:
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         mkdir -p exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}\n" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/_index.en.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}\n" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
         npx github-release-notes@0.17.1 changelog --generate --changelog-filename exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md --tags "$MILESTONE"
 
     - name: Generate piratish changelogs
