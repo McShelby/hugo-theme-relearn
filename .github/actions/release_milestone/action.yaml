@@ -31,7 +31,7 @@ runs:
 
     - name: Get current major version number
       id: majorvers
-      uses: ashley-taylor/regex-property-action@v1
+      uses: azarc-io/regex-property-action@master
       env:
         MILESTONE: ${{ inputs.milestone }}
       with:
@@ -39,25 +39,32 @@ runs:
         regex: (\d+)\.\d+\.\d+
         replacement: "$1"
 
-    - name: Get current main version number
-      id: mainvers
-      uses: ashley-taylor/regex-property-action@v1
+    - name: Get current minor version number
+      id: minorvers
+      uses: azarc-io/regex-property-action@master
       env:
         MILESTONE: ${{ inputs.milestone }}
       with:
         value: ${{ env.MILESTONE }}
-        regex: (\d+)\.(\d+)\.\d+
-        replacement: "$1.$2"
+        regex: \d+\.(\d+)\.\d+
+        replacement: "$1"
 
-    - name: Get current main version number for anchoring
-      id: mainanchor
-      uses: ashley-taylor/regex-property-action@v1
+    - name: Get current patch version number
+      id: patchvers
+      uses: azarc-io/regex-property-action@master
       env:
         MILESTONE: ${{ inputs.milestone }}
       with:
         value: ${{ env.MILESTONE }}
-        regex: (\d+)\.(\d+)\.\d+
-        replacement: "$1$2"
+        regex: \d+\.\d+\.(\d+)
+        replacement: "$1"
+
+    - name: Get current padded patch version number
+      id: paddedpatchvers
+      shell: bash
+      run: |
+        NUM=$(printf "%03d" ${{ steps.patchvers.outputs.value }})
+        echo "value=$NUM" >> $GITHUB_OUTPUT
 
     - name: Get next version number
       id: nextvers
@@ -87,13 +94,6 @@ runs:
         git tag  --force --message "" "$MILESTONE"
         git push --force origin "$MILESTONE"
 
-    - name: Update releasenotes
-      uses: mingjun97/file-regex-replace@v1
-      with:
-        regex: '(.)[\n\r\s]*<!--GH-ACTION-RELEASE-MILESTONE-->[\n\r\s]*[\n\r]+##\s*.*?[\n\r][\n\r\s]*(.)'
-        replacement: "$1\n\n<!--GH-ACTION-RELEASE-MILESTONE-->\n\n## ${{ steps.mainvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.mainanchor.outputs.value }}0}\n\n$2"
-        include: exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}.x/_index.en.md
-
     - name: Update generator version
       shell: bash
       env:
@@ -101,39 +101,99 @@ runs:
       run: |
         echo -n "$MILESTONE" > layouts/partials/version.txt
 
-    - name: Update changelog
+    - name: Generate english releasenotes
       shell: bash
       env:
+        MILESTONE: ${{ inputs.milestone }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
-        npx github-release-notes@0.17.1 changelog --generate --override --tags=all
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse="true" %}}\n" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
+
+    - name: Update releasenotes front matter
+      uses: surahmansada/file-regex-replace@v1
+      with:
+        regex: '(\ntitle = "Version )\d+\.\d+("\n.*\nweight = -)\d+(\n)'
+        replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0$2${{ steps.minorvers.outputs.value }}$3"
+        include: exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
+
+    - name: Update releasenotes heading
+      uses: surahmansada/file-regex-replace@v1
+      with:
+        regex: '(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)'
+        replacement: "$1\n\n## ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.majorvers.outputs.value }}-${{ steps.minorvers.outputs.value }}-0}\n\n$2"
+        include: exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
+
+    - name: Generate piratish releasenotes
+      shell: bash
+      run: |
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
+
+    - name: Generate english changelogs
+      shell: bash
+      env:
+        MILESTONE: ${{ inputs.milestone }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
+      run: |
+        mkdir -p exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}\n" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}\n" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
+        npx github-release-notes@0.17.1 changelog --generate --changelog-filename exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md --tags "$MILESTONE"
+
+    - name: Generate piratish changelogs
+      shell: bash
+      run: |
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\n+++\n{{< piratify true >}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
+
+    - name: Read changelog
+      id: changelog_docs
+      uses: guibranco/github-file-reader-action-v2@latest
+      with:
+        path: exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md
+
+    - name: Write changelog to CHANGELOG.md
+      uses: surahmansada/file-regex-replace@v1
+      with:
+        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
+        replacement: "${{ steps.changelog_docs.outputs.contents }}\n---\n\n$1\n$2"
+        include: CHANGELOG.md
+
+    - name: Set changelog for GitHub release
+      id: changelog_github
+      uses: azarc-io/regex-property-action@master
+      with:
+        value: ${{ steps.changelog_docs.outputs.contents }}
+        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
+        replacement: "[★ What’s new in this version ★](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
 
     - name: Commit updates
       shell: bash
       env:
         MILESTONE: ${{ inputs.milestone }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
-        GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         git add *
         git commit --message "Ship tag $MILESTONE"
         git push origin main
 
-    - name: Create final tag
+    - name: Create final tags
       shell: bash
       env:
         MILESTONE: ${{ inputs.milestone }}
-        MILESTONE_MINOR: ${{ steps.mainvers.outputs.value }}
         MILESTONE_MAJOR: ${{ steps.majorvers.outputs.value }}
+        MILESTONE_MINOR: ${{ steps.minorvers.outputs.value }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         git tag  --force --message "" "$MILESTONE"
         git push --force origin "$MILESTONE"
-        git tag --message "" "$MILESTONE_MINOR.x" || true
-        git push origin "$MILESTONE_MINOR.x"      || true
-        git tag  --force --message "" "$MILESTONE_MINOR.x"
-        git push --force origin "$MILESTONE_MINOR.x"
+        git tag --message "" "$MILESTONE_MAJOR.$MILESTONE_MINOR.x" || true
+        git push origin "$MILESTONE_MAJOR.$MILESTONE_MINOR.x"      || true
+        git tag  --force --message "" "$MILESTONE_MAJOR.$MILESTONE_MINOR.x"
+        git push --force origin "$MILESTONE_MAJOR.$MILESTONE_MINOR.x"
         git tag --message "" "$MILESTONE_MAJOR.x" || true
         git push origin "$MILESTONE_MAJOR.x"      || true
         git tag  --force --message "" "$MILESTONE_MAJOR.x"
@@ -144,12 +204,14 @@ runs:
         git push --force origin "x"
 
     - name: Publish release
-      shell: bash
+      uses: ncipollo/release-action@v1
       env:
         MILESTONE: ${{ inputs.milestone }}
-        GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
-      run: |
-        npx github-release-notes@0.17.1 release --tags "$MILESTONE"
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      with:
+        body: |
+          ${{ steps.changelog_github.outputs.value }}
+        tag: ${{ env.MILESTONE }}
 
     - name: Update version number to mark non-release version
       shell: bash
@@ -166,7 +228,6 @@ runs:
       uses: WyriHaximus/github-action-create-milestone@v1
       continue-on-error: true
       env:
-        MILESTONE: ${{ inputs.milestone }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       with:
         title: ${{ steps.nextvers.outputs.patch }}

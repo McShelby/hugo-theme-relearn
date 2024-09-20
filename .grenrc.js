@@ -44,7 +44,8 @@ module.exports = {
   milestoneMatch: "{{tag_name}}",
   onlyMilestones: true,
   template: {
+    changelogTitle: "",
     group: "\n### {{heading}}\n",
-    release: ({ body, date, release }) => `## ${release} (` + date.replace( /(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1' ) + `)\n\n[★ What's new in this version ★](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/` + release.replace( /(\d+)\.(\d+)\.(\d+)/, '$1' ) + `/#` + release.replace( /(\d+)\.(\d+)\.(\d+)/, '$1-$2-0' ) + `)\n${body}`,
+    release: ({ body, date, release }) => `## ${release} (` + date.replace( /(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1' ) + `)\n${body}`,
   },
 };

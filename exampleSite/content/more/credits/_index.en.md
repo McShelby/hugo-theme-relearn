@@ -46,13 +46,14 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - https://github.com/actions/checkout
   - https://github.com/actions/setup-node
   - https://github.com/Akkjon/close-milestone
-  - https://github.com/andstor/file-reader-action
-  - https://github.com/ashley-taylor/regex-property-action
+  - https://github.com/azarc-io/regex-property-action
+  - https://github.com/guibranco/github-file-reader-action-v2
   - https://github.com/Kaven-Universe/github-action-current-date-time
-  - https://github.com/mingjun97/file-regex-replace
   - https://github.com/octokit/graphql-action
   - https://github.com/peaceiris/actions-gh-pages
   - https://github.com/peaceiris/actions-hugo
+    https://github.com/ncipollo/release-action
+  - https://github.com/surahmansada/file-regex-replace
   - https://github.com/WyriHaximus/github-action-create-milestone
   - https://github.com/WyriHaximus/github-action-next-semvers
 - [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
