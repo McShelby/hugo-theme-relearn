@@ -1,19 +1,13 @@
-{{- /* based on Hugo 0.125.5 rss.xml */}}
-{{- /* Deprecate site.Author.email in favor of site.Params.author.email */}}
+{{- /* based on Hugo 0.135.0 rss.xml */}}
 {{- $authorEmail := "" }}
-{{- if and .Site.Params.author (reflect.IsMap .Site.Params.author) .Site.Params.author.email }}
-  {{- $authorEmail = .Site.Params.author.email }}
-{{- else }}
-  {{- with .Site.Author.email }}
-    {{- $authorEmail = . }}
-    {{- $hugoVersion := "0.120.0" }}
-    {{- if ge hugo.Version $hugoVersion }}
-      {{- warnf "The author key in site configuration is deprecated. Use params.author.email instead." }}
+{{- with .Site.Params.author }}
+  {{- if reflect.IsMap . }}
+    {{- with .email }}
+      {{- $authorEmail = . }}
     {{- end }}
   {{- end }}
 {{- end }}
 
-{{- /* Deprecate site.Author.name in favor of site.Params.author.name */}}
 {{- $authorName := partialCached "_relearn/authorName.gotmpl" . }}
 
 {{- $pages := .Pages }}
