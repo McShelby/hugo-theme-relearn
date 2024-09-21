@@ -2,6 +2,6 @@
 categories = "basic"
 disableToc = true
 title = "Requirrrements"
-weight = 10
+weight = 1
 +++
 {{< piratify >}}

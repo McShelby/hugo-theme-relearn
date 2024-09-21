@@ -2,6 +2,6 @@
 ordersectionsby = "title"
 title = "Shorrrtcodes"
 type = "chapter"
-weight = 3
+weight = 4
 +++
 {{< piratify >}}

@@ -1,6 +1,6 @@
 +++
 tags = ["documentat'n"]
 title = "Installat'n"
-weight = 15
+weight = 2
 +++
 {{< piratify >}}

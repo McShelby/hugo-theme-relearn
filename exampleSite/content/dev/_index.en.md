@@ -2,7 +2,7 @@
 hidden = true
 title = "Development"
 type = "chapter"
-weight = 4
+weight = 5
 +++
 
 This chapter contains information only needed for development and maintaining the theme.

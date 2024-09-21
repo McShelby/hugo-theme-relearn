@@ -94,7 +94,7 @@ Default values for extension options can be set via params settings in your `hug
 
 ### Global Configuration File
 
-You can configure the color style used for code blocks in your [color variants stylesheet](basics/branding#syntax-highlighting) file.
+You can configure the color style used for code blocks in your [color variants stylesheet](configuration/branding#syntax-highlighting) file.
 
 #### Recommended Settings
 

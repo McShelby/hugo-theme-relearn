@@ -2,7 +2,7 @@
 categories = "basic"
 disableToc = true
 title = "Requirements"
-weight = 10
+weight = 1
 +++
 
 Thanks to the simplicity of Hugo, this page is as empty as this theme needs requirements.

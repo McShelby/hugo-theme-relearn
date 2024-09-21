@@ -11,7 +11,7 @@ It is all about the boxes.
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to use positional as well, use it as [GitHub](/cont/markdown#github-styled-alerts) or [Obsidian](/cont/markdown#obsidian-styled-alerts) styled alerts and also call this shortcode from your own partials.
+While the examples are using shortcodes with named parameter you are free to use positional as well, use it as [GitHub](/content/markdown#github-styled-alerts) or [Obsidian](/content/markdown#obsidian-styled-alerts) styled alerts and also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="markdown" %}}

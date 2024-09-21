@@ -2,7 +2,7 @@
 ordersectionsby = "title"
 title = "Shortcodes"
 type = "chapter"
-weight = 3
+weight = 4
 +++
 
 Hugo uses Markdown for its simple content format. However, there are a lot of things that Markdown doesn’t support well. You could use pure HTML to expand possibilities.
