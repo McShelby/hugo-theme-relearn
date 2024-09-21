@@ -1,4 +1,5 @@
 +++
+alwaysopen = false
 disableToc = false
 title = "Changelog"
 type = "changelog"
