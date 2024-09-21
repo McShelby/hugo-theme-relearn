@@ -110,18 +110,19 @@ The following checks will be enforced
 - the milestone exists
 - there is at least one closed issue assigned to the milestone
 - all assigned issues for this milestone are closed
-- if it's a main release, there must be a new `<major>.<minor>` at the beginning of the [What's new](basics/releasenotes) page
-- if it's a patch release, there must be the `<major>.<minor>` from the previous release at the beginning of the [What's new](basics/releasenotes) page
+- if it's a main release, there must be an accompanying releasenotes file present in the repo at `basics/releasenotes/<major>/<minor>.en.md`
 
 After a successful run of the action
 
-- the [History](https://mcshelby.github.io/hugo-theme-relearn/basics/changelog/index.html) page is updated, including release version, release date and text
-- the [What's new](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/index.html) page is updated, including release version, release date and text
+- the changelog at `basics/changelog/<major>/<minor>/<patch>.<lang>.md` is created for english and piratish, including missing generic upper level files
+- the `CHANGELOG.md` is updated
+- the releasenotes at `basics/releasenotes/<major>/<minor>.en.md` are updated, including release version and release date
+- missing generic upper level files for english and piratish are created
 - the version number for the `<meta generator>` is updated
 - the updated files are committed
 - the milestone is closed
 - the repository is tagged with the version number (eg. `1.2.3`), the main version number (eg. `1.2.x`) and the major version number (eg. `1.x`)
 - a new entry in the [GitHub release list](https://github.com/McShelby/hugo-theme-relearn/releases) with the according changelog will be created
-- the [official documentation](https://mcshelby.github.io/hugo-theme-relearn/index.html) is built and deployed
+- the [official documentation](https://mcshelby.github.io/hugo-theme-relearn/) is built and deployed
 - the version number for the `<meta generator>` is updated to a temporary and committed (this helps to determine if users are running directly on the main branch or are using releases)
 - a new milestone for the next patch release is created (this can later be renamed to a main release if necessary)
