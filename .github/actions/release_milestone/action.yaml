@@ -137,23 +137,23 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
-        mkdir -p exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/_index.en.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
-        npx github-release-notes@0.17.1 changelog --generate --changelog-filename exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md --tags "$MILESTONE"
+        mkdir -p exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
+        npx github-release-notes@0.17.1 changelog --generate --changelog-filename exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md --tags "$MILESTONE"
 
     - name: Generate piratish changelogs
       shell: bash
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\n+++\n{{< piratify true >}}" > exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\n+++\n{{< piratify true >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
 
     - name: Read changelog
       id: changelog_docs
       uses: guibranco/github-file-reader-action-v2@latest
       with:
-        path: exampleSite/content/basics/history/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md
+        path: exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md
 
     - name: Write changelog to CHANGELOG.md
       uses: surahmansada/file-regex-replace@v1

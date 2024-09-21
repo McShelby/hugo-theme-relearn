@@ -63,7 +63,7 @@ For a detailed description of the theme's capabilities visit the [official docum
 
 ## Releasenotes & Changelog
 
-See the [What's New](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes) page for release highlights or the detailed [changelog](https://mcshelby.github.io/hugo-theme-relearn/basics/history) for a complete list of changes.
+See the [What's New](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes) page for release highlights or the detailed [changelog](https://mcshelby.github.io/hugo-theme-relearn/basics/changelog) for a complete list of changes.
 
 ## Contributions
 

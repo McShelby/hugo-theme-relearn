@@ -115,7 +115,7 @@ The following checks will be enforced
 
 After a successful run of the action
 
-- the [History](https://mcshelby.github.io/hugo-theme-relearn/basics/history/index.html) page is updated, including release version, release date and text
+- the [History](https://mcshelby.github.io/hugo-theme-relearn/basics/changelog/index.html) page is updated, including release version, release date and text
 - the [What's new](https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/index.html) page is updated, including release version, release date and text
 - the version number for the `<meta generator>` is updated
 - the updated files are committed
