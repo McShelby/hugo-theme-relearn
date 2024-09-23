@@ -3,6 +3,6 @@ alwaysopen = false
 disableToc = false
 title = "What's New"
 type = "releasenotes"
-weight = 3
+weight = 2
 +++
 {{< piratify true >}}
