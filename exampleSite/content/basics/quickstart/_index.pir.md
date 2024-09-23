@@ -1,4 +1,5 @@
 +++
+description = "Initializing your website in a few simple steps"
 title = "Gettin' started"
 weight = 1
 +++

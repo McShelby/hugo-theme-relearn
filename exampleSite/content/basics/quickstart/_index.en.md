@@ -1,4 +1,5 @@
 +++
+description = "Initializing your website in a few simple steps"
 title = "Getting Started"
 weight = 1
 +++
@@ -134,3 +135,11 @@ hugo
 A `public` directory will be generated, containing all content and assets for your web site.
 
 It now can be deployed to any web server by simply uploading its contents or you can check out one of [Hugo's many other deployment options](https://gohugo.io/hosting-and-deployment/).
+
+## Further Steps
+
+Your site is now fully functional.
+
+Next, you can start [configuring your site](configuration) to your liking by setting options in your `hugo.toml`.
+
+Also page authors are able to [configure many aspects of a page](content) using front matter while creating content.
