@@ -4,4 +4,4 @@ title = "Version 5"
 type = "releasenotes"
 weight = -5
 +++
-{{< piratify true >}}
+{{< piratify >}}

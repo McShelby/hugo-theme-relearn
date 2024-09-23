@@ -4,4 +4,4 @@ title = "Version 1"
 type = "changelog"
 weight = -1
 +++
-{{< piratify true >}}
+{{< piratify >}}

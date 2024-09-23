@@ -1,3 +1,3 @@
 +++
 +++
-{{< piratify true >}}
+{{< piratify >}}

@@ -127,8 +127,8 @@ runs:
     - name: Generate piratish releasenotes
       shell: bash
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify >}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify >}}" > exampleSite/content/basics/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
 
     - name: Generate english changelogs
       shell: bash
@@ -145,9 +145,9 @@ runs:
     - name: Generate piratish changelogs
       shell: bash
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify true >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\n+++\n{{< piratify true >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\n+++\n{{< piratify >}}" > exampleSite/content/basics/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
 
     - name: Read changelog
       id: changelog_docs
