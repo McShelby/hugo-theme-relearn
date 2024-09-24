@@ -4,7 +4,7 @@ title = "Getting Started"
 weight = 1
 +++
 
-With the following steps you are initializing your new website. If you don't know Hugo, we strongly suggest you learn more about its great [documentation for starters](https://gohugo.io/getting-started/).
+With the following steps you are initializing your new website. If you don't know Hugo, we strongly suggest you learn more about it in its great [documentation for starters](https://gohugo.io/getting-started/).
 
 ## Install Hugo
 
@@ -126,7 +126,7 @@ You can leave the web server running while editing your pages. The browser will 
 
 ## Build and Deploy your Website
 
-When your site is ready to be deployed, run the following command:
+When your site is ready to be deployed, run the following command
 
 ````shell
 hugo
@@ -142,4 +142,4 @@ Your site is now fully functional.
 
 Next, you can start [configuring your site](configuration) to your liking by setting options in your `hugo.toml`.
 
-Also page authors are able to [configure many aspects of a page](content) using front matter while creating content.
+Also, page authors are able to [configure many aspects of a page](content) using front matter while creating content.
