@@ -227,7 +227,7 @@ See the `math`, `mermaid` and `openapi` shortcodes for examples.
 If you are really into customization of the theme and want to use the dependency loader for your own locations, you can do this by simply calling it from inside of your overriden partials
 
 ````go
-{{- partial "dependencies.html" (dict "page" . "location" "mylocation") }}
+{{- partial "dependencies.gotmpl" (dict "page" . "location" "mylocation") }}
 ````
 
 {{% /notice %}}

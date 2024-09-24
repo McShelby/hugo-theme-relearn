@@ -37,7 +37,7 @@
     {{- end }}
     {{- partialCached "favicon.html" . }}
     {{- partial "stylesheet.html" . }}
-    {{- partial "dependencies.html" (dict "page" . "location" "header") }}
+    {{- partial "dependencies.gotmpl" (dict "page" . "location" "header") }}
     {{- partial "custom-header.html" . }}
   </head>
   <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if .Site.Params.disableInlineCopyToClipBoard }} disableInlineCopyToClipboard{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
@@ -76,7 +76,7 @@
 {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
     <script src="{{"js/clipboard.min.js" | relURL}}{{ $assetBusting }}" defer></script>
     <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-{{- partial "dependencies.html" (dict "page" . "location" "footer") }}
+{{- partial "dependencies.gotmpl" (dict "page" . "location" "footer") }}
     <script src="{{"js/theme.js" | relURL}}{{ $assetBusting }}" defer></script>
 {{- partial "custom-footer.html" . }}
   </body>
