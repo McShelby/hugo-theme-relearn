@@ -1,4 +1,4 @@
-// Converts a multilang content folder given in the form of "Translation by Filename"
+// Converts a multilang content directory given in the form of "Translation by Filename"
 // into the form of "Translation by content directory"
 // see https://gohugo.io/content-management/multilingual/#translate-your-content
 

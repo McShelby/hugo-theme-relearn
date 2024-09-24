@@ -65,9 +65,9 @@ While the examples are using shortcodes with named parameter you are free to als
 
 ### Single language
 
-The shortcode lists files found in a specific folder. The name of the folder depends on your page type (either branch bundle, leaf bundle or page).
+The shortcode lists files found in a specific directory. The name of the directory depends on your page type (either branch bundle, leaf bundle or page).
 
-1. If your page is a leaf bundle, attachments must be placed in a nested `index.files` folder, accordingly.
+1. If your page is a leaf bundle, attachments must be placed in a nested `index.files` directory, accordingly.
 
     > * content
     >   * _index.md
@@ -76,7 +76,7 @@ The shortcode lists files found in a specific folder. The name of the folder dep
     >     * **index.files**
     >       * attachment.pdf
 
-2. If your page is a branch bundle, attachments must be placed in a nested `_index.files` folder, accordingly.
+2. If your page is a branch bundle, attachments must be placed in a nested `_index.files` directory, accordingly.
 
     {{% badge style="warning" title=" " %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
 
@@ -87,7 +87,7 @@ The shortcode lists files found in a specific folder. The name of the folder dep
     >     * **_index.files**
     >       * attachment.pdf
 
-3. For simple pages, attachments must be placed in a folder named like your page and ending with `.files`.
+3. For simple pages, attachments must be placed in a directory named like your page and ending with `.files`.
 
     {{% badge style="warning" title=" " %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
 
@@ -99,7 +99,7 @@ The shortcode lists files found in a specific folder. The name of the folder dep
 
 ### Multilingual
 
-Be aware that if you use a multilingual website, you will need to have as many folders as languages and the language code must be part of the folder name.
+Be aware that if you use a multilingual website, you will need to have as many directories as languages and the language code must be part of the directory name.
 
 Eg. for a site in English and Piratish:
 

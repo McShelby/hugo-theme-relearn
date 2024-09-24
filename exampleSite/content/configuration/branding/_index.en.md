@@ -82,7 +82,7 @@ If you need to change this default behavior, create a new file `layouts/partials
 
 ## Change the Logo
 
-Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image created under the _static_ folder, or you could paste a SVG definition!
+Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image created under the _static_ directory, or you could paste a SVG definition!
 
 {{% notice note %}}
 The size of the logo will adapt automatically.

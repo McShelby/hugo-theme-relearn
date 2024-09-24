@@ -5,9 +5,9 @@ weight = 1
 
 In **Hugo**, pages are the core of your site. Once it is configured, pages are definitely the added value to your documentation site.
 
-## Folders
+## Directories
 
-Organize your site like [any other Hugo project](https://gohugo.io/content/organization/). Typically, you will have a _content_ folder with all your pages.
+Organize your site like [any other Hugo project](https://gohugo.io/content/organization/). Typically, you will have a _content_ directory with all your pages.
 
 ````plaintext
 content
@@ -36,7 +36,7 @@ content
 ````
 
 {{% notice note %}}
-`_index.md` is required in each folder, it’s your “folder home page”
+`_index.md` is required in each directory, it's your "directory's home page"
 {{% /notice %}}
 
 ## Create your project
