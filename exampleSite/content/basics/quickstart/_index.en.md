@@ -1,10 +1,10 @@
 +++
-description = "Initializing your website in a few simple steps"
+description = "Initialize your website in a few simple steps"
 title = "Getting Started"
 weight = 1
 +++
 
-With following steps you are initializing your new website. If you don't know Hugo, we strongly suggest you learn more about it in Hugo's great [documentation for starters](https://gohugo.io/getting-started/).
+With the following steps you are initializing your new website. If you don't know Hugo, we strongly suggest you learn more about its great [documentation for starters](https://gohugo.io/getting-started/).
 
 ## Install Hugo
 
