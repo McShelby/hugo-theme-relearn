@@ -4,49 +4,49 @@ title = "Getting Started"
 weight = 1
 +++
 
-With the following steps you are initializing your new website. If you don't know Hugo, we strongly suggest you learn more about it in its great [documentation for starters](https://gohugo.io/getting-started/).
+Here's how to start your new website. If you're new to Hugo, we recommend learning more about it in its excellent [beginner's guide](https://gohugo.io/getting-started/).
 
 ## Install Hugo
 
-Install Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.126.0{{% /badge %}} or higher for your OS [according to the documentation](https://gohugo.io/installation/).
+Install Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.126.0{{% /badge %}} or newer for your operating system [following the instructions](https://gohugo.io/installation/).
 
 ## Create your Project
 
-Hugo provides the `new site` command to create a new website
+Use Hugo's `new site` command to make a new website
 
 ````shell
 hugo new site my-new-site
 ````
 
-After that change into the directory
+Then move into the new directory
 
 ````shell
 cd my-new-site
 ````
 
-Every upcoming command will be executed from inside this directory.
+Run all future commands from this directory.
 
 ## Install the Theme
 
-### Downloading as Archive
+### Download as a Zip File
 
-You can [download the theme as .zip archive](https://github.com/McShelby/hugo-theme-relearn/archive/main.zip) and extract its content into the `themes/hugo-theme-relearn` directory.
+You can [download the theme as a .zip file](https://github.com/McShelby/hugo-theme-relearn/archive/main.zip) and unzip it into the `themes/hugo-theme-relearn` directory.
 
-Afterwards add this at the top of your `hugo.toml`
+Then add this at the top of your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
 theme = "hugo-theme-relearn"
 {{< /multiconfig >}}
 
-### Using with Hugo's Module System
+### Use Hugo's Module System
 
-You can install the Relearn theme following [the official documentation](https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme) using Hugo's module system
+Install the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme)
 
 ````shell
 hugo mod init example.com
 ````
 
-Afterwards add this at the end of your `hugo.toml`
+Then add this at the end of your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
 [module]
@@ -54,21 +54,21 @@ Afterwards add this at the end of your `hugo.toml`
     path = 'github.com/McShelby/hugo-theme-relearn'
 {{< /multiconfig >}}
 
-### Using as Git Submodule
+### Use as a Git Submodule
 
-If you plan to store your project in a [Git](https://git-scm.com/) repository you can create one now with
+If you're using [Git](https://git-scm.com/) for your project, you can start a repository now
 
 ````shell
 git init
 ````
 
-Now you can add the theme as a Git submodule by
+Add the theme as a Git submodule
 
 ````shell
 git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
 ````
 
-Afterwards add this at the top of your `hugo.toml`
+Then add this at the top of your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
 theme = "hugo-theme-relearn"
@@ -76,29 +76,29 @@ theme = "hugo-theme-relearn"
 
 ## Create your Home Page
 
-Start your journey by creating a home page
+Start by making a home page
 
 ````shell
 hugo new --kind home _index.md
 ````
 
-The newly created home page file `content/_index.md` is structured in two parts, the meta information of this page like the `title`, called [front matter](https://gohugo.io/content-management/front-matter/) and the text of the page itself.
+The new home page file `content/_index.md` has two parts: the page info (like `title`) at the top, called [front matter](https://gohugo.io/content-management/front-matter/), and the page content below.
 
 ## Create your First Chapter Page
 
-Chapters are meant to be top level pages that contain other child pages. They have a special layout.
+Chapters are top-level pages that contain other pages. They have a special layout.
 
-Create your first chapter page
+Make your first chapter page
 
 ````shell
 hugo new --kind chapter basics/_index.md
 ````
 
-The newly created file `content/basics/_index.md`, contains the `weight` front matter set to a number. This will be used to generate the subtitle of that chapter page, and for ordering your chapters in the menu.
+The new file `content/basics/_index.md` has a `weight` number in the front matter. This sets the chapter's subtitle and its order in the menu.
 
 ## Create your First Content Pages
 
-Now create content pages inside the previously created chapter. Here are three ways to create content in the chapter
+Now make content pages inside the chapter. Here are three ways to do this
 
 ````shell
 hugo new basics/first-content/_index.md
@@ -106,40 +106,40 @@ hugo new basics/second-content/index.md
 hugo new basics/third-content.md
 ````
 
-Due to their file name, all three files are handled a bit differently by Hugo. You can read more about that in [Hugo's documentation](https://gohugo.io/content-management/).
+Hugo treats these files differently based on their file names. Learn more in [Hugo's guide](https://gohugo.io/content-management/).
 
-Feel free to edit those files by replacing the `title` or adding an optional `weight` value in the front matter and changing the text to your liking.
+Feel free to edit these files. Change the `title`, add a `weight` if you want, and write your content.
 
 ## Test your Website Locally
 
-Launch your new web site locally by using the following command
+Start your new website on your computer with this command
 
 ````shell
 hugo serve
 ````
 
-Go to [`http://localhost:1313`](http://localhost:1313) in your browser.
+Open [http://localhost:1313](http://localhost:1313) in your web browser.
 
-You can leave the web server running while editing your pages. The browser will reload automatically every time you save your files.
+You can keep the server running while you edit. The browser will update automatically when you save changes.
 
 {{% figure src="magic.gif" link="https://gohugo.io" alt="Magic" caption="It's a kind of magic" %}}
 
 ## Build and Deploy your Website
 
-When your site is ready to be deployed, run the following command
+When your site is ready to go live, run this command
 
 ````shell
 hugo
 ````
 
-A `public` directory will be generated, containing all content and assets for your web site.
+This creates a `public` directory with all your website files.
 
-It now can be deployed to any web server by simply uploading its contents or you can check out one of [Hugo's many other deployment options](https://gohugo.io/hosting-and-deployment/).
+You can upload this directory to any web server, or use one of [Hugo's many other ways to publish](https://gohugo.io/hosting-and-deployment/).
 
-## Further Steps
+## Next Steps
 
 Your site is now fully functional.
 
-Next, you can start [configuring your site](configuration) to your liking by setting options in your `hugo.toml`.
+You can start [configuring your site](configuration) by changing options in your `hugo.toml`.
 
-Also, page authors are able to [configure many aspects of a page](content) using front matter while creating content.
+Page authors can also [set many page options](content) using front matter when creating content.
