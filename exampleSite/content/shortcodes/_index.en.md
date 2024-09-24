@@ -5,7 +5,7 @@ type = "chapter"
 weight = 4
 +++
 
-Hugo uses Markdown as its content format. However, there are a lot of things that Markdown doesn’t support well.
+Hugo uses Markdown as its content format. However, there are a lot of things that Markdown doesn't support well.
 
 You could use pure HTML to expand your possibilities. But this happens to be a bad idea. Everyone uses Markdown because it's pure and simple to read. You should avoid HTML to keep it as simple and portable as possible.
 
