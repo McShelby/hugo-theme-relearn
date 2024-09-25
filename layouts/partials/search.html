@@ -2,7 +2,10 @@
         {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
         {{- $link := "" }}
         {{- with .Site.Home.OutputFormats.Get "json" }}
-          {{- warnf "UNSUPPORTED usage of 'json' output format found, use 'search' instead; see https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/6/#6-0-0" }}
+          {{- warnf "UNSUPPORTED usage of 'json' output format found, remove it from your config; see https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/7/#7-0-0" }}
+        {{- end }}
+        {{- with .Site.Home.OutputFormats.Get "search" }}
+          {{- warnf "UNSUPPORTED usage of 'search' output format found, remove it from your config; see https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/7/#7-0-0" }}
         {{- end }}
         {{- with .Site.Home.OutputFormats.Get "searchpage" }}
           {{- warnf "UNSUPPORTED usage of 'searchpage' output format found, remove it from your config; see https://mcshelby.github.io/hugo-theme-relearn/basics/releasenotes/7/#7-0-0" }}
