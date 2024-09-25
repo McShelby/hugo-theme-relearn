@@ -213,17 +213,6 @@ runs:
           ${{ steps.changelog_github.outputs.value }}
         tag: ${{ env.MILESTONE }}
 
-    - name: Update version number to mark non-release version
-      shell: bash
-      env:
-        MILESTONE: ${{ inputs.milestone }}
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-      run: |
-        echo -n "$MILESTONE+tip" > layouts/partials/version.txt
-        git add *
-        git commit --message "Mark non-release version"
-        git push origin main
-
     - name: Create next patch milestone
       uses: WyriHaximus/github-action-create-milestone@v1
       continue-on-error: true
