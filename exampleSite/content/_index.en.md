@@ -4,7 +4,7 @@ title = "Hugo Relearn Theme"
 type = "home"
 [[cascade]]
 	[cascade._target]
-		path = "/basics/changelog/*/*/*"
+		path = "/introduction/changelog/*/*/*"
 	[cascade.params]
 		[cascade.params._build]
 			render = "never"

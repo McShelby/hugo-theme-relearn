@@ -36,7 +36,7 @@ The theme supports a wide set of languages, also supporting languages written ri
 
 ## Basic Configuration
 
-This example will show you, how to convert your site created in the [Getting Started](basics/quickstart) section to be multilingual using [translation by file name](https://gohugo.io/content-management/multilingual/#translation-by-file-name). You can also use [translation by content directory](https://gohugo.io/content-management/multilingual/#translation-by-content-directory), but this is out of the scope of this documentation.
+This example will show you, how to convert your site created in the [Getting Started](introduction/quickstart) section to be multilingual using [translation by file name](https://gohugo.io/content-management/multilingual/#translation-by-file-name). You can also use [translation by content directory](https://gohugo.io/content-management/multilingual/#translation-by-content-directory), but this is out of the scope of this documentation.
 
 Define your languages in your `hugo.toml` file. For example with English and Piratish English website.
 

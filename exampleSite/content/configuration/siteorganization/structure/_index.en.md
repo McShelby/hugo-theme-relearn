@@ -6,7 +6,7 @@ weight = 1
 
 ## Structure
 
-If you've followed the [Getting Started](basics/quickstart/) guide, you are resulting in a directory layout similar to this
+If you've followed the [Getting Started](introduction/quickstart/) guide, you are resulting in a directory layout similar to this
 
 ````plaintext
 ├── content
@@ -39,4 +39,4 @@ This makes it easy to customize the theme without having to edit files inside of
 > [!WARNING]
 > If you have cloned the theme repository and start editing files for your site in this clone, you're doing it wrong.
 >
-> Follow the [Getting Started](basics/quickstart/) guide.
+> Follow the [Getting Started](introduction/quickstart/) guide.
