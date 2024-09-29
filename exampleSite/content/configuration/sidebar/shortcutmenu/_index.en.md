@@ -95,7 +95,7 @@ When using a multilingual website, you can set different menus for each language
   [languages.pir]
     title = "Cap'n Hugo Relearrrn Theme"
     weight = 1
-    languageName = "Arrr! Pirrrates"
+    languageName = "Arrr! Pirrratish"
     [languages.pir.params]
       landingPageName = "<i class='fa-fw fas fa-home'></i> Arrr! Home"
 
