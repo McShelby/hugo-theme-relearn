@@ -1,6 +1,7 @@
 +++
-tags = ["config"]
+description = "All configuration options of the Relearn theme"
+tags = ["reference"]
 title = "Options Reference"
-weight = 7
+weight = 6
 +++
 {{< piratify >}}

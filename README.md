@@ -16,31 +16,31 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - Responsive design for mobile devices
   - Looks nice on paper (if it has to)
   - Usable offline with no external dependencies
-  - [Usable from your local file system without a web server via `file://` protocol](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization#file-system)
+  - [Usable from your local file system without a web server via `file://` protocol](https://mcshelby.github.io/hugo-theme-relearn/configuration/siteorganization/deploymentscenarios/)
   - Integration with the [VSCode Front Matter extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
 
 - **Customizable Appearance**
-  - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding#change-the-logo)
-  - [Automatic light/dark mode switching based on OS settings](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding#adjust-to-os-settings)
+  - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding#change-the-logo)
+  - [Automatic light/dark mode switching based on OS settings](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding#adjust-to-os-settings)
   - Pre-defined color schemes and variants
-  - [User-selectable theme variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding#multiple-variants)
-  - [Built-in stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/configuration/generator)
+  - [User-selectable theme variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding#multiple-variants)
+  - [Built-in stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/generator)
   - [Customizable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/highlight)
 
 - **Advanced Functionality**
-  - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization#activate-print-support)
-  - [Versatile search options: in-page, popup, and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization#configure-search)
-  - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/topbar)
+  - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/topbar/#print-support)
+  - [Versatile search options: in-page, popup, and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search/)
+  - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/modifications/topbar/)
   - [Unlimited nested menu structure](https://mcshelby.github.io/hugo-theme-relearn/content/organization)
-  - [Configurable menu shortcuts](https://mcshelby.github.io/hugo-theme-relearn/configuration/menushortcuts)
+  - [Configurable menu shortcuts](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/shortcutmenu/)
   - Support for hidden pages
   - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/content/taxonomy)
-  - [Social media integration](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization#social-media-meta-tags)
+  - [Social media integration](https://mcshelby.github.io/hugo-theme-relearn/configuration/content/image/)
 
 - **Multilingual Support**
-  - [Full right-to-left (RTL) language support](https://mcshelby.github.io/hugo-theme-relearn/configuration/i18n)
-  - [Extensive list of supported languages](https://mcshelby.github.io/hugo-theme-relearn/configuration/i18n#basic-configuration): Arabic, Chinese (Simplified and Traditional), Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Romanian, Russian, Spanish, Swahili, Turkish, Vietnamese
-  - [Multilingual content search capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/i18n#search)
+  - [Full right-to-left (RTL) language support](https://mcshelby.github.io/hugo-theme-relearn/configuration/siteorganization/multilingual/)
+  - [Extensive list of supported languages](https://mcshelby.github.io/hugo-theme-relearn/configuration/siteorganization/multilingual): Arabic, Chinese (Simplified and Traditional), Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Romanian, Russian, Spanish, Swahili, Turkish, Vietnamese
+  - [Multilingual content search capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search/#search-with-mixed-language-support)
 
 - **Enhanced Markdown Features**
   - [GitHub Flavored Markdown (GFM) support](https://mcshelby.github.io/hugo-theme-relearn/content/markdown)
