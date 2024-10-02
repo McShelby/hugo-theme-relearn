@@ -36,7 +36,7 @@ To make sure, there is no duplicate content for any given URL of your project, r
 In case each page's content is written in one single language only, the above configuration will already configure the site's search functionality correctly.
 
 {{% notice warning %}}
-Although the theme supports a wide variety of supported languages, the site's search via the [Lunr](https://lunrjs.com) search library does not.
+Although the theme supports a wide variety of languages, the site's search via the [Lunr](https://lunrjs.com) search library does not.
 You'll see error reports in your browsers console log for each unsupported language. Currently unsupported are:
 
 - Czech
