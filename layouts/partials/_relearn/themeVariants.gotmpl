@@ -108,7 +108,7 @@ Chroma auto run:
 {{- end }}
 
 {{- /*
-- Add box styles to variables and variants
+- Add box styles to variables and theme
 */}}
 {{- with resources.Get "css/variables.css" }}
   {{- $variablescontent := print ":root {\n" .Content }}
@@ -124,7 +124,7 @@ Chroma auto run:
   {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 {{- end }}
 
-{{- with resources.Get "css/variant.css" }}
+{{- with resources.Get "css/theme.css" }}
   {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
   {{- $variantcontent := print `@import "variables.css` $assetBusting `";` "\n\n" .Content }}
   {{- range $page.Site.Params.boxStyle }}
@@ -137,7 +137,7 @@ Chroma auto run:
       "\n}\n"
     }}
   {{- end }}
-  {{- $cssres := $variantcontent | resources.FromString "css/variant.css" }}
+  {{- $cssres := $variantcontent | resources.FromString "css/theme.css" }}
   {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 {{- end }}
 
