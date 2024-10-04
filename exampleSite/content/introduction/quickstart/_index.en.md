@@ -4,7 +4,7 @@ title = "Getting Started"
 weight = 1
 +++
 
-Here's how to start your new website. If you're new to Hugo, we recommend learning more about it in its excellent [beginner's guide](https://gohugo.io/getting-started/).
+Here's how to start your new website. If you're new to Hugo, we recommend learning more about it in its excellent [starter's guide](https://gohugo.io/getting-started/).
 
 ## Install Hugo
 
@@ -56,7 +56,7 @@ Then add this at the end of your `hugo.toml`
 
 ### Use as a Git Submodule
 
-If you're using [Git](https://git-scm.com/) for your project, you can start a repository now
+If you're using [Git](https://git-scm.com/) for your project, you can create a repository now
 
 ````shell
 git init
@@ -140,6 +140,6 @@ You can upload this directory to any web server, or use one of [Hugo's many othe
 
 Your site is now fully functional.
 
-You can start [configuring your site](configuration) by changing options in your `hugo.toml`.
+You can continue [configuring your site](configuration/) to your needs.
 
-Page authors can also [set many page options](content) using front matter when creating content.
+Or just start [writing content](content/) and learn what's possible.
