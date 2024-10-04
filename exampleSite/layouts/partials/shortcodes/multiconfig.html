@@ -11,6 +11,7 @@
   @param {string} [file] The file name to display above the rendered code.
   @param {bool} [fm=false] If true, render the code as front matter.
   @param {bool} [skipHeader=false] If false, omit top level key(s) when rendering a section of site.Data.docs.config.
+  @param {string} [section] The file name to display above the rendered code.
 
   @returns {template.HTML}
 */}}
@@ -33,6 +34,7 @@
 {{- else if in (slice "true" true 1) .skipHeader }}
   {{- $skipHeader = true }}
 {{- end }}
+{{- $section := .section }}
 
 {{- /* Define constants. */}}
 {{- $delimiters := dict "toml" "+++" "yaml" "---" }}
@@ -55,15 +57,22 @@
 {{- else }}
   {{- $code = $content }}
 {{- end }}
+{{- /* Remove toml comments. */}}
+{{- $code = $code | replaceRE `#.*(\r\n|\r|\n)?` "" }}
+{{- $code = trim $code "\n\r\t " }}
+{{- if and $section $code }}
+  {{- $code = printf "[%s]\n%s" $section $code }}
+{{- end }}
 {{- $params := dict "page" $page "groupid" "config-code" }}
 {{- with $file }}
   {{- $params = $params | merge (dict "title" (printf "%s%s" . (cond $fm "" "."))) }}
 {{- end }}
 {{- $contentparam := slice }}
 {{- range $langs }}
-  {{- /* Remove toml comments. */}}
-  {{- $hCode := $code | replaceRE `#.*(\r\n|\r|\n)?` "" }}
-  {{- $hCode = $hCode | transform.Remarshal . }}
+  {{- $hCode := $code }}
+  {{- if $hCode }}
+    {{- $hCode = $hCode | transform.Remarshal . }}
+  {{- end }}
   {{- if and $fm (in (slice "toml" "yaml") .) }}
     {{- $placeHolder := (index $delimiters .) }}
     {{- $hCode = printf "%s\n%s%s\n" $placeHolder $hCode $placeHolder }}

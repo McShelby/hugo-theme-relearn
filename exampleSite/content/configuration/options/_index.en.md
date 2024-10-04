@@ -13,8 +13,7 @@ The values shown here, reflect the options active in this documentation. The def
 
 ## All config options
 
-{{< multiconfig file=hugo >}}
-[params]
+{{< multiconfig file=hugo section=params >}}
 {{% include "config/_default/params.toml" %}}
 {{< /multiconfig >}}
 
