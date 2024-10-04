@@ -3,11 +3,9 @@ description = "Get value of site params"
 title = "SiteParam"
 +++
 
-The `siteparam` shortcode prints values of site params.
+The `siteparam` shortcode prints values of params contained in your `hugo.toml`.
 
 ## Usage
-
-While the examples are using shortcodes with named parameter you are free to use positional as well or call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
@@ -44,7 +42,7 @@ While the examples are using shortcodes with named parameter you are free to use
 
 ## Examples
 
-### `editURL` from `hugo.toml`
+### `editURL`
 
 ```go
 `editURL` value: {{%/* siteparam name="editURL" */%}}
@@ -52,7 +50,7 @@ While the examples are using shortcodes with named parameter you are free to use
 
 `editURL` value: {{% siteparam name="editURL" %}}
 
-### Nested parameter with Markdown and HTML formatting
+### Nested Parameter with Markdown and HTML Formatting
 
 To use formatted parameter, add this in your `hugo.toml`:
 

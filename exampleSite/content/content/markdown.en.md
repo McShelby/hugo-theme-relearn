@@ -187,9 +187,9 @@ If you are in need of more advanced options to style your alerts, use the [notic
 > Urgent info that needs immediate user attention to avoid problems.
 {{% /notice %}}
 
-### Obsidian Styled Alerts
+### Obsidian Callouts
 
-{{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.134.0{{% /badge %}} [Obsidian styled alerts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
+{{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.134.0{{% /badge %}} [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
 
 ````md
 > [!tip] Callouts can have custom titles

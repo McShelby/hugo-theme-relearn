@@ -1,14 +1,14 @@
 +++
 aliases = "/shortcodes/swagger"
 description = "UI for your OpenAPI / Swagger specifications"
+frontmatter = ["customOpenapiURL", "disableOpenapi", "openapi.errorlevel"]
+options = ["customOpenapiURL", "disableOpenapi", "openapi.errorlevel"]
 title = "OpenAPI"
 +++
 
-The `openapi` shortcode uses the [Swagger UI](https://github.com/swagger-api/swagger-ui) library to display your OpenAPI / Swagger specifications.
+The `openapi` shortcode displays your OpenAPI / Swagger specifications using the [Swagger UI](https://github.com/swagger-api/swagger-ui) library.
 
 ## Usage
-
-While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
@@ -30,17 +30,44 @@ While the examples are using shortcodes with named parameter you are free to als
 {{% /tab %}}
 {{< /tabs >}}
 
+If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.
+
+Instead, open the [print preview](configuration/appearance/topbar/#print-support) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
+
 ### Parameter
 
 | Name                 | Default          | Notes       |
 |----------------------|------------------|-------------|
 | **src**              | _&lt;empty&gt;_  | The path to the to the OpenAPI specification resource or URL to be used. Resource paths adhere to [Hugo's logical path](https://gohugo.io/methods/page/path/). |
 
-{{% notice note %}}
-If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.
+## Settings
 
-Instead, open the [print preview](configuration/appearance/topbar/#print-support) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
-{{% /notice %}}
+### Enabling Link Warnings
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link can not be resolved to a resource.
+
+If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
+
+Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
+
+### Loading an External Version of the Swagger UI Library
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.
+
+In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
+
+#### Example
+
+{{< multiconfig file=hugo >}}
+[params]
+customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
+{{< /multiconfig >}}
+
+### Force Loading of the Swagger UI Library
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an OpenAPI specification.
+
+You can force loading the Swagger UI library if a OpenAPI specification wasn't found by setting `disableOpenapi=false`. If an OpenAPI specification was found, the option will be ignored. This comes handy in case you are using scripting for creating an OpenAPI specification.
 
 ## Example
 

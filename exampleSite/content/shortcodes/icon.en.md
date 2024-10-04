@@ -12,8 +12,6 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 
 ## Usage
 
-While the examples are using shortcodes with positional parameter you are free to also call this shortcode from your own partials.
-
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 

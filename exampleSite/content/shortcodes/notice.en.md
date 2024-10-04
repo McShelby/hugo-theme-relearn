@@ -12,10 +12,8 @@ It is all about the boxes.
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to use positional as well, use it as [GitHub](/content/markdown#github-styled-alerts) or [Obsidian](/content/markdown#obsidian-styled-alerts) styled alerts and also call this shortcode from your own partials.
-
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
+{{% tab title="callout" %}}
 
 ````md
 > [!primary] There may be pirates
@@ -56,20 +54,26 @@ It is all about the boxes.
 {{% /tab %}}
 {{< /tabs >}}
 
+Callout syntax has limited features as it does not provide all of the below parameter. Nevertheless, it is widely adopted in other Markdown parsers like [GitHub styled alerts](/content/markdown#github-styled-alerts) or [Obsidian callouts](/content/markdown#obsidian-callouts) and therefore is the recommend syntax for generating portable Markdown.
+
+If you want to display a transparent expandable box without any border, you can also use the [`expand` shortcode](/shortcodes/expand).
+
 ### Parameter
 
 | Name                  | Position | Default         | Notes       |
 |-----------------------|----------|-----------------|-------------|
-| **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](#configuration). |
-| **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
+| **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](#defining-own-styles). |
+| **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br>This is not available using callout syntax. |
 | **title**             | 2        | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces)<br><br>This is not available using callout syntax. |
 | **expanded**          |          | _&lt;empty&gt;_ | Whether to draw an expander and how the content is displayed.<br><br>- _&lt;empty&gt;_: no expander is drawn and the content is permanently shown<br>- `true`: the expander is drawn and the content is initially shown<br>- `false`: the expander is drawn and the content is initially hidden |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
 
-## Configuration
+## Settings
 
-Besides the predefined `style` values, you are able to define your own in the `hugo.toml`.
+### Defining own Styles
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Besides the predefined `style` values [from above](#parameter), you are able to define your own.
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -78,7 +82,7 @@ boxStyle = [
 ]
 {{< /multiconfig >}}
 
-The `style` parameter must match the `identifier`. The title for the style will be determined from the `title`. If no `title` but a `i18n` is set, the title will be taken from the translation files by that key. The `title` may be empty in which case, the box does not contain a default title. `icon` and `color` are working similar.
+The `style` parameter used in a shortcode must match the `identifier` in the configuration. The title for the style will be determined from the configured `title`. If no `title` but a `i18n` is set, the title will be taken from the translation files by that key. The `title` may be empty in which case, the box does not contain a default title. `icon` and `color` are working similar.
 
 You can also redefine the predefined styles if you're not satisfied with the default values.
 
@@ -86,7 +90,7 @@ Below is a [usage example](#user-defined-style).
 
 ## Examples
 
-### By Severity Using Markdown Syntax
+### By Severity Using Callout Syntax
 
 ````md
 > [!CAUTION]
@@ -294,7 +298,7 @@ Just a box
 Just a box
 {{% /notice %}}
 
-#### Markdown Styled Alerts
+#### Various Callouts
 
 ````go
 > [!caution] Callouts can have custom titles
@@ -360,7 +364,7 @@ printf("Hello World!");
 
 #### User-defined Style
 
-Self-defined styles can be [configured](#configuration) in your `hugo.toml` and used for every shortcode, that accepts a `style` parameter.
+Self-defined styles can be [configured](#defining-own-styles) in your `hugo.toml` and used for every shortcode, that accepts a `style` parameter.
 
 ````
 > [!magic]

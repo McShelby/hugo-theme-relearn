@@ -1,5 +1,5 @@
 +++
-title = "Tag-a-taggs"
-singulartitle = "Tagga"
+title = "Frontmatter"
+singulartitle = "Frontmatter"
 +++
 {{< piratify >}}

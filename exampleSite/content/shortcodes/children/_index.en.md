@@ -10,8 +10,6 @@ The `children` shortcode lists the child pages of the current page and its desce
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
-
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 

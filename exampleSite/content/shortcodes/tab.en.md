@@ -3,11 +3,7 @@ description = "Show content in a single tab"
 title = "Tab"
 +++
 
-You can use a `tab` shortcode to display a single tab.
-
-This is especially useful if you want to flag your code example with an explicit language.
-
-If you want multiple tabs grouped together you can wrap your tabs into the [`tabs` shortcode](shortcodes/tabs).
+You can use a `tab` shortcode to display a single tab with a title.
 
 {{% tab title="c" %}}
 
@@ -18,8 +14,6 @@ printf("Hello World!");
 {{% /tab %}}
 
 ## Usage
-
-While the examples are using shortcodes with named parameter you are free to also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
@@ -46,11 +40,13 @@ printf("Hello World!");
 {{% /tab %}}
 {{< /tabs >}}
 
+If you want multiple tabs grouped together you can wrap your tabs into the [`tabs` shortcode](shortcodes/tabs).
+
 ### Parameter
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| **style**             | see notes       | The style scheme used for the tab. If you don't set a style and you display a single code block inside of the tab, its default styling will adapt to that of a `code` block. Otherwise `default` is used.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](shortcodes/notice#configuration). |
+| **style**             | see notes       | The style scheme used for the tab. If you don't set a style and you display a single code block inside of the tab, its default styling will adapt to that of a `code` block. Otherwise `default` is used.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **title**             | see notes       | Arbitrary title for the tab. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |

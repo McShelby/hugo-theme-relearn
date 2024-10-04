@@ -1,13 +1,13 @@
 +++
 description = "Displays content from other files"
+frontmatter = ["include.errorlevel"]
+options = ["include.errorlevel"]
 title = "Include"
 +++
 
 The `include` shortcode includes other pages, resources or files from your project.
 
 ## Usage
-
-While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
@@ -44,6 +44,16 @@ The included files can even contain Markdown and will be taken into account when
 |----------------------|----------|------------------|-------------|
 | **file**             | 1        | _&lt;empty&gt;_  | The path to the page, resource or file to be included. Page and resource paths adhere to [Hugo's logical path](https://gohugo.io/methods/page/path/). If not found by logical path it falls back to [Hugo's build-in `readFile` function](https://gohugo.io/functions/readfile/) |
 | **hidefirstheading** | 2        | `false`          | When `true` and the included file contains headings, the first heading will be hidden. This comes in handy, eg. if you include otherwise standalone Markdown files. |
+
+## Settings
+
+### Enabling Link Warnings
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can use `include.errorlevel` to control what should happen if a local link can not be resolved to a resource.
+
+If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
+
+Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
 ## Examples
 

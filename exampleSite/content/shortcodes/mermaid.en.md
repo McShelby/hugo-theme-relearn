@@ -1,31 +1,28 @@
 +++
 description = "Generate diagrams and flowcharts from text"
-options = ["mermaidInitialize", "mermaidZoom"]
+frontmatter = ["customMermaidURL", "disableMermaid", "mermaidInitialize", "mermaidZoom"]
+options = ["customMermaidURL", "disableMermaid", "mermaidInitialize", "mermaidZoom"]
 title = "Mermaid"
 +++
 
-The `mermaid` shortcode generates diagrams and flowcharts from text, in a similar manner as Markdown using the [Mermaid](https://mermaidjs.github.io/) library.
+The `mermaid` shortcode generates diagrams and flowcharts from text in a similar manner as Markdown, using the [Mermaid](https://mermaidjs.github.io/) library.
 
-{{< mermaid align="center">}}
+````mermaid {align="center" zoom="true"}
 graph LR;
-    If --> Then
-    Then --> Else
-{{< /mermaid >}}
+  If --> Then
+  Then --> Else
+````
 
 ## Usage
 
-While the examples are using shortcodes with named parameter it is recommended to use Markdown codefences instead. This is because more and more other software supports Mermaid Markdown codefences (eg. GitHub) and so your markdown becomes more portable.
-
-You are free to also call this shortcode from your own partials.
-
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
+{{% tab title="codefence" %}}
 
 ````md
-```mermaid { align="center" zoom="true" }
+```mermaid {align="center" zoom="true"}
 graph LR;
-    If --> Then
-    Then --> Else
+  If --> Then
+  Then --> Else
 ```
 ````
 
@@ -35,8 +32,8 @@ graph LR;
 ````go
 {{</* mermaid align="center" zoom="true" */>}}
 graph LR;
-    If --> Then
-    Then --> Else
+  If --> Then
+  Then --> Else
 {{</* /mermaid */>}}
 ````
 
@@ -46,7 +43,7 @@ graph LR;
 ````go
 {{ partial "shortcodes/mermaid.html" (dict
   "page"    .
-  "content" "graph LR;\nIf --> Then\nThen --> Else"
+  "content" "graph LR;\n  If --> Then\n  Then --> Else"
   "align"   "center"
   "zoom"    "true"
 )}}
@@ -56,163 +53,181 @@ graph LR;
 {{% /tab %}}
 {{< /tabs >}}
 
-The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
+Codefence syntax is widely adopted in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 ### Parameter
 
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
-| **align**             | `center`         | Allowed values are `left`, `center` or `right`. |
-| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the `mermaidZoom` setting of the [site](#global-configuration-file) or the [pages frontmatter](#pages-frontmatter) or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
+| **align**             | `center`         | The vertical alignment.<br><br>Allowed values are `left`, `center` or `right`. |
+| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the [`mermaidZoom` setting](#configuring-pan-and-zoom) of your configurations options or the pages frontmatter or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
 
-## Configuration
+## Settings
 
-Mermaid is configured with default settings. You can customize Mermaid's default settings for all of your files through a JSON object in your `hugo.toml`, override these settings per page through your pages frontmatter or override these setting per diagramm through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives).
+### Configuring Pan and Zoom
 
-The JSON object of your `hugo.toml` / frontmatter is forwarded into Mermaid's `mermaid.initialize()` function.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
 
-See [Mermaid documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
+By default this is disabled. Set `mermaidZoom=true` to enable it.
 
-The `theme` setting can also be set by your used color variant. This will be the sitewide default and can - again - be overridden by your settings in `hugo.toml`, frontmatter or diagram directives.
+Individual settings of a graphs [`zoom` parameter](#parameter) have precedence over the page's front matter and configuration options in that order.
 
-### Global Configuration File
+### Providing Initialization Options for the Mermaid Library
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library is configured with default settings for initialization.
+
+You can overwrite the settings by providing a JSON object in `mermaidInitialize`. See [Mermaid's documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
+
+Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.
+
+In addition, you can merge settings for each individual graph through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives) on top of the settings of your page's front matter or configuration options.
+
+### Loading an External Version of the Mermaid Library
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped Mermaid library by default.
+
+In case you want do use a different version of the Mermaid library but don't want to override the shipped version, you can set `customMermaidURL` to the URL of the external Mermaid library.
+
+#### Example
 
 {{< multiconfig file=hugo >}}
 [params]
-  mermaidInitialize = "{ \"theme\": \"dark\" }"
-  mermaidZoom = true
+customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
 {{< /multiconfig >}}
 
-### Page's Frontmatter
+### Force Loading of the Mermaid Library
 
-{{< multiconfig fm=true >}}
-mermaidInitialize = "{ \"theme\": \"dark\" }"
-mermaidZoom = true
-{{< /multiconfig >}}
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains a graph.
+
+You can force loading the Mermaid library if a graph wasn't found by setting `disableMermaid=false`. If a graph was found, the option will be ignored. This comes handy in case you are using scripting for creating a graph.
+
+### Setting a Specific Mermaid Theme
+
+While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value in the `--MERMAID-theme` variable of your used [color variant](configuration/appearance/generator/). This allows your graphs to look pretty when the user switches a color variant.
 
 ## Examples
 
 ### Flowchart with YAML-Title
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 ---
 title: Example Diagram
 ---
 graph LR;
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{<strong>Decision</strong>}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
-{{</* /mermaid */>}}
+  A[Hard edge] -->|Link text| B(Round edge)
+  B --> C{<strong>Decision</strong>}
+  C -->|One| D[Result one]
+  C -->|Two| E[Result two]
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 ---
 title: Example Diagram
 ---
 graph LR;
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{<strong>Decision</strong>}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
-{{< /mermaid >}}
+  A[Hard edge] -->|Link text| B(Round edge)
+  B --> C{<strong>Decision</strong>}
+  C -->|One| D[Result one]
+  C -->|Two| E[Result two]
+````
 
 ### Sequence Diagram with Configuration Directive
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 %%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
 sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-{{</* /mermaid */>}}
+  Alice->>John: Hello John, how are you?
+  loop Healthcheck
+      John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts!
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 %%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
 sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-{{< /mermaid >}}
+  Alice->>John: Hello John, how are you?
+  loop Healthcheck
+      John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts!
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+````
 
-### Class Diagram with Markdown Codefence Syntax
+### Class Diagram
 
-````go
+````md
 ```mermaid
 classDiagram
-    Animal <|-- Duck
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-      +String beakColor
-      +swim()
-      +quack()
-    }
-    class Fish{
-      -int sizeInFeet
-      -canEat()
-    }
-    class Zebra{
-      +bool is_wild
-      +run()
-    }
+  Animal <|-- Duck
+  Animal <|-- Fish
+  Animal <|-- Zebra
+  Animal : +int age
+  Animal : +String gender
+  Animal: +isMammal()
+  Animal: +mate()
+  class Duck{
+    +String beakColor
+    +swim()
+    +quack()
+  }
+  class Fish{
+    -int sizeInFeet
+    -canEat()
+  }
+  class Zebra{
+    +bool is_wild
+    +run()
+  }
 ```
 ````
 
 ````mermaid
 classDiagram
-    Animal <|-- Duck
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-      +String beakColor
-      +swim()
-      +quack()
-    }
-    class Fish{
-      -int sizeInFeet
-      -canEat()
-    }
-    class Zebra{
-      +bool is_wild
-      +run()
-    }
+  Animal <|-- Duck
+  Animal <|-- Fish
+  Animal <|-- Zebra
+  Animal : +int age
+  Animal : +String gender
+  Animal: +isMammal()
+  Animal: +mate()
+  class Duck{
+    +String beakColor
+    +swim()
+    +quack()
+  }
+  class Fish{
+    -int sizeInFeet
+    -canEat()
+  }
+  class Zebra{
+    +bool is_wild
+    +run()
+  }
 ````
 
-### State Diagram Aligned to the Right
+### State Diagram Aligned to the Right Using Shortcode Syntax
 
 ````go
 {{</* mermaid align="right" */>}}
 stateDiagram-v2
-    open: Open Door
-    closed: Closed Door
-    locked: Locked Door
-    open   --> closed: Close
-    closed --> locked: Lock
-    locked --> closed: Unlock
-    closed --> open: Open
+  open: Open Door
+  closed: Closed Door
+  locked: Locked Door
+  open   --> closed: Close
+  closed --> locked: Lock
+  locked --> closed: Unlock
+  closed --> open: Open
 {{</* /mermaid */>}}
 ````
 
@@ -229,326 +244,322 @@ stateDiagram-v2
 
 ### Entity Relationship Model with Non-Default Mermaid Theme
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 %%{init:{"theme":"forest"}}%%
 erDiagram
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : has
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER ||--o{ INVOICE : "liable for"
-    DELIVERY-ADDRESS ||--o{ ORDER : receives
-    INVOICE ||--|{ ORDER : covers
-    ORDER ||--|{ ORDER-ITEM : includes
-    PRODUCT-CATEGORY ||--|{ PRODUCT : contains
-    PRODUCT ||--o{ ORDER-ITEM : "ordered in"
-{{</* /mermaid */>}}
+  CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+  CUSTOMER ||--o{ ORDER : places
+  CUSTOMER ||--o{ INVOICE : "liable for"
+  DELIVERY-ADDRESS ||--o{ ORDER : receives
+  INVOICE ||--|{ ORDER : covers
+  ORDER ||--|{ ORDER-ITEM : includes
+  PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+  PRODUCT ||--o{ ORDER-ITEM : "ordered in"
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 %%{init:{"theme":"forest"}}%%
 erDiagram
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : has
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER ||--o{ INVOICE : "liable for"
-    DELIVERY-ADDRESS ||--o{ ORDER : receives
-    INVOICE ||--|{ ORDER : covers
-    ORDER ||--|{ ORDER-ITEM : includes
-    PRODUCT-CATEGORY ||--|{ PRODUCT : contains
-    PRODUCT ||--o{ ORDER-ITEM : "ordered in"
-{{< /mermaid >}}
+  CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+  CUSTOMER ||--o{ ORDER : places
+  CUSTOMER ||--o{ INVOICE : "liable for"
+  DELIVERY-ADDRESS ||--o{ ORDER : receives
+  INVOICE ||--|{ ORDER : covers
+  ORDER ||--|{ ORDER-ITEM : includes
+  PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+  PRODUCT ||--o{ ORDER-ITEM : "ordered in"
+````
 
 ### User Journey
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 journey
-    title My working day
-    section Go to work
-      Make tea: 5: Me
-      Go upstairs: 3: Me
-      Do work: 1: Me, Cat
-    section Go home
-      Go downstairs: 5: Me
-      Sit down: 3: Me
-{{</* /mermaid */>}}
+  title My working day
+  section Go to work
+    Make tea: 5: Me
+    Go upstairs: 3: Me
+    Do work: 1: Me, Cat
+  section Go home
+    Go downstairs: 5: Me
+    Sit down: 3: Me
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 journey
-    title My working day
-    section Go to work
-      Make tea: 5: Me
-      Go upstairs: 3: Me
-      Do work: 1: Me, Cat
-    section Go home
-      Go downstairs: 5: Me
-      Sit down: 3: Me
-{{< /mermaid >}}
+  title My working day
+  section Go to work
+    Make tea: 5: Me
+    Go upstairs: 3: Me
+    Do work: 1: Me, Cat
+  section Go home
+    Go downstairs: 5: Me
+    Sit down: 3: Me
+````
 
 ### GANTT Chart
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 gantt
-        dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to Mermaid
-        section A section
-        Completed task            :done,    des1, 2014-01-06,2014-01-08
-        Active task               :active,  des2, 2014-01-09, 3d
-        Future task               :         des3, after des2, 5d
-        Future task2              :         des4, after des3, 5d
-        section Critical tasks
-        Completed task in the critical line :crit, done, 2014-01-06,24h
-        Implement parser and jison          :crit, done, after des1, 2d
-        Create tests for parser             :crit, active, 3d
-        Future task in critical line        :crit, 5d
-        Create tests for renderer           :2d
-        Add to Mermaid                      :1d
-{{</* /mermaid */>}}
+  dateFormat  YYYY-MM-DD
+  title Adding GANTT diagram functionality to Mermaid
+  section A section
+  Completed task            :done,    des1, 2014-01-06,2014-01-08
+  Active task               :active,  des2, 2014-01-09, 3d
+  Future task               :         des3, after des2, 5d
+  Future task2              :         des4, after des3, 5d
+  section Critical tasks
+  Completed task in the critical line :crit, done, 2014-01-06,24h
+  Implement parser and jison          :crit, done, after des1, 2d
+  Create tests for parser             :crit, active, 3d
+  Future task in critical line        :crit, 5d
+  Create tests for renderer           :2d
+  Add to Mermaid                      :1d
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 gantt
-        dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to Mermaid
-        section A section
-        Completed task            :done,    des1, 2014-01-06,2014-01-08
-        Active task               :active,  des2, 2014-01-09, 3d
-        Future task               :         des3, after des2, 5d
-        Future task2              :         des4, after des3, 5d
-        section Critical tasks
-        Completed task in the critical line :crit, done, 2014-01-06,24h
-        Implement parser and jison          :crit, done, after des1, 2d
-        Create tests for parser             :crit, active, 3d
-        Future task in critical line        :crit, 5d
-        Create tests for renderer           :2d
-        Add to Mermaid                      :1d
-{{< /mermaid >}}
+  dateFormat  YYYY-MM-DD
+  title Adding GANTT diagram functionality to Mermaid
+  section A section
+  Completed task            :done,    des1, 2014-01-06,2014-01-08
+  Active task               :active,  des2, 2014-01-09, 3d
+  Future task               :         des3, after des2, 5d
+  Future task2              :         des4, after des3, 5d
+  section Critical tasks
+  Completed task in the critical line :crit, done, 2014-01-06,24h
+  Implement parser and jison          :crit, done, after des1, 2d
+  Create tests for parser             :crit, active, 3d
+  Future task in critical line        :crit, 5d
+  Create tests for renderer           :2d
+  Add to Mermaid                      :1d
+````
 
 ### Pie Chart without Zoom
 
-````go
-{{</* mermaid zoom="false" */>}}
+````md
+```mermaid {zoom="false"}
 pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15
-{{</* /mermaid */>}}
+  "Dogs" : 386
+  "Cats" : 85
+  "Rats" : 15
+```
 ````
 
-{{< mermaid zoom="false" >}}
+````mermaid {zoom="false"}
 pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15
-{{< /mermaid >}}
+  "Dogs" : 386
+  "Cats" : 85
+  "Rats" : 15
+````
 
 ### Quadrant Chart
 
-````go
-{{</* mermaid */>}}
-pie title Pets adopted by volunteers
-    title Reach and engagement of campaigns
-    x-axis Low Reach --> High Reach
-    y-axis Low Engagement --> High Engagement
-    quadrant-1 We should expand
-    quadrant-2 Need to promote
-    quadrant-3 Re-evaluate
-    quadrant-4 May be improved
-    Campaign A: [0.3, 0.6]
-    Campaign B: [0.45, 0.23]
-    Campaign C: [0.57, 0.69]
-    Campaign D: [0.78, 0.34]
-    Campaign E: [0.40, 0.34]
-    Campaign F: [0.35, 0.78]
-{{</* /mermaid */>}}
+````md
+```mermaid
+quadrantChart
+  title Reach and engagement of campaigns
+  x-axis Low Reach --> High Reach
+  y-axis Low Engagement --> High Engagement
+  quadrant-1 We should expand
+  quadrant-2 Need to promote
+  quadrant-3 Re-evaluate
+  quadrant-4 May be improved
+  Campaign A: [0.3, 0.6]
+  Campaign B: [0.45, 0.23]
+  Campaign C: [0.57, 0.69]
+  Campaign D: [0.78, 0.34]
+  Campaign E: [0.40, 0.34]
+  Campaign F: [0.35, 0.78]
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 quadrantChart
-    title Reach and engagement of campaigns
-    x-axis Low Reach --> High Reach
-    y-axis Low Engagement --> High Engagement
-    quadrant-1 We should expand
-    quadrant-2 Need to promote
-    quadrant-3 Re-evaluate
-    quadrant-4 May be improved
-    Campaign A: [0.3, 0.6]
-    Campaign B: [0.45, 0.23]
-    Campaign C: [0.57, 0.69]
-    Campaign D: [0.78, 0.34]
-    Campaign E: [0.40, 0.34]
-    Campaign F: [0.35, 0.78]
-{{< /mermaid >}}
+  title Reach and engagement of campaigns
+  x-axis Low Reach --> High Reach
+  y-axis Low Engagement --> High Engagement
+  quadrant-1 We should expand
+  quadrant-2 Need to promote
+  quadrant-3 Re-evaluate
+  quadrant-4 May be improved
+  Campaign A: [0.3, 0.6]
+  Campaign B: [0.45, 0.23]
+  Campaign C: [0.57, 0.69]
+  Campaign D: [0.78, 0.34]
+  Campaign E: [0.40, 0.34]
+  Campaign F: [0.35, 0.78]
+````
 
 ### Requirement Diagram
 
-````go
-{{</* mermaid */>}}
-    requirementDiagram
+````md
+```mermaid
+requirementDiagram
 
-    requirement test_req {
+  requirement test_req {
     id: 1
     text: the test text.
     risk: high
     verifymethod: test
-    }
+  }
 
-    element test_entity {
+  element test_entity {
     type: simulation
-    }
+  }
 
-    test_entity - satisfies -> test_req
-{{</* /mermaid */>}}
+  test_entity - satisfies -> test_req
+```
 ````
 
-{{< mermaid >}}
-    requirementDiagram
+````mermaid
+requirementDiagram
 
-    requirement test_req {
+  requirement test_req {
     id: 1
     text: the test text.
     risk: high
     verifymethod: test
-    }
+  }
 
-    element test_entity {
+  element test_entity {
     type: simulation
-    }
+  }
 
-    test_entity - satisfies -> test_req
-{{< /mermaid >}}
+  test_entity - satisfies -> test_req
+````
 
 ### Git Graph
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 gitGraph
-    commit
-    commit
-    branch develop
-    checkout develop
-    commit
-    commit
-    checkout main
-    merge develop
-    commit
-    commit
-{{</* /mermaid */>}}
+  commit
+  commit
+  branch develop
+  checkout develop
+  commit
+  commit
+  checkout main
+  merge develop
+  commit
+  commit
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 gitGraph
-    commit
-    commit
-    branch develop
-    checkout develop
-    commit
-    commit
-    checkout main
-    merge develop
-    commit
-    commit
-{{< /mermaid >}}
+  commit
+  commit
+  branch develop
+  checkout develop
+  commit
+  commit
+  checkout main
+  merge develop
+  commit
+  commit
+````
 
 ### C4 Diagrams
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 C4Context
-    title System Context diagram for Internet Banking System
-    Enterprise_Boundary(b0, "BankBoundary0") {
+  title System Context diagram for Internet Banking System
+  Enterprise_Boundary(b0, "BankBoundary0") {
     Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
     Person(customerB, "Banking Customer B")
     Person_Ext(customerC, "Banking Customer C", "desc")
-
     Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
 
     System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
 
     Enterprise_Boundary(b1, "BankBoundary") {
+      SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
 
-        SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
-
-        System_Boundary(b2, "BankBoundary2") {
+      System_Boundary(b2, "BankBoundary2") {
         System(SystemA, "Banking System A")
         System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
-        }
+      }
 
-        System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-        SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+      System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+      SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
 
-        Boundary(b3, "BankBoundary3", "boundary") {
+      Boundary(b3, "BankBoundary3", "boundary") {
         SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
         SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
-        }
+      }
     }
-    }
+  }
 
-    BiRel(customerA, SystemAA, "Uses")
-    BiRel(SystemAA, SystemE, "Uses")
-    Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-    Rel(SystemC, customerA, "Sends e-mails to")
+  BiRel(customerA, SystemAA, "Uses")
+  BiRel(SystemAA, SystemE, "Uses")
+  Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
+  Rel(SystemC, customerA, "Sends e-mails to")
 
-    UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-    UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-    UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-    UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-    UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+  UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
+  UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+  UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
+  UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
+  UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
 
-    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-{{</* /mermaid */>}}
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 C4Context
-    title System Context diagram for Internet Banking System
-    Enterprise_Boundary(b0, "BankBoundary0") {
+  title System Context diagram for Internet Banking System
+  Enterprise_Boundary(b0, "BankBoundary0") {
     Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
     Person(customerB, "Banking Customer B")
     Person_Ext(customerC, "Banking Customer C", "desc")
-
     Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
 
     System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
 
     Enterprise_Boundary(b1, "BankBoundary") {
+      SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
 
-        SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
-
-        System_Boundary(b2, "BankBoundary2") {
+      System_Boundary(b2, "BankBoundary2") {
         System(SystemA, "Banking System A")
         System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
-        }
+      }
 
-        System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-        SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+      System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+      SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
 
-        Boundary(b3, "BankBoundary3", "boundary") {
+      Boundary(b3, "BankBoundary3", "boundary") {
         SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
         SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
-        }
+      }
     }
-    }
+  }
 
-    BiRel(customerA, SystemAA, "Uses")
-    BiRel(SystemAA, SystemE, "Uses")
-    Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-    Rel(SystemC, customerA, "Sends e-mails to")
+  BiRel(customerA, SystemAA, "Uses")
+  BiRel(SystemAA, SystemE, "Uses")
+  Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
+  Rel(SystemC, customerA, "Sends e-mails to")
 
-    UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-    UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-    UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-    UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-    UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+  UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
+  UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+  UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
+  UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
+  UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
 
-    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-{{< /mermaid >}}
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+````
 
 ### Mindmaps
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 mindmap
   root((mindmap))
     Origins
@@ -566,10 +577,10 @@ mindmap
     Tools
       Pen and paper
       Mermaid
-{{</* /mermaid */>}}
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 mindmap
   root((mindmap))
     Origins
@@ -587,194 +598,192 @@ mindmap
     Tools
       Pen and paper
       Mermaid
-{{< /mermaid >}}
+````
 
 ### Timeline
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 timeline
-    title History of Social Media Platform
-    2002 : LinkedIn
-    2004 : Facebook
-         : Google
-    2005 : Youtube
-    2006 : Twitter
-{{</* /mermaid */>}}
+  title History of Social Media Platform
+  2002 : LinkedIn
+  2004 : Facebook
+       : Google
+  2005 : Youtube
+  2006 : Twitter
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 timeline
-    title History of Social Media Platform
-    2002 : LinkedIn
-    2004 : Facebook
-         : Google
-    2005 : Youtube
-    2006 : Twitter
-{{< /mermaid >}}
+  title History of Social Media Platform
+  2002 : LinkedIn
+  2004 : Facebook
+       : Google
+  2005 : Youtube
+  2006 : Twitter
+````
 
 ### Sankey
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 sankey-beta
-
-%% source,target,value
-Electricity grid,Over generation / exports,104.453
-Electricity grid,Heating and cooling - homes,113.726
-Electricity grid,H2 conversion,27.14
-{{</* /mermaid */>}}
+  %% source,target,value
+  Electricity grid,Over generation / exports,104.453
+  Electricity grid,Heating and cooling - homes,113.726
+  Electricity grid,H2 conversion,27.14
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 sankey-beta
-
-%% source,target,value
-Electricity grid,Over generation / exports,104.453
-Electricity grid,Heating and cooling - homes,113.726
-Electricity grid,H2 conversion,27.14
-{{< /mermaid >}}
+  %% source,target,value
+  Electricity grid,Over generation / exports,104.453
+  Electricity grid,Heating and cooling - homes,113.726
+  Electricity grid,H2 conversion,27.14
+````
 
 ### XYChart
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 xychart-beta
-    title "Sales Revenue"
-    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
-    y-axis "Revenue (in $)" 4000 --> 11000
-    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-{{</* /mermaid */>}}
+  title "Sales Revenue"
+  x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+  y-axis "Revenue (in $)" 4000 --> 11000
+  bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+  line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 xychart-beta
-    title "Sales Revenue"
-    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
-    y-axis "Revenue (in $)" 4000 --> 11000
-    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-{{< /mermaid >}}
+  title "Sales Revenue"
+  x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+  y-axis "Revenue (in $)" 4000 --> 11000
+  bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+  line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+````
 
 ### Block Diagram
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 block-beta
-columns 1
-  db(("DB"))
-  blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
-  block:ID
-    A
-    B["A wide one in the middle"]
-    C
-  end
-  space
-  D
-  ID --> D
-  C --> D
-  style B fill:#969,stroke:#333,stroke-width:4px
-{{</* /mermaid */>}}
+  columns 1
+    db(("DB"))
+    blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
+    block:ID
+      A
+      B["A wide one in the middle"]
+      C
+    end
+    space
+    D
+    ID --> D
+    C --> D
+    style B fill:#969,stroke:#333,stroke-width:4px
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 block-beta
-columns 1
-  db(("DB"))
-  blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
-  block:ID
-    A
-    B["A wide one in the middle"]
-    C
-  end
-  space
-  D
-  ID --> D
-  C --> D
-  style B fill:#969,stroke:#333,stroke-width:4px
-{{< /mermaid >}}
+  columns 1
+    db(("DB"))
+    blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
+    block:ID
+      A
+      B["A wide one in the middle"]
+      C
+    end
+    space
+    D
+    ID --> D
+    C --> D
+    style B fill:#969,stroke:#333,stroke-width:4px
+````
 
 ### Packet
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 ---
 title: "TCP Packet"
 ---
 packet-beta
-0-15: "Source Port"
-16-31: "Destination Port"
-32-63: "Sequence Number"
-64-95: "Acknowledgment Number"
-96-99: "Data Offset"
-100-105: "Reserved"
-106: "URG"
-107: "ACK"
-108: "PSH"
-109: "RST"
-110: "SYN"
-111: "FIN"
-112-127: "Window"
-128-143: "Checksum"
-144-159: "Urgent Pointer"
-160-191: "(Options and Padding)"
-192-255: "Data (variable length)"
-{{</* /mermaid */>}}
+  0-15: "Source Port"
+  16-31: "Destination Port"
+  32-63: "Sequence Number"
+  64-95: "Acknowledgment Number"
+  96-99: "Data Offset"
+  100-105: "Reserved"
+  106: "URG"
+  107: "ACK"
+  108: "PSH"
+  109: "RST"
+  110: "SYN"
+  111: "FIN"
+  112-127: "Window"
+  128-143: "Checksum"
+  144-159: "Urgent Pointer"
+  160-191: "(Options and Padding)"
+  192-255: "Data (variable length)"
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 ---
 title: "TCP Packet"
 ---
 packet-beta
-0-15: "Source Port"
-16-31: "Destination Port"
-32-63: "Sequence Number"
-64-95: "Acknowledgment Number"
-96-99: "Data Offset"
-100-105: "Reserved"
-106: "URG"
-107: "ACK"
-108: "PSH"
-109: "RST"
-110: "SYN"
-111: "FIN"
-112-127: "Window"
-128-143: "Checksum"
-144-159: "Urgent Pointer"
-160-191: "(Options and Padding)"
-192-255: "Data (variable length)"
-{{< /mermaid >}}
+  0-15: "Source Port"
+  16-31: "Destination Port"
+  32-63: "Sequence Number"
+  64-95: "Acknowledgment Number"
+  96-99: "Data Offset"
+  100-105: "Reserved"
+  106: "URG"
+  107: "ACK"
+  108: "PSH"
+  109: "RST"
+  110: "SYN"
+  111: "FIN"
+  112-127: "Window"
+  128-143: "Checksum"
+  144-159: "Urgent Pointer"
+  160-191: "(Options and Padding)"
+  192-255: "Data (variable length)"
+````
 
 ### Architecture
 
-````go
-{{</* mermaid */>}}
+````md
+```mermaid
 architecture-beta
-    group api(cloud)[API]
+  group api(cloud)[API]
 
-    service db(database)[Database] in api
-    service disk1(disk)[Storage] in api
-    service disk2(disk)[Storage] in api
-    service server(server)[Server] in api
+  service db(database)[Database] in api
+  service disk1(disk)[Storage] in api
+  service disk2(disk)[Storage] in api
+  service server(server)[Server] in api
 
-    db:L -- R:server
-    disk1:T -- B:server
-    disk2:T -- B:db
-{{</* /mermaid */>}}
+  db:L -- R:server
+  disk1:T -- B:server
+  disk2:T -- B:db
+```
 ````
 
-{{< mermaid >}}
+````mermaid
 architecture-beta
-    group api(cloud)[API]
+  group api(cloud)[API]
 
-    service db(database)[Database] in api
-    service disk1(disk)[Storage] in api
-    service disk2(disk)[Storage] in api
-    service server(server)[Server] in api
+  service db(database)[Database] in api
+  service disk1(disk)[Storage] in api
+  service disk2(disk)[Storage] in api
+  service server(server)[Server] in api
 
-    db:L -- R:server
-    disk1:T -- B:server
-    disk2:T -- B:db
-{{< /mermaid >}}
+  db:L -- R:server
+  disk1:T -- B:server
+  disk2:T -- B:db
+````

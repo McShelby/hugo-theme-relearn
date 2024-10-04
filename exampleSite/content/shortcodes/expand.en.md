@@ -21,8 +21,6 @@ That's some more text with a footnote.[^someid]
 
 ## Usage
 
-While the examples are using shortcodes with named parameter you are free to use positional as well or also call this shortcode from your own partials.
-
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
@@ -50,6 +48,8 @@ While the examples are using shortcodes with named parameter you are free to use
 
 {{% /tab %}}
 {{< /tabs >}}
+
+The [`notice` shortcode](shortcodes/notice/) is also capable of displaying expandable/collapsible sections of text but with color options.
 
 ### Parameter
 

@@ -1,4 +1,6 @@
 +++
+title = "Frontmatter"
+singulartitle = "Frontmatter"
 +++
 
 Each Hugo page **has to define** a [frontmatter](https://gohugo.io/content/front-matter/).

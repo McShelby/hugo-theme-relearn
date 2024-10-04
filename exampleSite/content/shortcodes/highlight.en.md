@@ -1,6 +1,7 @@
 +++
 description = "Render code with a syntax highlighter"
-options = ["highlightWrap"]
+frontmatter = ["highlightWrap"]
+options = ["disableHoverBlockCopyToClipBoard", "disableInlineCopyToClipBoard", "highlightWrap"]
 title = "Highlight"
 +++
 
@@ -12,19 +13,11 @@ print("Hello World!")
 
 ## Usage
 
-This shortcode is fully compatible with Hugo's [`highlight` shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) but **offers some extensions**.
-
-It is called interchangeably in the same way as Hugo's own shortcode providing positional parameter or by simply using Markdown codefences.
-
-You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call this shortcode as a partial using compatibility syntax.
-
-While the examples are using shortcodes with named parameter it is recommended to use Markdown codefences instead. This is because more and more other software supports Markdown codefences (eg. GitHub) and so your Markdown becomes more portable.
-
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
+{{% tab title="codeodefence" %}}
 
 ````md
-```py { lineNos="true" wrap="true" title="python" }
+```py {lineNos="true" wrap="true" title="python"}
 print("Hello World!")
 ```
 ````
@@ -76,48 +69,60 @@ print("Hello World!")
 {{% /tab %}}
 {{< /tabs >}}
 
+This shortcode is fully compatible with Hugo's [`highlight` shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) but **offers some extensions**.
+
+It is called interchangeably in the same way as Hugo's own shortcode by providing positional parameter or simply by using Markdown codefences.
+
+You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call it using compatibility syntax.
+
+Codefence syntax is widely adopted in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+
 ### Parameter
 
 | Name                  | Position | Default          | Notes       |
 |-----------------------|--------- | -----------------|-------------|
 | **type**              | 1        | _&lt;empty&gt;_  | The language of the code to highlight. Choose from one of the [supported languages](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages). Case-insensitive. |
 | **title**             |          | _&lt;empty&gt;_  | **Extension**. Arbitrary title for code. This displays the code like a [single tab](shortcodes/tab) if `hl_inline=false` (which is Hugo's default). |
-| **wrap**              |          | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `hugo.toml` and overwritten via frontmatter. [See below](#configuration). |
+| **wrap**              |          | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `hugo.toml` and overwritten via frontmatter. [See below](#setting-wrap-of-long-lines). |
 | **options**           | 2        | _&lt;empty&gt;_  | An optional, comma-separated list of zero or more [Hugo supported options](https://gohugo.io/functions/highlight/#options) as well as extension parameter from this table. |
 | _**&lt;option&gt;**_  |          | _&lt;empty&gt;_  | Any of [Hugo's supported options](https://gohugo.io/functions/highlight/#options). |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Your code to highlight. |
 
-## Configuration
+## Settings
 
-Default values for [Hugo's supported options](https://gohugo.io/functions/highlight/#options) can be set via [goldmark settings](https://gohugo.io/getting-started/configuration-markup/#highlight) in your `hugo.toml`
+### Setting Default Values for Hugo's Options
 
-Default values for extension options can be set via params settings in your `hugo.toml` or be overwritten by frontmatter for each individual page.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Default values for [Hugo's supported options](https://gohugo.io/functions/highlight/#options) can be set via [goldmark settings](https://gohugo.io/getting-started/configuration-markup/#highlight).
 
-### Global Configuration File
-
-You can configure the color style used for code blocks in your [color variants stylesheet](configuration/appearance/branding#syntax-highlighting) file.
-
-#### Recommended Settings
+If used together with wrapping of long lines, use this recommended settings. Otherwise, line numbers will shift if code wraps.
 
 {{< multiconfig file=hugo >}}
 [markup]
   [markup.highlight]
     lineNumbersInTable = false
-    noClasses = false
 {{< /multiconfig >}}
 
-#### Optional Settings
+### Setting Wrap of Long Lines
 
-{{< multiconfig file=hugo >}}
-[params]
-  highlightWrap = true
-{{< /multiconfig >}}
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} By default, code will be wrapped if the line is not long enough.
 
-### Page's Frontmatter
+You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameter) individually for each code block.
 
-{{< multiconfig fm=true >}}
-highlightWrap = true
-{{< /multiconfig >}}
+### Copy to Clipboard for Inline Code
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default inline code has a button to copy the code to the clipboard.
+
+If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
+
+### Copy to Clipboard for Block Code
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default block code has a button to copy the code to the clipboard that is only visible on hover.
+
+Set `disableHoverBlockCopyToClipBoard=true` to disable the hover effect and always show the button.
+
+### Setting a Specific Color Scheme
+
+You can configure the color style used for code blocks in your [color variants stylesheet](configuration/appearance/branding#syntax-highlighting) file using the `--CODE-theme` variable. This requires further configuration as described in the above link.
 
 ## Examples
 
