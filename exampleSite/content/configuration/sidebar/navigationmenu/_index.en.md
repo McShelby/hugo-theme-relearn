@@ -1,5 +1,6 @@
 +++
 description = "Default behavior of the navigation menu"
+options = ["alwaysopen", "ordersectionsby"]
 title = "Navigation Menu"
 weight = 4
 +++

@@ -1,5 +1,6 @@
 +++
 description = "Configure search and the search form"
+options = ["additionalContentLanguage", "disableSearch", "disableSearchIndex", "disableSearchPage", "searchIndexURL", "searchPageURL"]
 title = "Search"
 weight = 3
 +++
@@ -16,14 +17,14 @@ Each level depends on the previous level to be enabled, eg. the dedicated search
 
 By default all three levels are enabled. You can disable each level by the following settings in your `hugo.toml`:
 
-- in-page search: `disableSearch=true`
-- search popup: `disableSearchIndex=true`
-- dedicated search page: `disableSearchPage=true`
+- in-page search: `params.disableSearch=true`
+- search popup: `params.disableSearchIndex=true`
+- dedicated search page: `params.disableSearchPage=true`
 
 By default the following files will be created, relative to each languages home page but can be overwritten:
 
-- search popup: `searchindex.js`, configured by `searchIndexURL`
-- dedicated search page: `search/index.html`, configured by `searchPageURL`
+- search popup: `searchindex.js`, configured by `params.searchIndexURL`
+- dedicated search page: `search/index.html`, configured by `params.searchPageURL`
 
 {{% notice note %}}
 You only need to reconfigure the file / page URLs if you have own content at those URLs in your project. Eg. this can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.

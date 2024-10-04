@@ -1,5 +1,6 @@
 +++
 description = "How to configure your site to be multilingual"
+options = ["disableLanguageSwitchingButton"]
 title = "Multilingual"
 weight = 2
 +++

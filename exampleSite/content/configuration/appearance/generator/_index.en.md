@@ -1,6 +1,7 @@
 +++
 description = "An interactive tool to generate color variant stylesheets"
 disableMermaid = false
+options = ["themeVariant"]
 title = "Stylesheet Generator"
 weight = 9
 +++
@@ -18,9 +19,9 @@ To better understand this select the `neon` variant and modify the different hea
 
 Once you've changed a color, the variant selector will show a "My custom variant" entry and your changes are stored in the browser. You can **browse to other pages** and even close the browser **without losing your changes**.
 
-Once you are satisfied, you can download the new variants file and copy it into your site's `assets/css` directory. Afterwards you have to adjust the `themeVariant` parameter in your `hugo.toml` to your chosen file name.
+Once you are satisfied, you can download the new variants file and copy it into your site's `assets/css` directory. Afterwards you have to adjust the `params.themeVariant` option in your `hugo.toml` to your chosen file name.
 
-Eg. if your new variants file is named `theme-my-custom-variant.css`, you have to set `themeVariant='my-custom-variant'` to use it.
+Eg. if your new variants file is named `theme-my-custom-variant.css`, you have to set `params.themeVariant='my-custom-variant'` to use it.
 
 See the docs for [further configuration options](configuration/appearance/branding)
 {{% /expand %}}

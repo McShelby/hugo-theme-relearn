@@ -1,5 +1,6 @@
 +++
 description = "Learn about the hiddes pages feature"
+options = ["disableSearchHiddenPages", "disableSeoHiddenPages", "disableTagHiddenPages"]
 title = "Hidden Pages"
 weight = 5
 +++
@@ -20,7 +21,7 @@ To hide hidden pages from search results of the search popup and dedicated searc
 
 ## Hide from Crawlers
 
-To hide hidden pages from crawlers by removing links from the sitemap and rss feed, set `params.disableSearchHiddenPages=true`.
+To hide hidden pages from crawlers by removing links from the sitemap and rss feed, set `params.disableSeoHiddenPages=true`.
 
 ## Hide from Taxonomies
 

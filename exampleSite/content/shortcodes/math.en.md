@@ -1,5 +1,6 @@
 +++
 description = "Beautiful math and chemical formulae"
+options = ["disableMathJax", "mathJaxInitialize"]
 title = "Math"
 +++
 

@@ -1,5 +1,6 @@
 +++
 description = "Generate diagrams and flowcharts from text"
+options = ["mermaidInitialize", "mermaidZoom"]
 title = "Mermaid"
 +++
 

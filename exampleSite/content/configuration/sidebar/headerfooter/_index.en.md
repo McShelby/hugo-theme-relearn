@@ -1,12 +1,13 @@
 +++
 description = "Configure the header and footer of the sidebar"
+options = ["disableLandingPageButton", "showVisitedLinks"]
 title = "Header & Footer"
 weight = 2
 +++
 
 ## Home Button Configuration
 
-If `disableLandingPageButton=true`, the Home button will be hidden  on the left menu.
+If `params.disableLandingPageButton=true`, the Home button will be hidden  on the left menu.
 
 If you display the Home button, it is an alternative for clicking on the logo. To edit its logo or text, you will have to configure the `landingPageName` for the defined languages
 

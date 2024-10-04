@@ -3,7 +3,11 @@ title = "Frontmatter Reference"
 weight = 6
 +++
 
-Each Hugo page **has to define** a [frontmatter](https://gohugo.io/content/front-matter/).
+Each Hugo page **has to define** a [front matter](https://gohugo.io/content/front-matter/).
+
+This is the complete list of front matter supported by the theme.
+
+See the [index](frontmatter/) for pointers to in-detail documentation.
 
 ## All Frontmatter Options
 

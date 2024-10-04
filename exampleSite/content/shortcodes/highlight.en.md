@@ -1,5 +1,6 @@
 +++
 description = "Render code with a syntax highlighter"
+options = ["highlightWrap"]
 title = "Highlight"
 +++
 

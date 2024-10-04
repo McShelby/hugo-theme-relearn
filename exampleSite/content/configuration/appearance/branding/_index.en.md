@@ -1,5 +1,6 @@
 +++
 description = "How to configure colors, fonts, favicon and logo"
+options = ["themeVariant"]
 title = "Branding"
 weight = 1
 +++
