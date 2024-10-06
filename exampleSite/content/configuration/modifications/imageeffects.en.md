@@ -15,7 +15,7 @@ The theme supports non-standard [image effects](content/markdown#image-effects).
 | lightbox | The image will be clickable to show it enlarged                   |
 | shadow   | Draws a shadow around the image to make it appear hovered/glowing |
 
-As [described](content/markdown#image-effects), you can add this to the URL query parameter, but this may be cumbersome to be done consistently for the whole page. Instead, you can configure the defaults in your `hugo.toml` as well as overriding these default in the pages frontmatter.
+As [described](content/markdown#image-effects), you can add this to the URL query parameter, but this may be cumbersome to be done consistently for the whole page. Instead, you can configure the defaults in your `hugo.toml` as well as overriding these default in the pages front matter.
 
 Explicitly set URL query parameter will override the defaults in effect for a page or your site.
 
@@ -62,7 +62,7 @@ This ends up in the following HTML where the parameter are converted to CSS clas
 
 ## Extending
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} As you can see in the above example, the `bg-white` parameter is not initially supported in the themes default settings. The theme allows you to define arbitrary parameter by just adding them to the URL query parameter or set them in your page's frontmatter or `hugo.toml`.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} As you can see in the above example, the `bg-white` parameter is not initially supported in the themes default settings. The theme allows you to define arbitrary parameter by just adding them to the URL query parameter or set them in your page's front matter or `hugo.toml`.
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -75,5 +75,5 @@ This ends up in the following HTML where the parameter are converted to CSS clas
 {{< /multiconfig >}}
 
 {{% notice note %}}
-If no extended parameter like `bg-white` in the example is set on the URL, a `class="nobg-white"` in the HTML will only be generated if a default value was set in the page's frontmatter or `hugo.toml` .
+If no extended parameter like `bg-white` in the example is set on the URL, a `class="nobg-white"` in the HTML will only be generated if a default value was set in the page's front matter or `hugo.toml` .
 {{% /notice %}}

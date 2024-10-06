@@ -60,7 +60,7 @@ Codefence syntax is widely available in other Markdown parsers like GitHub and t
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
 | **align**             | `center`         | The vertical alignment.<br><br>Allowed values are `left`, `center` or `right`. |
-| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the [`mermaidZoom` setting](#configuring-pan-and-zoom) of your configurations options or the pages frontmatter or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
+| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the [`mermaidZoom` setting](#configuring-pan-and-zoom) of your configurations options or the pages front matter or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
 
 ## Settings

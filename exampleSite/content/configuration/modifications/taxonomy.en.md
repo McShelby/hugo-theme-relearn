@@ -48,7 +48,7 @@ You can display the terms of your custom taxonomy somewhere in your page (often 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
-| **taxonomy**          | _&lt;empty&gt;_ | The plural name of the taxonomy to display as used in your frontmatter. |
+| **taxonomy**          | _&lt;empty&gt;_ | The plural name of the taxonomy to display as used in your front matter. |
 | **class**             | _&lt;empty&gt;_ | Additional CSS classes set on the outermost generated HTML element.<br><br>If set to `tags` you will get the visuals for displaying the _tags_ taxonomy, otherwise it will be a simple list of links as for the _categories_ taxonomy. |
 | **style**             | `primary`       | The style scheme used if **class** is `tags`.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code` |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used if **class** is `tags`. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |

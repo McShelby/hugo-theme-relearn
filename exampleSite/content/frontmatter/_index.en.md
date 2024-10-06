@@ -1,4 +1,4 @@
 +++
-title = "Frontmatter"
-singulartitle = "Frontmatter"
+title = "Front Matter"
+singulartitle = "Front Matter"
 +++

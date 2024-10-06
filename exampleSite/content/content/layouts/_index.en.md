@@ -3,7 +3,7 @@ title = "Layouts"
 weight = 2
 +++
 
-Using the command: `hugo new [relative new content path]`, you can start a content file with the date and title automatically set. While this is a welcome feature, active writers need more: [archetypes](https://gohugo.io/content/layouts/). These are preconfigured skeleton pages with default frontmatter.
+Using the command: `hugo new [relative new content path]`, you can start a content file with the date and title automatically set. While this is a welcome feature, active writers need more: [archetypes](https://gohugo.io/content/layouts/). These are preconfigured skeleton pages with default front matter.
 
 The Relearn theme defines some few archetypes of pages but you are free to define new ones to your liking. All can be used at any level of the documentation, the only difference being the layout of the content.
 
@@ -60,7 +60,7 @@ The `weight` number will be used to generate the subtitle of the chapter page, s
 
 ### Default {#archetypes-default}
 
-A **Default** page is any other content page. If you set an unknown archetype in your frontmatter, this archetype will be used to generate the page.
+A **Default** page is any other content page. If you set an unknown archetype in your front matter, this archetype will be used to generate the page.
 
 ![Default page](pages-default.png?width=60pc)
 
@@ -92,7 +92,7 @@ If you are in need of further archetypes you can define your own or even redefin
 
 ### Template
 
-Define a template file in your project at `archetypes/<kind>.md` and make sure it has at least the frontmatter parameter for that archetype like
+Define a template file in your project at `archetypes/<kind>.md` and make sure it has at least the front matter parameter for that archetype like
 
 ````toml {title="&lt;kind&gt;.md"}
 +++
@@ -110,7 +110,7 @@ hugo new --kind <kind> <name>/_index.md
 
 To define how your archetypes are rendered, define corresponding partial files in your projects directory `layouts/partials/archetypes/<kind>`.
 
-If you use an unknown archetype in your frontmatter, the `default` archetype will be used to generate the page.
+If you use an unknown archetype in your front matter, the `default` archetype will be used to generate the page.
 
 Related to each archetype, several _hook_ partial files in the form of `<hook>.html` can be given inside each archetype directory. If a partial for a specific hook is missing, no output is generated for this hook.
 

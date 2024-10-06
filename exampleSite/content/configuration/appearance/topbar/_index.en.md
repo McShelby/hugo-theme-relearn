@@ -23,7 +23,7 @@ This page is about how to configure supported options for the topbar. If you wan
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If `editURL` is set to a URL, an edit button will be shown in the topbar. If the button is hidden, also the keyboard shortcut is disabled.
 
-The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages frontmatter.
+The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages front matter.
 
 Eg. this site is using `editURL="https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}"`
 

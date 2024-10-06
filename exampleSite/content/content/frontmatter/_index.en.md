@@ -39,7 +39,7 @@ The example reflect example values. The defaults can be taken from the [annotate
 
 ### Add Icon to a Menu Entry
 
-In the page frontmatter, add a `menuPre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
+In the page front matter, add a `menuPre` param to insert any HTML code before the menu label. The example below uses the GitHub icon.
 
 {{< multiconfig fm=true >}}
 title = "GitHub repo"
@@ -93,7 +93,7 @@ You may want to structure your pages in a hierarchical way but don't want to gen
 
 To stay with the initial example: Suppose you want `level-one` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
 
-For this, open `content/level-one/_index.md` and add the following frontmatter
+For this, open `content/level-one/_index.md` and add the following front matter
 
 {{< multiconfig fm=true >}}
 collapsibleMenu = true
