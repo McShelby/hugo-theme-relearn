@@ -5,7 +5,7 @@ options = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoo
 title = "Mermaid"
 +++
 
-The `mermaid` shortcode generates diagrams and flowcharts from text in a similar manner as Markdown, using the [Mermaid](https://mermaidjs.github.io/) library.
+The `mermaid` shortcode generates diagrams and flowcharts from text in a similar manner as Markdown using the [Mermaid](https://mermaidjs.github.io/) library.
 
 ````mermaid {align="center" zoom="true"}
 graph LR;
@@ -53,7 +53,7 @@ graph LR;
 {{% /tab %}}
 {{< /tabs >}}
 
-Codefence syntax is widely adopted in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 ### Parameter
 
@@ -104,7 +104,7 @@ You can force loading the Mermaid library if no shortcode or codefence was used 
 
 ### Setting a Specific Mermaid Theme
 
-While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value in the `--MERMAID-theme` variable of your used [color variant](configuration/appearance/generator/). This allows your graphs to look pretty when the user switches a color variant.
+While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value using the `--MERMAID-theme` variable in your [color variant stylesheet](configuration/appearance/generator/). This allows your graphs to look pretty when the user switches the color variant.
 
 ## Examples
 

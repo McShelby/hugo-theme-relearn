@@ -7,7 +7,7 @@ title = "Math"
 
 You can use [pure Markdown](content/markdown/#subscript-and-superscript) for writing simple math expressions.
 
-If this is not enough, the `math` shortcode helps you generating math and chemical formulae using the [MathJax](https://mathjax.org/) library.
+If this is not enough, the `math` shortcode helps you rendering math and chemical formulae using the [MathJax](https://mathjax.org/) library.
 
 {{< math align="center" >}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
@@ -54,7 +54,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 {{% /tab %}}
 {{< /tabs >}}
 
-Passthrough syntax is only available by [further configuration](#passthrough-configuration) and has limited features as it does not provide any of the below parameter. Nevertheless, it is widely adopted in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Passthrough syntax is only available by [further configuration](#passthrough-configuration) and has limited features as it does not provide any of the below parameter. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 ### Parameter
 
@@ -118,21 +118,15 @@ Instead of `math=true` you can also use the alias `math.force=true`.
 
 In this case you have to [force load](#force-loading-of-the-mathjax-library) the MathJax library either in your `hugo.toml` or in your page's front matter as the theme doesn't know if math is used.
 
-{{< multiconfig fm=true >}}
-math = true
-{{< /multiconfig >}}
-
 [See the example](#passthrough-block-math) on how a passthrough configurations makes using math really easy.
 
 ## Examples
 
 ### Passthrough Block Math
 
-With passthrough configuration you can just drop your math without enclosing it by shortcodes or codefences but no other [parameters](#parameter) are available.
+With [passthrough configuration](#passthrough-configuration) enabled you can just drop your math without enclosing it by shortcodes or codefences but no other [parameters](#parameter) are available.
 
-This is only available if you are using the [passthrough configuration](#passthrough-configuration).
-
-Just don't forget to [force load](#force-loading-of-the-mathjax-library) the MathJax library by setting `math=true` either in your `hugo.toml` or in your page's front matter.
+In this case you have to [force load](#force-loading-of-the-mathjax-library) the MathJax library by setting `math=true` either in your `hugo.toml` or in your page's front matter.
 
 In passthrough default configuration, block math is generated if you use two consecutive `$$` as a delimiter around your formulae.
 

@@ -42,6 +42,8 @@ printf("Hello World!");
 
 If you want multiple tabs grouped together you can wrap your tabs into the [`tabs` shortcode](shortcodes/tabs).
 
+If you want further options when using a single code tab, you can also use the [`highlight` shortcode](shortcodes/highlight).
+
 ### Parameter
 
 | Name                  | Default         | Notes       |
