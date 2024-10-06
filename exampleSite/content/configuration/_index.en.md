@@ -1,4 +1,5 @@
 +++
+menuPre = "<i class='fa-fw fas fa-gears'></i> "
 title = "Configuration"
 type = "chapter"
 weight = 2

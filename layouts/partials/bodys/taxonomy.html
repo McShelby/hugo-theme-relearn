@@ -5,25 +5,7 @@
 
 {{- $title := partial "title.gotmpl" (dict "page" .) }}
 <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
-{{- .Content }}
-{{- $lastCapital := "" }}
-{{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" . .Path }}
-{{- range $pages }}
-  {{- $capital := substr .Title 0 1 | upper }}
-  {{- if ne $lastCapital $capital }}
-    {{- if ne $lastCapital "" }}
-</ul>
-    {{- end }}
-<h2 id="{{ $capital | plainify | anchorize }}">{{ $capital }}</h2>
-<ul class="columnize">
-  {{- end }}
-  {{- /* display terms of a taxonomy */}}
-  <li><a href="{{ partial "permalink.gotmpl" (dict "to" .Page) }}">{{ .Title }}</a> ({{ .Count }})</li>
-  {{- $lastCapital = $capital }}
-{{- end }}
-{{- if ne $lastCapital "" }}
-</ul>
-{{- end }}
+{{ partial "partials/shortcodes/taxonomy.html" (dict "page" . "taxonomy" .) | .RenderString }}
 
   <footer class="footline">
   </footer>

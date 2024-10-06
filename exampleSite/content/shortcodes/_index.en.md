@@ -1,4 +1,5 @@
 +++
+menuPre = "<i class='fa-fw fas fa-shapes'></i> "
 ordersectionsby = "title"
 title = "Shortcodes"
 type = "chapter"

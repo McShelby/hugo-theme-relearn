@@ -5,15 +5,17 @@ title = "Options Reference"
 weight = 6
 +++
 
-On top of [Hugo's global configuration options](https://gohugo.io/overview/configuration/), you can set further options unique to the theme in your `hugo.toml`.
+You can set configuration options in your `hugo.toml`. On top of [Hugo's configuration options](https://gohugo.io/getting-started/configuration/#all-configuration-settings), you can use the following settings unique to the theme.
 
-This is the complete list of options supported by the theme.
+A configurable option is marked with {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} badge throughout the documentation.
 
-See the [index](options/) for pointers to in-detail documentation.
+## Index
+
+{{% taxonomy "options" "h3" %}}
 
 ## All config options
 
-The values reflect example options. The defaults can be taken from the [annotated example](#annotated-config-options) below.
+The values reflect example options. The defaults can be taken from the [annotated example](#annotated-config-options) below or the individual documentation.
 
 {{< multiconfig file=hugo section=params >}}
 {{% include "config/_default/params.toml" %}}
