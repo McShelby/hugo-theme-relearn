@@ -3,7 +3,7 @@ description = "Learn about the hiddes pages feature"
 frontmatter = ["hidden"]
 options = ["disableSearchHiddenPages", "disableSeoHiddenPages", "disableTagHiddenPages"]
 title = "Hidden Pages"
-weight = 5
+weight = 4
 +++
 
 The theme provides the concept of hidden pages.

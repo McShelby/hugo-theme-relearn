@@ -2,7 +2,7 @@
 description = "How to configure heading anchors"
 options = ["disableAnchorCopy", "disableAnchorScrolling"]
 title = "Headings"
-weight = 3
+weight = 2
 +++
 
 Each heading may have an anchor link that is displayed when the heading is hovered.

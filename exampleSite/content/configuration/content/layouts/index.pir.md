@@ -1,6 +1,6 @@
 +++
 description = "How to use and extend layouts"
 title = "Custom Layouts"
-weight = 4
+weight = 3
 +++
 {{< piratify >}}

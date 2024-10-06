@@ -1,7 +1,7 @@
 +++
 description = "How to use and extend layouts"
 title = "Custom Layouts"
-weight = 4
+weight = 3
 +++
 
 The Relearn theme provides a few layouts for you to use. Namely these are `home`, `chapter` and `default`. All are accessible as so called [archetypes](content/layouts) for an author of your site.
