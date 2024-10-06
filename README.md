@@ -72,7 +72,7 @@ Visit the [What's New](https://mcshelby.github.io/hugo-theme-relearn/introductio
 
 ## Contributing
 
-We welcome contributions for bug fixes and new features. Please see the [contribution guidelines](https://mcshelby.github.io/hugo-theme-relearn/dev/contributing) before getting started.
+We welcome contributions for bug fixes and new features. Please see the [contribution guidelines](https://mcshelby.github.io/hugo-theme-relearn/development/contributing) before getting started.
 
 ## Licensing
 

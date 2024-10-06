@@ -1,4 +1,5 @@
 +++
+menuPre = "<i class='fa-fw fab fa-git-alt'></i> "
 hidden = true
 title = "Development"
 type = "chapter"
