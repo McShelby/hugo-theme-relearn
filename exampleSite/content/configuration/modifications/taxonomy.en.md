@@ -1,52 +1,44 @@
 +++
 categories = ["taxonomy", "content"]
+description = "How to display custom taxonomies on your pages"
 tags = "tutorial"
-title = "Taxonomy"
+title = "Custom Taxonomies"
 weight = 5
 +++
 
-The Relearn theme supports Hugo's default taxonomies _tag_ and _category_ out of the box.
+This page shows you how customize your templates to display custom taxonomies on your pages.
 
-## Configuration
+See the official documentation on [how to configure custom taxnomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and [how to use them in your page's front matter](https://gohugo.io/content-management/taxonomies/#assign-terms-to-content).
 
-Just add tags and/or categories to any page. They can be given as a single string or an array of strings.
+## Standard Behavior
 
-{{< multiconfig fm=true >}}
-categories = ["taxonomy", "content"]
-tags = "tutorial"
-title = "Taxonomy"
-{{< /multiconfig >}}
+The Relearn theme displays Hugo's [default taxonomies](https://gohugo.io/content-management/taxonomies/#default-taxonomies) _tag_ and _category_ out of the box.
 
-## Behavior
+The _tags_ are displayed at the top of the page in alphabetical order.
 
-The tags are displayed at the top of the page in alphabetical order.
-
-The categories are displayed at the bottom of the page in alphabetical order in the default implementation of the theme but can be customized by providing your own `content-footer.html` partial.
+The _categories_ are displayed at the bottom of the page in alphabetical order.
 
 Each item is a link to a taxonomy page displaying all the articles with the given term.
 
-## List all the tags
+## Configuration
 
-In the `hugo.toml`  file you can add a shortcut to display all the tags and categories
+To add custom taxnomies, you have to configure them in your `hugo.toml` and also have to add the default taxonomies if you want to use them.
 
 {{< multiconfig file=hugo >}}
-[[menu.shortcuts]]
-name = "<i class='fa-fw fas fa-tags'></i> Tags"
-url = "/tags"
-
-[[menu.shortcuts]]
-name = "<i class='fa-fw fas fa-layer-group'></i> Categories"
-url = "/categories"
+[taxonomies]
+  category = 'categories'
+  mycustomtag = 'mycustomtags'
+  tag = 'tags'
 {{< /multiconfig >}}
 
 ## Customization
 
-If you define [custom taxonomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and want to display a list of them somewhere on your page (often in the `layouts/partials/content-footer.html`) you can call a partial that does the job for you:
+You can display the terms of your custom taxonomy somewhere in your page (often in the `layouts/partials/content-footer.html`) by calling a partial that does the job for you
 
 ````go
 {{ partial "term-list.html" (dict
   "page" .
-  "taxonomy" "categories"
+  "taxonomy" "mycustomtags"
   "icon" "layer-group"
 ) }}
 ````

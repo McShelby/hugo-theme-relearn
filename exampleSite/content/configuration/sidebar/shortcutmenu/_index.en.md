@@ -7,11 +7,11 @@ weight = 5
 
 The sidebar contains the navigation menu of your content files but you can also add additional menu entries or shortcuts below the navigation menu.
 
-You can read more about [Hugo's menu configuration](https://gohugo.io/content-management/menus/#define-in-site-configuration) in its documenation.
+Be sure to use the `pageRef` property instead of `url` for all links internal to your site. You can read more about [Hugo's menu configuration](https://gohugo.io/content-management/menus/#define-in-site-configuration) in its documenation.
 
 ## Title
 
-By default, the shortcut menu is preceded by a title. This title can be disabled by setting `params.disableShortcutsTitle=true`. However, if you want to keep the title but change its value, it can be overridden by changing your local i18n translation string configuration.
+By default, the shortcut menu is preceded by a title ("_More_" in the english translation). This title can be disabled by setting `params.disableShortcutsTitle=true`. However, if you want to keep the title but change its value, it can be overridden by changing your local i18n translation string configuration.
 
 For example, in your local `i18n/en.toml` file, add the following content
 
@@ -26,31 +26,31 @@ Edit the `hugo.toml` and add a `[[menu.shortcuts]]` entry for each link your wan
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
-name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
-identifier = "ds"
-url = "https://github.com/McShelby/hugo-theme-relearn"
-weight = 10
+  name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
+  identifier = "ds"
+  url = "https://github.com/McShelby/hugo-theme-relearn"
+  weight = 10
 
 [[menu.shortcuts]]
-name = "<i class='fa-fw fas fa-camera'></i> Showcases"
-url = "showcase/"
-weight = 11
+  name = "<i class='fa-fw fas fa-camera'></i> Showcases"
+  pageRef = "/showcase"
+  weight = 11
 
 [[menu.shortcuts]]
-name = "<i class='fa-fw fas fa-bookmark'></i> Hugo Documentation"
-identifier = "hugodoc"
-url = "https://gohugo.io/"
-weight = 20
+  name = "<i class='fa-fw fas fa-bookmark'></i> Hugo Documentation"
+  identifier = "hugodoc"
+  url = "https://gohugo.io/"
+  weight = 20
 
 [[menu.shortcuts]]
-name = "<i class='fa-fw fas fa-bullhorn'></i> Credits"
-url = "more/credits/"
-weight = 30
+  name = "<i class='fa-fw fas fa-bullhorn'></i> Credits"
+  pageRef = "/more/credits"
+  weight = 30
 
 [[menu.shortcuts]]
-name = "<i class='fa-fw fas fa-tags'></i> Tags"
-url = "tags/"
-weight = 40
+  name = "<i class='fa-fw fas fa-tags'></i> Tags"
+  pageRef = "/tags"
+  weight = 40
 {{< /multiconfig >}}
 
 ## Multilingual Example
@@ -74,7 +74,7 @@ When using a multilingual website, you can set different menus for each language
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fa-fw fas fa-camera'></i> Showcases"
-    pageRef = "showcase/"
+    pageRef = "/showcase"
     weight = 11
 
   [[languages.en.menu.shortcuts]]
@@ -85,12 +85,12 @@ When using a multilingual website, you can set different menus for each language
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fa-fw fas fa-bullhorn'></i> Credits"
-    pageRef = "more/credits/"
+    pageRef = "/more/credits"
     weight = 30
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fa-fw fas fa-tags'></i> Tags"
-    pageRef = "tags/"
+    pageRef = "/tags"
     weight = 40
 
   [languages.pir]
@@ -108,7 +108,7 @@ When using a multilingual website, you can set different menus for each language
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fa-fw fas fa-camera'></i> Showcases"
-    pageRef = "showcase/"
+    pageRef = "/showcase"
     weight = 11
 
   [[languages.pir.menu.shortcuts]]
@@ -119,16 +119,16 @@ When using a multilingual website, you can set different menus for each language
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fa-fw fas fa-bullhorn'></i> Crrredits"
-    pageRef = "more/credits/"
+    pageRef = "/more/credits"
     weight = 30
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fa-fw fas fa-tags'></i> Arrr! Tags"
-    pageRef = "tags/"
+    pageRef = "/tags"
     weight = 40
 {{< /multiconfig >}}
 
-## Shortcuts to Pages Inside of your Project
+## How to Display Pages Only in the Shortcuts Menu
 
 If you have shortcuts to pages inside of your project and you don't want them to show up in your navigation menu, you have two choices:
 
