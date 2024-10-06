@@ -4,12 +4,17 @@ title = "Front Matter Reference"
 weight = 6
 +++
 
-
 Each page in Hugo **has to define** front matter.
 
-A configurable front matter is marked with a {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge throughout the documentation.
+On top of [Hugo's front matter](https://gohugo.io/content-management/front-matter/#fields), you can use the additional theme settings listed below.
 
-On top of [Hugo's front matter](https://gohugo.io/content-management/front-matter/#fields), you can use the following settings unique to the theme.
+A front matter provided by the theme is marked with a {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge throughout the documentation.
+
+You set each theme front matter directly in the root of your page's front matter. For example, setting `math`
+
+{{< multiconfig fm=true >}}
+  math = true
+{{< /multiconfig >}}
 
 ## Index
 

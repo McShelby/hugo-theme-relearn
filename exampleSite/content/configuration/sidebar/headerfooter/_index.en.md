@@ -7,7 +7,7 @@ weight = 2
 
 ## Home Button Configuration
 
-If `params.disableLandingPageButton=true`, the Home button will be hidden  on the left menu.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If `disableLandingPageButton=true`, the Home button will be hidden  on the left menu.
 
 If you display the Home button, it is an alternative for clicking on the logo. To edit its logo or text, you will have to configure the `landingPageName` for the defined languages
 
@@ -34,7 +34,7 @@ The home button is going to look like this:
 
 ## History
 
-Set `params.showVisitedLinks=true` to show checkmarks for visited pages of the main menu. This also causes the display of the `Clear History` entry in the lower part of the menu to remove all checkmarks. The checkmarks will also been removed if you regenerate your site as the used ids are not stable.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `showVisitedLinks=true` to show checkmarks for visited pages of the main menu. This also causes the display of the `Clear History` entry in the lower part of the menu to remove all checkmarks. The checkmarks will also been removed if you regenerate your site as the used ids are not stable.
 
 ## Footer
 

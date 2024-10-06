@@ -1,6 +1,6 @@
 +++
 description = "Default behavior of the navigation menu"
-options = ["alwaysopen", "ordersectionsby"]
+options = ["alwaysopen", "collapsibleMenu", "ordersectionsby"]
 title = "Navigation Menu"
 weight = 4
 +++
@@ -11,7 +11,7 @@ You can define certain settings globally in your `hugo.toml`. These are inherite
 
 ## Expand State of Nested Sections
 
-Use `params.alwaysopen` to set the initial expand state of submenus. This controls whether submenus will be expanded (`true`), or collapsed (`false`) in the menu. If not set, the first menu level is set to false, all others levels are set to true.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Use `alwaysopen` to set the initial expand state of submenus. This controls whether submenus will be expanded (`true`), or collapsed (`false`) in the menu. If not set, the first menu level is set to false, all others levels are set to true.
 
 This can be overridden individually for each page in its front matter.
 
@@ -19,7 +19,7 @@ If the _displayed_ page has submenus, they will always been displayed expanded r
 
 ## Expander for Nested Sections
 
-Set `params.collapsibleMenu=true` to show an expander for submenus. If set to `true`, submenus in the sidebar will be displayed as collapsible trees and a clickable expander is set in front of those entries.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `collapsibleMenu=true` to show an expander for submenus. If set to `true`, submenus in the sidebar will be displayed as collapsible trees and a clickable expander is set in front of those entries.
 
 > [!WARNING]
 > Setting this option to `true` may cause your build to significantly slow down and degrade built performance, depending on your machine and the amount of pages.
@@ -31,6 +31,6 @@ Set `params.collapsibleMenu=true` to show an expander for submenus. If set to `t
 
 ## Default Sort By
 
-Set `params.ordersectionsby` to set the sorting criterium of navigation menus. Defaults to `weight`. Menus can be ordered by `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `ordersectionsby` to set the sorting criterium of navigation menus. Defaults to `weight`. Menus can be ordered by `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
 
 This can be overridden individually for each page in its front matter.

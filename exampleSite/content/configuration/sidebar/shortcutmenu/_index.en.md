@@ -11,7 +11,7 @@ Be sure to use the `pageRef` property instead of `url` for all links internal to
 
 ## Title
 
-By default, the shortcut menu is preceded by a title ("_More_" in the english translation). This title can be disabled by setting `params.disableShortcutsTitle=true`. However, if you want to keep the title but change its value, it can be overridden by changing your local i18n translation string configuration.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the shortcut menu is preceded by a title ("_More_" in the english translation). This title can be disabled by setting `disableShortcutsTitle=true`. However, if you want to keep the title but change its value, it can be overridden by changing your local i18n translation string configuration.
 
 For example, in your local `i18n/en.toml` file, add the following content
 
@@ -134,7 +134,7 @@ If you have shortcuts to pages inside of your project and you don't want them to
 
 1. Make the page file for the shortcut a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following frontmatter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be contained in the sitemap.
 
-    {{< multiconfig fm=true >}}
+    {{< multiconfig fm=true file="content/showcase/_index.en.md" >}}
     title = "Showcase"
     [_build]
       render = "always"
@@ -144,7 +144,7 @@ If you have shortcuts to pages inside of your project and you don't want them to
 
 2. Store the page file for the shortcut below a parent headless branch bundle and add the following frontmatter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
 
-    {{< multiconfig fm=true >}}
+    {{< multiconfig fm=true file="content/more/_index.en.md" >}}
     [_build]
       render = "never"
       list = "never"
@@ -153,6 +153,6 @@ If you have shortcuts to pages inside of your project and you don't want them to
 
     In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/credits.en.md`). This causes its content to be contained in the sitemap.
 
-    {{< multiconfig fm=true >}}
+    {{< multiconfig fm=true file="content/more/credits_index.en.md" >}}
     title = "Credits"
     {{< /multiconfig >}}

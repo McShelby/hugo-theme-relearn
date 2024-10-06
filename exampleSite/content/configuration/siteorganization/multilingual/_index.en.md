@@ -83,9 +83,9 @@ You may want to take a look into [search configuration](configuration/sidebar/se
 
 ## Disable Language Switching
 
-Switching the language in the browser is a great feature, but for some reasons you may want to disable it.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Switching the language in the browser is a great feature, but for some reasons you may want to disable it.
 
-Just set `params.disableLanguageSwitchingButton=true` in your `hugo.toml`
+Just set `disableLanguageSwitchingButton=true` in your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
 [params]

@@ -9,19 +9,19 @@ This page is about how to configure supported options for the topbar. If you wan
 
 ## Table of Contents
 
-Set `params.disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
 
 ## Breadcrumbs
 
-Set `params.disableBreadcrumb=true` to hide the breadcrumb in the topbar.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableBreadcrumb=true` to hide the breadcrumb in the topbar.
 
-Further, you can override the breadcrumb separator by using `params.breadcrumbSeparator="/"`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Further, you can override the breadcrumb separator by using `breadcrumbSeparator="/"`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.
 
-Set `params.disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} `disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
 
 ## Edit Button
 
-If `editURL` is set to a URL, an edit button will be shown in the topbar. If the button is hidden, also the keyboard shortcut is disabled.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If `editURL` is set to a URL, an edit button will be shown in the topbar. If the button is hidden, also the keyboard shortcut is disabled.
 
 The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages frontmatter.
 
@@ -48,4 +48,4 @@ Nevertheless, if you're unhappy with the resulting URLs you can manually redefin
 
 ## Arrow Navigation
 
-You can hide the previous/next buttons by setting `params.disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.

@@ -15,16 +15,16 @@ The theme comes with three levels of search, all provided through the search for
 
 Each level depends on the previous level to be enabled, eg. the dedicated search page is only available, if you have search popup and in-page search enabled. If no search level is configured, the search form will not be displayed.
 
-By default all three levels are enabled. You can disable each level by the following settings in your `hugo.toml`:
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default all three levels are enabled. You can disable each level by the following settings in your `hugo.toml`:
 
-- in-page search: `params.disableSearch=true`
-- search popup: `params.disableSearchIndex=true`
-- dedicated search page: `params.disableSearchPage=true`
+- in-page search: `disableSearch=true`
+- search popup: `disableSearchIndex=true`
+- dedicated search page: `disableSearchPage=true`
 
-By default the following files will be created, relative to each languages home page but can be overwritten:
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default the following files will be created, relative to each languages home page but can be overwritten:
 
-- search popup: `searchindex.js`, configured by `params.searchIndexURL`
-- dedicated search page: `search/index.html`, configured by `params.searchPageURL`
+- search popup: `searchindex.js`, configured by `searchIndexURL`
+- dedicated search page: `search/index.html`, configured by `searchPageURL`
 
 {{% notice note %}}
 You only need to reconfigure the file / page URLs if you have own content at those URLs in your project. Eg. this can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.
@@ -48,7 +48,7 @@ You'll see error reports in your browsers console log for each unsupported langu
 
 ### Search with Mixed Language Support
 
-In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your english API), you can add those languages to your `hugo.toml` to broaden search.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your English API), you can set those languages in `additionalContentLanguage` to broaden the search.
 
 {{< multiconfig file=hugo >}}
 [params]

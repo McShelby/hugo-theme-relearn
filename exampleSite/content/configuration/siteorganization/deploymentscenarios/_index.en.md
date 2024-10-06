@@ -51,7 +51,7 @@ Sublemental pages (like `sitemap.xml`, `rss.xml`) and generated social media lin
 
 ## URL Management
 
-If you are using `uglyURLs=false` (Hugo's default), the theme will append an additional `index.html` to all page links to make your site be servable from the file system. If you don't care about the file system and only serve your page via a web server you can generate the links without this:
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If you are using `uglyURLs=false` (Hugo's default), the theme will append an additional `index.html` to all page links to make your site be servable from the file system. If you don't care about the file system and only serve your page via a web server you can generate the links without this by setting `disableExplicitIndexURLs=true`.
 
 {{< multiconfig file=hugo >}}
 [params]

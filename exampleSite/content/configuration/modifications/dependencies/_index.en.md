@@ -1,5 +1,6 @@
 +++
 description = "Add further code to your site"
+options = ["relearn.dependencies"]
 title = "Extending HTML"
 weight = 2
 +++
@@ -26,7 +27,7 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
    {{- .Page.Store.Set "hasMyShortcode" true }}
     ````
 
-1. Add the following snippet to your `hugo.toml`
+1. {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Add the following snippet to your `hugo.toml`
 
     {{< multiconfig file=hugo >}}
     [params.relearn.dependencies]
@@ -48,7 +49,7 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
 Character casing is relevant!
 
 - the `name` setting in your `hugo.toml` must match the key (that needs to be prefixed with a `has`) you used for the store in your `layouts/shortcodes/myshortcode.html`.
-- the key on `params.relearn.dependencies` in your `hugo.toml` must match the base file name of your loader file.
+- the key on `relearn.dependencies` in your `hugo.toml` must match the base file name of your loader file.
 
 See the `math`, `mermaid` and `openapi` shortcodes for examples.
 

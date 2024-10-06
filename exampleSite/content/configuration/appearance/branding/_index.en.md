@@ -11,15 +11,15 @@ The Relearn theme ships with a set of predefined color variants. You can use the
 
 Once configured in your `hugo.toml`, you can select them with the variant selector at the bottom of the menu.
 
-## Change the Variant (Simple) {#theme-variant}
+## Change the Variant
 
-{{% notice tip %}}
-The theme provides an advanced configuration mode, combining the functionality for multiple variants with the possibility of adjusting to your OS settings and syntax highlighting and even more!
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can change the variant by setting the `themeVariant` option.
 
-Although all options documented here are still working, the advanced configuration options are the recommended way to configure your color variants. [See below](#theme-variant-advanced).
-{{% /notice %}}
+The theme provides a recommended [advanced configuration mode](#theme-variant-advanced), combining the functionality for [multiple variants](#multiple-variants) with the possibility of [adjusting to your OS settings](#adjust-to-os-settings) and syntax highlighting and even more!
 
-### Single Variant
+### Simple {#theme-variant}
+
+#### Single Variant
 
 Set the `themeVariant` value to the name of your theme CSS file. That's it! Your site will be displayed in this variant only.
 
@@ -34,7 +34,7 @@ In the above example, the path of your theme file must be `assets/css/theme-rele
 
 If you want to make changes to a shipped color variant, [see your choices below](#modify-shipped-variants).
 
-### Multiple Variants
+#### Multiple Variants
 
 You can also set multiple variants. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
 
@@ -43,9 +43,9 @@ You can also set multiple variants. In this case, the first variant is the defau
   themeVariant = [ "relearn-light", "relearn-dark" ]
 {{< /multiconfig >}}
 
-### Adjust to OS Settings
+#### Adjust to OS Settings
 
-You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `params.themeVariant` to `auto` to become an auto mode variant. That's it.
+You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `themeVariant` to `auto` to become an auto mode variant. That's it.
 
 You can use the `auto` value with the single or multiple variants option. If you are using multiple variants, you can drop `auto` at any position in the option's array, but usually it makes sense to set it in the first position and make it the default.
 
@@ -54,18 +54,18 @@ You can use the `auto` value with the single or multiple variants option. If you
   themeVariant = [ "auto", "red" ]
 {{< /multiconfig >}}
 
-If you don't configure anything else, the theme will default to use `relearn-light` for light mode and `relearn-dark` for dark mode. These defaults are overwritten by the first two non-auto options of your `params.themeVariant` option if present.
+If you don't configure anything else, the theme will default to use `relearn-light` for light mode and `relearn-dark` for dark mode. These defaults are overwritten by the first two non-auto options of your `themeVariant` option if present.
 
 In the above example, you would end with `red` for light mode and the default of `relearn-dark` for dark mode.
 
-If you don't like that behavior, you can explicitly set `params.themeVariantAuto`. The first entry in the array is the color variant for light mode, the second for dark mode.
+If you don't like that behavior, you can explicitly set `themeVariantAuto`. The first entry in the array is the color variant for light mode, the second for dark mode.
 
 {{< multiconfig file=hugo >}}
 [params]
   themeVariantAuto = [ "learn", "neon" ]
 {{< /multiconfig >}}
 
-## Change the Variant (Advanced) {#theme-variant-advanced}
+### Advanced {#theme-variant-advanced}
 
 The theme offers an advanced way to configure theme variants and all of the aspects above inside of a single configuration item. This comes with some features previously unsupported.
 
@@ -90,7 +90,7 @@ you now write it that way:
 
 The `identifier` option is mandatory and equivalent to the string in the first example. Further options can be configured, see the table below.
 
-### Parameter
+#### Parameter
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
@@ -98,7 +98,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
 | auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
 
-### Example Configuration of This Site
+#### Example Configuration of This Site
 
 {{< multiconfig file=hugo >}}
 themeVariant = [
@@ -185,7 +185,7 @@ The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your 
 
 ## Change 3rd-Party Libraries Theming
 
-Some of the shipped shortcodes are using 3rd-party libraries. See the individual shortcode documentation on how to do this:
+Some of the shipped shortcodes are using 3rd-party libraries. See the individual shortcode documentation on how to change their theming
 
 - [`mermaid` shortcode](shortcodes/mermaid#setting-a-specific-mermaid-theme)
 - [`openapi` shortcode](shortcodes/openapi#setting-a-specific-swagger-ui-theme)

@@ -7,9 +7,16 @@ weight = 6
 
 You can set configuration options in your `hugo.toml`.
 
-A configurable option is marked with a {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} badge throughout the documentation.
+On top of [Hugo's configuration options](https://gohugo.io/getting-started/configuration/#all-configuration-settings), you can use the additional theme settings listed below.
 
-On top of [Hugo's configuration options](https://gohugo.io/getting-started/configuration/#all-configuration-settings), you can use the following settings unique to the theme.
+A configuration option provided by the theme is marked with a {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} badge throughout the documentation.
+
+You set each theme configuration option in the `params` section of your `hugo.toml`. For example, setting `math`
+
+{{< multiconfig file=hugo >}}
+[params]
+  math = true
+{{< /multiconfig >}}
 
 ## Index
 

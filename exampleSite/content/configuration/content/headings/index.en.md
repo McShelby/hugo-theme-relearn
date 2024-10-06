@@ -7,18 +7,12 @@ weight = 3
 
 Each heading may have an anchor link that is displayed when the heading is hovered.
 
-The behavior what should happen if the anchor icon is clicked is configurable in your `hugo.toml`. By default all options are activated. If you deactivate all options, no link will be shown on hover.
-
-{{< multiconfig file=hugo >}}
-[params]
-disableAnchorCopy = false
-disableAnchorScrolling = false
-{{< /multiconfig >}}
+The behavior what should happen if the anchor icon is clicked is configurable in your `hugo.toml`. By default all of the following options are activated. If you deactivate all options, no anchor icon will be shown on hover.
 
 ## Copy Anchor Links to Clipboard
 
-If you set `params.disableAnchorCopy=true`, no anchor link will be copied to the clipboard when the anchor icon is pressed.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If you set `disableAnchorCopy=true`, no anchor link will be copied to the clipboard when the anchor icon is pressed.
 
 ## Scroll to Heading
 
-If you set `params.disableAnchorScrolling=true`, the page will not scroll to the beginning of the heading when the anchor icon is clicked.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If you set `disableAnchorScrolling=true`, the page will not scroll to the beginning of the heading when the anchor icon is clicked.
