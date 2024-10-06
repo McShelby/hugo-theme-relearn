@@ -1,6 +1,6 @@
 +++
 description = "An interactive tool to generate color variant stylesheets"
-disableMermaid = false
+mermaid.force = true
 options = ["themeVariant"]
 title = "Stylesheet Generator"
 weight = 9

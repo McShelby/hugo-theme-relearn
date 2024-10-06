@@ -1,7 +1,7 @@
 +++
 description = "Generate diagrams and flowcharts from text"
-frontmatter = ["customMermaidURL", "disableMermaid", "mermaidInitialize", "mermaidZoom"]
-options = ["customMermaidURL", "disableMermaid", "mermaidInitialize", "mermaidZoom"]
+frontmatter = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoom"]
+options = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoom"]
 title = "Mermaid"
 +++
 
@@ -98,9 +98,9 @@ customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
 
 ### Force Loading of the Mermaid Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains a graph.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains an `mermaid` shortcode or codefence.
 
-You can force loading the Mermaid library if a graph wasn't found by setting `disableMermaid=false`. If a graph was found, the option will be ignored. This comes handy in case you are using scripting for creating a graph.
+You can force loading the Mermaid library if no shortcode or codefence was used by setting `mermaid.force=true`. If a shortcode or codefence was found, this option has no effect. This comes handy in case you are using scripting to render a graph.
 
 ### Setting a Specific Mermaid Theme
 

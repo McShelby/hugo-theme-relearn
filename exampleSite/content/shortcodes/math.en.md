@@ -1,7 +1,7 @@
 +++
 description = "Beautiful math and chemical formulae"
-frontmatter = ["customMathJaxURL", "disableMathJax", "mathJaxInitialize"]
-options = ["customMathJaxURL", "disableMathJax", "mathJaxInitialize"]
+frontmatter = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
+options = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
 title = "Math"
 +++
 
@@ -95,9 +95,11 @@ customMathJaxURL = "https://unpkg.com/mathjax/es5/tex-mml-chtml.js"
 
 ### Force Loading of the MathJax Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains math.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains a `math` shortcode or codefence.
 
-You can force loading the MathJax library if math wasn't found by setting `disableMathJax=false`. If math was found, the option will be ignored. This comes handy in case you are using [passthrough configuration](#passthrough-configuration) or scripting for creating math.
+You can force loading the MathJax library if no shortcode or codefence was used by setting `math=true`. If a shortcode or codefence was found, the option has no effect. This must be set in case you are using the [passthrough configuration](#passthrough-configuration) to render math.
+
+Instead of `math=true` you can also use the alias `math.force=true`.
 
 ### Passthrough Configuration
 
@@ -117,7 +119,7 @@ You can force loading the MathJax library if math wasn't found by setting `disab
 In this case you have to [force load](#force-loading-of-the-mathjax-library) the MathJax library either in your `hugo.toml` or in your page's front matter as the theme doesn't know if math is used.
 
 {{< multiconfig fm=true >}}
-disableMathJax = false
+math = true
 {{< /multiconfig >}}
 
 [See the example](#passthrough-block-math) on how a passthrough configurations makes using math really easy.
@@ -130,7 +132,7 @@ With passthrough configuration you can just drop your math without enclosing it 
 
 This is only available if you are using the [passthrough configuration](#passthrough-configuration).
 
-Just don't forget to [force load](#force-loading-of-the-mathjax-library) the MathJax library by setting `disableMathJax=false` either in your `hugo.toml` or in your page's front matter.
+Just don't forget to [force load](#force-loading-of-the-mathjax-library) the MathJax library by setting `math=true` either in your `hugo.toml` or in your page's front matter.
 
 In passthrough default configuration, block math is generated if you use two consecutive `$$` as a delimiter around your formulae.
 

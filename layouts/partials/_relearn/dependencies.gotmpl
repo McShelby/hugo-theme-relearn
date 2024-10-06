@@ -1,8 +1,39 @@
 {{- range .Site.Params.relearn.dependencies }}
 	{{- $has := printf "has%s" .name }}
 	{{- $disable := printf "disable%s" .name }}
-	{{- $wants := or (and (ne (index $.Params $disable) nil) (not (index $.Params $disable))) (and (ne (index $.Site.Params $disable) nil) (not (index $.Site.Params $disable))) }}
-	{{- if $wants }}
+	{{- $enable := printf "%s" (lower .name) }}
+
+	{{- $wantsPage := false }}
+	{{- if ne (index $.Params $disable) nil }}
+		{{- $wantsPage = not (index $.Params $disable) }}
+		{{- warnf "%q: DEPRECATED front matter 'disable%s' found, use '%s' or '%s.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $.File.Filename .name (lower .name) (lower .name) }}
+	{{- else if and (eq .name "Math") (ne (index $.Params "disableMathJax") nil) }}
+		{{- $wantsPage = not (index $.Params "disableMathJax") }}
+		{{- warnf "%q: DEPRECATED front matter 'disableMathJax' found, use 'math' or 'math.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $.File.Filename }}
+	{{- end }}
+	{{- with index $.Params $enable }}
+		{{- $wantsPage = or
+			(and (reflect.IsMap .) (eq (index . "force") true))
+			(and (not (reflect.IsMap .)) (eq . true))
+		}}
+	{{- end }}
+
+	{{- $wantsSite := false }}
+	{{- if ne (index $.Site.Params $disable) nil }}
+		{{- $wantsSite = not (index $.Site.Params $disable) }}
+		{{- warnf "DEPRECATED option 'disable%s' found, use '%s' or '%s.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" .name (lower .name) (lower .name) }}
+	{{- else if and (eq .name "Math") (ne (index $.Site.Params "disableMathJax") nil) }}
+		{{- $wantsSite = not (index $.Site.Params "disableMathJax") }}
+		{{- warnf "DEPRECATED option 'disableMathJax' found, use 'math' or 'math.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" }}
+	{{- end }}
+	{{- with index $.Site.Params $enable }}
+		{{- $wantsSite = or
+			(and (reflect.IsMap .) (eq (index . "force") true))
+			(and (not (reflect.IsMap .)) (eq . true))
+		}}
+	{{- end }}
+
+	{{- if or $wantsPage $wantsSite }}
 		{{- $.Store.Set $has true }}
 	{{- end }}
 {{- end }}

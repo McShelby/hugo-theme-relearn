@@ -1,8 +1,8 @@
 +++
 aliases = "/shortcodes/swagger"
 description = "UI for your OpenAPI / Swagger specifications"
-frontmatter = ["customOpenapiURL", "disableOpenapi", "openapi.errorlevel"]
-options = ["customOpenapiURL", "disableOpenapi", "openapi.errorlevel"]
+frontmatter = ["customOpenapiURL", "openapi.errorlevel", "openapi.force"]
+options = ["customOpenapiURL", "openapi.errorlevel", "openapi.force"]
 title = "OpenAPI"
 +++
 
@@ -65,9 +65,9 @@ customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
 
 ### Force Loading of the Swagger UI Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an OpenAPI specification.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an `openapi` shortcode or codefence.
 
-You can force loading the Swagger UI library if a OpenAPI specification wasn't found by setting `disableOpenapi=false`. If an OpenAPI specification was found, the option will be ignored. This comes handy in case you are using scripting for creating an OpenAPI specification.
+You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
 ## Example
 
