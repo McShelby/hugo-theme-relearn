@@ -103,7 +103,7 @@ Instead of `math=true` you can also use the alias `math.force=true`.
 
 ### Passthrough Configuration
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can use your math without enclosing it in a shortcode or codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1)
+You can use your math without enclosing it in a shortcode or codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1)
 
 {{< multiconfig file=hugo >}}
 [markup]
