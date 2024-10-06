@@ -69,6 +69,10 @@ customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
 
 You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
+### Setting a Specific Swagger UI Theme
+
+The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` variable in your [color variant stylesheet](configuration/appearance/generator/). This allows your specs to look pretty when the user switches the color variant.
+
 ## Example
 
 ### Using Local File

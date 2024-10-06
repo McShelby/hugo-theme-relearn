@@ -2,7 +2,7 @@
 description = "How to extend the topbar"
 options = ["editURL"]
 title = "Custom Topbar"
-weight = 2
+weight = 4
 +++
 
 The theme comes with a reasonably configured topbar. You can learn how to [configure the defaults in this section](configuration/appearance/topbar).

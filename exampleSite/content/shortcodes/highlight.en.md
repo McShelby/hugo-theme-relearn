@@ -124,7 +124,7 @@ Set `disableHoverBlockCopyToClipBoard=true` to disable the hover effect and alwa
 
 ### Setting a Specific Color Scheme
 
-You can configure the color style used for code blocks in your [color variants stylesheet](configuration/appearance/branding#syntax-highlighting) file using the `--CODE-theme` variable. This requires further configuration as described in the above link.
+You can configure the color style used for code blocks in your [color variants stylesheet](configuration/appearance/branding#change-syntax-highlighting) file using the `--CODE-theme` variable. This requires further configuration as described in the above link.
 
 ## Examples
 

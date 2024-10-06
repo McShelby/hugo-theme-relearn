@@ -45,7 +45,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Enhanced Markdown Features**
   - [GitHub Flavored Markdown (GFM) support](https://mcshelby.github.io/hugo-theme-relearn/content/markdown)
   - [Support for Obsidian callouts](https://mcshelby.github.io/hugo-theme-relearn/content/markdown#obsidian-callouts)
-  - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/content/imageeffects)
+  - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/modifications/imageeffects)
 
 - **Rich Shortcode Library**
   - [Customizable marker badges](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/badge)

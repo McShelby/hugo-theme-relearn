@@ -1,6 +1,7 @@
 +++
-title = "Image Effects"
-weight = 4
+description = "How to extend image effects"
+title = "Custom Image Effects"
+weight = 3
 +++
 
 The theme supports non-standard [image effects](content/markdown#image-effects).

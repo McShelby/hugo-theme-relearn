@@ -1,16 +1,20 @@
 +++
-description = "Add 3rd-party dependencies to your site"
-title = "Extending Client Code"
-weight = 3
+description = "Add further code to your site"
+title = "Extending HTML"
+weight = 2
 +++
+
+One of the most commonly asked questions is, how to add additional CSS styles or JavaScript.
+
+This depends on your use case.
 
 ## Adding JavaScript or Stylesheets Unconditionally
 
 If you simply want to add additional JavaScript files or CSS stylesheets on every page of your site, you can do so by either adding them in your `layouts/partials/custom-header.html` or `layouts/partials/custom-footer.html` partial.
 
-Sometimes this just bloats up your site when only in a few cases those files are really needed. See the [next section](#own-shortcodes-with-javascript-dependencies), on how to conditionally add those dependencies.
+Sometimes this just bloats up your site when only in a few cases those files are really needed. See the [next section](#own-shortcodes-with-dependencies), on how to conditionally add such dependencies.
 
-## Own Shortcodes with JavaScript Dependencies
+## Own Shortcodes with Dependencies
 
 Certain shortcodes make use of additional dependencies like JavaScript and CSS files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.
 
@@ -56,13 +60,3 @@ If you are really into customization of the theme and want to use the dependency
 ````
 
 {{% /notice %}}
-
-## React to Variant Switches in JavaScript
-
-Once a color variant is fully loaded, either initially or by switching the color variant manually with the variant selector, the custom event `themeVariantLoaded` on the `document` will be dispatched. You can add an event listener and react to changes.
-
-````javascript
-document.addEventListener( 'themeVariantLoaded', function( e ){
-  console.log( e.detail.variant ); // `relearn-light`
-});
-````

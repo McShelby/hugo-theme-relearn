@@ -115,7 +115,9 @@ themeVariant = [
 ]
 {{< /multiconfig >}}
 
-## Modify Shipped Variants
+## Advanced Variant Topics
+
+### Modify Shipped Variants
 
 In case you like a shipped variant but only want to tweak some aspects, you have some choices. **Don't edit the file in the theme's directory!** You will loose the ability to later easily upgrade your theme to a newer version.
 
@@ -148,7 +150,17 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
     In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant but keep your modifications.
 
-## Syntax Highlighting
+### React to Variant Switches in JavaScript
+
+Once a color variant is fully loaded, either initially or by switching the color variant manually with the variant selector, the custom event `themeVariantLoaded` on the `document` will be dispatched. You can add an event listener and react to changes.
+
+````javascript
+document.addEventListener( 'themeVariantLoaded', function( e ){
+  console.log( e.detail.variant ); // `relearn-light`
+});
+````
+
+## Change Syntax Highlighting
 
 If you want to switch the syntax highlighting theme together with your color variant, first you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/#generate-syntax-highlighter-css) to provide a syntax highlighting stylesheet file
 
@@ -170,6 +182,13 @@ The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your 
   --CODE-theme: mycode; /* name of the chroma stylesheet file */
 }
 ````
+
+## Change 3rd-Party Libraries Theming
+
+Some of the shipped shortcodes are using 3rd-party libraries. See the individual shortcode documentation on how to do this:
+
+- [`mermaid` shortcode](shortcodes/mermaid#setting-a-specific-mermaid-theme)
+- [`openapi` shortcode](shortcodes/openapi#setting-a-specific-swagger-ui-theme)
 
 ## Change the Favicon
 
