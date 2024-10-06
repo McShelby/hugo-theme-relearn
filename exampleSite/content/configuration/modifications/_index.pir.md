@@ -1,7 +1,7 @@
 +++
 alwaysopen = false
-description = "Edit files for advanced configuration"
-title = "File Modifications"
+description = "Modify files for advanced customization"
+title = "Modifications"
 weight = 5
 +++
 {{< piratify >}}

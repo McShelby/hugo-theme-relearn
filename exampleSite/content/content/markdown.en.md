@@ -32,7 +32,7 @@ If not otherwise noted, the shown examples adhere to the [Commonmark](https://co
 
 - {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
-- {{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Extension on top of standard Markdown adhering to [PHP Markdown](https://michelf.ca/projects/php-markdown/extra/).
+- {{% badge color="#888cc4" icon="fa-fw fab fa-php" %}}PHP{{% /badge %}} Extension on top of standard Markdown adhering to [PHP Markdown](https://michelf.ca/projects/php-markdown/extra/).
 
 - {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
 
@@ -437,7 +437,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Definitions
 
-{{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Definition lists are made of terms and definitions of these terms, much like in a dictionary.
+{{% badge color="#888cc4" icon="fa-fw fab fa-php" %}}PHP{{% /badge %}} Definition lists are made of terms and definitions of these terms, much like in a dictionary.
 
 A definition list in Markdown Extra is made of a single-line term followed by a colon and the definition for that term. You can also associate more than one term to a definition.
 
@@ -646,7 +646,7 @@ Links can be simplyfied for recurring reuse by using a reference ID to later def
 
 ### Footnotes
 
-{{% badge color="#888cc4" icon="fa-fw fab fa-markdown" %}}PHP{{% /badge %}} Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.
+{{% badge color="#888cc4" icon="fa-fw fab fa-php" %}}PHP{{% /badge %}} Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.
 
 Usually the list of footnotes will be shown at the end of your document. If we use a footnote in a notice box it will instead be listed at the end of its box.
 

@@ -5,23 +5,25 @@ weight = 6
 +++
 
 
-Each page in Hugo **has to define** front matter. On top of [Hugo's front matter](https://gohugo.io/content-management/front-matter/#fields), you can use the following settings unique to the theme.
+Each page in Hugo **has to define** front matter.
 
-A front matter is marked with {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge throughout the documentation.
+A configurable front matter is marked with a {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge throughout the documentation.
+
+On top of [Hugo's front matter](https://gohugo.io/content-management/front-matter/#fields), you can use the following settings unique to the theme.
 
 ## Index
 
 {{% taxonomy "frontmatter" "h3" %}}
 
-## All Frontmatter Options
+## All Front Matter
 
-The values reflect example options. The defaults can be taken from the [annotated example](#annotated-frontmatter-options) below or the individual documentation.
+The example reflect example values. The defaults can be taken from the [annotated example](#annotated-front-matter) below or the individual documentation.
 
 {{< multiconfig fm=true >}}
 {{% include "frontmatter.toml" %}}
 {{< /multiconfig >}}
 
-## Annotated Frontmatter Options
+## Annotated Front Matter
 
 ````toml {title="toml"}
 +++
