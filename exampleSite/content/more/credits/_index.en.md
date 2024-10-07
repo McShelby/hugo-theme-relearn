@@ -52,7 +52,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - https://github.com/octokit/graphql-action
   - https://github.com/peaceiris/actions-gh-pages
   - https://github.com/peaceiris/actions-hugo
-    https://github.com/ncipollo/release-action
+  - https://github.com/ncipollo/release-action
   - https://github.com/surahmansada/file-regex-replace
   - https://github.com/WyriHaximus/github-action-create-milestone
   - https://github.com/WyriHaximus/github-action-next-semvers

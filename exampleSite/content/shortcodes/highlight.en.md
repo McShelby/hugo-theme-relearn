@@ -94,7 +94,7 @@ The [`tab` shortcode](shortcodes/tab) is also capable of displaying code but wit
 
 ### Setting Default Values for Hugo's Options
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Default values for [Hugo's supported options](https://gohugo.io/functions/highlight/#options) can be set via [goldmark settings](https://gohugo.io/getting-started/configuration-markup/#highlight).
+Default values for [Hugo's supported options](https://gohugo.io/functions/highlight/#options) can be set via [goldmark settings](https://gohugo.io/getting-started/configuration-markup/#highlight).
 
 If used together with wrapping of long lines, use this recommended settings. Otherwise, line numbers will shift if code wraps.
 

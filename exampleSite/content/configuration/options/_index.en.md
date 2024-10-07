@@ -24,7 +24,7 @@ Add theme options to the `params` section of your `hugo.toml`. For example:
 
 ## All Configuration Options
 
-Here's a list of all available options with example values. Default values are described in the [annotated example][annotated example](#annotated-configuration-options) below in each option's documentation.
+Here's a list of all available options with example values. Default values are described in the [annotated example](#annotated-configuration-options) below in each option's documentation.
 
 {{< multiconfig file=hugo section=params >}}
 {{% include "config/_default/params.toml" %}}
