@@ -1,5 +1,6 @@
 +++
-description = "Disclaimerrrs t' help ye strrructurrre yer plank"
+description = "Disclaimers to help you structure your page"
+options = ["boxStyle"]
 title = "Notice"
 +++
 {{< piratify >}}

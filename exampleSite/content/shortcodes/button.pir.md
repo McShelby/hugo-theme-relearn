@@ -1,5 +1,5 @@
 +++
-description = "Nice buttons on yer plank"
+description = "Clickable buttons"
 title = "Button"
 +++
 {{< piratify >}}

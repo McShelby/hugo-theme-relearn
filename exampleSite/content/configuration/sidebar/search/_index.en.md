@@ -7,56 +7,64 @@ weight = 3
 
 ## Configure Search
 
-The theme comes with three levels of search, all provided through the search form in the menu
+The theme offers three levels of search through the menu's search form:
 
-- in-page search: a search term will be marked if found in the currently displayed page
-- search popup: a popup will open during typing if the term is found in other pages of your site
-- dedicated search page: you can access a dedicated search page by either clicking on the magnifier glass or by typing and pressing <kbd>ENTER</kbd>
+1. In-page search: Highlights search terms on the current page
+2. Search popup: Opens a popup with results from other pages
+3. Dedicated search page: Accessible by clicking the magnifier glass or pressing <kbd>ENTER</kbd>
 
-Each level depends on the previous level to be enabled, eg. the dedicated search page is only available, if you have search popup and in-page search enabled. If no search level is configured, the search form will not be displayed.
+Each level requires the previous one to be enabled. If no search is configured, the search form won't appear.
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default all three levels are enabled. You can disable each level by the following settings in your `hugo.toml`:
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} All levels are enabled by default. Disable them in `hugo.toml`:
 
-- in-page search: `disableSearch=true`
-- search popup: `disableSearchIndex=true`
-- dedicated search page: `disableSearchPage=true`
+- In-page search: `disableSearch=true`
+- Search popup: `disableSearchIndex=true`
+- Dedicated search page: `disableSearchPage=true`
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default the following files will be created, relative to each languages home page but can be overwritten:
+{{< multiconfig file=hugo >}}
+[params]
+  disableSearch = true
+  disableSearchIndex = true
+  disableSearchPage = true
+{{< /multiconfig >}}
 
-- search popup: `searchindex.js`, configured by `searchIndexURL`
-- dedicated search page: `search/index.html`, configured by `searchPageURL`
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} Default URLs can be changed with the following parameter
+
+- Search popup: `searchindex.js` set by `searchIndexURL`
+- Dedicated search page: `search/index.html` set by `searchPageURL`
+
+{{< multiconfig file=hugo >}}
+[params]
+  searchIndexURL = 'mysearchindex.js'
+  searchPageURL = 'megasearch'
+{{< /multiconfig >}}
 
 {{% notice note %}}
-You only need to reconfigure the file / page URLs if you have own content at those URLs in your project. Eg. this can happen if you set `uglyURLs=true` in your `hugo.toml` and defining a Markdown file `content/search.md`.
+Only change these if you have content at those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
 
-To make sure, there is no duplicate content for any given URL of your project, run `hugo --printPathWarnings`.
+Check for duplicate URLs by running `hugo --printPathWarnings`.
 {{% /notice %}}
 
 ## Supported Languages
 
-In case each page's content is written in one single language only, the above configuration will already configure the site's search functionality correctly.
-
-{{% notice warning %}}
-Although the theme supports a wide variety of languages, the site's search via the [Lunr](https://lunrjs.com) search library does not.
-You'll see error reports in your browsers console log for each unsupported language. Currently unsupported are:
+The [Lunr](https://lunrjs.com) search library doesn't support all languages of the theme. Unsupported languages will show errors in the browser console. Currently unsupported are
 
 - Czech
 - Indonesian
 - Polish
 - Swahili
-{{% /notice %}}
 
-### Search with Mixed Language Support
+## Mixed Language Support
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} In case your page's content contains text in multiple languages (e.g. you are writing a Russian documentation for your English API), you can set those languages in `additionalContentLanguage` to broaden the search.
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} In case your page's content contains text in multiple languages (for example, you are writing a Piratish documentation for your English API), you can set those languages in `additionalContentLanguage` to broaden the search.
 
 {{< multiconfig file=hugo >}}
 [params]
   additionalContentLanguage = [ "en" ]
 {{< /multiconfig >}}
 
-As this is an array, you can add multiple additional languages.
+You can add multiple languages to this array.
 
 {{% notice note %}}
-Keep in mind that the language code required here, is the base language code. E.g. if you have additional content in `zh-CN`, you have to add just `zh` to this parameter.
+Use the base language code. For example, if your page is using `zh-CN`, add `zh` to this parameter.
 {{% /notice %}}

@@ -16,7 +16,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - Responsive design for mobile devices
   - Looks nice on paper (if it has to)
   - Usable offline with no external dependencies
-  - [Usable from your local file system without a web server via `file://` protocol](https://mcshelby.github.io/hugo-theme-relearn/configuration/siteorganization/deploymentscenarios/)
+  - [Usable from your local file system without a web server via `file://` protocol](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment/)
   - Integration with the [VSCode Front Matter CMS extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
 
 - **Customizable Appearance**
@@ -38,8 +38,8 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Social media integration](https://mcshelby.github.io/hugo-theme-relearn/content/image/)
 
 - **Multilingual Support**
-  - [Full right-to-left (RTL) language support](https://mcshelby.github.io/hugo-theme-relearn/configuration/siteorganization/multilingual/)
-  - [Extensive list of supported languages](https://mcshelby.github.io/hugo-theme-relearn/configuration/siteorganization/multilingual): Arabic, Chinese (Simplified and Traditional), Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Romanian, Russian, Spanish, Swahili, Turkish, Vietnamese
+  - [Full right-to-left (RTL) language support](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/multilingual/)
+  - [Extensive list of supported languages](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/multilingual): Arabic, Chinese (Simplified and Traditional), Czech, Dutch, English, Finnish, French, German, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Romanian, Russian, Spanish, Swahili, Turkish, Vietnamese
   - [Multilingual content search capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search/#search-with-mixed-language-support)
 
 - **Enhanced Markdown Features**

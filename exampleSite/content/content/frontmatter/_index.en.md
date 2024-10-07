@@ -4,13 +4,13 @@ title = "Front Matter Reference"
 weight = 6
 +++
 
-Each page in Hugo **has to define** front matter.
+Every Hugo page must have front matter.
 
-On top of [Hugo's front matter](https://gohugo.io/content-management/front-matter/#fields), you can use the additional theme settings listed below.
+In addition to [Hugo's standard front matter](https://gohugo.io/content-management/front-matter/#fields), the Relearn theme offers extras settings listed here.
 
-A front matter provided by the theme is marked with a {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge throughout the documentation.
+Throughout the documentation, theme-specific front matter is marked with a {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge.
 
-You set each theme front matter directly in the root of your page's front matter. For example, setting `math`
+Add theme front matter directly to the root of your page's front matter. For example:
 
 {{< multiconfig fm=true >}}
   math = true
@@ -22,7 +22,7 @@ You set each theme front matter directly in the root of your page's front matter
 
 ## All Front Matter
 
-The example reflect example values. The defaults can be taken from the [annotated example](#annotated-front-matter) below or the individual documentation.
+Here's a list of all available front matter with example values.  Default values are described in the [annotated example](#annotated-front-matter) below or in each front matter's documentation.
 
 {{< multiconfig fm=true >}}
 {{% include "frontmatter.toml" %}}

@@ -1,30 +1,37 @@
 +++
-description = "How to use and extend layouts"
+description = "Using and extending layouts"
 title = "Custom Layouts"
 weight = 3
 +++
 
-The Relearn theme provides a few layouts for you to use. Namely these are `home`, `chapter` and `default`. All are accessible as so called [archetypes](content/layouts) for an author of your site.
+The Relearn theme offers several layouts: `home`, `chapter`, and `default`. These are available as [archetypes](content/layouts) for site authors.
 
-You can manually use them by defining the `type` option accordingly in your page's front matter.
+To use a layout, set the `type` option in your page's front matter.
 
-These layouts will use the general framework of the theme as defined in `themes/hugo-theme-learn/layouts/_default/baseof.html` but be modify the appearance of the content inside of the page.
+These layouts use the theme's framework from `themes/hugo-theme-learn/layouts/_default/baseof.html`, containing the topbar and sidebar but change how content appears in the center of the page.
 
-### Defining Layouts
+### Creating Your Own Layout
 
-To provide your own custom layout, you need to choose a name, say `mylayout`. Create a file `layouts/mylayout/views/article.html` with the following content
+To make a custom layout:
 
-````html {title="layouts/mylayout/views/article.html"}
-<article class="mylayout">
-  <header class="headline">
-{{ partial "content-header.html" . }}
-  </header>
-{{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
-{{ partial "article-content.html" . }}
-  <footer class="footline">
-{{ partial "content-footer.html" . }}
-  </footer>
-</article>
-````
+1. Choose a name (for example, `mylayout`)
+2. Create a file at `layouts/mylayout/views/article.html`
+3. Add this content
 
-In this file, you can do what ever you want. Usually, you want to at least set some `class` identifier to add custom CSS styles for your layout and call the partial `article-content.html` to render the content of your page.
+    ````html {title="layouts/mylayout/views/article.html"}
+    <article class="mylayout">
+      <header class="headline">
+    {{ partial "content-header.html" . }}
+      </header>
+    {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
+    {{ partial "article-content.html" . }}
+      <footer class="footline">
+    {{ partial "content-footer.html" . }}
+      </footer>
+    </article>
+    ````
+
+In this file, you can customize the layout as needed. Typically, you'll want to:
+
+- Set a `class` at the `article` element for custom CSS styles
+- Use `{{ partial "article-content.html" . }}` to show your page content

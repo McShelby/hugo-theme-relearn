@@ -1,5 +1,5 @@
 +++
-description = "Get value o' ship parrrams varrriables 'n yer plank"
+description = "Get value o' ship parrrams"
 title = "SiteParam"
 +++
 {{< piratify >}}

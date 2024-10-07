@@ -1,33 +1,33 @@
 +++
 description = "Add further code to your site"
 options = ["relearn.dependencies"]
-title = "Extending HTML"
+title = "Extending Scripts"
 weight = 2
 +++
 
-One of the most commonly asked questions is, how to add additional CSS styles or JavaScript.
+A common question is how to add extra CSS styles or JavaScript to your site. This depends on what you need.
 
-This depends on your use case.
+## Adding JavaScript or Stylesheets to All Pages
 
-## Adding JavaScript or Stylesheets Unconditionally
+To add JavaScript files or CSS stylesheets to every page, you can include them in `layouts/partials/custom-header.html` or `layouts/partials/custom-footer.html`.
 
-If you simply want to add additional JavaScript files or CSS stylesheets on every page of your site, you can do so by either adding them in your `layouts/partials/custom-header.html` or `layouts/partials/custom-footer.html` partial.
+However, this can make your site larger than necessary if these files are only needed on a few pages. The next section explains how to add dependencies only when needed.
 
-Sometimes this just bloats up your site when only in a few cases those files are really needed. See the [next section](#own-shortcodes-with-dependencies), on how to conditionally add such dependencies.
+## Custom Shortcodes with Dependencies
 
-## Own Shortcodes with Dependencies
+Some shortcodes need extra JavaScript and CSS files. The theme only loads these when the shortcode is used. You can use this for your own shortcodes too.
 
-Certain shortcodes make use of additional dependencies like JavaScript and CSS files. The theme only loads these dependencies if the shortcode is used. To do so correctly the theme adds management code in various files.
+For example, to create a shortcode called `myshortcode` that needs the `jquery` library:
 
-You can you use this mechanism in your own shortcodes. Say you want to add a shortcode `myshortcode` that also requires the `jquery` JavaScript library.
-
-1. Write the shortcode file `layouts/shortcodes/myshortcode.html` and add the following line
+1. Create the shortcode file `layouts/shortcodes/myshortcode.html` and add the folloging line somewhere:
 
     ````go {title="layouts/shortcodes/myshortcode.html"}
-   {{- .Page.Store.Set "hasMyShortcode" true }}
+    ...
+    {{- .Page.Store.Set "hasMyShortcode" true }}
+    ...
     ````
 
-1. {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Add the following snippet to your `hugo.toml`
+2. {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Add this to your `hugo.toml`:
 
     {{< multiconfig file=hugo >}}
     [params.relearn.dependencies]
@@ -35,10 +35,7 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
         name = "MyShortcode"
     {{< /multiconfig >}}
 
-1. Add the dependency loader file `layouts/partials/dependencies/myshortcode.html`. The loader file will be called from multiple locations inside of the theme with the parameter `page` containing the current [page](https://gohugo.io/methods/page/) variable and `location` with one of the currently defined locations
-
-    * `header`: if called at the end of the HTML `head` element
-    * `footer`: if called at the end of the HTML `body` element
+3. Create loader file `layouts/partials/dependencies/myshortcode.html`:
 
     ````go {title="layouts/partials/dependencies/myshortcode.html"}
     {{- if eq .location "footer" }}
@@ -46,18 +43,20 @@ You can you use this mechanism in your own shortcodes. Say you want to add a sho
     {{- end }}
     ````
 
-Character casing is relevant!
+Important notes:
 
-- the `name` setting in your `hugo.toml` must match the key (that needs to be prefixed with a `has`) you used for the store in your `layouts/shortcodes/myshortcode.html`.
-- the key on `relearn.dependencies` in your `hugo.toml` must match the base file name of your loader file.
+- Character casing is relevant!
+- The `name` in `hugo.toml` must match the `Store` key used in the shortcode file, prefixed with a `has`.
+- The key of `relearn.dependencies` must match the loader file name.
 
-See the `math`, `mermaid` and `openapi` shortcodes for examples.
+See the `math`, `mermaid`, and `openapi` shortcodes for examples.
 
 {{% notice note %}}
-If you are really into customization of the theme and want to use the dependency loader for your own locations, you can do this by simply calling it from inside of your overriden partials
+For advanced customization, you can use the dependency loader in your own partials:
 
 ````go
 {{- partial "dependencies.gotmpl" (dict "page" . "location" "mylocation") }}
 ````
-
 {{% /notice %}}
+
+Give a unique name for the `location` parameter when you call it, so you can distinguish your loaders behavior depending on the location it was called from.

@@ -1,6 +1,6 @@
 +++
-description = "Changing the width of menu and content area"
-title = "Page Width"
+description = "Changing the content area width"
+title = "Width"
 weight = 1
 +++
 {{< piratify >}}

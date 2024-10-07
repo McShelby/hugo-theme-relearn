@@ -5,32 +5,43 @@ title = "Navigation Menu"
 weight = 4
 +++
 
-The navigation menu is automatically generated from [your content files](content/organization).
+The navigation menu is automatically created from [your content files](content/organization).
 
-You can define certain settings globally in your `hugo.toml`. These are inherited to all pages as their default values but can be overwritten in their front matter.
+All configurations options apply to all pages but can be changed in each page's front matter.
 
 ## Expand State of Nested Sections
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Use `alwaysopen` to set the initial expand state of submenus. This controls whether submenus will be expanded (`true`), or collapsed (`false`) in the menu. If not set, the first menu level is set to false, all others levels are set to true.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Use `alwaysopen` to control how submenus appear. Set it to `true` to expand submenus, or `false` to collapse them. If not set, the first menu level is collapsed, and all others are expanded.
 
-This can be overridden individually for each page in its front matter.
+{{< multiconfig file=hugo >}}
+[params]
+  alwaysopen = true
+{{< /multiconfig >}}
 
-If the _displayed_ page has submenus, they will always been displayed expanded regardless of this option.
+
+The current page's submenus are always expanded, regardless of this setting.
 
 ## Expander for Nested Sections
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `collapsibleMenu=true` to show an expander for submenus. If set to `true`, submenus in the sidebar will be displayed as collapsible trees and a clickable expander is set in front of those entries.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `collapsibleMenu=true` to add an expander for submenus. This shows submenus as collapsible trees with a clickable expander.
+
+{{< multiconfig file=hugo >}}
+[params]
+  collapsibleMenu = true
+{{< /multiconfig >}}
 
 > [!WARNING]
-> Setting this option to `true` may cause your build to significantly slow down and degrade built performance, depending on your machine and the amount of pages.
+> Using this option may slow down your build process, especially with many pages.
 >
-> We've observed this with 1000+ pages with a built time of around 2min. With 5000+ pages it was unbearable slow taking the built half an hour to complete.
+> We've seen builds taking 2 minutes with 1000+ pages, and over 30 minutes with 5000+ pages.
 >
-> This is because for each page being added, every other pages needs to be visited once. This results in quadratic built time. In an already slow environment, adding just one single new page may result in unbearable built times afterwards.
->
+> This happens because each new page affects all other pages, leading to exponentially longer build times.
 
 ## Default Sort By
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `ordersectionsby` to set the sorting criterium of navigation menus. Defaults to `weight`. Menus can be ordered by `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order).
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Use `ordersectionsby` to choose how navigation menus are sorted. The default is `weight`. You can sort by `weight`, `title`, `linktitle`, `modifieddate`, `expirydate`, `publishdate`, `date`, `length`, or `default` (Hugo's standard order).
 
-This can be overridden individually for each page in its front matter.
+{{< multiconfig file=hugo >}}
+[params]
+  ordersectionsby = 'weight'
+{{< /multiconfig >}}

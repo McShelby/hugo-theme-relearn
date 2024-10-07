@@ -1,23 +1,23 @@
 +++
-description = "Changing the width the content area"
+description = "Changing the content area width"
 title = "Width"
 weight = 1
 +++
 
-The theme reacts to browser resizes and adjusts the menu and content width accordingly.
+The theme adjusts the content width when you resize your browser.
 
-If you dislike the default behavior, you can link to a CSS stylesheet or change it in your `layouts/partials/custom-header.html`.
+If you want to change the chosen default width, you can add CSS variables to `layouts/partials/custom-header.html`.
 
-## Change the Main Area's Max Width
+## Changing the Main Area's Maximum Width
 
-By default the main area width will only grow to a certain extent if more vertical screen space is available. This is done for readability purposes as long lines are usually harder to read.
+The main area has a default maximum width of `80.25rem` for better readability. If you want to change this, you can set a CSS variable
 
-If you are unhappy with the default, you can define the following CSS variable and set the value to your liking. If you want to use all available space, select a really big value like `1000rem`;
+For full width, use a large value like `1000rem`.
 
 ````html {title="layouts/partials/custom-header.html"}
 <style>
 :root {
-    --MAIN-WIDTH-MAX: 80.25rem;
+    --MAIN-WIDTH-MAX: 1000rem;
 }
 </style>
 ````

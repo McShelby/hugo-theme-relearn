@@ -4,23 +4,23 @@ title = "Width"
 weight = 1
 +++
 
-The theme reacts to browser resizes and adjusts the menu width accordingly.
+The theme adjusts the menu width based on browser size.
 
-If you dislike the default behavior, you can link to a CSS stylesheet or change it in your `layouts/partials/custom-header.html`.
+If you want to change the chosen default width, you can add CSS variables to `layouts/partials/custom-header.html`.
 
-## Change the Menu Width
+## Changing Menu Width
 
-The menu width adjusts automatically for different screen sizes for the following screen sizes:
+The menu width changes for different screen sizes:
 
-| Name | Screen Width  | Menu Width |
-| ---- | ------------- | ---------- |
-| S    | < 48rem       | 14.375rem  |
-| M    | 48rem - 60rem | 14.375rem  |
-| L    | >= 60rem      | 18.75rem   |
+| Screen Size | Screen Width  | Menu Width |
+| ----------- | ------------- | ---------- |
+| Small       | < 48rem       | 14.375rem  |
+| Medium      | 48rem - 60rem | 14.375rem  |
+| Large       | >= 60rem      | 18.75rem   |
 
-The values for the screen width breakpoints aren't configurable.
+You can change the menu width but not the screen width breakpoints.
 
-If you want to adjust the menu width you can define the following CSS variables. Note that `--MENU-WIDTH-S` applies to the menu flyout width in mobile mode for small screen sizes.
+To adjust the menu width, use these CSS variables. Note that `--MENU-WIDTH-S` is for the mobile menu flyout on small screens.
 
 ````html {title="layouts/partials/custom-header.html"}
 <style>

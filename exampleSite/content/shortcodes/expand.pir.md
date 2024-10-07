@@ -1,5 +1,5 @@
 +++
-description = "Displays an expand'ble/collaps'ble sect'n o' text on yer plank"
+description = "Expand'ble/collaps'ble sections of text"
 title = "Expand"
 +++
 {{< piratify >}}

@@ -1,64 +1,62 @@
 +++
-description = "How to configure colors, fonts, favicon and logo"
+description = "Learn how to customize your site's colors, fonts, favicon, and logo"
 options = ["themeVariant"]
 title = "Branding"
 weight = 1
 +++
 
-The Relearn theme provides settings to change your site's colors, fonts, favicon and logo. These settings are bundled in so called color variants that are contained of a CSS file and optional configuration options in your `hugo.toml`.
+The Relearn theme offers color variants to change your site's appearance. Each color variant contains of a CSS file and optional settings in your `hugo.toml`.
 
-The Relearn theme ships with a set of predefined color variants. You can use them as-is, copy them over and use them as a starting point for your customizations or just create completely new variants unique to your site. The [interactive variant generator](configuration/appearance/generator) may help you with this task.
+You can use the pre-made variants, [customize them](#modifying-variants), or create your own. The [interactive variant generator](configuration/appearance/generator) can help you with this.
 
-Once configured in your `hugo.toml`, you can select them with the variant selector at the bottom of the menu.
+Once set up in `hugo.toml`, you can switch variants using the selector at the bottom of the menu.
 
-## Change the Variant
+## Changing the Variant
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can change the variant by setting the `themeVariant` option.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set the `themeVariant` option to change the variant.
 
-The theme provides a recommended [advanced configuration mode](#theme-variant-advanced), combining the functionality for [multiple variants](#multiple-variants) with the possibility of [adjusting to your OS settings](#adjust-to-os-settings) and syntax highlighting and even more!
+The theme offers the recommended [advanced configuration mode](#theme-variant-advanced) that combines the functionality for [multiple variants](#multiple-variants), [OS setting adjustments](#adjust-to-os-settings), and more.
 
-### Simple {#theme-variant}
+### Simple Setup {#theme-variant}
 
 #### Single Variant
 
-Set the `themeVariant` value to the name of your theme CSS file. That's it! Your site will be displayed in this variant only.
+Set `themeVariant` to your theme CSS file name:
 
 {{< multiconfig file=hugo >}}
 [params]
   themeVariant = "relearn-light"
 {{< /multiconfig >}}
 
-Your theme variant file must either reside in your site's `assets/css` directory or in the similar location of the theme at `themes/hugo-theme-relearn/assets/css`. The file name must start with `theme-` and end in `.css`.
+Place your theme file in `assets/css` or `themes/hugo-theme-relearn/assets/css`. Name it `theme-*.css`.
 
 In the above example, the path of your theme file must be `assets/css/theme-relearn-light.css` or `themes/hugo-theme-relearn/assets/css/theme-relearn-light.css`.
 
-If you want to make changes to a shipped color variant, [see your choices below](#modify-shipped-variants).
-
 #### Multiple Variants
 
-You can also set multiple variants. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
+To let the reader choose between multiple variants, set `themeVariant` like this:
 
 {{< multiconfig file=hugo >}}
 [params]
   themeVariant = [ "relearn-light", "relearn-dark" ]
 {{< /multiconfig >}}
 
+The first variant is the default, and a selector will appear if there's more than one.
+
 #### Adjust to OS Settings
 
-You can also cause the site to adjust to your OS settings for light/dark mode. Just set the `themeVariant` to `auto` to become an auto mode variant. That's it.
-
-You can use the `auto` value with the single or multiple variants option. If you are using multiple variants, you can drop `auto` at any position in the option's array, but usually it makes sense to set it in the first position and make it the default.
+Use the `auto` value to match OS light/dark settings. Usually it makes sense to set it in the first position and make it the default.
 
 {{< multiconfig file=hugo >}}
 [params]
   themeVariant = [ "auto", "red" ]
 {{< /multiconfig >}}
 
-If you don't configure anything else, the theme will default to use `relearn-light` for light mode and `relearn-dark` for dark mode. These defaults are overwritten by the first two non-auto options of your `themeVariant` option if present.
+If you don't configure anything else, the theme will default to use `relearn-light` for light mode and `relearn-dark` for dark mode.
 
-In the above example, you would end with `red` for light mode and the default of `relearn-dark` for dark mode.
+Default is `relearn-light` for light and `relearn-dark` for dark mode. These defaults are overwritten by the first two non-auto options of your `themeVariant` array.
 
-If you don't like that behavior, you can explicitly set `themeVariantAuto`. The first entry in the array is the color variant for light mode, the second for dark mode.
+You can override the default with `themeVariantAuto`:
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -115,19 +113,19 @@ themeVariant = [
 ]
 {{< /multiconfig >}}
 
-## Advanced Variant Topics
+## Advanced Topics
 
-### Modify Shipped Variants
+### Modifying Variants
 
-In case you like a shipped variant but only want to tweak some aspects, you have some choices. **Don't edit the file in the theme's directory!** You will loose the ability to later easily upgrade your theme to a newer version.
+In case you like a shipped variant but only want to tweak some aspects, you have some choices. **Don't edit the file in the theme's directory!** You will lose the ability to later easily upgrade your theme to a newer version.
 
 1. Copy and change
 
-    You can copy the shipped variant file from the theme's `themes/hugo-theme-relearn/assets/css` directory to the site's `assets/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
+    You can copy the shipped variant file from the theme's `themes/hugo-theme-relearn/assets/css` directory to the site's `assets/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards, you can use it in your `hugo.toml` by the chosen name.
 
 2. Create and import
 
-    You can create a new variant file in the site's `assets/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards you can use it in your `hugo.toml` by the chosen name.
+    You can create a new variant file in the site's `assets/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards, you can use it in your `hugo.toml` by the chosen name.
 
     For example, you want to use the `relearn-light` variant but want to change the syntax highlighting schema to the one used in the `neon` variant. For that, create a new `assets/css/theme-my-branding.css` in your site's directory and add the following lines:
 
@@ -141,14 +139,14 @@ In case you like a shipped variant but only want to tweak some aspects, you have
     }
     ````
 
-    Afterwards put this in your `hugo.toml` to use your new variant:
+    Afterwards, put this in your `hugo.toml` to use your new variant:
 
     {{< multiconfig file=hugo >}}
     [params]
       themeVariant = "my-branding"
     {{< /multiconfig >}}
 
-    In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant but keep your modifications.
+    In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant while keeping your modifications.
 
 ### React to Variant Switches in JavaScript
 
@@ -162,19 +160,19 @@ document.addEventListener( 'themeVariantLoaded', function( e ){
 
 ## Change Syntax Highlighting
 
-If you want to switch the syntax highlighting theme together with your color variant, first you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/#generate-syntax-highlighter-css) to provide a syntax highlighting stylesheet file
+If you want to switch the syntax highlighting theme together with your color variant, first you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/#generate-syntax-highlighter-css) to provide a syntax highlighting stylesheet file.
 
 {{< multiconfig file=hugo >}}
 markup.highlight.noClasses=false
 {{< /multiconfig >}}
 
-You can use one of the shipped stylesheet files or use Hugo to generate a file for you
+You can use one of the shipped stylesheet files or use Hugo to generate a file for you.
 
 ````shell
 hugo gen chromastyles --style=monokai > chroma-mycode.css
 ````
 
-The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your color variant you have to modify `--CODE-theme: <NAME>` in the color variant stylesheet file
+The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your color variant, you have to modify `--CODE-theme: <NAME>` in the color variant stylesheet file.
 
 ````css {title="assets/css/theme-my-branding.css"}
 @import "theme-relearn-light.css";
@@ -185,18 +183,18 @@ The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your 
 
 ## Change 3rd-Party Libraries Theming
 
-Some of the shipped shortcodes are using 3rd-party libraries. See the individual shortcode documentation on how to change their theming
+Some of the shipped shortcodes are using 3rd-party libraries. See the individual shortcode documentation on how to change their theming.
 
 - [`mermaid` shortcode](shortcodes/mermaid#setting-a-specific-mermaid-theme)
 - [`openapi` shortcode](shortcodes/openapi#setting-a-specific-swagger-ui-theme)
 
 ## Change the Favicon
 
-If your favicon is a SVG, PNG or ICO, just drop your image in your site's `static/images/` directory and name it `favicon.svg`, `favicon.png` or `favicon.ico` respectively.
+If your favicon is an SVG, PNG, or ICO, just drop your image in your site's `static/images/` directory and name it `favicon.svg`, `favicon.png`, or `favicon.ico` respectively.
 
 If you want to adjust your favicon according to your OS settings for light/dark mode, add the image files `static/images/favicon-light.svg` and `static/images/favicon-dark.svg` to your site's directory, respectively, corresponding to your file format. In case some of the files are missing, the theme falls back to `favicon.svg` for each missing file. All supplied favicons must be of the same file format.
 
-If no favicon file is found, the theme will lookup the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
+If no favicon file is found, the theme will look up the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
 
 If you need to change this default behavior, create a new file `layouts/partials/favicon.html` in your site's directory and write something like this:
 
@@ -206,6 +204,6 @@ If you need to change this default behavior, create a new file `layouts/partials
 
 ## Change the Logo
 
-Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image or you could paste a SVG definition!
+Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
 
 The size of the logo will adapt automatically.

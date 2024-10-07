@@ -1,5 +1,5 @@
 +++
-description = "All configuration options of the Relearn theme"
+description = "Configuration options for the Relearn theme"
 tags = ["reference"]
 title = "Options Reference"
 weight = 6

@@ -1,5 +1,6 @@
 +++
-description = "How to configure heading anchors"
+description = "Configuring heading anchors"
+options = ["disableAnchorCopy", "disableAnchorScrolling"]
 title = "Headings"
 weight = 2
 +++

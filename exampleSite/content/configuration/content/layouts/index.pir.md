@@ -1,5 +1,5 @@
 +++
-description = "How to use and extend layouts"
+description = "Using and extending layouts"
 title = "Custom Layouts"
 weight = 3
 +++

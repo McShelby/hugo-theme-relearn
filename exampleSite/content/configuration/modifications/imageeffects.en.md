@@ -1,27 +1,17 @@
 +++
 description = "How to extend image effects"
-frontmatter = ["imageEffects"]
 options = ["imageEffects"]
 title = "Custom Image Effects"
 weight = 3
 +++
 
-The theme supports non-standard [image effects](content/markdown#image-effects).
+This page shows you, how to configure custom [image effects](content/markdown#image-effects) on top of existing ones.
 
-| Name     | Description                                                       |
-| -------- | ----------------------------------------------------------------- |
-| border   | Draws a light thin border around the image                        |
-| lazy     | Lets the image be lazy loaded                                     |
-| lightbox | The image will be clickable to show it enlarged                   |
-| shadow   | Draws a shadow around the image to make it appear hovered/glowing |
+For a detailed usage example, see [this page](content/imageeffects).
 
-As [described](content/markdown#image-effects), you can add this to the URL query parameter, but this may be cumbersome to be done consistently for the whole page. Instead, you can configure the defaults in your `hugo.toml` as well as overriding these default in the pages front matter.
+If you don't configure anything in your `hugo.toml`, the image effects default to
 
-Explicitly set URL query parameter will override the defaults in effect for a page or your site.
-
-Without any settings in your `hugo.toml` `imageEffects` defaults to
-
-{{< multiconfig file=hugo >}}
+{{< multiconfig >}}
 [params]
   [params.imageEffects]
     border = false
@@ -30,50 +20,76 @@ Without any settings in your `hugo.toml` `imageEffects` defaults to
     shadow = false
 {{< /multiconfig >}}
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter by eg.
+You can change these settings in your `hugo.toml`
 
-{{< multiconfig fm=true >}}
-[imageEffects]
-  border = true
+{{< multiconfig file=hugo >}}
+[params]
+  [params.imageEffects]
+    border = true
+    lazy = false
 {{< /multiconfig >}}
 
-Or by explicitly override settings by URL query parameter
-
-````md {title="URL"}
-![Minion](https://octodex.github.com/images/minion.png?lightbox=false&bg-white=true)
-````
-
-The settings applied to the above image would be
+This would result in
 
 {{< multiconfig >}}
-border = true
-lazy = true
-lightbox = false
-shadow = false
-bg-white = true
+[params]
+  [params.imageEffects]
+    border = true
+    lazy = false
+    lightbox = true
+    shadow = false
 {{< /multiconfig >}}
 
-This ends up in the following HTML where the parameter are converted to CSS classes.
+## Adding Custom Effects
 
-````html {title="HTML"}
-<img src="https://octodex.github.com/images/minion.png?lightbox=false&bg-white=true" loading="lazy" alt="Minion" class="bg-white border lazy nolightbox noshadow">
-````
-
-
-## Extending
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} As you can see in the above example, the `bg-white` parameter is not initially supported in the themes default settings. The theme allows you to define arbitrary parameter by just adding them to the URL query parameter or set them in your page's front matter or `hugo.toml`.
+You can add new effects with boolean values
 
 {{< multiconfig file=hugo >}}
 [params]
   [params.imageEffects]
     bg-white = true
-    border = false
-    lazy = true
+{{< /multiconfig >}}
+
+Result:
+
+{{< multiconfig >}}
+[params]
+  [params.imageEffects]
+    bg-white = true
+    border = true
+    lazy = false
     lightbox = true
     shadow = false
 {{< /multiconfig >}}
 
-{{% notice note %}}
-If no extended parameter like `bg-white` in the example is set on the URL, a `class="nobg-white"` in the HTML will only be generated if a default value was set in the page's front matter or `hugo.toml` .
-{{% /notice %}}
+## Styling Custom Effects
+
+If the effective image effect value is
+
+- `true`: add a class with the effect's name
+- `false`: add a class with the effect's name and a "no" prefix
+
+### Example
+
+````markdown
+![Minion](https://octodex.github.com/images/minion.png)
+````
+
+### Result
+
+````html
+<img src="https://octodex.github.com/images/minion.png" loading="lazy" alt="Minion" class="bg-white border nolazy lightbox noshadow">
+````
+
+Styles for default image effets are contained in the theme. Add custom styles for your extension image effects to `layouts/partials/content-header.html`.
+
+In the above example you could add styles for both cases:
+
+````css
+img.bg-white {
+  background-color: white;
+}
+img.nobg-white {
+  background-color: transparent;
+}
+````

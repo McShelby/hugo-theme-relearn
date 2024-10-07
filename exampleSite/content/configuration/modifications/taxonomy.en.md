@@ -6,23 +6,22 @@ title = "Custom Taxonomies"
 weight = 6
 +++
 
-This page shows you how customize your templates to display custom taxonomies on your pages.
+This page explains how to show custom taxonomies on your pages.
 
-See the official documentation on [how to configure custom taxnomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and [how to use them in your page's front matter](https://gohugo.io/content-management/taxonomies/#assign-terms-to-content).
+For more details, check the official docs on [setting up custom taxonomies](https://gohugo.io/content-management/taxonomies/#configure-taxonomies) and [using them in your content](https://gohugo.io/content-management/taxonomies/#assign-terms-to-content).
 
-## Standard Behavior
+## Default Behavior
 
-The Relearn theme displays Hugo's [default taxonomies](https://gohugo.io/content-management/taxonomies/#default-taxonomies) _tag_ and _category_ out of the box.
+The Relearn theme automatically shows Hugo's [default taxonomies](https://gohugo.io/content-management/taxonomies/#default-taxonomies) _tags_ and _categories_ out of the box.
 
-The _tags_ are displayed at the top of the page in alphabetical order.
+- Tags appear at the top of the page in alphabetical order in form of baggage tags.
+- Categories appear at the bottom of the page in alphabetical order as a list prefixed with an icon.
 
-The _categories_ are displayed at the bottom of the page in alphabetical order.
+Each item links to a page showing all articles with that term.
 
-Each item is a link to a taxonomy page displaying all the articles with the given term.
+## Setting Up Custom Taxonomies
 
-## Configuration
-
-To add custom taxnomies, you have to configure them in your `hugo.toml` and also have to add the default taxonomies if you want to use them.
+To add custom taxonomies, update your `hugo.toml` file. You also have to add the default taxonomies if you want to use them.
 
 {{< multiconfig file=hugo >}}
 [taxonomies]
@@ -31,9 +30,9 @@ To add custom taxnomies, you have to configure them in your `hugo.toml` and also
   tag = 'tags'
 {{< /multiconfig >}}
 
-## Customization
+## Showing Custom Taxonomies
 
-You can display the terms of your custom taxonomy somewhere in your page (often in the `layouts/partials/content-footer.html`) by calling a partial that does the job for you
+To display your custom taxonomy terms, add this to your page (usually in `layouts/partials/content-footer.html`):
 
 ````go
 {{ partial "term-list.html" (dict

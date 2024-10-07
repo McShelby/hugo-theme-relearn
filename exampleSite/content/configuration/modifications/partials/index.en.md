@@ -6,40 +6,40 @@ weight = 1
 
 ## Customizable Partials
 
-The Relearn theme has been built to be as configurable as possible by defining multiple partials that can be overridden by you to customize the theme.
+The Relearn theme allows you to customize various parts of the theme by overriding partials. This makes the theme highly configurable.
 
-As a rule of thumb, the less code a partial of the theme contains, the less likely you will have trouble updating the theme to a future version.
+A good rule to follow: The less code a partial contains, the easier it will be to update the theme in the future.
 
-Following is a list of partials that are save to be overridden
+Here's a list of partials you can safely override:
 
-- `layouts/partials/content.html`: the content of a page itself, can be overridden if you want to display page's meta data above or below the content
+- `layouts/partials/content.html`: The main content of a page. Override this to display additonal page metadata.
 
-- `layouts/partials/content-header.html`: header above the title, has a default implementation to display the tags taxonomy but you can override it if you don't like it
+- `layouts/partials/content-header.html`: The header above the title. By default, it shows tags, but you can change this.
 
-- `layouts/partials/content-footer.html`: footer below the content, has a default implementation to display author information, modification dates and category taxonomy but you can override it if you don't like it
+- `layouts/partials/content-footer.html`: The footer below the content. By default, it shows author info, modification dates, and categories. You can customize this.
 
-- `layouts/partials/custom-header.html`: custom headers in page; meant to be overridden when adding CSS imports; don't forget to include `style` HTML tag directive in your file
+- `layouts/partials/custom-header.html`: For adding custom CSS. Remember to include the `style` HTML tag.
 
-- `layouts/partials/custom-footer.html`:  custom footer in page; meant to be overridden when adding JavaScript; don't forget to include `javascript` HTML tag directive in your file
+- `layouts/partials/custom-footer.html`: For adding custom JavaScript. Remember to include the `script` HTML tag.
 
-- `layouts/partials/favicon.html`: the favicon; definitely meant to be overridden
+- `layouts/partials/favicon.html`: The favicon. You should definitely customize this.
 
-- `layouts/partials/heading.html`: the pages title headings
+- `layouts/partials/heading.html`: the page's title headings
 
-- `layouts/partials/heading-pre.html`: prepend something to pages title headings; if you override this, it is your responsibility to take the page's `headingPre` setting into account
+- `layouts/partials/heading-pre.html`: Add content before the page's title headings. Remember to consider the `headingPre` front matter.
 
-- `layouts/partials/heading-post.html`: append something to pages title headings; if you override this, it is your responsibility to take the page's `headingPost` setting into account
+- `layouts/partials/heading-post.html`: Add content after the page's title headings. Remember to consider the `headingPost` front matter.
 
-- `layouts/partials/logo.html`: the logo on the top left corner; definitely meant to be overridden
+- `layouts/partials/logo.html`: The logo in the top left corner. You should customize this.
 
-- `layouts/partials/menu-pre.html`: prepend something to a menu item; if you override this, it is your responsibility to take the page's `menuPre` setting into account
+- `layouts/partials/menu-pre.html`: Add content before menu items. Remember to consider the `menuPre` front matter.
 
-- `layouts/partials/menu-post.html`: append something to a menu item; if you override this, it is your responsibility to take the page's `menuPost` setting into account
+- `layouts/partials/menu-post.html`: Add content after menu items. Remember to consider the `menuPost` front matter.
 
-- `layouts/partials/menu-footer.html`: footer of the left menu
+- `layouts/partials/menu-footer.html`: The footer of the left menu.
 
-You may override other partials from the directory `themes/hugo-relearn-themes/` besides `themes/hugo-relearn-themes/layouts/partials/_relearn`. Just be aware that this may become a hassle with future updates.
+You can override other partials from `themes/hugo-relearn-themes/`, but be careful as this might make future updates more difficult.
 
 ## Usable Partials
 
-You may use other partials from the directory `themes/hugo-relearn-themes/` besides the ones contained in `themes/hugo-relearn-themes/layouts/partials/_relearn`. Just be aware that using other partials besides [the ones mentioned above](#customizable-partials) may become a hassle with future updates.
+You can call other partials from `themes/hugo-relearn-themes/` besides those in `themes/hugo-relearn-themes/layouts/partials/_relearn`. However, using partials not mentioned above might make future updates more challenging.

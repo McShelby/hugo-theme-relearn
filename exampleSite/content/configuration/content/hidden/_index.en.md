@@ -1,29 +1,44 @@
 +++
-description = "Learn about the hiddes pages feature"
+description = "Learn about the hidden pages feature"
 frontmatter = ["hidden"]
 options = ["disableSearchHiddenPages", "disableSeoHiddenPages", "disableTagHiddenPages"]
 title = "Hidden Pages"
 weight = 4
 +++
 
-The theme provides the concept of hidden pages.
+This theme allows you to create hidden pages.
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} While Hugo has the `draft` option to not create a page at all, a hidden page is created but not shown in the navigation. Just set `hidden=true` in your pages front matter. This can be useful if you want to have a page that is only accessible via a link.
+{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Hidden pages are created but not shown in the navigation. To make a page hidden, set `hidden=true` in its front matter. This is useful for pages you only want to access via a direct link.
 
-If you access a hidden page via its URL, it will be revealed in the navigation menu.
+When you visit a hidden page's URL, it will appear in the navigation menu.
 
-Hidden pages can even contain hidden subpages.
+Hidden pages can also have hidden subpages.
 
-By default, a hidden page is only hidden from a human user of your site. Crawlers may still see the URLs advertised in the sitemap, etc. You can avoid this by the following options
+By default, hidden pages are only hidden from human visitors. Search engines can still find them by crawling your site. You can prevent this with these options:
 
 ## Hide from Search
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To hide hidden pages from search results of the search popup and dedicated search page, set `disableSearchHiddenPages=true`.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To remove hidden pages from search results, use `disableSearchHiddenPages=true`.
 
-## Hide from Crawlers
+{{< multiconfig file=hugo >}}
+[params]
+  disableSearchHiddenPages = true
+{{< /multiconfig >}}
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To hide hidden pages from crawlers by removing links from the sitemap and rss feed, set `disableSeoHiddenPages=true`.
+## Hide from Search Engines
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To hide pages from search engines by removing them from the sitemap, RSS feed and [make them `nofollow`](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#directives), use `disableSeoHiddenPages=true`.
+
+{{< multiconfig file=hugo >}}
+[params]
+  disableSeoHiddenPages = true
+{{< /multiconfig >}}
 
 ## Hide from Taxonomies
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To hide hidden pages from showing up on the taxonomy and term pages, set `disableTagHiddenPages=true`. If this reduces term counters to zero, an empty but unlinked term page will be created anyhow.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To prevent hidden pages from appearing on taxonomy and term pages, use `disableTagHiddenPages=true`. If this makes a term's count zero, an empty term page will still be created but not linked.
+
+{{< multiconfig file=hugo >}}
+[params]
+  disableTagHiddenPages = true
+{{< /multiconfig >}}

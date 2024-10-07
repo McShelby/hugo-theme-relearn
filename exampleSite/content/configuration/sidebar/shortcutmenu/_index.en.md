@@ -5,24 +5,31 @@ title = "Shortcut Menu"
 weight = 5
 +++
 
-The sidebar contains the navigation menu of your content files but you can also add additional menu entries or shortcuts below the navigation menu.
+The sidebar contains your content's navigation menu, but you can also add extra menu entries or shortcuts in a separate section.
 
-Be sure to use the `pageRef` property instead of `url` for all links internal to your site. You can read more about [Hugo's menu configuration](https://gohugo.io/content-management/menus/#define-in-site-configuration) in its documenation.
+For internal links, use the `pageRef` property instead of `url`. Learn more about [Hugo's menu configuration](https://gohugo.io/content-management/menus/#define-in-site-configuration).
 
 ## Title
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the shortcut menu is preceded by a title ("_More_" in the english translation). This title can be disabled by setting `disableShortcutsTitle=true`. However, if you want to keep the title but change its value, it can be overridden by changing your local i18n translation string configuration.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the shortcut menu has a title ("_More_" in English).
 
-For example, in your local `i18n/en.toml` file, add the following content
+You can disable this title with `disableShortcutsTitle=true`.
 
-````toml {title="en.toml"}
+{{< multiconfig file=hugo >}}
+[params]
+  disableShortcutsTitle = true
+{{< /multiconfig >}}
+
+To change the title, update your local i18n translation file.
+
+````toml {title="i18n/en.toml"}
 [Shortcuts-Title]
 other = "Other Great Stuff"
 ````
 
 ## Single Language Example
 
-Edit the `hugo.toml` and add a `[[menu.shortcuts]]` entry for each link your want to add.
+Edit `hugo.toml` and add `[[menu.shortcuts]]` entries for each link:
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
@@ -55,7 +62,7 @@ Edit the `hugo.toml` and add a `[[menu.shortcuts]]` entry for each link your wan
 
 ## Multilingual Example
 
-When using a multilingual website, you can set different menus for each language. In the `hugo.toml` file, prefix your menu configuration by `Languages.<language-id>`.
+For multilingual sites, set different menus for each language in `hugo.toml`:
 
 {{< multiconfig file=hugo >}}
 [languages]
@@ -63,8 +70,6 @@ When using a multilingual website, you can set different menus for each language
     title = "Hugo Relearn Theme"
     weight = 1
     languageName = "English"
-    [languages.en.params]
-      landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
 
   [[languages.en.menu.shortcuts]]
     name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
@@ -95,10 +100,8 @@ When using a multilingual website, you can set different menus for each language
 
   [languages.pir]
     title = "Cap'n Hugo Relearrrn Theme"
-    weight = 1
+    weight = 2
     languageName = "Arrr! Pirrratish"
-    [languages.pir.params]
-      landingPageName = "<i class='fa-fw fas fa-home'></i> Arrr! Home"
 
   [[languages.pir.menu.shortcuts]]
     name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
@@ -128,11 +131,11 @@ When using a multilingual website, you can set different menus for each language
     weight = 40
 {{< /multiconfig >}}
 
-## How to Display Pages Only in the Shortcuts Menu
+## Displaying Pages Only in the Shortcuts Menu
 
-If you have shortcuts to pages inside of your project and you don't want them to show up in your navigation menu, you have two choices:
+To show pages only in the shortcuts menu you have two choices
 
-1. Make the page file for the shortcut a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle) (contained in its own subdirectory and called `_index.md`) and add the following front matter configuration to the file (see exampleSite's `content/showcase/_index.en.md`). This causes its content to **not** be contained in the sitemap.
+1. Create a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle), `_index.md` in its own folder with the below front matter. The branch bundle will **not** be contained in the sitemap.
 
     {{< multiconfig fm=true file="content/showcase/_index.en.md" >}}
     title = "Showcase"
@@ -142,7 +145,7 @@ If you have shortcuts to pages inside of your project and you don't want them to
       publishResources = true
     {{< /multiconfig >}}
 
-2. Store the page file for the shortcut below a parent headless branch bundle and add the following front matter to he **parent** (see exampleSite's `content/more/_index.en.md`). **Don't give this page a `title`** as this will cause it to be shown in the breadcrumbs - a thing you most likely don't want.
+2. Or, put a child page inside a headless branch bundle with the following front matter in the bundle. This causes the child but not the branch bundle to be contained in the sitemap.
 
     {{< multiconfig fm=true file="content/more/_index.en.md" >}}
     [_build]
@@ -151,7 +154,7 @@ If you have shortcuts to pages inside of your project and you don't want them to
       publishResources = false
     {{< /multiconfig >}}
 
-    In this case, the file itself can be a branch bundle, leaf bundle or simple page (see exampleSite's `content/more/credits.en.md`). This causes its content to be contained in the sitemap.
+    The child page can be any type of content.
 
     {{< multiconfig fm=true file="content/more/credits_index.en.md" >}}
     title = "Credits"

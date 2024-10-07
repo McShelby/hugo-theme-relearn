@@ -1,6 +1,7 @@
 +++
 description = "Add further code to your site"
-title = "Extending HTML"
+options = ["relearn.dependencies"]
+title = "Extending Scripts"
 weight = 2
 +++
 {{< piratify >}}
