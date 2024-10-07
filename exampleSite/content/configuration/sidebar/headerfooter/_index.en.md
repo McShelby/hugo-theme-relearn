@@ -33,7 +33,7 @@ By default, the theme displays a home button between search form and navigation 
 
 If this option isn't set for a specific language, it will use these default values
 
-{{< multiconfig >}}
+{{< multiconfig file=hugo >}}
 [params]
   landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
 {{< /multiconfig >}}
@@ -42,7 +42,7 @@ If this option isn't set for a specific language, it will use these default valu
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Turn on `showVisitedLinks=true` to see checkmarks next to visited pages in the main menu. This also adds a `Clear History` option at the bottom of the menu to remove all checkmarks. Note that checkmarks will disappear if you rebuild your site, as the page IDs may change.
 
-{{< multiconfig >}}
+{{< multiconfig file=hugo >}}
 [params]
   showVisitedLinks = true
 {{< /multiconfig >}}

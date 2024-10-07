@@ -12,15 +12,14 @@ For a detailed usage example, see [this page](content/imageeffects).
 If you don't configure anything in your `hugo.toml`, the image effects default to
 
 {{< multiconfig >}}
-[params]
-  [params.imageEffects]
-    border = false
-    lazy = true
-    lightbox = true
-    shadow = false
+[imageEffects]
+  border = false
+  lazy = true
+  lightbox = true
+  shadow = false
 {{< /multiconfig >}}
 
-You can change these settings in your `hugo.toml`
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can change these settings in your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -32,12 +31,11 @@ You can change these settings in your `hugo.toml`
 This would result in
 
 {{< multiconfig >}}
-[params]
-  [params.imageEffects]
-    border = true
-    lazy = false
-    lightbox = true
-    shadow = false
+[imageEffects]
+  border = true
+  lazy = false
+  lightbox = true
+  shadow = false
 {{< /multiconfig >}}
 
 ## Adding Custom Effects
@@ -53,13 +51,12 @@ You can add new effects with boolean values
 Result:
 
 {{< multiconfig >}}
-[params]
-  [params.imageEffects]
-    bg-white = true
-    border = true
-    lazy = false
-    lightbox = true
-    shadow = false
+[imageEffects]
+  bg-white = true
+  border = true
+  lazy = false
+  lightbox = true
+  shadow = false
 {{< /multiconfig >}}
 
 ## Styling Custom Effects
@@ -71,13 +68,13 @@ If the effective image effect value is
 
 ### Example
 
-````markdown
+````markdown {title="Markdown"}
 ![Minion](https://octodex.github.com/images/minion.png)
 ````
 
 ### Result
 
-````html
+````html {title="HTML"}
 <img src="https://octodex.github.com/images/minion.png" loading="lazy" alt="Minion" class="bg-white border nolazy lightbox noshadow">
 ````
 
@@ -85,11 +82,13 @@ Styles for default image effets are contained in the theme. Add custom styles fo
 
 In the above example you could add styles for both cases:
 
-````css
+````html {title="layouts/partials/content-header.html"}
+<style>
 img.bg-white {
   background-color: white;
 }
 img.nobg-white {
   background-color: transparent;
 }
+</style>
 ````

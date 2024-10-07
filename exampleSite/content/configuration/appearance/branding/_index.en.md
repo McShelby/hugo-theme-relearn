@@ -99,6 +99,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 #### Example Configuration of This Site
 
 {{< multiconfig file=hugo >}}
+[params]
 themeVariant = [
 	{ identifier = "relearn-auto",  name = "Relearn Light/Dark", auto = [] },
 	{ identifier = "relearn-light"  },
@@ -152,7 +153,7 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
 Once a color variant is fully loaded, either initially or by switching the color variant manually with the variant selector, the custom event `themeVariantLoaded` on the `document` will be dispatched. You can add an event listener and react to changes.
 
-````javascript
+````javascript {title="JavaScript"}
 document.addEventListener( 'themeVariantLoaded', function( e ){
   console.log( e.detail.variant ); // `relearn-light`
 });

@@ -148,16 +148,16 @@ The predefined buttons by the theme (all other buttons besides the _more_ and _t
 
 Call these from your own redefined area templates if you want to use default button behavior.
 
-The `_&lt;varying&gt;_` parameter values are different for each button and configured for standard behavior as seen on this page.
+The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
 
 #### Parameter
 
 | Name                  | Default           | Notes       |
 |-----------------------|-------------------|-------------|
 | **page**              | _&lt;empty&gt;_   | Mandatory reference to the page. |
-| **onwidths**          | __&lt;varying&gt;__ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
-| **onwidthm**          | __&lt;varying&gt;__ | See above. |
-| **onwidthl**          | __&lt;varying&gt;__ | See above. |
+| **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
+| **onwidthm**          | _&lt;varying&gt;_ | See above. |
+| **onwidthl**          | _&lt;varying&gt;_ | See above. |
 
 ### Predefined Overlay-Buttons
 
@@ -165,7 +165,7 @@ The predefined buttons by the theme that open an overlay (the _more_ and _toc_ b
 
 Call these from your own redefined area templates if you want to use default button behavior utilizing overlay functionality.
 
-The `_&lt;varying&gt;_` parameter values are different for each button and configured for standard behavior as seen on this page.
+The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
 
 #### Parameter
 
