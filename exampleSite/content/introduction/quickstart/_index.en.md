@@ -142,6 +142,6 @@ You can upload this directory to any web server, or use one of [Hugo's many othe
 
 Your site is now fully functional.
 
-You can continue [configuring your site](configuration/) to your needs.
+You can continue [configuring your site](configuration) to your needs.
 
-Or just start [writing content](content/) and learn what's possible.
+Or just start [writing content](content) and learn what's possible.

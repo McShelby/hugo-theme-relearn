@@ -104,7 +104,7 @@ You can force loading the Mermaid library if no shortcode or codefence was used 
 
 ### Setting a Specific Mermaid Theme
 
-While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value using the `--MERMAID-theme` variable in your [color variant stylesheet](configuration/appearance/generator/). This allows your graphs to look pretty when the user switches the color variant.
+While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value using the `--MERMAID-theme` variable in your [color variant stylesheet](configuration/appearance/generator). This allows your graphs to look pretty when the user switches the color variant.
 
 ## Examples
 

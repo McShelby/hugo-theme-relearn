@@ -32,7 +32,7 @@ The `openapi` shortcode displays your OpenAPI / Swagger specifications using the
 
 If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.
 
-Instead, open the [print preview](configuration/appearance/topbar/#print-support) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
+Instead, open the [print preview](configuration/appearance/topbar#print-support) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
 
 ### Parameter
 
@@ -71,7 +71,7 @@ You can force loading the Swagger UI library if no shortcode or codefence was us
 
 ### Setting a Specific Swagger UI Theme
 
-The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` variable in your [color variant stylesheet](configuration/appearance/generator/). This allows your specs to look pretty when the user switches the color variant.
+The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` variable in your [color variant stylesheet](configuration/appearance/generator). This allows your specs to look pretty when the user switches the color variant.
 
 ## Example
 

@@ -77,7 +77,7 @@ You are free to also call this shortcode from your own partials. In this case it
 
 Codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
-The [`tab` shortcode](shortcodes/tab/) is also capable of displaying code but with limited options.
+The [`tab` shortcode](shortcodes/tab) is also capable of displaying code but with limited options.
 
 ### Parameter
 

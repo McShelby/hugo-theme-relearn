@@ -5,7 +5,7 @@ options = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
 title = "Math"
 +++
 
-You can use [pure Markdown](content/markdown/#subscript-and-superscript) for writing simple math expressions.
+You can use [pure Markdown](content/markdown#subscript-and-superscript) for writing simple math expressions.
 
 If this is not enough, the `math` shortcode helps you rendering math and chemical formulae using the [MathJax](https://mathjax.org/) library.
 

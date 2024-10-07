@@ -79,7 +79,7 @@ Then, for each new page, append the _id_ of the language to the file.
 
 ## Configure Search
 
-You may want to take a look into [search configuration](configuration/sidebar/search/). It has some additional options for multilingual websites.
+You may want to take a look into [search configuration](configuration/sidebar/search). It has some additional options for multilingual websites.
 
 ## Disable Language Switching
 

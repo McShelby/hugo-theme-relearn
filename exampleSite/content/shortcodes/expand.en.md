@@ -49,7 +49,7 @@ That's some more text with a footnote.[^someid]
 {{% /tab %}}
 {{< /tabs >}}
 
-The [`notice` shortcode](shortcodes/notice/) is also capable of displaying expandable/collapsible sections of text but with color options.
+The [`notice` shortcode](shortcodes/notice) is also capable of displaying expandable/collapsible sections of text but with color options.
 
 ### Parameter
 
