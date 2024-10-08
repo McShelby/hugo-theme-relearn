@@ -1,6 +1,6 @@
 +++
 description = "Adding Custom Output Formats"
-title = "Custom Output Formats"
-weight = 5
+title = "Output Formats"
+weight = 6
 +++
 {{< piratify >}}

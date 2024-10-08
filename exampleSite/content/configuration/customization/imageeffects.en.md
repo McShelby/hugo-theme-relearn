@@ -1,7 +1,7 @@
 +++
 description = "How to extend image effects"
 options = ["imageEffects"]
-title = "Custom Image Effects"
+title = "Image Effects"
 weight = 3
 +++
 

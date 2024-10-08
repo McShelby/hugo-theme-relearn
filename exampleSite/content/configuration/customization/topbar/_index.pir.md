@@ -1,7 +1,7 @@
 +++
 description = "How to extend the topbar"
 options = ["editURL"]
-title = "Custom Topbarrr"
+title = "Topbarrr"
 weight = 4
 +++
 {{< piratify >}}

@@ -1,7 +1,7 @@
 +++
 description = "How to extend the topbar"
 options = ["editURL"]
-title = "Custom Topbar"
+title = "Topbar"
 weight = 4
 +++
 

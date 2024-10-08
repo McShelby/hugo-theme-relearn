@@ -49,4 +49,4 @@ If this option isn't set for a specific language, it will use these default valu
 
 ## Footer
 
-To change the menu footer, edit the `layouts/partials/menu-footer.html` file. Check out the [Partials section](configuration/modifications/partials) for more ways to customize your site.
+To change the menu footer, edit the `layouts/partials/menu-footer.html` file. Check out the [Partials section](configuration/customization/partials) for more ways to customize your site.

@@ -30,11 +30,11 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Advanced Functionality**
   - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/topbar/#print-support)
   - [Versatile search options: in-page, popup, and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search/)
-  - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/modifications/topbar/)
+  - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar/)
   - [Unlimited nested menu structure](https://mcshelby.github.io/hugo-theme-relearn/content/organization)
   - [Configurable menu shortcuts](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/shortcutmenu/)
   - Support for hidden pages
-  - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/configuration/modifications/taxonomy)
+  - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/taxonomy)
   - [Social media integration](https://mcshelby.github.io/hugo-theme-relearn/content/image/)
 
 - **Multilingual Support**
@@ -45,7 +45,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Enhanced Markdown Features**
   - [GitHub Flavored Markdown (GFM) support](https://mcshelby.github.io/hugo-theme-relearn/content/markdown)
   - [Support for Obsidian callouts](https://mcshelby.github.io/hugo-theme-relearn/content/markdown#obsidian-callouts)
-  - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/modifications/imageeffects)
+  - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/imageeffects)
 
 - **Rich Shortcode Library**
   - [Customizable marker badges](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/badge)

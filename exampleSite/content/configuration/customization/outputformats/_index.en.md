@@ -1,7 +1,7 @@
 +++
 description = "Adding Custom Output Formats"
-title = "Custom Output Formats"
-weight = 5
+title = "Output Formats"
+weight = 6
 +++
 
 In addition to the [output formats coming with the theme](configuration/sitemanagement/outputformats), you can create your own [output formats](https://gohugo.io/templates/output-formats/).

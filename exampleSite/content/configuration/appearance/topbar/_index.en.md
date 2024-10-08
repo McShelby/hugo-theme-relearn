@@ -1,11 +1,11 @@
 +++
 description = "Configure the site's topbar"
-options = ["breadcrumbSeparator", "disableBreadcrumb", "disableNextPrev", "disableRootBreadcrumb", "disableToc", "editURL"]
+options = ["disableBreadcrumb", "disableNextPrev", "disableToc", "editURL"]
 title = "Topbar"
 weight = 2
 +++
 
-This page is about how to configure the topbar using configuration options. If you want to add further buttons or functionality, [see this section](configuration/modifications/topbar).
+This page is about how to configure the topbar using configuration options. If you want to add further buttons or functionality, [see this section](configuration/customization/topbar).
 
 Your topbar contains the following elements. Some of them are configuarable:
 
@@ -32,15 +32,11 @@ Your topbar contains the following elements. Some of them are configuarable:
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableBreadcrumb=true` to hide the breadcrumb in the topbar.
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Further, you can override the breadcrumb separator by using `breadcrumbSeparator='/'`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.
+Further breadcrumbs settings can be found in the [content configuration section](configuration/content/titles).
 
 {{< multiconfig file=hugo >}}
 [params]
   disableBreadcrumb = true
-  disableRootBreadcrumb = true
-  breadcrumbSeparator = '/'
 {{< /multiconfig >}}
 
 ## Edit Button

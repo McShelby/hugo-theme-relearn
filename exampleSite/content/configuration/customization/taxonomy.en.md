@@ -2,8 +2,8 @@
 categories = ["taxonomy", "content"]
 description = "How to display custom taxonomies on your pages"
 tags = "tutorial"
-title = "Custom Taxonomies"
-weight = 6
+title = "Taxonomies"
+weight = 7
 +++
 
 This page explains how to show custom taxonomies on your pages.

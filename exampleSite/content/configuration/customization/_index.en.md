@@ -1,7 +1,7 @@
 +++
 alwaysopen = false
-description = "Modify files for advanced customization"
-title = "Modifications"
+description = "Customize files for advanced customization"
+title = "Customization"
 weight = 5
 +++
 
