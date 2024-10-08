@@ -7,7 +7,7 @@ weight = 4
 
 ## Opening Links
 
-By default, external links open in a new tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, external links open in a new tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 
 For example, this will open links in the same tab
 
@@ -34,7 +34,7 @@ This option also comes for the [include](shortcodes/include#enabling-link-warnin
 
 ## Patching the `relref` Shortcode
 
-While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may still use it.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may still use it.
 
 In configurations using a baseURL **with** a subdirectory **and** having `relativeURLs=false` (the default) Hugo’s standard `relref` implementation was failing.
 

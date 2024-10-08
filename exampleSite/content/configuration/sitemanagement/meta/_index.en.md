@@ -1,12 +1,14 @@
 +++
 description = "What site-wide meta nformation can be set"
+frontmatter = ["description"]
+options = ["author.email", "author.name"]
 title = "Meta Information"
 weight = 3
 +++
 
 ## Site Author Information
 
-The theme uses author details in various parts of your site, like RSS feeds and meta tags.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} The theme uses author details in various parts of your site, like RSS feeds and meta tags.
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -17,7 +19,7 @@ The theme uses author details in various parts of your site, like RSS feeds and 
 
 ## Site Description
 
-The theme shows a site description in various places, such as RSS feeds and meta tags. For this, it uses the `description` field from your home page's front matter.
+{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme shows a site description in various places, such as RSS feeds and meta tags. For this, it uses the `description` field from your home page's front matter.
 
 ## Social Media Images
 

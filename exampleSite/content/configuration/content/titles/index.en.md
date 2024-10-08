@@ -5,12 +5,26 @@ title = "Titles & Breadcrumbs"
 weight = 2
 +++
 
+## Breadcrumbs
+
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Further, you can override the breadcrumb separator by using `breadcrumbSeparator='/'`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can override the default breadcrumb separator by using `breadcrumbSeparator='/'`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default the term pages of a taxonomy will display the breadcrumb for each page. Set `disableTermBreadcrumbs=true` to remove the breadcrumb if the term pages look to cluttered.
 
 {{< multiconfig file=hugo >}}
 [params]
   disableRootBreadcrumb = true
   breadcrumbSeparator = '/'
+  disableTermBreadcrumbs = true
+{{< /multiconfig >}}
+
+## Titles
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can override the default title separator by using `titleSeparator='|'`.
+
+{{< multiconfig file=hugo >}}
+[params]
+  titleSeparator = '|'
 {{< /multiconfig >}}
