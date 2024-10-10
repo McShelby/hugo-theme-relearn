@@ -1,7 +1,7 @@
 +++
 description = "What site-wide meta nformation can be set"
 frontmatter = ["description"]
-options = ["author.email", "author.name"]
+options = ["author.email", "author.name", "linkTitle"]
 title = "Meta Information"
 weight = 3
 +++
@@ -15,6 +15,18 @@ weight = 3
   [params.author]
     name = 'Santa Claus'
     email = 'santa@example.com'
+{{< /multiconfig >}}
+
+## Site Title
+
+The `title` will be used in meta information of your HTML.
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} It will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitel`.
+
+{{< multiconfig file=hugo >}}
+title = 'Hugo Relearn Theme'
+[params]
+  linkTitle = "Relearn"
 {{< /multiconfig >}}
 
 ## Site Description
