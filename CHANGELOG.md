@@ -2,7 +2,7 @@
 
 ## 6.4.1 (2024-10-11)
 
-[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#640)
+[★ What's new in this release ★](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#640)
 
 ### Fixes
 
