@@ -21,7 +21,7 @@ All shipped designs use the theme's framework from `themes/hugo-theme-learn/layo
 
 ## Using a Page Design
 
-Regardless of shipped or custom page design, you are [using them](authoring/designs) in the same way.
+Regardless of shipped or custom page design, you are [using them](authoring/frontmatter/designs) in the same way.
 
 ## Creating a Page Designs
 

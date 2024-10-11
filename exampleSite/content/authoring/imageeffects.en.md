@@ -2,7 +2,7 @@
 description = "How to apply graphical effects to your images"
 frontmatter = ["imageEffects"]
 title = "Image Effects"
-weight = 7
+weight = 4
 +++
 
 The theme offers [graphical effects](authoring/markdown#image-effects) for your linked images.

@@ -1,6 +1,6 @@
 +++
 tags = ["reference"]
 title = "Navigation Menu"
-weight = 4
+weight = 2
 +++
 {{< piratify >}}

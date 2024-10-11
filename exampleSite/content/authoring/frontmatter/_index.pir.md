@@ -1,7 +1,7 @@
 +++
-description = "All front matter for the Relearn theme"
-tags = ["reference"]
-title = "Front Matter Reference"
-weight = 8
+alwaysopen = false
+description = "All things front matter"
+title = "Front Matter"
+weight = 2
 +++
 {{< piratify >}}

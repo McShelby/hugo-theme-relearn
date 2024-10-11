@@ -1,7 +1,7 @@
 +++
 description = "Per page behavior of the navigation menu"
 title = "Navigation Menu"
-weight = 4
+weight = 2
 +++
 
 ## Custom Title for Menu Entries
