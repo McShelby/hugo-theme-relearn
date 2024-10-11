@@ -89,8 +89,6 @@ In addition, you can merge settings for each individual graph through [diagram d
 
 In case you want do use a different version of the Mermaid library but don't want to override the shipped version, you can set `customMermaidURL` to the URL of the external Mermaid library.
 
-#### Example
-
 {{< multiconfig file=hugo >}}
 [params]
 customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"

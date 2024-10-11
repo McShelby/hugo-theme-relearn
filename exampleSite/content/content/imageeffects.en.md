@@ -1,12 +1,15 @@
 +++
-description = "How to extend image effects"
+description = "How to apply graphical effects to your images"
 frontmatter = ["imageEffects"]
-options = ["imageEffects"]
-title = "Custom Image Effects"
-weight = 3
+title = "Image Effects"
+weight = 7
 +++
 
-The theme supports non-standard [image effects](content/markdown#image-effects).
+The theme offers [graphical effects](content/markdown#image-effects) for your linked images.
+
+You can [define additional custom image effects](configuration/customization/imageeffects) in your configuration.
+
+The default image effects shipped with the theme are
 
 | Name     | Description                                                       |
 | -------- | ----------------------------------------------------------------- |
@@ -15,32 +18,33 @@ The theme supports non-standard [image effects](content/markdown#image-effects).
 | lightbox | The image will be clickable to show it enlarged                   |
 | shadow   | Draws a shadow around the image to make it appear hovered/glowing |
 
-As [described](content/markdown#image-effects), you can add this to the URL query parameter, but this may be cumbersome to be done consistently for the whole page. Instead, you can configure the defaults in your `hugo.toml` as well as overriding these default in the pages front matter.
+As [described](content/markdown#image-effects), one way to use them is to add them as URL query parameter.
 
-Explicitly set URL query parameter will override the defaults in effect for a page or your site.
+This can become cumbersome to be done consistently for the whole site. Instead, you can configure the defaults in your `hugo.toml` as well as overriding these defaults in a page's front matter.
+
+Explicitly set URL query parameter will override the defaults set for a page or your site.
 
 Without any settings in your `hugo.toml` `imageEffects` defaults to
 
-{{< multiconfig file=hugo >}}
-[params]
-  [params.imageEffects]
-    border = false
-    lazy = true
-    lightbox = true
-    shadow = false
+{{< multiconfig >}}
+[imageEffects]
+  border = false
+  lazy = true
+  lightbox = true
+  shadow = false
 {{< /multiconfig >}}
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter by eg.
+{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter for example by
 
 {{< multiconfig fm=true >}}
 [imageEffects]
-  border = true
+  lazy = false
 {{< /multiconfig >}}
 
 Or by explicitly override settings by URL query parameter
 
 ````md {title="URL"}
-![Minion](https://octodex.github.com/images/minion.png?lightbox=false&bg-white=true)
+![Minion](https://octodex.github.com/images/minion.png?lazy=true&lightbox=false)
 ````
 
 The settings applied to the above image would be
@@ -50,30 +54,4 @@ border = true
 lazy = true
 lightbox = false
 shadow = false
-bg-white = true
 {{< /multiconfig >}}
-
-This ends up in the following HTML where the parameter are converted to CSS classes.
-
-````html {title="HTML"}
-<img src="https://octodex.github.com/images/minion.png?lightbox=false&bg-white=true" loading="lazy" alt="Minion" class="bg-white border lazy nolightbox noshadow">
-````
-
-
-## Extending
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} As you can see in the above example, the `bg-white` parameter is not initially supported in the themes default settings. The theme allows you to define arbitrary parameter by just adding them to the URL query parameter or set them in your page's front matter or `hugo.toml`.
-
-{{< multiconfig file=hugo >}}
-[params]
-  [params.imageEffects]
-    bg-white = true
-    border = false
-    lazy = true
-    lightbox = true
-    shadow = false
-{{< /multiconfig >}}
-
-{{% notice note %}}
-If no extended parameter like `bg-white` in the example is set on the URL, a `class="nobg-white"` in the HTML will only be generated if a default value was set in the page's front matter or `hugo.toml` .
-{{% /notice %}}

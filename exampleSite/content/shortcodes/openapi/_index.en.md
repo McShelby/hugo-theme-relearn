@@ -56,8 +56,6 @@ Please note that this can not resolve files inside of your `static` directory. T
 
 In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
 
-#### Example
-
 {{< multiconfig file=hugo >}}
 [params]
 customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"

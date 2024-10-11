@@ -1,5 +1,5 @@
 +++
-description = "Your site's directory structure"
+description = "Your content's directory structure"
 title = "Directory Structure"
 weight = 1
 +++

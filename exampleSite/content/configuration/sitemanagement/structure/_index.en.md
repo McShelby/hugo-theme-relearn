@@ -1,6 +1,6 @@
 +++
 description = "Your site's directory structure"
-title = "Basic Structure"
+title = "Directory Structure"
 weight = 1
 +++
 
@@ -8,7 +8,7 @@ If you've followed the [Getting Started](introduction/quickstart) guide, your di
 
 ````plaintext
 ├── content
-│   ├── basics
+│   ├── introduction
 │   │   ├── first-content
 |   |   |   └── _index.md
 │   │   ├── second-content

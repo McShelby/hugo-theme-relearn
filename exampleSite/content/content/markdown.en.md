@@ -1,7 +1,8 @@
 +++
-tags = ["Content"]
+description = "Reference of Commonmark and Markdown extensions"
+tags = ["reference"]
 title = "Markdown Syntax"
-weight = 3
+weight = 6
 +++
 
 Let's face it: Writing content for the web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.

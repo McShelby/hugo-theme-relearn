@@ -33,7 +33,7 @@ Edit `hugo.toml` and add `[[menu.shortcuts]]` entries for each link:
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
-  name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
+  name = "<i class='fa-fw fab fa-github'></i> GitHub Repo"
   identifier = "ds"
   url = "https://github.com/McShelby/hugo-theme-relearn"
   weight = 10
@@ -72,7 +72,7 @@ For multilingual sites, set different menus for each language in `hugo.toml`:
     languageName = "English"
 
   [[languages.en.menu.shortcuts]]
-    name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
+    name = "<i class='fa-fw fab fa-github'></i> GitHub Repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10
@@ -104,7 +104,7 @@ For multilingual sites, set different menus for each language in `hugo.toml`:
     languageName = "Arrr! Pirrratish"
 
   [[languages.pir.menu.shortcuts]]
-    name = "<i class='fa-fw fab fa-github'></i> GitHub repo"
+    name = "<i class='fa-fw fab fa-github'></i> GitHub Repo"
     identifier = "ds"
     url = "https://github.com/McShelby/hugo-theme-relearn"
     weight = 10

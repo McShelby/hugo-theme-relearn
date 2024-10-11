@@ -1,6 +1,6 @@
 +++
 alwaysopen = false
-description = "Configure the sidebar"
+description = "Configure all things sidebar"
 title = "Sidebar"
 weight = 3
 +++

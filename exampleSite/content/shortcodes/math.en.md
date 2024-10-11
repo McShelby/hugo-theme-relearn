@@ -73,8 +73,6 @@ You can overwrite the settings by providing a JSON object in `mathJaxInitialize`
 
 Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.
 
-#### Example
-
 {{< multiconfig file=hugo >}}
 [params]
 mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \"inlineMath\": [[\"\\(\", \"\\)\"], [\"@\", \"@\"]], displayMath: [[\"\\[\", \"\\]\"], [\"@@\", \"@@\"]] }, \"options\": { \"enableMenu\": false }"
@@ -85,8 +83,6 @@ mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped MathJax library by default.
 
 In case you want do use a different version of the MathJax library but don't want to override the shipped version, you can set `customMathJaxURL` to the URL of the external MathJax library.
-
-#### Example
 
 {{< multiconfig file=hugo >}}
 [params]
