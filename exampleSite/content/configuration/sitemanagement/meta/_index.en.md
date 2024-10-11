@@ -21,7 +21,7 @@ weight = 3
 
 The `title` will be used in meta information of your HTML.
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} It will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitel`.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} It will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
 
 {{< multiconfig file=hugo >}}
 title = 'Hugo Relearn Theme'
