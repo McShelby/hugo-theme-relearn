@@ -1,5 +1,15 @@
 # Changelog
 
+## 6.4.1 (2024-10-11)
+
+[What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#640)
+
+### Fixes
+
+- [**bug**] highlight: remove additional newlines from code if copied from cursor selection [#925](https://github.com/McShelby/hugo-theme-relearn/issues/925)
+
+---
+
 ## 6.4.0 (2024-09-12)
 
 [What's new in this release](https://mcshelby.github.io/hugo-theme-relearn/basics/migration/#640)
@@ -103,7 +113,7 @@
 - [**task**] theme: remove special cases for LanguageCode [#861](https://github.com/McShelby/hugo-theme-relearn/issues/861)
 - [**task**] link: adjust to Hugo's build-in code [#858](https://github.com/McShelby/hugo-theme-relearn/issues/858)
 - [**task**] image: adjust to Hugo's build-in code [#857](https://github.com/McShelby/hugo-theme-relearn/issues/857)
-- [**task**] opengraph: sync to Hugo’s implementation [#856](https://github.com/McShelby/hugo-theme-relearn/issues/856)
+- [**task**] opengraph: sync to Hugo's implementation [#856](https://github.com/McShelby/hugo-theme-relearn/issues/856)
 - [**task**] i18n: improve file naming [#848](https://github.com/McShelby/hugo-theme-relearn/issues/848)
 
 ---
@@ -1374,7 +1384,7 @@
 
 ### Fixes
 
-- [**bug**] favicon: fix URL if site resides in subfolder [#302](https://github.com/McShelby/hugo-theme-relearn/issues/302)
+- [**bug**] favicon: fix URL if site resides in subdirectory [#302](https://github.com/McShelby/hugo-theme-relearn/issues/302)
 - [**bug**] code: show copy-to-clipboard marker for blocklevel code [#298](https://github.com/McShelby/hugo-theme-relearn/issues/298)
 - [**bug**] menu: make active expander visible on hover [#297](https://github.com/McShelby/hugo-theme-relearn/issues/297)
 - [**bug**] print: disable arrow navigation [#294](https://github.com/McShelby/hugo-theme-relearn/issues/294)
@@ -1935,7 +1945,6 @@
 - [**feature**][**change**] theme: simplify stylesheet for color variants [#107](https://github.com/McShelby/hugo-theme-relearn/issues/107)
 - [**feature**] hidden pages: remove from RSS feed, JSON, taxonomy etc [#102](https://github.com/McShelby/hugo-theme-relearn/issues/102)
 - [**feature**] theme: announce alternative content in header [#101](https://github.com/McShelby/hugo-theme-relearn/issues/101)
-- [**feature**] menu: frontmatter option to change sort predicate [#98](https://github.com/McShelby/hugo-theme-relearn/issues/98)
 - [**feature**] menu: frontmatter option to change sort predicate [#98](https://github.com/McShelby/hugo-theme-relearn/issues/98)
 - [**feature**] menu: add default setting for menu expansion [#97](https://github.com/McShelby/hugo-theme-relearn/issues/97)
 - [**feature**] theme: improve print style [#93](https://github.com/McShelby/hugo-theme-relearn/issues/93)

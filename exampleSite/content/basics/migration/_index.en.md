@@ -18,7 +18,7 @@ This document shows you what's new in the latest release and flags it with one o
 
 ---
 
-## 6.4.0 (2024-09-12) {#640}
+## 6.4.0 (2024-10-11) {#640}
 
 - {{% badge style="note" title=" " %}}Change{{% /badge %}} If you now display a single code block in a `notice` box, its [margin and border will be removed](shortcodes/notice#code-with-collapsed-colored-borders) so only the colored notice border is visible.
 
