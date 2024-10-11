@@ -5,7 +5,7 @@ title = "Image Effects"
 weight = 7
 +++
 
-The theme offers [graphical effects](content/markdown#image-effects) for your linked images.
+The theme offers [graphical effects](authoring/markdown#image-effects) for your linked images.
 
 You can [define additional custom image effects](configuration/customization/imageeffects) in your configuration.
 
@@ -18,7 +18,7 @@ The default image effects shipped with the theme are
 | lightbox | The image will be clickable to show it enlarged                   |
 | shadow   | Draws a shadow around the image to make it appear hovered/glowing |
 
-As [described](content/markdown#image-effects), one way to use them is to add them as URL query parameter.
+As [described](authoring/markdown#image-effects), one way to use them is to add them as URL query parameter.
 
 This can become cumbersome to be done consistently for the whole site. Instead, you can configure the defaults in your `hugo.toml` as well as overriding these defaults in a page's front matter.
 

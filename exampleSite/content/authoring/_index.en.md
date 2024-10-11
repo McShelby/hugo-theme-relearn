@@ -1,6 +1,6 @@
 +++
 menuPre = "<i class='fa-fw fab fa-markdown'></i> "
-title = "Content"
+title = "Authoring"
 type = "chapter"
 weight = 3
 +++

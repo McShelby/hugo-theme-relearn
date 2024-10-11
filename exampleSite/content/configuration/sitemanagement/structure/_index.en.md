@@ -8,12 +8,12 @@ If you've followed the [Getting Started](introduction/quickstart) guide, your di
 
 ````plaintext
 ├── content
-│   ├── introduction
-│   │   ├── first-content
+│   ├── first-chapter
+│   │   ├── first-page
 |   |   |   └── _index.md
-│   │   ├── second-content
-|   |   |   └── _index.md
-│   │   └── third-content.md
+│   │   ├── second-page
+|   |   |   └── index.md
+│   │   └── third-page.md
 │   └── _index.md
 ├── themes
 │   └── hugo-theme-relearn

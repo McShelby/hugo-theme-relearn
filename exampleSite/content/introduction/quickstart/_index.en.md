@@ -84,7 +84,7 @@ Start by making a home page
 hugo new --kind home _index.md
 ````
 
-The new home page file `content/_index.md` has two parts: the page info (like `title`) at the top, called [front matter](https://gohugo.io/content-management/front-matter/), and the page content below.
+The new home page file `authoring/_index.md` has two parts: the page info (like `title`) at the top, called [front matter](https://gohugo.io/content-management/front-matter/), and the page content below.
 
 ## Create your First Chapter Page
 
@@ -93,19 +93,19 @@ Chapters are top-level pages that contain other pages. They have a special layou
 Make your first chapter page
 
 ````shell
-hugo new --kind chapter introduction/_index.md
+hugo new --kind chapter first-chapter/_index.md
 ````
 
-The new file `content/introduction/_index.md` has a `weight` number in the front matter. This sets the chapter's subtitle and its order in the menu.
+The new file `content/first-chapter/_index.md` has a `weight` number in the front matter. This sets the chapter's subtitle and its order in the menu.
 
 ## Create your First Content Pages
 
 Now make content pages inside the chapter. Here are three ways to do this
 
 ````shell
-hugo new introduction/first-content/_index.md
-hugo new introduction/second-content/index.md
-hugo new introduction/third-content.md
+hugo new first-chapter/first-page/_index.md
+hugo new first-chapter/second-page/index.md
+hugo new first-chapter/third-page.md
 ````
 
 Hugo treats these files differently based on their file names. Learn more in [Hugo's guide](https://gohugo.io/content-management/).
@@ -144,4 +144,4 @@ Your site is now fully functional.
 
 You can continue [configuring your site](configuration) to your needs.
 
-Or just start [writing content](content) and learn what's possible.
+Or just start [authoring content](authoring) and discover what's possible.

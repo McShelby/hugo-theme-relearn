@@ -60,15 +60,15 @@ Here's how to make your site multilingual using [translations by file name](http
 
     ````plaintext
     ├── content
-    │   ├── basics
-    │   │   ├── first-content
+    │   ├── first-chapter
+    │   │   ├── first-page
     |   |   |   ├── _index.en.md
     |   |   |   └── _index.pir.md
-    │   │   ├── second-content
-    |   |   |   ├── _index.en.md
-    |   |   |   └── _index.pir.md
-    │   │   ├── third-content.en.md
-    │   │   └── third-content.pir.md
+    │   │   ├── second-page
+    |   |   |   ├── index.en.md
+    |   |   |   └── index.pir.md
+    │   │   ├── third-page.en.md
+    │   │   └── third-page.pir.md
     │   ├── _index.en.md
     │   └── _index.pir.md
     ├── themes

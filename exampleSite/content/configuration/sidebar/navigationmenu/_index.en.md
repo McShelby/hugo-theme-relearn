@@ -5,7 +5,7 @@ title = "Navigation Menu"
 weight = 4
 +++
 
-The navigation menu is automatically created from [your content files](content/structure).
+The navigation menu is automatically created from [your content files](authoring/structure).
 
 All configurations options apply to all pages but can be changed in each page's front matter.
 
@@ -18,7 +18,7 @@ All configurations options apply to all pages but can be changed in each page's 
   alwaysopen = true
 {{< /multiconfig >}}
 
-See the [user guide](content/navigationmenu#expand-state-of-nested-sections) how this setting will be applied.
+See the [user guide](authoring/navigationmenu#expand-state-of-nested-sections) how this setting will be applied.
 
 ## Expander for Nested Sections
 

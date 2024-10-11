@@ -10,7 +10,7 @@ By default, the Relearn theme will use a page's `title` front matter for the men
 
 But a page's title has to be descriptive on its own while the menu is a hierarchy. Use `linkTitle` to shorten the text of the menu entry.
 
-For example (for a page named `content/install/linux.md`):
+For example (for a page named `install/linux.md`):
 
 {{< multiconfig fm=true >}}
 title = "Install on Linux"
@@ -70,9 +70,9 @@ You can see this feature in action on the example page for [children shortcode](
 
 You may want to structure your pages in a hierarchical way but don't want to generate pages for those sections? The theme got you covered.
 
-To stay with the [initial example](content/structure): Suppose you want `introduction/first-content` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
+To stay with the [initial example](authoring/structure): Suppose you want `first-chapter/first-page` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
 
-For this, open `content/introduction/first-content/_index.md` and add the following front matter
+For this, open `content/first-chapter/first-page/_index.md` and add the following front matter
 
 {{< multiconfig fm=true >}}
 collapsibleMenu = true

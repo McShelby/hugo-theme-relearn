@@ -31,7 +31,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/topbar#print-support)
   - [Versatile search options: in-page, popup, and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search)
   - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar)
-  - [Nested navigation menu](https://mcshelby.github.io/hugo-theme-relearn/content/structure)
+  - [Nested navigation menu](https://mcshelby.github.io/hugo-theme-relearn/authoring/structure)
   - [Configurable menu shortcuts](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/shortcutmenu)
   - [Support for hidden pages](https://mcshelby.github.io/hugo-theme-relearn/configuration/content/hidden)
   - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/taxonomy)
@@ -43,8 +43,8 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Multilingual content search capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search#mixed-language-support)
 
 - **Enhanced Markdown Features**
-  - [GitHub Flavored Markdown (GFM) support](https://mcshelby.github.io/hugo-theme-relearn/content/markdown)
-  - [Support for Obsidian callouts](https://mcshelby.github.io/hugo-theme-relearn/content/markdown#obsidian-callouts)
+  - [GitHub Flavored Markdown (GFM) support](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown)
+  - [Support for Obsidian callouts](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown#obsidian-callouts)
   - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/imageeffects)
 
 - **Rich Shortcode Library**
