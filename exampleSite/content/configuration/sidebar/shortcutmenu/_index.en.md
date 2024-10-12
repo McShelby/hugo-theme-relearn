@@ -2,7 +2,7 @@
 description = "Add additional shortcut links to the sidebar"
 options = ["disableShortcutsTitle"]
 title = "Shortcut Menu"
-weight = 5
+weight = 4
 +++
 
 The sidebar contains your content's navigation menu, but you can also add extra menu entries or shortcuts in a separate section.

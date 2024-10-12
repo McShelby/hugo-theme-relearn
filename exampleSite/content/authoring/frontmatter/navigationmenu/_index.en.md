@@ -18,11 +18,11 @@ If `alwaysopen=false` for any given entry, its children will not be shown in the
 
 The theme generates the expand state based on the following rules:
 
-- all parent entries of the active page including their visible siblings are shown regardless of any settings
+- all parent entries of the active page including their [visible](authoring/meta#hidden) siblings are shown regardless of any settings
 - immediate child entries of the active page are shown regardless of any settings
 - if not overridden, all other first level entries behave like they would have been given `alwaysopen=false`
 - if not overridden, all other entries of levels besides the first behave like they would have been given `alwaysopen=true`
-- all visible entries show their immediate child entries if `alwaysopen=true`; this proceeds recursively
+- all [visible](authoring/meta#hidden) entries show their immediate child entries if `alwaysopen=true`; this proceeds recursively
 - all remaining entries are not shown
 
 ## Expander for Nested Sections
@@ -51,7 +51,7 @@ title = 'My page'
 weight = 5
 {{< /multiconfig >}}
 
-### Other
+### By Other
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using the `weight` for sorting can get cumbersome if you, for example, just want to sort alphabetically. Each time you add a new page in the set of pages, you may have to renumber some or all of them to make space for the new page.
 
@@ -65,7 +65,7 @@ By default, the Relearn theme will use a page's `title` front matter for the men
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} But a page's title has to be descriptive on its own while the menu is a hierarchy. Use `linkTitle` to shorten the text of the menu entry.
 
-For example (for a page named `install/linux.md`):
+For example for a page named `install/linux.md`
 
 {{< multiconfig fm=true >}}
 title = 'Install on Linux'
