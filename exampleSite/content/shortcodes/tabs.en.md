@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Show content in tabbed views"
 title = "Tabs"
 +++

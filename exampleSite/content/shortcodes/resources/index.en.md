@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "List resources contained in a page bundle"
 title = "Resources"
 [[resources]]

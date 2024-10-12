@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Show content in a single tab"
 title = "Tab"
 +++

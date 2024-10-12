@@ -1,4 +1,5 @@
 +++
+categories = ["howto"]
 description = "Configure the topbar"
 frontmatter = ["disableBreadcrumb", "disableNextPrev", "disableToc", "editURL"]
 options = ["disableBreadcrumb", "disableNextPrev", "disableToc", "editURL"]

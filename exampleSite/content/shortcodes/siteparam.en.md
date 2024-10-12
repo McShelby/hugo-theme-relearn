@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Get value of site params"
 title = "SiteParam"
 +++

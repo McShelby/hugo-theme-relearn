@@ -1,4 +1,5 @@
 +++
+categories = ["reference"]
 menuPre = "<i class='fa-fw fas fa-shapes'></i> "
 ordersectionsby = "title"
 title = "Shorrrtcodes"

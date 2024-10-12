@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Nice icons for your page"
 title = "Icon"
 +++

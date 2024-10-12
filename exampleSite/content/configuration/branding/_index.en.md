@@ -1,5 +1,6 @@
 +++
 alwaysopen = false
+categories = ["reference"]
 description = "Change colors and logos of your site"
 title = "Branding"
 weight = 2

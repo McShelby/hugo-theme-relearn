@@ -1,4 +1,5 @@
 +++
+categories = ["explanation", "howto"]
 description = "Extending page designs"
 title = "Page Designs"
 weight = 5

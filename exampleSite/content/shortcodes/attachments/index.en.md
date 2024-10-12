@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "List of files attached to a page"
 hidden = "true"
 title = "Attachments"

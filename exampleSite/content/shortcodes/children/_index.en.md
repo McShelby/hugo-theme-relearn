@@ -1,5 +1,6 @@
 +++
 alwaysopen = false
+categories = ["howto", "reference"]
 frontmatter = ["ordersectionsby"]
 options = ["ordersectionsby"]
 description = "List the child pages of a page"

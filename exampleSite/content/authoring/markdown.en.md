@@ -1,6 +1,6 @@
 +++
 description = "Reference of CommonMark and Markdown extensions"
-tags = ["reference"]
+categories = ["howto", "reference"]
 title = "Markdown Syntax"
 weight = 4
 +++

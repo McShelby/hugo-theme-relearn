@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Generate diagrams and flowcharts from text"
 frontmatter = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoom"]
 options = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoom"]

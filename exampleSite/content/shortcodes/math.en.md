@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Beautiful math and chemical formulae"
 frontmatter = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
 options = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]

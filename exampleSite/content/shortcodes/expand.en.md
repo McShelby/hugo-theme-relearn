@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Expandable/collapsible sections of text"
 title = "Expand"
 +++

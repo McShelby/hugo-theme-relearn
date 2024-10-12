@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "Marker badges to display in your text"
 title = "Badge"
 +++

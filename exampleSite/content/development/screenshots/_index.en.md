@@ -1,4 +1,5 @@
 +++
+categories = ["explanation", "howto"]
 description = "Recipe to create various documentation screenshots"
 title = "Screenshots"
 +++

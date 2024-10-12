@@ -1,4 +1,5 @@
 +++
+categories = ["howto", "reference"]
 description = "List Rrresources shorrrtcode contained in a plank bundle"
 title = "Resources"
 [[resources]]
