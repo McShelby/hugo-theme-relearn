@@ -4,6 +4,10 @@ title = "Partials"
 weight = 1
 +++
 
+## Usable Partials
+
+You can call other partials from `themes/hugo-relearn-themes/` besides those in `themes/hugo-relearn-themes/layouts/partials/_relearn`. However, using partials not mentioned as customizable below might make future updates more challenging.
+
 ## Customizable Partials
 
 The Relearn theme allows you to customize various parts of the theme by overriding partials. This makes the theme highly configurable.
@@ -39,7 +43,3 @@ Here's a list of partials you can safely override:
 - `layouts/partials/menu-footer.html`: The footer of the left menu.
 
 You can override other partials from `themes/hugo-relearn-themes/`, but be careful as this might make future updates more difficult.
-
-## Usable Partials
-
-You can call other partials from `themes/hugo-relearn-themes/` besides those in `themes/hugo-relearn-themes/layouts/partials/_relearn`. However, using partials not mentioned above might make future updates more challenging.

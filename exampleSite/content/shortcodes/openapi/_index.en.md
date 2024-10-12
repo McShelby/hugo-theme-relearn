@@ -50,6 +50,8 @@ If not set or empty, any unresolved link is written as given into the resulting 
 
 Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
+Link warnings are also available for [images & links](configuration/content/linking#enabling-link-and-image-link-warnings) and the [include](shortcodes/include#enabling-link-warnings) shortcode.
+
 ### Loading an External Version of the Swagger UI Library
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.

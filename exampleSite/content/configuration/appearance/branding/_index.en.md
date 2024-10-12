@@ -67,7 +67,7 @@ You can override the default with `themeVariantAuto`:
 
 The theme offers an advanced way to configure theme variants and all of the aspects above inside of a single configuration item. This comes with some features previously unsupported.
 
-Like with the [multiple variants](#multiple-variants) option, you are defining your theme variants in an array but now _not by simple strings_ **but in a table with suboptions**.
+Like with the [multiple variants](#multiple-variants) option, you are defining your theme variants in an array but now in a table with suboptions.
 
 Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
 
@@ -204,6 +204,8 @@ If you need to change this default behavior, create a new file `layouts/partials
 ````
 
 ## Change the Logo
+
+By default, only your site title will be shown at the top of the menu. You can [configure this](configuration/sitemanagement/meta#menu-title), or override the logo partial.
 
 Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
 

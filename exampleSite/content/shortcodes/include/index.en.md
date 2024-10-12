@@ -55,6 +55,8 @@ If not set or empty, any unresolved link is written as given into the resulting 
 
 Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
+Link warnings are also available for [images & links](configuration/content/linking#enabling-link-and-image-link-warnings) and the [openapi](shortcodes/openapi#enabling-link-warnings) shortcode.
+
 ## Examples
 
 ### Arbitrary Content

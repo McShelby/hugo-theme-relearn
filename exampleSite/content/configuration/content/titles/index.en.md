@@ -7,6 +7,8 @@ weight = 2
 
 ## Breadcrumbs
 
+Learn how to turn off the breadcrumbs completely and further [configure the topbar](configuration/appearance/topbar).
+
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can override the default breadcrumb separator by using `breadcrumbSeparator='/'`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.

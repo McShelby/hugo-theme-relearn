@@ -24,7 +24,7 @@ If not set or empty, any unresolved link is written as given into the resulting 
 
 Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
-This option also comes for the [include](shortcodes/include#enabling-link-warnings) and [openapi](shortcodes/openapi#enabling-link-warnings) shortcodes.
+Link warnings are also available for the [include](shortcodes/include#enabling-link-warnings) and [openapi](shortcodes/openapi#enabling-link-warnings) shortcodes.
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -36,7 +36,7 @@ This option also comes for the [include](shortcodes/include#enabling-link-warnin
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may still use it.
 
-In configurations using a baseURL **with** a subdirectory **and** having `relativeURLs=false` (the default) Hugo’s standard `relref` implementation was failing.
+In configurations using a **baseURL** with a **subdirectory** and having **relativeURLs=false** (the default), Hugo’s standard `relref` implementation is failing.
 
 To work around this, you can activate a patched version of the shortcode by setting `disableDefaultRelref=true`.
 

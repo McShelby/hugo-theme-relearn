@@ -46,14 +46,17 @@ Here's how to make your site multilingual using [translations by file name](http
 
     [languages]
       [languages.en]
-        title = "My Website"
         weight = 1
         languageName = "English"
+        languageCode = "en"
+        title = "My Website"
 
       [languages.pir]
-        title = "Arrr, my Website"
         weight = 2
         languageName = "Pirrratish"
+        languageCode = "art-x-pir"
+        languageDirection = "rtl"
+        title = "Arrr, my Website"
     {{< /multiconfig >}}
 
 2. Duplicate your content files and add language codes to their file names:
@@ -83,7 +86,7 @@ The theme also support [translations by content directory](https://gohugo.io/con
 
 ## Search Settings
 
-Check the [search configuration](configuration/sidebar/search) for multilingual options.
+Check the [search configuration](configuration/sidebar/search#mixed-language-support) for multilingual options.
 
 ## Turn Off Language Switching
 
