@@ -110,11 +110,20 @@ If used together with wrapping of long lines, use this recommended settings. Oth
 
 You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameter) individually for each code block.
 
+{{< multiconfig fm=true >}}
+highlightWrap=false
+{{< /multiconfig >}}
+
 ### Copy to Clipboard for Inline Code
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default inline code has a button to copy the code to the clipboard.
 
 If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
+
+{{< multiconfig file=hugo >}}
+[params]
+  disableInlineCopyToClipBoard = true
+{{< /multiconfig >}}
 
 ### Copy to Clipboard for Block Code
 
@@ -122,9 +131,14 @@ If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
 
 Set `disableHoverBlockCopyToClipBoard=true` to disable the hover effect and always show the button.
 
+{{< multiconfig file=hugo >}}
+[params]
+  disableHoverBlockCopyToClipBoard = true
+{{< /multiconfig >}}
+
 ### Setting a Specific Color Scheme
 
-You can configure the color style used for code blocks in your [color variants stylesheet](configuration/appearance/branding#change-syntax-highlighting) file using the `--CODE-theme` variable. This requires further configuration as described in the above link.
+You can configure the color style used for code blocks in your [color variants stylesheet](configuration/branding/modules#change-syntax-highlighting) file using the `--CODE-theme` variable. This requires further configuration as described in the above link.
 
 ## Examples
 

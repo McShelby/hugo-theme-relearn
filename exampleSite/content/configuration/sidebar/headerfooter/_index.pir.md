@@ -1,6 +1,6 @@
 +++
 description = "Configure the header and footer"
-options = ["disableLandingPageButton", "landingPageName", "showVisitedLinks"]
+options = ["disableLandingPageButton", "landingPageName", "linkTitle", "showVisitedLinks"]
 title = "Header & Footer"
 weight = 2
 +++

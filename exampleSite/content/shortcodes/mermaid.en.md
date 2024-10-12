@@ -73,6 +73,10 @@ By default this is disabled. Set `mermaidZoom=true` to enable it.
 
 Individual settings of a graphs [`zoom` parameter](#parameter) have precedence over the page's front matter and configuration options in that order.
 
+{{< multiconfig fm=true >}}
+mermaidZoom = true
+{{< /multiconfig >}}
+
 ### Providing Initialization Options for the Mermaid Library
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library is configured with default settings for initialization.
@@ -83,15 +87,18 @@ Keep in mind that initialization settings of your pages front matter overwrite a
 
 In addition, you can merge settings for each individual graph through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives) on top of the settings of your page's front matter or configuration options.
 
+{{< multiconfig fm=true >}}
+mermaidInitialize = '{ "securityLevel": "loose" }'
+{{< /multiconfig >}}
+
 ### Loading an External Version of the Mermaid Library
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped Mermaid library by default.
 
 In case you want do use a different version of the Mermaid library but don't want to override the shipped version, you can set `customMermaidURL` to the URL of the external Mermaid library.
 
-{{< multiconfig file=hugo >}}
-[params]
-customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
+{{< multiconfig fm=true >}}
+customMermaidURL = 'https://unpkg.com/mermaid/dist/mermaid.min.js'
 {{< /multiconfig >}}
 
 ### Force Loading of the Mermaid Library
@@ -100,9 +107,13 @@ customMermaidURL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
 
 You can force loading the Mermaid library if no shortcode or codefence was used by setting `mermaid.force=true`. If a shortcode or codefence was found, this option has no effect. This comes handy in case you are using scripting to render a graph.
 
+{{< multiconfig fm=true >}}
+mermaid.force = true
+{{< /multiconfig >}}
+
 ### Setting a Specific Mermaid Theme
 
-While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value using the `--MERMAID-theme` variable in your [color variant stylesheet](configuration/appearance/generator). This allows your graphs to look pretty when the user switches the color variant.
+While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value using the `--MERMAID-theme` variable in your [color variant stylesheet](configuration/branding/generator). This allows your graphs to look pretty when the user switches the color variant.
 
 ## Examples
 

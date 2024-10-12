@@ -1,13 +1,13 @@
 +++
-description = "Learn how to customize your site's colors, fonts, favicon, and logo"
+description = "Learn how to customize your site's colors"
 options = ["themeVariant"]
-title = "Branding"
-weight = 1
+title = "Colors"
+weight = 2
 +++
 
 The Relearn theme offers color variants to change your site's appearance. Each color variant contains of a CSS file and optional settings in your `hugo.toml`.
 
-You can use the pre-made variants, [customize them](#modifying-variants), or create your own. The [interactive variant generator](configuration/appearance/generator) can help you with this.
+You can use the pre-made variants, [customize them](#modifying-variants), or create your own. The [interactive variant generator](configuration/branding/generator) can help you with this.
 
 Once set up in `hugo.toml`, you can switch variants using the selector at the bottom of the menu.
 
@@ -25,7 +25,7 @@ Set `themeVariant` to your theme CSS file name:
 
 {{< multiconfig file=hugo >}}
 [params]
-  themeVariant = "relearn-light"
+  themeVariant = 'relearn-light'
 {{< /multiconfig >}}
 
 Place your theme file in `assets/css` or `themes/hugo-theme-relearn/assets/css`. Name it `theme-*.css`.
@@ -38,7 +38,7 @@ To let the reader choose between multiple variants, set `themeVariant` like this
 
 {{< multiconfig file=hugo >}}
 [params]
-  themeVariant = [ "relearn-light", "relearn-dark" ]
+  themeVariant = [ 'relearn-light', 'relearn-dark' ]
 {{< /multiconfig >}}
 
 The first variant is the default, and a selector will appear if there's more than one.
@@ -49,7 +49,7 @@ Use the `auto` value to match OS light/dark settings. Usually it makes sense to 
 
 {{< multiconfig file=hugo >}}
 [params]
-  themeVariant = [ "auto", "red" ]
+  themeVariant = [ 'auto', 'red' ]
 {{< /multiconfig >}}
 
 If you don't configure anything else, the theme will default to use `relearn-light` for light mode and `relearn-dark` for dark mode.
@@ -60,7 +60,7 @@ You can override the default with `themeVariantAuto`:
 
 {{< multiconfig file=hugo >}}
 [params]
-  themeVariantAuto = [ "learn", "neon" ]
+  themeVariantAuto = [ 'learn', 'neon' ]
 {{< /multiconfig >}}
 
 ### Advanced {#theme-variant-advanced}
@@ -73,7 +73,7 @@ Again, in this case, the first variant is the default chosen on first view and a
 
 {{< multiconfig file=hugo >}}
 [params]
-  themeVariant = [ "relearn-light", "relearn-dark" ]
+  themeVariant = [ 'relearn-light', 'relearn-dark' ]
 {{< /multiconfig >}}
 
 you now write it that way:
@@ -81,9 +81,9 @@ you now write it that way:
 {{< multiconfig file=hugo >}}
 [params]
   [[params.themeVariant]]
-    identifier = "relearn-light"
+    identifier = 'relearn-light'
   [[params.themeVariant]]
-    identifier = "relearn-dark"
+    identifier = 'relearn-dark'
 {{< /multiconfig >}}
 
 The `identifier` option is mandatory and equivalent to the string in the first example. Further options can be configured, see the table below.
@@ -101,16 +101,16 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 {{< multiconfig file=hugo >}}
 [params]
 themeVariant = [
-	{ identifier = "relearn-auto",  name = "Relearn Light/Dark", auto = [] },
-	{ identifier = "relearn-light"  },
-	{ identifier = "relearn-dark"   },
-	{ identifier = "relearn-bright" },
-	{ identifier = "zen-auto",      name = "Zen Light/Dark", auto = [ "zen-light", "zen-dark" ] },
-	{ identifier = "zen-light"      },
-	{ identifier = "zen-dark"       },
-	{ identifier = "retro-auto",    name = "Retro Learn/Neon", auto = [ "learn", "neon" ] },
-	{ identifier = "neon"           },
-	{ identifier = "learn"          }
+	{ identifier = 'relearn-auto',  name = 'Relearn Light/Dark', auto = [] },
+	{ identifier = 'relearn-light'  },
+	{ identifier = 'relearn-dark'   },
+	{ identifier = 'relearn-bright' },
+	{ identifier = 'zen-auto',      name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
+	{ identifier = 'zen-light'      },
+	{ identifier = 'zen-dark'       },
+	{ identifier = 'retro-auto',    name = 'Retro Learn/Neon', auto = [ 'learn', 'neon' ] },
+	{ identifier = 'neon'           },
+	{ identifier = 'learn'          }
 ]
 {{< /multiconfig >}}
 
@@ -144,7 +144,7 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
     {{< multiconfig file=hugo >}}
     [params]
-      themeVariant = "my-branding"
+      themeVariant = 'my-branding'
     {{< /multiconfig >}}
 
     In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant while keeping your modifications.
@@ -158,55 +158,3 @@ document.addEventListener( 'themeVariantLoaded', function( e ){
   console.log( e.detail.variant ); // `relearn-light`
 });
 ````
-
-## Change Syntax Highlighting
-
-If you want to switch the syntax highlighting theme together with your color variant, first you need to configure your installation [according to Hugo's documentation](https://gohugo.io/content-management/syntax-highlighting/#generate-syntax-highlighter-css) to provide a syntax highlighting stylesheet file.
-
-{{< multiconfig file=hugo >}}
-markup.highlight.noClasses=false
-{{< /multiconfig >}}
-
-You can use one of the shipped stylesheet files or use Hugo to generate a file for you.
-
-````shell
-hugo gen chromastyles --style=monokai > chroma-mycode.css
-````
-
-The file must be written to `assets/css/chroma-<NAME>.css`. To use it with your color variant, you have to modify `--CODE-theme: <NAME>` in the color variant stylesheet file.
-
-````css {title="assets/css/theme-my-branding.css"}
-@import "theme-relearn-light.css";
-:root {
-  --CODE-theme: mycode; /* name of the chroma stylesheet file */
-}
-````
-
-## Change 3rd-Party Libraries Theming
-
-Some of the shipped shortcodes are using 3rd-party libraries. See the individual shortcode documentation on how to change their theming.
-
-- [`mermaid` shortcode](shortcodes/mermaid#setting-a-specific-mermaid-theme)
-- [`openapi` shortcode](shortcodes/openapi#setting-a-specific-swagger-ui-theme)
-
-## Change the Favicon
-
-If your favicon is an SVG, PNG, or ICO, just drop your image in your site's `static/images/` directory and name it `favicon.svg`, `favicon.png`, or `favicon.ico` respectively.
-
-If you want to adjust your favicon according to your OS settings for light/dark mode, add the image files `static/images/favicon-light.svg` and `static/images/favicon-dark.svg` to your site's directory, respectively, corresponding to your file format. In case some of the files are missing, the theme falls back to `favicon.svg` for each missing file. All supplied favicons must be of the same file format.
-
-If no favicon file is found, the theme will look up the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
-
-If you need to change this default behavior, create a new file `layouts/partials/favicon.html` in your site's directory and write something like this:
-
-````html {title="layouts/partials/favicon.html"}
-<link rel="icon" href="/images/favicon.bmp" type="image/bmp">
-````
-
-## Change the Logo
-
-By default, only your site title will be shown at the top of the menu. You can [configure this](configuration/sitemanagement/meta#menu-title), or override the logo partial.
-
-Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
-
-The size of the logo will adapt automatically.

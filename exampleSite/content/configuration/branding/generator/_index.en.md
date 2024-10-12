@@ -3,7 +3,7 @@ description = "An interactive tool to generate color variant stylesheets"
 mermaid.force = true
 options = ["themeVariant"]
 title = "Stylesheet Generator"
-weight = 3
+weight = 4
 +++
 
 This interactive tool may help you to generate your own color variant stylesheet.
@@ -23,7 +23,7 @@ Once you are satisfied, you can download the new variants file and copy it into 
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Afterwards, you have to adjust the `themeVariant` option in your `hugo.toml` to your chosen file name. For example, if your new variants file is named `theme-my-custom-variant.css`, you have to set `themeVariant='my-custom-variant'` to use it.
 
-See the docs for [further configuration options](configuration/appearance/branding).
+See the docs for [further configuration options](configuration/branding/colors).
 {{% /expand %}}
 
 {{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}

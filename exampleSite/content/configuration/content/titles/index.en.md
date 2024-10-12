@@ -7,7 +7,7 @@ weight = 2
 
 ## Breadcrumbs
 
-Learn how to turn off the breadcrumbs completely and further [configure the topbar](configuration/appearance/topbar).
+Learn how to turn off the breadcrumbs completely and further [configure the topbar](authoring/frontmatter/topbar).
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
 

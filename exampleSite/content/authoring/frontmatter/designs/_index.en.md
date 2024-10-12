@@ -1,7 +1,7 @@
 +++
 description = "How to vary layouts by using page designs"
 title = "Page Designs"
-weight = 3
+weight = 1
 +++
 
 A page is displayed by exactly one page design and represented by [Hugo's reserved `type` front matter](https://gohugo.io/content-management/front-matter/#type).

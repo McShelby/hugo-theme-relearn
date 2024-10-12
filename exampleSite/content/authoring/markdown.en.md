@@ -1,8 +1,8 @@
 +++
-description = "Reference of Commonmark and Markdown extensions"
+description = "Reference of CommonMark and Markdown extensions"
 tags = ["reference"]
 title = "Markdown Syntax"
-weight = 3
+weight = 4
 +++
 
 Let's face it: Writing content for the web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.
@@ -29,7 +29,7 @@ John Gruber, the author of Markdown, puts it like this:
 
 ## Standard and Extensions
 
-If not otherwise noted, the shown examples adhere to the [Commonmark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
+If not otherwise noted, the shown examples adhere to the [CommonMark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
 
 - {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
@@ -142,11 +142,11 @@ Blockquotes can also be nested.
 > Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
 {{% /notice %}}
 
-### GitHub Styled Alerts
+### GitHub Alerts
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} [GitHub styled alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
+{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
 
-If you are in need of more advanced options to style your alerts, use the [notice shortcode](shortcodes/notice).
+If you are in need of more advanced options to style your alerts, like icons, use the [notice shortcode](shortcodes/notice).
 
 ````md
 > [!CAUTION]
@@ -191,6 +191,8 @@ If you are in need of more advanced options to style your alerts, use the [notic
 ### Obsidian Callouts
 
 {{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.134.0{{% /badge %}} [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
+
+If you are in need of more advanced options to style your alerts, like icons, use the [notice shortcode](shortcodes/notice).
 
 ````md
 > [!tip] Callouts can have custom titles
@@ -723,7 +725,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. The default [behavior is configurable](configuration/customization/imageeffects) through your `hugo.toml` or front matter parameter.
+{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. See the [image effects docs](authoring/imageeffects) for a detailed example and how to configure it.
 
 #### Resizing
 

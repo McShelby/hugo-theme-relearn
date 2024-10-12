@@ -42,21 +42,21 @@ Here's how to make your site multilingual using [translations by file name](http
 1. Set up languages in your `hugo.toml` file:
 
     {{< multiconfig file=hugo >}}
-    defaultContentLanguage = "en"
+    defaultContentLanguage = 'en'
 
     [languages]
       [languages.en]
         weight = 1
-        languageName = "English"
-        languageCode = "en"
-        title = "My Website"
+        languageName = 'English'
+        languageCode = 'en'
+        title = 'My Website'
 
       [languages.pir]
         weight = 2
-        languageName = "Pirrratish"
-        languageCode = "art-x-pir"
-        languageDirection = "rtl"
-        title = "Arrr, my Website"
+        languageName = 'Pirrratish'
+        languageCode = 'art-x-pir'
+        languageDirection = 'rtl'
+        title = 'Arrr, my Website'
     {{< /multiconfig >}}
 
 2. Duplicate your content files and add language codes to their file names:

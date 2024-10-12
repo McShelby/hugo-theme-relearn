@@ -10,12 +10,12 @@
 # This is used for generating social media meta information for the opengraph
 # protocol and twitter cards.
 # If not set, the set value of your site's hugo.toml is used.
-images = [ "images/hero.png" ]
+images = [ 'images/hero.png' ]
 
 # The title of your page.
 # Default: not set
 # A page without a title is treated as a hidden page.
-title = "Example Page"
+title = 'Example Page'
 
 # The description of your page.
 # Default: not set
@@ -24,13 +24,13 @@ title = "Example Page"
 # If not set, the set value of your site's hugo.toml is used for the html
 # meta tag, social media meta information for the opengraph protocol and
 # twitter cards.
-description = ""
+description = ''
 
 # The page design to be used
 # Default: not set
 # This decides the layout of your page. The theme ships 'home', 'chapter' and
 # 'default'. If not set, 'default' is taken.
-type = ""
+type = ''
 
 ###############################################################################
 # Relearn Theme
@@ -69,29 +69,35 @@ disableNextPrev = false
 # an disabled button, you can set the value to a string containing just spaces.
 # This is useful if you want to give the opportunity for people to create merge
 # request for your content.
-editURL = ""
+editURL = ''
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Menu
 # These options modify the menu appearance.
 
+# Menu specific title
+# Default: not set
+# The title displayed in the menu. If not set the `title` front matter will
+# be used.
+linkTitle = ''
+
 # Prefix for the title in navigation menu.
 # Default: not set
 # The title of the page in the menu will be prefixed by this HTML content.
-menuPre = ""
+menuPre = ''
 
 # Suffix for the title in navigation menu.
 # Default: not set
 # The title of the page in the menu will be suffixed by this HTML content.
-menuPost = ""
+menuPost = ''
 
 # The order of navigation menu submenus.
-# Default: "weight"
-# Submenus can be ordered by "weight", "title", "linktitle", "modifieddate",
-# "expirydate", "publishdate", "date", "length" or "default" (adhering to
+# Default: 'weight'
+# Submenus can be ordered by 'weight', 'title', 'linktitle', 'modifieddate',
+# 'expirydate', 'publishdate', 'date', 'length' or 'default' (adhering to
 # Hugo's default sort order).
 # If not set, the value of the parent menu entry is used.
-ordersectionsby = "weight"
+ordersectionsby = 'weight'
 
 # The initial expand state of submenus.
 # Default: not set
@@ -100,7 +106,7 @@ ordersectionsby = "weight"
 # levels are set to true. If not set, the value of the parent menu entry is used.
 # If the displayed page has submenus, they will always been displayed expanded
 # regardless of this option.
-alwaysopen = ""
+alwaysopen = ''
 
 # Shows expander for submenus.
 # Default: false
@@ -129,23 +135,23 @@ hidden = false
 # Prefix for the title in the content area.
 # Default: not set
 # The title of the page heading will be prefixed by this HTML content.
-headingPre = ""
+headingPre = ''
 
 # Suffix for the title in the content area.
 # Default: not set
 # The title of the page heading will be suffixed by this HTML content.
-headingPost = ""
+headingPost = ''
 
 # Display name of the page's last editor.
 # Default: not set
 # If set, it will be displayed in the default footer.
-LastModifierDisplayName = ""
+LastModifierDisplayName = ''
 
 # Email address of the page's last editor.
 # Default: not set
 # If set together with LastModifierDisplayName, it will be displayed in the
 # default footer.
-LastModifierEmail = ""
+LastModifierEmail = ''
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Highlight
@@ -166,21 +172,21 @@ highlightWrap = true
 # These options configure how the include shortcode works.
 
 # What to do when path is not resolved.
-# Default: ""
+# Default: ''
 # You can control what should happen if a path can not be resolved to as
 # a resource or via the file system. If not set, no output will be written
 # for the unresolved path. If set to `warning` the same happens and an additional
 # warning is printed. If set to `error` an error message is printed and the build
 # is aborted.
 # If not set, the set value of your site's hugo.toml is used.
-include.errorlevel = ""
+include.errorlevel = ''
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Images
 # These options configure how images are displayed.
 
 # What to do when local image link is not resolved.
-# Default: ""
+# Default: ''
 # You can control what should happen if a local image can not be resolved to as
 # a resource. If not set, the unresolved link is written as given into the resulting
 # output. If set to `warning` the same happens and an additional warning is
@@ -188,7 +194,7 @@ include.errorlevel = ""
 # aborted.
 # Please note that this can not resolve files inside of your `static` directory.
 # If not set, the set value of your site's hugo.toml is used.
-image.errorlevel = ""
+image.errorlevel = ''
 
 # Image effects.
 # See the documentation for how you can even add your own arbitrary effects to
@@ -211,7 +217,7 @@ imageEffects.shadow = false
 # These options configure how links are displayed.
 
 # What to do when local page link is not resolved.
-# Default: ""
+# Default: ''
 # You can control what should happen if a local link can not be resolved to a
 # page. If not set, the unresolved link is written as given into the resulting
 # output. If set to `warning` the same happens and an additional warning is
@@ -220,7 +226,16 @@ imageEffects.shadow = false
 # Please note that with Hugo < 0.123.0 + `uglyURLs=true` this can lead to false
 # negatives.
 # If not set, the set value of your site's hugo.toml is used.
-link.errorlevel = ""
+link.errorlevel = ''
+
+# How to open external links.
+# Default: '_blank'
+# For external links you can define how they are opened in your browser. All
+# values for the HTML `target` attribute of the `a` element are allowed. The
+# default value opens external links in a separate browser tab. If you want
+# to open those links in the same tab, use '_self'.
+# If not set, the set value of your site's hugo.toml is used.
+externalLinkTarget = '_self'
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # MathJax
@@ -230,7 +245,7 @@ link.errorlevel = ""
 # Default: not set
 # A JSON value. See the MathJaxdocumentation for possible parameter.
 # If not set, the set value of your site's hugo.toml is used.
-mathJaxInitialize = "{}"
+mathJaxInitialize = '{}'
 
 # Force load Math on every page.
 # Default: false
@@ -248,7 +263,7 @@ math = false
 # Specifies the remote location of the MathJax library. By default the shipped
 # version will be used.
 # If not set, the set value of your site's hugo.toml is used.
-customMathJaxURL = "" # "https://unpkg.com/mathjax/es5/tex-mml-chtml.js"
+customMathJaxURL = '' # 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Mermaid
@@ -266,7 +281,7 @@ mermaidZoom = true
 # Default: not set
 # A JSON value. See the Mermaid documentation for possible parameter.
 # If not set, the set value of your site's hugo.toml is used.
-mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
+mermaidInitialize = '{ "securityLevel": "loose" }'
 
 # Force load Mermaid on every page.
 # Default: false
@@ -283,7 +298,7 @@ mermaid.force = false
 # Specifies the remote location of the Mermaid library. By default the shipped
 # version will be used.
 # If not set, the set value of your site's hugo.toml is used.
-customMermaidURL = "" # "https://unpkg.com/mermaid/dist/mermaid.min.js"
+customMermaidURL = '' # 'https://unpkg.com/mermaid/dist/mermaid.min.js'
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # OpenApi
@@ -304,10 +319,10 @@ oppenapi.force = false
 # Specifies the remote location of the OpenAPI library. By default the shipped
 # version will be used.
 # If not set, the set value of your site's hugo.toml is used.
-customOpenapiURL = "" # "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
+customOpenapiURL = '' # 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
 
 # What to do when a local OpenAPI spec link is not resolved.
-# Default: ""
+# Default: ''
 # You can control what should happen if a local OpenAPI spec link can not be resolved
 # to a resource. If not set, the unresolved link is written as given into the resulting
 # output. If set to `warning` the same happens and an additional warning is
@@ -315,4 +330,4 @@ customOpenapiURL = "" # "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
 # aborted.
 # Please note that this can not resolve files inside of your `static` directory.
 # If not set, the set value of your site's hugo.toml is used.
-openapi.errorlevel = ""
+openapi.errorlevel = ''

@@ -37,7 +37,7 @@ You can [download the theme as a .zip file](https://github.com/McShelby/hugo-the
 Then add this at the top of your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
-theme = "hugo-theme-relearn"
+theme = 'hugo-theme-relearn'
 {{< /multiconfig >}}
 
 ### Use Hugo's Module System
@@ -73,7 +73,7 @@ git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git t
 Then add this at the top of your `hugo.toml`
 
 {{< multiconfig file=hugo >}}
-theme = "hugo-theme-relearn"
+theme = 'hugo-theme-relearn'
 {{< /multiconfig >}}
 
 ## Create your Home Page

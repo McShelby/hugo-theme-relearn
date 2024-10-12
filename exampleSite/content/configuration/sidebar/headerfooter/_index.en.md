@@ -1,9 +1,18 @@
 +++
 description = "Configure the header and footer"
-options = ["disableLandingPageButton", "landingPageName", "showVisitedLinks"]
+options = ["disableLandingPageButton", "landingPageName", "linkTitle", "showVisitedLinks"]
 title = "Header & Footer"
 weight = 2
 +++
+
+## Title
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} With the [default partials](configuration/branding/logo#change-the-logo) for the logo, The site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
+
+{{< multiconfig file=hugo >}}
+[params]
+  linkTitle = 'Relearn'
+{{< /multiconfig >}}
 
 ## Home Button Configuration
 
@@ -24,18 +33,18 @@ By default, the theme displays a home button between search form and navigation 
 [languages]
   [languages.en]
     [languages.en.params]
-      landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
+      landingPageName = '<i class="fa-fw fas fa-home"></i> Home'
 
   [languages.pir]
     [languages.pir.params]
-      landingPageName = "<i class='fa-fw fas fa-home'></i> Arrr! Homme"
+      landingPageName = '<i class="fa-fw fas fa-home"></i> Arrr! Homme'
 {{< /multiconfig >}}
 
 If this option isn't set for a specific language, it will use these default values
 
 {{< multiconfig file=hugo >}}
 [params]
-  landingPageName = "<i class='fa-fw fas fa-home'></i> Home"
+  landingPageName = '<i class="fa-fw fas fa-home"></i> Home'
 {{< /multiconfig >}}
 
 ## History

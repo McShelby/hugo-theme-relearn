@@ -35,8 +35,8 @@ Each level requires the previous one to be enabled. If no search is configured, 
 
 {{< multiconfig file=hugo >}}
 [params]
-  searchIndexURL = 'mysearchindex.js'
-  searchPageURL = 'megasearch'
+  searchIndexURL = 'omnisearchindex.js'
+  searchPageURL = 'omnisearch'
 {{< /multiconfig >}}
 
 {{% notice note %}}

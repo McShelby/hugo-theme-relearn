@@ -1,35 +1,23 @@
 +++
 description = "What options are available for links and images"
-options = ["disableDefaultRelref", "externalLinkTarget", "image.errorlevel", "link.errorlevel"]
+options = ["disableDefaultRelref", "disableExplicitIndexURLs"]
 title = "Linking"
 weight = 4
 +++
 
-## Opening Links
+Further [settings are available](authoring/frontmatter/linking) to be used in your configuration or front matter.
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, external links open in a new tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+## URL Management
 
-For example, this will open links in the same tab
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the theme adds `index.html` to page links when `uglyURLs=false` (Hugo's default).
 
-{{< multiconfig file=hugo >}}
-[params]
-  externalLinkTarget = '_self'
-{{< /multiconfig >}}
+If you're only using a web server scenario and dislike this, you can reset to Hugo's default behavior by settings `disableExplicitIndexURLs=true`.
 
-## Enabling Link and Image Link Warnings
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can use `link.errorlevel` and `image.errorlevel` to control what should happen if a local link can not be resolved to a resource.
-
-If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
-
-Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
-
-Link warnings are also available for the [include](shortcodes/include#enabling-link-warnings) and [openapi](shortcodes/openapi#enabling-link-warnings) shortcodes.
+For the file system scenario, you are not allowed to change this value.
 
 {{< multiconfig file=hugo >}}
 [params]
-  link.errorlevel = 'warning'
-  image.errorlevel = 'warning'
+  disableExplicitIndexURLs = true
 {{< /multiconfig >}}
 
 ## Patching the `relref` Shortcode

@@ -5,8 +5,6 @@ options = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
 title = "Math"
 +++
 
-You can use [pure Markdown](authoring/markdown#subscript-and-superscript) for writing simple math expressions.
-
 If this is not enough, the `math` shortcode helps you rendering math and chemical formulae using the [MathJax](https://mathjax.org/) library.
 
 {{< math align="center" >}}
@@ -54,6 +52,8 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 {{% /tab %}}
 {{< /tabs >}}
 
+You can also use [pure Markdown](authoring/markdown#subscript-and-superscript) for writing simple math expressions.
+
 Passthrough syntax is only available by [further configuration](#passthrough-configuration) and has limited features as it does not provide any of the below parameter. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 ### Parameter
@@ -73,9 +73,8 @@ You can overwrite the settings by providing a JSON object in `mathJaxInitialize`
 
 Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.
 
-{{< multiconfig file=hugo >}}
-[params]
-mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \"inlineMath\": [[\"\\(\", \"\\)\"], [\"@\", \"@\"]], displayMath: [[\"\\[\", \"\\]\"], [\"@@\", \"@@\"]] }, \"options\": { \"enableMenu\": false }"
+{{< multiconfig fm=true >}}
+mathJaxInitialize = '{ "chtml": { "displayAlign": "left" }, { "tex": { "inlineMath": [["\(", "\)"], ["@", "@"]], displayMath: [["\[", "\]"], ["@@", "@@"]] }, "options": { "enableMenu": false }'
 {{< /multiconfig >}}
 
 ### Loading an External Version of the MathJax Library
@@ -84,9 +83,8 @@ mathJaxInitialize = "{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \
 
 In case you want do use a different version of the MathJax library but don't want to override the shipped version, you can set `customMathJaxURL` to the URL of the external MathJax library.
 
-{{< multiconfig file=hugo >}}
-[params]
-customMathJaxURL = "https://unpkg.com/mathjax/es5/tex-mml-chtml.js"
+{{< multiconfig fm=true >}}
+customMathJaxURL = 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
 {{< /multiconfig >}}
 
 ### Force Loading of the MathJax Library
@@ -96,6 +94,10 @@ customMathJaxURL = "https://unpkg.com/mathjax/es5/tex-mml-chtml.js"
 You can force loading the MathJax library if no shortcode or codefence was used by setting `math=true`. If a shortcode or codefence was found, the option has no effect. This must be set in case you are using the [passthrough configuration](#passthrough-configuration) to render math.
 
 Instead of `math=true` you can also use the alias `math.force=true`.
+
+{{< multiconfig fm=true >}}
+math = true
+{{< /multiconfig >}}
 
 ### Passthrough Configuration
 

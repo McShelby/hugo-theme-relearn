@@ -32,7 +32,7 @@ The `openapi` shortcode displays your OpenAPI / Swagger specifications using the
 
 If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.
 
-Instead, open the [print preview](configuration/appearance/topbar#print-support) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
+Instead, open the [print preview](authoring/frontmatter/topbar) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
 
 ### Parameter
 
@@ -50,7 +50,11 @@ If not set or empty, any unresolved link is written as given into the resulting 
 
 Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
-Link warnings are also available for [images & links](configuration/content/linking#enabling-link-and-image-link-warnings) and the [include](shortcodes/include#enabling-link-warnings) shortcode.
+Link warnings are also available for [images & links](authoring/frontmatter/linking#enabling-link-and-image-link-warnings) and the [include](shortcodes/include#enabling-link-warnings) shortcode.
+
+{{< multiconfig fm=true >}}
+openapi.errorlevel = 'warning'
+{{< /multiconfig >}}
 
 ### Loading an External Version of the Swagger UI Library
 
@@ -58,9 +62,8 @@ Link warnings are also available for [images & links](configuration/content/link
 
 In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
 
-{{< multiconfig file=hugo >}}
-[params]
-customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
+{{< multiconfig fm=true >}}
+customOpenapiURL = 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
 {{< /multiconfig >}}
 
 ### Force Loading of the Swagger UI Library
@@ -69,9 +72,13 @@ customOpenapiURL = "https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"
 
 You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
+{{< multiconfig fm=true >}}
+openapi.force = true
+{{< /multiconfig >}}
+
 ### Setting a Specific Swagger UI Theme
 
-The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` variable in your [color variant stylesheet](configuration/appearance/generator). This allows your specs to look pretty when the user switches the color variant.
+The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` variable in your [color variant stylesheet](configuration/branding/generator). This allows your specs to look pretty when the user switches the color variant.
 
 ## Example
 

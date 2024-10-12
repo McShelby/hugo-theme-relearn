@@ -1,7 +1,7 @@
 +++
 alwaysopen = false
-description = "Change colors, logos and the overall appearance of your site"
-title = "Appearance"
+description = "Change colors and logos of your site"
+title = "Branding"
 weight = 2
 +++
 

@@ -1,5 +1,5 @@
 +++
-menuPre = "<i class='fa-fw fab fa-git-alt'></i> "
+menuPre = "<i class='fa-fw fas fa-code-pull-request'></i> "
 hidden = true
 title = "Development"
 type = "chapter"

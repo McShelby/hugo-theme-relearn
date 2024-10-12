@@ -64,7 +64,7 @@ Now values containing Markdown will be formatted correctly.
 {{< multiconfig file=hugo >}}
 [params]
   [params.siteparam.test]
-    text = "A **nested** parameter <b>with</b> formatting"
+    text = 'A **nested** parameter <b>with</b> formatting'
 {{< /multiconfig >}}
 
 ```go

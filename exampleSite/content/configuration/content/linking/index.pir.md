@@ -1,6 +1,6 @@
 +++
 description = "What options are available for links and images"
-options = ["disableDefaultRelref", "externalLinkTarget", "image.errorlevel", "link.errorlevel"]
+options = ["disableDefaultRelref", "disableExplicitIndexURLs"]
 title = "Linking"
 weight = 4
 +++

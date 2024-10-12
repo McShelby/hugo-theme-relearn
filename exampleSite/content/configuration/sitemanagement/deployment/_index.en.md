@@ -1,9 +1,14 @@
 +++
 description = "Options for specific deployment needs"
-options = ["disableExplicitIndexURLs"]
 title = "Deployment Scenarios"
 weight = 4
 +++
+
+## Offline Usage
+
+The theme is usable offline. No internet connection is required to load your page. This is achieved by storing all dependencies within the theme.
+
+No calls to 3rd party servers, no calling home, no tracking. Privacy friendly.
 
 ## Server Deployment
 
@@ -14,13 +19,13 @@ For special requirements, the theme is capable of different scenarios, requiring
 ### Public Web Server from Root
 
 {{< multiconfig file=hugo >}}
-baseURL = "https://example.com/"
+baseURL = 'https://example.com/'
 {{< /multiconfig >}}
 
 ### Public Web Server from Subdirectory
 
 {{< multiconfig file=hugo >}}
-baseURL = "https://example.com/mysite/"
+baseURL = 'https://example.com/mysite/'
 relativeURLs = false
 {{< /multiconfig >}}
 
@@ -34,31 +39,22 @@ If you are still using Hugo's `relref` shortcode (which you shouldn't), you will
 The same settings as with any of the public web server scenarios or
 
 {{< multiconfig file=hugo >}}
-baseURL = "/"
+baseURL = '/'
 relativeURLs = true
 {{< /multiconfig >}}
 
 ### File System
 
-Exclusively use
+Your generated site can be used headless without a HTTP server.
+
+This can be achieved by using the `file://` protocol in your browser's address bar or by double click on a generated `*.html` file in your file navigation tool.
+
+Use the following settings
 
 {{< multiconfig file=hugo >}}
-baseURL = "/"
+baseURL = '/'
 relativeURLs = true
 {{< /multiconfig >}}
 
 > [!note]
 > Pages like `sitemap.xml` and `rss.xml`, and social media links will always use absolute URLs. They won't work with `relativeURLs=true`.
-
-## URL Management
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the theme adds `index.html` to page links when `uglyURLs=false` (Hugo's default).
-
-If you're only using a web server scenario and dislike this, you can reset to Hugo's default behavior by settings `disableExplicitIndexURLs=true`.
-
-For the file system scenario, you are not allowed to change this value.
-
-{{< multiconfig file=hugo >}}
-[params]
-  disableExplicitIndexURLs = true
-{{< /multiconfig >}}

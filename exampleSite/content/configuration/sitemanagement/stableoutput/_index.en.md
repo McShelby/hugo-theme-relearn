@@ -18,6 +18,8 @@ To turn this off, set `disableGeneratorVersion=true`.
   disableGeneratorVersion = true
 {{< /multiconfig >}}
 
+If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting-started/configuration/#disablehugogeneratorinject), use `disableHugoGeneratorInject=true`.
+
 ## Disabling IDs for Referenced Assets
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} The theme creates a unique ID for each build and adds it to each referenced asset's URL to make browsers not keep outdated cached assets.

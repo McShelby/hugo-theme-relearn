@@ -1,7 +1,7 @@
 +++
-description = "Reference of Commonmark and Markdown extensions"
+description = "Reference of CommonMark and Markdown extensions"
 tags = ["reference"]
 title = "Marrrkdown Rules"
-weight = 3
+weight = 4
 +++
 {{< piratify >}}

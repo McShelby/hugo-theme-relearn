@@ -5,7 +5,7 @@ title = "Topbar"
 weight = 4
 +++
 
-The theme comes with a reasonably configured topbar. You can learn how to [configure the defaults in this section](configuration/appearance/topbar).
+The theme comes with a reasonably configured topbar. You can learn how to [configure the defaults in this section](authoring/frontmatter/topbar).
 
 ![topbar on mobile devices](topbar-closed.png)
 
@@ -32,11 +32,11 @@ While you cannot add additional areas in the topbar, you are free to configure a
 The theme ships with the following predefined buttons (from left to right in the screenshot):
 
 - {{% button style="transparent" icon="bars" %}}{{% /button %}} [**sidebar**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/sidebar.html): opens the sidebar flyout if in mobile layout
-- {{% button style="transparent" icon="list-alt" %}}{{% /button %}} [**toc**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html): opens the table of contents in an overlay
-- {{% button style="transparent" icon="pen" %}}{{% /button %}} [**edit**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/edit.html): browses to the editable page if the `editURL` [parameter is set](configuration/reference)
-- {{% button style="transparent" icon="print" %}}{{% /button %}} [**print**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html): browses to the chapter's printable page if [print support](configuration/appearance/topbar#print-support) was activated
-- {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} [**prev**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/prev.html): browses to the previous page if there is one
-- {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} [**next**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/next.html): browses to the next page if there is one
+- {{% button style="transparent" icon="list-alt" %}}{{% /button %}} [**toc**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html): [opens the table of contents in an overlay](authoring/frontmatter/topbar#table-of-contents)
+- {{% button style="transparent" icon="pen" %}}{{% /button %}} [**edit**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/edit.html): browses to the editable page if the `editURL` [parameter is set](authoring/frontmatter/topbar#edit-button)
+- {{% button style="transparent" icon="print" %}}{{% /button %}} [**print**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html): browses to the chapter's printable page if [print support](configuration/sitemanagement/outputformats#print-support) was activated
+- {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} [**prev**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/prev.html): browses to the [previous page](authoring/frontmatter/topbar#arrow-navigation) if there is one
+- {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} [**next**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/next.html): browses to the [next page]authoring/frontmatter/topbar(#arrow-navigation) if there is one
 - {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html): opens the overlay for the _more_ area
 
 Not all buttons are displayed at every given time. This is configurable (see below if interested).

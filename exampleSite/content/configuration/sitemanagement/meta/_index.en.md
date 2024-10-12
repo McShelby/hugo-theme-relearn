@@ -1,7 +1,7 @@
 +++
 description = "What site-wide meta information can be set"
 frontmatter = ["description"]
-options = ["author.email", "author.name", "linkTitle"]
+options = ["author.email", "author.name"]
 title = "Meta Information"
 weight = 3
 +++
@@ -25,15 +25,6 @@ The `title` will be used in meta information of your HTML.
 title = 'Hugo Relearn Theme'
 {{< /multiconfig >}}
 
-## Menu Title
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} With the [default partials](configuration/appearance/branding#change-the-logo) for the logo, The site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
-
-{{< multiconfig file=hugo >}}
-[params]
-  linkTitle = "Relearn"
-{{< /multiconfig >}}
-
 ## Site Description
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme shows a site description in various places, such as RSS feeds and meta tags. For this, it uses the `description` field from your home page's front matter.
@@ -43,7 +34,7 @@ title = 'Hugo Relearn Theme'
 When your page is shared on social media, you can set a site-wide image to display with the link
 
 {{< multiconfig file=hugo >}}
-images = [ "images/hero.png" ]
+images = [ 'images/hero.png' ]
 {{< /multiconfig >}}
 
 ## More Social Media Options

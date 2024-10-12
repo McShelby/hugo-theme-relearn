@@ -10,9 +10,9 @@ Enable print support to print entire chapters or the whole site. Add the `print`
 
 {{< multiconfig file=hugo >}}
 [outputs]
-  home = ["html", "rss", "print"]
-  section = ["html", "rss", "print"]
-  page = ["html", "rss", "print"]
+  home = ['html', 'rss', 'print']
+  section = ['html', 'rss', 'print']
+  page = ['html', 'rss', 'print']
 {{< /multiconfig >}}
 
 This adds a printer icon in the topbar. Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
@@ -24,8 +24,8 @@ If you don't like the URLs, you can reconfigure `outputFormats.print` in your `h
 {{< multiconfig file=hugo >}}
 [outputFormats]
   [outputFormats.print]
-    name= "print"
-    baseName = "index.print"
+    name= 'print'
+    baseName = 'index.print'
     isHTML = true
     mediaType = 'text/html'
     permalinkable = false

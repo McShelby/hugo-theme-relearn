@@ -32,7 +32,7 @@ For example, to create a shortcode called `myshortcode` that needs the `jquery` 
     {{< multiconfig file=hugo >}}
     [params.relearn.dependencies]
       [params.relearn.dependencies.myshortcode]
-        name = "MyShortcode"
+        name = 'MyShortcode'
     {{< /multiconfig >}}
 
 3. Create loader file `layouts/partials/dependencies/myshortcode.html`:

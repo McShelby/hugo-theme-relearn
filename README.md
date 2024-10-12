@@ -14,24 +14,24 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 
 - **Versatile Usage**
   - [Responsive design for mobile devices](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/width)
-  - [Looks nice on paper - if it has to](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats)
-  - Usable offline with no external dependencies
-  - [Usable from your local file system without a web server via `file://` protocol](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment)
-  - Integration with the [VSCode Front Matter CMS extension](https://github.com/estruyf/vscode-front-matter) for on-premise CMS capabilities
+  - [Looks nice on paper](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats) - if it has to
+  - [Usable offline with no external dependencies](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment#offline-usage)
+  - [Usable from your local file system without a web server](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment#file-system) via `file://` protocol
+  - [Integration with the VSCode Front Matter CMS extension](https://mcshelby.github.io/hugo-theme-relearn/introduction/tools#front-matter-cms) for on-premise CMS capabilities
 
 - **Customizable Appearance**
-  - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding#change-the-logo)
-  - [Automatic light/dark mode switching based on OS settings](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding#adjust-to-os-settings)
-  - Pre-defined color variants
-  - [User-selectable variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding#multiple-variants)
-  - [Built-in stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/generator)
-  - [Customizable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/branding/#change-syntax-highlighting)
+  - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/logo#change-the-logo)
+  - [Automatic light/dark mode switching based on OS settings](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#adjust-to-os-settings)
+  - Many pre-defined color variants
+  - [User-selectable variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#multiple-variants)
+  - [Built-in stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/generator)
+  - [Customizable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/modules/#change-syntax-highlighting)
 
 - **Advanced Functionality**
-  - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/appearance/topbar#print-support)
+  - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats#print-support)
   - [Versatile search options: in-page, popup, and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search)
   - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar)
-  - [Nested navigation menu](https://mcshelby.github.io/hugo-theme-relearn/authoring/structure)
+  - [Nested navigation menu](https://mcshelby.github.io/hugo-theme-relearn/authoring/frontmatter/navigationmenu)
   - [Configurable menu shortcuts](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/shortcutmenu)
   - [Support for hidden pages](https://mcshelby.github.io/hugo-theme-relearn/configuration/content/hidden)
   - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/taxonomy)
@@ -43,7 +43,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Multilingual content search capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search#mixed-language-support)
 
 - **Enhanced Markdown Features**
-  - [GitHub Flavored Markdown (GFM) support](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown)
+  - [CommonMark and other Markdown extensions](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown#standard-and-extensions)
   - [Support for Obsidian callouts](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown#obsidian-callouts)
   - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/imageeffects)
 
