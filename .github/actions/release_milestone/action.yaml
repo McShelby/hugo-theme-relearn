@@ -114,7 +114,7 @@ runs:
       uses: surahmansada/file-regex-replace@v1
       with:
         regex: '(\ntitle = "Version )\d+\.\d+("\n.*\nweight = -)\d+(\n)'
-        replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0$2${{ steps.minorvers.outputs.value }}$3"
+        replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
         include: exampleSite/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
 
     - name: Update releasenotes heading
