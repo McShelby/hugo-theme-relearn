@@ -408,9 +408,9 @@ function initOpenapi( update, attrs ){
             '<html lang="' + lang + '" dir="' + (isRtl ? 'rtl' : 'ltr') + '">' +
                 '<head>' +
                     '<link rel="stylesheet" href="' + window.themeUseOpenapi.css + '">' +
-                    '<link rel="stylesheet" href="' + theme + '">' +
                     '<link rel="stylesheet" href="' + relBasePath + '/css/swagger.css' + assetBuster + '">' +
                     '<link rel="stylesheet" href="' + relBasePath + '/css/swagger-' + swagger_theme + '.css' + assetBuster + '">' +
+                    '<link rel="stylesheet" href="' + theme + '">' +
                 '</head>' +
                 '<body>' +
                     '<a class="relearn-expander" href="" onclick="return relearn_collapse_all()">Collapse all</a>' +
