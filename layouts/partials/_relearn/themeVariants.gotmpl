@@ -125,7 +125,11 @@ Chroma auto run:
 {{- end }}
 
 {{- with resources.Get "css/theme.css" }}
-  {{- $themecontent := print `{{- $assetBusting := partialCached "assetbusting.gotmpl" . -}}\n@import "{{ printf "variables.css%s" $assetBusting }}";` "\n\n" .Content }}
+  {{- $themecontent := print
+    `{{- $assetBusting := partialCached "assetbusting.gotmpl" . -}}` "\n"
+    `@import "{{ printf "variables.css%s" $assetBusting }}";` "\n\n"
+    .Content
+  }}
   {{- range $page.Site.Params.boxStyle }}
     {{- $identifier := upper .identifier }}
     {{- $identifierl := lower .identifier }}
