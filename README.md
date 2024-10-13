@@ -22,7 +22,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Customizable Appearance**
   - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/logo#change-the-logo)
   - [Automatic light/dark mode switching based on OS settings](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#adjust-to-os-settings)
-  - Many pre-defined color variants
+  - [Many pre-defined color variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#shipped-variants)
   - [User-selectable variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#multiple-variants)
   - [Built-in stylesheet generator](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/generator)
   - [Customizable syntax highlighting](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/modules/#change-syntax-highlighting)
