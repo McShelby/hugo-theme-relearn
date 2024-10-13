@@ -24,7 +24,7 @@ Your topbar contains the following elements. Some of them are configuarable:
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Set `disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 disableToc = true
 {{< /multiconfig >}}
 
@@ -34,7 +34,7 @@ disableToc = true
 
 Further breadcrumbs settings can be found in the [content configuration section](configuration/content/titles).
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 disableBreadcrumb = true
 {{< /multiconfig >}}
 
@@ -44,7 +44,7 @@ disableBreadcrumb = true
 
 The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages front matter.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}'
 {{< /multiconfig >}}
 
@@ -52,6 +52,6 @@ editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 disableNextPrev = true
 {{< /multiconfig >}}

@@ -53,7 +53,7 @@ Please note that this can not resolve files inside of your `static` directory. T
 
 Link warnings are also available for [images & links](authoring/frontmatter/linking#enabling-link-and-image-link-warnings) and the [include](shortcodes/include#enabling-link-warnings) shortcode.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 openapi.errorlevel = 'warning'
 {{< /multiconfig >}}
 
@@ -63,7 +63,7 @@ openapi.errorlevel = 'warning'
 
 In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 customOpenapiURL = 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
 {{< /multiconfig >}}
 
@@ -73,7 +73,7 @@ customOpenapiURL = 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
 
 You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 openapi.force = true
 {{< /multiconfig >}}
 

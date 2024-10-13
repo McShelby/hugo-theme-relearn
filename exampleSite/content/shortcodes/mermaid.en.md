@@ -74,7 +74,7 @@ By default this is disabled. Set `mermaidZoom=true` to enable it.
 
 Individual settings of a graphs [`zoom` parameter](#parameter) have precedence over the page's front matter and configuration options in that order.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 mermaidZoom = true
 {{< /multiconfig >}}
 
@@ -88,7 +88,7 @@ Keep in mind that initialization settings of your pages front matter overwrite a
 
 In addition, you can merge settings for each individual graph through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives) on top of the settings of your page's front matter or configuration options.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 mermaidInitialize = '{ "securityLevel": "loose" }'
 {{< /multiconfig >}}
 
@@ -98,7 +98,7 @@ mermaidInitialize = '{ "securityLevel": "loose" }'
 
 In case you want do use a different version of the Mermaid library but don't want to override the shipped version, you can set `customMermaidURL` to the URL of the external Mermaid library.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 customMermaidURL = 'https://unpkg.com/mermaid/dist/mermaid.min.js'
 {{< /multiconfig >}}
 
@@ -108,7 +108,7 @@ customMermaidURL = 'https://unpkg.com/mermaid/dist/mermaid.min.js'
 
 You can force loading the Mermaid library if no shortcode or codefence was used by setting `mermaid.force=true`. If a shortcode or codefence was found, this option has no effect. This comes handy in case you are using scripting to render a graph.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 mermaid.force = true
 {{< /multiconfig >}}
 

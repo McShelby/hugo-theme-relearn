@@ -13,7 +13,7 @@ weight = 3
 
 For example, this will open links in the same tab
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 externalLinkTarget = '_self'
 {{< /multiconfig >}}
 
@@ -27,7 +27,7 @@ Please note that this can not resolve files inside of your `static` directory. T
 
 Link warnings are also available for the [include](shortcodes/include#enabling-link-warnings) and [openapi](shortcodes/openapi#enabling-link-warnings) shortcodes.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 link.errorlevel = 'warning'
 image.errorlevel = 'warning'
 {{< /multiconfig >}}

@@ -111,7 +111,7 @@ If used together with wrapping of long lines, use this recommended settings. Oth
 
 You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameter) individually for each code block.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 highlightWrap=false
 {{< /multiconfig >}}
 

@@ -26,11 +26,15 @@ The theme generates the expand state based on the following rules:
 - all [visible](authoring/meta#hidden) entries show their immediate child entries if `alwaysopen=true`; this proceeds recursively
 - all remaining entries are not shown
 
+{{< multiconfig >}}
+alwaysopen = false
+{{< /multiconfig >}}
+
 ## Expander for Nested Sections
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Set `collapsibleMenu=true` to add an expander for submenus. This shows submenus as collapsible trees with a clickable expander.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 collapsibleMenu = true
 {{< /multiconfig >}}
 
@@ -56,7 +60,7 @@ weight = 5
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using the `weight` for sorting can get cumbersome if you, for example, just want to sort alphabetically. Each time you add a new page in the set of pages, you may have to renumber some or all of them to make space for the new page.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig >}}
 ordersectionsby = 'linktitle'
 {{< /multiconfig >}}
 
