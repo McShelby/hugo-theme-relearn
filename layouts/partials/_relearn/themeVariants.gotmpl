@@ -125,19 +125,19 @@ Chroma auto run:
 {{- end }}
 
 {{- with resources.Get "css/theme.css" }}
-  {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
-  {{- $variantcontent := print `@import "variables.css` $assetBusting `";` "\n\n" .Content }}
+  {{- $themecontent := print `{{- $assetBusting := partialCached "assetbusting.gotmpl" . -}}\n@import "{{ printf "variables.css%s" $assetBusting }}";` "\n\n" .Content }}
   {{- range $page.Site.Params.boxStyle }}
     {{- $identifier := upper .identifier }}
     {{- $identifierl := lower .identifier }}
-    {{- $variantcontent = print $variantcontent
+    {{- $themecontent = print $themecontent
       "\n.cstyle." $identifierl " {"
       "\n    --VARIABLE-BOX-color: var(--INTERNAL-BOX-" $identifier "-color);"
       "\n    --VARIABLE-BOX-TEXT-color: var(--INTERNAL-BOX-" $identifier "-TEXT-color);"
       "\n}\n"
     }}
   {{- end }}
-  {{- $cssres := $variantcontent | resources.FromString "css/theme.css" }}
+  {{- $themeres := $themecontent | resources.FromString (printf "%s.txt" ($themecontent | md5)) }}
+  {{- $cssres := $themeres | resources.ExecuteAsTemplate "css/theme.css" (dict) }}
   {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
 {{- end }}
 
