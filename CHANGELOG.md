@@ -1,5 +1,17 @@
 # Changelog
 
+## 7.0.0 (2024-10-13)
+
+### Fixes
+
+- [**bug**] theme: remove duplicate path warning [#926](https://github.com/McShelby/hugo-theme-relearn/issues/926)
+
+### Maintenance
+
+- [**task**][**breaking**] roadmap: upcoming major changes for 7.0.0 [#715](https://github.com/McShelby/hugo-theme-relearn/issues/715)
+
+---
+
 ## 6.4.1 (2024-10-11)
 
 ### Fixes
