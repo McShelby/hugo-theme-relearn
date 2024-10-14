@@ -10,10 +10,10 @@
 # Linux, Windows and MacOS)
 
 # #!/bin/sh
-# echo 'execute .githooks/pre-push.py' >> .githooks/hooks.log
 # python3 .githooks/pre-push.py
 
 from datetime import datetime
+import os
 import re
 import subprocess
 
@@ -29,14 +29,20 @@ import subprocess
 # an "#" (which are work in progress).
 
 def main():
+    script_name = "PRE-PUSH"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file = os.path.join(script_dir, "hooks.log")
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], universal_newlines=True).strip()
+    repo_name = os.path.basename(repo_root)
+
     local_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], universal_newlines=True).strip()
     wip_prefix = '^#\\d+(?:\\b.*)$'
     if re.match(wip_prefix, local_branch):
-        print(f'{time}: PRE-PUSH - Branch "{local_branch}" was not pushed because its name starts with a "#" which marks it as work in progress', file=open(".githooks/hooks.log", "a"))
-        print(f'PRE-PUSH - Branch "{local_branch}" was not pushed because its name starts with a "#" which marks it as work in progress')
+        print(f'{time}: {repo_name} - {script_name} - Branch "{local_branch}" was not pushed because its name starts with a "#" which marks it as work in progress', file=open(log_file, "a"))
+        print(f'{script_name} - Branch "{local_branch}" was not pushed because its name starts with a "#" which marks it as work in progress')
         exit(1)
-    print(f'{time}: PRE-PUSH - Branch "{local_branch}" was pushed', file=open(".githooks/hooks.log", "a"))
+    print(f'{time}: {repo_name} - {script_name} - Branch "{local_branch}" was pushed', file=open(log_file, "a"))
     exit(0)
 
 if __name__ == "__main__":
