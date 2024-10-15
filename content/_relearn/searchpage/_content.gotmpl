@@ -3,7 +3,7 @@
 	{{- $url := trim (or .Site.Params.searchPageURL "search") "/"  }}
 	{{- $content := dict
 		"mediaType" "text/markdown"
-		"value" "{{% _relearn_searchform %}}"
+		"value" ""
 	}}
 	{{- $page := dict
 		"content" $content
@@ -11,6 +11,7 @@
 		"outputs" (slice "html")
 		"path" "_relearn_searchpage"
 		"title" (T "Search")
+		"type" "_relearn_searchform"
 		"url" $url
 	}}
 	{{- .AddPage $page }}

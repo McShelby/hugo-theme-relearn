@@ -1,14 +1,17 @@
-{{/*
-This is an internal shortcode used for the dedicated search page;
-it is undocumented and not meant to be used in your content files!
-*/ -}}
+
+<article class="default">
+  <header class="headline">
+    {{- partial "content-header.html" . }}
+  </header>
+{{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
+
 <search>
   <form action="javascript:triggerSearch()">
     <div class="searchform">
       <label class="a11y-only" for="R-search-by-detail">{{ T "Search" }}</label>
       <input data-search-input id="R-search-by-detail" class="search-by" name="search-by" type="search" placeholder="{{ T "Search-placeholder" }}">
       {{- partial "shortcodes/button.html" (dict
-        "page" .Page
+        "page" .
         "type" "submit"
         "style" "secondary"
         "icon" "search"
@@ -22,3 +25,7 @@ it is undocumented and not meant to be used in your content files!
 <hr>
 <div id="R-searchresults">
 </div>
+  <footer class="footline">
+    {{- partial "content-footer.html" . }}
+  </footer>
+</article>
