@@ -85,7 +85,7 @@ Start by making a home page
 hugo new --kind home _index.md
 ````
 
-The new home page file `authoring/_index.md` has two parts: the page info (like `title`) at the top, called [front matter](https://gohugo.io/content-management/front-matter/), and the page content below.
+The new home page file `content/_index.md` has two parts: the page info (like `title`) at the top, called [front matter](https://gohugo.io/content-management/front-matter/), and the page content below.
 
 ## Create your First Chapter Page
 
