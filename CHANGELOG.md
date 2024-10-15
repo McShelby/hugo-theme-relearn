@@ -1,5 +1,13 @@
 # Changelog
 
+## 7.0.1 (2024-10-15)
+
+### Fixes
+
+- [**bug**] search: search page not generated with renderer.unsafe [#929](https://github.com/McShelby/hugo-theme-relearn/issues/929)
+
+---
+
 ## 7.0.0 (2024-10-13)
 
 ### Enhancements
