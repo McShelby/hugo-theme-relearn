@@ -11,14 +11,14 @@
           {{- warnf "UNSUPPORTED usage of 'searchpage' output format found, remove it from your config; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" }}
         {{- end }}
         {{- if not .Site.Params.disableSearchIndex }}
-          {{- $url := path.Join .Site.LanguagePrefix (trim (or .Site.Params.searchIndexURL "searchindex.js") "/") }}
+          {{- $url := path.Join (trim (or .Site.Params.searchIndexURL "searchindex.js") "/") }}
           {{- if .IsHome }}
             {{- $templateres := resources.Get "_relearn_searchindex.js" }}
             {{- $resultres := $templateres | resources.ExecuteAsTemplate $url .Site.Home }}
             {{- /* the following code causes Hugo to generate our file - although it is in comments */}}<!-- {{ $resultres.RelPermalink }} -->
           {{- end }}
         <script>
-          window.index_js_url={{ (printf "%s%s" $url $assetBusting) | relLangURL }};
+          window.index_js_url={{ (printf "%s%s" $url $assetBusting) | relURL }};
         </script>
           {{- if not .Site.Params.disableSearchPage }}
             {{- with .Site.GetPage "_relearn_searchpage" }}
