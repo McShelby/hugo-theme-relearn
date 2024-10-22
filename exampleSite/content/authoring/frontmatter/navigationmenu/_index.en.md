@@ -99,7 +99,6 @@ To stay with the [initial example](authoring/structure): Suppose you want `first
 For this, open `content/first-chapter/first-page/_index.md` and add the following front matter
 
 {{< multiconfig fm=true >}}
-collapsibleMenu = true
 [_build]
   render = 'never'
 {{< /multiconfig >}}

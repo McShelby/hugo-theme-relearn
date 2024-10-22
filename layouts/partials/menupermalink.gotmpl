@@ -1,0 +1,10 @@
+{{- $url := "" }}
+{{- with . }}
+  {{- with .URL }}
+    {{- $url = . | relLangURL }}
+  {{- end }}
+  {{- with .Page }}
+    {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
+  {{- end }}
+{{- end }}
+{{- return $url }}

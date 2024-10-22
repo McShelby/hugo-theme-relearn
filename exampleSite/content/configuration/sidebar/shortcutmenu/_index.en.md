@@ -24,7 +24,7 @@ You can disable this title with `disableShortcutsTitle=true`.
 To change the title, update your local i18n translation file.
 
 ````toml {title="i18n/en.toml"}
-[Shortcuts-Title]
+[shortcuts-menuTitle]
 other = "Other Great Stuff"
 ````
 
@@ -34,31 +34,32 @@ Edit `hugo.toml` and add `[[menu.shortcuts]]` entries for each link:
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
-  name = '<i class="fa-fw fab fa-github"></i> GitHub Repo'
-  identifier = 'ds'
+  pre = '<i class="fa-fw fab fa-github"></i> '
+  name = 'GitHub Repo'
   url = 'https://github.com/McShelby/hugo-theme-relearn'
   weight = 10
 
 [[menu.shortcuts]]
-  name = '<i class="fa-fw fas fa-camera"></i> Showcases'
+  name = 'Showcases'
   pageRef = '/showcase'
-  weight = 11
-
-[[menu.shortcuts]]
-  name = '<i class="fa-fw fas fa-bookmark"></i> Hugo Documentation'
-  identifier = 'hugodoc'
-  url = 'https://gohugo.io/'
   weight = 20
 
 [[menu.shortcuts]]
-  name = '<i class="fa-fw fas fa-bullhorn"></i> Credits'
+  name = 'Credits'
   pageRef = '/more/credits'
   weight = 30
 
 [[menu.shortcuts]]
-  name = '<i class="fa-fw fas fa-tags"></i> Tags'
+  pre = '<i class="fa-fw fas fa-tags"></i> '
+  name = 'Tags'
   pageRef = '/tags'
   weight = 40
+
+[[menu.shortcuts]]
+  pre = '<i class="fa-fw fas fa-layer-group"></i> '
+  name = 'Categories'
+  pageRef = '/categories'
+  weight = 50
 {{< /multiconfig >}}
 
 ## Multilingual Example
@@ -73,31 +74,32 @@ For multilingual sites, set different menus for each language in `hugo.toml`:
     languageName = 'English'
 
   [[languages.en.menu.shortcuts]]
-    name = '<i class="fa-fw fab fa-github"></i> GitHub Repo'
-    identifier = 'ds'
+    pre = '<i class="fa-fw fab fa-github"></i> '
+    name = 'GitHub Repo'
     url = 'https://github.com/McShelby/hugo-theme-relearn'
     weight = 10
 
   [[languages.en.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-camera"></i> Showcases'
+    name = 'Showcases'
     pageRef = '/showcase'
-    weight = 11
-
-  [[languages.en.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-bookmark"></i> Hugo Documentation'
-    identifier = 'hugodoc'
-    url = 'https://gohugo.io/'
     weight = 20
 
   [[languages.en.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-bullhorn"></i> Credits'
+    name = 'Credits'
     pageRef = '/more/credits'
     weight = 30
 
   [[languages.en.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-tags"></i> Tags'
+    pre = '<i class="fa-fw fas fa-tags"></i> '
+    name = 'Tags'
     pageRef = '/tags'
     weight = 40
+
+  [[languages.en.menu.shortcuts]]
+    pre = '<i class="fa-fw fas fa-layer-group"></i> '
+    name = 'Categories'
+    pageRef = '/categories'
+    weight = 50
 
   [languages.pir]
     title = 'Captain Hugo Relearrrn Theme'
@@ -116,20 +118,32 @@ For multilingual sites, set different menus for each language in `hugo.toml`:
     weight = 11
 
   [[languages.pir.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-bookmark"></i> Captain Hugo Documentation'
-    identifier = 'hugodoc'
-    url = 'https://gohugo.io/'
+    pre = '<i class="fa-fw fab fa-github"></i> '
+    name = 'GitHub Repo'
+    url = 'https://github.com/McShelby/hugo-theme-relearn'
+    weight = 10
+
+  [[languages.pir.menu.shortcuts]]
+    name = 'Showcases'
+    pageRef = '/showcase'
     weight = 20
 
   [[languages.pir.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-bullhorn"></i> Crrredits'
+    name = 'Crrredits'
     pageRef = '/more/credits'
     weight = 30
 
   [[languages.pir.menu.shortcuts]]
-    name = '<i class="fa-fw fas fa-tags"></i> Arrr! Tags'
+    pre = '<i class="fa-fw fas fa-tags"></i> '
+    name = 'Arrr! Tags'
     pageRef = '/tags'
     weight = 40
+
+  [[languages.pir.menu.shortcuts]]
+    pre = '<i class="fa-fw fas fa-layer-group"></i> '
+    name = 'Categorrries'
+    pageRef = '/categories'
+    weight = 50
 {{< /multiconfig >}}
 
 ## Displaying Pages Only in the Shortcuts Menu

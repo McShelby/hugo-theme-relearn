@@ -1,0 +1,12 @@
+{{- $title := "" }}
+{{- with . }}
+  {{- $pagetitle := "" }}
+  {{- with .Page }}
+    {{- $pagetitle = or .LinkTitle .Title }}
+  {{- end }}
+  {{- $title = or .Title (.Name | safeHTML) }}
+  {{- if and (eq $pagetitle .Title) (ne .Name .Title) }}
+    {{- $title = (.Name | safeHTML) }}
+  {{- end }}
+{{- end }}
+{{- return $title }}

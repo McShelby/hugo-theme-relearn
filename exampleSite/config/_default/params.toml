@@ -196,6 +196,13 @@ additionalContentLanguage = [ 'en' ]
 # Menu
 # These options modify the menu appearance.
 
+# Shows checkmarks for visited pages of the main menu.
+# Default: false
+# This also causes the display of the `Clear History` entry in the lower part
+# of the menu to remove all checkmarks. The checkmarks will also been removed
+# if you regenerate your site as the ids are not stable.
+showVisitedLinks = true
+
 # Hide the Home entry.
 # Default: false
 # If shown, a Home button will appear below the search bar and the main menu.
@@ -225,25 +232,51 @@ alwaysopen = ''
 # This can be overridden in the page's frontmatter.
 collapsibleMenu = true
 
-# Shows checkmarks for visited pages of the main menu.
-# Default: false
-# This also causes the display of the `Clear History` entry in the lower part
-# of the menu to remove all checkmarks. The checkmarks will also been removed
-# if you regenerate your site as the ids are not stable.
-showVisitedLinks = true
-
-# Hide heading above the shortcut menu.
-# Default: false
-# The title for the heading can be overwritten in your i18n files. See Hugo's
-# documentation how to do this.
-disableShortcutsTitle = false
-
 # Hide the language switcher.
 # Default: false
 # If you have more than one language configured, a language switcher is
 # displayed in the lower part of the menu. This option lets you explicitly
 # turn this behavior off.
 disableLanguageSwitchingButton = false
+
+# Hide heading above the shortcuts menu.
+# Default: false
+# If a sidebar menu with identifier `shortcuts` is configured (see below),
+# this is the easy way to remove the heading;
+# The title for the heading can be overwritten in your i18n files. See Hugo's
+# documentation how to do this.
+disableShortcutsTitle = false
+
+# Define your own sidebar menus.
+# Default: the value used below
+# The sidebar menus are built from this parameter. If not set, it contains
+# the below default.
+# Menus are written from the sidebar's top to buttom in the order given in
+# this array.
+# This can be overridden in the page's frontmatter.
+# Each entry can contain the following keys:
+# - `type` is mandatory. Either `page` in case it should generate a tre from
+#    the page structure or `menu` in case it should generate a tree from a
+#    defined menu.
+# - `identifier` is mandatory. In case of `type=page`, anything can be used,
+#    in case of `type=menu` the `identifier` key must be identical to the
+#    key of the menu definition.
+# - `main`, boolean. If `true`, the first tree level is spaced more generous
+#    and the text is emphasized. Default: `true` for `type=page` and `false`
+#    for `type=menu`
+# - `disableTitle`, boolean. If `true`, there is no title above the tree.
+#    Default: `true` for `type=page` and `false` for `type=menu`. If a title
+#    should be used, in case of `type=page` it will be taken from the page's
+#    `menuTitle` front matter and if not set, from the translation files, using
+#    the menu `identifier` as key. In case of `type=menu` it will be taken
+#    from the menu `title` according to Hugo's documentation and if not set
+#    from the menu `name` and if this is not set form the page's `linkTitle`.
+# - `pageRef`, optional. In case of `type=page` this is the starting page's
+#   path. If not set, the home page will be used.
+sidebarmenus = [
+	{ type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
+	{ type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
+]
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Hidden pages
