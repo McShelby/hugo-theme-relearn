@@ -31,7 +31,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Chapter and site-wide printing capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats#print-support)
   - [Versatile search options: in-page, popup, and dedicated search page](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search)
   - [Customizable top bar buttons](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar)
-  - [Nested menus](https://mcshelby.github.io/hugo-theme-relearn/authoring/frontmatter/navigationmenu)
+  - [Nested menus](https://mcshelby.github.io/hugo-theme-relearn/authoring/frontmatter/menu)
   - [Configurable menus](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/shortcutmenu)
   - [Support for hidden pages](https://mcshelby.github.io/hugo-theme-relearn/configuration/content/hidden)
   - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/taxonomy)

@@ -38,6 +38,8 @@ images = [ 'images/hero.png' ]
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide your pages from the menu by setting `hidden=true`.
 
+{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For [Hugo menus](https://gohugo.io/content-management/menus/), you have to set `params.hidden=true` instead.
+
 [See how you can further configure visibility](configuration/content/hidden) throughout your site.
 
 {{< multiconfig fm=true >}}
