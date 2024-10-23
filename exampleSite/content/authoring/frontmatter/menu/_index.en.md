@@ -15,7 +15,7 @@ The theme can build menu trees from [the structure of your page files](authoring
 
 - {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}}. In case of Hugo menus, individual configuration is done via a menu entry's configuration.
 
-## Expand State of Nested Sections
+## Expand State of Submenus
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can change how submenus appear with `alwaysopen`.
 
@@ -36,7 +36,7 @@ The theme generates the expand state based on the following rules:
 alwaysopen = false
 {{< /multiconfig >}}
 
-## Expander for Nested Sections
+## Expander for Submenus
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Set `collapsibleMenu=true` to show submenus as collapsible trees with a clickable expander.
 
@@ -55,11 +55,13 @@ collapsibleMenu = true
 >
 > This happens because each new page affects all other pages, leading to exponentially longer build times.
 
-## Ordering Sibling Menu Entries
+## Ordering Menu Entries
 
 ### By Weight
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} Hugo provides a [simple way](https://gohugo.io/getting-started/glossary/#weight) to handle order of your entries by setting the `weight` front matter to a number.
+
+Hugo menus can only be sorted using the weight method.
 
 {{< multiconfig>}}
 weight = 5
@@ -70,8 +72,6 @@ weight = 5
 Using the `weight` for sorting can get cumbersome if you, for example, just want to sort alphabetically. Each time you add a new page in the set of pages, you may have to renumber some or all of them to make space for the new page.
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects. See the [children shortcode](shortcodes/children#parameter) for a complete list.
-
-Hugo menus can only be sorted using the [weight method](#by-weight).
 
 {{< multiconfig >}}
 ordersectionsby = 'linktitle'
@@ -90,7 +90,7 @@ title = 'Install on Linux'
 linkTitle = 'Linux'
 {{< /multiconfig >}}
 
-## Add Icon to a Menu Entry
+## Icons for Menu Entries
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} For page menus, add a `menuPre` to insert any HTML code before the menu label. You can also set `menuPost` to insert HTML code after the menu label.
 
@@ -104,13 +104,13 @@ title = 'GitHub Repo'
 menuPre = '<i class="fab fa-github"></i> '
 {{< /multiconfig >}}
 
-## Disable Parent Menu Entries
+## Disable Menu Entries
 
 You may want to structure your entries in a hierarchical way but don't want to generate clickable parent entries? The theme got you covered.
 
 ### For Page Menus
 
-To stay with the [initial example](authoring/structure): Suppose you want `first-chapter/first-page` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should show an expander.
+To stay with the [initial example](authoring/structure): Suppose you want `first-chapter/first-page` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should be expandable.
 
 For this, open `content/first-chapter/first-page/_index.md` and add the following front matter
 
@@ -121,26 +121,58 @@ For this, open `content/first-chapter/first-page/_index.md` and add the followin
 
 ### For Hugo Menus
 
-Just don't give your parent menu entry configuration a `url` or `pageRef`
+Just don't give your parent menu entry configuration a `url` or `pageRef`. See the [next section](#title-for-menus) for a special case.
 
 {{< multiconfig fm=true >}}
 [[menu.addendum]]
-  name = 'Parent'
+  name = 'Parent 1'
+  weight = 1
+
+[[menu.addendum]]
+  parent = 'Parent 1'
+  name = 'Child 1'
+  url = 'https://example.com/1'
+
+[[menu.addendum]]
+  name = 'Parent 2'
+  weight = 2
+
+[[menu.addendum]]
+  parent = 'Parent 2'
+  name = 'Child 2'
+  url = 'https://example.com/2'
+{{< /multiconfig >}}
+
+## Title for Menus
+
+Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableMenuTitle=false` for each sidebar menu configuration](#parameter).
+
+{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} For page menus, set the `menuTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `menuTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
+
+{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
+
+If you don't want to fiddle around with your translation files, you also have the possibility to let the title be taken from the menu definition. For that, define a nested menu that only has one top-level entry without `url` or `pageRef`.
+
+In this case, the `title` or `name` is taken for the menu heading.
+
+{{< multiconfig fm=true >}}
+[[menu.addendum]]
+  name = 'A Menu Title for the Whole Menu'
 
 [[menu.addendum]]
   parent = 'Parent'
-  name = 'Child 1'
+  name = 'A Menu Entry Title for Child 1'
   url = 'https://example.com/1'
   weight = 1
 
 [[menu.addendum]]
   parent = 'Parent'
-  name = 'Child 2'
+  name = 'A Menu Entry Title for Child 2'
   url = 'https://example.com/2'
   weight = 2
 {{< /multiconfig >}}
 
-## Defining Menus
+## Defining Sidebar Menus
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined using the `sidebarmenus` option.
 
@@ -163,9 +195,9 @@ sidebarmenus = [
 | disableTitle          | see notes       | Whether to print a title above the menu<br><br>- for `type=page` defaults to `true`<br>- for `page=menu` defaults to `false` |
 | pageRef               | _&lt;empty&gt;_ | Only for `type=page`, the page path to start the menu tree. If not set, defaults to the home page. |
 
-## Redefining Menus for Certain Pages
+## Redefining Sidebar Menus for Certain Pages
 
-Suppose you are building a site that contains of a topmost `blog` and `documentation` section.
+Suppose you are building a site that contains a topmost `blog` and `documentation` section.
 
 When the user is on one of the blog pages he should only see a menu containing all blog pages, while on a documentation page he should only see a menu containing all doc pages.
 
