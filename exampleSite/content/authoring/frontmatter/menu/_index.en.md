@@ -96,6 +96,7 @@ linkTitle = 'Linux'
 
 {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, add a `pre` to insert any HTML code before the menu label. You can also set `post` to insert HTML code after the menu label.
 
+If `pageRef` is set for the menu entry and no `pre` or `post` was configured, `menuPre` and `menuPost` of the referenced page will be taken.
 
 The example below uses the GitHub icon for an entry of a page menu.
 
