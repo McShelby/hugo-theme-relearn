@@ -10,9 +10,7 @@
 
 {{- if eq $by "weight" }}
 	{{- $pages = $page.Pages.ByWeight }}
-{{- else if or (eq $by "name") (eq $by "title") }}
-	{{- $pages = $page.Pages.ByTitle }}
-{{- else if eq $by "linktitle" }}
+{{- else if or (eq $by "name") (eq $by "title") (eq $by "linktitle") }}
 	{{- $pages = $page.Pages.ByLinkTitle }}
 {{- else if eq $by "modifieddate" }}
 	{{- $pages = $page.Pages.Lastmod }}
