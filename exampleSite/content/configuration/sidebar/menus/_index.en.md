@@ -289,7 +289,7 @@ title = 'Topic Green'
 menuPageRef = '/reference/ref-b'
 {{< /multiconfig >}}
 
-If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.
+{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.
 
 Pages defining a crosslink are never part of the arrow navigation and are skipped instead.
 
