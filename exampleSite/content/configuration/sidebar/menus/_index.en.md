@@ -1,7 +1,7 @@
 +++
 categories = ["howto"]
 description = "Configure all things menus"
-frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPost", "menuPre", "ordersectionsby", "sidebarmenus"]
+frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPageRef", "menuPost", "menuPre", "menuUrl", "ordersectionsby", "sidebarmenus"]
 options = ["alwaysopen", "collapsibleMenu", "disableShortcutsTitle", "ordersectionsby",  "sidebarmenus"]
 title = "Menus"
 weight = 4
@@ -260,6 +260,42 @@ title = 'Documentation'
       { type = 'page', identifier = 'docs', pageRef = '/docs' },
     ]
 {{< /multiconfig >}}
+
+## Displaying Arbitrary Links in a Page Menu
+
+You may have the need to add arbitrary links at some point in your menu that are initially not backed by a page. These are called crosslinks.
+
+Assume the following structure
+
+````plaintext
+content
+├── reference
+│   ├── ref-a.md
+│   ├── ref-b.md
+│   ├── ref-c.md
+│   └── _index_.md
+├── topic-blue.md
+├── topic-red.md
+├── topic-yellow.md
+└── _index_.md
+````
+
+You now want to include `ref-b` as separate entry after `topic-green` in your menu.
+
+For that create a new page with the following front matter
+
+{{< multiconfig fm=true file="content/topic-green.md" >}}
+title = 'Topic Green'
+menuPageRef = '/reference/ref-b'
+{{< /multiconfig >}}
+
+If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.
+
+Pages defining a crosslink are never part of the arrow navigation and are skipped instead.
+
+So with the above example and alphabetical sorting of the menu entries, pressing {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} on `topic-blue` will skip the newly added `topic-green` and instead will load `topic-red`.
+
+Having sub pages below a page that defines a crosslink is undefined.
 
 ## Displaying Pages Exclusively in a Hugo Menu
 

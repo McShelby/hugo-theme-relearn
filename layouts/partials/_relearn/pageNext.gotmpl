@@ -85,7 +85,7 @@
   {{- range $siblings }}
     {{- if eq . $currentNode }}
       {{- $currentFound = true }}
-    {{- else if $currentFound }}
+    {{- else if and $currentFound (not (or (eq .Title "") .Params.hidden .Params.menuUrl .Params.menuPageRef)) }}
       {{- $nextSibling = . }}
       {{- break }}
     {{- end }}
@@ -95,7 +95,7 @@
 
 {{- define "partials/inline/leftmost_descendant" }}
   {{- $leftmostVisible := "" }}
-  {{- if not (or (.Params.hidden) (eq .Title "")) }}
+  {{- if not (or (eq .Title "") .Params.hidden .Params.menuUrl .Params.menuPageRef) }}
     {{- if .RelPermalink }}
       {{- $leftmostVisible = . }}
     {{- else }}

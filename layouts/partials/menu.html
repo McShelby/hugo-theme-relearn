@@ -161,9 +161,27 @@
     {{- end }}
     {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
     {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
+    {{- $isCrosslink := false }}
+    {{- $target := "" }}
+    {{- if .Params.menuPageRef }}
+      {{- with site.Home.GetPage (.Params.menuPageRef) }}
+        {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
+        {{- $isCrosslink = true }}
+      {{- end }}
+    {{- else if .Params.menuUrl }}
+      {{- $url = .Params.menuUrl }}
+      {{- $isCrosslink = true }}
+      {{- $u := urls.Parse $url }}
+      {{- if $u.IsAbs }}
+        {{- $target = "_blank" }}
+        {{- if isset site.Params "externallinktarget" }}
+          {{- $target = site.Params.externalLinkTarget }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
     {{- $pre := partial "menu-pre.html" . }}
     {{- $post := partial "menu-post.html" . }}
-    {{- if $hasVisibleChildren }}
+    {{- if and $hasVisibleChildren (not $isCrosslink) }}
       {{- $isCollapsible := .Params.collapsibleMenu | default site.Params.collapsibleMenu }}
       {{- $currentAlwaysopen := .Params.alwaysopen | default $alwaysopen }}
       {{- if and (not $url) (not $isCollapsible) }}
@@ -173,7 +191,7 @@
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
-      {{- if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
       {{- $defaultAlwaysopen := site.Params.alwaysopen | default true }}
@@ -190,8 +208,8 @@
         {{- end }}
       {{- end }}</ul></li>
     {{- else if $url }}
-            <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}" data-nav-id="{{ $url }}">
-      {{- if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+            <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $isCrosslink }}crosslink {{end}}" data-nav-id="{{ $url }}">
+      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
     {{- end }}
@@ -283,6 +301,14 @@
     {{- end }}
     {{- $title := partial "menutitle.gotmpl" . }}
     {{- $url := partial "menupermalink.gotmpl" . }}
+    {{- $target := "" }}
+    {{- $u := urls.Parse $url }}
+    {{- if $u.IsAbs }}
+      {{- $target = "_blank" }}
+      {{- if isset site.Params "externallinktarget" }}
+        {{- $target = site.Params.externalLinkTarget }}
+      {{- end }}
+    {{- end }}
     {{- $pre := .Pre }}
     {{- $post := .Post }}
     {{- with .Page }}
@@ -299,7 +325,7 @@
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
-      {{- if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
       {{- $defaultAlwaysopen := site.Params.alwaysopen | default true }}
@@ -317,7 +343,7 @@
       {{- end }}</ul></li>
     {{- else if $url }}
             <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}" data-nav-id="{{ $url }}">
-      {{- if $url }}<a class="padding" href="{{ $url }}">{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
     {{- end }}

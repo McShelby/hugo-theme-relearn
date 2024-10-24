@@ -62,7 +62,7 @@
   {{- range $siblings }}
     {{- if eq . $currentNode }}
       {{- break }}
-    {{- else if not (or (.Params.hidden) (eq .Title "")) }}
+    {{- else if not (or (eq .Title "") .Params.hidden .Params.menuUrl .Params.menuPageRef) }}
       {{- $previousSibling = . }}
     {{- end }}
   {{- end }}
@@ -73,7 +73,7 @@
   {{- $rightmostVisible := . }}
   {{- $pages := (partialCached "_relearn/pages.gotmpl" (dict "page" $rightmostVisible) $rightmostVisible.Path) | collections.Reverse }}
   {{- range $pages }}
-    {{- if not (or (.Params.hidden) (eq .Title "")) }}
+    {{- if not (or (eq .Title "") .Params.hidden .Params.menuUrl .Params.menuPageRef) }}
       {{- with partial "inline/rightmost_descendant" . }}
         {{- if .RelPermalink }}
           {{- $rightmostVisible = . }}

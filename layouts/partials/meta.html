@@ -14,6 +14,19 @@
     {{- if not (and $title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
+    {{- $url := "" }}
+    {{- if .Params.menuPageRef }}
+        {{- with site.Home.GetPage (.Params.menuPageRef) }}
+            {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
+        {{- else }}
+            {{- warnf "%q: WARNING: page '%s' not found for 'menuPageRef' parameter" .File.Filename .Params.menuPageRef }}
+        {{- end }}
+    {{- else if .Params.menuUrl }}
+        {{- $url = .Params.menuUrl }}
+    {{- end }}
+    {{- if $url }}
+    <meta http-equiv="refresh" content="0; url={{ $url }}">
+    {{- end }}
     <meta name="description" content="{{ with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}{{ . }}{{ end }}">
     {{- $authorName := partialCached "_relearn/authorName.gotmpl" . }}
     <meta name="author" content="{{ $authorName }}">
