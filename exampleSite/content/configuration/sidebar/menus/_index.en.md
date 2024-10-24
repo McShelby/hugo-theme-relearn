@@ -1,10 +1,10 @@
 +++
 categories = ["howto"]
-description = "Setting the behavior of the menus"
+description = "Configure all things menus"
 frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPost", "menuPre", "ordersectionsby", "sidebarmenus"]
-options = ["alwaysopen", "collapsibleMenu", "ordersectionsby",  "sidebarmenus"]
+options = ["alwaysopen", "collapsibleMenu", "disableShortcutsTitle", "ordersectionsby",  "sidebarmenus"]
 title = "Menus"
-weight = 2
+weight = 4
 +++
 
 The theme can build menu trees from [the structure of your page files](authoring/structure) or from [Hugo's build in menu feature](https://gohugo.io/content-management/menus/).
@@ -124,6 +124,8 @@ For this, open `content/first-chapter/first-page/_index.md` and add the followin
 
 Just don't give your parent menu entry configuration a `url` or `pageRef`. See the [next section](#title-for-menus) for a special case.
 
+If you want to learn how to configure different Hugo menus for each language, [see the official docs](https://gohugo.io/content-management/multilingual/#menus).
+
 {{< multiconfig fm=true >}}
 [[menu.addendum]]
   name = 'Parent 1'
@@ -156,6 +158,8 @@ If you don't want to fiddle around with your translation files, you also have th
 
 In this case, the `title` or `name` is taken for the menu heading.
 
+If you want to learn how to configure different Hugo menus for each language, [see the official docs](https://gohugo.io/content-management/multilingual/#menus).
+
 {{< multiconfig fm=true >}}
 [[menu.addendum]]
   name = 'A Menu Title for the Whole Menu'
@@ -173,6 +177,24 @@ In this case, the `title` or `name` is taken for the menu heading.
   weight = 2
 {{< /multiconfig >}}
 
+## Title for the Predefined Shortcut Menu
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the predefined shortcut menu has a the title _More_ (in the English translation).
+
+You can disable this title with `disableShortcutsTitle=true`.
+
+{{< multiconfig file=hugo >}}
+[params]
+  disableShortcutsTitle = true
+{{< /multiconfig >}}
+
+To change the title, override your translation file.
+
+````toml {title="i18n/en.toml"}
+[shortcuts-menuTitle]
+other = "Other Great Stuff"
+````
+
 ## Defining Sidebar Menus
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined using the `sidebarmenus` option.
@@ -181,8 +203,8 @@ You can define as many menus, as you like. If you don't overwrite this option, t
 
 {{< multiconfig >}}
 sidebarmenus = [
-	{ type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
-	{ type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
+  { type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
+  { type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
 ]
 {{< /multiconfig >}}
 
@@ -238,3 +260,32 @@ title = 'Documentation'
       { type = 'page', identifier = 'docs', pageRef = '/docs' },
     ]
 {{< /multiconfig >}}
+
+## Displaying Pages Exclusively in a Hugo Menu
+
+Sometimes you want to hide pages from the page menu but instead want to show them in a Hugo menu. For that you have two choices
+
+1. Create a [headless branch bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle), `_index.md` in its own folder with the below front matter. The branch bundle will **not** be contained in the sitemap.
+
+    {{< multiconfig fm=true file="content/showcase/_index.en.md" >}}
+    title = 'Showcase'
+    [_build]
+      render = 'always'
+      list = 'never'
+      publishResources = true
+    {{< /multiconfig >}}
+
+2. Or, put a child page _inside_ a headless branch bundle with the following front matter in the bundle. This causes the child but not the branch bundle to be contained in the sitemap.
+
+    {{< multiconfig fm=true file="content/more/_index.en.md" >}}
+    [_build]
+      render = 'never'
+      list = 'never'
+      publishResources = false
+    {{< /multiconfig >}}
+
+    The child page can be any type of content.
+
+    {{< multiconfig fm=true file="content/more/credits_index.en.md" >}}
+    title = 'Credits'
+    {{< /multiconfig >}}
