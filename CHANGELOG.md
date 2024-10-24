@@ -1,5 +1,19 @@
 # Changelog
 
+## 7.1.0 (2024-10-24)
+
+### Enhancements
+
+- [**feature**][**change**] children: use LinkTitle instead of Title [#939](https://github.com/McShelby/hugo-theme-relearn/issues/939)
+- [**feature**][**change**] menu: support nested Hugo menus [#423](https://github.com/McShelby/hugo-theme-relearn/issues/423)
+- [**feature**] menu: support for external links [#148](https://github.com/McShelby/hugo-theme-relearn/issues/148)
+
+### Fixes
+
+- [**bug**] search: wrong searchindex URL with multilang per server config [#940](https://github.com/McShelby/hugo-theme-relearn/issues/940)
+
+---
+
 ## 7.0.1 (2024-10-15)
 
 ### Fixes
