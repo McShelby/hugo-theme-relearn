@@ -68,12 +68,12 @@ function processDirectory(directoryPath, oldDirectory, newDirectory, langs) {
             if (!processDirectory(filePath, oldDirectory, newDirectory, langs)) {
               return false;
             }
-          } else if (stats.isFile()){
+          } else if (stats.isFile()) {
             // non-language files are a different beast: copy the file into all languages that don't have a language file
             const nonLangRegex = /^(.*?)(\.([^.]+))?$/;
             const nonLangMatch = file.match(nonLangRegex);
             const fileName = nonLangMatch[1];
-            const fileExtension = nonLangMatch.length > 3 ? nonLangMatch[3] : "";
+            const fileExtension = nonLangMatch.length > 3 ? nonLangMatch[3] : '';
             Object.keys(langs).forEach((fileLang) => {
               const langFilePath = path.join(directoryPath, fileName + '.' + fileLang + '.' + fileExtension);
               const langExists = fs.existsSync(langFilePath);
@@ -103,14 +103,12 @@ function processDirectory(directoryPath, oldDirectory, newDirectory, langs) {
   return true;
 }
 
-function modifyConfig(configDirectory) {
-
-}
+function modifyConfig(configDirectory) {}
 
 function runThatShit(contentDirectory) {
   const sourceDirectory = contentDirectory;
-  const backupDirectory = contentDirectory + ".backup";
-  const targetDirectory = contentDirectory + ".temp";
+  const backupDirectory = contentDirectory + '.backup';
+  const targetDirectory = contentDirectory + '.temp';
 
   // check directories
   try {
@@ -149,7 +147,7 @@ function runThatShit(contentDirectory) {
 
   // convert that shit
   const langs = getLanguages(sourceDirectory);
-  if( !processDirectory(sourceDirectory, sourceDirectory, targetDirectory, langs) ){
+  if (!processDirectory(sourceDirectory, sourceDirectory, targetDirectory, langs)) {
     return false;
   }
 
@@ -164,7 +162,7 @@ function runThatShit(contentDirectory) {
   }
 
   // edit the config file accordingly
-  modifyConfig(path.join(sourceDirectory, ".."));
+  modifyConfig(path.join(sourceDirectory, '..'));
   return true;
 }
 
