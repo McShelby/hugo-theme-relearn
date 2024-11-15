@@ -1,6 +1,7 @@
-{{- $assetBusting := partialCached "assetbusting.gotmpl" . -}}
-@import "{{ printf "theme-%s.css%s" .themevariant.identifier $assetBusting }}";
-@import "{{ printf "chroma-%s.css%s" .themevariant.chroma $assetBusting }}";
+/* prettier-ignore {{ $assetBusting := partialCached "assetbusting.gotmpl" . -}} */
+@import '{{ printf "theme-%s.css%s" .themevariant.identifier $assetBusting }}';
+/* prettier-ignore */
+@import '{{ printf "chroma-%s.css%s" .themevariant.chroma $assetBusting }}';
 
 #R-sidebar {
     display: none;

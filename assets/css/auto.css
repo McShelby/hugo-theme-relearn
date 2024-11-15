@@ -1,3 +1,4 @@
-{{- $assetBusting := partialCached "assetbusting.gotmpl" . -}}
-@import "{{ printf "%s-%s.css%s" .prefix .light $assetBusting }}" screen and (prefers-color-scheme: light);
-@import "{{ printf "%s-%s.css%s" .prefix .dark $assetBusting }}" screen and (prefers-color-scheme: dark);
+/* prettier-ignore {{ $assetBusting := partialCached "assetbusting.gotmpl" . -}} */
+@import '{{ printf "%s-%s.css%s" .prefix .light $assetBusting }}' screen and (prefers-color-scheme: light);
+/* prettier-ignore */
+@import '{{ printf "%s-%s.css%s" .prefix .dark $assetBusting }}' screen and (prefers-color-scheme: dark);
