@@ -11,7 +11,7 @@ if not "%~1"=="" (
 rem Relearn themes exampleSite
 set "themeDir=.."
 if not exist "%themeDir%\layouts\partials\version.txt" (
-    rem other sites stored parallel to Relearn themes directory 
+    rem other sites stored parallel to Relearn themes directory
     set "themeDir=..\hugo-theme-relearn"
 )
 if not exist "%themeDir%\layouts\partials\version.txt" (
@@ -49,7 +49,7 @@ if exist "config\testing" (
 )
 
 echo on
-hugo%hugo_version% %config% --printPathWarnings --printI18nWarnings --templateMetrics --templateMetricsHints --cleanDestinationDir --logLevel info --verbose --destination "public%version%%hugo_prefix%%hugo_version%" >> "metrics%version%%hugo_prefix%%hugo_version%.log"
+hugo%hugo_version% %config% --printPathWarnings --printI18nWarnings --templateMetrics --templateMetricsHints --cleanDestinationDir --logLevel info --destination "public%version%%hugo_prefix%%hugo_version%" >> "metrics%version%%hugo_prefix%%hugo_version%.log"
 @echo off
 
 set "start_dir=%CD%\public%version%%hugo_prefix%%hugo_version%"
