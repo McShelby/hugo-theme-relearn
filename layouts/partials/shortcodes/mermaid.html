@@ -42,6 +42,6 @@
     {{- if $v }}
       {{- printf " %s=%q" $k $v | safeHTMLAttr }}
     {{- end }}
-  {{- end }}>{{ replaceRE "&#39;" "'" ( replaceRE "&#34;" "\"" ( $content | safeHTML ) ) }}</pre>
+  {{- end }}>{{ $content | htmlEscape | safeHTML }}</pre>
 {{- .Store.Set "hasMermaid" true }}
 {{- end }}
