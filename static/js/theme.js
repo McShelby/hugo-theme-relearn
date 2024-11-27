@@ -298,7 +298,7 @@ function initMermaid(update, attrs) {
       'beforeprint',
       function () {
         initMermaid(true, {
-          'theme': variants.getColorValue('PRINT-MERMAID-theme'),
+          theme: variants.getColorValue('PRINT-MERMAID-theme'),
         });
       }.bind(this)
     );
@@ -311,7 +311,7 @@ function initMermaid(update, attrs) {
   }
 
   attrs = attrs || {
-    'theme': variants.getColorValue('MERMAID-theme'),
+    theme: variants.getColorValue('MERMAID-theme'),
   };
 
   var search;
@@ -321,7 +321,7 @@ function initMermaid(update, attrs) {
   }
   var is_initialized = update ? update_func(attrs) : init_func(attrs);
   if (is_initialized) {
-    mermaid.initialize(Object.assign({ 'securityLevel': 'antiscript', 'startOnLoad': false }, window.relearn.mermaidConfig, { theme: attrs.theme }));
+    mermaid.initialize(Object.assign({ securityLevel: 'antiscript', startOnLoad: false }, window.relearn.mermaidConfig, { theme: attrs.theme }));
     mermaid.run({
       postRenderCallback: function (id) {
         // zoom for Mermaid
@@ -1654,7 +1654,7 @@ function updateTheme(detail) {
 function useMermaid(config) {
   window.relearn.mermaidConfig = config;
   if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-    mermaid.initialize(Object.assign({ 'securityLevel': 'antiscript', 'startOnLoad': false }, config));
+    mermaid.initialize(Object.assign({ securityLevel: 'antiscript', startOnLoad: false }, config));
     if (config.theme && variants) {
       var write_style = variants.findLoadedStylesheet('R-variant-style');
       write_style.setProperty('--CONFIG-MERMAID-theme', config.theme);
