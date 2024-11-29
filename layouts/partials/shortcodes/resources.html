@@ -14,15 +14,11 @@
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
-{{- $expander := false }}
 {{- $expanded := .expanded | default "" }}
 {{- if eq (printf "%T" $expanded) "string" }}
   {{- if ne (trim $expanded " ") "" }}
-    {{- $expander = true }}
     {{- $expanded = (eq $expanded "true") }}
   {{- end }}
-{{- else }}
-  {{- $expander = true }}
 {{- end }}
 {{- $sort := .sort | default "asc" }}
 {{- $pattern := .pattern | default "" }}

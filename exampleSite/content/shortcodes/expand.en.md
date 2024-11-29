@@ -23,6 +23,14 @@ That's some more text with a footnote.[^someid]
 ## Usage
 
 {{< tabs groupid="shortcode-parameter">}}
+{{% tab title="callout" %}}
+
+````md
+> [!transparent]- Expand me...
+> Thank you!
+````
+
+{{% /tab %}}
 {{% tab title="shortcode" %}}
 
 ````go
@@ -50,7 +58,9 @@ That's some more text with a footnote.[^someid]
 {{% /tab %}}
 {{< /tabs >}}
 
-The [`notice` shortcode](shortcodes/notice) is also capable of displaying expandable/collapsible sections of text but with color options.
+[Extended callout syntax](https://gohugo.io/render-hooks/blockquotes/#extended-syntax) is available in other Markdown parsers like Obsidian and therefore is the recommend syntax for generating portable Markdown.
+
+The [`notice` shortcode](shortcodes/notice) is also capable of displaying expandable/collapsible sections of text but with additional parameter for color and additional icons.
 
 ### Parameter
 

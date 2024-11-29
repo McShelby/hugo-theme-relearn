@@ -3,11 +3,6 @@
   {{- $page = .context }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'expand' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
 {{- end }}
-{{- $content := trim .content "\n\r\t " }}
-{{- $hasContent := ne (strings.TrimLeft "<p>" $content) "" }}
-{{- if not (hasPrefix $content "<") }}
-  {{- $content = printf "<p>\n%s" $content }}
-{{- end }}
 {{- $title := .title | default (T "Expand-title") }}
 {{- $title = trim $title " " }}
 {{- $expanded := .expanded | default false }}
@@ -18,18 +13,10 @@
 {{- if eq (printf "%T" $expanded) "string" }}
 	{{- $expanded = (eq $expanded "true") }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
-{{- with $page }}
-  {{- if $hasContent -}}
-<div class="expand">
-  <input type="checkbox" id="R-expand-{{ $id }}" aria-controls="R-expandcontent-{{ $id }}"{{ if $expanded }} checked{{ end }}>
-  <label class="expand-label" for="R-expand-{{ $id }}">
-    <i class="expander-icon fa-fw fas fa-chevron-down"></i>
-    <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ $title | .RenderString }}
-  </label>
-  <div id="R-expandcontent-{{ $id }}" class="expand-content">
-{{ $content | safeHTML }}
-  </div>
-</div>
-  {{- end }}
-{{- end }}
+{{- partial "shortcodes/notice.html" (dict
+  "page"     .page
+  "content"  .content
+  "expanded" $expanded
+  "style"    "transparent"
+  "title"    $title
+) }}

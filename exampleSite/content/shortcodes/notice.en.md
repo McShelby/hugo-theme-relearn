@@ -55,7 +55,7 @@ It is all about the boxes.
 {{% /tab %}}
 {{< /tabs >}}
 
-Callout syntax has limited features as it does not provide all of the below parameter. Nevertheless, it is widely available in other Markdown parsers like with [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) or [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) and therefore is the recommend syntax for generating portable Markdown.
+Callout syntax has limited features as it does not provide all of the below parameter. Nevertheless, it is widely available in other Markdown parsers like [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) or [Obsidian](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) and therefore is the recommend syntax for generating portable Markdown.
 
 If you want to display a transparent expandable box without any border, you can also use the [`expand` shortcode](/shortcodes/expand).
 
