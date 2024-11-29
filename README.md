@@ -4,7 +4,7 @@ A theme for [Hugo](https://gohugo.io/) designed for documentation.
 
 [★ What's new in the latest version ★](https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes)
 
-![Image of the Relearn theme in light and dark mode on phone, tablet and desktop](https://github.com/McShelby/hugo-theme-relearn/raw/main/images/hero.png)
+![Image of the Relearn theme in light and dark mode on phone, tablet and desktop](https://mcshelby.github.io/hugo-theme-relearn/images/hero.png)
 
 ## Overview
 
