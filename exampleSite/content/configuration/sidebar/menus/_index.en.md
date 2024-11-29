@@ -280,7 +280,7 @@ content
 └── _index_.md
 ````
 
-You now want to include `ref-b` as separate entry after `topic-green` in your menu.
+You now want to include `ref-b` as separate `topic-green` entry after `topic-blue` in your menu.
 
 For that create a new page with the following front matter
 
@@ -295,7 +295,7 @@ Pages defining a crosslink are never part of the arrow navigation and are skippe
 
 So with the above example and alphabetical sorting of the menu entries, pressing {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} on `topic-blue` will skip the newly added `topic-green` and instead will load `topic-red`.
 
-Having sub pages below a page that defines a crosslink is undefined.
+Having sub pages below a page that has `menuUrl` or `menuPageRef` set in their front matter is undefined.
 
 ## Displaying Pages Exclusively in a Hugo Menu
 

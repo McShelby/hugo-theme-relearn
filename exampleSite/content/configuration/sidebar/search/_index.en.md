@@ -41,7 +41,7 @@ Each level requires the previous one to be enabled. If no search is configured, 
 {{< /multiconfig >}}
 
 {{% notice note %}}
-Only change these if you have content at those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
+You only need to change these if you have other own content created for those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
 
 Check for duplicate URLs by running `hugo --printPathWarnings`.
 {{% /notice %}}
