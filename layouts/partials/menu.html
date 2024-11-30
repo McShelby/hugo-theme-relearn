@@ -190,7 +190,7 @@
       {{- $entryId := md5 .Path }}
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
-      {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
+      {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
       {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
@@ -324,7 +324,7 @@
       {{- $entryId := md5 (print .) }}
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
-      {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-down"></i><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
+      {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
       {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
