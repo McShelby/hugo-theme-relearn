@@ -63,6 +63,7 @@ If you want to display a transparent expandable box without any border, you can 
 
 | Name                  | Position | Default         | Notes       |
 |-----------------------|----------|-----------------|-------------|
+| **groupid**           |          | _&lt;empty&gt;_ | Arbitrary name of the group the box belongs to.<br><br>Expandable boxes with the same **groupid** sychronize their open state. |
 | **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](#defining-own-styles). |
 | **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br>This is not available using callout syntax. |
 | **title**             | 2        | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
@@ -261,23 +262,25 @@ No visible borders.
 {{% include "shortcodes/include/INCLUDE_ME.md" %}}
 {{% /notice %}}
 
-#### Expandable Content Area
+#### Expandable Content Area with `groupid`
+
+If you give multiple expandable boxes the same `groupid`, at most one will be open at any given time. If you open one of the boxes, all other boxes of the same group will close.
 
 ````go
-{{%/* notice style="green" title="Expand me..." expanded="true" */%}}
+{{%/* notice style="green" title="Expand me..." groupid="notice-toggle" expanded="true" */%}}
 No need to press you!
 {{%/* /notice */%}}
 
-{{%/* notice style="red" title="Expand me..." expanded="false" */%}}
+{{%/* notice style="red" title="Expand me..." groupid="notice-toggle" expanded="false" */%}}
 Thank you!
 {{%/* /notice */%}}
 ````
 
-{{% notice style="green" title="Expand me..." expanded="true" %}}
+{{% notice style="green" title="Expand me..." groupid="notice-toggle" expanded="true" %}}
 No need to press you!
 {{% /notice %}}
 
-{{% notice style="red" title="Expand me..." expanded="false" %}}
+{{% notice style="red" title="Expand me..." groupid="notice-toggle" expanded="false" %}}
 Thank you!
 {{% /notice %}}
 

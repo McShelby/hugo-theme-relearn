@@ -12,6 +12,7 @@
 {{- if not (hasPrefix $content "<") }}
   {{- $content = printf "<p>\n%s" $content }}
 {{- end }}
+{{- $groupid := .groupid }}
 {{- $style := .style | default "default" }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
 {{- $title := trim ($boxStyle.title) " " }}
@@ -33,7 +34,7 @@
 {{- end }}
 {{- with $page }}
   {{- if or $icon $title $hasContent -}}
-<details class="{{ if $expander }}expand {{ end }}box {{ $class }} cstyle {{ $style }}"{{ if $color }} style=" --VARIABLE-BOX-color: {{ $color }};"{{ end }}{{ if not $expander }} tabindex="-1" open{{ else if $expanded }} open{{ end }}>
+<details class="{{ if $expander }}expand {{ end }}box {{ $class }} cstyle {{ $style }}"{{ if $color }} style=" --VARIABLE-BOX-color: {{ $color }};"{{ end }}{{ if $groupid }} name="{{ $groupid }}" {{ end }}{{ if not $expander }} tabindex="-1" open{{ else if $expanded }} open{{ end }}>
   <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}">{{ if $expander }}
     <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ end }}{{ if $icon }}
     <i class="{{ $icon }}"></i> {{ end }}{{ if $title }}
