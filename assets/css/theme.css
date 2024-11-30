@@ -786,23 +786,29 @@ blockquote cite {
 
 /* colored boxes */
 
-div.box {
+.box {
   background-color: var(--VARIABLE-BOX-color);
   border-color: var(--VARIABLE-BOX-color);
-  margin: 1.5rem 0;
   border-style: solid;
   border-width: 1px;
+  margin: 1.5rem 0;
+  outline: none;
+  pointer-events: none;
 }
 
-div.box > .box-label {
+.box > .box-label {
   color: var(--VARIABLE-BOX-CAPTION-color);
   font-weight: 500;
   margin-left: 0.6rem;
   margin-right: 0.6rem;
   padding: 0.2rem 0;
 }
+.box > .box-label::-webkit-details-marker,
+.box > .box-label::marker {
+  display: none;
+}
 
-div.box > .box-content {
+.box > .box-content {
   background-color: var(--VARIABLE-BOX-BG-color);
   color: var(--VARIABLE-BOX-TEXT-color);
   padding-top: 1rem;
@@ -831,12 +837,10 @@ p:empty {
 #R-body table th > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
 #R-body table td > :nth-child(1 of :not(:empty)),
 #R-body table td > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body div.box > .box-content > :nth-child(1 of :not(:empty)),
-#R-body div.box > .box-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content > :nth-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body div.tab-content > .tab-content-text > :nth-child(1 of :not(:empty)),
-#R-body div.tab-content > .tab-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
+#R-body .box > .box-content > :nth-child(1 of :not(:empty)),
+#R-body .box > .box-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
+#R-body .tab-content > .tab-content-text > :nth-child(1 of :not(:empty)),
+#R-body .tab-content > .tab-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
   margin-top: 0;
 }
 
@@ -846,21 +850,18 @@ p:empty {
 #R-body table td > :nth-last-child(1 of :not(:empty)),
 #R-body table td > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body table td > div:last-child pre:not(.mermaid),
-#R-body div.box > .box-content > :nth-last-child(1 of :not(:empty)),
-#R-body div.box > .box-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.box > .box-content > div:last-child pre:not(.mermaid),
-#R-body div.expand > .expand-content > :nth-last-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.expand > .expand-content > div:last-child pre:not(.mermaid),
-#R-body div.tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)),
-#R-body div.tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body div.tab-content > .tab-content-text > div:last-child pre:not(.mermaid) {
+#R-body .box > .box-content > :nth-last-child(1 of :not(:empty)),
+#R-body .box > .box-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body .box > .box-content > div:last-child pre:not(.mermaid),
+#R-body .tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)),
+#R-body .tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body .tab-content > .tab-content-text > div:last-child pre:not(.mermaid) {
   margin-bottom: 0;
 }
 
 /* resources shortcode */
 
-div.attachments .box-content {
+.attachments .box-content {
   display: block;
   margin: 0;
   padding-inline-start: 1.75rem;
@@ -1520,84 +1521,32 @@ option {
 .expand {
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
+  outline: initial;
+  pointer-events: initial;
   position: relative;
 }
 
-.expand > input {
-  -webkit-appearance: none;
-  appearance: none;
+.expand > .box-label {
   cursor: pointer;
 }
-
-.expand > label {
-  cursor: pointer;
-  display: inline;
-  font-weight: 300;
-  inset-inline-start: 0;
-  position: absolute;
-}
-.expand:not(.box) > label {
-  color: var(--INTERNAL-MAIN-LINK-color);
-}
-
-.expand > input:active + label,
-.expand > input:focus + label,
-.expand > label:hover {
+.expand > .box-label:hover,
+.expand > .box-label:active,
+.expand > .box-label:focus {
   text-decoration: underline;
 }
-.expand:not(.box) > label:hover,
-.expand:not(.box) > label:active,
-.expand:not(.box) > label:focus,
-.expand:not(.box) > input:hover + label,
-.expand:not(.box) > input:active + label,
-.expand:not(.box) > input:focus + label {
-  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
-}
 
-.expand > label > .expander-icon {
+.expand > .box-label > .expander-icon {
   font-size: 0.8rem;
   width: 0.6rem;
 }
-
-.expand > .expand-content {
-  margin-inline-start: 1rem;
-  margin-top: 0.5rem;
+.expand[open] > .box-label > i.expander-icon {
+  transform: rotate(90deg);
 }
-.box.expand > .expand-content {
-  margin-inline-start: 0;
-  margin-top: 0.4rem;
-}
-.box.expand > .box-spacer {
-  margin-bottom: 0.4rem;
-}
-
-/* closed expander */
-.expand > input + label ~ .expand-content {
-  display: none;
-}
-
-.expand > input + label > .fa-chevron-down {
-  display: none;
-}
-.expand > input + label > .fa-chevron-right {
-  display: inline-block;
-}
-
-/* open expander */
-.expand > input:checked + label ~ .expand-content {
-  display: block;
-}
-
-.expand > input:checked + label > .fa-chevron-down {
-  display: inline-block;
-}
-.expand > input:checked + label > .fa-chevron-right {
-  display: none;
-}
-
-/* adjust expander for RTL reading direction */
-html[dir='rtl'] .expand > .expand-label > i.fa-chevron-right {
+html[dir='rtl'] .expand > .box-label > i.expander-icon {
   transform: scaleX(-1);
+}
+html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
+  transform: rotate(90deg);
 }
 
 #R-body footer.footline {
@@ -2762,26 +2711,27 @@ body.notfound #shrug svg {
   width: 15rem;
 }
 
-/* notice box */
+/* transparent boxes have different margins and - apperantly - different coloring */
 
-div.box.cstyle.transparent {
+.box.cstyle.transparent {
   border-width: 0;
 }
 
-div.box.cstyle.transparent > .box-label {
+.box.cstyle.transparent > .box-label {
   margin: 0;
   padding-bottom: 0;
   padding-top: 0;
 }
-div.box.expand.cstyle.transparent > .box-label {
+.box.expand.cstyle.transparent > .box-label {
   color: var(--INTERNAL-MAIN-LINK-color);
 }
-
-div.box.cstyle.transparent > .box-spacer {
-  display: none;
+.box.expand.cstyle.transparent > .box-label:hover,
+.box.expand.cstyle.transparent > .box-label:active,
+.box.expand.cstyle.transparent > .box-label:focus {
+  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
-div.box.cstyle.transparent > .box-content {
+.box.cstyle.transparent > .box-content {
   margin-top: 0;
   padding-bottom: 0;
 }

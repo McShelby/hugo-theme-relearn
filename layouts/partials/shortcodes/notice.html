@@ -31,32 +31,20 @@
     {{- $expander = true }}
   {{- end }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
-{{- $idattribute := "" }}
-{{- if $expander }}
-  {{- $containerclass = $containerclass | append "expand-content" }}
-  {{- $idattribute = printf ` id="R-expandcontent-%s"` $id }}
-{{- end }}
 {{- with $page }}
   {{- if or $icon $title $hasContent -}}
-<div class="{{ if $expander }}expand {{ end }}box {{ $class }} cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
-    {{- if $expander }}
-  <input type="checkbox" id="R-expand-{{ $id }}" aria-controls="R-expandcontent-{{ $id }}"{{ if $expanded }} checked{{ end }}>
-  <label class="expand-label box-label" for="R-expand-{{ $id }}">
-    <i class="expander-icon fa-fw fas fa-chevron-down"></i>
-    <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}
-  </label>
-  <div class="box-spacer"></div>
-    {{- else if or $icon $title }}
-  <div class="box-label">
-    {{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}
-  </div>
-    {{- end }}
+<details class="{{ if $expander }}expand {{ end }}box {{ $class }} cstyle {{ $style }}"{{ if $color }} style=" --VARIABLE-BOX-color: {{ $color }};"{{ end }}{{ if not $expander }} tabindex="-1" open{{ else if $expanded }} open{{ end }}>
+  <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}">{{ if $expander }}
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ end }}{{ if $icon }}
+    <i class="{{ $icon }}"></i> {{ end }}{{ if $title }}
+    {{ $title | .RenderString }}{{ else }}
+    <span class="a11y-only">{{ T "Details" }}</span>{{ end }}
+  </summary>
     {{- if $hasContent }}
-{{ printf "  <%s%s class=\"%s\">" $containerstyle $idattribute (delimit $containerclass " ") | safeHTML }}
+{{ printf "  <%s class=\"%s\">" $containerstyle (delimit $containerclass " ") | safeHTML }}
 {{ $content | safeHTML }}
 {{ printf "  </%s>" $containerstyle | safeHTML }}
     {{- end }}
-</div>
+</details>
   {{- end }}
 {{- end }}
