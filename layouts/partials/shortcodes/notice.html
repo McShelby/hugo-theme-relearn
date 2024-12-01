@@ -46,7 +46,7 @@
 {{- $params = dict "class" (delimit $classes " ") | merge $params }}
 {{- if $color }}
   {{- $styles := split (index $params "style" | default "") ";" }}
-  {{- $styles = $styles | append "--VARIABLE-BOX-color: {{ $color }}" }}
+  {{- $styles = $styles | append (printf "--VARIABLE-BOX-color: %s" $color) }}
   {{- $params = dict "style" (delimit $styles ";") | merge $params }}
 {{- end }}
 {{ if $groupid }}
