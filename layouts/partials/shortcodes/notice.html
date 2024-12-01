@@ -32,9 +32,35 @@
     {{- $expander = true }}
   {{- end }}
 {{- end }}
+{{- $params := .params | default dict }}
+{{- $classes := split (index $params "class" | default "") " " }}
+{{- $classes = $classes | append "box" }}
+{{- $classes = $classes | append "cstyle" }}
+{{- $classes = $classes | append $class }}
+{{- $classes = $classes | append $style }}
+{{- if $expander }}
+  {{- $classes = $classes | append "expand" }}
+{{- else }}
+  {{- $expanded = true }}
+{{- end }}
+{{- $params = dict "class" (delimit $classes " ") | merge $params }}
+{{- if $color }}
+  {{- $styles := split (index $params "style" | default "") ";" }}
+  {{- $styles = $styles | append "--VARIABLE-BOX-color: {{ $color }}" }}
+  {{- $params = dict "style" (delimit $styles ";") | merge $params }}
+{{- end }}
+{{ if $groupid }}
+  {{- $params = dict "name" $groupid | merge $params }}
+{{- end }}
 {{- with $page }}
   {{- if or $icon $title $hasContent -}}
-<details class="{{ if $expander }}expand {{ end }}box {{ $class }} cstyle {{ $style }}"{{ if $color }} style=" --VARIABLE-BOX-color: {{ $color }};"{{ end }}{{ if $groupid }} name="{{ $groupid }}" {{ end }}{{ if not $expander }} tabindex="-1" open{{ else if $expanded }} open{{ end }}>
+<details
+  {{- if $expanded }} open{{ end }}
+  {{- range $k, $v := $params }}
+      {{- if not (or (in (slice "open" "summary") $k) (strings.HasPrefix $k "on")) }}
+          {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- end }}
+  {{- end }}>
   <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}">{{ if $expander }}
     <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ end }}{{ if $icon }}
     <i class="{{ $icon }}"></i> {{ end }}{{ if $title }}

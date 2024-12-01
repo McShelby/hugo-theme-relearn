@@ -1,0 +1,15 @@
+{{- $summary := (.Get "summary") | default (T "Details") }}
+{{- $open := false }}
+{{- if in (slice "false" false 0) (.Get "open") }}
+    {{- $open = false }}
+{{- else if in (slice "true" true 1) (.Get "open")}}
+    {{- $open = true }}
+{{- end }}
+{{- partial "shortcodes/notice.html" (dict
+  "page"     .Page
+  "content"  .Inner
+  "expanded" $open
+  "params"   .Params
+  "style"    "transparent"
+  "title"    $summary
+) }}
