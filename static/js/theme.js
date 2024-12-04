@@ -2,6 +2,7 @@ window.relearn = window.relearn || {};
 
 var theme = true;
 var isPrint = document.querySelector('body').classList.contains('print');
+var isPrintPreview = false;
 
 var isRtl = document.querySelector('html').getAttribute('dir') == 'rtl';
 var lang = document.querySelector('html').getAttribute('lang');
@@ -297,6 +298,7 @@ function initMermaid(update, attrs) {
     window.addEventListener(
       'beforeprint',
       function () {
+        isPrintPreview = true;
         initMermaid(true, {
           theme: variants.getColorValue('PRINT-MERMAID-theme'),
         });
@@ -305,6 +307,7 @@ function initMermaid(update, attrs) {
     window.addEventListener(
       'afterprint',
       function () {
+        isPrintPreview = false;
         initMermaid(true);
       }.bind(this)
     );
@@ -384,27 +387,27 @@ function initOpenapi(update, attrs) {
     window.addEventListener(
       'beforeprint',
       function () {
-        initOpenapi(true, { isPrintPreview: true });
+        isPrintPreview = true;
+        initOpenapi(true);
       }.bind(this)
     );
     window.addEventListener(
       'afterprint',
       function () {
-        initOpenapi(true, { isPrintPreview: false });
+        isPrintPreview = false;
+        initOpenapi(true);
       }.bind(this)
     );
   }
 
-  attrs = attrs || {
-    isPrintPreview: false,
-  };
+  attrs = attrs || {};
 
   function addFunctionToResizeEvent() {}
   function getFirstAncestorByClass() {}
   function renderOpenAPI(oc) {
     var relBasePath = window.relearn.relBasePath;
     var assetBuster = window.themeUseOpenapi.assetsBuster;
-    var print = isPrint || attrs.isPrintPreview ? 'PRINT-' : '';
+    var print = isPrint || isPrintPreview ? 'PRINT-' : '';
     var theme = print ? `${relBasePath}/css/theme-relearn-light.css${assetBuster}` : document.querySelector('#R-variant-style').attributes.href.value;
     var swagger_theme = variants.getColorValue(print + 'OPENAPI-theme');
     var swagger_code_theme = variants.getColorValue(print + 'OPENAPI-CODE-theme');
@@ -436,12 +439,12 @@ function initOpenapi(update, attrs) {
           var options = {
             defaultModelsExpandDepth: 2,
             defaultModelExpandDepth: 2,
-            docExpansion: isPrint || attrs.isPrintPreview ? 'full' : 'list',
+            docExpansion: isPrint || isPrintPreview ? 'full' : 'list',
             domNode: oi.contentWindow.document.getElementById(openapiId),
-            filter: !(isPrint || attrs.isPrintPreview),
+            filter: !(isPrint || isPrintPreview),
             layout: 'BaseLayout',
             onComplete: function () {
-              if (isPrint || attrs.isPrintPreview) {
+              if (isPrint || isPrintPreview) {
                 oi.contentWindow.document.querySelectorAll('.model-container > .model-box > button[aria-expanded=false]').forEach(function (btn) {
                   btn.click();
                 });
@@ -505,7 +508,7 @@ function initOpenapi(update, attrs) {
   }
   function setOpenAPIHeight(oi) {
     // add empirical offset if in print preview (GC 103)
-    oi.style.height = oi.contentWindow.document.documentElement.getBoundingClientRect().height + (attrs.isPrintPreview ? 200 : 0) + 'px';
+    oi.style.height = oi.contentWindow.document.documentElement.getBoundingClientRect().height + (isPrintPreview ? 200 : 0) + 'px';
   }
   function resizeOpenAPI() {
     let divi = document.getElementsByClassName('sc-openapi-iframe');
@@ -1290,6 +1293,11 @@ function initHistory() {
 
 function initScrollPositionSaver() {
   function savePosition(event) {
+    // #959 if we fiddle around with the history during print preview
+    // GC will close the preview immediatley
+    if (isPrintPreview) {
+      return;
+    }
     var state = window.history.state || {};
     state = Object.assign({}, typeof state === 'object' ? state : {});
     state.contentScrollTop = +elc.scrollTop;
