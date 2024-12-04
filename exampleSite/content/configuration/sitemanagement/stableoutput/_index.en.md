@@ -1,7 +1,7 @@
 +++
 categories = ["howto"]
 description = "How to make your generated HTML output stable"
-options = ["disableAssetsBusting", "disableGeneratorVersion", "disableRandomIds"]
+options = ["disableAssetsBusting", "disableGeneratorVersion", "disableRandomIds", "minify"]
 title = "Stable Output"
 weight = 6
 +++
@@ -45,4 +45,13 @@ To turn this off, set `disableRandomIds=true`. Note, that this will result in a 
 {{< multiconfig file=hugo >}}
 [params]
   disableRandomIds = true
+{{< /multiconfig >}}
+
+## Disabling Assets Minification
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If `minify=true`, further theme assets will be minified during build. If no value is set, the theme will avoid minification if you have started with `hugo server` and otherwise will minify.
+
+{{< multiconfig file=hugo >}}
+[params]
+  minify = false
 {{< /multiconfig >}}

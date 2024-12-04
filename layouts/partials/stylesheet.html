@@ -7,27 +7,22 @@
     {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
     {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
     <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fontawesome-all.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
-    <link href="{{"css/nucleus.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
     <link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
     <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
-    <link href="{{"css/fonts.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/fonts.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
     {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
-    <link href="{{"css/theme.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
-    {{- with index $themevariants 0 }}
-    <link href="{{(printf "css/theme-%s.css" .identifier) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-variant-style">
-    <link href="{{(printf "css/chroma-%s.css" .chroma) | safeHTML | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-variant-chroma-style">
+    {{- $minify := not hugo.IsServer }}
+    {{- if isset site.Params "minify" }}
+      {{- $minify = site.Params.minify }}
     {{- end }}
-    <link href="{{"css/print.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print">
-    {{- $f := printf "/static/css/format-%s.css" $outputFormat }}
-    {{- if or (partialCached "_relearn/fileExists.gotmpl" $f $f) (resources.Get (printf "/css/format-%s.css" $outputFormat)) }}
-    <link href="{{(printf "css/format-%s.css" $outputFormat) | relURL}}{{ $assetBusting }}" rel="stylesheet">
-    {{- end }}
-    <script src="{{"js/variant.js" | relURL}}{{ $assetBusting }}"></script>
+    {{- $min := cond $minify ".min" "" }}
+    <link href="{{(printf "css/theme%s.css" $min) | relURL}}{{ $assetBusting }}" rel="stylesheet">
+    <link href="{{(printf "css/format-%s%s.css" $outputFormat $min) | relURL}}{{ $assetBusting }}" rel="stylesheet">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
       window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
+      {{ printf "window.relearn.min = `%s`;" $min | safeJS }}
       window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
       window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};
       {{ "// variant stuff" | safeJS }}
@@ -36,6 +31,31 @@
         {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
       {{- end }}
       window.variants && variants.init( [ {{ delimit $quotedthemevariants ", " | safeJS }} ] );
+      window.relearn.changeVariant = function(variant) {
+        document.documentElement.dataset.rThemeVariant = variant;
+        var old_variant = window.localStorage.getItem("R-theme-variant");
+        if (old_variant != variant) {
+          window.localStorage.setItem("R-theme-variant", variant);
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant: variant } }) );
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem("R-theme-variant") ?? "";
+        var el = document.querySelector("#R-select-variant");
+        if (variant && el) {
+          var options = Array.from(el.options);
+          if( options.some(option => option.value == variant) ){
+            el.value = variant;
+          }
+          else {
+            variant = options[0]?.value ?? "";
+            el.value = variant;
+            window.localStorage.setItem("R-theme-variant", variant);
+          }
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
       {{ "// translations" | safeJS }}
       {{ printf "window.T_Copy_to_clipboard = `%s`;" (T `Copy-to-clipboard`) | safeJS }}
       {{ printf "window.T_Copied_to_clipboard = `%s`;" (T `Copied-to-clipboard`) | safeJS }}

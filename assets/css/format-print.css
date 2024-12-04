@@ -1,8 +1,3 @@
-/* prettier-ignore {{ $assetBusting := partialCached "assetbusting.gotmpl" . -}} */
-@import '{{ printf "theme-%s.css%s" .themevariant.identifier $assetBusting }}';
-/* prettier-ignore */
-@import '{{ printf "chroma-%s.css%s" .themevariant.chroma $assetBusting }}';
-
 #R-sidebar {
   display: none;
 }
@@ -101,6 +96,7 @@ hr {
 
 #R-body #R-body-inner h1 {
   border-bottom: 1px solid rgba(221, 221, 221, 1);
+  font-size: 3.25rem;
   margin-bottom: 2rem;
   padding-bottom: 0.75rem;
 }
@@ -186,4 +182,18 @@ article {
 }
 #R-body-inner article:first-of-type {
   break-before: avoid;
+}
+
+#R-body #R-body-inner .flex-block-wrapper {
+  max-width: calc(var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem);
+  width: 100%;
+}
+
+#R-body #R-body-inner > .flex-block-wrapper article.narrow p {
+  font-size: 1.015625rem;
+  text-align: start;
+}
+
+#R-body #R-body-inner > .flex-block-wrapper article.narrow > .article-subheading {
+  margin-top: 0;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-{{- .Store.Set "relearnOutputFormat" "notfound" }}
-<html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article">
+{{- .Store.Set "relearnOutputFormat" "html" }}
+<html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article" data-r-output-format="{{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}">
   <head>
     {{- partial "meta.html" . }}
     {{- $title := partial "title.gotmpl" (dict "page" . "fullyQualified" true "reverse" true) }}
@@ -13,7 +13,7 @@
     {{- partial "stylesheet.html" . }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
+  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }} notfound" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
     <div id="R-body" class="default-animation">
       <main id="R-body-inner" class="highlightable chapter" tabindex="-1">
         <div class="flex-block-wrapper">
