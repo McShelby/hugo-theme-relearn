@@ -52,6 +52,7 @@ The [Lunr](https://lunrjs.com) search library doesn't support all languages of t
 
 - Czech
 - Indonesian
+- Persian
 - Polish
 - Swahili
 
