@@ -26,6 +26,7 @@ It supports many languages, including right-to-left languages.
 - Italian
 - Japanese
 - Korean
+- Persian
 - Polish
 - Portuguese
 - Romanian
