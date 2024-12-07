@@ -1,7 +1,6 @@
 +++
 categories = ["tutorial"]
 description = "An interactive tool to generate color variant stylesheets"
-mermaid.force = true
 options = ["themeVariant"]
 title = "Stylesheet Generator"
 weight = 4
@@ -27,14 +26,4 @@ Once you are satisfied, you can download the new variants file and copy it into 
 See the docs for [further configuration options](configuration/branding/colors).
 {{% /expand %}}
 
-{{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}
-{{% button style="warning" icon="trash" href="javascript:window.variants&&variants.resetVariant();this.blur();" %}}Reset variant{{% /button %}}
-
-<div id="R-vargenerator" class="mermaid zoomable" style="background-color: var(--INTERNAL-MAIN-TEXT-color);">Graph</div>
-
-{{% button style="secondary" icon="download" href="javascript:window.variants&&variants.getStylesheet();this.blur();" %}}Download variant{{% /button %}}
-{{% button style="warning" icon="trash" href="javascript:window.variants&&variants.resetVariant();this.blur();" %}}Reset variant{{% /button %}}
-
-<script>
-window.variants && variants.generator( '#R-vargenerator' );
-</script>
+{{% variantgenerator %}}

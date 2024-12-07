@@ -1,9 +1,9 @@
 {{- $page := . }}
 {{- $nonautothemevariants := slice }}
-{{- $formathtmlpre := ":root:not([data-r-output-format='print'])" }}
+{{- $formathtmlpre := ":root:not([data-r-output-format='print']):not([data-r-theme-variant='my-custom-variant'])" }}
 {{- $formathtml := "" }}
 {{- $minify := not hugo.IsServer }}
-{{- if isset site.Params "minify" }}
+{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
   {{- $minify = site.Params.minify }}
 {{- end }}
 
@@ -29,6 +29,9 @@ Unification run:
   {{- end }}
   {{- if not (isset $themevariant "auto") }}
     {{- $nonautothemevariants = $nonautothemevariants | append $themevariant.identifier }}
+  {{- end }}
+  {{- if eq $themevariant.identifier "my-custom-variant" }}
+    {{- errorf "\"theme-%s.css\": the variant identifier '%s' is reserved for the theme's variant generator, instead rename it to something different" "my-custom-variant" "my-custom-variant" }}
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}

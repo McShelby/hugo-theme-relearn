@@ -1,0 +1,8 @@
+{{- $page := .page }}
+{{- $location := .location }}
+{{- if eq $location "header" }}
+  {{- with $page }}
+    {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+    <script src="{{"js/variant.js" | relURL}}{{ $assetBusting }}"></script>
+  {{- end }}
+{{- end }}

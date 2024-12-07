@@ -12,89 +12,47 @@ function ready(fn) {
 }
 
 var variants = {
-  variant: '',
-  variants: [],
-  customvariantname: 'my-custom-variant',
+  variants: window.relearn.themevariants,
+  customvariantname: window.relearn.customvariantname,
   isstylesheetloaded: true,
 
-  init: function (variants) {
-    this.variants = variants;
-    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') || (this.variants.length ? this.variants[0] : '');
-    this.changeVariant(variant);
-    document.addEventListener(
-      'readystatechange',
-      function () {
-        if (document.readyState == 'interactive') {
-          this.markSelectedVariant();
-        }
-      }.bind(this)
-    );
-  },
+  setup: function () {
+    this.addCustomVariantStyles();
 
-  getVariant: function () {
-    return this.variant;
-  },
-
-  setVariant: function (variant) {
-    this.variant = variant;
-    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
-  },
-
-  isVariantLoaded: function () {
-    return window.theme && this.isstylesheetloaded;
-  },
-
-  markSelectedVariant: function () {
-    var variant = this.getVariant();
-    var select = document.querySelector('#R-select-variant');
-    if (!select) {
-      return;
+    var customvariantstylesheet = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariantstylesheet');
+    var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant');
+    if (!customvariantstylesheet || !customvariant) {
+      customvariantstylesheet = '';
+      window.localStorage.removeItem(window.relearn.absBaseUri + '/customvariantstylesheet');
+      customvariant = '';
+      window.localStorage.removeItem(window.relearn.absBaseUri + '/customvariant');
+    } else if (customvariant && !window.relearn.themevariants.includes(customvariant)) {
+      // this can only happen on initial load, if a previously selected variant is not available anymore
+      customvariant = window.relearn.themevariants[0];
+      window.localStorage.setItem(window.relearn.absBaseUri + '/customvariant', customvariant);
     }
+    this.updateCustomVariantStyles(customvariantstylesheet);
+
+    this.init();
+    ready(this.init.bind(this));
+  },
+
+  init: function (variant, old_path) {
     this.addCustomVariantOption();
-    if (variant && select.value != variant) {
-      select.value = variant;
-    }
-    var interval_id = setInterval(
-      function () {
-        if (this.isVariantLoaded()) {
-          clearInterval(interval_id);
-          updateTheme({ variant: variant });
-        }
-      }.bind(this),
-      25
-    );
-    // remove selection, because if some uses an arrow navigation"
-    // by pressing the left or right cursor key, we will automatically
-    // select a different style
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
-  },
-
-  generateVariantPath: function (variant, old_path) {
-    var new_path = old_path.replace(new RegExp(`^(.*\/theme-).*?(\.css.*)$`), '$1' + variant + '$2');
-    return new_path;
+    window.relearn.markVariant();
+    window.relearn.changeVariant(window.localStorage.getItem(window.relearn.absBaseUri + '/variant'));
   },
 
   addCustomVariantOption: function () {
-    var variantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariantbase');
-    if (this.variants.indexOf(variantbase) < 0) {
-      variantbase = '';
-    }
-    if (!window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant')) {
-      variantbase = '';
-    }
-    if (!variantbase) {
-      return;
-    }
+    var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant');
     var select = document.querySelector('#R-select-variant');
-    if (!select) {
+    if (!customvariant || !select) {
       return;
     }
-    var option = document.querySelector('#' + this.customvariantname);
+    var option = document.querySelector('#R-select-variant-' + this.customvariantname);
     if (!option) {
       option = document.createElement('option');
-      option.id = this.customvariantname;
+      option.id = 'R-select-variant-' + this.customvariantname;
       option.value = this.customvariantname;
       option.text = this.customvariantname.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
         return w.replace(/^\w/g, function (c) {
@@ -109,116 +67,225 @@ var variants = {
   },
 
   removeCustomVariantOption: function () {
-    var option = document.querySelector('#' + this.customvariantname);
+    var option = document.querySelector('#R-select-variant-' + this.customvariantname);
     if (option) {
       option.remove();
+      if (this.variants.length <= 1) {
+        document.querySelectorAll('.footerVariantSwitch').forEach(function (e) {
+          e.classList.remove('showVariantSwitch');
+        });
+      }
     }
-    if (this.variants.length <= 1) {
-      document.querySelectorAll('.footerVariantSwitch').forEach(function (e) {
-        e.classList.remove('showVariantSwitch');
-      });
+  },
+
+  addCustomVariantStyles: function () {
+    var head = document.querySelector('head');
+    var style = document.createElement('style');
+    style.id = 'R-variant-styles-' + this.customvariantname;
+    head.appendChild(style);
+  },
+
+  updateCustomVariantStyles: function (stylesheet) {
+    stylesheet = ":root:not([data-r-output-format='print'])[data-r-theme-variant='" + this.customvariantname + "']  {" + '\n&' + stylesheet + '\n}';
+    var style = document.querySelector('#R-variant-styles-' + this.customvariantname);
+    if (style) {
+      style.textContent = stylesheet;
     }
   },
 
   saveCustomVariant: function () {
-    if (this.getVariant() != this.customvariantname) {
-      window.localStorage.setItem(window.relearn.absBaseUri + '/customvariantbase', this.getVariant());
+    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    if (variant != this.customvariantname) {
+      window.localStorage.setItem(window.relearn.absBaseUri + '/customvariant', variant);
     }
-    window.localStorage.setItem(window.relearn.absBaseUri + '/customvariant', this.generateStylesheet());
-    this.setVariant(this.customvariantname);
-    this.markSelectedVariant();
+    var stylesheet = this.generateStylesheet();
+    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', this.customvariantname);
+    window.localStorage.setItem(window.relearn.absBaseUri + '/customvariantstylesheet', stylesheet);
+    this.updateCustomVariantStyles(stylesheet);
+
+    this.addCustomVariantOption();
+    window.relearn.markVariant();
+    window.relearn.changeVariant(this.customvariantname);
   },
 
-  loadCustomVariant: function () {
-    var stylesheet = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant');
+  normalizeColor: function (c) {
+    if (!c || !c.trim) {
+      return c;
+    }
+    c = c.trim();
+    c = c.replace(/\s*\(\s*/g, '( ');
+    c = c.replace(/\s*\)\s*/g, ' )');
+    c = c.replace(/\s*,\s*/g, ', ');
+    c = c.replace(/0*\./g, '.');
+    c = c.replace(/ +/g, ' ');
+    return c;
+  },
 
-    // temp styles to document
-    var head = document.querySelector('head');
-    var style = document.createElement('style');
-    style.id = 'R-custom-variant-style';
-    style.appendChild(document.createTextNode(stylesheet));
-    head.appendChild(style);
+  getColorValue: function (c) {
+    return this.normalizeColor(getComputedStyle(document.documentElement).getPropertyValue('--INTERNAL-' + c));
+  },
 
-    var interval_id = setInterval(
-      function () {
-        if (this.findLoadedStylesheet('R-variant-style')) {
-          clearInterval(interval_id);
-          // save the styles to the current variant stylesheet
-          this.variantvariables.forEach(
-            function (e) {
-              this.changeColor(e.name, true);
-            }.bind(this)
-          );
+  getColorProperty: function (c, read_style) {
+    var e = this.findColor(c);
+    var p = this.normalizeColor(read_style.getPropertyValue('--' + c)).replace('--INTERNAL-', '--');
+    return p;
+  },
 
-          // remove temp styles
-          style.remove();
-
-          this.saveCustomVariant();
+  findRootRule: function (rules, parentSelectors) {
+    for (let rule of rules ?? []) {
+      if ((rule.conditionText && rule.conditionText != 'screen') || (rule.selectorText && !rule.selectorText.startsWith(':root:not'))) {
+        return null;
+      }
+      if (parentSelectors.some((selector) => rule.selectorText === selector)) {
+        // Search nested rules for &:root
+        for (let nestedRule of rule.cssRules ?? []) {
+          if (nestedRule.selectorText === '&:root') {
+            return nestedRule.style;
+          }
         }
-      }.bind(this),
-      25
-    );
+        return null;
+      }
+      let result = this.findRootRule(rule.cssRules, parentSelectors);
+      if (result) {
+        return result;
+      }
+    }
+    return null;
+  },
+
+  findLoadedStylesheet: function (id, parentSelectors) {
+    for (let sheet of document.styleSheets) {
+      if (sheet.ownerNode.id === id) {
+        return this.findRootRule(sheet.cssRules, parentSelectors);
+      }
+    }
+    return null;
+  },
+
+  findColor: function (name) {
+    var f = this.variantvariables.find(function (x) {
+      return x.name == name;
+    });
+    return f;
+  },
+
+  generateColorVariable: function (e, read_style) {
+    var v = '';
+    var gen = this.getColorProperty(e.name, read_style);
+    if (gen) {
+      v += '  --' + e.name + ': ' + gen + '; /* ' + e.tooltip + ' */\n';
+    }
+    return v;
+  },
+
+  // ------------------------------------------------------------------------
+  // CSS download
+  // ------------------------------------------------------------------------
+
+  generateStylesheet: function () {
+    var customvariantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant') ?? window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    var base_style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariantbase + '"]']);
+    if (!base_style) {
+      alert('There is nothing to be generated as auto mode variants will be generated by Hugo');
+      return;
+    }
+
+    var variant = this.customvariantname;
+    var custom_style = this.findLoadedStylesheet('R-variant-styles-' + variant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + variant + '"]']);
+    if (!custom_style) {
+      variant = customvariantbase;
+      custom_style = base_style;
+    }
+
+    var style =
+      ':root {\n' +
+      '  /* ' +
+      variant +
+      ' */\n' +
+      this.variantvariables.reduce(
+        function (a, e) {
+          return a + this.generateColorVariable(e, custom_style);
+        }.bind(this),
+        ''
+      ) +
+      '}\n';
+    return style;
+  },
+
+  download: function (data, mimetype, filename) {
+    var blob = new Blob([data], { type: mimetype });
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', filename);
+    a.click();
+  },
+
+  // ------------------------------------------------------------------------
+  // external API
+  // ------------------------------------------------------------------------
+
+  changeColor: function (c) {
+    var customvariantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant') ?? window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    var base_style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariantbase + '"]']);
+    if (!base_style) {
+      alert('An auto mode variant can not be changed. Please select its light/dark variant directly to make changes');
+      return;
+    }
+
+    var custom_style = this.findLoadedStylesheet('R-variant-styles-' + this.customvariantname, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + this.customvariantname + '"]']);
+    if (!custom_style) {
+      this.saveCustomVariant();
+      custom_style = this.findLoadedStylesheet('R-variant-styles-' + this.customvariantname, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + this.customvariantname + '"]']);
+    }
+
+    var e = this.findColor(c);
+    var v = this.getColorProperty(c, custom_style);
+    var t = c + '\n\n' + e.tooltip + '\n';
+    if (e.fallback) {
+      t += '\nInherits value "' + this.getColorValue(e.fallback) + '" from ' + e.fallback + ' if not set\n';
+    } else if (e.default) {
+      t += '\nDefaults to value "' + this.normalizeColor(e.default) + '" if not set\n';
+    }
+    var n = prompt(t, v);
+    if (n === null) {
+      // user canceld operation
+      return;
+    }
+
+    if (n) {
+      // value set to specific value
+      n = this.normalizeColor(n).replace('--INTERNAL-', '--').replace('--', '--INTERNAL-');
+      if (n != v) {
+        custom_style.setProperty('--' + c, n);
+      }
+    } else {
+      // value emptied, so delete it
+      custom_style.removeProperty('--' + c);
+    }
+
+    this.saveCustomVariant();
   },
 
   resetVariant: function () {
-    var variantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariantbase');
-    if (variantbase && confirm('You have made changes to your custom variant. Are you sure you want to reset all changes?')) {
-      window.localStorage.removeItem(window.relearn.absBaseUri + '/customvariantbase');
+    var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant');
+    if (customvariant && confirm('You have made changes to your custom variant. Are you sure you want to reset all changes?')) {
       window.localStorage.removeItem(window.relearn.absBaseUri + '/customvariant');
+      window.localStorage.removeItem(window.relearn.absBaseUri + '/customvariantstylesheet');
+      window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariant);
+      this.updateCustomVariantStyles('');
+
       this.removeCustomVariantOption();
-      if (this.getVariant() == this.customvariantname) {
-        this.changeVariant(variantbase);
-      }
+      window.relearn.markVariant();
+      window.relearn.changeVariant(customvariant);
     }
   },
 
-  onLoadStylesheet: function () {
-    variants.isstylesheetloaded = true;
-  },
-
-  switchStylesheet: function (variant, without_check) {
-    var link = document.querySelector('#R-variant-style');
-    if (!link) {
-      return;
-    }
-    var old_path = link.getAttribute('href');
-    var new_path = this.generateVariantPath(variant, old_path);
-    this.isstylesheetloaded = false;
-
-    // Chrome needs a new element to trigger the load callback again
-    var new_link = document.createElement('link');
-    new_link.id = 'R-variant-style';
-    new_link.rel = 'stylesheet';
-    new_link.onload = this.onLoadStylesheet;
-    new_link.setAttribute('href', new_path);
-    link.parentNode.replaceChild(new_link, link);
-  },
-
-  changeVariant: function (variant) {
-    if (variant == this.customvariantname) {
-      var variantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariantbase');
-      if (this.variants.indexOf(variantbase) < 0) {
-        variant = '';
-      }
-      if (!window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant')) {
-        variant = '';
-      }
-      this.setVariant(variant);
-      if (!variant) {
-        return;
-      }
-      this.switchStylesheet(variantbase);
-      this.loadCustomVariant();
-    } else {
-      if (this.variants.indexOf(variant) < 0) {
-        variant = this.variants.length ? this.variants[0] : '';
-      }
-      this.setVariant(variant);
-      if (!variant) {
-        return;
-      }
-      this.switchStylesheet(variant);
-      this.markSelectedVariant();
+  getStylesheet: function () {
+    var style = this.generateStylesheet();
+    if (style) {
+      console.log(style);
+      this.download(style, 'text/css', 'theme-' + this.customvariantname + '.css');
     }
   },
 
@@ -240,23 +307,9 @@ var variants = {
     );
   },
 
-  download: function (data, mimetype, filename) {
-    var blob = new Blob([data], { type: mimetype });
-    var url = window.URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', filename);
-    a.click();
-  },
-
-  getStylesheet: function () {
-    var style = this.generateStylesheet();
-    if (!style) {
-      alert('There is nothing to be generated as auto mode variants will be generated by Hugo');
-      return;
-    }
-    this.download(style, 'text/css', 'theme-' + this.customvariantname + '.css');
-  },
+  // ------------------------------------------------------------------------
+  // Mermaid graph stuff
+  // ------------------------------------------------------------------------
 
   adjustCSSRules: function (selector, props, sheets) {
     // get stylesheet(s)
@@ -289,145 +342,6 @@ var variants = {
       if (!props.sup) props = propsArr.reduce((str, [k, v]) => `${str}; ${k}: ${v}`, '');
       sheet.insertRule(`${selector} { ${props} }`, sheet.cssRules.length);
     }
-  },
-
-  normalizeColor: function (c) {
-    if (!c || !c.trim) {
-      return c;
-    }
-    c = c.trim();
-    c = c.replace(/\s*\(\s*/g, '( ');
-    c = c.replace(/\s*\)\s*/g, ' )');
-    c = c.replace(/\s*,\s*/g, ', ');
-    c = c.replace(/0*\./g, '.');
-    c = c.replace(/ +/g, ' ');
-    return c;
-  },
-
-  getColorValue: function (c) {
-    return this.normalizeColor(getComputedStyle(document.documentElement).getPropertyValue('--INTERNAL-' + c));
-  },
-
-  getColorProperty: function (c, read_style) {
-    var e = this.findColor(c);
-    var p = this.normalizeColor(read_style.getPropertyValue('--' + c)).replace('--INTERNAL-', '--');
-    return p;
-  },
-
-  findLoadedStylesheet: function (id) {
-    for (var n = 0; n < document.styleSheets.length; ++n) {
-      if (document.styleSheets[n].ownerNode.id == id) {
-        var s = document.styleSheets[n];
-        if (s.rules && s.rules.length) {
-          for (var m = 0; m < s.rules.length; ++m) {
-            if (s.rules[m].selectorText == ':root') {
-              return s.rules[m].style;
-            }
-            if (s.rules[m].cssRules && s.rules[m].cssRules.length) {
-              for (var o = 0; o < s.rules[m].cssRules.length; ++o) {
-                if (s.rules[m].cssRules[o].selectorText == ':root') {
-                  return s.rules[m].cssRules[o].style;
-                }
-              }
-            }
-          }
-        }
-        break;
-      }
-    }
-    return null;
-  },
-
-  changeColor: function (c, without_prompt) {
-    var with_prompt = !(without_prompt || false);
-
-    var read_style = this.findLoadedStylesheet('R-custom-variant-style');
-    var write_style = this.findLoadedStylesheet('R-variant-style');
-    if (!read_style) {
-      read_style = write_style;
-    }
-    if (!read_style) {
-      if (with_prompt) {
-        alert('An auto mode variant can not be changed. Please select its light/dark variant directly to make changes');
-      }
-      return;
-    }
-
-    var e = this.findColor(c);
-    var v = this.getColorProperty(c, read_style);
-    var n = '';
-    if (!with_prompt) {
-      n = v;
-    } else {
-      var t = c + '\n\n' + e.tooltip + '\n';
-      if (e.fallback) {
-        t += '\nInherits value "' + this.getColorValue(e.fallback) + '" from ' + e.fallback + ' if not set\n';
-      } else if (e.default) {
-        t += '\nDefaults to value "' + this.normalizeColor(e.default) + '" if not set\n';
-      }
-      n = prompt(t, v);
-      if (n === null) {
-        // user canceld operation
-        return;
-      }
-    }
-
-    if (n) {
-      // value set to specific value
-      n = this.normalizeColor(n).replace('--INTERNAL-', '--').replace('--', '--INTERNAL-');
-      if (!with_prompt || n != v) {
-        write_style.setProperty('--' + c, n);
-      }
-    } else {
-      // value emptied, so delete it
-      write_style.removeProperty('--' + c);
-    }
-
-    if (with_prompt) {
-      this.saveCustomVariant();
-    }
-  },
-
-  findColor: function (name) {
-    var f = this.variantvariables.find(function (x) {
-      return x.name == name;
-    });
-    return f;
-  },
-
-  generateColorVariable: function (e, read_style) {
-    var v = '';
-    var gen = this.getColorProperty(e.name, read_style);
-    if (gen) {
-      v += '  --' + e.name + ': ' + gen + '; /* ' + e.tooltip + ' */\n';
-    }
-    return v;
-  },
-
-  generateStylesheet: function () {
-    var read_style = this.findLoadedStylesheet('R-custom-variant-style');
-    var write_style = this.findLoadedStylesheet('R-variant-style');
-    if (!read_style) {
-      read_style = write_style;
-    }
-    if (!read_style) {
-      return;
-    }
-
-    var style =
-      '/* ' +
-      this.customvariantname +
-      ' */\n' +
-      ':root {\n' +
-      this.variantvariables.reduce(
-        function (a, e) {
-          return a + this.generateColorVariable(e, read_style);
-        }.bind(this),
-        ''
-      ) +
-      '}\n';
-    console.log(style);
-    return style;
   },
 
   styleGraphGroup: function (selector, colorvar) {
@@ -688,3 +602,5 @@ var variants = {
     { name: 'BOX-WARNING-TEXT-color', group: 'colored boxes', fallback: 'BOX-RED-TEXT-color', tooltip: 'text color of warning boxes' },
   ],
 };
+
+variants.setup();
