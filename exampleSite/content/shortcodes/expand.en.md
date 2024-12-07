@@ -62,8 +62,6 @@ That's some more text with a footnote.[^someid]
 
 The [`notice` shortcode](shortcodes/notice) is also capable of displaying expandable/collapsible sections of text but with additional parameter for color and additional icons.
 
-The theme supports Hugo’s built-in [`details` shortcode](https://gohugo.io/content-management/shortcodes/#details) by mapping the parameter to the theme's `expand` shortcode.
-
 ### Parameter
 
 | Name                  | Position | Default          | Notes       |
