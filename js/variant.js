@@ -226,7 +226,15 @@ var variants = {
   // ------------------------------------------------------------------------
 
   changeColor: function (c) {
-    var customvariantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant') ?? window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    var customvariantbase = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant');
+
+    if (customvariantbase && customvariantbase != variant) {
+      alert('You already have changes based on the "' + customvariantbase + '" variant. Please proceed editing the custom variant, reset your changes or ignore this message.');
+      return;
+    }
+    customvariantbase = customvariantbase ?? variant;
+
     var base_style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariantbase + '"]']);
     if (!base_style) {
       alert('An auto mode variant can not be changed. Please select its light/dark variant directly to make changes');
