@@ -8,7 +8,7 @@
 {{- $containerclass := .containerclass | default slice | append "box-content" }}
 {{- $color := .color | default "" }}
 {{- $content := trim .content "\n\r\t " }}
-{{- $hasContent := ne (strings.TrimLeft "<p>" $content) "" }}
+{{- $hasContent := ne (strings.TrimPrefix "<p>" $content) "" }}
 {{- if not (hasPrefix $content "<") }}
   {{- $content = printf "<p>\n%s" $content }}
 {{- end }}
