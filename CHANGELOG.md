@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.2.1 (2024-12-10)
+
+### Fixes
+
+- [**bug**] notice: links aren't clickable [#968](https://github.com/McShelby/hugo-theme-relearn/issues/968)
+- [**bug**] shortcodes: correctly detect empty shortcode content [#966](https://github.com/McShelby/hugo-theme-relearn/issues/966)
+
+---
+
 ## 7.2.0 (2024-12-08)
 
 ### Enhancements
