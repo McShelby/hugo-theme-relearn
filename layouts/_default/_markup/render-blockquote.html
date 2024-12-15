@@ -11,9 +11,9 @@
   {{- partial "shortcodes/notice.html" (dict
     "page" .Page
     "content" $text
+    "expanded" (cond (eq $alertsign "+") true (cond (eq $alertsign "-") false ""))
     "style" $alerttype
     "title" $alerttitle
-    "expanded" (cond (eq $alertsign "+") true (cond (eq $alertsign "-") false ""))
   ) }}
 {{ else -}}
 <blockquote>
