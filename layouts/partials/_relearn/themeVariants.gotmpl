@@ -231,7 +231,7 @@ Generator run:
   {{- range findRESubmatch `[ \t]*@import\s+[^$]*?theme-([^.]*?)\.css` $themecontent }}
     {{- $subidentifier := index . 1 }}
     {{- $themevariant = partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $subidentifier) }}
-    {{- $tempthemecontent = replaceRE (printf `[ \t]*@import\s+[^$]*?theme-%s\.css` $subidentifier) $themevariant.themecontent $tempthemecontent 1 }}
+    {{- $tempthemecontent = replaceRE (printf `[ \t]*@import\s+[^$]*?theme-%s\.css["']?\s*\)?\s*;?` $subidentifier) $themevariant.themecontent $tempthemecontent 1 }}
     {{- $chroma = $themevariant.chroma }}
     {{- $chromacontent = $themevariant.chromacontent }}
   {{- end }}
