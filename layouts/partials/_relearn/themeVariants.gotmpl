@@ -60,11 +60,11 @@ Generator run:
     {{- $formathtml = print $formathtml
       "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
       "\n@media screen and (prefers-color-scheme: light) {"
-      "\n&" $lightthemevariant.themecontent
+      "\n" $lightthemevariant.themecontent
       "\n" $lightthemevariant.chromacontent
       "\n}"
       "\n@media screen and (prefers-color-scheme: dark) {"
-      "\n&" $darkthemevariant.themecontent
+      "\n" $darkthemevariant.themecontent
       "\n" $darkthemevariant.chromacontent
       "\n}"
       "\n}"
@@ -76,7 +76,7 @@ Generator run:
     }}
     {{- $formathtml = print $formathtml
       "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
-      "\n&" $themevariant.themecontent
+      "\n" $themevariant.themecontent
       "\n" $themevariant.chromacontent
       "\n}"
 }}
@@ -180,7 +180,7 @@ Generator run:
   $formathtml
   "\n}"
   "\n@media print {"
-  "\n&" $defaultthemevariant.themecontent
+  "\n" $defaultthemevariant.themecontent
   "\n" $defaultthemevariant.chromacontent
   "\n}"
   "\n@media print {"
@@ -199,7 +199,7 @@ Generator run:
 */}}
 {{- $printcontent = print
   ":root[data-r-output-format='print'] {"
-  "\n&" $defaultthemevariant.themecontent
+  "\n" $defaultthemevariant.themecontent
   "\n" $defaultthemevariant.chromacontent
   "\n}"
   "\n" $printcontent
@@ -217,7 +217,7 @@ Generator run:
   {{- $identifier := .identifier }}
   {{- $themecontent := "" }}
   {{- with resources.Get (printf "css/theme-%s.css" $identifier) }}
-    {{- $themecontent = .Content }}
+    {{- $themecontent = replaceRE `([ \t]*)(:root)` "${1}&${2}" .Content }}
   {{- else }}
     {{- errorf "\"theme-%s.css\": file not found in \"assets/css\"; if you are migrating from a theme version older thant 6.0.0, you have to move it over from \"static/css\"" $identifier }}
   {{- end }}
@@ -235,7 +235,7 @@ Generator run:
     {{- $chroma = $themevariant.chroma }}
     {{- $chromacontent = $themevariant.chromacontent }}
   {{- end }}
-  {{- $themecontent = $tempthemecontent}}
+  {{- $themecontent = replaceRE `(&\s*)+:root` "&:root" $tempthemecontent }}
   {{- range findRESubmatch `[ \t]*--CODE-theme\s*:\s*([^;]*?)\s*;` $themecontent }}
     {{- $chroma = index . 1 }}
     {{- $cssres := resources.Get (printf "css/chroma-%s.css" $chroma) }}
