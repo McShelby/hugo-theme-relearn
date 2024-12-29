@@ -61,7 +61,7 @@
           {{- printf " %s=%q" $k $v | safeHTMLAttr }}
       {{- end }}
   {{- end }}>
-  <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}">{{ if $expander }}
+  <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}"{{ if not $expander }} tabindex="-1"{{ end }}>{{ if $expander }}
     <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ end }}{{ if $icon }}
     <i class="{{ $icon }}"></i> {{ end }}{{ if $title }}
     {{ $title | .RenderString }}{{ else }}
