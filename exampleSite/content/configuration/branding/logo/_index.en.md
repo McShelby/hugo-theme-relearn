@@ -26,3 +26,16 @@ By default, only your site title will be shown at the top of the menu. You can [
 Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
 
 The size of the logo will adapt automatically.
+
+> [!note]
+> In case of SVGs, additional styling may be required.
+
+### Example
+
+Suppose you've stored your logo as `static/images/logo.png` then your `layouts/partials/logo.html` could look something like this:
+
+````html {title="layouts/partials/logo.html"}
+<a id="R-logo" href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">
+  <img src="{{"images/logo.png" | relURL}}" alt="brand logo">
+</a>
+````
