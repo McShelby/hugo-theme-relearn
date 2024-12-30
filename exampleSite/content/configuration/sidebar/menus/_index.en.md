@@ -9,11 +9,15 @@ weight = 4
 
 The theme can build menu trees from [the structure of your page files](authoring/structure) or from [Hugo's build in menu feature](https://gohugo.io/content-management/menus/).
 
-- {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} All configuration options in your `hugo.toml` apply to all menus but can be changed individually.
+---
+
+- {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Configuration options in your `hugo.toml` apply to all menus.
 
 - {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} In case of page structure menus, individual configuration is done via a page's front matter.
 
 - {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}}. In case of Hugo menus, individual configuration is done via a menu entry's configuration.
+
+---
 
 ## Expand State of Submenus
 
@@ -222,7 +226,9 @@ sidebarmenus = [
 
 Suppose you are building a site that contains a topmost `blog` and `documentation` section.
 
-When the user is on one of the blog pages he should only see a menu containing all blog pages, while on a documentation page he should only see a menu containing all doc pages.
+When the user is on one of the blog pages he should only see a page menu containing all blog pages, while on a documentation page he should only see a page menu containing all doc pages.
+
+For both sections, the default `shortcuts` Hugo menu should be displayed as if [defaults menus](#defining-sidebar-menus) were used.
 
 Directory structure:
 
@@ -232,16 +238,18 @@ content
 │   ├── post-1.md
 │   ├── post-2.md
 │   ├── post-3.md
-│   └── _index_.md
+│   └── _index.md
 ├── docs
 │   ├── topic-1.md
 │   ├── topic-2.md
 │   ├── topic-3.md
-│   └── _index_.md
+│   └── _index.md
 └── _index.md
 ````
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using [Hugo's cascade feature](https://gohugo.io/content-management/front-matter/#cascade), we can redefine the menus once in `blog/_index.md` and `docs/_index.md` setting `sidebarmenus` so they will be used in all children pages.
+
+Setting the `sidebarmenus` Front Matter will overwrite all default menus. If you want to display the `shortcuts` Hugo menu as well like in this example, you have to declare it with the Front Matter as given in the [default options](#defining-sidebar-menus).
 
 {{< multiconfig fm=true file="blog/_index.md">}}
 title = 'Blog'
@@ -249,6 +257,7 @@ title = 'Blog'
   [cascade.params]
     sidebarmenus = [
       { type = 'page', identifier = 'blog', pageRef = '/blog' },
+      { type = 'menu', identifier = 'shortcuts' },
     ]
 {{< /multiconfig >}}
 
@@ -258,6 +267,7 @@ title = 'Documentation'
   [cascade.params]
     sidebarmenus = [
       { type = 'page', identifier = 'docs', pageRef = '/docs' },
+      { type = 'menu', identifier = 'shortcuts' },
     ]
 {{< /multiconfig >}}
 
@@ -273,11 +283,11 @@ content
 │   ├── ref-a.md
 │   ├── ref-b.md
 │   ├── ref-c.md
-│   └── _index_.md
+│   └── _index.md
 ├── topic-blue.md
 ├── topic-red.md
 ├── topic-yellow.md
-└── _index_.md
+└── _index.md
 ````
 
 You now want to include `ref-b` as separate `topic-green` entry after `topic-blue` in your menu.
