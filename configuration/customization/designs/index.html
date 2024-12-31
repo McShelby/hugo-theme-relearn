@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.140.2">
-    <meta name="generator" content="Relearn 7.2.1+780744552727654e03983918f0ad49ccae2a696b">
+    <meta name="generator" content="Relearn 7.2.1+fbec3905ed0a2578c4a8763c90d9fe58909004fe">
     <meta name="description" content="Extending page designs">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Page Designs :: Hugo Relearn Theme">
     <meta itemprop="description" content="Extending page designs">
-    <meta itemprop="wordCount" content="352">
+    <meta itemprop="wordCount" content="580">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,Howto">
     <title>Page Designs :: Hugo Relearn Theme</title>
@@ -30,12 +30,12 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/customization/designs/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="/hugo-theme-relearn/configuration/customization/designs/index.xml" rel="alternate" type="application/rss+xml" title="Page Designs :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/configuration/customization/designs/index.print.html" rel="alternate" type="text/html" title="Page Designs :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1735651997" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735651997" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735651997" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1735651997" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1735651997" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1735651997" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1735651997" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.css?1735651997" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/images/logo.svg?1735664604" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735664604" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735664604" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1735664604" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1735664604" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1735664604" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1735664604" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.css?1735664604" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
@@ -83,7 +83,7 @@
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.js?1735651997"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1735664604"></script>
     <style>
       #R-body img.bg-white {
         background-color: white;
@@ -105,9 +105,11 @@
 <nav class="TableOfContents">
   <ul>
     <li><a href="#using-a-page-design">Using a Page Design</a></li>
-    <li><a href="#creating-a-page-designs">Creating a Page Designs</a>
+    <li><a href="#creating-a-page-design">Creating a Page Design</a></li>
+    <li><a href="#partials">Partials</a>
       <ul>
-        <li><a href="#partials">Partials</a></li>
+        <li><a href="#for-any-output-format">For any Output Format</a></li>
+        <li><a href="#for-html-output-formats">For HTML Output Formats</a></li>
       </ul>
     </li>
   </ul>
@@ -150,14 +152,14 @@
 
 <h1 id="page-designs">Page Designs</h1>
 
-<p>A page is displayed by exactly one page design. The Relearn theme offers the page designs <code>home</code>, <code>chapter</code>, and <code>default</code>.</p>
+<p>Page designs are used to provide different layouts for a given output format. If you instead want to <a href="/hugo-theme-relearn/configuration/customization/outputformats/index.html">provide a new output format</a>, the theme got you covered as well.</p>
+<p>A page is displayed by exactly one page design <em>for each output format</em>, is represented by <a href="https://gohugo.io/content-management/front-matter/#type" rel="external" target="_self">Hugo&rsquo;s reserved <code>type</code> front matter</a> and uses <a href="https://gohugo.io/templates/types/#content-view" rel="external" target="_self">Hugo&rsquo;s content view mechanism</a>.</p>
 <p>A page design usually consists of</p>
 <ul>
-<li><a href="https://gohugo.io/content-management/archetypes/" rel="external" target="_self">an archetype file</a>: a template for creating new Markdown files with this design</li>
-<li><a href="https://gohugo.io/templates/types/#content-view" rel="external" target="_self">content view files</a>: represented by <a href="https://gohugo.io/content-management/front-matter/#type" rel="external" target="_self">Hugo&rsquo;s reserved <code>type</code> front matter</a> and backed by matching partials</li>
-<li>CSS styles</li>
+<li><a href="https://gohugo.io/templates/types/#content-view" rel="external" target="_self">one or more content view files</a>: depending on the output format taken from <a href="/hugo-theme-relearn/configuration/customization/designs/index.html#partials">the list below</a></li>
+<li><a href="https://gohugo.io/content-management/archetypes/" rel="external" target="_self">an optional archetype file</a>: a template for creating new Markdown files with the correct setting for the <code>type</code> front matter and any furhter parameter</li>
+<li>optional CSS styles</li>
 </ul>
-<p>If no <code>type</code> is set in your front matter, the page is treated as if <code>type='default'</code> was set.</p>
 
 <details open class=" box cstyle notices warning">
   <summary class="box-label" tabindex="-1">
@@ -165,93 +167,98 @@
     Warning
   </summary>
   <div class="box-content">
-<p>Don&rsquo;t use the <code>type</code> option in your modifications for other functionality!</p>
+<p>Don&rsquo;t use Hugo&rsquo;s reserved <code>type</code> option in your modifications for other functionality!</p>
   </div>
 </details>
-<p>All shipped designs use the theme&rsquo;s framework from <code>themes/hugo-theme-learn/layouts/_default/baseof.html</code>, containing of the same topbar and sidebar but can change how content appears in the center of the page.</p>
 <h2 id="using-a-page-design">Using a Page Design</h2>
-<p>Regardless of shipped or custom page design, you are <a href="/hugo-theme-relearn/authoring/frontmatter/designs/index.html">using them</a> in the same way.</p>
-<h2 id="creating-a-page-designs">Creating a Page Designs</h2>
-<p>To make a custom page design:</p>
+<p>Regardless of shipped or custom page designs, you are <a href="/hugo-theme-relearn/authoring/frontmatter/designs/index.html">using them in the same way</a>. Either by manually setting the <code>type</code> front matter to the value of the page design or by using an archetype during creation of a new page.</p>
+<p>If no <code>type</code> is set in your front matter or the page design doesn&rsquo;t exist for a given output format, the page is treated as if <code>type='default'</code> was set.</p>
+<p>The Relearn theme ships with the page designs <code>home</code>, <code>chapter</code>, and <code>default</code> for the HTML output format.</p>
+<p>The shipped <code>print</code> and <code>markdown</code> output formats only display using the <code>default</code> page design.</p>
+<h2 id="creating-a-page-design">Creating a Page Design</h2>
+<p>Suppose you are writing a documentation site for some software. Each time a new release is created, you are adding a new releasenotes page to your site. Those pages should contain a common disclaimer at the top. You neither want to copy the text into each new file nor want you to use a shortcode but create a page design called <code>releasenotes</code>.</p>
 <ol>
 <li>
-<p>Choose a name (for example, <code>mydesign</code>)</p>
+<p>Choose a name (here, <code>releasenotes</code>)</p>
 </li>
 <li>
-<p>Create a content view file at <code>layouts/mydesign/views/article.html</code></p>
-<div class="tab-panel" data-tab-group="df88fe295cb3b590efef63a02e1e15c1">
+<p>Create a content view file at <code>layouts/releasenotes/views/article.html</code></p>
+<div class="tab-panel" data-tab-group="b457c50d65d4ae6da07fb62ba2318f16">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      data-tab-item="layoutsmydesignviewsarticlehtml"
+      data-tab-item="layoutsreleasenotesviewsarticlehtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('df88fe295cb3b590efef63a02e1e15c1','layoutsmydesignviewsarticlehtml')"
+      onclick="switchTab('b457c50d65d4ae6da07fb62ba2318f16','layoutsreleasenotesviewsarticlehtml')"
     >
-      <span class="tab-nav-text">layouts/mydesign/views/article.html</span>
+      <span class="tab-nav-text">layouts/releasenotes/views/article.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      data-tab-item="layoutsmydesignviewsarticlehtml"
+      data-tab-item="layoutsreleasenotesviewsarticlehtml"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mydesign&#34;</span><span class="p">&gt;</span>
+<div class="highlight wrap-code" hl_Lines="6-8"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;releasenotes&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">header</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;headline&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{ partial &#34;content-header.html&#34; . }}
+</span></span><span class="line"><span class="cl">    {{partial &#34;content-header.html&#34; .}}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;article-subheading&#34;</span><span class="p">&gt;</span>AWESOME<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{ partial &#34;heading-pre.html&#34; . }}{{ partial &#34;heading.html&#34; . }}{{ partial &#34;heading-post.html&#34; . }}
-</span></span><span class="line"><span class="cl">{{ partial &#34;article-content.html&#34; . }}
+</span></span><span class="line"><span class="cl">  {{partial &#34;heading-pre.html&#34; .}}{{partial &#34;heading.html&#34; .}}{{partial &#34;heading-post.html&#34; .}}
+</span></span><span class="line hl"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;disclaimer&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line hl"><span class="cl">    This software release comes without any warranty!
+</span></span><span class="line hl"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  {{partial &#34;article-content.html&#34; .}}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footline&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{ partial &#34;content-footer.html&#34; . }}
+</span></span><span class="line"><span class="cl">    {{partial &#34;content-footer.html&#34; .}}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span></span></span></code></pre></div>
       </div>
     </div>
   </div>
-</div><p>In this file, you can customize the page design as needed. Typically, you&rsquo;ll want to:</p>
+</div><p>The marked lines are your customizations, the rest of the file was copied over from the default implementation of <a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/article.html" rel="external" target="_self"><code>layouts/_default/views/article.html</code></a></p>
+<p>In this file, you can customize the page structure as needed. For HTML based output formats, typically you&rsquo;ll want to:</p>
 <ul>
 <li>Set a <code>class</code> at the <code>article</code> element for custom CSS styles</li>
-<li>Use <code>{{ partial &quot;article-content.html&quot; . }}</code> to show your page content</li>
+<li>Call <code>{{ partial &quot;article-content.html&quot; . }}</code> to show your page content</li>
 </ul>
 </li>
 <li>
-<p>Create an archetype file at <code>archetypes/mydesign.md</code> (optional)</p>
-<div class="tab-panel" data-tab-group="1d96a4b3b9e39169c88af9833eabfabc">
+<p><em>Optional</em>: create an archetype file at <code>archetypes/releasenotes.md</code></p>
+<div class="tab-panel" data-tab-group="4ea1bbb4cffb7951e46ff8bbf8fcc8f6">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      data-tab-item="archetypesmydesignmd"
+      data-tab-item="archetypesreleasenotesmd"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('1d96a4b3b9e39169c88af9833eabfabc','archetypesmydesignmd')"
+      onclick="switchTab('4ea1bbb4cffb7951e46ff8bbf8fcc8f6','archetypesreleasenotesmd')"
     >
-      <span class="tab-nav-text">archetypes/mydesign.md</span>
+      <span class="tab-nav-text">archetypes/releasenotes.md</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      data-tab-item="archetypesmydesignmd"
+      data-tab-item="archetypesreleasenotesmd"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">+++
-</span></span><span class="line"><span class="cl">title = &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34;
-</span></span><span class="line"><span class="cl">type = &#34;mydesign&#34;
-</span></span><span class="line"><span class="cl">+++
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;{{ replace .Name &#34;</span><span class="nx">-</span><span class="s2">&#34; &#34;</span> <span class="s2">&#34; | title }}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;releasenotes&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">This is my new design.</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="nx">This</span> <span class="nx">is</span> <span class="nx">a</span> <span class="nx">new</span> <span class="nx">releasenote</span><span class="p">.</span></span></span></code></pre></div>
       </div>
     </div>
   </div>
 </div></li>
 <li>
-<p>Add CSS in file <code>layouts/partials/custom-header.html</code> (optional)</p>
-<div class="tab-panel" data-tab-group="3e14bcbc21c5cf7aa6a2a783af507b63">
+<p><em>Optional</em>: add CSS in the file <code>layouts/partials/custom-header.html</code></p>
+<div class="tab-panel" data-tab-group="5ed46a790569fb4a23f423e7779a17cf">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialscustom-headerhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('3e14bcbc21c5cf7aa6a2a783af507b63','layoutspartialscustom-headerhtml')"
+      onclick="switchTab('5ed46a790569fb4a23f423e7779a17cf','layoutspartialscustom-headerhtml')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
@@ -262,11 +269,9 @@
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">mydesign</span> <span class="p">.</span><span class="nc">article-subheading</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">72</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">mydesign</span> <span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">releasenotes</span> <span class="p">.</span><span class="nc">disclaimer</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">72</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span></span></span></code></pre></div>
       </div>
@@ -274,13 +279,22 @@
   </div>
 </div></li>
 </ol>
-<h3 id="partials">Partials</h3>
-<p>The above example uses <code>layouts/mydesign/views/article.html</code> but you have some others</p>
+<h2 id="partials">Partials</h2>
+<h3 id="for-any-output-format">For any Output Format</h3>
+<p>These files are common for all output formats.</p>
 <ul>
-<li><code>layouts/mydesign/baseof.html</code>: Completely redefine the whole HTML structure, none of the other listed partials will be used</li>
-<li><code>layouts/mydesign/views/menu.html</code>: Defines the sidebar menu layout</li>
-<li><code>layouts/mydesign/views/body.html</code>: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)</li>
-<li><code>layouts/mydesign/views/article.html</code>: Controls how one page&rsquo;s content and title are displayed</li>
+<li><code>layouts/&lt;DESIGN&gt;/baseof.&lt;FORMAT&gt;</code>: <em>Optional</em>: The top most file you could provide to completely redefine the whole design. No further partials will be called if you don&rsquo; call them yourself</li>
+</ul>
+<h3 id="for-html-output-formats">For HTML Output Formats</h3>
+<p>If you want to keep the general HTML framework and only change specific parts, you can provide these files for the page desingn for the HTML output format independently of one another.</p>
+<ul>
+<li><code>layouts/&lt;DESIGN&gt;/views/article.html</code>: <em>Optional</em>: Controls how one page&rsquo;s content and title are displayed</li>
+<li><code>layouts/&lt;DESIGN&gt;/views/body.html</code>: <em>Optional</em>: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)</li>
+<li><code>layouts/&lt;DESIGN&gt;/views/menu.html</code>: <em>Optional</em>: Defines the sidebar menu layout</li>
+</ul>
+<p>For a real-world example, check out the <code>changelog</code> page design implementation</p>
+<ul>
+<li><a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/layouts/changelog/views/article.html" rel="external" target="_self"><code>exampleSite/layouts/changelog/views/article.html</code></a></li>
 </ul>
 
   <footer class="footline">
@@ -341,7 +355,7 @@
           </a>
         </div>
         <script>
-          window.index_js_url="/hugo-theme-relearn/searchindex.en.js?1735651997";
+          window.index_js_url="/hugo-theme-relearn/searchindex.en.js?1735664604";
         </script>
         <search><form action="/hugo-theme-relearn/search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -354,12 +368,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1735651997" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1735651997" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1735651997" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1735651997" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1735651997" defer></script>
-        <script src="/hugo-theme-relearn/js/search.js?1735651997" defer></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1735664604" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1735664604" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1735664604" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1735664604" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1735664604" defer></script>
+        <script src="/hugo-theme-relearn/js/search.js?1735664604" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -560,13 +574,13 @@
                 setTimeout( githubButtonsInit, 400 );
               });
             </script>
-            <script async src="/hugo-theme-relearn/js/github-buttons.js?1735651997"></script>
+            <script async src="/hugo-theme-relearn/js/github-buttons.js?1735664604"></script>
           </div>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1735651997" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1735651997" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1735651997" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1735664604" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1735664604" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1735664604" defer></script>
   </body>
 </html>

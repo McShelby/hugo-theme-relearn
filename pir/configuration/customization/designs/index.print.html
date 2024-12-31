@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.140.2">
-    <meta name="generator" content="Relearn 7.2.1+780744552727654e03983918f0ad49ccae2a696b">
+    <meta name="generator" content="Relearn 7.2.1+fbec3905ed0a2578c4a8763c90d9fe58909004fe">
     <meta name="description" content="Using and extending page designs">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Page Designs :: Cap&#39;n Hugo Relearrrn Theme">
     <meta itemprop="description" content="Using and extending page designs">
-    <meta itemprop="wordCount" content="352">
+    <meta itemprop="wordCount" content="580">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,Howto">
     <title>Page Designs :: Cap&#39;n Hugo Relearrrn Theme</title>
@@ -30,12 +30,12 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/customization/designs/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/customization/designs/index.html" rel="canonical" type="text/html" title="Page Designs :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/configuration/customization/designs/index.xml" rel="alternate" type="application/rss+xml" title="Page Designs :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1735652001" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735652001" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735652001" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1735652001" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1735652001" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1735652001" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1735652001" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1735652001" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/images/logo.svg?1735664608" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735664608" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1735664608" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1735664608" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1735664608" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1735664608" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1735664608" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1735664608" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..\/..';
@@ -83,7 +83,7 @@
       window.T_No_results_found = `No rrresults found fer "{0}"`;
       window.T_N_results_found = `{1} rrresults found fer "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.js?1735652001"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1735664608"></script>
     <style>
       #R-body img.bg-white {
         background-color: white;
@@ -105,9 +105,11 @@
 <nav class="TableOfContents">
   <ul>
     <li><a href="#using-a-page-design">Us'n a Plank Design</a></li>
-    <li><a href="#creating-a-page-designs">Creat'n a Plank Designs</a>
+    <li><a href="#creating-a-page-design">Creat'n a Plank Design</a></li>
+    <li><a href="#partials">Partials</a>
       <ul>
-        <li><a href="#partials">Partials</a></li>
+        <li><a href="#for-any-output-format">For any Output Format</a></li>
+        <li><a href="#for-html-output-formats">For HTML Output Formats</a></li>
       </ul>
     </li>
   </ul>
@@ -150,14 +152,14 @@
 
 <h1 id="page-designs">Page Designs</h1>
 
-<p>A plank be displayed by exactly one plank design. Th' Relearrrn theme offers th' plank designs <code>home</code>, <code>chapter</code>, an' <code>default</code>.</p>
+<p>Plank designs be used t' provide different layouts fer a given output format. If ye instead want t' <a href="/hugo-theme-relearn/pir/configuration/customization/outputformats/index.html">provide a new output format</a>, th' theme got ye covered as well.</p>
+<p>A plank be displayed by exactly one plank design <em>fer each output format</em>, be represented by <a href="https://gohugo.io/content-management/front-matter/#type" rel="external" target="_self">Hugo&rsquo;s reserved <code>type</code> front matter</a> an' uses <a href="https://gohugo.io/templates/types/#content-view" rel="external" target="_self">Hugo&rsquo;s rrrambl'n view mechanism</a>.</p>
 <p>A plank design usually consists o'</p>
 <ul>
-<li><a href="https://gohugo.io/content-management/archetypes/" rel="external" target="_self">an archetype file</a>: a template fer creat'n new Marrrkdown files wit' this design</li>
-<li><a href="https://gohugo.io/templates/types/#content-view" rel="external" target="_self">rrrambl'n view files</a>: represented by <a href="https://gohugo.io/content-management/front-matter/#type" rel="external" target="_self">Hugo&rsquo;s reserved <code>type</code> front matter</a> an' backed by match'n partials</li>
-<li>CSS styles</li>
+<li><a href="https://gohugo.io/templates/types/#content-view" rel="external" target="_self">one or more rrrambl'n view files</a>: depend'n on th' output format taken from <a href="/hugo-theme-relearn/pir/configuration/customization/designs/index.html#partials">th' list below</a></li>
+<li><a href="https://gohugo.io/content-management/archetypes/" rel="external" target="_self">an optional archetype file</a>: a template fer creat'n new Marrrkdown files wit' th' correct sett'n fer th' <code>type</code> front matter an' any furhter parameter</li>
+<li>optional CSS styles</li>
 </ul>
-<p>If no <code>type</code> be set 'n yer front matter, th' plank be treated as if <code>type='default'</code> was set.</p>
 
 <details open class=" box cstyle notices warning">
   <summary class="box-label" tabindex="-1">
@@ -165,93 +167,98 @@
     Arrr
   </summary>
   <div class="box-content">
-<p>Don&rsquo;t use th' <code>type</code> opt'n 'n yer modificat'ns fer other functionality!</p>
+<p>Don&rsquo;t use Hugo&rsquo;s reserved <code>type</code> opt'n 'n yer modificat'ns fer other functionality!</p>
   </div>
 </details>
-<p>All shipped designs use th' theme&rsquo;s framework from <code>themes/hugo-theme-learn/layouts/_default/baseof.html</code>, contain'n o' th' same topbar an' sidebar but can change how rrrambl'n appears 'n th' center o' th' plank.</p>
 <h2 id="using-a-page-design">Us'n a Plank Design</h2>
-<p>Regardless o' shipped or custom plank design, ye be <a href="/hugo-theme-relearn/pir/authoring/frontmatter/designs/index.html">us'n them</a> 'n th' same way.</p>
-<h2 id="creating-a-page-designs">Creat'n a Plank Designs</h2>
-<p>T' make a custom plank design:</p>
+<p>Regardless o' shipped or custom plank designs, ye be <a href="/hugo-theme-relearn/pir/authoring/frontmatter/designs/index.html">us'n them 'n th' same way</a>. Either by manually sett'n th' <code>type</code> front matter t' th' value o' th' plank design or by us'n an archetype dur'n creat'n o' a new plank.</p>
+<p>If no <code>type</code> be set 'n yer front matter or th' plank design doesn&rsquo;t exist fer a given output format, th' plank be treated as if <code>type='default'</code> was set.</p>
+<p>Th' Relearrrn theme ships wit' th' plank designs <code>home</code>, <code>chapter</code>, an' <code>default</code> fer th' HTML output format.</p>
+<p>Th' shipped <code>print</code> an' <code>markdown</code> output formats only display us'n th' <code>default</code> plank design.</p>
+<h2 id="creating-a-page-design">Creat'n a Plank Design</h2>
+<p>Suppose ye be writ'n a documentat'n ship fer some software. Each time a new release be created, ye be add'n a new releasenotes plank t' yer ship. Those planks should contain a common disclaimer at th' top. Ye neither want t' copy th' text into each new file nor want ye t' use a shortcode but create a plank design called <code>releasenotes</code>.</p>
 <ol>
 <li>
-<p>Choose a name (for example, <code>mydesign</code>)</p>
+<p>Choose a name (here, <code>releasenotes</code>)</p>
 </li>
 <li>
-<p>Create a rrrambl'n view file at <code>layouts/mydesign/views/article.html</code></p>
-<div class="tab-panel" data-tab-group="df88fe295cb3b590efef63a02e1e15c1">
+<p>Create a rrrambl'n view file at <code>layouts/releasenotes/views/article.html</code></p>
+<div class="tab-panel" data-tab-group="b457c50d65d4ae6da07fb62ba2318f16">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      data-tab-item="layoutsmydesignviewsarticlehtml"
+      data-tab-item="layoutsreleasenotesviewsarticlehtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('df88fe295cb3b590efef63a02e1e15c1','layoutsmydesignviewsarticlehtml')"
+      onclick="switchTab('b457c50d65d4ae6da07fb62ba2318f16','layoutsreleasenotesviewsarticlehtml')"
     >
-      <span class="tab-nav-text">layouts/mydesign/views/article.html</span>
+      <span class="tab-nav-text">layouts/releasenotes/views/article.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      data-tab-item="layoutsmydesignviewsarticlehtml"
+      data-tab-item="layoutsreleasenotesviewsarticlehtml"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mydesign&#34;</span><span class="p">&gt;</span>
+<div class="highlight wrap-code" hl_Lines="6-8"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;releasenotes&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">header</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;headline&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{ partial &#34;content-header.html&#34; . }}
+</span></span><span class="line"><span class="cl">    {{partial &#34;content-header.html&#34; .}}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;article-subheading&#34;</span><span class="p">&gt;</span>AWESOME<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{ partial &#34;heading-pre.html&#34; . }}{{ partial &#34;head'n.html&#34; . }}{{ partial &#34;heading-post.html&#34; . }}
-</span></span><span class="line"><span class="cl">{{ partial &#34;article-content.html&#34; . }}
+</span></span><span class="line"><span class="cl">  {{partial &#34;heading-pre.html&#34; .}}{{partial &#34;head'n.html&#34; .}}{{partial &#34;heading-post.html&#34; .}}
+</span></span><span class="line hl"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;disclaimer&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line hl"><span class="cl">    This software release comes without any warranty!
+</span></span><span class="line hl"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  {{partial &#34;article-content.html&#34; .}}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;footline&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{ partial &#34;content-footer.html&#34; . }}
+</span></span><span class="line"><span class="cl">    {{partial &#34;content-footer.html&#34; .}}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span></span></span></code></pre></div>
       </div>
     </div>
   </div>
-</div><p>In this file, ye can cust'mize th' plank design as needed. Typically, you&rsquo;ll want t':</p>
+</div><p>Th' marked lines be yer customizat'ns, th' rest o' th' file was copied over from th' default implementat'n o' <a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/article.html" rel="external" target="_self"><code>layouts/_default/views/article.html</code></a></p>
+<p>In this file, ye can cust'mize th' plank structure as needed. For HTML based output formats, typically you&rsquo;ll want t':</p>
 <ul>
 <li>Set a <code>class</code> at th' <code>article</code> element fer custom CSS styles</li>
-<li>Use <code>{{ partial &quot;article-content.html&quot; . }}</code> t' show yer plank rrrambl'n</li>
+<li>Call <code>{{ partial &quot;article-content.html&quot; . }}</code> t' show yer plank rrrambl'n</li>
 </ul>
 </li>
 <li>
-<p>Create an archetype file at <code>archetypes/mydesign.md</code> (optional)</p>
-<div class="tab-panel" data-tab-group="1d96a4b3b9e39169c88af9833eabfabc">
+<p><em>Optional</em>: create an archetype file at <code>archetypes/releasenotes.md</code></p>
+<div class="tab-panel" data-tab-group="4ea1bbb4cffb7951e46ff8bbf8fcc8f6">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      data-tab-item="archetypesmydesignmd"
+      data-tab-item="archetypesreleasenotesmd"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('1d96a4b3b9e39169c88af9833eabfabc','archetypesmydesignmd')"
+      onclick="switchTab('4ea1bbb4cffb7951e46ff8bbf8fcc8f6','archetypesreleasenotesmd')"
     >
-      <span class="tab-nav-text">archetypes/mydesign.md</span>
+      <span class="tab-nav-text">archetypes/releasenotes.md</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      data-tab-item="archetypesmydesignmd"
+      data-tab-item="archetypesreleasenotesmd"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
-<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">+++
-</span></span><span class="line"><span class="cl">title = &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34;
-</span></span><span class="line"><span class="cl">type = &#34;mydesign&#34;
-</span></span><span class="line"><span class="cl">+++
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;{{ replace .Name &#34;</span><span class="nx">-</span><span class="s2">&#34; &#34;</span> <span class="s2">&#34; | title }}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;releasenotes&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">This be my new design.</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="nx">This</span> <span class="nx">be</span> <span class="nx">a</span> <span class="nx">new</span> <span class="nx">releasenote</span><span class="p">.</span></span></span></code></pre></div>
       </div>
     </div>
   </div>
 </div></li>
 <li>
-<p>Add CSS 'n file <code>layouts/partials/custom-header.html</code> (optional)</p>
-<div class="tab-panel" data-tab-group="3e14bcbc21c5cf7aa6a2a783af507b63">
+<p><em>Optional</em>: add CSS 'n th' file <code>layouts/partials/custom-header.html</code></p>
+<div class="tab-panel" data-tab-group="5ed46a790569fb4a23f423e7779a17cf">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialscustom-headerhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('3e14bcbc21c5cf7aa6a2a783af507b63','layoutspartialscustom-headerhtml')"
+      onclick="switchTab('5ed46a790569fb4a23f423e7779a17cf','layoutspartialscustom-headerhtml')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
@@ -262,11 +269,9 @@
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">mydesign</span> <span class="p">.</span><span class="nc">article-subhead'n</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">72</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">mydesign</span> <span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">releasenotes</span> <span class="p">.</span><span class="nc">disclaimer</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="kc">pink</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">72</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span></span></span></code></pre></div>
       </div>
@@ -274,13 +279,22 @@
   </div>
 </div></li>
 </ol>
-<h3 id="partials">Partials</h3>
-<p>Th' above example uses <code>layouts/mydesign/views/article.html</code> but ye have some others</p>
+<h2 id="partials">Partials</h2>
+<h3 id="for-any-output-format">For any Output Format</h3>
+<p>These files be common fer all output formats.</p>
 <ul>
-<li><code>layouts/mydesign/baseof.html</code>: Completely redefine th' whole HTML structure, none o' th' other listed partials will be used</li>
-<li><code>layouts/mydesign/views/menu.html</code>: Defines th' sidebar menu layout</li>
-<li><code>layouts/mydesign/views/body.html</code>: Determines what t' contain 'n th' rrrambl'n area (for example a single plank, a list o' planks, a tree o' sub pages)</li>
-<li><code>layouts/mydesign/views/article.html</code>: Controls how one page&rsquo;s rrrambl'n an' title be displayed</li>
+<li><code>layouts/&lt;DESIGN&gt;/baseof.&lt;FORMAT&gt;</code>: <em>Optional</em>: Th' top most file ye could provide t' completely redefine th' whole design. No further partials will be called if ye don&rsquo; call them yourself</li>
+</ul>
+<h3 id="for-html-output-formats">For HTML Output Formats</h3>
+<p>If ye want t' keep th' general HTML framework an' only change specific parts, ye can provide these files fer th' plank desingn fer th' HTML output format independently o' one another.</p>
+<ul>
+<li><code>layouts/&lt;DESIGN&gt;/views/article.html</code>: <em>Optional</em>: Controls how one page&rsquo;s rrrambl'n an' title be displayed</li>
+<li><code>layouts/&lt;DESIGN&gt;/views/body.html</code>: <em>Optional</em>: Determines what t' contain 'n th' rrrambl'n area (for example a single plank, a list o' planks, a tree o' sub pages)</li>
+<li><code>layouts/&lt;DESIGN&gt;/views/menu.html</code>: <em>Optional</em>: Defines th' sidebar menu layout</li>
+</ul>
+<p>For a real-world example, check out th' <code>changelog</code> plank design implementat'n</p>
+<ul>
+<li><a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/layouts/changelog/views/article.html" rel="external" target="_self"><code>exampleSite/layouts/changelog/views/article.html</code></a></li>
 </ul>
  
 
@@ -297,8 +311,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1735652001" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1735652001" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1735652001" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1735664608" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1735664608" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1735664608" defer></script>
   </body>
 </html>
