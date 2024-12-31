@@ -102,7 +102,7 @@ Therefore we add a new output format called `email` that outputs HTML and assemb
 If you want to keep the general HTML framework and only change specific parts, you can provide these files for your output format independently of one another:
 
 - `layouts/_default/views/article.<FORMAT>.html`: _Optional_: Controls how a page's content and title are displayed
-- `layouts/_default/views/body.<FORMAT>.html`: _Optional_: Determines the page body structure
+- `layouts/_default/views/body.<FORMAT>.html`: _Optional_: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)
 - `layouts/_default/views/menu.<FORMAT>.html`: _Optional_: Defines the sidebar menu layout
 - `layouts/_default/views/storeOutputFormat.<FORMAT>.html`: _Optional_: Stores the output format name for use in the framework to let the body element been marked with an output format specific class
 
@@ -123,3 +123,107 @@ For a real-world example, check out the `markdown` output format implementation
 - [`layouts/_default/baseof.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/baseof.md)
 - [`layouts/_default/list.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/list.md)
 - [`layouts/_default/single.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/single.md)
+
+## Migration to Relearn 7 or higher
+
+Previous to Relearn 7, HTML output formats did not use the `baseof.html` but now do.
+
+### For HTML Output Formats
+
+- Move your files `layouts/partials/article.<FORMAT>.html` to `layouts/_default/views/article.<FORMAT>.html`
+
+    The files will most likely require further modifications as they now receive the page as it context (dot `.`) instead of the `.page` and `.content` parameter.
+
+	**Old**:
+
+    ````html {title="layouts/partials/article.&lt;FORMAT&gt;.html" hl_Lines="1-3 10 16"}
+    {{- $page := .page }}
+    {{- $content := .content }}
+    {{- with $page }}
+    <article class="default">
+      <header class="headline">
+        {{- partial "content-header.html" . }}
+      </header>
+      {{partial "heading-pre.html" .}}{{partial "heading.html" .}}{{partial "heading-post.html" .}}
+
+      {{ $content | safeHTML }}
+
+      <footer class="footline">
+        {{- partial "content-footer.html" . }}
+      </footer>
+    </article>
+    {{- end }}
+    ````
+
+	**New**:
+
+    ````html {title="layouts/_default/views/article.&lt;FORMAT&gt;.html" hl_Lines="7"}
+    <article class="default">
+      <header class="headline">
+        {{- partial "content-header.html" . }}
+      </header>
+      {{partial "heading-pre.html" .}}{{partial "heading.html" .}}{{partial "heading-post.html" .}}
+
+      {{ partial "article-content.html" . }}
+
+      <footer class="footline">
+        {{- partial "content-footer.html" . }}
+      </footer>
+    </article>
+    ````
+
+### For Non-HTML Output Formats
+
+- Merge your files `layouts/partials/header.<FORMAT>.html`, `layouts/partials/footer.<FORMAT>.html` to `layouts/_default/baseof.<FORMAT>.html`
+
+	**Old**:
+
+    ````html {title="layouts/partials/header.&lt;FORMAT&gt;.html"}
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>{{ .Title }}</title>
+      <style type="text/css">
+        /* add some styles here to make it pretty */
+      </style>
+      <style type="text/css">
+        /* add chroma style for code highlighting */
+        {{- "/assets/css/chroma-relearn-light.css" | readFile | safeCSS }}
+      </style>
+    </head>
+    <body>
+      <main>
+    ````
+
+    ````html {title="layouts/partials/footer.&lt;FORMAT&gt;.html"}
+      </main>
+    </body>
+    </html>
+    ````
+
+	**New**:
+
+	The upper part of the file is from your `header.<FORMAT>.html` and the lower part is from your `footer.<FORMAT>.html`.
+
+	The marked line needs to be added, so your output format uses a potential `layouts/_default/views/article.<FORMAT>.html`
+
+    ````html {title="layouts/_default/baseof.&lt;FORMAT&gt;.html" hl_Lines="15"}
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>{{ .Title }}</title>
+      <style type="text/css">
+        /* add some styles here to make it pretty */
+      </style>
+      <style type="text/css">
+        /* add chroma style for code highlighting */
+        {{- "/assets/css/chroma-relearn-light.css" | readFile | safeCSS }}
+      </style>
+    </head>
+    <body>
+      <main>
+        {{- block "body" . }}{{ end }}
+      </main>
+    </body>
+    </html>
+    ````

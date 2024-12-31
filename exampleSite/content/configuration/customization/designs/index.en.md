@@ -99,3 +99,50 @@ If you want to keep the general HTML framework and only change specific parts, y
 For a real-world example, check out the `changelog` page design implementation
 
 - [`exampleSite/layouts/changelog/views/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/layouts/changelog/views/article.html)
+
+## Migration to Relearn 7 or higher
+
+Previous to Relearn 7, page designs were defined by a proprietary solution unique to the theme. Depending on your modifications you may have to change some or all of the following to migrate to Relearn 7's page designs.
+
+- In all your `*.md` files, replace the `archetype` front matter with `type`; the value stays the same; don't forget your archetype files if you have some
+- Move your files `layouts/partials/archetypes/<DESIGN>/article.html` to `layouts/<DESIGN>/views/article.html`
+
+    The files will most likely require further modifications as they now receive the page as it context (dot `.`) instead of the `.page` and `.content` parameter.
+
+    **Old**:
+
+    ````html {title="layouts/partials/archetypes/&lt;DESIGN&gt;/article.html" hl_Lines="1-3 10 16"}
+    {{- $page := .page }}
+    {{- $content := .content }}
+    {{- with $page }}
+    <article class="default">
+      <header class="headline">
+        {{- partial "content-header.html" . }}
+      </header>
+      {{partial "heading-pre.html" .}}{{partial "heading.html" .}}{{partial "heading-post.html" .}}
+
+      {{ $content | safeHTML }}
+
+      <footer class="footline">
+        {{- partial "content-footer.html" . }}
+      </footer>
+    </article>
+    {{- end }}
+    ````
+
+    **New**:
+
+    ````html {title="layouts/&lt;DESIGN&gt;/views/article.html" hl_Lines="7"}
+    <article class="default">
+      <header class="headline">
+        {{- partial "content-header.html" . }}
+      </header>
+      {{partial "heading-pre.html" .}}{{partial "heading.html" .}}{{partial "heading-post.html" .}}
+
+      {{ partial "article-content.html" . }}
+
+      <footer class="footline">
+        {{- partial "content-footer.html" . }}
+      </footer>
+    </article>
+    ````
