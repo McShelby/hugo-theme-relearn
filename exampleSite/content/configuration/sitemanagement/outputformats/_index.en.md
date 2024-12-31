@@ -16,7 +16,7 @@ Enable print support to print entire chapters or the whole site. Add the `print`
   page = ['html', 'rss', 'print']
 {{< /multiconfig >}}
 
-This adds a printer icon in the topbar. Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
+By default this adds a printer icon in the topbar by can be [deactived](authoring/frontmatter/topbar/#print-button). Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
 
 The URL won't be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) for [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls), even with `uglyURLs=true` in `hugo.toml`. This is because each mime type can only have one suffix.
 

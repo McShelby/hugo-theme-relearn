@@ -1,8 +1,8 @@
 +++
 categories = ["howto"]
 description = "Configure the topbar"
-frontmatter = ["disableBreadcrumb", "disableNextPrev", "disableToc", "editURL"]
-options = ["disableBreadcrumb", "disableNextPrev", "disableToc", "editURL"]
+frontmatter = ["disableBreadcrumb", "disableNextPrev", "disablePrintButton", "disableToc", "editURL"]
+options = ["disableBreadcrumb", "disableNextPrev", "disablePrintButton", "disableToc", "editURL"]
 title = "Topbar"
 weight = 4
 +++
@@ -15,7 +15,7 @@ Your topbar contains the following elements. Some of them are configuarable:
 - {{% button style="transparent" icon="list-alt" %}}{{% /button %}} **toc**: [opens the table of contents in an overlay](#table-of-contents)
 - {{% button style="transparent" icon="empty" %}}{{% /button %}} **breadcrumb**: shows the clickable [breadcrumbs](#breadcrumbs)
 - {{% button style="transparent" icon="pen" %}}{{% /button %}} **edit**: browses to the editable page if the `editURL` [parameter is set](#edit-button)
-- {{% button style="transparent" icon="print" %}}{{% /button %}} **print**: browses to the chapters printable page if [print support](configuration/sitemanagement/outputformats#print-support) was activated
+- {{% button style="transparent" icon="print" %}}{{% /button %}} **print**: browses to the [chapters printable page}(#print-button) if [print support](configuration/sitemanagement/outputformats#print-support) was activated
 - {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} **prev**: browses to the [previous page](#arrow-navigation) if there is one
 - {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} **next**: browses to the [next page](#arrow-navigation) if there is one
 - {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} **more**: opens the overlay if screen space is limited
@@ -46,6 +46,14 @@ The value can contain the macro `${FilePath}` which will be replaced by the file
 
 {{< multiconfig >}}
 editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}'
+{{< /multiconfig >}}
+
+## Print Button
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the print button if the [print output format](configuration/sitemanagement/outputformats/#print-support) is active by setting `disablePrintButton=true`.
+
+{{< multiconfig >}}
+disablePrintButton = true
 {{< /multiconfig >}}
 
 ## Arrow Navigation
