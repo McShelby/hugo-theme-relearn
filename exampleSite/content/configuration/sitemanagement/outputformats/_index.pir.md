@@ -1,6 +1,7 @@
 +++
 categories = ["howto"]
-description = "What other formats can a page be displayed in"
+description = "What formats can a page be displayed in"
+outputs = ["html", "rss", "print", "markdown"]
 title = "Available Output Formats"
 weight = 5
 +++

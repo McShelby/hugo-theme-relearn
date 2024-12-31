@@ -2,6 +2,7 @@
 categories = ["explanation", "reference"]
 description = "How to extend the topbar"
 options = ["editURL"]
+outputs = ["html", "rss", "print", "markdown"]
 title = "Topbar"
 weight = 4
 +++

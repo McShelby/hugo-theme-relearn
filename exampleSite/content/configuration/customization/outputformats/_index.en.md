@@ -3,28 +3,123 @@ categories = ["explanation", "howto"]
 description = "Adding Custom Output Formats"
 title = "Output Formats"
 weight = 6
+disableToc = false
 +++
 
-In addition to the [output formats coming with the theme](configuration/sitemanagement/outputformats), you can create your own [output formats](https://gohugo.io/templates/output-formats/).
+Hugo can display your content in different [formats](https://gohugo.io/templates/output-formats/) like HTML, JSON, Google AMP, etc. To do this, templates must be provided.
 
-## Starting from Scratch
+The Relearn theme by default comes with templates for [HTML, HTML for print, RSS and Markdown](configuration/sitemanagement/outputformats). If this is not enough, this page describes how you can create your own output formats.
 
-If you want to add a new output format called `myformat` that outputs HTML and you want to build everything yourself without using the theme's components:
+If you instead just want to [customize the layout of an existing output format](configuration/customization/designs), the theme got you covered as well.
 
-1. Create a file `layouts/_default/baseof.myformat.html`
-2. Implement all the necessary code in this file
+## Creating an Output Format
 
-## Using the Theme's Structure
+Suppose you want to be able to send your articles as HTML formatted emails. The pages of these format need to be self contained so an email client can display the content without loading any further assets.
 
-If you want to keep the general framework and only change specific parts, you can override these files:
+Therefore we add a new output format called `email` that outputs HTML and assembles a completely custom HTML document structure.
 
-- `layouts/_default/views/article.html`: Controls how a page's content and title are displayed
-- `layouts/_default/views/body.html`: Determines the page body structure
-- `layouts/_default/views/menu.html`: Defines the sidebar menu layout
-- `layouts/_default/views/storeOutputFormat.html`: Stores the output format name for use in the framework
+1. Add the output format to your `hugo.toml`
 
-For a real-world example, check out the `print` output format implementations
+    {{< multiconfig file=hugo >}}
+    [outputFormats]
+      [outputFormats.email]
+        name= "email"
+        baseName = "index.email"
+        isHTML = true
+        mediaType = 'text/html'
+        permalinkable = false
+        noUgly = true
+
+    [outputs]
+      home = ["html", "rss", "email"]
+      section = ["html", "rss", "email"]
+      page = ["html", "rss", "email"]
+    {{< /multiconfig >}}
+
+2. Create a file `layouts/_default/baseof.email.html`
+
+    ````html {title="layouts/_default/baseof.email.html" hl_Lines="15"}
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>{{ .Title }}</title>
+      <style type="text/css">
+        /* add some styles here to make it pretty */
+      </style>
+      <style type="text/css">
+        /* add chroma style for code highlighting */
+        {{- "/assets/css/chroma-relearn-light.css" | readFile | safeCSS }}
+      </style>
+    </head>
+    <body>
+      <main>
+        {{- block "body" . }}{{ end }}
+      </main>
+    </body>
+    </html>
+    ````
+
+    The marked `block` construct above will cause the display of the article with a default HTML structure. 	In case you want to keep it really simple, you could replace this line with just `{{ .Content }}`.
+
+3. _Optional_: create a file `layouts/_default/views/article.email.html`
+
+	In our case, we want to display a disclaimer in front of every article. To do this we have to define the output of an article ourself and rely on the above `block` statement to call our template.
+
+    ````html {title="layouts/_default/views/article.email.html"}
+    <article class="email">
+      <blockquote>
+        View this article on <a href="http://example.com{{ .RelPermalink }}">our website</a>
+      </blockquote>
+      {{ partial "article-content.html" . }}
+    </article>
+    ````
+
+4. _Optional_: create a file `layouts/_default/_markup_/render-image.email.html`
+
+    In our case, we want to convert each image into a base 64 encoded string to display it inline in the email without loading external assets.
+
+    ````html {title="layouts/_default/_markup_/render-image.email.html"}
+    {{- $dest_url := urls.Parse .Destination }}
+    {{- $dest_path := path.Clean ($dest_url.Path) }}
+    {{- $img := .Page.Resources.GetMatch $dest_path }}
+    {{- if and (not $img) .Page.File }}
+      {{- $path := path.Join .Page.File.Dir $dest_path }}
+      {{- $img = resources.Get $path }}
+    {{- end }}
+    {{- if $img }}
+      {{- if (gt (len $img.Content) 1000000000) }}
+        {{/* currently resizing does not work for animated gifs :-( */}}
+        {{- $img = $img.Resize "600x webp q75" }}
+      {{- end }}
+      <img src="data:{{ $img.MediaType }};base64,{{ $img.Content | base64Encode }}">
+    {{- end }}
+    ````
+
+## Partials
+
+### For HTML Output Formats
+
+If you want to keep the general HTML framework and only change specific parts, you can provide these files for your output format independently of one another:
+
+- `layouts/_default/views/article.<FORMAT>.html`: _Optional_: Controls how a page's content and title are displayed
+- `layouts/_default/views/body.<FORMAT>.html`: _Optional_: Determines the page body structure
+- `layouts/_default/views/menu.<FORMAT>.html`: _Optional_: Defines the sidebar menu layout
+- `layouts/_default/views/storeOutputFormat.<FORMAT>.html`: _Optional_: Stores the output format name for use in the framework to let the body element been marked with an output format specific class
+
+For a real-world example, check out the `print` output format implementation
 
 - [`layouts/_default/views/body.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/body.print.html)
 - [`layouts/_default/views/menu.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/menu.print.html)
 - [`layouts/_default/views/storeOutputFormat.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/storeOutputFormat.print.html)
+
+### For Non-HTML Output Formats
+
+- `layouts/_default/list.<FORMAT>`: _Mandatory_: Controls how sections are displayed
+- `layouts/_default/single.<FORMAT>`: _Mandatory_: Controls how pages are displayed
+- `layouts/_default/baseof.<FORMAT>`: _Optional_: Controls how sections and pages are displayed. If not provided, you have to provide your implementation in `list.<FORMAT>` and `single.<FORMAT>`
+
+For a real-world example, check out the `markdown` output format implementation
+
+- [`layouts/_default/baseof.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/baseof.md)
+- [`layouts/_default/list.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/list.md)
+- [`layouts/_default/single.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/single.md)

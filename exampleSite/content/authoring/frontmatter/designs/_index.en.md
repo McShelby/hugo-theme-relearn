@@ -5,9 +5,13 @@ title = "Page Designs"
 weight = 1
 +++
 
-A page is displayed by exactly one page design and represented by [Hugo's reserved `type` front matter](https://gohugo.io/content-management/front-matter/#type).
+Page designs are used to provide different layouts for your pages.
 
-The Relearn theme offers the page designs `home`, `chapter`, and `default` but you can [define further custom page designs](configuration/customization/designs).
+A page is displayed by exactly one page design and is represented by [Hugo's reserved `type` front matter](https://gohugo.io/content-management/front-matter/#type).
+
+The Relearn theme ships with the page designs `home`, `chapter`, and `default` for the HTML output format but you can [define further custom page designs](configuration/customization/designs).
+
+## Using a Page Design
 
 Regardless of shipped or custom page design, you are using them in the same way.
 
@@ -17,19 +21,18 @@ Regardless of shipped or custom page design, you are using them in the same way.
 	hugo new --kind chapter chapter1/_index.md
     ````
 
-- If you are creating your Markdown files manually, you can achieve the same by just setting `type='chapter'` in the front matter.
+- If you are creating your Markdown files manually, you can achieve the same by just setting `type='chapter'` in the front matter to make your page displayed with the `chapter` page design.
 
-Your resulting Markdown file needs to have at least the `type` front matter set to the value of the page design
+    ````toml {title="_index.md"}
+    +++
+    title = "Chapter 1"
+    type = "chapter"
+    +++
+    ````
 
-````toml {title="_index.md"}
-+++
-title = "Chapter 1"
-type = "chapter"
-+++
-````
+If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type='default'` was set.
 
-
-## Predefined Designs
+## Predefined Designs for the HTML Output Format
 
 ### Home {#archetypes-home}
 

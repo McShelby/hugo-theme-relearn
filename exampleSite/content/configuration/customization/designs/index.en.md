@@ -5,80 +5,97 @@ title = "Page Designs"
 weight = 5
 +++
 
-A page is displayed by exactly one page design. The Relearn theme offers the page designs `home`, `chapter`, and `default`.
+Page designs are used to provide different layouts for a given output format. If you instead want to [provide a new output format](configuration/customization/outputformats), the theme got you covered as well.
+
+A page is displayed by exactly one page design _for each output format_, is represented by [Hugo's reserved `type` front matter](https://gohugo.io/content-management/front-matter/#type) and uses [Hugo's content view mechanism](https://gohugo.io/templates/types/#content-view).
 
 A page design usually consists of
 
-- [an archetype file](https://gohugo.io/content-management/archetypes/): a template for creating new Markdown files with this design
-- [content view files](https://gohugo.io/templates/types/#content-view): represented by [Hugo's reserved `type` front matter](https://gohugo.io/content-management/front-matter/#type) and backed by matching partials
-- CSS styles
-
-If no `type` is set in your front matter, the page is treated as if `type='default'` was set.
+- [one or more content view files](https://gohugo.io/templates/types/#content-view): depending on the output format taken from [the list below](#partials)
+- [an optional archetype file](https://gohugo.io/content-management/archetypes/): a template for creating new Markdown files with the correct setting for the `type` front matter and any furhter parameter
+- optional CSS styles
 
 > [!warning]
-> Don't use the `type` option in your modifications for other functionality!
-
-All shipped designs use the theme's framework from `themes/hugo-theme-learn/layouts/_default/baseof.html`, containing of the same topbar and sidebar but can change how content appears in the center of the page.
+> Don't use Hugo's reserved `type` option in your modifications for other functionality!
 
 ## Using a Page Design
 
-Regardless of shipped or custom page design, you are [using them](authoring/frontmatter/designs) in the same way.
+Regardless of shipped or custom page designs, you are [using them in the same way](authoring/frontmatter/designs). Either by manually setting the `type` front matter to the value of the page design or by using an archetype during creation of a new page.
 
-## Creating a Page Designs
+If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type='default'` was set.
 
-To make a custom page design:
+The Relearn theme ships with the page designs `home`, `chapter`, and `default` for the HTML output format.
 
-1. Choose a name (for example, `mydesign`)
-2. Create a content view file at `layouts/mydesign/views/article.html`
+The shipped `print` and `markdown` output formats only display using the `default` page design.
 
-    ````html {title="layouts/mydesign/views/article.html"}
-    <article class="mydesign">
+## Creating a Page Design
+
+Suppose you are writing a documentation site for some software. Each time a new release is created, you are adding a new releasenotes page to your site. Those pages should contain a common disclaimer at the top. You neither want to copy the text into each new file nor want you to use a shortcode but create a page design called `releasenotes`.
+
+1. Choose a name (here, `releasenotes`)
+2. Create a content view file at `layouts/releasenotes/views/article.html`
+
+    ````html {title="layouts/releasenotes/views/article.html" hl_Lines="6-8"}
+    <article class="releasenotes">
       <header class="headline">
-    {{ partial "content-header.html" . }}
+        {{partial "content-header.html" .}}
       </header>
-    <div class="article-subheading">AWESOME</div>
-    {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
-    {{ partial "article-content.html" . }}
+      {{partial "heading-pre.html" .}}{{partial "heading.html" .}}{{partial "heading-post.html" .}}
+      <p class="disclaimer">
+        This software release comes without any warranty!
+      </p>
+      {{partial "article-content.html" .}}
       <footer class="footline">
-    {{ partial "content-footer.html" . }}
+        {{partial "content-footer.html" .}}
       </footer>
     </article>
     ````
 
-    In this file, you can customize the page design as needed. Typically, you'll want to:
+    The marked lines are your customizations, the rest of the file was copied over from the default implementation of [`layouts/_default/views/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/article.html)
+
+    In this file, you can customize the page structure as needed. For HTML based output formats, typically you'll want to:
 
     - Set a `class` at the `article` element for custom CSS styles
-    - Use `{{ partial "article-content.html" . }}` to show your page content
+    - Call `{{ partial "article-content.html" . }}` to show your page content
 
-3. Create an archetype file at `archetypes/mydesign.md` (optional)
+3. _Optional_: create an archetype file at `archetypes/releasenotes.md`
 
-    ````html {title="archetypes/mydesign.md"}
+    ````toml {title="archetypes/releasenotes.md"}
     +++
     title = "{{ replace .Name "-" " " | title }}"
-    type = "mydesign"
+    type = "releasenotes"
     +++
 
-    This is my new design.
+    This is a new releasenote.
     ````
 
-4. Add CSS in file `layouts/partials/custom-header.html` (optional)
+4. _Optional_: add CSS in the file `layouts/partials/custom-header.html`
 
     ````html {title="layouts/partials/custom-header.html"}
     <style>
-    .mydesign .article-subheading {
-      font-size: 72rem;
-    }
-    .mydesign a {
+    .releasenotes .disclaimer {
       background-color: pink;
+      font-size: 72rem;
     }
     </style>
     ````
 
-### Partials
+## Partials
 
-The above example uses `layouts/mydesign/views/article.html` but you have some others
+### For any Output Format
 
-- `layouts/mydesign/baseof.html`: Completely redefine the whole HTML structure, none of the other listed partials will be used
-- `layouts/mydesign/views/menu.html`: Defines the sidebar menu layout
-- `layouts/mydesign/views/body.html`: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)
-- `layouts/mydesign/views/article.html`: Controls how one page's content and title are displayed
+These files are common for all output formats.
+
+- `layouts/<DESIGN>/baseof.<FORMAT>`: _Optional_: The top most file you could provide to completely redefine the whole design. No further partials will be called if you don' call them yourself
+
+### For HTML Output Formats
+
+If you want to keep the general HTML framework and only change specific parts, you can provide these files for the page desingn for the HTML output format independently of one another.
+
+- `layouts/<DESIGN>/views/article.html`: _Optional_: Controls how one page's content and title are displayed
+- `layouts/<DESIGN>/views/body.html`: _Optional_: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)
+- `layouts/<DESIGN>/views/menu.html`: _Optional_: Defines the sidebar menu layout
+
+For a real-world example, check out the `changelog` page design implementation
+
+- [`exampleSite/layouts/changelog/views/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/exampleSite/layouts/changelog/views/article.html)
