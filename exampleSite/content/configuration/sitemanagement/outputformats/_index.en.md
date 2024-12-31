@@ -16,7 +16,7 @@ Enable print support to print entire chapters or the whole site. Add the `print`
   page = ['html', 'rss', 'print']
 {{< /multiconfig >}}
 
-By default this adds a printer icon in the topbar by can be [deactived](authoring/frontmatter/topbar/#print-button). Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
+By default this adds a printer icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#print-button). Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
 
 The URL won't be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) for [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls), even with `uglyURLs=true` in `hugo.toml`. This is because each mime type can only have one suffix.
 
@@ -32,3 +32,18 @@ If you don't like the URLs, you can reconfigure `outputFormats.print` in your `h
     permalinkable = false
     noUgly = true
 {{< /multiconfig >}}
+
+## Markdown Support
+
+Enable support to show the Markdown source of a page . Add the `markdown` output format to your home, section, and page in `hugo.toml`:
+
+{{< multiconfig file=hugo >}}
+[outputs]
+  home = ['html', 'rss', 'markdown']
+  section = ['html', 'rss', 'markdown']
+  page = ['html', 'rss', 'markdown']
+{{< /multiconfig >}}
+
+By default this adds a Markdown icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#markdown-button). Clicking it switches to the Markdown source of the page.
+
+The `markdown` output format configuration is [provided by Hugo](https://gohugo.io/templates/output-formats/#output-format-definitions).
