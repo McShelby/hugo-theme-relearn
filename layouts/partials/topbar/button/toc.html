@@ -3,9 +3,8 @@
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
-	{{- $defaultDisableToc := .Site.Params.disableToc | default false }}
-	{{- $currentDisableToc := .Params.disableToc | default $defaultDisableToc }}
-	{{- if not $currentDisableToc }}
+	{{- $show := not (.Param "disableToc") }}
+	{{- if $show }}
 		{{- $content := partial "toc-class.html" . }}
 		{{- $hascontent := not (eq 0 (int (len (trim ($content | plainify) "\n\r\t ")))) }}
 		{{- if not $hascontent }}

@@ -2,8 +2,8 @@
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
-	{{- $showPrevNext := (and (not .Params.disableNextPrev) (not .Site.Params.disableNextPrev)) }}
-	{{- if $showPrevNext }}
+	{{- $show := not (.Param "disableNextPrev") }}
+	{{- if $show }}
 		{{- $endarrow := "🡒" }}
 		{{- if eq (.Language.LanguageDirection | default (T "Reading-direction") | default "ltr") "rtl" }}
 			{{- $endarrow = "🡐" }}
