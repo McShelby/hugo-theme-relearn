@@ -27,7 +27,7 @@ Then move into the new directory
 cd my-new-site
 ````
 
-Run all future commands from this directory.
+Run all following commands from this directory.
 
 ## Install the Theme
 

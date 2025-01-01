@@ -28,7 +28,7 @@ By default, it puts your root directory on top of the Relearn theme directory. F
 
 For example, if you create a file at `layouts/partials/heading.html`, it will override the theme's `themes/hugo-theme-relearn/layouts/partials/heading.html`.
 
-[See this list](configuration/customization/partials), to learn which files are allowed to be modified by you.
+[See this list](configuration/customization/partials), to learn which files are allowed to be overridden by you.
 
 This makes it easy to customize the theme without changing files in the `themes` directory, making future theme updates simpler.
 

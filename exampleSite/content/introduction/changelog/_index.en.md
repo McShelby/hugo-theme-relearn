@@ -5,7 +5,7 @@ description = "The detailed changelog"
 disableToc = false
 title = "Changelog"
 type = "changelog"
-weight = 4
+weight = 5
 +++
 
 {{% pages showdivider="true" showhidden="true" hidevisible="true" showtitle="true" %}}

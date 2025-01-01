@@ -5,7 +5,7 @@ description = "What's new in this version"
 disableToc = false
 title = "What's New"
 type = "releasenotes"
-weight = 3
+weight = 4
 +++
 
 {{% pages showdivider="true" showhidden="true" hidevisible="true" showtitle="true" %}}
