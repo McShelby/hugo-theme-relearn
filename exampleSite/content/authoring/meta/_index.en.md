@@ -50,7 +50,7 @@ hidden = true
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} In the page front matter, add a `headingPre` to insert any HTML code before the title heading. You can also set `headingPost` to insert HTML code after the title heading.
 
-You also may want to [apply further CSS](configuration/customization/dependencies#adding-javascript-or-stylesheets-to-all-pages) in this case.
+You also may want to [apply further CSS](configuration/customization/extending#adding-javascript-or-stylesheets-to-all-pages) in this case.
 
 {{< multiconfig fm=true >}}
 headingPre = '<i class="fab fa-github"></i> '
