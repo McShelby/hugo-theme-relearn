@@ -1031,7 +1031,7 @@ var relearn_searchindex = [
     "description": "Add further code to your site",
     "tags": [],
     "title": "Extending Scripts",
-    "uri": "/hugo-theme-relearn/pir/configuration/customization/dependencies/index.html"
+    "uri": "/hugo-theme-relearn/pir/configuration/customization/extending/index.html"
   },
   {
     "breadcrumb": "Rambl'n",

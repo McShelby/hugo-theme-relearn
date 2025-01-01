@@ -1039,7 +1039,7 @@ var relearn_searchindex = [
     "description": "Add further code to your site",
     "tags": [],
     "title": "Extending Scripts",
-    "uri": "/hugo-theme-relearn/configuration/customization/dependencies/index.html"
+    "uri": "/hugo-theme-relearn/configuration/customization/extending/index.html"
   },
   {
     "breadcrumb": "Authoring",
