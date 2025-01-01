@@ -336,7 +336,7 @@ function initMermaid(update, attrs) {
           var svg = d3.select(this);
           svg.html('<g>' + svg.html() + '</g>');
           var inner = svg.select('*:scope > g');
-          parent.insertAdjacentHTML('beforeend', '<span class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></span>');
+          parent.insertAdjacentHTML('beforeend', '<button class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></button>');
           var button = parent.querySelector('.svg-reset-button');
           var zoom = d3.zoom().on('zoom', function (e) {
             inner.attr('transform', e.transform);
@@ -530,7 +530,7 @@ function initAnchorClipboard() {
   document.querySelectorAll('h1~h2,h1~h3,h1~h4,h1~h5,h1~h6').forEach(function (element) {
     var url = encodeURI((document.location.origin == 'null' ? document.location.protocol + '//' + document.location.host : document.location.origin) + document.location.pathname);
     var link = url + '#' + element.id;
-    var new_element = document.createElement('span');
+    var new_element = document.createElement('button');
     new_element.classList.add('anchor');
     if (!window.relearn.disableAnchorCopy) {
       new_element.setAttribute('title', window.T_Copy_link_to_clipboard);
@@ -660,7 +660,7 @@ function initCodeClipboard() {
         code.parentNode.replaceChild(span, code);
         code = clone;
       }
-      var button = document.createElement('span');
+      var button = document.createElement('button');
       button.classList.add('copy-to-clipboard-button');
       button.setAttribute('title', window.T_Copy_to_clipboard);
       button.innerHTML = '<i class="far fa-copy"></i>';
