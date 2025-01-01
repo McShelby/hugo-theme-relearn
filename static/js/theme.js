@@ -688,6 +688,20 @@ function initCodeClipboard() {
           pre.parentNode.replaceChild(div, pre);
           pre = clone;
         }
+        // we have to make sure, the button is visible while
+        // Clipboard.js is doing its magic
+        button.addEventListener('focus', function (ev) {
+          setTimeout(function () {
+            ev.target.classList.add('force-display');
+          }, 0);
+        });
+        button.addEventListener('blur', function (ev) {
+          this.removeAttribute('aria-label');
+          this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');
+          setTimeout(function () {
+            ev.target.classList.remove('force-display');
+          }, 0);
+        });
         pre.parentNode.insertBefore(button, pre.nextSibling);
       } else {
         code.dataset.code = text;
