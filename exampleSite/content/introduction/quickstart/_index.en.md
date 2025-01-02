@@ -77,7 +77,9 @@ Then add this at the top of your `hugo.toml`
 theme = 'hugo-theme-relearn'
 {{< /multiconfig >}}
 
-## Create your Home Page
+## Create Content
+
+### Your Home Page
 
 Start by making a home page
 
@@ -87,7 +89,7 @@ hugo new --kind home _index.md
 
 The new home page file `content/_index.md` has two parts: the page info (like `title`) at the top, called [front matter](https://gohugo.io/content-management/front-matter/), and the page content below.
 
-## Create your First Chapter Page
+### Your First Chapter Page
 
 Chapters are top-level pages that contain other pages. They have a special layout.
 
@@ -99,7 +101,7 @@ hugo new --kind chapter first-chapter/_index.md
 
 The new file `content/first-chapter/_index.md` has a `weight` number in the front matter. This sets the chapter's subtitle and its order in the menu.
 
-## Create your First Content Pages
+### Your First Content Pages
 
 Now make content pages inside the chapter. Here are three ways to do this
 
@@ -113,7 +115,7 @@ Hugo treats these files differently based on their file names. Learn more in [Hu
 
 Feel free to edit these files. Change the `title`, add a `weight` if you want, and write your content.
 
-## Test your Website Locally
+## Test your Website
 
 Start your new website on your computer with this command
 
@@ -127,7 +129,7 @@ You can keep the server running while you edit. The browser will update automati
 
 {{% figure src="magic.gif" link="https://gohugo.io" alt="Magic" caption="It's a kind of magic" %}}
 
-## Build and Deploy your Website
+## Build and Deploy
 
 When your site is ready to go live, run this command
 
