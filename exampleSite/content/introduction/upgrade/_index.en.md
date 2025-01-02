@@ -62,7 +62,7 @@ Upgrade the Relearn theme using [Git](https://git-scm.com/) to a certain version
 Eg. to upgrade to version 7.2.1
 
 ````shell
-git submodule upgrade --remote --depth 1 --force themes/hugo-theme-relearn
-git -C themes/hugo-theme-relearn fetch --tags
+git submodule update --depth 1 --force themes/hugo-theme-relearn
+git -C themes/hugo-theme-relearn fetch --tags --force
 git -C themes/hugo-theme-relearn checkout 7.2.1
 ````
