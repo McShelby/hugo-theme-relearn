@@ -43,7 +43,7 @@ Remove the old version of the theme by removing the `themes/hugo-theme-relearn` 
 
 Download the .zip archive of a certain version of the theme and unzip it into the `themes/hugo-theme-relearn` directory
 
-Eg. to upgrade to version 7.2.1 go to [https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1](https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1) 
+Eg. to upgrade to version 7.2.1 download from [https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1](https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1) 
 
 ### Use Hugo's Module System
 
@@ -62,7 +62,7 @@ Upgrade the Relearn theme using [Git](https://git-scm.com/) to a certain version
 Eg. to upgrade to version 7.2.1
 
 ````shell
-git submodule update --depth 1 --force themes/hugo-theme-relearn
+git submodule update --depth 1 themes/hugo-theme-relearn
 git -C themes/hugo-theme-relearn fetch --tags --force
 git -C themes/hugo-theme-relearn checkout 7.2.1
 ````
