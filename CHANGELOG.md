@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.3.1 (2025-01-03)
+
+### Fixes
+
+- [**bug**] taxonomy: fix rendering if `unsafe=false` [#986](https://github.com/McShelby/hugo-theme-relearn/issues/986)
+- [**bug**] bug: missing translations for Markdown topbar button [#985](https://github.com/McShelby/hugo-theme-relearn/issues/985)
+
+---
+
 ## 7.3.0 (2025-01-02)
 
 ### Enhancements
