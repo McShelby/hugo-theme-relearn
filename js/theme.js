@@ -614,7 +614,7 @@ function initCodeClipboard() {
       for (var i = 0; i < selection.rangeCount; i++) {
         var range = selection.getRangeAt(i);
         var fragment = range.cloneContents();
-        if (fragment.querySelector('.ln')) {
+        if (fragment.querySelector('.ln') || fragment.querySelector('[id]')) {
           return true;
         }
       }
