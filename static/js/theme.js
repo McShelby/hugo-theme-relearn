@@ -62,6 +62,17 @@ function adjustContentWidth() {
   elc.style[dir_padding_end] = '' + end + 'px';
 }
 
+function throttle(func, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
 function fixCodeTabs() {
   /* if only a single code block is contained in the tab and no style was selected, treat it like style=code */
   var codeTabContents = Array.from(document.querySelectorAll('.tab-content.tab-panel-style')).filter(function (tabContent) {
@@ -1311,7 +1322,8 @@ function initScrollPositionSaver() {
   elc.addEventListener('scroll', function (event) {
     if (!ticking) {
       window.requestAnimationFrame(function () {
-        savePosition();
+        // #996 GC is so damn slow that we need further throttling
+        throttle(savePosition, 250);
         ticking = false;
       });
       ticking = true;
