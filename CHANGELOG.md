@@ -104,7 +104,7 @@
 
 ### Enhancements
 
-- [**feature**][**change**] logo: move Relearn logo to exampleSite [#924](https://github.com/McShelby/hugo-theme-relearn/issues/924)
+- [**feature**][**change**] logo: move Relearn logo to docs [#924](https://github.com/McShelby/hugo-theme-relearn/issues/924)
 - [**feature**][**change**] math: adhere to Hugo's default config params [#923](https://github.com/McShelby/hugo-theme-relearn/issues/923)
 - [**feature**][**change**] theme: replace font [#922](https://github.com/McShelby/hugo-theme-relearn/issues/922)
 - [**feature**][**breaking**] theme: reduce build time [#685](https://github.com/McShelby/hugo-theme-relearn/issues/685)
@@ -244,7 +244,7 @@
 
 ### Fixes
 
-- [**bug**] frontmatter: move frontmatter config for exampleSite out of root [#843](https://github.com/McShelby/hugo-theme-relearn/issues/843)
+- [**bug**] frontmatter: move frontmatter config for docs out of root [#843](https://github.com/McShelby/hugo-theme-relearn/issues/843)
 - [**bug**] images: color outline using primary color [#838](https://github.com/McShelby/hugo-theme-relearn/issues/838)
 - [**bug**][**breaking**] variant: avoid Hugo permission errors on build [#831](https://github.com/McShelby/hugo-theme-relearn/issues/831)
 - [**bug**] theme: unwanted paragraph break with AsciiDoc [#829](https://github.com/McShelby/hugo-theme-relearn/issues/829)
@@ -1661,7 +1661,7 @@
 
 ### Fixes
 
-- [**bug**] exampleSite: fix links in official documentation [#168](https://github.com/McShelby/hugo-theme-relearn/issues/168)
+- [**bug**] docs: fix links in official documentation [#168](https://github.com/McShelby/hugo-theme-relearn/issues/168)
 
 ---
 
@@ -1912,7 +1912,7 @@
 
 ### Maintenance
 
-- [**task**] docs: include changelog in exampleSite [#33](https://github.com/McShelby/hugo-theme-relearn/issues/33)
+- [**task**] docs: include changelog [#33](https://github.com/McShelby/hugo-theme-relearn/issues/33)
 
 ---
 
