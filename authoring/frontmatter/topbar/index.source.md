@@ -48,7 +48,7 @@ disableBreadcrumb = true
 The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages front matter.
 
 {{< multiconfig >}}
-editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/${FilePath}'
+editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/${FilePath}'
 {{< /multiconfig >}}
 
 ## Markdown Button
