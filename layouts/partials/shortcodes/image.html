@@ -35,10 +35,11 @@
     {{- end }}
   {{- else }}
     {{- $errorlevel := or $page.Params.image.errorlevel $page.Site.Params.image.errorlevel }}
+    {{- $msg := printf "%q: image '%s' is not a resource" $page.File.Filename .url }}
     {{- if eq $errorlevel "warning" }}
-      {{- warnf "%q: image '%s' is not a resource but linked anyways" $page.File.Filename .url }}
+      {{- warnf $msg }}
     {{- else if eq $errorlevel "error" }}
-      {{- errorf "%q: image '%s' is not a resource" $page.File.Filename .url }}
+      {{- errorf $msg }}
     {{- end }}
   {{- end }}
 {{- end }}

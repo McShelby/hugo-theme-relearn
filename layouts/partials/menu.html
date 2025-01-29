@@ -168,12 +168,6 @@
       {{- with site.Home.GetPage (.Params.menuPageRef) }}
         {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
         {{- $isCrosslink = true }}
-      {{- else }}
-        {{- if eq $errorlevel "warning" }}
-          {{- warnf "%q: menu link '%s' is not a page but linked anyways" $currentNode.File.Filename .Params.menuPageRef }}
-        {{- else if eq $errorlevel "error" }}
-          {{- errorf "%q: menu link '%s' is not a page" $currentNode.File.Filename .Params.menuPageRef }}
-        {{- end }}
       {{- end }}
     {{- else if .Params.menuUrl }}
       {{- $url = .Params.menuUrl }}
@@ -184,12 +178,6 @@
         {{- $target = "_blank" }}
         {{- if isset site.Params "externallinktarget" }}
           {{- $target = site.Params.externalLinkTarget }}
-        {{- end }}
-      {{- else }}
-        {{- if eq $errorlevel "warning" }}
-          {{- warnf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead; link created anyways" $currentNode.File.Filename .Params.menuUrl }}
-        {{- else if eq $errorlevel "error" }}
-          {{- errorf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead" $currentNode.File.Filename .Params.menuUrl }}
         {{- end }}
       {{- end }}
     {{- end }}

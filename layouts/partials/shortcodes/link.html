@@ -13,7 +13,7 @@
 {{- $attributes = $attributes | merge (dict "title" ($title | transform.HTMLEscape)) }}
 {{- $content := .content }}
 {{- $target := .target | default "" }}
-{{- $u := urls.Parse .url -}}
+{{- $u := urls.Parse .url }}
 {{- $href := $u.String }}
 {{- if $u.IsAbs }}
   {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .url "page" $page "type" "link") $u.String }}
@@ -79,10 +79,11 @@
       {{- $href = printf "%s#%s" $href . }}
     {{- end }}
   {{- else }}
+    {{- $msg := printf "%q: link '%s' is not a page or a resource" $page.File.Filename .url }}
     {{- if eq $errorlevel "warning" }}
-      {{- warnf "%q: link '%s' is not a page or a resource but linked anyways" $page.File.Filename .url }}
+      {{- warnf $msg }}
     {{- else if eq $errorlevel "error" }}
-      {{- errorf "%q: link '%s' is not a page or a resource" $page.File.Filename .url }}
+      {{- errorf $msg }}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -131,12 +132,10 @@
       {{- else }}
         {{- $targetPath = .Path }}
       {{- end }}
-      {{- /* Set common message. */}}
       {{- $msg := printf "%q: heading ID %q not found in %q" $contentPath . $targetPath }}
       {{- if eq $targetPath $contentPath }}
         {{- $msg := printf "%q: heading ID %q not found" $contentPath . }}
       {{- end }}
-      {{- /* Throw warning or error. */}}
       {{- if eq $errorLevel "warning" }}
         {{- warnf $msg }}
       {{- else if eq $errorLevel "error" }}

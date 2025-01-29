@@ -20,10 +20,11 @@
         {{- with site.Home.GetPage (.Params.menuPageRef) }}
             {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
         {{- else }}
+            {{- $msg := printf "%q: front matter crosslink '%s' is not a page" .File.Filename .Params.menuPageRef }}
             {{- if eq $errorlevel "warning" }}
-                {{- warnf "%q: menu link '%s' is not a page but linked anyways" .File.Filename .Params.menuPageRef }}
+                {{- warnf $msg }}
             {{- else if eq $errorlevel "error" }}
-                {{- errorf "%q: menu link '%s' is not a page" .File.Filename .Params.menuPageRef }}
+                {{- errorf $msg }}
             {{- end }}
         {{- end }}
     {{- else if .Params.menuUrl }}
@@ -32,10 +33,11 @@
         {{- if $u.IsAbs }}
             {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" . "type" "menu link") $u.String }}
         {{- else }}
+            {{- $msg := printf "%q: front matter crosslink '%s' given by 'menuURL' is not verified; if it is a page use 'menuPageRef' instead" .File.Filename .Params.menuUrl }}
             {{- if eq $errorlevel "warning" }}
-                {{- warnf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead; link created anyways" .File.Filename .Params.menuUrl }}
+                {{- warnf $msg }}
             {{- else if eq $errorlevel "error" }}
-                {{- errorf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead" .File.Filename .Params.menuUrl }}
+                {{- errorf $msg }}
             {{- end }}
         {{- end }}
     {{- end }}

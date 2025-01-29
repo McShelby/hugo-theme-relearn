@@ -19,10 +19,11 @@
     {{- $spec = .Content }}
   {{- else }}
     {{- $errorlevel := or $page.Params.openapi.errorlevel $page.Site.Params.openapi.errorlevel }}
+    {{- $msg := printf "%q: OpenAPI spec '%s' is not a resource" $page.File.Filename .src }}
     {{- if eq $errorlevel "warning" }}
-      {{- warnf "%q: OpenAPI spec link '%s' is not a resource but linked anyways" $page.File.Filename .url }}
+      {{- warnf $msg }}
     {{- else if eq $errorlevel "error" }}
-      {{- errorf "%q: OpenAPI spec link '%s' is not a resource" $page.File.Filename .url }}
+      {{- errorf $msg }}
     {{- end }}
   {{- end }}
 {{- end }}

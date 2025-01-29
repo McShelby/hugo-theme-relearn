@@ -18,10 +18,11 @@
     {{- $content = .file | readFile }}
   {{- else }}
     {{- $errorlevel := or $page.Params.include.errorlevel $page.Site.Params.include.errorlevel }}
+    {{- $msg := printf "%q: include '%s' is not a page, a resource or a file" $page.File.Filename .file }}
     {{- if eq $errorlevel "warning" }}
-      {{- warnf "%q: included file '%s' is not a page, resource or accessible via file system" $page.File.Filename .file }}
+      {{- warnf $msg }}
     {{- else if eq $errorlevel "error" }}
-      {{- errorf "%q: included file '%s' is not a page, resource or accessible via file system" $page.File.Filename .file }}
+      {{- errorf $msg }}
     {{- end }}
   {{- end }}
 {{- end }}

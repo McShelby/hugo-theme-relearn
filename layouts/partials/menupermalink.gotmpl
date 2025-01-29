@@ -5,10 +5,11 @@
     {{- with .Page }}
       {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
     {{- else }}
+      {{- $msg := printf "%q: config menu link '%s' is not a page" $.page.File.Filename .PageRef }}
       {{- if eq $errorlevel "warning" }}
-        {{- warnf "%q: menu link '%s' is not a page but linked anyways" $.page.File.Filename .PageRef }}
+        {{- warnf $msg }}
       {{- else if eq $errorlevel "error" }}
-        {{- errorf "%q: menu link '%s' is not a page" $.page.File.Filename .PageRef }}
+        {{- errorf $msg }}
       {{- end }}
     {{- end }}
   {{- else }}
@@ -18,10 +19,11 @@
       {{- if $u.IsAbs }}
         {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" $.page "type" "menu link") $u.String }}
       {{- else }}
+        {{- $msg := printf "%q: config menu link '%s' given by 'URL' is not verified; if it is a page use 'PageRef' instead" $.page.File.Filename . }}
         {{- if eq $errorlevel "warning" }}
-          {{- warnf "%q: local menu link '%s' was given by 'URL'; if it points to a page inside your Hugo site use 'pageRef' instead; link created anyways" $.page.File.Filename . }}
+          {{- warnf $msg }}
         {{- else if eq $errorlevel "error" }}
-          {{- errorf "%q: local menu link '%s' was given by 'URL'; if it points to a page inside your Hugo site use 'pageRef' instead" $.page.File.Filename . }}
+          {{- errorf $msg }}
         {{- end }}
       {{- end }}
     {{- end }}
