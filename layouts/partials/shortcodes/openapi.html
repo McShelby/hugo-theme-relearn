@@ -7,7 +7,9 @@
 {{- $src := $u.String }}
 {{- $spec := "" }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
-{{- if not $u.IsAbs }}
+{{- if $u.IsAbs }}
+  {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .src "page" $page "type" "OpenAPI spec link") $u.String }}
+{{- else }}
   {{- $path := strings.TrimPrefix "./" $u.Path }}
   {{- with or
     ($page.Resources.Get $path)

@@ -16,6 +16,7 @@
 {{- $u := urls.Parse .url -}}
 {{- $href := $u.String }}
 {{- if $u.IsAbs }}
+  {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .url "page" $page "type" "link") $u.String }}
   {{- $attributes = merge $attributes (dict "rel" "external") }}
   {{- $target = "_blank" }}
   {{- if isset $page.Site.Params "externallinktarget" }}

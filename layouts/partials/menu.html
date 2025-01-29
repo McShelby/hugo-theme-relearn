@@ -163,19 +163,33 @@
     {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
     {{- $isCrosslink := false }}
     {{- $target := "" }}
+    {{- $errorlevel := or $currentNode.Params.link.errorlevel $currentNode.Site.Params.link.errorlevel }}
     {{- if .Params.menuPageRef }}
       {{- with site.Home.GetPage (.Params.menuPageRef) }}
         {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
         {{- $isCrosslink = true }}
+      {{- else }}
+        {{- if eq $errorlevel "warning" }}
+          {{- warnf "%q: menu link '%s' is not a page but linked anyways" $currentNode.File.Filename .Params.menuPageRef }}
+        {{- else if eq $errorlevel "error" }}
+          {{- errorf "%q: menu link '%s' is not a page" $currentNode.File.Filename .Params.menuPageRef }}
+        {{- end }}
       {{- end }}
     {{- else if .Params.menuUrl }}
       {{- $url = .Params.menuUrl }}
       {{- $isCrosslink = true }}
       {{- $u := urls.Parse $url }}
       {{- if $u.IsAbs }}
+        {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" $currentNode "type" "menu link") $u.String }}
         {{- $target = "_blank" }}
         {{- if isset site.Params "externallinktarget" }}
           {{- $target = site.Params.externalLinkTarget }}
+        {{- end }}
+      {{- else }}
+        {{- if eq $errorlevel "warning" }}
+          {{- warnf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead; link created anyways" $currentNode.File.Filename .Params.menuUrl }}
+        {{- else if eq $errorlevel "error" }}
+          {{- errorf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead" $currentNode.File.Filename .Params.menuUrl }}
         {{- end }}
       {{- end }}
     {{- end }}
@@ -225,7 +239,7 @@
     {{- $entries := . }}
     {{- if eq (len $entries) 1 }}
       {{- with index $entries 0 }}
-        {{- if not (partial "menupermalink.gotmpl" .) }}
+        {{- if not (partial "menupermalink.gotmpl" (dict "page" $currentNode "menu" .)) }}
           {{- /* because in Hugo menus can not have parameter but menu entries can,
             we can flag a single top level menu entry as a container; this container
             entry carrys just meta information and parameter, uses its children
@@ -264,7 +278,7 @@
       {{- $isSubCollapsible := .Params.collapsibleMenu | default $root.Params.collapsibleMenu | default site.Params.collapsibleMenu }}
       {{- if or $isSubSelf $isSubAncestor }}
         {{- partial "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) }}
-      {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "menupermalink.gotmpl" $entry)) (and $entry (eq $entry.Page $currentNode)) (and $entry ($currentNode.HasMenuCurrent $entry.Menu $entry))) }}
+      {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "menupermalink.gotmpl" (dict "page" $currentNode "menu" $entry))) (and $entry (eq $entry.Page $currentNode)) (and $entry ($currentNode.HasMenuCurrent $entry.Menu $entry))) }}
         {{- $id := md5 (print .) }}
         {{- partialCached "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
       {{- end }}
@@ -300,7 +314,7 @@
       {{- end }}
     {{- end }}
     {{- $title := partial "menutitle.gotmpl" . }}
-    {{- $url := partial "menupermalink.gotmpl" . }}
+    {{- $url := partial "menupermalink.gotmpl" (dict "page" $currentNode "menu" .) }}
     {{- $target := "" }}
     {{- $u := urls.Parse $url }}
     {{- if $u.IsAbs }}
@@ -336,7 +350,7 @@
         {{- $isSubCollapsible := .Params.collapsibleMenu | default $root.Params.collapsibleMenu | default site.Params.collapsibleMenu }}
         {{- if or $isSubSelf $isSubAncestor }}
           {{- partial "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) }}
-        {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "menupermalink.gotmpl" $entry)) (eq $entry.Page $currentNode) ($currentNode.HasMenuCurrent $entry.Menu $entry)) }}
+        {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "menupermalink.gotmpl" (dict "page" $currentNode "menu" $entry))) (eq $entry.Page $currentNode) ($currentNode.HasMenuCurrent $entry.Menu $entry)) }}
           {{- $id := md5 (print .) }}
           {{- partialCached "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
         {{- end }}

@@ -18,7 +18,9 @@
 {{- $attributes := .attributes | default dict }}
 {{- $u := urls.Parse .url }}
 {{- $src := $u.String }}
-{{- if not $u.IsAbs }}
+{{- if $u.IsAbs }}
+  {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .url "page" $page "type" "image") $u.String }}
+{{- else }}
   {{- $path := strings.TrimPrefix "./" $u.Path }}
   {{- with or
     ($page.Resources.Get $path)

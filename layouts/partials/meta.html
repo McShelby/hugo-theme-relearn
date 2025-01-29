@@ -15,14 +15,29 @@
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
     {{- $url := "" }}
+    {{- $errorlevel := or .Params.link.errorlevel .Site.Params.link.errorlevel }}
     {{- if .Params.menuPageRef }}
         {{- with site.Home.GetPage (.Params.menuPageRef) }}
             {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
         {{- else }}
-            {{- warnf "%q: WARNING: page '%s' not found for 'menuPageRef' parameter" .File.Filename .Params.menuPageRef }}
+            {{- if eq $errorlevel "warning" }}
+                {{- warnf "%q: menu link '%s' is not a page but linked anyways" .File.Filename .Params.menuPageRef }}
+            {{- else if eq $errorlevel "error" }}
+                {{- errorf "%q: menu link '%s' is not a page" .File.Filename .Params.menuPageRef }}
+            {{- end }}
         {{- end }}
     {{- else if .Params.menuUrl }}
         {{- $url = .Params.menuUrl }}
+        {{- $u := urls.Parse $url }}
+        {{- if $u.IsAbs }}
+            {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" . "type" "menu link") $u.String }}
+        {{- else }}
+            {{- if eq $errorlevel "warning" }}
+                {{- warnf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead; link created anyways" .File.Filename .Params.menuUrl }}
+            {{- else if eq $errorlevel "error" }}
+                {{- errorf "%q: local menu link '%s' was given by 'menuURL'; if it points to a page inside your Hugo site use 'menuPageRef' instead" .File.Filename .Params.menuUrl }}
+            {{- end }}
+        {{- end }}
     {{- end }}
     {{- if $url }}
     <meta http-equiv="refresh" content="0; url={{ $url }}">
