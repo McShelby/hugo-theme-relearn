@@ -52,8 +52,8 @@ Generator run:
     {{- $light := index $themevariant.auto 0 | default (index $defaultautothemevariants 0) }}
     {{- $dark := index $themevariant.auto 1 | default (index $defaultautothemevariants 1) }}
     {{- $themevariant = collections.Merge $themevariant (dict "auto" (slice | append $light | append $dark)) }}
-    {{- $lightthemevariant := partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $light) }}
-    {{- $darkthemevariant := partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $dark) }}
+    {{- $lightthemevariant := partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $light) }}
+    {{- $darkthemevariant := partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $dark) }}
     {{- $formathtmlpre = print $formathtmlpre
       ":not([data-r-theme-variant='" $themevariant.identifier "'])"
     }}
@@ -70,7 +70,7 @@ Generator run:
       "\n}"
     }}
   {{- else }}
-    {{- $themevariant = partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $themevariant.identifier)}}
+    {{- $themevariant = partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $themevariant.identifier)}}
     {{- $formathtmlpre = print $formathtmlpre
       ":not([data-r-theme-variant='" $themevariant.identifier "'])"
     }}
@@ -87,7 +87,7 @@ Generator run:
 {{- /*
 - Read default stuff
 */}}
-{{- $defaultthemevariant := partial "get-theme-details.html" (dict "themevariant" (dict) "identifier" "relearn-light") }}
+{{- $defaultthemevariant := partial "inline/get-theme-details" (dict "themevariant" (dict) "identifier" "relearn-light") }}
 {{- $nucleuscontent := "" }}
 {{- with resources.Get "css/nucleus.css" }}
   {{- $nucleuscontent = .Content }}
@@ -212,7 +212,7 @@ Generator run:
 
 {{- return $themevariants }}
 
-{{- define "partials/get-theme-details.html" }}
+{{- define "partials/inline/get-theme-details" }}
   {{- $themevariant := .themevariant }}
   {{- $identifier := .identifier }}
   {{- $themecontent := "" }}
@@ -230,7 +230,7 @@ Generator run:
   {{- $tempthemecontent := $themecontent }}
   {{- range findRESubmatch `[ \t]*@import\s+[^$]*?theme-([^.]*?)\.css` $themecontent }}
     {{- $subidentifier := index . 1 }}
-    {{- $themevariant = partial "get-theme-details.html" (dict "themevariant" $themevariant "identifier" $subidentifier) }}
+    {{- $themevariant = partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $subidentifier) }}
     {{- $tempthemecontent = replaceRE (printf `[ \t]*@import\s+[^$]*?theme-%s\.css["']?\s*\)?\s*;?` $subidentifier) $themevariant.themecontent $tempthemecontent 1 }}
     {{- $chroma = $themevariant.chroma }}
     {{- $chromacontent = $themevariant.chromacontent }}
