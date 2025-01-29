@@ -2,7 +2,7 @@
 categories = ["explanation", "reference"]
 description = "How to extend the topbar"
 options = ["editURL"]
-outputs = ["html", "rss", "print", "markdown"]
+outputs = ["html", "rss", "print", "markdown", "source"]
 title = "Topbar"
 weight = 4
 +++
@@ -36,6 +36,7 @@ The theme ships with the following predefined buttons (from left to right in the
 - {{% button style="transparent" icon="bars" %}}{{% /button %}} [**sidebar**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/sidebar.html): opens the sidebar flyout if in mobile layout
 - {{% button style="transparent" icon="list-alt" %}}{{% /button %}} [**toc**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html): [opens the table of contents in an overlay](authoring/frontmatter/topbar#table-of-contents)
 - {{% button style="transparent" icon="pen" %}}{{% /button %}} [**edit**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/edit.html): browses to the editable page if the `editURL` [parameter is set](authoring/frontmatter/topbar#edit-button)
+- {{% button style="transparent" icon="file-code" %}}{{% /button %}} **source**: [**source**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/markdown.html): browses to the chapter's source code if [markdown support](configuration/sitemanagement/outputformats#source-support) was activated
 - {{% button style="transparent" icon="fa-fw fab fa-markdown" %}}{{% /button %}} [**markdown**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/markdown.html): browses to the chapter's markdown source if [markdown support](configuration/sitemanagement/outputformats#markdown-support) was activated
 - {{% button style="transparent" icon="print" %}}{{% /button %}} [**print**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html): browses to the chapter's printable page if [print support](configuration/sitemanagement/outputformats#print-support) was activated
 - {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} [**prev**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/prev.html): browses to the [previous page](authoring/frontmatter/topbar#arrow-navigation) if there is one

@@ -1,9 +1,9 @@
 +++
 categories = ["howto"]
 description = "Configure the topbar"
-frontmatter = ["disableBreadcrumb", "disableNextPrev", "disableMarkdownButton", "disablePrintButton", "disableToc", "editURL"]
-options = ["disableBreadcrumb", "disableNextPrev", "disableMarkdownButton", "disablePrintButton", "disableToc", "editURL"]
-outputs = ["html", "rss", "print", "markdown"]
+frontmatter = ["disableBreadcrumb", "disableNextPrev", "disableMarkdownButton", "disableSourceButton", "disablePrintButton", "disableToc", "editURL"]
+options = ["disableBreadcrumb", "disableNextPrev", "disableMarkdownButton", "disableSourceButton", "disablePrintButton", "disableToc", "editURL"]
+outputs = ["html", "rss", "print", "markdown", "source"]
 title = "Topbar"
 weight = 4
 +++
@@ -16,6 +16,7 @@ Your topbar contains the following elements. Some of them are configuarable:
 - {{% button style="transparent" icon="list-alt" %}}{{% /button %}} **toc**: [opens the table of contents in an overlay](#table-of-contents)
 - {{% button style="transparent" icon="empty" %}}{{% /button %}} **breadcrumb**: shows the clickable [breadcrumbs](#breadcrumbs)
 - {{% button style="transparent" icon="pen" %}}{{% /button %}} **edit**: browses to the editable page if the `editURL` [parameter is set](#edit-button)
+- {{% button style="transparent" icon="file-code" %}}{{% /button %}} **source**: browses to the [chapters source code](#source-button) if [source support](configuration/sitemanagement/outputformats#source-support) was activated
 - {{% button style="transparent" icon="fa-fw fab fa-markdown" %}}{{% /button %}} **markdown**: browses to the [chapters Markdown source](#markdown-button) if [markdown support](configuration/sitemanagement/outputformats#markdown-support) was activated
 - {{% button style="transparent" icon="print" %}}{{% /button %}} **print**: browses to the [chapters printable page](#print-button) if [print support](configuration/sitemanagement/outputformats#print-support) was activated
 - {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} **prev**: browses to the [previous page](#arrow-navigation) if there is one
@@ -56,6 +57,14 @@ editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/
 
 {{< multiconfig >}}
 disableMarkdownButton = true
+{{< /multiconfig >}}
+
+## Source Button
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the Source button if the [Source output format](configuration/sitemanagement/outputformats/#source-support) is active by setting `disableSourceButton=true`.
+
+{{< multiconfig >}}
+disableSourceButton = true
 {{< /multiconfig >}}
 
 ## Print Button

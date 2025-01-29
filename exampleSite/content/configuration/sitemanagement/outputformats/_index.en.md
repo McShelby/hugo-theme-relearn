@@ -1,7 +1,7 @@
 +++
 categories = ["howto"]
 description = "What formats can a page be displayed in"
-outputs = ["html", "rss", "print", "markdown"]
+outputs = ["html", "rss", "print", "markdown", "source"]
 title = "Available Output Formats"
 weight = 5
 +++
@@ -42,7 +42,7 @@ If you don't like the URLs, you can reconfigure `outputFormats.print` in your `h
 
 ## Markdown Support
 
-Enable support to show the Markdown source of a page . Add the `markdown` output format to your home, section, and page in `hugo.toml`:
+Enable support to show the Markdown source of a page. Add the `markdown` output format to your home, section, and page in `hugo.toml`:
 
 {{< multiconfig file=hugo >}}
 [outputs]
@@ -51,6 +51,36 @@ Enable support to show the Markdown source of a page . Add the `markdown` output
   page = ['html', 'rss', 'markdown']
 {{< /multiconfig >}}
 
-By default this adds a Markdown icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#markdown-button). Clicking it switches to the Markdown source of the page.
+By default this adds a Markdown icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#markdown-button). Clicking it switches to the Markdown source including the title of the page.
 
 The `markdown` output format configuration is [provided by Hugo](https://gohugo.io/templates/output-formats/#output-format-definitions).
+
+## Source Support
+
+Enable support to show the source code of a page if it was generated from a file. Add the `source` output format to your home, section, and page in `hugo.toml`:
+
+{{< multiconfig file=hugo >}}
+[outputs]
+  home = ['html', 'rss', 'source']
+  section = ['html', 'rss', 'source']
+  page = ['html', 'rss', 'source']
+{{< /multiconfig >}}
+
+By default this adds a Source icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#source-button). Clicking it switches to the source code of the page.
+
+The Source output format differs from the Markdown format, as it prints the source code _as is_ including the front matter.
+
+The URL won't be [configured ugly](https://gohugo.io/templates/output-formats/#configure-output-formats) for [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls), even with `uglyURLs=true` in `hugo.toml`. This is because each mime type can only have one suffix.
+
+If you don't like the URLs, you can reconfigure `outputFormats.source` in your `hugo.toml` to something other than the default of:
+
+{{< multiconfig file=hugo >}}
+[outputFormats]
+  [outputFormats.source]
+    name= 'source'
+    baseName = 'index.source'
+    isHTML = false
+    mediaType = 'text/markdown'
+    permalinkable = false
+    noUgly = true
+{{< /multiconfig >}}
