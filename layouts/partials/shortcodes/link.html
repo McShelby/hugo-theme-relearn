@@ -75,16 +75,12 @@
         "parsedURL" $u
         "renderHookName" "link"
       }}
-      {{- partial "inline/h-rh-l/validate-fragment.html" $ctx }}
+      {{- partial "inline/validate-fragment.html" $ctx }}
       {{- $href = printf "%s#%s" $href . }}
     {{- end }}
   {{- else }}
     {{- $msg := printf "%q: link '%s' is not a page or a resource" $page.File.Filename .url }}
-    {{- if eq $errorlevel "warning" }}
-      {{- warnf $msg }}
-    {{- else if eq $errorlevel "error" }}
-      {{- errorf $msg }}
-    {{- end }}
+    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "link" "msg" $msg) }}
   {{- end }}
 {{- end }}
 {{- $attributes = $attributes | merge (dict "href" $href) -}}
@@ -95,7 +91,7 @@
     {{- end }}
   {{- end }}>{{ $content | safeHTML }}</a>
 
-{{- define "partials/inline/h-rh-l/validate-fragment.html" }}
+{{- define "partials/inline/validate-fragment.html" }}
   {{- /*
   Validates the fragment portion of a link destination.
 

@@ -34,13 +34,8 @@
       {{- $src = printf "%s#%s" $src . }}
     {{- end }}
   {{- else }}
-    {{- $errorlevel := or $page.Params.image.errorlevel $page.Site.Params.image.errorlevel }}
     {{- $msg := printf "%q: image '%s' is not a resource" $page.File.Filename .url }}
-    {{- if eq $errorlevel "warning" }}
-      {{- warnf $msg }}
-    {{- else if eq $errorlevel "error" }}
-      {{- errorf $msg }}
-    {{- end }}
+    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "image" "msg" $msg) }}
   {{- end }}
 {{- end }}
 {{- if $u.RawQuery }}

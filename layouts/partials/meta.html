@@ -21,11 +21,7 @@
             {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
         {{- else }}
             {{- $msg := printf "%q: front matter crosslink '%s' is not a page" .File.Filename .Params.menuPageRef }}
-            {{- if eq $errorlevel "warning" }}
-                {{- warnf $msg }}
-            {{- else if eq $errorlevel "error" }}
-                {{- errorf $msg }}
-            {{- end }}
+            {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .Params.menuPageRef "page" . "param" "link" "msg" $msg) }}
         {{- end }}
     {{- else if .Params.menuUrl }}
         {{- $url = .Params.menuUrl }}
@@ -34,11 +30,7 @@
             {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" . "type" "menu link") $u.String }}
         {{- else }}
             {{- $msg := printf "%q: front matter crosslink '%s' given by 'menuURL' is not verified; if it is a page use 'menuPageRef' instead" .File.Filename .Params.menuUrl }}
-            {{- if eq $errorlevel "warning" }}
-                {{- warnf $msg }}
-            {{- else if eq $errorlevel "error" }}
-                {{- errorf $msg }}
-            {{- end }}
+            {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .Params.menuUrl "page" . "param" "link" "msg" $msg) }}
         {{- end }}
     {{- end }}
     {{- if $url }}

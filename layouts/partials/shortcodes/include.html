@@ -17,13 +17,8 @@
   {{- if (fileExists .file) }}
     {{- $content = .file | readFile }}
   {{- else }}
-    {{- $errorlevel := or $page.Params.include.errorlevel $page.Site.Params.include.errorlevel }}
     {{- $msg := printf "%q: include '%s' is not a page, a resource or a file" $page.File.Filename .file }}
-    {{- if eq $errorlevel "warning" }}
-      {{- warnf $msg }}
-    {{- else if eq $errorlevel "error" }}
-      {{- errorf $msg }}
-    {{- end }}
+    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .file "page" $page "param" "include" "msg" $msg) }}
   {{- end }}
 {{- end }}
 {{- $hideFirstHeading := .hidefirstheading | default false }}

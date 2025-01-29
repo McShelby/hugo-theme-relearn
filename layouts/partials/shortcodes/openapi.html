@@ -18,13 +18,8 @@
     {{- $src = "" }}
     {{- $spec = .Content }}
   {{- else }}
-    {{- $errorlevel := or $page.Params.openapi.errorlevel $page.Site.Params.openapi.errorlevel }}
     {{- $msg := printf "%q: OpenAPI spec '%s' is not a resource" $page.File.Filename .src }}
-    {{- if eq $errorlevel "warning" }}
-      {{- warnf $msg }}
-    {{- else if eq $errorlevel "error" }}
-      {{- errorf $msg }}
-    {{- end }}
+    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .src "page" $page "param" "openapi" "msg" $msg) }}
   {{- end }}
 {{- end }}
 {{- with $page -}}

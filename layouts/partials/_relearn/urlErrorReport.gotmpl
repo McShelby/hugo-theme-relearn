@@ -1,0 +1,20 @@
+{{- $pageParam := index .page.Params .param }}
+{{- $siteParam := index .page.Site.Params .param }}
+{{- $errorlevel := or (and $pageParam $pageParam.errorlevel) (and $siteParam $siteParam.errorlevel) }}
+{{- $errorignore := slice | append (.page.Params.errorignore | default slice ) | append (.page.Site.Params.errorignore | default slice ) }}
+{{- if and (eq $errorlevel "warning") (partial "inline/show-error" (dict "errorignore" $errorignore "url" .url)) }}
+	{{- warnf .msg }}
+{{- else if and (eq $errorlevel "error") (partial "inline/show-error" (dict "errorignore" $errorignore "url" .url)) }}
+	{{- errorf .msg }}
+{{- end }}
+
+{{- define "partials/inline/show-error" }}
+	{{- $ret := true }}
+	{{- range .errorignore }}
+		{{- if findRE . $.url 1 }}
+			{{- $ret = false }}
+			{{- break }}
+		{{- end }}
+	{{- end }}
+	{{- return $ret }}
+{{- end }}
