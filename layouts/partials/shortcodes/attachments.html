@@ -1,9 +1,11 @@
 {{- $page := .page }}
-{{- warnf "%q: DEPRECATED shortcode `attachments` found, use `resources` instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments#migration" $page.File.Filename }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'attachments' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'attachments' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
+{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+{{- warnf "%q: DEPRECATED shortcode `attachments` found, use `resources` instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments#migration" $filepath }}
 {{- $color := .color | default "" }}
 {{- $style := .style | default "default" }}
 {{- if and (not $color) (eq (len $color) 0) }}
@@ -26,7 +28,7 @@
 {{- $urlPrefix := strings.TrimRight "/" $page.RelPermalink }}
 {{- with $page }}
 {{- if ne .BundleType "leaf" }}
-  {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $page.File.Filename }}
+  {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $filepath }}
 {{- end -}}
 <div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>

@@ -2,10 +2,12 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'link' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'link' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- if strings.HasPrefix .url "HAHAHUGOSHORTCODE" }}
-  {{- warnf "%q: WARNING you must call the ref / relref shortcode with '%% %%' instead of '< >' to work correctly for the anchor target attribute" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: WARNING you must call the ref / relref shortcode with '%% %%' instead of '< >' to work correctly for the anchor target attribute" $filepath }}
 {{- end }}
 {{- $attributes := dict }}
 {{- $title := .title | default "" }}
@@ -61,6 +63,7 @@
   {{- else }}
     {{- $linkPage = $page.Page }}
   {{- end }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- $errorlevel := or $page.Params.link.errorlevel $page.Site.Params.link.errorlevel }}
   {{- with $linkPage }}
     {{- $href = partial "permalink.gotmpl" (dict "to" .) }}
@@ -69,7 +72,7 @@
     {{- end }}
     {{- with $u.Fragment }}
       {{- $ctx := dict
-        "contentPath" $page.File.Filename
+        "contentPath" $filepath
         "errorLevel" $errorlevel
         "page" $linkPage
         "parsedURL" $u
@@ -79,7 +82,7 @@
       {{- $href = printf "%s#%s" $href . }}
     {{- end }}
   {{- else }}
-    {{- $msg := printf "%q: link '%s' is not a page or a resource" $page.File.Filename .url }}
+    {{- $msg := printf "%q: link '%s' is not a page or a resource" $filepath .url }}
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "link" "msg" $msg) }}
   {{- end }}
 {{- end }}

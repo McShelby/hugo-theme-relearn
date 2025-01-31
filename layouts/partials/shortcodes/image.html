@@ -2,7 +2,8 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'image' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'image' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $title := .title }}
 {{- $alt := .alt }}
@@ -34,7 +35,8 @@
       {{- $src = printf "%s#%s" $src . }}
     {{- end }}
   {{- else }}
-    {{- $msg := printf "%q: image '%s' is not a resource" $page.File.Filename .url }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- $msg := printf "%q: image '%s' is not a resource" $filepath .url }}
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "image" "msg" $msg) }}
   {{- end }}
 {{- end }}
@@ -52,7 +54,8 @@
     {{- end }}
   {{- end }}
   {{- if $u.Query.Has "featherlight" }}
-    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-11-0" $page.File.Filename }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-11-0" $filepath }}
     {{- $effects = merge $effects (dict "lightbox" (ne ($u.Query.Get "featherlight") "false")) }}
   {{- end }}
   {{- range $k, $v := $effects }}

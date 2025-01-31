@@ -1,11 +1,12 @@
 {{- $url := "" }}
 {{- with .menu }}
+  {{- $filepath := "[virtual file]" }}{{ with and $.page $.page.File $.page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- $errorlevel := or $.page.Params.link.errorlevel $.page.Site.Params.link.errorlevel }}
   {{- if .PageRef }}
     {{- with .Page }}
       {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
     {{- else }}
-      {{- $msg := printf "%q: config menu link '%s' is not a page" $.page.File.Filename .PageRef }}
+      {{- $msg := printf "%q: config menu link '%s' is not a page" $filepath .PageRef }}
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .PageRef "page" $.page "param" "link" "msg" $msg) }}
     {{- end }}
   {{- else }}
@@ -15,7 +16,7 @@
       {{- if $u.IsAbs }}
         {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" $.page "type" "menu link") $u.String }}
       {{- else }}
-        {{- $msg := printf "%q: config menu link '%s' given by 'URL' is not verified; if it is a page use 'PageRef' instead" $.page.File.Filename . }}
+        {{- $msg := printf "%q: config menu link '%s' given by 'URL' is not verified; if it is a page use 'PageRef' instead" $filepath . }}
         {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" . "page" $.page "param" "link" "msg" $msg) }}
       {{- end }}
     {{- end }}

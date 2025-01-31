@@ -25,7 +25,8 @@
 {{- else if eq $by "default" }}
 	{{- $pages = $page.Pages }}
 {{- else }}
-	{{- warnf "%q: Unknown pages sort order '%s'" $page.File.Filename }}
+	{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+	{{- warnf "%q: Unknown pages sort order '%s'" $filepath }}
 	{{- $pages = $page.Pages }}
 {{- end }}
 

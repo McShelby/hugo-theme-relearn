@@ -1,7 +1,8 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'badge' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'badge' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $color := .color | default "" }}
 {{- $content := .content }}

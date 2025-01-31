@@ -4,12 +4,13 @@
 	{{- $enable := printf "%s" (lower .name) }}
 
 	{{- $wantsPage := false }}
+	{{- $filepath := "[virtual file]" }}{{ with and $.File $.File.Filename }}{{ $filepath = . }}{{ end }}
 	{{- if ne (index $.Params $disable) nil }}
 		{{- $wantsPage = not (index $.Params $disable) }}
-		{{- warnf "%q: DEPRECATED front matter 'disable%s' found, use '%s' or '%s.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $.File.Filename .name (lower .name) (lower .name) }}
+		{{- warnf "%q: DEPRECATED front matter 'disable%s' found, use '%s' or '%s.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $filepath .name (lower .name) (lower .name) }}
 	{{- else if and (eq .name "Math") (ne (index $.Params "disableMathJax") nil) }}
 		{{- $wantsPage = not (index $.Params "disableMathJax") }}
-		{{- warnf "%q: DEPRECATED front matter 'disableMathJax' found, use 'math' or 'math.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $.File.Filename }}
+		{{- warnf "%q: DEPRECATED front matter 'disableMathJax' found, use 'math' or 'math.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $filepath }}
 	{{- end }}
 	{{- with index $.Params $enable }}
 		{{- $wantsPage = or

@@ -1,7 +1,8 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $groupid := .groupid | default (partial "_relearn/makeRandomMd5.gotmpl" $page) | plainify | anchorize }}
 {{- $color := .color }}
@@ -11,7 +12,8 @@
 {{- $tabs := slice }}
 {{- range $tab := (.content | default slice) }}
   {{- if and (not $tab.title) $tab.name }}
-    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-16-0" $page.File.Filename }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- warnf "%q: DEPRECATED parameter 'name' for shortcode 'tab' found, use 'title' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-16-0" $filepath }}
     {{- $tab = merge $tab (dict "title" .name) }}
   {{- end }}
   {{- with $tab }}

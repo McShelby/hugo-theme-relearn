@@ -1,5 +1,6 @@
 {{- if (.Get "showfirstheading") }}
-  {{- warnf "%q: UNSUPPORTED parameter 'showfirstheading' for shortcode 'include' found, use 'hidefirstheading' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/4/#4-2-0" .Page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and .Page .Page.File .Page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: UNSUPPORTED parameter 'showfirstheading' for shortcode 'include' found, use 'hidefirstheading' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/4/#4-2-0" $filepath }}
 {{- end }}
 {{- partial "shortcodes/include.html" (dict
   "page"             .Page

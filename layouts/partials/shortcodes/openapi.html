@@ -1,7 +1,8 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'openapi' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'openapi' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $u := urls.Parse .src }}
 {{- $src := $u.String }}
@@ -18,7 +19,8 @@
     {{- $src = "" }}
     {{- $spec = .Content }}
   {{- else }}
-    {{- $msg := printf "%q: OpenAPI spec '%s' is not a resource" $page.File.Filename .src }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- $msg := printf "%q: OpenAPI spec '%s' is not a resource" $filepath .src }}
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .src "page" $page "param" "openapi" "msg" $msg) }}
   {{- end }}
 {{- end }}
