@@ -2,7 +2,7 @@
 categories = ["explanation", "howto"]
 description = "Add further code to your site"
 options = ["relearn.dependencies"]
-title = "Extending Scripts"
+title = "Adding Scripts"
 weight = 2
 +++
 
@@ -10,9 +10,19 @@ A common question is how to add extra CSS styles or JavaScript to your site. Thi
 
 ## Adding JavaScript or Stylesheets to All Pages
 
-To add JavaScript files or CSS stylesheets to every page, you can include them in `layouts/partials/custom-header.html` or `layouts/partials/custom-footer.html`.
+### Simple Solution
+
+Previous documentation of Hugo recommended adding `css/custom.css` and/or `js/custom.js` to your `static` or `assets` directory. This is supported by the theme.
+
+To gain more flexibility, see the [next section](#flexible-solution) below.
+
+### Flexible Solution
+
+To add CSS stylesheets, JavaScript files or any other addition to the `<head>` of every page, you can include them in `layouts/partials/custom-header.html` or `layouts/partials/custom-footer.html`.
 
 However, this can make your site larger than necessary if these files are only needed on a few pages. The next section explains how to add dependencies only when needed.
+
+This way of customization will discard the mechanism for the [simple solution](#simple-solution) above. You will have to add code for inclusion of `css/custom.css` and/or `js/custom.js` yourself if you still need this.
 
 ## Custom Shortcodes with Dependencies
 

@@ -1,5 +1,8 @@
-<!-- Partial intended to be overwritten to add custom headers, like CSS or any other info
-<style>
-   /* Custom css */
-</style>
--->
+<!-- compat way of adding custom scripts in old Hugo documentation -->
+{{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+{{- if or (fileExists "static/css/custom.css") (fileExists "assets/css/custom.css") }}
+    <link href="{{"css/custom.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
+{{- end }}
+{{- if or (fileExists "static/js/custom.js") (fileExists "assets/js/custom.js") }}
+    <script src="{{"js/custom.js" | relURL}}{{ $assetBusting }}" defer></script>
+{{- end }}
