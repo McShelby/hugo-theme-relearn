@@ -19,9 +19,9 @@
     {{- $errorlevel := or .Params.link.errorlevel .Site.Params.link.errorlevel }}
     {{- if .Params.menuPageRef }}
         {{- $url = .Params.menuPageRef }}
-        {{- $linkPage := partial "_relearn/refPage.gotmpl" (dict "page" . "pageRef" .Params.menuPageRef) }}
-        {{- if $linkPage }}
-            {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .Params.menuPageRef "page" . "linkPage" $linkPage "param" "link") }}
+        {{- $linkObject := partial "_relearn/refObject.gotmpl" (dict "page" . "objectRef" .Params.menuPageRef) }}
+        {{- if $linkObject }}
+            {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .Params.menuPageRef "page" . "linkObject" $linkObject "param" "link") }}
         {{- else }}
             {{- $msg := printf "%q: front matter 'menuPageRef' %q is not a page or a resource" $filepath .Params.menuPageRef }}
             {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .Params.menuPageRef "page" . "param" "link" "msg" $msg) }}

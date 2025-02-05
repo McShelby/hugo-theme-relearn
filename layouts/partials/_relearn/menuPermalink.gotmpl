@@ -4,9 +4,9 @@
 {{- with and . .menu }}
   {{- if .PageRef }}
     {{- $url = .PageRef }}
-    {{- $linkPage := partial "_relearn/refPage.gotmpl" (dict "page" $.page "pageRef" .PageRef "refPage" .Page) }}
-    {{- if $linkPage }}
-      {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .PageRef "page" $.page "linkPage" $linkPage "param" "link" "hideFilepath" true) }}
+    {{- $linkObject := partial "_relearn/refObject.gotmpl" (dict "page" $.page "objectRef" .PageRef "refObject" .Page) }}
+    {{- if $linkObject }}
+      {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .PageRef "page" $.page "linkObject" $linkObject "param" "link" "hideFilepath" true) }}
     {{- else }}
       {{- $msg := printf "config option 'pageRef' %q for 'menu' entry %q is not a page or a resource" .PageRef (or .KeyName .Identifier .Name .Title) }}
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .PageRef "page" $.page "param" "link" "msg" $msg) }}

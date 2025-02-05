@@ -105,15 +105,15 @@
   {{- $config := .config }}
   {{- $showvisitedlinks := .showvisitedlinks }}
         <div id="R-shortcutmenu-{{ $config.identifier }}" class="R-sidebarmenu">
-  {{- $root := site.Home }}
+  {{- $rootObject := site.Home }}
   {{- if $config.pageRef }}
-    {{- $root = partial "_relearn/refPage.gotmpl" (dict "page" $currentNode "pageRef" $config.pageRef) }}
-    {{- if not $root }}
+    {{- $rootObject = partial "_relearn/refObject.gotmpl" (dict "page" $currentNode "objectRef" $config.pageRef) }}
+    {{- if not $rootObject }}
       {{- $msg := printf "config option 'pageRef' %q for 'sidebarmenus' %q is not a page or a resource" $config.pageRef $config.identifier }}
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $config.pageRef "page" $currentNode "param" "link" "msg" $msg) }}
     {{- end }}
   {{- end }}
-  {{- with $root }}
+  {{- with $rootObject }}
     {{- $entry := . }}
     {{- $entries := partialCached "_relearn/pages.gotmpl" (dict "page" $entry) $entry.Path }}
     {{- $title := "" }}
@@ -173,9 +173,9 @@
     {{- if .Params.menuPageRef }}
       {{- $isCrosslink = true }}
       {{- $url = .Params.menuPageRef }}
-      {{- $linkPage := partial "_relearn/refPage.gotmpl" (dict "page" . "pageRef" .Params.menuPageRef) }}
-      {{- if $linkPage }}
-        {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .Params.menuPageRef "page" . "linkPage" $linkPage "param" "link" "silent" true) }}
+      {{- $linkObject := partial "_relearn/refObject.gotmpl" (dict "page" . "objectRef" .Params.menuPageRef) }}
+      {{- if $linkObject }}
+        {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .Params.menuPageRef "page" . "linkObject" $linkObject "param" "link" "silent" true) }}
       {{- end }}
     {{- else if .Params.menuUrl }}
       {{- $isCrosslink = true }}
@@ -232,7 +232,7 @@
   {{- with index site.Menus $config.identifier }}
         <div id="R-shortcutmenu-{{ $config.identifier }}" class="R-sidebarmenu">
     {{- $topLevelMenu := "" }}
-    {{- $topLevelPage := "" }}
+    {{- $topLevelObject := "" }}
     {{- $entries := . }}
     {{- with and (eq (len $entries) 1) (index $entries 0) }}
       {{- if and (not .PageRef) (not .URL) }}
@@ -241,7 +241,7 @@
           entry carrys just meta information and parameter, uses its children
           to build the "real" menu, and has no own `url` or `pageRef` */}}
         {{- $topLevelMenu = . }}
-        {{- $topLevelPage = partial "_relearn/menuPage.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu) }}
+        {{- $topLevelObject = partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu) }}
         {{- $entries = .Children }}
       {{- end }}
     {{- end }}
@@ -268,14 +268,14 @@
     {{- $root := or $topLevelMenu site }}
     {{- $defaultAlwaysopen := site.Params.alwaysopen | default false }}
     {{- range $entries }}
-      {{- $entriesPage := partial "_relearn/menuPage.gotmpl" (dict "page" $currentNode "menu" .) }}
-      {{- $isSubSelf := eq $entriesPage $currentNode }}
+      {{- $entriesObject := partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" .) }}
+      {{- $isSubSelf := eq $entriesObject $currentNode }}
       {{- $isSubAncestor := and (not $isSubSelf) ($currentNode.HasMenuCurrent .Menu .) }}
       {{- $isSubHidden := or (.Params.hidden) (eq (partial "_relearn/menuTitle.gotmpl" (dict "page" $currentNode "menu" .)) "") }}
       {{- $isSubCollapsible := .Params.collapsibleMenu | default $root.Params.collapsibleMenu | default site.Params.collapsibleMenu }}
       {{- if or $isSubSelf $isSubAncestor }}
         {{- partial "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) }}
-      {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu))) (eq $topLevelPage $currentNode) (and $topLevelMenu ($currentNode.HasMenuCurrent $topLevelMenu.Menu $topLevelMenu))) }}
+      {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu))) (eq $topLevelObject $currentNode) (and $topLevelMenu ($currentNode.HasMenuCurrent $topLevelMenu.Menu $topLevelMenu))) }}
         {{- $id := md5 (print .) }}
         {{- partialCached "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
       {{- end }}
@@ -300,12 +300,12 @@
   {{- with .menu }}
     {{- $isActive := $isSelf }}
     {{- $entryMenu := . }}
-    {{- $entryPage := partial "_relearn/menuPage.gotmpl" (dict "page" $currentNode "menu" $entryMenu) }}
+    {{- $entryObject := partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" $entryMenu) }}
     {{- $entries := .Children }}
     {{- $hasVisibleChildren := false }}
     {{- range $entries }}
-      {{- $entriesPage := partial "_relearn/menuPage.gotmpl" (dict "page" $currentNode "menu" .) }}
-      {{- $isSubSelf := eq $entriesPage $currentNode }}
+      {{- $entriesObject := partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" .) }}
+      {{- $isSubSelf := eq $entriesObject $currentNode }}
       {{- $isSubAncestor := and (not $isSubSelf) ($currentNode.HasMenuCurrent .Menu .) }}
       {{- $isSubHidden := or (.Params.hidden) (eq (partial "_relearn/menuTitle.gotmpl" (dict "page" $currentNode "menu" .)) "") }}
       {{- if or $isSubAncestor $isSubSelf (not $isSubHidden) }}
@@ -325,7 +325,7 @@
     {{- end }}
     {{- $pre := .Pre }}
     {{- $post := .Post }}
-    {{- with $entryPage }}
+    {{- with $entryObject }}
       {{- $pre = or $pre (partial "menu-pre.html" .) }}
       {{- $post = or $post (partial "menu-post.html" .) }}
     {{- end }}
@@ -344,14 +344,14 @@
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
       {{- $defaultAlwaysopen := site.Params.alwaysopen | default true }}
       {{- range $entries }}
-        {{- $entriesPage := partial "_relearn/menuPage.gotmpl" (dict "page" $currentNode "menu" .) }}
-        {{- $isSubSelf := eq $entriesPage $currentNode }}
+        {{- $entriesObject := partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" .) }}
+        {{- $isSubSelf := eq $entriesObject $currentNode }}
         {{- $isSubAncestor := and (not $isSubSelf) ($currentNode.HasMenuCurrent .Menu .) }}
         {{- $isSubHidden := or (.Params.hidden) (eq (partial "_relearn/menuTitle.gotmpl" (dict "page" $currentNode "menu" .)) "") }}
         {{- $isSubCollapsible := .Params.collapsibleMenu | default $root.Params.collapsibleMenu | default site.Params.collapsibleMenu }}
         {{- if or $isSubSelf $isSubAncestor }}
           {{- partial "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) }}
-        {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" $entryMenu))) (eq $entryPage $currentNode) ($currentNode.HasMenuCurrent $entryMenu.Menu $entryMenu)) }}
+        {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" $entryMenu))) (eq $entryObject $currentNode) ($currentNode.HasMenuCurrent $entryMenu.Menu $entryMenu)) }}
           {{- $id := md5 (print .) }}
           {{- partialCached "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
         {{- end }}

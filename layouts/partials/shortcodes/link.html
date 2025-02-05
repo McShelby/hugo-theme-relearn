@@ -26,9 +26,9 @@
   {{- end }}
   {{- $attributes = $attributes | merge (dict "target" $target) }}
 {{- else }}
-  {{- $linkPage := partial "_relearn/linkPage.gotmpl" (dict "url" $.url "page" $page) }}
-  {{- with $linkPage }}
-    {{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" $.url "page" $page "linkPage" . "param" "link") }}
+  {{- $linkObject := partial "_relearn/linkObject.gotmpl" (dict "url" $.url "page" $page) }}
+  {{- with $linkObject }}
+    {{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" $.url "page" $page "linkObject" . "param" "link") }}
   {{- else }}
     {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- $msg := printf "%q: link '%s' is not a page or a resource" $filepath .url }}

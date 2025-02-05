@@ -1,4 +1,4 @@
-{{- $href := partial "permalink.gotmpl" (dict "to" .linkPage) }}
+{{- $href := partial "permalink.gotmpl" (dict "to" .linkObject) }}
 {{- $silent := .silent | default false }}
 {{- $hideFilepath := .hideFilepath | default false }}
 {{- $u := urls.Parse .url }}
@@ -8,7 +8,7 @@
 {{- with $u.Fragment }}
 	{{- $href = printf "%s#%s" $href . }}
 	{{- if not $silent }}
-		{{- partial "inline/validate-fragment.html" (dict "origPage" $.page "page" $.linkPage "parsedURL" $u "url" $.url "param" $.param "hideFilepath" $hideFilepath) }}
+		{{- partial "inline/validate-fragment.html" (dict "origPage" $.page "page" $.linkObject "parsedURL" $u "url" $.url "param" $.param "hideFilepath" $hideFilepath) }}
 	{{- end }}
 {{- end }}
 {{- return $href }}

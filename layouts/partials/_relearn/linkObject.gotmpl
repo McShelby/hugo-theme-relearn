@@ -1,5 +1,5 @@
 {{- $page := .page }}
-{{- $linkPage := "" }}
+{{- $linkObject := "" }}
 {{- $u := urls.Parse .url }}
 {{- $path := strings.TrimPrefix "./" $u.Path }}
 {{- $searchLocal := .searchLocal | default true }}
@@ -15,7 +15,7 @@
     (and $searchLocal $searchResource ($page.Page.Resources.Get $path))
     (and $searchGlobal $searchResource (resources.Get $path))
   }}
-    {{- $linkPage = . }}
+    {{- $linkObject = . }}
   {{- else }}
     {{- /* is it a link into another translation? */}}
     {{- if strings.HasPrefix $path "/" }}
@@ -35,7 +35,7 @@
             (and $searchLocal $searchResource (.Resources.Get $suffix))
             (and $searchGlobal $searchResource (resources.Get $suffix))
           }}
-            {{- $linkPage = . }}
+            {{- $linkObject = . }}
             {{- break }}
           {{- end }}
         {{- end }}
@@ -43,6 +43,6 @@
     {{- end }}
   {{- end }}
 {{- else }}
-  {{- $linkPage = $page.Page }}
+  {{- $linkObject = $page.Page }}
 {{- end }}
-{{- return $linkPage }}
+{{- return $linkObject }}
