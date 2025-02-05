@@ -5,6 +5,14 @@ hidden = true
 title = "Development"
 type = "chapter"
 weight = 5
+[[cascade]]
+  [cascade.params]
+    [[cascade.params.sidebarmenus]]
+      identifier = 'blog'
+      type = 'page'
+    [[cascade.params.sidebarmenus]]
+      identifier = 'devshortcuts'
+      type = 'menu'
 +++
 
 This chapter contains information only needed for development and maintaining the theme.

@@ -1,0 +1,57 @@
+{{- $href := partial "permalink.gotmpl" (dict "to" .linkPage) }}
+{{- $silent := .silent | default false }}
+{{- $hideFilepath := .hideFilepath | default false }}
+{{- $u := urls.Parse .url }}
+{{- with $u.RawQuery }}
+	{{- $href = printf "%s?%s" $href . }}
+{{- end }}
+{{- with $u.Fragment }}
+	{{- $href = printf "%s#%s" $href . }}
+	{{- if not $silent }}
+		{{- partial "inline/validate-fragment.html" (dict "origPage" $.page "page" $.linkPage "parsedURL" $u "url" $.url "param" $.param "hideFilepath" $hideFilepath) }}
+	{{- end }}
+{{- end }}
+{{- return $href }}
+
+{{- define "partials/inline/validate-fragment.html" }}
+	{{- /*
+ 		Validates the fragment portion of a link destination.
+ 	*/}}
+
+	{{- /* Initialize. */}}
+ 	{{- $errorLevel := .errorLevel }}
+	{{- $origPage := .origPage }}
+	{{- $p := .page }}
+	{{- $url := .url }}
+	{{- $u := .parsedURL }}
+	{{- $param := .param }}
+	{{- $hideFilepath := .hideFilepath }}
+
+	{{- /* Validate. */}}
+	{{- with $u.Fragment }}
+		{{- if $p.Fragments.Identifiers.Contains . }}
+			{{- if gt ($p.Fragments.Identifiers.Count .) 1 }}
+				{{- $filepath := "[virtual file]" }}{{ with and $origPage $origPage.File $origPage.File.Filename }}{{ $filepath = . }}{{ end }}
+				{{- $msg := printf "%q: duplicate heading ID %q found" $filepath . }}
+			    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $url "page" $origPage "param" $param "msg" $msg) }}
+			{{- end }}
+		{{- else }}
+			{{- /* Determine target path for warning and error message. */}}
+			{{- $targetPath := "" }}
+			{{- with $p.File }}
+				{{- $targetPath = .Path }}
+			{{- else }}
+				{{- $targetPath = .Path }}
+			{{- end }}
+			{{- $filepath := "[virtual file]" }}{{ with and $origPage $origPage.File $origPage.File.Filename }}{{ $filepath = . }}{{ end }}
+			{{- $msg := printf "heading ID %q not found" . }}
+			{{- if not $hideFilepath }}
+				{{- $msg = printf "%q: %s" $filepath $msg }}
+			{{- end }}
+			{{- if or $hideFilepath (ne $origPage $p) }}
+				{{- $msg = printf "%s in %q" $msg $targetPath }}
+			{{- end }}
+		    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $url "page" $origPage "param" $param "msg" $msg) }}
+		{{- end }}
+	{{- end }}
+{{- end }}

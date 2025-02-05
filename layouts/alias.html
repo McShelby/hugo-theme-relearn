@@ -7,12 +7,12 @@
       {{- $url = replace .Permalink site.BaseURL "/" }}
     {{- end }}
     {{- $url = replace $url "//" "/" }}
-    {{- with site.Home.GetPage $url }}
+    {{- with site.GetPage $url }}
       {{- /* if defaultContentLanguageInSubdir=false we are ending here for home page of the default language */}}
       {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
     {{- else }}
       {{- $url_alt := replaceRE "^/[^/]*(/.*)" "${1}" $url }}
-      {{- with site.Home.GetPage $url_alt }}
+      {{- with site.GetPage $url_alt }}
         {{- /* if defaultContentLanguageInSubdir=true we are ending here for home page */}}
         {{- $url = partial "permalink.gotmpl" (dict "to" .) }}
       {{- else }}

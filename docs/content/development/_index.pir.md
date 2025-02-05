@@ -5,5 +5,13 @@ hidden = true
 title = "Development"
 type = "chapter"
 weight = 5
+[[cascade]]
+  [cascade.params]
+    [[cascade.params.sidebarmenus]]
+      identifier = 'blog'
+      type = 'page'
+    [[cascade.params.sidebarmenus]]
+      identifier = 'devshortcuts'
+      type = 'menu'
 +++
 {{< piratify >}}

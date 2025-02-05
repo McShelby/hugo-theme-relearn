@@ -1,0 +1,5 @@
+{{- $linkPage := "" }}
+{{- with and . .menu }}
+  {{- $linkPage = partial "_relearn/refPage.gotmpl" (dict "page" $.page "pageRef" .PageRef "refPage" .Page) }}
+{{- end }}
+{{- return $linkPage }}

@@ -1,0 +1,10 @@
+{{- $title := "" }}
+{{- with and . .menu }}
+  {{- $pagetitle := "" }}
+  {{- $menuPage := partial "_relearn/menuPage.gotmpl" (dict "page" $.page "menu" .) }}
+  {{- with $menuPage }}
+    {{- $pagetitle = or .LinkTitle .Title }}
+  {{- end }}
+  {{- $title = or .Title $pagetitle (.Name | safeHTML) (.Identifier | safeHTML) }}
+{{- end }}
+{{- return $title }}

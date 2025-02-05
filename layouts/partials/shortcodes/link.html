@@ -9,7 +9,7 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: WARNING you must call the ref / relref shortcode with '%% %%' instead of '< >' to work correctly for the anchor target attribute" $filepath }}
 {{- end }}
-{{- $attributes := dict }}
+{{- $attributes := .attributes | default dict }}
 {{- $title := .title | default "" }}
 {{- $title = trim $title " " }}
 {{- $attributes = $attributes | merge (dict "title" ($title | transform.HTMLEscape)) }}
@@ -26,62 +26,11 @@
   {{- end }}
   {{- $attributes = $attributes | merge (dict "target" $target) }}
 {{- else }}
-  {{- $linkPage := "" }}
-  {{- $path := strings.TrimPrefix "./" $u.Path }}
-  {{- if $path }}
-    {{- with or
-      ($page.Page.GetPage $path)
-      ($page.Page.GetPage (strings.TrimRight "/" $path))
-      ($page.Page.Resources.Get $path)
-      (resources.Get $path)
-    }}
-      {{- $linkPage = . }}
-    {{- else }}
-      {{- /* is it a link into another translation? */}}
-      {{- if strings.HasPrefix $path "/" }}
-        {{- range $page.AllTranslations }}
-          {{- $lang := .Language.Lang }}
-          {{- $prefix := printf "/%s" $lang }}
-          {{- $suffix := strings.TrimPrefix $prefix $path | default "/" }}
-          {{- /* with the second check we check if the prefix was finished;
-            eg. /pir/index.html vs. /pirate/index.html, were the latter is
-            an external address outside of this site */}}
-          {{- if and (strings.HasPrefix $path $prefix) (strings.HasPrefix $suffix "/") }}
-            {{- with or
-              (.GetPage $suffix)
-              (.GetPage (strings.TrimRight "/" $suffix))
-              (.Resources.Get $suffix)
-              (resources.Get $suffix)
-            }}
-              {{- $linkPage = . }}
-              {{- break }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-    {{- end }}
-  {{- else }}
-    {{- $linkPage = $page.Page }}
-  {{- end }}
-  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-  {{- $errorlevel := or $page.Params.link.errorlevel $page.Site.Params.link.errorlevel }}
+  {{- $linkPage := partial "_relearn/linkPage.gotmpl" (dict "url" $.url "page" $page) }}
   {{- with $linkPage }}
-    {{- $href = partial "permalink.gotmpl" (dict "to" .) }}
-    {{- with $u.RawQuery }}
-      {{- $href = printf "%s?%s" $href . }}
-    {{- end }}
-    {{- with $u.Fragment }}
-      {{- $ctx := dict
-        "contentPath" $filepath
-        "errorLevel" $errorlevel
-        "page" $linkPage
-        "parsedURL" $u
-        "renderHookName" "link"
-      }}
-      {{- partial "inline/validate-fragment.html" $ctx }}
-      {{- $href = printf "%s#%s" $href . }}
-    {{- end }}
+    {{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" $.url "page" $page "linkPage" . "param" "link") }}
   {{- else }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- $msg := printf "%q: link '%s' is not a page or a resource" $filepath .url }}
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "link" "msg" $msg) }}
   {{- end }}
@@ -93,53 +42,3 @@
       {{- printf " %s=%q" $k $v | safeHTMLAttr }}
     {{- end }}
   {{- end }}>{{ $content | safeHTML }}</a>
-
-{{- define "partials/inline/validate-fragment.html" }}
-  {{- /*
-  Validates the fragment portion of a link destination.
-
-  @context {string} contentPath The page containing the link.
-  @context {string} errorLevel The error level when unable to resolve destination; ignore (default), warning, or error.
-  @context {page} page The page corresponding to the link destination
-  @context {struct} parsedURL The link destination parsed by urls.Parse.
-  @context {string} renderHookName The name of the render hook.
-  */}}
-
-  {{- /* Initialize. */}}
-  {{- $contentPath := .contentPath }}
-  {{- $errorLevel := .errorLevel }}
-  {{- $p := .page }}
-  {{- $u := .parsedURL }}
-  {{- $renderHookName := .renderHookName }}
-
-  {{- /* Validate. */}}
-  {{- with $u.Fragment }}
-    {{- if $p.Fragments.Identifiers.Contains . }}
-      {{- if gt ($p.Fragments.Identifiers.Count .) 1 }}
-        {{- $msg := printf "%q: duplicate heading ID %q found" $contentPath . }}
-        {{- if eq $errorLevel "warning" }}
-          {{- warnf $msg }}
-        {{- else if eq $errorLevel "error" }}
-          {{- errorf $msg }}
-        {{- end }}
-      {{- end }}
-    {{- else }}
-      {{- /* Determine target path for warning and error message. */}}
-      {{- $targetPath := "" }}
-      {{- with $p.File }}
-        {{- $targetPath = .Path }}
-      {{- else }}
-        {{- $targetPath = .Path }}
-      {{- end }}
-      {{- $msg := printf "%q: heading ID %q not found in %q" $contentPath . $targetPath }}
-      {{- if eq $targetPath $contentPath }}
-        {{- $msg := printf "%q: heading ID %q not found" $contentPath . }}
-      {{- end }}
-      {{- if eq $errorLevel "warning" }}
-        {{- warnf $msg }}
-      {{- else if eq $errorLevel "error" }}
-        {{- errorf $msg }}
-      {{- end }}
-    {{- end }}
-  {{- end }}
-{{- end }}

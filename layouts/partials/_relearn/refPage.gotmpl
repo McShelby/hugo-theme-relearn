@@ -1,0 +1,11 @@
+{{- $linkPage := "" }}
+{{- /* because Hugo can not resolve a pageRef if it contains URL query params or
+  fragments, we do it ourself if we detect such a case */}}
+{{- with .refPage }}
+  {{- $linkPage = . }}
+{{- else }}
+  {{- with .pageRef }}
+    {{- $linkPage = partial "_relearn/linkPage.gotmpl" (dict "url" . "page" $.page "searchLocal" false) }}
+  {{- end }}
+{{- end }}
+{{- return $linkPage }}
