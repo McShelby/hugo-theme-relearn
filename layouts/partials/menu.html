@@ -169,7 +169,6 @@
     {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
     {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
     {{- $isCrosslink := false }}
-    {{- $target := "" }}
     {{- if .Params.menuPageRef }}
       {{- $isCrosslink = true }}
       {{- $url = .Params.menuPageRef }}
@@ -180,13 +179,6 @@
     {{- else if .Params.menuUrl }}
       {{- $isCrosslink = true }}
       {{- $url = .Params.menuUrl | relLangURL }}
-      {{- $u := urls.Parse $url }}
-      {{- if $u.IsAbs }}
-        {{- $target = "_blank" }}
-        {{- if isset site.Params "externallinktarget" }}
-          {{- $target = site.Params.externalLinkTarget }}
-        {{- end }}
-      {{- end }}
     {{- end }}
     {{- $pre := partial "menu-pre.html" . }}
     {{- $post := partial "menu-post.html" . }}
@@ -200,7 +192,21 @@
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
-      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if $target }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}
+        {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding")) -}}
+        <a
+          {{- range $k, $v := $attributes }}
+            {{- if $v }}
+              {{- if eq (printf "%T" $v) "bool" }}
+                {{- printf " %s" $k | safeHTMLAttr }}
+              {{- else }}
+                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- end }}
+            {{- end }}
+          {{- end }}>
+      {{- else -}}
+        <span class="padding">
+      {{- end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
       {{- $defaultAlwaysopen := site.Params.alwaysopen | default true }}
@@ -218,7 +224,21 @@
       {{- end }}</ul></li>
     {{- else if $url }}
             <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $isCrosslink }}crosslink {{end}}" data-nav-id="{{ $url }}">
-      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if $target }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}
+        {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding")) -}}
+        <a
+          {{- range $k, $v := $attributes }}
+            {{- if $v }}
+              {{- if eq (printf "%T" $v) "bool" }}
+                {{- printf " %s" $k | safeHTMLAttr }}
+              {{- else }}
+                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- end }}
+            {{- end }}
+          {{- end }}>
+      {{- else -}}
+        <span class="padding">
+      {{- end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
     {{- end }}
@@ -315,14 +335,6 @@
     {{- end }}
     {{- $title := partial "_relearn/menuTitle.gotmpl" (dict "page" $currentNode "menu" .) }}
     {{- $url := partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" .) }}
-    {{- $target := "" }}
-    {{- $u := urls.Parse $url }}
-    {{- if $u.IsAbs }}
-      {{- $target = "_blank" }}
-      {{- if isset site.Params "externallinktarget" }}
-        {{- $target = site.Params.externalLinkTarget }}
-      {{- end }}
-    {{- end }}
     {{- $pre := .Pre }}
     {{- $post := .Post }}
     {{- with $entryObject }}
@@ -339,7 +351,21 @@
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
-      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}
+        {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding")) -}}
+        <a
+          {{- range $k, $v := $attributes }}
+            {{- if $v }}
+              {{- if eq (printf "%T" $v) "bool" }}
+                {{- printf " %s" $k | safeHTMLAttr }}
+              {{- else }}
+                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- end }}
+            {{- end }}
+          {{- end }}>
+      {{- else -}}
+        <span class="padding">
+      {{- end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}<ul id="R-subsections-{{ $entryId }}" class="collapsible-menu">
       {{- $defaultAlwaysopen := site.Params.alwaysopen | default true }}
@@ -358,7 +384,21 @@
       {{- end }}</ul></li>
     {{- else if $url }}
             <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}" data-nav-id="{{ $url }}">
-      {{- if $url }}<a class="padding" href="{{ $url }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>{{ else }}<span class="padding">{{ end }}
+      {{- if $url }}
+        {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding")) -}}
+        <a
+          {{- range $k, $v := $attributes }}
+            {{- if $v }}
+              {{- if eq (printf "%T" $v) "bool" }}
+                {{- printf " %s" $k | safeHTMLAttr }}
+              {{- else }}
+                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- end }}
+            {{- end }}
+          {{- end }}>
+      {{- else -}}
+        <span class="padding">
+      {{- end }}
       {{- $pre }}{{ $title }}{{ $post }}
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
     {{- end }}

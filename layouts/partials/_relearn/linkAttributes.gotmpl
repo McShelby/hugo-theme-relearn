@@ -1,4 +1,4 @@
-{{- $attributes := dict }}
+{{- $attributes := .attributes | default dict }}
 {{- /* target will be boolean false if no user defined value was set and effect default should be applied */}}
 {{- $target := false }}
 {{- $u := urls.Parse .url }}
@@ -64,7 +64,7 @@
     {{- end }}
   {{- end }}
 {{- end }}
-{{- if $attributes.class }}{{ $classes = $classes | append $attributes.class }}{{ end }}
+{{- if $attributes.class }}{{ $classes = $classes | append (split $attributes.class " ") }}{{ end }}
 {{- $attributes = merge $attributes (dict "class" (delimit $classes " ")) }}
 {{- $attributes = merge $attributes (dict "href" .url) }}
 {{- $attributes = merge $attributes (dict "download" $effects.download) }}
