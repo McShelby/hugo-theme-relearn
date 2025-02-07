@@ -6,8 +6,8 @@ title = "Button"
 
 The `button` shortcode displays a clickable button with adjustable color, title and icon.
 
-{{% button href="https://gohugo.io/" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="warning" icon="dragon" %}}Get Hugo{{% /button %}}
+{{% button href="https://gohugo.io/" %}}Go Hugo{{% /button %}}
+{{% button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button %}}
 
 ## Usage
 
@@ -15,8 +15,8 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 {{% tab title="shortcode" %}}
 
 ````go
-{{%/* button href="https://gohugo.io/" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="warning" icon="dragon" %}}Get Hugo{{% /button */%}}
+{{%/* button href="https://gohugo.io/" %}}Go Hugo{{% /button */%}}
+{{%/* button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button */%}}
 ````
 
 {{% /tab %}}
@@ -26,14 +26,14 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 {{ partial "shortcodes/button.html" (dict
     "page" .
     "href" "https://gohugo.io/"
-    "content" "Get Hugo"
+    "content" "Go Hugo"
 )}}
 {{ partial "shortcodes/button.html" (dict
   "page" .
   "href" "https://gohugo.io/"
-  "style" "warning"
-  "icon" "dragon"
-  "content" "Get Hugo"
+  "style" "tip"
+  "icon" "wand-magic-sparkles"
+  "content" "Download Magic"
 )}}
 ````
 
@@ -44,12 +44,11 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL|
+| **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well|
 | **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
-| **target**            | see notes       | The destination frame/window if **href** is an URL. Otherwise the parameter is not used. This behaves similar to normal links. If the parameter is not given it defaults to:<br><br>- the setting of `externalLinkTarget` or `_blank` if not set, for any address starting with `http://` or `https://`<br>- no specific value for all other links |
 | **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button` |
 | _**&lt;content&gt;**_ | see notes       | Arbitrary text for the button title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 
@@ -160,14 +159,17 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 {{% button href="https://gohugo.io/" icon="dragon" style="warning" %}}Get Hugo{{% /button %}}
 
-### Target
+### Link Effects (Target, Download)
+
+You can use [link effects](authoring/markdown#link-effects) with your `href` to open the link in a different tab or starting a download.
 
 ````go
-{{%/* button href="https://gohugo.io/" target="_self" %}}Get Hugo in same window{{% /button */%}}
-{{%/* button href="https://gohugo.io/" %}}Get Hugo in new Window/Frame (default){{% /button */%}}
+{{%/* button href="https://gohugo.io/?target=_blank" %}}Go Hugo{{% /button */%}}
+{{%/* button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button */%}}
 ````
-{{% button href="https://gohugo.io/" target="_self" %}}Get Hugo in same Window/Frame{{% /button %}}
-{{% button href="https://gohugo.io/" %}}Get Hugo in new Window/Frame (default){{% /button %}}
+
+{{% button href="https://gohugo.io/?target=_blank" %}}Go Hugo{{% /button %}}
+{{% button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button %}}
 
 ### Other
 

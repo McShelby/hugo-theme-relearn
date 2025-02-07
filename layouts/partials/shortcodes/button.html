@@ -11,7 +11,7 @@
 {{- if and (not $color) (eq (len $color) 0) }}
   {{- $style = .style | default "transparent" }}
 {{- end }}
-{{- $target := .target | default "" }}
+{{- $attributes := .attributes | default dict }}
 {{- $type := .type | default "" }}
 {{- $isButton := false }}
 {{- $isLink := false }}
@@ -22,14 +22,28 @@
     {{- $type = "button" }}
   {{- end }}
 {{- else if not $href }}
-{{- else if and (eq (len $target) 0) (or (strings.HasPrefix $href "http://") (strings.HasPrefix $href "https://") ) }}
-  {{- $isLink = true }}
-  {{- $target = "_blank" }}
-  {{- if isset $page.Site.Params "externallinktarget" }}
-    {{- $target = $page.Site.Params.externalLinkTarget }}
-  {{- end }}
 {{- else }}
   {{- $isLink = true }}
+  {{- /* target will be boolean false if no user defined value was set and effect default should be applied */}}
+  {{- $target := false }}
+  {{- $u := urls.Parse .href }}
+  {{- if $u.IsAbs }}
+    {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .href "page" $page "type" "link") $u.String }}
+  {{- else }}
+    {{- $linkObject := partial "_relearn/linkObject.gotmpl" (dict "url" .href "page" $page) }}
+    {{- if $linkObject }}
+      {{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" .href "page" $page "linkObject" $linkObject "param" "link") }}
+    {{- else }}
+      {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+      {{- $msg := printf "%q: link '%s' is not a page or a resource" $filepath .href }}
+      {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .href "page" $page "param" "link" "msg" $msg) }}
+    {{- end }}
+  {{- end }}
+  {{- if and (isset . "target") (or (ne (printf "%T" .target) "string") (ne (trim .target " " ) "")) }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- warnf "%q: DEPRECATED parameter 'target' for shortcode 'button' found, use link effects instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-4-0" $filepath }}
+  {{- end }}
+  {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "target" .target)) -}}
 {{- end }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" (or .title $content) "icon" .icon) }}
 {{- $title := trim ($boxStyle.title) " " }}
@@ -43,7 +57,16 @@
   {{- if $isButton -}}
   <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
   {{- else if $isLink -}}
-  <a href="{{ $href }}"{{ if gt (len $target) 0 }} target="{{ $target }}"{{ end }}>
+  <a
+  {{- range $k, $v := $attributes }}
+    {{- if $v }}
+      {{- if eq (printf "%T" $v) "bool" }}
+        {{- printf " %s" $k | safeHTMLAttr }}
+      {{- else }}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- end }}
+    {{- end }}
+  {{- end }}>
   {{- else -}}
   <span>
   {{- end }}
