@@ -681,6 +681,34 @@ That's some more text with a footnote.[^someid]
     Blue light glows blue.
 {{% /notice %}}
 
+### Link Effects
+
+{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the URL. See the [link effects docs](authoring/linkeffects) for a detailed example and how to configure it.
+
+#### Target
+
+Add query parameter `target=_self` or `target=_blank` to override [site-wide settings](authoring/frontmatter/linking#opening-links) of [the target behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) individuallly for each link.
+
+````md
+[Magic in new window](images/magic.gif?target=_blank)
+````
+
+{{% notice style="code" icon="eye" title="Result" %}}
+[Magic in new window](images/magic.gif?target=_blank)
+{{% /notice %}}
+
+#### Download
+
+Add query parameter `download` or `download=myfile.gif` to force your browser [to download the link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#download) instead of opening it.
+
+````md
+[Magic as a download](images/magic.gif?download)
+````
+
+{{% notice style="code" icon="eye" title="Result" %}}
+[Magic as a download](images/magic.gif?download)
+{{% /notice %}}
+
 ## Images
 
 ### Basic Images

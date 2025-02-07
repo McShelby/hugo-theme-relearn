@@ -7,98 +7,56 @@
 {{- end }}
 {{- $title := .title }}
 {{- $alt := .alt }}
-{{- $effects := dict "border" false "lazy" true "lightbox" true "shadow" false }}
-{{- if $page.Site.Params.imageeffects }}
-  {{- $effects = merge $effects $page.Site.Params.imageeffects }}
-{{- end }}
-{{- if $page.Params.imageEffects }}
-  {{- $effects = merge $effects $page.Params.imageEffects }}
-{{- end }}
-{{- $height := "auto" }}
-{{- $width := "auto" }}
 {{- $attributes := .attributes | default dict }}
 {{- $u := urls.Parse .url }}
 {{- $src := $u.String }}
 {{- if $u.IsAbs }}
   {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .url "page" $page "type" "image") $u.String }}
 {{- else }}
-  {{- $path := strings.TrimPrefix "./" $u.Path }}
-  {{- with or
-    ($page.Resources.Get $path)
-    (resources.Get $path)
-  }}
-    {{- $src = .RelPermalink }}
-    {{- with $u.RawQuery }}
-      {{- $src = printf "%s?%s" $src . }}
-    {{- end }}
-    {{- with $u.Fragment }}
-      {{- $src = printf "%s#%s" $src . }}
-    {{- end }}
+  {{- $linkObject := partial "_relearn/linkObject.gotmpl" (dict "url" .url "page" $page "searchPage" false) }}
+  {{- if $linkObject }}
+    {{- $src = partial "_relearn/decoratedLink.gotmpl" (dict "url" .url "page" $page "linkObject" $linkObject "param" "image") }}
   {{- else }}
     {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- $msg := printf "%q: image '%s' is not a resource" $filepath .url }}
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "image" "msg" $msg) }}
   {{- end }}
 {{- end }}
-{{- if $u.RawQuery }}
-  {{- if $u.Query.Has "classes" }}
-    {{- $classes := slice | append (split ($u.Query.Get "classes") ",") }}
-    {{- range $classes }}
-      {{- $k := . }}
-      {{- $v := true }}
-      {{- if strings.HasPrefix $k "no" }}
-        {{- $k := strings.TrimPrefix "no" $k }}
-        {{- $v := false }}
-      {{- end }}
-      {{- $effects = merge $effects (dict $k $v) }}
-    {{- end }}
-  {{- end }}
-  {{- if $u.Query.Has "featherlight" }}
-    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-11-0" $filepath }}
-    {{- $effects = merge $effects (dict "lightbox" (ne ($u.Query.Get "featherlight") "false")) }}
-  {{- end }}
-  {{- range $k, $v := $effects }}
-    {{- if $u.Query.Has $k }}
-      {{- $effects = merge $effects (dict $k (ne ($u.Query.Get $k) "false")) }}
-    {{- end }}
-  {{- end }}
-  {{- with $u.Query.Get "height" }}
-    {{- $height = . }}
-  {{- end }}
-  {{- with $u.Query.Get "width" }}
-    {{- $width = . }}
-  {{- end }}
-{{- end }}
-{{- $classes := slice }}
-{{- range $k, $v := $effects }}
-  {{- $c := printf "%s%s" (cond $v "" "no") $k }}
-  {{- $classes = $classes | append $c }}
-{{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
-{{- $attributes = merge $attributes (dict "alt" $alt "src" $src "title" ($title | transform.HTMLEscape)) }}
-{{- if $effects.lazy }}
-  {{- $attributes = merge $attributes (dict "loading" "lazy") }}
-{{- end }}
-{{- if $effects.lightbox -}}
+{{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page)) }}
+{{- $attributes = merge $attributes (dict "alt" $alt "title" ($title | transform.HTMLEscape)) }}
+{{- $classes := split $attributes.class " " }}
+{{- $isLightbox := in $classes "lightbox" }}
+{{- if $isLightbox -}}
 <a href="#R-image-{{ $id }}" class="lightbox-link">
 {{- end }}
-{{- $attributes_figure := merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "figure-image" $classes) " ")) }}
-{{- $attributes_figure = merge $attributes_figure (dict "style" (delimit (slice (index $attributes "style") (printf "height: %s; width: %s;" $height $width)) " ")) -}}
+{{- $attributes_figure := $attributes }}
+{{- $attributes_figure = merge $attributes_figure (dict "class" (delimit ((split $attributes_figure.class " ") | append "figure-image") " ")) }}
+{{- $attributes_figure = merge $attributes_figure (dict "style" (index $attributes_figure "style")) -}}
 <img
   {{- range $k, $v := $attributes_figure }}
     {{- if $v }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- if eq (printf "%T" $v) "bool" }}
+        {{- printf " %s" $k | safeHTMLAttr }}
+      {{- else }}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- end }}
     {{- end }}
   {{- end }}>
-{{- if $effects.lightbox -}}
+{{- if $isLightbox -}}
 </a>
 <a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}">
-{{- $attributes_lightbox := merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "lightbox-image" $classes) " ")) -}}
+{{- $attributes_lightbox := $attributes }}
+{{- $attributes_lightbox = merge $attributes_lightbox (dict "class" (delimit ((split $attributes_lightbox.class " ") | append "lightbox-image") " ")) }}
+{{- $attributes_lightbox = merge $attributes_lightbox (dict "style" "") -}}
 <img
   {{- range $k, $v := $attributes_lightbox }}
     {{- if $v }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- if eq (printf "%T" $v) "bool" }}
+        {{- printf " %s" $k | safeHTMLAttr }}
+      {{- else }}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- end }}
     {{- end }}
   {{- end }}></a>
 {{- end }}

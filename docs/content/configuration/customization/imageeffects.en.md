@@ -56,27 +56,21 @@ With this configuration in effect, the following URL
 would result in
 
 ````html {title="HTML"}
-<img src="https://octodex.github.com/images/minion.png" loading="lazy" alt="Minion" class="bg-white border nolazy lightbox noshadow">
+<img src="https://octodex.github.com/images/minion.png" loading="lazy" alt="Minion" class="bg-white border lightbox">
 ````
 
 ## Styling Effects
 
-If the resulting effect value is
-
-- `true`: add a class with the effect's name
-- `false`: add a class with the effect's name and a "no" prefix
+If the resulting effect value is `true` a class with the effect's name will be added.
 
 Styles for default effects are contained in the theme. Add styles for your custom effects to `layouts/partials/content-header.html`.
 
-For the above example you could add styles for both boolean cases:
+For the above custom effect you could add the following style:
 
 ````html {title="layouts/partials/content-header.html"}
 <style>
 img.bg-white {
   background-color: white;
-}
-img.nobg-white {
-  background-color: transparent;
 }
 </style>
 ````

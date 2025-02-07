@@ -127,7 +127,7 @@ Open [http://localhost:1313](http://localhost:1313) in your web browser.
 
 You can keep the server running while you edit. The browser will update automatically when you save changes.
 
-{{% figure src="magic.gif" link="https://gohugo.io" alt="Magic" caption="It's a kind of magic" %}}
+{{% figure src="images/magic.gif" link="https://gohugo.io" alt="Magic" caption="It's a kind of magic" %}}
 
 ## Build and Deploy
 
