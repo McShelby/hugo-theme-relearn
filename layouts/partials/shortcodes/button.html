@@ -24,8 +24,6 @@
 {{- else if not $href }}
 {{- else }}
   {{- $isLink = true }}
-  {{- /* target will be boolean false if no user defined value was set and effect default should be applied */}}
-  {{- $target := false }}
   {{- $u := urls.Parse .href }}
   {{- if $u.IsAbs }}
     {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .href "page" $page "type" "link") $u.String }}
@@ -58,15 +56,15 @@
   <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
   {{- else if $isLink -}}
   <a
-  {{- range $k, $v := $attributes }}
-    {{- if $v }}
-      {{- if eq (printf "%T" $v) "bool" }}
-        {{- printf " %s" $k | safeHTMLAttr }}
-      {{- else }}
-        {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- range $k, $v := $attributes }}
+      {{- if $v }}
+        {{- if eq (printf "%T" $v) "bool" }}
+          {{- printf " %s" $k | safeHTMLAttr }}
+        {{- else }}
+          {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+        {{- end }}
       {{- end }}
-    {{- end }}
-  {{- end }}>
+    {{- end }}>
   {{- else -}}
   <span>
   {{- end }}
