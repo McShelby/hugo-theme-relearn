@@ -4,7 +4,7 @@ description = "How to extend the topbar"
 options = ["editURL"]
 outputs = ["html", "rss", "print", "markdown", "source"]
 title = "Topbar"
-weight = 4
+weight = 5
 +++
 
 The theme comes with a reasonably configured topbar. You can learn how to [configure the defaults in this section](authoring/frontmatter/topbar).
