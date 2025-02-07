@@ -42,12 +42,14 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Multilingual content search capabilities](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search#mixed-language-support)
 
 - **Enhanced Markdown Features**
-  - [CommonMark and other Markdown extensions](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown#standard-and-extensions)
+  - [CommonMark compliant](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown)
+  - [Support for Markdown extensions like GitHub Flavored Markdown](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown#standard-and-extensions)
   - [Support for Obsidian callouts](https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown#obsidian-callouts)
-  - [Advanced image manipulation like lightbox, sizing, shadows, borders, and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/imageeffects)
+  - [Advanced link manipulation like download and target](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/linkeffects)
+  - [Advanced image manipulation like lightbox, sizing, shadows, borders and alignment](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/imageeffects)
 
 - **Rich Shortcode Library**
-  - [Customizable marker badges](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/badge)
+  - [Marker badges](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/badge)
   - [Flexible buttons](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/button)
   - [Child page listing](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children)
   - [Expandable content areas](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/expand)

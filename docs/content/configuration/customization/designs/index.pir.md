@@ -2,6 +2,6 @@
 categories = ["explanation", "howto"]
 description = "Using and extending page designs"
 title = "Page Designs"
-weight = 5
+weight = 6
 +++
 {{< piratify >}}

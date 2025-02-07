@@ -3,7 +3,7 @@ categories = ["explanation", "howto", "reference"]
 description = "How to display custom taxonomies on your pages"
 tags = ["taxonomy"]
 title = "Taxonomies"
-weight = 7
+weight = 8
 +++
 
 This page explains how to show custom taxonomies on your pages.

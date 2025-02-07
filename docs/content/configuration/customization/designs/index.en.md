@@ -2,7 +2,7 @@
 categories = ["explanation", "howto"]
 description = "Extending page designs"
 title = "Page Designs"
-weight = 5
+weight = 6
 +++
 
 Page designs are used to provide different layouts for a given output format. If you instead want to [provide a new output format](configuration/customization/outputformats), the theme got you covered as well.

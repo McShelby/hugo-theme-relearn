@@ -1,8 +1,8 @@
 +++
 categories = ["explanation"]
-description = "How to apply graphical effects to your images"
+description = "How to apply effects to your images"
 frontmatter = ["imageEffects"]
 title = "Image Effects"
-weight = 5
+weight = 6
 +++
 {{< piratify >}}
