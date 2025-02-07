@@ -1,23 +1,21 @@
 {{- $page := .page }}
 {{- if and (not $page) .context }}
   {{- $page = .context }}
-  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'include' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $page.File.Filename }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'include' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $u := urls.Parse .file }}
-{{- $path := strings.TrimPrefix "./" $u.Path }}
 {{- $content := "" }}
-{{- with or
-  ($page.Page.GetPage $path)
-  ($page.Page.GetPage (strings.TrimRight "/" $path))
-  ($page.Page.Resources.Get $path)
-  (resources.Get $path)
-}}
-  {{- $content = .Content }}
+{{- $linkObject := or
+  (partial "_relearn/linkObject.gotmpl" (dict "url" .file "page" $page "searchGlobal" false "searchResource" false))
+  (partial "_relearn/linkObject.gotmpl" (dict "url" .file "page" $page "searchPage" false)) }}
+{{- if $linkObject }}
+  {{- $content = $linkObject.Content }}
 {{- else }}
   {{- if (fileExists .file) }}
     {{- $content = .file | readFile }}
   {{- else }}
-    {{- $msg := printf "%q: include '%s' is not a page, a resource or a file" $page.File.Filename .file }}
+    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- $msg := printf "%q: include '%s' is not a page, a resource or a file" $filepath .file }}
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .file "page" $page "param" "include" "msg" $msg) }}
   {{- end }}
 {{- end }}
