@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.143.1">
-    <meta name="generator" content="Relearn 7.3.2+109d094dc2ee4e311e20da415bc8d18c1424dc75">
+    <meta name="generator" content="Relearn 7.3.2+881931eb115fdf80beeaa72bb39825805d36a77c">
     <meta name="description" content="What options are available for links and images">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,21 +21,21 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Linking :: Hugo Relearn Theme">
     <meta itemprop="description" content="What options are available for links and images">
-    <meta itemprop="wordCount" content="159">
+    <meta itemprop="wordCount" content="230">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
-    <meta itemprop="keywords" content="Howto,DisableDefaultRelref,DisableExplicitIndexURLs">
+    <meta itemprop="keywords" content="Howto,DisableDefaultRelref,DisableExplicitIndexURLs,EnableLegacyLanguageLinks">
     <title>Linking :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/configuration/content/linking/index.html" rel="alternate" hreflang="x-default">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/configuration/content/linking/index.html" rel="alternate" hreflang="en">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/content/linking/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="/hugo-theme-relearn/configuration/content/linking/index.xml" rel="alternate" type="application/rss+xml" title="Linking :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/configuration/content/linking/index.print.html" rel="alternate" type="text/html" title="Linking :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1738962965" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1738962965" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1738962965" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1738962965" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1738962965" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1738962965" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1738962965" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.css?1738962965" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/images/logo.svg?1738977695" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1738977695" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1738977695" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1738977695" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1738977695" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1738977695" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1738977695" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.css?1738977695" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..';
@@ -83,7 +83,7 @@
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.js?1738962965"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1738977695"></script>
     <style>
       #R-body img.bg-white {
         background-color: white;
@@ -105,6 +105,7 @@
 <nav class="TableOfContents">
   <ul>
     <li><a href="#url-management">URL Management</a></li>
+    <li><a href="#cross-language-links">Cross-Language Links</a></li>
     <li><a href="#patching-the-relref-shortcode">Patching the <code>relref</code> Shortcode</a></li>
   </ul>
 </nav> 
@@ -206,6 +207,10 @@
     </div>
   </div>
 </div>
+<h2 id="cross-language-links">Cross-Language Links</h2>
+<p>You can link to pages of different languages by appending the <code>lang</code> query parameter with the language code to the URL, e.g. <code>/my-page?lang=pir</code>.</p>
+<p>In previous releases of the theme you had to prepend the language code to the URL, e.g. <code>/pir/my-page</code> to achieve this.</p>
+<p>If you still need the old behavior, you can set <code>enableLegacyLanguageLinks=true</code> in your <code>hugo.toml</code>. Note that this legacy feature may be removed in the future.</p>
 <h2 id="patching-the-relref-shortcode">Patching the <code>relref</code> Shortcode</h2>
 <p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> While the usage of <code>relref</code> is obsolete and discouraged by Hugo for a while, existing installations may still use it.</p>
 <p>In configurations using a <strong>baseURL</strong> with a <strong>subdirectory</strong> and having <strong>relativeURLs=false</strong> (the default), Hugo’s standard <code>relref</code> implementation is failing.</p>
@@ -323,7 +328,7 @@
           </a>
         </div>
         <script>
-          window.index_js_url="/hugo-theme-relearn/searchindex.en.js?1738962965";
+          window.index_js_url="/hugo-theme-relearn/searchindex.en.js?1738977695";
         </script>
         <search><form action="/hugo-theme-relearn/search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -336,12 +341,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/hugo-theme-relearn/js/auto-complete.js?1738962965" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1738962965" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1738962965" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1738962965" defer></script>
-        <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1738962965" defer></script>
-        <script src="/hugo-theme-relearn/js/search.js?1738962965" defer></script>
+        <script src="/hugo-theme-relearn/js/auto-complete.js?1738977695" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1738977695" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1738977695" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1738977695" defer></script>
+        <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1738977695" defer></script>
+        <script src="/hugo-theme-relearn/js/search.js?1738977695" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation">
         <hr class="padding">
@@ -545,13 +550,13 @@
                 setTimeout( githubButtonsInit, 400 );
               });
             </script>
-            <script async src="/hugo-theme-relearn/js/github-buttons.js?1738962965"></script>
+            <script async src="/hugo-theme-relearn/js/github-buttons.js?1738977695"></script>
           </div>
         </div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1738962965" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1738962965" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1738962965" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1738977695" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1738977695" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1738977695" defer></script>
   </body>
 </html>
