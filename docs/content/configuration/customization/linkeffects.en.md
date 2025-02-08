@@ -8,7 +8,7 @@ weight = 3
 
 This page shows you, how to configure custom [link effects](authoring/markdown#link-effects) on top of existing ones.
 
-This setting can also [be overridden by your front matter](authoring/linkeffects).
+This setting can also [be overridden by your front matter](authoring/linking/linkeffects).
 
 If you don't configure anything in your `hugo.toml`, the link effects default to
 

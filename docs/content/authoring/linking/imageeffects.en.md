@@ -3,7 +3,7 @@ categories = ["explanation"]
 description = "How to apply effects to your images"
 frontmatter = ["imageEffects"]
 title = "Image Effects"
-weight = 6
+weight = 3
 +++
 
 The theme offers [effects](authoring/markdown#image-effects) for your linked images.

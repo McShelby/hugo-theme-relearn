@@ -21,6 +21,14 @@ For the file system scenario, you are not allowed to change this value.
   disableExplicitIndexURLs = true
 {{< /multiconfig >}}
 
+## Legacy Cross-Language Links
+
+You can link to pages of different languages by appending the `lang` query parameter with the language code to the URL, e.g. `/my-page?lang=pir`.
+
+In previous releases of the theme you had to prepend the language code to the URL, e.g. `/pir/my-page` to achieve this.
+
+If you still need the old behavior, you can set `enableLegacyLanguageLinks=true` in your `hugo.toml`. Note that this legacy feature may be removed in the future.
+
 ## Patching the `relref` Shortcode
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may still use it.

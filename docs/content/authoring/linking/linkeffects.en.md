@@ -1,9 +1,9 @@
 +++
 categories = ["explanation"]
-description = "How to apply graphical effects to your links"
+description = "How to apply effects to your links"
 frontmatter = ["linkEffects"]
 title = "Link Effects"
-weight = 5
+weight = 2
 +++
 
 The theme offers [effects](authoring/markdown#link-effects) for your linked links.

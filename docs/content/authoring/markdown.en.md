@@ -683,7 +683,7 @@ That's some more text with a footnote.[^someid]
 
 ### Link Effects
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the URL. See the [link effects docs](authoring/linkeffects) for a detailed example and how to configure it.
+{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the URL. See the [link effects docs](authoring/linking/linkeffects) for a detailed example and how to configure it.
 
 #### Target
 
@@ -753,7 +753,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. See the [image effects docs](authoring/imageeffects) for a detailed example and how to configure it.
+{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. See the [image effects docs](authoring/linking/imageeffects) for a detailed example and how to configure it.
 
 #### Resizing
 

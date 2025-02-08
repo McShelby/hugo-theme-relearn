@@ -11,7 +11,7 @@ weight = 3
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} By default, external links open in a new tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 
-To set default values for all links, use [link effects](authoring/linkeffects).
+To set default values for all links, use [link effects](authoring/linking/linkeffects).
 
 For example, this will open links in the same tab
 

@@ -8,7 +8,7 @@ weight = 4
 
 This page shows you, how to configure custom [image effects](authoring/markdown#image-effects) on top of existing ones.
 
-This setting can also [be overridden by your front matter](authoring/imageeffects).
+This setting can also [be overridden by your front matter](authoring/linking/imageeffects).
 
 If you don't configure anything in your `hugo.toml`, the image effects default to
 
