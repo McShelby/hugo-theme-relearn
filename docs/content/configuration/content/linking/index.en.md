@@ -1,7 +1,7 @@
 +++
 categories = ["howto"]
 description = "What options are available for links and images"
-options = ["disableDefaultRelref", "disableExplicitIndexURLs", "enableLegacyLanguageLinks"]
+options = ["disableDefaultRelref", "disableExplicitIndexURLs"]
 title = "Linking"
 weight = 4
 +++
@@ -20,14 +20,6 @@ For the file system scenario, you are not allowed to change this value.
 [params]
   disableExplicitIndexURLs = true
 {{< /multiconfig >}}
-
-## Cross-Language Links
-
-You can link to pages of different languages by appending the `lang` query parameter with the language code to the URL, e.g. `/my-page?lang=pir`.
-
-In previous releases of the theme you had to prepend the language code to the URL, e.g. `/pir/my-page` to achieve this.
-
-If you still need the old behavior, you can set `enableLegacyLanguageLinks=true` in your `hugo.toml`. Note that this legacy feature may be removed in the future.
 
 ## Patching the `relref` Shortcode
 
