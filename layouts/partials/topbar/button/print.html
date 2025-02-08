@@ -8,10 +8,11 @@
 		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
 	{{- end }}
 	{{- if $show }}
+		{{- $href := printf "%s?format=print" .Path }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-print"
-			"href" $format.RelPermalink
+			"href" $href
 			"icon" "print"
 			"onwidths" $onwidths
 			"onwidthm" $onwidthm
