@@ -152,7 +152,7 @@ function search(term) {
 
 function searchPatterns(word) {
   // for short words high amounts of typos doesn't make sense
-  // for long words we allow less typos because this largly increases search time
+  // for long words we allow less typos because this largely increases search time
   var typos = [
     { len: -1, typos: 1 },
     { len: 60, typos: 2 },

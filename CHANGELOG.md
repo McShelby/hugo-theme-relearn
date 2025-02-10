@@ -74,7 +74,7 @@
 
 ### Fixes
 
-- [**bug**] children: remove superflous text ".LinkTitle" [#942](https://github.com/McShelby/hugo-theme-relearn/issues/942)
+- [**bug**] children: remove superfluous text ".LinkTitle" [#942](https://github.com/McShelby/hugo-theme-relearn/issues/942)
 
 ---
 
@@ -1845,7 +1845,7 @@
 ### Maintenance
 
 - [**task**] theme: ensure IE11 compatibility [#89](https://github.com/McShelby/hugo-theme-relearn/issues/89)
-- [**task**] docs: Arrr! showcase multilang featurrre [#87](https://github.com/McShelby/hugo-theme-relearn/issues/87)
+- [**task**] docs: Arrr! showcase multilang feature [#87](https://github.com/McShelby/hugo-theme-relearn/issues/87)
 
 ---
 
