@@ -2424,7 +2424,7 @@ html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.
 }
 
 a#R-logo {
-  color: var(--MENU-SECTIONS-BG-color);
+  color: var(--INTERNAL-MENU-HEADER-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
   font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
@@ -2433,7 +2433,7 @@ a#R-logo {
   white-space: nowrap;
 }
 a#R-logo:hover {
-  color: var(--MENU-SECTIONS-BG-color);
+  color: var(--INTERNAL-MENU-HEADER-color);
 }
 
 /* those sizes are for the default logo */
@@ -2446,10 +2446,22 @@ a#R-logo.R-default {
   }
 }
 
+body a#R-logo,
+body a#R-logo:hover,
 body #R-logo svg,
-body #R-logo svg * {
-  color: var(--MENU-SECTIONS-BG-color);
-  fill: var(--MENU-SECTIONS-BG-color) !important;
+body #R-logo svg :not([color]),
+body #R-logo svg :not([color='black']),
+body #R-logo svg :not([color='#000000']) {
+  color: var(--INTERNAL-MENU-HEADER-color) !important;
+}
+
+body a#R-logo,
+body a#R-logo:hover,
+body #R-logo svg,
+body #R-logo svg :not([fill]),
+body #R-logo svg :not([fill='black']),
+body #R-logo svg :not([fill='#000000']) {
+  fill: var(--INTERNAL-MENU-HEADER-color) !important;
 }
 
 .columnize {
