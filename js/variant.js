@@ -561,6 +561,7 @@ var variants = {
     { name: 'MENU-BORDER-color', group: 'header', default: 'transparent', tooltip: 'border color between menu and content' },
     { name: 'MENU-TOPBAR-BORDER-color', group: 'header', fallback: 'MENU-HEADER-BG-color', tooltip: 'border color of vertical line between menu and topbar' },
     { name: 'MENU-TOPBAR-SEPARATOR-color', group: 'header', default: 'transparent', tooltip: 'separator color of vertical line between menu and topbar' },
+    { name: 'MENU-HEADER-color', group: 'header', fallback: 'MENU-SECTIONS-LINK-color', tooltip: 'color of menu header' },
     { name: 'MENU-HEADER-BG-color', group: 'header', fallback: 'PRIMARY-color', tooltip: 'background color of menu header' },
     { name: 'MENU-HEADER-BORDER-color', group: 'header', fallback: 'MENU-HEADER-BG-color', tooltip: 'border color between menu header and menu' },
     { name: 'MENU-HEADER-SEPARATOR-color', group: 'header', fallback: 'MENU-HEADER-BORDER-color', tooltip: 'separator color between menu header and menu' },
