@@ -2,5 +2,5 @@
 {{- if .RelPermalink -}}
 # {{ .Title }}
 
-{{ strings.TrimLeft "\n\r\t " .RawContent }}
+{{ strings.TrimLeft "\n\r\t " .RawContent | safeHTML }}
 {{- end }}
