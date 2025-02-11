@@ -1,3 +1,3 @@
 # Topbarrr
 
-{{&lt; piratify &gt;}}
+{{< piratify >}}
