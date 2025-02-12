@@ -12,12 +12,14 @@ You can [define additional custom image effects and set defaults](configuration/
 
 The default image effects shipped with the theme are
 
-| Name     | Description                                                       |
-| -------- | ----------------------------------------------------------------- |
-| border   | Draws a light thin border around the image                        |
-| lazy     | Lets the image be lazy loaded                                     |
-| lightbox | The image will be clickable to show it enlarged                   |
-| shadow   | Draws a shadow around the image to make it appear hovered/glowing |
+| Name          | Description                                                       |
+| ------------- | ----------------------------------------------------------------- |
+| border        | Draws a light thin border around the image                        |
+| dataurl       | if the linked image points to a resource, it is converted to a base64 encoded dataurl |
+| inlinecontent | if the linked image points to a SVG resource, the content will be used instead of an `<img>` element, this is useful for applying additional CSS styles to the elements inside of the SVG which is otherwise impossible |
+| lazy          | Lets the image be lazy loaded                                     |
+| lightbox      | The image will be clickable to show it enlarged                   |
+| shadow        | Draws a shadow around the image to make it appear hovered/glowing |
 
 One way to use them is to add them as URL query parameter to each individually linked image.
 
@@ -32,6 +34,8 @@ Without any settings in your `hugo.toml` `imageEffects` defaults to
 {{< multiconfig >}}
 [imageEffects]
   border = false
+  dataurl = false
+  inlinecontent = false
   lazy = true
   lightbox = true
   shadow = false
@@ -54,6 +58,8 @@ The settings applied to the above image would be
 
 {{< multiconfig >}}
 border = true
+dataurl = false
+inlinecontent = false
 lazy = true
 lightbox = false
 shadow = false

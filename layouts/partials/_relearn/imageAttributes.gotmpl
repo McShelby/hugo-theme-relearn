@@ -1,7 +1,7 @@
 {{- $attributes := .attributes | default dict }}
 {{- $height := "auto" }}
 {{- $width := "auto" }}
-{{- $effects := dict "border" false "lazy" true "lightbox" true "shadow" false }}
+{{- $effects := dict "border" false "dataurl" false "inlinecontent" false "lazy" true "lightbox" true "shadow" false }}
 {{- if .page.Site.Params.imageeffects }}
   {{- $effects = merge $effects .page.Site.Params.imageeffects }}
 {{- end }}
@@ -63,9 +63,17 @@
     {{- end }}
   {{- end }}
 {{- end }}
+{{- if and .linkObject $effects.inlinecontent }}
+  {{- $content := .linkObject.Content | replaceRE `(?s)^\s*<\?.*?\?>\s*` "" }}
+  {{- $attributes = merge $attributes (dict "content" $content) }}
+{{- else if and .linkObject $effects.dataurl }}
+  {{- $src := printf "data:%s;base64,%s" .linkObject.MediaType (.linkObject.Content | base64Encode) }}
+  {{- $attributes = merge $attributes (dict "src" $src) }}
+{{- else }}
+  {{- $attributes = merge $attributes (dict "src" .url) }}
+{{- end }}
 {{- if $attributes.class }}{{ $classes = $classes | append (split $attributes.class " ") }}{{ end }}
 {{- $attributes = merge $attributes (dict "class" (delimit $classes " ")) }}
-{{- $attributes = merge $attributes (dict "src" .url) }}
 {{- $attributes = merge $attributes (dict "style" (printf " height: %s; width: %s;%s" $height $width (index $attributes "style" | default ""))) }}
 {{- if $effects.lazy }}{{ $attributes = merge $attributes (dict "loading" "lazy") }}{{ end }}
 {{- return $attributes }}

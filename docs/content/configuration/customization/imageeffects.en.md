@@ -17,6 +17,8 @@ If you don't configure anything in your `hugo.toml`, the image effects default t
 {{< multiconfig >}}
 [imageEffects]
   border = false
+  dataurl = false
+  inlinecontent = false
   lazy = true
   lightbox = true
   shadow = false
@@ -40,6 +42,8 @@ This would result in
 [imageEffects]
   bg-white = true
   border = true
+  dataurl = false
+  inlinecontent = false
   lazy = false
   lightbox = true
   shadow = false
