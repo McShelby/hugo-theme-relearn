@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.143.1">
-    <meta name="generator" content="Relearn 7.3.2+a3e0b7f4f469703ed2fec432b332f17e0066d70a">
+    <meta name="generator" content="Relearn 7.3.2+d6c4f517c6961776cd67ed26cd4bbff8532ab7d7">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="5.24.3 (2024-02-28) Fixes [bug] theme: avoid crash on 404 if author settings want to warn #785 5.24.2 (2024-02-24) Enhancements [feature] image: adjust to Hugo 0.123 #777 Fixes [bug] link: resolve fragments #775 5.24.1 (2024-02-18) Enhancements [feature] link: make resolution reporting configurable #774 5.24.0 (2024-02-17) Enhancements [feature] theme: compatibility with Hugo 0.123 #771 [feature] topbar: support editURL in frontmatter #764 [feature] menu: use –MENU-WIDTH-S to adjust mobile flyout #761 [feature] figure: support built-in shortcode #746 [feature] theme: make heading a template #744 [feature] taxonomy: make arrow nav browse through terms #742 [feature] theme: switch from config.toml to hugo.toml #741 [feature] button: make non-interactive if used as mock #740 [feature][change] topbar: allow text for button #739 [feature] theme: run hugo demo site without warning #736 [feature] menu: make swipe handler passive #735 [feature] i18n: support standard Hugo options #733 [feature] a11y: show tab focus on images #730 [feature] a11y: improve discovering links on keyboard navigation #726 [feature][change] variant: increase contrast for light themes #722 [feature] theme: break build if minimum Hugo version is not matched #719 [feature] taxonomy: humanize term on missing term title #713 Fixes [bug] taxonomy: display translated title #772 [bug] highlight: fix codefence syntax in Hugo &gt;= 0.121.0 #749 [bug] link: fix links to pages containing dots in their name #748 [bug] image: get resource images if link is prefixed with ./ #747 [bug] theme: switch dependency colors on OS color scheme change #745 [bug] clipboard: fix O(n²) buttons #738 [bug] button: fix whitespacing in FF #737 [bug] i18n: fix warning messages for zh-CN #732 [bug] mermaid: fix zoom button #725 [bug] theme: fix JS errors on hugo --minifiy #724 [bug] include: fix whitespacing in codefences #723">
     <meta name="author" content="Sören Weber">
@@ -29,11 +29,11 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/introduction/changelog/5/24/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/changelog/5/24/index.html" rel="canonical" type="text/html" title="Version 5.24 :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/introduction/changelog/5/24/index.xml" rel="alternate" type="application/rss+xml" title="Version 5.24 :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739362954" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739362954" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1739362954" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739362954" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739362954" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1739362954" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1739362954" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739397311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739397311" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1739397311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739397311" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739397311" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1739397311" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1739397311" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..\/..\/..';
@@ -81,10 +81,49 @@
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.js?1739362954"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1739397311"></script>
     <style>
+       
       #R-body img.bg-white {
         background-color: white;
+      }
+
+       
+      #R-logo {
+        font-size: 1.875rem;
+        margin-bottom: -.666rem;
+        margin-top: -.666rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1.5625rem;
+          margin-bottom: -.1875rem;
+          margin-top: -.1875rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 29% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
+        vertical-align: middle;
+        width: 4.5em;
       }
     </style>
   </head>
@@ -235,8 +274,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739362954" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739362954" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1739362954" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739397311" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739397311" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1739397311" defer></script>
   </body>
 </html>

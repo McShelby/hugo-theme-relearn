@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.143.1">
-    <meta name="generator" content="Relearn 7.3.2+a3e0b7f4f469703ed2fec432b332f17e0066d70a">
+    <meta name="generator" content="Relearn 7.3.2+d6c4f517c6961776cd67ed26cd4bbff8532ab7d7">
     <meta name="description" content="How to apply effects to your images">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Image Effects :: Hugo Relearn Theme">
     <meta itemprop="description" content="How to apply effects to your images">
-    <meta itemprop="wordCount" content="297">
+    <meta itemprop="wordCount" content="381">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,ImageEffects">
     <title>Image Effects :: Hugo Relearn Theme</title>
@@ -30,11 +30,11 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/authoring/imageeffects/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/authoring/imageeffects/index.html" rel="canonical" type="text/html" title="Image Effects :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/authoring/imageeffects/index.xml" rel="alternate" type="application/rss+xml" title="Image Effects :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739362954" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739362954" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/auto-complete.css?1739362954" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739362954" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739362954" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1739362954" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1739362954" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739397311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739397311" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1739397311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739397311" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739397311" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1739397311" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1739397311" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -82,10 +82,49 @@
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.js?1739362954"></script>
+    <script src="/hugo-theme-relearn/js/variant.js?1739397311"></script>
     <style>
+       
       #R-body img.bg-white {
         background-color: white;
+      }
+
+       
+      #R-logo {
+        font-size: 1.875rem;
+        margin-bottom: -.666rem;
+        margin-top: -.666rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1.5625rem;
+          margin-bottom: -.1875rem;
+          margin-top: -.1875rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 29% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
+        vertical-align: middle;
+        width: 4.5em;
       }
     </style>
   </head>
@@ -154,6 +193,14 @@
           <td>Draws a light thin border around the image</td>
       </tr>
       <tr>
+          <td>dataurl</td>
+          <td>if the linked image points to a resource, it is converted to a base64 encoded dataurl</td>
+      </tr>
+      <tr>
+          <td>inlinecontent</td>
+          <td>if the linked image points to a SVG resource, the content will be used instead of an <code>&lt;img&gt;</code> element, this is useful for applying additional CSS styles to the elements inside of the SVG which is otherwise impossible</td>
+      </tr>
+      <tr>
           <td>lazy</td>
           <td>Lets the image be lazy loaded</td>
       </tr>
@@ -204,6 +251,8 @@
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">imageEffects</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">border</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dataurl</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">inlinecontent</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">lazy</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">lightbox</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">shadow</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
@@ -215,6 +264,8 @@
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">imageEffects</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">border</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dataurl</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">inlinecontent</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lazy</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lightbox</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">shadow</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span></span></span></code></pre></div>
@@ -227,6 +278,8 @@
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;imageEffects&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;border&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;dataurl&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;inlinecontent&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;lazy&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;lightbox&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;shadow&#34;</span><span class="p">:</span> <span class="kc">false</span>
@@ -297,13 +350,13 @@
   </div>
 </div>
 <p>Or by explicitly override settings by URL query parameter</p>
-<div class="tab-panel" data-tab-group="483b6f9f91ef6b5df8ae1be0ad793dde">
+<div class="tab-panel" data-tab-group="9236f37bceb2638b909fabc4bd291dcf">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="url"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('483b6f9f91ef6b5df8ae1be0ad793dde','url')"
+      onclick="switchTab('9236f37bceb2638b909fabc4bd291dcf','url')"
     >
       <span class="tab-nav-text">URL</span>
     </button>
@@ -349,6 +402,8 @@
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">border</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">dataurl</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inlinecontent</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl"><span class="nx">lazy</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl"><span class="nx">lightbox</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl"><span class="nx">shadow</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
@@ -359,6 +414,8 @@
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">border</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dataurl</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">inlinecontent</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">lazy</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">lightbox</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">shadow</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span></span></span></code></pre></div>
@@ -370,6 +427,8 @@
       <div class="tab-content-text">
 <div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;border&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;dataurl&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;inlinecontent&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;lazy&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;lightbox&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;shadow&#34;</span><span class="p">:</span> <span class="kc">false</span>
@@ -391,8 +450,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739362954" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739362954" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.js?1739362954" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739397311" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739397311" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1739397311" defer></script>
   </body>
 </html>
