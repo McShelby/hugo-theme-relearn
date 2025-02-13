@@ -96,19 +96,19 @@ Chapters are top-level pages that contain other pages. They have a special layou
 Make your first chapter page
 
 ````shell
-hugo new --kind chapter first-chapter/_index.md
+hugo new --kind chapter log/_index.md
 ````
 
-The new file `content/first-chapter/_index.md` has a `weight` number in the front matter. This sets the chapter's subtitle and its order in the menu.
+The new file `content/log/_index.md` has a `weight` number in the front matter. By the themes default settings this sets the chapter's subtitle and its order in the menu.
 
 ### Your First Content Pages
 
 Now make content pages inside the chapter. Here are three ways to do this
 
 ````shell
-hugo new first-chapter/first-page/_index.md
-hugo new first-chapter/second-page/index.md
-hugo new first-chapter/third-page.md
+hugo new log/first-day/_index.md
+hugo new log/second-day/index.md
+hugo new log/third-day.md
 ````
 
 Hugo treats these files differently based on their file names. Learn more in [Hugo's guide](https://gohugo.io/content-management/).

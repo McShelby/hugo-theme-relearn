@@ -13,18 +13,19 @@ Organize your site like [any other Hugo project](https://gohugo.io/content/struc
 
 ````plaintext
 content
-├── first-chapter
-│   ├── first-page
+├── log
+│   ├── first-day
 |   |   |── _index.md
 |   │   ├── first-sub-page
 |   |   |   |── _index.md
 |   |   |   |── picture1.png
 |   |   |   └── plain.txt
-│   ├── second-page
+│   ├── second-day
 |   |   |── index.md
 |   |   |── picture1.png
 |   |   └── picture2.png
-│   └── third-page.md
+│   ├── third-day.md
+│   └── _index.md
 └── _index.md
 ````
 

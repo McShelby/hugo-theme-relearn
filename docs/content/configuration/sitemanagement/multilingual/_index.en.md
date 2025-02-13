@@ -65,15 +65,17 @@ Here's how to make your site multilingual using [translations by file name](http
 
     ````plaintext
     ├── content
-    │   ├── first-chapter
-    │   │   ├── first-page
+    │   ├── log
+    │   │   ├── first-day
     |   |   |   ├── _index.en.md
     |   |   |   └── _index.pir.md
-    │   │   ├── second-page
+    │   │   ├── second-day
     |   |   |   ├── index.en.md
     |   |   |   └── index.pir.md
-    │   │   ├── third-page.en.md
-    │   │   └── third-page.pir.md
+    │   │   ├── third-day.en.md
+    │   │   ├── third-day.pir.md
+    │   │   ├── _index.en.md
+    │   │   └── _index.pir.md
     │   ├── _index.en.md
     │   └── _index.pir.md
     ├── themes
@@ -84,7 +86,58 @@ Here's how to make your site multilingual using [translations by file name](http
 
 ## Translation by Content Directory
 
-The theme also support [translations by content directory](https://gohugo.io/content-management/multilingual/#translation-by-content-directory) which can be configured in a similar way. This is not used in further examples of this documentation.
+The theme also support [translations by content directory](https://gohugo.io/content-management/multilingual/#translation-by-content-directory) which can be configured in a similar way.
+
+1. Set up languages in your `hugo.toml` file:
+
+    {{< multiconfig file=hugo >}}
+    defaultContentLanguage = 'en'
+
+    [languages]
+      [languages.en]
+        weight = 1
+        languageName = 'English'
+        languageCode = 'en'
+        contentDir = 'content/en'
+        title = 'My Website'
+
+      [languages.pir]
+        weight = 2
+        languageName = 'Pirrratish'
+        languageCode = 'art-x-pir'
+        languageDirection = 'rtl'
+        contentDir = 'content/pir'
+        title = 'Arrr, my Website'
+    {{< /multiconfig >}}
+
+2. Duplicate your content files into separate directories named by their language code:
+
+    ````plaintext
+    ├── content
+    │   ├── en
+    |   │   ├── log
+    |   │   │   ├── first-day
+    |   |   |   |   └── _index.md
+    |   │   │   ├── second-day
+    |   |   |   |   └── index.md
+    |   │   │   ├── third-day.md
+    |   │   │   └── _index.md
+    |   │   └── _index.md
+    │   ├── pir
+    |   │   ├── log
+    |   │   │   ├── first-day
+    |   |   |   |   └── _index.md
+    |   │   │   ├── second-day
+    |   |   |   |   └── index.md
+    |   │   │   ├── third-day.md
+    |   │   │   └── _index.md
+    |   │   └── _index.md
+    |   ├── themes
+    |   │   └── hugo-theme-relearn
+    |   │       └── ...
+    |   └── hugo.toml
+    ````
+
 
 ## Search Settings
 

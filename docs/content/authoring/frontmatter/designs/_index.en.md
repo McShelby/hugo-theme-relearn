@@ -18,14 +18,14 @@ Regardless of shipped or custom page design, you are using them in the same way.
 - If you have an [archetype file](https://gohugo.io/content-management/archetypes/), you can just do
 
     ````shell
-	hugo new --kind chapter chapter1/_index.md
+	hugo new --kind chapter log/_index.md
     ````
 
 - If you are creating your Markdown files manually, you can achieve the same by just setting `type='chapter'` in the front matter to make your page displayed with the `chapter` page design.
 
-    ````toml {title="_index.md"}
+    ````toml {title="log/_index.md"}
     +++
-    title = "Chapter 1"
+    title = "Captain's Log"
     type = "chapter"
     +++
     ````
@@ -55,7 +55,7 @@ Commonly, it contains a title front matter and a short description in the conten
 To create a chapter page, run the following command
 
 ````shell
-hugo new --kind chapter chapter1/_index.md
+hugo new --kind chapter log/_index.md
 ````
 
 If a numerical `weight` front matter is set, it will be used to generate the subtitle of the chapter page. Set the number to a consecutive value starting at 1 for each new chapter on the same directory level.
@@ -69,13 +69,19 @@ A **Default** page is any other content page.
 To create a default page, run either one of the following commands
 
 ````shell
-hugo new chapter1/page1/_index.md
+hugo new log/first-day/_index.md
 ````
 
 or
 
 ````shell
-hugo new chapter1/page1.md
+hugo new log/second-day/index.md
+````
+
+or
+
+````shell
+hugo new log/third-day.md
 ````
 
 ![Default page](pages-default.png?width=60pc)

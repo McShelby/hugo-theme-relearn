@@ -115,9 +115,9 @@ You may want to structure your entries in a hierarchical way but don't want to g
 
 ### For Page Menus
 
-To stay with the [initial example](authoring/structure): Suppose you want `first-chapter/first-page` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should be expandable.
+To stay with the [initial example](authoring/structure): Suppose you want `log/first-day` appear in the sidebar but don't want to generate a page for it. So the entry in the sidebar should not be clickable but should be expandable.
 
-For this, open `content/first-chapter/first-page/_index.md` and add the following front matter
+For this, open `content/log/first-day/_index.md` and add the following front matter
 
 {{< multiconfig fm=true >}}
 [_build]
@@ -224,9 +224,9 @@ sidebarmenus = [
 
 ## Redefining Sidebar Menus for Certain Pages
 
-Suppose you are building a site that contains a topmost `blog` and `documentation` section.
+Suppose you are building a site that contains a topmost `log` and `ship` section.
 
-When the user is on one of the blog pages he should only see a page menu containing all blog pages, while on a documentation page he should only see a page menu containing all doc pages.
+When the user is on one of the log pages he should only see a page menu containing all log pages, while on one of the ship pages she should only see a page menu containing all sub pages of the ship section.
 
 For both sections, the default `shortcuts` Hugo menu should be displayed as if [defaults menus](#defining-sidebar-menus) were used.
 
@@ -234,76 +234,75 @@ Directory structure:
 
 ````plaintext
 content
-├── blog
-│   ├── post-1.md
-│   ├── post-2.md
-│   ├── post-3.md
+├── log
+│   ├── first-day.md
+│   ├── second-day.md
+│   ├── third-day.md
 │   └── _index.md
-├── docs
-│   ├── topic-1.md
-│   ├── topic-2.md
-│   ├── topic-3.md
+├── ship
+│   ├── cargo.md
+│   ├── midst.md
+│   ├── upper.md
 │   └── _index.md
 └── _index.md
 ````
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using [Hugo's cascade feature](https://gohugo.io/content-management/front-matter/#cascade), we can redefine the menus once in `blog/_index.md` and `docs/_index.md` setting `sidebarmenus` so they will be used in all children pages.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using [Hugo's cascade feature](https://gohugo.io/content-management/front-matter/#cascade), we can redefine the menus once in `log/_index.md` and `ship/_index.md` setting `sidebarmenus` so they will be used in all children pages.
 
 Setting the `sidebarmenus` Front Matter will overwrite all default menus. If you want to display the `shortcuts` Hugo menu as well like in this example, you have to declare it with the Front Matter as given in the [default options](#defining-sidebar-menus).
 
-{{< multiconfig fm=true file="blog/_index.md">}}
-title = 'Blog'
+{{< multiconfig fm=true file="log/_index.md">}}
+title = "Captain's Log"
 [[cascade]]
   [cascade.params]
     sidebarmenus = [
-      { type = 'page', identifier = 'blog', pageRef = '/blog' },
+      { type = 'page', identifier = 'log', pageRef = '/log' },
       { type = 'menu', identifier = 'shortcuts' },
     ]
 {{< /multiconfig >}}
 
-{{< multiconfig fm=true file="docs/_index.md">}}
-title = 'Documentation'
+{{< multiconfig fm=true file="ship/_index.md">}}
+title = 'The Ship'
 [[cascade]]
   [cascade.params]
     sidebarmenus = [
-      { type = 'page', identifier = 'docs', pageRef = '/docs' },
+      { type = 'page', identifier = 'ship', pageRef = '/ship' },
       { type = 'menu', identifier = 'shortcuts' },
     ]
 {{< /multiconfig >}}
 
 ## Displaying Arbitrary Links in a Page Menu
 
-You may have the need to add arbitrary links at some point in your menu that are initially not backed by a page. These are called crosslinks.
+You may have the need to add arbitrary links at some point in your menu that should redirect to other pages in your site structure. These are called crosslinks.
 
 Assume the following structure
 
 ````plaintext
 content
-├── reference
-│   ├── ref-a.md
-│   ├── ref-b.md
-│   ├── ref-c.md
+├── log
+│   ├── first-day.md
+│   ├── second-day.md
+│   ├── third-day.md
 │   └── _index.md
-├── topic-blue.md
-├── topic-red.md
-├── topic-yellow.md
+├── burning-sail-incident.md
+├── kraken-incident.md
 └── _index.md
 ````
 
-You now want to include `ref-b` as separate `topic-green` entry after `topic-blue` in your menu.
+You now want to add a top level menu entry that points to `third-day` as separate `crows-nest-incident`.
 
 For that create a new page with the following front matter
 
-{{< multiconfig fm=true file="content/topic-green.md" >}}
-title = 'Topic Green'
-menuPageRef = '/reference/ref-b'
+{{< multiconfig fm=true file="content/crows-nest-incident.md" >}}
+title = "The Crow's Nest Incident"
+menuPageRef = '/log/third-day'
 {{< /multiconfig >}}
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.
 
 Pages defining a crosslink are never part of the arrow navigation and are skipped instead.
 
-So with the above example and alphabetical sorting of the menu entries, pressing {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} on `topic-blue` will skip the newly added `topic-green` and instead will load `topic-red`.
+So with the above example and alphabetical sorting of the menu entries, pressing {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} on `kraken-incident` page will skip the newly added `crows-nest-incident` and instead will load `burning-sail-incident`.
 
 Having sub pages below a page that has `menuUrl` or `menuPageRef` set in their front matter is undefined.
 

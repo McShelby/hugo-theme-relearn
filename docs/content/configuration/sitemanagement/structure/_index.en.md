@@ -9,12 +9,13 @@ If you've followed the [Getting Started](introduction/quickstart) guide, your di
 
 ````plaintext
 ├── content
-│   ├── first-chapter
-│   │   ├── first-page
+│   ├── log
+│   │   ├── first-day
 |   |   |   └── _index.md
-│   │   ├── second-page
+│   │   ├── second-day
 |   |   |   └── index.md
-│   │   └── third-page.md
+│   │   ├── third-day.md
+│   │   └── _index.md
 │   └── _index.md
 ├── themes
 │   └── hugo-theme-relearn
