@@ -1,3 +1,0 @@
-# Available Output Formats
-
-{{< piratify >}}
