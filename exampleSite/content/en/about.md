@@ -27,10 +27,18 @@ For a detailed installation guide, see the [Relearn documentation](https://mcshe
 
 ## Modify it
 
-While minimal in configuration, this showcase contains an auto translation into the Piratish language. This required some files and directories, totally unnecessary for a simple site. You can delete them if you use this site as a starting template. Namely these are:
+While minimal in configuration, this showcase contains an auto translation into the Piratish language. This required some additional files and directories, totally unnecessary for a simple site. You can delete them if you use this site as a starting template. Namely these are:
 
 - `content/pir/`
 - `i18n/`
 - `layouts/partials/shortcodes/piratify.html`
 - `layouts/partials/toc.html`
 - `layouts/shortcodes/piratify.html`
+
+You will also have to add this to the `hugo.toml` to deactivate the translation:
+
+````toml {title="hugo.toml"}
+disableLanguages = ['pir']
+````
+
+**or** remove all references to the Piratish language.
