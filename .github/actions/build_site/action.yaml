@@ -8,7 +8,12 @@ runs:
       with:
         hugo-version: 'latest'
 
-    - name: Build site
+    - name: Build docs
       shell: bash
       run: |
         hugo --source ${GITHUB_WORKSPACE}/docs --destination ${GITHUB_WORKSPACE}/../public --cleanDestinationDir --environment github --theme ${GITHUB_WORKSPACE}
+
+    - name: Build exampleSite
+      shell: bash
+      run: |
+        hugo --source ${GITHUB_WORKSPACE}/docs --destination ${GITHUB_WORKSPACE}/../public/exampleSite --environment github --theme ${GITHUB_WORKSPACE}
