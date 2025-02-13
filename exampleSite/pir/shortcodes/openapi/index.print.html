@@ -1,0 +1,2729 @@
+<!DOCTYPE html>
+<html lang="art-x-pir" dir="rtl" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.143.1">
+    <meta name="generator" content="Relearn 7.3.2+1eaa287faa456be277e6b65f40b08b821ac02fff">
+    <meta name="description" content="UI fer yer OpenAPI / Swaggerrr Specificat&#39;ns">
+    <meta name="author" content="Sören Weber">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta name="twitter:title" content="OpenAPI :: Cap&#39;n Hugo Relearrrn Theme">
+    <meta name="twitter:description" content="UI fer yer OpenAPI / Swaggerrr Specificat&#39;ns">
+    <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/openapi/index.html">
+    <meta property="og:site_name" content="Cap&#39;n Hugo Relearrrn Theme">
+    <meta property="og:title" content="OpenAPI :: Cap&#39;n Hugo Relearrrn Theme">
+    <meta property="og:description" content="UI fer yer OpenAPI / Swaggerrr Specificat&#39;ns">
+    <meta property="og:locale" content="art_x_pir">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="name" content="OpenAPI :: Cap&#39;n Hugo Relearrrn Theme">
+    <meta itemprop="description" content="UI fer yer OpenAPI / Swaggerrr Specificat&#39;ns">
+    <meta itemprop="wordCount" content="458">
+    <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="keywords" content="Howto,Reference,CustomOpenapiURL,Openapi.errorlevel,Openapi.force,CustomOpenapiURL,Openapi.errorlevel,Openapi.force">
+    <title>OpenAPI :: Cap&#39;n Hugo Relearrrn Theme</title>
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/openapi/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/openapi/index.html" rel="alternate" hreflang="en">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/openapi/index.html" rel="alternate" hreflang="art-x-pir">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/openapi/index.html" rel="canonical" type="text/html" title="OpenAPI :: Cap&#39;n Hugo Relearrrn Theme">
+    <link href="/hugo-theme-relearn/pir/shortcodes/openapi/index.xml" rel="alternate" type="application/rss+xml" title="OpenAPI :: Cap&#39;n Hugo Relearrrn Theme">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482044" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482044" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1739482044" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739482044" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739482044" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1739482044" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1739482044" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy t' clipboard`;
+      window.T_Copied_to_clipboard = `Copied t' clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link t' clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link t' clipboard!`;
+      window.T_Reset_view = `Rrreset view`;
+      window.T_View_reset = `View rrreset!`;
+      window.T_No_results_found = `No rrresults found fer "{0}"`;
+      window.T_N_results_found = `{1} rrresults found fer "{0}"`;
+    </script>
+    <script src="/hugo-theme-relearn/js/variant.js?1739482044"></script>
+    <style>
+       
+      #R-body img.bg-white {
+        background-color: white;
+      }
+
+       
+      #R-logo {
+        font-size: 1.875rem;
+        margin-bottom: -.666rem;
+        margin-top: -.666rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1.5625rem;
+          margin-bottom: -.1875rem;
+          margin-top: -.1875rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 29% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/hugo-theme-relearn/pir/shortcodes/openapi/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table o&#39; Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#parameter">Parameter</a></li>
+      </ul>
+    </li>
+    <li><a href="#settings">Sett'ns</a>
+      <ul>
+        <li><a href="#enabling-link-warnings">Enabl'n Link Warn'ns</a></li>
+        <li><a href="#loading-an-external-version-of-the-swagger-ui-library">Load'n an External Version o' th' Swagger UI Library</a></li>
+        <li><a href="#force-loading-of-the-swagger-ui-library">Force Load'n o' th' Swagger UI Library</a></li>
+        <li><a href="#setting-a-specific-swagger-ui-theme">Sett'n a Specific Swagger UI Theme</a></li>
+      </ul>
+    </li>
+    <li><a href="#example">Example</a>
+      <ul>
+        <li><a href="#using-local-file">Us'n Local File</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/hugo-theme-relearn/pir/shortcodes/index.html"><span itemprop="name">Shorrrtcodes</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">OpenAPI</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/shortcodes/openapi/_index.pir.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/pir/shortcodes/openapi/index.print.html" title="Prrrint whole chapterrr (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/pir/shortcodes/notice/index.html" title="Notice (🡒)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/pir/shortcodes/resources/index.html" title="Resources (🡐)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Morrre"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable shortcodes" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="openapi">OpenAPI</h1>
+
+<p>Th' <code>openapi</code> shortcode displays yer OpenAPI / Swagger specificat'ns us'n th' <a href="https://github.com/swagger-api/swagger-ui" rel="external" target="_self">Swagger UI</a> library.</p>
+<h2 id="usage">Usage</h2>
+<div class="tab-panel" data-tab-group="shortcode-parameter">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="shortcode"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('shortcode-parameter','shortcode')"
+    >
+      <span class="tab-nav-text">shortcode</span>
+    </button>
+    <button
+      data-tab-item="partial"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','partial')"
+    >
+      <span class="tab-nav-text">partial</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="shortcode"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">openapi</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;https://petstore3.openapi.io/api/v3/openapi.json&#34;</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="partial"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/openapi.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;page&#34;</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;src&#34;</span>  <span class="s">&#34;https://petstore3.openapi.io/api/v3/openapi.json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>If ye want t' print out (or generate a PDF) from yer OpenAPI documentat'n, don&rsquo;t initiate print'n directly from th' plank because th' elements be optimized fer interactive usage 'n a browser.</p>
+<p>Instead, open th' <a href="/hugo-theme-relearn/pir/authoring/frontmatter/topbar/index.html">print preview</a> 'n yer browser an' initiate print'n from that plank. This plank be optimized fer read'n an' expands most o' th' avail'ble sections.</p>
+<h3 id="parameter">Parameter</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Default</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>src</strong></td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>Th' path t' th' t' th' OpenAPI specificat'n resource or URL t' be used. Resource paths adhere t' <a href="https://gohugo.io/methods/page/path/" rel="external" target="_self">Hugo&rsquo;s logical path</a>.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="settings">Sett'ns</h2>
+<h3 id="enabling-link-warnings">Enabl'n Link Warn'ns</h3>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Opt'n</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Ye can use <code>openapi.errorlevel</code> t' control what should happen if a local OpenAPI specificat'n link can not be resolved t' a resource.</p>
+<p>If not set or empty, any unresolved link be written as given into th' result'n output. If set t' <code>warning</code> th' same happens an' an additional warning be printed 'n th' built console. If set t' <code>error</code> an error message be printed an' th' build be aborted.</p>
+<p>Please note that this can not resolve files inside o' yer <code>static</code> directory. Th' file must be a resource o' th' plank or th' ship.</p>
+<p>Link warnings be also avail'ble fer <a href="/hugo-theme-relearn/pir/authoring/frontmatter/linking/index.html#enabling-link-and-image-link-warnings">images &amp; links</a> an' th' <a href="/hugo-theme-relearn/pir/shortcodes/include/index.html#enabling-link-warnings">include</a> shortcode.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">openapi</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">errorlevel</span> <span class="p">=</span> <span class="s1">&#39;warning&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">openapi</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">errorlevel</span><span class="p">:</span><span class="w"> </span><span class="l">warning</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;openapi&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;errorlevel&#34;</span><span class="p">:</span> <span class="s2">&#34;warning&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="loading-an-external-version-of-the-swagger-ui-library">Load'n an External Version o' th' Swagger UI Library</h3>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Opt'n</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Th' theme uses th' shipped Swagger UI library by default.</p>
+<p>In case ye want do use a different version o' th' Swagger UI library but don&rsquo;t want t' override th' shipped version, ye can set <code>customOpenapiURL</code> t' th' URL o' th' external Swagger UI library.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">customOpenapiURL</span> <span class="p">=</span> <span class="s1">&#39;https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">customOpenapiURL</span><span class="p">:</span><span class="w"> </span><span class="l">https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;customOpenapiURL&#34;</span><span class="p">:</span> <span class="s2">&#34;https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="force-loading-of-the-swagger-ui-library">Force Load'n o' th' Swagger UI Library</h3>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Opt'n</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Th' Swagger UI library will be boarded if th' plank contains an <code>openapi</code> shortcode or codefence.</p>
+<p>Ye can force load'n th' Swagger UI library if no shortcode or codefence was used by sett'n <code>openapi.force=true</code>. If a shortcode or codefence was found, th' opt'n has no effect. This comes handy 'n case ye be us'n script'n t' render a spec.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">openapi</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">force</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">openapi</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">force</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;openapi&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;force&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="setting-a-specific-swagger-ui-theme">Sett'n a Specific Swagger UI Theme</h3>
+<p>Th' recommended way t' configure yer Swagger UI theme be t' set th' default value us'n th' <code>--OPENAPI-theme</code> vari'ble 'n yer <a href="/hugo-theme-relearn/pir/configuration/branding/generator/index.html">color variant stylesheet</a>. This allows yer specs t' look pretty when th' user switches th' color variant.</p>
+<h2 id="example">Example</h2>
+<h3 id="using-local-file">Us'n Local File</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">openapi</span> <span class="nx">src</span><span class="p">=</span><span class="s">&#34;petstore.json&#34;</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+<div class="sc-openapi-wrapper is-load'n helper-loading-container">
+  <div
+    class="sc-openapi-container"
+    id="R-openapi-0997b827d4c0ccdccb7fb6fe027753e3"
+    data-openapi-url=""
+    data-openapi-spec="{
+	&#34;openapi&#34;: &#34;3.0.2&#34;,
+	&#34;info&#34;: {
+		&#34;title&#34;: &#34;Swagger Petstore - OpenAPI 3.0&#34;,
+		&#34;description&#34;: &#34;This be a sample Pet Store Server based on th' OpenAPI 3.0 specificat'n.  Ye can find out more about\nSwagger at [http://swagger.io](http://swagger.io). In th' third iterat'n o' th' pet store, we&#39;ve switched t' th' design first approach!\nYou can now help us improve th' API whether it&#39;s by mak'n changes t' th' definit'n itself or t' th' code.\nThat way, wit' time, we can improve th' API 'n general, an' expose some o' th' new features 'n OAS3.\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definit'n fer th' Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)&#34;,
+		&#34;termsOfService&#34;: &#34;http://swagger.io/terms/&#34;,
+		&#34;contact&#34;: {
+			&#34;email&#34;: &#34;apiteam@swagger.io&#34;
+		},
+		&#34;license&#34;: {
+			&#34;name&#34;: &#34;Apache 2.0&#34;,
+			&#34;url&#34;: &#34;http://www.apache.org/licenses/LICENSE-2.0.html&#34;
+		},
+		&#34;version&#34;: &#34;1.0.18&#34;
+	},
+	&#34;externalDocs&#34;: {
+		&#34;description&#34;: &#34;Find out more about Swagger&#34;,
+		&#34;url&#34;: &#34;http://swagger.io&#34;
+	},
+	&#34;servers&#34;: [
+		{
+			&#34;url&#34;: &#34;/api/v3&#34;
+		}
+	],
+	&#34;tags&#34;: [
+		{
+			&#34;name&#34;: &#34;pet&#34;,
+			&#34;description&#34;: &#34;Everyth'n about yer Pets&#34;,
+			&#34;externalDocs&#34;: {
+				&#34;description&#34;: &#34;Find out more&#34;,
+				&#34;url&#34;: &#34;http://swagger.io&#34;
+			}
+		},
+		{
+			&#34;name&#34;: &#34;store&#34;,
+			&#34;description&#34;: &#34;Access t' Petstore orders&#34;,
+			&#34;externalDocs&#34;: {
+				&#34;description&#34;: &#34;Find out more about our store&#34;,
+				&#34;url&#34;: &#34;http://swagger.io&#34;
+			}
+		},
+		{
+			&#34;name&#34;: &#34;user&#34;,
+			&#34;description&#34;: &#34;Operat'ns about user&#34;
+		}
+	],
+	&#34;paths&#34;: {
+		&#34;/pet&#34;: {
+			&#34;put&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Update an exist'n pet&#34;,
+				&#34;description&#34;: &#34;Update an exist'n pet by Id&#34;,
+				&#34;operationId&#34;: &#34;updatePet&#34;,
+				&#34;requestBody&#34;: {
+					&#34;description&#34;: &#34;Update an existent pet 'n th' store&#34;,
+					&#34;content&#34;: {
+						&#34;application/json&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+							}
+						},
+						&#34;application/xml&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+							}
+						},
+						&#34;application/x-www-form-urlencoded&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+							}
+						}
+					},
+					&#34;required&#34;: true
+				},
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;Successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid ID supplied&#34;
+					},
+					&#34;404&#34;: {
+						&#34;description&#34;: &#34;Pet not found&#34;
+					},
+					&#34;405&#34;: {
+						&#34;description&#34;: &#34;Validat'n exception&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			},
+			&#34;post&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Add a new pet t' th' store&#34;,
+				&#34;description&#34;: &#34;Add a new pet t' th' store&#34;,
+				&#34;operationId&#34;: &#34;addPet&#34;,
+				&#34;requestBody&#34;: {
+					&#34;description&#34;: &#34;Create a new pet 'n th' store&#34;,
+					&#34;content&#34;: {
+						&#34;application/json&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+							}
+						},
+						&#34;application/xml&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+							}
+						},
+						&#34;application/x-www-form-urlencoded&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+							}
+						}
+					},
+					&#34;required&#34;: true
+				},
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;Successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+								}
+							}
+						}
+					},
+					&#34;405&#34;: {
+						&#34;description&#34;: &#34;Invalid input&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			}
+		},
+		&#34;/pet/findByStatus&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Finds Pets by status&#34;,
+				&#34;description&#34;: &#34;Multiple status values can be provided wit' comma separated strings&#34;,
+				&#34;operationId&#34;: &#34;findPetsByStatus&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;status&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;Status values that need t' be considered fer filter&#34;,
+						&#34;required&#34;: false,
+						&#34;explode&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;,
+							&#34;default&#34;: &#34;available&#34;,
+							&#34;enum&#34;: [
+								&#34;available&#34;,
+								&#34;pending&#34;,
+								&#34;sold&#34;
+							]
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;array&#34;,
+									&#34;items&#34;: {
+										&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+									}
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;array&#34;,
+									&#34;items&#34;: {
+										&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+									}
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid status value&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			}
+		},
+		&#34;/pet/findByTags&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Finds Pets by tags&#34;,
+				&#34;description&#34;: &#34;Multiple tags can be provided wit' comma separated str'ns. Use tag1, tag2, tag3 fer test'n.&#34;,
+				&#34;operationId&#34;: &#34;findPetsByTags&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;tags&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;Tags t' filter by&#34;,
+						&#34;required&#34;: false,
+						&#34;explode&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;array&#34;,
+							&#34;items&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							}
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;array&#34;,
+									&#34;items&#34;: {
+										&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+									}
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;array&#34;,
+									&#34;items&#34;: {
+										&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+									}
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid tag value&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			}
+		},
+		&#34;/pet/{petId}&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Find pet by ID&#34;,
+				&#34;description&#34;: &#34;Returns a single pet&#34;,
+				&#34;operationId&#34;: &#34;getPetById&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;petId&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;ID o' pet t' return&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;integer&#34;,
+							&#34;format&#34;: &#34;int64&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid ID supplied&#34;
+					},
+					&#34;404&#34;: {
+						&#34;description&#34;: &#34;Pet not found&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;api_key&#34;: []
+					},
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			},
+			&#34;post&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Updates a pet 'n th' store wit' form data&#34;,
+				&#34;description&#34;: &#34;&#34;,
+				&#34;operationId&#34;: &#34;updatePetWithForm&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;petId&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;ID o' pet that needs t' be updated&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;integer&#34;,
+							&#34;format&#34;: &#34;int64&#34;
+						}
+					},
+					{
+						&#34;name&#34;: &#34;name&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;Name o' pet that needs t' be updated&#34;,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					},
+					{
+						&#34;name&#34;: &#34;status&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;Status o' pet that needs t' be updated&#34;,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;405&#34;: {
+						&#34;description&#34;: &#34;Invalid input&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			},
+			&#34;delete&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;Deletes a pet&#34;,
+				&#34;description&#34;: &#34;&#34;,
+				&#34;operationId&#34;: &#34;deletePet&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;api_key&#34;,
+						&#34;in&#34;: &#34;header&#34;,
+						&#34;description&#34;: &#34;&#34;,
+						&#34;required&#34;: false,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					},
+					{
+						&#34;name&#34;: &#34;petId&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;Pet id t' delete&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;integer&#34;,
+							&#34;format&#34;: &#34;int64&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid pet value&#34;
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			}
+		},
+		&#34;/pet/{petId}/uploadImage&#34;: {
+			&#34;post&#34;: {
+				&#34;tags&#34;: [
+					&#34;pet&#34;
+				],
+				&#34;summary&#34;: &#34;uploads an image&#34;,
+				&#34;description&#34;: &#34;&#34;,
+				&#34;operationId&#34;: &#34;uploadFile&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;petId&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;ID o' pet t' update&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;integer&#34;,
+							&#34;format&#34;: &#34;int64&#34;
+						}
+					},
+					{
+						&#34;name&#34;: &#34;additionalMetadata&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;Additional Metadata&#34;,
+						&#34;required&#34;: false,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					}
+				],
+				&#34;requestBody&#34;: {
+					&#34;content&#34;: {
+						&#34;application/octet-stream&#34;: {
+							&#34;schema&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;binary&#34;
+							}
+						}
+					}
+				},
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/ApiResponse&#34;
+								}
+							}
+						}
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;petstore_auth&#34;: [
+							&#34;write:pets&#34;,
+							&#34;read:pets&#34;
+						]
+					}
+				]
+			}
+		},
+		&#34;/store/inventory&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;store&#34;
+				],
+				&#34;summary&#34;: &#34;Returns pet inventories by status&#34;,
+				&#34;description&#34;: &#34;Returns a map o' status codes t' quantities&#34;,
+				&#34;operationId&#34;: &#34;getInventory&#34;,
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;object&#34;,
+									&#34;additionalProperties&#34;: {
+										&#34;type&#34;: &#34;integer&#34;,
+										&#34;format&#34;: &#34;int32&#34;
+									}
+								}
+							}
+						}
+					}
+				},
+				&#34;security&#34;: [
+					{
+						&#34;api_key&#34;: []
+					}
+				]
+			}
+		},
+		&#34;/store/order&#34;: {
+			&#34;post&#34;: {
+				&#34;tags&#34;: [
+					&#34;store&#34;
+				],
+				&#34;summary&#34;: &#34;Place an order fer a pet&#34;,
+				&#34;description&#34;: &#34;Place a new order 'n th' store&#34;,
+				&#34;operationId&#34;: &#34;placeOrder&#34;,
+				&#34;requestBody&#34;: {
+					&#34;content&#34;: {
+						&#34;application/json&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Order&#34;
+							}
+						},
+						&#34;application/xml&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Order&#34;
+							}
+						},
+						&#34;application/x-www-form-urlencoded&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Order&#34;
+							}
+						}
+					}
+				},
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Order&#34;
+								}
+							}
+						}
+					},
+					&#34;405&#34;: {
+						&#34;description&#34;: &#34;Invalid input&#34;
+					}
+				}
+			}
+		},
+		&#34;/store/order/{orderId}&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;store&#34;
+				],
+				&#34;summary&#34;: &#34;Find purchase order by ID&#34;,
+				&#34;description&#34;: &#34;For valid response try integer IDs wit' value &lt;= 5 or &gt; 10. Other values will generate except'ns.&#34;,
+				&#34;operationId&#34;: &#34;getOrderById&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;orderId&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;ID o' order that needs t' be fetched&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;integer&#34;,
+							&#34;format&#34;: &#34;int64&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Order&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Order&#34;
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid ID supplied&#34;
+					},
+					&#34;404&#34;: {
+						&#34;description&#34;: &#34;Order not found&#34;
+					}
+				}
+			},
+			&#34;delete&#34;: {
+				&#34;tags&#34;: [
+					&#34;store&#34;
+				],
+				&#34;summary&#34;: &#34;Delete purchase order by ID&#34;,
+				&#34;description&#34;: &#34;For valid response try integer IDs wit' value &lt; 1000. Anyth'n above 1000 or nonintegers will generate API errors&#34;,
+				&#34;operationId&#34;: &#34;deleteOrder&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;orderId&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;ID o' th' order that needs t' be deleted&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;integer&#34;,
+							&#34;format&#34;: &#34;int64&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid ID supplied&#34;
+					},
+					&#34;404&#34;: {
+						&#34;description&#34;: &#34;Order not found&#34;
+					}
+				}
+			}
+		},
+		&#34;/user&#34;: {
+			&#34;post&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Create user&#34;,
+				&#34;description&#34;: &#34;This can only be done by th' logged 'n user.&#34;,
+				&#34;operationId&#34;: &#34;createUser&#34;,
+				&#34;requestBody&#34;: {
+					&#34;description&#34;: &#34;Created user object&#34;,
+					&#34;content&#34;: {
+						&#34;application/json&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						},
+						&#34;application/xml&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						},
+						&#34;application/x-www-form-urlencoded&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						}
+					}
+				},
+				&#34;responses&#34;: {
+					&#34;default&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							},
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		&#34;/user/createWithList&#34;: {
+			&#34;post&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Creates list o' users wit' given input array&#34;,
+				&#34;description&#34;: &#34;Creates list o' users wit' given input array&#34;,
+				&#34;operationId&#34;: &#34;createUsersWithListInput&#34;,
+				&#34;requestBody&#34;: {
+					&#34;content&#34;: {
+						&#34;application/json&#34;: {
+							&#34;schema&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							}
+						}
+					}
+				},
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;Successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							}
+						}
+					},
+					&#34;default&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;
+					}
+				}
+			}
+		},
+		&#34;/user/login&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Logs user into th' system&#34;,
+				&#34;description&#34;: &#34;&#34;,
+				&#34;operationId&#34;: &#34;loginUser&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;username&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;The user name fer login&#34;,
+						&#34;required&#34;: false,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					},
+					{
+						&#34;name&#34;: &#34;password&#34;,
+						&#34;in&#34;: &#34;query&#34;,
+						&#34;description&#34;: &#34;The password fer login 'n clear text&#34;,
+						&#34;required&#34;: false,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;headers&#34;: {
+							&#34;X-Rate-Limit&#34;: {
+								&#34;description&#34;: &#34;calls per hour allowed by th' user&#34;,
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;integer&#34;,
+									&#34;format&#34;: &#34;int32&#34;
+								}
+							},
+							&#34;X-Expires-After&#34;: {
+								&#34;description&#34;: &#34;date 'n UTC when token expires&#34;,
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;format&#34;: &#34;date-time&#34;
+								}
+							}
+						},
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;string&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;type&#34;: &#34;string&#34;
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid username/password supplied&#34;
+					}
+				}
+			}
+		},
+		&#34;/user/logout&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Logs out current logged 'n user session&#34;,
+				&#34;description&#34;: &#34;&#34;,
+				&#34;operationId&#34;: &#34;logoutUser&#34;,
+				&#34;parameters&#34;: [],
+				&#34;responses&#34;: {
+					&#34;default&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;
+					}
+				}
+			}
+		},
+		&#34;/user/{username}&#34;: {
+			&#34;get&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Get user by user name&#34;,
+				&#34;description&#34;: &#34;&#34;,
+				&#34;operationId&#34;: &#34;getUserByName&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;username&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;The name that needs t' be fetched. Use user1 fer test'n. &#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;200&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;,
+						&#34;content&#34;: {
+							&#34;application/xml&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							},
+							&#34;application/json&#34;: {
+								&#34;schema&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+								}
+							}
+						}
+					},
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid username supplied&#34;
+					},
+					&#34;404&#34;: {
+						&#34;description&#34;: &#34;User not found&#34;
+					}
+				}
+			},
+			&#34;put&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Update user&#34;,
+				&#34;description&#34;: &#34;This can only be done by th' logged 'n user.&#34;,
+				&#34;operationId&#34;: &#34;updateUser&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;username&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;name that needs t' be updated&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					}
+				],
+				&#34;requestBody&#34;: {
+					&#34;description&#34;: &#34;Update an existent user 'n th' store&#34;,
+					&#34;content&#34;: {
+						&#34;application/json&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						},
+						&#34;application/xml&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						},
+						&#34;application/x-www-form-urlencoded&#34;: {
+							&#34;schema&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						}
+					}
+				},
+				&#34;responses&#34;: {
+					&#34;default&#34;: {
+						&#34;description&#34;: &#34;successful operation&#34;
+					}
+				}
+			},
+			&#34;delete&#34;: {
+				&#34;tags&#34;: [
+					&#34;user&#34;
+				],
+				&#34;summary&#34;: &#34;Delete user&#34;,
+				&#34;description&#34;: &#34;This can only be done by th' logged 'n user.&#34;,
+				&#34;operationId&#34;: &#34;deleteUser&#34;,
+				&#34;parameters&#34;: [
+					{
+						&#34;name&#34;: &#34;username&#34;,
+						&#34;in&#34;: &#34;path&#34;,
+						&#34;description&#34;: &#34;The name that needs t' be deleted&#34;,
+						&#34;required&#34;: true,
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;string&#34;
+						}
+					}
+				],
+				&#34;responses&#34;: {
+					&#34;400&#34;: {
+						&#34;description&#34;: &#34;Invalid username supplied&#34;
+					},
+					&#34;404&#34;: {
+						&#34;description&#34;: &#34;User not found&#34;
+					}
+				}
+			}
+		}
+	},
+	&#34;components&#34;: {
+		&#34;schemas&#34;: {
+			&#34;Order&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;id&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;petId&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 198772
+							},
+							&#34;quantity&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 7
+							},
+							&#34;shipDate&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;date-time&#34;
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;Order Status&#34;,
+								&#34;example&#34;: &#34;approved&#34;,
+								&#34;enum&#34;: [
+									&#34;placed&#34;,
+									&#34;approved&#34;,
+									&#34;delivered&#34;
+								]
+							},
+							&#34;complete&#34;: {
+								&#34;type&#34;: &#34;boolean&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;order&#34;
+						}
+					},
+					&#34;petId&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;petId&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 198772
+							},
+							&#34;quantity&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 7
+							},
+							&#34;shipDate&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;date-time&#34;
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;Order Status&#34;,
+								&#34;example&#34;: &#34;approved&#34;,
+								&#34;enum&#34;: [
+									&#34;placed&#34;,
+									&#34;approved&#34;,
+									&#34;delivered&#34;
+								]
+							},
+							&#34;complete&#34;: {
+								&#34;type&#34;: &#34;boolean&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;order&#34;
+						}
+					},
+					&#34;quantity&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;petId&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 198772
+							},
+							&#34;quantity&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 7
+							},
+							&#34;shipDate&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;date-time&#34;
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;Order Status&#34;,
+								&#34;example&#34;: &#34;approved&#34;,
+								&#34;enum&#34;: [
+									&#34;placed&#34;,
+									&#34;approved&#34;,
+									&#34;delivered&#34;
+								]
+							},
+							&#34;complete&#34;: {
+								&#34;type&#34;: &#34;boolean&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;order&#34;
+						}
+					},
+					&#34;shipDate&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;petId&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 198772
+							},
+							&#34;quantity&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 7
+							},
+							&#34;shipDate&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;date-time&#34;
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;Order Status&#34;,
+								&#34;example&#34;: &#34;approved&#34;,
+								&#34;enum&#34;: [
+									&#34;placed&#34;,
+									&#34;approved&#34;,
+									&#34;delivered&#34;
+								]
+							},
+							&#34;complete&#34;: {
+								&#34;type&#34;: &#34;boolean&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;order&#34;
+						}
+					},
+					&#34;status&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;petId&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 198772
+							},
+							&#34;quantity&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 7
+							},
+							&#34;shipDate&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;date-time&#34;
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;Order Status&#34;,
+								&#34;example&#34;: &#34;approved&#34;,
+								&#34;enum&#34;: [
+									&#34;placed&#34;,
+									&#34;approved&#34;,
+									&#34;delivered&#34;
+								]
+							},
+							&#34;complete&#34;: {
+								&#34;type&#34;: &#34;boolean&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;order&#34;
+						}
+					},
+					&#34;complete&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;petId&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 198772
+							},
+							&#34;quantity&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 7
+							},
+							&#34;shipDate&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;format&#34;: &#34;date-time&#34;
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;Order Status&#34;,
+								&#34;example&#34;: &#34;approved&#34;,
+								&#34;enum&#34;: [
+									&#34;placed&#34;,
+									&#34;approved&#34;,
+									&#34;delivered&#34;
+								]
+							},
+							&#34;complete&#34;: {
+								&#34;type&#34;: &#34;boolean&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;order&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;order&#34;
+				}
+			},
+			&#34;Customer&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;id&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 100000
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;fehguy&#34;
+							},
+							&#34;address&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;name&#34;: &#34;addresses&#34;,
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Address&#34;
+								}
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;customer&#34;
+						}
+					},
+					&#34;username&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 100000
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;fehguy&#34;
+							},
+							&#34;address&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;name&#34;: &#34;addresses&#34;,
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Address&#34;
+								}
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;customer&#34;
+						}
+					},
+					&#34;address&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 100000
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;fehguy&#34;
+							},
+							&#34;address&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;name&#34;: &#34;addresses&#34;,
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Address&#34;
+								}
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;customer&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;customer&#34;
+				}
+			},
+			&#34;Address&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;street&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;street&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;437 Lytton&#34;
+							},
+							&#34;city&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;Palo Alto&#34;
+							},
+							&#34;state&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;CA&#34;
+							},
+							&#34;zip&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;94301&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;address&#34;
+						}
+					},
+					&#34;city&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;street&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;437 Lytton&#34;
+							},
+							&#34;city&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;Palo Alto&#34;
+							},
+							&#34;state&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;CA&#34;
+							},
+							&#34;zip&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;94301&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;address&#34;
+						}
+					},
+					&#34;state&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;street&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;437 Lytton&#34;
+							},
+							&#34;city&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;Palo Alto&#34;
+							},
+							&#34;state&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;CA&#34;
+							},
+							&#34;zip&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;94301&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;address&#34;
+						}
+					},
+					&#34;zip&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;street&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;437 Lytton&#34;
+							},
+							&#34;city&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;Palo Alto&#34;
+							},
+							&#34;state&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;CA&#34;
+							},
+							&#34;zip&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;94301&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;address&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;address&#34;
+				}
+			},
+			&#34;Category&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;id&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 1
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;Dogs&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;category&#34;
+						}
+					},
+					&#34;name&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 1
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;Dogs&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;category&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;category&#34;
+				}
+			},
+			&#34;User&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;id&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;username&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;firstName&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;lastName&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;email&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;password&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;phone&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					},
+					&#34;userStatus&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;username&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;theUser&#34;
+							},
+							&#34;firstName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;John&#34;
+							},
+							&#34;lastName&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;James&#34;
+							},
+							&#34;email&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;john@email.com&#34;
+							},
+							&#34;password&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;phone&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;12345&#34;
+							},
+							&#34;userStatus&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;description&#34;: &#34;User Status&#34;,
+								&#34;format&#34;: &#34;int32&#34;,
+								&#34;example&#34;: 1
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;user&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;user&#34;
+				}
+			},
+			&#34;Tag&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;id&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;tag&#34;
+						}
+					},
+					&#34;name&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;tag&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;tag&#34;
+				}
+			},
+			&#34;Pet&#34;: {
+				&#34;required&#34;: [
+					&#34;name&#34;,
+					&#34;photoUrls&#34;
+				],
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;id&#34;: {
+						&#34;required&#34;: [
+							&#34;name&#34;,
+							&#34;photoUrls&#34;
+						],
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;doggie&#34;
+							},
+							&#34;category&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Category&#34;
+							},
+							&#34;photoUrls&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;xml&#34;: {
+										&#34;name&#34;: &#34;photoUrl&#34;
+									}
+								}
+							},
+							&#34;tags&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Tag&#34;
+								}
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;pet status 'n th' store&#34;,
+								&#34;enum&#34;: [
+									&#34;available&#34;,
+									&#34;pending&#34;,
+									&#34;sold&#34;
+								]
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;pet&#34;
+						}
+					},
+					&#34;name&#34;: {
+						&#34;required&#34;: [
+							&#34;name&#34;,
+							&#34;photoUrls&#34;
+						],
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;doggie&#34;
+							},
+							&#34;category&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Category&#34;
+							},
+							&#34;photoUrls&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;xml&#34;: {
+										&#34;name&#34;: &#34;photoUrl&#34;
+									}
+								}
+							},
+							&#34;tags&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Tag&#34;
+								}
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;pet status 'n th' store&#34;,
+								&#34;enum&#34;: [
+									&#34;available&#34;,
+									&#34;pending&#34;,
+									&#34;sold&#34;
+								]
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;pet&#34;
+						}
+					},
+					&#34;category&#34;: {
+						&#34;required&#34;: [
+							&#34;name&#34;,
+							&#34;photoUrls&#34;
+						],
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;doggie&#34;
+							},
+							&#34;category&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Category&#34;
+							},
+							&#34;photoUrls&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;xml&#34;: {
+										&#34;name&#34;: &#34;photoUrl&#34;
+									}
+								}
+							},
+							&#34;tags&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Tag&#34;
+								}
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;pet status 'n th' store&#34;,
+								&#34;enum&#34;: [
+									&#34;available&#34;,
+									&#34;pending&#34;,
+									&#34;sold&#34;
+								]
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;pet&#34;
+						}
+					},
+					&#34;photoUrls&#34;: {
+						&#34;required&#34;: [
+							&#34;name&#34;,
+							&#34;photoUrls&#34;
+						],
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;doggie&#34;
+							},
+							&#34;category&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Category&#34;
+							},
+							&#34;photoUrls&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;xml&#34;: {
+										&#34;name&#34;: &#34;photoUrl&#34;
+									}
+								}
+							},
+							&#34;tags&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Tag&#34;
+								}
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;pet status 'n th' store&#34;,
+								&#34;enum&#34;: [
+									&#34;available&#34;,
+									&#34;pending&#34;,
+									&#34;sold&#34;
+								]
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;pet&#34;
+						}
+					},
+					&#34;tags&#34;: {
+						&#34;required&#34;: [
+							&#34;name&#34;,
+							&#34;photoUrls&#34;
+						],
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;doggie&#34;
+							},
+							&#34;category&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Category&#34;
+							},
+							&#34;photoUrls&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;xml&#34;: {
+										&#34;name&#34;: &#34;photoUrl&#34;
+									}
+								}
+							},
+							&#34;tags&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Tag&#34;
+								}
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;pet status 'n th' store&#34;,
+								&#34;enum&#34;: [
+									&#34;available&#34;,
+									&#34;pending&#34;,
+									&#34;sold&#34;
+								]
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;pet&#34;
+						}
+					},
+					&#34;status&#34;: {
+						&#34;required&#34;: [
+							&#34;name&#34;,
+							&#34;photoUrls&#34;
+						],
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;id&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int64&#34;,
+								&#34;example&#34;: 10
+							},
+							&#34;name&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;example&#34;: &#34;doggie&#34;
+							},
+							&#34;category&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/Category&#34;
+							},
+							&#34;photoUrls&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;type&#34;: &#34;string&#34;,
+									&#34;xml&#34;: {
+										&#34;name&#34;: &#34;photoUrl&#34;
+									}
+								}
+							},
+							&#34;tags&#34;: {
+								&#34;type&#34;: &#34;array&#34;,
+								&#34;xml&#34;: {
+									&#34;wrapped&#34;: true
+								},
+								&#34;items&#34;: {
+									&#34;$ref&#34;: &#34;#/components/schemas/Tag&#34;
+								}
+							},
+							&#34;status&#34;: {
+								&#34;type&#34;: &#34;string&#34;,
+								&#34;description&#34;: &#34;pet status 'n th' store&#34;,
+								&#34;enum&#34;: [
+									&#34;available&#34;,
+									&#34;pending&#34;,
+									&#34;sold&#34;
+								]
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;pet&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;pet&#34;
+				}
+			},
+			&#34;ApiResponse&#34;: {
+				&#34;type&#34;: &#34;object&#34;,
+				&#34;properties&#34;: {
+					&#34;code&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;code&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;
+							},
+							&#34;type&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							},
+							&#34;message&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;##default&#34;
+						}
+					},
+					&#34;type&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;code&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;
+							},
+							&#34;type&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							},
+							&#34;message&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;##default&#34;
+						}
+					},
+					&#34;message&#34;: {
+						&#34;type&#34;: &#34;object&#34;,
+						&#34;properties&#34;: {
+							&#34;code&#34;: {
+								&#34;type&#34;: &#34;integer&#34;,
+								&#34;format&#34;: &#34;int32&#34;
+							},
+							&#34;type&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							},
+							&#34;message&#34;: {
+								&#34;type&#34;: &#34;string&#34;
+							}
+						},
+						&#34;xml&#34;: {
+							&#34;name&#34;: &#34;##default&#34;
+						}
+					}
+				},
+				&#34;xml&#34;: {
+					&#34;name&#34;: &#34;##default&#34;
+				}
+			}
+		},
+		&#34;requestBodies&#34;: {
+			&#34;Pet&#34;: {
+				&#34;description&#34;: &#34;Pet object that needs t' be added t' th' store&#34;,
+				&#34;content&#34;: {
+					&#34;application/json&#34;: {
+						&#34;schema&#34;: {
+							&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+						}
+					},
+					&#34;application/xml&#34;: {
+						&#34;schema&#34;: {
+							&#34;$ref&#34;: &#34;#/components/schemas/Pet&#34;
+						}
+					}
+				}
+			},
+			&#34;UserArray&#34;: {
+				&#34;description&#34;: &#34;List o' user object&#34;,
+				&#34;content&#34;: {
+					&#34;application/json&#34;: {
+						&#34;schema&#34;: {
+							&#34;type&#34;: &#34;array&#34;,
+							&#34;items&#34;: {
+								&#34;$ref&#34;: &#34;#/components/schemas/User&#34;
+							}
+						}
+					}
+				}
+			}
+		},
+		&#34;securitySchemes&#34;: {
+			&#34;petstore_auth&#34;: {
+				&#34;type&#34;: &#34;oauth2&#34;,
+				&#34;flows&#34;: {
+					&#34;implicit&#34;: {
+						&#34;authorizationUrl&#34;: &#34;https://petstore3.swagger.io/oauth/authorize&#34;,
+						&#34;scopes&#34;: {
+							&#34;write:pets&#34;: &#34;modify pets 'n yer account&#34;,
+							&#34;read:pets&#34;: &#34;read yer pets&#34;
+						}
+					}
+				}
+			},
+			&#34;api_key&#34;: {
+				&#34;type&#34;: &#34;apiKey&#34;,
+				&#34;name&#34;: &#34;api_key&#34;,
+				&#34;in&#34;: &#34;header&#34;
+			}
+		}
+	}
+}"
+  ></div>
+</div>
+ 
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categorrries" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/pir/categories/howto/index.html">Howto</a></li>
+    <li><a class="term-link" href="/hugo-theme-relearn/pir/categories/reference/index.html">Reference</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739482044" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739482044" defer></script>
+    <script src="/hugo-theme-relearn/js/js-yaml.min.js?1739482044" defer></script>
+    <script>window.noZensmooth = true;</script>
+    <script src="/hugo-theme-relearn/js/swagger-ui/swagger-ui-bundle.js?1739482044" defer></script>
+    <script src="/hugo-theme-relearn/js/swagger-ui/swagger-ui-standalone-preset.js?1739482044" defer></script>
+    <script>
+      window.themeUseOpenapi = { css: "/js/swagger-ui/swagger-ui.css?1739482044", cssInProject: true, assetsBuster: "?1739482044" };
+    </script>
+    <script src="/hugo-theme-relearn/js/theme.js?1739482044" defer></script>
+  </body>
+</html>

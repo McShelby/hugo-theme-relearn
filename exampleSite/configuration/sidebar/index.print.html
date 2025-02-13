@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.143.1">
+    <meta name="generator" content="Relearn 7.3.2+1eaa287faa456be277e6b65f40b08b821ac02fff">
+    <meta name="description" content="Configure all things sidebar">
+    <meta name="author" content="Sören Weber">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta name="twitter:title" content="Sidebar :: Hugo Relearn Theme">
+    <meta name="twitter:description" content="Configure all things sidebar">
+    <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/index.html">
+    <meta property="og:site_name" content="Hugo Relearn Theme">
+    <meta property="og:title" content="Sidebar :: Hugo Relearn Theme">
+    <meta property="og:description" content="Configure all things sidebar">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="name" content="Sidebar :: Hugo Relearn Theme">
+    <meta itemprop="description" content="Configure all things sidebar">
+    <meta itemprop="wordCount" content="23">
+    <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="keywords" content="Reference">
+    <title>Sidebar :: Hugo Relearn Theme</title>
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/index.html" rel="alternate" hreflang="en">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/sidebar/index.html" rel="alternate" hreflang="art-x-pir">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/index.html" rel="canonical" type="text/html" title="Sidebar :: Hugo Relearn Theme">
+    <link href="/hugo-theme-relearn/configuration/sidebar/index.xml" rel="alternate" type="application/rss+xml" title="Sidebar :: Hugo Relearn Theme">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482040" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482040" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1739482040" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739482040" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739482040" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1739482040" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1739482040" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <script src="/hugo-theme-relearn/js/variant.js?1739482040"></script>
+    <style>
+       
+      #R-body img.bg-white {
+        background-color: white;
+      }
+
+       
+      #R-logo {
+        font-size: 1.875rem;
+        margin-bottom: -.666rem;
+        margin-top: -.666rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1.5625rem;
+          margin-bottom: -.1875rem;
+          margin-top: -.1875rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 29% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/hugo-theme-relearn/configuration/sidebar/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/hugo-theme-relearn/configuration/index.html"><span itemprop="name">Configuration</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Sidebar</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/configuration/sidebar/_index.en.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/configuration/sidebar/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/configuration/branding/generator/index.html" title="Stylesheet Generator (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/configuration/sidebar/width/index.html" title="Width (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable configuration" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="sidebar">Sidebar</h1>
+
+<div class="children children-h2 children-sort-">
+  <h2 class="children-title" id="width"><a href="/hugo-theme-relearn/configuration/sidebar/width/index.html">Width</a></h2><p>Changing the width of the sidebar</p>
+  <h2 class="children-title" id="header--footer"><a href="/hugo-theme-relearn/configuration/sidebar/headerfooter/index.html">Header &amp; Footer</a></h2><p>Configure the header and footer</p>
+  <h2 class="children-title" id="search"><a href="/hugo-theme-relearn/configuration/sidebar/search/index.html">Search</a></h2><p>Configure search and the search form</p>
+  <h2 class="children-title" id="menus"><a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html">Menus</a></h2><p>Configure all things menus</p>
+</div>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/reference/index.html">Reference</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Subsections of Sidebar</h1>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="width">Width</h1>
+
+<p>The theme adjusts the menu width based on browser size.</p>
+<p>If you want to change the chosen default width, you can add CSS variables to <code>layouts/partials/custom-header.html</code>.</p>
+<h2 id="changing-menu-width">Changing Menu Width</h2>
+<p>The menu width changes for different screen sizes:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Screen Size</th>
+          <th>Screen Width</th>
+          <th>Menu Width</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Small</td>
+          <td>&lt; 48rem</td>
+          <td>14.375rem</td>
+      </tr>
+      <tr>
+          <td>Medium</td>
+          <td>48rem - 60rem</td>
+          <td>14.375rem</td>
+      </tr>
+      <tr>
+          <td>Large</td>
+          <td>&gt;= 60rem</td>
+          <td>18.75rem</td>
+      </tr>
+  </tbody>
+</table>
+<p>You can change the menu width but not the screen width breakpoints.</p>
+<p>To adjust the menu width, use these CSS variables. Note that <code>--MENU-WIDTH-S</code> is for the mobile menu flyout on small screens.</p>
+<div class="tab-panel" data-tab-group="d9803d7ba85b611733ccc8522826a8e3">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="layoutspartialscustom-headerhtml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('d9803d7ba85b611733ccc8522826a8e3','layoutspartialscustom-headerhtml')"
+    >
+      <span class="tab-nav-text">layouts/partials/custom-header.html</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="layoutspartialscustom-headerhtml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-S</span><span class="p">:</span> <span class="mf">14.375</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-M</span><span class="p">:</span> <span class="mf">14.375</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">--MENU-WIDTH-L</span><span class="p">:</span> <span class="mf">18.75</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/howto/index.html">Howto</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="header--footer">Header &amp; Footer</h1>
+
+<h2 id="title">Title</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> With the <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#change-the-logo">default partials</a> for the logo, The site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite <code>linkTitle</code>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">linkTitle</span> <span class="p">=</span> <span class="s1">&#39;Relearn&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">linkTitle</span><span class="p">:</span><span class="w"> </span><span class="l">Relearn</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;linkTitle&#34;</span><span class="p">:</span> <span class="s2">&#34;Relearn&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="home-button-configuration">Home Button Configuration</h2>
+<p>By default, the theme displays a home button between search form and navigation menu. The Home button serves as an alternative to clicking the logo.</p>
+<p><a href="#R-image-099ccb0ffd4d568ae04e669f0cc7b75e" class="lightbox-link"><img alt="Default Home Button" class="bg-white border lazy lightbox figure-image" loading="lazy" src="/hugo-theme-relearn/configuration/sidebar/headerfooter/home_button_defaults.png?width=18.75rem" style=" height: auto; width: 18.75rem;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-099ccb0ffd4d568ae04e669f0cc7b75e"><img alt="Default Home Button" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/configuration/sidebar/headerfooter/home_button_defaults.png?width=18.75rem"></a></p>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> To hide the Home button on the left menu, set <code>disableLandingPageButton=true</code>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableLandingPageButton</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableLandingPageButton</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableLandingPageButton&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> To change its icon or text, configure the <code>landingPageName</code> for your defined languages.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">languages</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">landingPageName</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fa-fw fas fa-home&#34;&gt;&lt;/i&gt; Home&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">pir</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">pir</span><span class="p">.</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">landingPageName</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fa-fw fas fa-home&#34;&gt;&lt;/i&gt; Arrr! Homme&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">languages</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">en</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">landingPageName</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;i class=&#34;fa-fw fas fa-home&#34;&gt;&lt;/i&gt; Home</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pir</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">landingPageName</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;i class=&#34;fa-fw fas fa-home&#34;&gt;&lt;/i&gt; Arrr! Homme</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;languages&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;en&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;landingPageName&#34;</span><span class="p">:</span> <span class="s2">&#34;\u003ci class=\&#34;fa-fw fas fa-home\&#34;\u003e\u003c/i\u003e Home&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;pir&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;landingPageName&#34;</span><span class="p">:</span> <span class="s2">&#34;\u003ci class=\&#34;fa-fw fas fa-home\&#34;\u003e\u003c/i\u003e Arrr! Homme&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>If this option isn&rsquo;t set for a specific language, it will use these default values</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">landingPageName</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fa-fw fas fa-home&#34;&gt;&lt;/i&gt; Home&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">landingPageName</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;i class=&#34;fa-fw fas fa-home&#34;&gt;&lt;/i&gt; Home</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;landingPageName&#34;</span><span class="p">:</span> <span class="s2">&#34;\u003ci class=\&#34;fa-fw fas fa-home\&#34;\u003e\u003c/i\u003e Home&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="history">History</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> Turn on <code>showVisitedLinks=true</code> to see checkmarks next to visited pages in the main menu. This also adds a <code>Clear History</code> option at the bottom of the menu to remove all checkmarks. Note that checkmarks will disappear if you rebuild your site, as the page IDs may change.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">showVisitedLinks</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">showVisitedLinks</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;showVisitedLinks&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="footer">Footer</h2>
+<p>To change the menu footer, edit the <code>layouts/partials/menu-footer.html</code> file. Check out the <a href="/hugo-theme-relearn/configuration/customization/partials/index.html">Partials section</a> for more ways to customize your site.</p>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/howto/index.html">Howto</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="search">Search</h1>
+
+<h2 id="configure-search">Configure Search</h2>
+<p>The theme offers three levels of search through the menu&rsquo;s search form:</p>
+<ol>
+<li>In-page search: Highlights search terms on the current page</li>
+<li>Search popup: Opens a popup with results from other pages</li>
+<li>Dedicated search page: Accessible by clicking the magnifier glass or pressing <kbd>ENTER</kbd></li>
+</ol>
+<p>Each level requires the previous one to be enabled. If no search is configured, the search form won&rsquo;t appear.</p>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> All levels are enabled by default. Disable them in <code>hugo.toml</code>:</p>
+<ul>
+<li>In-page search: <code>disableSearch=true</code></li>
+<li>Search popup: <code>disableSearchIndex=true</code></li>
+<li>Dedicated search page: <code>disableSearchPage=true</code></li>
+</ul>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableSearch</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableSearchIndex</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableSearchPage</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableSearch</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableSearchIndex</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableSearchPage</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableSearch&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableSearchIndex&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableSearchPage&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> Default URLs can be changed with the following parameter</p>
+<ul>
+<li>Search popup: <code>searchindex.js</code> set by <code>searchIndexURL</code></li>
+<li>Dedicated search page: <code>search/index.html</code> set by <code>searchPageURL</code></li>
+</ul>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">searchIndexURL</span> <span class="p">=</span> <span class="s1">&#39;omnisearchindex.js&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">searchPageURL</span> <span class="p">=</span> <span class="s1">&#39;omnisearch&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">searchIndexURL</span><span class="p">:</span><span class="w"> </span><span class="l">omnisearchindex.js</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">searchPageURL</span><span class="p">:</span><span class="w"> </span><span class="l">omnisearch</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;searchIndexURL&#34;</span><span class="p">:</span> <span class="s2">&#34;omnisearchindex.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;searchPageURL&#34;</span><span class="p">:</span> <span class="s2">&#34;omnisearch&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    Note
+  </summary>
+  <div class="box-content">
+<p>You only need to change these if you have other own content created for those URLs. This can happen with <code>uglyURLs=true</code> in <code>hugo.toml</code> and having a content file at <code>content/search.md</code>.</p>
+<p>Check for duplicate URLs by running <code>hugo --printPathWarnings</code>.</p>
+  </div>
+</details>
+<h2 id="supported-languages">Supported Languages</h2>
+<p>The <a href="https://lunrjs.com" rel="external" target="_self">Lunr</a> search library doesn&rsquo;t support all languages of the theme. Unsupported languages will show errors in the browser console. Currently unsupported are</p>
+<ul>
+<li>Czech</li>
+<li>Indonesian</li>
+<li>Persian</li>
+<li>Polish</li>
+<li>Swahili</li>
+</ul>
+<h2 id="mixed-language-support">Mixed Language Support</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> In case your page&rsquo;s content contains text in multiple languages (for example, you are writing a Piratish documentation for your English API), you can set those languages in <code>additionalContentLanguage</code> to broaden the search.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">additionalContentLanguage</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">]</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">additionalContentLanguage</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">en</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;additionalContentLanguage&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">         <span class="s2">&#34;en&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>You can add multiple languages to this array.</p>
+
+<details open class=" box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    Note
+  </summary>
+  <div class="box-content">
+<p>Use the base language code. For example, if your page is using <code>zh-CN</code>, add <code>zh</code> to this parameter.</p>
+  </div>
+</details>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/howto/index.html">Howto</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="menus">Menus</h1>
+
+<p>The theme can build menu trees from <a href="/hugo-theme-relearn/authoring/structure/index.html">the structure of your page files</a> or from <a href="https://gohugo.io/content-management/menus/" rel="external" target="_self">Hugo&rsquo;s build in menu feature</a>.</p>
+<hr>
+<ul>
+<li>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> Configuration options in your <code>hugo.toml</code> apply to all menus.</p>
+</li>
+<li>
+<p><span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> In case of page structure menus, individual configuration is done via a page&rsquo;s front matter.</p>
+</li>
+<li>
+<p><span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span>. In case of Hugo menus, individual configuration is done via a menu entry&rsquo;s configuration.</p>
+</li>
+</ul>
+<hr>
+<h2 id="expand-state-of-submenus">Expand State of Submenus</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> You can change how submenus appear with <code>alwaysopen</code>.</p>
+<p><span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span> For Hugo menus, you have to set <code>params.alwaysopen</code> instead.</p>
+<p>If <code>alwaysopen=false</code> for any given entry, its children will not be shown in the menu as long as it is not necessary for the sake of navigation.</p>
+<p>The theme generates the expand state based on the following rules:</p>
+<ul>
+<li>all parent entries of the active page including their <a href="/hugo-theme-relearn/authoring/meta/index.html#hidden">visible</a> siblings are shown regardless of any settings</li>
+<li>immediate child entries of the active entry are shown regardless of any settings</li>
+<li>if not overridden, all other first level entries behave like they would have been given <code>alwaysopen=false</code></li>
+<li>if not overridden, all other entries of levels besides the first behave like they would have been given <code>alwaysopen=true</code></li>
+<li>all <a href="/hugo-theme-relearn/authoring/meta/index.html#hidden">visible</a> entries show their immediate child entries if <code>alwaysopen=true</code>; this proceeds recursively</li>
+<li>all remaining entries are not shown</li>
+</ul>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">alwaysopen</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">alwaysopen</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;alwaysopen&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="expander-for-submenus">Expander for Submenus</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Set <code>collapsibleMenu=true</code> to show submenus as collapsible trees with a clickable expander.</p>
+<p><span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span> For Hugo menus, you have to set <code>params.collapsibleMenu=true</code> instead.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">collapsibleMenu</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">collapsibleMenu</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;collapsibleMenu&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<details open class=" box cstyle notices warning">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-triangle"></i> 
+    Warning
+  </summary>
+  <div class="box-content">
+<p>Using this option may cause degraded build performance by slowing down your build process.</p>
+<p>This is usually the case for menus with many entries and happens for page menus as well as for Hugo menus.</p>
+<p>We&rsquo;ve seen builds taking 2 minutes with 1000+ pages, and over 30 minutes with 5000+ pages when using a page menu.</p>
+<p>This happens because each new page affects all other pages, leading to exponentially longer build times.</p>
+  </div>
+</details>
+<h2 id="ordering-menu-entries">Ordering Menu Entries</h2>
+<h3 id="by-weight">By Weight</h3>
+<p><span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> <span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span> Hugo provides a <a href="https://gohugo.io/getting-started/glossary/#weight" rel="external" target="_self">simple way</a> to handle order of your entries by setting the <code>weight</code> front matter to a number.</p>
+<p>Hugo menus can only be sorted using the weight method.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">weight</span> <span class="p">=</span> <span class="mi">5</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="m">5</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="by-other">By Other</h3>
+<p>Using the <code>weight</code> for sorting can get cumbersome if you, for example, just want to sort alphabetically. Each time you add a new page in the set of pages, you may have to renumber some or all of them to make space for the new page.</p>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Use <code>ordersectionsby</code> to sort by other aspects. See the <a href="/hugo-theme-relearn/shortcodes/children/index.html#parameter">children shortcode</a> for a complete list.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">ordersectionsby</span> <span class="p">=</span> <span class="s1">&#39;linktitle&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">ordersectionsby</span><span class="p">:</span><span class="w"> </span><span class="l">linktitle</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;ordersectionsby&#34;</span><span class="p">:</span> <span class="s2">&#34;linktitle&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="title-for-menu-entries">Title for Menu Entries</h2>
+<p><span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> A page&rsquo;s <code>linkTitle</code> or <code>title</code> front matter will be used for naming a menu entry of a page menu, in that order if both are defined. Using <code>linkTitle</code> helps to shorten the text for menu entries if the page’s title is too descriptive.</p>
+<p><span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span> A menu entry&rsquo;s <code>title</code> or <code>name</code> will be used for naming a menu entry of a Hugo menu, in that order if both are defined.</p>
+<p>For example for a page named <code>install/linux.md</code></p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">linkTitle</span> <span class="p">=</span> <span class="s1">&#39;Linux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;Install on Linux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">linkTitle</span><span class="p">:</span><span class="w"> </span><span class="l">Linux</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Install on Linux</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;linkTitle&#34;</span><span class="p">:</span> <span class="s2">&#34;Linux&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Install on Linux&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="icons-for-menu-entries">Icons for Menu Entries</h2>
+<p><span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> For page menus, add a <code>menuPre</code> to insert any HTML code before the menu label. You can also set <code>menuPost</code> to insert HTML code after the menu label.</p>
+<p><span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span> For Hugo menus, add a <code>pre</code> to insert any HTML code before the menu label. You can also set <code>post</code> to insert HTML code after the menu label.</p>
+<p>If <code>pageRef</code> is set for the menu entry and no <code>pre</code> or <code>post</code> was configured, <code>menuPre</code> and <code>menuPost</code> of the referenced page will be taken.</p>
+<p>The example below uses the GitHub icon for an entry of a page menu.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">menuPre</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fab fa-github&#34;&gt;&lt;/i&gt; &#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;GitHub Repo&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">menuPre</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&lt;i class=&#34;fab fa-github&#34;&gt;&lt;/i&gt; &#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">GitHub Repo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;menuPre&#34;</span><span class="p">:</span> <span class="s2">&#34;\u003ci class=\&#34;fab fa-github\&#34;\u003e\u003c/i\u003e &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;GitHub Repo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="disable-menu-entries">Disable Menu Entries</h2>
+<p>You may want to structure your entries in a hierarchical way but don&rsquo;t want to generate clickable parent entries? The theme got you covered.</p>
+<h3 id="for-page-menus">For Page Menus</h3>
+<p>To stay with the <a href="/hugo-theme-relearn/authoring/structure/index.html">initial example</a>: Suppose you want <code>first-chapter/first-page</code> appear in the sidebar but don&rsquo;t want to generate a page for it. So the entry in the sidebar should not be clickable but should be expandable.</p>
+<p>For this, open <code>content/first-chapter/first-page/_index.md</code> and add the following front matter</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s1">&#39;never&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">_build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l">never</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;_build&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;render&#34;</span><span class="p">:</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="for-hugo-menus">For Hugo Menus</h3>
+<p>Just don&rsquo;t give your parent menu entry configuration a <code>url</code> or <code>pageRef</code>. See the <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#title-for-menus">next section</a> for a special case.</p>
+<p>If you want to learn how to configure different Hugo menus for each language, <a href="https://gohugo.io/content-management/multilingual/#menus" rel="external" target="_self">see the official docs</a>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;Parent 1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;Child 1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">parent</span> <span class="p">=</span> <span class="s1">&#39;Parent 1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;https://example.com/1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;Parent 2&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;Child 2&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">parent</span> <span class="p">=</span> <span class="s1">&#39;Parent 2&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;https://example.com/2&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">menu</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">addendum</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Parent 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Child 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l">Parent 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">https://example.com/1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Parent 2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Child 2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l">Parent 2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">https://example.com/2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;menu&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;addendum&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Parent 1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">         <span class="p">},</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Child 1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent&#34;</span><span class="p">:</span> <span class="s2">&#34;Parent 1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com/1&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">},</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Parent 2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">         <span class="p">},</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Child 2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent&#34;</span><span class="p">:</span> <span class="s2">&#34;Parent 2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com/2&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="title-for-menus">Title for Menus</h2>
+<p>Each menu may have an optional title above its tree. This must be activated for each <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#parameter">menu by setting <code>disableMenuTitle=false</code> for each sidebar menu configuration</a>.</p>
+<p><span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> For page menus, set the <code>menuTitle</code> front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no <code>menuTitle</code> was set, the title will be taken from your translation files by the key <code>&lt;identifier&gt;-menuTitle</code>, where <code>&lt;identifier&gt;</code> is the identifier of your sidebar menu configuration.</p>
+<p><span class="badge cstyle default badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-bars"></i></span><span class="badge-content" style="background-color: blueviolet;">Menu</span></span> For Hugo menus, the title will be taken from your translation files by the key <code>&lt;identifier&gt;-menuTitle</code>, where <code>&lt;identifier&gt;</code> is the identifier of your sidebar menu configuration.</p>
+<p>If you don&rsquo;t want to fiddle around with your translation files, you also have the possibility to let the title be taken from the menu definition. For that, define a nested menu that only has one top-level entry without <code>url</code> or <code>pageRef</code>.</p>
+<p>In this case, the <code>title</code> or <code>name</code> is taken for the menu heading.</p>
+<p>If you want to learn how to configure different Hugo menus for each language, <a href="https://gohugo.io/content-management/multilingual/#menus" rel="external" target="_self">see the official docs</a>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;A Menu Title for the Whole Menu&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;A Menu Entry Title for Child 1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">parent</span> <span class="p">=</span> <span class="s1">&#39;Parent&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;https://example.com/1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">addendum</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;A Menu Entry Title for Child 2&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">parent</span> <span class="p">=</span> <span class="s1">&#39;Parent&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s1">&#39;https://example.com/2&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">menu</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">addendum</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">A Menu Title for the Whole Menu</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">A Menu Entry Title for Child 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l">Parent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">https://example.com/1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">A Menu Entry Title for Child 2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l">Parent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">https://example.com/2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;menu&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;addendum&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;A Menu Title for the Whole Menu&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">},</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;A Menu Entry Title for Child 1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent&#34;</span><span class="p">:</span> <span class="s2">&#34;Parent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com/1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">         <span class="p">},</span>
+</span></span><span class="line"><span class="cl">         <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;A Menu Entry Title for Child 2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent&#34;</span><span class="p">:</span> <span class="s2">&#34;Parent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com/2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;weight&#34;</span><span class="p">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="title-for-the-predefined-shortcut-menu">Title for the Predefined Shortcut Menu</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> By default, the predefined shortcut menu has a the title <em>More</em> (in the English translation).</p>
+<p>You can disable this title with <code>disableShortcutsTitle=true</code>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableShortcutsTitle</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableShortcutsTitle</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableShortcutsTitle&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>To change the title, override your translation file.</p>
+<div class="tab-panel" data-tab-group="6525920cbc067fb8c163e883b75ba8bc">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="i18nentoml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('6525920cbc067fb8c163e883b75ba8bc','i18nentoml')"
+    >
+      <span class="tab-nav-text">i18n/en.toml</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="i18nentoml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">shortcuts-menuTitle</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">other</span> <span class="p">=</span> <span class="s2">&#34;Other Great Stuff&#34;</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div><h2 id="defining-sidebar-menus">Defining Sidebar Menus</h2>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Menus are defined using the <code>sidebarmenus</code> option.</p>
+<p>You can define as many menus, as you like. If you don&rsquo;t overwrite this option, the theme defaults to</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">sidebarmenus</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableTitle</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">identifier</span> <span class="p">=</span> <span class="s1">&#39;home&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">main</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">pageRef</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">type</span> <span class="p">=</span> <span class="s1">&#39;page&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">sidebarmenus</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableTitle</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">identifier</span> <span class="p">=</span> <span class="s1">&#39;shortcuts&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">main</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">type</span> <span class="p">=</span> <span class="s1">&#39;menu&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">sidebarmenus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">disableTitle</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">home</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pageRef</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">page</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">disableTitle</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">shortcuts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">main</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">menu</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;sidebarmenus&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;disableTitle&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;home&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;pageRef&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;page&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;disableTitle&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;shortcuts&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;menu&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="parameter">Parameter</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Default</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>type</td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>The type of menu.<br><br>- <code>page</code> for a page menu<br>- <code>menu</code> for a Hugo menu</td>
+      </tr>
+      <tr>
+          <td>identifier</td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>A unique identifier for this entry<br><br>- for <code>type=page</code> an arbitrary name<br>- for <code>page=menu</code> the identifier of the menu definition in your <code>hugo.toml</code></td>
+      </tr>
+      <tr>
+          <td>main</td>
+          <td>see notes</td>
+          <td>Whether to add additional spacing and larger text to the menu<br><br>- for <code>type=page</code> defaults to <code>true</code><br>- for <code>page=menu</code> defaults to <code>false</code></td>
+      </tr>
+      <tr>
+          <td>disableTitle</td>
+          <td>see notes</td>
+          <td>Whether to print a title above the menu<br><br>- for <code>type=page</code> defaults to <code>true</code><br>- for <code>page=menu</code> defaults to <code>false</code></td>
+      </tr>
+      <tr>
+          <td>pageRef</td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>Only for <code>type=page</code>, the page path to start the menu tree. If not set, defaults to the home page.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="redefining-sidebar-menus-for-certain-pages">Redefining Sidebar Menus for Certain Pages</h2>
+<p>Suppose you are building a site that contains a topmost <code>blog</code> and <code>documentation</code> section.</p>
+<p>When the user is on one of the blog pages he should only see a page menu containing all blog pages, while on a documentation page he should only see a page menu containing all doc pages.</p>
+<p>For both sections, the default <code>shortcuts</code> Hugo menu should be displayed as if <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#defining-sidebar-menus">defaults menus</a> were used.</p>
+<p>Directory structure:</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">content
+</span></span><span class="line"><span class="cl">├── blog
+</span></span><span class="line"><span class="cl">│   ├── post-1.md
+</span></span><span class="line"><span class="cl">│   ├── post-2.md
+</span></span><span class="line"><span class="cl">│   ├── post-3.md
+</span></span><span class="line"><span class="cl">│   └── _index.md
+</span></span><span class="line"><span class="cl">├── docs
+</span></span><span class="line"><span class="cl">│   ├── topic-1.md
+</span></span><span class="line"><span class="cl">│   ├── topic-2.md
+</span></span><span class="line"><span class="cl">│   ├── topic-3.md
+</span></span><span class="line"><span class="cl">│   └── _index.md
+</span></span><span class="line"><span class="cl">└── _index.md</span></span></code></pre></div>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Using <a href="https://gohugo.io/content-management/front-matter/#cascade" rel="external" target="_self">Hugo&rsquo;s cascade feature</a>, we can redefine the menus once in <code>blog/_index.md</code> and <code>docs/_index.md</code> setting <code>sidebarmenus</code> so they will be used in all children pages.</p>
+<p>Setting the <code>sidebarmenus</code> Front Matter will overwrite all default menus. If you want to display the <code>shortcuts</code> Hugo menu as well like in this example, you have to declare it with the Front Matter as given in the <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#defining-sidebar-menus">default options</a>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">blog/_index.md</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;Blog&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">cascade</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">cascade</span><span class="p">.</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">cascade</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">sidebarmenus</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s1">&#39;blog&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pageRef</span> <span class="p">=</span> <span class="s1">&#39;/blog&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">type</span> <span class="p">=</span> <span class="s1">&#39;page&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">cascade</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">sidebarmenus</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s1">&#39;shortcuts&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">type</span> <span class="p">=</span> <span class="s1">&#39;menu&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cascade</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">sidebarmenus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">blog</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">pageRef</span><span class="p">:</span><span class="w"> </span><span class="l">/blog</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">page</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">shortcuts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">menu</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Blog</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;cascade&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sidebarmenus&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">               <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;blog&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;pageRef&#34;</span><span class="p">:</span> <span class="s2">&#34;/blog&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;page&#34;</span>
+</span></span><span class="line"><span class="cl">               <span class="p">},</span>
+</span></span><span class="line"><span class="cl">               <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;shortcuts&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;menu&#34;</span>
+</span></span><span class="line"><span class="cl">               <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">],</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Blog&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">docs/_index.md</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;Documentation&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">cascade</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">cascade</span><span class="p">.</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">cascade</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">sidebarmenus</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s1">&#39;docs&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pageRef</span> <span class="p">=</span> <span class="s1">&#39;/docs&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">type</span> <span class="p">=</span> <span class="s1">&#39;page&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">cascade</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">sidebarmenus</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s1">&#39;shortcuts&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">type</span> <span class="p">=</span> <span class="s1">&#39;menu&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cascade</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">sidebarmenus</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">docs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">pageRef</span><span class="p">:</span><span class="w"> </span><span class="l">/docs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">page</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">shortcuts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">menu</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Documentation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;cascade&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sidebarmenus&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">               <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;docs&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;pageRef&#34;</span><span class="p">:</span> <span class="s2">&#34;/docs&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;page&#34;</span>
+</span></span><span class="line"><span class="cl">               <span class="p">},</span>
+</span></span><span class="line"><span class="cl">               <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;shortcuts&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;menu&#34;</span>
+</span></span><span class="line"><span class="cl">               <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">         <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">],</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Documentation&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="displaying-arbitrary-links-in-a-page-menu">Displaying Arbitrary Links in a Page Menu</h2>
+<p>You may have the need to add arbitrary links at some point in your menu that are initially not backed by a page. These are called crosslinks.</p>
+<p>Assume the following structure</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">content
+</span></span><span class="line"><span class="cl">├── reference
+</span></span><span class="line"><span class="cl">│   ├── ref-a.md
+</span></span><span class="line"><span class="cl">│   ├── ref-b.md
+</span></span><span class="line"><span class="cl">│   ├── ref-c.md
+</span></span><span class="line"><span class="cl">│   └── _index.md
+</span></span><span class="line"><span class="cl">├── topic-blue.md
+</span></span><span class="line"><span class="cl">├── topic-red.md
+</span></span><span class="line"><span class="cl">├── topic-yellow.md
+</span></span><span class="line"><span class="cl">└── _index.md</span></span></code></pre></div>
+<p>You now want to include <code>ref-b</code> as separate <code>topic-green</code> entry after <code>topic-blue</code> in your menu.</p>
+<p>For that create a new page with the following front matter</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">content/topic-green.md</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">menuPageRef</span> <span class="p">=</span> <span class="s1">&#39;/reference/ref-b&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;Topic Green&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">menuPageRef</span><span class="p">:</span><span class="w"> </span><span class="l">/reference/ref-b</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Topic Green</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;menuPageRef&#34;</span><span class="p">:</span> <span class="s2">&#34;/reference/ref-b&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Topic Green&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p><span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> If you want to link to an external page instead, you can use <code>menuUrl</code> instead of <code>menuPageRef</code>.</p>
+<p>Pages defining a crosslink are never part of the arrow navigation and are skipped instead.</p>
+<p>So with the above example and alphabetical sorting of the menu entries, pressing <span class="btn cstyle transparent"><span><i class="fa-fw fas fa-chevron-right"></i></span></span> on <code>topic-blue</code> will skip the newly added <code>topic-green</code> and instead will load <code>topic-red</code>.</p>
+<p>Having sub pages below a page that has <code>menuUrl</code> or <code>menuPageRef</code> set in their front matter is undefined.</p>
+<h2 id="displaying-pages-exclusively-in-a-hugo-menu">Displaying Pages Exclusively in a Hugo Menu</h2>
+<p>Sometimes you want to hide pages from the page menu but instead want to show them in a Hugo menu. For that you have two choices</p>
+<ol>
+<li>
+<p>Create a <a href="https://gohugo.io/content-management/page-bundles/#headless-bundle" rel="external" target="_self">headless branch bundle</a>, <code>_index.md</code> in its own folder with the below front matter. The branch bundle will <strong>not</strong> be contained in the sitemap.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">content/showcase/_index.en.md</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;Showcase&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s1">&#39;never&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s1">&#39;always&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">_build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">list</span><span class="p">:</span><span class="w"> </span><span class="l">never</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">publishResources</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Showcase</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;_build&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;list&#34;</span><span class="p">:</span> <span class="s2">&#34;never&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;publishResources&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;render&#34;</span><span class="p">:</span> <span class="s2">&#34;always&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Showcase&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+<li>
+<p>Or, put a child page <em>inside</em> a headless branch bundle with the following front matter in the bundle. This causes the child but not the branch bundle to be contained in the sitemap.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">content/more/_index.en.md</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">list</span> <span class="p">=</span> <span class="s1">&#39;never&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publishResources</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span> <span class="p">=</span> <span class="s1">&#39;never&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">_build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">list</span><span class="p">:</span><span class="w"> </span><span class="l">never</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">publishResources</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">render</span><span class="p">:</span><span class="w"> </span><span class="l">never</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;_build&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;list&#34;</span><span class="p">:</span> <span class="s2">&#34;never&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;publishResources&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;render&#34;</span><span class="p">:</span> <span class="s2">&#34;never&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>The child page can be any type of content.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">content/more/credits_index.en.md</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s1">&#39;Credits&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Credits</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Credits&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+</ol>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/howto/index.html">Howto</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739482040" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739482040" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1739482040" defer></script>
+  </body>
+</html>

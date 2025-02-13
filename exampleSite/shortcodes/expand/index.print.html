@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.143.1">
+    <meta name="generator" content="Relearn 7.3.2+1eaa287faa456be277e6b65f40b08b821ac02fff">
+    <meta name="description" content="Expandable/collapsible sections of text">
+    <meta name="author" content="Sören Weber">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta name="twitter:title" content="Expand :: Hugo Relearn Theme">
+    <meta name="twitter:description" content="Expandable/collapsible sections of text">
+    <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/expand/index.html">
+    <meta property="og:site_name" content="Hugo Relearn Theme">
+    <meta property="og:title" content="Expand :: Hugo Relearn Theme">
+    <meta property="og:description" content="Expandable/collapsible sections of text">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Shortcodes">
+    <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="name" content="Expand :: Hugo Relearn Theme">
+    <meta itemprop="description" content="Expandable/collapsible sections of text">
+    <meta itemprop="wordCount" content="329">
+    <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="keywords" content="Howto,Reference">
+    <title>Expand :: Hugo Relearn Theme</title>
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/expand/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/expand/index.html" rel="alternate" hreflang="en">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/expand/index.html" rel="alternate" hreflang="art-x-pir">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/expand/index.html" rel="canonical" type="text/html" title="Expand :: Hugo Relearn Theme">
+    <link href="/hugo-theme-relearn/shortcodes/expand/index.xml" rel="alternate" type="application/rss+xml" title="Expand :: Hugo Relearn Theme">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482040" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482040" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1739482040" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739482040" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739482040" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1739482040" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1739482040" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+    <script src="/hugo-theme-relearn/js/variant.js?1739482040"></script>
+    <style>
+       
+      #R-body img.bg-white {
+        background-color: white;
+      }
+
+       
+      #R-logo {
+        font-size: 1.875rem;
+        margin-bottom: -.666rem;
+        margin-top: -.666rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1.5625rem;
+          margin-bottom: -.1875rem;
+          margin-top: -.1875rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 29% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/hugo-theme-relearn/shortcodes/expand/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#parameter">Parameter</a></li>
+      </ul>
+    </li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#all-defaults">All Defaults</a></li>
+        <li><a href="#initially-expanded">Initially Expanded</a></li>
+        <li><a href="#arbitrary-text">Arbitrary Text</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/hugo-theme-relearn/shortcodes/index.html"><span itemprop="name">Shortcodes</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Expand</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/shortcodes/expand.en.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/shortcodes/expand/index.print.html" title="Print whole chapter (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/shortcodes/children/children-3/test3/index.html" title="page 3-1 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/shortcodes/highlight/index.html" title="Highlight (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable shortcodes" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="expand">Expand</h1>
+
+<p>The <code>expand</code> shortcode displays an expandable/collapsible section of text.</p>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Expand me&hellip;
+  </summary>
+  <div class="box-content">
+<p>Thank you!</p>
+<p>That&rsquo;s some text with a footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>That&rsquo;s some more text with a footnote.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>And that&rsquo;s the footnote.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Anything of interest goes here.</p>
+<p>Blue light glows blue.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  </div>
+</details>
+<h2 id="usage">Usage</h2>
+<div class="tab-panel" data-tab-group="shortcode-parameter">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="callout"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('shortcode-parameter','callout')"
+    >
+      <span class="tab-nav-text">callout</span>
+    </button>
+    <button
+      data-tab-item="shortcode"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','shortcode')"
+    >
+      <span class="tab-nav-text">shortcode</span>
+    </button>
+    <button
+      data-tab-item="shortcode-positional"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','shortcode-positional')"
+    >
+      <span class="tab-nav-text">shortcode (positional)</span>
+    </button>
+    <button
+      data-tab-item="partial"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','partial')"
+    >
+      <span class="tab-nav-text">partial</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="callout"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">[!transparent]- Expand me...
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span>&gt; Thank you!</span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="shortcode"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">expand</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;Expand me...&#34;</span> <span class="o">%</span><span class="p">}}</span><span class="nx">Thank</span> <span class="nx">you</span><span class="p">!{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">expand</span> <span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="shortcode-positional"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">expand</span> <span class="s">&#34;Expand me...&#34;</span> <span class="o">%</span><span class="p">}}</span><span class="nx">Thank</span> <span class="nx">you</span><span class="p">!{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">expand</span> <span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="partial"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/expand.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;page&#34;</span>  <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;title&#34;</span> <span class="s">&#34;Expand me...&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;content&#34;</span> <span class="s">&#34;Thank you!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p><a href="https://gohugo.io/render-hooks/blockquotes/#extended-syntax" rel="external" target="_self">Extended callout syntax</a> is available in other Markdown parsers like Obsidian and therefore is the recommend syntax for generating portable Markdown.</p>
+<p>The <a href="/hugo-theme-relearn/shortcodes/notice/index.html"><code>notice</code> shortcode</a> is also capable of displaying expandable/collapsible sections of text but with additional parameter for color and additional icons.</p>
+<p>The theme supports Hugo’s built-in <a href="https://gohugo.io/content-management/shortcodes/#details" rel="external" target="_self"><code>details</code> shortcode</a> by mapping the parameter to the theme&rsquo;s <code>expand</code> shortcode.</p>
+<h3 id="parameter">Parameter</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Default</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>title</strong></td>
+          <td>1</td>
+          <td><code>&quot;Expand me...&quot;</code></td>
+          <td>Arbitrary text to appear next to the expand/collapse icon.</td>
+      </tr>
+      <tr>
+          <td><strong>expanded</strong></td>
+          <td>2</td>
+          <td><code>false</code></td>
+          <td>How the content is displayed.<br><br>- <code>true</code>: the content is initially shown<br>- <code>false</code>: the content is initially hidden</td>
+      </tr>
+      <tr>
+          <td><em><strong>&lt;content&gt;</strong></em></td>
+          <td></td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>Arbitrary text to be displayed on expand.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<h3 id="all-defaults">All Defaults</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">expand</span> <span class="o">%</span><span class="p">}}</span><span class="nx">Yes</span><span class="p">,</span> <span class="nx">you</span> <span class="nx">did</span> <span class="nx">it</span><span class="p">!{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">expand</span> <span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Expand me&hellip;
+  </summary>
+  <div class="box-content">
+<p>
+Yes, you did it!
+  </div>
+</details>
+<h3 id="initially-expanded">Initially Expanded</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">expand</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;Expand me...&#34;</span> <span class="nx">expanded</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="o">%</span><span class="p">}}</span><span class="nx">No</span> <span class="nx">need</span> <span class="nx">to</span> <span class="nx">press</span> <span class="nx">you</span><span class="p">!{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">expand</span> <span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
+
+<details open class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Expand me&hellip;
+  </summary>
+  <div class="box-content">
+<p>
+No need to press you!
+  </div>
+</details>
+<h3 id="arbitrary-text">Arbitrary Text</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="nx">expand</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;Show me almost **endless** possibilities&#34;</span> <span class="o">%</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">You</span> <span class="nx">can</span> <span class="nx">add</span> <span class="nx">standard</span> <span class="nx">markdown</span> <span class="nx">syntax</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">multiple</span> <span class="nx">paragraphs</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">bullet</span> <span class="nx">point</span> <span class="nx">lists</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">_emphasized_</span><span class="p">,</span> <span class="o">**</span><span class="nx">bold</span><span class="o">**</span> <span class="nx">and</span> <span class="nx">even</span> <span class="o">**</span><span class="nx">_bold</span> <span class="nx">emphasized_</span><span class="o">**</span> <span class="nx">text</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="p">[</span><span class="nx">links</span><span class="p">](</span><span class="nx">https</span><span class="p">:</span><span class="c1">//example.com)</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="nx">etc</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s">```plaintext
+</span></span></span><span class="line"><span class="cl"><span class="s">...and even source code
+</span></span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nx">the</span> <span class="nx">possibilities</span> <span class="nx">are</span> <span class="nf">endless</span> <span class="p">(</span><span class="nx">almost</span> <span class="o">-</span> <span class="nx">including</span> <span class="nx">other</span> <span class="nx">shortcodes</span> <span class="nx">may</span> <span class="nx">or</span> <span class="nx">may</span> <span class="nx">not</span> <span class="nx">work</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">%</span> <span class="o">/</span><span class="nx">expand</span> <span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
+
+<details class=" box cstyle notices transparent expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+    Show me almost <strong>endless</strong> possibilities
+  </summary>
+  <div class="box-content">
+<p>You can add standard markdown syntax:</p>
+<ul>
+<li>multiple paragraphs</li>
+<li>bullet point lists</li>
+<li><em>emphasized</em>, <strong>bold</strong> and even <strong><em>bold emphasized</em></strong> text</li>
+<li><a href="https://example.com" rel="external" target="_self">links</a></li>
+<li>etc.</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">...and even source code</span></span></code></pre></div>
+<blockquote>
+<p>the possibilities are endless (almost - including other shortcodes may or may not work)</p></blockquote>
+  </div>
+</details>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/howto/index.html">Howto</a></li>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/reference/index.html">Reference</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739482040" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739482040" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1739482040" defer></script>
+  </body>
+</html>

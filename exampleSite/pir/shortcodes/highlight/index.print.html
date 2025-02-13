@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="art-x-pir" dir="rtl" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.143.1">
+    <meta name="generator" content="Relearn 7.3.2+1eaa287faa456be277e6b65f40b08b821ac02fff">
+    <meta name="description" content="Render code with a syntax highlighter">
+    <meta name="author" content="Sören Weber">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta name="twitter:title" content="Highlight :: Cap&#39;n Hugo Relearrrn Theme">
+    <meta name="twitter:description" content="Render code with a syntax highlighter">
+    <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/highlight/index.html">
+    <meta property="og:site_name" content="Cap&#39;n Hugo Relearrrn Theme">
+    <meta property="og:title" content="Highlight :: Cap&#39;n Hugo Relearrrn Theme">
+    <meta property="og:description" content="Render code with a syntax highlighter">
+    <meta property="og:locale" content="art_x_pir">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Shorrrtcodes">
+    <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="name" content="Highlight :: Cap&#39;n Hugo Relearrrn Theme">
+    <meta itemprop="description" content="Render code with a syntax highlighter">
+    <meta itemprop="wordCount" content="850">
+    <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="keywords" content="Howto,Reference,HighlightWrap,DisableHoverBlockCopyToClipBoard,DisableInlineCopyToClipBoard,HighlightWrap">
+    <title>Highlight :: Cap&#39;n Hugo Relearrrn Theme</title>
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/highlight/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/highlight/index.html" rel="alternate" hreflang="en">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/highlight/index.html" rel="alternate" hreflang="art-x-pir">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/highlight/index.html" rel="canonical" type="text/html" title="Highlight :: Cap&#39;n Hugo Relearrrn Theme">
+    <link href="/hugo-theme-relearn/pir/shortcodes/highlight/index.xml" rel="alternate" type="application/rss+xml" title="Highlight :: Cap&#39;n Hugo Relearrrn Theme">
+    <link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482044" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/fontawesome-all.min.css?1739482044" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/auto-complete.css?1739482044" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/css/auto-complete.css?1739482044" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar.min.css?1739482044" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1739482044" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1739482044" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..\/..';
+      window.relearn.relBaseUri='..\/..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy t' clipboard`;
+      window.T_Copied_to_clipboard = `Copied t' clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link t' clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link t' clipboard!`;
+      window.T_Reset_view = `Rrreset view`;
+      window.T_View_reset = `View rrreset!`;
+      window.T_No_results_found = `No rrresults found fer "{0}"`;
+      window.T_N_results_found = `{1} rrresults found fer "{0}"`;
+    </script>
+    <script src="/hugo-theme-relearn/js/variant.js?1739482044"></script>
+    <style>
+       
+      #R-body img.bg-white {
+        background-color: white;
+      }
+
+       
+      #R-logo {
+        font-size: 1.875rem;
+        margin-bottom: -.666rem;
+        margin-top: -.666rem;
+        max-width: 100%;
+        width: 14.125rem;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo {
+          font-size: 1.5625rem;
+          margin-bottom: -.1875rem;
+          margin-top: -.1875rem;
+        }
+      }
+      #R-logo svg {
+        display: inline-block;
+        opacity: .945;
+        vertical-align: middle;
+        width: 29% !important;
+      }
+      @media only all and (max-width: 59.999rem) {
+        #R-logo svg {
+          width: 24.5% !important;
+        }
+      }
+      #R-logo svg * {
+        opacity: .945;
+      }
+      #R-logo .logo-title{
+        display: inline-block;
+        text-align: left;
+        text-wrap: wrap;
+        overflow-wrap: break-word;
+        vertical-align: middle;
+        width: 4.5em;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print disableInlineCopyToClipboard" data-url="/hugo-theme-relearn/pir/shortcodes/highlight/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table o&#39; Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#parameter">Parameter</a></li>
+      </ul>
+    </li>
+    <li><a href="#settings">Sett'ns</a>
+      <ul>
+        <li><a href="#setting-default-values-for-hugos-options">Sett'n Default Values fer Hugo&rsquo;s Opt'ns</a></li>
+        <li><a href="#setting-wrap-of-long-lines">Sett'n Wrap o' Long Lines</a></li>
+        <li><a href="#copy-to-clipboard-for-inline-code">Copy t' Clipboard fer Inline Code</a></li>
+        <li><a href="#copy-to-clipboard-for-block-code">Copy t' Clipboard fer Block Code</a></li>
+        <li><a href="#setting-a-specific-color-scheme">Sett'n a Specific Color Scheme</a></li>
+      </ul>
+    </li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#line-numbers-with-starting-offset">Line Numbers wit' Start'n Offset</a></li>
+        <li><a href="#markdown-codefence-with-title">Marrrkdown Codefence wit' Title</a></li>
+        <li><a href="#with-wrap">Wit' Wrap</a></li>
+        <li><a href="#without-wrap">Without Wrap</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/hugo-theme-relearn/pir/shortcodes/index.html"><span itemprop="name">Shorrrtcodes</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Highlight</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/shortcodes/highlight.pir.md" target="_self" title="Edit (CTRL&#43;ALT&#43;w)"><i class="fa-fw fas fa-pen"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-print" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/pir/shortcodes/highlight/index.print.html" title="Prrrint whole chapterrr (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/pir/shortcodes/expand/index.html" title="Expand (🡒)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/hugo-theme-relearn/pir/shortcodes/icon/index.html" title="Icon (🡐)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Morrre"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable shortcodes" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="highlight">Highlight</h1>
+
+<p>Th' <code>highlight</code> shortcode renders yer code wit' a rules highlighter.</p>
+<div class="tab-panel" data-tab-group="377f857aeafbe771b375252651a285d7">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="python"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('377f857aeafbe771b375252651a285d7','python')"
+    >
+      <span class="tab-nav-text">python</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="python"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code" lineNos="true"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="ln">1</span><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 id="usage">Usage</h2>
+<div class="tab-panel" data-tab-group="shortcode-parameter">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="codeodefence"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('shortcode-parameter','codeodefence')"
+    >
+      <span class="tab-nav-text">codeodefence</span>
+    </button>
+    <button
+      data-tab-item="shortcode"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','shortcode')"
+    >
+      <span class="tab-nav-text">shortcode</span>
+    </button>
+    <button
+      data-tab-item="shortcode-positional"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','shortcode-positional')"
+    >
+      <span class="tab-nav-text">shortcode (positional)</span>
+    </button>
+    <button
+      data-tab-item="partial"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','partial')"
+    >
+      <span class="tab-nav-text">partial</span>
+    </button>
+    <button
+      data-tab-item="partial-compat"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('shortcode-parameter','partial-compat')"
+    >
+      <span class="tab-nav-text">partial (compat)</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="codeodefence"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">``<span class="sb">`py {lineNos=&#34;true&#34; wrap=&#34;true&#34; title=&#34;python&#34;}
+</span></span></span><span class="line"><span class="cl"><span class="sb">print(&#34;Hello World!&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span>``</span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="shortcode"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">highlight</span> <span class="nx">lineNos</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="kd">type</span><span class="p">=</span><span class="s">&#34;py&#34;</span> <span class="nx">wrap</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="nx">title</span><span class="p">=</span><span class="s">&#34;python&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">highlight</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="shortcode-positional"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">highlight</span> <span class="nx">py</span> <span class="s">&#34;lineNos=true,wrap=true,title=python&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">highlight</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="partial"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/highlight.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;page&#34;</span>    <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;content&#34;</span> <span class="s">&#34;print(\&#34;Hello World!\&#34;)&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;lineNos&#34;</span> <span class="s">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;type&#34;</span>    <span class="s">&#34;py&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;wrap&#34;</span>    <span class="s">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;title&#34;</span>   <span class="s">&#34;python&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="partial-compat"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">partial</span> <span class="s">&#34;shortcodes/highlight.html&#34;</span> <span class="p">(</span><span class="nx">dict</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;page&#34;</span>    <span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;content&#34;</span> <span class="s">&#34;print(\&#34;Hello World!\&#34;)&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;options&#34;</span> <span class="s">&#34;lineNos=true,wrap=true,title=python&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;type&#34;</span>    <span class="s">&#34;py&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>This shortcode be fully compat'ble wit' Hugo&rsquo;s <a href="https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode" rel="external" target="_self"><code>highlight</code> shortcode</a> but <strong>offers some extensions</strong>.</p>
+<p>It be called interchangeably 'n th' same way as Hugo&rsquo;s own shortcode by provid'n positional parameter or simply by us'n Marrrkdown codefences.</p>
+<p>Ye be free t' also call this shortcode from yer own partials. In this case it resembles Hugo&rsquo;s <a href="https://gohugo.io/functions/highlight/" rel="external" target="_self"><code>highlight</code> funct'n</a> rules if ye call it us'n compatibility rules.</p>
+<p>Codefence rules be widely avail'ble 'n other Marrrkdown parsers like GitHub an' therefore be th' recommend rules fer generat'n port'ble Marrrkdown.</p>
+<p>Th' <a href="/hugo-theme-relearn/pir/shortcodes/tab/index.html"><code>tab</code> shortcode</a> be also cap'ble o' display'n code but wit' limited opt'ns.</p>
+<h3 id="parameter">Parameter</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Posit'n</th>
+          <th>Default</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>type</strong></td>
+          <td>1</td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>Th' language o' th' code t' highlight. Choose from one o' th' <a href="https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages" rel="external" target="_self">supported languages</a>. Case-insensitive.</td>
+      </tr>
+      <tr>
+          <td><strong>title</strong></td>
+          <td></td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td><strong>Extension</strong>. Arbitrary title fer code. This displays th' code like a <a href="/hugo-theme-relearn/pir/shortcodes/tab/index.html">single tab</a> if <code>hl_inline=false</code> (which be Hugo&rsquo;s default).</td>
+      </tr>
+      <tr>
+          <td><strong>wrap</strong></td>
+          <td></td>
+          <td>see notes</td>
+          <td><strong>Extension</strong>. When <code>true</code> th' rrrambl'n may wrap on long lines otherwise it will be scroll'ble.<br><br>Th' default value can be set 'n yer <code>hugo.toml</code> an' overwritten via front matter. <a href="/hugo-theme-relearn/pir/shortcodes/highlight/index.html#setting-wrap-of-long-lines">See below</a>.</td>
+      </tr>
+      <tr>
+          <td><strong>opt'ns</strong></td>
+          <td>2</td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>An optional, comma-separated list o' zero or more <a href="https://gohugo.io/functions/highlight/#options" rel="external" target="_self">Cap'n Hugo supported opt'ns</a> as well as extension parameter from this t'ble.</td>
+      </tr>
+      <tr>
+          <td><em><strong>&lt;option&gt;</strong></em></td>
+          <td></td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>Any o' <a href="https://gohugo.io/functions/highlight/#options" rel="external" target="_self">Hugo&rsquo;s supported opt'ns</a>.</td>
+      </tr>
+      <tr>
+          <td><em><strong>&lt;content&gt;</strong></em></td>
+          <td></td>
+          <td><em>&lt;empty&gt;</em></td>
+          <td>Yer code t' highlight.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="settings">Sett'ns</h2>
+<h3 id="setting-default-values-for-hugos-options">Sett'n Default Values fer Hugo&rsquo;s Opt'ns</h3>
+<p>Default values fer <a href="https://gohugo.io/functions/highlight/#options" rel="external" target="_self">Hugo&rsquo;s supported opt'ns</a> can be set via <a href="https://gohugo.io/getting-started/configuration-markup/#highlight" rel="external" target="_self">goldmark sett'ns</a>.</p>
+<p>If used together wit' wrapp'n o' long lines, use this recommended sett'ns. Otherwise, line numbers will shift if code wraps.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">marrrkup</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">marrrkup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">lineNumbersInT'ble</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">marrrkup</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">highlight</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">lineNumbersInT'ble</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;markup&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;highlight&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;lineNumbersInTable&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="setting-wrap-of-long-lines">Sett'n Wrap o' Long Lines</h3>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Opt'n</span></span> <span class="badge cstyle green badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> By default, code will be wrapped if th' line be not long enough.</p>
+<p>Ye can dis'ble wrapp'n by sett'n <code>highlightWrap=false</code> or by sett'n th' <a href="/hugo-theme-relearn/pir/shortcodes/highlight/index.html#parameter"><code>wrap</code> parameter</a> individually fer each code block.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">highlightWrap</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">highlightWrap</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;highlightWrap&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="copy-to-clipboard-for-inline-code">Copy t' Clipboard fer Inline Code</h3>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Opt'n</span></span> By default inline code has a button t' copy th' code t' th' clipboard.</p>
+<p>If ye want t' dis'ble this feature, set <code>disableInlineCopyToClipBoard=true</code>.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableInlineCopyToClipBoard</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableInlineCopyToClipBoard</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableInlineCopyToClipBoard&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="copy-to-clipboard-for-block-code">Copy t' Clipboard fer Block Code</h3>
+<p><span class="badge cstyle cyan badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Opt'n</span></span> By default block code has a button t' copy th' code t' th' clipboard that be only vis'ble on hover.</p>
+<p>Set <code>disableHoverBlockCopyToClipBoard=true</code> t' dis'ble th' hover effect an' always show th' button.</p>
+<div class="tab-panel" data-tab-group="config-code">
+  <div class="tab-nav">
+    <div class="tab-nav-title">hugo.</div>
+    <button
+      data-tab-item="toml"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('config-code','toml')"
+    >
+      <span class="tab-nav-text">toml</span>
+    </button>
+    <button
+      data-tab-item="yaml"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','yaml')"
+    >
+      <span class="tab-nav-text">yaml</span>
+    </button>
+    <button
+      data-tab-item="json"
+      class="tab-nav-button tab-panel-style cstyle initial"
+      onclick="switchTab('config-code','json')"
+    >
+      <span class="tab-nav-text">json</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="toml"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">disableHoverBlockCopyToClipBoard</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="yaml"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableHoverBlockCopyToClipBoard</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      data-tab-item="json"
+      class="tab-content tab-panel-style cstyle initial">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disableHoverBlockCopyToClipBoard&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="setting-a-specific-color-scheme">Sett'n a Specific Color Scheme</h3>
+<p>Ye can configure th' color style used fer code blocks 'n yer <a href="/hugo-theme-relearn/pir/configuration/branding/modules/index.html#change-syntax-highlighting">color variants stylesheet</a> file us'n th' <code>--CODE-theme</code> vari'ble. This requires further configurat'n as described 'n th' above link.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="line-numbers-with-starting-offset">Line Numbers wit' Start'n Offset</h3>
+<p>As mentioned above, line numbers 'n a <code>t'ble</code> layout will shift if code be wrapp'n, so better use <code>inline</code>. T' make th'ns easier fer ye, set <code>lineNumbersInT'ble = false</code> 'n yer <code>hugo.toml</code> an' add <code>lineNos = true</code> when call'n th' shortcode instead o' th' specific values <code>t'ble</code> or <code>inline</code>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">highlight</span> <span class="nx">lineNos</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="nx">lineNoStart</span><span class="p">=</span><span class="s">&#34;666&#34;</span> <span class="kd">type</span><span class="p">=</span><span class="s">&#34;py&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">th'</span> <span class="nx">hardest</span> <span class="nx">part</span> <span class="nx">be</span> <span class="nx">t'</span> <span class="nx">start</span> <span class="nx">writ'n</span> <span class="nx">code</span><span class="p">;</span> <span class="nx">here</span><span class="err">&#39;</span><span class="nx">s</span> <span class="nx">a</span> <span class="nx">kickstart</span><span class="p">;</span> <span class="nx">just</span> <span class="nx">copy</span> <span class="nx">an'</span> <span class="nx">paste</span> <span class="nx">this</span><span class="p">;</span> <span class="nx">it</span><span class="err">&#39;</span><span class="nx">s</span> <span class="nx">free</span><span class="p">;</span> <span class="nx">th'</span> <span class="nx">next</span> <span class="nx">lines</span> <span class="nx">will</span> <span class="nx">cost</span> <span class="nx">ye</span> <span class="nx">serious</span> <span class="nx">credits</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s">&#34;World&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s">&#34;!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">highlight</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+<div class="highlight wrap-code" lineNoStart="666" lineNos="true"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="ln">666</span><span class="cl"><span class="c1"># th' hardest part be t' start writ'n code; here&#39;s a kickstart; just copy an' paste this; it&#39;s free; th' next lines will cost ye serious credits</span>
+</span></span><span class="line"><span class="ln">667</span><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">668</span><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">669</span><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;World&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">670</span><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;!&#34;</span><span class="p">)</span></span></span></code></pre></div>
+
+<h3 id="markdown-codefence-with-title">Marrrkdown Codefence wit' Title</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">``<span class="sb">`py { title=&#34;python&#34; }
+</span></span></span><span class="line"><span class="cl"><span class="sb"># a bit shorter
+</span></span></span><span class="line"><span class="cl"><span class="sb">print(&#34;Hello World!&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span>``</span></span></code></pre></div>
+<div class="tab-panel" data-tab-group="555e592516087a568098dee1d81587a5">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      data-tab-item="python"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('555e592516087a568098dee1d81587a5','python')"
+    >
+      <span class="tab-nav-text">python</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      data-tab-item="python"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># a bit shorter</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello World!&#34;</span><span class="p">)</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div><h3 id="with-wrap">Wit' Wrap</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">highlight</span> <span class="kd">type</span><span class="p">=</span><span class="s">&#34;py&#34;</span> <span class="nx">wrap</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="nx">hl_lines</span><span class="p">=</span><span class="s">&#34;2&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">Quicksort</span> <span class="nx">Python</span> <span class="nx">One</span><span class="o">-</span><span class="nx">liner</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lambda</span> <span class="nx">L</span><span class="p">:</span> <span class="p">[]</span> <span class="k">if</span> <span class="nx">L</span><span class="o">==</span><span class="p">[]</span> <span class="k">else</span> <span class="nf">qsort</span><span class="p">([</span><span class="nx">x</span> <span class="k">fer</span> <span class="nx">x</span> <span class="nx">'n</span> <span class="nx">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="nx">x</span><span class="p">&lt;</span> <span class="nx">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> <span class="nx">L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nf">qsort</span><span class="p">([</span><span class="nx">x</span> <span class="k">fer</span> <span class="nx">x</span> <span class="nx">'n</span> <span class="nx">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="nx">x</span><span class="o">&gt;=</span><span class="nx">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">Some</span> <span class="nx">more</span> <span class="nx">stuff</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">highlight</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+<div class="highlight wrap-code" hl_lines="2"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># Quicksort Python One-liner</span>
+</span></span><span class="line hl"><span class="cl"><span class="k">lambda</span> <span class="n">L</span><span class="p">:</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">L</span><span class="o">==</span><span class="p">[]</span> <span class="k">else</span> <span class="n">qsort</span><span class="p">([</span><span class="n">x</span> <span class="k">fer</span> <span class="n">x</span> <span class="ow">'n</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">qsort</span><span class="p">([</span><span class="n">x</span> <span class="k">fer</span> <span class="n">x</span> <span class="ow">'n</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Some more stuff</span></span></span></code></pre></div>
+
+<h3 id="without-wrap">Without Wrap</h3>
+<div class="highlight wrap-code"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="nx">highlight</span> <span class="kd">type</span><span class="p">=</span><span class="s">&#34;py&#34;</span> <span class="nx">wrap</span><span class="p">=</span><span class="s">&#34;false&#34;</span> <span class="nx">hl_lines</span><span class="p">=</span><span class="s">&#34;2&#34;</span> <span class="p">&gt;}}</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">Quicksort</span> <span class="nx">Python</span> <span class="nx">One</span><span class="o">-</span><span class="nx">liner</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lambda</span> <span class="nx">L</span><span class="p">:</span> <span class="p">[]</span> <span class="k">if</span> <span class="nx">L</span><span class="o">==</span><span class="p">[]</span> <span class="k">else</span> <span class="nf">qsort</span><span class="p">([</span><span class="nx">x</span> <span class="k">fer</span> <span class="nx">x</span> <span class="nx">'n</span> <span class="nx">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="nx">x</span><span class="p">&lt;</span> <span class="nx">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> <span class="nx">L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nf">qsort</span><span class="p">([</span><span class="nx">x</span> <span class="k">fer</span> <span class="nx">x</span> <span class="nx">'n</span> <span class="nx">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="nx">x</span><span class="o">&gt;=</span><span class="nx">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">Some</span> <span class="nx">more</span> <span class="nx">stuff</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{&lt;</span> <span class="o">/</span><span class="nx">highlight</span> <span class="p">&gt;}}</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># Quicksort Python One-liner</span>
+</span></span><span class="line hl"><span class="cl"><span class="k">lambda</span> <span class="n">L</span><span class="p">:</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">L</span><span class="o">==</span><span class="p">[]</span> <span class="k">else</span> <span class="n">qsort</span><span class="p">([</span><span class="n">x</span> <span class="k">fer</span> <span class="n">x</span> <span class="ow">'n</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">qsort</span><span class="p">([</span><span class="n">x</span> <span class="k">fer</span> <span class="n">x</span> <span class="ow">'n</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Some more stuff</span></span></span></code></pre></div>
+
+ 
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categorrries" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/pir/categories/howto/index.html">Howto</a></li>
+    <li><a class="term-link" href="/hugo-theme-relearn/pir/categories/reference/index.html">Reference</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/hugo-theme-relearn/js/clipboard.min.js?1739482044" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar.min.js?1739482044" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.js?1739482044" defer></script>
+  </body>
+</html>
