@@ -687,7 +687,7 @@ function initCodeClipboard() {
         var pre = code.parentNode;
         pre.dataset.code = text;
         var p = pre.parentNode;
-        // indented code blocks are missing the div
+        // html <pre><code> constructs and indented code blocks are missing the div
         while (p != document && (p.tagName.toLowerCase() != 'div' || !p.classList.contains('highlight'))) {
           p = p.parentNode;
         }
@@ -718,6 +718,7 @@ function initCodeClipboard() {
         });
         pre.parentNode.insertBefore(button, pre.nextSibling);
       } else {
+        code.classList.add('highlight');
         code.dataset.code = text;
         code.parentNode.insertBefore(button, code.nextSibling);
       }
