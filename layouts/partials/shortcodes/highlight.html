@@ -85,7 +85,7 @@
 
 {{- /* enrich attributes */}}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "highlight" slice) " ")) }}
-{{- if $wrap }}
+{{- if and $wrap (not $hl_inline) }}
   {{- $attributes = merge $options (dict "class" (delimit (append (index $attributes "class" | default slice) "wrap-code" slice) " ")) }}
 {{- end }}
 

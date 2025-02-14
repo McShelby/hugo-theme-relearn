@@ -10,6 +10,13 @@
     <link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{"css/auto-complete.css" | relURL}}{{ $assetBusting }}" rel="stylesheet"></noscript>
     <link href="{{"css/perfect-scrollbar.min.css" | relURL}}{{ $assetBusting }}" rel="stylesheet">
     {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+    {{- $wrap := true }}
+    {{- if isset site.Params "highlightwrap" }}
+      {{- $wrap = site.Params.highlightWrap  }}
+    {{- end }}
+    {{- if isset .Params "highlightwrap" }}
+      {{- $wrap = .Params.highlightWrap }}
+    {{- end }}
     {{- $minify := not hugo.IsServer }}
     {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
       {{- $minify = site.Params.minify }}
@@ -25,6 +32,7 @@
       {{ printf "window.relearn.min = `%s`;" $min | safeJS }}
       window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
       window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};
+      window.relearn.enableBlockCodeWrap={{ printf "%t" (eq $wrap true) | safeJS }};
       {{ "// variant stuff" | safeJS }}
       {{- $quotedthemevariants := slice }}
       {{- range $themevariants }}

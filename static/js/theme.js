@@ -695,6 +695,9 @@ function initCodeClipboard() {
           var clone = pre.cloneNode(true);
           var div = document.createElement('div');
           div.classList.add('highlight');
+          if (window.relearn.enableBlockCodeWrap) {
+            div.classList.add('wrap-code');
+          }
           div.appendChild(clone);
           pre.parentNode.replaceChild(div, pre);
           pre = clone;
