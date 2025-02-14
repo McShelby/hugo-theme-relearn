@@ -955,7 +955,7 @@ code.copy-to-clipboard-code {
   border-start-end-radius: 0;
   border-inline-end-width: 0;
 }
-body:not(.disableInlineCopyToClipboard) code.copy-to-clipboard-code:has(+ .copy-to-clipboard-button) {
+code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button) {
   padding-inline-end: 24px;
 }
 
@@ -973,9 +973,8 @@ pre:not(.mermaid) {
   position: relative;
 }
 
-/* pre:not(.mermaid):has( code ), */
-/* the :has() operator isn't available in FF yet, so we patch this by JS */
-pre:not(.mermaid).pre-code {
+div.highlight {
+  /* even in RTL languages code is supposed to be LTR */
   direction: ltr;
   text-align: left;
 }
@@ -1430,9 +1429,8 @@ html[dir='rtl'] .topbar-button-next i {
   }
 }
 
-.copy-to-clipboard-button {
-  background-color: var(--INTERNAL-CODE-INLINE-BG-color);
-  border-color: var(--INTERNAL-CODE-INLINE-BORDER-color);
+.inline-copy-to-clipboard-button,
+.block-copy-to-clipboard-button {
   border-start-start-radius: 0;
   border-start-end-radius: 2px;
   border-end-end-radius: 2px;
@@ -1440,7 +1438,6 @@ html[dir='rtl'] .topbar-button-next i {
   border-style: solid;
   border-width: 1px;
   bottom: calc(var(--bpx1) * -1px);
-  color: var(--INTERNAL-CODE-INLINE-color);
   cursor: pointer;
   display: inline;
   font: initial;
@@ -1449,81 +1446,63 @@ html[dir='rtl'] .topbar-button-next i {
   margin-inline-start: -22px;
   position: absolute;
 }
-.copy-to-clipboard-button:hover {
-  background-color: var(--INTERNAL-CODE-INLINE-color);
-  color: var(--INTERNAL-CODE-INLINE-BG-color);
-}
 
-span > .copy-to-clipboard-button {
+.inline-copy-to-clipboard-button {
+  background-color: var(--INTERNAL-CODE-INLINE-BG-color);
+  border-color: var(--INTERNAL-CODE-INLINE-BORDER-color);
   border-start-start-radius: 0;
   border-start-end-radius: 2px;
   border-end-end-radius: 2px;
   border-end-start-radius: 0;
+  color: var(--INTERNAL-CODE-INLINE-color);
+}
+.inline-copy-to-clipboard-button:hover {
+  background-color: var(--INTERNAL-CODE-INLINE-color);
+  color: var(--INTERNAL-CODE-INLINE-BG-color);
 }
 
-.copy-to-clipboard-button > i {
-  font-size: 0.859625rem;
-}
-
-/* only show copy to clipboard on hover for code blocks if configured */
-div.highlight .copy-to-clipboard-button {
-  display: none;
-}
-@media (any-hover: none) {
-  /* if there is at least one input device that does not support hover, we want to force the copy button */
-  div.highlight .copy-to-clipboard-button {
-    display: block;
-  }
-}
-div.highlight:focus-within .copy-to-clipboard-button,
-div.highlight .copy-to-clipboard-button:active,
-div.highlight:hover .copy-to-clipboard-button {
-  display: block;
-}
-.disableHoverBlockCopyToClipBoard div.highlight .copy-to-clipboard-button {
-  display: block;
-}
-.force-display {
-  display: block !important;
-}
-
-div.highlight > div table + .copy-to-clipboard-button > i,
-div.highlight pre:not(.mermaid) + .copy-to-clipboard-button > i,
-.copy-to-clipboard-code + .copy-to-clipboard-button > i {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-div.highlight > div table + .copy-to-clipboard-button,
-div.highlight pre:not(.mermaid) + .copy-to-clipboard-button,
-pre:not(.mermaid) > .copy-to-clipboard-button {
+.block-copy-to-clipboard-button {
   background-color: rgba(160, 160, 160, 0.2);
   border-color: transparent;
   border-radius: 2px;
   border-style: solid;
   border-width: 1px;
   color: var(--INTERNAL-MAIN-LINK-color);
+  /* only show copy to clipboard on hover for code blocks if configured */
+  display: none;
   padding: 5px 3px;
   position: absolute;
   right: 4px;
   top: 4px;
 }
-div.highlight > div table + .copy-to-clipboard-button:hover,
-div.highlight pre:not(.mermaid) + .copy-to-clipboard-button:hover,
-pre:not(.mermaid) .copy-to-clipboard-button:hover {
+@media (any-hover: none) {
+  /* if there is at least one input device that does not support hover, we want to force the copy button */
+  .block-copy-to-clipboard-button {
+    display: block;
+  }
+}
+div.highlight:focus-within .block-copy-to-clipboard-button,
+div.highlight .block-copy-to-clipboard-button:active,
+div.highlight:hover .block-copy-to-clipboard-button {
+  display: block;
+}
+.disableHoverBlockCopyToClipBoard div.highlight .block-copy-to-clipboard-button {
+  display: block;
+}
+.force-display {
+  display: block !important;
+}
+.block-copy-to-clipboard-button:hover {
   background-color: var(--INTERNAL-MAIN-LINK-color);
   border-color: var(--INTERNAL-MAIN-LINK-color);
   color: var(--INTERNAL-CODE-BLOCK-BG-color);
 }
 
-body.disableInlineCopyToClipboard span > code.copy-to-clipboard-code + .copy-to-clipboard-button {
-  display: none;
-}
-
-body.disableInlineCopyToClipboard span > code.copy-to-clipboard-code {
-  border-start-end-radius: 2px;
-  border-end-end-radius: 2px;
-  border-inline-end-width: 1px;
+.inline-copy-to-clipboard-button > i,
+.block-copy-to-clipboard-button > i {
+  font-size: 0.859625rem;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #R-homelinks {

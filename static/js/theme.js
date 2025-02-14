@@ -657,6 +657,7 @@ function initCodeClipboard() {
     var inTable = inPre && code.parentNode.parentNode.tagName.toLowerCase() == 'td' && code.parentNode.parentNode.classList.contains('lntd');
     // avoid copy-to-clipboard for highlight shortcode in table lineno mode
     var isFirstLineCell = inTable && code.parentNode.parentNode.parentNode.querySelector('td:first-child > pre > code') == code;
+    var isBlock = inTable || inPre;
 
     if (!isFirstLineCell && (inPre || text.length > 5)) {
       code.classList.add('copy-to-clipboard-code');
@@ -671,14 +672,34 @@ function initCodeClipboard() {
         code.parentNode.replaceChild(span, code);
         code = clone;
       }
-      var button = document.createElement('button');
-      button.classList.add('copy-to-clipboard-button');
-      button.setAttribute('title', window.T_Copy_to_clipboard);
-      button.innerHTML = '<i class="far fa-copy"></i>';
-      button.addEventListener('mouseleave', function () {
-        this.removeAttribute('aria-label');
-        this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');
-      });
+      var button = null;
+      if (isBlock || !window.relearn.disableInlineCopyToClipboard) {
+        button = document.createElement('button');
+        var buttonPrefix = isBlock ? 'block' : 'inline';
+        button.classList.add(buttonPrefix + '-copy-to-clipboard-button');
+        button.setAttribute('title', window.T_Copy_to_clipboard);
+        button.innerHTML = '<i class="far fa-copy"></i>';
+        button.addEventListener('mouseleave', function () {
+          this.removeAttribute('aria-label');
+          this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');
+        });
+        if (isBlock) {
+          // we have to make sure, the button is visible while
+          // Clipboard.js is doing its magic
+          button.addEventListener('focus', function (ev) {
+            setTimeout(function () {
+              ev.target.classList.add('force-display');
+            }, 0);
+          });
+          button.addEventListener('blur', function (ev) {
+            this.removeAttribute('aria-label');
+            this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');
+            setTimeout(function () {
+              ev.target.classList.remove('force-display');
+            }, 0);
+          });
+        }
+      }
       if (inTable) {
         var table = code.parentNode.parentNode.parentNode.parentNode.parentNode;
         table.dataset.code = text;
@@ -702,30 +723,18 @@ function initCodeClipboard() {
           pre.parentNode.replaceChild(div, pre);
           pre = clone;
         }
-        // we have to make sure, the button is visible while
-        // Clipboard.js is doing its magic
-        button.addEventListener('focus', function (ev) {
-          setTimeout(function () {
-            ev.target.classList.add('force-display');
-          }, 0);
-        });
-        button.addEventListener('blur', function (ev) {
-          this.removeAttribute('aria-label');
-          this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');
-          setTimeout(function () {
-            ev.target.classList.remove('force-display');
-          }, 0);
-        });
         pre.parentNode.insertBefore(button, pre.nextSibling);
       } else {
         code.classList.add('highlight');
         code.dataset.code = text;
-        code.parentNode.insertBefore(button, code.nextSibling);
+        if (button) {
+          code.parentNode.insertBefore(button, code.nextSibling);
+        }
       }
     }
   }
 
-  var clip = new ClipboardJS('.copy-to-clipboard-button', {
+  var clip = new ClipboardJS('.block-copy-to-clipboard-button, .inline-copy-to-clipboard-button', {
     text: function (trigger) {
       if (!trigger.previousElementSibling) {
         return '';
