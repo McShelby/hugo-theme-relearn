@@ -943,18 +943,20 @@ code {
   color-adjust: economy;
   padding-left: 2px;
   padding-right: 2px;
-  white-space: nowrap;
 }
 
 span.copy-to-clipboard {
-  display: inline-block;
-  white-space: nowrap;
+  display: inline;
+  position: relative;
 }
 
 code.copy-to-clipboard-code {
   border-end-end-radius: 0;
   border-start-end-radius: 0;
   border-inline-end-width: 0;
+}
+body:not(.disableInlineCopyToClipboard) code.copy-to-clipboard-code:has(+ .copy-to-clipboard-button) {
+  padding-inline-end: 24px;
 }
 
 pre:not(.mermaid) {
@@ -1437,10 +1439,15 @@ html[dir='rtl'] .topbar-button-next i {
   border-end-start-radius: 0;
   border-style: solid;
   border-width: 1px;
+  bottom: calc(var(--bpx1) * -1px);
   color: var(--INTERNAL-CODE-INLINE-color);
   cursor: pointer;
+  display: inline;
+  font: initial;
   font-size: 0.934375rem;
-  line-height: 1.15;
+  inset-inline-end: 0;
+  margin-inline-start: -22px;
+  position: absolute;
 }
 .copy-to-clipboard-button:hover {
   background-color: var(--INTERNAL-CODE-INLINE-color);
@@ -1509,11 +1516,11 @@ pre:not(.mermaid) .copy-to-clipboard-button:hover {
   color: var(--INTERNAL-CODE-BLOCK-BG-color);
 }
 
-.disableInlineCopyToClipboard span > code.copy-to-clipboard-code + .copy-to-clipboard-button {
+body.disableInlineCopyToClipboard span > code.copy-to-clipboard-code + .copy-to-clipboard-button {
   display: none;
 }
 
-.disableInlineCopyToClipboard span > code.copy-to-clipboard-code {
+body.disableInlineCopyToClipboard span > code.copy-to-clipboard-code {
   border-start-end-radius: 2px;
   border-end-end-radius: 2px;
   border-inline-end-width: 1px;
