@@ -728,7 +728,12 @@ function initCodeClipboard() {
         code.classList.add('highlight');
         code.dataset.code = text;
         if (button) {
-          code.parentNode.insertBefore(button, code.nextSibling);
+          // #1022 fix for FF; see CSS for explanation
+          if (isRtl) {
+            code.parentNode.insertBefore(button, code.parentNode.firstChild);
+          } else {
+            code.parentNode.insertBefore(button, code.nextSibling);
+          }
         }
       }
     }

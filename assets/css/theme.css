@@ -955,8 +955,13 @@ code.copy-to-clipboard-code {
   border-start-end-radius: 0;
   border-inline-end-width: 0;
 }
+/* #1022 FF has issues if we set span.copy-to-clipboard to display: block;
+so this is not an option; and we have to flip the elements ourself in the
+JS part of the code; this will fix FF for LTR but RTL is still broken;
+so at least it looks fine for most of the user base */
+.inline-copy-to-clipboard-button + code.copy-to-clipboard-code,
 code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button) {
-  padding-inline-end: 24px;
+  margin-inline-end: calc(22px + var(--bpx1) * 2px);
 }
 
 pre:not(.mermaid) {
@@ -1450,11 +1455,9 @@ html[dir='rtl'] .topbar-button-next i {
   border-start-end-radius: 2px;
   border-end-end-radius: 2px;
   border-end-start-radius: 0;
-  bottom: calc(var(--bpx1) * -1px);
   color: var(--INTERNAL-CODE-INLINE-color);
-  inset-inline-end: 0;
-  margin-inline-start: -22px;
-  position: absolute;
+  !inset-inline-end: 0;
+  margin-inline-start: calc(-1 * (22px + var(--bpx1) * 2px));
 }
 .inline-copy-to-clipboard-button:hover {
   background-color: var(--INTERNAL-CODE-INLINE-color);
