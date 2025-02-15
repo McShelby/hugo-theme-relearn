@@ -5,29 +5,25 @@
     {{- $ico := dict "ext" "ico" "type" "type=\"image/x-icon\" sizes=\"any\"" }}
     {{- $faviconTypes := slice $svg $png $ico }}
     {{- $faviconNames := slice "favicon" "logo" }}
+    {{- $normal := dict "suffix" ""  "media" "" }}
+    {{- $light := dict "suffix" "-light" "media" " media=\"(prefers-color-scheme: light\")" }}
+    {{- $dark := dict "suffix" "-dark" "media" " media=\"(prefers-color-scheme: dark\")" }}
+    {{- $faviconVariants := slice $normal $light $dark }}
     {{- range $faviconNames }}
       {{- $faviconName := . }}
       {{- range $faviconTypes }}
-        {{- if or
-          (resources.Get (printf "/images/%s.%s" $faviconName .ext))
-          (fileExists (printf "/static/images/%s.%s" $faviconName .ext))
-        }}
-          {{- $faviconMatch = true }}
-    <link href="{{ printf "images/%s.%s" $faviconName .ext | relURL }}{{ $assetBusting }}" rel="icon" {{ .type | safeHTMLAttr }}>
-        {{- end }}
-        {{- if or
-          (resources.Get (printf "/images/%s-light.%s" $faviconName .ext))
-          (fileExists (printf "/static/images/%s-light.%s" $faviconName .ext))
-        }}
-          {{- $faviconMatch = true }}
-    <link href="{{ printf "images/%s-light.%s" $faviconName .ext | relURL }}{{ $assetBusting }}" rel="icon" {{ .type | safeHTMLAttr }} media="(prefers-color-scheme: light)">
-        {{- end }}
-        {{- if or
-          (resources.Get (printf "/images/%s-dark.%s" $faviconName .ext))
-          (fileExists (printf "/static/images/%s-dark.%s" $faviconName .ext))
-        }}
-          {{- $faviconMatch = true }}
-    <link href="{{ printf "images/%s-dark.%s" $faviconName .ext | relURL }}{{ $assetBusting }}" rel="icon" {{ .type | safeHTMLAttr }} media="(prefers-color-scheme: dark)">
+        {{- $faviconType := . }}
+        {{- range $faviconVariants }}
+          {{- $faviconVariant := . }}
+          {{- with (resources.Get (printf "/images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
+            {{- $faviconMatch = true }}
+    <link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
+          {{- else }}
+            {{- if (fileExists (printf "/static/images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
+              {{- $faviconMatch = true }}
+    <link href="{{ printf "images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext | relURL }}{{ $assetBusting }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
+            {{- end }}
+          {{- end }}
         {{- end }}
       {{- end }}
       {{- if $faviconMatch }}
