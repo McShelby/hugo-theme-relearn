@@ -7,9 +7,9 @@ weight = 1
 
 ## Change the Favicon
 
-If your favicon is an SVG, PNG, or ICO, just drop your image in your site's `static/images/` directory and name it `favicon.svg`, `favicon.png`, or `favicon.ico` respectively.
+If your favicon is an SVG, PNG, or ICO, just drop your image in your site's `assets/images/` or `static/images/` directory and name it `favicon.svg`, `favicon.png`, or `favicon.ico` respectively.
 
-If you want to adjust your favicon according to your OS settings for light/dark mode, add the image files `static/images/favicon-light.svg` and `static/images/favicon-dark.svg` to your site's directory, respectively, corresponding to your file format. In case some of the files are missing, the theme falls back to `favicon.svg` for each missing file. All supplied favicons must be of the same file format.
+If you want to adjust your favicon according to your OS settings for light/dark mode, add the image files `assets/images/favicon-light.svg` and `assets/images/favicon-dark.svg` to your site's directory, respectively, corresponding to your file format. In case some of the files are missing, the theme falls back to `favicon.svg` for each missing file. All supplied favicons must be of the same file format.
 
 If no favicon file is found, the theme will look up the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
 
