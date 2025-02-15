@@ -63,11 +63,11 @@
     {{- end }}
   {{- end }}
 {{- end }}
-{{- if and .linkObject $effects.inlinecontent }}
+{{- if and .linkObject $effects.inlinecontent (eq .linkObject.MediaType.Type "image/svg+xml") }}
   {{- $content := .linkObject.Content | replaceRE `(?s)^\s*<\?.*?\?>\s*` "" }}
   {{- $attributes = merge $attributes (dict "content" $content) }}
 {{- else if and .linkObject $effects.dataurl }}
-  {{- $src := printf "data:%s;base64,%s" .linkObject.MediaType (.linkObject.Content | base64Encode) }}
+  {{- $src := printf "data:%s;base64,%s" .linkObject.MediaType.Type (.linkObject.Content | base64Encode) }}
   {{- $attributes = merge $attributes (dict "src" $src) }}
 {{- else }}
   {{- $attributes = merge $attributes (dict "src" .url) }}
