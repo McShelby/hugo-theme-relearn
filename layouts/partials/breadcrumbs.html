@@ -8,9 +8,6 @@
   {{- $lasturl = partial "permalink.gotmpl" (dict "to" $page) }}
 {{- end }}
 {{- $depth := add 1 (int (partial "_relearn/pageDepth.gotmpl" (dict "page" $page))) }}
-{{- if .page.Site.Params.disableRootBreadcrumb }}
-  {{- $depth = add $depth -1 }}
-{{- end }}
 {{- $breadcrumb := slice }}
 {{- range seq $depth }}
   {{- if $to }}
@@ -33,11 +30,16 @@
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e }}
   {{- $depth = add $depth 1 }}
+  {{- $class := "" }}
+  {{- if and (eq $depth 1) site.Params.disableRootBreadcrumb }}
+    {{- $class = "a11y-only" }}
+  {{- end }}
   {{- $title := partial "title.gotmpl" (dict "page" $to "linkTitle" true) }}
   {{- $url := partial "permalink.gotmpl" (dict "to" $to) }}
   {{- $isPage := eq $url $pageurl }}
   {{- $isLast := eq $url $lasturl }}
   {{- $link := and $url (not $isPage) }}
-  {{- printf "<li" | safeHTML }}
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement">{{ if $link }}<a itemprop="item" href="{{ $url }}">{{end}}<span itemprop="name">{{ $title }}</span>{{ if $link }}</a>{{ end }}<meta itemprop="position" content="{{ $depth }}">{{ if not $isLast }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
+  {{- if or $.schema (not $class) }}
+            <li{{ if $.schema }} itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"{{ end }} class="{{ $class | safeHTMLAttr }}">{{ if $link }}<a{{ if $.schema }} itemprop="item"{{ end }} href="{{ $url }}">{{end}}<span{{ if $.schema }} itemprop="name"{{ end }}>{{ $title }}</span>{{ if $link }}</a>{{ end }}{{ if $.schema }}<meta itemprop="position" content="{{ $depth }}">{{ end }}{{ if not $isLast }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
+  {{- end }}
 {{- end }}
