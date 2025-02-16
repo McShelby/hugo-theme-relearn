@@ -1,4 +1,3 @@
-
 +++
 description = 'At Sea'
 title = 'Day 2'
