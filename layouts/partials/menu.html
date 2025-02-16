@@ -118,7 +118,7 @@
     {{- $entries := partialCached "_relearn/pages.gotmpl" (dict "page" $entry) $entry.Path }}
     {{- $title := "" }}
     {{- if not ($config.disableTitle | default true) }}
-      {{ $title = $entry.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
+      {{- $title = $entry.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
     {{- end }}
     {{- with $title }}
           <div class="nav-title padding">{{ . }}</div>
@@ -303,7 +303,7 @@
           </ul>
         </div>
   {{- else }}
-    {{ if ne $config.identifier "shortcuts" }}
+    {{- if ne $config.identifier "shortcuts" }}
       {{- $msg := printf "config option 'identifier' for 'sidebarmenus' %q is not a menu" $config.identifier }}
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $config.pageRef "page" $currentNode "param" "link" "msg" $msg "applyErrorIgnore" false) }}
     {{- end }}
