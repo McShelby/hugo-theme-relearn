@@ -71,9 +71,9 @@
   {{- $attributes = merge $attributes (dict "src" $src) }}
 {{- else }}
   {{- $attributes = merge $attributes (dict "src" .url) }}
+  {{- if $effects.lazy }}{{ $attributes = merge $attributes (dict "loading" "lazy") }}{{ end }}
 {{- end }}
 {{- if $attributes.class }}{{ $classes = $classes | append (split $attributes.class " ") }}{{ end }}
 {{- $attributes = merge $attributes (dict "class" (delimit $classes " ")) }}
 {{- $attributes = merge $attributes (dict "style" (printf " height: %s; width: %s;%s" $height $width (index $attributes "style" | default ""))) }}
-{{- if $effects.lazy }}{{ $attributes = merge $attributes (dict "loading" "lazy") }}{{ end }}
 {{- return $attributes }}
