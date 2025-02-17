@@ -1324,7 +1324,6 @@ function initScrollPositionSaver() {
   function savePosition(event) {
     // #959 if we fiddle around with the history during print preview
     // GC will close the preview immediatley
-    console.log('savePosition', event);
     if (isPrintPreview) {
       return;
     }
