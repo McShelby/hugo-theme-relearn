@@ -62,14 +62,11 @@ function adjustContentWidth() {
   elc.style[dir_padding_end] = '' + end + 'px';
 }
 
-function throttle(func, limit) {
-  let inThrottle;
+let debounceTimeout;
+function debounce(func, delay) {
   return function (...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => (inThrottle = false), limit);
-    }
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => func.apply(this, args), delay);
   };
 }
 
@@ -1327,6 +1324,7 @@ function initScrollPositionSaver() {
   function savePosition(event) {
     // #959 if we fiddle around with the history during print preview
     // GC will close the preview immediatley
+    console.log('savePosition', event);
     if (isPrintPreview) {
       return;
     }
@@ -1341,7 +1339,7 @@ function initScrollPositionSaver() {
     if (!ticking) {
       window.requestAnimationFrame(function () {
         // #996 GC is so damn slow that we need further throttling
-        throttle(savePosition, 250);
+        debounce(savePosition, 200)();
         ticking = false;
       });
       ticking = true;
