@@ -74,7 +74,7 @@
 
 ### Fixes
 
-- [**bug**] children: remove superflous text ".LinkTitle" [#942](https://github.com/McShelby/hugo-theme-relearn/issues/942)
+- [**bug**] children: remove superfluous text ".LinkTitle" [#942](https://github.com/McShelby/hugo-theme-relearn/issues/942)
 
 ---
 
