@@ -92,7 +92,7 @@ var autoComplete = (function(){
                     pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
                     pageYOffset = window.pageYOffset || document.documentElement.scrollTop;
                 }
-                // Is this really the job of the tool or should it be defered to the user?
+                // Is this really the job of the tool or should it be deferred to the user?
                 // that.sc.style.left = Math.round(rect.left + pageXOffset + o.offsetLeft - parentOffsetLeft) + 'px';
                 // that.sc.style.top = Math.round(rect.bottom + pageYOffset + o.offsetTop - parentOffsetTop) + 'px';
                 // that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
