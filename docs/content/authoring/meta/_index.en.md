@@ -64,6 +64,8 @@ headingPre = '<i class="fab fa-github"></i> '
 - `AuthorEmail` if [GitInfo](https://gohugo.io/methods/page/gitinfo/) is active, otherwise `LastModifierEmail` front matter
 - `AuthorDate` if [GitInfo](https://gohugo.io/methods/page/gitinfo/) is active, otherwise [Hugo's `date` front matter](https://gohugo.io/methods/page/date/)
 
+See how to further [configure this information](configuration/content/meta) on a site-wide basis.
+
 {{< multiconfig fm=true >}}
 LastModifierDisplayName = 'Santa Claus'
 LastModifierEmail = 'santa@example.com'

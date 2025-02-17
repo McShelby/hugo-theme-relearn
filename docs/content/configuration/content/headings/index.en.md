@@ -3,7 +3,7 @@ categories = ["howto"]
 description = "Configuring heading anchors"
 options = ["disableAnchorCopy", "disableAnchorScrolling"]
 title = "Headings"
-weight = 3
+weight = 4
 +++
 
 Headings can have anchor links that appear when you hover over them.

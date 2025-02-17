@@ -1,25 +1,26 @@
 {{- $LastModifierDisplayName := "" }}
 {{- $LastModifierEmail := "" }}
 {{- $Date := "" }}
+{{- $dateFormat := site.Params.dateFormat | default ":date_medium" }}
 {{- with .GitInfo }}
-  {{- with .AuthorName }}
+  {{- with and (not site.Params.hideAuthorName) .AuthorName }}
     {{- $LastModifierDisplayName = . }}
   {{- end }}
-  {{- with .AuthorEmail  }}
+  {{- with and (not site.Params.hideAuthorEmail) .AuthorEmail }}
     {{- $LastModifierEmail = . }}
   {{- end }}
-  {{- with .AuthorDate  }}
-    {{- $Date = . | time.Format ":date_medium" }}
+  {{- with and (not site.Params.hideAuthorDate) .AuthorDate }}
+    {{- $Date = . | time.Format $dateFormat }}
   {{- end }}
 {{- else }}
-  {{- with .Params.LastModifierDisplayName }}
+  {{- with and (not site.Params.hideAuthorName) .Params.LastModifierDisplayName }}
     {{- $LastModifierDisplayName = . }}
   {{- end }}
-  {{- with .Params.LastModifierEmail }}
+  {{- with and (not site.Params.hideAuthorEmail) .Params.LastModifierEmail }}
     {{- $LastModifierEmail = . }}
   {{- end }}
-  {{- with .Date }}
-    {{- $Date = . | time.Format ":date_medium" }}
+  {{- with and (not site.Params.hideAuthorDate) .Date }}
+    {{- $Date = . | time.Format $dateFormat }}
   {{- end }}
 {{- end }}
 {{- if $LastModifierDisplayName }}
