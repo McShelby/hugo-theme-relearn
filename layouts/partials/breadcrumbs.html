@@ -11,9 +11,10 @@
 {{- $breadcrumb := slice }}
 {{- range seq $depth }}
   {{- if $to }}
+    {{- $title := partial "title.gotmpl" (dict "page" $to "linkTitle" true) }}
     {{- if partial "_relearn/pageIsSpecial.gotmpl" $to }}
       {{- break }}
-    {{- else if or $to.Title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
+    {{- else if or $title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
       {{- $breadcrumb = $breadcrumb | append $to }}
     {{- end }}
   {{- else }}
