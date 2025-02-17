@@ -977,7 +977,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Rambl'n \u003e  Linking",
-    "content": "",
+    "content": "Standard Links Th' usual way t' link t' a plank or a resource be t' use a Marrrkdown link 'n th' form o' [some page](a-page) or ![some image](an-image).\nImages be searched 'n th' resources o' th' current plank an' yer global assets directory.\nLinks t' Other Plank Translat'ns By giv'n th' query parameter lang, contain'n th' language code, ye can link t' planks o' other translat'ns o' yer ship, e.g. [some translated page](my-page?lang=pir).\nLinks t' Other Plank Output Formats Ye can link t' different output formats o' a plank by add'n th' query parameter format. For example t' link t' th' print format o' a plank, write [a print'ble page](my-page?format=print).",
     "description": "How to link to pages and resources",
     "tags": [],
     "title": "Pages \u0026 Resources",
