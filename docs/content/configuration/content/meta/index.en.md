@@ -36,7 +36,7 @@ In cases where Git information is not available, the theme falls back to `LastMo
 
 {{< multiconfig file=hugo >}}
 [params]
-  hideAuthorEmail = true
+  hideAuthorDate = true
 {{< /multiconfig >}}
 
 ## Adjust the Timestamp Format
