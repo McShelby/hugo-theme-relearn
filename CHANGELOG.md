@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.4.1 (2025-02-19)
+
+### Fixes
+
+- [**bug**] theme: custom.css not written to public [#1033](https://github.com/McShelby/hugo-theme-relearn/issues/1033)
+- [**bug**] print: block code has to much bottom margin in FF [#1030](https://github.com/McShelby/hugo-theme-relearn/issues/1030)
+
+---
+
 ## 7.4.0 (2025-02-18)
 
 ### Enhancements
