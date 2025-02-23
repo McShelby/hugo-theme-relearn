@@ -678,6 +678,7 @@ function initCodeClipboard() {
         var clone = code.cloneNode(true);
         var span = document.createElement('span');
         span.classList.add('copy-to-clipboard');
+        span.setAttribute('dir', 'auto');
         span.appendChild(clone);
         code.parentNode.replaceChild(span, code);
         code = clone;
@@ -726,6 +727,7 @@ function initCodeClipboard() {
           var clone = pre.cloneNode(true);
           var div = document.createElement('div');
           div.classList.add('highlight');
+          div.setAttribute('dir', 'auto');
           if (window.relearn.enableBlockCodeWrap) {
             div.classList.add('wrap-code');
           }
@@ -738,12 +740,7 @@ function initCodeClipboard() {
         code.classList.add('highlight');
         code.dataset.code = text;
         if (button) {
-          // #1022 fix for FF; see CSS for explanation
-          if (isRtl) {
-            code.parentNode.insertBefore(button, code.parentNode.firstChild);
-          } else {
-            code.parentNode.insertBefore(button, code.nextSibling);
-          }
+          code.parentNode.insertBefore(button, code.nextSibling);
         }
       }
     }
