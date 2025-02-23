@@ -3,22 +3,44 @@
 {{- if eq $location "footer" }}
   {{- with $page }}
     {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
-    <script src="{{"js/d3/d3-color.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-dispatch.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-drag.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-ease.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-interpolate.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-selection.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-timer.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-transition.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/d3/d3-zoom.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/js-yaml.min.js" | relURL}}{{ $assetBusting }}" defer></script>
+    {{- with resources.Get "/js/js-yaml/js-yaml.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-color.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-dispatch.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-drag.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-ease.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-interpolate.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-selection.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-timer.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-transition.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
+    {{- with resources.Get "/js/d3/d3-zoom.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    {{- end }}
     {{- if and (isset .Params "custommermaidurl") .Params.customMermaidURL }}
     <script src="{{ .Params.customMermaidURL }}" defer></script>
     {{- else if and (isset .Site.Params "custommermaidurl") .Site.Params.customMermaidURL }}
     <script src="{{ .Site.Params.customMermaidURL }}" defer></script>
     {{- else }}
-    <script src="{{"js/mermaid.min.js" | relURL}}{{ $assetBusting }}" defer></script>
+      {{- with resources.Get "/js/mermaid/mermaid.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+      {{- end }}
     {{- end }}
     {{- $init := "{}" }}
     {{- if isset .Params "mermaidinitialize" }}
@@ -27,7 +49,7 @@
       {{- $init = .Site.Params.mermaidInitialize }}
     {{- end }}
     <script>
-      window.themeUseMermaid = JSON.parse({{ $init }});
+      window.relearn.themeUseMermaid = JSON.parse({{ $init }});
     </script>
   {{- end }}
 {{- end }}

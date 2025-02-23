@@ -89,19 +89,19 @@ Generator run:
 */}}
 {{- $defaultthemevariant := partial "inline/get-theme-details" (dict "themevariant" (dict) "identifier" "relearn-light") }}
 {{- $nucleuscontent := "" }}
-{{- with resources.Get "css/nucleus.css" }}
+{{- with resources.Get "/css/nucleus.css" }}
   {{- $nucleuscontent = .Content }}
 {{- end }}
 {{- $fontscontent := "" }}
-{{- with resources.Get "css/fonts.css" }}
+{{- with resources.Get "/css/fonts.css" }}
   {{- $fontscontent = .Content }}
 {{- end }}
 {{- $htmlcontent := "" }}
-{{- with resources.Get "css/format-html.css" }}
+{{- with resources.Get "/css/format-html.css" }}
   {{- $htmlcontent = .Content }}
 {{- end }}
 {{- $printcontent := "" }}
-{{- with resources.Get "css/format-print.css" }}
+{{- with resources.Get "/css/format-print.css" }}
   {{- $printcontent = .Content }}
 {{- end }}
 
@@ -109,7 +109,7 @@ Generator run:
 - Read variables.css and add custom box styles
 */}}
 {{- $variablescontent := "" }}
-{{- with resources.Get "css/variables.css" }}
+{{- with resources.Get "/css/variables.css" }}
   {{- $boxcontent := "" }}
   {{- range $page.Site.Params.boxStyle }}
     {{- $identifier := upper .identifier }}
@@ -129,7 +129,7 @@ Generator run:
 {{- /*
 - Write theme.css
 */}}
-{{- with resources.Get "css/theme.css" }}
+{{- with resources.Get "/css/theme.css" }}
   {{- $boxcontent := "" }}
   {{- range $page.Site.Params.boxStyle }}
     {{- $identifier := upper .identifier }}
@@ -152,13 +152,14 @@ Generator run:
   {{- if $minify }}
     {{- $cssres = $cssres | minify }}
   {{- end }}
-  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+  {{- /* the following code causes Hugo to generate our file in public */}}
+  {{- $url := $cssres.RelPermalink }}
 {{- end }}
 
 {{- /*
 - Write swagger.css
 */}}
-{{- with resources.Get "css/swagger.css" }}
+{{- with resources.Get "/css/swagger.css" }}
   {{- $swaggercontent := print
     $variablescontent "\n"
     .Content "\n"
@@ -168,7 +169,8 @@ Generator run:
   {{- if $minify }}
     {{- $cssres = $cssres | minify }}
   {{- end }}
-  {{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+  {{- /* the following code causes Hugo to generate our file in public */}}
+  {{- $url := $cssres.RelPermalink }}
 {{- end }}
 
 {{- /*
@@ -192,7 +194,8 @@ Generator run:
 {{- if $minify }}
   {{- $cssres = $cssres | minify }}
 {{- end }}
-{{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+{{- /* the following code causes Hugo to generate our file in public */}}
+{{- $url := $cssres.RelPermalink }}
 
 {{- /*
 - Write format-print.css
@@ -208,7 +211,22 @@ Generator run:
 {{- if $minify }}
   {{- $cssres = $cssres | minify }}
 {{- end }}
-{{- /* the following code causes Hugo to generate our css file - although it is in comments */}}<!-- {{ $cssres.RelPermalink }} -->
+{{- /* the following code causes Hugo to generate our file in public */}}
+{{- $url := $cssres.RelPermalink }}
+
+{{- /*
+Write yet non-dynamic stuff
+- fontawesome
+- robotoflex
+*/}}
+{{- range resources.Match "/fonts/fontawesome/**" }}
+  {{- /* the following code causes Hugo to generate our file in public */}}
+  {{- $url := .RelPermalink }}
+{{- end }}
+{{- range resources.Match "/fonts/robotoflex/**" }}
+  {{- /* the following code causes Hugo to generate our file in public */}}
+  {{- $url := .RelPermalink }}
+{{- end }}
 
 {{- return $themevariants }}
 

@@ -1,6 +1,7 @@
-{{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+
             <span class="github-buttons"></span>
             <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+{{- with resources.Get "/js/github-buttons/github-buttons.js" }}
             <script>
               function githubButtonsScheme(){
                 var scheme = 'light';
@@ -40,4 +41,14 @@
                 setTimeout( githubButtonsInit, 400 );
               });
             </script>
-            <script async src="{{"js/github-buttons.js" | relURL}}{{ $assetBusting }}"></script>
+  {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+  {{- $minify := not hugo.IsServer }}
+  {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
+    {{- $minify = site.Params.minify }}
+  {{- end }}
+  {{- $res := . }}
+  {{- if $minify }}
+    {{- $res = $res | minify }}
+  {{- end }}
+            <script async src="{{ $res.RelPermalink }}{{ $assetBusting }}"></script>
+{{- end }}

@@ -74,10 +74,24 @@
     </div>
 {{- block "menu" . }}{{ end }}
 {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
-    <script src="{{"js/clipboard.min.js" | relURL}}{{ $assetBusting }}" defer></script>
-    <script src="{{"js/perfect-scrollbar.min.js" | relURL}}{{ $assetBusting }}" defer></script>
+{{- $minify := not hugo.IsServer }}
+{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
+  {{- $minify = site.Params.minify }}
+{{- end }}
+{{- with resources.Get "/js/clipboard/clipboard.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+{{- end }}
+{{- with resources.Get "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
+    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+{{- end }}
 {{- partial "dependencies.gotmpl" (dict "page" . "location" "footer") }}
-    <script src="{{"js/theme.js" | relURL}}{{ $assetBusting }}" defer></script>
+{{- with resources.Get "/js/theme.js" }}
+  {{- $res := . }}
+  {{- if $minify }}
+    {{- $res = $res | minify }}
+  {{- end }}
+    <script src="{{ $res.RelPermalink }}{{ $assetBusting }}" defer></script>
+{{- end }}
 {{- partial "custom-footer.html" . }}
   </body>
 </html>
