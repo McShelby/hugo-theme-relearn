@@ -172,7 +172,7 @@ function restoreTabSelections() {
 
 function initMermaid(update, attrs) {
   var doBeside = true;
-  var isImageRtl = false;
+  var isImageRtl = isRtl;
 
   // we are either in update or initialization mode;
   // during initialization, we want to edit the DOM;
@@ -357,7 +357,7 @@ function initMermaid(update, attrs) {
           button.addEventListener('click', function (event) {
             svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
             this.setAttribute('aria-label', window.T_View_reset);
-            this.classList.add('tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's' + (isImageRtl ? 'e' : 'w')));
+            this.classList.add('tooltipped', 'tooltipped-' + (doBeside ? '' : 's') + (isImageRtl ? 'e' : 'w'));
           });
           button.addEventListener('mouseleave', function () {
             if (this.classList.contains('tooltipped')) {
@@ -646,7 +646,20 @@ function initCodeClipboard() {
     }
   });
 
-  var codeElements = document.querySelectorAll('code');
+  var preOnlyElements = document.querySelectorAll('pre:not(.mermaid) > :not(code), pre:not(.mermaid):not(:has(>*))');
+  for (var i = 0; i < preOnlyElements.length; i++) {
+    // move everything down one level so that it fits to the next selector
+    // and we also get copy-to-clipboard for pre-only elements
+    var pre = preOnlyElements[i];
+    var div = document.createElement('div');
+    div.classList.add('pre-only');
+    while (pre.firstChild) {
+      div.appendChild(pre.firstChild);
+    }
+    pre.appendChild(div, pre);
+  }
+
+  var codeElements = document.querySelectorAll('code, .pre-only');
   for (var i = 0; i < codeElements.length; i++) {
     var code = codeElements[i];
     var text = getCodeText(code);
@@ -665,6 +678,7 @@ function initCodeClipboard() {
         var clone = code.cloneNode(true);
         var span = document.createElement('span');
         span.classList.add('copy-to-clipboard');
+        span.setAttribute('dir', 'auto');
         span.appendChild(clone);
         code.parentNode.replaceChild(span, code);
         code = clone;
@@ -713,6 +727,7 @@ function initCodeClipboard() {
           var clone = pre.cloneNode(true);
           var div = document.createElement('div');
           div.classList.add('highlight');
+          div.setAttribute('dir', 'auto');
           if (window.relearn.enableBlockCodeWrap) {
             div.classList.add('wrap-code');
           }
@@ -725,12 +740,7 @@ function initCodeClipboard() {
         code.classList.add('highlight');
         code.dataset.code = text;
         if (button) {
-          // #1022 fix for FF; see CSS for explanation
-          if (isRtl) {
-            code.parentNode.insertBefore(button, code.parentNode.firstChild);
-          } else {
-            code.parentNode.insertBefore(button, code.nextSibling);
-          }
+          code.parentNode.insertBefore(button, code.nextSibling);
         }
       }
     }
@@ -748,21 +758,21 @@ function initCodeClipboard() {
   clip.on('success', function (e) {
     e.clearSelection();
     var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
-    var isCodeRtl = !inPre ? isRtl : false;
+    var isCodeRtl = window.getComputedStyle(e.trigger).direction == 'rtl';
     var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table');
     e.trigger.setAttribute('aria-label', window.T_Copied_to_clipboard);
-    e.trigger.classList.add('tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's' + (isCodeRtl ? 'e' : 'w')));
+    e.trigger.classList.add('tooltipped', 'tooltipped-' + (doBeside ? '' : 's') + (isCodeRtl ? 'e' : 'w'));
   });
 
   clip.on('error', function (e) {
     var inPre = e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'pre';
-    var isCodeRtl = !inPre ? isRtl : false;
+    var isCodeRtl = window.getComputedStyle(e.trigger).direction == 'rtl';
     var doBeside = inPre || (e.trigger.previousElementSibling && e.trigger.previousElementSibling.tagName.toLowerCase() == 'table');
     e.trigger.setAttribute('aria-label', fallbackMessage(e.action));
-    e.trigger.classList.add('tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's' + (isCodeRtl ? 'e' : 'w')));
+    e.trigger.classList.add('tooltipped', 'tooltipped-' + (doBeside ? '' : 's') + (isCodeRtl ? 'e' : 'w'));
     var f = function () {
       e.trigger.setAttribute('aria-label', window.T_Copied_to_clipboard);
-      e.trigger.classList.add('tooltipped', 'tooltipped-' + (doBeside ? 'w' : 's' + (isCodeRtl ? 'e' : 'w')));
+      e.trigger.classList.add('tooltipped', 'tooltipped-' + (doBeside ? '' : 's') + (isCodeRtl ? 'e' : 'w'));
       document.removeEventListener('copy', f);
     };
     document.addEventListener('copy', f);
