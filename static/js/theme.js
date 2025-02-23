@@ -646,7 +646,20 @@ function initCodeClipboard() {
     }
   });
 
-  var codeElements = document.querySelectorAll('code');
+  var preOnlyElements = document.querySelectorAll('pre > :not(code), pre:not(:has(>*))');
+  for (var i = 0; i < preOnlyElements.length; i++) {
+    // move everything down one level so that it fits to the next selector
+    // and we also get copy-to-clipboard for pre-only elements
+    var pre = preOnlyElements[i];
+    var div = document.createElement('div');
+    div.classList.add('pre-only');
+    while (pre.firstChild) {
+      div.appendChild(pre.firstChild);
+    }
+    pre.appendChild(div, pre);
+  }
+
+  var codeElements = document.querySelectorAll('code, .pre-only');
   for (var i = 0; i < codeElements.length; i++) {
     var code = codeElements[i];
     var text = getCodeText(code);
