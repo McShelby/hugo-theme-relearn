@@ -171,6 +171,9 @@ function restoreTabSelections() {
 }
 
 function initMermaid(update, attrs) {
+  if (!window.relearn.themeUseMermaid) {
+    return;
+  }
   var doBeside = true;
   var isImageRtl = isRtl;
 
@@ -379,6 +382,9 @@ function initMermaid(update, attrs) {
 }
 
 function initOpenapi(update, attrs) {
+  if (!window.relearn.themeUseOpenapi) {
+    return;
+  }
   var state = this;
   if (update && !state.is_initialized) {
     return;
@@ -879,9 +885,7 @@ function initArrowHorizontalNav() {
 
   // button navigation
   var prev = document.querySelector('.topbar-button-prev a');
-  prev && prev.addEventListener('click', navPrev);
   var next = document.querySelector('.topbar-button-next a');
-  next && next.addEventListener('click', navNext);
 
   // keyboard navigation
   // avoid prev/next navigation if we are not at the start/end of the
@@ -1239,16 +1243,6 @@ function showPrint() {
   }
 }
 
-function navPrev() {
-  var e = document.querySelector('.topbar-button-prev a');
-  location.href = e && e.getAttribute('href');
-}
-
-function navNext() {
-  var e = document.querySelector('.topbar-button-next a');
-  location.href = e && e.getAttribute('href');
-}
-
 function initToc() {
   if (isPrint) {
     return;
@@ -1338,7 +1332,7 @@ function initExpand() {
 
 function clearHistory() {
   var visitedItem = window.relearn.absBaseUri + '/visited-url/';
-  for (var item in sessionStorage) {
+  for (var item in window.sessionStorage) {
     if (item.substring(0, visitedItem.length) === visitedItem) {
       window.relearn.removeItem(window.sessionStorage, item);
       var url = item.substring(visitedItem.length);
@@ -1357,7 +1351,7 @@ function initHistory() {
   window.relearn.setItem(window.sessionStorage, visitedItem + document.querySelector('body').dataset.url, 1);
 
   // loop through the sessionStorage and see if something should be marked as visited
-  for (var item in sessionStorage) {
+  for (var item in window.sessionStorage) {
     if (item.substring(0, visitedItem.length) === visitedItem && window.relearn.getItem(window.sessionStorage, item) == 1) {
       var url = item.substring(visitedItem.length);
       // in case we have `relativeURLs=true` we have to strip the
