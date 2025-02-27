@@ -38,7 +38,7 @@
     <link href="{{(printf "css/format-%s%s.css" $outputFormat $min) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-format-style">
     {{- if not .Site.Params.disableSearch }}
       {{- with resources.Get "/css/auto-complete/auto-complete.css" }}
-    <link href="{{ (. | minify).RelPermalink }}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="stylesheet"></noscript>
+    <link href="{{ (. | minify).RelPermalink }}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;">
       {{- end }}
       {{- with resources.Get "/js/auto-complete/auto-complete.js" }}
     <script src="{{ (. | minify).RelPermalink }}{{ $assetBusting }}" defer></script>
