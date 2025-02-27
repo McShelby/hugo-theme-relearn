@@ -3,9 +3,15 @@ setlocal enabledelayedexpansion
 
 set hugo_prefix=
 set hugo_version=
+set hugo_environment=testing
 if not "%~1"=="" (
     set hugo_prefix=.hugo
     set hugo_version=.%1
+)
+
+if not exist "content" (
+    echo No content directory found.
+    exit /b
 )
 
 rem Relearn theme docs & exampleSite
@@ -26,29 +32,49 @@ if not exist "%themeDir%\layouts\partials\version.txt" (
     rem theme users with custom theme name
     set "themeDir=themes\relearn"
 )
-
 if not exist "%themeDir%\layouts\partials\version.txt" (
     echo Relearn theme not found.
-    set "version="
+    exit /b
+)
+
+set "configDir="
+if "%hugo_environment%"=="" (
+    rem No environment given, which is fine
+) else if exist "%themeDir%\docs\config\%hugo_environment%\hugo.toml" (
+    rem New themes docs
+    set "configDir=%themeDir%\docs\config\%hugo_environment%"
+) else if exist "%themeDir%\exampleSite\config\%hugo_environment%\hugo.toml" (
+    rem Old themes docs inside of exampleSite
+    set "configDir=%themeDir%\exampleSite\config\%hugo_environment%"
 ) else (
-    set /p version=<"%themeDir%\layouts\partials\version.txt"
-    set "version=.!version!"
+    echo Environment configuration %hugo_environment% not found.
+    exit /b
 )
 
-echo %version%>"metrics%version%%hugo_prefix%%hugo_version%.log"
-
-set config=--environment testing
-if exist "config\testing" (
+set "config="
+if "%hugo_environment%"=="" (
+    rem No environment given, which is fine
+) else if exist "config\%hugo_environment%" (
     rem seems we are in the themes docs, no need to copy anything
+    set config=--environment %hugo_environment%
 ) else if exist "config.toml" (
-    set config=--config config.toml,%themeDir%\docs\config\testing\hugo.toml
+    set config=--config config.toml,%configDir%\hugo.toml
 ) else if exist "hugo.toml" (
-    set config=--config hugo.toml,%themeDir%\docs\config\testing\hugo.toml
+    set config=--config hugo.toml,%configDir%\hugo.toml
 ) else if exist "config" (
-    copy /e /i /y "%themeDir%\docs\config\testing" "config\testing"
+    copy /e /i /y "%configDir%" "config\%hugo_environment%"
+    set config=--environment %hugo_environment%
 ) else if exist "hugo" (
-    copy /e /i /y "%themeDir%\config\testing" "hugo\testing"
+    copy /e /i /y "%configDir%" "hugo\%hugo_environment%"
+    set config=--environment %hugo_environment%
+) else (
+    echo Environment configuration can not be applied.
+    exit /b
 )
+
+set /p version=<"%themeDir%\layouts\partials\version.txt"
+set "version=.!version!"
+echo %version%>"metrics%version%%hugo_prefix%%hugo_version%.log"
 
 echo on
 hugo%hugo_version% %config% --printPathWarnings --printI18nWarnings --templateMetrics --templateMetricsHints --cleanDestinationDir --logLevel info --destination "public%version%%hugo_prefix%%hugo_version%" >> "metrics%version%%hugo_prefix%%hugo_version%.log" 2>&1
@@ -64,5 +90,5 @@ for /r "%start_dir%" %%F in (*) do (
 move /Y "dir%version%%hugo_prefix%%hugo_version%.log" "public%version%%hugo_prefix%%hugo_version%\dir.log" 2>&1 >NUL
 
 move /Y "metrics%version%%hugo_prefix%%hugo_version%.log" "public%version%%hugo_prefix%%hugo_version%\metrics.log" 2>&1 >NUL
-For /F "UseBackQ Delims==" %%A In ("public%version%%hugo_prefix%%hugo_version%\metrics.log") Do Set "lastline=%%A"
+for /F "UseBackQ Delims==" %%A In ("public%version%%hugo_prefix%%hugo_version%\metrics.log") do Set "lastline=%%A"
 echo %lastline%
