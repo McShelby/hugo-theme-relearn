@@ -23,6 +23,7 @@
       {{- if and (strings.HasPrefix $path $prefix) (strings.HasPrefix $suffix "/") }}
         {{- $path = $suffix }}
         {{- $transSite = . }}
+        {{- $transPage = $transSite.GetPage $page.Path }}
         {{- break }}
       {{- end }}
     {{- end }}
@@ -30,19 +31,21 @@
   {{- if not $transSite }}
     {{- $lang = $site.Language.Lang }}
     {{- $transSite = $site }}
+    {{- $transPage = $page }}
   {{- end }}
 {{- else if $lang }}
   {{- with where $site.Sites "Language.Lang" "eq" $lang }}
     {{- with index . 0 }}
       {{- $transSite = . }}
+      {{- $transPage = $transSite.GetPage $page.Path }}
     {{- end }}
   {{- end }}
 {{- else }}
   {{- $lang = $site.Language.Lang }}
   {{- $transSite = $site }}
+  {{- $transPage = $page }}
 {{- end }}
 {{- if $transSite }}
-  {{- $transPage = $transSite.GetPage $page.Path }}
   {{- if $path }}
     {{- with or
       (and $searchLocal $searchPage $transPage ($transPage.GetPage $path))
