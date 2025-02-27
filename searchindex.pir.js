@@ -1464,20 +1464,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/additionalcontentlanguage/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Alwaysopen",
-    "uri": "/hugo-theme-relearn/pir/options/alwaysopen/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: Alwaysopen",
     "uri": "/hugo-theme-relearn/pir/frontmatter/alwaysopen/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Alwaysopen",
+    "uri": "/hugo-theme-relearn/pir/options/alwaysopen/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes",
@@ -1552,14 +1552,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/categories/index.html"
   },
   {
-    "breadcrumb": "Tag-a-taggs",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tagga :: Children",
-    "uri": "/hugo-theme-relearn/pir/tags/children/index.html"
-  },
-  {
     "breadcrumb": "Shorrrtcodes",
     "content": "Th' children shortcode lists th' child planks o' th' current plank an' its descendants.\nplank 1 plank 2 plank 3 plank X Usage ​ shortcode partial {{% children sort=\"title\" %}} {{ partial \"shortcodes/children.html\" (dict \"page\" . \"sort\" \"title\" )}} Parameter Name Default Notes containerstyle ul Choose th' style used t' group all children. It could be any HTML tag name. style li Choose th' style used t' display each descendant. It could be any HTML tag name. showhidden false When true, child planks hidden from th' menu will be displayed as well. descript'n false When true shows a short text under each plank 'n th' list. When no descript'n or summary exists fer th' plank, th' first 70 words o' th' rrrambl'n be taken - read more info about summaries on gohugo.io. depth 1 Th' depth o' descendants t' display. For example, if th' value be 2, th' shortcode will display two levels o' child planks. T' get all descendants, set this value t' a high number eg. 999. sort auto Th' sort criteria o' th' displayed list.\n- auto defaults t' ordersectionsby o' th' page’s Front Matter\nor t' ordersectionsby o' th' configurat'n Opt'n\nor t' weight\n- weight\n- title\n- modifieddate\n- expirydate\n- publishdate\n- date\n- length\n- default adher'n t' Hugo’s default sort criteria Examples All Default {{% children %}} plank X plank 1 plank 2 plank 3 Wit' Descript'n {{% children descript'n=\"true\" %}} plank XThis be a plain plank test, an' th' beginn'n o' a YAML multiline descript'n... plank 1This be a demo child plank\nplank 2This be a demo child plank wit' no descript'n.\nSo its rrrambl'n be used as descript'n.\nplank 3This be a demo child plank\nInfinite Depth an' Hidden Planks {{% children depth=\"999\" showhidden=\"true\" %}} plank X plank 1 plank 1-1 plank 1-1-1 (hidden) plank 1-1-1-1 plank 1-1-1-1-1 (hidden) plank 1-1-1-1-1-1 plank 1-1-2 (headless) plank 1-1-2-1 plank 1-1-2-2 plank 1-1-3 plank 2 plank 3 plank 3-1 plank 4 (hidden) Head'n Styles fer Container an' Elements {{% children containerstyle=\"div\" style=\"h2\" depth=\"3\" descript'n=\"true\" %}} plank XThis be a plain plank test, an' th' beginn'n o' a YAML multiline descript'n... plank 1This be a demo child plank\nplank 1-1This be a demo child plank\nplank 1-1-2 (headless)This be a demo child plank\nplank 1-1-3This be a demo child plank\nplank 2This be a demo child plank wit' no descript'n.\nSo its rrrambl'n be used as descript'n.\nplank 3This be a demo child plank\nplank 3-1This be a plain plank test nested 'n a parent\nDivs fer Group an' Element Styles {{% children containerstyle=\"div\" style=\"div\" depth=\"3\" %}} plank X plank 1 plank 1-1 plank 1-1-2 (headless) plank 1-1-3 plank 2 plank 3 plank 3-1",
     "description": "List th' child planks on a plank",
@@ -1568,12 +1560,12 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/shortcodes/children/index.html"
   },
   {
-    "breadcrumb": "Options",
+    "breadcrumb": "Tag-a-taggs",
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: CollapsibleMenu",
-    "uri": "/hugo-theme-relearn/pir/options/collapsiblemenu/index.html"
+    "title": "Tagga :: Children",
+    "uri": "/hugo-theme-relearn/pir/tags/children/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1584,20 +1576,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/collapsiblemenu/index.html"
   },
   {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: CollapsibleMenu",
+    "uri": "/hugo-theme-relearn/pir/options/collapsiblemenu/index.html"
+  },
+  {
     "breadcrumb": "Development",
     "content": "Code Quality A new release can happen at any time from th' main branch o' th' GitHub project without further acknowledgment. This makes it necessary that, every pushed set o' changesets into th' main branch must be self-contained an' correct, result'n 'n a releas'ble version.\nStay simple fer th' user by focus'n on th' mantra “convent'n over configuration”.\nAt installat'n th' ship should work reason'ble without (m)any configurat'n.\nStay close t' th' Cap'n Hugo way.\nDon’t use npm or any preprocess'n, our contributors may not be front-end developers.\nDocument new features 'n th' docs. This also contains entries t' th' What’s new plank.\nDon’t break exist'n features if ye don’t have t'.\nRemove reported issue from th' browser’s console.\nCheck fer unnecessary whitespace an' correct indent'n o' yer result'n HTML.\nConventional Commits Write commit messages 'n th' conventional commit format.\nFollow'n be an inpomplete list o' some o' th' used conventional commit types. Be creative.\nCommon Feature Structure Shorrrtcodes build a11y favicon attachments browser archetypes search badge chore alias menu button docs generator history children shorrrtcodes i18n scrollbar expand theme mobile nav ay'con print toc include rss clipboard math variant syntaxhighlight mermaid boxes notice openapi piratify siteparam tabs",
     "description": "What to know if you want to contribute",
     "tags": [],
     "title": "Contributing",
     "uri": "/hugo-theme-relearn/pir/development/contributing/index.html"
-  },
-  {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: CustomMathJaxURL",
-    "uri": "/hugo-theme-relearn/pir/options/custommathjaxurl/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1612,8 +1604,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: CustomMermaidURL",
-    "uri": "/hugo-theme-relearn/pir/options/custommermaidurl/index.html"
+    "title": "Option :: CustomMathJaxURL",
+    "uri": "/hugo-theme-relearn/pir/options/custommathjaxurl/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1628,8 +1620,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: CustomOpenapiURL",
-    "uri": "/hugo-theme-relearn/pir/options/customopenapiurl/index.html"
+    "title": "Option :: CustomMermaidURL",
+    "uri": "/hugo-theme-relearn/pir/options/custommermaidurl/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1638,6 +1630,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter :: CustomOpenapiURL",
     "uri": "/hugo-theme-relearn/pir/frontmatter/customopenapiurl/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: CustomOpenapiURL",
+    "uri": "/hugo-theme-relearn/pir/options/customopenapiurl/index.html"
   },
   {
     "breadcrumb": "Options",
@@ -1680,20 +1680,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/disableassetsbusting/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: DisableBreadcrumb",
-    "uri": "/hugo-theme-relearn/pir/options/disablebreadcrumb/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: DisableBreadcrumb",
     "uri": "/hugo-theme-relearn/pir/frontmatter/disablebreadcrumb/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: DisableBreadcrumb",
+    "uri": "/hugo-theme-relearn/pir/options/disablebreadcrumb/index.html"
   },
   {
     "breadcrumb": "Options",
@@ -1752,14 +1752,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/disablelanguageswitchingbutton/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: DisableMarkdownButton",
-    "uri": "/hugo-theme-relearn/pir/options/disablemarkdownbutton/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
@@ -1772,8 +1764,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: DisableNextPrev",
-    "uri": "/hugo-theme-relearn/pir/options/disablenextprev/index.html"
+    "title": "Option :: DisableMarkdownButton",
+    "uri": "/hugo-theme-relearn/pir/options/disablemarkdownbutton/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1788,8 +1780,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: DisablePrintButton",
-    "uri": "/hugo-theme-relearn/pir/options/disableprintbutton/index.html"
+    "title": "Option :: DisableNextPrev",
+    "uri": "/hugo-theme-relearn/pir/options/disablenextprev/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1798,6 +1790,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter :: DisablePrintButton",
     "uri": "/hugo-theme-relearn/pir/frontmatter/disableprintbutton/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: DisablePrintButton",
+    "uri": "/hugo-theme-relearn/pir/options/disableprintbutton/index.html"
   },
   {
     "breadcrumb": "Options",
@@ -1864,20 +1864,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/disableshortcutstitle/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: DisableSourceButton",
-    "uri": "/hugo-theme-relearn/pir/options/disablesourcebutton/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: DisableSourceButton",
     "uri": "/hugo-theme-relearn/pir/frontmatter/disablesourcebutton/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: DisableSourceButton",
+    "uri": "/hugo-theme-relearn/pir/options/disablesourcebutton/index.html"
   },
   {
     "breadcrumb": "Options",
@@ -1896,14 +1896,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/disabletermbreadcrumbs/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: DisableToc",
-    "uri": "/hugo-theme-relearn/pir/options/disabletoc/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
@@ -1916,8 +1908,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: EditURL",
-    "uri": "/hugo-theme-relearn/pir/options/editurl/index.html"
+    "title": "Option :: DisableToc",
+    "uri": "/hugo-theme-relearn/pir/options/disabletoc/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1932,16 +1924,16 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: EnableLegacyLanguageLinks",
-    "uri": "/hugo-theme-relearn/pir/options/enablelegacylanguagelinks/index.html"
+    "title": "Option :: EditURL",
+    "uri": "/hugo-theme-relearn/pir/options/editurl/index.html"
   },
   {
     "breadcrumb": "Options",
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: Errorignore",
-    "uri": "/hugo-theme-relearn/pir/options/errorignore/index.html"
+    "title": "Option :: EnableLegacyLanguageLinks",
+    "uri": "/hugo-theme-relearn/pir/options/enablelegacylanguagelinks/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -1950,6 +1942,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter :: Errorignore",
     "uri": "/hugo-theme-relearn/pir/frontmatter/errorignore/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Errorignore",
+    "uri": "/hugo-theme-relearn/pir/options/errorignore/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes",
@@ -1968,20 +1968,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/categories/explanation/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: ExternalLinkTarget",
-    "uri": "/hugo-theme-relearn/pir/options/externallinktarget/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: ExternalLinkTarget",
     "uri": "/hugo-theme-relearn/pir/frontmatter/externallinktarget/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: ExternalLinkTarget",
+    "uri": "/hugo-theme-relearn/pir/options/externallinktarget/index.html"
   },
   {
     "breadcrumb": "",
@@ -2048,20 +2048,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/shortcodes/highlight/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: HighlightWrap",
-    "uri": "/hugo-theme-relearn/pir/options/highlightwrap/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: HighlightWrap",
     "uri": "/hugo-theme-relearn/pir/frontmatter/highlightwrap/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: HighlightWrap",
+    "uri": "/hugo-theme-relearn/pir/options/highlightwrap/index.html"
   },
   {
     "breadcrumb": "Categorrries",
@@ -2088,14 +2088,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/shortcodes/icon/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Image.errorlevel",
-    "uri": "/hugo-theme-relearn/pir/options/image.errorlevel/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
@@ -2108,8 +2100,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: ImageEffects",
-    "uri": "/hugo-theme-relearn/pir/options/imageeffects/index.html"
+    "title": "Option :: Image.errorlevel",
+    "uri": "/hugo-theme-relearn/pir/options/image.errorlevel/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2120,6 +2112,14 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/imageeffects/index.html"
   },
   {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: ImageEffects",
+    "uri": "/hugo-theme-relearn/pir/options/imageeffects/index.html"
+  },
+  {
     "breadcrumb": "Shorrrtcodes",
     "content": "Th' include shortcode includes other planks, resources or files from yer project.\nUsage ​ shortcode shortcode (positional) partial {{% include file=\"shortcodes/include/INCLUDE_ME.md\" %}} {{% include \"shortcodes/include/INCLUDE_ME.md\" %}} {{ partial \"shortcodes/include .html\" (dict \"page\" . \"file\" \"shortcodes/include/INCLUDE_ME.md\" )}} Th' included files can even contain Marrrkdown an' will be taken into account when generat'n th' table o' contents.\nParameter Name Posit'n Default Notes file 1 \u003cempty\u003e Th' path t' th' plank, resource or file t' be included. Plank an' resource paths adhere t' Hugo’s logical path. If not found by logical path it falls back t' Hugo’s build-in readFile funct'n hidefirsthead'n 2 false When true an' th' included file contains head'ns, th' first head'n will be hidden. This comes 'n handy, eg. if ye include otherwise standalone Marrrkdown files. Sett'ns Enabl'n Link Warn'ns Opt'n Front Matter Ye can use include.errorlevel t' control what should happen if a local link can not be resolved t' a resource.\nIf not set or empty, any unresolved link be written as given into th' result'n output. If set t' warning th' same happens an' an additional warning be printed 'n th' built console. If set t' error an error message be printed an' th' build be aborted.\nPlease note that this can not resolve files inside o' yer static directory. Th' file must be a resource o' th' plank or th' ship.\nLink warnings be also avail'ble fer images \u0026 links an' th' openapi shortcode.\n​ toml yaml json [include] errorlevel = 'warning' include: errorlevel: warning { \"include\": { \"errorlevel\": \"warning\" } } Examples Arbitrary Rrrambl'n {{% include \"shortcodes/include/INCLUDE_ME.md\" %}} Ye can add standard markdown rules:\nmultiple paragraphs bullet point lists emphasized, bold an' even bold emphasized text links etc.1 ...and even source code th' possibilities be endless (almost - includ'n other shorrrtcodes may or may not work) (almost - includ'n other shorrrtcodes may or may not work)\nEt Cetera (English: /ɛtˈsɛtərə/), abbreviated t' etc., etc, et cet., be a Latin expression that be used 'n English t' mean “and other similar things”, or “and so forth” ↩︎",
     "description": "Displays content from other Marrrkdown files",
@@ -2128,20 +2128,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/shortcodes/include/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Include.errorlevel",
-    "uri": "/hugo-theme-relearn/pir/options/include.errorlevel/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: Include.errorlevel",
     "uri": "/hugo-theme-relearn/pir/frontmatter/include.errorlevel/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Include.errorlevel",
+    "uri": "/hugo-theme-relearn/pir/options/include.errorlevel/index.html"
   },
   {
     "breadcrumb": "Options",
@@ -2168,14 +2168,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/lastmodifieremail/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Link.errorlevel",
-    "uri": "/hugo-theme-relearn/pir/options/link.errorlevel/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
@@ -2188,8 +2180,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: LinkEffects",
-    "uri": "/hugo-theme-relearn/pir/options/linkeffects/index.html"
+    "title": "Option :: Link.errorlevel",
+    "uri": "/hugo-theme-relearn/pir/options/link.errorlevel/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2204,8 +2196,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: LinkTitle",
-    "uri": "/hugo-theme-relearn/pir/options/linktitle/index.html"
+    "title": "Option :: LinkEffects",
+    "uri": "/hugo-theme-relearn/pir/options/linkeffects/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2216,20 +2208,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/linktitle/index.html"
   },
   {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: LinkTitle",
+    "uri": "/hugo-theme-relearn/pir/options/linktitle/index.html"
+  },
+  {
     "breadcrumb": "Development",
     "content": "Semver This project tries t' follow th' semver policy - although not followed 100% 'n th' past.\nUsually an entry o' Break'n on th' What’s new plank causes a new major release number.\nAll other entries on th' What’s new plank will increase th' minor release number.\nReleases result'n 'n a new major or minor number be called main release.\nReleases contain'n bugfixes only, be only increas'n th' patch release number. Those releases don’t result 'n announcements on th' What’s new plank.\nEntries on th' What’s new plank be checked an' enforced dur'n th' version-release GitHub Act'n.\nManag'n Issues Issues be categorized an' managed by assign'n labels t' it.\nOnce work'n on an issue, assign it t' a fitt'n maintainer.\nWhen done, close th' ticket. Once an issue be closed, it needs t' be assigned t' next release milestone.\nA once released ticket be not allowed t' be reopened an' rereleased 'n a different milestone. This would cause th' changelog t' be changed even fer th' milestone th' issue was previously released 'n. Instead write a new ticket.\nManag'n Pull Requests If a PR be merged an' closed it needs an accompanied issue assigned t'. If there be no issue fer a PR, th' maintainer needs t' create one.\nYe can assign multiple PRs t' one issue as long as they belong together.\nUsually set th' same labels an' milestone fer th' PR as fer th' accompanied issue.\nLabels Kind An issue that results 'n changesets must have exactly one o' th' follow'n labels. This needs t' be assigned latest before release.\nLabel Descript'n Changelog section documentat'n Improvements or addit'ns t' documentat'n - discussion This issue was converted t' a discussion - task Maintenance work Maintenance feature New feature or request Features bug Someth'n isn’t work'n Fixes Impact If th' issue would cause a new main release due t' semver semantics it needs one o' th' accord'n labels an' th' match'n badge on th' What’s new plank.\nLabel Descript'n change Introduces changes wit' exist'n installat'ns break'n Introduces break'n changes wit' exist'n installat'ns Declinat'n If an issue does not result 'n changesets but be closed anyways, it must have exactly one o' th' follow'n labels.\nLabel Descript'n duplicate This issue or pull request already exists invalid This doesn’t seem right support Request fer achiev'n a special goal unresolved No progress on this issue update A change 'n behavior after updat wontchange This will not be worked on Halt Ye can assign one further label out o' th' follow'n list t' signal readers that development on an open issue be currently halted fer different reasons.\nLabel Descript'n blocked Depends on other issue t' be fixed first idea A valu'ble idea that’s currently not worked on undecided No decision was made yet helpwanted Great idea, send 'n a PR needsfeedback Further informat'n be needed 3rd-Party If th' issue be not caused by a programm'n error 'n th' themes own code, ye can label th' caus'n program or library.\nLabel Descript'n asciidoc This be a topic related t' process'n o' AsciiDoc browser This be a topic related t' th' browser but not th' theme device This be a topic related t' a certain device hugo This be a topic related t' Cap'n Hugo itself but not th' theme mermaid This be a topic related t' Merrrmaid itself but not th' theme Sett'n Up a Development Environment Git Hooks be used t' automate some tasks. They be stored 'n th' .githooks root folder.\nDocumentat'n fer each hook be contained 'n each file.\nAt least th' pre-commit hook be required, as it updates th' version number on each commit. This helps t' help debugg'n o' user related issues.\nMak'n Releases A release be based on a milestone named like th' release itself - just th' version number, eg: 1.2.3. It’s 'n th' maintainers responsibility t' check semver semantics o' th' milestone’s name prior t' release an' change it if necessary.\nMak'n releases be automated by th' version-release GitHub Act'n. It requires th' version number o' th' milestone that should be released. Th' release will be created from th' main branch o' th' repository.\nTreat released milestones as immutable. Don’t rerelease an already released milestone. An already released milestone may already been consumed by yer users.\nDur'n execut'n o' th' act'n a few th'ns be checked. If a check fails th' act'n fails, result'n 'n no new release. Ye can correct th' errors afterwards an' rerun th' act'n.\nTh' follow'n checks will be enforced\nth' milestone exists there be at least one closed issue assigned t' th' milestone all assigned issues fer this milestone be closed if it’s a main release, there must be an accompany'n releasenotes file present 'n th' repo at introduction/releasenotes/\u003cmajor\u003e/\u003cminor\u003e.en.md Aft a successful run o' th' act'n\nth' changelog at introduction/changelog/\u003cmajor\u003e/\u003cminor\u003e/\u003cpatch\u003e.\u003clang\u003e.md be created fer english an' piratish, includ'n miss'n generic upper level files th' CHANGELOG.md be updated th' releasenotes at introduction/releasenotes/\u003cmajor\u003e/\u003cminor\u003e.en.md be updated, includ'n release version an' release date miss'n generic upper level files fer english an' piratish be created th' version number fer th' \u003cmeta generator\u003e be updated th' updated files be committed th' milestone be closed th' repository be tagged wit' th' version number (eg. 1.2.3), th' main version number (eg. 1.2.x) an' th' major version number (eg. 1.x) a new entry 'n th' GitHub release list wit' th' accord'n changelog will be created th' official documentat'n be built an' deployed th' version number fer th' \u003cmeta generator\u003e be updated t' a temporary an' committed (this helps t' determine if users be runn'n directly on th' main branch or be us'n releases) a new milestone fer th' next patch release be created (this can later be renamed t' a main release if necessary)",
     "description": "What to know as a maintainer",
     "tags": [],
     "title": "Maintaining",
     "uri": "/hugo-theme-relearn/pir/development/maintaining/index.html"
-  },
-  {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Math",
-    "uri": "/hugo-theme-relearn/pir/options/math/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2240,20 +2232,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/math/index.html"
   },
   {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Math",
+    "uri": "/hugo-theme-relearn/pir/options/math/index.html"
+  },
+  {
     "breadcrumb": "Shorrrtcodes",
     "content": "If this be not enough, th' math shortcode helps ye render'n math an' chemical formulae us'n th' MathJax library.\n$$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ Usage ​ passthrough codefence shortcode partial $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ ```math {align=\"center\"} $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ ``` {{\u003c math align=\"center\" \u003e}} $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ {{\u003c /math \u003e}} {{ partial \"shortcodes/math.html\" (dict \"page\" . \"content\" \"$$left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$\" \"align\" \"center\" )}} Ye can also use pure Marrrkdown fer writ'n simple math expressions.\nPassthrough rules be only avail'ble by further configurat'n an' has limited features as it does not provide any o' th' below parameter. Nevertheless, it be widely avail'ble 'n other Marrrkdown parsers like GitHub an' therefore be th' recommend rules fer generat'n portable Marrrkdown.\nParameter Name Default Notes align center Th' vertical alignment.\nAllowed values be left, center or right. \u003ccontent\u003e \u003cempty\u003e Yer formulae. Sett'ns Provid'n Initializat'n Opt'ns fer th' MathJax Library Opt'n Front Matter Th' MathJax library be configured wit' default sett'ns fer initializat'n.\nYe can overwrite th' sett'ns by provid'n a JSON object 'n mathJaxInitialize. See MathJax’s documentat'n fer all allowed sett'ns.\nKeep 'n mind that initializat'n sett'ns o' yer planks front matter overwrite all sett'ns o' yer configurat'n opt'ns.\n​ toml yaml json mathJaxInitialize = '{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \"inlineMath\": [[\"\\(\", \"\\)\"], [\"@\", \"@\"]], displayMath: [[\"\\[\", \"\\]\"], [\"@@\", \"@@\"]] }, \"options\": { \"enableMenu\": false }' mathJaxInitialize: '{ \"chtml\": { \"displayAlign\": \"left\" }, { \"tex\": { \"inlineMath\": [[\"\\(\", \"\\)\"], [\"@\", \"@\"]], displayMath: [[\"\\[\", \"\\]\"], [\"@@\", \"@@\"]] }, \"options\": { \"enableMenu\": false }' { \"mathJaxInitialize\": \"{ \\\"chtml\\\": { \\\"displayAlign\\\": \\\"left\\\" }, { \\\"tex\\\": { \\\"inlineMath\\\": [[\\\"\\\\(\\\", \\\"\\\\)\\\"], [\\\"@\\\", \\\"@\\\"]], displayMath: [[\\\"\\\\[\\\", \\\"\\\\]\\\"], [\\\"@@\\\", \\\"@@\\\"]] }, \\\"options\\\": { \\\"enableMenu\\\": false }\" } Load'n an External Version o' th' MathJax Library Opt'n Front Matter Th' theme uses th' shipped MathJax library by default.\nIn case ye want do use a different version o' th' MathJax library but don’t want t' override th' shipped version, ye can set customMathJaxURL t' th' URL o' th' external MathJax library.\n​ toml yaml json customMathJaxURL = 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js' customMathJaxURL: https://unpkg.com/mathjax/es5/tex-mml-chtml.js { \"customMathJaxURL\": \"https://unpkg.com/mathjax/es5/tex-mml-chtml.js\" } Force Load'n o' th' MathJax Library Opt'n Front Matter Th' MathJax library will be boarded if th' plank contains a math shortcode or codefence.\nYe can force load'n th' MathJax library if no shortcode or codefence was used by sett'n math=true. If a shortcode or codefence was found, th' opt'n has no effect. This must be set 'n case ye be us'n th' passthrough configurat'n t' render math.\nInstead o' math=true ye can also use th' alias math.force=true.\n​ toml yaml json math = true math: true { \"math\": true } Passthrough Configurat'n Ye can use yer math without enclos'n it 'n a shortcode or codefence by us'n a passthrough configurat'n\nhugo. toml yaml json [marrrkup] [marrrkup.goldmark] [marrrkup.goldmark.extensions] [marrrkup.goldmark.extensions.passthrough] en'ble = true [marrrkup.goldmark.extensions.passthrough.delimiters] block = [['\\[', '\\]'], ['$$', '$$']] inline = [['\\(', '\\)'], ['$', '$']] marrrkup: goldmark: extensions: passthrough: delimiters: block: - - \\[ - \\] - - $$ - $$ inline: - - \\( - \\) - - $ - $ en'ble: true { \"markup\": { \"goldmark\": { \"extensions\": { \"passthrough\": { \"delimiters\": { \"block\": [ [ \"\\\\[\", \"\\\\]\" ], [ \"$$\", \"$$\" ] ], \"inline\": [ [ \"\\\\(\", \"\\\\)\" ], [ \"$\", \"$\" ] ] }, \"enable\": true } } } } } In this case ye have t' force board th' MathJax library either 'n yer hugo.toml or 'n yer page’s front matter as th' theme doesn’t know if math be used.\nSee th' example on how a passthrough configurat'ns makes us'n math really easy.\nExamples Passthrough Block Math Wit' passthrough configurat'n enabled ye can just drop yer math without enclos'n it by shorrrtcodes or codefences but no other parameters be avail'ble.\nIn this case ye have t' force board th' MathJax library by sett'n math=true either 'n yer hugo.toml or 'n yer page’s front matter.\nIn passthrough default configurat'n, block math be generated if ye use two consecutive $$ as a delimiter around yer formulae.\n$$\\left| \\begin{array}{cc} a \u0026 b \\\\ c \u0026 d \\end{array}\\right|$$ $$\\left| \\begin{array}{cc} a \u0026 b \\\\ c \u0026 d \\end{array}\\right|$$Passthrough Inline Math Th' same usage restrict'ns as o' th' previous example apply here as well.\nIn passthrough default configurat'n, inline math be generated if ye use a single $ as a delimiter around yer formulae.\nEuclid already knew, $\\sqrt{2}$ be irrational. Euclid already knew, $\\sqrt{2}$ be irrational.\nCodefence Block Math wit' Right Alignment If ye be us'n codefences, more parameter be avail'ble. Yer formulae still needs t' be enclosed by $ or $$ as delimiters respectively.\n```math {align=\"right\"} $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ ``` $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ Shortcode Block Math wit' Right Alignment Ye can also use shortcode rules. Yer formulae still needs t' be enclosed by $ or $$ as delimiters respectively.\n{{\u003c math align=\"right\" \u003e}} $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ {{\u003c /math \u003e}} $$\\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)$$ Chemical Formulae Th' MathJax library can also be used fer chemical formulae.\n$$\\ce{Hg^2+ -\u003e[I-] HgI2 -\u003e[I-] [Hg^{II}I4]^2-}$$ $$\\ce{Hg^2+ -\u003e[I-] HgI2 -\u003e[I-] [Hg^{II}I4]^2-}$$",
     "description": "Beaut'fl math and chemical formulae",
     "tags": [],
     "title": "Math",
     "uri": "/hugo-theme-relearn/pir/shortcodes/math/index.html"
-  },
-  {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Math.force",
-    "uri": "/hugo-theme-relearn/pir/options/math.force/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2268,8 +2260,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: MathJaxInitialize",
-    "uri": "/hugo-theme-relearn/pir/options/mathjaxinitialize/index.html"
+    "title": "Option :: Math.force",
+    "uri": "/hugo-theme-relearn/pir/options/math.force/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2278,6 +2270,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter :: MathJaxInitialize",
     "uri": "/hugo-theme-relearn/pir/frontmatter/mathjaxinitialize/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: MathJaxInitialize",
+    "uri": "/hugo-theme-relearn/pir/options/mathjaxinitialize/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2296,14 +2296,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/menupre/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Mermaid.force",
-    "uri": "/hugo-theme-relearn/pir/options/mermaid.force/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
@@ -2316,8 +2308,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: MermaidInitialize",
-    "uri": "/hugo-theme-relearn/pir/options/mermaidinitialize/index.html"
+    "title": "Option :: Mermaid.force",
+    "uri": "/hugo-theme-relearn/pir/options/mermaid.force/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2332,8 +2324,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: MermaidZoom",
-    "uri": "/hugo-theme-relearn/pir/options/mermaidzoom/index.html"
+    "title": "Option :: MermaidInitialize",
+    "uri": "/hugo-theme-relearn/pir/options/mermaidinitialize/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2342,6 +2334,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter :: MermaidZoom",
     "uri": "/hugo-theme-relearn/pir/frontmatter/mermaidzoom/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: MermaidZoom",
+    "uri": "/hugo-theme-relearn/pir/options/mermaidzoom/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes",
@@ -2384,14 +2384,6 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/shortcodes/openapi/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Openapi.errorlevel",
-    "uri": "/hugo-theme-relearn/pir/options/openapi.errorlevel/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
@@ -2404,8 +2396,8 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Option :: Openapi.force",
-    "uri": "/hugo-theme-relearn/pir/options/openapi.force/index.html"
+    "title": "Option :: Openapi.errorlevel",
+    "uri": "/hugo-theme-relearn/pir/options/openapi.errorlevel/index.html"
   },
   {
     "breadcrumb": "Front Matter",
@@ -2416,6 +2408,14 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/frontmatter/openapi.force/index.html"
   },
   {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Openapi.force",
+    "uri": "/hugo-theme-relearn/pir/options/openapi.force/index.html"
+  },
+  {
     "breadcrumb": "",
     "content": "",
     "description": "",
@@ -2424,20 +2424,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Ordersectionsby",
-    "uri": "/hugo-theme-relearn/pir/options/ordersectionsby/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: Ordersectionsby",
     "uri": "/hugo-theme-relearn/pir/frontmatter/ordersectionsby/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Ordersectionsby",
+    "uri": "/hugo-theme-relearn/pir/options/ordersectionsby/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes \u003e  Children \u003e  plank 1",
@@ -2595,20 +2595,20 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/options/showvisitedlinks/index.html"
   },
   {
-    "breadcrumb": "Options",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Option :: Sidebarmenus",
-    "uri": "/hugo-theme-relearn/pir/options/sidebarmenus/index.html"
-  },
-  {
     "breadcrumb": "Front Matter",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Front Matter :: Sidebarmenus",
     "uri": "/hugo-theme-relearn/pir/frontmatter/sidebarmenus/index.html"
+  },
+  {
+    "breadcrumb": "Options",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Option :: Sidebarmenus",
+    "uri": "/hugo-theme-relearn/pir/options/sidebarmenus/index.html"
   },
   {
     "breadcrumb": "Shorrrtcodes",
