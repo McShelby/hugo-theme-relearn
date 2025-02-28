@@ -120,7 +120,7 @@ To stay with the [initial example](authoring/structure): Suppose you want `log/f
 For this, open `content/log/first-day/_index.md` and add the following front matter
 
 {{< multiconfig fm=true >}}
-[_build]
+[build]
   render = 'never'
 {{< /multiconfig >}}
 
@@ -314,7 +314,7 @@ Sometimes you want to hide pages from the page menu but instead want to show the
 
     {{< multiconfig fm=true file="content/showcase/_index.en.md" >}}
     title = 'Showcase'
-    [_build]
+    [build]
       render = 'always'
       list = 'never'
       publishResources = true
@@ -323,7 +323,7 @@ Sometimes you want to hide pages from the page menu but instead want to show the
 2. Or, put a child page _inside_ a headless branch bundle with the following front matter in the bundle. This causes the child but not the branch bundle to be contained in the sitemap.
 
     {{< multiconfig fm=true file="content/more/_index.en.md" >}}
-    [_build]
+    [build]
       render = 'never'
       list = 'never'
       publishResources = false

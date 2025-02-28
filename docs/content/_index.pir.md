@@ -6,7 +6,7 @@ type = "home"
 	[cascade._target]
 		path = "/introduction/changelog/*/*/*"
 	[cascade.params]
-		[cascade.params._build]
+		[cascade.params.build]
 			render = "never"
 +++
 {{< piratify true >}}

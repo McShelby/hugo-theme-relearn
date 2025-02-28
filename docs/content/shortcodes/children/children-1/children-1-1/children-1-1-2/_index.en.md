@@ -2,7 +2,7 @@
 description = "This is a demo child page"
 tags = ["children", "headless", "non-hidden"]
 title = "page 1-1-2 (headless)"
-[_build]
+[build]
   render = "never"
 +++
 
