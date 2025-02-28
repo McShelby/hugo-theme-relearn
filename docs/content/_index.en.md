@@ -3,7 +3,7 @@ description = "A theme for Hugo designed for documentation."
 title = "Hugo Relearn Theme"
 type = "home"
 [[cascade]]
-	[cascade._target]
+	[cascade.target]
 		path = "/introduction/changelog/*/*/*"
 	[cascade.params]
 		[cascade.params.build]
