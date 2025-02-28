@@ -234,7 +234,7 @@ Write yet non-dynamic stuff
   {{- $themevariant := .themevariant }}
   {{- $identifier := .identifier }}
   {{- $themecontent := "" }}
-  {{- with resources.Get (printf "css/theme-%s.css" $identifier) }}
+  {{- with resources.Get (printf "/css/theme-%s.css" $identifier) }}
     {{- $themecontent = replaceRE `([ \t]*)(:root)` "${1}&${2}" .Content }}
   {{- else }}
     {{- errorf "\"theme-%s.css\": file not found in \"assets/css\"; if you are migrating from a theme version older thant 6.0.0, you have to move it over from \"static/css\"" $identifier }}
@@ -256,7 +256,7 @@ Write yet non-dynamic stuff
   {{- $themecontent = replaceRE `(&\s*)+:root` "&:root" $tempthemecontent }}
   {{- range findRESubmatch `[ \t]*--CODE-theme\s*:\s*([^;]*?)\s*;` $themecontent }}
     {{- $chroma = index . 1 }}
-    {{- $cssres := resources.Get (printf "css/chroma-%s.css" $chroma) }}
+    {{- $cssres := resources.Get (printf "/css/chroma-%s.css" $chroma) }}
     {{- if not $cssres }}
       {{- errorf "\"chroma-%s.css\": file not found in \"assets/css\"; if you are migrating from a theme version older thant 6.0.0, you have to move it over from \"static/css\"" $chroma }}
     {{- end }}
@@ -264,7 +264,7 @@ Write yet non-dynamic stuff
   {{- end }}
   {{- if not $chroma }}
     {{- $chroma = "relearn-light" }}
-    {{- $cssres := resources.Get (printf "css/chroma-%s.css" $chroma) }}
+    {{- $cssres := resources.Get (printf "/css/chroma-%s.css" $chroma) }}
     {{- if not $cssres }}
       {{- errorf "\"chroma-%s.css\": file not found in \"assets/css\"; if you are migrating from a theme version older thant 6.0.0, you have to move it over from \"static/css\"" $chroma }}
     {{- end }}
