@@ -55,6 +55,7 @@ The [Lunr](https://lunrjs.com) search library doesn't support all languages of t
 - Persian
 - Polish
 - Swahili
+- Ukrainian
 
 ## Mixed Language Support
 

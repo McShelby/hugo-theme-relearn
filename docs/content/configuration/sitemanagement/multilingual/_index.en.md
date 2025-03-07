@@ -34,6 +34,7 @@ It supports many languages, including right-to-left languages.
 - Spanish
 - Swahili
 - Turkish
+- Ukrainian
 - Vietnamese
 {{% /expand %}}
 
