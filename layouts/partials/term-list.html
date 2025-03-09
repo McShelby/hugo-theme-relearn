@@ -6,8 +6,8 @@
 {{- if and (not $style) (eq (len $style) 0) }}
   {{- $color = .color | default "var(--INTERNAL-TAG-BG-color)" }}
 {{- end }}
-{{- $icon := .icon | default "" }}
-{{- $icon = trim $icon " " }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" "" "icon" .icon) }}
+{{- $icon := trim ($boxStyle.icon) " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
