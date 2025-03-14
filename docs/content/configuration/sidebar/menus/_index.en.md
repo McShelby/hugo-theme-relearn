@@ -1,8 +1,8 @@
 +++
 categories = ["howto"]
 description = "Configure all things menus"
-frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPageRef", "menuPost", "menuPre", "menuUrl", "ordersectionsby", "sidebarmenus"]
-options = ["alwaysopen", "collapsibleMenu", "disableShortcutsTitle", "ordersectionsby",  "sidebarmenus"]
+frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPageRef", "menuPost", "menuPre", "menuUrl", "ordersectionsby", "sidebarheadermenus", "sidebarmenus"]
+options = ["alwaysopen", "collapsibleMenu", "disableShortcutsTitle", "ordersectionsby",  "sidebarheadermenus", "sidebarmenus"]
 title = "Menus"
 weight = 4
 +++
@@ -166,16 +166,17 @@ If you want to learn how to configure different Hugo menus for each language, [s
 
 {{< multiconfig fm=true >}}
 [[menu.addendum]]
+  identifier = 'addendum-top'
   name = 'A Menu Title for the Whole Menu'
 
 [[menu.addendum]]
-  parent = 'Parent'
+  parent = 'addendum-top'
   name = 'A Menu Entry Title for Child 1'
   url = 'https://example.com/1'
   weight = 1
 
 [[menu.addendum]]
-  parent = 'Parent'
+  parent = 'addendum-top'
   name = 'A Menu Entry Title for Child 2'
   url = 'https://example.com/2'
   weight = 2
@@ -201,9 +202,16 @@ other = "Other Great Stuff"
 
 ## Defining Sidebar Menus
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined using the `sidebarmenus` option.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined using the `sidebarheadermenus` or `sidebarmenus` option.
 
-You can define as many menus, as you like. If you don't overwrite this option, the theme defaults to
+As these options are arrays, you can define as many menus, as you like.
+
+- `sidebarheadermenus`: the non-scrolling area below the search box
+- `sidebarmenus`: the scrolling area below the search box
+
+If you don't overwrite this option, for `sidebarheadermenus` the theme accounts to your settings of `disableLandingPageButton` and `landingPageName`. See [configuration for the landing page](/configuration/sidebar/headerfooter#home-button-configuration) for further information.
+
+If you don't overwrite this option, for `sidebarmenus` the theme defaults to
 
 {{< multiconfig >}}
 sidebarmenus = [
@@ -211,6 +219,8 @@ sidebarmenus = [
   { type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
 ]
 {{< /multiconfig >}}
+
+The default value for the shortcut's `disableTitle` accounts to the setting of `disableShortcutsTitle`.
 
 ### Parameter
 

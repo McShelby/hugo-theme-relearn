@@ -209,7 +209,10 @@ body #R-sidebar li.active > :is(a, span) {
     0 0 8px var(--INTERNAL-MENU-SECTION-ACTIVE-CATEGORY-color);
 }
 
-body #R-homelinks.homelinks a:hover {
+body #R-homelinks select:hover,
+body #R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) li:not(.active) > label:hover,
+body #R-homelinks .menu-control:hover,
+body #R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) a:hover {
   color: rgba(255, 255, 255, 1);
   text-shadow:
     0 0 1px rgba(255, 255, 255, 1),
@@ -219,17 +222,31 @@ body #R-homelinks.homelinks a:hover {
     0 0 8px var(--INTERNAL-MENU-HOME-LINK-HOVER-color);
 }
 
+body #R-homelinks li.active > label,
+body #R-homelinks li.active > :is(a, span) {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+  text-shadow: none;
+}
+
 body .badge,
 body .btn,
 body .box:not(.cstyle.transparent) {
-  box-shadow: 0 0 1px rgba(255, 255, 255, 1), 0 0 2px rgba(255, 255, 255, 1), 0 0 4px rgba(128, 128, 128, 1), 0 0 4px var(--VARIABLE-BOX-color);
+  box-shadow:
+    0 0 1px rgba(255, 255, 255, 1),
+    0 0 2px rgba(255, 255, 255, 1),
+    0 0 4px rgba(128, 128, 128, 1),
+    0 0 4px var(--VARIABLE-BOX-color);
 }
 
 body .badge > .badge-content,
 body .btn,
 body .btn > *,
 body .box:not(.cstyle.transparent) > .box-label {
-  text-shadow: 0 0 1px rgba(255, 255, 255, 1), 0 0 2px rgba(255, 255, 255, 1), 0 0 4px rgba(128, 128, 128, 1), 0 0 4px var(--VARIABLE-BOX-CAPTION-color);
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 1),
+    0 0 2px rgba(255, 255, 255, 1),
+    0 0 4px rgba(128, 128, 128, 1),
+    0 0 4px var(--VARIABLE-BOX-CAPTION-color);
 }
 
 body .tab-panel-cstyle:not(.transparent),

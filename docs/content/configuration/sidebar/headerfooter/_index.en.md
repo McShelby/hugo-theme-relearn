@@ -48,6 +48,8 @@ If this option isn't set for a specific language, it will use these default valu
   landingPageName = '<i class="fa-fw fas fa-home"></i> Home'
 {{< /multiconfig >}}
 
+For a free configuration of the header menus, see [configuration of the sidebar menus](/configuration/sidebar/menus#defining-sidebar-menus).
+
 ## History
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Turn on `showVisitedLinks=true` to see checkmarks next to visited pages in the main menu. This also adds a `Clear History` option at the bottom of the menu to remove all checkmarks. Note that checkmarks will disappear if you rebuild your site, as the page IDs may change.

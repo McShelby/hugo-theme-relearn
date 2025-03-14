@@ -1494,28 +1494,6 @@ div.highlight:hover .block-copy-to-clipboard-button {
   padding-right: 5px;
 }
 
-#R-homelinks {
-  background-color: var(--INTERNAL-MENU-HEADER-BORDER-color);
-  padding: 0;
-}
-
-#R-homelinks.homelinks a {
-  color: var(--INTERNAL-MENU-HOME-LINK-color);
-}
-#R-homelinks.homelinks a:hover {
-  color: var(--INTERNAL-MENU-HOME-LINK-HOVER-color);
-}
-
-#R-homelinks ul {
-  margin: 0.5rem 0;
-}
-#R-homelinks hr {
-  border-color: var(--INTERNAL-MENU-HEADER-SEPARATOR-color);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  margin: 0 1rem 3px 1rem;
-}
-
 option {
   color: initial;
 }
@@ -2408,6 +2386,54 @@ html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input + label > i.fa-chevr
 html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.fa-chevron-right {
   transform: rotate(90deg);
 }
+
+/* basic menu header styles */
+
+#R-homelinks {
+  background-color: var(--INTERNAL-MENU-HEADER-BORDER-color);
+  padding: 0;
+}
+
+#R-homelinks ul {
+  margin: 0.5rem 0;
+}
+#R-homelinks hr {
+  border-color: var(--INTERNAL-MENU-HEADER-SEPARATOR-color);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin: 0 1rem 3px 1rem;
+}
+
+#R-homelinks .nav-title {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+}
+
+/* override for the menu header */
+
+#R-homelinks select,
+#R-homelinks .collapsible-menu label,
+#R-homelinks .menu-control,
+#R-homelinks :is(a, span) {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+}
+
+#R-homelinks select:hover,
+#R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) li:not(.active) > label:hover,
+#R-homelinks .menu-control:hover,
+#R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) a:hover {
+  color: var(--INTERNAL-MENU-HOME-LINK-HOVER-color);
+}
+
+#R-homelinks li.active > label,
+#R-homelinks li.active > a {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+}
+
+#R-homelinks li.active > a {
+  background-color: transparent;
+}
+
+/* basic logo stuff
 
 a#R-logo {
   color: var(--INTERNAL-MENU-HEADER-color);
