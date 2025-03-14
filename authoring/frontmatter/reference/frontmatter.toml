@@ -163,11 +163,8 @@ alwaysopen = ''
 collapsibleMenu = true
 
 # Define your own sidebar menus.
-# Default: the value used below
-# The sidebar menus are built from this parameter. If not set, the set value
-# of your site's hugo.toml is used and contains the below default.
 # Menus are written from the sidebar's top to buttom in the order given in
-# this array.
+# these arrays. If not set, the set value of your site's hugo.toml is used.
 # Each entry can contain the following keys:
 # - `type` is mandatory. Either `page` in case it should generate a tre from
 #    the page structure or `menu` in case it should generate a tree from a
@@ -187,6 +184,18 @@ collapsibleMenu = true
 #    from the menu `name` and if this is not set form the page's `linkTitle`.
 # - `pageRef`, optional. In case of `type=page` this is the starting page's
 #   path. If not set, the home page will be used.
+
+# Define your own menus of the sidebar header.
+# Default: see notes
+# If not given, this accounts to the settings for disableLandingPageButton
+# and landingPageName. Otherwise you are free to define any menus as explained
+# above
+sidebarheadermenus = ""
+
+# Default: the value used below, but see the notes
+# The sidebar menus are built from this parameter. If not set, it contains
+# the below default. The default for the shortcut's disableTitle accounts
+# to the setting of disableShortcutsTitle.
 sidebarmenus = [
 	{ type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
 	{ type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
