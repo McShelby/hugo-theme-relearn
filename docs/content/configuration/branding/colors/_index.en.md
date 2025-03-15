@@ -54,7 +54,7 @@ In the above example, the path of your theme file must be `assets/css/theme-rele
 
 #### Multiple Variants
 
-To let the reader choose between multiple variants, set `themeVariant` like this:
+To let the reader choose between multiple variants by displaying a variant switcher, set `themeVariant` like this:
 
 {{< multiconfig file=hugo >}}
 [params]
@@ -62,6 +62,8 @@ To let the reader choose between multiple variants, set `themeVariant` like this
 {{< /multiconfig >}}
 
 The first variant is the default, and a selector will appear if there's more than one.
+
+If you want to have more control, where the variant switcher is positioned or you want to configure a different icon, see the [chapter on sidebar configuration](configuration/sidebar/menus#defining-sidebar-menus).
 
 #### Adjust to OS Settings
 

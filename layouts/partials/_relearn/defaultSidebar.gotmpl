@@ -1,0 +1,9 @@
+{{- $defaultmenuconfigs := slice
+  (dict "type" "page" "identifier" "home")
+}}
+{{- if index site.Menus "shortcuts" }}
+  {{- $defaultmenuconfigs = $defaultmenuconfigs | append
+    (dict "type" "menu" "identifier" "shortcuts" "disableTitle" site.Params.disableShortcutsTitle)
+  }}
+{{- end }}
+{{- return $defaultmenuconfigs }}

@@ -1,8 +1,8 @@
 +++
 categories = ["howto"]
 description = "Configure all things menus"
-frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPageRef", "menuPost", "menuPre", "menuUrl", "ordersectionsby", "sidebarheadermenus", "sidebarmenus"]
-options = ["alwaysopen", "collapsibleMenu", "disableShortcutsTitle", "ordersectionsby",  "sidebarheadermenus", "sidebarmenus"]
+frontmatter = ["alwaysopen", "collapsibleMenu", "linkTitle", "menuPageRef", "menuPost", "menuPre", "menuUrl", "ordersectionsby", "sidebarfootermenus", "sidebarheadermenus", "sidebarmenus"]
+options = ["alwaysopen", "collapsibleMenu", "disableShortcutsTitle", "ordersectionsby",  "sidebarfootermenus", "sidebarheadermenus", "sidebarmenus"]
 title = "Menus"
 weight = 4
 +++
@@ -126,43 +126,74 @@ For this, open `content/log/first-day/_index.md` and add the following front mat
 
 ### For Hugo Menus
 
-Just don't give your parent menu entry configuration a `url` or `pageRef`. See the [next section](#title-for-menus) for a special case.
+Just don't give your parent menu entry configuration a `url` or `pageRef`. See the [next section](#title-for-arbitrary-menus) for a special case.
 
 If you want to learn how to configure different Hugo menus for each language, [see the official docs](https://gohugo.io/content-management/multilingual/#menus).
 
+The following example will not generate clickable menu entries for the `Parent 1` and `Parent 2` menu entries.
+
 {{< multiconfig fm=true >}}
-[[menu.addendum]]
+[[menu.shortcuts]]
   name = 'Parent 1'
   weight = 1
 
-[[menu.addendum]]
+[[menu.shortcuts]]
   parent = 'Parent 1'
   name = 'Child 1'
   url = 'https://example.com/1'
 
-[[menu.addendum]]
+[[menu.shortcuts]]
   name = 'Parent 2'
   weight = 2
 
-[[menu.addendum]]
+[[menu.shortcuts]]
   parent = 'Parent 2'
   name = 'Child 2'
   url = 'https://example.com/2'
 {{< /multiconfig >}}
 
-## Title for Menus
+## Predefined Shortcuts Menu
 
-Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableMenuTitle=false` for each sidebar menu configuration](#parameter).
+By default, the theme supports one additional Hugo menu below the page menu in the sidebar named `shortcuts`. You only need to configure it in your `hugo.toml` to appear in your sidebar. For example:
+
+{{< multiconfig fm=true >}}
+[[menu.shortcuts]]
+  name = 'Example Entry'
+  weight = 1
+  url = 'https://example.com'
+{{< /multiconfig >}}
+
+## Title for the Predefined Shortcuts Menu
+
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the predefined shortcut menu has a the title _More_ (in the English translation) displayed above it.
+
+You can disable this title with `disableShortcutsTitle=true`.
+
+{{< multiconfig file=hugo >}}
+[params]
+  disableShortcutsTitle = true
+{{< /multiconfig >}}
+
+To change the title, override your translation file.
+
+````toml {title="i18n/en.toml"}
+[shortcuts-menuTitle]
+other = "Other Great Stuff"
+````
+
+## Title for Arbitrary Menus
+
+Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableMenuTitle=false` for each sidebar menu configuration](#defining-sidebar-menus).
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} For page menus, set the `menuTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `menuTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
 {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
-If you don't want to fiddle around with your translation files, you also have the possibility to let the title be taken from the menu definition. For that, define a nested menu that only has one top-level entry without `url` or `pageRef`.
+If you don't want to fiddle around with your translation files, you also have the possibility to let the title be taken from the menu definition. For that, define a nested menu that **only has one top-level entry** without `url` or `pageRef`.
 
 In this case, the `title` or `name` is taken for the menu heading.
 
-If you want to learn how to configure different Hugo menus for each language, [see the official docs](https://gohugo.io/content-management/multilingual/#menus).
+If you want to learn how to configure different Hugo menus for each language, [see here](https://gohugo.io/content-management/multilingual/#menus).
 
 {{< multiconfig fm=true >}}
 [[menu.addendum]]
@@ -182,55 +213,109 @@ If you want to learn how to configure different Hugo menus for each language, [s
   weight = 2
 {{< /multiconfig >}}
 
-## Title for the Predefined Shortcut Menu
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the predefined shortcut menu has a the title _More_ (in the English translation).
-
-You can disable this title with `disableShortcutsTitle=true`.
-
-{{< multiconfig file=hugo >}}
-[params]
-  disableShortcutsTitle = true
-{{< /multiconfig >}}
-
-To change the title, override your translation file.
-
-````toml {title="i18n/en.toml"}
-[shortcuts-menuTitle]
-other = "Other Great Stuff"
-````
-
 ## Defining Sidebar Menus
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined using the `sidebarheadermenus` or `sidebarmenus` option.
-
-As these options are arrays, you can define as many menus, as you like.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined for individual areas of the sidebar::
 
 - `sidebarheadermenus`: the non-scrolling area below the search box
 - `sidebarmenus`: the scrolling area below the search box
+- `sidebarfootermenus`: the area at the bottom of the sidebar
 
-If you don't overwrite this option, for `sidebarheadermenus` the theme accounts to your settings of `disableLandingPageButton` and `landingPageName`. See [configuration for the landing page](/configuration/sidebar/headerfooter#home-button-configuration) for further information.
+As these options are arrays, you can define as many menus, as you like in each area. Each menu is displayed as a distinct block in their area. You can configure titles for each menu and dividers between multiple menus.
 
-If you don't overwrite this option, for `sidebarmenus` the theme defaults to
+If you don't set these options in your `hugo.toml`, the theme defaults as follows:
+
+- `sidebarheadermenus`:
+  - a home button if [configured](configuration/sidebar/headerfooter#home-button-configuration), if you redefine this, use a Hugo menu and a `type=menu` to replicate this
+  - a divider to separate from the `sidebarmenus` (depending on the configuration of the theme variant)
+- `sidebarmenus`:
+  - the main page menu based on your [content structure](authoring/structure)
+  - the `shortcuts` menu including the title if [configured](#predefined-shortcuts-menu)
+- `sidebarfootermenus`:
+  - a divider to separate from the `sidebarmenus` if any of the following is configured
+  - the language switcher if multilingual is [configured](configuration/sitemanagement/multilingual#turn-off-language-switching)
+  - the variant switcher if multiple variants are [configured](configuration/branding/colors/#multiple-variants)
+  - the history clearer if you [configured](configuration/sidebar/headerfooter#history) to mark visited pages
+
+However, if you decide to overwrite these options, the configuration for those features will not be taken into account anymore. For example, if you want to reorder the `sidebarfootermenus` by setting
 
 {{< multiconfig >}}
-sidebarmenus = [
-  { type = 'page', identifier = 'home', main = true, disableTitle = true, pageRef = '' },
-  { type = 'menu', identifier = 'shortcuts', main = false, disableTitle = false },
+sidebarfootermenus = [
+  { type = 'divider' },
+  { type = 'custom', elements = [ { type = 'historyclearer' }, { type = 'variantswitcher' }, { type = 'languageswitcher' } ] }
 ]
 {{< /multiconfig >}}
 
-The default value for the shortcut's `disableTitle` accounts to the setting of `disableShortcutsTitle`.
+and no multilingual configuration is configured, the language switcher will be shown non the less.
 
-### Parameter
+### Page Menu
+
+The page menu generates a menu tree out of your directory structure. You can give it a starting page from where the tree is generated down. If now starting page is given, the home page is used.
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| type                  | _&lt;empty&gt;_ | The type of menu.<br><br>- `page` for a page menu<br>- `menu` for a Hugo menu |
-| identifier            | _&lt;empty&gt;_ | A unique identifier for this entry<br><br>- for `type=page` an arbitrary name<br>- for `page=menu` the identifier of the menu definition in your `hugo.toml` |
-| main                  | see notes       | Whether to add additional spacing and larger text to the menu<br><br>- for `type=page` defaults to `true`<br>- for `page=menu` defaults to `false` |
-| disableTitle          | see notes       | Whether to print a title above the menu<br><br>- for `type=page` defaults to `true`<br>- for `page=menu` defaults to `false` |
-| pageRef               | _&lt;empty&gt;_ | Only for `type=page`, the page path to start the menu tree. If not set, defaults to the home page. |
+| **type**              | _&lt;empty&gt;_ | `page`, required |
+| **identifier**        | _&lt;empty&gt;_ | Optional with no special meaning besides for error messages |
+| **main**              | `true`          | Whether to add additional spacing and larger text to the menu |
+| **disableTitle**      | `true`          | Whether to print a title above the menu |
+| **pageRef**           | `/`             | The path of the page to start the menu tree |
+
+### Hugo Menu
+
+The Hugo menu generates a menu tree out of a Hugo menu definition with the same `identifier`.
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **type**              | _&lt;empty&gt;_ | `menu`, required  |
+| **identifier**        | _&lt;empty&gt;_ | The identifier of the menu definition in your `hugo.toml` |
+| **main**              | `false`         | Whether to add additional spacing and larger text to the menu |
+| **disableTitle**      | `false`         | Whether to print a title above the menu; for the predefined `shortcuts` menu, accounts to the setting of `disableShortcutsTitle` |
+
+### Custom
+
+The custom menu allows you to define arbitrary HTML snippets wrapped inside of a `li` element. There is no title available to print above these menus.
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **type**              | _&lt;empty&gt;_ | `custom`, required |
+| **identifier**        | _&lt;empty&gt;_ | Optional with no special meaning besides for error messages |
+| **main**              | `false`         | Whether to add additional spacing and larger text to the menu |
+| **elements**          | _&lt;empty&gt;_ | The list of snippets, contained in `layouts/partials/sidebar/element`, to be displayed. See below.
+
+A HTML snippet has its own parameter. Your self-defined snippets can contain further parameters that are passed to your snippet partial when called. Your snippets must be stored in `layouts/partials/sidebar/element` and the name of the snippet partial needs to be `<TYPE>.html` where `<TYPE>` is the type of the element.
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **type**              | _&lt;empty&gt;_ | The theme ships with the following snippets:<br><br>- `languageswitcher`: will display the language switcher<br>- `variantswitcher`: will display the variant switcher<br>- `historyclearer`: will display a button to clear the history of visited links |
+| **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the list entry. Depending on the **type** there is a default icon. Any given value will overwrite the default. |
+
+### Divider
+
+A horizontal ruler
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **type**              | _&lt;empty&gt;_ | `divider` |
+| **identifier**        | _&lt;empty&gt;_ | Optional with no special meaning besides for error messages |
+
+### Example
+
+The following example configures the language switcher and history clearer into the menu header, only shows the the page menu in the main sidebar section and keeps the menu footer empty:
+
+{{< multiconfig >}}
+sidebarheadermenus = [
+	{ type = 'custom', elements = [
+		{ type = 'languageswitcher'	},
+		{ type = 'historyclearer' }
+	]},
+	{ type = 'divider' },
+]
+sidebarmenus = [
+	{ type = 'page' }
+]
+sidebarfootermenus = []
+{{< /multiconfig >}}
+
 
 ## Redefining Sidebar Menus for Certain Pages
 

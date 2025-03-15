@@ -279,51 +279,12 @@ a:focus,
   z-index: 100;
 }
 
-#R-menu-footer {
-  margin-bottom: 1.25rem;
-}
-
-#R-menu-footer > hr:first-child {
-  margin-bottom: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-#R-footer {
-  color: var(--INTERNAL-MENU-SECTIONS-LINK-color);
-  font-size: 0.8125rem;
-  margin-bottom: 1.25rem;
-  margin-top: 0.75rem;
-  text-align: center;
-}
-#R-footer:empty {
-  display: none;
-}
-
-#R-footer > * {
-  margin: 0 auto;
-}
-
-#R-footer > hr:first-child {
-  margin-bottom: 1.25rem;
-  margin-top: -0.5rem;
-}
-
-/* increase specifity to override following #R-content-wrapper hr style */
-#R-footer > hr:nth-child(n) {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 #R-sidebar .padding {
   padding: 0 1rem;
 }
 
 #R-sidebar .R-sidebarmenu > ul {
   margin-top: 1rem;
-}
-
-#R-sidebar .R-sidebarmenu > .nav-title ~ ul {
-  margin-top: 0.8rem;
 }
 
 #R-sidebar ul {
@@ -364,21 +325,67 @@ a:focus,
   font-family: var(--INTERNAL-MAIN-TITLES-H1-font);
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H1-letter-spacing);
   line-height: 110%;
-  margin: 1.2rem 0 0.8rem 0;
+  margin: 1.25rem 0 -0.25rem 0;
   padding-inline-start: 1rem;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
 }
 
-#R-sidebar .footermargin {
-  flex-grow: 1;
+#R-sidebar hr {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin: 1rem 1rem 0 1rem;
+}
+
+#R-homelinks hr {
+  border-color: var(--INTERNAL-MENU-HOME-SEPARATOR-color);
+}
+#R-homelinks .R-menu-divider:first-child hr {
+  border-color: var(--INTERNAL-MENU-HOME-TOP-SEPARATOR-color);
+  margin-top: 0;
+}
+#R-homelinks .R-menu-divider:last-child hr {
+  border-color: var(--INTERNAL-MENU-HOME-BOTTOM-SEPARATOR-color);
+  margin-bottom: 3px;
+  margin-top: 0;
 }
 
 #R-content-wrapper hr {
   border-color: var(--INTERNAL-MENU-SECTION-SEPARATOR-color);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  margin: 1.5rem 1rem 1rem 1rem;
+}
+
+#R-footer-margin {
+  flex-grow: 1;
+}
+
+#R-footer-margin + .R-menu-divider hr {
+  margin-top: 1.25rem;
+}
+
+#R-footer {
+  color: var(--INTERNAL-MENU-SECTIONS-LINK-color);
+  font-size: 0.8125rem;
+  padding-bottom: 1.25rem;
+  padding-top: 2rem;
+  text-align: center;
+}
+#R-footer:empty {
+  padding-bottom: 0.625rem;
+  padding-top: 0.625rem;
+}
+
+#R-footer > * {
+  margin: 0 auto;
+}
+
+#R-footer > hr:first-child {
+  margin-bottom: 1.25rem;
+  margin-top: -0.5rem;
+}
+
+#R-footer > hr {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 article .R-taxonomy.tags {
@@ -1933,20 +1940,6 @@ html[dir='rtl'] .menu-control span {
   clear: both;
 }
 
-.footerLangSwitch,
-.footerVariantSwitch,
-.footerVisitedLinks,
-.footerFooter {
-  display: none;
-}
-
-.showLangSwitch,
-.showVariantSwitch,
-.showVisitedLinks,
-.showFooter {
-  display: block;
-}
-
 /* clears the 'X' from Chrome's search input */
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
@@ -2397,52 +2390,6 @@ html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.
   transform: rotate(90deg);
 }
 
-/* basic menu header styles */
-
-#R-homelinks {
-  background-color: var(--INTERNAL-MENU-HEADER-BORDER-color);
-  padding: 0;
-}
-
-#R-homelinks ul {
-  margin: 0.5rem 0;
-}
-#R-homelinks hr {
-  border-color: var(--INTERNAL-MENU-HEADER-SEPARATOR-color);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  margin: 0 1rem 3px 1rem;
-}
-
-#R-homelinks .nav-title {
-  color: var(--INTERNAL-MENU-HOME-LINK-color);
-}
-
-/* override for the menu header */
-
-#R-homelinks select,
-#R-homelinks .collapsible-menu label,
-#R-homelinks .menu-control,
-#R-homelinks :is(a, span) {
-  color: var(--INTERNAL-MENU-HOME-LINK-color);
-}
-
-#R-homelinks select:hover,
-#R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) li:not(.active) > label:hover,
-#R-homelinks .menu-control:hover,
-#R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) a:hover {
-  color: var(--INTERNAL-MENU-HOME-LINK-HOVER-color);
-}
-
-#R-homelinks li.active > label,
-#R-homelinks li.active > a {
-  color: var(--INTERNAL-MENU-HOME-LINK-color);
-}
-
-#R-homelinks li.active > a {
-  background-color: transparent;
-}
-
 /* basic logo stuff
 
 a#R-logo {
@@ -2697,6 +2644,59 @@ body #R-logo svg :not([fill='#000000']) {
 #R-sidebar ul.space.collapsible-menu li.active > a {
   padding-bottom: calc(0.125rem - var(--bpx1) * 1px);
   padding-top: calc(0.125rem - var(--bpx1) * 1px);
+}
+
+/* basic menu header styles */
+
+#R-homelinks {
+  background-color: var(--INTERNAL-MENU-HEADER-BORDER-color);
+  padding: 0;
+}
+
+#R-sidebar #R-homelinks ul {
+  margin: 0.75rem 0;
+}
+#R-sidebar #R-homelinks ul.space {
+  margin: 0.625rem 0;
+}
+#R-sidebar #R-homelinks ul.morespace {
+  margin: 0.5rem 0;
+}
+
+#R-homelinks .nav-title {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+}
+
+/* override for the menu header */
+
+#R-homelinks select,
+#R-homelinks .collapsible-menu label,
+#R-homelinks .menu-control,
+#R-homelinks :is(a, span) {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+}
+
+#R-homelinks ul.collapsible-menu li.active > a {
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  border-inline-start-color: transparent;
+  border-inline-end-color: transparent;
+}
+
+#R-homelinks select:hover,
+#R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) li:not(.active) > label:hover,
+#R-homelinks .menu-control:hover,
+#R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) a:hover {
+  color: var(--INTERNAL-MENU-HOME-LINK-HOVER-color);
+}
+
+#R-homelinks li.active > label,
+#R-homelinks li.active > a {
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+}
+
+#R-homelinks li.active > a {
+  background-color: transparent;
 }
 
 article .R-taxonomy ul,

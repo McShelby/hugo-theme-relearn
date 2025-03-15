@@ -1,0 +1,27 @@
+{{- $defaultmenuconfigs := slice }}
+{{- $defaultconfigelements := slice }}
+
+{{- $siteLanguages := site.Languages }}
+{{- $showlangswitch := and hugo.IsMultilingual (not site.Params.disableLanguageSwitchingButton) (gt (int (len $siteLanguages)) 1) }}
+{{- if $showlangswitch }}
+  {{- $defaultconfigelements = $defaultconfigelements | append (dict "type" "languageswitcher") }}
+{{- end }}
+
+{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+{{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
+{{- if $showvariantswitch }}
+  {{- $defaultconfigelements = $defaultconfigelements | append (dict "type" "variantswitcher") }}
+{{- end }}
+
+{{- $showvisitedlinks := site.Params.showVisitedLinks }}
+{{- if $showvisitedlinks }}
+  {{- $defaultconfigelements = $defaultconfigelements | append (dict "type" "historyclearer") }}
+{{- end }}
+
+{{- if $defaultconfigelements }}
+  {{- $defaultmenuconfigs = $defaultmenuconfigs | append (dict "type" "divider") }}
+  {{- $defaultmenuconfigs = $defaultmenuconfigs | append
+    (dict "type" "custom" "identifier" "controls" "disableTitle" true "elements" $defaultconfigelements)
+  }}
+{{- end }}
+{{- return $defaultmenuconfigs }}

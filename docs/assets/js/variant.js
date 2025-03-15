@@ -60,9 +60,6 @@ var variants = {
         });
       });
       select.appendChild(option);
-      document.querySelectorAll('.footerVariantSwitch').forEach(function (e) {
-        e.classList.add('showVariantSwitch');
-      });
     }
   },
 
@@ -70,11 +67,6 @@ var variants = {
     var option = document.querySelector('#R-select-variant-' + this.customvariantname);
     if (option) {
       option.remove();
-      if (this.variants.length <= 1) {
-        document.querySelectorAll('.footerVariantSwitch').forEach(function (e) {
-          e.classList.remove('showVariantSwitch');
-        });
-      }
     }
   },
 
@@ -384,6 +376,7 @@ var variants = {
     this.styleGraphGroup('#coloredboxes', 'BOX-BG-color');
     this.styleGraphGroup('#menu', 'MENU-SECTIONS-BG-color');
     this.styleGraphGroup('#menuheader', 'MENU-HEADER-BG-color');
+    this.styleGraphGroup('#menuhome', 'MENU-HEADER-BORDER-color');
     this.styleGraphGroup('#menusections', 'MENU-SECTIONS-ACTIVE-BG-color');
   },
 
@@ -422,6 +415,15 @@ var variants = {
       '    subgraph menuheader["header"]\n' +
       '      direction LR\n' +
       g_groups['header'].reduce(
+        function (a, e) {
+          return a + '      ' + this.generateGraphGroupedEdge(e) + '\n';
+        }.bind(this),
+        ''
+      ) +
+      '    end\n' +
+      '    subgraph menuhome["home"]\n' +
+      '      direction LR\n' +
+      g_groups['home'].reduce(
         function (a, e) {
           return a + '      ' + this.generateGraphGroupedEdge(e) + '\n';
         }.bind(this),
@@ -564,12 +566,15 @@ var variants = {
     { name: 'MENU-HEADER-color', group: 'header', fallback: 'MENU-SECTIONS-LINK-color', tooltip: 'color of menu header' },
     { name: 'MENU-HEADER-BG-color', group: 'header', fallback: 'PRIMARY-color', tooltip: 'background color of menu header' },
     { name: 'MENU-HEADER-BORDER-color', group: 'header', fallback: 'MENU-HEADER-BG-color', tooltip: 'border color between menu header and menu' },
-    { name: 'MENU-HEADER-SEPARATOR-color', group: 'header', fallback: 'MENU-HEADER-BORDER-color', tooltip: 'separator color between menu header and menu' },
-    { name: 'MENU-HOME-LINK-color', group: 'header', default: '#323232', tooltip: 'home button color if configured' },
-    { name: 'MENU-HOME-LINK-HOVER-color', group: 'header', default: '#808080', tooltip: 'hoverd home button color if configured' },
     { name: 'MENU-SEARCH-color', group: 'header', default: '#e0e0e0', tooltip: 'text and icon color of search box' },
     { name: 'MENU-SEARCH-BG-color', group: 'header', default: '#323232', tooltip: 'background color of search box' },
     { name: 'MENU-SEARCH-BORDER-color', group: 'header', fallback: 'MENU-SEARCH-BG-color', tooltip: 'border color of search box' },
+
+    { name: 'MENU-HOME-LINK-color', group: 'home', default: '#323232', tooltip: 'home button color if configured' },
+    { name: 'MENU-HOME-LINK-HOVER-color', group: 'home', default: '#808080', tooltip: 'hoverd home button color if configured' },
+    { name: 'MENU-HOME-TOP-SEPARATOR-color', group: 'home', fallback: 'MENU-HOME-LINK-color', tooltip: 'separator color between menu search box and home menu' },
+    { name: 'MENU-HOME-SEPARATOR-color', group: 'home', fallback: 'MENU-HOME-LINK-color', tooltip: 'separator color between home menus' },
+    { name: 'MENU-HOME-BOTTOM-SEPARATOR-color', group: 'home', fallback: 'MENU-HEADER-BORDER-color', tooltip: 'separator color between home menu and menu' },
 
     { name: 'MENU-SECTIONS-BG-color', group: 'sections', default: '#282828', tooltip: 'background of the menu; this is NOT just a color value but can be a complete CSS background definition including gradients, etc.' },
     { name: 'MENU-SECTIONS-ACTIVE-BG-color', group: 'sections', default: 'rgba( 0, 0, 0, .166 )', tooltip: 'background color of the active menu section' },
@@ -578,7 +583,7 @@ var variants = {
     { name: 'MENU-SECTION-ACTIVE-CATEGORY-color', group: 'sections', default: '#444444', tooltip: 'text color of the displayed menu topic' },
     { name: 'MENU-SECTION-ACTIVE-CATEGORY-BG-color', group: 'sections', fallback: 'MAIN-BG-color', tooltip: 'background color of the displayed menu topic' },
     { name: 'MENU-SECTION-ACTIVE-CATEGORY-BORDER-color', group: 'sections', default: 'transparent', tooltip: 'border color between the displayed menu topic and the content' },
-    { name: 'MENU-SECTION-SEPARATOR-color', group: 'sections', default: '#606060', tooltip: 'separator color between menu sections and menu footer' },
+    { name: 'MENU-SECTION-SEPARATOR-color', group: 'sections', default: '#606060', tooltip: 'separator color between menus' },
     { name: 'MENU-VISITED-color', group: 'sections', fallback: 'SECONDARY-color', tooltip: 'icon color of visited menu topics if configured' },
 
     { name: 'BOX-CAPTION-color', group: 'colored boxes', default: 'rgba( 255, 255, 255, 1 )', tooltip: 'text color of colored box titles' },

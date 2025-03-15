@@ -1,6 +1,5 @@
-
-    {{- $showvisitedlinks := .Site.Params.showVisitedLinks }}
-    <aside id="R-sidebar" class="default-animation{{ if $showvisitedlinks }} showVisitedLinks{{ end }}">
+    {{- $showvisitedlinks := site.Params.showVisitedLinks }}
+    <aside id="R-sidebar" class="default-animation">
       {{- $currentNode := . }}
       <div id="R-header-topbar" class="default-animation"></div>
       <div id="R-header-wrapper" class="default-animation">
@@ -33,102 +32,25 @@
       {{- end }}
       </div>
       <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
-        {{- $defaultmenuconfigs := slice }}
-        {{- if not .Site.Params.disableLandingPageButton }}
-          {{- if (ne .Site.Params.landingPageURL nil) }}
-            {{- warnf "UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/4/#4-2-0" }}
-          {{- end }}
-          {{- $title := trim (.Site.Params.landingPageName | plainify) "\n\r\t " }}
-          {{- $pre := "" }}
-          {{- $post := "" }}
-          {{- if $title }}
-            {{- $escapedTitle := replaceRE `([\.+*?()|[\]{}^$\\])` "\\$1" $title }}
-            {{- $pre = (replaceRE (printf `%s.*` $escapedTitle) "" .Site.Params.landingPageName) | safeHTML }}
-            {{- $post = (replaceRE (printf `.*?%s` $escapedTitle) "" .Site.Params.landingPageName) | safeHTML }}
-          {{- else }}
-            {{- $title = T "home-button" }}
-            {{- $pre = `<i class="fa-fw fas fa-home"></i> ` | safeHTML }}
-          {{- end }}
-          {{- $defaultmenuconfigs = slice
-            (dict "type" "menu" "identifier" "R-homelinks" "disableTitle" true "entries" (slice
-              (dict "Menu" "" "Children" (slice
-                (dict "Menu" "" "Pre" $pre "Post" $post "Title" $title "PageRef" "/" )
-              ))
-            ))
-          }}
+        {{- $menuconfigs := .Params.sidebarheadermenus | default site.Params.sidebarheadermenus }}
+        {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
+          {{- $menuconfigs = partialCached "_relearn/defaultSidebarHeader.gotmpl" . }}
         {{- end }}
-        {{- $menuconfigs := .Params.sidebarheadermenus | default site.Params.sidebarheadermenus | default $defaultmenuconfigs }}
         {{- partial "partials/inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" false) }}
-        <hr class="padding">
       </div>
       <div id="R-content-wrapper" class="highlightable">
-        {{- $menuconfigs := .Params.sidebarmenus | default site.Params.sidebarmenus | default (slice
-          (dict "type" "page" "identifier" "home")
-          (dict "type" "menu" "identifier" "shortcuts" "disableTitle" site.Params.disableShortcutsTitle)
-        ) }}
+        {{- $menuconfigs := .Params.sidebarmenus | default site.Params.sidebarmenus }}
+        {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
+          {{- $menuconfigs = partialCached "_relearn/defaultSidebar.gotmpl" . }}
+        {{- end }}
         {{- partial "partials/inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" $showvisitedlinks) }}
-        {{- $siteLanguages := .Site.Languages }}
-        {{- $showlangswitch := and hugo.IsMultilingual (not .Site.Params.disableLanguageSwitchingButton) (gt (int (len $siteLanguages)) 1) }}
-        {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
-        {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
-        {{- $footer := partial "menu-footer.html" . }}
-        {{- $plainfooter := trim ($footer | plainify) "\n\r\t " }}
-        {{- $showfooter := not (eq 0 (int (len $plainfooter))) }}
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch{{if $showlangswitch}} showLangSwitch{{end}}">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">{{ T "Language" }}</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( `#R-select-language-${this.value}` ).dataset.url;">
-                      {{- $page := .Page }}
-                      {{- $pageLang := .Page.Language.Lang }}
-                      {{- range .Page.AllTranslations }}
-                      <option id="R-select-language-{{ .Language.Lang }}" value="{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected{{ end }}>{{ .Language.LanguageName }}</option>
-                      {{- end }}
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch{{if $showvariantswitch}} showVariantSwitch{{end}}">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">{{ T "Theme" }}</label>
-                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
-                      {{- $firstvariant := true }}
-                      {{- range $themevariants }}
-                        {{- $themevariant := . }}
-                      <option id="R-select-variant-{{ $themevariant.identifier }}" value="{{ $themevariant.identifier }}"{{- if $firstvariant }} selected{{ end }}>{{ $themevariant.name }}</option>
-                        {{- $firstvariant = false }}
-                      {{- end }}
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.relearn.markVariant();</script>
-              </li>
-              <li class="footerVisitedLinks{{if $showvisitedlinks}} showVisitedLinks{{end}}">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">{{ T "Clear-History" }}</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div id="R-footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">{{- $footer }}</div>
+        <div id="R-footer-margin"></div>
+        {{- $menuconfigs := .Params.sidebarfootermenus | default site.Params.sidebarfootermenus }}
+        {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
+          {{- $menuconfigs = partialCached "_relearn/defaultSidebarFooter.gotmpl" . }}
+        {{- end }}
+        {{- partial "partials/inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" $showvisitedlinks) }}
+<div id="R-footer">{{ partial "menu-footer.html" . }}</div>
       </div>
     </aside>
 
@@ -142,8 +64,12 @@
       {{- partial "partials/inline/page-tree" (dict "currentnode" $currentNode "config" $config "showvisitedlinks" $showvisitedlinks) }}
     {{- else if eq $config.type "menu" }}
       {{- partial "partials/inline/menu-tree" (dict "currentnode" $currentNode "config" $config "showvisitedlinks" $showvisitedlinks "entries" ($config.entries | default (index site.Menus $config.identifier))) }}
+    {{- else if eq $config.type "custom" }}
+      {{- partial "partials/inline/custom-list" (dict "currentnode" $currentNode "config" $config "elements" $config.elements) }}
+    {{- else if eq $config.type "divider" }}
+      {{- partial "partials/inline/divider" (dict "currentnode" $currentNode "config" $config "elements" $config.elements) }}
     {{- else }}
-      {{- warnf "WARNING: unknown menu type '%s' found in parameter 'sidebarmenus' for menu '%s'; use either 'page' or 'menu'" $config.type $config.identifier }}
+      {{- warnf "WARNING: unknown menu type '%s' found in parameter 'sidebarmenus' for menu '%s'; use either 'page', 'menu', 'custom' or 'divider'" $config.type $config.identifier }}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -447,4 +373,28 @@
       {{- if $url }}{{ if $showvisitedlinks }}<i class="fa-fw fas fa-check read-icon"></i>{{ end }}</a>{{ else }}</span>{{ end }}</li>
     {{- end }}
   {{- end }}
+{{- end }}
+
+{{- define "partials/inline/custom-list" }}
+  {{- $currentNode := .currentnode }}
+  {{- $config := .config }}
+  {{- with .elements }}
+        <div id="R-shortcutmenu-{{ $config.identifier }}" class="R-sidebarmenu">
+    {{- $classes := "" }}
+    {{- if ($config.main | default false) }}
+      {{- $classes = "space" }}
+    {{- end }}
+          <ul class="{{ $classes }}">
+    {{- range . }}
+      {{- partial (printf "sidebar/element/%s.html" .type) (dict "page" $currentNode "config" $config "element" .) }}
+    {{- end }}
+          </ul>
+        </div>
+  {{- end }}
+{{- end }}
+
+{{- define "partials/inline/divider" }}
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
 {{- end }}
