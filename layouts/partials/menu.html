@@ -38,7 +38,7 @@
           {{- if (ne .Site.Params.landingPageURL nil) }}
             {{- warnf "UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/4/#4-2-0" }}
           {{- end }}
-          {{- $title := trim (.Site.Params.landingPageName | plainify) "\n\r\t "}}
+          {{- $title := trim (.Site.Params.landingPageName | plainify) "\n\r\t " }}
           {{- $pre := "" }}
           {{- $post := "" }}
           {{- if $title }}
@@ -72,7 +72,8 @@
         {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
         {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
         {{- $footer := partial "menu-footer.html" . }}
-        {{- $showfooter := not (eq 0 (int (len ($footer | plainify)))) }}
+        {{- $plainfooter := trim ($footer | plainify) "\n\r\t " }}
+        {{- $showfooter := not (eq 0 (int (len $plainfooter))) }}
         <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}"></div>
         <div id="R-menu-footer">
           <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter{{if $showlangswitch}} showLangSwitch{{end}}{{if $showvariantswitch}} showVariantSwitch{{end}}{{if $showvisitedlinks}} showVisitedLinks{{end}}{{if $showfooter}} showFooter{{end}}">
@@ -126,10 +127,8 @@
               </li>
             </ul>
           </div>
-          <div id="R-footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">
-            {{- $footer }}
-          </div>
         </div>
+        <div id="R-footer" class="footerFooter{{if $showfooter}} showFooter{{end}}">{{- $footer }}</div>
       </div>
     </aside>
 
