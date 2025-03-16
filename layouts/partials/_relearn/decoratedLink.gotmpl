@@ -1,7 +1,13 @@
 {{- $u := urls.Parse .url }}
 {{- $hideFilepath := .hideFilepath | default false }}
 {{- $type := printf "%T" .linkObject }}
-{{- $isPage := eq $type "*hugolib.pageState" }}
+{{- $isPage := or
+	(eq $type "*hugolib.pageForRenderHooks")
+	(eq $type "*hugolib.pageForShortcode")
+	(eq $type "*hugolib.pageState")
+	(eq $type "*hugolib.pageWithOrdinal")
+	(eq $type "*hugolib.pageWithWeight0")
+}}
 {{- $href := partial "permalink.gotmpl" (dict "to" .linkObject) }}
 {{- if $isPage }}
 	{{- $format := $u.Query.Get "format" }}
