@@ -215,7 +215,7 @@ If you want to learn how to configure different Hugo menus for each language, [s
 
 ## Defining Sidebar Menus
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined for individual areas of the sidebar::
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined for individual areas of the sidebar:
 
 - `sidebarheadermenus`: the non-scrolling area below the search box
 - `sidebarmenus`: the scrolling area below the search box
@@ -227,6 +227,7 @@ If you don't set these options in your `hugo.toml`, the theme defaults as follow
 
 - `sidebarheadermenus`:
   - a home button if [configured](configuration/sidebar/headerfooter#home-button-configuration), if you redefine this, use a Hugo menu and a `type=menu` to replicate this
+  - the version switcher if versioning is [configured](configuration/sitemanagement/versioning)
   - a divider to separate from the `sidebarmenus` (depending on the configuration of the theme variant)
 - `sidebarmenus`:
   - the main page menu based on your [content structure](authoring/structure)
@@ -286,7 +287,7 @@ A HTML snippet has its own parameter. Your self-defined snippets can contain fur
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| **type**              | _&lt;empty&gt;_ | The theme ships with the following snippets:<br><br>- `languageswitcher`: will display the language switcher<br>- `variantswitcher`: will display the variant switcher<br>- `historyclearer`: will display a button to clear the history of visited links |
+| **type**              | _&lt;empty&gt;_ | The theme ships with the following snippets:<br><br>- `languageswitcher`: will display the language switcher<br>- `variantswitcher`: will display the variant switcher<br>- `versionswitcher`: will display the version switcher<br>- `historyclearer`: will display a button to clear the history of visited links |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the list entry. Depending on the **type** there is a default icon. Any given value will overwrite the default. |
 
 ### Divider
@@ -315,7 +316,6 @@ sidebarmenus = [
 ]
 sidebarfootermenus = []
 {{< /multiconfig >}}
-
 
 ## Redefining Sidebar Menus for Certain Pages
 

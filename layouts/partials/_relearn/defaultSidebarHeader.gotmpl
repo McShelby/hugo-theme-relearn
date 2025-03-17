@@ -1,4 +1,6 @@
 {{- $defaultmenuconfigs := slice }}
+{{- $defaultconfigelements := slice }}
+
 {{- if not site.Params.disableLandingPageButton }}
   {{- if (ne site.Params.landingPageURL nil) }}
     {{- warnf "UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/4/#4-2-0" }}
@@ -23,5 +25,17 @@
     ))
   }}
 {{- end }}
+
+{{- $versions := partialCached "_relearn/siteVersions.gotmpl" . }}
+{{- if $versions }}
+  {{- $defaultconfigelements = $defaultconfigelements | append (dict "type" "versionswitcher") }}
+{{- end }}
+
+{{- if $defaultconfigelements }}
+  {{- $defaultmenuconfigs = $defaultmenuconfigs | append
+    (dict "type" "custom" "identifier" "controls" "disableTitle" true "elements" $defaultconfigelements)
+  }}
+{{- end }}
+
 {{- $defaultmenuconfigs = $defaultmenuconfigs | append (dict "type" "divider") }}
 {{- return $defaultmenuconfigs }}

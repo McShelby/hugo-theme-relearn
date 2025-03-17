@@ -33,6 +33,7 @@
     {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Language.LanguageCode }}
     {{- $contentlangs := (union (slice | append (site.Params.additionalContentLanguage | default slice)) (slice $pageBaseLang)) }}
     {{- $quotedcontentlangs := slice }}
+    {{- $versionIndexUrl := "" }}
     {{- $searchIndexUrl := "" }}
     <link href="{{(printf "css/theme%s.css" $min) | relURL}}{{ $assetBusting }}" rel="stylesheet">
     <link href="{{(printf "css/format-%s%s.css" $outputFormat $min) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-format-style">
@@ -42,6 +43,22 @@
       {{- end }}
       {{- with resources.Get "/js/auto-complete/auto-complete.js" }}
     <script src="{{ (. | minify).RelPermalink }}{{ $assetBusting }}" defer></script>
+      {{- end }}
+      {{- $versions := partialCached "_relearn/siteVersions.gotmpl" . }}
+      {{- if $versions }}
+        {{- $versionIndexUrl = trim (or .Site.Params.versionIndexURL "versionindex.js") "/" }}
+        {{- $versionIndexUrl = path.Join (path.Dir $versionIndexUrl) (print (path.BaseName $versionIndexUrl) "." site.Language.Lang (path.Ext $versionIndexUrl)) }}
+        {{- if .IsHome }}
+          {{- $templateres := resources.Get "/_relearn_versionindex.js" }}
+          {{- $resultres := $templateres | resources.ExecuteAsTemplate $versionIndexUrl site.Home }}
+          {{- /* the following code causes Hugo to generate our file in public */}}
+          {{- $url := $resultres.RelPermalink }}
+        {{- end }}
+        {{- with (where $versions "isLatest" true | first 1) }}
+          {{- range . }}
+            {{- $versionIndexUrl = path.Join .baseURL $versionIndexUrl }}
+          {{- end }}
+        {{- end }}
       {{- end }}
       {{- if not .Site.Params.disableSearchIndex }}
         {{- $searchIndexUrl = trim (or .Site.Params.searchIndexURL "searchindex.js") "/" }}
@@ -101,12 +118,16 @@
       window.relearn = window.relearn || {};
       {{ "// configuration" | safeJS }}
       {{ printf "window.relearn.min = `%s`;" $min | safeJS }}
+      window.relearn.path='{{ partial "permalink.gotmpl" (dict "to" .) | safeJS }}';
       window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
       window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
       window.relearn.contentLangs=[{{ delimit $quotedcontentlangs ", " | safeJS }}];
       {{- if $searchIndexUrl }}
       window.relearn.index_js_url={{ (printf "%s%s" $searchIndexUrl $assetBusting) | relURL }};
+      {{- end }}
+      {{- if $versionIndexUrl }}
+      window.relearn.version_js_url={{ (printf "%s%s" $versionIndexUrl $assetBusting) | relURL }};
       {{- end }}
       window.relearn.disableAnchorCopy={{ printf "%t" (eq .Site.Params.disableAnchorCopy true) | safeJS }};
       window.relearn.disableAnchorScrolling={{ printf "%t" (eq .Site.Params.disableAnchorScrolling true) | safeJS }};

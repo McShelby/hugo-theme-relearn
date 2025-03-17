@@ -1950,3 +1950,81 @@ function normalizeColor(c) {
   c = c.replace(/ +/g, ' ');
   return c;
 }
+
+function initVersionIndex(index) {
+  if (!index || !index.length) {
+    return;
+  }
+
+  var select = document.querySelector('#R-select-version');
+  if (!select) {
+    return;
+  }
+
+  // Remember the currently selected option
+  var selectedOption = null;
+  if (select.selectedIndex >= 0) {
+    selectedOption = select.options[select.selectedIndex].cloneNode(true);
+  }
+
+  // Remove all existing options
+  while (select.firstChild) {
+    select.removeChild(select.firstChild);
+  }
+
+  // Add all options from the index
+  index.forEach(function (version) {
+    // Create new option element
+    var option = document.createElement('option');
+    option.id = 'R-select-version-' + version.value;
+    option.value = version.value;
+    option.dataset.abs = version.isAbs;
+    option.dataset.uri = version.baseURL;
+    option.dataset.identifier = version.identifier;
+    option.textContent = version.title;
+
+    // Add the option to the select
+    select.appendChild(option);
+  });
+
+  // Re-select the previously selected option if it exists
+  if (selectedOption) {
+    for (var i = 0; i < select.options.length; i++) {
+      if (select.options[i].dataset.identifier === selectedOption.dataset.identifier) {
+        select.selectedIndex = i;
+        return;
+      }
+    }
+
+    // If the previously selected option doesn't exist, add it at the end
+    select.appendChild(selectedOption);
+    select.selectedIndex = select.options.length - 1;
+    return;
+  } else if (select.options.length > 0) {
+    // If there was no selection before, select the first option
+    select.selectedIndex = 0;
+    return;
+  }
+}
+
+function initVersionJs() {
+  if (window.relearn.version_js_url) {
+    var js = document.createElement('script');
+    // we need to add a random number on each call to read this file fresh from the server;
+    // it may reside in a different Hugo instance and therefore we do not know when it changes
+    var url = new URL(window.relearn.version_js_url, window.location.href);
+    var randomNum = Math.floor(Math.random() * 1000000);
+    url.searchParams.set('v', randomNum.toString());
+    js.src = url.toString();
+    js.setAttribute('async', '');
+    js.onload = function () {
+      initVersionIndex(relearn_versionindex);
+    };
+    js.onerror = function (e) {
+      console.error('Error getting version index file');
+    };
+    document.head.appendChild(js);
+  }
+}
+
+initVersionJs();

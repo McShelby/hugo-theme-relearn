@@ -1,0 +1,24 @@
+{{- $versions := partialCached "_relearn/siteVersions.gotmpl" .page }}
+{{- $pageVersion := site.Params.version | default "" }}
+{{- $icon := .element.icon | default "code-branch" }}
+{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+{{- end }}
+            <li class="R-versionswitcher">
+              <div class="padding menu-control">
+                <i class="{{ $icon }}"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="R-select-version">{{ T "Version" }}</label>
+                  <select id="R-select-version" onchange="location = this.querySelector( `#R-select-version-${this.value}` ).dataset.abs == 'true' ?
+                    this.querySelector( `#R-select-version-${this.value}` ).dataset.uri + window.relearn.path :
+                    window.relearn.relBaseUri + this.querySelector( `#R-select-version-${this.value}` ).dataset.uri + window.relearn.path;"
+                  >
+                    {{- range $versions }}
+                    <option id="R-select-version-{{ .identifier | anchorize }}" value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-abs="{{ .isAbs }}" data-uri="{{ .baseURL }}"{{ if eq $pageVersion .identifier }} selected{{ end }}>{{ .title }}</option>
+                    {{- end }}
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
