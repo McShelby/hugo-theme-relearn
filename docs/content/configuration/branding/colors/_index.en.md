@@ -171,6 +171,16 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
     In comparison to _copy and change_, this has the advantage that you profit from any adjustments to the `relearn-light` variant while keeping your modifications.
 
+### Non-standard Modifications
+
+You may feel tempted to add further modifications besides just setting CSS variables in your custom variant stylesheet.
+
+While this is possible, please note that due to the way the theme uses the variant files, the following will not work
+
+- `@font-face` rules - they need to be moved to `assets/css/fonts.css`, `assets/css/custom.css` or `layouts/partials/custom-header.html`
+- rules selecting the `html` element - replace `html` with `:root`
+
+
 ### React to Variant Switches in JavaScript
 
 Once a color variant is fully loaded, either initially or by switching the color variant manually with the variant selector, the custom event `themeVariantLoaded` on the `document` will be dispatched. You can add an event listener and react to changes.
