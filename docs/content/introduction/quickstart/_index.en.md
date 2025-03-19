@@ -7,6 +7,9 @@ weight = 1
 
 Here's how to start your new website. If you're new to Hugo, we recommend learning more about it in its excellent [starter's guide](https://gohugo.io/getting-started/).
 
+> [!note]
+> This quickstart is not meant for a production setup. In production you always want to use specific versions of the theme and Hugo. See the [upgrade page](introduction/upgrade) to learn how to obtain a specific version of the theme.
+
 ## Install Hugo
 
 Download and install Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.126.0{{% /badge %}} or newer for your operating system [following the instructions](https://gohugo.io/installation/).

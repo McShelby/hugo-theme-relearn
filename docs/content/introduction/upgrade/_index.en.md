@@ -11,6 +11,24 @@ The [releasenotes of the theme](introduction/releasenotes) mention if a newer ve
 
 Note, that it is only necessary to upgrade if you are experiencing fixed bugs or want to use new features. It is perfectly fine to stay with arbitrary old versions of Hugo and the theme if everything works for you.
 
+## Semver
+
+Recent releases of the theme follow the [semver standard](https://semver.org/).
+
+## Theme Repo Organization
+
+The `main` branch of the source code repo contains all versions with the development version at the HEAD. This means, pulling from the `main` branch may give you a beta version.
+
+As this is not suitable for production, the repository contains stable tags for each released version in the form of `7.2.1`.
+
+In addition, the repository contains floating tags for
+
+- the latest patch level release of a minor version in the form of `7.2.x`
+- the latest minor level release of a major version in the form of `7.x`
+- the latest major version in the form of `x`
+
+Choose a tag that best fits your needs.
+
 ## Planning the Upgrade
 
 Depending on your previously used version of Hugo and the theme, you might need to upgrade files of your project.
@@ -43,11 +61,11 @@ Remove the old version of the theme by removing the `themes/hugo-theme-relearn` 
 
 Download the .zip archive of a certain version of the theme and unzip it into the `themes/hugo-theme-relearn` directory
 
-Eg. to upgrade to version 7.2.1 download from [https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1](https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1) 
+Eg. to upgrade to version 7.2.1 download from [https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1](https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1)
 
 ### Use Hugo's Module System
 
-Upgrade the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#upgrade-one-module) to a certain version.
+Upgrade the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#update-one-module) to a certain version.
 
 Eg. to upgrade to version 7.2.1
 
