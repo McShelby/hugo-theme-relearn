@@ -114,11 +114,15 @@
         {{- end }}
       {{- end }}
     {{- end }}
+    {{- $home_path := site.Home.RelPermalink }}
+    {{- $this_path := .RelPermalink }}
+    {{- $path := (strings.TrimPrefix $home_path $this_path) | default "/" }}
+    {{- $path = partial "permalink.gotmpl" (dict "link" $path) }}
     <script>
       window.relearn = window.relearn || {};
       {{ "// configuration" | safeJS }}
       {{ printf "window.relearn.min = `%s`;" $min | safeJS }}
-      window.relearn.path='{{ partial "permalink.gotmpl" (dict "to" .) | safeJS }}';
+      window.relearn.path='{{ $path | safeJS }}';
       window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
       window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
