@@ -65,7 +65,7 @@ var variants = {
   },
 
   removeCustomVariantOption: function () {
-    document.querySelectorAll(`.R-variantswitcher option[value=${this.customvariantname}]`).forEach((option) => {
+    document.querySelectorAll(`.R-variantswitcher option[value="${this.customvariantname}"]`).forEach((option) => {
       option.remove();
     });
   },

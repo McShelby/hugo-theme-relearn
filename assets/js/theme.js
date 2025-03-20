@@ -1996,55 +1996,55 @@ function initVersionIndex(index) {
     return;
   }
 
-  var select = document.querySelector('#R-select-version');
-  if (!select) {
-    return;
-  }
+  document.querySelectorAll('.R-versionswitcher select').forEach(function (select) {
+    var preSelectedOption = select.querySelector('[data-selected]')?.cloneNode(true);
 
-  // Remember the currently selected option
-  var selectedOption = null;
-  if (select.selectedIndex >= 0) {
-    selectedOption = select.options[select.selectedIndex].cloneNode(true);
-  }
-
-  // Remove all existing options
-  while (select.firstChild) {
-    select.removeChild(select.firstChild);
-  }
-
-  // Add all options from the index
-  index.forEach(function (version) {
-    // Create new option element
-    var option = document.createElement('option');
-    option.id = 'R-select-version-' + version.value;
-    option.value = version.value;
-    option.dataset.abs = version.isAbs;
-    option.dataset.uri = version.baseURL;
-    option.dataset.identifier = version.identifier;
-    option.textContent = version.title;
-
-    // Add the option to the select
-    select.appendChild(option);
-  });
-
-  // Re-select the previously selected option if it exists
-  if (selectedOption) {
-    for (var i = 0; i < select.options.length; i++) {
-      if (select.options[i].dataset.identifier === selectedOption.dataset.identifier) {
-        select.selectedIndex = i;
-        return;
-      }
+    var selectedOption = null;
+    if (select.selectedIndex >= 0) {
+      selectedOption = select.options[select.selectedIndex].cloneNode(true);
     }
 
-    // If the previously selected option doesn't exist, add it at the end
-    select.appendChild(selectedOption);
-    select.selectedIndex = select.options.length - 1;
-    return;
-  } else if (select.options.length > 0) {
-    // If there was no selection before, select the first option
-    select.selectedIndex = 0;
-    return;
-  }
+    // Remove all existing options
+    while (select.firstChild) {
+      select.removeChild(select.firstChild);
+    }
+
+    // Add all options from the index
+    index.forEach(function (version) {
+      // Create new option element
+      var option = document.createElement('option');
+      option.id = 'R-select-version-' + version.value;
+      option.value = version.value;
+      option.dataset.abs = version.isAbs;
+      option.dataset.uri = version.baseURL;
+      option.dataset.identifier = version.identifier;
+      option.textContent = version.title;
+
+      // Add the option to the select
+      select.appendChild(option);
+    });
+
+    if (preSelectedOption) {
+      const option = select.querySelector(`option[value="${preSelectedOption.value}"]`);
+      if (!option) {
+        select.appendChild(preSelectedOption);
+      } else {
+        option.dataset.selected = '';
+      }
+    }
+    if (selectedOption) {
+      // Re-select the previously selected option if it exists
+      const option = select.querySelector(`option[value="${selectedOption.value}"]`);
+      if (!option) {
+        select.appendChild(selectedOption);
+      }
+      select.value = selectedOption.value;
+    } else if (select.options.length > 0) {
+      // If there was no selection before, select the first option
+      select.selectedIndex = 0;
+      return;
+    }
+  });
 }
 
 function initVersionJs() {
