@@ -110,13 +110,13 @@
       {{- end }}
       {{- with (where $versions "isLatest" true | first 1) }}
         {{- range . }}
-          {{- $versionIndexUrl = path.Join .baseURL $versionIndexUrl }}
+          {{- $versionIndexUrl = print .baseURL "/" $versionIndexUrl }}
         {{- end }}
       {{- end }}
     {{- end }}
     {{- $home_path := site.Home.RelPermalink }}
     {{- $this_path := .RelPermalink }}
-    {{- $path := (strings.TrimPrefix $home_path $this_path) | default "/" }}
+    {{- $path := print "/" (strings.TrimPrefix $home_path $this_path) }}
     {{- $path = partial "permalink.gotmpl" (dict "link" $path) }}
     {{- $default_home_lang_path := site.Sites.Default.Home.Permalink }}
     {{- $this_home_lang_path := site.Home.Permalink }}
