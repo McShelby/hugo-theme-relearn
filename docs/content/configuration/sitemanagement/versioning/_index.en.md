@@ -116,6 +116,46 @@ You only need to generate the current and the new archived version of your site 
 - you **don't need to regenerate version 1** of your site as long as the version marked with `isLatest=true` hasn't changed its `baseURL` parameter. The old archived versions will access the version index of the latest site using JavaScript to display all currently available versions in the version switcher
 - with each new version, you will need another Hugo server instance to run a complete local test
 
+## Example: Multilingual Setup
+
+If you have a multilingual site **and** you have different `baseURL` settings for each language, you need to also configure versioning for each language separately!
+
+To stay with the above example, here's the configuration for your current version:
+
+{{< multiconfig file=/home/me/mysite-2.0/hugo >}}
+[languages]
+  [languages.en]
+    weight = 1
+    languageName = 'English'
+    languageCode = 'en'
+    contentDir = 'content/en'
+    title = 'My Website'
+    baseURL = 'https://example.com/'
+
+    [languages.en.params]
+      version = 'v2.0'
+      versions = [
+        { identifier = 'v2.0', title = 'Latest', baseURL = 'https://example.com/', isLatest = true },
+        { identifier = 'v1.0', title = 'v1.0', baseURL = 'https://example.com/v1.0/' }
+      ]
+
+  [languages.pir]
+    weight = 2
+    languageName = 'Pirrratish'
+    languageCode = 'art-x-pir'
+    languageDirection = 'rtl'
+    contentDir = 'content/pir'
+    title = 'Arrr, my Website'
+    baseURL = 'https://pir.example.com/'
+
+    [languages.pir.params]
+      version = 'v2.0'
+      versions = [
+        { identifier = 'v2.0', title = 'Latest', baseURL = 'https://pir.example.com/', isLatest = true },
+        { identifier = 'v1.0', title = 'v1.0', baseURL = 'https://pir.example.com/v1.0/' }
+      ]
+{{< /multiconfig >}}
+
 ## Hiding the Deprecation Warning
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If visitors navigate to an old version of your site, they will see a deprecation warning at the top of each page.
