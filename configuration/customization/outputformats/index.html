@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.5.0+a05b2124652293b1be3742f26aa3913861f956de">
+    <meta name="generator" content="Relearn 7.5.0+3ccc8f777f8dd35f750a00ca986f9db808548306">
     <meta name="description" content="Adding Custom Output Formats">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,18 +29,18 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/customization/outputformats/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="/hugo-theme-relearn/configuration/customization/outputformats/index.xml" rel="alternate" type="application/rss+xml" title="Output Formats :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/configuration/customization/outputformats/index.print.html" rel="alternate" type="text/html" title="Output Formats :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1742426498" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742426498" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742426498" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1742426498" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1742426498" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.css?1742426498" rel="stylesheet" id="R-format-style">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1742426498" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1742426498" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1742503620" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742503620" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742503620" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1742503620" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1742503620" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.css?1742503620" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1742503620" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1742503620" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -50,7 +50,7 @@
       window.relearn.relBaseUri='..\/..\/..\/..';
       window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1742426498";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1742503620";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -64,14 +64,12 @@
         document.documentElement.dataset.rThemeVariant = variant;
         if (oldVariant != variant) {
           document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
         }
       }
       window.relearn.markVariant = function() {
         var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
-        var select = document.querySelector("#R-select-variant");
-        if (select) {
-          select.value = variant;
-        }
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
       }
       window.relearn.initVariant = function() {
         var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
@@ -94,7 +92,7 @@
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1742426498"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1742503620"></script>
     <style>
        
       #R-body img.bg-white {
@@ -329,13 +327,13 @@
 </li>
 <li>
 <p>Create a file <code>layouts/_default/baseof.email.html</code></p>
-<div class="tab-panel" data-tab-group="85ddeed6254cec1c2c6bf2fa851682b6">
+<div class="tab-panel" data-tab-group="ef9b0a6054378c60d66475ad724bf592">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layouts_defaultbaseofemailhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('85ddeed6254cec1c2c6bf2fa851682b6','layouts_defaultbaseofemailhtml')"
+      onclick="switchTab('ef9b0a6054378c60d66475ad724bf592','layouts_defaultbaseofemailhtml')"
     >
       <span class="tab-nav-text">layouts/_default/baseof.email.html</span>
     </button>
@@ -371,13 +369,13 @@
 <li>
 <p><em>Optional</em>: create a file <code>layouts/_default/views/article.email.html</code></p>
 <p>In our case, we want to display a disclaimer in front of every article. To do this we have to define the output of an article ourself and rely on the above <code>block</code> statement to call our template.</p>
-<div class="tab-panel" data-tab-group="7087e1b7919deaec1fe13f1ee19c14ab">
+<div class="tab-panel" data-tab-group="7f3671afded2f9e74f1719a4119b98e5">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layouts_defaultviewsarticleemailhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('7087e1b7919deaec1fe13f1ee19c14ab','layouts_defaultviewsarticleemailhtml')"
+      onclick="switchTab('7f3671afded2f9e74f1719a4119b98e5','layouts_defaultviewsarticleemailhtml')"
     >
       <span class="tab-nav-text">layouts/_default/views/article.email.html</span>
     </button>
@@ -400,13 +398,13 @@
 <li>
 <p><em>Optional</em>: create a file <code>layouts/_default/_markup_/render-image.email.html</code></p>
 <p>In our case, we want to convert each image into a base 64 encoded string to display it inline in the email without loading external assets.</p>
-<div class="tab-panel" data-tab-group="01504088e2ed2cd1e8e577ca464af168">
+<div class="tab-panel" data-tab-group="2dd1f2bc02d87bc98f1b1049b4063755">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layouts_defaultmarkuprender-imageemailhtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('01504088e2ed2cd1e8e577ca464af168','layouts_defaultmarkuprender-imageemailhtml')"
+      onclick="switchTab('2dd1f2bc02d87bc98f1b1049b4063755','layouts_defaultmarkuprender-imageemailhtml')"
     >
       <span class="tab-nav-text">layouts/_default/<em>markup</em>/render-image.email.html</span>
     </button>
@@ -470,13 +468,13 @@
 <p>Move your files <code>layouts/partials/article.&lt;FORMAT&gt;.html</code> to <code>layouts/_default/views/article.&lt;FORMAT&gt;.html</code></p>
 <p>The files will most likely require further modifications as they now receive the page as it context (dot <code>.</code>) instead of the <code>.page</code> and <code>.content</code> parameter.</p>
 <p><strong>Old</strong>:</p>
-<div class="tab-panel" data-tab-group="6ee1c33712bb3fe8301ca0351bc6cdee">
+<div class="tab-panel" data-tab-group="c01483895f911efddef3e02db450eff7">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialsarticleltformatgthtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('6ee1c33712bb3fe8301ca0351bc6cdee','layoutspartialsarticleltformatgthtml')"
+      onclick="switchTab('c01483895f911efddef3e02db450eff7','layoutspartialsarticleltformatgthtml')"
     >
       <span class="tab-nav-text">layouts/partials/article.&lt;FORMAT&gt;.html</span>
     </button>
@@ -506,13 +504,13 @@
     </div>
   </div>
 </div><p><strong>New</strong>:</p>
-<div class="tab-panel" data-tab-group="3ca619749d247ca47c63a72eb33bf620">
+<div class="tab-panel" data-tab-group="5e660f2fdf96452e7f68172e13034db5">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layouts_defaultviewsarticleltformatgthtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('3ca619749d247ca47c63a72eb33bf620','layouts_defaultviewsarticleltformatgthtml')"
+      onclick="switchTab('5e660f2fdf96452e7f68172e13034db5','layouts_defaultviewsarticleltformatgthtml')"
     >
       <span class="tab-nav-text">layouts/_default/views/article.&lt;FORMAT&gt;.html</span>
     </button>
@@ -544,13 +542,13 @@
 <li>
 <p>Merge your files <code>layouts/partials/header.&lt;FORMAT&gt;.html</code>, <code>layouts/partials/footer.&lt;FORMAT&gt;.html</code> to <code>layouts/_default/baseof.&lt;FORMAT&gt;.html</code></p>
 <p><strong>Old</strong>:</p>
-<div class="tab-panel" data-tab-group="1f929dd28dcd5800149d5492731aa673">
+<div class="tab-panel" data-tab-group="3830f2ca535a8cd78207a1891b1fe040">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialsheaderltformatgthtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('1f929dd28dcd5800149d5492731aa673','layoutspartialsheaderltformatgthtml')"
+      onclick="switchTab('3830f2ca535a8cd78207a1891b1fe040','layoutspartialsheaderltformatgthtml')"
     >
       <span class="tab-nav-text">layouts/partials/header.&lt;FORMAT&gt;.html</span>
     </button>
@@ -577,13 +575,13 @@
       </div>
     </div>
   </div>
-</div><div class="tab-panel" data-tab-group="0897c560e1689905abf4983ee960ab76">
+</div><div class="tab-panel" data-tab-group="66e76244137a5c0f07ec088c0f047d1f">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layoutspartialsfooterltformatgthtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('0897c560e1689905abf4983ee960ab76','layoutspartialsfooterltformatgthtml')"
+      onclick="switchTab('66e76244137a5c0f07ec088c0f047d1f','layoutspartialsfooterltformatgthtml')"
     >
       <span class="tab-nav-text">layouts/partials/footer.&lt;FORMAT&gt;.html</span>
     </button>
@@ -602,13 +600,13 @@
 </div><p><strong>New</strong>:</p>
 <p>The upper part of the file is from your <code>header.&lt;FORMAT&gt;.html</code> and the lower part is from your <code>footer.&lt;FORMAT&gt;.html</code>.</p>
 <p>The marked line needs to be added, so your output format uses a potential <code>layouts/_default/views/article.&lt;FORMAT&gt;.html</code></p>
-<div class="tab-panel" data-tab-group="564de0df89f64d081a2398e35b57aa44">
+<div class="tab-panel" data-tab-group="aa5728d717beffd57d2f750b4751f22b">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="layouts_defaultbaseofltformatgthtml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('564de0df89f64d081a2398e35b57aa44','layouts_defaultbaseofltformatgthtml')"
+      onclick="switchTab('aa5728d717beffd57d2f750b4751f22b','layouts_defaultbaseofltformatgthtml')"
     >
       <span class="tab-nav-text">layouts/_default/baseof.&lt;FORMAT&gt;.html</span>
     </button>
@@ -819,8 +817,8 @@
                 <span>&nbsp;</span>
                 <div class="control-style">
                   <label class="a11y-only" for="R-select-language">Language</label>
-                  <select id="R-select-language" onchange="location = this.querySelector( `#R-select-language-${this.value}` ).dataset.url;">
-                    <option id="R-select-language-en" value="en" data-url="/hugo-theme-relearn/configuration/customization/outputformats/index.html" lang="en" selected>English</option>
+                  <select id="R-select-language">
+                    <option id="R-select-language-en" value="en" data-url="/hugo-theme-relearn/configuration/customization/outputformats/index.html" lang="en" selected data-selected>English</option>
                     <option id="R-select-language-pir" value="pir" data-url="/hugo-theme-relearn/pir/configuration/customization/outputformats/index.html" lang="art-x-pir">Arrr! ☠ Pirrratish ☠</option>
                   </select>
                 </div>
@@ -833,7 +831,7 @@
                 <span>&nbsp;</span>
                 <div class="control-style">
                   <label class="a11y-only" for="R-select-variant">Theme</label>
-                  <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                  <select id="R-select-variant">
                     <option id="R-select-variant-relearn-auto" value="relearn-auto" selected>Relearn Light/Dark</option>
                     <option id="R-select-variant-relearn-dark" value="relearn-dark">Relearn Dark</option>
                     <option id="R-select-variant-relearn-light" value="relearn-light">Relearn Light</option>
@@ -858,7 +856,7 @@
                 <i class="fa-fw fas fa-history"></i>
                 <span>&nbsp;</span>
                 <div class="control-style">
-                  <button onclick="clearHistory();">Clear History</button>
+                  <button>Clear History</button>
                 </div>
                 <div class="clear"></div>
               </div>
@@ -903,11 +901,11 @@
     setTimeout( githubButtonsInit, 400 );
   });
 </script>
-<script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.js?1742426498"></script></div>
+<script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.js?1742503620"></script></div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/clipboard/clipboard.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1742426498" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard/clipboard.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1742503620" defer></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.5.0+a05b2124652293b1be3742f26aa3913861f956de">
+    <meta name="generator" content="Relearn 7.5.0+3ccc8f777f8dd35f750a00ca986f9db808548306">
     <meta name="description" content="Show content in tabbed views">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -30,18 +30,18 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/tabs/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tabs/index.html" rel="canonical" type="text/html" title="Tabs :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/shortcodes/tabs/index.xml" rel="alternate" type="application/rss+xml" title="Tabs :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1742426498" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742426498" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742426498" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1742426498" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1742426498" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1742426498" rel="stylesheet" id="R-format-style">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1742426498" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1742426498" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1742503620" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742503620" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742503620" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1742503620" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1742503620" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1742503620" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1742503620" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1742503620" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -51,7 +51,7 @@
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1742426498";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1742503620";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
@@ -65,14 +65,12 @@
         document.documentElement.dataset.rThemeVariant = variant;
         if (oldVariant != variant) {
           document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
         }
       }
       window.relearn.markVariant = function() {
         var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
-        var select = document.querySelector("#R-select-variant");
-        if (select) {
-          select.value = variant;
-        }
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
       }
       window.relearn.initVariant = function() {
         var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
@@ -95,7 +93,7 @@
       window.T_No_results_found = `No results found for "{0}"`;
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1742426498"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1742503620"></script>
     <style>
        
       #R-body img.bg-white {
@@ -207,27 +205,27 @@
 <h1 id="tabs">Tabs</h1>
 
 <p>The <code>tabs</code> shortcode displays arbitrary content in an unlimited number of tabs.</p>
-<div class="tab-panel" data-tab-group="1cde78432088ac33e17e6a1915a76c94">
+<div class="tab-panel" data-tab-group="04461b8441ff2da45f7ebdd7d17b6569">
   <div class="tab-nav">
     <div class="tab-nav-title">hello.</div>
     <button
       data-tab-item="py"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('1cde78432088ac33e17e6a1915a76c94','py')"
+      onclick="switchTab('04461b8441ff2da45f7ebdd7d17b6569','py')"
     >
       <span class="tab-nav-text">py</span>
     </button>
     <button
       data-tab-item="sh"
       class="tab-nav-button tab-panel-style cstyle initial"
-      onclick="switchTab('1cde78432088ac33e17e6a1915a76c94','sh')"
+      onclick="switchTab('04461b8441ff2da45f7ebdd7d17b6569','sh')"
     >
       <span class="tab-nav-text">sh</span>
     </button>
     <button
       data-tab-item="c"
       class="tab-nav-button tab-panel-style cstyle initial"
-      onclick="switchTab('1cde78432088ac33e17e6a1915a76c94','c')"
+      onclick="switchTab('04461b8441ff2da45f7ebdd7d17b6569','c')"
     >
       <span class="tab-nav-text">c</span>
     </button>
@@ -373,27 +371,27 @@
 <h3 id="behavior-of-the-groupid">Behavior of the <code>groupid</code></h3>
 <p>See what happens to the tab views while you select different tabs.</p>
 <p>While pressing a tab of Group A switches all tab views of Group A in sync (if the tab is available), the tabs of Group B are left untouched.</p>
-<div class="tab-panel" data-tab-group="b06ba82841ec3ebe048cedeab0129e67">
+<div class="tab-panel" data-tab-group="1a7b58d4f911e471446b7ae8d0621cbc">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="group-a-tab-view-1"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('b06ba82841ec3ebe048cedeab0129e67','group-a-tab-view-1')"
+      onclick="switchTab('1a7b58d4f911e471446b7ae8d0621cbc','group-a-tab-view-1')"
     >
       <span class="tab-nav-text">Group A, Tab View 1</span>
     </button>
     <button
       data-tab-item="group-a-tab-view-2"
       class="tab-nav-button tab-panel-style cstyle initial"
-      onclick="switchTab('b06ba82841ec3ebe048cedeab0129e67','group-a-tab-view-2')"
+      onclick="switchTab('1a7b58d4f911e471446b7ae8d0621cbc','group-a-tab-view-2')"
     >
       <span class="tab-nav-text">Group A, Tab View 2</span>
     </button>
     <button
       data-tab-item="group-b"
       class="tab-nav-button tab-panel-style cstyle initial"
-      onclick="switchTab('b06ba82841ec3ebe048cedeab0129e67','group-b')"
+      onclick="switchTab('1a7b58d4f911e471446b7ae8d0621cbc','group-b')"
     >
       <span class="tab-nav-text">Group B</span>
     </button>
@@ -741,8 +739,8 @@ Simple text is possible here...
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard/clipboard.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1742426498" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1742426498" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard/clipboard.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1742503620" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1742503620" defer></script>
   </body>
 </html>
