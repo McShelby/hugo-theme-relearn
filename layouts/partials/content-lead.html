@@ -21,10 +21,13 @@
 	$latestVersion
 	(ne $pageVersion.identifier $latestVersion.identifier)
 }}
-	{{- $url := print $latestVersion.baseURL (partial "permalink.gotmpl" (dict "to" .)) }}
+	{{- $path := partial "_relearn/pageLangPath.gotmpl" . }}
+	{{- $url := print $latestVersion.baseURL $path }}
+	{{- warnf "a %s" $url}}
 	{{- if not $latestVersion.isAbs }}
 		{{- $url = print (partial "_relearn/relBaseUri.gotmpl" .) $url }}
-	{{- end }}
+		{{- warnf "b %s" $url}}
+		{{- end }}
 	{{- partial "shortcodes/notice.html" (dict
 		"page" .
 		"content" (T "Version-warning" (dict "version" $pageVersion.title "latestUrl" $url ))
