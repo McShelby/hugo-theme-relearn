@@ -25,7 +25,7 @@
 	{{- $url := print $latestVersion.baseURL $path }}
 	{{- if not $latestVersion.isAbs }}
 		{{- $url = print (partial "_relearn/relBaseUri.gotmpl" .) $url }}
-		{{- end }}
+	{{- end }}
 	{{- partial "shortcodes/notice.html" (dict
 		"page" .
 		"content" (T "Version-warning" (dict "version" $pageVersion.title "latestUrl" $url ))
