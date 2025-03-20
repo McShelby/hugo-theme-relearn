@@ -45,29 +45,29 @@ var variants = {
 
   addCustomVariantOption: function () {
     var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/customvariant');
-    var select = document.querySelector('#R-select-variant');
-    if (!customvariant || !select) {
+    if (!customvariant ) {
       return;
     }
-    var option = document.querySelector('#R-select-variant-' + this.customvariantname);
-    if (!option) {
-      option = document.createElement('option');
-      option.id = 'R-select-variant-' + this.customvariantname;
-      option.value = this.customvariantname;
-      option.text = this.customvariantname.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
-        return w.replace(/^\w/g, function (c) {
-          return c.toUpperCase();
+    document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
+      var option = select.options[`R-select-variant-${this.customvariantname}`];
+      if (!option) {
+        option = document.createElement('option');
+        option.id = `R-select-variant-${this.customvariantname}`;
+        option.value = this.customvariantname;
+        option.text = this.customvariantname.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
+          return w.replace(/^\w/g, function (c) {
+            return c.toUpperCase();
+          });
         });
-      });
-      select.appendChild(option);
-    }
+        select.appendChild(option);
+      }
+    });
   },
 
   removeCustomVariantOption: function () {
-    var option = document.querySelector('#R-select-variant-' + this.customvariantname);
-    if (option) {
+    document.querySelectorAll(`.R-variantswitcher option[value=${this.customvariantname}]`).forEach((option) => {
       option.remove();
-    }
+    });
   },
 
   addCustomVariantStyles: function () {

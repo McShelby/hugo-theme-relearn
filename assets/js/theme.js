@@ -1444,6 +1444,42 @@ function scrollToPositions() {
   }
 }
 
+function handleHistoryClearer() {
+  document.querySelectorAll('.R-historyclearer button').forEach(function (select) {
+    select.addEventListener('click', function (event) {
+      clearHistory();
+    });
+  });
+}
+
+function handleLanguageSwitcher() {
+  document.querySelectorAll('.R-languageswitcher select').forEach(function (select) {
+    select.addEventListener('change', function (event) {
+      const url = this.options[`R-select-language-${this.value}`].dataset.url;
+      this.value = this.querySelector('[data-selected]')?.value ?? select.value;
+      window.location = url;
+    });
+  });
+}
+
+function handleVariantSwitcher() {
+  document.querySelectorAll('.R-variantswitcher select').forEach(function (select) {
+    select.addEventListener('change', function (event) {
+      window.relearn.changeVariant(this.value);
+    });
+  });
+}
+
+function handleVersionSwitcher() {
+  document.querySelectorAll('.R-versionswitcher select').forEach(function (select) {
+    select.addEventListener('change', function (event) {
+      const url = (this.options[`R-select-version-${this.value}`].dataset.abs == 'true' ? '' : window.relearn.relBaseUri) + this.options[`R-select-version-${this.value}`].dataset.uri + window.relearn.path;
+      this.value = this.querySelector('[data-selected]')?.value ?? select.value;
+      window.location = url;
+    });
+  });
+}
+
 window.addEventListener('popstate', function (event) {
   scrollToPositions();
 });
@@ -1757,6 +1793,10 @@ function ready(fn) {
 ready(function () {
   initArrowVerticalNav();
   initArrowHorizontalNav();
+  handleHistoryClearer();
+  handleLanguageSwitcher();
+  handleVariantSwitcher();
+  handleVersionSwitcher();
   initMermaid();
   initOpenapi();
   initMenuScrollbar();
