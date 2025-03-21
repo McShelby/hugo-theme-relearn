@@ -1,7 +1,7 @@
 +++
-categories = ["howto"]
-description = "Changing the width of the sidebar"
-title = "Width"
+categories = ['howto']
+description = 'Changing the width of the sidebar'
+title = 'Width'
 weight = 1
 +++
 

@@ -1,9 +1,9 @@
 +++
-categories = ["howto", "reference"]
-description = "Beautiful math and chemical formulae"
-frontmatter = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
-options = ["customMathJaxURL", "math", "math.force", "mathJaxInitialize"]
-title = "Math"
+categories = ['howto', 'reference']
+description = 'Beautiful math and chemical formulae'
+frontmatter = ['customMathJaxURL', 'math', 'math.force', 'mathJaxInitialize']
+options = ['customMathJaxURL', 'math', 'math.force', 'mathJaxInitialize']
+title = 'Math'
 +++
 
 If this is not enough, the `math` shortcode helps you rendering math and chemical formulae using the [MathJax](https://mathjax.org/) library.

@@ -1,6 +1,6 @@
 +++
-categories = ["howto", "reference"]
+categories = ['howto', 'reference']
 description = "Marker badges t' display 'n yer text"
-title = "Badge"
+title = 'Badge'
 +++
 {{< piratify >}}

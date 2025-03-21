@@ -1,10 +1,12 @@
 +++
-categories = ["reference"]
-menuPre = "<i class='fa-fw fas fa-shapes'></i> "
-ordersectionsby = "title"
-title = "Shortcodes"
-type = "chapter"
+categories = ['reference']
+title = 'Shortcodes'
+type = 'chapter'
 weight = 4
+
+[params]
+  menuPre = "<i class='fa-fw fas fa-shapes'></i> "
+  ordersectionsby = 'title'
 +++
 
 Hugo uses Markdown as its content format. However, there are a lot of things that Markdown doesn't support well.

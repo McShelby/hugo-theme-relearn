@@ -1,8 +1,10 @@
 +++
-categories = ["howto", "reference"]
-description = "List of files attached to a page"
-hidden = "true"
-title = "Attachments"
+categories = ['howto', 'reference']
+description = 'List of files attached to a page'
+title = 'Attachments'
+
+[params]
+  hidden = 'true'
 +++
 
 {{% notice warning %}}

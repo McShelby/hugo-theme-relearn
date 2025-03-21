@@ -1,7 +1,7 @@
 +++
-categories = ["explanation", "howto"]
+categories = ['explanation', 'howto']
 description = "Learn how to customize your site's colors"
-options = ["themeVariant"]
+options = ['themeVariant']
 title = "Brrrand'n"
 weight = 2
 +++

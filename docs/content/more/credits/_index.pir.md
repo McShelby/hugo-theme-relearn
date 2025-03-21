@@ -1,7 +1,10 @@
 +++
-menuPre = "<i class='fa-fw fas fa-bullhorn'></i> "
-title = "Crrredits"
+title = 'Crrredits'
+
 [build]
-  list = "never"
+  list = 'never'
+
+[params]
+  menuPre = "<i class='fa-fw fas fa-bullhorn'></i> "
 +++
 {{< piratify >}}

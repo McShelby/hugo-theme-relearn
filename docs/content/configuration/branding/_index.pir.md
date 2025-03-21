@@ -1,8 +1,10 @@
 +++
-alwaysopen = false
-categories = ["reference"]
-description = "Change colors and logos of your site"
+categories = ['reference']
+description = 'Change colors and logos of your site'
 title = "Brrrand'n"
 weight = 2
+
+[params]
+  alwaysopen = false
 +++
 {{< piratify >}}

@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Expandable/collapsible sections of text"
-title = "Expand"
+categories = ['howto', 'reference']
+description = 'Expandable/collapsible sections of text'
+title = 'Expand'
 +++
 
 The `expand` shortcode displays an expandable/collapsible section of text.

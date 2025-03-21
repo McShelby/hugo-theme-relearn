@@ -1,9 +1,12 @@
 +++
-menuPre = "<i class='fa-fw fas fa-camera'></i> "
-title = "Showcase"
+title = 'Showcase'
+
 [build]
-  render = "always"
-  list = "never"
+  render = 'always'
+  list = 'never'
   publishResources = true
+
+[params]
+  menuPre = "<i class='fa-fw fas fa-camera'></i> "
 +++
 {{< piratify >}}

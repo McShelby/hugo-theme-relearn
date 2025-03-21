@@ -1,7 +1,7 @@
 +++
-description = "Reference of CommonMark and Markdown extensions"
-categories = ["howto", "reference"]
-title = "Markdown Syntax"
+categories = ['howto', 'reference']
+description = 'Reference of CommonMark and Markdown extensions'
+title = 'Markdown Syntax'
 weight = 4
 +++
 

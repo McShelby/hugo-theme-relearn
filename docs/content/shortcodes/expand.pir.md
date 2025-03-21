@@ -1,6 +1,6 @@
 +++
-categories = ["howto", "reference"]
+categories = ['howto', 'reference']
 description = "Expand'ble/collaps'ble sections of text"
-title = "Expand"
+title = 'Expand'
 +++
 {{< piratify >}}

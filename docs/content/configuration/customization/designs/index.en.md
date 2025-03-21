@@ -1,7 +1,7 @@
 +++
-categories = ["explanation", "howto"]
-description = "Extending page designs"
-title = "Page Designs"
+categories = ['explanation', 'howto']
+description = 'Extending page designs'
+title = 'Page Designs'
 weight = 6
 +++
 

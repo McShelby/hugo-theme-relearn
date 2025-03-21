@@ -1,9 +1,10 @@
 +++
-description = "This is a demo child page"
-tags = ["children", "headless", "non-hidden"]
-title = "page 1-1-2 (headless)"
+description = 'This is a demo child page'
+tags = ['children', 'headless', 'non-hidden']
+title = 'page 1-1-2 (headless)'
+
 [build]
-  render = "never"
+  render = 'never'
 +++
 
 This is a headless child page.

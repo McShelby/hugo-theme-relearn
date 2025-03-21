@@ -1,8 +1,10 @@
 +++
-categories = ["reference"]
-menuPre = "<i class='fa-fw fas fa-gears'></i> "
+categories = ['reference']
 title = "Configurrrat'n"
-type = "chapter"
+type = 'chapter'
 weight = 2
+
+[params]
+  menuPre = "<i class='fa-fw fas fa-gears'></i> "
 +++
 {{< piratify >}}

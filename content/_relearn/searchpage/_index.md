@@ -1,6 +1,6 @@
 +++
 [build]
-  render = "never"
-  list = "never"
+  render = 'never'
+  list = 'never'
   publishResources = false
 +++

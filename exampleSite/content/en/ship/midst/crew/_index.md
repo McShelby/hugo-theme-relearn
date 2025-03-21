@@ -1,6 +1,6 @@
 +++
 description = 'Where dreams of mutiny and tales of sea monsters are equally shared'
-title = "Crew Quarters"
+title = 'Crew Quarters'
 +++
 
 Welcome to the most entertaining deck of our vessel, where every bunk tells a story and every footlocker holds at least three contraband items that technically violate maritime law. Our distinguished crew members have developed a complex social hierarchy based entirely on who can tell the tallest tale about encounters with legendary sea creatures. Current champion: Bosun McGee, who swears he taught a pod of narwhals to perform synchronized swimming routines.

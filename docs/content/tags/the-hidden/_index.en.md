@@ -1,5 +1,5 @@
 +++
-title = "a secret"
+title = 'a secret'
 +++
 
 This lists all pages that are hidden from the home page. This includes pages that define `hidden=true` in their front matter as well as descendents of hidden pages.

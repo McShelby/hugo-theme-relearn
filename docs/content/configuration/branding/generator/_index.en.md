@@ -1,8 +1,8 @@
 +++
-categories = ["tutorial"]
-description = "An interactive tool to generate color variant stylesheets"
-options = ["themeVariant"]
-title = "Stylesheet Generator"
+categories = ['tutorial']
+description = 'An interactive tool to generate color variant stylesheets'
+options = ['themeVariant']
+title = 'Stylesheet Generator'
 weight = 4
 +++
 

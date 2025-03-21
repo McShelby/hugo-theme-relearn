@@ -1,8 +1,11 @@
 +++
-menuPre = "<i class='fa-fw fas fa-bullhorn'></i> "
-title = "Credits"
+title = 'Credits'
+
 [build]
-  list = "never"
+  list = 'never'
+
+[params]
+  menuPre = "<i class='fa-fw fas fa-bullhorn'></i> "
 +++
 
 ## Contributors

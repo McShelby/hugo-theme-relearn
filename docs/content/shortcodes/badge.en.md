@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Marker badges to display in your text"
-title = "Badge"
+categories = ['howto', 'reference']
+description = 'Marker badges to display in your text'
+title = 'Badge'
 +++
 
 The `badge` shortcode displays little markers in your text with adjustable color, title and icon.

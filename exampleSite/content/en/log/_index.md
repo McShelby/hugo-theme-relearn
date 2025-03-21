@@ -1,9 +1,11 @@
 +++
 description = "The Captain's Log"
-menuPre = '<i class="fa-fw fas fa-pen-fancy"></i> '
 title = "Captain's Log"
 type = 'chapter'
 weight = 2
+
+[params]
+  menuPre = '<i class="fa-fw fas fa-pen-fancy"></i> '
 +++
 
 Captain Hugo reporting from the quarterdeck of the magnificent {{% badge style="primary" icon="anchor" %}}The Purple Pulpo{{% /badge %}}. The seas are fair, and our hold is brimming with exotic cargo bound for distant ports. Our seasoned crew stands ready for another adventure across the Seven Seas.

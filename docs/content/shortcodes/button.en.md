@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Clickable buttons"
-title = "Button"
+categories = ['howto', 'reference']
+description = 'Clickable buttons'
+title = 'Button'
 +++
 
 The `button` shortcode displays a clickable button with adjustable color, title and icon.

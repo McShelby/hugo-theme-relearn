@@ -108,27 +108,27 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
 
     - name: Update releasenotes front matter
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: '(\ntitle = "Version )\d+\.\d+("\n.*\nweight = -)\d+(\n)'
+        regex: "(\ntitle = 'Version )\d+\.\d+('\n.*\nweight = -)\d+(\n)"
         replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
         include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
 
     - name: Update releasenotes heading
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: '(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)'
+        regex: "(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)"
         replacement: "$1\n\n## ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.majorvers.outputs.value }}-${{ steps.minorvers.outputs.value }}-0}\n\n$2"
         include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
 
     - name: Generate piratish releasenotes
       shell: bash
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"releasenotes\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
 
     - name: Generate english changelogs
       shell: bash
@@ -138,15 +138,15 @@ runs:
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         mkdir -p docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.en.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n\n{{% pages showhidden=\"true\" showdivider=\"true\" reverse=\"true\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
         npx github-release-notes@0.17.1 changelog --generate --changelog-filename docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md --tags "$MILESTONE"
 
     - name: Generate piratish changelogs
       shell: bash
       run: |
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.majorvers.outputs.value }}\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ndisableToc = false\nhidden = true\ntitle = \"Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\"\ntype = \"changelog\"\nweight = -${{ steps.minorvers.outputs.value }}\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
         echo -e "+++\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
 
     - name: Read changelog
@@ -158,7 +158,7 @@ runs:
     - name: Write changelog to CHANGELOG.md
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
+        regex: "(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)"
         replacement: "${{ steps.changelog_docs.outputs.contents }}\n---\n\n$1\n$2"
         include: CHANGELOG.md
 
@@ -167,7 +167,7 @@ runs:
       uses: azarc-io/regex-property-action@master
       with:
         value: ${{ steps.changelog_docs.outputs.contents }}
-        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
+        regex: "(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)"
         replacement: "[★ What's new in this version ★](https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
 
     - name: Commit updates

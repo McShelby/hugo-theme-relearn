@@ -1,6 +1,6 @@
 +++
-categories = ["howto", "reference"]
+categories = ['howto', 'reference']
 description = "Get value o' ship parrrams"
-title = "SiteParam"
+title = 'SiteParam'
 +++
 {{< piratify >}}

@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Nice icons for your page"
-title = "Icon"
+categories = ['howto', 'reference']
+description = 'Nice icons for your page'
+title = 'Icon'
 +++
 
 The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome.com) library.

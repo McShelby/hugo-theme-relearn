@@ -1,7 +1,7 @@
 +++
-categories = ["explanation", "howto"]
-description = "Recipe to create various documentation screenshots"
-title = "Screenshots"
+categories = ['explanation', 'howto']
+description = 'Recipe to create various documentation screenshots'
+title = 'Screenshots'
 +++
 
 Sometimes screenshots need to be redone. This page explains how to create the different screenshots, tools and settings

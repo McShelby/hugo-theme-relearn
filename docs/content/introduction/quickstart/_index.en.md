@@ -1,7 +1,7 @@
 +++
-categories = ["tutorial"]
-description = "Initialize your website in a few simple steps"
-title = "Getting Started"
+categories = ['tutorial']
+description = 'Initialize your website in a few simple steps'
+title = 'Getting Started'
 weight = 1
 +++
 

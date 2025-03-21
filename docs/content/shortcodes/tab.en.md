@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Show content in a single tab"
-title = "Tab"
+categories = ['howto', 'reference']
+description = 'Show content in a single tab'
+title = 'Tab'
 +++
 
 You can use a `tab` shortcode to display a single tab with a title.

@@ -1,11 +1,13 @@
 +++
-alwaysopen = false
-categories = ["reference"]
-description = "The detailed changelog"
-disableToc = false
-title = "Changelog"
-type = "changelog"
+categories = ['reference']
+description = 'The detailed changelog'
+title = 'Changelog'
+type = 'changelog'
 weight = 5
+
+[params]
+  alwaysopen = false
+  disableToc = false
 +++
 
 {{% pages showdivider="true" showhidden="true" hidevisible="true" showtitle="true" %}}

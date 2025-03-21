@@ -1,10 +1,10 @@
 +++
-aliases = "/shortcodes/swagger"
-categories = ["howto", "reference"]
-description = "UI for your OpenAPI / Swagger specifications"
-frontmatter = ["customOpenapiURL", "openapi.errorlevel", "openapi.force"]
-options = ["customOpenapiURL", "openapi.errorlevel", "openapi.force"]
-title = "OpenAPI"
+aliases = '/shortcodes/swagger'
+categories = ['howto', 'reference']
+description = 'UI for your OpenAPI / Swagger specifications'
+frontmatter = ['customOpenapiURL', 'openapi.errorlevel', 'openapi.force']
+options = ['customOpenapiURL', 'openapi.errorlevel', 'openapi.force']
+title = 'OpenAPI'
 +++
 
 The `openapi` shortcode displays your OpenAPI / Swagger specifications using the [Swagger UI](https://github.com/swagger-api/swagger-ui) library.

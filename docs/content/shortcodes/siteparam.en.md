@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Get value of site params"
-title = "SiteParam"
+categories = ['howto', 'reference']
+description = 'Get value of site params'
+title = 'SiteParam'
 +++
 
 The `siteparam` shortcode prints values of params contained in your `hugo.toml`.

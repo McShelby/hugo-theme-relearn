@@ -1,9 +1,8 @@
 +++
-categories = ["explanation", "howto"]
-description = "Adding Custom Output Formats"
-title = "Output Formats"
+categories = ['explanation', 'howto']
+description = 'Adding Custom Output Formats'
+title = 'Output Formats'
 weight = 7
-disableToc = false
 +++
 
 Hugo can display your content in different [formats](https://gohugo.io/templates/output-formats/) like HTML, JSON, Google AMP, etc. To do this, templates must be provided.

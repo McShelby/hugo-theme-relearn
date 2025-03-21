@@ -1,7 +1,7 @@
 +++
-categories = ["howto", "reference"]
-description = "Show content in tabbed views"
-title = "Tabs"
+categories = ['howto', 'reference']
+description = 'Show content in tabbed views'
+title = 'Tabs'
 +++
 
 The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.

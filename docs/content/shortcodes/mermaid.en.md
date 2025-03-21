@@ -1,9 +1,9 @@
 +++
-categories = ["howto", "reference"]
-description = "Generate diagrams and flowcharts from text"
-frontmatter = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoom"]
-options = ["customMermaidURL", "mermaid.force", "mermaidInitialize", "mermaidZoom"]
-title = "Mermaid"
+categories = ['howto', 'reference']
+description = 'Generate diagrams and flowcharts from text'
+frontmatter = ['customMermaidURL', 'mermaid.force', 'mermaidInitialize', 'mermaidZoom']
+options = ['customMermaidURL', 'mermaid.force', 'mermaidInitialize', 'mermaidZoom']
+title = 'Mermaid'
 +++
 
 The `mermaid` shortcode generates diagrams and flowcharts from text in a similar manner as Markdown using the [Mermaid](https://mermaidjs.github.io/) library.

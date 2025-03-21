@@ -1,9 +1,9 @@
 +++
-categories = ["howto", "reference"]
-description = "Render code with a syntax highlighter"
-frontmatter = ["highlightWrap"]
-options = ["disableHoverBlockCopyToClipBoard", "disableInlineCopyToClipBoard", "highlightWrap"]
-title = "Highlight"
+categories = ['howto', 'reference']
+description = 'Render code with a syntax highlighter'
+frontmatter = ['highlightWrap']
+options = ['disableHoverBlockCopyToClipBoard', 'disableInlineCopyToClipBoard', 'highlightWrap']
+title = 'Highlight'
 +++
 
 The `highlight` shortcode renders your code with a syntax highlighter.

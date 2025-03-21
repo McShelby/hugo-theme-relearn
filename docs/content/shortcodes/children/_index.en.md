@@ -1,10 +1,12 @@
 +++
-alwaysopen = false
-categories = ["howto", "reference"]
-frontmatter = ["ordersectionsby"]
-options = ["ordersectionsby"]
-description = "List the child pages of a page"
-title = "Children"
+categories = ['howto', 'reference']
+description = 'List the child pages of a page'
+frontmatter = ['ordersectionsby']
+options = ['ordersectionsby']
+title = 'Children'
+
+[params]
+  alwaysopen = false
 +++
 
 The `children` shortcode lists the child pages of the current page and its descendants.

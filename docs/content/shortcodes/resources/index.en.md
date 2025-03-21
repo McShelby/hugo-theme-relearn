@@ -1,7 +1,8 @@
 +++
-categories = ["howto", "reference"]
-description = "List resources contained in a page bundle"
-title = "Resources"
+categories = ['howto', 'reference']
+description = 'List resources contained in a page bundle'
+title = 'Resources'
+
 [[resources]]
   name = 'MaybeTreasure.txt'
   src = 'MaybeTreasure.en.txt'
