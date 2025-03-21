@@ -16,18 +16,16 @@ Learn how to turn off the breadcrumbs completely and further [configure the topb
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default the term pages of a taxonomy will display the breadcrumb for each page. Set `disableTermBreadcrumbs=true` to remove the breadcrumb if the term pages look to cluttered.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableRootBreadcrumb = true
-  breadcrumbSeparator = '/'
-  disableTermBreadcrumbs = true
+{{< multiconfig file=hugo section=params >}}
+disableRootBreadcrumb = true
+breadcrumbSeparator = '/'
+disableTermBreadcrumbs = true
 {{< /multiconfig >}}
 
 ## Titles
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can override the default title separator by using `titleSeparator='|'`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  titleSeparator = '|'
+{{< multiconfig file=hugo section=params >}}
+titleSeparator = '|'
 {{< /multiconfig >}}

@@ -152,7 +152,6 @@ If you want to have more control, where the language switcher is positioned or y
 
 To disable the language switcher set `disableLanguageSwitchingButton=true`
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableLanguageSwitchingButton = true
+{{< multiconfig file=hugo section=params >}}
+disableLanguageSwitchingButton = true
 {{< /multiconfig >}}

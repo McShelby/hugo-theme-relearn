@@ -77,8 +77,7 @@ If you want to display a transparent expandable box without any border, you can 
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Besides the predefined `style` values [from above](#parameter), you are able to define your own.
 
-{{< multiconfig file=hugo >}}
-[params]
+{{< multiconfig file=hugo section=params >}}
 boxStyle = [
 	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'rainbow', color = 'gold' }
 ]

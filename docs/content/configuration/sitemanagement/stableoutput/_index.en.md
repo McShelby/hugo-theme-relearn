@@ -14,9 +14,8 @@ This isn't a security risk and helps us support you better.
 
 To turn this off, set `disableGeneratorVersion=true`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableGeneratorVersion = true
+{{< multiconfig file=hugo section=params >}}
+disableGeneratorVersion = true
 {{< /multiconfig >}}
 
 If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting-started/configuration/#disablehugogeneratorinject), use `disableHugoGeneratorInject=true`.
@@ -29,9 +28,8 @@ This is good for production sites but can be problematic during development. It 
 
 To disable this, set `disableAssetsBusting=true`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableAssetsBusting = true
+{{< multiconfig file=hugo section=params >}}
+disableAssetsBusting = true
 {{< /multiconfig >}}
 
 ## Disabling IDs for Interactive HTML Elements
@@ -42,16 +40,14 @@ This is necessary for the theme to work properly, but it can make comparing outp
 
 To turn this off, set `disableRandomIds=true`. Note, that this will result in a non-functional site!.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableRandomIds = true
+{{< multiconfig file=hugo section=params >}}
+disableRandomIds = true
 {{< /multiconfig >}}
 
 ## Disabling Assets Minification
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If `minify=true`, further theme assets will be minified during build. If no value is set, the theme will avoid minification if you have started with `hugo server` and otherwise will minify.
 
-{{< multiconfig file=hugo >}}
-[params]
-  minify = false
+{{< multiconfig file=hugo section=params >}}
+minify = false
 {{< /multiconfig >}}

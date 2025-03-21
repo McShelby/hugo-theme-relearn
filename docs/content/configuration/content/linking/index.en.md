@@ -16,9 +16,8 @@ If you're only using a web server scenario and dislike this, you can reset to Hu
 
 For the file system scenario, you are not allowed to change this value.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableExplicitIndexURLs = true
+{{< multiconfig file=hugo section=params >}}
+disableExplicitIndexURLs = true
 {{< /multiconfig >}}
 
 ## Legacy Cross-Language Links
@@ -37,7 +36,6 @@ In configurations using a **baseURL** with a **subdirectory** and having **relat
 
 To work around this, you can activate a patched version of the shortcode by setting `disableDefaultRelref=true`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableDefaultRelref = true
+{{< multiconfig file=hugo section=params >}}
+disableDefaultRelref = true
 {{< /multiconfig >}}

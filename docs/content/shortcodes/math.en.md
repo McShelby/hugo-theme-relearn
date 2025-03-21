@@ -74,7 +74,7 @@ You can overwrite the settings by providing a JSON object in `mathJaxInitialize`
 
 Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 mathJaxInitialize = '{ "chtml": { "displayAlign": "left" }, { "tex": { "inlineMath": [["\(", "\)"], ["@", "@"]], displayMath: [["\[", "\]"], ["@@", "@@"]] }, "options": { "enableMenu": false }'
 {{< /multiconfig >}}
 
@@ -84,7 +84,7 @@ mathJaxInitialize = '{ "chtml": { "displayAlign": "left" }, { "tex": { "inlineMa
 
 In case you want do use a different version of the MathJax library but don't want to override the shipped version, you can set `customMathJaxURL` to the URL of the external MathJax library.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 customMathJaxURL = 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
 {{< /multiconfig >}}
 
@@ -96,7 +96,7 @@ You can force loading the MathJax library if no shortcode or codefence was used 
 
 Instead of `math=true` you can also use the alias `math.force=true`.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 math = true
 {{< /multiconfig >}}
 

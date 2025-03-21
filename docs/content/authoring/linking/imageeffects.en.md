@@ -32,20 +32,18 @@ If an effect accepts boolean values, only setting the parameter name without a v
 Without any settings in your `hugo.toml` `imageEffects` defaults to
 
 {{< multiconfig >}}
-[imageEffects]
-  border = false
-  dataurl = false
-  inlinecontent = false
-  lazy = true
-  lightbox = true
-  shadow = false
+imageEffects.border = false
+imageEffects.dataurl = false
+imageEffects.inlinecontent = false
+imageEffects.lazy = true
+imageEffects.lightbox = true
+imageEffects.shadow = false
 {{< /multiconfig >}}
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter for example by
 
-{{< multiconfig fm=true >}}
-[imageEffects]
-  lazy = false
+{{< multiconfig fm=true section=params >}}
+imageEffects.lazy = false
 {{< /multiconfig >}}
 
 Or by explicitly override settings by URL query parameter
@@ -57,10 +55,10 @@ Or by explicitly override settings by URL query parameter
 The settings applied to the above image would be
 
 {{< multiconfig >}}
-border = true
-dataurl = false
-inlinecontent = false
-lazy = true
-lightbox = false
-shadow = false
+imageEffects.border = true
+imageEffects.dataurl = false
+imageEffects.inlinecontent = false
+imageEffects.lazy = true
+imageEffects.lightbox = false
+imageEffects.shadow = false
 {{< /multiconfig >}}

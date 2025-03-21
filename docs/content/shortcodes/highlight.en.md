@@ -111,7 +111,7 @@ If used together with wrapping of long lines, use this recommended settings. Oth
 
 You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameter) individually for each code block.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 highlightWrap=false
 {{< /multiconfig >}}
 
@@ -121,9 +121,8 @@ highlightWrap=false
 
 If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableInlineCopyToClipBoard = true
+{{< multiconfig file=hugo section=params >}}
+disableInlineCopyToClipBoard = true
 {{< /multiconfig >}}
 
 ### Copy to Clipboard for Block Code
@@ -132,9 +131,8 @@ If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
 
 Set `disableHoverBlockCopyToClipBoard=true` to disable the hover effect and always show the button.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableHoverBlockCopyToClipBoard = true
+{{< multiconfig file=hugo section=params >}}
+disableHoverBlockCopyToClipBoard = true
 {{< /multiconfig >}}
 
 ### Setting a Specific Color Scheme

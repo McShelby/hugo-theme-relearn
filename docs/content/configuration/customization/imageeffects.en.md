@@ -15,38 +15,34 @@ If you don't configure anything in your `hugo.toml`, the image effects default t
 ## Default Values
 
 {{< multiconfig >}}
-[imageEffects]
-  border = false
-  dataurl = false
-  inlinecontent = false
-  lazy = true
-  lightbox = true
-  shadow = false
+imageEffects.border = false
+imageEffects.dataurl = false
+imageEffects.inlinecontent = false
+imageEffects.lazy = true
+imageEffects.lightbox = true
+imageEffects.shadow = false
 {{< /multiconfig >}}
 
 ## Configuration
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can change these settings in your `hugo.toml` and add arbitrary custom effects as boolean values (like `bg-white` in the below snippet).
 
-{{< multiconfig file=hugo >}}
-[params]
-  [params.imageEffects]
-    bg-white = true
-    border = true
-    lazy = false
+{{< multiconfig file=hugo section=params >}}
+imageEffects.bg-white = true
+imageEffects.border = true
+imageEffects.lazy = false
 {{< /multiconfig >}}
 
 This would result in
 
 {{< multiconfig >}}
-[imageEffects]
-  bg-white = true
-  border = true
-  dataurl = false
-  inlinecontent = false
-  lazy = false
-  lightbox = true
-  shadow = false
+imageEffects.bg-white = true
+imageEffects.border = true
+imageEffects.dataurl = false
+imageEffects.inlinecontent = false
+imageEffects.lazy = false
+imageEffects.lightbox = true
+imageEffects.shadow = false
 {{< /multiconfig >}}
 
 ### Example

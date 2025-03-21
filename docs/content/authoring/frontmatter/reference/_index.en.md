@@ -14,8 +14,8 @@ Throughout the documentation, theme-specific front matter is marked with a {{% b
 
 Add theme front matter directly to the root of your page's front matter. For example:
 
-{{< multiconfig fm=true >}}
-  math = true
+{{< multiconfig fm=true section=params >}}
+math = true
 {{< /multiconfig >}}
 
 ## Index
@@ -26,7 +26,7 @@ Add theme front matter directly to the root of your page's front matter. For exa
 
 Here's a list of all available front matter with example values.  Default values are described in the [annotated example](#annotated-front-matter) below or in each front matter's documentation.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig fm=true section=params >}}
 {{% include "frontmatter.toml" %}}
 {{< /multiconfig >}}
 
@@ -34,5 +34,6 @@ Here's a list of all available front matter with example values.  Default values
 
 ````toml {title="toml"}
 +++
+[params]
 {{% include "frontmatter.toml" %}}+++
 ````

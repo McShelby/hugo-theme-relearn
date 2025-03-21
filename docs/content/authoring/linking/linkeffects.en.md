@@ -28,16 +28,14 @@ If an effect accepts boolean values, only setting the parameter name without a v
 Without any settings in your `hugo.toml` `linkEffects` defaults to
 
 {{< multiconfig >}}
-[linkEffects]
-  download = false
-  target = false
+linkEffects.download = false
+linkEffects.target = false
 {{< /multiconfig >}}
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter for example by
 
-{{< multiconfig fm=true >}}
-[linkEffects]
-  target = '_blank'
+{{< multiconfig fm=true section=params >}}
+linkEffects.target = '_blank'
 {{< /multiconfig >}}
 
 Or by explicitly override settings by URL query parameter
@@ -49,6 +47,6 @@ Or by explicitly override settings by URL query parameter
 The settings applied to the above link would be
 
 {{< multiconfig >}}
-download = false
-target = '_self'
+linkEffects.download = false
+linkEffects.target = '_self'
 {{< /multiconfig >}}

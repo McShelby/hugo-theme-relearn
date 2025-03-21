@@ -14,16 +14,14 @@ You can change what happens when you click the anchor icon in your `hugo.toml` f
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableAnchorCopy=true` to prevent copying the anchor link when you click the icon.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableAnchorCopy = true
+{{< multiconfig file=hugo section=params >}}
+disableAnchorCopy = true
 {{< /multiconfig >}}
 
 ## Scroll to Heading
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set `disableAnchorScrolling=true` to stop the page from scrolling to the heading when you click the anchor icon.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableAnchorScrolling = true
+{{< multiconfig file=hugo section=params >}}
+disableAnchorScrolling = true
 {{< /multiconfig >}}

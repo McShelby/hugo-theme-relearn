@@ -36,7 +36,7 @@ The theme generates the expand state based on the following rules:
 - all [visible](authoring/meta#hidden) entries show their immediate child entries if `alwaysopen=true`; this proceeds recursively
 - all remaining entries are not shown
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 alwaysopen = false
 {{< /multiconfig >}}
 
@@ -46,7 +46,7 @@ alwaysopen = false
 
 {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.collapsibleMenu=true` instead.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 collapsibleMenu = true
 {{< /multiconfig >}}
 
@@ -67,7 +67,7 @@ collapsibleMenu = true
 
 Hugo menus can only be sorted using the weight method.
 
-{{< multiconfig>}}
+{{< multiconfig >}}
 weight = 5
 {{< /multiconfig >}}
 
@@ -77,7 +77,7 @@ Using the `weight` for sorting can get cumbersome if you, for example, just want
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects. See the [children shortcode](shortcodes/children#parameter) for a complete list.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 ordersectionsby = 'linktitle'
 {{< /multiconfig >}}
 
@@ -106,7 +106,8 @@ The example below uses the GitHub icon for an entry of a page menu.
 
 {{< multiconfig fm=true >}}
 title = 'GitHub Repo'
-menuPre = '<i class="fab fa-github"></i> '
+[params]
+  menuPre = '<i class="fab fa-github"></i> '
 {{< /multiconfig >}}
 
 ## Disable Menu Entries
@@ -169,9 +170,8 @@ By default, the theme supports one additional Hugo menu below the page menu in t
 
 You can disable this title with `disableShortcutsTitle=true`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableShortcutsTitle = true
+{{< multiconfig file=hugo section=params >}}
+disableShortcutsTitle = true
 {{< /multiconfig >}}
 
 To change the title, override your translation file.
@@ -240,7 +240,7 @@ If you don't set these options in your `hugo.toml`, the theme defaults as follow
 
 However, if you decide to overwrite these options, the configuration for those features will not be taken into account anymore. For example, if you want to reorder the `sidebarfootermenus` by setting
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 sidebarfootermenus = [
   { type = 'divider' },
   { type = 'custom', elements = [ { type = 'historyclearer' }, { type = 'variantswitcher' }, { type = 'languageswitcher' } ] }
@@ -303,7 +303,7 @@ A horizontal ruler
 
 The following example configures the language switcher and history clearer into the menu header, only shows the the page menu in the main sidebar section and keeps the menu footer empty:
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 sidebarheadermenus = [
 	{ type = 'custom', elements = [
 		{ type = 'languageswitcher'	},
@@ -390,7 +390,8 @@ For that create a new page with the following front matter
 
 {{< multiconfig fm=true file="content/crows-nest-incident.md" >}}
 title = "The Crow's Nest Incident"
-menuPageRef = '/log/third-day'
+[params]
+  menuPageRef = '/log/third-day'
 {{< /multiconfig >}}
 
 {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.

@@ -58,7 +58,7 @@ Please note that this can not resolve files inside of your `static` directory. T
 
 Link warnings are also available for [images & links](authoring/frontmatter/linking#enabling-link-and-image-link-warnings) and the [openapi](shortcodes/openapi#enabling-link-warnings) shortcode.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 include.errorlevel = 'warning'
 {{< /multiconfig >}}
 

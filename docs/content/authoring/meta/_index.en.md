@@ -42,7 +42,7 @@ images = [ 'images/hero.png' ]
 
 [See how you can further configure visibility](configuration/content/hidden) throughout your site.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig fm=true section=params >}}
 hidden = true
 {{< /multiconfig >}}
 
@@ -52,7 +52,7 @@ hidden = true
 
 You also may want to [apply further CSS](configuration/customization/extending#adding-javascript-or-stylesheets-to-all-pages) in this case.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig fm=true section=params >}}
 headingPre = '<i class="fab fa-github"></i> '
 {{< /multiconfig >}}
 
@@ -66,7 +66,7 @@ headingPre = '<i class="fab fa-github"></i> '
 
 See how to further [configure this information](configuration/content/meta) on a site-wide basis.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig fm=true section=params >}}
 LastModifierDisplayName = 'Santa Claus'
 LastModifierEmail = 'santa@example.com'
 date = 2000-12-24T00:00:00-12:00

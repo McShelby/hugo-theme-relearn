@@ -15,29 +15,26 @@ If you don't configure anything in your `hugo.toml`, the link effects default to
 ## Default Values
 
 {{< multiconfig >}}
-[linkEffects]
-  download = false
-  target = false
+linkEffects.download = false
+linkEffects.target = false
 {{< /multiconfig >}}
 
 ## Configuration
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can change these settings in your `hugo.toml` and add arbitrary custom effects as boolean values (like `bg-white` in the below snippet).
 
-{{< multiconfig file=hugo >}}
-[params]
-  [params.linkEffects]
-    bg-white = true
-    target = '_blank'
+{{< multiconfig file=hugo section=params >}}
+linkEffects.bg-white = true
+linkEffects.target = '_blank'
 {{< /multiconfig >}}
 
 This would result in
 
 {{< multiconfig >}}
 [linkEffects]
-  bg-white = true
-  download = false
-    target = '_blank'
+linkEffects.bg-white = true
+linkEffects.download = false
+linkEffects.target = '_blank'
 {{< /multiconfig >}}
 
 ### Example

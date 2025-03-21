@@ -162,18 +162,16 @@ To stay with the above example, here's the configuration for your current versio
 
 You can disable it be setting the `disableVersionWarning` option to `true` in your `hugo.toml`.
 
-{{< multiconfig file=hugo >}}
-[params]
-  disableVersionWarning = true
+{{< multiconfig file=hugo section=params >}}
+disableVersionWarning = true
 {{< /multiconfig >}}
 
 ## Change URL of the Version Index
 
 {{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The default URL for the version index can be changed with the `versionIndexURL` parameter
 
-{{< multiconfig file=hugo >}}
-[params]
-  versionIndexURL = 'myversionindex.js'
+{{< multiconfig file=hugo section=params >}}
+versionIndexURL = 'myversionindex.js'
 {{< /multiconfig >}}
 
 {{% notice note %}}

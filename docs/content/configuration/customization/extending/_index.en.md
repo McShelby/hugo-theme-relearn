@@ -40,9 +40,9 @@ For example, to create a shortcode called `myshortcode` that needs the `jquery` 
 
 2. {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Add this to your `hugo.toml`:
 
-    {{< multiconfig file=hugo >}}
-    [params.relearn.dependencies]
-      [params.relearn.dependencies.myshortcode]
+    {{< multiconfig file=hugo section=params >}}
+    [relearn.dependencies]
+      [relearn.dependencies.myshortcode]
         name = 'MyShortcode'
     {{< /multiconfig >}}
 
