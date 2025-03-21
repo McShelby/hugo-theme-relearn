@@ -15,7 +15,7 @@
 	{{- end }}
 {{- end }}
 {{- if and
-	(not (site.Params.disableVersionWarning | default .Params.disableVersionWarning))
+	(not (site.Params.disableVersioningWarning | default .Params.disableVersioningWarning))
 	(eq (.Store.Get "relearnOutputFormat") "html")
 	$pageVersion
 	$latestVersion
@@ -26,11 +26,5 @@
 	{{- if not $latestVersion.isAbs }}
 		{{- $url = print (partial "_relearn/relBaseUri.gotmpl" .) $url }}
 	{{- end }}
-	{{- partial "shortcodes/notice.html" (dict
-		"page" .
-		"content" (T "Version-warning" (dict "version" $pageVersion.title "latestUrl" $url ))
-		"icon" " "
-		"style" "warning"
-		"title" " "
-	) }}
+	{{- partial "versioning-warning.html" (dict "page" . "pageUrl" (partial "permalink.gotmpl" (dict "to" .)) "pageVersion" $pageVersion "latestUrl" $url "latestVersion" "$latestVersion") }}
 {{- end }}
