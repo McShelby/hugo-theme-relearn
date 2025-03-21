@@ -78,7 +78,7 @@
   {{- $currentNode := .currentnode }}
   {{- $config := .config }}
   {{- $showvisitedlinks := .showvisitedlinks }}
-        <div id="R-shortcutmenu-{{ $config.identifier }}" class="R-sidebarmenu">
+        <div class="R-sidebarmenu R-shortcutmenu-{{ $config.identifier }}">
   {{- $rootObject := site.Home }}
   {{- if $config.pageRef }}
     {{- $rootObject = partial "_relearn/refObject.gotmpl" (dict "page" $currentNode "objectRef" $config.pageRef) }}
@@ -87,21 +87,24 @@
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $config.pageRef "page" $currentNode "param" "link" "msg" $msg) }}
     {{- end }}
   {{- end }}
+  {{- $title := "" }}
+  {{- if and $rootObject (not ($config.disableTitle | default true)) }}
+    {{- $title = $rootObject.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
+  {{- end }}
+  {{- $entries := "" }}
+  {{- with $rootObject }}
+    {{- $entries = partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+  {{- end }}
+  {{- with and $entries $title }}
+          <div class="nav-title padding">{{ . }}</div>
+  {{- end }}
+  {{- $classes := "space " }}
+  {{- if ($config.main | default true) }}
+    {{- $classes = "enlarge morespace " }}
+  {{- end }}
+          <ul class="{{ $classes }}collapsible-menu">
   {{- with $rootObject }}
     {{- $entry := . }}
-    {{- $entries := partialCached "_relearn/pages.gotmpl" (dict "page" $entry) $entry.Path }}
-    {{- $title := "" }}
-    {{- if not ($config.disableTitle | default true) }}
-      {{- $title = $entry.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
-    {{- end }}
-    {{- with $title }}
-          <div class="nav-title padding">{{ . }}</div>
-    {{- end }}
-    {{- $classes := "space " }}
-    {{- if ($config.main | default true) }}
-      {{- $classes = "enlarge morespace " }}
-    {{- end }}
-          <ul class="{{ $classes }}collapsible-menu">
     {{- $defaultAlwaysopen := site.Params.alwaysopen | default false }}
     {{- range $entries }}
       {{- $isSubSelf := eq . $currentNode }}
@@ -115,9 +118,9 @@
         {{- partialCached "partials/inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id }}
       {{- end }}
     {{- end }}
+  {{- end }}
           </ul>
         </div>
-  {{- end }}
 {{- end }}
 {{- define "partials/inline/page-walker" }}
   {{- $currentNode := .currentnode }}
@@ -223,38 +226,39 @@
   {{- $currentNode := .currentnode }}
   {{- $config := .config }}
   {{- $showvisitedlinks := .showvisitedlinks }}
-  {{- with .entries }}
-        <div id="R-shortcutmenu-{{ $config.identifier }}" class="R-sidebarmenu">
-    {{- $topLevelMenu := "" }}
-    {{- $topLevelObject := "" }}
-    {{- $entries := . }}
-    {{- with and (eq (len $entries) 1) (index $entries 0) }}
-      {{- if and (not .PageRef) (not .URL) }}
-        {{- /* because in Hugo menus can not have parameter but menu entries can,
-          we can flag a single top level menu entry as a container; this container
-          entry carrys just meta information and parameter, uses its children
-          to build the "real" menu, and has no own `url` or `pageRef` */}}
-        {{- $topLevelMenu = . }}
-        {{- $topLevelObject = partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu) }}
-        {{- $entries = .Children }}
-      {{- end }}
+        <div class="R-sidebarmenu R-shortcutmenu-{{ $config.identifier }}">
+  {{- $topLevelMenu := "" }}
+  {{- $topLevelObject := "" }}
+  {{- $entries := .entries | default "" }}
+  {{- with and $entries (eq (len $entries) 1) (index $entries 0) }}
+    {{- if and (not .PageRef) (not .URL) }}
+      {{- /* because in Hugo menus can not have parameter but menu entries can,
+        we can flag a single top level menu entry as a container; this container
+        entry carrys just meta information and parameter, uses its children
+        to build the "real" menu, and has no own `url` or `pageRef` */}}
+      {{- $topLevelMenu = . }}
+      {{- $topLevelObject = partial "_relearn/menuObject.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu) }}
+      {{- $entries = .Children }}
     {{- end }}
-    {{- $title := "" }}
-    {{- if not ($config.disableTitle | default false) }}
-      {{- if $topLevelMenu }}
-        {{- $title = partial "_relearn/menuTitle.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu) }}
-      {{- else }}
-        {{- $title = T (print $config.identifier "-menuTitle") }}
-      {{- end }}
+  {{- end }}
+  {{- $title := "" }}
+  {{- if not ($config.disableTitle | default false) }}
+    {{- if $topLevelMenu }}
+      {{- $title = partial "_relearn/menuTitle.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu) }}
+    {{- else }}
+      {{- $title = T (print $config.identifier "-menuTitle") }}
     {{- end }}
-    {{- with $title }}
+  {{- end }}
+  {{- with and $entries $title }}
           <div class="nav-title padding">{{ . }}</div>
-    {{- end }}
-    {{- $classes := "space " }}
-    {{- if ($config.main | default false) }}
-      {{- $classes = "enlarge morespace " }}
-    {{- end }}
+  {{- end }}
+  {{- $classes := "space " }}
+  {{- if ($config.main | default false) }}
+    {{- $classes = "enlarge morespace " }}
+  {{- end }}
           <ul class="{{ $classes }}collapsible-menu">
+  {{- with $entries }}
+    {{- $entries := . }}
     {{- $root := or $topLevelMenu site }}
     {{- $defaultAlwaysopen := site.Params.alwaysopen | default false }}
     {{- range $entries }}
@@ -270,14 +274,14 @@
         {{- partialCached "partials/inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
       {{- end }}
     {{- end }}
-          </ul>
-        </div>
   {{- else }}
-    {{- if not (isset $config "entries") }}
+    {{- if and (not (isset $config "entries")) (ne $config.identifier "shortcuts") }}
       {{- $msg := printf "config option 'identifier' for 'sidebarmenus' %q is not a menu" $config.identifier }}
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $config.pageRef "page" $currentNode "param" "link" "msg" $msg "applyErrorIgnore" false) }}
     {{- end }}
   {{- end }}
+          </ul>
+        </div>
 {{- end }}
 {{- define "partials/inline/menu-walker" }}
   {{- $currentNode := .currentnode }}
@@ -378,19 +382,17 @@
 {{- define "partials/inline/custom-list" }}
   {{- $currentNode := .currentnode }}
   {{- $config := .config }}
-  {{- with .elements }}
-        <div id="R-shortcutmenu-{{ $config.identifier }}" class="R-sidebarmenu">
-    {{- $classes := "" }}
-    {{- if ($config.main | default false) }}
-      {{- $classes = "space" }}
-    {{- end }}
+        <div class="R-sidebarmenu R-shortcutmenu-{{ $config.identifier }}">
+  {{- $classes := "" }}
+  {{- if ($config.main | default false) }}
+    {{- $classes = "space" }}
+  {{- end }}
           <ul class="{{ $classes }}">
-    {{- range . }}
-      {{- partial (printf "sidebar/element/%s.html" .type) (dict "page" $currentNode "config" $config "element" .) }}
-    {{- end }}
+  {{- range .elements }}
+    {{- partial (printf "sidebar/element/%s.html" .type) (dict "page" $currentNode "config" $config "element" .) }}
+  {{- end }}
           </ul>
         </div>
-  {{- end }}
 {{- end }}
 
 {{- define "partials/inline/divider" }}

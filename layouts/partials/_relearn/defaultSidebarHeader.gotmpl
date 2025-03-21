@@ -1,5 +1,8 @@
 {{- $defaultmenuconfigs := slice }}
+{{- $defaultconfigentries := slice }}
 {{- $defaultconfigelements := slice }}
+
+{{- $defaultmenuconfigs = $defaultmenuconfigs | append (dict "type" "divider") }}
 
 {{- if not site.Params.disableLandingPageButton }}
   {{- if (ne site.Params.landingPageURL nil) }}
@@ -16,26 +19,23 @@
     {{- $title = T "home-button" }}
     {{- $pre = `<i class="fa-fw fas fa-home"></i> ` | safeHTML }}
   {{- end }}
-  {{- $defaultmenuconfigs = $defaultmenuconfigs | append (dict "type" "divider") }}
-  {{- $defaultmenuconfigs = $defaultmenuconfigs | append
-    (dict "type" "menu" "identifier" "homelinks" "disableTitle" true "entries" (slice
-      (dict "Menu" "" "Children" (slice
-        (dict "Menu" "" "Pre" $pre "Post" $post "Title" $title "PageRef" "/" )
-      ))
-    ))
+  {{- $defaultconfigentries = $defaultconfigentries | append
+    (dict "Menu" "" "Pre" $pre "Post" $post "Title" $title "PageRef" "/" )
   }}
 {{- end }}
-
-{{- $versions := partialCached "_relearn/siteVersions.gotmpl" . }}
-{{- if $versions }}
-  {{- $defaultconfigelements = $defaultconfigelements | append (dict "type" "versionswitcher") }}
-{{- end }}
-
-{{- if $defaultconfigelements }}
-  {{- $defaultmenuconfigs = $defaultmenuconfigs | append
-    (dict "type" "custom" "identifier" "controls" "disableTitle" true "elements" $defaultconfigelements)
-  }}
-{{- end }}
+{{- $defaultmenuconfigs = $defaultmenuconfigs | append
+  (dict "type" "menu" "identifier" "homelinks" "disableTitle" true "entries" (slice
+    (dict "Menu" "" "Children" $defaultconfigentries)
+  ))
+}}
 
 {{- $defaultmenuconfigs = $defaultmenuconfigs | append (dict "type" "divider") }}
+
+{{- $defaultconfigelements = $defaultconfigelements | append (dict "type" "versionswitcher") }}
+{{- $defaultmenuconfigs = $defaultmenuconfigs | append
+  (dict "type" "custom" "identifier" "controls" "disableTitle" true "elements" $defaultconfigelements)
+}}
+
+{{- $defaultmenuconfigs = $defaultmenuconfigs | append (dict "type" "divider") }}
+
 {{- return $defaultmenuconfigs }}

@@ -1,8 +1,10 @@
-{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" .page }}
-{{- $icon := .element.icon | default "paint-brush" }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+{{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
+{{- if $showvariantswitch }}
+  {{- $icon := .element.icon | default "paint-brush" }}
+  {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+    {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+  {{- end }}
             <li class="R-variantswitcher">
               <div class="padding menu-control">
                 <i class="{{ $icon }}"></i>
@@ -22,3 +24,4 @@
               </div>
               <script>window.relearn.markVariant();</script>
             </li>
+{{- end }}

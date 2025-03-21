@@ -1,9 +1,10 @@
 {{- $versions := partialCached "_relearn/siteVersions.gotmpl" .page }}
-{{- $pageVersion := site.Params.version | default "" }}
-{{- $icon := .element.icon | default "code-branch" }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+{{- if $versions }}
+  {{- $pageVersion := site.Params.version | default "" }}
+  {{- $icon := .element.icon | default "code-branch" }}
+  {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+    {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+  {{- end }}
             <li class="R-versionswitcher">
               <div class="padding menu-control">
                 <i class="{{ $icon }}"></i>
@@ -19,3 +20,4 @@
                 <div class="clear"></div>
               </div>
             </li>
+{{- end }}

@@ -350,6 +350,41 @@ a:focus,
   margin-top: 0;
 }
 
+/* visibility for sidebarheader is tricky; first and last divider may have different colors
+than the ones in between, so they need to have privileged visibility; order is:
+- last
+- first
+- in between
+*/
+#R-sidebar .R-sidebarmenu:not(:has(> ul > *)) {
+  /* hide all empty menus */
+  display: none;
+}
+#R-sidebar .R-menu-divider:not(:has(+ .R-sidebarmenu > ul > *)) hr {
+  /* hide all upper hrs if the following menu has no entries,
+  this is common for all menu regardless of header, body or footer */
+  display: none;
+}
+#R-homelinks .R-menu-divider:first-child:not(:has(+ .R-sidebarmenu > ul > *)):has(~ .R-sidebarmenu > ul > *) hr {
+  /* in case if the first menu is empty and we have some other menus to follow, we have
+  to show the first divider because of different coloring */
+  display: revert;
+}
+#R-homelinks .R-menu-divider:first-child + .R-sidebarmenu:not(:has(> ul > *)) ~ .R-menu-divider:has(+ .R-sidebarmenu > ul > *) hr {
+  /* in case if the first menu is empty and we have some other menus to follow, we have
+  to hide the first following menus divider because of different coloring;
+  this selector selects all following menus, so we have to write a follow up
+  rule to remove that effect on all but the first */
+  display: none;
+}
+#R-sidebar #R-homelinks .R-menu-divider:has(+ .R-sidebarmenu > ul > *) ~ .R-menu-divider:has(+ .R-sidebarmenu > ul > *) hr {
+  /* the mentioned follow up rule from above */
+  display: revert;
+}
+#R-sidebar #R-homelinks .R-menu-divider:last-child hr {
+  display: revert;
+}
+
 #R-content-wrapper hr {
   border-color: var(--INTERNAL-MENU-SECTION-SEPARATOR-color);
 }

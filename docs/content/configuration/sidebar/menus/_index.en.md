@@ -226,9 +226,10 @@ As these options are arrays, you can define as many menus, as you like in each a
 If you don't set these options in your `hugo.toml`, the theme defaults as follows:
 
 - `sidebarheadermenus`:
+  - a divider to separate from the logo (depending on the color configuration of the theme variant) if any of the following is configured
   - a home button if [configured](configuration/sidebar/headerfooter#home-button-configuration), if you redefine this, use a Hugo menu and a `type=menu` to replicate this
   - the version switcher if versioning is [configured](configuration/sitemanagement/versioning)
-  - a divider to separate from the `sidebarmenus` (depending on the configuration of the theme variant)
+  - a divider to separate from the `sidebarmenus` (depending on the color configuration of the theme variant)
 - `sidebarmenus`:
   - the main page menu based on your [content structure](authoring/structure)
   - the `shortcuts` menu including the title if [configured](#predefined-shortcuts-menu)
@@ -237,8 +238,6 @@ If you don't set these options in your `hugo.toml`, the theme defaults as follow
   - the language switcher if multilingual is [configured](configuration/sitemanagement/multilingual#turn-off-language-switching)
   - the variant switcher if multiple variants are [configured](configuration/branding/colors/#multiple-variants)
   - the history clearer if you [configured](configuration/sidebar/headerfooter#history) to mark visited pages
-
-However, if you decide to overwrite these options, the configuration for those features will not be taken into account anymore. For example, if you want to reorder the `sidebarfootermenus` by setting
 
 {{< multiconfig section=params >}}
 sidebarfootermenus = [
