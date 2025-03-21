@@ -64,7 +64,7 @@ To setup versioning, you have to do the following steps:
 - `version` must be an `identifier` of one of the entries in the `versions` array
 - you are not limited with the `baseURL`; these can be absolute or relative to your server root, can also reside in sub-subdirectories or be subdomains
 - you can generate your archived versions into a sub-directory of the current version (as with this example)
-- if you generate your archived versions into a sub-directory take care in your workflow not to delete old archived versions during release of the current version
+- if you generate your archived versions into a sub-directory take care in your workflow not to delete older archived versions during build
 - the example does not take version control systems into account (like git or subversion) as such a workflow is highly subjective
 - both sites are completely independent autonomous Hugo sites; if you want to test this setup locally, you will need two running Hugo servers
 - if you want to test this locally, you will need to adept the top level `baseURL` parameter as well as the `baseURL` parameter in the `versions` array to your local setup; best is to have [preconfigured environment configs](https://gohugo.io/configuration/introduction/#configuration-directory) available
@@ -158,7 +158,7 @@ To stay with the above example, here's the configuration for your current versio
 
 ## Hiding the Versioning Warning
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If visitors navigate to an old version of your site, they will see a versioning warning at the top of each page.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If visitors navigate to an archived version of your site, they will see a versioning warning at the top of each page.
 
 You can disable it be setting the `disableVersioningWarning` option to `true` in your `hugo.toml`.
 
@@ -170,7 +170,7 @@ disableVersioningWarning = true
 
 ### Method 1
 
-You can adjust the text of the version warning by overriding the key `Versioning-warning` in your i18n files.
+You can adjust the text of the versioning warning by overriding the key `Versioning-warning` in your i18n files.
 
 The following parameter are available to be included in the text:
 
