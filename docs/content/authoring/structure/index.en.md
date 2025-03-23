@@ -11,22 +11,22 @@ The theme generates the navigation menu out of the given directory structure.
 
 Organize your site like [any other Hugo project](https://gohugo.io/content/structure/). Typically, you will have a _content_ directory with all your pages.
 
-````plaintext
-content
-├── log
-│   ├── first-day
-|   |   |── _index.md
-|   │   ├── first-sub-page
-|   |   |   |── _index.md
-|   |   |   |── picture1.png
-|   |   |   └── plain.txt
-│   ├── second-day
-|   |   |── index.md
-|   |   |── picture1.png
-|   |   └── picture2.png
-│   ├── third-day.md
-│   └── _index.md
-└── _index.md
+````tree
+- content::folder
+  - log::folder
+    - first-day::folder
+      - _index.md::fa-fw fab fa-markdown::secondary
+      - first-sub-page::folder
+        - _index.md::fa-fw fab fa-markdown::secondary
+        - picture1.png::file-alt::accent
+        - plain.txt::file-alt::accent
+    - second-day::folder
+      - index.md::fa-fw fab fa-markdown::secondary
+      - picture1.png::file-alt::accent
+      - picture2.png::file-alt::accent
+    - third-day.md::fa-fw fab fa-markdown::secondary
+    - _index.md::fa-fw fab fa-markdown::secondary
+  - _index.md::fa-fw fab fa-markdown::secondary
 ````
 
 > [!note]

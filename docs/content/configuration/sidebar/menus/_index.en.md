@@ -326,19 +326,19 @@ For both sections, the default `shortcuts` Hugo menu should be displayed as if [
 
 Directory structure:
 
-````plaintext
-content
-├── log
-│   ├── first-day.md
-│   ├── second-day.md
-│   ├── third-day.md
-│   └── _index.md
-├── ship
-│   ├── cargo.md
-│   ├── midst.md
-│   ├── upper.md
-│   └── _index.md
-└── _index.md
+````tree
+- content::folder
+  - log::folder
+    - first-day.md::fa-fw fab fa-markdown::secondary
+    - second-day.md::fa-fw fab fa-markdown::secondary
+    - third-day.md::fa-fw fab fa-markdown::secondary
+    - _index.md::fa-fw fab fa-markdown::secondary
+  - ship::folder
+    - cargo.md::fa-fw fab fa-markdown::secondary
+    - midst.md::fa-fw fab fa-markdown::secondary
+    - upper.md::fa-fw fab fa-markdown::secondary
+    - _index.md::fa-fw fab fa-markdown::secondary
+  - _index.md::fa-fw fab fa-markdown::secondary
 ````
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using [Hugo's cascade feature](https://gohugo.io/content-management/front-matter/#cascade), we can redefine the menus once in `log/_index.md` and `ship/_index.md` setting `sidebarmenus` so they will be used in all children pages.
@@ -371,16 +371,16 @@ You may have the need to add arbitrary links at some point in your menu that sho
 
 Assume the following structure
 
-````plaintext
-content
-├── log
-│   ├── first-day.md
-│   ├── second-day.md
-│   ├── third-day.md
-│   └── _index.md
-├── burning-sail-incident.md
-├── kraken-incident.md
-└── _index.md
+````tree
+- content::folder
+  - log::folder
+    - first-day.md::fa-fw fab fa-markdown::secondary
+    - second-day.md::fa-fw fab fa-markdown::secondary
+    - third-day.md::fa-fw fab fa-markdown::secondary
+    - _index.md::fa-fw fab fa-markdown::secondary
+  - burning-sail-incident.md::fa-fw fab fa-markdown::secondary
+  - kraken-incident.md::fa-fw fab fa-markdown::secondary
+  - _index.md::fa-fw fab fa-markdown::secondary
 ````
 
 You now want to add a top level menu entry that points to `third-day` as separate `crows-nest-incident`.
