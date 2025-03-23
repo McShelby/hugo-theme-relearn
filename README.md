@@ -63,6 +63,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Page bundle resource display](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/resources)
   - [Site configuration parameter display](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/siteparam)
   - [Tab-based content organization](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tab) and [multi-tab panels](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tabs)
+  - [Nicely formatted tree lists](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/tree)
 
 ## Getting Started
 
