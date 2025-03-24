@@ -518,7 +518,7 @@ var variants = {
   variantvariables: [
     { name: 'PRIMARY-color', group: 'content', fallback: 'MENU-HEADER-BG-color', tooltip: 'brand primary color' },
     { name: 'SECONDARY-color', group: 'content', fallback: 'MAIN-LINK-color', tooltip: 'brand secondary color' },
-    { name: 'ACCENT-color', group: 'content', default: '#ffff00', tooltip: 'brand accent color, used for search highlights' },
+    { name: 'ACCENT-color', group: 'content', default: '#ffd700', tooltip: 'brand accent color, used for search highlights' },
 
     { name: 'MAIN-TOPBAR-BORDER-color', group: 'content', default: 'transparent', tooltip: 'border color between topbar and content' },
     { name: 'MAIN-LINK-color', group: 'content', fallback: 'SECONDARY-color', tooltip: 'link color of content' },
