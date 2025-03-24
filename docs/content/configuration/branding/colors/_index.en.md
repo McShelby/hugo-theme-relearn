@@ -63,6 +63,9 @@ The first variant is the default, and a selector will appear if there's more tha
 
 If you want to have more control, where the variant switcher is positioned or you want to configure a different icon, see the [chapter on sidebar configuration](configuration/sidebar/menus#defining-sidebar-menus).
 
+> [!note]
+> The selected theme variant will be [stored in the reader's browser](configuration/sitemanagement/storedinformation).
+
 #### Adjust to OS Settings
 
 Use the `auto` value to match OS light/dark settings. Usually it makes sense to set it in the first position and make it the default.

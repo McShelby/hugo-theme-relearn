@@ -51,6 +51,9 @@ For a free configuration of the header menus, see [configuration of the sidebar 
 
 {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Turn on `showVisitedLinks=true` to see checkmarks next to visited pages in the main menu. This also adds a history clearer button at the bottom of the menu to remove all checkmarks.
 
+> [!note]
+> The visited pages will be [stored in the reader's browser](configuration/sitemanagement/storedinformation).
+
 If you want to have more control, where the history clearer is positioned or you want to configure a different icon, see the [chapter on sidebar configuration](configuration/sidebar/menus#defining-sidebar-menus).
 
 Note that checkmarks will disappear if you rebuild your site, as the page IDs may change.

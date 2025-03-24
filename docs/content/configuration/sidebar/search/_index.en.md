@@ -16,6 +16,9 @@ The theme offers three levels of search through the menu's search form:
 
 Each level requires the previous one to be enabled. If no search is configured, the search form won't appear.
 
+> [!note]
+> The search term will be [stored in the reader's browser](configuration/sitemanagement/storedinformation) as long as it is present.
+
 {{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} All levels are enabled by default. Disable them in `hugo.toml`:
 
 - In-page search: `disableSearch=true`
