@@ -1,32 +1,44 @@
 {{ $content := .content | .page.RenderString }}
 <div class="list-tree">
-{{- $matches := findRESubmatch `<li>([^<>:]+)::([\w-]+)::([^<>\n\r\t ]+)` $content }}
+{{- $matches := findRESubmatch `<li>([\s\S]*?)(</li|<ul)` $content }}
 {{- range $matches }}
-	{{- $name := index . 1 }}
-	{{- $icon := index . 2 }}
-	{{- $color := index . 3 }}
 	{{- $replacement := "" }}
-	{{- if (where site.Params.boxStyle "identifier" $color | first 1) }}
-		{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>` $icon $color $name }}
-	{{- else }}
-		{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>` $icon $color $name }}
+	{{- $text := index . 1 }}
+	{{- $rest := index . 2 }}
+	{{- $parts := split $text "|" }}
+	{{- if eq (len $parts) 3 }}
+		{{- $name := trim (index $parts 0) "\n\r\t " }}
+		{{- $icon := trim (index $parts 1) "\n\r\t " }}
+		{{- $color := trim (index $parts 2) "\n\r\t " }}
+		{{- $classes := split $icon " " }}
+		{{- if eq (len $classes) 1 }}
+			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $color) }}
+			{{- if $boxStyle.identifier }}
+				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>%s` $icon $color $name $rest }}
+			{{- else }}
+				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>%s` $icon $color $name $rest }}
+			{{- end }}
+		{{- else }}
+			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $color) }}
+			{{- if $boxStyle.identifier }}
+				{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>%s` $icon $color $name $rest }}
+			{{- else }}
+				{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>%s` $icon $color $name $rest }}
+			{{- end }}
+		{{- end }}
+	{{- else if eq (len $parts) 2 }}
+		{{- $name := trim (index $parts 0) "\n\r\t " }}
+		{{- $icon := trim (index $parts 1) "\n\r\t " }}
+		{{- $classes := split $icon " " }}
+		{{- if eq (len $classes) 1 }}
+			{{- $replacement = printf `<li><i class="fa-fw fas fa-%s"></i><span>%s</span>%s` $icon $name $rest }}
+		{{- else }}
+			{{- $replacement = printf `<li><i class="%s"></i><span>%s</span>%s` $icon $name $rest }}
+		{{- end }}
 	{{- end }}
-	{{- $content = replace $content (index . 0) $replacement }}
-{{- end }}
-{{- $matches := findRESubmatch `<li>([^<>:]+)::([^<>:]+)::([^<>\n\r\t ]+)` $content }}
-{{- range $matches }}
-	{{- $name := index . 1 }}
-	{{- $icon := index . 2 }}
-	{{- $color := index . 3 }}
-	{{- $replacement := "" }}
-	{{- if (where site.Params.boxStyle "identifier" $color | first 1) }}
-		{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>` $icon $color $name }}
-	{{- else }}
-		{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>` $icon $color $name }}
+	{{- if $replacement }}
+		{{- $content = replace $content (index . 0) $replacement }}
 	{{- end }}
-	{{- $content = replace $content (index . 0) $replacement }}
 {{- end }}
-{{- $content = (replaceRE `<li>([^<>:]+)::([\w-]+)([\n\r\t ]*<)` `<li><i class="fa-fw fas fa-$2"></i><span>$1</span>$3` $content) }}
-{{- $content = (replaceRE `<li>([^<>:]+)::([^<>\n\r\t]+)` `<li><i class="$2"></i><span>$1</span>` $content) }}
 {{- $content | safeHTML -}}
 </div>

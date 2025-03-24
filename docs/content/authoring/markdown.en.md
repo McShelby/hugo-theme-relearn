@@ -442,37 +442,37 @@ Markdown will automatically number each of your items consecutively. This means,
 
 {{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} You can add lists as a tree with configurable icons and colors.
 
-Text can be followed by optional double colons (`::`) to define the icon and another optional double colons to define the icon's color.
+The name can be followed by an optional pipe (`|`) to define an icon and further optional pipe to define the icon's color.
 
 More details can be found in the [`tree` shortcode docs](shortcodes/tree).
 
 ````md
 ```tree
-- home::folder
-  - .config::folder
-  - My Documents::folder::gold
+- home | folder
+  - .config | folder
+  - My Documents | folder | gold
     - index.html
-    - resume.odt::file-word::#df6f40
-  - Images::folder
+    - resume.odt | file-word | #df6f40
+  - Images | folder
     - pic1.jpg
-    - pic2.jpg::file-image::secondary
-  - Code::folder
-    - home.php::fa-fw fab fa-php::#888cc4
+    - pic2.jpg | file-image | secondary
+  - Code | folder
+    - home.php | fa-fw fab fa-php | #888cc4
 ```
 ````
 
 {{% notice style="code" icon="eye" title="Result" %}}
 ```tree
-- home::folder
-  - .config::folder
-  - My Documents::folder::gold
+- home | folder
+  - .config | folder
+  - My Documents | folder | gold
     - index.html
-    - resume.odt::file-word::#df6f40
-  - Images::folder
+    - resume.odt | file-word | #df6f40
+  - Images | folder
     - pic1.jpg
-    - pic2.jpg::file-image::secondary
-  - Code::folder
-    - home.php::fa-fw fab fa-php::#888cc4
+    - pic2.jpg | file-image | secondary
+  - Code | folder
+    - home.php | fa-fw fab fa-php | #888cc4
 ```
 {{% /notice %}}
 

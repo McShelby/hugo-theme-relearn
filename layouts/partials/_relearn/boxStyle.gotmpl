@@ -3,7 +3,7 @@
 {{- range site.Params.boxStyle }}
 	{{- if eq (lower .identifier) $style }}
 		{{- $title := or .title (.i18n | T) }}
-		{{- $set = dict "style" $style "title" $title "icon" .icon }}
+		{{- $set = dict "identifier" .identifier "style" $style "title" $title "icon" .icon }}
 		{{- break }}
 	{{- end }}
 {{- end }}
@@ -18,7 +18,7 @@
 	) }}
 		{{- if eq .identifier $style }}
 			{{- $title := .identifier | T }}
-			{{- $set = dict "style" $style "title" $title "icon" .icon }}
+			{{- $set = dict "identifier" .identifier "style" $style "title" $title "icon" .icon }}
 			{{- break }}
 		{{- end }}
 	{{- end }}

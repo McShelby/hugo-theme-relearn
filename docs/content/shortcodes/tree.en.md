@@ -7,10 +7,10 @@ title = 'Tree'
 The `tree` shortcode displays a list as a tree with configurable icons and colors.
 
 ````tree
-- home::folder
-  - .config::folder
-  - My Documents::folder::magic
-    - home.php::fa-fw fab fa-php::#888cc4
+- home | folder
+  - .config | folder
+  - My Documents | folder | magic
+    - home.php | fa-fw fab fa-php | #888cc4
 ````
 
 ## Usage
@@ -20,10 +20,10 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 
 ````md
 ```tree
-- home::folder
-  - .config::folder
-  - My Documents::folder::magic
-    - home.php::fa-fw fab fa-php::#888cc4
+- home | folder
+  - .config | folder
+  - My Documents | folder | magic
+    - home.php | fa-fw fab fa-php | #888cc4
 ```
 ````
 
@@ -32,10 +32,10 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 
 ````go
 {{%/* tree */%}}
-- home::folder
-  - .config::folder
-  - My Documents::folder::magic
-    - home.php::fa-fw fab fa-php::#888cc4
+- home | folder
+  - .config | folder
+  - My Documents | folder | magic
+    - home.php | fa-fw fab fa-php | #888cc4
 {{%/* /tree */%}}
 ````
 
@@ -45,10 +45,10 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 ````go
 {{ partial "shortcodes/tree.html" (dict
   "page" .
-  "content" `- home::folder
-  - .config::folder
-  - My Documents::folder::magic
-    - home.php::fa-fw fab fa-php::#888cc4`
+  "content" `- home | folder
+  - .config | folder
+  - My Documents | folder | magic
+    - home.php | fa-fw fab fa-php | #888cc4`
 )}}
 ````
 
@@ -65,9 +65,9 @@ Codefence syntax is widely available in other Markdown parsers like GitHub and t
 
 ### Item Syntax
 
-`<NAME> [ :: <ICON> [ :: <COLOR> ] ]`
+`<NAME> [ | <ICON> [ | <COLOR> ] ]`
 
-The **NAME** can be followed by optional double colons (`::`) to define an **ICON** and further optional double colons to define the icon's **COLOR**.
+The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and further optional pipe to define the icon's **COLOR**.
 
 - **ICON**: [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the **NAME**. If you give a single string, it is selected from Font Awesome's [solid](https://fontawesome.com/icons?d=gallery&s=solid&m=free) icons. If you want to use a different set, you have to give the complete styles after the double colons. See above example for the `home.php`.
 
@@ -91,40 +91,40 @@ Every possible combination
 
 ````md
 ```tree
-- just name
+- [just name](http://example.com) | folder
   - Documents
   - My Documents
-- simple icons::folder
-  - Documents::folder
-  - My Documents::folder
-- not so simple icons::file-alt::secondary
-  - a.png::file-alt
-  - a with border.png::file-alt
-- mindblowing icons::fa-fw fab fa-markdown::accent
-  - text.md::fa-fw fab fa-markdown
-  - alternative text.md::fa-fw fab fa-markdown
-- and now with color::fa-fw fab fa-php
-  - script.php::fa-fw fab fa-markdown::purple
-  - alt script.php::fa-fw fab fa-markdown::#888cc4
-  - magic.php::fa-fw fab fa-markdown::orange
+- simple icons | folder
+  - Documents | folder
+  - My Documents | folder
+- not so simple icons | file-alt | secondary
+  - a.png | file-alt
+  - a with border.png | file-alt
+- mindblowing icons | fa-fw fab fa-markdown | accent
+  - text.md | fa-fw fab fa-markdown
+  - alternative text.md | fa-fw fab fa-markdown
+- and now with color | fa-fw fab fa-php
+  - script.php | fa-fw fab fa-markdown | purple
+  - alt script.php | fa-fw fab fa-markdown | #888cc4
+  - magic.php | fa-fw fab fa-markdown | orange
 ```
 ````
 
 ````tree
-- name-only
+- [just name](http://example.com) | folder
   - Documents
   - My Documents
-- simple icons::folder
-  - Documents::folder
-  - My Documents::folder
-- not so simple icons::file-alt::secondary
-  - a.png::file-alt
-  - a with border.png::file-alt
-- mindblowing icons::fa-fw fab fa-markdown::accent
-  - text.md::fa-fw fab fa-markdown
-  - alternative text.md::fa-fw fab fa-markdown
-- and now with color::fa-fw fab fa-php
-  - script.php::fa-fw fab fa-php::purple
-  - alt script.php::fa-fw fab fa-php::#888cc4
-  - magic.php::fa-fw fab fa-php::orange
+- simple icons | folder
+  - Documents | folder
+  - My Documents | folder
+- not so simple icons | file-alt | secondary
+  - a.png | file-alt
+  - a with border.png | file-alt
+- mindblowing icons | fa-fw fab fa-markdown | accent
+  - text.md | fa-fw fab fa-markdown
+  - alternative text.md | fa-fw fab fa-markdown
+- and now with color | fa-fw fab fa-php
+  - script.php | fa-fw fab fa-php | purple
+  - alt script.php | fa-fw fab fa-php | #888cc4
+  - magic.php | fa-fw fab fa-php | orange
 ````
