@@ -65,7 +65,7 @@ Codefence syntax is widely available in other Markdown parsers like GitHub and t
 
 ### Item Syntax
 
-`<NAME> [ | <ICON> [ | <COLOR> ] ]`
+`<NAME>` [ `|` `<ICON>` [ `|` `<COLOR>` ] ]
 
 The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and further optional pipe to define the icon's **COLOR**.
 
