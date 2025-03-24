@@ -7,6 +7,10 @@
   {{- $color = .color | default "var(--INTERNAL-TAG-BG-color)" }}
 {{- end }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" "" "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $icon := trim ($boxStyle.icon) " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
@@ -18,7 +22,7 @@
 {{- end }}
 {{- $taxonomy_title := partial "title.gotmpl" (dict "page" $taxonomy_page) }}
 {{- with $term_pages }}
-<div class="R-taxonomy taxonomy-{{ $taxonomy }} cstyle{{ with $style }} {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ if $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" $color | safeHTMLAttr }}{{ end }}>
+<div class="R-taxonomy taxonomy-{{ $taxonomy }} cstyle{{ with $style }} {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ with $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" . | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}
   <i class="{{ $icon }}"></i>
   {{- end }}

@@ -12,6 +12,10 @@
   {{- $style = .style | default "transparent" }}
 {{- end }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $title := trim ($boxStyle.title | default ("Attachments-label" | T)) " " }}
 {{- $icon := trim ($boxStyle.icon | default "paperclip") " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -30,7 +34,7 @@
 {{- if ne .BundleType "leaf" }}
   {{- warnf "%q: UNSUPPORTED usage of 'attachments' shortcode found while using Hugo >= 0.112.0, use a leaf bundle instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/attachments/index.html#single-language" $filepath }}
 {{- end -}}
-<div class="box attachments cstyle {{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
+<div class="box attachments cstyle{{ with $style }} {{ . }}{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
   <ul class="box-content attachments-files">
   {{- $fileDir := path.Dir (strings.TrimPrefix (path.Clean hugo.WorkingDir) (path.Clean .File.Filename)) }}

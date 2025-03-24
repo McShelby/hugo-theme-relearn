@@ -9,21 +9,21 @@
 	{{- if eq (len $parts) 3 }}
 		{{- $name := trim (index $parts 0) "\n\r\t " }}
 		{{- $icon := trim (index $parts 1) "\n\r\t " }}
-		{{- $color := trim (index $parts 2) "\n\r\t " }}
+		{{- $style := trim (index $parts 2) "\n\r\t " }}
 		{{- $classes := split $icon " " }}
 		{{- if eq (len $classes) 1 }}
-			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $color) }}
+			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style) }}
 			{{- if $boxStyle.style }}
-				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>%s` $icon $color $name $rest }}
+				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>%s` $icon $style $name $rest }}
 			{{- else }}
-				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>%s` $icon $color $name $rest }}
+				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>%s` $icon $style $name $rest }}
 			{{- end }}
 		{{- else }}
-			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $color) }}
+			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style) }}
 			{{- if $boxStyle.style }}
-				{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>%s` $icon $color $name $rest }}
+				{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>%s` $icon $style $name $rest }}
 			{{- else }}
-				{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>%s` $icon $color $name $rest }}
+				{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>%s` $icon $style $name $rest }}
 			{{- end }}
 		{{- end }}
 	{{- else if eq (len $parts) 2 }}

@@ -44,6 +44,10 @@
   {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "target" .target)) -}}
 {{- end }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" (or .title $content) "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $title := trim ($boxStyle.title) " " }}
 {{- $icon := trim ($boxStyle.icon) " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -51,7 +55,7 @@
 {{- end }}
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $page -}}
-<span class="btn cstyle {{ if or $isButton $isLink }}interactive {{ end }}{{ $style }}"{{ if $color }} style="--VARIABLE-BOX-color: {{ $color }};"{{ end }}>
+<span class="btn{{ if or $isButton $isLink }} interactive {{ end }} cstyle{{ if $style }} {{ $style }}{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
   {{- if $isButton -}}
   <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
   {{- else if $isLink -}}

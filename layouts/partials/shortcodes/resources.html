@@ -10,6 +10,10 @@
   {{- $style = .style | default "transparent" }}
 {{- end }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $title := trim ($boxStyle.title | default ("Attachments-label" | T)) " " }}
 {{- $icon := trim ($boxStyle.icon | default "paperclip") " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}

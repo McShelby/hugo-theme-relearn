@@ -16,6 +16,10 @@
 {{- $groupid := .groupid }}
 {{- $style := .style | default "default" }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $title := trim ($boxStyle.title) " " }}
 {{- $icon := trim ($boxStyle.icon) " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}

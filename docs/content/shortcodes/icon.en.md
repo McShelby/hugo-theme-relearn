@@ -6,7 +6,7 @@ title = 'Icon'
 
 The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome.com) library.
 
-{{% icon skull-crossbones %}}
+{{% icon skull-crossbones blue %}}
 {{% icon style="warning" %}}
 {{% icon icon="angle-double-up" color="blue" %}}
 
@@ -16,7 +16,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{% tab title="shortcode" %}}
 
 ````go
-{{%/* icon icon="skull-crossbones" */%}}
+{{%/* icon icon="skull-crossbones" style="blue" */%}}
 {{%/* icon style="warning" */%}}
 {{%/* icon icon="angle-double-up" color="blue" */%}}
 ````
@@ -25,9 +25,9 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{% tab title="shortcode (positional)" %}}
 
 ````go
-{{%/* icon skull-crossbones */%}}
-{{%/* icon exclamation-triangle */%}}
-{{%/* icon angle-double-up */%}}
+{{%/* icon skull-crossbones blue */%}}
+{{%/* icon exclamation-triangle red */%}}
+{{%/* icon angle-double-up blue */%}}
 ````
 
 {{% /tab %}}
@@ -37,6 +37,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{ partial "shortcodes/icon.html" (dict
     "page" .
     "icon" "skull-crossbones"
+    "style" "blue"
 )}}
 {{ partial "shortcodes/icon.html" (dict
     "page" .
@@ -57,7 +58,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 | Name                  | Position | Default         | Notes       |
 |-----------------------|----------|-----------------|-------------|
 | **icon**              | 1        | _&lt;empty&gt;_ | [Font Awesome icon name](#finding-an-icon) to be displayed. It will be displayed in the text color of its according context. |
-| **style**             |          | _&lt;empty&gt;_ | The style scheme used for the icon.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
+| **style**             | 2        | _&lt;empty&gt;_ | The style scheme used for the icon.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
 | **color**             |          | _&lt;empty&gt;_ | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br> |
 
 ### Finding an icon
@@ -90,10 +91,14 @@ Built with {{% icon heart %}} by Relearn and Hugo
 ### With color
 
 ````go
-Built with {{%/* icon icon="heart" style="red" */%}} by Relearn and Hugo
+- Built with {{%/* icon heart red */%}} by Relearn and Hugo
+- Built with {{%/* icon icon="heart" style="red" */%}} by Relearn and Hugo - long form, same as above
+- Built with {{%/* icon icon="heart" color="red" */%}} by Relearn and Hugo - this uses the HTML color red instead of the red style
 ````
 
-Built with {{% icon icon="heart" style="red" %}} by Relearn and Hugo
+- Built with {{% icon heart red %}} by Relearn and Hugo
+- Built with {{% icon icon="heart" style="red" %}} by Relearn and Hugo - long form, same as above
+- Built with {{% icon icon="heart" color="red" %}} by Relearn and Hugo - this uses the HTML color red instead of the red style
 
 ### Advanced HTML Usage
 

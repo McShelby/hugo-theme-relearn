@@ -7,12 +7,16 @@
 {{- $color := .color | default "" }}
 {{- $style := .style | default "" }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $icon := trim ($boxStyle.icon) " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
   {{- $icon = printf "fa-fw fas fa-%s" $icon }}
 {{- end }}
 {{- with $page }}
   {{- if $icon -}}
-<i class="{{ $icon }}{{ if $style }} cstyle {{ $style }}{{ end }}"{{ if $color }} style="color: {{ $color }};"{{ end }}></i>
+<i class="{{ $icon }}{{ with $style }} cstyle {{ . }}{{ end }}"{{ with $color }} style="color: {{ . }};"{{ end }}></i>
   {{- end }}
 {{- end }}

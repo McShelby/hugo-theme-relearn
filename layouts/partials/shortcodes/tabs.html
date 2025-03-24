@@ -25,6 +25,10 @@
     {{- end }}
     {{- $style := .style | default $style | default (cond (ne $color "") "filled" "initial") }}
     {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+    {{- if and (not $boxStyle.style) (not $color) }}
+      {{- $color = $style }}
+      {{- $style = "" }}
+    {{- end }}
     {{- $title := trim ($boxStyle.title) " " }}
     {{- $icon := trim ($boxStyle.icon) " " }}
     {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -45,6 +49,10 @@
 {{- $color = .color | default "" }}
 {{- $style = .style | default (cond (ne $color "") "filled" "initial") }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+{{- if and (not $boxStyle.style) (not $color) }}
+  {{- $color = $style }}
+  {{- $style = "" }}
+{{- end }}
 {{- $title := trim ($boxStyle.title) " " }}
 {{- $icon := trim ($boxStyle.icon) " " }}
 {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -58,7 +66,7 @@
     {{- range $idx, $tab := $tabs }}
     <button
       data-tab-item="{{ .itemid }}"
-      class="tab-nav-button tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}{{ if eq $idx 0 }} tabindex="-1"{{ end }}
+      class="tab-nav-button tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}{{ if eq $idx 0 }} tabindex="-1"{{ end }}
       onclick="switchTab('{{ $groupid }}','{{ .itemid }}')"
     >
       <span class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $page.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</span>
@@ -69,7 +77,7 @@
     {{- range $idx, $tab := $tabs }}
     <div
       data-tab-item="{{ .itemid }}"
-      class="tab-content tab-panel-style cstyle {{ .style }}{{ cond (eq $idx 0) " active" ""}}"{{ if .color }} style="--VARIABLE-BOX-color: {{ .color }};"{{ end }}>
+      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
       <div class="tab-content-text">
 {{ .content | safeHTML }}
       </div>
