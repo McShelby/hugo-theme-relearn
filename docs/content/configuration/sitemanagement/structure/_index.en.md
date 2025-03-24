@@ -8,20 +8,19 @@ weight = 1
 If you've followed the [Getting Started](introduction/quickstart) guide, your directory layout will look similar to this:
 
 ````tree
-- [PROJECT]
-  - content::folder
-    - log::folder
-      - first-day::folder
-        - _index.md::fa-fw fab fa-markdown::secondary
-      - second-day::folder
-        - index.md::fa-fw fab fa-markdown::secondary
-      - third-day.md::fa-fw fab fa-markdown::secondary
+- content::folder
+  - log::folder
+    - first-day::folder
       - _index.md::fa-fw fab fa-markdown::secondary
+    - second-day::folder
+      - index.md::fa-fw fab fa-markdown::secondary
+    - third-day.md::fa-fw fab fa-markdown::secondary
     - _index.md::fa-fw fab fa-markdown::secondary
-  - themes::folder
-    - hugo-theme-relearn::folder
-      - ...::folder
-  - hugo.toml::file-alt::accent
+  - _index.md::fa-fw fab fa-markdown::secondary
+- themes::folder
+  - hugo-theme-relearn::folder
+    - ...::folder
+- hugo.toml::file-alt::accent
 ````
 
 Hugo uses a [union file system](https://gohugo.io/getting-started/directory-structure/#union-file-system), which lets you combine multiple directories.

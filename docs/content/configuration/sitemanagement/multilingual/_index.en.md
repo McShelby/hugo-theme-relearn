@@ -65,25 +65,24 @@ Here's how to make your site multilingual using [translations by file name](http
 2. Duplicate your content files and add language codes to their file names:
 
     ````tree
-    - [PROJECT]
-      - content::folder
-        - log::folder
-          - first-day::folder
-            - _index.en.md::fa-fw fab fa-markdown::secondary
-            - _index.pir.md::fa-fw fab fa-markdown::secondary
-          - second-day::folder
-            - index.en.md::fa-fw fab fa-markdown::secondary
-            - index.pir.md::fa-fw fab fa-markdown::secondary
-          - third-day.en.md::fa-fw fab fa-markdown::secondary
-          - third-day.pir.md::fa-fw fab fa-markdown::secondary
+    - content::folder
+      - log::folder
+        - first-day::folder
           - _index.en.md::fa-fw fab fa-markdown::secondary
           - _index.pir.md::fa-fw fab fa-markdown::secondary
+        - second-day::folder
+          - index.en.md::fa-fw fab fa-markdown::secondary
+          - index.pir.md::fa-fw fab fa-markdown::secondary
+        - third-day.en.md::fa-fw fab fa-markdown::secondary
+        - third-day.pir.md::fa-fw fab fa-markdown::secondary
         - _index.en.md::fa-fw fab fa-markdown::secondary
         - _index.pir.md::fa-fw fab fa-markdown::secondary
-      - themes::folder
-        - hugo-theme-relearn::folder
-          - ...::folder
-      - hugo.toml::file-alt::accent
+      - _index.en.md::fa-fw fab fa-markdown::secondary
+      - _index.pir.md::fa-fw fab fa-markdown::secondary
+    - themes::folder
+      - hugo-theme-relearn::folder
+        - ...::folder
+    - hugo.toml::file-alt::accent
     ````
 
 ## Translation by Content Directory
@@ -115,7 +114,6 @@ The theme also support [translations by content directory](https://gohugo.io/con
 2. Duplicate your content files into separate directories named by their language code:
 
     ````tree
-    - [PROJECT]
       - content::folder
         - en::folder
           - log::folder
