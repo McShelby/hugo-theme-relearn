@@ -79,9 +79,9 @@ The **NAME** can be followed by optional double colons (`::`) to define an **ICO
   - by brand color: `primary`, `secondary`, `accent`
   - by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`
   - by special color: `default`, `transparent`, `code`
-  - you can also [define your own styles](#defining-own-styles).
+  - you can also [define your own styles](shortcodes/notice#defining-own-styles).
 
-  If a **style** and a named HTML color have the same name, the HTML color will be used.
+  If a **style** and a named HTML color have the same name, the **style** color will be used.
 
 ## Examples
 
@@ -106,7 +106,7 @@ Every possible combination
 - and now with color::fa-fw fab fa-php
   - script.php::fa-fw fab fa-markdown::purple
   - alt script.php::fa-fw fab fa-markdown::#888cc4
-  - magic.php::fa-fw fab fa-markdown::magic
+  - magic.php::fa-fw fab fa-markdown::orange
 ```
 ````
 
@@ -126,5 +126,5 @@ Every possible combination
 - and now with color::fa-fw fab fa-php
   - script.php::fa-fw fab fa-php::purple
   - alt script.php::fa-fw fab fa-php::#888cc4
-  - magic.php::fa-fw fab fa-php::magic
+  - magic.php::fa-fw fab fa-php::orange
 ````

@@ -1,7 +1,31 @@
 {{ $content := .content | .page.RenderString }}
 <div class="list-tree">
-{{- $content = (replaceRE `<li>([^<>:]+)::([\w-]+)::([^<>\n\r\t ]+)` `<li><i class="fa-fw fas fa-$2 cstyle $3" style="color: $3;"></i><span>$1</span>` $content) }}
-{{- $content = (replaceRE `<li>([^<>:]+)::([^<>:]+)::([^<>\n\r\t ]+)` `<li><i class="$2 cstyle $3" style="color: $3;"></i><span>$1</span>` $content) }}
+{{- $matches := findRESubmatch `<li>([^<>:]+)::([\w-]+)::([^<>\n\r\t ]+)` $content }}
+{{- range $matches }}
+	{{- $name := index . 1 }}
+	{{- $icon := index . 2 }}
+	{{- $color := index . 3 }}
+	{{- $replacement := "" }}
+	{{- if (where site.Params.boxStyle "identifier" $color | first 1) }}
+		{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>` $icon $color $name }}
+	{{- else }}
+		{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>` $icon $color $name }}
+	{{- end }}
+	{{- $content = replace $content (index . 0) $replacement }}
+{{- end }}
+{{- $matches := findRESubmatch `<li>([^<>:]+)::([^<>:]+)::([^<>\n\r\t ]+)` $content }}
+{{- range $matches }}
+	{{- $name := index . 1 }}
+	{{- $icon := index . 2 }}
+	{{- $color := index . 3 }}
+	{{- $replacement := "" }}
+	{{- if (where site.Params.boxStyle "identifier" $color | first 1) }}
+		{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>` $icon $color $name }}
+	{{- else }}
+		{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>` $icon $color $name }}
+	{{- end }}
+	{{- $content = replace $content (index . 0) $replacement }}
+{{- end }}
 {{- $content = (replaceRE `<li>([^<>:]+)::([\w-]+)([\n\r\t ]*<)` `<li><i class="fa-fw fas fa-$2"></i><span>$1</span>$3` $content) }}
 {{- $content = (replaceRE `<li>([^<>:]+)::([^<>\n\r\t]+)` `<li><i class="$2"></i><span>$1</span>` $content) }}
 {{- $content | safeHTML -}}
