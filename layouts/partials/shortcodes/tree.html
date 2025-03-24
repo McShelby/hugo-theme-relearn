@@ -2,7 +2,7 @@
 <div class="list-tree">
 {{- $content = (replaceRE `<li>([^<>:]+)::([\w-]+)::([^<>\n\r\t ]+)` `<li><i class="fa-fw fas fa-$2 cstyle $3" style="color: $3;"></i><span>$1</span>` $content) }}
 {{- $content = (replaceRE `<li>([^<>:]+)::([^<>:]+)::([^<>\n\r\t ]+)` `<li><i class="$2 cstyle $3" style="color: $3;"></i><span>$1</span>` $content) }}
-{{- $content = (replaceRE `<li>([^<>:]+)::([\w-]+)([<\n\r\t ]+<)` `<li><i class="fa-fw fas fa-$2"></i><span>$1</span>$3` $content) }}
-{{- $content = (replaceRE `<li>([^<>:]+)::([^<>]+)` `<li><i class="$2"></i><span>$1</span>` $content) }}
+{{- $content = (replaceRE `<li>([^<>:]+)::([\w-]+)([\n\r\t ]*<)` `<li><i class="fa-fw fas fa-$2"></i><span>$1</span>$3` $content) }}
+{{- $content = (replaceRE `<li>([^<>:]+)::([^<>\n\r\t]+)` `<li><i class="$2"></i><span>$1</span>` $content) }}
 {{- $content | safeHTML -}}
 </div>
