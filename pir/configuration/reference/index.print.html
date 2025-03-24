@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.145.0">
-    <meta name="generator" content="Relearn 7.5.0+1f07a0f256020d2af6adecca5e983e4feaf81df4">
+    <meta name="generator" content="Relearn 7.5.0+4b844a8acc63f1cae8435a1be6a2ffb9c3886482">
     <meta name="description" content="All configuration options for the Relearn theme">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,18 +29,18 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/reference/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/configuration/reference/index.html" rel="canonical" type="text/html" title="Options Reference :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/configuration/reference/index.xml" rel="alternate" type="application/rss+xml" title="Options Reference :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1742843678" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742843678" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742843678" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1742843678" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1742843678" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1742843678" rel="stylesheet" id="R-format-style">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1742843678" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1742843678" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1742857000" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742857000" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1742857000" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1742857000" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1742857000" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1742857000" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1742857000" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1742857000" defer></script>
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -50,17 +50,21 @@
       window.relearn.relBaseUri='..\/..\/..\/..';
       window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
       window.relearn.contentLangs=['en'];
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1742843678";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1742857000";
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       window.relearn.disableInlineCopyToClipboard=true;
       window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       // variant stuff
       window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
       window.relearn.customvariantname = "my-custom-variant";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
-        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         document.documentElement.dataset.rThemeVariant = variant;
         if (oldVariant != variant) {
           document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
@@ -68,15 +72,15 @@
         }
       }
       window.relearn.markVariant = function() {
-        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
         document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
       }
       window.relearn.initVariant = function() {
-        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
         if( variant == window.relearn.customvariantname ){
         }else if( !variant || !window.relearn.themevariants.includes(variant) ){
           variant = window.relearn.themevariants[0];
-          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }
         document.documentElement.dataset.rThemeVariant = variant;
       }
@@ -92,7 +96,7 @@
       window.T_No_results_found = `No rrresults found fer "{0}"`;
       window.T_N_results_found = `{1} rrresults found fer "{0}"`;
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1742843678"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1742857000"></script>
     <style>
        
       #R-body img.bg-white {
@@ -853,13 +857,13 @@
   </div>
 </div>
 <h2 id="annotated-configuration-options">Annotated Configurat'n Opt'ns</h2>
-<div class="tab-panel" data-tab-group="79c66da0932b40d33568449a4b7c8008">
+<div class="tab-panel" data-tab-group="fc8a07f224283459e3c55cdffb97a6a1">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
       data-tab-item="hugotoml"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('79c66da0932b40d33568449a4b7c8008','hugotoml')"
+      onclick="switchTab('fc8a07f224283459e3c55cdffb97a6a1','hugotoml')"
     >
       <span class="tab-nav-text">hugo.toml</span>
     </button>
@@ -1599,8 +1603,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/clipboard/clipboard.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1742843678" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1742843678" defer></script>
+    <script src="/hugo-theme-relearn/js/clipboard/clipboard.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1742857000" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1742857000" defer></script>
   </body>
 </html>
