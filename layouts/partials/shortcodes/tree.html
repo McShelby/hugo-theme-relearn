@@ -13,14 +13,14 @@
 		{{- $classes := split $icon " " }}
 		{{- if eq (len $classes) 1 }}
 			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $color) }}
-			{{- if $boxStyle.identifier }}
+			{{- if $boxStyle.style }}
 				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>%s` $icon $color $name $rest }}
 			{{- else }}
 				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>%s` $icon $color $name $rest }}
 			{{- end }}
 		{{- else }}
 			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $color) }}
-			{{- if $boxStyle.identifier }}
+			{{- if $boxStyle.style }}
 				{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>%s` $icon $color $name $rest }}
 			{{- else }}
 				{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>%s` $icon $color $name $rest }}
