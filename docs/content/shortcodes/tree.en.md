@@ -106,7 +106,7 @@ Every possible combination
 - and now with color | fa-fw fab fa-php
   - script.php | fa-fw fab fa-markdown | purple
   - alt script.php | fa-fw fab fa-markdown | #888cc4
-  - magic.php | fa-fw fab fa-markdown | orange
+  - magic.php | fa-fw fab fa-markdown | magic
 ```
 ````
 
@@ -126,5 +126,5 @@ Every possible combination
 - and now with color | fa-fw fab fa-php
   - script.php | fa-fw fab fa-php | purple
   - alt script.php | fa-fw fab fa-php | #888cc4
-  - magic.php | fa-fw fab fa-php | orange
+  - magic.php | fa-fw fab fa-php | magic
 ````
