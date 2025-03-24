@@ -1772,20 +1772,23 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 }
 
 .list-tree > ul {
-  margin-inline-start: -0.5rem;
+  padding-inline-start: revert;
 }
 
 .list-tree li {
   color: var(--INTERNAL-MAIN-TEXT-color);
   margin-bottom: 0;
   margin-inline-end: 0;
-  margin-inline-start: 9px;
+  margin-inline-start: 8px;
   margin-top: 0;
   padding-bottom: 0;
   padding-inline-end: 12px;
   padding-inline-start: 20px;
   padding-top: 0;
   position: relative;
+}
+.list-tree > ul > li {
+  margin-inline-start: calc(-1rem + 8px);
 }
 
 .list-tree li::before,
@@ -1800,7 +1803,7 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 .list-tree li::before {
   border-top: 2px solid var(--INTERNAL-MAIN-TEXT-color);
   height: 0;
-  top: 14px;
+  top: 11px;
   width: 15px;
 }
 
@@ -1809,26 +1812,8 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 .list-tree li:after {
   border-left: 2px solid var(--INTERNAL-MAIN-TEXT-color);
   height: 100%;
-  top: -5px;
+  top: -8px;
   width: 0px;
-}
-
-/* lower line on list items from the first level because they don't have parents */
-
-.list-tree > ul > li::after {
-  top: 15px;
-}
-
-/* hide line from the last of the first level list items */
-
-.list-tree > ul > li:last-child::after {
-  display: none;
-}
-
-/* hide line from before the Home or starting page or first element	*/
-
-.list-tree > ul > li:first-child::before {
-  display: none;
 }
 
 .list-tree ul:last-child li:last-child:after {
