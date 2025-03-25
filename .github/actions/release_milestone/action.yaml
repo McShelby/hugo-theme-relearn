@@ -113,7 +113,7 @@ runs:
     - name: Update releasenotes front matter
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: '(\ntitle = 'Version )\d+\.\d+(\'\n.*\nweight = -)\d+(\n)'
+        regex: '(\ntitle = ''Version )\d+\.\d+(''\n.*\nweight = -)\d+(\n)'
         replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
         include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
 
