@@ -113,14 +113,14 @@ runs:
     - name: Update releasenotes front matter
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: "(\ntitle = 'Version )\d+\.\d+('\n.*\nweight = -)\d+(\n)"
+        regex: '(\ntitle = 'Version )\d+\.\d+('\n.*\nweight = -)\d+(\n)'
         replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
         include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
 
     - name: Update releasenotes heading
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: "(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)"
+        regex: '(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)'
         replacement: "$1\n\n## ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.majorvers.outputs.value }}-${{ steps.minorvers.outputs.value }}-0}\n\n$2"
         include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
 
@@ -158,7 +158,7 @@ runs:
     - name: Write changelog to CHANGELOG.md
       uses: surahmansada/file-regex-replace@v1
       with:
-        regex: "(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)"
+        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
         replacement: "${{ steps.changelog_docs.outputs.contents }}\n---\n\n$1\n$2"
         include: CHANGELOG.md
 
@@ -167,7 +167,7 @@ runs:
       uses: azarc-io/regex-property-action@master
       with:
         value: ${{ steps.changelog_docs.outputs.contents }}
-        regex: "(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)"
+        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
         replacement: "[★ What's new in this version ★](https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
 
     - name: Commit updates
