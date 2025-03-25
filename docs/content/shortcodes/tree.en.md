@@ -8,7 +8,7 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 
 ````tree
 - home | folder
-  - .config | folder
+  - [.config](http://example.com) | folder
   - My Documents | folder | magic
     - home.php | fa-fw fab fa-php | #888cc4
 ````
@@ -21,7 +21,7 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 ````md
 ```tree
 - home | folder
-  - .config | folder
+  - [.config](http://example.com) | folder
   - My Documents | folder | magic
     - home.php | fa-fw fab fa-php | #888cc4
 ```
@@ -33,7 +33,7 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 ````go
 {{%/* tree */%}}
 - home | folder
-  - .config | folder
+  - [.config](http://example.com) | folder
   - My Documents | folder | magic
     - home.php | fa-fw fab fa-php | #888cc4
 {{%/* /tree */%}}
@@ -46,7 +46,7 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 {{ partial "shortcodes/tree.html" (dict
   "page" .
   "content" `- home | folder
-  - .config | folder
+  - [.config](http://example.com) | folder
   - My Documents | folder | magic
     - home.php | fa-fw fab fa-php | #888cc4`
 )}}
