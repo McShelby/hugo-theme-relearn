@@ -980,7 +980,7 @@ code,
 kbd,
 pre:not(.mermaid),
 samp {
-  font-size: 0.934375rem;
+  font-size: 0.934375em;
   font-variation-settings: var(--INTERNAL-CODE-font-variation-settings);
   font-weight: var(--INTERNAL-CODE-font-weight);
   font-family: var(--INTERNAL-CODE-font);
@@ -991,14 +991,14 @@ samp {
 code {
   background-color: var(--INTERNAL-CODE-INLINE-BG-color);
   border-color: var(--INTERNAL-CODE-INLINE-BORDER-color);
-  border-radius: 2px;
+  border-radius: 0.125em;
   border-style: solid;
   border-width: 1px;
   color: var(--INTERNAL-CODE-INLINE-color);
   -webkit-print-color-adjust: economy;
   color-adjust: economy;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 0.125em;
+  padding-right: 0.125em;
 }
 
 pre:not(.mermaid) {
@@ -1475,7 +1475,7 @@ span.copy-to-clipboard {
 
 code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   display: inline-block;
-  width: calc(22px + var(--bpx1) * 2px);
+  width: calc(1.333em + var(--bpx1) * 0.125em);
   content: '';
 }
 
@@ -1484,7 +1484,6 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   cursor: pointer;
   display: inline;
   font: initial;
-  font-size: 0.934375rem;
 }
 
 .inline-copy-to-clipboard-button {
@@ -1493,7 +1492,8 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   border-inline-start-style: solid;
   border-inline-start-width: 1px;
   color: var(--INTERNAL-CODE-INLINE-color);
-  margin-inline-start: calc(-1 * (22px + var(--bpx1) * 2px));
+  font-size: 0.934375em;
+  margin-inline-start: calc(-1 * (1.333em + var(--bpx1) * 0.125em));
   position: relative;
   z-index: 10;
 }
@@ -1511,6 +1511,7 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   color: var(--INTERNAL-MAIN-LINK-color);
   /* only show copy to clipboard on hover for code blocks if configured */
   display: none;
+  font-size: 0.934375rem;
   padding: 5px 3px;
   position: absolute;
   inset-inline-end: 4px;
@@ -1539,7 +1540,12 @@ div.highlight:hover .block-copy-to-clipboard-button {
   color: var(--INTERNAL-CODE-BLOCK-BG-color);
 }
 
-.inline-copy-to-clipboard-button > i,
+.inline-copy-to-clipboard-button > i {
+  font-size: 0.859625em;
+  padding-left: 0.333em;
+  padding-right: 0.333em;
+}
+
 .block-copy-to-clipboard-button > i {
   font-size: 0.859625rem;
   padding-left: 5px;

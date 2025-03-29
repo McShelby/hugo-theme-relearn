@@ -698,6 +698,15 @@ function initCodeClipboard() {
     // avoid copy-to-clipboard for highlight shortcode in table lineno mode
     var isFirstLineCell = inTable && code.parentNode.parentNode.parentNode.querySelector('td:first-child > pre > code') == code;
     var isBlock = inTable || inPre;
+    var inHeading = false;
+    var parent = code.parentNode;
+    while (parent && parent !== document) {
+      if (/^h[1-6]$/i.test(parent.tagName)) {
+        inHeading = true;
+        break;
+      }
+      parent = parent.parentNode;
+    }
 
     if (!isFirstLineCell && (inPre || text.length > 5)) {
       code.classList.add('copy-to-clipboard-code');
@@ -714,7 +723,7 @@ function initCodeClipboard() {
         code = clone;
       }
       var button = null;
-      if (isBlock || !window.relearn.disableInlineCopyToClipboard) {
+      if (isBlock || (!window.relearn.disableInlineCopyToClipboard && !inHeading)) {
         button = document.createElement('button');
         var buttonPrefix = isBlock ? 'block' : 'inline';
         button.classList.add(buttonPrefix + '-copy-to-clipboard-button');
