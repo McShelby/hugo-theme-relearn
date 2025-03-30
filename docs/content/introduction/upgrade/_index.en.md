@@ -41,7 +41,7 @@ Note that these [hints may be removed after a while](https://gohugo.io/troublesh
 
 Say, you are using Relearn 4.0.1 and want to upgrade your project to the latest version (say 7.2.1):
 
-- find out the [last theme release of version 4](introduction/changelog/4) (which is 4.2.5) and the [required Hugo version](introduction/releasenotes/4) (at least 0.93.0, [taken from the releasenotes of version 3](introduction/releasenotes/3) as version 4 did not raise the Hugo version) and upgrade
+- find out the [last theme release of version 4](introduction/changelog/4) (which is 4.2.5) and the [required Hugo version](introduction/releasenotes/4) (at least 0.93.0) and upgrade
 - run `hugo server` and fix any errors
 - find out the [last theme release of version 5](introduction/changelog/5) (which is 5.27.0) and the [required Hugo version](introduction/releasenotes/5) (at least 0.121.0) and upgrade
 - run `hugo server` and fix any errors
