@@ -227,26 +227,47 @@ If you don't set these options in your `hugo.toml`, the theme defaults as follow
 
 - `sidebarheadermenus`:
   - a divider to separate from the logo (depending on the color configuration of the theme variant) if any of the following is configured
-  - a home button if [configured](configuration/sidebar/headerfooter#home-button-configuration), if you redefine this, use a Hugo menu and a `type=menu` to replicate this
+  - a home button if [configured](configuration/sidebar/headerfooter#home-button-configuration), see notes below
+  - a divider
   - the version switcher if versioning is [configured](configuration/sitemanagement/versioning)
   - a divider to separate from the `sidebarmenus` (depending on the color configuration of the theme variant)
 - `sidebarmenus`:
   - the main page menu based on your [content structure](authoring/structure)
-  - the `shortcuts` menu including the title if [configured](#predefined-shortcuts-menu)
+  - the `shortcuts` menu including the title if [configured](#predefined-shortcuts-menu), see notes below
 - `sidebarfootermenus`:
   - a divider to separate from the `sidebarmenus` if any of the following is configured
   - the language switcher if multilingual is [configured](configuration/sitemanagement/multilingual#turn-off-language-switching)
   - the variant switcher if multiple variants are [configured](configuration/branding/colors/#multiple-variants)
   - the history clearer if you [configured](configuration/sidebar/headerfooter#history) to mark visited pages
 
+
+This comes down to the following pseudo default configuration.
+
 {{< multiconfig section=params >}}
+sidebarheadermenus = [
+  { type = 'divider' },
+  { type = 'menu', identifier = 'homelinks', disableTitle = true },
+  { type = 'divider' },
+  { type = 'custom', identifier = 'headercontrols', elements = [ { type = 'versionswitcher' } ] },
+  { type = 'divider' }
+]
+
+sidebarmenus = [
+  { type = 'page', identifier = 'main' },
+  { type = 'menu', identifier = 'shortcuts', disableTitle = false }
+]
+
 sidebarfootermenus = [
   { type = 'divider' },
-  { type = 'custom', elements = [ { type = 'historyclearer' }, { type = 'variantswitcher' }, { type = 'languageswitcher' } ] }
+  { type = 'custom', identifier = 'footercontrols', elements = [ { type = 'historyclearer' }, { type = 'variantswitcher' }, { type = 'languageswitcher' } ] }
 ]
 {{< /multiconfig >}}
 
-and no multilingual configuration is configured, the language switcher will be shown non the less.
+Notes:
+
+- multiple consecutive dividers are removed by the theme if no other content is in between them
+- if you redefine the `homelinks` like displayed above, you have to define a Hugo menu to replicate the implicit default configuration
+- for the `shortcuts` if the implicit default configuration is active, the value for `disableTitle` will be determined by your [configuration for `disableShortcutsTitle`](#predefined-shortcuts-menu).
 
 ### Page Menu
 
