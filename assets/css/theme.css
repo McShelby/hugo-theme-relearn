@@ -145,7 +145,8 @@ dt {
 
 dd {
   display: list-item;
-  list-style: circle;
+  list-style: disc;
+  margin-inline-start: 1.5rem;
 }
 
 a,
@@ -1778,7 +1779,7 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 }
 
 .list-tree > ul {
-  padding-inline-start: revert;
+  padding-inline-start: 1rem;
 }
 
 .list-tree li {
@@ -2258,17 +2259,24 @@ span.math:has(> mjx-container[display]) {
 }
 
 /* task list and its checkboxes */
-article ul > li:has(> input[type='checkbox']) {
-  list-style: none;
-  margin-inline-start: -1rem;
+/*  move start of list to left to adjust for missing list-style */
+article :not(li) > ul > li:has(> input[type='checkbox']),
+article :not(li) > ul > li:has(> span > input[type='checkbox']) {
+  margin-inline-start: -1.5rem;
 }
 
-article ul > li:has(> input[type='checkbox'])::before {
+article ul > li:has(> input[type='checkbox']) {
+  list-style: none;
+}
+
+article ul > li:has(> input[type='checkbox'])::before,
+article ul > li:has(> span > input[type='checkbox'])::before {
   content: '\200B'; /* accessibilty for Safari https://developer.mozilla.org/en-US/docs/Web/CSS/list-style */
 }
 
 /* https://moderncss.dev/pure-css-custom-checkbox-style/ */
-article ul > li > input[type='checkbox'] {
+article ul > li > input[type='checkbox'],
+article ul > li > span > input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--INTERNAL-MAIN-BG-color); /* box background */
@@ -2285,7 +2293,8 @@ article ul > li > input[type='checkbox'] {
   width: 1.15em;
 }
 
-article ul > li > input[type='checkbox']::before {
+article ul > li > input[type='checkbox']::before,
+article ul > li > span > input[type='checkbox']::before {
   box-shadow: inset 1em 1em var(--INTERNAL-PRIMARY-color);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   content: '';
@@ -2298,7 +2307,8 @@ article ul > li > input[type='checkbox']::before {
   background-color: CanvasText;
 }
 
-article ul > li > input[type='checkbox']:checked::before {
+article ul > li > input[type='checkbox']:checked::before,
+article ul > li > span > input[type='checkbox']:checked::before {
   transform: scale(1);
 }
 
