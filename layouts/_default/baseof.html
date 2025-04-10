@@ -37,7 +37,7 @@
     {{- end }}
     {{- partialCached "favicon.html" . }}
     {{- partial "stylesheet.html" . }}
-    {{- partial "dependencies.gotmpl" (dict "page" . "location" "header") }}
+    {{- partial "dependencies.html" (dict "page" . "location" "header") }}
     {{- partial "custom-header.html" . }}
   </head>
   <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
@@ -84,7 +84,7 @@
 {{- with resources.Get "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
     <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
 {{- end }}
-{{- partial "dependencies.gotmpl" (dict "page" . "location" "footer") }}
+{{- partial "dependencies.html" (dict "page" . "location" "footer") }}
 {{- with resources.Get "/js/theme.js" }}
   {{- $res := . }}
   {{- if $minify }}

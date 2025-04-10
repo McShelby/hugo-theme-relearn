@@ -66,7 +66,7 @@ See the `math`, `mermaid`, and `openapi` shortcodes for examples.
 For advanced customization, you can use the dependency loader in your own partials:
 
 ````go
-{{- partial "dependencies.gotmpl" (dict "page" . "location" "mylocation") }}
+{{- partial "dependencies.html" (dict "page" . "location" "mylocation") }}
 ````
 {{% /notice %}}
 
