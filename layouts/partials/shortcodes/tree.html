@@ -2,43 +2,40 @@
 <div class="list-tree">
 {{- $matches := findRESubmatch `<li>([\s\S]*?)(</li|<ul)` $content }}
 {{- range $matches }}
-	{{- $replacement := "" }}
-	{{- $text := index . 1 }}
-	{{- $rest := index . 2 }}
-	{{- $parts := split $text "|" }}
-	{{- if eq (len $parts) 3 }}
-		{{- $name := trim (index $parts 0) "\n\r\t " }}
-		{{- $icon := trim (index $parts 1) "\n\r\t " }}
-		{{- $style := trim (index $parts 2) "\n\r\t " }}
-		{{- $classes := split $icon " " }}
-		{{- if eq (len $classes) 1 }}
-			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style) }}
-			{{- if $boxStyle.style }}
-				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s cstyle %s"></i><span>%s</span>%s` $icon $style $name $rest }}
-			{{- else }}
-				{{- $replacement = printf `<li><i class="fa-fw fas fa-%s" style="color: %s;"></i><span>%s</span>%s` $icon $style $name $rest }}
-			{{- end }}
-		{{- else }}
-			{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style) }}
-			{{- if $boxStyle.style }}
-				{{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>%s` $icon $style $name $rest }}
-			{{- else }}
-				{{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>%s` $icon $style $name $rest }}
-			{{- end }}
-		{{- end }}
-	{{- else if eq (len $parts) 2 }}
-		{{- $name := trim (index $parts 0) "\n\r\t " }}
-		{{- $icon := trim (index $parts 1) "\n\r\t " }}
-		{{- $classes := split $icon " " }}
-		{{- if eq (len $classes) 1 }}
-			{{- $replacement = printf `<li><i class="fa-fw fas fa-%s"></i><span>%s</span>%s` $icon $name $rest }}
-		{{- else }}
-			{{- $replacement = printf `<li><i class="%s"></i><span>%s</span>%s` $icon $name $rest }}
-		{{- end }}
-	{{- end }}
-	{{- if $replacement }}
-		{{- $content = replace $content (index . 0) $replacement }}
-	{{- end }}
+  {{- $replacement := "" }}
+  {{- $text := index . 1 }}
+  {{- $rest := index . 2 }}
+  {{- $parts := split $text "|" }}
+
+  {{- if gt (len $parts) 1 }}
+    {{- $name := trim (index $parts 0) " \t\n\r" }}
+    {{- $icon := trim (index $parts 1) " \t\n\r" }}
+    {{- $style := "" }}
+    {{- if ge (len $parts) 3 }}
+      {{- $style = trim (index $parts 2) " \t\n\r" }}
+    {{- end }}
+
+    {{- $isSimpleIcon := eq (len (split $icon " ")) 1 }}
+    {{- $iconClass := $icon }}
+    {{- if $isSimpleIcon }}
+      {{- $iconClass = printf "fa-fw fas fa-%s" $icon }}
+    {{- end }}
+
+    {{- if $style }}
+      {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style) }}
+      {{- if $boxStyle.style }}
+        {{- $replacement = printf `<li><i class="%s cstyle %s"></i><span>%s</span>%s` $iconClass $style $name $rest }}
+      {{- else }}
+        {{- $replacement = printf `<li><i class="%s" style="color: %s;"></i><span>%s</span>%s` $iconClass $style $name $rest }}
+      {{- end }}
+    {{- else }}
+      {{- $replacement = printf `<li><i class="%s"></i><span>%s</span>%s` $iconClass $name $rest }}
+    {{- end }}
+  {{- end }}
+
+  {{- if $replacement }}
+    {{- $content = replace $content (index . 0) $replacement }}
+  {{- end }}
 {{- end }}
 {{- $content | safeHTML -}}
 </div>
