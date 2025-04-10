@@ -2,7 +2,7 @@
 {{- if eq .Page.Kind "term" }}
   {{- /* go to previous term page or taxonomy page if it is the first term */}}
   {{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-  {{- $pages := partialCached "partials/_relearn/pagesTaxonomy.gotmpl" $taxonomy_page $taxonomy_page.Path }}
+  {{- $pages := partialCached "_relearn/pagesTaxonomy.gotmpl" $taxonomy_page $taxonomy_page.Path }}
   {{- $prev = partial "inline/prev-term" (dict "collection" $pages "item" .) | default $taxonomy_page }}
 {{- else if eq .Page.Kind "taxonomy" }}
   {{- $prev = .Site.Home }}

@@ -34,14 +34,14 @@
 {{- $attributes_figure := $attributes }}
 {{- $attributes_figure = merge $attributes_figure (dict "class" (delimit ((split $attributes_figure.class " ") | append "figure-image") " ")) }}
 {{- $attributes_figure = merge $attributes_figure (dict "style" (index $attributes_figure "style")) -}}
-{{- partial "partials/inline/img" (dict "attributes" $attributes_figure) }}
+{{- partial "inline/img" (dict "attributes" $attributes_figure) }}
 {{- if $isLightbox -}}
 </a>
 <a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}">
 {{- $attributes_lightbox := $attributes }}
 {{- $attributes_lightbox = merge $attributes_lightbox (dict "class" (delimit ((split $attributes_lightbox.class " ") | append "lightbox-image") " ")) }}
 {{- $attributes_lightbox = merge $attributes_lightbox (dict "style" "") -}}
-{{- partial "partials/inline/img" (dict "attributes" $attributes_lightbox) }}</a>
+{{- partial "inline/img" (dict "attributes" $attributes_lightbox) }}</a>
 {{- end }}
 
 {{- define "partials/inline/img" }}
