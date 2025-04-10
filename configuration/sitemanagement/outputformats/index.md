@@ -1,4 +1,10 @@
-# Available Output Formats
++++
+categories = ['howto']
+description = 'What formats can a page be displayed in'
+outputs = ['html', 'rss', 'print', 'markdown', 'source']
+title = 'Available Output Formats'
+weight = 7
++++
 
 The Relearn theme by default comes with templates for HTML and RSS for each page.
 

@@ -1,4 +1,12 @@
-# Topbar
++++
+categories = ['howto']
+description = 'Configure the topbar'
+frontmatter = ['disableBreadcrumb', 'disableNextPrev', 'disableMarkdownButton', 'disableSourceButton', 'disablePrintButton', 'disableToc', 'editURL']
+options = ['disableBreadcrumb', 'disableNextPrev', 'disableMarkdownButton', 'disableSourceButton', 'disablePrintButton', 'disableToc', 'editURL']
+outputs = ['html', 'rss', 'print', 'markdown', 'source']
+title = 'Topbar'
+weight = 4
++++
 
 This page is about how to configure the topbar using configuration options. If you want to add further buttons or functionality, [see this section](configuration/customization/topbar).
 
