@@ -33,9 +33,9 @@ The shipped `print` and `markdown` output formats only display using the `defaul
 Suppose you are writing a documentation site for some software. Each time a new release is created, you are adding a new releasenotes page to your site. Those pages should contain a common disclaimer at the top. You neither want to copy the text into each new file nor want you to use a shortcode but create a page design called `releasenotes`.
 
 1. Choose a name (here, `releasenotes`)
-2. Create a content view file at `layouts/releasenotes/views/article.html`
+2. Create a content view file at `layouts/releasenotes/article.html`
 
-    ````html {title="layouts/releasenotes/views/article.html" hl_Lines="6-8"}
+    ````html {title="layouts/releasenotes/article.html" hl_Lines="6-8"}
     <article class="releasenotes">
       <header class="headline">
         {{partial "content-header.html" .}}
@@ -51,7 +51,7 @@ Suppose you are writing a documentation site for some software. Each time a new 
     </article>
     ````
 
-    The marked lines are your customizations, the rest of the file was copied over from the default implementation of [`layouts/_default/views/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/views/article.html)
+    The marked lines are your customizations, the rest of the file was copied over from the default implementation of [`layouts/_default/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/article.html)
 
     In this file, you can customize the page structure as needed. For HTML based output formats, typically you'll want to:
 
@@ -92,20 +92,20 @@ These files are common for all output formats.
 
 If you want to keep the general HTML framework and only change specific parts, you can provide these files for the page desingn for the HTML output format independently of one another.
 
-- `layouts/<DESIGN>/views/article.html`: _Optional_: Controls how one page's content and title are displayed
-- `layouts/<DESIGN>/views/body.html`: _Optional_: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)
-- `layouts/<DESIGN>/views/menu.html`: _Optional_: Defines the sidebar menu layout
+- `layouts/<DESIGN>/article.html`: _Optional_: Controls how one page's content and title are displayed
+- `layouts/<DESIGN>/body.html`: _Optional_: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)
+- `layouts/<DESIGN>/menu.html`: _Optional_: Defines the sidebar menu layout
 
 For a real-world example, check out the `changelog` page design implementation
 
-- [`docs/layouts/changelog/views/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/docs/layouts/changelog/views/article.html)
+- [`docs/layouts/changelog/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/docs/layouts/changelog/article.html)
 
 ## Migration to Relearn 7 or higher
 
 Previous to Relearn 7, page designs were defined by a proprietary solution unique to the theme. Depending on your modifications you may have to change some or all of the following to migrate to Relearn 7's page designs.
 
 - In all your `*.md` files, replace the `archetype` front matter with `type`; the value stays the same; don't forget your archetype files if you have some
-- Move your files `layouts/partials/archetypes/<DESIGN>/article.html` to `layouts/<DESIGN>/views/article.html`
+- Move your files `layouts/partials/archetypes/<DESIGN>/article.html` to `layouts/<DESIGN>/article.html`
 
     The files will most likely require further modifications as they now receive the page as it context (dot `.`) instead of the `.page` and `.content` parameter.
 
@@ -132,7 +132,7 @@ Previous to Relearn 7, page designs were defined by a proprietary solution uniqu
 
     **New**:
 
-    ````html {title="layouts/&lt;DESIGN&gt;/views/article.html" hl_Lines="7"}
+    ````html {title="layouts/&lt;DESIGN&gt;/article.html" hl_Lines="7"}
     <article class="default">
       <header class="headline">
         {{- partial "content-header.html" . }}
