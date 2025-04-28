@@ -23,11 +23,11 @@
 {{- with $page -}}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
   {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
-  {{- template "childs" dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" . }}
+  {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
 {{- end }}
 
-{{- define "childs" }}
+{{- define "partials/inline/childs" }}
   {{- $page := .page }}
   {{- range .menu }}
     {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
@@ -53,7 +53,7 @@
 {{- (printf "<%s>" $.containerstyle)|safeHTML }}
         {{- end }}
         {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
-        {{- template "childs" dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page }}
+        {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page) }}
         {{- if eq $.style "li" }}
 {{- (printf "</%s>" $.containerstyle)|safeHTML }}
         {{- end }}
