@@ -327,7 +327,7 @@
       {{- if and (not $url) (not $isCollapsible) }}
         {{- $currentAlwaysopen = true }}
       {{- end }}
-      {{- $entryId := md5 (print $entryMenu) }}
+      {{- $entryId := md5 (or $entryMenu.KeyName $entryMenu.Identifier $entryMenu.Name $entryMenu.Title) }}
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
             <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
