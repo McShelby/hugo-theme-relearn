@@ -3,7 +3,9 @@
   {{- $count := 0 }}
   {{- range .Pages }}
     {{- /* count pages of term */}}
-    {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
+    {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
+    {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) */}}
+    {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partial "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
       {{- $count = add $count 1 }}
     {{- end }}
   {{- end }}

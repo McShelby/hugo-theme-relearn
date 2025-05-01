@@ -8,7 +8,9 @@
 			{{- else if partialCached "_relearn/pageIsHidden.gotmpl" . .Path }}
 				{{- $ret = true }}
 			{{- else }}
-				{{- $ret = partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $.to) .Path $.to.Path }}
+				{{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
+				{{- $ret = partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $.to) .Path $.to.Path */}}
+				{{- $ret = partial "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $.to) .Path $.to.Path }}
 			{{- end }}
 		{{- end }}
 	{{- end }}

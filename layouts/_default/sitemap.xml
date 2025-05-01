@@ -3,7 +3,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {{- range where .Pages "Sitemap.Disable" "ne" true }}
   {{- if partial "_relearn/pageIsSpecial.gotmpl" . }}
-  {{- else if and .Title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
+  {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
+  {{- else if and .Title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) */}}
+  {{- else if and .Title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partial "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
   <url>
     <loc>{{ partial "permalink.gotmpl" (dict "to" . "abs" true) }}</loc>{{ if not .Lastmod.IsZero }}
     <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}

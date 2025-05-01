@@ -11,7 +11,9 @@
     {{ $ver | safeHTML }}
     {{- end }}
     {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
-    {{- if not (and $title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) ) }}
+    {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
+    {{- if not (and $title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) ) */}}
+    {{- if not (and $title .RelPermalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partial "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) ) }}
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     {{- end }}
     {{- $url := "" }}

@@ -39,7 +39,9 @@
       {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
         {{- $visible = and .Title .Permalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHidden.gotmpl" . .Path) ) ) }}
       {{- else }}
-        {{- $visible = and .Title .Permalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $page) .Path $page.Path) ) ) }}
+        {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
+        {{- $visible = and .Title .Permalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $page) .Path $page.Path) ) ) */}}
+        {{- $visible = and .Title .Permalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partial "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $page) .Path $page.Path) ) ) }}
       {{- end }}
       {{- if $visible }}
     <item>

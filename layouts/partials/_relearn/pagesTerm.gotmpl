@@ -1,6 +1,8 @@
 {{- $pages := slice }}
 {{- range .Pages }}
-  {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
+  {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
+  {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) */}}
+  {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partial "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
     {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
   {{- end }}
 {{- end }}
