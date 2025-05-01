@@ -123,7 +123,19 @@ For a real-world example, check out the `markdown` output format implementation
 - [`layouts/_default/list.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/list.md)
 - [`layouts/_default/single.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/single.md)
 
-## Migration to Relearn 7 or higher
+## Migration from Relearn 7
+
+Hugo 0.146 or newer required the theme to make changes that may affect you if you are using own output formats. You may have to adjust your templates in `layouts/_default` according to Hugo's migration instructions.
+
+### For HTML Output Formats
+
+- you need to define a block `storeOutputFormat` for your HTML based output format templates and add `{{- .Store.Set \"relearnOutputFormat\" \"<your-output-format-name>\" }}` to it.
+
+### For HTML Output Formats
+
+- Move your files `layouts/<DESIGN>/views` up one level to `layouts/<DESIGN>`
+
+## Migration from Relearn 6
 
 Previous to Relearn 7, HTML output formats did not use the `baseof.html` but now do.
 

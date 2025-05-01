@@ -100,7 +100,13 @@ For a real-world example, check out the `changelog` page design implementation
 
 - [`docs/layouts/changelog/article.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/docs/layouts/changelog/article.html)
 
-## Migration to Relearn 7 or higher
+## Migration from Relearn 7
+
+Hugo 0.146 or newer required some changes to the themes file structure.
+
+- Move your files from `layouts/<DESIGN>/views` up one level to `layouts/<DESIGN>`
+
+## Migration from Relearn 6
 
 Previous to Relearn 7, page designs were defined by a proprietary solution unique to the theme. Depending on your modifications you may have to change some or all of the following to migrate to Relearn 7's page designs.
 

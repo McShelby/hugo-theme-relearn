@@ -1,12 +1,12 @@
 +++
-title = 'Version 7'
+title = 'Version 8'
 type = 'releasenotes'
-weight = -7
+weight = -8
 
 [params]
   disableToc = false
   hidden = true
-  minHugoVersion = '0.126.0'
+  minHugoVersion = '0.126.3'
 +++
 
 {{% pages showhidden="true" showdivider="true" %}}
