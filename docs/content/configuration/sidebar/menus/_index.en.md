@@ -61,11 +61,11 @@ collapsibleMenu = true
 
 ## Ordering Menu Entries
 
-### By Weight
+### By Hugo's Default Sort Order
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} Hugo provides a [simple way](https://gohugo.io/getting-started/glossary/#weight) to handle order of your entries by setting the `weight` front matter to a number.
+{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} Hugo provides a [simple way](https://gohugo.io/quick-reference/glossary/#default-sort-order) to handle order of your entries taking into account the `weight`, `date` and `linkTitle` front matter .
 
-Hugo menus can only be sorted using the weight method.
+{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} Hugo menus can only be sorted by weight.
 
 {{< multiconfig >}}
 weight = 5
@@ -73,9 +73,7 @@ weight = 5
 
 ### By Other
 
-Using the `weight` for sorting can get cumbersome if you, for example, just want to sort alphabetically. Each time you add a new page in the set of pages, you may have to renumber some or all of them to make space for the new page.
-
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects. See the [children shortcode](shortcodes/children#parameter) for a complete list.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. See the [children shortcode](shortcodes/children#parameter) for a complete list.
 
 {{< multiconfig section=params >}}
 ordersectionsby = 'linktitle'
