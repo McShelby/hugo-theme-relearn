@@ -566,8 +566,9 @@ function initAnchorClipboard() {
   }
 
   document.querySelectorAll(':has(h1) :is(h2[id], h3[id], h4[id] , h5[id], h6[id])').forEach(function (element) {
-    var url = encodeURI((document.location.origin == 'null' ? document.location.protocol + '//' + document.location.host : document.location.origin) + document.location.pathname);
-    var link = url + '#' + element.id;
+    var origin = document.location.origin == 'null' ? `${document.location.protocol}//${document.location.host}` : document.location.origin;
+    var id = encodeURIComponent(element.id);
+    var link = `${origin}${document.location.pathname}#${id}`;
     var new_element = document.createElement('button');
     new_element.classList.add('anchor');
     if (!window.relearn.disableAnchorCopy) {
