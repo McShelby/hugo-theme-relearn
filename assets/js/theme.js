@@ -565,7 +565,7 @@ function initAnchorClipboard() {
     return;
   }
 
-  document.querySelectorAll(':has(h1) :is(h2[id], h3[id], h4[id] , h5[id], h6[id])').forEach(function (element) {
+  document.querySelectorAll(':has(h1) :is(h2[id], h3[id], h4[id], h5[id], h6[id])').forEach(function (element) {
     var origin = document.location.origin == 'null' ? `${document.location.protocol}//${document.location.host}` : document.location.origin;
     var id = encodeURIComponent(element.id);
     var link = `${origin}${document.location.pathname}#${id}`;
