@@ -47,8 +47,10 @@
     <script src="{{ $urlOpenapi }}" defer></script>
     {{- else }}
       {{- $cssInProject = true }}
-      {{- with resources.Get "/css/swagger-ui/swagger-ui.css" }}
-        {{- $cssUrl = printf "%s%s" .RelPermalink $assetBusting }}
+      {{- $cssUrl = "/css/swagger-ui/swagger-ui.css" }}
+      {{- with resources.Get $cssUrl }}
+        {{- /* the following code causes Hugo to generate our file in public */}}
+        {{- $url := .RelPermalink }}
       {{- end }}
       {{- with resources.Get "/js/swagger-ui/swagger-ui-bundle.js" }}
     <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
