@@ -325,9 +325,7 @@ function initMermaid(update, attrs) {
     theme: getColorValue('MERMAID-theme'),
   };
 
-  var search;
   if (update) {
-    search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
     unmark();
   }
   var is_initialized = update ? update_func(attrs) : init_func(attrs);
@@ -370,14 +368,22 @@ function initMermaid(update, attrs) {
           });
           svg.call(zoom);
         });
+        // we need to mark again once the SVGs were drawn
+        // to mark terms inside an SVG;
+        // as we can not determine when all graphs are done,
+        // we debounce the call
+        debounce(mark, 200)();
       },
       querySelector: '.mermaid.mermaid-render',
       suppressErrors: true,
     });
   }
-  if (update && search && search.length) {
-    window.relearn.setItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value', search);
-    mark();
+  if (update) {
+    // if the page loads Mermaid but does not contain any
+    // graphs, we will not call the above debounced mark()
+    // and have to do it at least once here to redo our unmark()
+    // call from the beginning of this function
+    debounce(mark, 200)();
   }
 }
 
@@ -1421,9 +1427,9 @@ function scrollToPositions() {
   }
 
   var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
-  if (search && search.length) {
-    search = regexEscape(search);
-    var found = elementContains(search, elc);
+  var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
+  if (words && words.length) {
+    var found = elementContains(words, elc);
     var searchedElem = found.length && found[0];
     if (searchedElem) {
       searchedElem.scrollIntoView();
@@ -1494,15 +1500,20 @@ const observer = new PerformanceObserver(function () {
 observer.observe({ type: 'navigation' });
 
 function mark() {
+  var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
+  if (!words || !words.length) {
+    return;
+  }
+
   // mark some additional stuff as searchable
   var bodyInnerLinks = document.querySelectorAll('#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)');
   for (var i = 0; i < bodyInnerLinks.length; i++) {
     bodyInnerLinks[i].classList.add('highlight');
   }
 
-  var value = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
   var highlightableElements = document.querySelectorAll('.highlightable');
-  highlight(highlightableElements, value, { element: 'mark', className: 'search' });
+  highlight(highlightableElements, words, { element: 'mark', className: 'search' });
 
   var markedElements = document.querySelectorAll('mark.search');
   for (var i = 0; i < markedElements.length; i++) {
@@ -1543,21 +1554,12 @@ function highlight(es, words, options) {
   };
   Object.assign(settings, options);
 
-  if (!words) {
+  if (!words.length) {
     return;
   }
-  if (words.constructor === String) {
-    words = [words];
-  }
-  words = words.filter(function (word, i) {
-    return word != '';
-  });
   words = words.map(function (word, i) {
     return regexEscape(word);
   });
-  if (words.length == 0) {
-    return this;
-  }
 
   var flag = settings.caseSensitive ? '' : 'i';
   var pattern = '(' + words.join('|') + ')';
@@ -1600,7 +1602,6 @@ function highlightNode(node, re, nodeName, className) {
 }
 
 function unmark() {
-  window.relearn.removeItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
   var markedElements = document.querySelectorAll('mark.search');
   for (var i = 0; i < markedElements.length; i++) {
     var parent = markedElements[i].parentNode;
@@ -1651,27 +1652,48 @@ function unhighlight(es, options) {
 }
 
 // replace jQuery.createPseudo with https://stackoverflow.com/a/66318392
-function elementContains(txt, e) {
-  var regex = RegExp(txt, 'i');
-  var nodes = [];
-  if (e) {
-    var tree = document.createTreeWalker(
-      e,
-      4 /* NodeFilter.SHOW_TEXT */,
-      function (node) {
-        return regex.test(node.data);
-      },
-      false
-    );
-    var node = null;
-    while ((node = tree.nextNode())) {
-      nodes.push(node.parentElement);
-    }
+function elementContains(words, e) {
+  var settings = {
+    caseSensitive: false,
+    wordsOnly: false,
+  };
+
+  if (!words.length) {
+    return [];
   }
+  if (!e) {
+    return [];
+  }
+  words = words.map(function (word, i) {
+    return regexEscape(word);
+  });
+  var flag = settings.caseSensitive ? '' : 'i';
+  var nodes = [];
+
+  var pattern = '(' + words.join('|') + ')';
+  if (settings.wordsOnly) {
+    pattern = '\\b' + pattern + '\\b';
+  }
+  var regex = new RegExp(pattern, flag);
+
+  var tree = document.createTreeWalker(
+    e,
+    4, // NodeFilter.SHOW_TEXT
+    function (node) {
+      return regex.test(node.data);
+    },
+    false
+  );
+  var node = null;
+  while ((node = tree.nextNode())) {
+    nodes.push(node.parentElement);
+  }
+
   return nodes;
 }
 
 function searchInputHandler(value) {
+  window.relearn.removeItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
   unmark();
   if (value.length) {
     window.relearn.setItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value', value);
@@ -1687,14 +1709,15 @@ function initSearch() {
       if (event.key == 'Escape') {
         var input = event.target;
         var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
-        if (!search || !search.length) {
+        var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
+        if (!words || !words.length) {
           input.blur();
         }
         searchInputHandler('');
         inputs.forEach(function (e) {
           e.value = '';
         });
-        if (!search || !search.length) {
+        if (!words || !words.length) {
           documentFocus();
         }
       }
@@ -1719,6 +1742,7 @@ function initSearch() {
         event.initEvent('input', false, false);
         e.dispatchEvent(event);
       });
+      window.relearn.removeItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
       unmark();
     });
   });
@@ -1727,12 +1751,12 @@ function initSearch() {
   var value = urlParams.get('search-by');
   if (value) {
     window.relearn.setItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value', value);
+    mark();
   }
-  mark();
 
   // set initial search value for inputs on page load
-  if (window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value')) {
-    var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  if (search) {
     inputs.forEach(function (e) {
       e.value = search;
       var event = document.createEvent('Event');
