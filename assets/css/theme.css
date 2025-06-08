@@ -2179,7 +2179,26 @@ span.math:has(> mjx-container[display]) {
   height: 1.5rem;
 }
 
-#R-searchresults a.autocomplete-suggestion {
+#R-sidebar .autocomplete-suggestion {
+  /* restore autocomplete default value for sidebar, because it is affectd
+  by coarse element styling */
+  color: rgba(40, 40, 40, 1);
+  display: block;
+}
+
+#R-sidebar .autocomplete-suggestion.selected {
+  /* restore autocomplete default value for sidebar, because it is affectd
+  by coarse element styling */
+  color: rgba(255, 255, 255, 1);
+}
+
+#R-sidebar .autocomplete-suggestions > .autocomplete-suggestion > .breadcrumbs {
+  /* don't show breadcrumbs in sidebar search */
+  display: none;
+}
+
+#R-searchresults .autocomplete-suggestion {
+  color: var(--INTERNAL-MAIN-LINK-color);
   display: block;
   font-size: 1.3rem;
   font-weight: 500;
@@ -2188,12 +2207,8 @@ span.math:has(> mjx-container[display]) {
   text-decoration: none;
 }
 
-#R-searchresults a.autocomplete-suggestion:after {
+#R-searchresults .autocomplete-suggestion:after {
   height: 0;
-}
-
-#R-searchresults .autocomplete-suggestion {
-  color: var(--INTERNAL-MAIN-LINK-color);
 }
 
 #R-searchresults .autocomplete-suggestion > .breadcrumbs {
