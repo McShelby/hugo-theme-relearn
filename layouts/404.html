@@ -11,6 +11,7 @@
 
     {{- partialCached "favicon.html" . }}
     {{- partial "stylesheet.html" . }}
+    {{- partial "dependencies.html" (dict "page" . "location" "header") }}
     {{- partial "custom-header.html" . }}
   </head>
   <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }} notfound" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
@@ -92,5 +93,7 @@ m-2850 -536 c56 -270 324 -461 595 -424 205 28 393 204 439 411 6 30 14 58 18
         </div>
       </main>
     </div>
+{{- partial "dependencies.html" (dict "page" . "location" "footer") }}
+{{- partial "custom-footer.html" . }}
   </body>
 </html>

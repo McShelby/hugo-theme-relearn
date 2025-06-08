@@ -35,6 +35,7 @@
     {{ (printf $link (partial "permalink.gotmpl" (dict "to" .)) .Rel .MediaType.Type ($title | htmlEscape)) | safeHTML }}
       {{- end }}
     {{- end }}
+
     {{- partialCached "favicon.html" . }}
     {{- partial "stylesheet.html" . }}
     {{- partial "dependencies.html" (dict "page" . "location" "header") }}
@@ -73,25 +74,7 @@
 {{- partial "custom-comments.html" . }}
     </div>
 {{- block "menu" . }}{{ end }}
-{{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
-{{- $minify := not hugo.IsServer }}
-{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
-  {{- $minify = site.Params.minify }}
-{{- end }}
-{{- with resources.Get "/js/clipboard/clipboard.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
-{{- end }}
-{{- with resources.Get "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
-{{- end }}
 {{- partial "dependencies.html" (dict "page" . "location" "footer") }}
-{{- with resources.Get "/js/theme.js" }}
-  {{- $res := . }}
-  {{- if $minify }}
-    {{- $res = $res | minify }}
-  {{- end }}
-    <script src="{{ $res.RelPermalink }}{{ $assetBusting }}" defer></script>
-{{- end }}
 {{- partial "custom-footer.html" . }}
   </body>
 </html>
