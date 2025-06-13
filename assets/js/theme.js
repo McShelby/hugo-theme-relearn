@@ -1463,11 +1463,13 @@ function handleHistoryClearer() {
 }
 
 function handleLanguageSwitcher() {
-  document.querySelectorAll('.R-languageswitcher select').forEach(function (select) {
-    select.addEventListener('change', function (event) {
-      const url = this.options[`R-select-language-${this.value}`].dataset.url;
-      this.value = this.querySelector('[data-selected]')?.value ?? select.value;
-      window.location = url;
+  document.querySelectorAll('.R-languageswitcher ul.language-list li a').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const url = this.href;
+      if (url) {
+        window.location.href = url;
+      }
     });
   });
 }

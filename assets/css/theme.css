@@ -2951,6 +2951,58 @@ body.notfound #shrug svg {
   --VARIABLE-BOX-TEXT-color: var(--INTERNAL-MAIN-TEXT-color);
 }
 
+/* Language Switcher Styles */
+.R-languageswitcher {
+  /* Container for the language switcher if specific container styling is needed */
+  /* For now, assuming it's an <li> in a menu, so direct styling might not be needed here */
+}
+
+.R-languageswitcher .language-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  align-items: center; /* Vertically align items if they wrap and have different heights */
+}
+
+.R-languageswitcher .language-list li {
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+}
+
+.R-languageswitcher .language-list li a {
+  display: flex; /* Align icon and text */
+  align-items: center;
+  padding: 0.5rem 0.75rem; /* Adjust padding to match theme's link styling - this is a guess */
+  text-decoration: none;
+  color: var(--INTERNAL-MENU-SECTIONS-LINK-color); /* Using a variable that seems relevant for sidebar links */
+  white-space: nowrap; /* Prevent line breaks within a single language option */
+}
+
+.R-languageswitcher .language-list li a:hover,
+.R-languageswitcher .language-list li a:focus {
+  color: var(--INTERNAL-MENU-SECTIONS-LINK-HOVER-color); /* Using a hover color variable */
+  background-color: var(--INTERNAL-MENU-HOVER-color); /* A guess for hover background, might need adjustment */
+  text-decoration: none; /* Ensure no underline on hover if not desired */
+}
+
+.R-languageswitcher .language-list li.active a {
+  color: var(--INTERNAL-MENU-SECTION-ACTIVE-CATEGORY-color); /* Style for the active language */
+  font-weight: bold; /* Make active language bold */
+}
+
+.R-languageswitcher .language-list li a i {
+  margin-right: 0.5em; /* Space between icon and text */
+  font-size: 1em; /* Ensure icon size matches text size */
+  line-height: 1; /* Ensure icon aligns well with text */
+}
+
+/* Responsive considerations:
+   - flex-wrap: wrap on .language-list already allows basic wrapping.
+   - Further specific responsive adjustments might be needed depending on theme context.
+*/
+
 .cstyle.secondary {
   --VARIABLE-BOX-color: var(--INTERNAL-SECONDARY-color);
   --VARIABLE-BOX-TEXT-color: var(--INTERNAL-MAIN-TEXT-color);

@@ -357,7 +357,36 @@ disableShortcutsTitle = false
 # If not given, defaults to
 # - a home button if configured; if you redefine this, use a Hugo menu and a type=menu to replicate this
 # - a divider to separate from the sidebarmenus (depending on the configuration of the theme variant)
-sidebarheadermenus = ''
+# sidebarheadermenus = '' # Old value, using theme defaults
+
+# Custom sidebar header menu to include language switcher at the top
+[[params.sidebarheadermenus]]
+  type = "divider"
+[[params.sidebarheadermenus]]
+  type = "menu"
+  identifier = "homelinks" # Replicates default home button behavior
+  disableTitle = true
+  [[params.sidebarheadermenus.entries]]
+    Pre = "<i class='fa-fw fas fa-home'></i> "
+    Title = "Home" # Actual title will be from i18n T "home-button"
+    PageRef = "/"
+[[params.sidebarheadermenus]]
+  type = "divider"
+[[params.sidebarheadermenus]]
+  type = "custom"
+  identifier = "languageswitchertop"
+  [[params.sidebarheadermenus.elements]]
+    type = "languageswitcher"
+    icon = "language"
+[[params.sidebarheadermenus]]
+  type = "divider"
+[[params.sidebarheadermenus]]
+  type = "custom"
+  identifier = "headercontrols" # Replicates default version switcher
+  [[params.sidebarheadermenus.elements]]
+    type = "versionswitcher"
+[[params.sidebarheadermenus]]
+  type = "divider"
 
 # The main sidebar header.
 # Default: see notes
@@ -371,7 +400,18 @@ sidebarmenus = ''
 # - the language switcher if multilingual is configured
 # - the variant switcher if multiple variants are configured
 # - the history clearer if you configured to mark visited pages
-sidebarfootermenus = ''
+# sidebarfootermenus = '' # Old value, using theme defaults
+
+# Custom sidebar footer menu to exclude language switcher
+[[params.sidebarfootermenus]]
+  type = "divider"
+[[params.sidebarfootermenus]]
+  type = "custom"
+  identifier = "myfootercontrols"
+  [[params.sidebarfootermenus.elements]]
+    type = "variantswitcher"
+  [[params.sidebarfootermenus.elements]]
+    type = "historyclearer"
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Hidden pages
