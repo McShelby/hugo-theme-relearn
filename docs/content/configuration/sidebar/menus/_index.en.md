@@ -301,7 +301,9 @@ The custom menu allows you to define arbitrary HTML snippets wrapped inside of a
 | **main**              | `false`         | Whether to add additional spacing and larger text to the menu |
 | **elements**          | _&lt;empty&gt;_ | The list of snippets, contained in `layouts/partials/sidebar/element`, to be displayed. See below.
 
-A HTML snippet has its own parameter. Your self-defined snippets can contain further parameters that are passed to your snippet partial when called. Your snippets must be stored in `layouts/partials/sidebar/element` and the name of the snippet partial needs to be `<TYPE>.html` where `<TYPE>` is the type of the element.
+### Custom Element
+
+An HTML element snippet of a custom menu has its own parameter. Self-defined snippets have further parameters that are passed to your snippet partial when called. Your snippets must be stored in `layouts/partials/sidebar/element` and the name of the snippet partial needs to be `<TYPE>.html` where `<TYPE>` is the type of the element.
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
@@ -319,12 +321,20 @@ A horizontal ruler
 
 ### Example
 
-The following example configures the language switcher and history clearer into the menu header, only shows the the page menu in the main sidebar section and keeps the menu footer empty:
+The following example
+
+- configures the language switcher and history clearer into the menu header
+- changes the icon of the language switcher to {{< icon icon="globe" >}}
+- only shows the the page menu in the main sidebar section
+- keeps the menu footer empty
+
+> [!note]
+> If you want to reconfigure the sidebar menus, you have to copy over everything from the [default configuration](#defining-sidebar-menus) you want to keep as reconfiguration will reset all sidebar menus.
 
 {{< multiconfig section=params >}}
 sidebarheadermenus = [
 	{ type = 'custom', elements = [
-		{ type = 'languageswitcher'	},
+		{ type = 'languageswitcher', icon= 'globe' },
 		{ type = 'historyclearer' }
 	]},
 	{ type = 'divider' },
