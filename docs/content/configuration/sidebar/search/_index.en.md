@@ -1,10 +1,13 @@
 +++
 categories = ['howto']
 description = 'Configure search and the search form'
-options = ['additionalContentLanguage', 'disableSearch', 'disableSearchIndex', 'disableSearchPage', 'searchIndexURL', 'searchPageURL']
+options = ['search.adapter.params.additionalContentLanguage', 'search.disable', 'search.index.disable', 'search.index.URL', 'search.page.disable', 'search.page.URL']
 title = 'Search'
 weight = 3
 +++
+
+> [!note]
+> The search term will be [stored in the reader's browser](configuration/sitemanagement/storedinformation) as long as it is present.
 
 ## Configure Search
 
@@ -16,40 +19,53 @@ The theme offers three levels of search through the menu's search form:
 
 Each level requires the previous one to be enabled. If no search is configured, the search form won't appear.
 
-> [!note]
-> The search term will be [stored in the reader's browser](configuration/sitemanagement/storedinformation) as long as it is present.
-
 {{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} All levels are enabled by default. Disable them in `hugo.toml`:
 
-- In-page search: `disableSearch=true`
-- Search popup: `disableSearchIndex=true`
-- Dedicated search page: `disableSearchPage=true`
+- In-page search: `search.disable=true`
+- Search popup: `search.index.disable=true`
+- Dedicated search page: `search.page.disable=true`
 
 {{< multiconfig file=hugo section=params >}}
-disableSearch = true
-disableSearchIndex = true
-disableSearchPage = true
+search.disable = true
+search.index.disable = true
+search.page.disable = true
 {{< /multiconfig >}}
+
+## Search URLs
 
 {{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} Default URLs can be changed with the following parameter
 
-- Search popup: `searchindex.js` set by `searchIndexURL`
-- Dedicated search page: `search/index.html` set by `searchPageURL`
+- Search popup: `searchindex.js` set by `search.index.URL`
+- Dedicated search page: `search/index.html` set by `search.page.URL`
 
 {{< multiconfig file=hugo section=params >}}
-searchIndexURL = 'omnisearchindex.js'
-searchPageURL = 'omnisearch'
+search.index.URL = 'omnisearchindex.js'
+search.page.URL = 'omnisearch'
 {{< /multiconfig >}}
 
 {{% notice note %}}
-You only need to change these if you have other own content created for those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
+You only need to change these if you have own content created for those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
 
 Check for duplicate URLs by running `hugo --printPathWarnings`.
 {{% /notice %}}
 
-## Supported Languages
+## Search Adapter / Engine
 
-The [Lunr](https://lunrjs.com) search library doesn't support all languages of the theme. Unsupported languages will show errors in the browser console. Currently unsupported are
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The theme supports different search engines through adapters. Each different adapter may has its own set of configuration.
+
+By default, it uses the [Lunr](https://lunrjs.com/) search engine.
+
+{{< multiconfig file=hugo section=params >}}
+search.adapter.identifier = 'lunr'
+{{< /multiconfig >}}
+
+### Lunr
+
+`lunr` is the default search adapter.
+
+#### Supported Languages
+
+Lunr doesn't support all languages of the theme. Unsupported languages will show errors in the browser console. Currently unsupported are
 
 - Czech
 - Indonesian
@@ -58,12 +74,12 @@ The [Lunr](https://lunrjs.com) search library doesn't support all languages of t
 - Swahili
 - Ukrainian
 
-## Mixed Language Support
+#### Mixed Language Support
 
-{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} In case your page's content contains text in multiple languages (for example, you are writing a Piratish documentation for your English API), you can set those languages in `additionalContentLanguage` to broaden the search.
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} In case your page's content contains text in multiple languages (for example, you are writing a Piratish documentation for your English API), you can set those languages in `search.adapter.params.additionalContentLanguage` to broaden the search.
 
 {{< multiconfig file=hugo section=params >}}
-additionalContentLanguage = [ "en" ]
+search.adapter.params.additionalContentLanguage = [ "en" ]
 {{< /multiconfig >}}
 
 You can add multiple languages to this array.
@@ -71,3 +87,52 @@ You can add multiple languages to this array.
 {{% notice note %}}
 Use the base language code. For example, if your page is using `zh-CN`, add `zh` to this parameter.
 {{% /notice %}}
+
+### Experimental Adapters
+
+The theme also ships with the additional experimental `orama` and `orama-esm` (not usable for headless server deployments) adapters.
+
+## Customizing the Search Index Generation
+
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} You can customize how the search index is generated by specifying a different template:
+
+{{< multiconfig file=hugo section=params >}}
+search.index.template = '/custom_searchindex.js'
+{{< /multiconfig >}}
+
+By default, the theme uses `/_relearn_searchindex.js` to generate the search index. When you specify a custom value for `search.index.template`, the theme will look for the template file in your site's `assets` directory.
+
+For example, if you set `search.index.template = '/custom_searchindex.js'`, you would need to create a file at `assets/custom_searchindex.js` in your site to define the custom index generation logic.
+
+This advanced option is useful if you need to modify how content is indexed or change the structure of the search index to work with custom search implementations.
+
+## Customizing the Search Page Layout
+
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} You can customize the appearance of the dedicated search page by changing its content view:
+
+{{< multiconfig file=hugo section=params >}}
+search.page.type = 'custom_search_layout'
+{{< /multiconfig >}}
+
+By default, the theme uses `_relearn_searchpage` as the search content view. When you specify a custom value for `search.page.type=[YOUR-VIEWNAME]`, Hugo will look for a template file at `layouts/[YOUR-VIEWNAME]/article.html`.
+
+For example, if you set `search.page.type = 'custom_search_layout'`, you would need to create a file at `layouts/custom_search_layout/article.html` in your site to define the custom layout.
+
+This allows you to maintain the search functionality while adapting its appearance to match your specific design requirements.
+
+## Migration from Relearn 7
+
+In previous versions of the theme, search configuration used flat parameters. The current version uses a more structured approach with a `search` namespace.
+
+If you're updating from an older version, here's how to migrate your search configuration:
+
+### Migration Table
+
+| Legacy Parameter            | New Parameter |
+| --------------------------- | --------------- |
+| `disableSearch`             | `search.disable` |
+| `disableSearchIndex`        | `search.index.disable` |
+| `disableSearchPage`         | `search.page.disable` |
+| `searchIndexURL`            | `search.index.URL` |
+| `searchPageURL`             | `search.page.URL` |
+| `additionalContentLanguage` | `search.adapter.params.additionalContentLanguage` |
