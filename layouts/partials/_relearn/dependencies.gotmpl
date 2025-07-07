@@ -15,9 +15,9 @@
 	{{- else if ne (index $.Params $disable) nil }}
 		{{- $wantsPage = true }}
 		{{- if $default }}
-			{{- warnf "%q: DEPRECATED front matter 'disable%s=false' found, remove it or use '%s.disable=false' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" $filepath .name (lower .name) (lower .name) }}
+			{{- warnf "%q: DEPRECATED front matter 'disable%s=false' found, remove it or use '%s.disable=false' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" $filepath .name (lower .name) }}
 		{{- else }}
-			{{- warnf "%q: DEPRECATED front matter 'disable%s=false' found, use '%s.force=true' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $filepath .name (lower .name) (lower .name) }}
+			{{- warnf "%q: DEPRECATED front matter 'disable%s=false' found, use '%s.force=true' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $filepath .name (lower .name) }}
 		{{- end }}
 	{{- else if and (eq .name "Math") (ne (index $.Params "disableMathJax") nil) }}
 		{{- $wantsPage = true }}
@@ -45,7 +45,7 @@
 	{{- else if ne (index $.Site.Params $disable) nil }}
 		{{- $wantsSite = true }}
 		{{- if $default }}
-			{{- warnf "DEPRECATED option 'disable%s=false' found, remove it or use '%s.disable=false' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" .name (lower .name) (lower .name) }}
+			{{- warnf "DEPRECATED option 'disable%s=false' found, remove it or use '%s.disable=false' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" .name (lower .name) }}
 		{{- else }}
 			{{- warnf "DEPRECATED option 'disable%s=false' found, use '%s.force=true' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" .name (lower .name) (lower .name) }}
 		{{- end }}
