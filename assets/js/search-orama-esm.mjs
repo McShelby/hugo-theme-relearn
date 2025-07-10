@@ -84,7 +84,7 @@ async function search(term) {
       // doesn't seem to make a difference in score
       tags: 1.8,
       title: 1.5,
-      descriptoin: 1.3,
+      description: 1.3,
       breadcrumb: 1.2,
     },
     //		distinctOn: 'title', // just to filter out changelog/releasenotes if having the same title
