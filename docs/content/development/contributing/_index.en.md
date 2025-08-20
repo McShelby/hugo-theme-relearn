@@ -28,7 +28,7 @@ Check for unnecessary whitespace and correct indention of your resulting HTML.
 
 Write commit messages in the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
-Following is an inpomplete list of some of the used conventional commit types. Be creative.
+Following is an incomplete list of some of the used conventional commit types. Be creative.
 
 | Common     | Feature    | Structure       | Shortcodes  |
 |------------|------------|-----------------|-------------|

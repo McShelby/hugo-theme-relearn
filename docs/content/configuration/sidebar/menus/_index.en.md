@@ -269,7 +269,7 @@ Notes:
 
 ### Page Menu
 
-The page menu generates a menu tree out of your directory structure. You can give it a starting page from where the tree is generated down. If now starting page is given, the home page is used.
+The page menu generates a menu tree out of your directory structure. You can give it a starting page from where the tree is generated down. If no starting page is given, the home page is used.
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
