@@ -1,0 +1,169 @@
+{{- $page := .page }}
+{{- if and (not $page) .context }}
+  {{- $page = .context }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'children' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
+{{- end }}
+{{- $showhidden := .showhidden | default false }}
+{{- if eq (printf "%T" $showhidden) "string" }}
+  {{- $showhidden = (eq $showhidden "true") }}
+{{- end }}
+{{- $style := .style | default "card" }}
+{{- $depth := .depth | default 1 }}
+{{- $withDescription := .description | default false }}
+{{- if eq (printf "%T" $withDescription) "string" }}
+  {{- $withDescription = (eq $withDescription "true") }}
+{{- end }}
+{{- $sortTerm :=  .sort | lower }}
+{{- $containerstyle :=  .containerstyle | default "ul" }}
+{{- if( and (not (eq $style "li") ) (eq $containerstyle "ul" ) ) }}
+  {{- $containerstyle = "div" }}
+{{- end }}
+{{- if eq $style "card" }}
+  {{- $containerstyle = "div" }}
+{{- end }}
+
+{{- with $page -}}
+{{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
+  {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
+  {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
+{{ (printf "</%s>" $containerstyle)|safeHTML }}
+{{- end }}
+
+{{- define "partials/inline/childs" }}
+  {{- $page := .page }}
+  {{- range .menu }}
+    {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+    {{- if not $hidden }}
+      {{- if not .IsHome }}
+        {{- if eq $.style "card" }}
+          {{- $cardImage := "" }}
+          {{- if .Params.featured_image }}
+            {{- $cardImage = .Params.featured_image }}
+          {{- else if .Params.image }}
+            {{- $cardImage = .Params.image }}
+          {{- else if .Params.banner }}
+            {{- $cardImage = .Params.banner }}
+          {{- else }}
+            {{- $bundle := . }}
+            {{- if .BundleType }}
+              {{- range $bundle.Resources.ByType "image" }}
+                {{- if and (not $cardImage) (or (eq .Name "featured.jpg") (eq .Name "featured.png") (eq .Name "featured.webp") (eq .Name "cover.jpg") (eq .Name "cover.png") (eq .Name "image.jpg") (eq .Name "image.png")) }}
+                  {{- $cardImage = .RelPermalink }}
+                {{- end }}
+              {{- end }}
+              {{- if not $cardImage }}
+                {{- $firstImage := index ($bundle.Resources.ByType "image") 0 }}
+                {{- if $firstImage }}
+                  {{- $cardImage = $firstImage.RelPermalink }}
+                {{- end }}
+              {{- end }}
+            {{- end }}
+          {{- end }}
+  <article class="child-card">
+          {{- if $cardImage }}
+    <div class="card-image">
+      <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" title="{{ .LinkTitle }}">
+        <img src="{{ $cardImage | relURL }}" alt="{{ .LinkTitle }}" loading="lazy">
+      </a>
+    </div>
+          {{- end }}
+    <div class="card-content">
+      <header class="card-header">
+        <h3 class="card-title">
+          {{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}
+        </h3>
+        {{- if .Date }}
+        <time class="card-date" datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "January 2, 2006" }}
+        </time>
+        {{- end }}
+        {{- if .Params.author }}
+        <div class="card-author">{{ .Params.author }}</div>
+        {{- end }}
+      </header>
+      {{- if $.description }}
+        {{- with or .Description .Summary -}}
+      <div class="card-excerpt">
+        <p>{{ . }}</p>
+      </div>
+        {{- end }}
+      {{- end }}
+      {{- if .Params.tags }}
+      <div class="card-tags">
+        {{- range first 3 .Params.tags }}
+        <span class="card-tag">{{ . }}</span>
+        {{- end }}
+      </div>
+      {{- end }}
+      <footer class="card-footer">
+        {{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-link" title="Read {{ .LinkTitle }}">Read more <i class="fas fa-chevron-right"></i></a>{{ end }}
+      </footer>
+    </div>
+        {{- else if hasPrefix $.style "h" }}
+          {{- $num := sub ( int (trim $.style "h") ) 1 }}
+          {{- $numn := add $num $.count }}
+{{ (printf `  <h%d class="children-title" id="%s">` $numn (.LinkTitle | plainify | anchorize))|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}{{ (printf "</h%d>" $numn)|safeHTML }}
+        {{- else if eq $.style "li" }}
+{{ (printf `  <%s class="children-title">` $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}
+        {{- else }}
+{{ (printf `  <%s class="children-title">` $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
+        {{- end }}
+        {{- if and $.description (ne $.style "card") }}
+          {{- with or .Description .Summary -}}
+<p>{{ . }}</p>
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if lt $.count $.depth }}
+        {{- if and (eq $.style "li") (ne $.style "card") }}
+{{- (printf "<%s>" $.containerstyle)|safeHTML }}
+        {{- end }}
+        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
+        {{- if eq $.style "card" }}
+        {{- if $pages }}
+    <div class="card-children">
+      <h4 class="card-children-title">Sub-sections</h4>
+        {{- range $pages }}
+          {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+          {{- if not $hidden }}
+      <div class="card-child-item">
+        <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-child-link">{{ .LinkTitle }}</a>
+        {{- if and $.description (.Description) }}
+        <p class="card-child-desc">{{ .Description | truncate 60 }}</p>
+        {{- end }}
+        {{- $nestedPages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
+        {{- if $nestedPages }}
+        <div class="card-nested-children">
+          {{- range $nestedPages }}
+            {{- $nestedHidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+            {{- if not $nestedHidden }}
+          <div class="card-child-item nested">
+            <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-child-link nested">{{ .LinkTitle }}</a>
+          </div>
+            {{- end }}
+          {{- end }}
+        </div>
+        {{- end }}
+      </div>
+          {{- end }}
+        {{- end }}
+    </div>
+        {{- end }}
+        {{- else }}
+        {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page) }}
+        {{- end }}
+        {{- if and (eq $.style "li") (ne $.style "card") }}
+{{- (printf "</%s>" $.containerstyle)|safeHTML }}
+        {{- end }}
+      {{- end }}
+      {{- if not .IsHome }}
+        {{- if eq $.style "card" }}
+  </article>
+        {{- else if eq $.style "li" }}
+{{- (printf "</%s>" $.style)|safeHTML -}}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
