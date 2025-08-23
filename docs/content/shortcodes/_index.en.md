@@ -17,4 +17,4 @@ To avoid Markdown's limitations, Hugo created [shortcodes](https://gohugo.io/con
 
 The Relearn theme provides many shortcodes on top of [Hugo's existing ones](https://gohugo.io/content-management/shortcodes/#embedded-shortcodes).
 
-{{% children containerstyle="div" style="h2" description=true %}}
+{{% children-cards description=true %}}
