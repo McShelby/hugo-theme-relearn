@@ -595,40 +595,40 @@ article .R-taxonomy.tags a.term-link:hover:after {
 .topbar-content a:hover,
 .topbar-content a:active,
 .topbar-content a:focus,
-article a:hover,
-article a:active,
-article a:focus,
-article a:hover .copy-to-clipboard,
-article a:active .copy-to-clipboard,
-article a:focus .copy-to-clipboard {
+article a:not(.card-link):hover,
+article a:not(.card-link):active,
+article a:not(.card-link):focus,
+article a:not(.card-link):hover .copy-to-clipboard,
+article a:not(.card-link):active .copy-to-clipboard,
+article a:not(.card-link):focus .copy-to-clipboard {
   text-decoration: underline;
 }
 .topbar-content a:hover,
 .topbar-content a:active,
 .topbar-content a:focus,
-article a:hover,
-article a:active,
-article a:focus,
-article a:hover .copy-to-clipboard,
-article a:active .copy-to-clipboard,
-article a:focus .copy-to-clipboard,
-article a.lightbox-back:hover > svg:only-child:empty,
-article a.lightbox-back:active > svg:only-child:empty,
-article a.lightbox-back:focus > svg:only-child:empty,
-article a.lightbox-back:hover > img:only-child:empty,
-article a.lightbox-back:active > img:only-child:empty,
-article a.lightbox-back:focus > img:only-child:empty,
+article a:not(.card-link):hover,
+article a:not(.card-link):active,
+article a:not(.card-link):focus,
+article a:not(.card-link):hover .copy-to-clipboard,
+article a:not(.card-link):active .copy-to-clipboard,
+article a:not(.card-link):focus .copy-to-clipboard,
+article a:not(.card-link).lightbox-back:hover > svg:only-child:empty,
+article a:not(.card-link).lightbox-back:active > svg:only-child:empty,
+article a:not(.card-link).lightbox-back:focus > svg:only-child:empty,
+article a:not(.card-link).lightbox-back:hover > img:only-child:empty,
+article a:not(.card-link).lightbox-back:active > img:only-child:empty,
+article a:not(.card-link).lightbox-back:focus > img:only-child:empty,
 article .btn > button:hover,
 article .btn > button:active,
 article .btn > button:focus {
   outline: none;
 }
-article a:hover > svg:only-child:empty,
-article a:active > svg:only-child:empty,
-article a:focus > svg:only-child:empty,
-article a:hover > img:only-child:empty,
-article a:active > img:only-child:empty,
-article a:focus > img:only-child:empty {
+article a:not(.card-link):hover > svg:only-child:empty,
+article a:not(.card-link):active > svg:only-child:empty,
+article a:not(.card-link):focus > svg:only-child:empty,
+article a:not(.card-link):hover > img:only-child:empty,
+article a:not(.card-link):active > img:only-child:empty,
+article a:not(.card-link):focus > img:only-child:empty {
   outline: 0.15rem solid var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
@@ -765,7 +765,9 @@ h1 {
   }
 }
 
-h2 {
+h2,
+.card-title,
+.children-type-list .children-title-1 {
   color: var(--INTERNAL-MAIN-TITLES-H2-TEXT-color);
   font-size: 2.2rem;
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H2-font-variation-settings);
@@ -811,6 +813,7 @@ h6 {
 }
 
 h2,
+.card-title,
 h3,
 .article-subheading,
 h4,
@@ -907,6 +910,8 @@ p:empty {
 #R-body table td > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
 #R-body .box > .box-content > :nth-child(1 of :not(:empty)),
 #R-body .box > .box-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
+#R-body .card-content > .card-content-text > :nth-child(1 of :not(:empty)),
+#R-body .card-content > .card-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
 #R-body .tab-content > .tab-content-text > :nth-child(1 of :not(:empty)),
 #R-body .tab-content > .tab-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
   margin-top: 0;
@@ -921,6 +926,9 @@ p:empty {
 #R-body .box > .box-content > :nth-last-child(1 of :not(:empty)),
 #R-body .box > .box-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body .box > .box-content > div:last-child pre:not(.mermaid),
+#R-body .card-content > .card-content-text > :nth-last-child(1 of :not(:empty)),
+#R-body .card-content > .card-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body .card-content > .card-content-text > div:last-child pre:not(.mermaid),
 #R-body .tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)),
 #R-body .tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body .tab-content > .tab-content-text > div:last-child pre:not(.mermaid) {
@@ -2918,6 +2926,171 @@ body.notfound #shrug svg {
 /* #1021 avoid mermaid tooltip layout shift */
 .mermaidTooltip {
   position: absolute;
+}
+
+/* cards */
+
+.card-container {
+  align-items: start;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+/* Prevent nested containers from breaking grid */
+.card-container .card-container {
+  display: block;
+  grid-template-columns: none;
+}
+
+.card-container .card-link {
+  display: block;
+  text-decoration: none;
+}
+
+.card-container .card {
+  background: var(--INTERNAL-BOX-BG-color);
+  border: 1px solid color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 10%, transparent);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--INTERNAL-MAIN-TEXT-color);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-height: 600px;
+  min-height: 300px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  position: relative;
+  transition: all 0.3s ease;
+  word-break: break-word;
+}
+
+.card-container > .card.card-popout {
+  border: 1px solid color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 33%, transparent);
+}
+
+/* top handle */
+.card-container .card::before {
+  background: linear-gradient(90deg, var(--INTERNAL-SECONDARY-color) 0%, color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 60%, white) 100%);
+  content: '';
+  height: 3px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-container .card.card-popout:hover {
+  border-color: color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 40%, transparent);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 25%, transparent);
+  transform: translateY(-4px) translateX(4px);
+}
+
+.card-container .card.card-popout:hover::before {
+  opacity: 1;
+}
+
+.card-container .card-image {
+  background: transparent;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-container .card-image:has(+ .card-content) {
+  min-height: 160px;
+  height: 160px;
+}
+
+.card-container .card-image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card-container .card-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  margin: 1.25rem 1rem;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.card-container .card-title {
+  color: var(--INTERNAL-MAIN-TITLES-TEXT-color);
+  flex: 0 0 auto;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 0;
+}
+
+.card-container .card-title a {
+  background: linear-gradient(135deg, var(--INTERNAL-SECONDARY-color) 0%, color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 60%, white) 100%);
+  background-size: 0% 2px;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.card-container .card-title a:hover {
+  background-size: 100% 2px;
+  color: var(--INTERNAL-SECONDARY-color);
+}
+
+.card-container .card-content-text {
+  flex: 1 1 auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* Responsive: 2 columns on tablet */
+@media screen and (max-width: 59.999rem) {
+  article:not(.narrow) .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 74.999rem) {
+  article.narrow .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive: 1 column on mobile */
+@media screen and (max-width: 47.999rem) {
+  .card-container {
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+
+  .card-container .card-content {
+    padding: 1rem;
+  }
+
+  .card-container .card-image:has(+ .card-content) {
+    height: 140px;
+  }
+}
+
+/* Dark theme compatibility */
+body[data-theme='dark'] .card-container .card,
+.relearn-dark .card-container .card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme='dark'] .card-container .card:hover,
+.relearn-dark .card-container .card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* color style definitions */
