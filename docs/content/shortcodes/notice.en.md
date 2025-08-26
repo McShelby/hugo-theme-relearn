@@ -14,7 +14,7 @@ It is all about the boxes.
 ## Usage
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="callout" %}}
+{{% tab title="markdown" %}}
 
 ````md
 > [!primary] There may be pirates
@@ -55,7 +55,7 @@ It is all about the boxes.
 {{% /tab %}}
 {{< /tabs >}}
 
-Callout syntax has limited features as it does not provide all of the below parameter. Nevertheless, it is widely available in other Markdown parsers like [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) or [Obsidian](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) and therefore is the recommend syntax for generating portable Markdown.
+[Markdown callout syntax](https://gohugo.io/render-hooks/blockquotes/#extended-syntax) has limited features as not all of the below parameter are accessible. Nevertheless, it is widely available in other Markdown parsers like [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) or [Obsidian](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) and therefore is the recommend syntax for generating portable Markdown.
 
 If you want to display a transparent expandable box without any border, you can also use the [`expand` shortcode](/shortcodes/expand).
 
@@ -65,9 +65,9 @@ If you want to display a transparent expandable box without any border, you can 
 |-----------------------|----------|-----------------|-------------|
 | **groupid**           |          | _&lt;empty&gt;_ | Arbitrary name of the group the box belongs to.<br><br>Expandable boxes with the same **groupid** sychronize their open state. |
 | **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`<br><br>You can also [define your own styles](#defining-own-styles). |
-| **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br>This is not available using callout syntax. |
+| **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br>This is not available using Markdown callout syntax. |
 | **title**             | 2        | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces)<br><br>This is not available using callout syntax. |
+| **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces)<br><br>This is not available using Markdown callout syntax. |
 | **expanded**          |          | _&lt;empty&gt;_ | Whether to draw an expander and how the content is displayed.<br><br>- _&lt;empty&gt;_: no expander is drawn and the content is permanently shown<br>- `true`: the expander is drawn and the content is initially shown<br>- `false`: the expander is drawn and the content is initially hidden |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
 
@@ -91,7 +91,7 @@ Below is a [usage example](#user-defined-style).
 
 ## Examples
 
-### By Severity Using Callout Syntax
+### By Severity Using Markdown Callout Syntax
 
 ````md
 > [!CAUTION]
@@ -301,7 +301,7 @@ Just a box
 Just a box
 {{% /notice %}}
 
-#### Various Callouts
+#### Various Markdown Callouts
 
 ````go
 > [!caution] Callouts can have custom titles

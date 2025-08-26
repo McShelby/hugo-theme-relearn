@@ -34,7 +34,7 @@ disableAssetsBusting = true
 
 ## Disabling IDs for Interactive HTML Elements
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Features like expanders, callouts, and tabs use unique IDs to work. These IDs change with each build.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Features like expanders, notices, and tabs use unique IDs to work. These IDs change with each build.
 
 This is necessary for the theme to work properly, but it can make comparing outputs between builds difficult.
 
