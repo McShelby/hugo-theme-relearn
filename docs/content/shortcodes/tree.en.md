@@ -16,7 +16,7 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 ## Usage
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="codefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```tree
@@ -55,7 +55,7 @@ The `tree` shortcode displays a list as a tree with configurable icons and color
 {{% /tab %}}
 {{< /tabs >}}
 
-Codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 ### Parameter
 

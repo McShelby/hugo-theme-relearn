@@ -17,7 +17,7 @@ graph LR;
 ## Usage
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="codefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```mermaid {align="center" zoom="true"}
@@ -54,7 +54,7 @@ graph LR;
 {{% /tab %}}
 {{< /tabs >}}
 
-Codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 ### Parameter
 
@@ -107,9 +107,9 @@ customMermaidURL = 'https://unpkg.com/mermaid/dist/mermaid.min.js'
 
 ### Force Loading of the Mermaid Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains an `mermaid` shortcode or codefence.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains an `mermaid` shortcode, Markdown codefence or the partial is called from your templates.
 
-You can force loading the Mermaid library if no shortcode or codefence was used by setting `mermaid.force=true`. If a shortcode or codefence was found, this option has no effect. This comes handy in case you are using scripting to render a graph.
+You can force loading the Mermaid library if no shortcode, Markdown codefence or partial was called by setting `mermaid.force=true`. If a shortcode, Markdown codefence or partial was called, this option has no effect. This comes handy in case you are using scripting to render a graph.
 
 {{< multiconfig section=params >}}
 mermaid.force = true

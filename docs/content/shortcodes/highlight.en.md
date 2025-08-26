@@ -15,7 +15,7 @@ print("Hello World!")
 ## Usage
 
 {{< tabs groupid="shortcode-parameter">}}
-{{% tab title="codeodefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```py {lineNos="true" wrap="true" title="python"}
@@ -76,7 +76,7 @@ It is called interchangeably in the same way as Hugo's own shortcode by providin
 
 You are free to also call this shortcode from your own partials. In this case it resembles Hugo's [`highlight` function](https://gohugo.io/functions/highlight/) syntax if you call it using compatibility syntax.
 
-Codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
 
 The [`tab` shortcode](shortcodes/tab) is also capable of displaying code but with limited options.
 

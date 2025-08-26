@@ -22,7 +22,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 ````
 
 {{% /tab %}}
-{{% tab title="codefence" %}}
+{{% tab title="markdown" %}}
 
 ````md
 ```math {align="center"}
@@ -90,9 +90,9 @@ customMathJaxURL = 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
 
 ### Force Loading of the MathJax Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains a `math` shortcode or codefence.
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains a `math` shortcode, Markdown codefence or the partial is called from your templates.
 
-You can force loading the MathJax library if no shortcode or codefence was used by setting `math=true`. If a shortcode or codefence was found, the option has no effect. This must be set in case you are using the [passthrough configuration](#passthrough-configuration) to render math.
+You can force loading the MathJax library if you are using passthrough syntax by setting `math=true`. If a shortcode, Markdown codefence or partial was called, the option has no effect. This must be set in case you are using the [passthrough configuration](#passthrough-configuration) to render math.
 
 Instead of `math=true` you can also use the alias `math.force=true`.
 
@@ -102,7 +102,7 @@ math = true
 
 ### Passthrough Configuration
 
-You can use your math without enclosing it in a shortcode or codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1)
+You can use your math without enclosing it in a shortcode or Markdown codefence by using a [passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1)
 
 {{< multiconfig file=hugo >}}
 [markup]
@@ -123,7 +123,7 @@ In this case you have to [force load](#force-loading-of-the-mathjax-library) the
 
 ### Passthrough Block Math
 
-With [passthrough configuration](#passthrough-configuration) enabled you can just drop your math without enclosing it by shortcodes or codefences but no other [parameters](#parameter) are available.
+With [passthrough configuration](#passthrough-configuration) enabled you can just drop your math without enclosing it by shortcodes or Markdown codefences but no other [parameters](#parameter) are available.
 
 In this case you have to [force load](#force-loading-of-the-mathjax-library) the MathJax library by setting `math=true` either in your `hugo.toml` or in your page's front matter.
 
@@ -155,9 +155,9 @@ Euclid already knew, $\sqrt{2}$ is irrational.
 
 Euclid already knew, $\sqrt{2}$ is irrational.
 
-### Codefence Block Math with Right Alignment
+### Markdown Codefence Block Math with Right Alignment
 
-If you are using codefences, more [parameter](#parameter) are available. Your formulae still needs to be enclosed by `$` or `$$` as delimiters respectively.
+If you are using Markdown codefences, more [parameter](#parameter) are available. Your formulae still needs to be enclosed by `$` or `$$` as delimiters respectively.
 
 
 ````md
