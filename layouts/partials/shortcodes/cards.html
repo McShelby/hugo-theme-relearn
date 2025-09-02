@@ -1,0 +1,65 @@
+{{- $page := .page }}
+{{- $color := .color }}
+{{- $style := .style }}
+{{- $cards := slice }}
+{{- range $card := (.content | default slice) }}
+  {{- with $card }}
+    {{- $image := .image }}
+    {{- $color := .color | default $color | default "" }}
+    {{- $content := trim .content "\n\r\t " }}
+    {{- $hasContent := ne (strings.TrimPrefix "<p>" $content) "" }}
+    {{- if not (hasPrefix $content "<") }}
+      {{- $content = printf "<p>\n%s" $content }}
+    {{- end }}
+    {{- $style := .style | default $style | default (cond (ne $color "") "filled" "initial") }}
+    {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
+    {{- if and (not $boxStyle.style) (not $color) }}
+      {{- $color = $style }}
+      {{- $style = "" }}
+    {{- end }}
+    {{- $title := trim ($boxStyle.title) " " }}
+    {{- $icon := trim ($boxStyle.icon) " " }}
+    {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
+      {{- $icon = printf "fa-fw fas fa-%s" $icon }}
+    {{- end }}
+    {{- if or $image $title $hasContent }}
+      {{- $cards = $cards | append (dict
+        "color"   $color
+        "content" (cond $hasContent $content "")
+        "icon"    $icon
+        "image"   $image
+        "style"   $style
+        "title"   $title
+      ) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- with $page }}
+  {{- if len $cards -}}
+<div class="card-container">
+    {{- range $cards }}
+  <article class="card">
+      {{- with .image }}
+    <div class="card-image">
+      <img src="{{ . | relURL }}">
+    </div>
+      {{- end }}
+      {{- if or .title .content }}
+    <div class="card-content">
+        {{- with .title }}
+      <h3 class="card-title">
+          {{ . | $page.RenderString}}
+      </h3>
+        {{- end }}
+        {{- with .content }}
+      <div class="card-content-text">
+{{ . | safeHTML }}
+      </div>
+        {{- end }}
+    </div>
+      {{- end }}
+  </article>
+    {{- end }}
+</div>
+  {{- end }}
+{{- end }}
