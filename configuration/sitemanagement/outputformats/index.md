@@ -14,7 +14,7 @@ Enable print support to print entire chapters or the whole site. Add the `print`
 [outputs]
   home = ['html', 'rss', 'print']
   section = ['html', 'rss', 'print']
-  page = ['html', 'rss', 'print']
+  page = ['html', 'print']
 {{< /multiconfig >}}
 
 By default this adds a printer icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#print-button). Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
@@ -42,7 +42,7 @@ Enable support to show the Markdown source of a page. Add the `markdown` output 
 [outputs]
   home = ['html', 'rss', 'markdown']
   section = ['html', 'rss', 'markdown']
-  page = ['html', 'rss', 'markdown']
+  page = ['html', 'markdown']
 {{< /multiconfig >}}
 
 By default this adds a Markdown icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#markdown-button). Clicking it switches to the Markdown source including the title of the page.
@@ -57,7 +57,7 @@ Enable support to show the source code of a page if it was generated from a file
 [outputs]
   home = ['html', 'rss', 'source']
   section = ['html', 'rss', 'source']
-  page = ['html', 'rss', 'source']
+  page = ['html', 'source']
 {{< /multiconfig >}}
 
 By default this adds a Source icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#source-button). Clicking it switches to the source code of the page.
