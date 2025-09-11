@@ -5,7 +5,7 @@ title = 'Output Formats'
 weight = 7
 +++
 
-Hugo can display your content in different [formats](https://gohugo.io/templates/output-formats/) like HTML, JSON, Google AMP, etc. To do this, templates must be provided.
+Hugo can display your content in different [formats](https://gohugo.io/configuration/output-formats/) like HTML, JSON, Google AMP, etc. To do this, templates must be provided.
 
 The Relearn theme by default comes with templates for [HTML, HTML for print, RSS and Markdown](configuration/sitemanagement/outputformats). If this is not enough, this page describes how you can create your own output formats.
 

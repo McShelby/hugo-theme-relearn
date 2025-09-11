@@ -39,4 +39,4 @@ images = [ 'images/hero.png' ]
 
 ## More Social Media Options
 
-The theme adheres to Hugo's official documentation for [Open Graph](https://gohugo.io/templates/embedded/#configure-open-graph) and [Twitter Cards](https://gohugo.io/templates/embedded/#configure-x-twitter-cards) configuration.
+The theme adheres to Hugo's official documentation for [Open Graph](https://gohugo.io/templates/embedded/#configuration-open-graph) and [Twitter Cards](https://gohugo.io/templates/embedded/#configuration-x-cards) configuration.
