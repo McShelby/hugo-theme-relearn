@@ -53,7 +53,7 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - https://github.com/actions/checkout
   - https://github.com/actions/setup-node
   - https://github.com/Akkjon/close-milestone
-  - https://github.com/azarc-io/regex-property-action
+  - https://github.com/ashley-taylor/regex-property-action
   - https://github.com/guibranco/github-file-reader-action-v2
   - https://github.com/Kaven-Universe/github-action-current-date-time
   - https://github.com/octokit/graphql-action
