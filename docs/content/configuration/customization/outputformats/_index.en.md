@@ -32,7 +32,7 @@ Therefore we add a new output format called `email` that outputs HTML and assemb
     [outputs]
       home = ["html", "rss", "email"]
       section = ["html", "rss", "email"]
-      page = ["html", "rss", "email"]
+      page = ["html", "email"]
     {{< /multiconfig >}}
 
 2. Create a file `layouts/_default/baseof.email.html`
