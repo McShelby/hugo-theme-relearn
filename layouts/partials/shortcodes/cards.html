@@ -1,6 +1,7 @@
 {{- $page := .page }}
 {{- $color := .color }}
 {{- $style := .style }}
+{{- $template := .template }}
 {{- $cards := slice }}
 {{- range $card := (.content | default slice) }}
   {{- with $card }}
@@ -22,14 +23,22 @@
     {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
       {{- $icon = printf "fa-fw fas fa-%s" $icon }}
     {{- end }}
-    {{- if or $image $title $hasContent }}
+    {{- $template := .template | default $template | default "default" }}
+    {{- $params := .params }}
+    {{- if eq (printf "%T" $params) "string" }}
+      {{- warnf "%s" $params }}
+      {{- $params = unmarshal $params }}
+    {{- end }}
+    {{- if or $image $title $hasContent $params }}
       {{- $cards = $cards | append (dict
-        "color"   $color
-        "content" (cond $hasContent $content "")
-        "icon"    $icon
-        "image"   $image
-        "style"   $style
-        "title"   $title
+        "color"    $color
+        "content"  (cond $hasContent $content "")
+        "icon"     $icon
+        "image"    $image
+        "params"   $params
+        "style"    $style
+        "template" $template
+        "title"    $title
       ) }}
     {{- end }}
   {{- end }}
@@ -38,27 +47,17 @@
   {{- if len $cards -}}
 <div class="card-container">
     {{- range $cards }}
-  <article class="card">
-      {{- with .image }}
-    <div class="card-image">
-      <img src="{{ . | relURL }}">
-    </div>
-      {{- end }}
-      {{- if or .title .content }}
-    <div class="card-content">
-        {{- with .title }}
-      <h3 class="card-title">
-          {{ . | $page.RenderString}}
-      </h3>
-        {{- end }}
-        {{- with .content }}
-      <div class="card-content-text">
-{{ . | safeHTML }}
-      </div>
-        {{- end }}
-    </div>
-      {{- end }}
-  </article>
+      {{- $template = printf "cards/%s.html" .template }}
+      {{- partial $template (dict
+          "page"    $page
+          "color"   .color
+          "content" .content
+          "icon"    .icon
+          "image"   .image
+          "params"  .params
+          "style"   .style
+          "title"   .title
+      ) }}
     {{- end }}
 </div>
   {{- end }}

@@ -138,6 +138,18 @@ reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
 
 ---
 
+## Parameter & Template
+
+{{< cards >}}
+{{% card template="debug" params={"blub":"bla"} %}}
+Give arbitrary parameter as string (JSON, TOML, YAML) or map.
+
+Show those parameter with the custom `debug` card template or use them in your own card template stored in `layouts/partials/cards`.
+{{% /card %}}
+{{< /cards >}}
+
+---
+
 ## Original rcastley
 
 {{% children-cards description=true depth=3 %}}

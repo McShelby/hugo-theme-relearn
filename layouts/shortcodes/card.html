@@ -1,30 +1,35 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
-{{- $color   := (.Get "color") }}
-{{- $content := .Inner }}
-{{- $icon    := (.Get "icon") }}
-{{- $image   := (.Get "image") }}
-{{- $style   := (.Get "style") }}
-{{- $title   := (.Get "title") }}
+{{- $color    := (.Get "color") }}
+{{- $content  := .Inner }}
+{{- $icon     := (.Get "icon") }}
+{{- $image    := (.Get "image") }}
+{{- $params   := (.Get "params") }}
+{{- $style    := (.Get "style") }}
+{{- $template := (.Get "template") }}
+{{- $title    := (.Get "title") }}
 {{- $cards := slice }}
 {{- if and .Parent (.Parent.Scratch.Get "cards") }}
     {{- $cards = .Parent.Scratch.Get "cards" }}
 {{- end }}
 {{- $cards = $cards | append (dict
-    "color"   $color
-    "content" $content
-    "icon"    $icon
-    "image"   $image
-    "style"   $style
-    "title"   $title
+    "color"    $color
+    "content"  $content
+    "icon"     $icon
+    "image"    $image
+    "params"   $params
+    "style"    $style
+    "template" $template
+    "title"    $title
 ) }}
 {{- if .Parent }}
     {{- $.Parent.Scratch.Set "cards" $cards }}
 {{- else }}
     {{- /* if no containing cards shortcode is present, we display this card as single */}}
     {{- partial "shortcodes/cards.html" (dict
-        "page"    .Page
-        "color"   ""
-        "content" $cards
-        "style"   ""
+        "page"     .Page
+        "color"    ""
+        "content"  $cards
+        "style"    ""
+        "template" ""
     ) }}
 {{- end }}

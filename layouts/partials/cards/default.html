@@ -1,0 +1,22 @@
+{{- $page := .page }}
+  <article class="card">
+      {{- with .image }}
+    <div class="card-image">
+      <img src="{{ . | relURL }}">
+    </div>
+      {{- end }}
+      {{- if or .title .content }}
+    <div class="card-content">
+        {{- with .title }}
+      <h3 class="card-title">
+          {{ . | $page.RenderString}}
+      </h3>
+        {{- end }}
+        {{- with .content }}
+      <div class="card-content-text">
+{{ . | safeHTML }}
+      </div>
+        {{- end }}
+    </div>
+      {{- end }}
+  </article>
