@@ -72,18 +72,10 @@ The `children` shortcode lists the child pages of the current page and its desce
 
 {{% children depth="999" showhidden="true" %}}
 
-### Heading Styles for Container and Elements
+### List Style with Depth and Description
 
 ````go
-{{%/* children containerstyle="div" style="h2" depth="3" description="true" */%}}
+{{%/* children type="list" depth="3" description="true" */%}}
 ````
 
-{{% children containerstyle="div" style="h2" depth="3" description="true" %}}
-
-### Divs for Group and Element Styles
-
-````go
-{{%/* children containerstyle="div" style="div" depth="3" */%}}
-````
-
-{{% children containerstyle="div" style="div" depth="3" %}}
+{{% children type="list" depth="3" description="true" %}}

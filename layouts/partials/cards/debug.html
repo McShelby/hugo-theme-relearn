@@ -1,5 +1,5 @@
 {{- $page := .page }}
-  <article class="card">
+  <article class="card"{{if .title}}aria-labelledby="id1234"{{end}}>
       {{- with .image }}
     <div class="card-image">
       <img src="{{ . | relURL }}">
@@ -8,9 +8,9 @@
       {{- if or .title .content .params }}
     <div class="card-content">
         {{- with .title }}
-      <h3 class="card-title">
+      <div class="card-title" id="id1234">
           {{ . | $page.RenderString}}
-      </h3>
+      </div>
         {{- end }}
         {{- if or .content .params }}
       <div class="card-content-text">

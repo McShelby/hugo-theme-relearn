@@ -4,26 +4,49 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'children' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
+{{- $type := .type | default "tree" }}
 {{- $showhidden := .showhidden | default false }}
 {{- if eq (printf "%T" $showhidden) "string" }}
   {{- $showhidden = (eq $showhidden "true") }}
 {{- end }}
-{{- $style := .style | default "li" }}
 {{- $depth := .depth | default 1 }}
 {{- $withDescription := .description | default false }}
 {{- if eq (printf "%T" $withDescription) "string" }}
   {{- $withDescription = (eq $withDescription "true") }}
 {{- end }}
 {{- $sortTerm :=  .sort | lower }}
-{{- $containerstyle :=  .containerstyle | default "ul" }}
-{{- if( and (not (eq $style "li") ) (eq $containerstyle "ul" ) ) }}
+
+{{- $style := "" }}
+{{- $containerstyle := "" }}
+{{- if eq $type "tree" }}
+  {{- $style = "li" }}
+  {{- $containerstyle = "ul" }}
+{{- else if eq $type "list" }}
+  {{- $style = "h2" }}
+  {{- $containerstyle = "div" }}
+{{- else if eq $type "card" }}
+  {{- $style = "card" }}
   {{- $containerstyle = "div" }}
 {{- end }}
 
 {{- with $page -}}
 {{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
   {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
-  {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
+  {{- if eq $type "card" }}
+    {{- range $pages }}
+      {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
+      {{- if not $hidden }}
+        <div class="child-card">
+          <div class="card-title">{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}</div>
+          {{- if $withDescription }}
+            {{- with or .Description .Summary }}<div class="card-content-text">{{ . }}</div>{{- end }}
+          {{- end }}
+        </div>
+      {{- end }}
+    {{- end }}
+  {{- else }}
+    {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
+  {{- end }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
 {{- end }}
 
