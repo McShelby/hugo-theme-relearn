@@ -167,7 +167,7 @@
       var state = window.history.state || {};
       state = Object.assign({}, typeof state === 'object' ? state : {});
       state.search = window.location.toString();
-      window.history.replaceState(state, '', window.location);
+      window.history.replaceState(state, '');
     }
 
     new autoComplete({

@@ -1380,7 +1380,7 @@ function initScrollPositionSaver() {
     var state = window.history.state || {};
     state = Object.assign({}, typeof state === 'object' ? state : {});
     state.contentScrollTop = +elc.scrollTop;
-    window.history.replaceState(state, '', window.location);
+    window.history.replaceState(state, '');
   }
 
   var ticking = false;
