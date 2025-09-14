@@ -1,5 +1,11 @@
 <span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+{{- $ver := partial "version.txt" }}
+{{- $url := printf "https://github.com/McShelby/hugo-theme-relearn/releases/tag/%s" $ver }}
+{{- if in $ver "+" }}
+  {{- $commit := replaceRE "^.*\\+" "" $ver }}
+  {{- $url = printf "https://github.com/McShelby/hugo-theme-relearn/commit/%s" $commit }}
+{{- end }}
+<p>Built with <a href="{{ $url }}" title="Relearn {{ $ver }}"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
 {{- with resources.Get "/js/github-buttons/github-buttons.js" }}
 <script>
   function githubButtonsScheme(){
