@@ -51,7 +51,7 @@ Check for duplicate URLs by running `hugo --printPathWarnings`.
 
 ## Search Adapter / Engine
 
-{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The theme supports different search engines through adapters. Each different adapter may has its own set of configuration.
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The theme supports different search engines through adapters. Each different adapter may have its own set of configuration.
 
 By default, it uses the [Lunr](https://lunrjs.com/) search engine.
 
