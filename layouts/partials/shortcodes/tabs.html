@@ -4,7 +4,7 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $groupid := .groupid | default (partial "_relearn/makeRandomMd5.gotmpl" $page) | plainify | anchorize }}
+{{- $groupid := printf "R-tabs-%s" (or .groupid (partial "_relearn/makeRandomMd5.gotmpl" $page) | md5) }}
 {{- $color := .color }}
 {{- $style := .style }}
 {{- $title := .title }}
@@ -34,12 +34,14 @@
     {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
       {{- $icon = printf "fa-fw fas fa-%s" $icon }}
     {{- end }}
+    {{- /* a tab may have only an icon with no title, so we need to take this into account for groupid switching */}}
+    {{- $itemid := or ($title | $page.RenderString | plainify) $icon | md5 }}
     {{- if $hasContent }}
       {{- $tabs = $tabs | append (dict
         "color"   $color
         "content" $content
         "icon"    $icon
-        "itemid"  (printf "%s%s" ($title | $page.RenderString | plainify | anchorize) ($icon | plainify | anchorize))
+        "itemid"  (printf "R-tab-%s" $itemid)
         "style"   $style
         "title"   $title
       ) }}
