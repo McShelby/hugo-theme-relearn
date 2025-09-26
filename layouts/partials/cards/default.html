@@ -1,5 +1,8 @@
 {{- $page := .page }}
-  <article class="card"{{if .title}}aria-labelledby="id1234"{{end}}>
+  {{- $renderedtitle := .title | $page.RenderString}}
+  {{- $renderedcontent := .content | $page.RenderString}}
+  {{- $itemid := printf "R-card-%s" (printf "%s%s" $renderedtitle $renderedcontent | plainify | md5) }}
+  <article class="card"{{if .title}} aria-labelledby="{{ $itemid }}"{{end}}>
       {{- with .image }}
     <div class="card-image">
       <img src="{{ . | relURL }}">
@@ -8,13 +11,13 @@
       {{- if or .title .content }}
     <div class="card-content">
         {{- with .title }}
-      <div class="card-title" id="id1234">
-          {{ . | $page.RenderString}}
+      <div class="card-title" id="{{ $itemid }}">
+          {{ $renderedtitle | safeHTML }}
       </div>
         {{- end }}
         {{- with .content }}
       <div class="card-content-text">
-{{ . | safeHTML }}
+          {{ $renderedcontent | safeHTML }}
       </div>
         {{- end }}
     </div>
