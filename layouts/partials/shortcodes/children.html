@@ -22,7 +22,7 @@
   {{- $style = "li" }}
   {{- $containerstyle = "ul" }}
 {{- else if eq $type "list" }}
-  {{- $style = "h2" }}
+  {{- $style = "div" }}
   {{- $containerstyle = "div" }}
 {{- else if eq $type "card" }}
   {{- $style = "card" }}
@@ -30,7 +30,7 @@
 {{- end }}
 
 {{- with $page -}}
-{{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
+{{ (printf "<%s class=\"children children-type-%s children-sort-%s\">" $containerstyle $type $sortTerm)|safeHTML }}
   {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
   {{- if eq $type "card" }}
     {{- range $pages }}
@@ -56,14 +56,10 @@
     {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
     {{- if not $hidden }}
       {{- if not .IsHome }}
-        {{- if hasPrefix $.style "h" }}
-          {{- $num := sub ( int (trim $.style "h") ) 1 }}
-          {{- $numn := add $num $.count }}
-{{ (printf `  <h%d class="children-title" id="%s">` $numn (.LinkTitle | plainify | anchorize))|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}{{ (printf "</h%d>" $numn)|safeHTML }}
-        {{- else if eq $.style "li" }}
-{{ (printf `  <%s class="children-title">` $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}
+        {{- if eq $.style "li" }}
+{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int))|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}
         {{- else }}
-{{ (printf `  <%s class="children-title">` $.style)|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
+{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int))|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
         {{- end }}
         {{- if $.description }}
           {{- with or .Description .Summary -}}
