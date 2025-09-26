@@ -4,17 +4,12 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'button' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $color := .color | default "" }}
-{{- $content := .content }}
-{{- $href := (trim .href " ") | default "" }}
-{{- $style := .style | default "default" }}
-{{- if and (not $color) (eq (len $color) 0) }}
-  {{- $style = .style | default "transparent" }}
-{{- end }}
+
 {{- $attributes := .attributes | default dict }}
 {{- $type := .type | default "" }}
 {{- $isButton := false }}
 {{- $isLink := false }}
+{{- $href := (trim .href " ") | default "" }}
 {{- if or $type (strings.HasPrefix $href "javascript:") }}
   {{- $isButton = true }}
   {{- $href = substr $href (len "javascript:") }}
@@ -41,7 +36,14 @@
     {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- warnf "%q: DEPRECATED parameter 'target' for shortcode 'button' found, use link effects instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-4-0" $filepath }}
   {{- end }}
-  {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "target" .target)) -}}
+  {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "target" .target)) }}
+{{- end }}
+
+{{- $color := .color | default "" }}
+{{- $content := .content }}
+{{- $style := .style | default "default" }}
+{{- if and (not $color) (eq (len $color) 0) }}
+  {{- $style = .style | default "transparent" }}
 {{- end }}
 {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" (or .title $content) "icon" .icon) }}
 {{- if and (not $boxStyle.style) (not $color) }}

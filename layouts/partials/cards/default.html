@@ -1,7 +1,22 @@
 {{- $page := .page }}
-  {{- $renderedtitle := .title | $page.RenderString}}
-  {{- $renderedcontent := .content | $page.RenderString}}
-  {{- $itemid := printf "R-card-%s" (printf "%s%s" $renderedtitle $renderedcontent | plainify | md5) }}
+{{- $renderedtitle := .title | $page.RenderString}}
+{{- $renderedcontent := .content | $page.RenderString}}
+{{- $itemid := printf "R-card-%s" (printf "%s%s" $renderedtitle $renderedcontent | plainify | md5) }}
+{{- if .hrefattributes }}
+  {{- $hrefattributes := merge .hrefattributes (dict "class" (.hrefattributes.class | default "" | print " card-link")) }}
+<a
+  {{- range $k, $v := $hrefattributes }}
+    {{- if $v }}
+      {{- if eq (printf "%T" $v) "bool" }}
+        {{- printf " %s" $k | safeHTMLAttr }}
+      {{- else }}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- end }}
+    {{- end }}
+  {{- end }}>
+{{- else if .href }}
+<a href="{{ .href | safeJS }}" class="card-link">
+{{- end }}
   <article class="card"{{if .title}} aria-labelledby="{{ $itemid }}"{{end}}>
       {{- with .image }}
     <div class="card-image">
@@ -23,3 +38,6 @@
     </div>
       {{- end }}
   </article>
+{{- if or .hrefattributes .href }}
+</a>
+{{- end }}

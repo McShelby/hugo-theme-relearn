@@ -87,3 +87,11 @@ The `children` shortcode lists the child pages of the current page and its desce
 ````
 
 {{% children type="flat" depth="3" %}}
+
+### Card Style
+
+````go
+{{%/* children type="card" */%}}
+````
+
+{{% children type="card" %}}

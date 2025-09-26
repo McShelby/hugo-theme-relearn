@@ -138,6 +138,29 @@ reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
 
 ---
 
+## Link
+
+{{< cards >}}
+{{% card href="/introduction" title="Linkcard with internal link" %}}
+{{% /card %}}
+{{% card href="http://example.com" title="Linkcard with Code" %}}
+```c
+printf("Hello World!");
+```
+{{% /card %}}
+{{% card href="http://example.com" title="Linkcard with a title" %}}
+{{% /card %}}
+{{% card href="http://example.com" image="/images/magic.gif" %}}
+{{% /card %}}
+{{% card href="http://example.com" title="Linkcard with link" %}}
+Some title and a [link](http://exmaple.com)
+
+This is not allowed and will cause your layout to mess up.
+{{% /card %}}
+{{< /cards >}}
+
+---
+
 ## Parameter & Template
 
 {{< cards >}}
@@ -149,6 +172,10 @@ Show those parameter with the custom `debug` card template or use them in your o
 {{< /cards >}}
 
 ---
+
+## Theme
+
+{{% children type="card" description=true cardtemplate="default" %}}
 
 ## Original rcastley
 

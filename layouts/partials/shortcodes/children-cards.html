@@ -24,7 +24,7 @@
 {{- end }}
 
 {{- with $page -}}
-{{ (printf "<%s class=\"children children-%s children-sort-%s\">" $containerstyle $style $sortTerm)|safeHTML }}
+{{ (printf "<%s class=\"children children-card-rc children-sort-%s\">" $containerstyle $sortTerm)|safeHTML }}
   {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
   {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
