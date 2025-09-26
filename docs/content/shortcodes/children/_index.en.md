@@ -79,3 +79,11 @@ The `children` shortcode lists the child pages of the current page and its desce
 ````
 
 {{% children type="list" depth="3" description="true" %}}
+
+### Flat List Style with Depth
+
+````go
+{{%/* children type="flat" depth="3" */%}}
+````
+
+{{% children type="flat" depth="3" %}}
