@@ -1,30 +1,19 @@
 {{- $page := .page }}
-  <article class="card"{{if .title}}aria-labelledby="id1234"{{end}}>
-      {{- with .image }}
-    <div class="card-image">
-      <img src="{{ . | relURL }}">
+<article class="card">
+  <div class="card-content">
+      {{- with .title }}
+    <div class="card-title">
+        {{ . | $page.RenderString}}
     </div>
       {{- end }}
-      {{- if or .title .content .params }}
-    <div class="card-content">
-        {{- with .title }}
-      <div class="card-title" id="id1234">
-          {{ . | $page.RenderString}}
-      </div>
-        {{- end }}
-        {{- if or .content .params }}
-      <div class="card-content-text">
-          {{- with .content }}
-{{ . | safeHTML }}
-          {{- end }}
-          {{- with .params }}
-        <strong>Parameter</strong><br><br>
-            {{- range $key, $value := . }}
-        <strong>{{ $key }}:</strong> {{ $value }}<br>
-            {{- end }}
-          {{- end }}
-      </div>
-        {{- end }}
+    <div class="card-content-text">
+      <p>All Parameter
+{{ partial "shortcodes/highlight.html" (dict
+  "page"    $page
+  "content" (. | jsonify (dict "indent" "  "))
+  "type"    "json"
+)}}
+      </p>
     </div>
-      {{- end }}
-  </article>
+  </div>
+</article>

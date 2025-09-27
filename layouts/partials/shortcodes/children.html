@@ -16,7 +16,17 @@
 {{- end }}
 {{- $sortTerm := .sort | lower }}
 {{- $cardtemplate := .cardtemplate | default "default" }}
-
+{{- if or .containerstyle .style }}
+  {{- if or (eq .containerstyle "ul") (eq .style "li") }}
+    {{- $type = "tree" }}
+  {{- else if hasPrefix .style "h" }}
+    {{- $type = "list" }}
+  {{- else }}
+    {{- $type = "flat" }}
+  {{- end }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'containerstyle' or 'style' for shortcode 'children' found, use 'type=%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-1-0" $filepath $type }}
+{{- end }}
 {{- $style := "div" }}
 {{- $containerstyle := "div" }}
 {{- if eq $type "tree" }}
@@ -42,7 +52,11 @@
         {{- else }}
           {{- if .BundleType }}
             {{- range .Resources.ByType "image" }}
-              {{- if or (eq .Name "featured.jpg") (eq .Name "featured.png") (eq .Name "featured.webp") (eq .Name "cover.jpg") (eq .Name "cover.png") (eq .Name "image.jpg") (eq .Name "image.png") }}
+              {{- if or
+                (eq .Name "featured.webp") (eq .Name "featured.png") (eq .Name "featured.jpg") (eq .Name "featured.jpeg")
+                (eq .Name "cover.webp") (eq .Name "cover.png") (eq .Name "cover.jpg") (eq .Name "cover.jpeg")
+                (eq .Name "image.webp") (eq .Name "image.png") (eq .Name "image.jpg") (eq .Name "image.jpeg")
+              }}
                 {{- $cardimage = printf "%s" .}}
                 {{- break }}
               {{- end }}
