@@ -1,0 +1,84 @@
+{{- $page := .page }}
+{{- $cardpage := .params.page }}
+{{- $renderedtitle := .title | $page.RenderString }}
+{{- $renderedcontent := .content | $page.RenderString }}
+<article class="child-card-rc">
+    {{- with .image }}
+  <div class="card-image">
+      {{ if $.href }}<a href="{{ $.href }}" title="{{ $renderedtitle }}">{{ end }}
+      <img src="{{ . }}" alt="{{ $renderedtitle }}" loading="lazy">
+      {{ if $.href }}</a>{{ end }}
+  </div>
+    {{- end }}
+    {{- if or .title .content }}
+  <div class="card-content">
+    <header class="card-header">
+      {{- with .title }}
+      <h3 class="card-title">
+        {{ if $.href }}<a href="{{ $.href }}">{{ $renderedtitle }}</a>{{ else }}<span>{{ $renderedtitle }}</span>{{ end }}
+      </h3>
+      {{- end }}
+      {{- with and $cardpage $cardpage.Date }}
+      <time class="card-date" datetime="{{ .Format "2006-01-02" }}">
+        {{ .Format "January 2, 2006" }}
+      </time>
+      {{- end }}
+      {{- with and $cardpage $cardpage.Params.author }}
+      <div class="card-author">{{ . }}</div>
+      {{- end }}
+    </header>
+      {{- if .content }}
+    <div class="card-excerpt">
+      <p>{{ $renderedcontent }}</p>
+    </div>
+      {{- end }}
+      {{- with $cardpage.Params.tags }}
+    <div class="card-tags">
+        {{- range first 3 . }}
+      <span class="card-tag">{{ . }}</span>
+        {{- end }}
+    </div>
+      {{- end }}
+    <footer class="card-footer">
+      {{ with $.href }}<a href="{{ . }}" class="card-link" title="Read {{ $renderedtitle }}">Read more <i class="fas fa-chevron-right"></i></a>{{ end }}
+    </footer>
+  </div>
+      {{- if (gt  $.params.depth 1) }}
+        {{- with $cardpage }}
+          {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.params.sort) }}
+          {{- if $pages }}
+    <div class="card-children">
+      <h4 class="card-children-title">Sub-sections</h4>
+            {{- range $pages }}
+              {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.params.showhidden) }}
+              {{- if not $hidden }}
+      <div class="card-child-item">
+        <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-child-link">{{ .LinkTitle }}</a>
+                {{- if and $.params.description (.Description) }}
+        <p class="card-child-desc">{{ .Description | truncate 60 }}</p>
+                {{- end }}
+                {{- if (gt $.params.depth 2) }}
+                  {{- $nestedPages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.params.sort) }}
+                  {{- if $nestedPages }}
+        <div class="card-nested-children">
+                    {{- range $nestedPages }}
+                      {{- $nestedHidden := and (or (.Params.hidden) (eq .Title "")) (not $.params.showhidden) }}
+                      {{- if not $nestedHidden }}
+          <div class="card-child-item nested">
+            <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-child-link nested">{{ .LinkTitle }}</a>
+          </div>
+                      {{- end }}
+                    {{- end }}
+        </div>
+                  {{- end }}
+                {{- end }}
+      </div>
+              {{- end }}
+            {{- end }}
+    </div>
+          {{- end }}
+        {{- end }}
+      {{- end }}
+
+    {{- end }}
+</article>

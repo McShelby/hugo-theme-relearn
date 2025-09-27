@@ -88,10 +88,10 @@ The `children` shortcode lists the child pages of the current page and its desce
 
 {{% children type="flat" depth="3" %}}
 
-### Card Style
+### Card Style with Description
 
 ````go
-{{%/* children type="card" */%}}
+{{%/* children type="card" description="true" */%}}
 ````
 
-{{% children type="card" %}}
+{{% children type="card" description="true" %}}

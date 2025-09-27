@@ -17,6 +17,10 @@ To avoid Markdown's limitations, Hugo created [shortcodes](https://gohugo.io/con
 
 The Relearn theme provides many shortcodes on top of [Hugo's existing ones](https://gohugo.io/content-management/shortcodes/#embedded-shortcodes).
 
+## Testing the Cards Shortcode
+
+### Empty Cards
+
 {{< cards >}}
 {{< /cards >}}
 
@@ -27,7 +31,7 @@ The Relearn theme provides many shortcodes on top of [Hugo's existing ones](http
 
 ---
 
-## Title
+### Title
 
 {{< cards >}}
 {{% card title="Just a title" %}}
@@ -80,7 +84,7 @@ reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
 
 ---
 
-## Content
+### Content
 
 {{< cards >}}
 {{% card %}}
@@ -129,7 +133,7 @@ reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
 
 ---
 
-## Image
+### Image
 
 {{< cards >}}
 {{% card image="/images/magic.gif" %}}
@@ -138,7 +142,7 @@ reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
 
 ---
 
-## Link
+### Link
 
 {{< cards >}}
 {{% card href="/introduction" title="Linkcard with internal link" %}}
@@ -161,7 +165,7 @@ This is not allowed and will cause your layout to mess up.
 
 ---
 
-## Parameter & Template
+### Parameter & Template
 
 {{< cards >}}
 {{% card template="debug" params={"blub":"bla"} %}}
@@ -171,12 +175,20 @@ Show those parameter with the custom `debug` card template or use them in your o
 {{% /card %}}
 {{< /cards >}}
 
+## Children-Shortcode
+
+### With Default Card
+
+{{% children type="card" description=true %}}
+
 ---
 
-## Theme
+### With rcastley Card
 
-{{% children type="card" description=true cardtemplate="default" %}}
+{{% children type="card" description=true depth=2 cardtemplate="rcastley" %}}
 
-## Original rcastley
+---
+
+### Original Children-Cards-Shortcode of rcastley
 
 {{% children-cards description=true depth=3 %}}

@@ -1,8 +1,10 @@
 {{- $page := .page }}
-{{- $renderedtitle := .title | $page.RenderString}}
-{{- $renderedcontent := .content | $page.RenderString}}
+{{- $renderedtitle := .title | $page.RenderString }}
+{{- $renderedcontent := .content | $page.RenderString }}
 {{- $itemid := printf "R-card-%s" (printf "%s%s" $renderedtitle $renderedcontent | plainify | md5) }}
+{{- $popout := false }}
 {{- if .hrefattributes }}
+  {{- $popout = true }}
   {{- $hrefattributes := merge .hrefattributes (dict "class" (.hrefattributes.class | default "" | print " card-link")) }}
 <a
   {{- range $k, $v := $hrefattributes }}
@@ -15,12 +17,13 @@
     {{- end }}
   {{- end }}>
 {{- else if .href }}
+  {{- $popout = true }}
 <a href="{{ .href | safeJS }}" class="card-link">
 {{- end }}
-  <article class="card"{{if .title}} aria-labelledby="{{ $itemid }}"{{end}}>
+  <article class="card{{ if $popout }} card-popout{{ end }}"{{if .title}} aria-labelledby="{{ $itemid }}"{{end}}>
       {{- with .image }}
     <div class="card-image">
-      <img src="{{ . | relURL }}">
+      <img src="{{ . }}">
     </div>
       {{- end }}
       {{- if or .title .content }}

@@ -24,7 +24,7 @@
 {{- end }}
 
 {{- with $page -}}
-{{ (printf "<%s class=\"children children-card-rc children-sort-%s\">" $containerstyle $sortTerm)|safeHTML }}
+{{ (printf "<%s class=\"children children-type-card children-sort-%s\">" $containerstyle $sortTerm)|safeHTML }}
   {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
   {{- partial "inline/childs-rc" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
 {{ (printf "</%s>" $containerstyle)|safeHTML }}
@@ -60,7 +60,7 @@
               {{- end }}
             {{- end }}
           {{- end }}
-  <article class="child-card">
+  <article class="child-card-rc">
           {{- if $cardImage }}
     <div class="card-image">
       <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" title="{{ .LinkTitle }}">
@@ -119,39 +119,42 @@
         {{- if and (eq $.style "li") (ne $.style "card") }}
 {{- (printf "<%s>" $.containerstyle)|safeHTML }}
         {{- end }}
+
+
+
         {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
         {{- if eq $.style "card" }}
-        {{- if $pages }}
+          {{- if $pages }}
     <div class="card-children">
       <h4 class="card-children-title">Sub-sections</h4>
-        {{- range $pages }}
-          {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
-          {{- if not $hidden }}
+            {{- range $pages }}
+              {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+              {{- if not $hidden }}
       <div class="card-child-item">
         <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-child-link">{{ .LinkTitle }}</a>
-        {{- if and $.description (.Description) }}
+                {{- if and $.description (.Description) }}
         <p class="card-child-desc">{{ .Description | truncate 60 }}</p>
-        {{- end }}
-        {{- $nestedPages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
-        {{- if $nestedPages }}
+                {{- end }}
+                {{- $nestedPages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
+                {{- if $nestedPages }}
         <div class="card-nested-children">
-          {{- range $nestedPages }}
-            {{- $nestedHidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
-            {{- if not $nestedHidden }}
+                  {{- range $nestedPages }}
+                    {{- $nestedHidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
+                    {{- if not $nestedHidden }}
           <div class="card-child-item nested">
             <a href="{{ partial "permalink.gotmpl" (dict "to" .) }}" class="card-child-link nested">{{ .LinkTitle }}</a>
           </div>
-            {{- end }}
-          {{- end }}
+                    {{- end }}
+                  {{- end }}
         </div>
-        {{- end }}
+                {{- end }}
       </div>
-          {{- end }}
-        {{- end }}
+              {{- end }}
+            {{- end }}
     </div>
-        {{- end }}
+          {{- end }}
         {{- else }}
-        {{- partial "inline/childs-rc" (dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page) }}
+          {{- partial "inline/childs-rc" (dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page) }}
         {{- end }}
         {{- if and (eq $.style "li") (ne $.style "card") }}
 {{- (printf "</%s>" $.containerstyle)|safeHTML }}
