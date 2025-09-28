@@ -1,11 +1,11 @@
 +++
 categories = ['howto', 'reference']
-description = 'Disclaimers to help you structure your page'
+description = 'Boxes to help you structure your page'
 options = ['boxStyle']
 title = 'Notice'
 +++
 
-The `notice` shortcode shows various types of disclaimers with adjustable color, title and icon to help you structure your page.
+The `notice` shortcode shows boxes with configurable color, title and icon.
 
 {{% notice style="primary" title="There may be pirates" icon="skull-crossbones" %}}
 It is all about the boxes.

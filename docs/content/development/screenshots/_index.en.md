@@ -82,3 +82,15 @@ The content should be:
 **Preview** `images/hero.png`:
 
 ![Hero](/images/hero.png?width=50%25&height=50%25)
+
+## Shortcode Feature Images
+
+The feature images for the [shortcodes](shortcodes) are generated automatically via a [Node.js](https://nodejs.com) script.
+
+It is located in the repository inside of the `/tools` directory. All following commands need to be executed from this directory.
+
+To recreate the screenshots
+
+- install Node.js according to their installation guide
+- run `npm install`
+- run `npm run screenshots`

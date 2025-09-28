@@ -6,7 +6,7 @@ options = ['customMathJaxURL', 'math', 'math.force', 'mathJaxInitialize']
 title = 'Math'
 +++
 
-If this is not enough, the `math` shortcode helps you rendering math and chemical formulae using the [MathJax](https://mathjax.org/) library.
+The `math` shortcode renders complex math and chemical formulae using the [MathJax](https://mathjax.org/) library.
 
 {{< math align="center" >}}
 $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$

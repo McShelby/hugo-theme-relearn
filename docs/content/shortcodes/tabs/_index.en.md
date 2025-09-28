@@ -30,6 +30,24 @@ printf("Hello World!");
 {{% /tab %}}
 {{< /tabs >}}
 
+{{< tabs >}}
+{{% tab title="Python Example" %}}
+The AI native programming language.
+{{% /tab %}}
+{{% tab title="Terminal Example" %}}
+For guys who like to tinker around.
+{{% /tab %}}
+{{% tab title="C Example" color="fuchsia" %}}
+For the connoisseur of programming.
+{{% /tab %}}
+{{% tab title="C++ Example" color="red" %}}
+For the guys that can cope with syntax.
+{{% /tab %}}
+{{% tab title="C# Example" %}}
+For guys that need two destructors.
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Usage
 
 {{< tabs groupid="shortcode-parameter">}}
@@ -51,6 +69,24 @@ echo "Hello World!"
 ```c
 printf"Hello World!");
 ```
+{{%/* /tab */%}}
+{{</* /tabs */>}}
+
+{{</* tabs */>}}
+{{%/* tab title="Python Example" */%}}
+The AI native programming language.
+{{%/* /tab */%}}
+{{%/* tab title="Terminal Example" */%}}
+For guys who like to tinker around.
+{{%/* /tab */%}}
+{{%/* tab title="C Example" color="fuchsia" */%}}
+For the connoisseur of programming.
+{{%/* /tab */%}}
+{{%/* tab title="C++ Example" color="red" */%}}
+For the guys that can cope with syntax.
+{{%/* /tab */%}}
+{{%/* tab title="C# Example" */%}}
+For guys that need two destructors.
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
@@ -77,6 +113,33 @@ printf"Hello World!");
     )
   )
 )}}
+{{ partial "shortcodes/tabs.html" (dict
+  "page"  .
+  "content" (slice
+    (dict
+      "title" "Python Example"
+      "content" ("The AI native programming language." | .RenderString)
+    )
+    (dict
+      "title" "Terminal Example"
+      "content" ("For guys who like to tinker around." | .RenderString)
+    )
+    (dict
+      "color" "fuchsia"
+      "title" "C Example"
+      "content" ("For the connoisseur of programming." | .RenderString)
+    )
+    (dict
+      "color" "red"
+      "title" "C++ Example"
+      "content" ("For the guys that can cope with syntax." | .RenderString)
+    )
+    (dict
+      "title" "C# Example"
+      "content" ("For guys that need two destructors." | .RenderString)
+    )
+  )
+)}}
 ````
 
 {{% /tab %}}
@@ -84,7 +147,7 @@ printf"Hello World!");
 
 If you just want a single tab you can instead call the [`tab` shortcode](shortcodes/tab) standalone.
 
-Also follow the above link to see the parameter for a nested tab.
+Also follow the above link to see the parameter for each nested tab.
 
 ### Parameter
 
