@@ -84,7 +84,7 @@ printf"Hello World!");
 
 If you just want a single tab you can instead call the [`tab` shortcode](shortcodes/tab) standalone.
 
-Also follow the above link to see the parameter for a nested tab.
+Also follow the above link to see the parameter for each nested tab.
 
 ### Parameter
 
