@@ -9,12 +9,8 @@ weight = 4
   ordersectionsby = 'title'
 +++
 
-Hugo uses Markdown as its content format. However, there are a lot of things that Markdown doesn't support well.
+Hugo uses Markdown as its content format. However, there are a lot of things that Markdown doesn't support well. To overcome those limitations, Hugo created the concept of [shortcodes](https://gohugo.io/content-management/shortcodes/).
 
-You could use pure HTML to expand your possibilities. But this happens to be a bad idea. Everyone uses Markdown because it's pure and simple to read. You should avoid HTML to keep it as simple and portable as possible.
+On top of [Hugo's built-in shortcodes](https://gohugo.io/content-management/shortcodes/#embedded-shortcodes) the Relearn theme supplies the following additional shortcodes.
 
-To avoid Markdown's limitations, Hugo created [shortcodes](https://gohugo.io/content-management/shortcodes/). A shortcode is a simple snippet inside of a page.
-
-The Relearn theme provides many shortcodes on top of [Hugo's existing ones](https://gohugo.io/content-management/shortcodes/#embedded-shortcodes).
-
-{{% children containerstyle="div" style="h2" description=true %}}
+{{% children type="card" description=true %}}

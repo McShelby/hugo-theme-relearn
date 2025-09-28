@@ -10,4 +10,4 @@ Coffee aromas from the Captain's cabin wage a constant battle with the hearty sn
 
 A daily theater of nautical life where rank meets reality, and everyone pretends not to notice the first mate sleepwalking in their pajamas.
 
-{{% children containerstyle="div" style="h2" description=true %}}
+{{% children type="list" description=true %}}

@@ -14,4 +14,4 @@ Captain Hugo reporting from the quarterdeck of the magnificent {{% badge style="
 
 Our midnight run involved top-secret pasta flour and premium marinara crucial for the realm’s spiciest mission. The crew was amped!
 
-{{% children containerstyle="div" style="h3" description=true %}}
+{{% children type="list" description=true %}}

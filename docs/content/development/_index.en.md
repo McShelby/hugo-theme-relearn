@@ -21,4 +21,4 @@ weight = 5
 
 This chapter contains information only needed for development and maintaining the theme.
 
-{{%children containerstyle="div" style="h2" description="true" %}}
+{{%children type="list" description="true" %}}
