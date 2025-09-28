@@ -9,7 +9,7 @@ title = 'Children'
   alwaysopen = false
 +++
 
-The `children` shortcode lists the child pages of the current page and its descendants.
+The `children` shortcode lists child pages in various layouts.
 
 {{% children sort="title" %}}
 

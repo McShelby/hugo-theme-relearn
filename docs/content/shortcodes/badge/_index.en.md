@@ -4,7 +4,7 @@ description = 'Marker badges to display in your text'
 title = 'Badge'
 +++
 
-The `badge` shortcode displays little markers in your text with adjustable color, title and icon.
+The `badge` shortcode displays colorful markers in your text with optional icons.
 
 {{% badge %}}Important{{% /badge %}}
 {{% badge style="primary" title="Version" %}}6.6.6{{% /badge %}}

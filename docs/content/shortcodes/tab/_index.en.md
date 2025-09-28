@@ -7,11 +7,13 @@ title = 'Tab'
 You can use a `tab` shortcode to display a single tab with a title.
 
 {{% tab title="c" %}}
-
 ```python
 printf("Hello World!");
 ```
+{{% /tab %}}
 
+{{% tab title="Ramblings" color="blue" %}}
+Just some **text**.
 {{% /tab %}}
 
 ## Usage
@@ -25,6 +27,10 @@ printf("Hello World!");
 printf("Hello World!");
 ```
 {{%/* /tab */%}}
+
+{{%/* tab title="Ramblings" color="blue" */%}}
+Just some **text**.
+{{%/* /tab */%}}
 ````
 
 {{% /tab %}}
@@ -35,6 +41,12 @@ printf("Hello World!");
   "page"  .
   "title" "c"
   "content" ("```c\nprintf(\"Hello World!\")\n```" | .RenderString)
+)}}
+{{ partial "shortcodes/tab.html" (dict
+  "page"  .
+  "color" "blue"
+  "title" "Ramblings"
+  "content" ("Just some **text**" | .RenderString)
 )}}
 ````
 
