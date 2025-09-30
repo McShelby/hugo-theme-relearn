@@ -1345,7 +1345,7 @@ function clearHistory() {
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
       url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
+      document.querySelectorAll('[data-nav-url="' + url + '"]').forEach(function (e) {
         e.classList.remove('visited');
       });
     }
@@ -1363,7 +1363,7 @@ function initHistory() {
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
       url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
+      document.querySelectorAll('[data-nav-url="' + url + '"]').forEach(function (e) {
         e.classList.add('visited');
       });
     }
