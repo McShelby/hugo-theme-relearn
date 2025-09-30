@@ -1354,7 +1354,9 @@ function clearHistory() {
 
 function initHistory() {
   var visitedItem = window.relearn.absBaseUri + '/visited-url/';
-  window.relearn.setItem(window.sessionStorage, visitedItem + document.querySelector('body').dataset.url, 1);
+  // in case we have `canonifyURLs=true` we have to strip the base URI
+  var currentUrl = document.querySelector('body').dataset.url.replace(window.relearn.absBaseUri, '');
+  window.relearn.setItem(window.sessionStorage, visitedItem + currentUrl, 1);
 
   // loop through the sessionStorage and see if something should be marked as visited
   for (var item in window.sessionStorage) {
