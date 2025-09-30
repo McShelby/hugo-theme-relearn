@@ -15,7 +15,7 @@ The default link effects shipped with the theme are
 | Name     | Description                                                                  |
 | -------- | ---------------------------------------------------------------------------- |
 | download | Causes the linked resource to be downloaded instead of shown in your browser.<br><br>- `false`: a usual link sending you to the location in your browser<br>- `true`: a link to download the resource<br>- _&lt;string&gt;_: a link to download the resource with the given filename |
-| target   | Whether to show the link in a separate browser tab.<br><br>- `false`: shown in the same tab<br>- _&lt;string&gt;_: [a valid `a` `target` value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target)<br><br>If [`externalLinkTarget` is configured](authoring/frontmatter/linking#opening-links) and the URL is external, this will overwrite the link effect value of your `hugo.toml` and page's front matter but can still be overwritten in the URL query parameter. |
+| target   | Whether to show the link in a separate browser tab.<br><br>- `false`: shown in the same tab<br>- _&lt;string&gt;_: [a valid `a` `target` value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target)<br><br>If the URL is external and [`externalLinkTarget` is set](authoring/frontmatter/linking#opening-links), its value will overwrite the link effect value configured in your `hugo.toml`. Nervertheless the resulting value can still be overwritten by your page's front matter or with the URL query parameter. |
 
 One way to use them is to add them as URL query parameter to each individual link.
 

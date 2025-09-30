@@ -9,14 +9,14 @@ weight = 3
 
 ## Opening Links
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} By default, external links open in a new tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} By default, external links open in the same browser tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 
 To set default values for all links, use [link effects](authoring/linking/linkeffects).
 
-For example, this will open links in the same tab
+For example, this will open all external links in a new tab
 
 {{< multiconfig section=params >}}
-externalLinkTarget = '_self'
+externalLinkTarget = '_blank'
 {{< /multiconfig >}}
 
 ## Enabling Link and Image Link Warnings

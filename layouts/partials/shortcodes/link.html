@@ -16,13 +16,12 @@
 {{- $content := .content }}
 {{- /* target will be boolean false if no user defined value was set and effect default should be applied */}}
 {{- $target := false }}
-{{- $linkObject := "" }}
 {{- $u := urls.Parse .url }}
 {{- $href := $u.String }}
 {{- if $u.IsAbs }}
   {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .url "page" $page "type" "link") $u.String }}
 {{- else }}
-  {{- $linkObject = partial "_relearn/linkObject.gotmpl" (dict "url" .url "page" $page) }}
+  {{- $linkObject := partial "_relearn/linkObject.gotmpl" (dict "url" .url "page" $page) }}
   {{- if $linkObject }}
     {{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" .url "page" $page "linkObject" $linkObject "param" "link") }}
   {{- else }}
@@ -31,7 +30,7 @@
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "link" "msg" $msg) }}
   {{- end }}
 {{- end }}
-{{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "linkObject" $linkObject "target" .target)) -}}
+{{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target))) -}}
 <a
   {{- range $k, $v := $attributes }}
     {{- if $v }}

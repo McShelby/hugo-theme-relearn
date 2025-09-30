@@ -60,7 +60,7 @@
         {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
         {{- warnf "%q: DEPRECATED parameter 'target' for shortcode 'button' found, use link effects instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-4-0" $filepath }}
       {{- end }}
-      {{- $hrefattributes = merge $hrefattributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "target" .target)) }}
+      {{- $hrefattributes = merge $hrefattributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target))) }}
     {{- end }}
 
     {{- $image := .image }}
