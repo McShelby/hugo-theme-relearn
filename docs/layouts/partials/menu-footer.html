@@ -1,11 +1,15 @@
 <span class="github-buttons"></span>
-{{- $ver := partial "version.txt" }}
-{{- $url := printf "https://github.com/McShelby/hugo-theme-relearn/releases/tag/%s" $ver }}
-{{- if in $ver "+" }}
-  {{- $commit := replaceRE "^.*\\+" "" $ver }}
-  {{- $url = printf "https://github.com/McShelby/hugo-theme-relearn/commit/%s" $commit }}
+{{- $ver := "" }}
+{{- $url := "https://github.com/McShelby/hugo-theme-relearn" }}
+{{- if ne .Site.Params.disableGeneratorVersion true }}
+  {{- $ver := printf " %s" (partial "version.txt") }}
+  {{- $url = printf "https://github.com/McShelby/hugo-theme-relearn/releases/tag/%s" $ver }}
+  {{- if in $ver "+" }}
+    {{- $commit := replaceRE "^.*\\+" "" $ver }}
+    {{- $url = printf "https://github.com/McShelby/hugo-theme-relearn/commit/%s" $commit }}
+  {{- end }}
 {{- end }}
-<p>Built with <a href="{{ $url }}" title="Relearn {{ $ver }}"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+<p>Built with <a href="{{ $url }}" title="{{ print "Relearn" $ver }}"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
 {{- with resources.Get "/js/github-buttons/github-buttons.js" }}
 <script>
   function githubButtonsScheme(){
