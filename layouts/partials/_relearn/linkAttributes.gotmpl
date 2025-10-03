@@ -86,8 +86,8 @@
 {{- /* "class" should only contain boolean effects if they are true */}}
 {{- $classes := slice }}
 {{- range $k, $v := $effects }}
-  {{- if eq (printf "%T" $v) "bool" }}
-    {{- if $v }}
+  {{- if $v }}
+    {{- if eq (printf "%T" $v) "bool" }}
       {{- $classes = $classes | append $k }}
     {{- end }}
   {{- end }}
