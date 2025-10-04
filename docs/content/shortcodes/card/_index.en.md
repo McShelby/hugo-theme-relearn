@@ -50,7 +50,7 @@ If you want to show a set of cards grouped together you can wrap your cards into
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
-| **href**              | _&lt;empty&gt;_ | Either the destination URL for the card or JavaScript code to be executed on click. If this parameter is set, the card will hover on mouse over.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well.<br><br>If this parameter is set, your content is not allowed to contain any other HTML anchor elements. Otherwise your layout may mess up. |
+| **href**              | _&lt;empty&gt;_ | Either the destination URL for the card or JavaScript code to be executed on click. If this parameter is set, the card will hover on mouse over.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well. |
 | **image**             | _&lt;empty&gt;_ | A image URL to be displayed at the start of the card. |
 | **title**             | see notes       | Arbitrary title for the card. |
 | **template**          | `default`       | The template to be used to display the card. <br><br>- `default`: The standard layout<br>- `debug`: A debug layout helping you in development<br><br>See below how to [use your own templates](#card-templates). |

@@ -104,11 +104,11 @@
   {{- end }}
 {{- end }}
 {{- if len $cards -}}
-<div class="card-container">
+<ul class="card-container">
   {{- range $cards }}
     {{- $template = printf "cards/%s.html" .template }}
     {{- $params := merge . (dict "page" $page) }}
     {{- partial $template $params }}
   {{- end }}
-</div>
+</ul>
 {{- end }}

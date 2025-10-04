@@ -595,40 +595,40 @@ article .R-taxonomy.tags a.term-link:hover:after {
 .topbar-content a:hover,
 .topbar-content a:active,
 .topbar-content a:focus,
-article a:not(.card-link):hover,
-article a:not(.card-link):active,
-article a:not(.card-link):focus,
-article a:not(.card-link):hover .copy-to-clipboard,
-article a:not(.card-link):active .copy-to-clipboard,
-article a:not(.card-link):focus .copy-to-clipboard {
+article a:hover,
+article a:active,
+article a:focus,
+article a:hover .copy-to-clipboard,
+article a:active .copy-to-clipboard,
+article a:focus .copy-to-clipboard {
   text-decoration: underline;
 }
 .topbar-content a:hover,
 .topbar-content a:active,
 .topbar-content a:focus,
-article a:not(.card-link):hover,
-article a:not(.card-link):active,
-article a:not(.card-link):focus,
-article a:not(.card-link):hover .copy-to-clipboard,
-article a:not(.card-link):active .copy-to-clipboard,
-article a:not(.card-link):focus .copy-to-clipboard,
-article a:not(.card-link).lightbox-back:hover > svg:only-child:empty,
-article a:not(.card-link).lightbox-back:active > svg:only-child:empty,
-article a:not(.card-link).lightbox-back:focus > svg:only-child:empty,
-article a:not(.card-link).lightbox-back:hover > img:only-child:empty,
-article a:not(.card-link).lightbox-back:active > img:only-child:empty,
-article a:not(.card-link).lightbox-back:focus > img:only-child:empty,
+article a:hover,
+article a:active,
+article a:focus,
+article a:hover .copy-to-clipboard,
+article a:active .copy-to-clipboard,
+article a:focus .copy-to-clipboard,
+article a.lightbox-back:hover > svg:only-child:empty,
+article a.lightbox-back:active > svg:only-child:empty,
+article a.lightbox-back:focus > svg:only-child:empty,
+article a.lightbox-back:hover > img:only-child:empty,
+article a.lightbox-back:active > img:only-child:empty,
+article a.lightbox-back:focus > img:only-child:empty,
 article .btn > button:hover,
 article .btn > button:active,
 article .btn > button:focus {
   outline: none;
 }
-article a:not(.card-link):hover > svg:only-child:empty,
-article a:not(.card-link):active > svg:only-child:empty,
-article a:not(.card-link):focus > svg:only-child:empty,
-article a:not(.card-link):hover > img:only-child:empty,
-article a:not(.card-link):active > img:only-child:empty,
-article a:not(.card-link):focus > img:only-child:empty {
+article a:hover > svg:only-child:empty,
+article a:active > svg:only-child:empty,
+article a:focus > svg:only-child:empty,
+article a:hover > img:only-child:empty,
+article a:active > img:only-child:empty,
+article a:focus > img:only-child:empty {
   outline: 0.15rem solid var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
@@ -2930,11 +2930,6 @@ body.notfound #shrug svg {
   grid-template-columns: none;
 }
 
-.card-container .card-link {
-  display: block;
-  text-decoration: none;
-}
-
 .card-container .card {
   background: var(--INTERNAL-BOX-BG-color);
   border: 1px solid color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 10%, transparent);
@@ -2951,6 +2946,10 @@ body.notfound #shrug svg {
   position: relative;
   transition: all 0.3s ease;
   word-break: break-word;
+}
+
+.card-container .card:focus-within:has(.card-title > a:focus) {
+  outline: auto;
 }
 
 .card-container > .card.card-popout {
@@ -2983,11 +2982,12 @@ body.notfound #shrug svg {
 .card-container .card-image {
   background: transparent;
   height: 300px;
+  order: -1;
   overflow: hidden;
   position: relative;
 }
 
-.card-container .card-image:has(+ .card-content) {
+.card-container .card-content + .card-image {
   min-height: 160px;
   height: 160px;
 }
@@ -3017,18 +3017,16 @@ body.notfound #shrug svg {
 }
 
 .card-container .card-title a {
-  background: linear-gradient(135deg, var(--INTERNAL-SECONDARY-color) 0%, color-mix(in srgb, var(--INTERNAL-SECONDARY-color) 60%, white) 100%);
-  background-size: 0% 2px;
-  background-position: bottom left;
-  background-repeat: no-repeat;
   color: inherit;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.card-container .card-title a:hover {
-  background-size: 100% 2px;
-  color: var(--INTERNAL-SECONDARY-color);
+.card-container .card-title a:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .card-container .card-content-text {
@@ -3062,7 +3060,7 @@ body.notfound #shrug svg {
     padding: 1rem;
   }
 
-  .card-container .card-image:has(+ .card-content) {
+  .card-container .card-content + .card-image {
     height: 140px;
   }
 }
