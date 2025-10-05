@@ -56,13 +56,10 @@
           {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .href "page" $page "param" "link" "msg" $msg) }}
         {{- end }}
       {{- end }}
-      {{- if and (isset . "target") (or (ne (printf "%T" .target) "string") (ne (trim .target " " ) "")) }}
-        {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-        {{- warnf "%q: DEPRECATED parameter 'target' for shortcode 'button' found, use link effects instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-4-0" $filepath }}
-      {{- end }}
-      {{- $hrefattributes = merge $hrefattributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target))) }}
+      {{- $hrefattributes = merge $hrefattributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page)) }}
     {{- end }}
 
+    {{- $imageattributes := dict }}
     {{- $image := .image }}
     {{- if $image }}
       {{- $page := $page }}
@@ -85,6 +82,7 @@
           {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .image "page" $page "param" "image" "msg" $msg) }}
         {{- end }}
       {{- end }}
+      {{- $imageattributes = merge $imageattributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $image "page" $page)) }}
     {{- end }}
 
     {{- if or $image $title $hasContent $params }}
@@ -95,6 +93,7 @@
         "hrefattributes" $hrefattributes
         "icon"     $icon
         "image"    $image
+        "imageattributes" $imageattributes
         "params"   $params
         "style"    $style
         "template" $template
