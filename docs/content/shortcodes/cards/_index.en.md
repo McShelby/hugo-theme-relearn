@@ -1,6 +1,6 @@
 +++
 categories = ['howto', 'reference']
-description = 'Show content in card set'
+description = 'Show content in a set of cards'
 title = 'Cards'
 +++
 
