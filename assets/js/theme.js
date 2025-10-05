@@ -126,11 +126,13 @@ function switchTab(tabGroup, tabId) {
   allTabItems &&
     allTabItems.forEach(function (e) {
       e.classList.remove('active');
+      e.setAttribute('aria-expanded', 'false');
       e.removeAttribute('tabindex');
     });
   targetTabItems &&
     targetTabItems.forEach(function (e) {
       e.classList.add('active');
+      e.setAttribute('aria-expanded', 'true');
       e.setAttribute('tabindex', '-1');
     });
 
