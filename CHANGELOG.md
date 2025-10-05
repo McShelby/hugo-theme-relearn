@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.1.1 (2025-10-05)
+
+### Fixes
+
+- [**bug**] cards: restore compat with Hugo 0.126.3 [#1145](https://github.com/McShelby/hugo-theme-relearn/issues/1145)
+
+---
+
 ## 8.1.0 (2025-10-05)
 
 ### Enhancements
