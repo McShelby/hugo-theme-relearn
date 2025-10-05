@@ -26,7 +26,12 @@
     {{- $template := .template | default $template | default "default" }}
     {{- $params := .params }}
     {{- if eq (printf "%T" $params) "string" }}
-      {{- $params = unmarshal $params }}
+      {{- $params = trim $params "\n\r\t " }}
+      {{- if $params }}
+        {{- $params = unmarshal $params }}
+      {{- else }}
+        {{- $params = dict }}
+      {{- end }}
     {{- end }}
 
     {{- $hrefattributes := .attributes | default dict }}
