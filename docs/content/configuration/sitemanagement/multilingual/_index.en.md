@@ -15,6 +15,7 @@ It supports many languages, including right-to-left languages.
 - Simplified Chinese
 - Traditional Chinese
 - Czech
+- Danish
 - Dutch
 - English
 - Finnish
