@@ -8,7 +8,7 @@ weight = 2
 
 ## Title
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} With the [default partials](configuration/branding/logo#change-the-logo) for the logo, The site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
+{{% badge style="option" %}}Option{{% /badge %}} With the [default partials](configuration/branding/logo#change-the-logo) for the logo, The site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
 
 {{< multiconfig file=hugo section=params >}}
 linkTitle = 'Relearn'
@@ -20,13 +20,13 @@ By default, the theme displays a home button between search form and navigation 
 
 ![Default Home Button](home_button_defaults.png?width=18.75rem)
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To hide the Home button on the left menu, set `disableLandingPageButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} To hide the Home button on the left menu, set `disableLandingPageButton=true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableLandingPageButton = true
 {{< /multiconfig >}}
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} To change its icon or text, configure the `landingPageName` for your defined languages.
+{{% badge style="option" %}}Option{{% /badge %}} To change its icon or text, configure the `landingPageName` for your defined languages.
 
 {{< multiconfig file=hugo >}}
 [languages]
@@ -49,7 +49,7 @@ For a free configuration of the header menus, see [configuration of the sidebar 
 
 ## History
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Turn on `showVisitedLinks=true` to see checkmarks next to visited pages in the main menu. This also adds a history clearer button at the bottom of the menu to remove all checkmarks.
+{{% badge style="option" %}}Option{{% /badge %}} Turn on `showVisitedLinks=true` to see checkmarks next to visited pages in the main menu. This also adds a history clearer button at the bottom of the menu to remove all checkmarks.
 
 > [!note]
 > The visited pages will be [stored in the reader's browser](configuration/sitemanagement/storedinformation).

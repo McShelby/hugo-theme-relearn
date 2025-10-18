@@ -12,7 +12,7 @@ Here's how to start your new website. If you're new to Hugo, we recommend learni
 
 ## Install Hugo
 
-Download and install Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title=" " %}}0.126.3{{% /badge %}} or newer for your operating system [following the instructions](https://gohugo.io/installation/).
+Download and install Hugo {{% badge style="hugo" %}}0.126.3{{% /badge %}} or newer for your operating system [following the instructions](https://gohugo.io/installation/).
 
 The _standard_ edition of Hugo is sufficient but you can also use the _extended_ edition.
 

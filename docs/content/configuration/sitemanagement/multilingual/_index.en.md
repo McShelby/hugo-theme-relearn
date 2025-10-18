@@ -147,7 +147,7 @@ Check the [search configuration](configuration/sidebar/search#mixed-language-sup
 
 ## Turn Off Language Switching
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default the theme shows a language switcher in the lower part of the menu.
+{{% badge style="option" %}}Option{{% /badge %}} By default the theme shows a language switcher in the lower part of the menu.
 
 If you want to have more control, where the language switcher is positioned or you want to configure a different icon, see the [chapter on sidebar configuration](configuration/sidebar/menus#defining-sidebar-menus).
 

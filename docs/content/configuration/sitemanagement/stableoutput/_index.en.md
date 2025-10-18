@@ -8,7 +8,7 @@ weight = 8
 
 ## Disabling the Generator Meta
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} The theme adds a meta tag with its version number to each page.
+{{% badge style="option" %}}Option{{% /badge %}} The theme adds a meta tag with its version number to each page.
 
 This isn't a security risk and helps us support you better.
 
@@ -22,7 +22,7 @@ If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting
 
 ## Disabling IDs for Referenced Assets
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} The theme creates a unique ID for each build and adds it to each referenced asset's URL to make browsers not keep outdated cached assets.
+{{% badge style="option" %}}Option{{% /badge %}} The theme creates a unique ID for each build and adds it to each referenced asset's URL to make browsers not keep outdated cached assets.
 
 This is good for production sites but can be problematic during development. It makes comparing outputs difficult as each build has new IDs.
 
@@ -34,7 +34,7 @@ disableAssetsBusting = true
 
 ## Disabling IDs for Interactive HTML Elements
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Features like expanders, notices, and tabs use unique IDs to work. These IDs change with each build.
+{{% badge style="option" %}}Option{{% /badge %}} Features like expanders, notices, and tabs use unique IDs to work. These IDs change with each build.
 
 This is necessary for the theme to work properly, but it can make comparing outputs between builds difficult.
 
@@ -46,7 +46,7 @@ disableRandomIds = true
 
 ## Disabling Assets Minification
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If `minify=true`, further theme assets will be minified during build. If no value is set, the theme will avoid minification if you have started with `hugo server` and otherwise will minify.
+{{% badge style="option" %}}Option{{% /badge %}} If `minify=true`, further theme assets will be minified during build. If no value is set, the theme will avoid minification if you have started with `hugo server` and otherwise will minify.
 
 {{< multiconfig file=hugo section=params >}}
 minify = false

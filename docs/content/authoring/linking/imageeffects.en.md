@@ -40,7 +40,7 @@ imageEffects.lightbox = true
 imageEffects.shadow = false
 {{< /multiconfig >}}
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter for example by
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter for example by
 
 {{< multiconfig fm=true section=params >}}
 imageEffects.lazy = false

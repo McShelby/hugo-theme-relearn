@@ -9,7 +9,7 @@ This page explains how to configure the Relearn theme in your `hugo.toml` file.
 
 In addition to [Hugo's standard options](https://gohugo.io/getting-started/configuration/#all-configuration-settings), the Relearn theme offers extra settings listed here.
 
-Throughout the documentation, theme-specific options are marked with a {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} badge.
+Throughout the documentation, theme-specific options are marked with a {{% badge style="option" %}}Option{{% /badge %}} badge.
 
 Add theme options to the `params` section of your `hugo.toml`. For example:
 

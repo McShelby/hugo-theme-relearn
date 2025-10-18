@@ -75,17 +75,22 @@ If you want to display a transparent expandable box without any border, you can 
 
 ### Defining own Styles
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Besides the predefined `style` values [from above](#parameter), you are able to define your own.
+{{% badge style="option" %}}Option{{% /badge %}} Besides the predefined `style` values [from above](#parameter), you are able to define your own.
 
 {{< multiconfig file=hugo section=params >}}
 boxStyle = [
-	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'rainbow', color = 'gold' }
+	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'rainbow', color = 'gold' },
+	{ identifier = 'new', title = ' ', style = 'info', icon = 'plus-circle' }
 ]
 {{< /multiconfig >}}
 
-The `style` parameter used in a shortcode must match the `identifier` in the configuration. The title for the style will be determined from the configured `title`. If no `title` but a `i18n` is set, the title will be taken from the translation files by that key. The `title` may be empty in which case, the box does not contain a default title. `icon` and `color` are working similar.
+The `style` parameter used in a shortcode must match the `identifier` in the configuration.
+
+The title for the style will be determined from the configured `title`. If no `title` but a `i18n` is set, the title will be taken from the translation files by that key. The `title` may be empty in which case, the box does not contain a default title. `icon` and `color` are working similar.
 
 You can also redefine the predefined styles if you're not satisfied with the default values.
+
+If you define an optional `style` attribute, this is where all default values are taken from. You can reference predefined styles as also your own styles if they are defined beforehand in this array.
 
 Below is a [usage example](#user-defined-style).
 

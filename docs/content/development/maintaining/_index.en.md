@@ -8,7 +8,7 @@ title = 'Maintaining'
 
 This project tries to follow the [semver policy](https://semver.org/) - although not followed 100% in the past.
 
-Usually an entry of {{% badge style="warning" title=" " %}}Breaking{{% /badge %}} on the [What's new](introduction/releasenotes) page causes a new major release number.
+Usually an entry of {{% badge style="breaking" %}}Breaking{{% /badge %}} on the [What's new](introduction/releasenotes) page causes a new major release number.
 
 All other entries on the [What's new](introduction/releasenotes) page will increase the minor release number.
 

@@ -14,7 +14,7 @@ In cases where Git information is not available, the theme falls back to `LastMo
 
 ## Disable Display of Author's Name
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can disable the output of an author's name and its according email address by setting this parameter to `true`.
+{{% badge style="option" %}}Option{{% /badge %}} You can disable the output of an author's name and its according email address by setting this parameter to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 hideAuthorName = true
@@ -22,7 +22,7 @@ hideAuthorName = true
 
 ## Disable Display of Author's Email
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} The author's email, when displayed, is presented as a clickable mailto link, providing a convenient way for readers to reach out. You can disable the output of an author's email address by setting this parameter to `true`.
+{{% badge style="option" %}}Option{{% /badge %}} The author's email, when displayed, is presented as a clickable mailto link, providing a convenient way for readers to reach out. You can disable the output of an author's email address by setting this parameter to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 hideAuthorEmail = true
@@ -30,7 +30,7 @@ hideAuthorEmail = true
 
 ## Disable Display of Authoring Date
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} # If the standard content-footer finds an authoring date, you can disable its output by setting this parameter to `true`.
+{{% badge style="option" %}}Option{{% /badge %}} # If the standard content-footer finds an authoring date, you can disable its output by setting this parameter to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 hideAuthorDate = true
@@ -38,7 +38,7 @@ hideAuthorDate = true
 
 ## Adjust the Timestamp Format
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} You can overwrite the default date format used when displaying a pages meta information. See [the Hugo docs](https://gohugo.io/functions/time/format/#localization) for possible values.
+{{% badge style="option" %}}Option{{% /badge %}} You can overwrite the default date format used when displaying a pages meta information. See [the Hugo docs](https://gohugo.io/functions/time/format/#localization) for possible values.
 
 {{< multiconfig file=hugo section=params >}}
 dateFormat = ':date_medium'

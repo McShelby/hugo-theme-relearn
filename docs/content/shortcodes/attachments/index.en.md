@@ -81,7 +81,7 @@ The shortcode lists files found in a specific directory. The name of the directo
 
 2. If your page is a branch bundle, attachments must be placed in a nested `_index.files` directory, accordingly.
 
-    {{% badge style="warning" title=" " %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
+    {{% badge style="breaking" %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
 
     > * content
     >   * _index.md
@@ -92,7 +92,7 @@ The shortcode lists files found in a specific directory. The name of the directo
 
 3. For simple pages, attachments must be placed in a directory named like your page and ending with `.files`.
 
-    {{% badge style="warning" title=" " %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
+    {{% badge style="breaking" %}}Warning{{% /badge %}} This is only available for Hugo < `0.112.0`
 
     > * content
     >   * _index.md

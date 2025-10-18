@@ -38,7 +38,7 @@ For example, to create a shortcode called `myshortcode` that needs the `jquery` 
     ...
     ````
 
-2. {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Add this to your `hugo.toml`:
+2. {{% badge style="option" %}}Option{{% /badge %}} Add this to your `hugo.toml`:
 
     {{< multiconfig file=hugo section=params >}}
     [relearn.dependencies]

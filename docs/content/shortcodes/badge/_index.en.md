@@ -10,7 +10,7 @@ The `badge` shortcode displays colorful markers in your text with optional icons
 {{% badge style="primary" title="Version" %}}6.6.6{{% /badge %}}
 {{% badge style="red" icon="angle-double-up" %}}Captain{{% /badge %}}
 {{% badge style="info" %}}New{{% /badge %}}
-{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Awesome{{% /badge %}}
+{{% badge style="hugo" %}}Awesome{{% /badge %}}
 
 ## Usage
 

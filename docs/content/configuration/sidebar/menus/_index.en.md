@@ -11,19 +11,19 @@ The theme can build menu trees from [the structure of your page files](authoring
 
 ---
 
-- {{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Configuration options in your `hugo.toml` apply to all menus.
+- {{% badge style="option" %}}Option{{% /badge %}} Configuration options in your `hugo.toml` apply to all menus.
 
-- {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} In case of page structure menus, individual configuration is done via a page's front matter.
+- {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} In case of page structure menus, individual configuration is done via a page's front matter.
 
-- {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}}. In case of Hugo menus, individual configuration is done via a menu entry's configuration.
+- {{% badge style="hugomenu" %}}Menu{{% /badge %}}. In case of Hugo menus, individual configuration is done via a menu entry's configuration.
 
 ---
 
 ## Expand State of Submenus
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can change how submenus appear with `alwaysopen`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can change how submenus appear with `alwaysopen`.
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.alwaysopen` instead.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.alwaysopen` instead.
 
 If `alwaysopen=false` for any given entry, its children will not be shown in the menu as long as it is not necessary for the sake of navigation.
 
@@ -42,9 +42,9 @@ alwaysopen = false
 
 ## Expander for Submenus
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Set `collapsibleMenu=true` to show submenus as collapsible trees with a clickable expander.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `collapsibleMenu=true` to show submenus as collapsible trees with a clickable expander.
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.collapsibleMenu=true` instead.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.collapsibleMenu=true` instead.
 
 {{< multiconfig section=params >}}
 collapsibleMenu = true
@@ -63,9 +63,9 @@ collapsibleMenu = true
 
 ### By Hugo's Default Sort Order
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} {{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} Hugo provides a [simple way](https://gohugo.io/quick-reference/glossary/#default-sort-order) to handle order of your entries taking into account the `weight`, `date` and `linkTitle` front matter .
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} {{% badge style="hugomenu" %}}Menu{{% /badge %}} Hugo provides a [simple way](https://gohugo.io/quick-reference/glossary/#default-sort-order) to handle order of your entries taking into account the `weight`, `date` and `linkTitle` front matter .
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} Hugo menus can only be sorted by weight.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} Hugo menus can only be sorted by weight.
 
 {{< multiconfig >}}
 weight = 5
@@ -73,7 +73,7 @@ weight = 5
 
 ### By Other
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. See the [children shortcode](shortcodes/children#parameter) for a complete list.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. See the [children shortcode](shortcodes/children#parameter) for a complete list.
 
 {{< multiconfig section=params >}}
 ordersectionsby = 'linktitle'
@@ -81,9 +81,9 @@ ordersectionsby = 'linktitle'
 
 ## Title for Menu Entries
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} A page's `linkTitle` or `title` front matter will be used for naming a menu entry of a page menu, in that order if both are defined. Using `linkTitle` helps to shorten the text for menu entries if the page’s title is too descriptive.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} A page's `linkTitle` or `title` front matter will be used for naming a menu entry of a page menu, in that order if both are defined. Using `linkTitle` helps to shorten the text for menu entries if the page’s title is too descriptive.
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} A menu entry's `title` or `name` will be used for naming a menu entry of a Hugo menu, in that order if both are defined.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} A menu entry's `title` or `name` will be used for naming a menu entry of a Hugo menu, in that order if both are defined.
 
 For example for a page named `install/linux.md`
 
@@ -94,9 +94,9 @@ linkTitle = 'Linux'
 
 ## Icons for Menu Entries
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} For page menus, add a `menuPre` to insert any HTML code before the menu label. You can also set `menuPost` to insert HTML code after the menu label.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} For page menus, add a `menuPre` to insert any HTML code before the menu label. You can also set `menuPost` to insert HTML code after the menu label.
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, add a `pre` to insert any HTML code before the menu label. You can also set `post` to insert HTML code after the menu label.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, add a `pre` to insert any HTML code before the menu label. You can also set `post` to insert HTML code after the menu label.
 
 If `pageRef` is set for the menu entry and no `pre` or `post` was configured, `menuPre` and `menuPost` of the referenced page will be taken.
 
@@ -164,7 +164,7 @@ By default, the theme supports one additional Hugo menu below the page menu in t
 
 ## Title for the Predefined Shortcuts Menu
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default, the predefined shortcut menu has a the title _More_ (in the English translation) displayed above it.
+{{% badge style="option" %}}Option{{% /badge %}} By default, the predefined shortcut menu has a the title _More_ (in the English translation) displayed above it.
 
 You can disable this title with `disableShortcutsTitle=true`.
 
@@ -183,9 +183,9 @@ other = "Other Great Stuff"
 
 Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableMenuTitle=false` for each sidebar menu configuration](#defining-sidebar-menus).
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} For page menus, set the `menuTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `menuTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} For page menus, set the `menuTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `menuTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For Hugo menus, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
 If you don't want to fiddle around with your translation files, you also have the possibility to let the title be taken from the menu definition. For that, define a nested menu that **only has one top-level entry** without `url` or `pageRef`.
 
@@ -213,7 +213,7 @@ If you want to learn how to configure different Hugo menus for each language, [s
 
 ## Defining Sidebar Menus
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Menus are defined for individual areas of the sidebar:
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Menus are defined for individual areas of the sidebar:
 
 - `sidebarheadermenus`: the non-scrolling area below the search box
 - `sidebarmenus`: the scrolling area below the search box
@@ -370,7 +370,7 @@ Directory structure:
   - _index.md | fa-fw fab fa-markdown | secondary
 ````
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Using [Hugo's cascade feature](https://gohugo.io/content-management/front-matter/#cascade), we can redefine the menus once in `log/_index.md` and `ship/_index.md` setting `sidebarmenus` so they will be used in all children pages.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Using [Hugo's cascade feature](https://gohugo.io/content-management/front-matter/#cascade), we can redefine the menus once in `log/_index.md` and `ship/_index.md` setting `sidebarmenus` so they will be used in all children pages.
 
 Setting the `sidebarmenus` Front Matter will overwrite all default menus. If you want to display the `shortcuts` Hugo menu as well like in this example, you have to declare it with the Front Matter as given in the [default options](#defining-sidebar-menus).
 
@@ -422,7 +422,7 @@ title = "The Crow's Nest Incident"
   menuPageRef = '/log/third-day'
 {{< /multiconfig >}}
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} If you want to link to an external page instead, you can use `menuUrl` instead of `menuPageRef`.
 
 Pages defining a crosslink are never part of the arrow navigation and are skipped instead.
 

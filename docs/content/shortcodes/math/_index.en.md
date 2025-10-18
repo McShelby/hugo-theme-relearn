@@ -68,7 +68,7 @@ Passthrough syntax is only available by [further configuration](#passthrough-con
 
 ### Providing Initialization Options for the MathJax Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The MathJax library is configured with default settings for initialization.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The MathJax library is configured with default settings for initialization.
 
 You can overwrite the settings by providing a JSON object in `mathJaxInitialize`. See [MathJax's documentation](https://docs.mathjax.org/en/latest/options/index.html) for all allowed settings.
 
@@ -80,7 +80,7 @@ mathJaxInitialize = '{ "chtml": { "displayAlign": "left" }, { "tex": { "inlineMa
 
 ### Loading an External Version of the MathJax Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped MathJax library by default.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The theme uses the shipped MathJax library by default.
 
 In case you want do use a different version of the MathJax library but don't want to override the shipped version, you can set `customMathJaxURL` to the URL of the external MathJax library.
 
@@ -90,7 +90,7 @@ customMathJaxURL = 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
 
 ### Force Loading of the MathJax Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains a `math` shortcode, Markdown codefence or the partial is called from your templates.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains a `math` shortcode, Markdown codefence or the partial is called from your templates.
 
 You can force loading the MathJax library if you are using passthrough syntax by setting `math=true`. If a shortcode, Markdown codefence or partial was called, the option has no effect. This must be set in case you are using the [passthrough configuration](#passthrough-configuration) to render math.
 

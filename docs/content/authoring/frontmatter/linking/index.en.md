@@ -9,7 +9,7 @@ weight = 3
 
 ## Opening Links
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} By default, external links open in the same browser tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} By default, external links open in the same browser tab. To change this, use the `externalLinkTarget` setting with a proper [link target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
 
 To set default values for all links, use [link effects](authoring/linking/linkeffects).
 
@@ -21,7 +21,7 @@ externalLinkTarget = '_blank'
 
 ## Enabling Link and Image Link Warnings
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can use `link.errorlevel` and `image.errorlevel` to control what should happen if a local link can not be resolved to a page and/or a resource.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `link.errorlevel` and `image.errorlevel` to control what should happen if a local link can not be resolved to a page and/or a resource.
 
 If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
 
@@ -36,7 +36,7 @@ image.errorlevel = 'warning'
 
 ### Ignoring False Negatives
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} In case you want to use link warnings but are bothered by false negatives, you can configure an ignore list of regular expressions. The referenced address will be checked against all regexes of this list. If the address matches at least one regex, no output will be written to the console. The check uses [Hugo's `findRE` function](https://gohugo.io/functions/strings/findre/).
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} In case you want to use link warnings but are bothered by false negatives, you can configure an ignore list of regular expressions. The referenced address will be checked against all regexes of this list. If the address matches at least one regex, no output will be written to the console. The check uses [Hugo's `findRE` function](https://gohugo.io/functions/strings/findre/).
 
 {{< multiconfig section=params >}}
 errorignore = [ '^/authoring/', '^/configuration/' ]

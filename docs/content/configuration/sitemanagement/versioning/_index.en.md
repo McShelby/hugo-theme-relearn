@@ -6,7 +6,7 @@ title = 'Versioning'
 weight = 3
 +++
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} The theme offers a way to version your site. This is useful if you want to keep older versions of your site available while also providing links to the current version. Each site version needs to be created separately and is functional independent of each other.
+{{% badge style="option" %}}Option{{% /badge %}} The theme offers a way to version your site. This is useful if you want to keep older versions of your site available while also providing links to the current version. Each site version needs to be created separately and is functional independent of each other.
 
 A version switcher will be displayed at the top of the sidebar if versioning is configured. If the user selects a different version, the theme will navigate to the actual page location but in the selected version. If this page does not exist in the selected version, the 404 page will be displayed.
 
@@ -158,7 +158,7 @@ To stay with the above example, here's the configuration for your current versio
 
 ## Hiding the Versioning Warning
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} If visitors navigate to an archived version of your site, they will see a versioning warning at the top of each page.
+{{% badge style="option" %}}Option{{% /badge %}} If visitors navigate to an archived version of your site, they will see a versioning warning at the top of each page.
 
 You can disable it be setting the `disableVersioningWarning` option to `true` in your `hugo.toml`.
 

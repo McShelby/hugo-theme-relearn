@@ -10,7 +10,7 @@ Every Hugo page must have front matter.
 
 In addition to [Hugo's standard front matter](https://gohugo.io/content-management/front-matter/#fields), the Relearn theme offers extras settings listed here.
 
-Throughout the documentation, theme-specific front matter is marked with a {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} badge.
+Throughout the documentation, theme-specific front matter is marked with a {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} badge.
 
 Add theme front matter directly to the root of your page's front matter. For example:
 

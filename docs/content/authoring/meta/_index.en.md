@@ -36,9 +36,9 @@ images = [ 'images/hero.png' ]
 
 ## Hidden
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide your pages from the menu by setting `hidden=true`.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide your pages from the menu by setting `hidden=true`.
 
-{{% badge color="blueviolet" icon="bars" title=" " %}}Menu{{% /badge %}} For [Hugo menus](https://gohugo.io/content-management/menus/), you have to set `params.hidden=true` instead.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For [Hugo menus](https://gohugo.io/content-management/menus/), you have to set `params.hidden=true` instead.
 
 [See how you can further configure visibility](configuration/content/hidden) throughout your site.
 
@@ -48,7 +48,7 @@ hidden = true
 
 ## Add Icon to the Title Heading
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} In the page front matter, add a `headingPre` to insert any HTML code before the title heading. You can also set `headingPost` to insert HTML code after the title heading.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} In the page front matter, add a `headingPre` to insert any HTML code before the title heading. You can also set `headingPost` to insert HTML code after the title heading.
 
 You also may want to [apply further CSS](configuration/customization/extending#adding-javascript-or-stylesheets-to-all-pages) in this case.
 
@@ -58,7 +58,7 @@ headingPre = '<i class="fab fa-github"></i> '
 
 ## Footer Information
 
-{{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} If you use the default `layouts/partials/content-footer.html` is not overridden by you, it will display authoring information, namely
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} If you use the default `layouts/partials/content-footer.html` is not overridden by you, it will display authoring information, namely
 
 - `AuthorName` if [GitInfo](https://gohugo.io/methods/page/gitinfo/) is active, otherwise `LastModifierDisplayName` front matter
 - `AuthorEmail` if [GitInfo](https://gohugo.io/methods/page/gitinfo/) is active, otherwise `LastModifierEmail` front matter

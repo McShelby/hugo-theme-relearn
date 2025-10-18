@@ -33,7 +33,7 @@ The theme ships with the following set of variants
 
 ## Changing the Variant
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} Set the `themeVariant` option to change the variant.
+{{% badge style="option" %}}Option{{% /badge %}} Set the `themeVariant` option to change the variant.
 
 The theme offers the recommended [advanced configuration mode](#theme-variant-advanced) that combines the functionality for [multiple variants](#multiple-variants), [OS setting adjustments](#adjust-to-os-settings), and more.
 

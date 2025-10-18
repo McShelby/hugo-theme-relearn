@@ -31,19 +31,19 @@ John Gruber, the author of Markdown, puts it like this:
 
 If not otherwise noted, the shown examples adhere to the [CommonMark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
 
-- {{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
+- {{% badge style="gfm" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
-- {{% badge color="#888cc4" icon="fa-fw fab fa-php" %}}PHP{{% /badge %}} Extension on top of standard Markdown adhering to [PHP Markdown](https://michelf.ca/projects/php-markdown/extra/).
+- {{% badge style="php" %}}PHP{{% /badge %}} Extension on top of standard Markdown adhering to [PHP Markdown](https://michelf.ca/projects/php-markdown/extra/).
 
-- {{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} Extension by John Gruber adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
+- {{% badge style="pants" %}}Pants{{% /badge %}} Extension by John Gruber adhering to [SmartyPants](https://daringfireball.net/projects/smartypants/).
 
-- {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} [Hugo Extra Extension](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) supported by Hugo.
+- {{% badge style="hugo" %}}Hugo{{% /badge %}} [Hugo Extra Extension](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) supported by Hugo.
 
-- {{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Extension implemented by [Obsidian](https://obsidian.md/).
+- {{% badge style="obsidian" %}}Obsidian{{% /badge %}} Extension implemented by [Obsidian](https://obsidian.md/).
 
-- {{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed, the theme supports styling for further HTML elements.
+- {{% badge style="html" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed, the theme supports styling for further HTML elements.
 
-- {{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} Extension specific to this theme.
+- {{% badge style="relearn" %}}Relearn{{% /badge %}} Extension specific to this theme.
 
 ## Paragraphs
 
@@ -144,7 +144,7 @@ Blockquotes can also be nested.
 
 ### GitHub Alerts
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.132.0{{% /badge %}} [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
+{{% badge style="gfm" %}}GFM{{% /badge %}} Since Hugo {{% badge style="hugo" %}}0.132.0{{% /badge %}} [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
 
 If you are in need of more advanced options to style your alerts, like icons, use the [notice shortcode](shortcodes/notice).
 
@@ -190,12 +190,12 @@ If you are in need of more advanced options to style your alerts, like icons, us
 
 ### Obsidian Callouts
 
-{{% badge color="#7c3aed" icon="fa-fw far fa-gem" %}}Obsidian{{% /badge %}} Since Hugo {{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}0.134.0{{% /badge %}} [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
+{{% badge style="obsidian" %}}Obsidian{{% /badge %}} Since Hugo {{% badge style="hugo" %}}0.134.0{{% /badge %}} [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
 
 If you are in need of more advanced options to style your alerts, like icons, use the [notice shortcode](shortcodes/notice).
 
 ````md
-> [!tip] Callouts can have custom titles
+> [!tip] Callouts can have **custom** titles
 > Like this one.
 
 > [!tip] Title-only callout
@@ -208,7 +208,7 @@ If you are in need of more advanced options to style your alerts, like icons, us
 ````
 
 {{% notice style="code" icon="eye" title="Result" %}}
-> [!tip] Callouts can have custom titles
+> [!tip] Callouts can have **custom** titles
 > Like this one.
 
 > [!tip] Title-only callout
@@ -250,13 +250,13 @@ I am rendered with _italicized text_
 
 You can mark text in the predefined accent color of your stylesheet.
 
-{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
 
 ````md
 ==Parts== of this text ==are marked!==
 ````
 
-{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
+{{% badge style="html" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
 
 ````html
 <mark>Parts</mark> of this text <mark>are marked!</mark>
@@ -270,13 +270,13 @@ You can mark text in the predefined accent color of your stylesheet.
 
 You can mark text additions to existing text.
 
-{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
 
 ````md
 The ++hot, new++ stuff
 ````
 
-{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
+{{% badge style="html" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
 
 ````html
 The <ins>hot, new</ins> stuff
@@ -288,7 +288,7 @@ The ++hot, new++ stuff
 
 ### Deleted Text
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`. See [Hugo's documentation remarks](https://gohugo.io/getting-started/configuration-markup/#extras) if you want to use this together with the subscript syntax.
+{{% badge style="gfm" %}}GFM{{% /badge %}} You can do strikethroughs by enclosing text with two tildes `~~`. See [Hugo's documentation remarks](https://gohugo.io/getting-started/configuration-markup/#extras) if you want to use this together with the subscript syntax.
 
 ````md
 ~~Strike through~~ this text
@@ -302,7 +302,7 @@ The ++hot, new++ stuff
 
 ### Text Substitution
 
-{{% badge color="darkorange" icon="lightbulb" %}}Pants{{% /badge %}} You can combine multiple punctuation characters to single typographic entities. This will only be applied to text outside of code blocks or inline code.
+{{% badge style="pants" %}}Pants{{% /badge %}} You can combine multiple punctuation characters to single typographic entities. This will only be applied to text outside of code blocks or inline code.
 
 ````md
 Double quotes `"` and single quotes `'` of enclosed text are replaced by **"double curly quotes"** and **'single curly quotes'**.
@@ -328,13 +328,13 @@ Three consecutive dots `...` are replaced by an ellipsis **...** entity.
 
 You can also use  subscript and superscript text. For more complex stuff, you can use the [`math` shortcode](shortcodes/math).
 
-{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
 
 ````md
 How many liters H~2~O fit into 1dm^3^?
 ````
 
-{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
+{{% badge style="html" %}}HTML{{% /badge %}} You can also use it by configuring Hugo for [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe).
 
 ````html
 How many liters H<sub>2</sub>O fit into 1dm<sup>3</sup>?
@@ -346,7 +346,7 @@ How many liters H~2~O fit into 1dm^3^?
 
 ### Keyboard Shortcuts
 
-{{% badge color="orangered" icon="fa-fw fas fa-code" %}}HTML{{% /badge %}} You can use the `<kbd>` element to style keyboard shortcuts.
+{{% badge style="html" %}}HTML{{% /badge %}} You can use the `<kbd>` element to style keyboard shortcuts.
 
 ````html
 Press <kbd>STRG</kbd> <kbd>ALT</kbd> <kbd>DEL</kbd> to end your shift early.
@@ -420,7 +420,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Tasks
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can add task lists resulting in checked or unchecked non-clickable items
+{{% badge style="gfm" %}}GFM{{% /badge %}} You can add task lists resulting in checked or unchecked non-clickable items
 
 ````md
 - [x] Basic Test
@@ -440,7 +440,7 @@ Markdown will automatically number each of your items consecutively. This means,
 
 ### Tree
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} You can add lists as a tree with configurable icons and colors.
+{{% badge style="relearn" %}}Relearn{{% /badge %}} You can add lists as a tree with configurable icons and colors.
 
 The name can be followed by an optional pipe (`|`) to define an icon and further optional pipe to define the icon's color.
 
@@ -478,7 +478,7 @@ More details can be found in the [`tree` shortcode docs](shortcodes/tree).
 
 ### Definitions
 
-{{% badge color="#888cc4" icon="fa-fw fab fa-php" %}}PHP{{% /badge %}} Definition lists are made of terms and definitions of these terms, much like in a dictionary.
+{{% badge style="php" %}}PHP{{% /badge %}} Definition lists are made of terms and definitions of these terms, much like in a dictionary.
 
 A definition list in Markdown Extra is made of a single-line term followed by a colon and the definition for that term. You can also associate more than one term to a definition.
 
@@ -552,7 +552,7 @@ Be impressed by my advanced code:
 
 If you want to gain more control of your code block you can enclose your code by at least three backticks ```` ``` ```` a so called fence.
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
+{{% badge style="gfm" %}}GFM{{% /badge %}} You can also add a language specifier directly after the opening fence, ` ```js `, and syntax highlighting will automatically be applied according to the selected language in the rendered HTML.
 
 See [Code Highlighting](shortcodes/highlight) for additional documentation.
 
@@ -592,7 +592,7 @@ See [Code Highlighting](shortcodes/highlight) for additional documentation.
 
 ## Tables
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} You can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
+{{% badge style="gfm" %}}GFM{{% /badge %}} You can create tables by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.
 
 ````md
 | Option | Description |
@@ -634,7 +634,7 @@ Adding a colon on the left and/or right side of the dashes below any heading wil
 
 ### Autolink
 
-{{% badge color="darkgray" icon="fa-fw fab fa-github" %}}GFM{{% /badge %}} Absolute URLs will automatically be converted into a link.
+{{% badge style="gfm" %}}GFM{{% /badge %}} Absolute URLs will automatically be converted into a link.
 
 ````md
 This is a link to https://example.com.
@@ -687,7 +687,7 @@ Links can be simplyfied for recurring reuse by using a reference ID to later def
 
 ### Footnotes
 
-{{% badge color="#888cc4" icon="fa-fw fab fa-php" %}}PHP{{% /badge %}} Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.
+{{% badge style="php" %}}PHP{{% /badge %}} Footnotes work mostly like reference-style links. A footnote is made of two things, a marker in the text that will become a superscript number and a footnote definition that will be placed in a list of footnotes.
 
 Usually the list of footnotes will be shown at the end of your document. If we use a footnote in a notice box it will instead be listed at the end of its box.
 
@@ -721,7 +721,7 @@ That's some more text with a footnote.[^someid]
 
 ### Link Effects
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the URL. See the [link effects docs](authoring/linking/linkeffects) for a detailed example and how to configure it.
+{{% badge style="relearn" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the URL. See the [link effects docs](authoring/linking/linkeffects) for a detailed example and how to configure it.
 
 #### Target
 
@@ -791,7 +791,7 @@ Images can also be linked by reference ID to later define the URL location. This
 
 ### Image Effects
 
-{{% badge color="#7dc903" icon="fa-fw fas fa-puzzle-piece" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. See the [image effects docs](authoring/linking/imageeffects) for a detailed example and how to configure it.
+{{% badge style="relearn" %}}Relearn{{% /badge %}} This theme allows additional non-standard formatting by setting query parameter at the end of the image URL. See the [image effects docs](authoring/linking/imageeffects) for a detailed example and how to configure it.
 
 #### Resizing
 

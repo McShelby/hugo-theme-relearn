@@ -107,7 +107,7 @@ If used together with wrapping of long lines, use this recommended settings. Oth
 
 ### Setting Wrap of Long Lines
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} By default, code will be wrapped if the line is not long enough.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} By default, code will be wrapped if the line is not long enough.
 
 You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameter) individually for each code block.
 
@@ -117,7 +117,7 @@ highlightWrap=false
 
 ### Copy to Clipboard for Inline Code
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default inline code has a button to copy the code to the clipboard.
+{{% badge style="option" %}}Option{{% /badge %}} By default inline code has a button to copy the code to the clipboard.
 
 If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
 
@@ -127,7 +127,7 @@ disableInlineCopyToClipBoard = true
 
 ### Copy to Clipboard for Block Code
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} By default block code has a button to copy the code to the clipboard that is only visible on hover.
+{{% badge style="option" %}}Option{{% /badge %}} By default block code has a button to copy the code to the clipboard that is only visible on hover.
 
 Set `disableHoverBlockCopyToClipBoard=true` to disable the hover effect and always show the button.
 

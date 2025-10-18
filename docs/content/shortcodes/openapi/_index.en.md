@@ -45,7 +45,7 @@ Instead, open the [print preview](authoring/frontmatter/topbar) in your browser 
 
 ### Enabling Link Warnings
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link can not be resolved to a resource.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link can not be resolved to a resource.
 
 If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
 
@@ -59,7 +59,7 @@ openapi.errorlevel = 'warning'
 
 ### Loading an External Version of the Swagger UI Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.
 
 In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
 
@@ -69,7 +69,7 @@ customOpenapiURL = 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
 
 ### Force Loading of the Swagger UI Library
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an `openapi` shortcode or codefence.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an `openapi` shortcode or codefence.
 
 You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
