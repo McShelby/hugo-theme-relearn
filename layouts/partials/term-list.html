@@ -1,20 +1,15 @@
 {{- $page := .page }}
 {{- $taxonomy := .taxonomy }}
 {{- $class := .class }}
-{{- $color := .color | default "" }}
+
 {{- $style := .style | default "" }}
-{{- if and (not $style) (eq (len $style) 0) }}
-  {{- $color = .color | default "var(--INTERNAL-TAG-BG-color)" }}
-{{- end }}
-{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" "" "icon" .icon) }}
-{{- if and (not $boxStyle.style) (not $color) }}
-  {{- $color = $style }}
-  {{- $style = "" }}
-{{- end }}
-{{- $icon := trim ($boxStyle.icon) " " }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+{{- $color := .color | default "" }}
+{{- $icon := .icon | default "" }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "terms" "style" $style "color" $color "icon" $icon) }}
+{{- $style = $boxStyle.style }}
+{{- $color = $boxStyle.color }}
+{{- $icon = $boxStyle.icon }}
+
 {{- $taxonomy_page := $page.Site.GetPage $taxonomy }}
 {{- $term_pages := slice }}
 {{- range $page.GetTerms $taxonomy }}

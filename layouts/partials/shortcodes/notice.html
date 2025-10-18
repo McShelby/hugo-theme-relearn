@@ -7,24 +7,23 @@
 {{- $class := .class | default "notices" }}
 {{- $containerstyle := .containerstyle | default "div" }}
 {{- $containerclass := .containerclass | default slice | append "box-content" }}
-{{- $color := .color | default "" }}
 {{- $content := trim .content "\n\r\t " }}
 {{- $hasContent := ne (strings.TrimPrefix "<p>" $content) "" }}
 {{- if not (hasPrefix $content "<") }}
   {{- $content = printf "<p>\n%s" $content }}
 {{- end }}
 {{- $groupid := .groupid }}
-{{- $style := .style | default "default" }}
-{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
-{{- if and (not $boxStyle.style) (not $color) }}
-  {{- $color = $style }}
-  {{- $style = "" }}
-{{- end }}
-{{- $title := trim ($boxStyle.title) " " }}
-{{- $icon := trim ($boxStyle.icon) " " }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+
+{{- $style := .style | default "" }}
+{{- $color := .color | default "" }}
+{{- $icon := .icon | default "" }}
+{{- $title := .title | default "" }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "default" "style" $style "color" $color "icon" $icon "title" $title) }}
+{{- $style = $boxStyle.style }}
+{{- $color = $boxStyle.color }}
+{{- $icon = $boxStyle.icon }}
+{{- $title = $boxStyle.title }}
+
 {{- $expander := false }}
 {{- $expanded := .expanded | default "" }}
 {{- if $hasContent }}

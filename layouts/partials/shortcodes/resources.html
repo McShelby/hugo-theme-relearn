@@ -4,21 +4,17 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'resources' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
+
+{{- $style := .style | default "" }}
 {{- $color := .color | default "" }}
-{{- $style := .style | default "default" }}
-{{- if and (not $color) (eq (len $color) 0) }}
-  {{- $style = .style | default "transparent" }}
-{{- end }}
-{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
-{{- if and (not $boxStyle.style) (not $color) }}
-  {{- $color = $style }}
-  {{- $style = "" }}
-{{- end }}
-{{- $title := trim ($boxStyle.title | default ("Attachments-label" | T)) " " }}
-{{- $icon := trim ($boxStyle.icon | default "paperclip") " " }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+{{- $icon := .icon | default "" }}
+{{- $title := .title | default "" }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "attachments" "style" $style "color" $color "icon" $icon "title" $title) }}
+{{- $style = $boxStyle.style }}
+{{- $color = $boxStyle.color }}
+{{- $icon = $boxStyle.icon }}
+{{- $title = $boxStyle.title }}
+
 {{- $expanded := .expanded | default "" }}
 {{- if eq (printf "%T" $expanded) "string" }}
   {{- if ne (trim $expanded " ") "" }}

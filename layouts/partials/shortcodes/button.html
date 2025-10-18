@@ -39,22 +39,18 @@
   {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target))) }}
 {{- end }}
 
-{{- $color := .color | default "" }}
 {{- $content := .content }}
-{{- $style := .style | default "default" }}
-{{- if and (not $color) (eq (len $color) 0) }}
-  {{- $style = .style | default "transparent" }}
-{{- end }}
-{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" (or .title $content) "icon" .icon) }}
-{{- if and (not $boxStyle.style) (not $color) }}
-  {{- $color = $style }}
-  {{- $style = "" }}
-{{- end }}
-{{- $title := trim ($boxStyle.title) " " }}
-{{- $icon := trim ($boxStyle.icon) " " }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+
+{{- $style := .style | default "" }}
+{{- $color := .color | default "" }}
+{{- $icon := .icon | default "" }}
+{{- $title := .title | default $content | default "" }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "button" "style" $style "color" $color "icon" $icon "title" $title) }}
+{{- $style = $boxStyle.style }}
+{{- $color = $boxStyle.color }}
+{{- $icon = $boxStyle.icon }}
+{{- $title = $boxStyle.title }}
+
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $page -}}
 <span class="btn{{ if or $isButton $isLink }} interactive {{ end }} cstyle{{ if $style }} {{ $style }}{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>

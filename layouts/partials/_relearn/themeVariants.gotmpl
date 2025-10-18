@@ -113,10 +113,17 @@ Generator run:
   {{- $boxcontent := "" }}
   {{- range $page.Site.Params.boxStyle }}
     {{- $identifier := upper .identifier }}
-    {{- $boxcontent = print $boxcontent
-      "\n    --INTERNAL-BOX-" $identifier "-color: var(--BOX-" $identifier "-color, " .color ");"
-      "\n    --INTERNAL-BOX-" $identifier "-TEXT-color: var(--BOX-" $identifier "-TEXT-color, var(--INTERNAL-BOX-TEXT-color));"
-    }}
+    {{- if .color }}
+      {{- $boxcontent = print $boxcontent
+        "\n    --INTERNAL-BOX-" $identifier "-color: var(--BOX-" $identifier "-color, " .color ");"
+        "\n    --INTERNAL-BOX-" $identifier "-TEXT-color: var(--BOX-" $identifier "-TEXT-color, var(--INTERNAL-BOX-TEXT-color));"
+      }}
+    {{- else }}
+      {{- $boxcontent = print $boxcontent
+        "\n    --INTERNAL-BOX-" $identifier "-color: var(--BOX-" $identifier "-color, var(--INTERNAL-BOX-" .style "-color));"
+        "\n    --INTERNAL-BOX-" $identifier "-TEXT-color: var(--BOX-" $identifier "-TEXT-color, var(--INTERNAL-BOX-TEXT-color));"
+      }}
+    {{- end }}
   {{- end }}
   {{- $variablescontent = print
     ":root {"

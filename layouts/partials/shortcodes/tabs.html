@@ -5,10 +5,10 @@
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'tabs' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $groupid := printf "R-tabs-%s" (or .groupid (partial "_relearn/makeRandomMd5.gotmpl" $page) | md5) }}
-{{- $color := .color }}
 {{- $style := .style }}
-{{- $title := .title }}
+{{- $color := .color }}
 {{- $icon := .icon }}
+{{- $title := .title }}
 {{- $tabs := slice }}
 {{- range $tab := (.content | default slice) }}
   {{- if and (not $tab.title) $tab.name }}
@@ -17,23 +17,22 @@
     {{- $tab = merge $tab (dict "title" .name) }}
   {{- end }}
   {{- with $tab }}
-    {{- $color := .color | default $color | default "" }}
     {{- $content := trim .content "\n\r\t " }}
     {{- $hasContent := ne (strings.TrimPrefix "<p>" $content) "" }}
     {{- if not (hasPrefix $content "<") }}
       {{- $content = printf "<p>\n%s" $content }}
     {{- end }}
-    {{- $style := .style | default $style | default (cond (ne $color "") "filled" "initial") }}
-    {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
-    {{- if and (not $boxStyle.style) (not $color) }}
-      {{- $color = $style }}
-      {{- $style = "" }}
-    {{- end }}
-    {{- $title := trim ($boxStyle.title) " " }}
-    {{- $icon := trim ($boxStyle.icon) " " }}
-    {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-      {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-    {{- end }}
+
+    {{- $style := .style | default $style | default "" }}
+    {{- $color := .color | default $color | default "" }}
+    {{- $icon := .icon | default "" }}
+    {{- $title := .title | default "" }}
+    {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "tabs" "style" $style "color" $color "icon" $icon "title" $title) }}
+    {{- $style = $boxStyle.style }}
+    {{- $color = $boxStyle.color }}
+    {{- $icon := $boxStyle.icon }}
+    {{- $title := $boxStyle.title }}
+
     {{- $id := partial "_relearn/makeRandomMd5.gotmpl" $page }}
     {{- /* a tab may have only an icon with no title, so we need to take this into account for groupid switching */}}
     {{- $itemid := or ($title | $page.RenderString | plainify) $icon | md5 }}
@@ -50,18 +49,17 @@
     {{- end }}
   {{- end }}
 {{- end }}
+
+{{- $style = .style | default "" }}
 {{- $color = .color | default "" }}
-{{- $style = .style | default (cond (ne $color "") "filled" "initial") }}
-{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "title" .title "icon" .icon) }}
-{{- if and (not $boxStyle.style) (not $color) }}
-  {{- $color = $style }}
-  {{- $style = "" }}
-{{- end }}
-{{- $title := trim ($boxStyle.title) " " }}
-{{- $icon := trim ($boxStyle.icon) " " }}
-{{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
-  {{- $icon = printf "fa-fw fas fa-%s" $icon }}
-{{- end }}
+{{- $icon := .icon | default "" }}
+{{- $title := .title | default "" }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "tabs" "style" $style "color" $color "icon" $icon "title" $title) }}
+{{- $color = $boxStyle.color }}
+{{- $style = $boxStyle.style }}
+{{- $icon := $boxStyle.icon }}
+{{- $title := $boxStyle.title }}
+
 {{- with $page }}
   {{- if len $tabs -}}
 <div class="tab-panel" data-tab-group="{{ $groupid }}">

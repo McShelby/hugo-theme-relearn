@@ -1,0 +1,55 @@
+{{- $styles := dict }}
+{{- $themeStyles := dict
+	"caution"     (dict "identifier" "caution"     "style" "caution"     "color" "" "title" ("caution" | T)           "icon" "hand")
+	"important"   (dict "identifier" "important"   "style" "important"   "color" "" "title" ("important" | T)         "icon" "bolt")
+	"info"        (dict "identifier" "info"        "style" "info"        "color" "" "title" ("info" | T)              "icon" "info-circle")
+	"note"        (dict "identifier" "note"        "style" "note"        "color" "" "title" ("note" | T)              "icon" "exclamation-circle")
+	"tip"         (dict "identifier" "tip"         "style" "tip"         "color" "" "title" ("tip" | T)               "icon" "lightbulb")
+	"warning"     (dict "identifier" "warning"     "style" "warning"     "color" "" "title" ("warning" | T)           "icon" "exclamation-triangle")
+
+	"primary"     (dict "identifier" "primary"     "style" "primary"     "color" "" "title" ""                        "icon" "" )
+	"secondary"   (dict "identifier" "secondary"   "style" "secondary"   "color" "" "title" ""                        "icon" "" )
+	"accent"      (dict "identifier" "accent"      "style" "accent"      "color" "" "title" ""                        "icon" "" )
+	"blue"        (dict "identifier" "blue"        "style" "blue"        "color" "" "title" ""                        "icon" "" )
+	"cyan"        (dict "identifier" "cyan"        "style" "cyan"        "color" "" "title" ""                        "icon" "" )
+	"green"       (dict "identifier" "green"       "style" "green"       "color" "" "title" ""                        "icon" "" )
+	"grey"        (dict "identifier" "grey"        "style" "grey"        "color" "" "title" ""                        "icon" "" )
+	"magenta"     (dict "identifier" "magenta"     "style" "magenta"     "color" "" "title" ""                        "icon" "" )
+	"orange"      (dict "identifier" "orange"      "style" "orange"      "color" "" "title" ""                        "icon" "" )
+	"red"         (dict "identifier" "red"         "style" "red"         "color" "" "title" ""                        "icon" "" )
+
+	"default"     (dict "identifier" "default"     "style" "default"     "color" "" "title" ""                        "icon" "" )
+	"transparent" (dict "identifier" "transparent" "style" "transparent" "color" "" "title" ""                        "icon" "" )
+	"code"        (dict "identifier" "code"        "style" "code"        "color" "" "title" ""                        "icon" "" )
+	"filled"      (dict "identifier" "filled"      "style" "filled"      "color" "" "title" ""                        "icon" "" )
+	"initial"     (dict "identifier" "initial"     "style" "initial"     "color" "" "title" ""                        "icon" "" )
+
+	"attachments" (dict "identifier" "attachments" "style" ""            "color" "" "title" ("Attachments-label" | T) "icon" "paperclip")
+}}
+{{- range site.Params.boxStyle }}
+	{{- $set := dict }}
+	{{- if .style }}
+		{{- if eq .identifier .style }}
+		{{- else if isset $styles .style }}
+			{{- $set = index $styles .style }}
+		{{- else if isset $themeStyles .style }}
+			{{- $set = index $themeStyles .style }}
+		{{- else }}
+			{{- warnf "%q: WARNING dependend box style '%s' was not found for box style '%s'" .style .identifier }}
+		{{- end }}
+	{{- end }}
+	{{- $set = merge (dict "style" .identifier) $set }}
+
+	{{- $i18n := .i18n | default "" }}
+	{{- if $i18n }}
+		{{- $i18n = $i18n | T }}
+	{{- end }}
+	{{- $color := or .color "" }}
+	{{- $title := or .title $i18n }}
+	{{- $icon := or .icon "" }}
+
+	{{- $set = merge $set (dict "identifier" .identifier "color" $color "icon" $icon "title" $title) }}
+	{{- $styles = merge $styles (dict .identifier $set) }}
+{{- end }}
+{{- $styles = merge $themeStyles $styles }}
+{{- return $styles }}
