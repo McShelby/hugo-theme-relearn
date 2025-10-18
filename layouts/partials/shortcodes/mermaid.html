@@ -26,6 +26,10 @@
 {{- range $k, $v := $attributes }}
   {{- if eq $k "align" }}
   {{- else if eq $k "zoom" }}
+    {{- $zoom = $v }}
+    {{- if eq (printf "%T" $v) "string" }}
+      {{- $zoom = (eq $v "true") }}
+    {{- end }}
   {{- else }}
     {{- $otherAttributes = (dict $k $v) | merge $otherAttributes }}
   {{- end }}
