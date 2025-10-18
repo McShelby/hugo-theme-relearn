@@ -25,7 +25,7 @@ Your topbar contains the following elements. Some of them are configuarable:
 
 ## Table of Contents
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Set `disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
 
 {{< multiconfig >}}
 disableToc = true
@@ -33,7 +33,7 @@ disableToc = true
 
 ## Breadcrumbs
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} Set `disableBreadcrumb=true` to hide the breadcrumb in the topbar.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableBreadcrumb=true` to hide the breadcrumb in the topbar.
 
 Further breadcrumbs settings can be found in the [content configuration section](configuration/content/titles).
 
@@ -43,7 +43,7 @@ disableBreadcrumb = true
 
 ## Edit Button
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} If `editURL` is set to a URL, an edit button will be shown in the topbar. If the button is hidden, also the keyboard shortcut is disabled.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} If `editURL` is set to a URL, an edit button will be shown in the topbar. If the button is hidden, also the keyboard shortcut is disabled.
 
 The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages front matter.
 
@@ -53,7 +53,7 @@ editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content
 
 ## Markdown Button
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the Markdown button if the [Markdown output format](configuration/sitemanagement/outputformats/#markdown-support) is active by setting `disableMarkdownButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Markdown button if the [Markdown output format](configuration/sitemanagement/outputformats/#markdown-support) is active by setting `disableMarkdownButton=true`.
 
 {{< multiconfig >}}
 disableMarkdownButton = true
@@ -61,7 +61,7 @@ disableMarkdownButton = true
 
 ## Source Button
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the Source button if the [Source output format](configuration/sitemanagement/outputformats/#source-support) is active by setting `disableSourceButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Source button if the [Source output format](configuration/sitemanagement/outputformats/#source-support) is active by setting `disableSourceButton=true`.
 
 {{< multiconfig >}}
 disableSourceButton = true
@@ -69,7 +69,7 @@ disableSourceButton = true
 
 ## Print Button
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the print button if the [print output format](configuration/sitemanagement/outputformats/#print-support) is active by setting `disablePrintButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the print button if the [print output format](configuration/sitemanagement/outputformats/#print-support) is active by setting `disablePrintButton=true`.
 
 {{< multiconfig >}}
 disablePrintButton = true
@@ -77,7 +77,7 @@ disablePrintButton = true
 
 ## Arrow Navigation
 
-{{% badge style="cyan" icon="gears" title=" " %}}Option{{% /badge %}} {{% badge style="green" icon="fa-fw fab fa-markdown" title=" " %}}Front Matter{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
 
 {{< multiconfig >}}
 disableNextPrev = true
