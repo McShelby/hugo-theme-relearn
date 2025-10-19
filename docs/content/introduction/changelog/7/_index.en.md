@@ -5,7 +5,6 @@ weight = -7
 
 [params]
   disableToc = false
-  hidden = true
 +++
 
 {{% pages showhidden="true" showdivider="true" %}}
