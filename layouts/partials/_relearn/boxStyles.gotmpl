@@ -40,15 +40,27 @@
 	{{- end }}
 	{{- $set = merge (dict "style" .identifier) $set }}
 
+	{{- $set = merge $set (dict "identifier" .identifier ) }}
+
+	{{- $color := or .color "" }}
+	{{- if ne $color "" }}
+		{{- $set = merge $set (dict "color" $color ) }}
+	{{- end }}
+
+	{{- $icon := or .icon "" }}
+	{{- if ne $icon "" }}
+		{{- $set = merge $set (dict "icon" $icon ) }}
+	{{- end }}
+
 	{{- $i18n := .i18n | default "" }}
 	{{- if $i18n }}
 		{{- $i18n = $i18n | T }}
 	{{- end }}
-	{{- $color := or .color "" }}
 	{{- $title := or .title $i18n }}
-	{{- $icon := or .icon "" }}
+	{{- if ne $title "" }}
+		{{- $set = merge $set (dict "title" $title ) }}
+	{{- end }}
 
-	{{- $set = merge $set (dict "identifier" .identifier "color" $color "icon" $icon "title" $title) }}
 	{{- $styles = merge $styles (dict .identifier $set) }}
 {{- end }}
 {{- $styles = merge $themeStyles $styles }}
