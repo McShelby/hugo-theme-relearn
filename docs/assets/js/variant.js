@@ -29,7 +29,7 @@ var variants = {
     } else if (customvariant && !window.relearn.themevariants.includes(customvariant)) {
       // this can only happen on initial load, if a previously selected variant is not available anymore
       customvariant = window.relearn.themevariants[0];
-      window.relearn.setItem( window.localStorage, window.relearn.absBaseUri + '/customvariant', customvariant);
+      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/customvariant', customvariant);
     }
     this.updateCustomVariantStyles(customvariantstylesheet);
 
@@ -45,7 +45,7 @@ var variants = {
 
   addCustomVariantOption: function () {
     var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-    if (!customvariant ) {
+    if (!customvariant) {
       return;
     }
     document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
@@ -88,11 +88,11 @@ var variants = {
   saveCustomVariant: function () {
     var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
     if (variant != this.customvariantname) {
-      window.relearn.setItem( window.localStorage, window.relearn.absBaseUri + '/customvariant', variant);
+      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/customvariant', variant);
     }
     var stylesheet = this.generateStylesheet(this.customvariantname);
-    window.relearn.setItem( window.localStorage, window.relearn.absBaseUri + '/variant', this.customvariantname);
-    window.relearn.setItem( window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet', stylesheet);
+    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', this.customvariantname);
+    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet', stylesheet);
     this.updateCustomVariantStyles(stylesheet);
 
     this.addCustomVariantOption();
@@ -281,7 +281,7 @@ var variants = {
       }
       window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
       window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet');
-      window.relearn.setItem( window.localStorage, window.relearn.absBaseUri + '/variant', customvariant);
+      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariant);
       this.updateCustomVariantStyles('');
 
       this.removeCustomVariantOption();
