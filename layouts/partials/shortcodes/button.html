@@ -7,6 +7,7 @@
 
 {{- $attributes := .attributes | default dict }}
 {{- $borderless := .borderless | default false }}
+{{- $hint := .hint | default "" }}
 {{- $type := .type | default "" }}
 {{- $isButton := false }}
 {{- $isLink := false }}
@@ -37,7 +38,7 @@
     {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- warnf "%q: DEPRECATED parameter 'target' for shortcode 'button' found, use link effects instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-4-0" $filepath }}
   {{- end }}
-  {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target))) }}
+  {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target "title" $hint))) }}
 {{- end }}
 
 {{- $content := .content }}
@@ -56,7 +57,7 @@
 {{- with $page -}}
 <span class="btn{{ if or $isButton $isLink }} interactive {{ end }} cstyle{{ if $style }} {{ $style }}{{ end }}{{ if $borderless }} noborder{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
   {{- if $isButton -}}
-  <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
+  <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }}title="{{ $hint }}"{{ end }}>
   {{- else if $isLink -}}
   <a
     {{- range $k, $v := $attributes }}

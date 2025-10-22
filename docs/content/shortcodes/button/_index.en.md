@@ -51,6 +51,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
 | **borderless**        | `false`         | When `true`, no border will be shown around the button. |
 | **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button`. |
+| **hint**              | _&lt;empty&gt;_ | Tooltip for the button title. |
 | _**&lt;content&gt;**_ | see notes       | Arbitrary text for the button title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 
 ## Examples
@@ -128,13 +129,15 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 {{% button href="https://gohugo.io/" icon=" " %}}{{% /button %}}
 
-#### Only
+#### Only with Hint
+
+Mouse-over the button to see the hint.
 
 ````go
-{{%/* button href="https://gohugo.io/" icon="download" %}}{{% /button */%}}
+{{%/* button href="https://gohugo.io/" icon="download" hint="Go to Hugo's homepage" %}}{{% /button */%}}
 ````
 
-{{% button href="https://gohugo.io/" icon="download" %}}{{% /button %}}
+{{% button href="https://gohugo.io/" icon="download" hint="Go to Hugo's homepage" %}}{{% /button %}}
 
 #### To the Left
 
