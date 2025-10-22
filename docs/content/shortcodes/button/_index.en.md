@@ -49,7 +49,8 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
-| **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button` |
+| **borderless**        | `false`         | When `true`, no border will be shown around the button. |
+| **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button`. |
 | _**&lt;content&gt;**_ | see notes       | Arbitrary text for the button title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 
 ## Examples
@@ -172,6 +173,18 @@ You can use [link effects](authoring/markdown#link-effects) with your `href` to 
 {{% button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button %}}
 
 ### Other
+
+#### Borderless
+
+````go
+{{%/* button borderless="true" href="https://gohugo.io/" style="primary" %}}Get Hugo{{% /button */%}}
+{{%/* button borderless="true" href="https://gohugo.io/" style="default" %}}Get Hugo{{% /button */%}}
+{{%/* button borderless="true" href="https://gohugo.io/" style="transparent" %}}Get Hugo{{% /button */%}}
+````
+
+{{% button borderless="true" href="https://gohugo.io/" style="primary" %}}Get Hugo{{% /button %}}
+{{% button borderless="true" href="https://gohugo.io/" style="default" %}}Get Hugo{{% /button %}}
+{{% button borderless="true" href="https://gohugo.io/" style="transparent" %}}Get Hugo{{% /button %}}
 
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown Title
 

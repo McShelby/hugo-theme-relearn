@@ -6,6 +6,7 @@
 {{- end }}
 
 {{- $attributes := .attributes | default dict }}
+{{- $borderless := .borderless | default false }}
 {{- $type := .type | default "" }}
 {{- $isButton := false }}
 {{- $isLink := false }}
@@ -53,7 +54,7 @@
 
 {{- $iconposition := .iconposition | default "left" }}
 {{- with $page -}}
-<span class="btn{{ if or $isButton $isLink }} interactive {{ end }} cstyle{{ if $style }} {{ $style }}{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
+<span class="btn{{ if or $isButton $isLink }} interactive {{ end }} cstyle{{ if $style }} {{ $style }}{{ end }}{{ if $borderless }} noborder{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
   {{- if $isButton -}}
   <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}>
   {{- else if $isLink -}}
