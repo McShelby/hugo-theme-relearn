@@ -149,17 +149,13 @@ dd {
   margin-inline-start: 1.5rem;
 }
 
-a,
-.topbar-button button {
+a {
   color: var(--INTERNAL-MAIN-LINK-color);
 }
 
 a:hover,
 a:active,
-a:focus,
-.topbar-button button:hover,
-.topbar-button button:active,
-.topbar-button button:focus {
+a:focus {
   color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
@@ -1290,32 +1286,33 @@ tbody > tr:nth-child(even) > td {
 
 .topbar-button {
   display: inline-block;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   position: relative;
 }
 .topbar-button:not([data-origin]) {
   display: none;
 }
 
-.topbar-button > .topbar-control {
-  display: inline-block;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-.topbar-wrapper > .topbar-area-start > .topbar-button > .topbar-control {
+.topbar-wrapper > .topbar-area-start > .topbar-button {
   border-inline-end: 1px solid rgba(134, 134, 134, 0.333);
 }
-.topbar-wrapper > .topbar-area-end > .topbar-button > .topbar-control {
+.topbar-wrapper > .topbar-area-end > .topbar-button {
   border-inline-start: 1px solid rgba(134, 134, 134, 0.333);
 }
 
-.topbar-button > button:disabled i,
-.topbar-button > span i {
-  color: rgba(134, 134, 134, 0.333);
+.topbar-content-wrapper > .topbar-area > .topbar-button {
+  padding: 0.5rem 0;
+  margin: -0.25rem;
 }
-.topbar-button button {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
+
+.topbar-button > .btn {
+  font-size: 1rem;
+}
+
+.topbar-button > .btn > button:disabled i,
+.topbar-button > .btn > span i {
+  color: rgba(134, 134, 134, 0.333);
 }
 
 .topbar-sidebar-divider {
@@ -1356,7 +1353,7 @@ html[dir='rtl'] .topbar-button-next i {
 }
 
 .topbar-content {
-  top: 0.75rem;
+  top: 1rem;
 }
 .topbar-wrapper > .topbar-area-start .topbar-content {
   inset-inline-start: 1.5rem;
@@ -1372,7 +1369,7 @@ html[dir='rtl'] .topbar-button-next i {
 .topbar-breadcrumbs {
   flex-grow: 1;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 calc(1rem - 2px);
 }
 @media screen and (max-width: 47.999rem) {
   .topbar-breadcrumbs {
@@ -1726,11 +1723,7 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
   position: relative; /* PS */
 }
 
-.topbar-content .topbar-button .topbar-control {
-  border-width: 0;
-  padding: 0;
-}
-.topbar-content .topbar-button .topbar-control {
+.topbar-content .topbar-button {
   border-width: 0;
   padding: 0.5rem 0;
 }

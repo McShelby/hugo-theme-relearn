@@ -1955,6 +1955,7 @@ ready(function () {
           isEmpty = !clone.innerHTML.trim();
         }
         button.querySelector('button').disabled = isEmpty;
+        button.querySelector('.btn').classList.toggle('interactive', !isEmpty);
         button.style.display = isEmpty && button.dataset.contentEmpty == 'hide' ? 'none' : 'inline-block';
       }
     });
