@@ -58,7 +58,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 | Name                  | Position | Default         | Notes       |
 |-----------------------|----------|-----------------|-------------|
 | **icon**              | 1        | _&lt;empty&gt;_ | [Font Awesome icon name](#finding-an-icon) to be displayed. It will be displayed in the text color of its according context. |
-| **style**             | 2        | _&lt;empty&gt;_ | The style scheme used for the icon.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
+| **style**             | 2        | _&lt;empty&gt;_ | The style scheme used for the icon.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
 | **color**             |          | _&lt;empty&gt;_ | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br> |
 
 ### Finding an icon
