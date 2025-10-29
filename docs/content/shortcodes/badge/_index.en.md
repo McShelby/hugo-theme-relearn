@@ -130,10 +130,16 @@ The `badge` shortcode displays colorful markers in your text with optional icons
 ````go
 {{%/* badge style="default" icon="palette" title="Color" %}}Default{{% /badge */%}}
 {{%/* badge style="transparent" icon="palette" title="Color" %}}Transparent{{% /badge */%}}
+{{%/* badge style="code" icon="palette" title="Color" %}}Code{{% /badge */%}}
+{{%/* badge style="link" icon="palette" title="Color" %}}Link{{% /badge */%}}
+{{%/* badge style="action" icon="palette" title="Color" %}}Action{{% /badge */%}}
 ````
 
 {{% badge style="default" icon="palette" title="Color" %}}Default{{% /badge %}}
 {{% badge style="transparent" icon="palette" title="Color" %}}Transparent{{% /badge %}}
+{{% badge style="code" icon="palette" title="Color" %}}Code{{% /badge %}}
+{{% badge style="link" icon="palette" title="Color" %}}Link{{% /badge %}}
+{{% badge style="action" icon="palette" title="Color" %}}Action{{% /badge %}}
 
 ### Variants
 

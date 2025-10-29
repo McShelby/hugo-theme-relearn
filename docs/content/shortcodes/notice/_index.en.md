@@ -84,13 +84,14 @@ boxStyle = [
 ]
 {{< /multiconfig >}}
 
-The `style` parameter used in a shortcode must match the `identifier` in the configuration.
-
-The title for the style will be determined from the configured `title`. If no `title` but a `i18n` is set, the title will be taken from the translation files by that key. The `title` may be empty in which case, the box does not contain a default title. `icon` and `color` are working similar.
-
-You can also redefine the predefined styles if you're not satisfied with the default values.
-
-If you define an optional `style` attribute, this is where all default values are taken from. You can reference predefined styles as also your own styles if they are defined beforehand in this array.
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **identifier**        | _&lt;empty&gt;_ | This must match the `style` parameter used in a shortcode. |
+| **style**             | _&lt;empty&gt;_ | If you define this optional parameter, this is where default values for **title**, **icon** and **color** are taken from if **style** exists beforehand. You can reference predefined styles as also your own styles. |
+| **title**             | _&lt;empty&gt;_ | The default title used. If you have set **style** and don't want any title at all, you have to set this parameter to " ". See the parameter **i18n** if you use multiple languages in your site. |
+| **i18n**              | _&lt;empty&gt;_ | If no **title** is given but **i18n** is set, the title will be taken from the translation files by that key. |
+| **icon**              | _&lt;empty&gt;_ | The default icon used. If you have set **style** and don't want any icon at all, you have to set this parameter to " ". |
+| **color**             | _&lt;empty&gt;_ | The default color used. If you have set **style** and don't want any color at all, you have to set this parameter to " ". |
 
 Below is a [usage example](#user-defined-style).
 
@@ -228,28 +229,44 @@ A **red** disclaimer
 
 ````go
 {{%/* notice style="default" title="Default" icon="skull-crossbones" */%}}
-Just some grey default color.
+Just some default color.
+{{%/* /notice */%}}
+
+{{%/* notice style="transparent" title="Transparent" icon="skull-crossbones" */%}}
+No visible borders.
 {{%/* /notice */%}}
 
 {{%/* notice style="code" title="Code" icon="skull-crossbones" */%}}
 Colored like a code fence.
 {{%/* /notice */%}}
 
-{{%/* notice style="transparent" title="Transparent" icon="skull-crossbones" */%}}
-No visible borders.
+{{%/* notice style="link" title="Link" icon="skull-crossbones" */%}}
+Style of topbar buttons
+{{%/* /notice */%}}
+
+{{%/* notice style="action" title="Action" icon="skull-crossbones" */%}}
+Style of action buttons like Mermaid zoom or block code copy-to-clipboard
 {{%/* /notice */%}}
 ````
 
 {{% notice style="default" title="Default" icon="skull-crossbones" %}}
-Just some grey default color.
+Just some default color.
+{{% /notice %}}
+
+{{% notice style="transparent" title="Transparent" icon="skull-crossbones" %}}
+No visible borders.
 {{% /notice %}}
 
 {{% notice style="code" title="Code" icon="skull-crossbones" %}}
 Colored like a code fence.
 {{% /notice %}}
 
-{{% notice style="transparent" title="Transparent" icon="skull-crossbones" %}}
-No visible borders.
+{{% notice style="link" title="Link" icon="skull-crossbones" %}}
+Style of topbar buttons
+{{% /notice %}}
+
+{{% notice style="action" title="Action" icon="skull-crossbones" %}}
+Style of action buttons like Mermaid zoom or block code copy-to-clipboard
 {{% /notice %}}
 
 ### Various Features
@@ -374,7 +391,13 @@ printf("Hello World!");
 
 Self-defined styles can be [configured](#defining-own-styles) in your `hugo.toml` and used for every shortcode, that accepts a `style` parameter.
 
-````
+{{< multiconfig file=hugo section=params >}}
+boxStyle = [
+	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'rainbow', color = 'gold' },
+]
+{{< /multiconfig >}}
+
+````md {title="page.md"}
 > [!magic]
 > Maaagic!
 ````

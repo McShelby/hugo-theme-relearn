@@ -41,7 +41,7 @@ linkEffects.target = '_blank'
 
 With this configuration in effect, the following URL
 
-````markdown {title="Markdown"}
+````md {title="Markdown"}
 [Magic in new window](images/magic.gif)
 ````
 

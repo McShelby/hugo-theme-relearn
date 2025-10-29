@@ -49,7 +49,7 @@ imageEffects.shadow = false
 
 With this configuration in effect, the following URL
 
-````markdown {title="Markdown"}
+````md {title="Markdown"}
 ![Minion](https://octodex.github.com/images/minion.png)
 ````
 

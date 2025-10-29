@@ -6,6 +6,7 @@ title = 'Icon'
 
 The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome.com) library.
 
+{{% icon heart %}}
 {{% icon skull-crossbones blue %}}
 {{% icon style="warning" %}}
 {{% icon icon="angle-double-up" color="blue" %}}
@@ -16,6 +17,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{% tab title="shortcode" %}}
 
 ````go
+{{%/* icon icon="heart" */%}}
 {{%/* icon icon="skull-crossbones" style="blue" */%}}
 {{%/* icon style="warning" */%}}
 {{%/* icon icon="angle-double-up" color="blue" */%}}
@@ -25,6 +27,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{% tab title="shortcode (positional)" %}}
 
 ````go
+{{%/* icon heart */%}}
 {{%/* icon skull-crossbones blue */%}}
 {{%/* icon exclamation-triangle red */%}}
 {{%/* icon angle-double-up blue */%}}
@@ -34,6 +37,10 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{% tab title="partial" %}}
 
 ````go
+{{ partial "shortcodes/icon.html" (dict
+    "page" .
+    "icon" "heart"
+)}}
 {{ partial "shortcodes/icon.html" (dict
     "page" .
     "icon" "skull-crossbones"
@@ -116,3 +123,71 @@ To use these native HTML elements in your Markdown, add this in your `hugo.toml`
 [markup.goldmark.renderer]
     unsafe = true
 ````
+
+### Style
+
+#### By Severity
+
+````go
+{{%/* icon style="caution" */%}}
+{{%/* icon style="important" */%}}
+{{%/* icon style="info" */%}}
+{{%/* icon style="note" */%}}
+{{%/* icon style="tip" */%}}
+{{%/* icon style="warning" */%}}
+````
+
+{{% icon style="caution" %}}
+{{% icon style="important" %}}
+{{% icon style="info" %}}
+{{% icon style="note" %}}
+{{% icon style="tip" %}}
+{{% icon style="warning" %}}
+
+#### By Brand Colors
+
+````go
+{{%/* icon style="primary" icon="bullhorn" */%}}
+{{%/* icon style="secondary" icon="bullhorn" */%}}
+{{%/* icon style="accent" icon="bullhorn" */%}}
+````
+
+{{% icon style="primary" icon="bullhorn" %}}
+{{% icon style="secondary" icon="bullhorn" %}}
+{{% icon style="accent" icon="bullhorn" %}}
+
+#### By Color
+
+````go
+{{%/* icon style="blue" icon="palette" */%}}
+{{%/* icon style="cyan" icon="palette" */%}}
+{{%/* icon style="green" icon="palette" */%}}
+{{%/* icon style="grey" icon="palette" */%}}
+{{%/* icon style="magenta" icon="palette" */%}}
+{{%/* icon style="orange" icon="palette" */%}}
+{{%/* icon style="red" icon="palette" */%}}
+````
+
+{{% icon style="blue" icon="palette" %}}
+{{% icon style="cyan" icon="palette" %}}
+{{% icon style="green" icon="palette" %}}
+{{% icon style="grey" icon="palette" %}}
+{{% icon style="magenta" icon="palette" %}}
+{{% icon style="orange" icon="palette" %}}
+{{% icon style="red" icon="palette" %}}
+
+#### By Special Color
+
+````go
+{{%/* icon style="default" icon="palette" */%}}
+{{%/* icon style="transparent" icon="palette" */%}}
+{{%/* icon style="code" icon="palette" */%}}
+{{%/* icon style="link" icon="palette" */%}}
+{{%/* icon style="action" icon="palette" */%}}
+````
+
+{{% icon style="default" icon="palette" %}}
+{{% icon style="transparent" icon="palette" %}}
+{{% icon style="code" icon="palette" %}}
+{{% icon style="link" icon="palette" %}}
+{{% icon style="action" icon="palette" %}}
