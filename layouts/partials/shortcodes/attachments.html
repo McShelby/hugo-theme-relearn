@@ -32,7 +32,8 @@
 {{- end -}}
 <div class="box attachments cstyle{{ with $style }} {{ . }}{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
   <div class="box-label">{{ if $icon }}<i class="{{ $icon }}"></i>{{ end }}{{ if and $icon $title }} {{ end }}{{ $title | .RenderString }}</div>
-  <ul class="box-content attachments-files">
+  <div class="box-content">
+    <ul>
   {{- $fileDir := path.Dir (strings.TrimPrefix (path.Clean hugo.WorkingDir) (path.Clean .File.Filename)) }}
   {{- $fileDir = printf "%s/" (path.Clean (strings.TrimPrefix "/" $fileDir)) }}
   {{- $fileLink := $fileDir }}
@@ -60,10 +61,11 @@
         {{- $link := (printf "%s%s/%s" $fileLink $filesName .Name) | relLangURL }}
         {{- /* Hugo stores the attachments always in the default language subdirectory */}}
         {{- $link = replace $link $urlPrefix $defaultUrlPrefix 1 }}
-      <li><a href="{{ $link }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
+        <li><a href="{{ $link }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
       {{- end }}
     {{- end }}
   {{- end }}
-  </ul>
+    </ul>
+  </div>
 </div>
 {{- end }}

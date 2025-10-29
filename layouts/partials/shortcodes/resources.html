@@ -35,10 +35,8 @@
 {{- partial "shortcodes/notice.html" (dict
   "page"     $page
   "class"    "attachments"
-  "containerstyle" "ul"
-  "containerclass" (slice "attachments-files")
   "color"    $color
-  "content"  $content
+  "content"  ($content | $page.RenderString)
   "expanded" $expanded
   "icon"     $icon
   "style"    $style
@@ -62,7 +60,7 @@
           {{- $unit = "Megabyte-symbol" }}
         {{- end }}
         {{- $unitsymbol := $unit | T }}
-<li><a href="{{ .RelPermalink }}">{{.Name}}</a> ({{$size}} {{$unitsymbol}})</li>
+- [{{.Name}}]({{.Name}}) ({{$size}} {{$unitsymbol}})
       {{- end }}
     {{- end }}
   {{- end }}

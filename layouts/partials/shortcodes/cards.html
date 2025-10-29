@@ -11,11 +11,11 @@
       {{- $content = printf "<p>\n%s" $content }}
     {{- end }}
 
-    {{- $style := .style | default $style | default "filled" }}
+    {{- $style := .style | default $style | default "" }}
     {{- $color := .color | default $color | default "" }}
     {{- $icon := .icon | default "" }}
     {{- $title := .title | default "" }}
-    {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "style" $style "color" $color "icon" $icon "title" $title) }}
+    {{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "cards" "style" $style "color" $color "icon" $icon "title" $title) }}
     {{- $style = $boxStyle.style }}
     {{- $color = $boxStyle.color }}
     {{- $icon = $boxStyle.icon }}

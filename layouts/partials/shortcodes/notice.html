@@ -5,8 +5,6 @@
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'notice' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $class := .class | default "notices" }}
-{{- $containerstyle := .containerstyle | default "div" }}
-{{- $containerclass := .containerclass | default slice | append "box-content" }}
 {{- $content := trim .content "\n\r\t " }}
 {{- $hasContent := ne (strings.TrimPrefix "<p>" $content) "" }}
 {{- if not (hasPrefix $content "<") }}
@@ -18,7 +16,7 @@
 {{- $color := .color | default "" }}
 {{- $icon := .icon | default "" }}
 {{- $title := .title | default "" }}
-{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "default" "style" $style "color" $color "icon" $icon "title" $title) }}
+{{- $boxStyle := partial "_relearn/boxStyle.gotmpl" (dict "mode" "notice" "style" $style "color" $color "icon" $icon "title" $title) }}
 {{- $style = $boxStyle.style }}
 {{- $color = $boxStyle.color }}
 {{- $icon = $boxStyle.icon }}
@@ -72,9 +70,9 @@
     <span class="a11y-only">{{ T "Details" }}</span>{{ end }}
   </summary>
     {{- if $hasContent }}
-{{ printf "  <%s class=\"%s\">" $containerstyle (delimit $containerclass " ") | safeHTML }}
+  <div class="box-content">
 {{ $content | safeHTML }}
-{{ printf "  </%s>" $containerstyle | safeHTML }}
+  </div>
     {{- end }}
 </details>
   {{- end }}
