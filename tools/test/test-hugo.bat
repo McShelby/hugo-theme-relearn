@@ -4,12 +4,10 @@ setlocal enabledelayedexpansion
 
 set hvm_version=latest
 set hugo_prefix=
-set hugo_version=
 set hugo_environment=testing
 if not "%~1"=="" (
     set hvm_version=%1
     set hugo_prefix=.hugo
-    set hugo_version=.%1
 )
 
 if not exist "content" (
@@ -75,13 +73,15 @@ if "%hugo_environment%"=="" (
     exit /b
 )
 
+hvm use %hvm_version% 2>&1 >NUL
+set /p hvm_content=<".hvm"
+set "hugo_version=+hugo.%hvm_content:~1%"
+
 set /p version=<"%themeDir%\layouts\partials\version.txt"
 set "theme_version=.%version%"
 echo %version%>"%CD%\metrics%theme_version%%hugo_prefix%%hugo_version%.log"
 
 echo on
-hvm install %hvm_version% >> "%CD%\metrics%theme_version%%hugo_prefix%%hugo_version%.log" 2>&1
-hvm use %hvm_version% >> "%CD%\metrics%theme_version%%hugo_prefix%%hugo_version%.log" 2>&1
 start /d "%CD%" /wait /b cmd /c hugo %config% --printPathWarnings --printI18nWarnings --templateMetrics --templateMetricsHints --cleanDestinationDir --logLevel info --destination "%CD%\public%theme_version%%hugo_prefix%%hugo_version%" >> "%CD%\metrics%theme_version%%hugo_prefix%%hugo_version%.log" 2>&1
 @echo off
 
