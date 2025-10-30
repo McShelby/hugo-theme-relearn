@@ -497,6 +497,19 @@ var variants = {
         ],
       },
       {
+        id: 'maintopbar',
+        title: 'topbar',
+        direction: 'LR',
+        color: 'TOPBAR-BG-color',
+        variables: [
+          { name: 'TOPBAR-BG-color', default: 'color-mix(in srgb, var(--INTERNAL-MAIN-BG-color), rgba(134, 134, 134, 0.133))', tooltip: 'background color of topbar' },
+          { name: 'TOPBAR-TEXT-color', fallback: 'MAIN-TEXT-color', tooltip: 'text color of topbar' },
+          { name: 'TOPBAR-SEPARATOR-color', default: 'color-mix(in srgb, var(--INTERNAL-TOPBAR-BG-color), rgba(134, 134, 134, 0.666))', tooltip: 'separator color of vertical lines topbar buttons' },
+          { name: 'TOPBAR-OVERLAY-BG-color', fallback: 'MAIN-BG-color', tooltip: 'background color of topbar popover areas' },
+          { name: 'MAIN-TOPBAR-BORDER-color', default: 'transparent', tooltip: 'border color between topbar and content' },
+        ],
+      },
+      {
         id: 'maincontent',
         title: 'content',
         direction: 'TB',
@@ -505,7 +518,6 @@ var variants = {
           { name: 'PRIMARY-color', fallback: 'MENU-HEADER-BG-color', tooltip: 'brand primary color' },
           { name: 'SECONDARY-color', fallback: 'MAIN-LINK-color', tooltip: 'brand secondary color' },
           { name: 'ACCENT-color', default: '#ffd700', tooltip: 'brand accent color, used for search highlights' },
-          { name: 'MAIN-TOPBAR-BORDER-color', default: 'transparent', tooltip: 'border color between topbar and content' },
           { name: 'MAIN-LINK-color', fallback: 'SECONDARY-color', tooltip: 'link color of content' },
           { name: 'MAIN-LINK-HOVER-color', fallback: 'MAIN-LINK-color', tooltip: 'hoverd link color of content' },
           { name: 'MAIN-BG-color', default: '#ffffff', tooltip: 'background color of content' },
