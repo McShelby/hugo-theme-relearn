@@ -114,25 +114,18 @@ Generator run:
   {{- $boxcontent := "" }}
   {{- /* replicate variables.css */}}
   {{- range $styles }}
-    {{- $identifier := upper .identifier }}
-    {{- $color := .color | default (print "var(--INTERNAL-" $identifier "-color)") }}
-    {{- $textcolor := .textcolor | default (print "var(--INTERNAL-BOX-TEXT-color)") }}
-    {{- $captioncolor := .captioncolor | default (print "var(--INTERNAL-BOX-CAPTION-color)") }}
-    {{- $bgcolor := .bgcolor | default (print "var(--INTERNAL-BOX-BG-color)") }}
-    {{- if or .color .textcolor .captioncolor .bgcolor }}
+    {{- if or .color .textcolor .captioncolor .bgcolor .style }}
+      {{- $identifier := upper .identifier }}
+      {{- $style := upper .style | default "" }}
+      {{- $color := .color | default (cond (ne $style "") (print "var(--INTERNAL-BOX-" $style "-color)") (print "var(--INTERNAL-" $identifier "-color)")) }}
+      {{- $textcolor := .textcolor | default (cond (ne $style "") (print "var(--INTERNAL-BOX-" $style "-TEXT-color)") (print "var(--INTERNAL-BOX-TEXT-color)")) }}
+      {{- $captioncolor := .captioncolor | default (cond (ne $style "") (print "var(--INTERNAL-BOX-" $style "-CAPTION-color)") (print "var(--INTERNAL-BOX-CAPTION-color)")) }}
+      {{- $bgcolor := .bgcolor | default (cond (ne $style "") (print "var(--INTERNAL-BOX-" $style "-BG-color)") (print "var(--INTERNAL-BOX-BG-color)")) }}
       {{- $boxcontent = print $boxcontent
         "\n  --INTERNAL-BOX-" $identifier "-color: var(--BOX-" $identifier "-color, " $color ");"
         "\n  --INTERNAL-BOX-" $identifier "-TEXT-color: var(--BOX-" $identifier "-TEXT-color, " $textcolor ");"
         "\n  --INTERNAL-BOX-" $identifier "-CAPTION-color: var(--BOX-" $identifier "-CAPTION-color, " $captioncolor ");"
         "\n  --INTERNAL-BOX-" $identifier "-BG-color: var(--BOX-" $identifier "-BG-color, " $bgcolor ");"
-      }}
-    {{- else if .style }}
-      {{- $style := upper .style }}
-      {{- $boxcontent = print $boxcontent
-        "\n  --INTERNAL-BOX-" $identifier "-color: var(--BOX-" $identifier "-color, var(--INTERNAL-BOX-" $style "-color));"
-        "\n  --INTERNAL-BOX-" $identifier "-TEXT-color: var(--BOX-" $identifier "-TEXT-color, var(--INTERNAL-BOX-" $style "-TEXT-color));"
-        "\n  --INTERNAL-BOX-" $identifier "-CAPTION-color: var(--BOX-" $identifier "-CAPTION-color, var(--INTERNAL-BOX-" $style "-CAPTION-color));"
-        "\n  --INTERNAL-BOX-" $identifier "-BG-color: var(--BOX-" $identifier "-BG-color, var(--INTERNAL-BOX-" $style "-BG-color));"
       }}
     {{- end }}
   {{- end }}
@@ -151,8 +144,8 @@ Generator run:
   {{- $boxcontent := "" }}
   {{- /* replicate theme.css */}}
   {{- range $styles }}
-    {{- $identifier := upper .identifier }}
     {{- if or .color .textcolor .captioncolor .bgcolor .style }}
+      {{- $identifier := upper .identifier }}
       {{- $boxcontent = print $boxcontent
         "\n.cstyle." .identifier " {"
         "\n  --VARIABLE-BOX-color: var(--INTERNAL-BOX-" $identifier "-color);"
