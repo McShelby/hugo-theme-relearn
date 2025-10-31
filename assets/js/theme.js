@@ -347,7 +347,7 @@ function initMermaid(update, attrs) {
           var svg = d3.select(this);
           svg.html('<g>' + svg.html() + '</g>');
           var inner = svg.select('*:scope > g');
-          parent.insertAdjacentHTML('beforeend', '<button class="svg-reset-button" title="' + window.T_Reset_view + '"><i class="fas fa-undo-alt"></i></button>');
+          parent.insertAdjacentHTML('beforeend', '<button class="svg-reset-button btn cstyle action noborder notitle interactive" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button>');
           var button = parent.querySelector('.svg-reset-button');
           var zoom = d3.zoom().on('zoom', function (e) {
             inner.attr('transform', e.transform);
@@ -742,8 +742,16 @@ function initCodeClipboard() {
         button = document.createElement('button');
         var buttonPrefix = isBlock ? 'block' : 'inline';
         button.classList.add(buttonPrefix + '-copy-to-clipboard-button');
+        if (isBlock) {
+          button.classList.add('btn');
+          button.classList.add('cstyle');
+          button.classList.add('action');
+          button.classList.add('noborder');
+          button.classList.add('notitle');
+          button.classList.add('interactive');
+        }
         button.setAttribute('title', window.T_Copy_to_clipboard);
-        button.innerHTML = '<i class="far fa-copy"></i>';
+        button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
         button.addEventListener('mouseleave', function () {
           this.removeAttribute('aria-label');
           this.classList.remove('tooltipped', 'tooltipped-w', 'tooltipped-se', 'tooltipped-sw');

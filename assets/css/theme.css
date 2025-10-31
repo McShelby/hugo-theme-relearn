@@ -1461,19 +1461,15 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   content: '';
 }
 
-.inline-copy-to-clipboard-button,
-.block-copy-to-clipboard-button {
-  cursor: pointer;
-  display: inline;
-  font: initial;
-}
-
 .inline-copy-to-clipboard-button {
   background-color: var(--INTERNAL-CODE-INLINE-BG-color);
   border-color: var(--INTERNAL-CODE-INLINE-BORDER-color);
   border-inline-start-style: solid;
   border-inline-start-width: 1px;
   color: var(--INTERNAL-CODE-INLINE-color);
+  cursor: pointer;
+  display: inline;
+  font: initial;
   font-size: 0.934375em;
   margin-inline-start: calc(-1 * (1.333em + var(--bpx1) * 0.125em));
   position: relative;
@@ -1485,43 +1481,32 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
 }
 
 .block-copy-to-clipboard-button {
-  background-color: rgba(160, 160, 160, 0.2);
-  border-color: transparent;
-  border-radius: 2px;
-  border-style: solid;
-  border-width: 1px;
-  color: var(--INTERNAL-MAIN-LINK-color);
+  inset-inline-end: 4px;
+  position: absolute;
+  top: 4px;
+}
+
+.block-copy-to-clipboard-button.btn {
   /* only show copy to clipboard on hover for code blocks if configured */
   display: none;
-  font-size: 0.934375rem;
-  padding: 5px 3px;
-  position: absolute;
-  inset-inline-end: 4px;
-  top: 4px;
 }
 @media (any-hover: none) {
   /* if there is at least one input device that does not support hover, we want to force the copy button */
-  .block-copy-to-clipboard-button {
+  .block-copy-to-clipboard-button.btn {
     display: block;
   }
 }
-div.highlight:focus-within .block-copy-to-clipboard-button,
-div.highlight .block-copy-to-clipboard-button:active,
-div.highlight:hover .block-copy-to-clipboard-button {
+div.highlight:focus-within .block-copy-to-clipboard-button.btn,
+div.highlight .block-copy-to-clipboard-button.btn:active,
+div.highlight:hover .block-copy-to-clipboard-button.btn {
   display: block;
 }
-.disableHoverBlockCopyToClipBoard div.highlight .block-copy-to-clipboard-button {
+.disableHoverBlockCopyToClipBoard div.highlight .block-copy-to-clipboard-button.btn {
   display: block;
 }
 .force-display {
   display: block !important;
 }
-.block-copy-to-clipboard-button:hover {
-  background-color: var(--INTERNAL-MAIN-LINK-color);
-  border-color: var(--INTERNAL-MAIN-LINK-color);
-  color: var(--INTERNAL-CODE-BLOCK-BG-color);
-}
-
 .inline-copy-to-clipboard-button > i {
   font-size: 0.859625em;
   padding-left: 0.333em;
@@ -1529,9 +1514,7 @@ div.highlight:hover .block-copy-to-clipboard-button {
 }
 
 .block-copy-to-clipboard-button > i {
-  font-size: 0.859625rem;
-  padding-left: 5px;
-  padding-right: 5px;
+  width: 2em;
 }
 
 option {
@@ -1612,40 +1595,26 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 }
 
 .svg-reset-button {
-  background-color: rgba(160, 160, 160, 0.2);
-  border-color: transparent;
-  border-radius: 2px;
-  border-style: solid;
-  border-width: 1px;
-  color: var(--INTERNAL-MAIN-LINK-color);
-  cursor: pointer;
-  display: none;
-  font-size: 0.934375rem;
-  line-height: 1.15;
-  padding: 5px 3px;
-  position: absolute;
   inset-inline-end: 4px;
+  position: absolute;
   top: 4px;
 }
-.svg-reset-button:hover {
-  background-color: var(--INTERNAL-MAIN-LINK-color);
-  border-color: var(--INTERNAL-MAIN-LINK-color);
-  color: var(--INTERNAL-MAIN-BG-color);
+
+.svg-reset-button.btn {
+  display: none;
 }
-.mermaid:hover .svg-reset-button.zoomed {
+.mermaid:hover .svg-reset-button.btn.zoomed {
   display: block;
 }
 @media (any-hover: some) {
   /* if there is at least one input device that does not support hover, we want to force the reset button if zoomed */
-  .svg-reset-button.zoomed {
+  .svg-reset-button.btn.zoomed {
     display: block;
   }
 }
 
 .svg-reset-button > i {
-  font-size: 0.859625rem;
-  padding-left: 5px;
-  padding-right: 5px;
+  width: 2em;
 }
 
 .mermaid-code {
@@ -1862,6 +1831,7 @@ i.cstyle {
   user-select: none;
   white-space: nowrap;
 }
+button.btn.noborder,
 .btn.noborder > * {
   border-color: transparent !important;
 }
@@ -1876,10 +1846,6 @@ i.cstyle {
 
 #R-body #R-body-inner .btn > *.highlight:after {
   background-color: transparent;
-}
-
-.btn.interactive > .btn-interactive:focus {
-  outline: none;
 }
 
 .btn.interactive > *:hover,
