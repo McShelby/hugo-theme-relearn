@@ -108,6 +108,8 @@ html {
   color-scheme: only var(--INTERNAL-BROWSER-theme);
   height: 100%;
   width: 100%;
+  --VARIABLE-LINK-color: var(--INTERNAL-MAIN-LINK-color);
+  --VARIABLE-LINK-HOVER-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
 
 body {
@@ -150,13 +152,13 @@ dd {
 }
 
 a {
-  color: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--VARIABLE-LINK-color);
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  color: var(--VARIABLE-LINK-HOVER-color);
 }
 
 .default-animation {
@@ -625,7 +627,7 @@ article a:focus > svg:only-child:empty,
 article a:hover > img:only-child:empty,
 article a:active > img:only-child:empty,
 article a:focus > img:only-child:empty {
-  outline: 0.15rem solid var(--INTERNAL-MAIN-LINK-HOVER-color);
+  outline: 0.15rem solid var(--VARIABLE-LINK-HOVER-color);
 }
 
 #R-body-inner:focus-visible {
@@ -1301,6 +1303,10 @@ tbody > tr:nth-child(even) > td {
 .topbar-button > .btn {
   font-size: 1rem;
 }
+.topbar-button > .btn.cstyle {
+  --VARIABLE-LINK-color: var(--INTERNAL-TOPBAR-BUTTON-color);
+  --VARIABLE-LINK-HOVER-color: var(--INTERNAL-TOPBAR-BUTTON-HOVER-color);
+}
 
 .topbar-button > .btn > button:disabled i,
 .topbar-button > .btn > span i {
@@ -1796,6 +1802,12 @@ i.cstyle {
   -webkit-user-select: none;
   user-select: none;
 }
+
+.btn.cstyle {
+  --VARIABLE-LINK-color: var(--INTERNAL-MAIN-BUTTON-color);
+  --VARIABLE-LINK-HOVER-color: var(--INTERNAL-MAIN-BUTTON-HOVER-color);
+}
+
 .btn.interactive {
   cursor: pointer;
 }
@@ -1885,7 +1897,7 @@ button.btn.noborder,
   -webkit-appearance: none;
   appearance: none;
   background-color: transparent;
-  color: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--VARIABLE-LINK-color);
   cursor: pointer;
   font-size: 0.5em;
   margin-inline-start: 0.66em;
@@ -1902,7 +1914,7 @@ button.btn.noborder,
 .anchor:hover,
 .anchor:active,
 .anchor:focus {
-  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  color: var(--VARIABLE-LINK-HOVER-color);
 }
 
 h2:hover .anchor,
@@ -2157,7 +2169,7 @@ span.math:has(> mjx-container[display]) {
 }
 
 #R-searchresults .autocomplete-suggestion {
-  color: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--VARIABLE-LINK-color);
   display: block;
   font-size: 1.3rem;
   font-weight: 500;
@@ -2568,7 +2580,7 @@ body #R-logo svg :not([fill='#000000']) {
   appearance: none;
   background-color: transparent;
   border: 1px solid transparent;
-  color: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--VARIABLE-LINK-color);
   display: block;
   font-size: 0.9rem;
   font-weight: 300;
@@ -2586,7 +2598,7 @@ body #R-logo svg :not([fill='#000000']) {
 #R-body .tab-nav-button:not(.active):hover,
 #R-body .tab-nav-button:not(.active):active,
 #R-body .tab-nav-button:not(.active):focus {
-  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  color: var(--VARIABLE-LINK-HOVER-color);
 }
 
 #R-body .tab-nav-button > .tab-nav-text {
@@ -2612,7 +2624,7 @@ body #R-logo svg :not([fill='#000000']) {
 #R-body .tab-nav-button:not(.active):hover > .tab-nav-text,
 #R-body .tab-nav-button:not(.active):active > .tab-nav-text,
 #R-body .tab-nav-button:not(.active):focus > .tab-nav-text {
-  border-bottom-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  border-bottom-color: var(--VARIABLE-LINK-HOVER-color);
 }
 
 #R-body .tab-content {
@@ -2688,6 +2700,8 @@ body #R-logo svg :not([fill='#000000']) {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   color: var(--INTERNAL-TOPBAR-TEXT-color);
+  --VARIABLE-LINK-color: var(--INTERNAL-TOPBAR-LINK-color);
+  --VARIABLE-LINK-HOVER-color: var(--INTERNAL-TOPBAR-LINK-HOVER-color);
 }
 
 #R-header-topbar {
@@ -2857,12 +2871,12 @@ body.notfound #shrug svg {
   padding-top: 0;
 }
 .box.expand.cstyle.transparent > .box-label {
-  color: var(--INTERNAL-MAIN-LINK-color);
+  color: var(--VARIABLE-LINK-color);
 }
 .box.expand.cstyle.transparent > .box-label:hover,
 .box.expand.cstyle.transparent > .box-label:active,
 .box.expand.cstyle.transparent > .box-label:focus {
-  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  color: var(--VARIABLE-LINK-HOVER-color);
 }
 
 .box.cstyle.transparent > .box-content {
@@ -2916,12 +2930,12 @@ body.notfound #shrug svg {
 }
 
 .card-container > .card.card-popout {
-  border: 1px solid color-mix(in srgb, var(--INTERNAL-MAIN-LINK-color) 33%, transparent);
+  border: 1px solid color-mix(in srgb, var(--VARIABLE-LINK-color) 33%, transparent);
 }
 
 /* top handle */
 .card-container .card::before {
-  background: linear-gradient(90deg, var(--INTERNAL-MAIN-LINK-color) 0%, color-mix(in srgb, var(--INTERNAL-MAIN-LINK-color) 60%, white) 100%);
+  background: linear-gradient(90deg, var(--VARIABLE-LINK-color) 0%, color-mix(in srgb, var(--VARIABLE-LINK-color) 60%, white) 100%);
   content: '';
   height: 3px;
   left: 0;
@@ -2933,8 +2947,8 @@ body.notfound #shrug svg {
 }
 
 .card-container .card.card-popout:hover {
-  border-color: color-mix(in srgb, var(--INTERNAL-MAIN-LINK-color) 40%, transparent);
-  box-shadow: 0 8px 25px color-mix(in srgb, var(--INTERNAL-MAIN-LINK-color) 25%, transparent);
+  border-color: color-mix(in srgb, var(--VARIABLE-LINK-color) 40%, transparent);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--VARIABLE-LINK-color) 25%, transparent);
   transform: translateY(-4px) translateX(4px);
 }
 
@@ -3043,9 +3057,23 @@ body[data-theme='dark'] .card-container .card:hover,
 
 .cstyle {
   --VARIABLE-BOX-color: var(--INTERNAL-BOX-NEUTRAL-color);
+  --VARIABLE-BOX-TEXT-color: var(--INTERNAL-BOX-NEUTRAL-TEXT-color);
   --VARIABLE-BOX-CAPTION-color: var(--INTERNAL-BOX-CAPTION-color);
   --VARIABLE-BOX-BG-color: var(--INTERNAL-BOX-BG-color);
-  --VARIABLE-BOX-TEXT-color: var(--INTERNAL-BOX-NEUTRAL-TEXT-color);
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
+}
+
+.cstyle.link {
+  --VARIABLE-BOX-color: transparent;
+  --VARIABLE-BOX-TEXT-color: var(--VARIABLE-LINK-HOVER-color);
+  --VARIABLE-BOX-CAPTION-color: var(--VARIABLE-LINK-color);
+  --VARIABLE-BOX-BG-color: rgba(160, 160, 160, 0.2);
+}
+
+.cstyle.action {
+  --VARIABLE-BOX-color: rgba(160, 160, 160, 0.2);
+  --VARIABLE-BOX-TEXT-color: var(--INTERNAL-MAIN-BG-color);
+  --VARIABLE-BOX-CAPTION-color: var(--VARIABLE-LINK-color);
+  --VARIABLE-BOX-BG-color: var(--VARIABLE-LINK-color);
 }

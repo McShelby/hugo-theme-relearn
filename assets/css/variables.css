@@ -1,17 +1,26 @@
     /* initially use section background to avoid flickering on load when a non default variant is active;
     this is only possible because every color variant defines this variable, otherwise we would have been lost */
-    --INTERNAL-PRIMARY-color: var(--PRIMARY-color, var(--MENU-HEADER-BG-color, rgba( 0, 0, 0, 0 ))); /* not --INTERNAL-MENU-HEADER-BG-color */
+    --INTERNAL-PRIMARY-color: var(--PRIMARY-color, var(--MENU-HEADER-BG-color, rgba( 125, 201, 3, 1 ))); /* not --INTERNAL-MENU-HEADER-BG-color */
+    --INTERNAL-PRIMARY-HOVER-color: var(--PRIMARY-HOVER-color, var(--MENU-HEADER-BORDER-color, var(--INTERNAL-PRIMARY-color)));
     --INTERNAL-SECONDARY-color: var(--SECONDARY-color, var(--MAIN-LINK-color, rgba( 72, 106, 201, 1 ))); /* not --INTERNAL-MAIN-LINK-color */
+    --INTERNAL-SECONDARY-HOVER-color: var(--SECONDARY-HOVER-color, var(--MAIN-LINK-HOVER-color, var(--INTERNAL-SECONDARY-color)));
     --INTERNAL-ACCENT-color: var(--ACCENT-color, rgba( 255, 215, 0, 1 ));
+    --INTERNAL-ACCENT-HOVER-color: var(--ACCENT-HOVER-color, rgba( 255, 235, 120, 1 ));
 
     --INTERNAL-TOPBAR-BG-color: var(--TOPBAR-BG-color, color-mix(in srgb, var(--INTERNAL-MAIN-BG-color), rgba(134, 134, 134, 0.133)));
     --INTERNAL-TOPBAR-TEXT-color: var(--TOPBAR-TEXT-color, var(--INTERNAL-MAIN-TEXT-color));
     --INTERNAL-TOPBAR-SEPARATOR-color: var(--TOPBAR-SEPARATOR-color, color-mix(in srgb, var(--INTERNAL-TOPBAR-BG-color), rgba(134, 134, 134, 0.666)));
     --INTERNAL-TOPBAR-OVERLAY-BG-color: var(--TOPBAR-OVERLAY-BG-color, var(--INTERNAL-MAIN-BG-color));
+    --INTERNAL-TOPBAR-LINK-color: var(--TOPBAR-LINK-color, var(--INTERNAL-MAIN-LINK-color));
+    --INTERNAL-TOPBAR-LINK-HOVER-color: var(--TOPBAR-LINK-HOVER-color, var(--INTERNAL-MAIN-LINK-HOVER-color));
+    --INTERNAL-TOPBAR-BUTTON-color: var(--TOPBAR-BUTTON-color, var(--INTERNAL-TOPBAR-LINK-color));
+    --INTERNAL-TOPBAR-BUTTON-HOVER-color: var(--TOPBAR-BUTTON-HOVER-color, var(--INTERNAL-TOPBAR-LINK-HOVER-color));
     --INTERNAL-MAIN-TOPBAR-BORDER-color: var(--MAIN-TOPBAR-BORDER-color, transparent);
 
-    --INTERNAL-MAIN-LINK-color: var(--MAIN-LINK-color, var(--SECONDARY-color, rgba( 72, 106, 201, 1 ))); /* not --INTERNAL-SECONDARY-color */
-    --INTERNAL-MAIN-LINK-HOVER-color: var(--MAIN-LINK-HOVER-color, var(--INTERNAL-MAIN-LINK-color));
+    --INTERNAL-MAIN-LINK-color: var(--MAIN-LINK-color, var(--INTERNAL-SECONDARY-color));
+    --INTERNAL-MAIN-LINK-HOVER-color: var(--MAIN-LINK-HOVER-color, var(--INTERNAL-SECONDARY-HOVER-color));
+    --INTERNAL-MAIN-BUTTON-color: var(--MAIN-BUTTON-color, var(--INTERNAL-MAIN-LINK-color));
+    --INTERNAL-MAIN-BUTTON-HOVER-color: var(--MAIN-BUTTON-HOVER-color, var(--INTERNAL-MAIN-LINK-HOVER-color));
     --INTERNAL-MAIN-BG-color: var(--MAIN-BG-color, rgba( 255, 255, 255, 1 ));
     --INTERNAL-MAIN-BOLD-font-weight: var(--MAIN-BOLD-font-weight, 800);
 
@@ -89,7 +98,7 @@
 
     --INTERNAL-MENU-HEADER-color: var(--MENU-HEADER-color, var(--INTERNAL-MENU-SECTIONS-LINK-color));
     --INTERNAL-MENU-HEADER-BG-color: var(--MENU-HEADER-BG-color, var(--PRIMARY-color, rgba( 0, 0, 0, 0 ))); /* not --INTERNAL-PRIMARY-color */
-    --INTERNAL-MENU-HEADER-BORDER-color: var(--MENU-HEADER-BORDER-color, var(--INTERNAL-MENU-HEADER-BG-color));
+    --INTERNAL-MENU-HEADER-BORDER-color: var(--MENU-HEADER-BORDER-color, var(--INTERNAL-MENU-HEADER-BG-color)); /* no further fallback to --PRIMARY-HOVER-color, as this would be rude for existing users */
 
     --INTERNAL-MENU-SEARCH-color: var(--MENU-SEARCH-color, var(--MENU-SEARCH-BOX-ICONS-color, rgba( 224, 224, 224, 1 ))); /* fallback for renaming */
     --INTERNAL-MENU-SEARCH-BG-color: var(--MENU-SEARCH-BG-color, rgba( 50, 50, 50, 1 ));

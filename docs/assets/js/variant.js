@@ -442,6 +442,20 @@ var variants = {
   structure: {
     children: [
       {
+        id: 'branding',
+        title: 'brand colors',
+        direction: 'LR',
+        color: 'TOPBAR-BG-color',
+        variables: [
+          { name: 'PRIMARY-color', fallback: 'MENU-HEADER-BG-color', tooltip: 'brand primary color' },
+          { name: 'PRIMARY-HOVER-color', fallback: 'MENU-HEADER-BORDER-color', tooltip: 'brand primary hover color' },
+          { name: 'SECONDARY-color', fallback: 'MAIN-LINK-color', tooltip: 'brand secondary color' },
+          { name: 'SECONDARY-HOVER-color', fallback: 'MAIN-LINK-HOVER-color', tooltip: 'brand secondary hover color' },
+          { name: 'ACCENT-color', default: '#ffd700', tooltip: 'brand accent color, used for search highlights' },
+          { name: 'ACCENT-HOVER-color', default: '#ffeb78', tooltip: 'brand accent hover color' },
+        ],
+      },
+      {
         id: 'menu',
         title: 'menu',
         direction: 'TB',
@@ -502,6 +516,10 @@ var variants = {
         direction: 'LR',
         color: 'TOPBAR-BG-color',
         variables: [
+          { name: 'TOPBAR-LINK-color', fallback: 'MAIN-LINK-color', tooltip: 'link color of topbar' },
+          { name: 'TOPBAR-LINK-HOVER-color', fallback: 'MAIN-LINK-HOVER-color', tooltip: 'hoverd link color of topbar' },
+          { name: 'TOPBAR-BUTTON-color', fallback: 'TOPBAR-LINK-color', tooltip: 'button color of topbar' },
+          { name: 'TOPBAR-BUTTON-HOVER-color', fallback: 'TOPBAR-LINK-HOVER-color', tooltip: 'hoverd button color of topbar' },
           { name: 'TOPBAR-BG-color', default: 'color-mix(in srgb, var(--INTERNAL-MAIN-BG-color), rgba(134, 134, 134, 0.133))', tooltip: 'background color of topbar' },
           { name: 'TOPBAR-TEXT-color', fallback: 'MAIN-TEXT-color', tooltip: 'text color of topbar' },
           { name: 'TOPBAR-SEPARATOR-color', default: 'color-mix(in srgb, var(--INTERNAL-TOPBAR-BG-color), rgba(134, 134, 134, 0.666))', tooltip: 'separator color of vertical lines topbar buttons' },
@@ -515,11 +533,10 @@ var variants = {
         direction: 'TB',
         color: 'MAIN-BG-color',
         variables: [
-          { name: 'PRIMARY-color', fallback: 'MENU-HEADER-BG-color', tooltip: 'brand primary color' },
-          { name: 'SECONDARY-color', fallback: 'MAIN-LINK-color', tooltip: 'brand secondary color' },
-          { name: 'ACCENT-color', default: '#ffd700', tooltip: 'brand accent color, used for search highlights' },
           { name: 'MAIN-LINK-color', fallback: 'SECONDARY-color', tooltip: 'link color of content' },
-          { name: 'MAIN-LINK-HOVER-color', fallback: 'MAIN-LINK-color', tooltip: 'hoverd link color of content' },
+          { name: 'MAIN-LINK-HOVER-color', fallback: 'SECONDARY-HOVER-color', tooltip: 'hoverd link color of content' },
+          { name: 'MAIN-BUTTON-color', fallback: 'MAIN-LINK-color', tooltip: 'button color of content' },
+          { name: 'MAIN-BUTTON-HOVER-color', fallback: 'MAIN-LINK-HOVER-color', tooltip: 'hoverd button color of content' },
           { name: 'MAIN-BG-color', default: '#ffffff', tooltip: 'background color of content' },
           { name: 'TAG-BG-color', fallback: 'PRIMARY-color', tooltip: 'tag color' },
           { name: 'MAIN-TEXT-color', default: '#101010', tooltip: 'text color of content and titles' },
