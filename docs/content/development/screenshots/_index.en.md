@@ -85,7 +85,7 @@ The content should be:
 
 ## Shortcode Feature Images
 
-The feature images for the [shortcodes](shortcodes) are generated automatically via a [Node.js](https://nodejs.com) script.
+The feature images for the [shortcodes](shortcodes) are generated automatically via a [Node.js](https://nodejs.org) script.
 
 It is located in the repository inside of the `/tools` directory. All following commands need to be executed from this directory.
 

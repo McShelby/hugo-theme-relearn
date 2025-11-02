@@ -7,7 +7,6 @@ type = 'home'
   [cascade.params]
     [cascade.params.build]
       render = 'never'
-
   [cascade.target]
     path = '/introduction/changelog/*/*/*'
 +++

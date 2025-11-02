@@ -98,30 +98,31 @@ Therefore we add a new output format called `email` that outputs HTML and assemb
 
 ### For HTML Output Formats
 
-If you want to keep the general HTML framework and only change specific parts, you can provide these files for your output format independently of one another:
+If you want to keep the general HTML framework and only change specific parts, you can provide these as blocks:
 
-- `layouts/_default/article.<FORMAT>.html`: _Optional_: Controls how a page's content and title are displayed
-- `layouts/_default/body.<FORMAT>.html`: _Optional_: Determines what to contain in the content area (for example a single page, a list of pages, a tree of sub pages)
-- `layouts/_default/menu.<FORMAT>.html`: _Optional_: Defines the sidebar menu layout
-- `layouts/_default/storeOutputFormat.<FORMAT>.html`: _Optional_: Stores the output format name for use in the framework to let the body element been marked with an output format specific class
+- `layouts/_default/list.<FORMAT>.html`: _Optional_: Controls how sections are displayed
+- `layouts/_default/single.<FORMAT>.html`: _Optional_: Controls how a pages are displayed
+- `layouts/_default/taxonomy.<FORMAT>.html`: _Optional_: Controls how taxonomy pages are displayed
+- `layouts/_default/term.<FORMAT>.html`: _Optional_: Controls how term pages are displayed
 
 For a real-world example, check out the `print` output format implementation
 
-- [`layouts/_default/body.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/body.print.html)
-- [`layouts/_default/menu.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/menu.print.html)
-- [`layouts/_default/storeOutputFormat.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/storeOutputFormat.print.html)
+- [`layouts/_default/list.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/list.print.html)
+- [`layouts/_default/single.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/single.print.html)
+- [`layouts/_default/taxonomy.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/taxonomy.print.html)
+- [`layouts/_default/term.print.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/taxonomy.print.html)
 
 ### For Non-HTML Output Formats
 
-- `layouts/_default/list.<FORMAT>`: _Mandatory_: Controls how sections are displayed
-- `layouts/_default/single.<FORMAT>`: _Mandatory_: Controls how pages are displayed
-- `layouts/_default/baseof.<FORMAT>`: _Optional_: Controls how sections and pages are displayed. If not provided, you have to provide your implementation in `list.<FORMAT>` and `single.<FORMAT>`
+- `layouts/_default/list.<FORMAT>.<EXTENSION>`: _Mandatory_: Controls how sections are displayed
+- `layouts/_default/single.<FORMAT>.<EXTENSION>`: _Mandatory_: Controls how pages are displayed
+- `layouts/_default/baseof.<FORMAT>.<EXTENSION>`: _Optional_: Controls how sections and pages are displayed. If not provided, you have to provide your implementation in `list.<FORMAT>.<EXTENSION>` and `single.<FORMAT>.<EXTENSION>`
 
 For a real-world example, check out the `markdown` output format implementation
 
-- [`layouts/_default/baseof.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/baseof.md)
-- [`layouts/_default/list.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/list.md)
-- [`layouts/_default/single.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/single.md)
+- [`layouts/_default/baseof.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/baseof.markdown.md)
+- [`layouts/_default/list.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/list.markdown.md)
+- [`layouts/_default/single.md`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/_default/single.markdown.md)
 
 ## Migration from Relearn 7
 
@@ -129,9 +130,9 @@ Hugo 0.146 or newer required the theme to make changes that may affect you if yo
 
 ### For HTML Output Formats
 
-- you need to define a block `storeOutputFormat` for your HTML based output format templates and add `{{- .Store.Set \"relearnOutputFormat\" \"<your-output-format-name>\" }}` to it.
+- You need to define a block `storeOutputFormat` for your HTML based output format templates and add `{{- .Store.Set \"relearnOutputFormat\" \"<your-output-format-name>\" }}` to it.
 
-### For HTML Output Formats
+### For Non-HTML Output Formats
 
 - Move your files `layouts/<DESIGN>/views` up one level to `layouts/<DESIGN>`
 

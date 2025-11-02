@@ -9,7 +9,7 @@ In **Hugo**, pages are the core of your site.
 
 The theme generates the navigation menu out of the given directory structure.
 
-Organize your site like [any other Hugo project](https://gohugo.io/content/structure/). Typically, you will have a _content_ directory with all your pages.
+Organize your site like [any other Hugo project](https://gohugo.io/content-management/organization/). Typically, you will have a _content_ directory with all your pages.
 
 ````tree
 - content | folder
