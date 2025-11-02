@@ -1,0 +1,12 @@
+{{- $ret := true }}
+{{- $applyErrorIgnore := .applyErrorIgnore | default true }}
+{{- if $applyErrorIgnore }}
+	{{- $errorIgnore := slice | append (.page.Params.errorignore | default slice ) | append (site.Params.errorignore | default slice ) }}
+	{{- range $errorIgnore }}
+		{{- if findRE . $.url 1 }}
+			{{- $ret = false }}
+			{{- break }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- return $ret }}

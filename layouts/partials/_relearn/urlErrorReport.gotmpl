@@ -1,23 +1,11 @@
-{{- $pageParam := index .page.Params .param }}
-{{- $siteParam := index site.Params .param }}
 {{- $applyErrorIgnore := .applyErrorIgnore | default true }}
-{{- $errorlevel := or (and $pageParam $pageParam.errorlevel) (and $siteParam $siteParam.errorlevel) }}
-{{- $errorignore := slice | append (.page.Params.errorignore | default slice ) | append (site.Params.errorignore | default slice ) }}
-{{- if and (eq $errorlevel "warning") (partial "inline/show-error" (dict "errorignore" $errorignore "url" .url "applyErrorIgnore" $applyErrorIgnore)) }}
-	{{- warnf .msg }}
-{{- else if and (eq $errorlevel "error") (partial "inline/show-error" (dict "errorignore" $errorignore "url" .url "applyErrorIgnore" $applyErrorIgnore)) }}
-	{{- errorf .msg }}
-{{- end }}
-
-{{- define "partials/inline/show-error" }}
-	{{- $ret := true }}
-	{{- if .applyErrorIgnore }}
-		{{- range .errorignore }}
-			{{- if findRE . $.url 1 }}
-				{{- $ret = false }}
-				{{- break }}
-			{{- end }}
-		{{- end }}
+{{- if partial "_relearn/urlErrorCheck.gotmpl" (dict "page" .page "url" .url "applyErrorIgnore" $applyErrorIgnore) }}
+	{{- $pageParam := index .page.Params .param }}
+	{{- $siteParam := index site.Params .param }}
+	{{- $errorlevel := or (and $pageParam $pageParam.errorlevel) (and $siteParam $siteParam.errorlevel) }}
+	{{- if eq $errorlevel "warning" }}
+		{{- warnf .msg }}
+	{{- else if eq $errorlevel "error" }}
+		{{- errorf .msg }}
 	{{- end }}
-	{{- return $ret }}
 {{- end }}

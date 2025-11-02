@@ -1,8 +1,8 @@
 +++
 categories = ['howto']
 description = 'What options are available for links and images'
-frontmatter = ['errorignore', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel']
-options = ['errorignore', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel']
+frontmatter = ['errorignore', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel', 'urlCheck']
+options = ['errorignore', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel', 'urlCheck']
 title = 'Linking'
 weight = 3
 +++
@@ -40,4 +40,12 @@ image.errorlevel = 'warning'
 
 {{< multiconfig section=params >}}
 errorignore = [ '^/authoring/', '^/configuration/' ]
+{{< /multiconfig >}}
+
+## Check External URLs
+
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} External URLs can be checked for validity during build. It will only be checked if the URL does not match a `errorignore` pattern.
+
+{{< multiconfig section=params >}}
+urlCheck = true
 {{< /multiconfig >}}
