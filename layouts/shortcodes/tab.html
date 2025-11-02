@@ -6,8 +6,8 @@
 {{- $style   := (.Get "style") }}
 {{- $title   := (.Get "title") }}
 {{- $tabs := slice }}
-{{- if and .Parent (.Parent.Scratch.Get "tabs") }}
-    {{- $tabs = .Parent.Scratch.Get "tabs" }}
+{{- if and .Parent (.Parent.Store.Get "tabs") }}
+    {{- $tabs = .Parent.Store.Get "tabs" }}
 {{- end }}
 {{- $tabs = $tabs | append (dict
     "color"   $color
@@ -18,7 +18,7 @@
     "title"   $title
 ) }}
 {{- if .Parent }}
-    {{- $.Parent.Scratch.Set "tabs" $tabs }}
+    {{- $.Parent.Store.Set "tabs" $tabs }}
 {{- else }}
     {{- /* if no containing tabs shortcode is present, we display this tab as single */}}
     {{- partial "shortcodes/tabs.html" (dict
