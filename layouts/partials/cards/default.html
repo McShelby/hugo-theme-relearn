@@ -53,7 +53,7 @@
       <a href="{{ .href | safeJS }}">
         {{- end }}
         <img src="{{ .image }}">
-        {{- if or .hrefattributes .href }}
+        {{- if and (not $renderedtitle) (or .hrefattributes .href) }}
       </a>
         {{- end }}
     </div>
