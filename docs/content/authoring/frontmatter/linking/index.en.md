@@ -1,8 +1,8 @@
 +++
 categories = ['howto']
 description = 'What options are available for links and images'
-frontmatter = ['errorignore', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel', 'urlCheck']
-options = ['errorignore', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel', 'urlCheck']
+frontmatter = ['urlIgnoreCheck', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel', 'urlExternalCheck']
+options = ['urlIgnoreCheck', 'externalLinkTarget', 'image.errorlevel', 'link.errorlevel', 'urlExternalCheck']
 title = 'Linking'
 weight = 3
 +++
@@ -39,13 +39,13 @@ image.errorlevel = 'warning'
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} In case you want to use link warnings but are bothered by false negatives, you can configure an ignore list of regular expressions. The referenced address will be checked against all regexes of this list. If the address matches at least one regex, no output will be written to the console. The check uses [Hugo's `findRE` function](https://gohugo.io/functions/strings/findre/).
 
 {{< multiconfig section=params >}}
-errorignore = [ '^/authoring/', '^/configuration/' ]
+urlIgnoreCheck = [ '^/authoring/', '^/configuration/' ]
 {{< /multiconfig >}}
 
 ## Check External URLs
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} External URLs can be checked for validity during build. It will only be checked if the URL does not match a `errorignore` pattern.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} External URLs can be checked for validity during build. It will only be checked if the URL does not match a `urlIgnoreCheck` pattern.
 
 {{< multiconfig section=params >}}
-urlCheck = true
+urlExternalCheck = true
 {{< /multiconfig >}}

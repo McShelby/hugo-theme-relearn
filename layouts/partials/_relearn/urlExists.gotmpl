@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
 {{- if and
-	(or .page.Params.urlCheck site.Params.urlCheck)
+	(or .page.Params.urlExternalCheck site.Params.urlExternalCheck)
 	(partial "_relearn/urlErrorCheck.gotmpl" (dict "page" $page "url" .url)) }}
 	{{- $checkedUrls := (hugo.Store.Get "r-checked-urls") | default dict }}
 	{{- if not (isset $checkedUrls .url) }}

@@ -12,6 +12,6 @@ type = 'home'
 
 [[cascade]]
   [cascade.params]
-    errorignore = [ '.*' ]
+    urlIgnoreCheck = [ '.*' ]
 +++
 {{< piratify true >}}
