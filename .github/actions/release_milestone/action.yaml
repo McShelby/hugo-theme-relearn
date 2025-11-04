@@ -170,15 +170,20 @@ runs:
         regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
         replacement: "[★ What's new in this version ★](https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
 
-    - name: Commit updates
+    - name: Stage files
       shell: bash
-      env:
-        MILESTONE: ${{ inputs.milestone }}
-        GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         git add *
-        git commit --message "Ship tag $MILESTONE"
-        git push origin main
+
+    - name: Commit updates
+      uses: planetscale/ghcommit-action@v0.2.18
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      with:
+        commit_message: "Release ${{ inputs.milestone }}"
+        repo: ${{ github.repository }}
+        branch: ${{ github.head_ref || github.ref_name }}
+        file_pattern: "*.*"
 
     - name: Create final tags
       shell: bash
@@ -188,6 +193,8 @@ runs:
         MILESTONE_MINOR: ${{ steps.minorvers.outputs.value }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
+        git fetch --depth=1 origin main
+        git reset --hard FETCH_HEAD
         git tag  --force --message "" "$MILESTONE"
         git push --force origin "$MILESTONE"
         git tag --message "" "$MILESTONE_MAJOR.$MILESTONE_MINOR.x" || true
