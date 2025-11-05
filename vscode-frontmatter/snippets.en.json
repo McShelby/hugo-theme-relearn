@@ -17,7 +17,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Style scheme",
@@ -66,7 +66,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Style scheme",
@@ -93,8 +93,89 @@
         }
       ]
     },
+    "Card": {
+      "body": ["{{% card title=\"[[&title]]\" href=\"[[&href]]\" image=\"[[&image]]\"", "[[&content]]", "{{% /card %}}"],
+      "description": "Display a single card",
+      "fields": [
+        {
+          "default": "FM_SELECTED_TEXT",
+          "name": "content",
+          "title": "Text",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "href",
+          "title": "Destination URL",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "image",
+          "title": "Image URL",
+          "type": "string"
+        }
+      ]
+    },
+    "Cards": {
+      "body": ["{{< cards >}}", "{{% card title=\"[[&title1]]\" href=\"[[&href1]]\" image=\"[[&image1]]\" %}}", "[[&content1]]", "{{% /card %}}", "{{% tab title=\"[[&title2]]\" href=\"[[&href2]]\" image=\"[[&image2]]\" %}}", "[[&content2]]", "{{% /card %}}", "{{< /cards >}}"],
+      "description": "Display a set of cards",
+      "fields": [
+        {
+          "default": "FM_SELECTED_TEXT",
+          "name": "content1",
+          "title": "Text of the first card",
+          "type": "string"
+        },
+        {
+          "name": "title1",
+          "title": "Title of the first card",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "href1",
+          "title": "Destination URL of the first card",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "image1",
+          "title": "Image URL of the first card",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "content2",
+          "title": "Text of the second card",
+          "type": "string"
+        },
+        {
+          "name": "title2",
+          "title": "Title of the second card",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "href2",
+          "title": "Destination URL of the second card",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "image2",
+          "title": "Image URL of the second card",
+          "type": "string"
+        }
+      ]
+    },
     "Children": {
-      "body": ["{{% children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" containerstyle=\"[[&containerstyle]]\" style=\"[[&style]]\" %}}"],
+      "body": ["{{% children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" type=\"[[&type]]\" %}}"],
       "description": "Displays a list of child pages for the page",
       "fields": [
         {
@@ -124,15 +205,10 @@
           "type": "choice"
         },
         {
+          "choices": ["", "card", "flat", "list", "tree"],
           "default": "",
-          "name": "containerstyle",
-          "title": "Container HTML element",
-          "type": "string"
-        },
-        {
-          "default": "",
-          "name": "style",
-          "title": "Container child HTML element",
+          "name": "type",
+          "title": "The layout used for the listing",
           "type": "string"
         }
       ]
@@ -309,7 +385,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Style scheme",
@@ -377,7 +453,7 @@
           "type": "choice"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Style scheme",
@@ -431,7 +507,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Style scheme",
@@ -462,7 +538,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Default style scheme of all tabs",
@@ -498,7 +574,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style1",
           "title": "Style scheme of the first tab",
@@ -528,7 +604,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style2",
           "title": "Style scheme of the second tab",

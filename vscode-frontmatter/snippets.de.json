@@ -17,7 +17,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Stil-Schema",
@@ -66,7 +66,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Stil-Schema",
@@ -93,8 +93,89 @@
         }
       ]
     },
+    "Card": {
+      "body": ["{{% card title=\"[[&title]]\" href=\"[[&href]]\" image=\"[[&image]]\"", "[[&content]]", "{{% /card %}}"],
+      "description": "Zeigt eine einzelne Karte an",
+      "fields": [
+        {
+          "default": "FM_SELECTED_TEXT",
+          "name": "content",
+          "title": "Text",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Titel",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "href",
+          "title": "Ziel-URL",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "image",
+          "title": "Bild-URL",
+          "type": "string"
+        }
+      ]
+    },
+    "Cards": {
+      "body": ["{{< cards >}}", "{{% card title=\"[[&title1]]\" href=\"[[&href1]]\" image=\"[[&image1]]\" %}}", "[[&content1]]", "{{% /card %}}", "{{% tab title=\"[[&title2]]\" href=\"[[&href2]]\" image=\"[[&image2]]\" %}}", "[[&content2]]", "{{% /card %}}", "{{< /cards >}}"],
+      "description": "Zeigt eine Gruppe von Karten an",
+      "fields": [
+        {
+          "default": "FM_SELECTED_TEXT",
+          "name": "content1",
+          "title": "Text der ersten Karte",
+          "type": "string"
+        },
+        {
+          "name": "title1",
+          "title": "Titel der ersten Karte",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "href1",
+          "title": "Ziel-URL der ersten Karte",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "image1",
+          "title": "Bild-URL der ersten Karte",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "content2",
+          "title": "Text der zweiten Karte",
+          "type": "string"
+        },
+        {
+          "name": "title2",
+          "title": "Titel der zweiten Karte",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "href2",
+          "title": "Ziel-URL der zweiten Karte",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "name": "image2",
+          "title": "Bild-URL der zweiten Karte",
+          "type": "string"
+        }
+      ]
+    },
     "Children": {
-      "body": ["{{% children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" containerstyle=\"[[&containerstyle]]\" style=\"[[&style]]\" %}}"],
+      "body": ["{{% children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" type=\"[[&type]]\" %}}"],
       "description": "Zeigt eine Liste der Unterseiten dieser Seite an",
       "fields": [
         {
@@ -124,15 +205,10 @@
           "type": "choice"
         },
         {
+          "choices": ["", "card", "flat", "list", "tree"],
           "default": "",
-          "name": "containerstyle",
-          "title": "Container-HTML-Element",
-          "type": "string"
-        },
-        {
-          "default": "",
-          "name": "style",
-          "title": "Container-Kind-HTML-Element",
+          "name": "type",
+          "title": "Art des Listen-Layout",
           "type": "string"
         }
       ]
@@ -309,7 +385,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Stil-Schema",
@@ -377,7 +453,7 @@
           "type": "choice"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Stil-Schema",
@@ -431,7 +507,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Stil-Schema",
@@ -462,7 +538,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style",
           "title": "Standard-Stil-Schema aller Tabs",
@@ -498,7 +574,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style1",
           "title": "Stil-Schema des ersten Tabs",
@@ -528,7 +604,7 @@
           "type": "string"
         },
         {
-          "choices": ["", "caution", "important", "info", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code"],
+          "choices": ["", "caution", "important", "info", "neutral", "note", "tip", "warning", "primary", "secondary", "accent", "blue", "cyan", "green", "grey", "magenta", "orange", "red", "default", "transparent", "code", "list", "action"],
           "default": "",
           "name": "style2",
           "title": "Stil-Schema des zweiten Tabs",
