@@ -99,7 +99,6 @@ Also follow the above link to see the parameter for each nested card.
 
 | Name                  | Default              | Notes       |
 |-----------------------|----------------------|-------------|
-| **title**             | _&lt;empty&gt;_      | Arbitrary title written in front of the tab view. |
 | **template**          | `default`            | The template to be used to display all cards in the set. Can be overridden for each card.<br><br>- `default`: The standard layout<br>- `debug`: A debug layout helping you in development<br><br>See the `card` shortcode how to [use your own templates](shortcodes/card#card-templates). |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of cards defined with the `card` sub-shortcode. |
 
