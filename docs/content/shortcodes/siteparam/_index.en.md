@@ -4,9 +4,11 @@ description = 'Get value of site params'
 title = 'SiteParam'
 +++
 
-The `siteparam` shortcode prints values of params contained in your `hugo.toml`.
+The `siteparam` shortcode prints values of site-wide params contained in your `hugo.toml`.
 
 ## Usage
+
+To print params from a page's front matter and falling back to the site options, use Hugo's built-in [`param` shortcode](https://gohugo.io/shortcodes/param/).
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}

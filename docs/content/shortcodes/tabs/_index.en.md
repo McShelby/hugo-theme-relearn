@@ -8,42 +8,38 @@ The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
 {{< tabs title="hello." >}}
 {{% tab title="py" %}}
-
 ```python
 print("Hello World!")
 ```
-
 {{% /tab %}}
 {{% tab title="sh" %}}
-
 ```bash
 echo "Hello World!"
 ```
-
 {{% /tab %}}
 {{% tab title="c" %}}
-
 ```c
 printf("Hello World!");
 ```
-
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab title="Python Example" %}}
+{{% tab title="Python Saying" %}}
 The AI native programming language.
 {{% /tab %}}
-{{% tab title="Terminal Example" %}}
-For guys who like to tinker around.
+{{% tab title="Terminal Sourcecode" %}}
+````bash
+echo "For guys who like to tinker."
+````
 {{% /tab %}}
-{{% tab title="C Example" color="fuchsia" %}}
+{{% tab title="C Ramblings" color="fuchsia" %}}
 For the connoisseur of programming.
 {{% /tab %}}
-{{% tab title="C++ Example" color="red" %}}
+{{% tab title="C++ Ramblings++" color="red" %}}
 For the guys that can cope with syntax.
 {{% /tab %}}
-{{% tab title="C# Example" %}}
+{{% tab title="C# ~~GC is cool~~" %}}
 For guys that need two destructors.
 {{% /tab %}}
 {{< /tabs >}}
@@ -52,7 +48,6 @@ For guys that need two destructors.
 
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
-
 ````go
 {{</* tabs title="hello." */>}}
 {{%/* tab title="py" */%}}
@@ -73,24 +68,25 @@ printf"Hello World!");
 {{</* /tabs */>}}
 
 {{</* tabs */>}}
-{{%/* tab title="Python Example" */%}}
+{{%/* tab title="Python Saying" */%}}
 The AI native programming language.
 {{%/* /tab */%}}
-{{%/* tab title="Terminal Example" */%}}
-For guys who like to tinker around.
+{{%/* tab title="Terminal Sourcecode" */%}}
+```bash
+echo "For guys who like to tinker."
+```
 {{%/* /tab */%}}
-{{%/* tab title="C Example" color="fuchsia" */%}}
+{{%/* tab title="C Ramblings" color="fuchsia" */%}}
 For the connoisseur of programming.
 {{%/* /tab */%}}
-{{%/* tab title="C++ Example" color="red" */%}}
+{{%/* tab title="C++ Ramblings++" color="red" */%}}
 For the guys that can cope with syntax.
 {{%/* /tab */%}}
-{{%/* tab title="C# Example" */%}}
+{{%/* tab title="C# ~~GC is cool~~" */%}}
 For guys that need two destructors.
 {{%/* /tab */%}}
 {{</* /tabs */>}}
 ````
-
 {{% /tab %}}
 {{% tab title="partial" %}}
 
@@ -117,25 +113,25 @@ For guys that need two destructors.
   "page"  .
   "content" (slice
     (dict
-      "title" "Python Example"
+      "title" "Python Saying"
       "content" ("The AI native programming language." | .RenderString)
     )
     (dict
-      "title" "Terminal Example"
+      "title" "Terminal Sourcecode"
       "content" ("For guys who like to tinker around." | .RenderString)
     )
     (dict
       "color" "fuchsia"
-      "title" "C Example"
+      "title" "C Ramblings"
       "content" ("For the connoisseur of programming." | .RenderString)
     )
     (dict
       "color" "red"
-      "title" "C++ Example"
+      "title" "C++ Ramblings++"
       "content" ("For the guys that can cope with syntax." | .RenderString)
     )
     (dict
-      "title" "C# Example"
+      "title" "C# ~~GC is cool~~"
       "content" ("For guys that need two destructors." | .RenderString)
     )
   )
