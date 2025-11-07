@@ -136,9 +136,9 @@ Every possible combination
   - index.md | fa-fw fab fa-markdown
   - index.html | fa-fw fab fa-html5
 - and now with color
-  - script.php | fa-fw fab fa-markdown | purple
-  - alt script.php | fa-fw fab fa-markdown | #888cc4
-  - magic.php | fa-fw fab fa-markdown | magic
+  - script.php | fa-fw fab fa-php | purple
+  - alt script.php | fa-fw fab fa-php | #888cc4
+  - magic.php | fa-fw fab fa-php | magic
 ```
 ````
 
@@ -154,7 +154,7 @@ Every possible combination
   - index.md | fa-fw fab fa-markdown
   - index.html | fa-fw fab fa-html5
 - and now with color
-  - script.php | fa-fw fab fa-markdown | purple
-  - alt script.php | fa-fw fab fa-markdown | #888cc4
-  - magic.php | fa-fw fab fa-markdown | magic
+  - script.php | fa-fw fab fa-php | purple
+  - alt script.php | fa-fw fab fa-php | #888cc4
+  - magic.php | fa-fw fab fa-php | magic
 ````
