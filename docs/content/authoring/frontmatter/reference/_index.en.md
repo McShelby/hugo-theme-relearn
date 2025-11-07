@@ -20,7 +20,7 @@ math = true
 
 ## Index
 
-{{% taxonomy "frontmatter" "h3" %}}
+{{< taxonomy "frontmatter" "h3" >}}
 
 ## All Front Matter
 

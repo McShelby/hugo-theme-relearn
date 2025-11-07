@@ -399,8 +399,12 @@ boxStyle = [
 
 ````md {title="page.md"}
 > [!magic]
+> It's a kind of...
+>
 > Maaagic!
 ````
 
 > [!magic]
+> It's a kind of...
+>
 > Maaagic!
