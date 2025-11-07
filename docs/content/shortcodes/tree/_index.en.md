@@ -1,10 +1,10 @@
 +++
 categories = ['howto', 'reference']
-description = 'Display a list as a tree'
+description = 'Display text as a tree'
 title = 'Tree'
 +++
 
-The `tree` shortcode displays a list as a tree with configurable icons and colors.
+The `tree` shortcode displays text as a tree with configurable icons and colors.
 
 ````tree
 - home | folder
@@ -61,7 +61,7 @@ Markdown codefence syntax is widely available in other Markdown parsers like Git
 
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your list as Markdown. |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your list as Markdown or from your favorite `tree` commandline tool. |
 
 ### Item Syntax
 
@@ -85,25 +85,57 @@ The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and
 
 ## Examples
 
-### Bigger example
+### `tree` Command Output
+
+Use the `tree` command of your favorite operating system and dump it right into the shortcode. Note, that the directory marker (here `C:.`) is removed if present.
+
+````md
+```tree
+C:.
+│   featured.png
+│   index.en.md
+│   index.pir.md
+│   MaybeTreasure.en.txt
+│   MaybeTreasure.pir.txt
+│   NoTreasure.en.txt
+│   Treasure.pir.txt
+│
+└───subdir
+        hugo.png
+```
+````
+
+````tree
+C:.
+│   featured.png
+│   index.en.md
+│   index.pir.md
+│   MaybeTreasure.en.txt
+│   MaybeTreasure.pir.txt
+│   NoTreasure.en.txt
+│   Treasure.pir.txt
+│
+└───subdir
+        hugo.png
+````
+
+### Markdown List with Styled Items
 
 Every possible combination
 
 ````md
 ```tree
-- [just name](http://example.com) | folder
-  - Documents
-  - My Documents
+- just names
+  - Document
+  - My Document
+  - [My linked Document](http://example.com)
 - simple icons | folder
-  - Documents | folder
-  - My Documents | folder
-- not so simple icons | file-alt | secondary
-  - a.png | file-alt
-  - a with border.png | file-alt
-- mindblowing icons | fa-fw fab fa-markdown | accent
-  - text.md | fa-fw fab fa-markdown
-  - alternative text.md | fa-fw fab fa-markdown
-- and now with color | fa-fw fab fa-php
+  - Document | file
+  - My Document | file
+- mindblowing icons
+  - index.md | fa-fw fab fa-markdown
+  - index.html | fa-fw fab fa-html5
+- and now with color
   - script.php | fa-fw fab fa-markdown | purple
   - alt script.php | fa-fw fab fa-markdown | #888cc4
   - magic.php | fa-fw fab fa-markdown | magic
@@ -111,20 +143,18 @@ Every possible combination
 ````
 
 ````tree
-- [just name](http://example.com) | folder
-  - Documents
-  - My Documents
+- just names
+  - Document
+  - My Document
+  - [My linked Document](http://example.com)
 - simple icons | folder
-  - Documents | folder
-  - My Documents | folder
-- not so simple icons | file-alt | secondary
-  - a.png | file-alt
-  - a with border.png | file-alt
-- mindblowing icons | fa-fw fab fa-markdown | accent
-  - text.md | fa-fw fab fa-markdown
-  - alternative text.md | fa-fw fab fa-markdown
-- and now with color | fa-fw fab fa-php
-  - script.php | fa-fw fab fa-php | purple
-  - alt script.php | fa-fw fab fa-php | #888cc4
-  - magic.php | fa-fw fab fa-php | magic
+  - Document | file
+  - My Document | file
+- mindblowing icons
+  - index.md | fa-fw fab fa-markdown
+  - index.html | fa-fw fab fa-html5
+- and now with color
+  - script.php | fa-fw fab fa-markdown | purple
+  - alt script.php | fa-fw fab fa-markdown | #888cc4
+  - magic.php | fa-fw fab fa-markdown | magic
 ````
