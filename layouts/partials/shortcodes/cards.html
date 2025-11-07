@@ -7,9 +7,6 @@
   {{- with $card }}
     {{- $content := trim .content "\n\r\t " }}
     {{- $hasContent := ne (strings.TrimPrefix "<p>" $content) "" }}
-    {{- if not (hasPrefix $content "<") }}
-      {{- $content = printf "<p>\n%s" $content }}
-    {{- end }}
 
     {{- $style := .style | default $style | default "" }}
     {{- $color := .color | default $color | default "" }}
