@@ -1365,16 +1365,26 @@ html[dir='rtl'] .topbar-button-next i {
 }
 
 .topbar-breadcrumbs {
-  flex-grow: 1;
   margin: 0;
   padding: 0 calc(1rem - 2px);
 }
 @media screen and (max-width: 47.999rem) {
   .topbar-breadcrumbs {
-    /* we just hide the breadcrumbs instead of display: none;
-        this makes sure that the breadcrumbs are still usable for
-        accessability */
-    visibility: hidden;
+    text-align: center;
+  }
+  .topbar-breadcrumbs li:has(> a) {
+    /* same as .a11y-only */
+    /* idea taken from https://www.filamentgroup.com/lab/a11y-form-labels.html */
+    clip-path: polygon(0 0, 1px 0, 1px 1px, 0 1px);
+    overflow: hidden;
+    position: absolute;
+    height: 1px;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: 1px;
   }
 }
 
