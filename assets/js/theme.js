@@ -583,14 +583,16 @@ function initAnchorClipboard() {
     var origin = document.location.origin == 'null' ? `${document.location.protocol}//${document.location.host}` : document.location.origin;
     var id = encodeURIComponent(element.id);
     var link = `${origin}${document.location.pathname}#${id}`;
-    var new_element = document.createElement('button');
-    new_element.classList.add('anchor');
+    var span = document.createElement('span');
+    span.classList.add('anchor', 'btn', 'cstyle', 'link', 'noborder', 'notitle', 'interactive');
+    span.setAttribute('data-clipboard-text', link);
+    var button = document.createElement('button');
     if (!window.relearn.disableAnchorCopy) {
-      new_element.setAttribute('title', window.T_Copy_link_to_clipboard);
+      button.setAttribute('title', window.T_Copy_link_to_clipboard);
     }
-    new_element.setAttribute('data-clipboard-text', link);
-    new_element.innerHTML = '<i class="fas fa-link fa-lg"></i>';
-    element.appendChild(new_element);
+    button.innerHTML = '<i class="fas fa-link fa-lg"></i>';
+    span.appendChild(button);
+    element.appendChild(span);
   });
 
   var anchors = document.querySelectorAll('.anchor');
@@ -617,7 +619,7 @@ function initAnchorClipboard() {
   } else if (!window.relearn.disableAnchorScrolling) {
     for (var i = 0; i < anchors.length; i++) {
       anchors[i].addEventListener('click', function (e) {
-        e.target.parentElement.parentElement.scrollIntoView({ behavior: 'smooth' });
+        e.currentTarget.parentElement.scrollIntoView({ behavior: 'smooth' });
         var state = window.history.state || {};
         state = Object.assign({}, typeof state === 'object' ? state : {});
         history.replaceState({}, '', e.text);
