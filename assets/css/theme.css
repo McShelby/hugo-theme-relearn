@@ -1366,7 +1366,7 @@ html[dir='rtl'] .topbar-button-next i {
 
 .topbar-breadcrumbs {
   margin: 0;
-  padding: 0 calc(1rem - 2px);
+  padding: 0 calc(0.9em - 2px);
 }
 @media screen and (max-width: 47.999rem) {
   .topbar-breadcrumbs {
@@ -1846,24 +1846,37 @@ i.cstyle {
   border-style: solid;
   border-width: 1px;
   color: var(--VARIABLE-BOX-CAPTION-color);
-  padding: 6px 12px;
+  padding: 0.4em 0.5em;
   text-align: center;
   touch-action: manipulation;
   -webkit-user-select: none;
   user-select: none;
   white-space: nowrap;
 }
+
+.btn > * > i {
+  /* fa-fw makes rectangles instead of squares, so we adjust back, hopefully no icon exceeds that area */
+  width: 1.1em;
+}
+
+.btn > * > i + .title {
+  padding-inline-start: 0.1em;
+}
+
 button.btn.noborder,
 .btn.noborder > * {
   border-color: transparent !important;
 }
 .btn.notitle > * {
-  padding: 6px;
+  padding: 0.4em;
 }
 
-.btn > *:after {
+.btn.notitle.noicon > *:after {
   /* avoid breakage if no content is given */
   content: '\200b';
+  display: block;
+  min-height: 1.1em;
+  min-width: 1.1em;
 }
 
 #R-body #R-body-inner .btn > *.highlight:after {
@@ -1925,10 +1938,10 @@ h6:hover .anchor {
 }
 
 .anchor.btn > * {
-  height: calc(2em + 4px);
-  width: calc(2em + 4px);
+  height: 2.25em;
+  width: 2.25em;
   box-sizing: border-box;
-  padding: 2px;
+  padding: 0.125em;
 }
 
 /* Redfines headers style */

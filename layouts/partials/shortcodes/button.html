@@ -54,8 +54,40 @@
 {{- $title = $boxStyle.title }}
 
 {{- $iconposition := .iconposition | default "left" }}
+
+{{- $params := dict }}
+{{- $classes := slice }}
+{{- $classes = $classes | append "btn" }}
+{{- $classes = $classes | append "cstyle" }}
+{{- $classes = $classes | append (.class | default "button") }}
+{{ if $style }}
+  {{- $classes = $classes | append $style }}
+{{- end }}
+{{ if $borderless }}
+  {{- $classes = $classes | append "noborder" }}
+{{- end }}
+{{ if not $title }}
+  {{- $classes = $classes | append "notitle" }}
+{{- end }}
+{{ if not $icon }}
+  {{- $classes = $classes | append "noicon" }}
+{{- end }}
+{{ if or $isButton $isLink }}
+  {{- $classes = $classes | append "interactive" }}
+{{- end }}
+{{- $params = dict "class" (delimit $classes " ") | merge $params }}
+
+{{ if $color }}
+  {{- $params = dict "style" (print "--VARIABLE-BOX-color: " $color ";") | merge $params }}
+{{- end }}
+
 {{- with $page -}}
-<span class="btn cstyle{{ if $style }} {{ $style }}{{ end }}{{ if $borderless }} noborder{{ end }}{{ if not $title }} notitle{{ end }}{{ if or $isButton $isLink }} interactive{{ end }}"{{ with $color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
+<span
+  {{- range $k, $v := $params }}
+    {{- if $v }}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- end }}
+  {{- end }}>
   {{- if $isButton -}}
   <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}>
   {{- else if $isLink -}}
