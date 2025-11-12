@@ -347,17 +347,18 @@ function initMermaid(update, attrs) {
           var svg = d3.select(this);
           svg.html('<g>' + svg.html() + '</g>');
           var inner = svg.select('*:scope > g');
-          parent.insertAdjacentHTML('beforeend', '<button class="svg-reset-button btn cstyle action noborder notitle interactive" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button>');
-          var button = parent.querySelector('.svg-reset-button');
+          parent.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button></span></div>');
+          var wrapper = parent.querySelector('.svg-reset-button');
+          var button = wrapper.querySelector('button');
           var zoom = d3.zoom().on('zoom', function (e) {
             inner.attr('transform', e.transform);
             if (e.transform.k == 1 && e.transform.x == 0 && e.transform.y == 0) {
-              button.classList.remove('zoomed');
+              wrapper.classList.remove('zoomed');
             } else {
-              button.classList.add('zoomed');
+              wrapper.classList.add('zoomed');
             }
           });
-          button.addEventListener('click', function (event) {
+          button.addEventListener('click', function () {
             svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
             this.setAttribute('aria-label', window.T_View_reset);
             this.classList.add('tooltipped', 'tooltipped-' + (doBeside ? '' : 's') + (isImageRtl ? 'e' : 'w'));

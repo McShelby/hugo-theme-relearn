@@ -1610,27 +1610,30 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
   cursor: grab;
 }
 
-.svg-reset-button {
+.actionbar {
+  display: none;
   inset-inline-end: 4px;
   position: absolute;
   top: 4px;
 }
 
-.svg-reset-button.btn {
-  display: none;
-}
-.mermaid:hover .svg-reset-button.btn.zoomed {
+.mermaid:hover .actionbar {
   display: block;
 }
-@media (any-hover: some) {
-  /* if there is at least one input device that does not support hover, we want to force the reset button if zoomed */
-  .svg-reset-button.btn.zoomed {
+
+@media (any-hover: none) {
+  /* if there is at least one input device that does not support hover, force actionbar visible */
+  .actionbar {
     display: block;
   }
 }
 
-.svg-reset-button > i {
-  width: 2em;
+.svg-reset-button.btn {
+  display: none;
+}
+
+.svg-reset-button.btn.zoomed {
+  display: block;
 }
 
 .mermaid-code {
@@ -1873,7 +1876,6 @@ i.cstyle {
   padding-inline-start: 0.1em;
 }
 
-button.btn.noborder,
 .btn.noborder > * {
   border-color: transparent !important;
 }
