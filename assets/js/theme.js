@@ -575,54 +575,32 @@ function initOpenapi(update, attrs) {
 }
 
 function initAnchorClipboard() {
-  if (window.relearn.disableAnchorCopy && window.relearn.disableAnchorScrolling) {
-    return;
-  }
+  const url = document.location.origin == 'null' ? `${document.location.protocol}//${document.location.host}${document.location.pathname}` : `${document.location.origin}${document.location.pathname}`;
 
-  document.querySelectorAll(':has(h1) :is(h2[id], h3[id], h4[id], h5[id], h6[id])').forEach(function (element) {
-    var origin = document.location.origin == 'null' ? `${document.location.protocol}//${document.location.host}` : document.location.origin;
-    var id = encodeURIComponent(element.id);
-    var link = `${origin}${document.location.pathname}#${id}`;
-    var span = document.createElement('span');
-    span.classList.add('anchor', 'btn', 'cstyle', 'link', 'noborder', 'notitle', 'interactive');
-    span.setAttribute('data-clipboard-text', link);
-    var button = document.createElement('button');
-    if (!window.relearn.disableAnchorCopy) {
-      button.setAttribute('title', window.T_Copy_link_to_clipboard);
-    }
-    button.innerHTML = '<i class="fas fa-link fa-lg"></i>';
-    span.appendChild(button);
-    element.appendChild(span);
-  });
+  const anchors = Array.from(document.querySelectorAll('.anchor'));
+  for (const anchor of anchors) {
+    const id = encodeURIComponent(anchor.parentElement.id);
+    anchor.setAttribute('data-clipboard-text', `${url}#${id}`);
 
-  var anchors = document.querySelectorAll('.anchor');
-  if (!window.relearn.disableAnchorCopy) {
-    for (var i = 0; i < anchors.length; i++) {
-      anchors[i].addEventListener('mouseleave', function (e) {
+    if (anchor.classList.contains('copyanchor')) {
+      anchor.addEventListener('mouseleave', function () {
         this.removeAttribute('aria-label');
         this.classList.remove('tooltipped', 'tooltipped-se', 'tooltipped-sw');
       });
-    }
 
-    var clip = new ClipboardJS('.anchor');
-    clip.on('success', function (e) {
-      e.clearSelection();
-      e.trigger.setAttribute('aria-label', window.T_Link_copied_to_clipboard);
-      e.trigger.classList.add('tooltipped', 'tooltipped-s' + (isRtl ? 'e' : 'w'));
-      if (!window.relearn.disableAnchorScrolling) {
-        e.trigger.parentElement.scrollIntoView({ behavior: 'smooth' });
-        var state = window.history.state || {};
+      const clip = new ClipboardJS(anchor);
+      clip.on('success', function (e) {
+        e.clearSelection();
+        e.trigger.setAttribute('aria-label', window.T_Link_copied_to_clipboard);
+        e.trigger.classList.add('tooltipped', 'tooltipped-s' + (isRtl ? 'e' : 'w'));
+      });
+    }
+    if (anchor.classList.contains('scrollanchor')) {
+      anchor.addEventListener('click', function () {
+        this.parentElement.scrollIntoView({ behavior: 'smooth' });
+        let state = window.history.state || {};
         state = Object.assign({}, typeof state === 'object' ? state : {});
-        history.replaceState({}, '', e.text);
-      }
-    });
-  } else if (!window.relearn.disableAnchorScrolling) {
-    for (var i = 0; i < anchors.length; i++) {
-      anchors[i].addEventListener('click', function (e) {
-        e.currentTarget.parentElement.scrollIntoView({ behavior: 'smooth' });
-        var state = window.history.state || {};
-        state = Object.assign({}, typeof state === 'object' ? state : {});
-        history.replaceState({}, '', e.text);
+        history.replaceState({}, '', this.dataset.clipboardText);
       });
     }
   }

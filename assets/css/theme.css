@@ -1854,9 +1854,19 @@ i.cstyle {
   white-space: nowrap;
 }
 
-.btn > * > i {
+.btn > *:has(> i.fa-fw.fa-lg) {
+  padding: 0.2em;
+}
+
+.btn > * > i.fa-fw {
   /* fa-fw makes rectangles instead of squares, so we adjust back, hopefully no icon exceeds that area */
   width: 1.1em;
+}
+
+.btn > * > i.fa-fw.fa-lg {
+  /* fa-lg makes rectangles instead of squares, so we adjust back, hopefully no icon exceeds that area */
+  line-height: 1.375em;
+  width: 1.375em;
 }
 
 .btn > * > i + .title {
@@ -1919,7 +1929,7 @@ button.btn.noborder,
 .anchor {
   font-size: 0.5em;
   margin-inline-start: 0.3em;
-  margin-top: 0.5em;
+  margin-top: 0.55em;
   position: absolute;
   visibility: hidden;
 }
@@ -1935,13 +1945,6 @@ h4:hover .anchor,
 h5:hover .anchor,
 h6:hover .anchor {
   visibility: visible;
-}
-
-.anchor.btn > * {
-  height: 2.25em;
-  width: 2.25em;
-  box-sizing: border-box;
-  padding: 0.125em;
 }
 
 /* Redfines headers style */
