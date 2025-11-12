@@ -600,7 +600,7 @@ function initAnchorClipboard() {
         this.parentElement.scrollIntoView({ behavior: 'smooth' });
         let state = window.history.state || {};
         state = Object.assign({}, typeof state === 'object' ? state : {});
-        history.replaceState({}, '', this.dataset.clipboardText);
+        history.pushState({}, '', this.dataset.clipboardText);
       });
     }
   }
