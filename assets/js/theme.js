@@ -244,13 +244,18 @@ function initMermaid(update, attrs) {
 
       var graph = encodeHTML(serializeGraph(parse));
       var new_element = document.createElement('div');
+      var hasActionbarWrapper = element.classList.contains('actionbar-wrapper');
       Array.from(element.attributes).forEach(function (attr) {
         new_element.setAttribute(attr.name, attr.value);
         element.removeAttribute(attr.name);
       });
       new_element.classList.add('mermaid-container');
       new_element.classList.remove('mermaid');
+      new_element.classList.remove('actionbar-wrapper');
       element.classList.add('mermaid');
+      if (hasActionbarWrapper) {
+        element.classList.add('actionbar-wrapper');
+      }
 
       element.innerHTML = graph;
       if (element.offsetParent !== null) {
@@ -719,18 +724,12 @@ function initCodeClipboard() {
         code = clone;
       }
       var button = null;
+      var insertElement = null;
+      var wrapper = null;
+      var actionbar = null;
       if (isBlock || (!window.relearn.disableInlineCopyToClipboard && !inHeading)) {
         button = document.createElement('button');
-        var buttonPrefix = isBlock ? 'block' : 'inline';
-        button.classList.add(buttonPrefix + '-copy-to-clipboard-button');
-        if (isBlock) {
-          button.classList.add('btn');
-          button.classList.add('cstyle');
-          button.classList.add('action');
-          button.classList.add('noborder');
-          button.classList.add('notitle');
-          button.classList.add('interactive');
-        }
+        button.type = 'button';
         button.setAttribute('title', window.T_Copy_to_clipboard);
         button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
         button.addEventListener('mouseleave', function () {
@@ -752,12 +751,24 @@ function initCodeClipboard() {
               ev.target.classList.remove('force-display');
             }, 0);
           });
+          // Wrap in actionbar structure for block buttons
+          wrapper = document.createElement('span');
+          wrapper.classList.add('btn', 'cstyle', 'block-copy-to-clipboard-button', 'action', 'noborder', 'notitle', 'interactive');
+          wrapper.appendChild(button);
+          actionbar = document.createElement('div');
+          actionbar.className = 'actionbar';
+          actionbar.appendChild(wrapper);
+          insertElement = actionbar;
+        } else {
+          // Simple button for inline buttons (unchanged)
+          button.classList.add('inline-copy-to-clipboard-button');
+          insertElement = button;
         }
       }
       if (inTable) {
         var table = code.parentNode.parentNode.parentNode.parentNode.parentNode;
         table.dataset.code = text;
-        table.parentNode.insertBefore(button, table.nextSibling);
+        table.parentNode.insertBefore(insertElement, table.nextSibling);
       } else if (inPre) {
         var pre = code.parentNode;
         pre.dataset.code = text;
@@ -769,21 +780,21 @@ function initCodeClipboard() {
         if (p == document) {
           var clone = pre.cloneNode(true);
           var div = document.createElement('div');
-          div.classList.add('highlight');
-          div.setAttribute('dir', 'auto');
+          div.classList.add('highlight', 'actionbar-wrapper');
           if (window.relearn.enableBlockCodeWrap) {
             div.classList.add('wrap-code');
           }
+          div.setAttribute('dir', 'auto');
           div.appendChild(clone);
           pre.parentNode.replaceChild(div, pre);
           pre = clone;
         }
-        pre.parentNode.insertBefore(button, pre.nextSibling);
+        pre.parentNode.insertBefore(insertElement, pre.nextSibling);
       } else {
         code.classList.add('highlight');
         code.dataset.code = text;
-        if (button) {
-          code.parentNode.insertBefore(button, code.nextSibling);
+        if (insertElement) {
+          code.parentNode.insertBefore(insertElement, code.nextSibling);
         }
       }
     }

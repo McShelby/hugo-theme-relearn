@@ -38,6 +38,7 @@
 
 {{- /* enrich attributes */}}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "mermaid" slice) " ")) }}
+{{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "actionbar-wrapper" slice) " ")) }}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "align-%s" $align) slice) " ")) }}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "%s" (cond $zoom "zoomable" "")) slice) " ")) }}
 

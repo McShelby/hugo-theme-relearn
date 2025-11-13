@@ -1013,14 +1013,14 @@ div.highlight {
   position: relative;
 }
 /* we may have special treatment if highlight shortcode was used in table lineno mode */
-div.highlight > div {
+div.highlight > div:not(.actionbar) {
   background-color: var(--INTERNAL-CODE-BLOCK-BG-color);
   border-color: var(--INTERNAL-CODE-BLOCK-BORDER-color);
   border-style: solid;
   border-width: 1px;
 }
 /* remove default style for usual markdown tables */
-div.highlight > div table {
+div.highlight > div:not(.actionbar) table {
   background-color: transparent;
   border-width: 0;
   margin: 0;
@@ -1035,27 +1035,27 @@ tr:has(th) {
   top: -1px;
   z-index: 110;
 }
-div.highlight > div td {
+div.highlight > div:not(.actionbar) td {
   border-width: 0;
 }
-#R-body div.highlight > div a {
+#R-body div.highlight > div:not(.actionbar) a {
   line-height: inherit;
 }
-#R-body div.highlight > div a:after {
+#R-body div.highlight > div:not(.actionbar) a:after {
   display: none;
 }
 /* disable selection for lineno cells */
-div.highlight > div td:first-child:not(:last-child),
+div.highlight > div:not(.actionbar) td:first-child:not(:last-child),
 div.highlight > span[id] {
   -webkit-user-select: none;
   user-select: none;
 }
 /* increase code column to full width if highlight shortcode was used in table lineno mode  */
-div.highlight > div td:not(:first-child):last-child {
+div.highlight > div:not(.actionbar) td:not(:first-child):last-child {
   width: 100%;
 }
 /* add scrollbars if highlight shortcode was used in table lineno mode */
-div.highlight > div table {
+div.highlight > div:not(.actionbar) table {
   display: block;
   overflow: auto;
 }
@@ -1069,23 +1069,23 @@ div.highlight.wrap-code pre:not(.mermaid) code {
   white-space: pre-wrap;
 }
 /* remove border from row cells if highlight shortcode was used in table lineno mode */
-div.highlight > div td > pre:not(.mermaid) {
+div.highlight > div:not(.actionbar) td > pre:not(.mermaid) {
   border-radius: 0;
   border-width: 0;
 }
 /* in case of table lineno mode we want to move each row closer together - besides the edges
 this usually applies only to wrapfix tables but it doesn't hurt for non-wrapfix tables too */
-div.highlight > div tr:not(:first-child) pre:not(.mermaid) {
+div.highlight > div:not(.actionbar) tr:not(:first-child) pre:not(.mermaid) {
   padding-top: 0;
 }
-div.highlight > div tr:not(:last-child) pre:not(.mermaid) {
+div.highlight > div:not(.actionbar) tr:not(:last-child) pre:not(.mermaid) {
   padding-bottom: 0;
 }
 /* in case of table lineno mode we want to move each columns closer together on the inside */
-div.highlight > div td:first-child:not(:last-child) pre:not(.mermaid) {
+div.highlight > div:not(.actionbar) td:first-child:not(:last-child) pre:not(.mermaid) {
   padding-right: 0;
 }
-div.highlight > div td:not(:first-child):last-child pre:not(.mermaid) {
+div.highlight > div:not(.actionbar) td:not(:first-child):last-child pre:not(.mermaid) {
   padding-left: 0;
 }
 
@@ -1496,41 +1496,40 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   color: var(--INTERNAL-CODE-INLINE-BG-color);
 }
 
-.block-copy-to-clipboard-button {
-  inset-inline-end: 4px;
-  position: absolute;
-  top: 4px;
-}
-
-.block-copy-to-clipboard-button.btn {
-  /* only show copy to clipboard on hover for code blocks if configured */
-  display: none;
-}
-@media (any-hover: none) {
-  /* if there is at least one input device that does not support hover, we want to force the copy button */
-  .block-copy-to-clipboard-button.btn {
-    display: block;
-  }
-}
-div.highlight:focus-within .block-copy-to-clipboard-button.btn,
-div.highlight .block-copy-to-clipboard-button.btn:active,
-div.highlight:hover .block-copy-to-clipboard-button.btn {
-  display: block;
-}
-.disableHoverBlockCopyToClipBoard div.highlight .block-copy-to-clipboard-button.btn {
-  display: block;
-}
-.force-display {
-  display: block !important;
-}
 .inline-copy-to-clipboard-button > i {
   font-size: 0.859625em;
   padding-left: 0.333em;
   padding-right: 0.333em;
 }
 
-.block-copy-to-clipboard-button > i {
-  width: 2em;
+.actionbar {
+  display: none;
+  inset-inline-end: 4px;
+  position: absolute;
+  top: 4px;
+}
+
+.disableHoverBlockCopyToClipBoard .actionbar {
+  display: block;
+}
+
+.actionbar-wrapper:hover .actionbar,
+.actionbar-wrapper:focus-within .actionbar,
+.actionbar:has(:hover),
+.actionbar:has(:active),
+.actionbar:has(:focus) {
+  display: block;
+}
+
+@media (any-hover: none) {
+  /* if at least one input device does not support hover, force actionbar to be visible */
+  .actionbar {
+    display: block;
+  }
+}
+
+.force-display {
+  display: block !important;
 }
 
 option {
@@ -1608,24 +1607,6 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 }
 .mermaid-container.zoomable > .mermaid > svg {
   cursor: grab;
-}
-
-.actionbar {
-  display: none;
-  inset-inline-end: 4px;
-  position: absolute;
-  top: 4px;
-}
-
-.mermaid:hover .actionbar {
-  display: block;
-}
-
-@media (any-hover: none) {
-  /* if there is at least one input device that does not support hover, force actionbar visible */
-  .actionbar {
-    display: block;
-  }
 }
 
 .svg-reset-button.btn {
