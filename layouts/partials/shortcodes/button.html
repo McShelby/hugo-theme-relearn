@@ -89,7 +89,7 @@
     {{- end }}
   {{- end }}>
   {{- if $isButton -}}
-  <button onclick="{{ $href | safeJS }}"{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}>
+  <button{{ with $href }} onclick="{{ . | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}>
   {{- else if $isLink -}}
   <a
     {{- range $k, $v := $attributes }}
