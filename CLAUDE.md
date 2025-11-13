@@ -17,7 +17,7 @@ Development uses the `docs` for manual testing and documenting new features.
 ```bash
 # Run the dev server from exampleSite directory
 cd exampleSite
-hugo server
+hugo server -p 1414
 ```
 
 Development uses the `exampleSite` for manual testing and providing a simple showcase. The goal is to keep configuration minimal and be a first starting point for new users.
