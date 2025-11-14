@@ -31,7 +31,7 @@ Resources published with your site
   - [d3-transition](https://github.com/d3/d3-transition) - Animated transitions for D3 selections
   - [d3-drag](https://github.com/d3/d3-drag) - Drag and drop SVG, HTML or Canvas using mouse or touch input
 - [Font Awesome](https://fontawesome.com) - The internet's icon library and toolkit
-- [JS-YAML](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper
+- [js-yaml](https://github.com/nodeca/js-yaml) - JavaScript YAML parser and dumper
 - [Lunr](https://lunrjs.com) - Enables a great search experience without the need for external, server-side, search services
 - [Lunr Languages](https://github.com/MihaiValentin/lunr-languages) - A collection of languages stemmers and stopwords for Lunr Javascript library
 - [MathJax](https://mathjax.org/) - Beautiful math and chemical formulae in all browsers
@@ -58,6 +58,7 @@ Resources used during development to write code and documentation, run tests, et
 - [Fork](https://fork.dev/) - A fast and friendly git client for Mac and Windows
 - [Hugo Version Manager](https://github.com/jmooring/hvm) - Helps you manage different versions of Hugo
 - [git](https://git-scm.com/) - --distributed-even-if-your-workflow-isnt
+- [js-toml](https://github.com/sunnyadn/js-toml) - A TOML parser for JavaScript
 - [Node.js](https://github.com/nodejs/node) - Node.js JavaScript runtime
 - [Prettier](https://github.com/prettier/prettier) - Prettier is an opinionated code formatter
 - [Puppeteer](https://github.com/puppeteer/puppeteer) - JavaScript API for Chrome and Firefox
