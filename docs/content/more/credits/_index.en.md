@@ -54,8 +54,6 @@ Additional resources published with the theme documentation
 Resources used during development to write code and documentation, run tests, etc.
 
 - [Claude Code](https://www.claude.com/product/claude-code) - Meet your thinking partner
-- [Firefox](https://firefox.com/) - Take control of your internet
-- [Fork](https://fork.dev/) - A fast and friendly git client for Mac and Windows
 - [Hugo Version Manager](https://github.com/jmooring/hvm) - Helps you manage different versions of Hugo
 - [git](https://git-scm.com/) - --distributed-even-if-your-workflow-isnt
 - [js-toml](https://github.com/sunnyadn/js-toml) - A TOML parser for JavaScript
