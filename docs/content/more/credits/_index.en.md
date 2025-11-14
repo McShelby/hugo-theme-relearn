@@ -19,7 +19,6 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 ## Theme Dependencies
 
 - [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
-- [clipboard.js](https://clipboardjs.com) - A modern approach to copy text to clipboard
 - [d3-zoom](https://github.com/d3/d3-zoom) - Pan and zoom SVG, HTML or Canvas using mouse or touch input - plus dependencies
   - [d3-color](https://github.com/d3/d3-color) - Color spaces! RGB, HSL, Cubehelix, CIELAB, and more
   - [d3-dispatch](https://github.com/d3/d3-dispatch) - Register named callbacks and call them with arguments

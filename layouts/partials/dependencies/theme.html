@@ -84,6 +84,7 @@
       {{ printf "window.T_View_reset = `%s`;" (T `View-reset`) | safeJS }}
       {{ printf "window.T_No_results_found = `%s`;" (T "No-results-found") | safeJS }}
       {{ printf "window.T_N_results_found = `%s`;" (T "N-results-found") | safeJS }}
+      {{ printf "window.T_Browser_unsupported_feature = `%s`;" (T "Browser-unsupported-feature") | safeJS }}
       {{ "// variant stuff" | safeJS }}
       window.relearn.themevariants = [ {{ delimit $quotedthemevariants ", " | safeJS }} ];
       window.relearn.customvariantname = "my-custom-variant";
@@ -115,9 +116,6 @@
   {{- end }}
 {{- else if eq $location "footer" }}
   {{- with $page }}
-    {{- with resources.Get "/js/clipboard/clipboard.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
-    {{- end }}
     {{- with resources.Get "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
     <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
     {{- end }}
