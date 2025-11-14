@@ -43,7 +43,7 @@ Resources published with your site
 
 ## Docs Dependencies
 
-Additional resources published with the theme documentation and exampleSite
+Additional resources published with the theme documentation
 
 - [github-buttons](https://github.com/buttons/github-buttons) - Unofficial github:buttons
 - [Octodex](https://octodex.github.com/) - Playground and home for all octocats
