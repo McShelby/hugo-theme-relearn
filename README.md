@@ -84,4 +84,4 @@ The Relearn theme is distributed under the [MIT License](https://github.com/McSh
 
 ## Credits
 
-This theme builds upon the work of [many contributors](https://mcshelby.github.io/hugo-theme-relearn/more/credits).
+This theme is built on the shoulders of [giants](https://mcshelby.github.io/hugo-theme-relearn/more/credits).

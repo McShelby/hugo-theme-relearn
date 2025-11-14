@@ -10,13 +10,15 @@ title = 'Credits'
 
 ## Contributors
 
-Special thanks to [everyone who has contributed](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) to this project.
+Special thanks to all the [contributors](https://github.com/McShelby/hugo-theme-relearn/graphs/contributors) who have supported and improved this project.
 
-Many thanks to [Mathieu Cornic](https://github.com/matcornic) for his work on porting the [Learn theme](https://github.com/matcornic/hugo-theme-learn) to Hugo.
+Heartfelt thanks to [Andy Miller](https://github.com/rhukster) for originally creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav, laying the foundation for everything that followed.
 
-Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating the [Learn theme](https://github.com/getgrav/grav-theme-learn2) for Grav.
+Sincere thanks as well to [Mathieu Cornic](https://github.com/matcornic) for porting the [Learn theme](https://github.com/matcornic/hugo-theme-learn) to Hugo and helping bring it to a wider audience.
 
 ## Theme Dependencies
+
+Resources published with your site
 
 - [autoComplete](https://github.com/Pixabay/JavaScript-autoComplete) - A lightweight and powerful vanilla JavaScript completion suggester
 - [d3-zoom](https://github.com/d3/d3-zoom) - Pan and zoom SVG, HTML or Canvas using mouse or touch input - plus dependencies
@@ -41,11 +43,31 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
 
 ## Docs Dependencies
 
+Additional resources published with the theme documentation and exampleSite
+
 - [github-buttons](https://github.com/buttons/github-buttons) - Unofficial github:buttons
 - [Octodex](https://octodex.github.com/) - Playground and home for all octocats
 - [Pixeden Club](https://www.pixeden.com/) - Inspired Design Resources for Creatives
 
-## Tooling Dependencies
+## Dev Dependencies
+
+Resources used during development to write code and documentation, run tests, etc.
+
+- [Claude Code](https://www.claude.com/product/claude-code) - Meet your thinking partner
+- [Firefox](https://firefox.com/) - Take control of your internet
+- [Fork](https://fork.dev/) - A fast and friendly git client for Mac and Windows
+- [Hugo Version Manager](https://github.com/jmooring/hvm) - Helps you manage different versions of Hugo
+- [git](https://git-scm.com/) - --distributed-even-if-your-workflow-isnt
+- [Node.js](https://github.com/nodejs/node) - Node.js JavaScript runtime
+- [Prettier](https://github.com/prettier/prettier) - Prettier is an opinionated code formatter
+- [Puppeteer](https://github.com/puppeteer/puppeteer) - JavaScript API for Chrome and Firefox
+- [VS Code](https://github.com/microsoft/vscode) - The open source code editor
+- VS Code extension
+  - https://github.com/prettier/prettier-vscode
+
+## Build Dependencies
+
+Resources used for deployment of releases and documentation on GitHub
 
 - [GitHub](https://github.com) - Continuous deployment, testing and hosting of this project's sources and its documentation
 - Various GitHub Actions
@@ -65,3 +87,4 @@ Many thanks to [Andy Miller](https://github.com/rhukster) for initially creating
   - https://github.com/WyriHaximus/github-action-next-semvers
 - [gren](https://github.com/github-tools/github-release-notes) - A releasenotes generator for GitHub
 - [Hugo](https://gohugo.io/) - The static site generator of your choice
+- [Imgbot](https://imgbot.net/) - Relax while Imgbot optimizes your images
