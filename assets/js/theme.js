@@ -738,10 +738,10 @@ function initCodeClipboard() {
         button = document.createElement('button');
         button.type = 'button';
         button.setAttribute('title', window.T_Copy_to_clipboard);
-        button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
 
         if (isBlock) {
           // Wrap in actionbar structure for block buttons
+          button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
           wrapper = document.createElement('span');
           wrapper.classList.add('btn', 'cstyle', 'block-copy-to-clipboard-button', 'action', 'noborder', 'notitle', 'interactive');
           wrapper.appendChild(button);
@@ -751,6 +751,7 @@ function initCodeClipboard() {
           insertElement = actionbar;
         } else {
           // Simple button for inline buttons (unchanged)
+          button.innerHTML = '<i class="far fa-copy"></i>';
           button.classList.add('inline-copy-to-clipboard-button');
           insertElement = button;
         }
