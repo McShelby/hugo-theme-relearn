@@ -60,24 +60,24 @@
 {{- $classes = $classes | append "btn" }}
 {{- $classes = $classes | append "cstyle" }}
 {{- $classes = $classes | append (.class | default "button") }}
-{{ if $style }}
+{{- if $style }}
   {{- $classes = $classes | append $style }}
 {{- end }}
-{{ if $borderless }}
+{{- if $borderless }}
   {{- $classes = $classes | append "noborder" }}
 {{- end }}
-{{ if not $title }}
+{{- if not $title }}
   {{- $classes = $classes | append "notitle" }}
 {{- end }}
-{{ if not $icon }}
+{{- if not $icon }}
   {{- $classes = $classes | append "noicon" }}
 {{- end }}
-{{ if or $isButton $isLink }}
+{{- if or $isButton $isLink }}
   {{- $classes = $classes | append "interactive" }}
 {{- end }}
 {{- $params = dict "class" (delimit $classes " ") | merge $params }}
 
-{{ if $color }}
+{{- if $color }}
   {{- $params = dict "style" (print "--VARIABLE-BOX-color: " $color ";") | merge $params }}
 {{- end }}
 
