@@ -125,3 +125,9 @@ You can add standard markdown syntax:
 
 > the possibilities are endless (almost - including other shortcodes may or may not work)
 {{% /expand %}}
+
+### Using Hugo's `details` Shortcode
+
+{{% details %}}
+...is what it's all about!
+{{% /details %}}
