@@ -128,6 +128,12 @@ You can add standard markdown syntax:
 
 ### Using Hugo's `details` Shortcode
 
+````go
+{{%/* details */%}}
+...is what it's all about!
+{{%/* /details */%}}
+````
+
 {{% details %}}
 ...is what it's all about!
 {{% /details %}}
