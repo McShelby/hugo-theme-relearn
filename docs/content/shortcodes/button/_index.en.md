@@ -48,7 +48,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button`. |
 | **borderless**        | `false`         | When `true`, no border will be shown around the button. |
 | **hint**              | _&lt;empty&gt;_ | Tooltip for the button. |
-| **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
+| **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
@@ -117,18 +117,21 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 {{%/* button href="https://gohugo.io/" style="code" %}}Open Link{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="link" %}}Open Link{{% /button */%}}
 {{%/* button href="https://gohugo.io/" style="action" %}}Open Link{{% /button */%}}
+{{%/* button href="https://gohugo.io/" style="inline" %}}Open Link{{% /button */%}}
 
 {{%/* button href="javascript:alert('Some JavaScript')" style="default" %}}Run JavaScript{{% /button */%}}
 {{%/* button href="javascript:alert('Some JavaScript')" style="transparent" %}}Run JavaScript{{% /button */%}}
 {{%/* button href="javascript:alert('Some JavaScript')" style="code" %}}Run JavaScript{{% /button */%}}
 {{%/* button href="javascript:alert('Some JavaScript')" style="link" %}}Run JavaScript{{% /button */%}}
 {{%/* button href="javascript:alert('Some JavaScript')" style="action" %}}Run JavaScript{{% /button */%}}
+{{%/* button href="javascript:alert('Some JavaScript')" style="inline" %}}Run JavaScript{{% /button */%}}
 
 {{%/* button style="default" %}}Fake Button{{% /button */%}}
 {{%/* button style="transparent" %}}Fake Button{{% /button */%}}
 {{%/* button style="code" %}}Fake Button{{% /button */%}}
 {{%/* button style="link" %}}Fake Button{{% /button */%}}
 {{%/* button style="action" %}}Fake Button{{% /button */%}}
+{{%/* button style="inline" %}}Fake Button{{% /button */%}}
 ````
 
 {{% button href="https://gohugo.io/" style="default" %}}Open Link{{% /button %}}
@@ -136,18 +139,21 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 {{% button href="https://gohugo.io/" style="code" %}}Open Link{{% /button %}}
 {{% button href="https://gohugo.io/" style="link" %}}Open Link{{% /button %}}
 {{% button href="https://gohugo.io/" style="action" %}}Open Link{{% /button %}}
+{{% button href="https://gohugo.io/" style="inline" %}}Open Link{{% /button %}}
 
 {{% button href="javascript:alert('Some JavaScript')" style="default" %}}Run JavaScript{{% /button %}}
 {{% button href="javascript:alert('Some JavaScript')" style="transparent" %}}Run JavaScript{{% /button %}}
 {{% button href="javascript:alert('Some JavaScript')" style="code" %}}Run JavaScript{{% /button %}}
 {{% button href="javascript:alert('Some JavaScript')" style="link" %}}Run JavaScript{{% /button %}}
 {{% button href="javascript:alert('Some JavaScript')" style="action" %}}Run JavaScript{{% /button %}}
+{{% button href="javascript:alert('Some JavaScript')" style="inline" %}}Run JavaScript{{% /button %}}
 
 {{% button style="default" %}}Fake Button{{% /button %}}
 {{% button style="transparent" %}}Fake Button{{% /button %}}
 {{% button style="code" %}}Fake Button{{% /button %}}
 {{% button style="link" %}}Fake Button{{% /button %}}
 {{% button style="action" %}}Fake Button{{% /button %}}
+{{% button style="inline" %}}Fake Button{{% /button %}}
 
 ### Icon
 

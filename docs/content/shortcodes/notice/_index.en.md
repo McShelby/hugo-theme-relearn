@@ -64,7 +64,7 @@ If you want to display a transparent expandable box without any border, you can 
 | Name                  | Position | Default         | Notes       |
 |-----------------------|----------|-----------------|-------------|
 | **groupid**           |          | _&lt;empty&gt;_ | Arbitrary name of the group the box belongs to.<br><br>Expandable boxes with the same **groupid** sychronize their open state. |
-| **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`<br><br>You can also [define your own styles](#defining-own-styles). |
+| **style**             | 1        | `default`       | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](#defining-own-styles). |
 | **color**             |          | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color<br><br>This is not available using Markdown callout syntax. |
 | **title**             | 2        | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces)<br><br>This is not available using Markdown callout syntax. |
@@ -247,6 +247,10 @@ Style of topbar buttons
 {{%/* notice style="action" title="Action" icon="skull-crossbones" */%}}
 Style of action buttons like Mermaid zoom or block code copy-to-clipboard
 {{%/* /notice */%}}
+
+{{%/* notice style="inline" title="Inline" icon="skull-crossbones" */%}}
+Style of inline buttons like inline code copy-to-clipboard
+{{%/* /notice */%}}
 ````
 
 {{% notice style="default" title="Default" icon="skull-crossbones" %}}
@@ -267,6 +271,10 @@ Style of topbar buttons
 
 {{% notice style="action" title="Action" icon="skull-crossbones" %}}
 Style of action buttons like Mermaid zoom or block code copy-to-clipboard
+{{% /notice %}}
+
+{{% notice style="inline" title="Inline" icon="skull-crossbones" %}}
+Style of inline buttons like inline code copy-to-clipboard
 {{% /notice %}}
 
 ### Various Features

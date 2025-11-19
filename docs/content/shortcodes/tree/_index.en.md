@@ -78,7 +78,7 @@ The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and
   - by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`
   - by brand color: `primary`, `secondary`, `accent`
   - by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`
-  - by special color: `default`, `transparent`, `code`, `link`, `action`
+  - by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`
   - you can also [define your own styles](shortcodes/notice#defining-own-styles).
 
   If a **style** and a named HTML color have the same name, the **style** color will be used.

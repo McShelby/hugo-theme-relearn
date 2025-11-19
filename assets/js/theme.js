@@ -750,10 +750,12 @@ function initCodeClipboard() {
           actionbar.appendChild(wrapper);
           insertElement = actionbar;
         } else {
-          // Simple button for inline buttons (unchanged)
-          button.innerHTML = '<i class="far fa-copy"></i>';
-          button.classList.add('inline-copy-to-clipboard-button');
-          insertElement = button;
+          // Wrap in btn structure for inline buttons
+          button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
+          wrapper = document.createElement('span');
+          wrapper.classList.add('btn', 'cstyle', 'inline-copy-to-clipboard-button', 'inline', 'notitle', 'interactive');
+          wrapper.appendChild(button);
+          insertElement = wrapper;
         }
       }
       if (inTable) {
@@ -791,7 +793,7 @@ function initCodeClipboard() {
     }
   }
 
-  var buttons = document.querySelectorAll('.block-copy-to-clipboard-button button, .inline-copy-to-clipboard-button');
+  var buttons = document.querySelectorAll('.block-copy-to-clipboard-button button, .inline-copy-to-clipboard-button button');
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
       this.blur();
@@ -799,8 +801,8 @@ function initCodeClipboard() {
         showToast(window.T_Browser_unsupported_feature);
         return;
       }
-      // For block buttons, get the actionbar's previous sibling; for inline, use trigger's previous sibling
-      var codeElement = this.closest('.actionbar') ? this.closest('.actionbar').previousElementSibling : this.previousElementSibling;
+      // For block buttons, get the actionbar's previous sibling; for inline, use wrapper's previous sibling
+      var codeElement = this.closest('.actionbar') ? this.closest('.actionbar').previousElementSibling : this.parentElement.previousElementSibling;
       if (!codeElement) {
         return;
       }

@@ -1385,33 +1385,31 @@ span.copy-to-clipboard {
 
 code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   display: inline-block;
-  width: calc(1.333em + var(--bpx1) * 0.125em);
+  width: calc(1.375em - var(--bpx1) * 0.125em);
   content: '';
 }
 
-.inline-copy-to-clipboard-button {
-  background-color: var(--INTERNAL-CODE-INLINE-BG-color);
-  border-color: var(--INTERNAL-CODE-INLINE-BORDER-color);
-  border-inline-start-style: solid;
-  border-inline-start-width: 1px;
-  color: var(--INTERNAL-CODE-INLINE-color);
-  cursor: pointer;
-  display: inline;
+.inline-copy-to-clipboard-button.btn.cstyle {
   font: initial;
   font-size: 0.934375em;
-  margin-inline-start: calc(-1 * (1.333em + var(--bpx1) * 0.125em));
+  margin-inline-start: calc(-1 * (1.375em - var(--bpx1) * 0.125em));
   position: relative;
   z-index: 10;
 }
-.inline-copy-to-clipboard-button:hover {
-  background-color: var(--INTERNAL-CODE-INLINE-color);
-  color: var(--INTERNAL-CODE-INLINE-BG-color);
+
+.inline-copy-to-clipboard-button.btn.cstyle > * {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0.125em;
+  border-end-start-radius: 0;
+  border-end-end-radius: 0.125em;
+  border-color: var(--INTERNAL-CODE-INLINE-BORDER-color);
+  padding: 0;
 }
 
-.inline-copy-to-clipboard-button > i {
+.inline-copy-to-clipboard-button.btn.cstyle > * > i {
   font-size: 0.859625em;
-  padding-left: 0.333em;
-  padding-right: 0.333em;
+  line-height: 1.375em;
+  width: 1.375em;
 }
 
 .actionbar {
