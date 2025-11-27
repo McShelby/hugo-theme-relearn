@@ -7,7 +7,7 @@ title = 'Button'
 The `button` shortcode displays a clickable button with adjustable color, title and icon.
 
 {{% button href="https://gohugo.io/" %}}Go Hugo{{% /button %}}
-{{% button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button %}}
+{{% button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button %}}
 
 ## Usage
 
@@ -16,7 +16,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 ````go
 {{%/* button href="https://gohugo.io/" %}}Go Hugo{{% /button */%}}
-{{%/* button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button */%}}
+{{%/* button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button */%}}
 ````
 
 {{% /tab %}}
@@ -32,7 +32,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
   "page" .
   "href" "https://gohugo.io/"
   "style" "tip"
-  "icon" "wand-magic-sparkles"
+  "icon" "hand-sparkles"
   "content" "Download Magic"
 )}}
 ````
@@ -205,11 +205,11 @@ You can use [link effects](authoring/markdown#link-effects) with your `href` to 
 
 ````go
 {{%/* button href="https://gohugo.io/?target=_blank" %}}Go Hugo{{% /button */%}}
-{{%/* button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button */%}}
+{{%/* button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button */%}}
 ````
 
 {{% button href="https://gohugo.io/?target=_blank" %}}Go Hugo{{% /button %}}
-{{% button href="images/magic.gif?download" style="tip" icon="wand-magic-sparkles" %}}Download Magic{{% /button %}}
+{{% button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button %}}
 
 ### Other
 

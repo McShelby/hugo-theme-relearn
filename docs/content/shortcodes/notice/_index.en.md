@@ -79,7 +79,7 @@ If you want to display a transparent expandable box without any border, you can 
 
 {{< multiconfig file=hugo section=params >}}
 boxStyle = [
-	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'rainbow', color = 'gold' },
+	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'hand-sparkles', color = 'violet' },
 	{ identifier = 'new', title = ' ', style = 'info', icon = 'plus-circle' }
 ]
 {{< /multiconfig >}}
@@ -401,7 +401,7 @@ Self-defined styles can be [configured](#defining-own-styles) in your `hugo.toml
 
 {{< multiconfig file=hugo section=params >}}
 boxStyle = [
-	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'rainbow', color = 'gold' },
+	{ identifier = 'magic', i18n = '', title = 'Magic', icon = 'hand-sparkles', color = 'violet' },
 ]
 {{< /multiconfig >}}
 
