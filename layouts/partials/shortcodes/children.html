@@ -14,6 +14,10 @@
 {{- if eq (printf "%T" $withDescription) "string" }}
   {{- $withDescription = (eq $withDescription "true") }}
 {{- end }}
+{{- $withImage := .image | default true }}
+{{- if eq (printf "%T" $withImage) "string" }}
+  {{- $withImage = (eq $withImage "true") }}
+{{- end }}
 {{- $sortTerm := .sort | lower }}
 {{- $cardtemplate := .cardtemplate | default "default" }}
 {{- if or .containerstyle .style }}
@@ -43,28 +47,13 @@
       {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
       {{- if not $hidden }}
         {{- $cardimage := "" }}
-        {{- if .Params.featured_image }}
-          {{- $cardimage = .Params.featured_image }}
-        {{- else if .Params.image }}
-          {{- $cardimage = .Params.image }}
-        {{- else if .Params.banner }}
-          {{- $cardimage = .Params.banner }}
-        {{- else }}
-          {{- if .BundleType }}
-            {{- range .Resources.ByType "image" }}
-              {{- if or
-                (eq .Name "featured.webp") (eq .Name "featured.png") (eq .Name "featured.jpg") (eq .Name "featured.jpeg")
-                (eq .Name "cover.webp") (eq .Name "cover.png") (eq .Name "cover.jpg") (eq .Name "cover.jpeg")
-                (eq .Name "image.webp") (eq .Name "image.png") (eq .Name "image.jpg") (eq .Name "image.jpeg")
-              }}
-                {{- $cardimage = printf "%s" .}}
-                {{- break }}
-              {{- end }}
-            {{- end }}
-            {{- if not $cardimage }}
-              {{- with index (.Resources.ByType "image") 0 }}
-                {{- $cardimage = printf "%s" .}}
-             {{- end }}
+        {{- if $withImage }}
+          {{- $images := partial "_funcs/get-page-images" . }}
+          {{- with index $images 0 }}
+            {{- if .Image }}
+              {{- $cardimage = .Image.Name }}
+            {{- else }}
+              {{- $cardimage = .RelPermalink }}
             {{- end }}
           {{- end }}
         {{- end }}

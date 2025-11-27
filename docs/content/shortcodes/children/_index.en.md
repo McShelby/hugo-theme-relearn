@@ -39,11 +39,12 @@ The `children` shortcode lists child pages in various layouts.
 
 | Name               | Default           | Notes       |
 |--------------------|-------------------|-------------|
-| **type**           | `tree`            | The layout used for the listing.<br><br>- `tree`: a nested, unordered list<br>- `list`: a non-nested list with titles resembling a heading style depending on the depth<br>- `flat`: a non-nested list with titles in standard text style<br>- `card`: a card for each top-level children.<br>&nbsp;&nbsp;&nbsp;&nbsp;**depth** will be ignored by the `default` **cardtemplate**.<br>&nbsp;&nbsp;&nbsp;&nbsp;[See below for details](#remarks-for-the-card-type)<br> |
+| **type**           | `tree`            | The layout used for the listing.<br><br>- `tree`: a nested, unordered list<br>- `list`: a non-nested list with titles resembling a heading style depending on the depth<br>- `flat`: a non-nested list with titles in standard text style<br>- `card`: a card for each top-level children. |
 | **showhidden**     | `false`           | When `true`, child pages hidden from the menu will be displayed as well. |
 | **description**    | `false`           | When `true` shows a short text under each page in the list. When no description or summary exists for the page, the first 70 words of the content is taken - [read more info about summaries on gohugo.io](https://gohugo.io/content/summaries/). |
-| **depth**          | `1`               | The depth of descendants to display. For example, if the value is `2`, the shortcode will display two levels of child pages.  To get all descendants, set this value to a high  number eg. `999`. |
-| **sort**           | `auto`            | The sort criteria of the displayed list.<br><br>- `auto` defaults to `ordersectionsby` of the page's {{% badge style="frontmatter" %}}Front Matter{{% /badge %}}<br>&nbsp;&nbsp;&nbsp;&nbsp;or to `ordersectionsby` of the configuration {{% badge style="option" %}}Option{{% /badge %}}<br>&nbsp;&nbsp;&nbsp;&nbsp;or to `default`<br>- `weight`<br>- `title`<br>- `modifieddate`<br>- `expirydate`<br>- `publishdate`<br>- `date`<br>- `length`<br>- `default` adhering to Hugo's default sort criteria|
+| **image**          | `true`            | For `type=card` decides whether to put an image on the card. [See below for details](#remarks-for-the-card-type). |
+| **depth**          | `1`               | For `type!=card` the depth of descendants to display. For example, if the value is `2`, the shortcode will display two levels of child pages.  To get all descendants, set this value to a high  number eg. `999`. |
+| **sort**           | `auto`            | The sort criteria of the displayed list.<br><br>- `auto` defaults to `ordersectionsby` of the page's {{% badge style="frontmatter" %}}Front Matter{{% /badge %}}<br>&nbsp;&nbsp;&nbsp;&nbsp;or to `ordersectionsby` of the configuration {{% badge style="option" %}}Option{{% /badge %}}<br>&nbsp;&nbsp;&nbsp;&nbsp;or to `default`<br>- `weight`<br>- `title`<br>- `modifieddate`<br>- `expirydate`<br>- `publishdate`<br>- `date`<br>- `length`<br>- `default` adhering to Hugo's default sort criteria. |
 | **cardtemplate**   | `default`         | If `type=card`, the template to be used to display a card. [See below for details](#remarks-for-the-card-type). |
 
 ## Remarks for the Card Type
@@ -52,11 +53,7 @@ The `card` type uses the [`cards` shortcode](/shortcodes/cards) to display the t
 
 Each children is displayed in its own card, using the `default` cardtemplate. With it the card will display
 
-- a featured image at the start; it is picked automatically checking in the following order and stopping the check once an image was found
-    - `featured.webp`, `featured.png`, `featured.jpg`, `featured.jpeg`
-    - `cover.webp`, `cover.png`, `cover.jpg`, `cover.jpeg`
-    - `image.webp`, `image.png`, `image.jpg`, `image.jpeg`
-    - the first image in the bundle
+- if `image=true` a featured image at the start [selected by Hugo](https://gohugo.io/templates/embedded/#configuration-open-graph)
 - the title of the child page as card title
 - if `description=true` the summary
 
@@ -124,6 +121,8 @@ A card template will be called with the following parameter by the `children` sh
 {{% children type="flat" depth="3" %}}
 
 ### Card Type with Description
+
+Because none of the children pages of this example define their own feature images, the theme (and Hugo) falls back to the media image of your site.
 
 ````go
 {{%/* children type="card" description="true" */%}}
