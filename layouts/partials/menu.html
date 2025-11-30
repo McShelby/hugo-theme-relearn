@@ -3,10 +3,8 @@
       {{- $currentNode := . }}
       <div id="R-header-topbar" class="default-animation"></div>
       <div id="R-header-wrapper" class="default-animation">
-        <div id="R-header" class="default-animation">
-{{ partial "logo.html" . }}
-        </div>
-      {{- partial "dependencies.html" (dict "page" . "location" "search") }}
+        {{- partial "logo.html" . }}
+        {{- partial "dependencies.html" (dict "page" . "location" "search") }}
       </div>
       <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
         {{- $menuconfigs := .Params.sidebarheadermenus | default site.Params.sidebarheadermenus }}

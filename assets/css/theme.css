@@ -187,20 +187,21 @@ a:focus {
   text-decoration: none;
 }
 
-#R-header-wrapper {
-  background-color: var(--INTERNAL-MENU-HEADER-BG-color);
+#R-header-wrapper > * {
+  padding-inline: 1rem;
+}
+#R-header-wrapper > search {
   color: var(--INTERNAL-MENU-SEARCH-color);
-  text-align: center;
-  padding: 1rem;
-  position: relative;
+  display: block;
+  margin-block: 0.5rem;
 }
-#R-header {
-  border-block-end: 1px solid transparent;
-  position: relative;
-  z-index: 1;
+
+#R-header-wrapper > search:not(:only-child) {
+  margin-bottom: 1rem;
 }
-#R-header a {
-  display: inline-block;
+
+#R-header-wrapper > search > form {
+  overflow: hidden;
 }
 
 .searchbox {
@@ -210,7 +211,6 @@ a:focus {
   border-style: solid;
   border-width: 1px;
   position: relative;
-  margin-top: 1rem;
 }
 
 .searchbox > :first-child {
@@ -2617,7 +2617,25 @@ body #R-logo svg :not([fill='#000000']) {
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-TOPBAR-LINK-HOVER-color);
 }
 
-#R-header-topbar {
+#R-sidebar > #R-header-wrapper {
+  background-color: var(--INTERNAL-MENU-HEADER-BG-color);
+  color: var(--INTERNAL-MENU-HEADER-color);
+  text-align: center;
+}
+
+#R-sidebar > #R-header-wrapper :is(a, span) {
+  color: var(--INTERNAL-MENU-HEADER-color);
+}
+
+#R-sidebar > :has(~ #R-content-wrapper),
+#R-sidebar > #R-content-wrapper > * {
+  border-inline-end-color: var(--INTERNAL-MENU-BORDER-color);
+  border-inline-end-style: solid;
+  border-inline-end-width: 1px;
+}
+
+#R-sidebar > #R-header-topbar {
+  background-color: transparent;
   border-bottom-color: transparent;
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -2625,6 +2643,7 @@ body #R-logo svg :not([fill='#000000']) {
   border-inline-end-style: solid;
   border-inline-end-width: 1px;
   height: 3rem;
+  pointer-events: none;
   position: absolute;
   top: 0;
   width: 100%;
@@ -2634,14 +2653,6 @@ body #R-logo svg :not([fill='#000000']) {
   .mobile-support #R-header-topbar {
     border-inline-end-color: var(--INTERNAL-MENU-BORDER-color);
   }
-}
-
-#R-header-wrapper,
-#R-homelinks,
-#R-content-wrapper > * {
-  border-inline-end-color: var(--INTERNAL-MENU-BORDER-color);
-  border-inline-end-style: solid;
-  border-inline-end-width: 1px;
 }
 
 #topics > ul {
@@ -2672,6 +2683,8 @@ body #R-logo svg :not([fill='#000000']) {
 
 #R-homelinks {
   background-color: var(--INTERNAL-MENU-HEADER-BORDER-color);
+  color: var(--INTERNAL-MENU-HOME-LINK-color);
+  overflow: hidden;
   padding: 0;
 }
 

@@ -238,7 +238,6 @@ If you don't set these options in your `hugo.toml`, the theme defaults as follow
   - the variant switcher if multiple variants are [configured](configuration/branding/colors/#multiple-variants)
   - the history clearer if you [configured](configuration/sidebar/headerfooter#history) to mark visited pages
 
-
 This comes down to the following pseudo default configuration.
 
 {{< multiconfig section=params >}}

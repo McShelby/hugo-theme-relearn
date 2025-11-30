@@ -7,39 +7,44 @@
 
       /* logo */
       #R-logo {
-        font-size: 1.875rem;
-        margin-bottom: -.666rem;
-        margin-top: -.666rem;
-        max-width: 100%;
-        width: 14.125rem;
+        align-items: center;
+        column-gap: 0.4em;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        line-height: 1;
+        overflow: hidden;
+        margin-block: 0.5rem;
+        row-gap: 0.1em;
+        width: 100%;
+      }
+      #R-logo.stacked {
+        flex-direction: column;
       }
       @media only all and (max-width: 59.999rem) {
         #R-logo {
-          font-size: 1.5625rem;
-          margin-bottom: -.1875rem;
-          margin-top: -.1875rem;
+          font-size: .8em;
+          margin-block: 0.9rem;
         }
       }
-      #R-logo svg {
-        display: inline-block;
-        opacity: .945;
-        vertical-align: middle;
-        width: 29% !important;
-      }
-      @media only all and (max-width: 59.999rem) {
-        #R-logo svg {
-          width: 24.5% !important;
-        }
-      }
-      #R-logo svg * {
+      #R-logo > :not(.logo-title) {
+        flex-shrink: 0;
+        max-width: 100%; /* notitle or stacked */
+        max-width: 4em; /* title and nostacked */
         opacity: .945;
       }
-      #R-logo .logo-title{
-        display: inline-block;
-        text-align: left;
-        text-wrap: wrap;
-        overflow-wrap: break-word;
-        vertical-align: middle;
-        width: 4.5em;
+      #R-logo .logo-title {
+        font-size: 2em;
+        flex-shrink: 1;
+        min-width: 0;
+        text-align: start;
+        white-space: pre;
+        word-break: break-word;
+      }
+      #R-logo.stacked .logo-title {
+        text-align: center;
+      }
+      #R-logo.notitle .logo-title {
+        display: none;
       }
     </style>
