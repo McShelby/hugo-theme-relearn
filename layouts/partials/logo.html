@@ -1,3 +1,95 @@
-          <a id="R-logo" class="R-default" href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">
-            <div class="logo-title">{{ .Site.Params.linkTitle | default .Site.Title }}</div>
-          </a>
+    {{- $classes := dict "lightbox" "false" }}
+    {{- $title := "" }}
+    {{- if isset site.Params "linktitle" }}
+      {{- $title = site.Params.linkTitle | default " " }}
+    {{- end }}
+    {{- if not (len $title) }}
+      {{- $title = site.Title }}
+    {{- end }}
+    {{- $title = trim $title "\n\r\t " }}
+
+    {{- $direction := site.Params.logo.direction | default "row" }}
+
+    {{- $image := "" }}
+    {{- $imageMatch := false }}
+    {{- with site.Params.logo }}
+      {{- if isset site.Params.logo "src" }}
+        {{- $imageMatch = true }}
+        {{- $src := trim site.Params.logo.src "\n\r\t " }}
+        {{- if $src }}
+          {{- with resources.Get $src }}
+            {{- $image = $src }}
+          {{- else }}
+            {{- $msg := printf "logo image '%s' is not a resource" $src }}
+            {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $src "page" site.Home "param" "image" "msg" $msg) }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- if not $imageMatch }}
+      {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
+      {{- $webp := dict "ext" "webp" "type" "type=\"image/webp\"" }}
+      {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
+      {{- $jpg := dict "ext" "jpg" "type" "type=\"image/jpeg\"" }}
+      {{- $jpeg := dict "ext" "jpeg" "type" "type=\"image/jpeg\"" }}
+      {{- $gif := dict "ext" "gif" "type" "type=\"image/gif\"" }}
+      {{- $imageTypes := slice $svg $webp $png $jpg $jpeg $gif }}
+      {{- $imageNames := slice "logo" }}
+      {{- range $imageNames }}
+        {{- $imageName := . }}
+        {{- range $imageTypes }}
+          {{- $imageType := . }}
+          {{- with resources.Get (printf "/images/%s.%s" $imageName $imageType.ext) }}
+            {{- $imageMatch = true }}
+            {{- $image = printf "/images/%s.%s" $imageName $imageType.ext }}
+            {{- if eq $imageType.ext "svg" }}
+              {{- $classes = $classes | merge (dict "inlinecontent" "true") }}
+            {{- end }}
+          {{- end }}
+          {{- if $imageMatch }}
+            {{- break }}
+          {{- end }}
+        {{- end }}
+        {{- if $imageMatch }}
+          {{- break }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- if $image }}
+      {{- $parsedURL := urls.Parse $image }}
+      {{- /* Build query string parts */ -}}
+      {{- $queryParts := slice }}
+      {{- range $k, $v := $parsedURL.Query }}
+        {{- range $v }}
+          {{- $queryParts = $queryParts | append (querify $k .) }}
+        {{- end }}
+      {{- end }}
+      {{- range $k, $v := $classes }}
+        {{- $queryParts = $queryParts | append (querify $k $v) }}
+      {{- end }}
+      {{- /* Reconstruct URL */ -}}
+      {{- $baseURL := $parsedURL.Path }}
+      {{- if $parsedURL.Scheme }}
+        {{- $baseURL = printf "%s://%s%s" $parsedURL.Scheme $parsedURL.Host $parsedURL.Path }}
+      {{- end }}
+      {{- with $queryParts }}
+        {{- $image = printf "%s?%s" $baseURL (delimit . "&") }}
+      {{- else }}
+        {{- $image = $baseURL }}
+      {{- end }}
+      {{- with $parsedURL.Fragment }}
+        {{- $image = printf "%s#%s" $image . }}
+      {{- end }}
+      {{- warnf "%s" $image}}
+    {{- end }}
+
+    {{- if or $image $title }}
+        <a id="R-logo" class="R-default direction-{{ $direction }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
+      {{- with $image }}
+{{ partial "shortcodes/image.html" (dict "page" $ "url" .) }}
+      {{- end }}
+      {{- with $title }}
+          <span class="logo-title">{{ . }}</span>
+      {{- end }}
+        </a>
+    {{- end }}
