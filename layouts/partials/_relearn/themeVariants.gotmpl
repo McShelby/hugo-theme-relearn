@@ -33,6 +33,12 @@ Unification run:
   {{- if eq $themevariant.identifier "my-custom-variant" }}
     {{- errorf "\"theme-%s.css\": the variant identifier '%s' is reserved for the theme's variant generator, instead rename it to something different" "my-custom-variant" "my-custom-variant" }}
   {{- end }}
+  {{- /* Normalize logo configuration */}}
+  {{- if isset $themevariant "logo" }}
+    {{- if not (reflect.IsMap $themevariant.logo) }}
+      {{- $themevariant = merge $themevariant (dict "logo" (dict "src" $themevariant.logo)) }}
+    {{- end }}
+  {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
 
@@ -105,6 +111,31 @@ Generator run:
   {{- $printcontent = .Content }}
 {{- end }}
 {{- $styles := partialCached "_relearn/boxStyles.gotmpl" . }}
+
+{{- /*
+- Generate logo variant show/hide CSS
+*/}}
+{{- $logoVariantCss := "" }}
+{{- range $themevariants }}
+  {{- if not (isset . "auto") }}
+    {{- /* Regular variant - use ~= selector to match space-separated variant list */}}
+    {{- $logoVariantCss = print $logoVariantCss
+      ":root[data-r-theme-variant='" .identifier "'] #R-logo.R-default .logo-image[data-r-logo-variant~='" .identifier "'] { display: initial; }\n"
+    }}
+  {{- else }}
+    {{- /* Auto variant - use media queries for sub-variants with ~= selector */}}
+    {{- $light := index .auto 0 }}
+    {{- $dark := index .auto 1 }}
+    {{- $logoVariantCss = print $logoVariantCss
+      "@media screen and (prefers-color-scheme: light) {\n"
+      "  :root[data-r-theme-variant='" .identifier "'] #R-logo.R-default .logo-image[data-r-logo-variant~='" $light "'] { display: initial; }\n"
+      "}\n"
+      "@media screen and (prefers-color-scheme: dark) {\n"
+      "  :root[data-r-theme-variant='" .identifier "'] #R-logo.R-default .logo-image[data-r-logo-variant~='" $dark "'] { display: initial; }\n"
+      "}\n"
+    }}
+  {{- end }}
+{{- end }}
 
 {{- /*
 - Read variables.css and add custom box styles
@@ -204,6 +235,7 @@ Generator run:
   "\n" $printcontent
   "\n}"
   "\n" $htmlcontent
+  "\n" $logoVariantCss
 }}
 {{- $cssres := $htmlcontent | resources.FromString "css/format-html.css" }}
 {{- if $minify }}

@@ -1,63 +1,119 @@
-    {{- $classes := dict "lightbox" "false" }}
-    {{- $title := "" }}
-    {{- if isset site.Params "linktitle" }}
-      {{- $title = site.Params.linkTitle | default " " }}
-    {{- end }}
-    {{- if not (len $title) }}
-      {{- $title = site.Title }}
-    {{- end }}
-    {{- $title = trim $title "\n\r\t " }}
+{{- $classes := dict "lightbox" "false" }}
+{{- $title := "" }}
+{{- if isset site.Params "linktitle" }}
+  {{- $title = site.Params.linkTitle | default " " }}
+{{- end }}
+{{- if not (len $title) }}
+  {{- $title = site.Title }}
+{{- end }}
+{{- $title = trim $title "\n\r\t " }}
 
-    {{- $direction := site.Params.logo.direction | default "row" }}
+{{- $direction := site.Params.logo.direction | default "row" }}
 
-    {{- $image := "" }}
-    {{- $imageMatch := false }}
-    {{- with site.Params.logo }}
-      {{- if isset site.Params.logo "src" }}
+{{- /* Determine default/global logo */}}
+{{- $defaultLogo := "" }}
+{{- $imageMatch := false }}
+{{- with site.Params.logo }}
+  {{- if isset site.Params.logo "src" }}
+    {{- $imageMatch = true }}
+    {{- $src := trim site.Params.logo.src "\n\r\t " }}
+    {{- if $src }}
+      {{- with resources.Get $src }}
+        {{- $defaultLogo = $src }}
+      {{- else }}
+        {{- $msg := printf "logo image '%s' is not a resource" $src }}
+        {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $src "page" site.Home "param" "image" "msg" $msg) }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* Auto-detect if no default specified */}}
+{{- if not $imageMatch }}
+  {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
+  {{- $webp := dict "ext" "webp" "type" "type=\"image/webp\"" }}
+  {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
+  {{- $jpg := dict "ext" "jpg" "type" "type=\"image/jpeg\"" }}
+  {{- $jpeg := dict "ext" "jpeg" "type" "type=\"image/jpeg\"" }}
+  {{- $gif := dict "ext" "gif" "type" "type=\"image/gif\"" }}
+  {{- $imageTypes := slice $svg $webp $png $jpg $jpeg $gif }}
+  {{- $imageNames := slice "logo" }}
+  {{- range $imageNames }}
+    {{- $imageName := . }}
+    {{- range $imageTypes }}
+      {{- $imageType := . }}
+      {{- with resources.Get (printf "/images/%s.%s" $imageName $imageType.ext) }}
         {{- $imageMatch = true }}
-        {{- $src := trim site.Params.logo.src "\n\r\t " }}
+        {{- $defaultLogo = printf "/images/%s.%s" $imageName $imageType.ext }}
+        {{- if eq $imageType.ext "svg" }}
+          {{- $classes = $classes | merge (dict "inlinecontent" "true") }}
+        {{- end }}
+      {{- end }}
+      {{- if $imageMatch }}
+        {{- break }}
+      {{- end }}
+    {{- end }}
+    {{- if $imageMatch }}
+      {{- break }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* Build map of variant -> logo source */}}
+{{- $logoMap := dict }}
+{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+{{- range $themevariants }}
+  {{- $variant := . }}
+  {{- $logoSrc := $defaultLogo }}
+
+  {{- /* Only non-auto variants can have logo overrides */}}
+  {{- if not (isset $variant "auto") }}
+    {{- $useDefaultLogo := true }}
+    {{- if isset $variant "logo" }}
+      {{- if isset $variant.logo "src" }}
+        {{- $src := trim $variant.logo.src "\n\r\t " }}
         {{- if $src }}
           {{- with resources.Get $src }}
-            {{- $image = $src }}
+            {{- $logoSrc = $src }}
+            {{- $useDefaultLogo = false }}
           {{- else }}
-            {{- $msg := printf "logo image '%s' is not a resource" $src }}
+            {{- $msg := printf "variant '%s' logo image '%s' is not a resource" $variant.identifier $src }}
             {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $src "page" site.Home "param" "image" "msg" $msg) }}
           {{- end }}
+        {{- else }}
+          {{- $logoSrc = "" }}
+          {{- $useDefaultLogo = false }}
         {{- end }}
       {{- end }}
     {{- end }}
-    {{- if not $imageMatch }}
-      {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
-      {{- $webp := dict "ext" "webp" "type" "type=\"image/webp\"" }}
-      {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
-      {{- $jpg := dict "ext" "jpg" "type" "type=\"image/jpeg\"" }}
-      {{- $jpeg := dict "ext" "jpeg" "type" "type=\"image/jpeg\"" }}
-      {{- $gif := dict "ext" "gif" "type" "type=\"image/gif\"" }}
-      {{- $imageTypes := slice $svg $webp $png $jpg $jpeg $gif }}
-      {{- $imageNames := slice "logo" }}
-      {{- range $imageNames }}
-        {{- $imageName := . }}
-        {{- range $imageTypes }}
-          {{- $imageType := . }}
-          {{- with resources.Get (printf "/images/%s.%s" $imageName $imageType.ext) }}
-            {{- $imageMatch = true }}
-            {{- $image = printf "/images/%s.%s" $imageName $imageType.ext }}
-            {{- if eq $imageType.ext "svg" }}
-              {{- $classes = $classes | merge (dict "inlinecontent" "true") }}
-            {{- end }}
-          {{- end }}
-          {{- if $imageMatch }}
-            {{- break }}
-          {{- end }}
-        {{- end }}
-        {{- if $imageMatch }}
-          {{- break }}
-        {{- end }}
-      {{- end }}
+
+    {{- /* Add to logo map */}}
+    {{- if $logoSrc }}
+      {{- $logoMap = merge $logoMap (dict $variant.identifier (dict "src" $logoSrc "variant" $variant.identifier)) }}
     {{- end }}
-    {{- if $image }}
-      {{- $parsedURL := urls.Parse $image }}
-      {{- /* Build query string parts */ -}}
+  {{- end }}
+{{- end }}
+
+{{- /* Group logos by source - build map of src -> list of variants */}}
+{{- $logoGroups := dict }}
+{{- range $variantId, $logoInfo := $logoMap }}
+  {{- $src := $logoInfo.src }}
+  {{- $existingVariants := slice }}
+  {{- if isset $logoGroups $src }}
+    {{- $existingVariants = index $logoGroups $src }}
+  {{- end }}
+  {{- $existingVariants = $existingVariants | append $variantId }}
+  {{- $logoGroups = merge $logoGroups (dict $src $existingVariants) }}
+{{- end }}
+
+{{- /* Render logo container with all variants */}}
+{{- if or (gt (len $logoGroups) 0) $title }}
+        <a id="R-logo" class="R-default direction-{{ $direction }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
+    {{- range $logoSrc, $variants := $logoGroups }}
+      {{- /* Join all variant identifiers with spaces for CSS attribute selector matching */}}
+      {{- $variantList := delimit $variants " " }}
+      {{- /* Parse and add query parameters for image effects */}}
+      {{- $parsedURL := urls.Parse $logoSrc }}
       {{- $queryParts := slice }}
       {{- range $k, $v := $parsedURL.Query }}
         {{- range $v }}
@@ -67,29 +123,24 @@
       {{- range $k, $v := $classes }}
         {{- $queryParts = $queryParts | append (querify $k $v) }}
       {{- end }}
-      {{- /* Reconstruct URL */ -}}
       {{- $baseURL := $parsedURL.Path }}
       {{- if $parsedURL.Scheme }}
         {{- $baseURL = printf "%s://%s%s" $parsedURL.Scheme $parsedURL.Host $parsedURL.Path }}
       {{- end }}
       {{- with $queryParts }}
-        {{- $image = printf "%s?%s" $baseURL (delimit . "&") }}
+        {{- $logoSrc = printf "%s?%s" $baseURL (delimit . "&") }}
       {{- else }}
-        {{- $image = $baseURL }}
+        {{- $logoSrc = $baseURL }}
       {{- end }}
       {{- with $parsedURL.Fragment }}
-        {{- $image = printf "%s#%s" $image . }}
+        {{- $logoSrc = printf "%s#%s" $logoSrc . }}
       {{- end }}
-      {{- warnf "%s" $image}}
+          <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">
+{{ partial "shortcodes/image.html" (dict "page" $ "url" $logoSrc) }}
+          </span>
     {{- end }}
-
-    {{- if or $image $title }}
-        <a id="R-logo" class="R-default direction-{{ $direction }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
-      {{- with $image }}
-{{ partial "shortcodes/image.html" (dict "page" $ "url" .) }}
-      {{- end }}
-      {{- with $title }}
-          <span class="logo-title">{{ . }}</span>
-      {{- end }}
+    {{- with $title }}
+          <span class="logo-title default-animation">{{ . }}</span>
+    {{- end }}
         </a>
-    {{- end }}
+{{- end }}
