@@ -8,11 +8,59 @@
 {{- end }}
 
 {{- /*
+Logo Detection:
+- Detect default/global logo source from site.Params.logo.src
+- Auto-detect from /images/logo.{svg,webp,png,jpg,jpeg,gif} if not configured
+*/}}
+{{- $defaultLogoFound := false }}
+{{- $defaultLogoSrc := "" }}
+{{- with site.Params.logo }}
+  {{- if isset site.Params.logo "src" }}
+    {{- $defaultLogoSrc = trim site.Params.logo.src "\n\r\t " }}
+    {{- if $defaultLogoSrc }}
+      {{- $defaultLogoFound = true }}
+    {{- else if len site.Params.logo.src }}
+      {{- /* src was set to a string with whitespace only which means: no logo
+              an empty value instead means: take the default logo */}}
+      {{- $defaultLogoFound = true }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- if not $defaultLogoFound }}
+  {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
+  {{- $webp := dict "ext" "webp" "type" "type=\"image/webp\"" }}
+  {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
+  {{- $jpg := dict "ext" "jpg" "type" "type=\"image/jpeg\"" }}
+  {{- $jpeg := dict "ext" "jpeg" "type" "type=\"image/jpeg\"" }}
+  {{- $gif := dict "ext" "gif" "type" "type=\"image/gif\"" }}
+  {{- $imageTypes := slice $svg $webp $png $jpg $jpeg $gif }}
+  {{- $imageNames := slice "logo" }}
+  {{- range $imageNames }}
+    {{- $imageName := . }}
+    {{- range $imageTypes }}
+      {{- $imageType := . }}
+      {{- with resources.Get (printf "/images/%s.%s" $imageName $imageType.ext) }}
+        {{- $defaultLogoFound = true }}
+        {{- $defaultLogoSrc = printf "/images/%s.%s" $imageName $imageType.ext }}
+      {{- end }}
+      {{- if $defaultLogoFound }}
+        {{- break }}
+      {{- end }}
+    {{- end }}
+    {{- if $defaultLogoFound }}
+      {{- break }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /*
 Unification run:
 - convert from old forms to slice of dicts
 - add default name property
 - convert auto property to slice
 - remember default variants for auto mode
+- compute effective logo for non-auto variants
 */}}
 {{- $tempthemevariants := slice | append (.Site.Params.themeVariant | default "auto" ) }}
 {{- $themevariants := slice }}
@@ -29,15 +77,24 @@ Unification run:
   {{- end }}
   {{- if not (isset $themevariant "auto") }}
     {{- $nonautothemevariants = $nonautothemevariants | append $themevariant.identifier }}
+    {{- $logo := dict }}
+    {{- $logoSrc := $defaultLogoSrc }}
+    {{- if isset $themevariant "logo" }}
+      {{- $logo := $themevariant.logo }}
+      {{- $themeLogoSrc := trim $themevariant.logo.src "\n\r\t " }}
+      {{- if $themeLogoSrc }}
+        {{- $logoSrc = $themeLogoSrc }}
+      {{- else if len $themevariant.logo.src }}
+        {{- /* src was set to a string with whitespace only which means: no logo
+              an empty value instead means: take the default logo */}}
+        {{- $logoSrc = "" }}
+      {{- end }}
+    {{- end }}
+    {{- $logo = collections.Merge $logo (dict "src" $logoSrc) }}
+    {{- $themevariant = collections.Merge $themevariant (dict "logo" $logo) }}
   {{- end }}
   {{- if eq $themevariant.identifier "my-custom-variant" }}
     {{- errorf "\"theme-%s.css\": the variant identifier '%s' is reserved for the theme's variant generator, instead rename it to something different" "my-custom-variant" "my-custom-variant" }}
-  {{- end }}
-  {{- /* Normalize logo configuration */}}
-  {{- if isset $themevariant "logo" }}
-    {{- if not (reflect.IsMap $themevariant.logo) }}
-      {{- $themevariant = merge $themevariant (dict "logo" (dict "src" $themevariant.logo)) }}
-    {{- end }}
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -46,6 +103,7 @@ Unification run:
 Generator run:
 - fill up auto property with defaults
 - write variant & chroma CSS string of normal variants and for light and dark of auto variants
+- generate logo variant show/hide CSS
 */}}
 {{- $defaultautothemevariants := slice }}
 {{- $defaultautothemevariants = $defaultautothemevariants | append (index .Site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
@@ -68,10 +126,12 @@ Generator run:
       "\n@media screen and (prefers-color-scheme: light) {"
       "\n" $lightthemevariant.themecontent
       "\n" $lightthemevariant.chromacontent
+      "\n  #R-logo.R-default .logo-image[data-r-logo-variant~='" $light "'] { display: initial; }\n"
       "\n}"
       "\n@media screen and (prefers-color-scheme: dark) {"
       "\n" $darkthemevariant.themecontent
       "\n" $darkthemevariant.chromacontent
+      "\n  #R-logo.R-default .logo-image[data-r-logo-variant~='" $dark "'] { display: initial; }\n"
       "\n}"
       "\n}"
     }}
@@ -84,8 +144,9 @@ Generator run:
       "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
       "\n" $themevariant.themecontent
       "\n" $themevariant.chromacontent
+      "\n  #R-logo.R-default .logo-image[data-r-logo-variant~='" $themevariant.identifier "'] { display: initial; }\n"
       "\n}"
-}}
+    }}
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -111,31 +172,6 @@ Generator run:
   {{- $printcontent = .Content }}
 {{- end }}
 {{- $styles := partialCached "_relearn/boxStyles.gotmpl" . }}
-
-{{- /*
-- Generate logo variant show/hide CSS
-*/}}
-{{- $logoVariantCss := "" }}
-{{- range $themevariants }}
-  {{- if not (isset . "auto") }}
-    {{- /* Regular variant - use ~= selector to match space-separated variant list */}}
-    {{- $logoVariantCss = print $logoVariantCss
-      ":root[data-r-theme-variant='" .identifier "'] #R-logo.R-default .logo-image[data-r-logo-variant~='" .identifier "'] { display: initial; }\n"
-    }}
-  {{- else }}
-    {{- /* Auto variant - use media queries for sub-variants with ~= selector */}}
-    {{- $light := index .auto 0 }}
-    {{- $dark := index .auto 1 }}
-    {{- $logoVariantCss = print $logoVariantCss
-      "@media screen and (prefers-color-scheme: light) {\n"
-      "  :root[data-r-theme-variant='" .identifier "'] #R-logo.R-default .logo-image[data-r-logo-variant~='" $light "'] { display: initial; }\n"
-      "}\n"
-      "@media screen and (prefers-color-scheme: dark) {\n"
-      "  :root[data-r-theme-variant='" .identifier "'] #R-logo.R-default .logo-image[data-r-logo-variant~='" $dark "'] { display: initial; }\n"
-      "}\n"
-    }}
-  {{- end }}
-{{- end }}
 
 {{- /*
 - Read variables.css and add custom box styles
@@ -235,7 +271,6 @@ Generator run:
   "\n" $printcontent
   "\n}"
   "\n" $htmlcontent
-  "\n" $logoVariantCss
 }}
 {{- $cssres := $htmlcontent | resources.FromString "css/format-html.css" }}
 {{- if $minify }}
