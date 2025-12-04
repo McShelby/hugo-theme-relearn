@@ -11,25 +11,17 @@
 {{- $direction := site.Params.logo.direction | default "row" }}
 
 {{- /* Determine default/global logo */}}
-{{- $defaultLogo := "" }}
-{{- $imageMatch := false }}
+{{- $hasDefaultLogo := false }}
+{{- $defaultLogoSrc := "" }}
 {{- with site.Params.logo }}
   {{- if isset site.Params.logo "src" }}
-    {{- $imageMatch = true }}
-    {{- $src := trim site.Params.logo.src "\n\r\t " }}
-    {{- if $src }}
-      {{- with resources.Get $src }}
-        {{- $defaultLogo = $src }}
-      {{- else }}
-        {{- $msg := printf "logo image '%s' is not a resource" $src }}
-        {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $src "page" site.Home "param" "image" "msg" $msg) }}
-      {{- end }}
-    {{- end }}
+    {{- $hasDefaultLogo = true }}
+    {{- $defaultLogoSrc = trim site.Params.logo.src "\n\r\t " }}
   {{- end }}
 {{- end }}
 
 {{- /* Auto-detect if no default specified */}}
-{{- if not $imageMatch }}
+{{- if not $hasDefaultLogo }}
   {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
   {{- $webp := dict "ext" "webp" "type" "type=\"image/webp\"" }}
   {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
@@ -43,58 +35,40 @@
     {{- range $imageTypes }}
       {{- $imageType := . }}
       {{- with resources.Get (printf "/images/%s.%s" $imageName $imageType.ext) }}
-        {{- $imageMatch = true }}
-        {{- $defaultLogo = printf "/images/%s.%s" $imageName $imageType.ext }}
-        {{- if eq $imageType.ext "svg" }}
-          {{- $classes = $classes | merge (dict "inlinecontent" "true") }}
-        {{- end }}
+        {{- $hasDefaultLogo = true }}
+        {{- $defaultLogoSrc = printf "/images/%s.%s" $imageName $imageType.ext }}
       {{- end }}
-      {{- if $imageMatch }}
+      {{- if $hasDefaultLogo }}
         {{- break }}
       {{- end }}
     {{- end }}
-    {{- if $imageMatch }}
+    {{- if $hasDefaultLogo }}
       {{- break }}
     {{- end }}
   {{- end }}
 {{- end }}
 
-{{- /* Build map of variant -> logo source */}}
+{{- /* Build map of variant logos */}}
 {{- $logoMap := dict }}
 {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
 {{- range $themevariants }}
   {{- $variant := . }}
-  {{- $logoSrc := $defaultLogo }}
+  {{- $logoSrc := $defaultLogoSrc }}
 
   {{- /* Only non-auto variants can have logo overrides */}}
   {{- if not (isset $variant "auto") }}
-    {{- $useDefaultLogo := true }}
     {{- if isset $variant "logo" }}
       {{- if isset $variant.logo "src" }}
-        {{- $src := trim $variant.logo.src "\n\r\t " }}
-        {{- if $src }}
-          {{- with resources.Get $src }}
-            {{- $logoSrc = $src }}
-            {{- $useDefaultLogo = false }}
-          {{- else }}
-            {{- $msg := printf "variant '%s' logo image '%s' is not a resource" $variant.identifier $src }}
-            {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $src "page" site.Home "param" "image" "msg" $msg) }}
-          {{- end }}
-        {{- else }}
-          {{- $logoSrc = "" }}
-          {{- $useDefaultLogo = false }}
-        {{- end }}
+        {{- $logoSrc = trim $variant.logo.src "\n\r\t " }}
       {{- end }}
     {{- end }}
-
-    {{- /* Add to logo map */}}
     {{- if $logoSrc }}
       {{- $logoMap = merge $logoMap (dict $variant.identifier (dict "src" $logoSrc "variant" $variant.identifier)) }}
     {{- end }}
   {{- end }}
 {{- end }}
 
-{{- /* Group logos by source - build map of src -> list of variants */}}
+{{- /* Group logos by source */}}
 {{- $logoGroups := dict }}
 {{- range $variantId, $logoInfo := $logoMap }}
   {{- $src := $logoInfo.src }}
@@ -107,12 +81,10 @@
 {{- end }}
 
 {{- /* Render logo container with all variants */}}
-{{- if or (gt (len $logoGroups) 0) $title }}
+{{- if or $logoGroups $title }}
         <a id="R-logo" class="R-default direction-{{ $direction }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
     {{- range $logoSrc, $variants := $logoGroups }}
-      {{- /* Join all variant identifiers with spaces for CSS attribute selector matching */}}
       {{- $variantList := delimit $variants " " }}
-      {{- /* Parse and add query parameters for image effects */}}
       {{- $parsedURL := urls.Parse $logoSrc }}
       {{- $queryParts := slice }}
       {{- range $k, $v := $parsedURL.Query }}
@@ -136,7 +108,7 @@
         {{- $logoSrc = printf "%s#%s" $logoSrc . }}
       {{- end }}
           <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">
-{{ partial "shortcodes/image.html" (dict "page" $ "url" $logoSrc) }}
+{{ partial "shortcodes/image.html" (dict "page" site.Home "url" $logoSrc) }}
           </span>
     {{- end }}
     {{- with $title }}
