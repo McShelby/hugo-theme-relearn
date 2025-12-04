@@ -35,11 +35,21 @@ images = [ 'images/hero.png' ]
 # Branding
 # These options set your overall visual appearance.
 
-# The title to be used for links to the main page
+# The title to be used for links in the upper left corner
 # Default: not set
 # This name will be used for the link to the main page in the upper section
 # of the menu. If not set, `title` from the Hugo settings will be used.
 linkTitle = 'Relearn'
+
+# The title logo to be used in the upper left corner
+# Default: not set
+# If the value is not set or empty, the theme searches for a global resource
+# `/images/logo.<TYPE>`. Setting the `src` sub-field will override the
+# default logo (see logo parameter). If `src` is set to string containing all
+# whitespace, no logo will be displayed for that variant regardless of the
+# default logo. A logo will only be printed if you haven't overwritten
+# layouts/partials/logo.html.
+logo = { src = '/images/logo.svg?inlinecontent' }
 
 # Used color variants.
 # Default: 'auto'
@@ -67,8 +77,8 @@ linkTitle = 'Relearn'
 # the docs provide an interactive theme generator to help you with this task.
 themeVariant = [
 	{ identifier = 'relearn-auto',  name = 'Relearn Light/Dark', auto = [ 'relearn-light', 'relearn-dark' ] },
-	{ identifier = 'relearn-dark'   },
-	{ identifier = 'relearn-light'  },
+	{ identifier = 'relearn-dark',  logo = { src = '' } },
+	{ identifier = 'relearn-light', logo = { src = '' } },
 	{ identifier = 'relearn-bright' },
 	{ identifier = 'zen-auto',      name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
 	{ identifier = 'zen-dark'       },
