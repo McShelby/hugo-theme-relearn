@@ -126,12 +126,16 @@ Generator run:
       "\n@media screen and (prefers-color-scheme: light) {"
       "\n" $lightthemevariant.themecontent
       "\n" $lightthemevariant.chromacontent
-      "\n  #R-logo.R-default .logo-image[data-r-logo-variant~='" $light "'] { display: initial; }\n"
+      "\n  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='" $light "'])):not(:has(> .logo-title)) { display: none; }"
+      "\n  #R-logo.R-default > .logo-image[data-r-logo-variant~='" $light "'] { display: initial; }"
+      "\n  #R-logo.R-default:has(> .logo-image[data-r-logo-variant~='" $light "']) + search { margin-bottom: 1rem; }"
       "\n}"
       "\n@media screen and (prefers-color-scheme: dark) {"
       "\n" $darkthemevariant.themecontent
       "\n" $darkthemevariant.chromacontent
-      "\n  #R-logo.R-default .logo-image[data-r-logo-variant~='" $dark "'] { display: initial; }\n"
+      "\n  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='" $dark "'])):not(:has(> .logo-title)) { display: none; }"
+      "\n  #R-logo.R-default > .logo-image[data-r-logo-variant~='" $dark "'] { display: initial; }"
+      "\n  #R-logo.R-default:has(> .logo-image[data-r-logo-variant~='" $dark "']) + search { margin-bottom: 1rem; }"
       "\n}"
       "\n}"
     }}
@@ -144,7 +148,9 @@ Generator run:
       "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
       "\n" $themevariant.themecontent
       "\n" $themevariant.chromacontent
-      "\n  #R-logo.R-default .logo-image[data-r-logo-variant~='" $themevariant.identifier "'] { display: initial; }\n"
+      "\n  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='" $themevariant.identifier "'])):not(:has(> .logo-title)) { display: none; }"
+      "\n  #R-logo.R-default > .logo-image[data-r-logo-variant~='" $themevariant.identifier "'] { display: initial; }"
+      "\n  #R-logo.R-default:has(> .logo-image[data-r-logo-variant~='" $themevariant.identifier "']) + search { margin-bottom: 1rem; }"
       "\n}"
     }}
   {{- end }}
