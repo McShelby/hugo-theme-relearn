@@ -25,7 +25,17 @@ One way to use them is to add them as URL query parameter to each individually l
 
 This can become cumbersome to be done consistently for the whole site. Instead, you can [configure the defaults](configuration/customization/imageeffects) in your `hugo.toml` as well as overriding these defaults in a page's front matter.
 
-Explicitly set URL query parameter will override the defaults set for a page or your site.
+## Effect Priority
+
+Image effects are applied in the following priority order (lowest to highest):
+
+1. Built-in defaults
+2. Site-wide configuration in `hugo.toml`
+3. Page front matter configuration
+4. URL query parameters
+5. Template caller `attributes` parameter (highest priority)
+
+Explicitly set URL query parameter will override the defaults set for a page or your site. When calling the image partial directly from templates, effects passed via the `attributes` parameter have the highest priority and will override all other settings.
 
 If an effect accepts boolean values, only setting the parameter name without a value in the URL will set it to `true`.
 
@@ -62,3 +72,16 @@ imageEffects.lazy = true
 imageEffects.lightbox = false
 imageEffects.shadow = false
 {{< /multiconfig >}}
+
+## Template Usage
+
+When calling the image partial directly from templates, you can pass effect preferences via the `attributes` parameter. Effect names can be prefixed with `no` to disable them.
+
+````go {title="Template"}
+{{- $attributes := dict "class" "nolightbox border" }}
+{{ partial "shortcodes/image.html" (dict "page" . "url" "image.png" "attributes" $attributes) }}
+````
+
+This approach has the highest priority and will override all other effect settings, including URL query parameters. Effect classes are processed but not added to the final HTML `class` attribute. Non-effect classes pass through unchanged.
+
+For example, `class = "nolightbox custom-img-class"` will disable the lightbox effect and add `custom-img-class` to the HTML output, but neither `lightbox` nor `nolightbox` will appear in the final class attribute.

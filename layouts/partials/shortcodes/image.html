@@ -24,7 +24,7 @@
   {{- end }}
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
-{{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page "linkObject" $linkObject)) }}
+{{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page "linkObject" $linkObject "attributes" $attributes)) }}
 {{- $attributes = merge $attributes (dict "alt" $alt "title" ($title | transform.HTMLEscape)) }}
 {{- $classes := split $attributes.class " " }}
 {{- $isLightbox := in $classes "lightbox" }}
