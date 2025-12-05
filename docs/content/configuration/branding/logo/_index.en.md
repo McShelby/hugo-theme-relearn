@@ -22,11 +22,11 @@ If you need to change this default behavior, create a new file `layouts/partials
 
 ## Change the Logo
 
-{{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu. By default, it automatically detects logo in your site's `assets/images/`.
+{{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu. By default, it automatically detects logos in your site's `assets/images/`.
 
 ### Auto-Detection
 
-If you don't configure a logo explicitly, the theme automatically searches for a logo file at `/images/logo.<TYPE>` in the following order of preference:
+If you don't configure a logo explicitly, the theme automatically searches for a logo file at `/assets/images/logo.<TYPE>` in the following order of preference:
 
 - `logo.svg`
 - `logo.webp`
@@ -34,11 +34,11 @@ If you don't configure a logo explicitly, the theme automatically searches for a
 - `logo.jpg` / `logo.jpeg`
 - `logo.gif`
 
-Place your logo in either `assets/images/` and the theme will find it automatically. If no logo is found, only {your site title](configuration/sidebar/headerfooter#title) will be shown.
+If no logo is found, only {your site title](configuration/sidebar/headerfooter#title) will be shown.
 
 The size of the logo will adapt automatically.
 
-### Configuration
+### Manual Configuration
 
 You can explicitly configure a logo in your site's `params.toml`. This will override automatic detection:
 
@@ -57,7 +57,7 @@ logo = { src = ' ' }  # No logo, only site title
 You can control the layout direction of the logo and title:
 
 {{< multiconfig file=hugo section=params >}}
-logo = { src = '/images/logo.svg', direction = 'column' }
+logo = { direction = 'column' }
 {{< /multiconfig >}}
 
 Valid values are:
@@ -94,7 +94,7 @@ themeVariant = [
 
 ### Coloring SVG logos
 
-If you have a monochrome SVG logo and want to give it different colors depending on the used variant, it is mandatory to give it the `inlinecontent` [image effect](authoring/linking/imageeffects). This is not set in the automatic logo detection:
+If you have a monochrome SVG logo and want to display it in the variants color for the logo text, it is mandatory to give it the `inlinecontent` [image effect](authoring/linking/imageeffects). This is not set in the automatic logo detection. The recoloring applies to all black elements in your SVG:
 
 {{< multiconfig file=hugo section=params >}}
 logo = { src = '/images/logo.svg?inlinecontent' }
