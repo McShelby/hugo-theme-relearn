@@ -1,0 +1,72 @@
+{{- $classes := dict "lightbox" "false" }}
+{{- $title := "" }}
+{{- if isset site.Params "linktitle" }}
+  {{- $title = site.Params.linkTitle | default " " }}
+{{- end }}
+{{- if not (len $title) }}
+  {{- $title = site.Title }}
+{{- end }}
+{{- $title = trim $title "\n\r\t " }}
+
+{{- $direction := site.Params.logo.direction | default "row" }}
+
+
+{{- /* Build map of variant logos */}}
+{{- $logoMap := dict }}
+{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+{{- range $themevariants }}
+  {{- if and (isset . "logo") (not (isset . "auto")) }}
+    {{- $logoMap = merge $logoMap (dict .identifier (dict "src" .logo.src "variant" .identifier)) }}
+  {{- end }}
+{{- end }}
+
+{{- /* Group logos by source */}}
+{{- $logoGroups := dict }}
+{{- range $variantId, $logoInfo := $logoMap }}
+  {{- $src := $logoInfo.src }}
+  {{- if $src }}
+    {{- $existingVariants := slice }}
+    {{- if isset $logoGroups $src }}
+      {{- $existingVariants = index $logoGroups $src }}
+    {{- end }}
+    {{- $existingVariants = $existingVariants | append $variantId }}
+    {{- $logoGroups = merge $logoGroups (dict $src $existingVariants) }}
+  {{- end }}
+{{- end }}
+
+{{- /* Render logo container with all variants */}}
+{{- if or $logoGroups $title }}
+        <a id="R-logo" class="R-default direction-{{ $direction }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
+  {{- range $logoSrc, $variants := $logoGroups }}
+    {{- $variantList := delimit $variants " " }}
+    {{- $parsedURL := urls.Parse $logoSrc }}
+    {{- $queryParts := slice }}
+    {{- range $k, $v := $parsedURL.Query }}
+      {{- range $v }}
+        {{- $queryParts = $queryParts | append (querify $k .) }}
+      {{- end }}
+    {{- end }}
+    {{- range $k, $v := $classes }}
+      {{- $queryParts = $queryParts | append (querify $k $v) }}
+    {{- end }}
+    {{- $baseURL := $parsedURL.Path }}
+    {{- if $parsedURL.Scheme }}
+      {{- $baseURL = printf "%s://%s%s" $parsedURL.Scheme $parsedURL.Host $parsedURL.Path }}
+    {{- end }}
+    {{- with $queryParts }}
+      {{- $logoSrc = printf "%s?%s" $baseURL (delimit . "&") }}
+    {{- else }}
+      {{- $logoSrc = $baseURL }}
+    {{- end }}
+    {{- with $parsedURL.Fragment }}
+      {{- $logoSrc = printf "%s#%s" $logoSrc . }}
+    {{- end }}
+          <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">
+{{ partial "shortcodes/image.html" (dict "page" site.Home "url" $logoSrc) }}
+          </span>
+  {{- end }}
+  {{- with $title }}
+          <span class="logo-title default-animation">{{ . }}</span>
+  {{- end }}
+        </a>
+{{- end }}
