@@ -1,16 +1,12 @@
 {{- .Store.Set "relearnIsNested" true }}
-{{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
-{{- partialCached "inline/article-walker" . .Path | safeHTML */}}
-{{- partial "inline/article-walker" . .Path | safeHTML }}
+{{- partialCached "inline/article-walker" . .Path | safeHTML }}
 
 {{- define "partials/inline/article-walker" }}
   {{- $html := "" }}
   {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
   {{- range $pages }}
     {{- if not (partialCached "_relearn/pageIsHidden.gotmpl" . .Path) }}
-      {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
-      {{- $html = printf "%s%s" $html (partialCached "inline/article-walker" . .Path) */}}
-      {{- $html = printf "%s%s" $html (partial "inline/article-walker" . .Path) }}
+      {{- $html = printf "%s%s" $html (partialCached "inline/article-walker" . .Path) }}
       {{- $child := . }}
       {{- range .Site.Params.relearn.dependencies }}
         {{- $has := printf "has%s" .name }}

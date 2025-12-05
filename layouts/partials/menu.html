@@ -90,9 +90,7 @@
         {{- partial "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) }}
       {{- else if and (not $isSubHidden) (or $isSubCollapsible (not $entry.RelPermalink) (eq $entry $currentNode) ($entry.IsAncestor $currentNode)) }}
         {{- $id := md5 .Path }}
-        {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
-        {{- partialCached "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id */}}
-        {{- partial "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id }}
+        {{- partialCached "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id }}
       {{- end }}
     {{- end }}
   {{- end }}
@@ -173,9 +171,7 @@
           {{- partial "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) }}
         {{- else if and (not $isSubHidden) (or $isSubCollapsible (not $entry.RelPermalink) (eq $entry $currentNode) ($entry.IsAncestor $currentNode)) }}
           {{- $id := md5 .Path }}
-          {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
-          {{- partialCached "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id */}}
-          {{- partial "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id }}
+          {{- partialCached "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) $id }}
         {{- end }}
       {{- end }}</ul></li>
     {{- else if $url }}
@@ -250,9 +246,7 @@
         {{- partial "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) }}
       {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" $topLevelMenu))) (eq $topLevelObject $currentNode) (and $topLevelMenu ($currentNode.HasMenuCurrent $topLevelMenu.Menu $topLevelMenu))) }}
         {{- $id := md5 (print .) }}
-        {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
-        {{- partialCached "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id */}}
-        {{- partial "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
+        {{- partialCached "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
       {{- end }}
     {{- end }}
   {{- else }}
@@ -334,9 +328,7 @@
           {{- partial "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) }}
         {{- else if and (not $isSubHidden) (or $isSubCollapsible (not (partial "_relearn/menuPermalink.gotmpl" (dict "page" $currentNode "menu" $entryMenu))) (eq $entryObject $currentNode) ($currentNode.HasMenuCurrent $entryMenu.Menu $entryMenu)) }}
           {{- $id := md5 (print .) }}
-          {{- /* This wants to be partialCached but can't since Hugo 0.146.7 }}
-          {{- partialCached "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id */}}
-          {{- partial "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
+          {{- partialCached "inline/menu-walker" (dict "menu" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden "root" $root) $id }}
         {{- end }}
       {{- end }}</ul></li>
     {{- else if $url }}
