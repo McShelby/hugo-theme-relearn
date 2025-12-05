@@ -52,12 +52,12 @@
     {{- $classes := slice | append (split ($u.Query.Get "classes") ",") }}
     {{- range $classes }}
       {{- $k := . }}
+      {{- $v := true }}
+      {{- if strings.HasPrefix $k "no" }}
+        {{- $k = strings.TrimPrefix "no" $k }}
+        {{- $v = false }}
+      {{- end }}
       {{- if isset $effects $k }}
-        {{- $v := true }}
-        {{- if strings.HasPrefix $k "no" }}
-          {{- $k := strings.TrimPrefix "no" $k }}
-          {{- $v := false }}
-        {{- end }}
         {{- $effects = merge $effects (dict $k $v) }}
       {{- end }}
     {{- end }}
@@ -82,19 +82,36 @@
   {{- end }}
 {{- end }}
 
-{{- /* manually translate effects to HTML attributes */}}
-{{- /* "class" should only contain boolean effects if they are true */}}
-{{- $classes := slice }}
-{{- range $k, $v := $effects }}
-  {{- if $v }}
-    {{- if eq (printf "%T" $v) "bool" }}
-      {{- $classes = $classes | append $k }}
+{{- /* 5. stack caller-provided attributes.class parameter; handle "no" prefix */}}
+{{- $attributeClasses := slice }}
+{{- if $attributes.class }}
+  {{- $classes := split $attributes.class " " }}
+  {{- range $classes }}
+    {{- $k := . }}
+    {{- $v := true }}
+    {{- if strings.HasPrefix $k "no" }}
+      {{- $k = strings.TrimPrefix "no" $k }}
+      {{- $v = false }}
+    {{- end }}
+    {{- if isset $effects $k }}
+      {{- $effects = merge $effects (dict $k $v) }}
+    {{- else }}
+      {{- $attributeClasses = $attributeClasses | append $k }}
     {{- end }}
   {{- end }}
 {{- end }}
-{{- if $attributes.class }}{{ $classes = $classes | append (split $attributes.class " ") }}{{ end }}
-{{- $classes = delimit $classes " " }}
-{{- $attributes = merge $attributes (dict "class" $classes ) }}
+
+{{- /* manually translate effects to HTML attributes */}}
+{{- /* "class" should only contain boolean effects if they are true */}}
+{{- range $k, $v := $effects }}
+  {{- if $v }}
+    {{- if eq (printf "%T" $v) "bool" }}
+      {{- $attributeClasses = $attributeClasses | append $k }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- $attributeClasses = delimit $attributeClasses " " }}
+{{- $attributes = merge $attributes (dict "class" $attributeClasses) }}
 
 {{- $attributes = merge $attributes (dict "href" .url) }}
 {{- $attributes = merge $attributes (dict "download" $effects.download) }}

@@ -30,7 +30,10 @@
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "link" "msg" $msg) }}
   {{- end }}
 {{- end }}
-{{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "target" .target))) -}}
+{{- if .target }}
+  {{- $attributes = merge $attributes (dict "target" .target) }}
+{{- end }}
+{{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" $attributes)) -}}
 <a
   {{- range $k, $v := $attributes }}
     {{- if $v }}
