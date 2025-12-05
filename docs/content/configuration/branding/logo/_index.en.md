@@ -1,6 +1,7 @@
 +++
 categories = ['howto']
 description = 'Provide your own logo and favicon'
+options = ['logo']
 title = 'Logo'
 weight = 1
 +++
@@ -21,21 +22,99 @@ If you need to change this default behavior, create a new file `layouts/partials
 
 ## Change the Logo
 
-By default, only your site title will be shown at the top of the menu. You can [configure this](configuration/sidebar/headerfooter#title), or override the logo partial.
+{{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu. By default, it automatically detects logo in your site's `assets/images/`.
 
-Create a new file in `layouts/partials/logo.html` of your site. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
+### Auto-Detection
+
+If you don't configure a logo explicitly, the theme automatically searches for a logo file at `/images/logo.<TYPE>` in the following order of preference:
+
+- `logo.svg`
+- `logo.webp`
+- `logo.png`
+- `logo.jpg` / `logo.jpeg`
+- `logo.gif`
+
+Place your logo in either `assets/images/` and the theme will find it automatically. If no logo is found, only {your site title](configuration/sidebar/headerfooter#title) will be shown.
 
 The size of the logo will adapt automatically.
 
-> [!note]
-> In case of SVGs, additional styling may be required.
+### Configuration
 
-### Example
+You can explicitly configure a logo in your site's `params.toml`. This will override automatic detection:
 
-Suppose you've stored your logo as `static/images/logo.png` then your `layouts/partials/logo.html` could look something like this:
+{{< multiconfig file=hugo section=params >}}
+logo = { src = '/images/magic.gif' }
+{{< /multiconfig >}}
+
+To disable the logo entirely, set `src` to a string containing only whitespace:
+
+{{< multiconfig file=hugo section=params >}}
+logo = { src = ' ' }  # No logo, only site title
+{{< /multiconfig >}}
+
+#### Logo Direction
+
+You can control the layout direction of the logo and title:
+
+{{< multiconfig file=hugo section=params >}}
+logo = { src = '/images/logo.svg', direction = 'column' }
+{{< /multiconfig >}}
+
+Valid values are:
+
+- `row` (default) - Logo and title side by side
+- `column` - Logo above title
+
+### Variant-Specific Logos
+
+The theme supports displaying different logos for different color variants. This allows you to have logos that match each theme variant's color scheme (e.g., light logo for dark themes, dark logo for light themes).
+
+Variant-specific logos take precedence over the global `logo.src` setting. If a variant doesn't specify a logo, the global logo setting will be used.
+
+To configure variant-specific logos, use the `logo` field within your `themeVariant` configuration:
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+  { identifier = 'relearn-light', logo = { src = '/images/logo-dark.svg' } },
+  { identifier = 'relearn-dark',  logo = { src = '/images/logo-light.svg' } },
+  { identifier = 'neon',          logo = { src = '/images/logo-neon.svg' } }
+]
+{{< /multiconfig >}}
+
+The theme automatically switches between logos when the user selects a different variant. Logos with the same `src` are grouped together for performance optimization, reducing the number of images loaded.
+
+To disable the logo for a specific variant while keeping the default logo for others, set the variant's `src` to a whitespace string:
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+  { identifier = 'relearn-light', logo = { src = ' ' } },  # No logo for this variant
+  { identifier = 'relearn-dark' }                          # Uses default logo
+]
+{{< /multiconfig >}}
+
+### Coloring SVG logos
+
+If you have a monochrome SVG logo and want to give it different colors depending on the used variant, it is mandatory to give it the `inlinecontent` [image effect](authoring/linking/imageeffects). This is not set in the automatic logo detection:
+
+{{< multiconfig file=hugo section=params >}}
+logo = { src = '/images/logo.svg?inlinecontent' }
+{{< /multiconfig >}}
+
+### Custom Logo Partial
+
+For advanced customization beyond configuration options, you can override the logo partial entirely.
+
+Create a new file `layouts/partials/logo.html` in your site's directory. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
+
+#### Example
+
+Suppose you've stored your logo as `static/images/logo.png` and want full control over the HTML:
 
 ````html {title="layouts/partials/logo.html"}
 <a id="R-logo" href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">
   <img src="{{"images/logo.png" | relURL}}" alt="brand logo">
 </a>
 ````
+
+> [!warning]
+> When overriding the logo partial, you replace all built-in logo functionality including auto-detection and variant-specific logos. Use this only when the configuration options don't meet your needs.
