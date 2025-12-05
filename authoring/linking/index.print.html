@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="generator" content="Relearn 8.3.0+53df1e132b4c76478036109133a211fe0ea286fb">
+    <meta name="generator" content="Relearn 8.3.0+e9908d6e235fc9797a7b1a29b710be9506e330e3">
     <meta name="description" content="How to link your content">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,27 +29,27 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/authoring/linking/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/authoring/linking/index.html" rel="canonical" type="text/html" title="Linking :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/authoring/linking/index.xml" rel="alternate" type="application/rss+xml" title="Linking :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1764950121" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1764950121" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1764950121" defer></script>
-    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1764950121" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1764950121" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1764967272" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1764967272" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1764967272" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1764967272" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1764967272" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1764950121";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1764967272";
     </script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1764950121" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1764950121" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1764950121" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1764950121" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1764967272" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1764967272" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1764967272" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1764967272" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1764950121" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1764950121" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1764950121" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1764950121" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1764950121" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1764967272" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1764967272" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1764967272" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1764967272" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1764967272" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -101,7 +101,7 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1764950121"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1764967272"></script>
     <style>
        
       #R-body img.bg-white {
@@ -232,14 +232,23 @@
 </table>
 <p>One way to use them is to add them as URL query parameter to each individual link.</p>
 <p>This can become cumbersome to be done consistently for the whole site. Instead, you can <a href="/hugo-theme-relearn/configuration/customization/linkeffects/index.html">configure the defaults</a> in your <code>hugo.toml</code> as well as overriding these defaults in a page&rsquo;s front matter.</p>
-<p>Explicitly set URL query parameter will override the defaults set for a page or your site.</p>
+<h2 id="effect-priority">Effect Priority<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>Link effects are applied in the following priority order (lowest to highest):</p>
+<ol>
+<li>Built-in defaults</li>
+<li>Site-wide configuration in <code>hugo.toml</code></li>
+<li>Page front matter configuration</li>
+<li>URL query parameters</li>
+<li>Template caller <code>attributes</code> parameter (highest priority)</li>
+</ol>
+<p>Explicitly set URL query parameter will override the defaults set for a page or your site. When calling the link partial directly from templates, effects passed via the <code>attributes</code> parameter have the highest priority and will override all other settings.</p>
 <p>If an effect accepts boolean values, only setting the parameter name without a value in the URL will set it to <code>true</code>.</p>
 <p>Without any settings in your <code>hugo.toml</code> <code>linkEffects</code> defaults to</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-a127761e7c6a48d7b74fcb4423fa433e" aria-expanded="true"
+      aria-controls="R-tab-id-436bfe38d8239c4d4e8afad9aacb46de" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -247,7 +256,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-31125ae96ff8b44c21406c2591b826b4" aria-expanded="false"
+      aria-controls="R-tab-id-e8221b8f8df1768923e9881c93b78a9f" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -255,7 +264,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6bf2cb9d1e4c995c3ace3645e3511d4f" aria-expanded="false"
+      aria-controls="R-tab-id-20fdf643625c9447628407fa1c3a07f3" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -265,7 +274,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a127761e7c6a48d7b74fcb4423fa433e"
+      id="R-tab-id-436bfe38d8239c4d4e8afad9aacb46de"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -275,7 +284,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-31125ae96ff8b44c21406c2591b826b4"
+      id="R-tab-id-e8221b8f8df1768923e9881c93b78a9f"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -285,7 +294,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-6bf2cb9d1e4c995c3ace3645e3511d4f"
+      id="R-tab-id-20fdf643625c9447628407fa1c3a07f3"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -304,7 +313,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c76ce693067e2f0848d78d9ebf5fd702" aria-expanded="true"
+      aria-controls="R-tab-id-c3e85937eb120cc70e43d336d25259d6" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -312,7 +321,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b657ec328d9cae61fb0d3f48e47c4979" aria-expanded="false"
+      aria-controls="R-tab-id-b5fd9402fa2b42ea66038e0d7fbbbe29" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -320,7 +329,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-517232e8e0ab6acbfa1c48ac73cf5676" aria-expanded="false"
+      aria-controls="R-tab-id-4d9ae0554a4146d558d72a13b34d31bf" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -330,7 +339,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c76ce693067e2f0848d78d9ebf5fd702"
+      id="R-tab-id-c3e85937eb120cc70e43d336d25259d6"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -342,7 +351,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b657ec328d9cae61fb0d3f48e47c4979"
+      id="R-tab-id-b5fd9402fa2b42ea66038e0d7fbbbe29"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -354,7 +363,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-517232e8e0ab6acbfa1c48ac73cf5676"
+      id="R-tab-id-4d9ae0554a4146d558d72a13b34d31bf"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -370,21 +379,21 @@
   </div>
 </div>
 <p>Or by explicitly override settings by URL query parameter</p>
-<div class="tab-panel" data-tab-group="R-tabs-777acad795ea70ac3ecf9553d69dcf3d">
+<div class="tab-panel" data-tab-group="R-tabs-95689c730fe2e9f1b859dd1b48be56d6">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-caf42fdc48dc4a90e48e7bd017c7cc77" aria-expanded="true"
+      aria-controls="R-tab-id-3077b619211471850ea03d5c9daf7cde" aria-expanded="true"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-777acad795ea70ac3ecf9553d69dcf3d','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
+      onclick="switchTab('R-tabs-95689c730fe2e9f1b859dd1b48be56d6','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
     >
       <span class="tab-nav-text">URL</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-caf42fdc48dc4a90e48e7bd017c7cc77"
+      id="R-tab-id-3077b619211471850ea03d5c9daf7cde"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -397,7 +406,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-36b7b71ae268b0c5f2d4481627b6f855" aria-expanded="true"
+      aria-controls="R-tab-id-dfe0f470521ae1c7b88173c48e181dd7" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -405,7 +414,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-670e65a6e9a62cf5924f88f48b37280d" aria-expanded="false"
+      aria-controls="R-tab-id-bf1259214c386e3ac9fc95f6037e647f" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -413,7 +422,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-12f08e992af425b21107596d2b67cb58" aria-expanded="false"
+      aria-controls="R-tab-id-98dedc68ab25d88740b209b5c8774e92" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -423,7 +432,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-36b7b71ae268b0c5f2d4481627b6f855"
+      id="R-tab-id-dfe0f470521ae1c7b88173c48e181dd7"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -433,7 +442,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-670e65a6e9a62cf5924f88f48b37280d"
+      id="R-tab-id-bf1259214c386e3ac9fc95f6037e647f"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -443,7 +452,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-12f08e992af425b21107596d2b67cb58"
+      id="R-tab-id-98dedc68ab25d88740b209b5c8774e92"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -457,6 +466,33 @@
     </div>
   </div>
 </div>
+<h2 id="template-usage">Template Usage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>When calling the link partial directly from templates, you can pass effect preferences via the <code>attributes</code> parameter. Effect names can be prefixed with <code>no</code> to disable them.</p>
+<div class="tab-panel" data-tab-group="R-tabs-55479f8f7a6de0974d8969a3dc23eb92">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      aria-controls="R-tab-id-47559f68df26c2dd2b1dc2925049f355" aria-expanded="true"
+      data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('R-tabs-55479f8f7a6de0974d8969a3dc23eb92','R-tab-278c491bdd8a53618c149c4ac790da34')"
+    >
+      <span class="tab-nav-text">Template</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      id="R-tab-id-47559f68df26c2dd2b1dc2925049f355"
+      data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="err">$</span><span class="nx">attributes</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">dict</span><span class="w"> </span><span class="s">&#34;class&#34;</span><span class="w"> </span><span class="s">&#34;download&#34;</span><span class="w"> </span><span class="p">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="w"> </span><span class="nx">partial</span><span class="w"> </span><span class="s">&#34;shortcodes/link.html&#34;</span><span class="w"> </span><span class="p">(</span><span class="nx">dict</span><span class="w"> </span><span class="s">&#34;page&#34;</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="s">&#34;url&#34;</span><span class="w"> </span><span class="s">&#34;file.pdf&#34;</span><span class="w"> </span><span class="s">&#34;content&#34;</span><span class="w"> </span><span class="s">&#34;Download PDF&#34;</span><span class="w"> </span><span class="s">&#34;attributes&#34;</span><span class="w"> </span><span class="err">$</span><span class="nx">attributes</span><span class="p">)</span><span class="w"> </span><span class="p">}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div><p>This approach has the highest priority and will override all other effect settings, including URL query parameters. Effect classes are processed but not added to the final HTML <code>class</code> attribute. Non-effect classes pass through unchanged.</p>
+<p>For example, <code>class = &quot;download custom-link-class&quot;</code> will enable the download effect and add <code>custom-link-class</code> to the HTML output, but <code>download</code> will not appear in the final class attribute.</p>
 
   <footer class="footline">
 <div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
@@ -512,14 +548,23 @@
 </table>
 <p>One way to use them is to add them as URL query parameter to each individually linked image.</p>
 <p>This can become cumbersome to be done consistently for the whole site. Instead, you can <a href="/hugo-theme-relearn/configuration/customization/imageeffects/index.html">configure the defaults</a> in your <code>hugo.toml</code> as well as overriding these defaults in a page&rsquo;s front matter.</p>
-<p>Explicitly set URL query parameter will override the defaults set for a page or your site.</p>
+<h2 id="effect-priority">Effect Priority<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>Image effects are applied in the following priority order (lowest to highest):</p>
+<ol>
+<li>Built-in defaults</li>
+<li>Site-wide configuration in <code>hugo.toml</code></li>
+<li>Page front matter configuration</li>
+<li>URL query parameters</li>
+<li>Template caller <code>attributes</code> parameter (highest priority)</li>
+</ol>
+<p>Explicitly set URL query parameter will override the defaults set for a page or your site. When calling the image partial directly from templates, effects passed via the <code>attributes</code> parameter have the highest priority and will override all other settings.</p>
 <p>If an effect accepts boolean values, only setting the parameter name without a value in the URL will set it to <code>true</code>.</p>
 <p>Without any settings in your <code>hugo.toml</code> <code>imageEffects</code> defaults to</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-54027119c6a8747c425a3ec3e881b856" aria-expanded="true"
+      aria-controls="R-tab-id-1de7bd6234364889f54d02517c7dcab6" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -527,7 +572,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ec0325b12aaa687ce9241c5696145be0" aria-expanded="false"
+      aria-controls="R-tab-id-5078da3e7195957357fc836197fb6037" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -535,7 +580,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c5ca306020b205e1a23b2e28af7cfea9" aria-expanded="false"
+      aria-controls="R-tab-id-bed6a831470d35c0493e4a4238e11186" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -545,7 +590,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-54027119c6a8747c425a3ec3e881b856"
+      id="R-tab-id-1de7bd6234364889f54d02517c7dcab6"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -559,7 +604,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-ec0325b12aaa687ce9241c5696145be0"
+      id="R-tab-id-5078da3e7195957357fc836197fb6037"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -573,7 +618,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-c5ca306020b205e1a23b2e28af7cfea9"
+      id="R-tab-id-bed6a831470d35c0493e4a4238e11186"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -596,7 +641,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-cc6183880abb8d3e7b6c08bdfe783663" aria-expanded="true"
+      aria-controls="R-tab-id-37434ddc2cc77567b83d9fed9d5fba89" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -604,7 +649,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-99a5e9fc061507d5f58a7f4de63ac75f" aria-expanded="false"
+      aria-controls="R-tab-id-d345442dc5dedd0fc60f1d03d9f0a6c7" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -612,7 +657,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-736ab492bcb4831b1d1b499fc317340b" aria-expanded="false"
+      aria-controls="R-tab-id-ffa83f4d47a675bc3b933d88a41e1d41" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -622,7 +667,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-cc6183880abb8d3e7b6c08bdfe783663"
+      id="R-tab-id-37434ddc2cc77567b83d9fed9d5fba89"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -634,7 +679,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-99a5e9fc061507d5f58a7f4de63ac75f"
+      id="R-tab-id-d345442dc5dedd0fc60f1d03d9f0a6c7"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -646,7 +691,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-736ab492bcb4831b1d1b499fc317340b"
+      id="R-tab-id-ffa83f4d47a675bc3b933d88a41e1d41"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -662,21 +707,21 @@
   </div>
 </div>
 <p>Or by explicitly override settings by URL query parameter</p>
-<div class="tab-panel" data-tab-group="R-tabs-aae3d787dbbc191fd1817d13f961ffb3">
+<div class="tab-panel" data-tab-group="R-tabs-0df991e7debfe04780775397f99c61e0">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-1ad33bf23cdd2eba4c85ebcbd632fc27" aria-expanded="true"
+      aria-controls="R-tab-id-94f07e921a2172ad676873d01a6ddf00" aria-expanded="true"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-aae3d787dbbc191fd1817d13f961ffb3','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
+      onclick="switchTab('R-tabs-0df991e7debfe04780775397f99c61e0','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
     >
       <span class="tab-nav-text">URL</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1ad33bf23cdd2eba4c85ebcbd632fc27"
+      id="R-tab-id-94f07e921a2172ad676873d01a6ddf00"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -689,7 +734,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-cecd990b78dcd5b60bd1a5a0277d9d7d" aria-expanded="true"
+      aria-controls="R-tab-id-d9f430878de9c3c0811471abcd907427" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -697,7 +742,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c89e19e54aaa3d2d2bfaff774ea15796" aria-expanded="false"
+      aria-controls="R-tab-id-a9ca1368feb87b7ebef268b952c2037a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -705,7 +750,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-aff4a21b62af7317f3b7f91885e4c373" aria-expanded="false"
+      aria-controls="R-tab-id-92ac6923e68729bcbc9335d47e7bc02d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -715,7 +760,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-cecd990b78dcd5b60bd1a5a0277d9d7d"
+      id="R-tab-id-d9f430878de9c3c0811471abcd907427"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -729,7 +774,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-c89e19e54aaa3d2d2bfaff774ea15796"
+      id="R-tab-id-a9ca1368feb87b7ebef268b952c2037a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -743,7 +788,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-aff4a21b62af7317f3b7f91885e4c373"
+      id="R-tab-id-92ac6923e68729bcbc9335d47e7bc02d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -761,6 +806,33 @@
     </div>
   </div>
 </div>
+<h2 id="template-usage">Template Usage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>When calling the image partial directly from templates, you can pass effect preferences via the <code>attributes</code> parameter. Effect names can be prefixed with <code>no</code> to disable them.</p>
+<div class="tab-panel" data-tab-group="R-tabs-64e42b5413a2c4df6e06ade9d5456d09">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      aria-controls="R-tab-id-d87a3a73bbd71fa5e3d71520b7c2a996" aria-expanded="true"
+      data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('R-tabs-64e42b5413a2c4df6e06ade9d5456d09','R-tab-278c491bdd8a53618c149c4ac790da34')"
+    >
+      <span class="tab-nav-text">Template</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      id="R-tab-id-d87a3a73bbd71fa5e3d71520b7c2a996"
+      data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="err">$</span><span class="nx">attributes</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">dict</span><span class="w"> </span><span class="s">&#34;class&#34;</span><span class="w"> </span><span class="s">&#34;nolightbox border&#34;</span><span class="w"> </span><span class="p">}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="w"> </span><span class="nx">partial</span><span class="w"> </span><span class="s">&#34;shortcodes/image.html&#34;</span><span class="w"> </span><span class="p">(</span><span class="nx">dict</span><span class="w"> </span><span class="s">&#34;page&#34;</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="s">&#34;url&#34;</span><span class="w"> </span><span class="s">&#34;image.png&#34;</span><span class="w"> </span><span class="s">&#34;attributes&#34;</span><span class="w"> </span><span class="err">$</span><span class="nx">attributes</span><span class="p">)</span><span class="w"> </span><span class="p">}}</span></span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div><p>This approach has the highest priority and will override all other effect settings, including URL query parameters. Effect classes are processed but not added to the final HTML <code>class</code> attribute. Non-effect classes pass through unchanged.</p>
+<p>For example, <code>class = &quot;nolightbox custom-img-class&quot;</code> will disable the lightbox effect and add <code>custom-img-class</code> to the HTML output, but neither <code>lightbox</code> nor <code>nolightbox</code> will appear in the final class attribute.</p>
 
   <footer class="footline">
 <div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
@@ -775,8 +847,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1764950121" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1764950121" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1764967272" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1764967272" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
