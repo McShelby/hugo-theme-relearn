@@ -158,8 +158,8 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
     :root {
       --CODE-theme: neon; /* name of the chroma stylesheet file */
-      --CODE-BLOCK-color: rgba( 226, 228, 229, 1 ); /* fallback color for code text */
-      --CODE-BLOCK-BG-color: rgba( 40, 42, 54, 1 ); /* fallback color for code background */
+      --CODE-BLOCK-color: rgba(226, 228, 229, 1); /* fallback color for code text */
+      --CODE-BLOCK-BG-color: rgba(40, 42, 54, 1); /* fallback color for code background */
     }
     ````
 
