@@ -1,6 +1,6 @@
 {{- $page := . }}
 {{- $nonautothemevariants := slice }}
-{{- $formathtmlpre := ":root:not([data-r-output-format='print']):not([data-r-theme-variant='my-custom-variant'])" }}
+{{- $formathtmlpre := ":root:not([data-r-output-format='print']):not([data-r-theme-variant^='my-custom-'])" }}
 {{- $formathtml := "" }}
 {{- $minify := not hugo.IsServer }}
 {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
@@ -93,8 +93,8 @@ Unification run:
     {{- $logo = collections.Merge $logo (dict "src" $logoSrc) }}
     {{- $themevariant = collections.Merge $themevariant (dict "logo" $logo) }}
   {{- end }}
-  {{- if eq $themevariant.identifier "my-custom-variant" }}
-    {{- errorf "\"theme-%s.css\": the variant identifier '%s' is reserved for the theme's variant generator, instead rename it to something different" "my-custom-variant" "my-custom-variant" }}
+  {{- if hasPrefix $themevariant.identifier "my-custom-" }}
+    {{- errorf "\"theme-%s.css\": the variant identifier '%s' is reserved for the theme's variant generator, instead rename it to something different" $themevariant.identifier $themevariant.identifier }}
   {{- end }}
   {{- $themevariants = $themevariants | append $themevariant }}
 {{- end }}
@@ -122,7 +122,7 @@ Generator run:
       ":not([data-r-theme-variant='" $themevariant.identifier "'])"
     }}
     {{- $formathtml = print $formathtml
-      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
+      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant$='" $themevariant.identifier "'] {"
       "\n@media screen and (prefers-color-scheme: light) {"
       "\n" $lightthemevariant.themecontent
       "\n" $lightthemevariant.chromacontent
@@ -145,7 +145,7 @@ Generator run:
       ":not([data-r-theme-variant='" $themevariant.identifier "'])"
     }}
     {{- $formathtml = print $formathtml
-      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
+      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant$='" $themevariant.identifier "'] {"
       "\n" $themevariant.themecontent
       "\n" $themevariant.chromacontent
       "\n  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='" $themevariant.identifier "'])):not(:has(> .logo-title)) { display: none; }"

@@ -87,7 +87,7 @@
       {{ printf "window.T_Browser_unsupported_feature = `%s`;" (T "Browser-unsupported-feature") | safeJS }}
       {{ "// variant stuff" | safeJS }}
       window.relearn.themevariants = [ {{ delimit $quotedthemevariants ", " | safeJS }} ];
-      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
         window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
@@ -103,8 +103,9 @@
       }
       window.relearn.initVariant = function() {
         var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
           window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }

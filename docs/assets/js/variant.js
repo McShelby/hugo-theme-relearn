@@ -13,8 +13,36 @@ function ready(fn) {
 
 var variants = {
   variants: window.relearn.themevariants,
-  customvariantname: window.relearn.customvariantname,
   isstylesheetloaded: true,
+
+  getCustomVariant: function (customvariantbase) {
+    return window.relearn.customvariantprefix + customvariantbase;
+  },
+
+  getAllCustomVariants: function () {
+    var customVariants = [];
+    var prefix = window.relearn.absBaseUri + '/variantstylesheet-' + window.relearn.customvariantprefix;
+    for (var i = 0; i < window.localStorage.length; i++) {
+      var key = window.localStorage.key(i);
+      if (key && key.startsWith(prefix)) {
+        var variantName = key.substring((window.relearn.absBaseUri + '/variantstylesheet-').length);
+        customVariants.push(variantName);
+      }
+    }
+    return customVariants;
+  },
+
+  getCustomVariantStylesheet: function (customVariantName) {
+    return window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customVariantName) || '';
+  },
+
+  getCustomVariantBase: function (customvariant) {
+    // Derive source variant from custom variant name
+    if (customvariant && customvariant.startsWith(window.relearn.customvariantprefix)) {
+      return customvariant.substring(window.relearn.customvariantprefix.length);
+    }
+    return '';
+  },
 
   setup: function () {
     this.variantvariables = [];
@@ -29,21 +57,14 @@ var variants = {
       }
     }.bind(this);
     extractVariables(this.structure);
-    this.addCustomVariantStyles();
 
-    var customvariantstylesheet = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet');
-    var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-    if (!customvariantstylesheet || !customvariant) {
-      customvariantstylesheet = '';
-      window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet');
-      customvariant = '';
-      window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-    } else if (customvariant && !window.relearn.themevariants.includes(customvariant)) {
-      // this can only happen on initial load, if a previously selected variant is not available anymore
-      customvariant = window.relearn.themevariants[0];
-      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/customvariant', customvariant);
-    }
-    this.updateCustomVariantStyles(customvariantstylesheet);
+    // Load all custom variants from localStorage
+    var customVariants = this.getAllCustomVariants();
+    customVariants.forEach((customvariant) => {
+      var stylesheet = this.getCustomVariantStylesheet(customvariant);
+      this.addCustomVariantStyles(customvariant);
+      this.updateCustomVariantStyles(customvariant, stylesheet);
+    });
 
     this.init();
     ready(this.init.bind(this));
@@ -55,61 +76,66 @@ var variants = {
     window.relearn.changeVariant(window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant'));
   },
 
-  addCustomVariantOption: function () {
-    var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-    if (!customvariant) {
-      return;
-    }
-    document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
-      var option = select.options[`R-select-variant-${this.customvariantname}`];
-      if (!option) {
-        option = document.createElement('option');
-        option.id = `R-select-variant-${this.customvariantname}`;
-        option.value = this.customvariantname;
-        option.text = this.customvariantname.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
-          return w.replace(/^\w/g, function (c) {
-            return c.toUpperCase();
+  addCustomVariantOption: function (customvariant) {
+    var customVariants = customvariant ? [customvariant] : this.getAllCustomVariants();
+    customVariants.forEach((customvariant) => {
+      document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
+        var option = select.options[`R-select-variant-${customvariant}`];
+        if (!option) {
+          option = document.createElement('option');
+          option.id = `R-select-variant-${customvariant}`;
+          option.value = customvariant;
+          option.text = customvariant.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
+            return w.replace(/^\w/g, function (c) {
+              return c.toUpperCase();
+            });
           });
-        });
-        select.appendChild(option);
-      }
+          select.appendChild(option);
+        }
+      });
     });
   },
 
-  removeCustomVariantOption: function () {
-    document.querySelectorAll(`.R-variantswitcher option[value="${this.customvariantname}"]`).forEach((option) => {
+  removeCustomVariantOption: function (customvariant) {
+    document.querySelectorAll(`.R-variantswitcher option[value="${customvariant}"]`).forEach((option) => {
       option.remove();
     });
   },
 
-  addCustomVariantStyles: function () {
+  addCustomVariantStyles: function (customvariant) {
     var head = document.querySelector('head');
     var style = document.createElement('style');
-    style.id = 'R-variant-styles-' + this.customvariantname;
+    style.id = 'R-variant-styles-' + customvariant;
     head.appendChild(style);
   },
 
-  updateCustomVariantStyles: function (stylesheet) {
-    stylesheet = ":root:not([data-r-output-format='print'])[data-r-theme-variant='" + this.customvariantname + "']  {" + '\n&' + stylesheet + '\n}';
-    var style = document.querySelector('#R-variant-styles-' + this.customvariantname);
+  updateCustomVariantStyles: function (customvariant, stylesheet) {
+    stylesheet = ":root:not([data-r-output-format='print'])[data-r-theme-variant='" + customvariant + "']  {" + '\n&' + stylesheet + '\n}';
+    var style = document.querySelector('#R-variant-styles-' + customvariant);
     if (style) {
       style.textContent = stylesheet;
     }
   },
 
   saveCustomVariant: function () {
-    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
-    if (variant != this.customvariantname) {
-      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/customvariant', variant);
+    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant') ?? '';
+    var customvariant = variant;
+    if (!variant.startsWith(window.relearn.customvariantprefix)) {
+      customvariant = this.getCustomVariant(variant);
     }
-    var stylesheet = this.generateStylesheet(this.customvariantname);
-    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', this.customvariantname);
-    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet', stylesheet);
-    this.updateCustomVariantStyles(stylesheet);
 
-    this.addCustomVariantOption();
+    var stylesheet = this.generateStylesheet(customvariant);
+    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariant);
+    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customvariant, stylesheet);
+
+    if (!document.querySelector('#R-variant-styles-' + customvariant)) {
+      this.addCustomVariantStyles(customvariant);
+    }
+    this.updateCustomVariantStyles(customvariant, stylesheet);
+
+    this.addCustomVariantOption(customvariant);
     window.relearn.markVariant();
-    window.relearn.changeVariant(this.customvariantname);
+    window.relearn.changeVariant(customvariant);
   },
 
   normalizeColor: function (c) {
@@ -188,19 +214,19 @@ var variants = {
 
   generateStylesheet: function (variant) {
     var style = null;
-    if (variant != this.customvariantname) {
-      style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + variant + '"]']);
+    if (!variant.startsWith(window.relearn.customvariantprefix)) {
+      style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant$="' + variant + '"]']);
       if (!style) {
-        alert('There is nothing to be generated as auto mode variants will be generated by Hugo');
+        alert('There is nothing to be generated as auto mode variants will be generated by Hugo.');
         return;
       }
     } else {
       style = this.findLoadedStylesheet('R-variant-styles-' + variant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + variant + '"]']);
       if (!style) {
-        var customvariantbase = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-        style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariantbase + '"]']);
+        var customvariantbase = this.getCustomVariantBase(variant);
+        style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant$="' + customvariantbase + '"]']);
         if (!style) {
-          alert('There is nothing to be generated as auto mode variants will be generated by Hugo');
+          alert('There is nothing to be generated as auto mode variants will be generated by Hugo.');
           return;
         }
       }
@@ -235,25 +261,29 @@ var variants = {
   // ------------------------------------------------------------------------
 
   changeColor: function (c) {
-    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
-    var customvariantbase = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-
-    if (customvariantbase && this.customvariantname != variant) {
-      alert('You already have changes based on the "' + customvariantbase + '" variant. Please proceed editing the custom variant, reset your changes or ignore this message.');
-      return;
+    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant') ?? '';
+    var customvariantbase = variant;
+    var customvariant = variant;
+    if (!variant.startsWith(window.relearn.customvariantprefix)) {
+      customvariant = this.getCustomVariant(customvariantbase);
+      if (this.getCustomVariantStylesheet(customvariant)) {
+        alert('You already have changes based on the "' + customvariantbase + '" variant. Please proceed editing the custom variant, reset your changes or ignore this message.');
+        return;
+      }
+    } else {
+      customvariantbase = this.getCustomVariantBase(customvariant);
     }
-    customvariantbase = customvariantbase ?? variant;
 
-    var base_style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariantbase + '"]']);
+    var base_style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant$="' + customvariantbase + '"]']);
     if (!base_style) {
-      alert('An auto mode variant can not be changed. Please select its light/dark variant directly to make changes');
+      alert('An auto mode variant can not be changed. Please select its light/dark variant directly to make changes.');
       return;
     }
 
-    var custom_style = this.findLoadedStylesheet('R-variant-styles-' + this.customvariantname, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + this.customvariantname + '"]']);
+    var custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
     if (!custom_style) {
       this.saveCustomVariant();
-      custom_style = this.findLoadedStylesheet('R-variant-styles-' + this.customvariantname, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + this.customvariantname + '"]']);
+      custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
     }
 
     var e = this.findColor(c);
@@ -285,20 +315,51 @@ var variants = {
   },
 
   resetVariant: function () {
-    var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-    if (customvariant && confirm('You have made changes to your custom variant. Are you sure you want to reset all changes?')) {
-      var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
-      if (variant != this.customvariantname) {
-        customvariant = variant;
-      }
-      window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/customvariant');
-      window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/customvariantstylesheet');
-      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariant);
-      this.updateCustomVariantStyles('');
+    var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
+    if (!customvariant.startsWith(window.relearn.customvariantprefix)) {
+      alert('There is nothing to be reset here as built-in variants can not be changed.');
+      return;
+    }
 
-      this.removeCustomVariantOption();
+    if (confirm('You have made changes to your custom variant "' + customvariant + '". Are you sure you want to reset all changes?')) {
+      window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
+      this.updateCustomVariantStyles(customvariant, '');
+      this.removeCustomVariantOption(customvariant);
+
+      var customvariantbase = this.getCustomVariantBase(customvariant);
+      if (!customvariantbase || !window.relearn.themevariants.includes(customvariantbase)) {
+        customvariantbase = window.relearn.themevariants[0];
+      }
+
+      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariantbase);
       window.relearn.markVariant();
-      window.relearn.changeVariant(customvariant);
+      window.relearn.changeVariant(customvariantbase);
+    }
+  },
+
+  resetAllVariants: function () {
+    var customVariants = this.getAllCustomVariants();
+    if (!customVariants.length) {
+      return;
+    }
+
+    var variantList = customVariants.map((v) => '"' + v + '"').join(', ');
+    if (confirm('Are you sure you want to reset all ' + customVariants.length + ' custom variant(s): ' + variantList + '?')) {
+      var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
+      customVariants.forEach((customvariant) => {
+        window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
+        this.updateCustomVariantStyles(customvariant, '');
+        this.removeCustomVariantOption(customvariant);
+      });
+
+      var customvariantbase = this.getCustomVariantBase(customvariant);
+      if (!customvariantbase || !window.relearn.themevariants.includes(customvariantbase)) {
+        customvariantbase = window.relearn.themevariants[0];
+      }
+
+      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariantbase);
+      window.relearn.markVariant();
+      window.relearn.changeVariant(customvariantbase);
     }
   },
 

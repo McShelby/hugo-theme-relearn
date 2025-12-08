@@ -21,7 +21,7 @@ Once you've changed a color, the variant selector will show a "My custom variant
 
 Once you are satisfied, you can download the new variants file and copy it into your site's `assets/css` directory.
 
-{{% badge style="option" %}}Option{{% /badge %}} Afterwards, you have to adjust the `themeVariant` option in your `hugo.toml` to your chosen file name. For example, if your new variants file is named `theme-my-custom-variant.css`, you have to set `themeVariant='my-custom-variant'` to use it.
+{{% badge style="option" %}}Option{{% /badge %}} Afterwards, you have to adjust the `themeVariant` option in your `hugo.toml` to your chosen file name. For example, if your new variants file is named `theme-my-custom-zen-light.css`, you have to set `themeVariant='my-custom-zen-light'` to use it.
 
 See the docs for [further configuration options](configuration/branding/colors).
 {{% /expand %}}
