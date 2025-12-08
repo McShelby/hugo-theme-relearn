@@ -34,7 +34,7 @@ If you don't configure a logo explicitly, the theme automatically searches for a
 - `logo.jpg` / `logo.jpeg`
 - `logo.gif`
 
-If no logo is found, only {your site title](configuration/sidebar/headerfooter#title) will be shown.
+If no logo is found, only [your site title](configuration/sidebar/headerfooter#title) will be shown.
 
 The size of the logo will adapt automatically.
 
