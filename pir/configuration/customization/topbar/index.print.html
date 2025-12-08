@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="generator" content="Relearn 8.3.0+afc96780d6eb8e191f4348320533a432763432a6">
+    <meta name="generator" content="Relearn 8.3.0+55f82a77002b8a750d1b5bb3cd265ef753f2b831">
     <meta name="description" content="How to extend the topbar">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -31,27 +31,27 @@
     <link href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.xml" rel="alternate" type="application/rss+xml" title="Topbarrr :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.md" rel="alternate" type="text/markdown" title="Topbarrr :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.source.md" rel="alternate" type="text/markdown" title="Topbarrr :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1765021940" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765021940" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1765021940" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1765176467" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765176467" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1765176467" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1765021940";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1765176467";
     </script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765021940" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765176467" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021940" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021940" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765021940" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1765021940" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1765021940" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176467" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176467" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765176467" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1765176467" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1765176467" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -77,7 +77,7 @@
       window.T_Browser_unsupported_feature = `This browserrr doesn't supporrrt this featurrre`;
       // variant stuff
       window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
-      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
         window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
@@ -93,8 +93,9 @@
       }
       window.relearn.initVariant = function() {
         var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
           window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }
@@ -103,7 +104,7 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1765021940"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1765176467"></script>
     <style>
        
       #R-body img.bg-white {
@@ -193,8 +194,8 @@
 <h1 id="topbarrr">Topbarrr</h1>
 
 <p>Th' theme comes wit' a reasonably configured topbar. Ye can learn how t' <a href="/hugo-theme-relearn/pir/authoring/frontmatter/topbar/index.html">configure th' defaults 'n this section</a>.</p>
-<p><a href="#R-image-67993231a8d36d8e0d9051596d0b2992" class="lightbox-link"><img alt="topbar on mobile devices" class="bg-white border lazy lightbox figure-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-closed.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-67993231a8d36d8e0d9051596d0b2992"><img alt="topbar on mobile devices" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-closed.png"></a></p>
+<p><a href="#R-image-572f6638cd45154e493d0ee692f75019" class="lightbox-link"><img alt="topbar on mobile devices" class="bg-white border lazy lightbox figure-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-closed.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-572f6638cd45154e493d0ee692f75019"><img alt="topbar on mobile devices" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-closed.png"></a></p>
 <p>Nevertheless, yer requirements may differ from this configurat'n. Luckily, th' theme has ye covered as th' topbar, its buttons, an' th' functionality behind these buttons be fully configur'ble by ye.</p>
 
 <details open class="box cstyle notices tip">
@@ -208,8 +209,8 @@
 </details>
 <h2 id="areas">Areas<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>Th' default configurat'n comes wit' three predefined areas that may contain an arbitrary set o' buttons.</p>
-<p><a href="#R-image-62fb2b3af17699b0525aac25183d68cb" class="lightbox-link"><img alt="topbar wit' default areas marked" class="bg-white border lazy lightbox figure-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-areas.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-62fb2b3af17699b0525aac25183d68cb"><img alt="topbar wit' default areas marked" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-areas.png"></a></p>
+<p><a href="#R-image-cc7613ffd50e4af403b8ae6224e8452b" class="lightbox-link"><img alt="topbar wit' default areas marked" class="bg-white border lazy lightbox figure-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-areas.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cc7613ffd50e4af403b8ae6224e8452b"><img alt="topbar wit' default areas marked" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-areas.png"></a></p>
 <ul>
 <li><a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/start.html" rel="external" target="_self"><strong>start</strong></a>: shown between menu an' breadcrumb</li>
 <li><a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/end.html" rel="external" target="_self"><strong>end</strong></a>: shown on th' opposite breadcrumb side 'n comparison t' th' <em>start</em> area</li>
@@ -493,8 +494,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1765021940" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1765176467" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

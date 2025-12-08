@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="generator" content="Relearn 8.3.0+afc96780d6eb8e191f4348320533a432763432a6">
+    <meta name="generator" content="Relearn 8.3.0+55f82a77002b8a750d1b5bb3cd265ef753f2b831">
     <meta name="description" content="Beautiful math and chemical formulae">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,27 +29,27 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/math/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="/hugo-theme-relearn/shortcodes/math/index.xml" rel="alternate" type="application/rss+xml" title="Math :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/shortcodes/math/index.print.html" rel="alternate" type="text/html" title="Math :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1765021933" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765021933" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1765021933" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1765176460" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765176460" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1765176460" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1765021933";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1765176460";
     </script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765021933" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765176460" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021933" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021933" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765021933" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1765021933" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.css?1765021933" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176460" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176460" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765176460" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1765176460" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.css?1765176460" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -75,7 +75,7 @@
       window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
       // variant stuff
       window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
-      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
         window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
@@ -91,8 +91,9 @@
       }
       window.relearn.initVariant = function() {
         var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
           window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }
@@ -101,7 +102,7 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1765021933"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1765176460"></script>
     <style>
        
       #R-body img.bg-white {
@@ -198,7 +199,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-d9926098ac8064bad66199a836b47259" aria-expanded="true"
+      aria-controls="R-tab-id-e5236522cf56097f8b4858d0dbeb9f27" aria-expanded="true"
       data-tab-item="R-tab-711163e72324e9c53f060441eebc86e1"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-9691d2e718490e633c0467c5421f6980','R-tab-711163e72324e9c53f060441eebc86e1')"
@@ -206,7 +207,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">passthrough</span>
     </button>
     <button
-      aria-controls="R-tab-id-16cda3525e6f80db4e1099ae625ee519" aria-expanded="false"
+      aria-controls="R-tab-id-02dfd0a7f6efa9af0edfbe4bdfbef185" aria-expanded="false"
       data-tab-item="R-tab-590fc197fe73db0aa2ec03687a372eea"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-9691d2e718490e633c0467c5421f6980','R-tab-590fc197fe73db0aa2ec03687a372eea')"
@@ -214,7 +215,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">markdown</span>
     </button>
     <button
-      aria-controls="R-tab-id-8ed1d745b4ffe1654f4672f8b41823c0" aria-expanded="false"
+      aria-controls="R-tab-id-11ab9824fb979adc2917b75cc1e2593f" aria-expanded="false"
       data-tab-item="R-tab-48f074fa17f82e80816475181040e35f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-9691d2e718490e633c0467c5421f6980','R-tab-48f074fa17f82e80816475181040e35f')"
@@ -222,7 +223,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-0ce6760704c23db587c1c737a55293eb" aria-expanded="false"
+      aria-controls="R-tab-id-69d80fb01504a2cea4482699025f2007" aria-expanded="false"
       data-tab-item="R-tab-0e87c1212a698494dcdb198af3e0eb2f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-9691d2e718490e633c0467c5421f6980','R-tab-0e87c1212a698494dcdb198af3e0eb2f')"
@@ -232,7 +233,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d9926098ac8064bad66199a836b47259"
+      id="R-tab-id-e5236522cf56097f8b4858d0dbeb9f27"
       data-tab-item="R-tab-711163e72324e9c53f060441eebc86e1"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -240,7 +241,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-16cda3525e6f80db4e1099ae625ee519"
+      id="R-tab-id-02dfd0a7f6efa9af0edfbe4bdfbef185"
       data-tab-item="R-tab-590fc197fe73db0aa2ec03687a372eea"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -250,7 +251,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-8ed1d745b4ffe1654f4672f8b41823c0"
+      id="R-tab-id-11ab9824fb979adc2917b75cc1e2593f"
       data-tab-item="R-tab-48f074fa17f82e80816475181040e35f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -260,7 +261,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-0ce6760704c23db587c1c737a55293eb"
+      id="R-tab-id-69d80fb01504a2cea4482699025f2007"
       data-tab-item="R-tab-0e87c1212a698494dcdb198af3e0eb2f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -306,7 +307,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-3ba089edb855404da986e6e72983608f" aria-expanded="true"
+      aria-controls="R-tab-id-6486fb041e684bb25c8124b4a0a032ed" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -314,7 +315,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d824e7077c2af617803c8ec10e52c720" aria-expanded="false"
+      aria-controls="R-tab-id-8348a948319c43407d2e30873b94f8e8" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -322,7 +323,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-12756bc180f2a61bc74389993d186fa6" aria-expanded="false"
+      aria-controls="R-tab-id-1a4fef93764d8a41e2635224e8bf614a" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -332,7 +333,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-3ba089edb855404da986e6e72983608f"
+      id="R-tab-id-6486fb041e684bb25c8124b4a0a032ed"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -341,7 +342,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-d824e7077c2af617803c8ec10e52c720"
+      id="R-tab-id-8348a948319c43407d2e30873b94f8e8"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -350,7 +351,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-12756bc180f2a61bc74389993d186fa6"
+      id="R-tab-id-1a4fef93764d8a41e2635224e8bf614a"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -370,7 +371,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-eeafacf91760ee2ace6205aa0e667bbd" aria-expanded="true"
+      aria-controls="R-tab-id-b2b4f6b9e5ea72ed2ccd686f1ef3dd09" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -378,7 +379,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-fabe37a5254764766861fdc5b468a70e" aria-expanded="false"
+      aria-controls="R-tab-id-db3946bbd4cb780d74c1eb3274527933" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -386,7 +387,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-65f724766beb2971849ad54852310da2" aria-expanded="false"
+      aria-controls="R-tab-id-56632190f96133ffd5c13a3df9a13f61" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -396,7 +397,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-eeafacf91760ee2ace6205aa0e667bbd"
+      id="R-tab-id-b2b4f6b9e5ea72ed2ccd686f1ef3dd09"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -405,7 +406,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-fabe37a5254764766861fdc5b468a70e"
+      id="R-tab-id-db3946bbd4cb780d74c1eb3274527933"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -414,7 +415,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-65f724766beb2971849ad54852310da2"
+      id="R-tab-id-56632190f96133ffd5c13a3df9a13f61"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -435,7 +436,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-43b9804cd832a7baa1285153d296288a" aria-expanded="true"
+      aria-controls="R-tab-id-8df54da10372c0786be3699baf46b3ce" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -443,7 +444,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1063f68ba416273c101ebdc189572fba" aria-expanded="false"
+      aria-controls="R-tab-id-bb6713527f449a7e53f47b3c6f26997a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -451,7 +452,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7e2ad7ea21add5cead6f3c22f78dd2db" aria-expanded="false"
+      aria-controls="R-tab-id-3568b3a886cc24d205b793a17f24ab55" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -461,7 +462,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-43b9804cd832a7baa1285153d296288a"
+      id="R-tab-id-8df54da10372c0786be3699baf46b3ce"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -470,7 +471,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-1063f68ba416273c101ebdc189572fba"
+      id="R-tab-id-bb6713527f449a7e53f47b3c6f26997a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -479,7 +480,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-7e2ad7ea21add5cead6f3c22f78dd2db"
+      id="R-tab-id-3568b3a886cc24d205b793a17f24ab55"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -498,7 +499,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-e7da525843bffaab9603395d76c1a24d" aria-expanded="true"
+      aria-controls="R-tab-id-64d82201a09415aa47d88f43e52760a2" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -506,7 +507,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6ce2a2b7d384ca6b49ddd026fa076c65" aria-expanded="false"
+      aria-controls="R-tab-id-f4964a9d57698027dcfaf7968a20ab02" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -514,7 +515,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b010e33b8aed018ca4a6d3366c4d0ba9" aria-expanded="false"
+      aria-controls="R-tab-id-99334888324efb8e03fe60b037ff0dcb" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -524,7 +525,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e7da525843bffaab9603395d76c1a24d"
+      id="R-tab-id-64d82201a09415aa47d88f43e52760a2"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -540,7 +541,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-6ce2a2b7d384ca6b49ddd026fa076c65"
+      id="R-tab-id-f4964a9d57698027dcfaf7968a20ab02"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -563,7 +564,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-b010e33b8aed018ca4a6d3366c4d0ba9"
+      id="R-tab-id-99334888324efb8e03fe60b037ff0dcb"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -886,7 +887,7 @@ $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/afc96780d6eb8e191f4348320533a432763432a6" title="Relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/55f82a77002b8a750d1b5bb3cd265ef753f2b831" title="Relearn"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
 <script>
   function githubButtonsScheme(){
     var scheme = 'light';
@@ -923,7 +924,7 @@ $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
     setTimeout( githubButtonsInit, 400 );
   });
 </script>
-<script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.js?1765021933"></script></div>
+<script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.js?1765176460"></script></div>
       </div>
     </aside>
     <script>
@@ -937,9 +938,9 @@ $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-theme-relearn/js/mathjax/tex-mml-chtml.js?1765021933"></script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1765021933" defer></script>
+    <script id="MathJax-script" async src="/hugo-theme-relearn/js/mathjax/tex-mml-chtml.js?1765176460"></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1765176460" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

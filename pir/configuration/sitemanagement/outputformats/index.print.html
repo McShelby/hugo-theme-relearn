@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="generator" content="Relearn 8.3.0+afc96780d6eb8e191f4348320533a432763432a6">
+    <meta name="generator" content="Relearn 8.3.0+55f82a77002b8a750d1b5bb3cd265ef753f2b831">
     <meta name="description" content="What formats can a page be displayed in">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -31,27 +31,27 @@
     <link href="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.xml" rel="alternate" type="application/rss+xml" title="Available Output Formats :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.md" rel="alternate" type="text/markdown" title="Available Output Formats :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.source.md" rel="alternate" type="text/markdown" title="Available Output Formats :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1765021940" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765021940" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1765021940" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1765176467" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765176467" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1765176467" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1765021940";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1765176467";
     </script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765021940" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765176467" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021940" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021940" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765021940" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1765021940" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1765021940" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176467" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176467" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765176467" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1765176467" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1765176467" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -77,7 +77,7 @@
       window.T_Browser_unsupported_feature = `This browserrr doesn't supporrrt this featurrre`;
       // variant stuff
       window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
-      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
         window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
@@ -93,8 +93,9 @@
       }
       window.relearn.initVariant = function() {
         var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
           window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }
@@ -103,7 +104,7 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1765021940"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1765176467"></script>
     <style>
        
       #R-body img.bg-white {
@@ -187,7 +188,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-7cc7dc640f7b3a0ec30f78d37850f038" aria-expanded="true"
+      aria-controls="R-tab-id-4c5294449e42fcb193b0540bd0ccdcfc" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -195,7 +196,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8a5038f7715ec342fe14716721e186db" aria-expanded="false"
+      aria-controls="R-tab-id-64295faca370ba2178c909bf2e5078ed" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -203,7 +204,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-056f1d4da4cd7688f0bf10a7360eae55" aria-expanded="false"
+      aria-controls="R-tab-id-49f82c28297f4fc29a53e126dc1f6358" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -213,7 +214,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7cc7dc640f7b3a0ec30f78d37850f038"
+      id="R-tab-id-4c5294449e42fcb193b0540bd0ccdcfc"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -224,7 +225,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-8a5038f7715ec342fe14716721e186db"
+      id="R-tab-id-64295faca370ba2178c909bf2e5078ed"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -243,7 +244,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-056f1d4da4cd7688f0bf10a7360eae55"
+      id="R-tab-id-49f82c28297f4fc29a53e126dc1f6358"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -276,7 +277,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-894ce575873e79db1e8e93aaaae57897" aria-expanded="true"
+      aria-controls="R-tab-id-555da07b8a29664a85491f24167ef291" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -284,7 +285,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-391d52d855a268eb8a2a3d2f320834f1" aria-expanded="false"
+      aria-controls="R-tab-id-e29ef9cb8818f68e12575486d6ede619" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -292,7 +293,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6cec03b8a91d234a538fdb35c093777d" aria-expanded="false"
+      aria-controls="R-tab-id-1e056a4f12003797b2501e6ecc707c9a" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -302,7 +303,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-894ce575873e79db1e8e93aaaae57897"
+      id="R-tab-id-555da07b8a29664a85491f24167ef291"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -317,7 +318,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-391d52d855a268eb8a2a3d2f320834f1"
+      id="R-tab-id-e29ef9cb8818f68e12575486d6ede619"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -332,7 +333,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-6cec03b8a91d234a538fdb35c093777d"
+      id="R-tab-id-1e056a4f12003797b2501e6ecc707c9a"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -358,7 +359,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-0e6691d34653c8aec9f4302ad96e949b" aria-expanded="true"
+      aria-controls="R-tab-id-b1559e0329d7ea73a4e5adb98c50adde" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -366,7 +367,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-e5b27b74ad8a462efb2267a5a164b8f1" aria-expanded="false"
+      aria-controls="R-tab-id-335cf204f1a9839e05fc1589d6b18ec5" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -374,7 +375,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1cfe78c6dda1526393f2dadc847d49de" aria-expanded="false"
+      aria-controls="R-tab-id-74825bb94dd8d36e408dcd423bccc5a0" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -384,7 +385,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0e6691d34653c8aec9f4302ad96e949b"
+      id="R-tab-id-b1559e0329d7ea73a4e5adb98c50adde"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -395,7 +396,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-e5b27b74ad8a462efb2267a5a164b8f1"
+      id="R-tab-id-335cf204f1a9839e05fc1589d6b18ec5"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -414,7 +415,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1cfe78c6dda1526393f2dadc847d49de"
+      id="R-tab-id-74825bb94dd8d36e408dcd423bccc5a0"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -448,7 +449,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-97e3ba14dec29029c6d7d5920fc2c9d5" aria-expanded="true"
+      aria-controls="R-tab-id-512c811a26049c5eb7aff4b1ff20f40c" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -456,7 +457,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ca205946ea18ae90c523241328714f71" aria-expanded="false"
+      aria-controls="R-tab-id-48448ba260943351b8d599f604df85d5" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -464,7 +465,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-45e8a6e90a518781108ce4c5c0ad2f2b" aria-expanded="false"
+      aria-controls="R-tab-id-26dad31acae36939eabe72754f19806e" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -474,7 +475,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-97e3ba14dec29029c6d7d5920fc2c9d5"
+      id="R-tab-id-512c811a26049c5eb7aff4b1ff20f40c"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -485,7 +486,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-ca205946ea18ae90c523241328714f71"
+      id="R-tab-id-48448ba260943351b8d599f604df85d5"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -504,7 +505,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-45e8a6e90a518781108ce4c5c0ad2f2b"
+      id="R-tab-id-26dad31acae36939eabe72754f19806e"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -538,7 +539,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-e4af61a219579a6309c19aa5ee31bbeb" aria-expanded="true"
+      aria-controls="R-tab-id-80b79ececf069e4ed5eea95f820dc6e5" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -546,7 +547,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6ded9b50c68c78548c20e8a73b96596f" aria-expanded="false"
+      aria-controls="R-tab-id-fb1b2c4eadf4aba4efd05ed96cae1ab9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -554,7 +555,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-95de44b0ed641328fe0714287bb136b1" aria-expanded="false"
+      aria-controls="R-tab-id-bc6aa21b82cc854266798b77ce461394" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -564,7 +565,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e4af61a219579a6309c19aa5ee31bbeb"
+      id="R-tab-id-80b79ececf069e4ed5eea95f820dc6e5"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -579,7 +580,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-6ded9b50c68c78548c20e8a73b96596f"
+      id="R-tab-id-fb1b2c4eadf4aba4efd05ed96cae1ab9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -594,7 +595,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-95de44b0ed641328fe0714287bb136b1"
+      id="R-tab-id-bc6aa21b82cc854266798b77ce461394"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -628,8 +629,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1765021940" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1765176467" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="generator" content="Relearn 8.3.0+afc96780d6eb8e191f4348320533a432763432a6">
+    <meta name="generator" content="Relearn 8.3.0+55f82a77002b8a750d1b5bb3cd265ef753f2b831">
     <meta name="description" content="Show rrrambl&#39;n &#39;n a single tab">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,27 +29,27 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/tab/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/shortcodes/tab/index.html" rel="canonical" type="text/html" title="Tab :: Cap&#39;n Hugo Relearrrn Theme">
     <link href="/hugo-theme-relearn/pir/shortcodes/tab/index.xml" rel="alternate" type="application/rss+xml" title="Tab :: Cap&#39;n Hugo Relearrrn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1765021940" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765021940" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1765021940" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1765176467" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765176467" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1765176467" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1765021940";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.js?1765176467";
     </script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765021940" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765176467" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021940" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021940" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765021940" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1765021940" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1765021940" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176467" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176467" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765176467" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1765176467" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1765176467" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -75,7 +75,7 @@
       window.T_Browser_unsupported_feature = `This browserrr doesn't supporrrt this featurrre`;
       // variant stuff
       window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
-      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
         window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
@@ -91,8 +91,9 @@
       }
       window.relearn.initVariant = function() {
         var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
           window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }
@@ -101,7 +102,7 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1765021940"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1765176467"></script>
     <style>
        
       #R-body img.bg-white {
@@ -180,21 +181,21 @@
 <h1 id="tab">Tab</h1>
 
 <p>Ye can use a <code>tab</code> shortcode t' display a single tab wit' a title.</p>
-<div class="tab-panel" data-tab-group="R-tabs-2300c63b9948977e36dcedde3af8e3bc">
+<div class="tab-panel" data-tab-group="R-tabs-5528466ad7b7e4a38d5b106843f4ac15">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-8b3067ecfd8c3e8802721a49082572bf" aria-expanded="true"
+      aria-controls="R-tab-id-e8215b8d721dc6e5040665b4535d61db" aria-expanded="true"
       data-tab-item="R-tab-4a8a08f09d37b73795649038408b5f33"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-2300c63b9948977e36dcedde3af8e3bc','R-tab-4a8a08f09d37b73795649038408b5f33')"
+      onclick="switchTab('R-tabs-5528466ad7b7e4a38d5b106843f4ac15','R-tab-4a8a08f09d37b73795649038408b5f33')"
     >
       <span class="tab-nav-text">c</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-8b3067ecfd8c3e8802721a49082572bf"
+      id="R-tab-id-e8215b8d721dc6e5040665b4535d61db"
       data-tab-item="R-tab-4a8a08f09d37b73795649038408b5f33"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -203,21 +204,21 @@
     </div>
   </div>
 </div>
-<div class="tab-panel" data-tab-group="R-tabs-a6b24935150675540e925a455feb141a">
+<div class="tab-panel" data-tab-group="R-tabs-18da2cdbfea8a35730f9f5697b2688e0">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c1c3e353c22412f1048dbebbd8bfc609" aria-expanded="true"
+      aria-controls="R-tab-id-96af1b03ea9f636a0a7c6f3bee2f9be0" aria-expanded="true"
       data-tab-item="R-tab-1d0684c5c55f0e403749597428a06fd0"
       class="tab-nav-button tab-panel-style cstyle filled active" style="--VARIABLE-BOX-color: blue;" tabindex="-1"
-      onclick="switchTab('R-tabs-a6b24935150675540e925a455feb141a','R-tab-1d0684c5c55f0e403749597428a06fd0')"
+      onclick="switchTab('R-tabs-18da2cdbfea8a35730f9f5697b2688e0','R-tab-1d0684c5c55f0e403749597428a06fd0')"
     >
       <span class="tab-nav-text">Rambl'ns</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c1c3e353c22412f1048dbebbd8bfc609"
+      id="R-tab-id-96af1b03ea9f636a0a7c6f3bee2f9be0"
       data-tab-item="R-tab-1d0684c5c55f0e403749597428a06fd0"
       class="tab-content tab-panel-style cstyle filled active" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -231,7 +232,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-67d4b5bfeda334eeee68c5974c5a9d27" aria-expanded="true"
+      aria-controls="R-tab-id-336f61307747a30d182101e5f6966a3d" aria-expanded="true"
       data-tab-item="R-tab-48f074fa17f82e80816475181040e35f"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-9691d2e718490e633c0467c5421f6980','R-tab-48f074fa17f82e80816475181040e35f')"
@@ -239,7 +240,7 @@
       <span class="tab-nav-text">shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-e280ae73dd793463ce8576c1d346a21a" aria-expanded="false"
+      aria-controls="R-tab-id-b01b5028f1eb262f41eeb78ac534711f" aria-expanded="false"
       data-tab-item="R-tab-0e87c1212a698494dcdb198af3e0eb2f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-9691d2e718490e633c0467c5421f6980','R-tab-0e87c1212a698494dcdb198af3e0eb2f')"
@@ -249,7 +250,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-67d4b5bfeda334eeee68c5974c5a9d27"
+      id="R-tab-id-336f61307747a30d182101e5f6966a3d"
       data-tab-item="R-tab-48f074fa17f82e80816475181040e35f"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -265,7 +266,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-e280ae73dd793463ce8576c1d346a21a"
+      id="R-tab-id-b01b5028f1eb262f41eeb78ac534711f"
       data-tab-item="R-tab-0e87c1212a698494dcdb198af3e0eb2f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -330,21 +331,21 @@
 </span></span></span><span class="line"><span class="cl"><span class="s">printf(&#34;Hello World!&#34;);
 </span></span></span><span class="line"><span class="cl"><span class="s">```</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">tab</span><span class="w"> </span><span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
-<div class="tab-panel" data-tab-group="R-tabs-485ae09543c4c5345d4084f3baa30120">
+<div class="tab-panel" data-tab-group="R-tabs-3bda4005898ff873ddba25b8cb297097">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-ebc5a24c4195b96a29dd435229d3e27e" aria-expanded="true"
+      aria-controls="R-tab-id-3deb9c5286e70ae8ad5e28414b5e62bf" aria-expanded="true"
       data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-485ae09543c4c5345d4084f3baa30120','R-tab-ca0dbad92a874b2f69b549293387925e')"
+      onclick="switchTab('R-tabs-3bda4005898ff873ddba25b8cb297097','R-tab-ca0dbad92a874b2f69b549293387925e')"
     >
       <span class="tab-nav-text">Code</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ebc5a24c4195b96a29dd435229d3e27e"
+      id="R-tab-id-3deb9c5286e70ae8ad5e28414b5e62bf"
       data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -360,21 +361,21 @@
 </span></span></span><span class="line"><span class="cl"><span class="s">printf(&#34;Hello World!&#34;);
 </span></span></span><span class="line"><span class="cl"><span class="s">```</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">tab</span><span class="w"> </span><span class="o">%</span><span class="p">}}</span></span></span></code></pre></div>
-<div class="tab-panel" data-tab-group="R-tabs-6f8de9edf083ada09c8602476d36b9b5">
+<div class="tab-panel" data-tab-group="R-tabs-b05f9985091316532ee8e6ecc786019b">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c69b802f95926e56b0f4f973160fb9d3" aria-expanded="true"
+      aria-controls="R-tab-id-050840cb37131534f61e62762a0dfb53" aria-expanded="true"
       data-tab-item="R-tab-699b4f79215d191584653efebf156e52"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-6f8de9edf083ada09c8602476d36b9b5','R-tab-699b4f79215d191584653efebf156e52')"
+      onclick="switchTab('R-tabs-b05f9985091316532ee8e6ecc786019b','R-tab-699b4f79215d191584653efebf156e52')"
     >
       <span class="tab-nav-text"><em><strong>Mixed</strong></em></span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c69b802f95926e56b0f4f973160fb9d3"
+      id="R-tab-id-050840cb37131534f61e62762a0dfb53"
       data-tab-item="R-tab-699b4f79215d191584653efebf156e52"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -413,53 +414,53 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">This</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">th'</span><span class="w"> </span><span class="nx">background</span><span class="w"> </span><span class="nx">t'</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">lighter</span><span class="w"> </span><span class="nx">version</span><span class="w"> </span><span class="nx">o'</span><span class="w"> </span><span class="nx">th'</span><span class="w"> </span><span class="nx">chosen</span><span class="w"> </span><span class="nx">CSS</span><span class="w"> </span><span class="nx">color</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">an'</span><span class="w"> </span><span class="nx">also</span><span class="w"> </span><span class="nx">affects</span><span class="w"> </span><span class="nx">th'</span><span class="w"> </span><span class="nx">chosen</span><span class="w"> </span><span class="nx">ay'con</span><span class="p">.</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">tab</span><span class="w"> </span><span class="o">%</span><span class="p">}}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{{&lt;</span><span class="w"> </span><span class="o">/</span><span class="nx">tabs</span><span class="w"> </span><span class="p">&gt;}}</span></span></span></code></pre></div>
-<div class="tab-panel" data-tab-group="R-tabs-c422b70955e4733923acd3e22c8edbb5">
+<div class="tab-panel" data-tab-group="R-tabs-156fbe47aa5dbf09e50cd498211abda4">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-fe92796a9103d6d35143073c7d4fcbbe" aria-expanded="true"
+      aria-controls="R-tab-id-d6d0ba356abbb4c5226efad0c0ba0dcf" aria-expanded="true"
       data-tab-item="R-tab-ff4917d1eb9a1d83d864f1909d5e9bab"
       class="tab-nav-button tab-panel-style cstyle blue active" tabindex="-1"
-      onclick="switchTab('R-tabs-c422b70955e4733923acd3e22c8edbb5','R-tab-ff4917d1eb9a1d83d864f1909d5e9bab')"
+      onclick="switchTab('R-tabs-156fbe47aa5dbf09e50cd498211abda4','R-tab-ff4917d1eb9a1d83d864f1909d5e9bab')"
     >
       <span class="tab-nav-text">just colored style</span>
     </button>
     <button
-      aria-controls="R-tab-id-74391e206866237320d9bd325ef58c96" aria-expanded="false"
+      aria-controls="R-tab-id-9f9254ef1c671574c7d64d3ef718870a" aria-expanded="false"
       data-tab-item="R-tab-6c45925b24aade031d63b7397c82b71b"
       class="tab-nav-button tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: blue;"
-      onclick="switchTab('R-tabs-c422b70955e4733923acd3e22c8edbb5','R-tab-6c45925b24aade031d63b7397c82b71b')"
+      onclick="switchTab('R-tabs-156fbe47aa5dbf09e50cd498211abda4','R-tab-6c45925b24aade031d63b7397c82b71b')"
     >
       <span class="tab-nav-text">just color</span>
     </button>
     <button
-      aria-controls="R-tab-id-be36a10108eed35f6c98e5aefd4f72ac" aria-expanded="false"
+      aria-controls="R-tab-id-52af56fdc45dd1a862ee0d3817ac2bac" aria-expanded="false"
       data-tab-item="R-tab-e705d2c767e548231f214413fefa448d"
       class="tab-nav-button tab-panel-style cstyle default" style="--VARIABLE-BOX-color: blue;"
-      onclick="switchTab('R-tabs-c422b70955e4733923acd3e22c8edbb5','R-tab-e705d2c767e548231f214413fefa448d')"
+      onclick="switchTab('R-tabs-156fbe47aa5dbf09e50cd498211abda4','R-tab-e705d2c767e548231f214413fefa448d')"
     >
       <span class="tab-nav-text">default style an' color</span>
     </button>
     <button
-      aria-controls="R-tab-id-c8c56d5507166fd48ae92c433360b7f9" aria-expanded="false"
+      aria-controls="R-tab-id-cbed7072b1c21245fe3f4b5ccdbb2ab7" aria-expanded="false"
       data-tab-item="R-tab-a31be03e34ad44a369706414e9b55b69"
       class="tab-nav-button tab-panel-style cstyle info"
-      onclick="switchTab('R-tabs-c422b70955e4733923acd3e22c8edbb5','R-tab-a31be03e34ad44a369706414e9b55b69')"
+      onclick="switchTab('R-tabs-156fbe47aa5dbf09e50cd498211abda4','R-tab-a31be03e34ad44a369706414e9b55b69')"
     >
       <span class="tab-nav-text"><i class="fa-fw fas fa-info-circle"></i> just severity style</span>
     </button>
     <button
-      aria-controls="R-tab-id-6e84ce38f31533828b9bc6c19d9de01f" aria-expanded="false"
+      aria-controls="R-tab-id-47ffc73348ee6c43193ec12d9fcda75a" aria-expanded="false"
       data-tab-item="R-tab-1dd91ff914cc659fa23da7cfdf4b645e"
       class="tab-nav-button tab-panel-style cstyle info" style="--VARIABLE-BOX-color: blue;"
-      onclick="switchTab('R-tabs-c422b70955e4733923acd3e22c8edbb5','R-tab-1dd91ff914cc659fa23da7cfdf4b645e')"
+      onclick="switchTab('R-tabs-156fbe47aa5dbf09e50cd498211abda4','R-tab-1dd91ff914cc659fa23da7cfdf4b645e')"
     >
       <span class="tab-nav-text"><i class="fa-fw fas fa-info-circle"></i> severity style an' color</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-fe92796a9103d6d35143073c7d4fcbbe"
+      id="R-tab-id-d6d0ba356abbb4c5226efad0c0ba0dcf"
       data-tab-item="R-tab-ff4917d1eb9a1d83d864f1909d5e9bab"
       class="tab-content tab-panel-style cstyle blue active">
       <div class="tab-content-text">
@@ -468,7 +469,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-74391e206866237320d9bd325ef58c96"
+      id="R-tab-id-9f9254ef1c671574c7d64d3ef718870a"
       data-tab-item="R-tab-6c45925b24aade031d63b7397c82b71b"
       class="tab-content tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -477,7 +478,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-be36a10108eed35f6c98e5aefd4f72ac"
+      id="R-tab-id-52af56fdc45dd1a862ee0d3817ac2bac"
       data-tab-item="R-tab-e705d2c767e548231f214413fefa448d"
       class="tab-content tab-panel-style cstyle default" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -486,7 +487,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-c8c56d5507166fd48ae92c433360b7f9"
+      id="R-tab-id-cbed7072b1c21245fe3f4b5ccdbb2ab7"
       data-tab-item="R-tab-a31be03e34ad44a369706414e9b55b69"
       class="tab-content tab-panel-style cstyle info">
       <div class="tab-content-text">
@@ -495,7 +496,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-6e84ce38f31533828b9bc6c19d9de01f"
+      id="R-tab-id-47ffc73348ee6c43193ec12d9fcda75a"
       data-tab-item="R-tab-1dd91ff914cc659fa23da7cfdf4b645e"
       class="tab-content tab-panel-style cstyle info" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -520,8 +521,8 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765021940" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1765021940" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765176467" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1765176467" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

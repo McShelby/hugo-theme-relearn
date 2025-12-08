@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="generator" content="Relearn 8.3.0+afc96780d6eb8e191f4348320533a432763432a6">
+    <meta name="generator" content="Relearn 8.3.0+55f82a77002b8a750d1b5bb3cd265ef753f2b831">
     <meta name="description" content="Reference of CommonMark and Markdown extensions">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,27 +29,27 @@
     <link href="https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown/index.html" rel="alternate" hreflang="en">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/authoring/markdown/index.html" rel="alternate" hreflang="art-x-pir">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/authoring/markdown/index.html" rel="canonical" type="text/html" title="Markdown Syntax :: Hugo Relearn Theme">
-    <link href="/hugo-theme-relearn/images/logo.svg?1765021933" rel="icon" type="image/svg+xml">
-    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765021933" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.js?1765021933" defer></script>
+    <link href="/hugo-theme-relearn/images/logo.svg?1765176460" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1765176460" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1765176460" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1765021933";
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1765176460";
     </script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765021933" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1765176460" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021933" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765021933" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765021933" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.css?1765021933" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.css?1765021933" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176460" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/fontawesome-all.min.css?1765176460" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1765176460" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1765176460" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1765176460" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -75,7 +75,7 @@
       window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
       // variant stuff
       window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
-      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
         window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
@@ -91,8 +91,9 @@
       }
       window.relearn.initVariant = function() {
         var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
           window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
         }
@@ -101,7 +102,7 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.js?1765021933"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.js?1765176460"></script>
     <style>
        
       #R-body img.bg-white {
@@ -1116,8 +1117,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-b890666ed3199ff845b23a6b2f7eabd3" class="lightbox-link"><img alt="Spock" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b890666ed3199ff845b23a6b2f7eabd3"><img alt="Spock" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw"></a></p>
+<p><a href="#R-image-e0772be5bc8dacbe83ea615a0bc1ce25" class="lightbox-link"><img alt="Spock" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e0772be5bc8dacbe83ea615a0bc1ce25"><img alt="Spock" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw"></a></p>
   </div>
 </details>
 <h3 id="image-with-tooltip">Image with Tooltip<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
@@ -1130,8 +1131,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-9652fe479adbd751e4df254dae322bce" class="lightbox-link"><img alt="Picard" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" style="height: auto;width: 20vw;" title="Jean Luc Picard"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9652fe479adbd751e4df254dae322bce"><img alt="Picard" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" title="Jean Luc Picard"></a></p>
+<p><a href="#R-image-f0cbf464f96af0c26ca264260bb3e492" class="lightbox-link"><img alt="Picard" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" style="height: auto;width: 20vw;" title="Jean Luc Picard"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f0cbf464f96af0c26ca264260bb3e492"><img alt="Picard" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" title="Jean Luc Picard"></a></p>
   </div>
 </details>
 <h3 id="image-references">Image References<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
@@ -1146,8 +1147,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-4feb5c1ae55f0102c510f076e6ce6603" class="lightbox-link"><img alt="La Forge" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" style="height: auto;width: 20vw;" title="Geordi La Forge"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4feb5c1ae55f0102c510f076e6ce6603"><img alt="La Forge" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" title="Geordi La Forge"></a></p>
+<p><a href="#R-image-96e40e36bbde8dd5b426783f7ab148a3" class="lightbox-link"><img alt="La Forge" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" style="height: auto;width: 20vw;" title="Geordi La Forge"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-96e40e36bbde8dd5b426783f7ab148a3"><img alt="La Forge" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" title="Geordi La Forge"></a></p>
   </div>
 </details>
 <h3 id="image-effects">Image Effects<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
@@ -1162,8 +1163,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-94fdf3e5e378809d200c936d1910b1e1" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-94fdf3e5e378809d200c936d1910b1e1"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw"></a></p>
+<p><a href="#R-image-0965fddfb7f6faadd00355e35a8311a7" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0965fddfb7f6faadd00355e35a8311a7"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw"></a></p>
   </div>
 </details>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px</span>)</span></span></code></pre></div>
@@ -1174,8 +1175,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-955fae58eee4eca3b9cd1f22383d1bf8" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px" style="height: 50px;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-955fae58eee4eca3b9cd1f22383d1bf8"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px"></a></p>
+<p><a href="#R-image-74becddf1ef160671ccfebfe2a3c0994" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px" style="height: 50px;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-74becddf1ef160671ccfebfe2a3c0994"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px"></a></p>
   </div>
 </details>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw</span>)</span></span></code></pre></div>
@@ -1186,8 +1187,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-8545b324d8d9d07a0db7a9f474c9a670" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw" style="height: 50px;width: 40vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8545b324d8d9d07a0db7a9f474c9a670"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw"></a></p>
+<p><a href="#R-image-055faf05dbbfd9e1431b66b92a3a9b91" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw" style="height: 50px;width: 40vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-055faf05dbbfd9e1431b66b92a3a9b91"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw"></a></p>
   </div>
 </details>
 <h4 id="css-classes">CSS Classes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h4>
@@ -1201,8 +1202,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-8abefa7b976d16130845575c3b1c566d" class="lightbox-link"><img alt="Spidertocat" class="bg-white lazy lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8abefa7b976d16130845575c3b1c566d"><img alt="Spidertocat" class="bg-white lazy lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder"></a></p>
+<p><a href="#R-image-bbe6682a9995ff8084241a4fd82ae8fc" class="lightbox-link"><img alt="Spidertocat" class="bg-white lazy lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bbe6682a9995ff8084241a4fd82ae8fc"><img alt="Spidertocat" class="bg-white lazy lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder"></a></p>
   </div>
 </details>
 <h5 id="border">Border<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -1214,8 +1215,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-b51a7563184c5e125fe531aee59660af" class="lightbox-link"><img alt="DrOctocat" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b51a7563184c5e125fe531aee59660af"><img alt="DrOctocat" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow"></a></p>
+<p><a href="#R-image-26ca2e617999b0f0b30a262a704fa9e5" class="lightbox-link"><img alt="DrOctocat" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-26ca2e617999b0f0b30a262a704fa9e5"><img alt="DrOctocat" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow"></a></p>
   </div>
 </details>
 <h5 id="left">Left<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -1227,8 +1228,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-3114c4b393fbf2ece995bd1ab2352179" class="lightbox-link"><img alt="Supertocat" class="bg-white border lazy left lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3114c4b393fbf2ece995bd1ab2352179"><img alt="Supertocat" class="bg-white border lazy left lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left"></a></p>
+<p><a href="#R-image-da08d2e751d70c2954b21ba81f9284c0" class="lightbox-link"><img alt="Supertocat" class="bg-white border lazy left lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-da08d2e751d70c2954b21ba81f9284c0"><img alt="Supertocat" class="bg-white border lazy left lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left"></a></p>
   </div>
 </details>
 <h5 id="right">Right<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -1240,8 +1241,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-a4cc7f8526d94b91f17dc6c04e064988" class="lightbox-link"><img alt="Riddlocat" class="bg-white border lazy lightbox right figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a4cc7f8526d94b91f17dc6c04e064988"><img alt="Riddlocat" class="bg-white border lazy lightbox right lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right"></a></p>
+<p><a href="#R-image-d072aec8f24ccb36877f503f0af56da2" class="lightbox-link"><img alt="Riddlocat" class="bg-white border lazy lightbox right figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d072aec8f24ccb36877f503f0af56da2"><img alt="Riddlocat" class="bg-white border lazy lightbox right lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right"></a></p>
   </div>
 </details>
 <h5 id="inline">Inline<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -1256,14 +1257,14 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-a94036aaa0f93596d97b77ec99a91146" class="lightbox-link"><img alt="Spidertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a94036aaa0f93596d97b77ec99a91146"><img alt="Spidertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline"></a>
-<a href="#R-image-9987aee8ea2fecf1e2decfbd612f0f18" class="lightbox-link"><img alt="DrOctocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9987aee8ea2fecf1e2decfbd612f0f18"><img alt="DrOctocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline"></a>
-<a href="#R-image-96501792bd5adcbb2162f4fa38a6143e" class="lightbox-link"><img alt="Supertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-96501792bd5adcbb2162f4fa38a6143e"><img alt="Supertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline"></a>
-<a href="#R-image-1ea9b78287b20f8abf14459a499d2a0a" class="lightbox-link"><img alt="Riddlocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1ea9b78287b20f8abf14459a499d2a0a"><img alt="Riddlocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline"></a></p>
+<p><a href="#R-image-34b8a4d1c4688fae2373a9605f5b9241" class="lightbox-link"><img alt="Spidertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-34b8a4d1c4688fae2373a9605f5b9241"><img alt="Spidertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline"></a>
+<a href="#R-image-762c1dde55ff468ad81feb35a341e64c" class="lightbox-link"><img alt="DrOctocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-762c1dde55ff468ad81feb35a341e64c"><img alt="DrOctocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline"></a>
+<a href="#R-image-da02b039f0166dda516da56c9db6388e" class="lightbox-link"><img alt="Supertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-da02b039f0166dda516da56c9db6388e"><img alt="Supertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline"></a>
+<a href="#R-image-02d2e6b905c8bf4443fb92aadf390c97" class="lightbox-link"><img alt="Riddlocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-02d2e6b905c8bf4443fb92aadf390c97"><img alt="Riddlocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline"></a></p>
   </div>
 </details>
 <h5 id="combination">Combination<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -1275,8 +1276,8 @@ line 3 of code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-72476b4fd2eef8e98782549d6e9e7e55" class="lightbox-link"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-72476b4fd2eef8e98782549d6e9e7e55"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left"></a></p>
+<p><a href="#R-image-edb2c7cf1bd44d7a7b353912cc803fb4" class="lightbox-link"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-edb2c7cf1bd44d7a7b353912cc803fb4"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left"></a></p>
   </div>
 </details>
 <h4 id="lightbox">Lightbox<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h4>
@@ -1318,8 +1319,8 @@ line 3 of code
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765021933" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.js?1765021933" defer></script>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1765176460" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1765176460" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
