@@ -10,7 +10,7 @@
 {{- /*
 Logo Detection:
 - Detect default/global logo source from site.Params.logo.src
-- Auto-detect from /images/logo.{svg,webp,png,jpg,jpeg,gif} if not configured
+- Auto-detect from /images/logo.* if not configured
 */}}
 {{- $defaultLogoFound := false }}
 {{- $defaultLogoSrc := "" }}
@@ -28,29 +28,10 @@ Logo Detection:
 {{- end }}
 
 {{- if not $defaultLogoFound }}
-  {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
-  {{- $webp := dict "ext" "webp" "type" "type=\"image/webp\"" }}
-  {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
-  {{- $jpg := dict "ext" "jpg" "type" "type=\"image/jpeg\"" }}
-  {{- $jpeg := dict "ext" "jpeg" "type" "type=\"image/jpeg\"" }}
-  {{- $gif := dict "ext" "gif" "type" "type=\"image/gif\"" }}
-  {{- $imageTypes := slice $svg $webp $png $jpg $jpeg $gif }}
-  {{- $imageNames := slice "logo" }}
-  {{- range $imageNames }}
-    {{- $imageName := . }}
-    {{- range $imageTypes }}
-      {{- $imageType := . }}
-      {{- with resources.Get (printf "/images/%s.%s" $imageName $imageType.ext) }}
-        {{- $defaultLogoFound = true }}
-        {{- $defaultLogoSrc = printf "/images/%s.%s" $imageName $imageType.ext }}
-      {{- end }}
-      {{- if $defaultLogoFound }}
-        {{- break }}
-      {{- end }}
-    {{- end }}
-    {{- if $defaultLogoFound }}
-      {{- break }}
-    {{- end }}
+  {{- $resources := resources.ByType "image" }}
+  {{- with $resources.GetMatch "*logo*" }}
+    {{- $defaultLogoFound = true }}
+    {{- $defaultLogoSrc = .Name }}
   {{- end }}
 {{- end }}
 

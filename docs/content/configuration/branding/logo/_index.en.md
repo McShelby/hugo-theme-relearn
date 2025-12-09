@@ -26,17 +26,11 @@ If you need to change this default behavior, create a new file `layouts/partials
 
 ### Auto-Detection
 
-If you don't configure a logo explicitly, the theme automatically searches for a logo file at `/assets/images/logo.<TYPE>` in the following order of preference:
-
-- `logo.svg`
-- `logo.webp`
-- `logo.png`
-- `logo.jpg` / `logo.jpeg`
-- `logo.gif`
+If you don't configure a logo explicitly, the theme automatically searches for a logo file in the global `/assets` directory and all its subdirectories named `*logo*`.
 
 If no logo is found, only [your site title](configuration/sidebar/headerfooter#title) will be shown.
 
-The size of the logo will adapt automatically.
+The size of the logo will adapt automatically to an opinionated default.
 
 ### Manual Configuration
 
