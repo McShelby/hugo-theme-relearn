@@ -11,20 +11,20 @@ The `openapi` shortcode displays your OpenAPI / Swagger specifications using the
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
+{{< tabs groupid=`shortcode-parameter`>}}
+{{% tab title=`shortcode` %}}
 
 ````go
-{{</* openapi src="https://petstore3.openapi.io/api/v3/openapi.json" */>}}
+{{</* openapi src=`https://petstore3.openapi.io/api/v3/openapi.json` */>}}
 ````
 
 {{% /tab %}}
-{{% tab title="partial" %}}
+{{% tab title=`partial` %}}
 
 ````go
-{{ partial "shortcodes/openapi.html" (dict
-  "page" .
-  "src"  "https://petstore3.openapi.io/api/v3/openapi.json"
+{{ partial `shortcodes/openapi.html` (dict
+  `page` .
+  `src`  `https://petstore3.openapi.io/api/v3/openapi.json`
 )}}
 ````
 
@@ -45,7 +45,7 @@ Instead, open the [print preview](authoring/frontmatter/topbar) in your browser 
 
 ### Enabling Link Warnings
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link can not be resolved to a resource.
+{{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link can not be resolved to a resource.
 
 If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
 
@@ -59,7 +59,7 @@ openapi.errorlevel = 'warning'
 
 ### Loading an External Version of the Swagger UI Library
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.
+{{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.
 
 In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
 
@@ -69,7 +69,7 @@ customOpenapiURL = 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
 
 ### Force Loading of the Swagger UI Library
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an `openapi` shortcode or codefence.
+{{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an `openapi` shortcode or codefence.
 
 You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
@@ -79,14 +79,16 @@ openapi.force = true
 
 ### Setting a Specific Swagger UI Theme
 
-The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` variable in your [color variant stylesheet](configuration/branding/generator). This allows your specs to look pretty when the user switches the color variant.
+The recommended way to configure your Swagger UI theme is to set the default value using the `--OPENAPI-theme` and `OPENAPI-CODE-theme` variable in your [color variant stylesheet](configuration/branding/generator). This allows your specs to look pretty when the user switches the color variant.
+
+The theme uses Swaggers theming support. For `--OPENAPI-theme` the only allowed values are `light` or `dark`. For `--OPENAPI-CODE-theme` [the allowed values](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/) are `agate`, `arta`, `monokai`, `nord`, `obsidian`, `tomorrow-night`, `idea`.
 
 ## Example
 
 ### Using Local File
 
 ````go
-{{</* openapi src="petstore.json" */>}}
+{{</* openapi src=`petstore.json` */>}}
 ````
 
-{{< openapi src="petstore.json" >}}
+{{< openapi src=`petstore.json` >}}
