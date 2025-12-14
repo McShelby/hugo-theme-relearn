@@ -473,12 +473,11 @@ function initOpenapi(update, attrs) {
     oi.id = openapiIframeId;
     oi.classList.toggle('sc-openapi-iframe', true);
     oi.srcdoc = `<!doctype html>
-<html lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
+<html class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="${window.relearn.themeUseOpenapi.css}${assetBuster}">
     <link rel="stylesheet" href="${relBasePath}/css/swagger${min}.css${assetBuster}">
-    <link rel="stylesheet" href="${relBasePath}/css/swagger-${swagger_theme}${min}.css${assetBuster}">
     <link rel="stylesheet" href="${theme}">
     <script>
       function relearn_expand_all() {
