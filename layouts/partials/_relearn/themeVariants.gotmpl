@@ -86,6 +86,14 @@ Generator run:
 - write variant & chroma CSS string of normal variants and for light and dark of auto variants
 - generate logo variant show/hide CSS
 */}}
+{{- define "partials/inline/get-logo-css" }}
+  {{- $variant := . }}
+  {{- print
+    "\n  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='" $variant "'])):not(:has(> .logo-title)) { display: none; }"
+    "\n  #R-logo.R-default > .logo-image[data-r-logo-variant~='" $variant "'] { display: initial; }"
+    "\n  #R-logo.R-default:has(> .logo-image[data-r-logo-variant~='" $variant "']) + search { margin-bottom: 1rem; }"
+  }}
+{{- end }}
 {{- $defaultautothemevariants := slice }}
 {{- $defaultautothemevariants = $defaultautothemevariants | append (index .Site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
 {{- $defaultautothemevariants = $defaultautothemevariants | append (index .Site.Params.themeVariantAuto 1 | default (index $nonautothemevariants 1) | default "relearn-dark") }}
@@ -103,7 +111,7 @@ Generator run:
       ":not([data-r-theme-variant='" $themevariant.identifier "'])"
     }}
     {{- $formathtml = print $formathtml
-      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant$='" $themevariant.identifier "'] {"
+      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
       "\n@media screen and (prefers-color-scheme: light) {"
       "\n" $lightthemevariant.themecontent
       "\n" $lightthemevariant.chromacontent
@@ -126,9 +134,11 @@ Generator run:
       ":not([data-r-theme-variant='" $themevariant.identifier "'])"
     }}
     {{- $formathtml = print $formathtml
-      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant$='" $themevariant.identifier "'] {"
+      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant='" $themevariant.identifier "'] {"
       "\n" $themevariant.themecontent
       "\n" $themevariant.chromacontent
+      "\n}"
+      "\n:root:not([data-r-output-format='print'])[data-r-theme-variant$='" $themevariant.identifier "'] {"
       "\n  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='" $themevariant.identifier "'])):not(:has(> .logo-title)) { display: none; }"
       "\n  #R-logo.R-default > .logo-image[data-r-logo-variant~='" $themevariant.identifier "'] { display: initial; }"
       "\n  #R-logo.R-default:has(> .logo-image[data-r-logo-variant~='" $themevariant.identifier "']) + search { margin-bottom: 1rem; }"
