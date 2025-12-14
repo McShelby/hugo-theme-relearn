@@ -8,10 +8,12 @@ weight = 2
 
 ## Title
 
-{{% badge style="option" %}}Option{{% /badge %}} With the [default partials](configuration/branding/logo#change-the-logo) for the logo, The site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
+{{% badge style="option" %}}Option{{% /badge %}} With the [default partials](configuration/branding/logo#change-the-logo) for the logo, the site title will also be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite `linkTitle`.
+
+If the title is to long to fit on a single line it is automatically wrapped. If you want manual control over the line breaks, you can insert newline characters.
 
 {{< multiconfig file=hugo section=params >}}
-linkTitle = 'Relearn'
+linkTitle = "Relearn\nis the greatest\ntheme since\nsliced bread"
 {{< /multiconfig >}}
 
 ## Home Button Configuration

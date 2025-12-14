@@ -8,6 +8,8 @@
 {{- end }}
 {{- $title = trim $title "\n\r\t " }}
 
+{{- $manualWrap := strings.Contains $title "\n" }}
+
 {{- $direction := site.Params.logo.direction | default "row" }}
 
 {{- /* Build map of variant logos */}}
@@ -35,7 +37,7 @@
 
 {{- /* Render logo container with all variants */}}
 {{- if or $logoGroups $title }}
-        <a id="R-logo" class="R-default direction-{{ $direction }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
+        <a id="R-logo" class="R-default direction-{{ $direction }}{{ if $manualWrap }} manual-wrap{{ end }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
   {{- range $logoSrc, $variants := $logoGroups }}
     {{- $variantList := delimit $variants " " }}
           <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">
