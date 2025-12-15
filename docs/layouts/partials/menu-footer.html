@@ -50,7 +50,7 @@
     setTimeout( githubButtonsInit, 400 );
   });
 </script>
-  {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+  {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
   {{- $minify := not hugo.IsServer }}
   {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
     {{- $minify = site.Params.minify }}

@@ -1,4 +1,4 @@
-{{- $versions := partialCached "_relearn/siteVersions.gotmpl" . }}
+{{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
 {{- $pageVersion := site.Params.version | default "" }}
 {{- if and $versions (not $pageVersion) }}
 	{{- warnf "WARNING you have configured `versions` but did not mark this site with a `version`; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-6-0" }}

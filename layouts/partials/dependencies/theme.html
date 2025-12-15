@@ -1,6 +1,6 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+{{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
 {{- $minify := not hugo.IsServer }}
 {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
   {{- $minify = site.Params.minify }}
@@ -19,7 +19,7 @@
       {{- warnf "WARNING no key `relearnOutputFormat` found in page store; define a block `storeOutputFormat` for your HTML based output format templates and add `{{- .Store.Set \"relearnOutputFormat\" \"<your-output-format-name>\" }}`; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" }}
     {{- end }}
     {{- $min := cond $minify ".min" "" }}
-    {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+    {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
     {{- $quotedthemevariants := slice }}
     {{- range $themevariants }}
       {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
@@ -42,7 +42,7 @@
     <link href="{{(printf "css/theme%s.css" $min) | relURL}}{{ $assetBusting }}" rel="stylesheet">
     <link href="{{(printf "css/format-%s%s.css" $outputFormat $min) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-format-style">
     {{- $versionIndexUrl := "" }}
-    {{- $versions := partialCached "_relearn/siteVersions.gotmpl" . }}
+    {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
     {{- if $versions }}
       {{- $versionIndexUrl = trim (or .Site.Params.versionIndexURL "versionindex.js") "/" }}
       {{- $versionIndexUrl = path.Join (path.Dir $versionIndexUrl) (print (path.BaseName $versionIndexUrl) "." site.Language.Lang (path.Ext $versionIndexUrl)) }}

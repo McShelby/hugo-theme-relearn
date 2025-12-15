@@ -1,4 +1,3 @@
-{{- $page := . }}
 {{- $nonautothemevariants := slice }}
 {{- $formathtmlpre := ":root:not([data-r-output-format='print']):not([data-r-theme-variant^='my-custom-'])" }}
 {{- $formathtml := "" }}
@@ -43,7 +42,7 @@ Unification run:
 - remember default variants for auto mode
 - compute effective logo for non-auto variants
 */}}
-{{- $tempthemevariants := slice | append (.Site.Params.themeVariant | default "auto" ) }}
+{{- $tempthemevariants := slice | append (site.Params.themeVariant | default "auto" ) }}
 {{- $themevariants := slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
   {{- $themevariant := $tempthemevariant }}
@@ -95,8 +94,8 @@ Generator run:
   }}
 {{- end }}
 {{- $defaultautothemevariants := slice }}
-{{- $defaultautothemevariants = $defaultautothemevariants | append (index .Site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
-{{- $defaultautothemevariants = $defaultautothemevariants | append (index .Site.Params.themeVariantAuto 1 | default (index $nonautothemevariants 1) | default "relearn-dark") }}
+{{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
+{{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 1 | default (index $nonautothemevariants 1) | default "relearn-dark") }}
 {{- $tempthemevariants = $themevariants }}
 {{- $themevariants = slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
@@ -168,7 +167,7 @@ Generator run:
 {{- with resources.Get "/css/format-print.css" }}
   {{- $printcontent = .Content }}
 {{- end }}
-{{- $styles := partialCached "_relearn/boxStyles.gotmpl" . }}
+{{- $styles := partialCached "_relearn/boxStyles.gotmpl" site.Home }}
 
 {{- /*
 - Read variables.css and add custom box styles

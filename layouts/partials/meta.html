@@ -40,7 +40,7 @@
     <meta http-equiv="refresh" content="0; url={{ $url }}">
     {{- end }}
     <meta name="description" content="{{ with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}{{ . }}{{ end }}">
-    {{- $authorName := partialCached "_relearn/authorName.gotmpl" . }}
+    {{- $authorName := partialCached "_relearn/authorName.gotmpl" site.Home }}
     <meta name="author" content="{{ $authorName }}">
     {{- partial "twitter_cards.html" . }}
     {{- partial "opengraph.html" . }}

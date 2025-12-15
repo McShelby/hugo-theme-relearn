@@ -2,7 +2,7 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+    {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
     {{- $init := "{}" }}
     {{- if isset .Params "mathjaxinitialize" }}
       {{- $init = .Params.mathJaxInitialize }}

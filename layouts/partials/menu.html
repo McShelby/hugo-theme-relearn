@@ -9,20 +9,20 @@
       <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
         {{- $menuconfigs := .Params.sidebarheadermenus | default site.Params.sidebarheadermenus }}
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
-          {{- $menuconfigs = partialCached "_relearn/defaultSidebarHeader.gotmpl" . }}
+          {{- $menuconfigs = partialCached "_relearn/defaultSidebarHeader.gotmpl" site.Home }}
         {{- end }}
         {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" false) }}
       </div>
       <div id="R-content-wrapper" class="highlightable">
         {{- $menuconfigs := .Params.sidebarmenus | default site.Params.sidebarmenus }}
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
-          {{- $menuconfigs = partialCached "_relearn/defaultSidebar.gotmpl" . }}
+          {{- $menuconfigs = partialCached "_relearn/defaultSidebar.gotmpl" site.Home }}
         {{- end }}
         {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" $showvisitedlinks) }}
         <div id="R-footer-margin" class="default-animation"></div>
         {{- $menuconfigs := .Params.sidebarfootermenus | default site.Params.sidebarfootermenus }}
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
-          {{- $menuconfigs = partialCached "_relearn/defaultSidebarFooter.gotmpl" . }}
+          {{- $menuconfigs = partialCached "_relearn/defaultSidebarFooter.gotmpl" site.Home }}
         {{- end }}
         {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" $showvisitedlinks) }}
 <div id="R-footer" class="default-animation">{{ partial "menu-footer.html" . }}</div>

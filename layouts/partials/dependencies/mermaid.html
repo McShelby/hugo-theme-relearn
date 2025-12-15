@@ -2,7 +2,7 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- $assetBusting := partialCached "assetbusting.gotmpl" . }}
+    {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
     {{- with resources.Get "/js/js-yaml/js-yaml.min.js" }}
     <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
     {{- end }}

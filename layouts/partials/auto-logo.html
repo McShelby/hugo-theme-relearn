@@ -14,7 +14,7 @@
 
 {{- /* Build map of variant logos */}}
 {{- $logoMap := dict }}
-{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" . }}
+{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
 {{- range $themevariants }}
   {{- if and (isset . "logo") (not (isset . "auto")) }}
     {{- $logoMap = merge $logoMap (dict .identifier (dict "src" .logo.src "variant" .identifier)) }}
