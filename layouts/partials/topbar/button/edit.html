@@ -9,8 +9,8 @@
 	{{- if $show }}
 		{{- $filePath := printf "%s%s" (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName }}
 		{{- $href := "" }}
-		{{- if .Site.Params.editURL }}
-			{{- $href = .Site.Params.editURL }}
+		{{- if site.Params.editURL }}
+			{{- $href = site.Params.editURL }}
 			{{- if not (strings.Contains $href "${FilePath}") }}
 				{{- $href = printf "%s%s" $href "${FilePath}" }}
 			{{- end }}

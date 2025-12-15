@@ -1,6 +1,6 @@
 {{- /* based on Hugo 0.135.0 rss.xml */}}
 {{- $authorEmail := "" }}
-{{- with .Site.Params.author }}
+{{- with site.Params.author }}
   {{- if reflect.IsMap . }}
     {{- with .email }}
       {{- $authorEmail = . }}
@@ -11,7 +11,7 @@
 {{- $authorName := partialCached "_relearn/authorName.gotmpl" site.Home }}
 
 {{- $pages := .Pages }}
-{{- $limit := .Site.Config.Services.RSS.Limit }}
+{{- $limit := site.Config.Services.RSS.Limit }}
 {{- if ge $limit 1 }}
   {{- $pages = $pages | first $limit }}
 {{- end }}
@@ -26,7 +26,7 @@
     <generator>Hugo</generator>
     <language>{{ site.Language.LanguageCode }}</language>{{ with $authorEmail }}
     <managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
-    <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with .Site.Copyright }}
+    <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with site.Copyright }}
     <copyright>{{ . }}</copyright>{{ end }}{{ if not .Date.IsZero }}
     <lastBuildDate>{{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     {{- with .OutputFormats.Get "rss" }}
@@ -37,9 +37,9 @@
       {{- if partial "_relearn/pageIsSpecial.gotmpl" . }}
         {{- $visible = false }}
       {{- else if or (eq .Kind "taxonomy") (eq .Kind "term") }}
-        {{- $visible = and .Title .Permalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHidden.gotmpl" . .Path) ) ) }}
+        {{- $visible = and .Title .Permalink (or (ne site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHidden.gotmpl" . .Path) ) ) }}
       {{- else }}
-        {{- $visible = and .Title .Permalink (or (ne .Site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $page) .Path $page.Path) ) ) }}
+        {{- $visible = and .Title .Permalink (or (ne site.Params.disableSeoHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" $page) .Path $page.Path) ) ) }}
       {{- end }}
       {{- if $visible }}
     <item>

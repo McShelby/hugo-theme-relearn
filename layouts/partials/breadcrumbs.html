@@ -41,6 +41,6 @@
   {{- $isLast := eq $url $lasturl }}
   {{- $link := and $url (not $isPage) }}
   {{- if or $.schema (not $class) -}}
-            <li{{ if $.schema }} itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"{{ end }} class="{{ $class | safeHTMLAttr }}">{{ if $link }}<a{{ if $.schema }} itemprop="item"{{ end }} href="{{ $url }}">{{end}}<span{{ if $.schema }} itemprop="name"{{ end }}>{{ $title }}</span>{{ if $link }}</a>{{ end }}{{ if $.schema }}<meta itemprop="position" content="{{ $depth }}">{{ end }}{{ if not $isLast }}{{ (printf "&nbsp;%s&nbsp;" (default ">" .Site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
+            <li{{ if $.schema }} itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"{{ end }} class="{{ $class | safeHTMLAttr }}">{{ if $link }}<a{{ if $.schema }} itemprop="item"{{ end }} href="{{ $url }}">{{end}}<span{{ if $.schema }} itemprop="name"{{ end }}>{{ $title }}</span>{{ if $link }}</a>{{ end }}{{ if $.schema }}<meta itemprop="position" content="{{ $depth }}">{{ end }}{{ if not $isLast }}{{ (printf "&nbsp;%s&nbsp;" (default ">" site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
   {{- end }}
 {{- end }}

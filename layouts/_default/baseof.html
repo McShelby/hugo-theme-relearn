@@ -6,7 +6,7 @@
     {{- errorf "The Relearn theme requires Hugo %s or later" $hugoVersion }}
   {{- end }}
 {{- end }}
-{{- if .Site.Params.description }}
+{{- if site.Params.description }}
   {{- warnf "UNSUPPORTED usage of 'params.description' config parameter found, move it to the front matter of your home page; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/6/#6-0-0" }}
 {{- end }}
 <html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article" data-r-output-format="{{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}">
@@ -40,7 +40,7 @@
     {{- partial "dependencies.html" (dict "page" . "location" "header") }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if .Site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
+  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar" class="default-animation">
@@ -49,7 +49,7 @@
           <div class="topbar-area topbar-area-start" data-area="start">
             {{- partial "topbar/area/start.html" . }}
           </div>
-          {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not .Site.Params.disableBreadcrumb)) }}
+          {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
             {{- partial "breadcrumbs.html" (dict "page" . "schema" true) }}

@@ -44,7 +44,7 @@
     {{- $versionIndexUrl := "" }}
     {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
     {{- if $versions }}
-      {{- $versionIndexUrl = trim (or .Site.Params.versionIndexURL "versionindex.js") "/" }}
+      {{- $versionIndexUrl = trim (or site.Params.versionIndexURL "versionindex.js") "/" }}
       {{- $versionIndexUrl = path.Join (path.Dir $versionIndexUrl) (print (path.BaseName $versionIndexUrl) "." site.Language.Lang (path.Ext $versionIndexUrl)) }}
       {{- if .IsHome }}
         {{- $templateres := resources.Get "/_relearn_versionindex.js" }}
@@ -66,7 +66,7 @@
       window.relearn.path='{{ $path | safeJS }}';
       window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
       window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
-      window.relearn.absBaseUri='{{ replaceRE "/*$" "" .Site.BaseURL | safeJS }}';
+      window.relearn.absBaseUri='{{ replaceRE "/*$" "" site.BaseURL | safeJS }}';
       {{- if $versionIndexUrl }}
       window.relearn.version_js_url={{ (printf "%s%s" $versionIndexUrl $assetBusting) | relURL }};
       {{- end }}

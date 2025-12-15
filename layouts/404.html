@@ -7,7 +7,7 @@
     <title>{{ $title }}</title>
 
     {{- /* because this file can be called from literally any URL inside your project, we need to base all relative URLs to make them work */}}
-    <base href="{{ .Site.BaseURL }}">
+    <base href="{{ site.BaseURL }}">
 
     {{- partialCached "favicon.html" site.Home }}
     {{- partial "dependencies.html" (dict "page" . "location" "header") }}
@@ -23,7 +23,7 @@
             <p></p>
             <p>{{ T "message-404" }}</p>
             <p></p>
-            <p><a href="{{ partial "permalink.gotmpl" (dict "to" .Site.Home) }}">{{ T "Go-to-homepage" }}</a></p>
+            <p><a href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">{{ T "Go-to-homepage" }}</a></p>
             <p id="shrug">
               <svg xmlns="http://www.w3.org/2000/svg"
  viewBox="0 0 512.000000 512.000000"

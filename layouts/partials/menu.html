@@ -6,7 +6,7 @@
         {{- partial "logo.html" . }}
         {{- partial "dependencies.html" (dict "page" . "location" "search") }}
       </div>
-      <div id="R-homelinks" class="default-animation{{ if not .Site.Params.disableLandingPageButton }} homelinks{{ end }}">
+      <div id="R-homelinks" class="default-animation{{ if not site.Params.disableLandingPageButton }} homelinks{{ end }}">
         {{- $menuconfigs := .Params.sidebarheadermenus | default site.Params.sidebarheadermenus }}
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
           {{- $menuconfigs = partialCached "_relearn/defaultSidebarHeader.gotmpl" site.Home }}

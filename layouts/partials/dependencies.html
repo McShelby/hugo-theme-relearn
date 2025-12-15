@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- $location := .location }}
 {{- partialCached "_relearn/dependencies.gotmpl" $page $page.Path }}
-{{- range $k, $v := $page.Site.Params.relearn.dependencies }}
+{{- range $k, $v := site.Params.relearn.dependencies }}
 	{{- $needs := printf "needs%s" $v.name }}
 	{{- $has := printf "has%s" $v.name }}
 	{{- $hasnested := printf "relearnHasNested%s" $v.name }}

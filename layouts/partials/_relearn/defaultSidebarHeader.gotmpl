@@ -8,7 +8,7 @@
   {{- if (ne site.Params.landingPageURL nil) }}
     {{- warnf "UNSUPPORTED usage of 'landingPageURL' config parameter found, remove it and optionally overwrite the `logo.html` partial to provide a link if it should not point to the project's home page; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/4/#4-2-0" }}
   {{- end }}
-  {{- $title := trim (.Site.Params.landingPageName | plainify) "\n\r\t " }}
+  {{- $title := trim (site.Params.landingPageName | plainify) "\n\r\t " }}
   {{- $pre := "" }}
   {{- $post := "" }}
   {{- if $title }}

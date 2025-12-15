@@ -1,7 +1,7 @@
 {{- $pages := slice }}
-{{- range .Site.Pages }}
+{{- range site.Pages }}
   {{- if partial "_relearn/pageIsSpecial.gotmpl" . }}
-  {{- else if and .Title .RelPermalink (or (ne .Site.Params.disableSearchHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
+  {{- else if and .Title .RelPermalink (or (ne site.Params.disableSearchHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" site.Home) .Path site.Home.Path) ) ) }}
     {{- $tags := slice }}
     {{- range .GetTerms "tags" }}
       {{- $tags = $tags | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify) }}
