@@ -3,6 +3,7 @@
   {{- $taxonomy = .page.GetPage $taxonomy }}
 {{- end }}
 {{- with $taxonomy }}
+  {{- $breadcrumb := .Params.children.breadcrumb }}
   {{- $cardtemplate := .Params.children.cardtemplate }}
   {{- $description := .Params.children.description }}
   {{- $headingdepth := .Params.children.headingdepth }}
@@ -17,6 +18,7 @@
   {{- partial "shortcodes/children.html" (dict
     "page"         .
     "pages"        $pages
+    "breadcrumb"   $breadcrumb
     "cardtemplate" $cardtemplate
     "description"  $description
     "headingdepth" $headingdepth
