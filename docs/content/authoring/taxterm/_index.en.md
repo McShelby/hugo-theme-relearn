@@ -20,7 +20,7 @@ For example the [_Categories_ taxonomy](categories) does not show a grouped list
 
 ## Term Parameter
 
-{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The list of terms is displayed using the [`children` shortcode](shortcodes/children). You can overwrite the `children` parameter in your front matter. Use a cascade configuration to inherit parameter down to every term page.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The list of terms is displayed using the [`children` shortcode](shortcodes/children). You can overwrite the `children` parameter in your front matter. Use a cascade configuration on your taxonomy page to inherit parameter down to every term page.
 
 {{< multiconfig fm=true >}}
 [[cascade]]
