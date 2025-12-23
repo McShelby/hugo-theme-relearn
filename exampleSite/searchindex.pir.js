@@ -17,7 +17,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Purple Pulpo \u003e The Ship",
-    "content": "Th' highest point o' our mighty vessel! Up here, th' crow’s nest scout shouts coordinates t' our helmsman below, though sometimes they’re just play'n an elaborate game o' maritime telephone. Th' crow’s nest offers th' best views 'n th' house (or ship), perfect fer spott'n incom'n weather, distant lands, or that seagull that keeps steal'n th' captain’s lunch.\nCrow's NestWhar' our lookout pretends t' spot land while actually napp'n\nTh' HelmHome t' our steer'n wheel, which may or may not be connected t' anyth'n",
+    "content": "Th' highest point o' our mighty vessel! Up here, th' crow’s nest scout shouts coordinates t' our helmsman below, though sometimes they’re just play'n an elaborate game o' maritime telephone. Th' crow’s nest offers th' best views 'n th' house (or ship), perfect fer spott'n incom'n weather, distant lands, or that seagull that keeps steal'n th' captain’s lunch.",
     "description": "Where seagulls dare to land and captains steer with flair",
     "tags": [],
     "title": "Upper Decks",
@@ -25,7 +25,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Purple Pulpo",
-    "content": "Captain Hugo report'n from th' quarterdeck o' th' magnificent Th' Purple Pulpo. Th' seas be fair, an' our hold be brimm'n wit' exotic cargo bound fer distant ports. Our seasoned crew stands ready fer another adventure across th' Seven Seas.\nOperat'n Squid Spaghetti Our midnight run involved top-secret pasta flour an' premium marinara crucial fer th' realm’s spiciest mission. Th' crew was amped!\nDay 1Launch Day\nDay 2At Sea\nDay 3Island Arrival",
+    "content": "Captain Hugo report'n from th' quarterdeck o' th' magnificent Th' Purple Pulpo. Th' seas be fair, an' our hold be brimm'n wit' exotic cargo bound fer distant ports. Our seasoned crew stands ready fer another adventure across th' Seven Seas.\nOperat'n Squid Spaghetti Our midnight run involved top-secret pasta flour an' premium marinara crucial fer th' realm’s spiciest mission. Th' crew was amped!",
     "description": "The Captain's Log",
     "tags": [],
     "title": "Captain's Log",
@@ -41,7 +41,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Purple Pulpo \u003e The Ship",
-    "content": "Th' heart o' shipboard shenanigans, whar' th' captain’s dignified stride from their cabin inevitably collides wit' sailors roll'n barrels across th' deck.\nCoffee aromas from th' Captain’s cabin wage a constant battle wit' th' hearty snores echo'n from th' crew bunks. It’s that magical space whar' formal reports mysteriously acquire coffee r'ns, an' th' crew’s sea shanties somehow find their way through th' captain’s supposedly soundproof door.\nA daily theater o' nautical life whar' rank meets reality, an' everyone pretends not t' notice th' first mate sleepwalk'n 'n their pajamas.\nCaptain's CabinA luxurious 4x4 room, home t' our beloved Captain Hugo, wit' a genuine fake window\nCrew QuartersWhar' dreams o' mutiny an' tales o' sea monsters be equally shared",
+    "content": "Th' heart o' shipboard shenanigans, whar' th' captain’s dignified stride from their cabin inevitably collides wit' sailors roll'n barrels across th' deck.\nCoffee aromas from th' Captain’s cabin wage a constant battle wit' th' hearty snores echo'n from th' crew bunks. It’s that magical space whar' formal reports mysteriously acquire coffee r'ns, an' th' crew’s sea shanties somehow find their way through th' captain’s supposedly soundproof door.\nA daily theater o' nautical life whar' rank meets reality, an' everyone pretends not t' notice th' first mate sleepwalk'n 'n their pajamas.",
     "description": "Where captains and crew collide in organized chaos",
     "tags": [],
     "title": "Midst Ship",
