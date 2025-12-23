@@ -30,4 +30,4 @@ For example the [_Categories_ taxonomy](categories) does not show a grouped list
 	  description = true
 {{< /multiconfig >}}
 
-The term pages of the [_Categories_ taxonomy] do not show their breadcrumbs like in the default but the description of the page.
+The term pages of the [_Categories_ taxonomy](categories) do not show their breadcrumbs like in the default but the description of the page.
