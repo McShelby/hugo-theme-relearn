@@ -942,11 +942,16 @@ p:empty {
 
 /* Children shortcode */
 
+.children-type-group + ul p + p,
+.children-type-groupInternal p,
 .children-type-tree p,
 .children-type-flat p {
+  font-size: 0.859625rem;
   font-style: italic;
 }
 
+.children-type-group + ul p,
+.children-type-groupInternal p,
 .children-type-tree p,
 .children-type-list p,
 .children-type-flat p {
@@ -2491,16 +2496,19 @@ body #R-logo svg [fill='#000000'] {
 
 /* columnize content */
 
-.columnize {
+:is(h1, h2, h3, h4, h5, h6).columnize + ul,
+:is(:not(h1), :not(h2), :not(h3), :not(h4), :not(h5), :not(h6)).columnize {
   column-count: 2;
 }
 @media screen and (min-width: 79.25rem) {
-  .columnize {
+  :is(h1, h2, h3, h4, h5, h6).columnize + ul,
+  :is(:not(h1), :not(h2), :not(h3), :not(h4), :not(h5), :not(h6)).columnize {
     column-count: 3;
   }
 }
 
-.columnize > * {
+:is(h1, h2, h3, h4, h5, h6).columnize + ul > *,
+:is(:not(h1), :not(h2), :not(h3), :not(h4), :not(h5), :not(h6)).columnize > * {
   break-inside: avoid-column;
 }
 

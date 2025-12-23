@@ -5,11 +5,16 @@
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'children' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
 {{- $type := .type | default "tree" }}
-{{- $showhidden := .showhidden | default false }}
-{{- if eq (printf "%T" $showhidden) "string" }}
-  {{- $showhidden = (eq $showhidden "true") }}
+{{- $showHidden := .showhidden | default false }}
+{{- if eq (printf "%T" $showHidden) "string" }}
+  {{- $showHidden = (eq $showHidden "true") }}
 {{- end }}
 {{- $depth := .depth | default 1 }}
+{{- /* breadcrumb is an internal parameter only used by taxonomy/terms */}}
+{{- $withBreadcrumb := .breadcrumb | default false }}
+{{- if eq (printf "%T" $withBreadcrumb) "string" }}
+  {{- $withBreadcrumb = (eq $withBreadcrumb "true") }}
+{{- end }}
 {{- $withDescription := .description | default false }}
 {{- if eq (printf "%T" $withDescription) "string" }}
   {{- $withDescription = (eq $withDescription "true") }}
@@ -19,7 +24,8 @@
   {{- $withImage = (eq $withImage "true") }}
 {{- end }}
 {{- $sortTerm := .sort | lower }}
-{{- $cardtemplate := .cardtemplate | default "default" }}
+{{- $cardTemplate := .cardtemplate | default "default" }}
+
 {{- if or .containerstyle .style }}
   {{- if or (eq .containerstyle "ul") (eq .style "li") }}
     {{- $type = "tree" }}
@@ -31,90 +37,185 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'containerstyle' or 'style' for shortcode 'children' found, use 'type=%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-1-0" $filepath $type }}
 {{- end }}
+
+{{- $headingDepth := (math.Max 1 (math.Min 6 (.headingdepth | default 2))) | int }}
 {{- $style := "div" }}
-{{- $containerstyle := "div" }}
+{{- $containerStyle := "div" }}
+{{- $classes := "" }}
 {{- if eq $type "tree" }}
   {{- $style = "li" }}
-  {{- $containerstyle = "ul" }}
+  {{- $containerStyle = "ul" }}
+{{- else if or
+  (eq $type "group")
+  (eq $type "groupInternal")
+}}
+  {{- $style = "li" }}
+  {{- $containerStyle = "ul" }}
+  {{- $classes = " columnize" }}
+  {{- $depth = 1 }}
 {{- end }}
 
-{{- with $page -}}
-{{ (printf "<%s class=\"children children-type-%s children-sort-%s\">" $containerstyle $type $sortTerm)|safeHTML }}
-  {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
-  {{- if eq $type "card" }}
-    {{- $cards := slice }}
-    {{- range $pages }}
-      {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
-      {{- if not $hidden }}
-        {{- $cardimage := "" }}
-        {{- if $withImage }}
-          {{- $images := partial "_funcs/get-page-images" . }}
-          {{- with index $images 0 }}
-            {{- if .Image }}
-              {{- $cardimage = .Image.Name }}
-            {{- else }}
-              {{- $cardimage = .RelPermalink }}
-            {{- end }}
+{{- $pages := .pages | default (partial "_relearn/pages.gotmpl" (dict "page" $page "by" $sortTerm)) }}
+{{- $groups := slice }}
+{{- if or
+  (eq $type "group")
+  (eq $type "groupInternal")
+}}
+  {{- $groupPages := slice }}
+  {{- $lastCapital := "" }}
+  {{- range $pages }}
+    {{- $page := .Page }}
+    {{- $title := .LinkTitle | default $page.LinkTitle }}
+    {{- $capital := substr $title 0 1 | upper }}
+    {{- if ne $lastCapital $capital }}
+      {{- if ne $lastCapital "" }}
+        {{- $groups = $groups | append (dict "capital" $lastCapital "pages" $groupPages) }}
+        {{- $groupPages = slice }}
+      {{- end }}
+      {{- $lastCapital = $capital }}
+    {{- end }}
+    {{- $groupPages = $groupPages | append . }}
+  {{- end }}
+  {{- if ne $lastCapital "" }}
+    {{- $groups = $groups | append (dict "capital" $lastCapital "pages" $groupPages) }}
+  {{- end }}
+{{- else if $pages }}
+  {{- $groups = $groups | append (dict "capital" "" "pages" $pages) }}
+{{- end }}
+
+{{- range $groups }}
+  {{- if eq $.type "group" }}
+    {{- /* using Markdown here allows the headings to be inserted into the TOC;
+      for taxonomy/term pages we do this differently as we there know the order of TOC items
+    */}}
+    {{- if .capital }}
+{{ strings.Repeat $headingDepth "#" }} {{ .capital }} {class="children children-type-{{$type}} children-sort-{{$sortTerm}}{{$classes}}"}
+
+{{ partial "inline/children/group" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "containerStyle" $containerStyle "style" $style) }}
+    {{- end }}
+  {{- else }}
+    {{- /* this is for type=groupInternal used in the taxonomy/term; this allows the user to see
+      taxonomy/term pages without the need for setting markup.goldmark.parser.attribute.title=true
+    */}}
+    {{- if .capital }}
+{{ (printf `<h%d id="%s">%s</h%d>` $headingDepth (.capital | plainify | anchorize) .capital $headingDepth) | safeHTML }}
+    {{- end }}
+{{ (printf `<%s class="children children-type-%s children-sort-%s%s">` $containerStyle $type $sortTerm $classes) | safeHTML }}
+    {{- if eq $.type "card" }}
+      {{- partial "inline/children/cards" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "withImage" $withImage "page" $page) }}
+    {{- else }}
+      {{- partial "inline/children/default" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "containerStyle" $containerStyle "style" $style) }}
+    {{- end }}
+{{ (printf "</%s>" $containerStyle) | safeHTML }}
+  {{- end }}
+{{- end }}
+
+{{- define "partials/inline/children/default" }}
+  {{- range .pages }}
+    {{- $page := .Page }}
+    {{- $title := .LinkTitle | default $page.LinkTitle }}
+    {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
+    {{- if not $hidden }}
+      {{- if not $page.IsHome }}
+        {{- if eq $.style "li" }}
+{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int)) | safeHTML }}{{ if $page.RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" $page) }}">{{ $title }}</a>{{ else }}<span>{{ $title }}</span>{{ end }}
+        {{- else }}
+{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int)) | safeHTML }}{{ if $page.RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" $page) }}">{{ $title }}</a>{{ else }}<span>{{ $title }}</span>{{ end }}{{ (printf "</%s>" $.style) | safeHTML }}
+        {{- end }}
+        {{- if $.withBreadcrumb }}
+          {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
+          {{- with $breadcrumb -}}
+<p class="breadcrumbs highlightable" title="{{ . }}">{{ . }}</p>
           {{- end }}
         {{- end }}
-        {{- $cards = $cards | append (dict
-          "content"  (cond $withDescription (or .Description .Summary | plainify) "")
-          "href"     .Path
-          "image"    $cardimage
-          "title"    .LinkTitle
-          "template" $cardtemplate
-          "params"   (dict
-            "page"        .
-            "depth"       $depth
-            "description" $withDescription
-            "showhidden"  $showhidden
-            "sort"        $sortTerm
-          )
-        ) }}
-      {{- end }}
-    {{- end }}
-    {{- partial "shortcodes/cards.html" (dict
-      "page"     .
-      "content"  $cards
-    ) }}
-  {{- else }}
-    {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $containerstyle "style" $style "showhidden" $showhidden "count" 1 "depth" $depth "pages" .Site.Pages "description" $withDescription "sortTerm" $sortTerm "page" .) }}
-  {{- end }}
-{{ (printf "</%s>" $containerstyle)|safeHTML }}
-{{- end }}
-
-{{- define "partials/inline/childs" }}
-  {{- $page := .page }}
-  {{- range .menu }}
-    {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $.showhidden) }}
-    {{- if not $hidden }}
-      {{- if not .IsHome }}
-        {{- if eq $.style "li" }}
-{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int))|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}
-        {{- else }}
-{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int))|safeHTML }}{{ if .RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" .) }}">{{ .LinkTitle }}</a>{{ else }}<span>{{ .LinkTitle }}</span>{{ end }}{{ (printf "</%s>" $.style)|safeHTML }}
-        {{- end }}
-        {{- if $.description }}
-          {{- with or .Description .Summary | plainify -}}
-<p>{{ . }}</p>
+        {{- if $.withDescription }}
+          {{- with or $page.Description $page.Summary | plainify -}}
+<p class="description highlightable" >{{ . }}</p>
           {{- end }}
         {{- end }}
       {{- end }}
       {{- if lt $.count $.depth }}
         {{- if eq $.style "li" }}
-{{- (printf "<%s>" $.containerstyle)|safeHTML }}
+{{- (printf "<%s>" $.containerStyle) | safeHTML }}
         {{- end }}
-        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $.sortTerm) }}
-        {{- partial "inline/childs" (dict "menu" $pages "containerstyle" $.containerstyle "style" $.style "showhidden" $.showhidden "count" (add $.count 1) "depth" $.depth "pages" $.pages "description" $.description "sortTerm" $.sortTerm "page" $page) }}
+        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" $page "by" $.sortTerm) }}
+        {{- partial "inline/children/default" (dict "pages" $pages "count" (add $.count 1) "depth" $.depth "showHidden" $.showHidden "withBreadcrumb" $.withBreadcrumb "withDescription" $.withDescription "containerStyle" $.containerStyle "style" $.style) }}
         {{- if eq $.style "li" }}
-{{- (printf "</%s>" $.containerstyle)|safeHTML }}
+{{- (printf "</%s>" $.containerStyle) | safeHTML }}
         {{- end }}
       {{- end }}
-      {{- if not .IsHome }}
+      {{- if not $page.IsHome }}
         {{- if eq $.style "li" }}
-{{- (printf "</%s>" $.style)|safeHTML -}}
+{{- (printf "</%s>" $.style) | safeHTML -}}
         {{- end }}
       {{- end }}
     {{- end }}
   {{- end }}
+{{- end }}
+
+{{- define "partials/inline/children/group" }}
+  {{- range .pages }}
+    {{- $page := .Page }}
+    {{- $title := .LinkTitle | default $page.LinkTitle }}
+    {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
+    {{- if not $hidden }}
+      {{- if not $page.IsHome }}
+        {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
+        {{- $description := or $page.Description $page.Summary | plainify }}
+- {{ if $page.RelPermalink }}[{{ $title }}]({{ $page.RelPermalink }}){{ else }}{{ $title }}{{ end }}
+        {{- if $.withBreadcrumb }}
+          {{- with $breadcrumb }}
+
+    {{ . }}
+          {{- end }}
+        {{- end }}
+        {{- if $.withDescription }}
+          {{- with $description }}
+
+    {{ . }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- define "partials/inline/children/cards" }}
+  {{- $cards := slice }}
+  {{- range .pages }}
+    {{- $page := .Page }}
+    {{- $title := .LinkTitle | default $page.LinkTitle }}
+    {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
+    {{- if not $hidden }}
+      {{- $cardImage := "" }}
+      {{- if $.withImage }}
+        {{- $images := partial "_funcs/get-page-images" $page }}
+        {{- with index $images 0 }}
+          {{- if .Image }}
+            {{- $cardImage = .Image.Name }}
+          {{- else }}
+            {{- $cardImage = .RelPermalink }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- $cards = $cards | append (dict
+        "content"  (cond $.withDescription (or $page.Description $page.Summary | plainify) "")
+        "href"     $page.Path
+        "image"    $cardImage
+        "title"    $title
+        "template" $.cardTemplate
+        "params"   (dict
+          "page"        $page
+          "depth"       $.depth
+          "description" $.withDescription
+          "showhidden"  $.showHidden
+          "sort"        $.sortTerm
+        )
+      ) }}
+    {{- end }}
+  {{- end }}
+  {{- partial "shortcodes/cards.html" (dict
+    "page"     $.page
+    "content"  $cards
+  ) }}
 {{- end }}
