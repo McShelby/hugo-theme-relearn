@@ -2,29 +2,31 @@
 {{- if eq "string" (printf "%T" $term) }}
   {{- $term = .page.GetPage $term }}
 {{- end }}
-{{- $headingstyle := .headingstyle | default "h2" }}
 {{- with $term }}
-{{- .Content }}
-{{- $lastCapital := "" }}
-{{- $pages := partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
-{{- range $pages }}
-  {{- $capital := substr .Title 0 1 | upper }}
-  {{- if ne $lastCapital $capital }}
-    {{- if ne $lastCapital "" }}
-</ul>
-    {{- end }}
-{{ (printf `<%s id="%s">%s</%s>` $headingstyle ($capital | plainify | anchorize) $capital $headingstyle) | safeHTML }}
-<ul class="columnize">
+  {{- $breadcrumb := (ne .Page.Site.Params.disableTermBreadcrumbs true) }}
+  {{- if and (isset .Params "children") (isset .Params.children "breadcrumb") }}
+    {{- $breadcrumb = .Params.children.breadcrumb }}
   {{- end }}
-  {{- /* display pages of a term */}}
-  {{- $breadcrumb := "" }}
-  {{- if (ne .Page.Site.Params.disableTermBreadcrumbs true) }}
-    {{- $breadcrumb = trim (partial "breadcrumbs.html" (dict "page" .Page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
+  {{- $cardtemplate := .Params.children.cardtemplate }}
+  {{- $description := .Params.children.description }}
+  {{- $headingdepth := .Params.children.headingdepth }}
+  {{- $image := .Params.children.image }}
+  {{- $type := .Params.children.type | default "groupInternal" }}
+  {{- if eq $type "group" }}
+    {{- $type = "groupInternal" }}
   {{- end }}
-  <li><a href="{{ partial "permalink.gotmpl" (dict "to" .Page) }}">{{ .Title }}</a>{{ with $breadcrumb }}<div class="breadcrumbs highlightable" title="{{ . }}">{{ . }}</div>{{ end }}</li>
-  {{- $lastCapital = $capital }}
-{{- end }}
-{{- if ne $lastCapital "" }}
-</ul>
-{{- end }}
+
+  {{- .Content }}
+  {{- $pages := partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
+  {{- partial "shortcodes/children.html" (dict
+    "page"         .
+    "pages"        $pages
+    "breadcrumb"   $breadcrumb
+    "cardtemplate" $cardtemplate
+    "description"  $description
+    "headingdepth" $headingdepth
+    "image"        $image
+    "showhidden"   true
+    "type"         $type
+  )}}
 {{- end }}

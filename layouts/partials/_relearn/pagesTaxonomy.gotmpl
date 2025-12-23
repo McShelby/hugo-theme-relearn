@@ -8,8 +8,8 @@
     {{- end }}
   {{- end }}
   {{- if $count }}
-    {{- $pages = $pages| append (dict "Title" (partial "title.gotmpl" (dict "page" .Page "linkTitle" true)) "Page" .Page "Count" $count )}}
+    {{- $pages = $pages| append (dict "LinkTitle" (printf "%s (%d)" (partial "title.gotmpl" (dict "page" .Page "linkTitle" true)) $count) "Page" .Page "Count" $count )}}
   {{- end }}
 {{- end }}
-{{- $pages = sort $pages ".Title" }}
+{{- $pages = sort $pages ".LinkTitle" }}
 {{- return $pages }}

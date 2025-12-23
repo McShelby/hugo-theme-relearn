@@ -1,8 +1,8 @@
 {{- $pages := slice }}
 {{- range .Pages }}
   {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
-    {{- $pages = $pages | append (dict "Title" .Title "Page" . )}}
+    {{- $pages = $pages | append (dict "LinkTitle" .Title "Page" . )}}
   {{- end }}
 {{- end }}
-{{- $pages = sort $pages ".Title" }}
+{{- $pages = sort $pages ".LinkTitle" }}
 {{- return $pages }}

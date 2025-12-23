@@ -1,14 +1,18 @@
 {{- if or (eq .Kind "taxonomy") (eq .Kind "term") }}
   {{- $lastCapital := "" }}
   {{- $pages := slice }}
-  {{- if eq .Kind "taxonomy" }}
-    {{- $pages = partialCached "_relearn/pagesTaxonomy.gotmpl" . .Path }}
-  {{- else if eq .Kind "term" }}
-    {{- $pages = partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
+  {{- $type := .Params.children.type | default "groupInternal" }}
+  {{- if or (eq $type "group") (eq $type "groupInternal") }}
+    {{- if eq .Kind "taxonomy" }}
+      {{- $pages = partialCached "_relearn/pagesTaxonomy.gotmpl" . .Path }}
+    {{- else if eq .Kind "term" }}
+      {{- $pages = partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
+    {{- end }}
   {{- end }}
+
   {{- $toc_pages := "" }}
   {{- range $pages }}
-    {{- $capital := substr .Title 0 1 | upper }}
+    {{- $capital := substr .LinkTitle 0 1 | upper }}
     {{- if ne $lastCapital $capital }}
       {{- $toc_pages = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_pages ($capital | plainify | anchorize) $capital }}
     {{- end }}

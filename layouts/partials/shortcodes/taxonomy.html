@@ -2,25 +2,26 @@
 {{- if eq "string" (printf "%T" $taxonomy) }}
   {{- $taxonomy = .page.GetPage $taxonomy }}
 {{- end }}
-{{- $headingstyle := .headingstyle | default "h2" }}
 {{- with $taxonomy }}
-{{- .Content }}
-{{- $lastCapital := "" }}
-{{- $pages := partialCached "_relearn/pagesTaxonomy.gotmpl" . .Path }}
-{{- range $pages }}
-  {{- $capital := substr .Title 0 1 | upper }}
-  {{- if ne $lastCapital $capital }}
-    {{- if ne $lastCapital "" }}
-</ul>
-    {{- end }}
-{{ (printf `<%s id="%s">%s</%s>` $headingstyle ($capital | plainify | anchorize) $capital $headingstyle) | safeHTML }}
-<ul class="columnize">
+  {{- $cardtemplate := .Params.children.cardtemplate }}
+  {{- $description := .Params.children.description }}
+  {{- $headingdepth := .Params.children.headingdepth }}
+  {{- $image := .Params.children.image }}
+  {{- $type := .Params.children.type | default "groupInternal" }}
+  {{- if eq $type "group" }}
+    {{- $type = "groupInternal" }}
   {{- end }}
-  {{- /* display terms of a taxonomy */}}
-  <li><a href="{{ partial "permalink.gotmpl" (dict "to" .Page) }}">{{ .Title }}</a> ({{ .Count }})</li>
-  {{- $lastCapital = $capital }}
-{{- end }}
-{{- if ne $lastCapital "" }}
-</ul>
-{{- end }}
+
+  {{- .Content }}
+  {{- $pages := partialCached "_relearn/pagesTaxonomy.gotmpl" . .Path }}
+  {{- partial "shortcodes/children.html" (dict
+    "page"         .
+    "pages"        $pages
+    "cardtemplate" $cardtemplate
+    "description"  $description
+    "headingdepth" $headingdepth
+    "image"        $image
+    "showhidden"   true
+    "type"         $type
+  )}}
 {{- end }}
