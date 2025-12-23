@@ -26,7 +26,7 @@ That's some more text with a footnote.[^someid]
 {{% tab title="markdown" %}}
 
 ````md
-> [!transparent]- Expand me...
+> [!details]- Expand me...
 > Thank you!
 ````
 
@@ -68,7 +68,7 @@ The theme supports Hugo’s built-in [`details` shortcode](https://gohugo.io/con
 
 | Name                  | Position | Default          | Notes       |
 |-----------------------|----------|------------------|-------------|
-| **title**             | 1        | `"Expand me..."` | Arbitrary text to appear next to the expand/collapse icon. |
+| **title**             | 1        | `"Details"` | Arbitrary text to appear next to the expand/collapse icon. |
 | **expanded**          | 2        | `false`          | How the content is displayed.<br><br>- `true`: the content is initially shown<br>- `false`: the content is initially hidden |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Arbitrary text to be displayed on expand. |
 

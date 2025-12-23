@@ -1,9 +1,11 @@
 {{- $alerttype := .AlertType }}
+{{- if eq $alerttype "details"}}
+  {{- $alerttype = "transparent" }}
+{{- end }}
 {{- $alerttitle := "" }}
 {{- $alertsign := "" }}
-{{- $hugoVersion := "0.134.0" }}
-{{- if ge hugo.Version $hugoVersion }}
-  {{- $alerttitle = .AlertTitle }}
+{{- if $alerttype }}
+  {{- $alerttitle = .AlertTitle | default (T "Details") }}
   {{- $alertsign = .AlertSign }}
 {{- end }}
 {{- $text := .Text }}

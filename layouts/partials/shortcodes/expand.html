@@ -4,7 +4,7 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'expand' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $title := .title | default (T "Expand-title") }}
+{{- $title := .title | default (T "Details") }}
 {{- $title = trim $title " " }}
 {{- $expanded := .expanded | default false }}
 {{- if and (isset . "open") (or (ne (printf "%T" .open) "string") (ne (trim .open " " ) "")) }}
