@@ -94,9 +94,7 @@
 {{ partial "inline/children/group" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "containerStyle" $containerStyle "style" $style) }}
     {{- end }}
   {{- else }}
-    {{- /* this is for type=groupInternal used in the taxonomy/term; this allows the user to see
-      taxonomy/term pages without the need for setting markup.goldmark.parser.attribute.title=true
-    */}}
+    {{- /* this is for type=groupInternal used in the taxonomy/term */}}
     {{- if .capital }}
 {{ (printf `<h%d id="%s">%s</h%d>` $headingDepth (.capital | plainify | anchorize) .capital $headingDepth) | safeHTML }}
     {{- end }}

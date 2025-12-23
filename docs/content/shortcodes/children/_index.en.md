@@ -124,8 +124,6 @@ A card template will be called with the following parameter by the `children` sh
 
 ### Group Type
 
-For `type=group` to work, you have to set `markup.goldmark.parser.attribute.title=true` in your `hugo.toml`
-
 ````go
 {{%/* children type="group" headingdepth="4" description="true" */%}}
 ````
