@@ -19,7 +19,7 @@ math = true
 
 ## Index
 
-{{< taxonomy "options" "h3" >}}
+{{% taxonomy "options" "3" %}}
 
 ## All Configuration Options
 

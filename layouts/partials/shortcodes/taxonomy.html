@@ -1,4 +1,5 @@
 {{- $taxonomy := .taxonomy }}
+{{- $raw := .raw | default false }}
 {{- if eq "string" (printf "%T" $taxonomy) }}
   {{- $taxonomy = .page.GetPage $taxonomy }}
 {{- end }}
@@ -6,7 +7,7 @@
   {{- $breadcrumb := .Params.children.breadcrumb }}
   {{- $cardtemplate := .Params.children.cardtemplate }}
   {{- $description := .Params.children.description }}
-  {{- $headingdepth := .Params.children.headingdepth }}
+  {{- $headingdepth := $.headingdepth | default .Params.children.headingdepth }}
   {{- $image := .Params.children.image }}
   {{- $type := .Params.children.type | default "group" }}
 
@@ -23,7 +24,9 @@
     "showhidden"   true
     "type"         $type
   ) }}
-  {{- if eq $type "card" }}
+  {{- if $raw  }}
+    {{- $output }}
+  {{- else if eq $type "card" }}
     {{- $output | safeHTML }}
   {{- else }}
     {{- $output | .RenderString }}
