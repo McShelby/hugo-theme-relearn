@@ -11,14 +11,11 @@
   {{- $description := .Params.children.description }}
   {{- $headingdepth := .Params.children.headingdepth }}
   {{- $image := .Params.children.image }}
-  {{- $type := .Params.children.type | default "groupInternal" }}
-  {{- if eq $type "group" }}
-    {{- $type = "groupInternal" }}
-  {{- end }}
+  {{- $type := .Params.children.type | default "group" }}
 
   {{- .Content }}
   {{- $pages := partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
-  {{- partial "shortcodes/children.html" (dict
+  {{- $output := partial "shortcodes/children.html" (dict
     "page"         .
     "pages"        $pages
     "breadcrumb"   $breadcrumb
@@ -28,5 +25,10 @@
     "image"        $image
     "showhidden"   true
     "type"         $type
-  )}}
+  ) }}
+  {{- if eq $type "card" }}
+    {{- $output | safeHTML }}
+  {{- else }}
+    {{- $output | .RenderString }}
+  {{- end }}
 {{- end }}

@@ -19,6 +19,8 @@
   # style = 'tango'
 
 [goldmark]
+  renderer.unsafe = false
+
   [goldmark.extensions]
     strikethrough = false
     [goldmark.extensions.extras]
@@ -42,3 +44,8 @@
         # to set them in `[params] mathJaxInitialize`
         inline = [['\(', '\)'], ['$',  '$']]
         block  = [['\[', '\]'], ['$$', '$$']]
+
+  [goldmark.parser]
+    [goldmark.parser.attribute]#
+      # this is required by the childern shortcode
+      block = true

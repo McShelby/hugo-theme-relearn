@@ -10,7 +10,7 @@
   {{- $showHidden = (eq $showHidden "true") }}
 {{- end }}
 {{- $depth := .depth | default 1 }}
-{{- /* breadcrumb is an internal parameter only used by taxonomy/terms */}}
+{{- $headingDepth := (math.Max 1 (math.Min 6 (.headingdepth | default 2))) | int }}
 {{- $withBreadcrumb := .breadcrumb | default false }}
 {{- if eq (printf "%T" $withBreadcrumb) "string" }}
   {{- $withBreadcrumb = (eq $withBreadcrumb "true") }}
@@ -38,29 +38,15 @@
   {{- warnf "%q: DEPRECATED parameter 'containerstyle' or 'style' for shortcode 'children' found, use 'type=%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-1-0" $filepath $type }}
 {{- end }}
 
-{{- $headingDepth := (math.Max 1 (math.Min 6 (.headingdepth | default 2))) | int }}
-{{- $style := "div" }}
-{{- $containerStyle := "div" }}
 {{- $classes := "" }}
-{{- if eq $type "tree" }}
-  {{- $style = "li" }}
-  {{- $containerStyle = "ul" }}
-{{- else if or
-  (eq $type "group")
-  (eq $type "groupInternal")
-}}
-  {{- $style = "li" }}
-  {{- $containerStyle = "ul" }}
+{{- if eq $type "group" }}
   {{- $classes = " columnize" }}
   {{- $depth = 1 }}
 {{- end }}
 
 {{- $pages := .pages | default (partial "_relearn/pages.gotmpl" (dict "page" $page "by" $sortTerm)) }}
 {{- $groups := slice }}
-{{- if or
-  (eq $type "group")
-  (eq $type "groupInternal")
-}}
+{{- if eq $type "group" }}
   {{- $groupPages := slice }}
   {{- $lastCapital := "" }}
   {{- range $pages }}
@@ -84,27 +70,18 @@
 {{- end }}
 
 {{- range $groups }}
-  {{- if eq $.type "group" }}
-    {{- /* using Markdown here allows the headings to be inserted into the TOC;
-      for taxonomy/term pages we do this differently as we there know the order of TOC items
-    */}}
-    {{- if .capital }}
-{{ strings.Repeat $headingDepth "#" }} {{ .capital }} {class="children children-type-{{$type}} children-sort-{{$sortTerm}}{{$classes}}"}
-
-{{ partial "inline/children/group" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "containerStyle" $containerStyle "style" $style) }}
-    {{- end }}
-  {{- else }}
-    {{- /* this is for type=groupInternal used in the taxonomy/term */}}
-    {{- if .capital }}
-{{ (printf `<h%d id="%s">%s</h%d>` $headingDepth (.capital | plainify | anchorize) .capital $headingDepth) | safeHTML }}
-    {{- end }}
-{{ (printf `<%s class="children children-type-%s children-sort-%s%s">` $containerStyle $type $sortTerm $classes) | safeHTML }}
+  {{- if .pages }}
     {{- if eq $.type "card" }}
       {{- partial "inline/children/cards" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "withImage" $withImage "page" $page) }}
     {{- else }}
-      {{- partial "inline/children/default" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "containerStyle" $containerStyle "style" $style) }}
-    {{- end }}
-{{ (printf "</%s>" $containerStyle) | safeHTML }}
+{{ if .capital }}
+  {{- strings.Repeat $headingDepth "#" }} {{ .capital }}
+{{- end }}
+
+{{ partial "inline/children/default" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "type" $type "headingDepth" $headingDepth) }}
+{class="children children-type-{{$type}} children-sort-{{$sortTerm}}{{$classes}}"}
+
+{{ end }}
   {{- end }}
 {{- end }}
 
@@ -115,64 +92,29 @@
     {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
     {{- if not $hidden }}
       {{- if not $page.IsHome }}
-        {{- if eq $.style "li" }}
-{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int)) | safeHTML }}{{ if $page.RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" $page) }}">{{ $title }}</a>{{ else }}<span>{{ $title }}</span>{{ end }}
-        {{- else }}
-{{ (printf `  <%s class="children-title children-title-%d">` $.style (math.Min $.count 5 | int)) | safeHTML }}{{ if $page.RelPermalink }}<a href="{{ partial "permalink.gotmpl" (dict "to" $page) }}">{{ $title }}</a>{{ else }}<span>{{ $title }}</span>{{ end }}{{ (printf "</%s>" $.style) | safeHTML }}
+        {{- $indent := "" }}
+        {{- if not (or (eq $.type "flat") (eq $.type "list")) }}
+          {{- $indent = strings.Repeat (sub $.count 1) "  " }}
         {{- end }}
+{{ $indent }}- {{ if eq $.type "list" }}{{ strings.Repeat (math.Min 6 (add $.headingDepth (sub $.count 1))) "#" }} {{ end }}{{ if $page.RelPermalink }}[{{ $title }}]({{ $page.RelPermalink }}){{ else }}{{ $title }}{{ end }}
         {{- if $.withBreadcrumb }}
           {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
-          {{- with $breadcrumb -}}
-<p class="breadcrumbs highlightable" title="{{ . }}">{{ . }}</p>
+          {{- with $breadcrumb }}
+
+{{ $indent }}    {{ . }}
           {{- end }}
         {{- end }}
         {{- if $.withDescription }}
-          {{- with or $page.Description $page.Summary | plainify -}}
-<p class="description highlightable" >{{ . }}</p>
+          {{- $description := or $page.Description $page.Summary | plainify }}
+          {{- with $description }}
+
+{{ $indent }}    {{ . }}
           {{- end }}
         {{- end }}
       {{- end }}
       {{- if lt $.count $.depth }}
-        {{- if eq $.style "li" }}
-{{- (printf "<%s>" $.containerStyle) | safeHTML }}
-        {{- end }}
-        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" $page "by" $.sortTerm) }}
-        {{- partial "inline/children/default" (dict "pages" $pages "count" (add $.count 1) "depth" $.depth "showHidden" $.showHidden "withBreadcrumb" $.withBreadcrumb "withDescription" $.withDescription "containerStyle" $.containerStyle "style" $.style) }}
-        {{- if eq $.style "li" }}
-{{- (printf "</%s>" $.containerStyle) | safeHTML }}
-        {{- end }}
-      {{- end }}
-      {{- if not $page.IsHome }}
-        {{- if eq $.style "li" }}
-{{- (printf "</%s>" $.style) | safeHTML -}}
-        {{- end }}
-      {{- end }}
-    {{- end }}
-  {{- end }}
-{{- end }}
-
-{{- define "partials/inline/children/group" }}
-  {{- range .pages }}
-    {{- $page := .Page }}
-    {{- $title := .LinkTitle | default $page.LinkTitle }}
-    {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
-    {{- if not $hidden }}
-      {{- if not $page.IsHome }}
-        {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
-        {{- $description := or $page.Description $page.Summary | plainify }}
-- {{ if $page.RelPermalink }}[{{ $title }}]({{ $page.RelPermalink }}){{ else }}{{ $title }}{{ end }}
-        {{- if $.withBreadcrumb }}
-          {{- with $breadcrumb }}
-
-    {{ . }}
-          {{- end }}
-        {{- end }}
-        {{- if $.withDescription }}
-          {{- with $description }}
-
-    {{ . }}
-          {{- end }}
-        {{- end }}
+        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" $page) }}
+        {{- partial "inline/children/default" (dict "pages" $pages "count" (add $.count 1) "depth" $.depth "showHidden" $.showHidden "withBreadcrumb" $.withBreadcrumb "withDescription" $.withDescription "type" $.type "headingDepth" $.headingDepth) }}
       {{- end }}
     {{- end }}
   {{- end }}

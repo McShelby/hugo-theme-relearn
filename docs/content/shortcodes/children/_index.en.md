@@ -29,7 +29,7 @@ The `children` shortcode lists child pages in various layouts.
 {{ partial "shortcodes/children.html" (dict
   "page" .
   "sort" "title"
-)}}
+) | .RenderString }}
 ````
 
 {{% /tab %}}
@@ -45,9 +45,18 @@ The `children` shortcode lists child pages in various layouts.
 | **description**    | `false`           | When `true` shows a short text under each page in the list. When no description or summary exists for the page, the first 70 words of the content is taken - [read more info about summaries on gohugo.io](https://gohugo.io/content/summaries/). |
 | **image**          | `true`            | For `type=card` decides whether to put an image on the card. [See below for details](#remarks-for-the-card-type). |
 | **depth**          | `1`               | For `type=tree\|list\|flat` the depth of descendants to display. For example, if the value is `2`, the shortcode will display two levels of child pages.  To get all descendants, set this value to a high  number eg. `999`. |
-| **headingdepth**   | `2`               | For `type=group` the depth of the group heading. |
+| **headingdepth**   | `2`               | For `type=group\|list` the starting depth of the heading. |
 | **showhidden**     | `false`           | When `true`, child pages hidden from the menu will be displayed as well. |
 | **sort**           | `auto`            | For `type=tree\|list\|flat\|card` the sort criteria of the displayed list. `type=group` is always sorted by `title`.<br><br>- `auto` defaults to `ordersectionsby` of the page's {{% badge style="frontmatter" %}}Front Matter{{% /badge %}}<br>&nbsp;&nbsp;&nbsp;&nbsp;or to `ordersectionsby` of the configuration {{% badge style="option" %}}Option{{% /badge %}}<br>&nbsp;&nbsp;&nbsp;&nbsp;or to `default`<br>- `weight`<br>- `title`<br>- `modifieddate`<br>- `expirydate`<br>- `publishdate`<br>- `date`<br>- `length`<br>- `default` adhering to Hugo's default sort criteria. |
+
+### Configuration
+
+To use this shortcode you need to enable block attributes in your `hugo.toml`.
+
+{{< multiconfig file=hugo >}}
+[markup.goldmark.parser.attribute]
+  block = true
+{{< /multiconfig >}}
 
 ## Remarks for the Card Type
 
@@ -109,10 +118,10 @@ A card template will be called with the following parameter by the `children` sh
 ### List Type with Depth and Description
 
 ````go
-{{%/* children type="list" depth="3" description="true" */%}}
+{{%/* children type="list" headingdepth="4" depth="3" description="true" */%}}
 ````
 
-{{% children type="list" depth="3" description="true" %}}
+{{% children type="list" headingdepth="4" depth="3" description="true" %}}
 
 ### Flat Type with Depth
 
@@ -134,8 +143,11 @@ A card template will be called with the following parameter by the `children` sh
 
 Because none of the children pages of this example define their own feature images, the theme (and Hugo) falls back to the media image of your site.
 
+> [!note]
+> Note if you want to use the card layout and have `goldmark.renderer.unsafe=false` (which is the default if you don't set it), you have to to use `{{</* children */>}}` instead of `{{%/* children */%}}` as with the other examples.
+
 ````go
-{{%/* children type="card" description="true" */%}}
+{{</* children type="card" description="true" */>}}
 ````
 
-{{% children type="card" description="true" %}}
+{{< children type="card" description="true" >}}
