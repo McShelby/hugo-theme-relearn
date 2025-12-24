@@ -17,7 +17,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Purple Pulpo \u003e The Ship",
-    "content": "The highest point of our mighty vessel! Up here, the crow’s nest scout shouts coordinates to our helmsman below, though sometimes they’re just playing an elaborate game of maritime telephone. The crow’s nest offers the best views in the house (or ship), perfect for spotting incoming weather, distant lands, or that seagull that keeps stealing the captain’s lunch.",
+    "content": "The highest point of our mighty vessel! Up here, the crow’s nest scout shouts coordinates to our helmsman below, though sometimes they’re just playing an elaborate game of maritime telephone. The crow’s nest offers the best views in the house (or ship), perfect for spotting incoming weather, distant lands, or that seagull that keeps stealing the captain’s lunch.\nCrow's Nest Where our lookout pretends to spot land while actually napping\nThe Helm Home to our steering wheel, which may or may not be connected to anything",
     "description": "Where seagulls dare to land and captains steer with flair",
     "tags": [],
     "title": "Upper Decks",
@@ -25,7 +25,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Purple Pulpo",
-    "content": "Captain Hugo reporting from the quarterdeck of the magnificent The Purple Pulpo. The seas are fair, and our hold is brimming with exotic cargo bound for distant ports. Our seasoned crew stands ready for another adventure across the Seven Seas.\nOperation Squid Spaghetti Our midnight run involved top-secret pasta flour and premium marinara crucial for the realm’s spiciest mission. The crew was amped!",
+    "content": "Captain Hugo reporting from the quarterdeck of the magnificent The Purple Pulpo. The seas are fair, and our hold is brimming with exotic cargo bound for distant ports. Our seasoned crew stands ready for another adventure across the Seven Seas.\nOperation Squid Spaghetti Our midnight run involved top-secret pasta flour and premium marinara crucial for the realm’s spiciest mission. The crew was amped!\nDay 1 Launch Day\nDay 2 At Sea\nDay 3 Island Arrival",
     "description": "The Captain's Log",
     "tags": [],
     "title": "Captain's Log",
@@ -41,7 +41,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Purple Pulpo \u003e The Ship",
-    "content": "The heart of shipboard shenanigans, where the captain’s dignified stride from their cabin inevitably collides with sailors rolling barrels across the deck.\nCoffee aromas from the Captain’s cabin wage a constant battle with the hearty snores echoing from the crew bunks. It’s that magical space where formal reports mysteriously acquire coffee rings, and the crew’s sea shanties somehow find their way through the captain’s supposedly soundproof door.\nA daily theater of nautical life where rank meets reality, and everyone pretends not to notice the first mate sleepwalking in their pajamas.",
+    "content": "The heart of shipboard shenanigans, where the captain’s dignified stride from their cabin inevitably collides with sailors rolling barrels across the deck.\nCoffee aromas from the Captain’s cabin wage a constant battle with the hearty snores echoing from the crew bunks. It’s that magical space where formal reports mysteriously acquire coffee rings, and the crew’s sea shanties somehow find their way through the captain’s supposedly soundproof door.\nA daily theater of nautical life where rank meets reality, and everyone pretends not to notice the first mate sleepwalking in their pajamas.\nCaptain's Cabin A luxurious 4x4 room, home to our beloved Captain Hugo, with a genuine fake window\nCrew Quarters Where dreams of mutiny and tales of sea monsters are equally shared",
     "description": "Where captains and crew collide in organized chaos",
     "tags": [],
     "title": "Midst Ship",
