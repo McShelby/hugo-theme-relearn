@@ -172,21 +172,21 @@ function switchTab(tabGroup, tabId) {
 
     // Store the selection to make it persistent
     if (window.localStorage) {
-      var selectionsJSON = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/tab-selections');
+      var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections');
       if (selectionsJSON) {
         var tabSelections = JSON.parse(selectionsJSON);
       } else {
         var tabSelections = {};
       }
       tabSelections[tabGroup] = tabId;
-      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/tab-selections', JSON.stringify(tabSelections));
+      window.localStorage.setItem(window.relearn.absBaseUri + '/tab-selections', JSON.stringify(tabSelections));
     }
   }
 }
 
 function restoreTabSelections() {
   if (window.localStorage) {
-    var selectionsJSON = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/tab-selections');
+    var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections');
     if (selectionsJSON) {
       var tabSelections = JSON.parse(selectionsJSON);
     } else {
@@ -1321,7 +1321,7 @@ function clearHistory() {
   var visitedItem = window.relearn.absBaseUri + '/visited-url/';
   for (var item in window.sessionStorage) {
     if (item.substring(0, visitedItem.length) === visitedItem) {
-      window.relearn.removeItem(window.sessionStorage, item);
+      window.sessionStorage.removeItem(item);
       var url = item.substring(visitedItem.length);
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
@@ -1335,11 +1335,11 @@ function clearHistory() {
 
 function initHistory() {
   var visitedItem = window.relearn.absBaseUri + '/visited-url/';
-  window.relearn.setItem(window.sessionStorage, visitedItem + document.querySelector('body').dataset.url, 1);
+  window.sessionStorage.setItem(visitedItem + document.querySelector('body').dataset.url, 1);
 
   // loop through the sessionStorage and see if something should be marked as visited
   for (var item in window.sessionStorage) {
-    if (item.substring(0, visitedItem.length) === visitedItem && window.relearn.getItem(window.sessionStorage, item) == 1) {
+    if (item.substring(0, visitedItem.length) === visitedItem && window.sessionStorage.getItem(item) == 1) {
       var url = item.substring(visitedItem.length);
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
@@ -1360,7 +1360,7 @@ function initScrollPositionSaver() {
     if (isPrintPreview) {
       return;
     }
-    window.relearn.setItem(window.sessionStorage, scrollPositionKey, +elc.scrollTop);
+    window.sessionStorage.setItem(scrollPositionKey, +elc.scrollTop);
   }
 
   var ticking = false;
@@ -1387,13 +1387,13 @@ function transferScrollToHistory(event) {
   }
 
   var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
-  var scrollTop = window.relearn.getItem(window.sessionStorage, scrollPositionKey);
+  var scrollTop = window.sessionStorage.getItem(scrollPositionKey);
   if (scrollTop != null) {
     var state = window.history.state || {};
     state = Object.assign({}, typeof state === 'object' ? state : {});
     state.contentScrollTop = +scrollTop;
     window.history.replaceState(state, '');
-    window.relearn.removeItem(window.sessionStorage, scrollPositionKey);
+    window.sessionStorage.removeItem(scrollPositionKey);
   }
 }
 
@@ -1425,7 +1425,7 @@ function scrollToPositions() {
     return;
   }
 
-  var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  var search = window.sessionStorage.getItem(window.relearn.absBaseUri + '/search-value');
   var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
   if (words && words.length) {
     var found = elementContains(words, elc);
@@ -1499,7 +1499,7 @@ const observer = new PerformanceObserver(function () {
 observer.observe({ type: 'navigation' });
 
 function mark() {
-  var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  var search = window.sessionStorage.getItem(window.relearn.absBaseUri + '/search-value');
   var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
   if (!words || !words.length) {
     return;
@@ -1692,10 +1692,10 @@ function elementContains(words, e) {
 }
 
 function searchInputHandler(value) {
-  window.relearn.removeItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  window.sessionStorage.removeItem(window.relearn.absBaseUri + '/search-value');
   unmark();
   if (value.length) {
-    window.relearn.setItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value', value);
+    window.sessionStorage.setItem(window.relearn.absBaseUri + '/search-value', value);
     mark();
   }
 }
@@ -1707,7 +1707,7 @@ function initSearch() {
     e.addEventListener('keydown', function (event) {
       if (event.key == 'Escape') {
         var input = event.target;
-        var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+        var search = window.sessionStorage.getItem(window.relearn.absBaseUri + '/search-value');
         var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
         if (!words || !words.length) {
           input.blur();
@@ -1741,7 +1741,7 @@ function initSearch() {
         event.initEvent('input', false, false);
         e.dispatchEvent(event);
       });
-      window.relearn.removeItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+      window.sessionStorage.removeItem(window.relearn.absBaseUri + '/search-value');
       unmark();
     });
   });
@@ -1749,12 +1749,12 @@ function initSearch() {
   var urlParams = new URLSearchParams(window.location.search);
   var value = urlParams.get('search-by');
   if (value) {
-    window.relearn.setItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value', value);
+    window.sessionStorage.setItem(window.relearn.absBaseUri + '/search-value', value);
     mark();
   }
 
   // set initial search value for inputs on page load
-  var search = window.relearn.getItem(window.sessionStorage, window.relearn.absBaseUri + '/search-value');
+  var search = window.sessionStorage.getItem(window.relearn.absBaseUri + '/search-value');
   if (search) {
     inputs.forEach(function (e) {
       e.value = search;

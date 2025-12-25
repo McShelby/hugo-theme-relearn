@@ -72,10 +72,6 @@
       {{- end }}
       window.relearn.disableInlineCopyToClipboard={{ printf "%t" (eq $disableInlineCopyToClipboard true) | safeJS }};
       window.relearn.enableBlockCodeWrap={{ printf "%t" (eq $wrap true) | safeJS }};
-      {{ "// legal" | safeJS }}
-      window.relearn.getItem = (s,n) => {return s.getItem(n)};
-      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
-      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
       {{ "// translations" | safeJS }}
       {{ printf "window.T_Copy_to_clipboard = `%s`;" (T `Copy-to-clipboard`) | safeJS }}
       {{ printf "window.T_Copied_to_clipboard = `%s`;" (T `Copied-to-clipboard`) | safeJS }}
@@ -90,7 +86,7 @@
       window.relearn.customvariantprefix = "my-custom-";
       window.relearn.changeVariant = function(variant) {
         var oldVariant = document.documentElement.dataset.rThemeVariant;
-        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
         document.documentElement.dataset.rThemeVariant = variant;
         if (oldVariant != variant) {
           document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
@@ -98,16 +94,16 @@
         }
       }
       window.relearn.markVariant = function() {
-        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
         document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
       }
       window.relearn.initVariant = function() {
-        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
         if( !variant ||
             (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
-            (variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.localStorage.getItem(window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
           variant = window.relearn.themevariants[0];
-          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
         }
         document.documentElement.dataset.rThemeVariant = variant;
       }

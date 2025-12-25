@@ -33,7 +33,7 @@ var variants = {
   },
 
   getCustomVariantStylesheet: function (customVariantName) {
-    return window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customVariantName) || '';
+    return window.localStorage.getItem(window.relearn.absBaseUri + '/variantstylesheet-' + customVariantName) || '';
   },
 
   getCustomVariantBase: function (customvariant) {
@@ -73,7 +73,7 @@ var variants = {
   init: function (variant, old_path) {
     this.addCustomVariantOption();
     window.relearn.markVariant();
-    window.relearn.changeVariant(window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant'));
+    window.relearn.changeVariant(window.localStorage.getItem(window.relearn.absBaseUri + '/variant'));
   },
 
   addCustomVariantOption: function (customvariant) {
@@ -118,15 +118,15 @@ var variants = {
   },
 
   saveCustomVariant: function () {
-    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant') ?? '';
+    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
     var customvariant = variant;
     if (!variant.startsWith(window.relearn.customvariantprefix)) {
       customvariant = this.getCustomVariant(variant);
     }
 
     var stylesheet = this.generateStylesheet(customvariant);
-    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariant);
-    window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customvariant, stylesheet);
+    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariant);
+    window.localStorage.setItem(window.relearn.absBaseUri + '/variantstylesheet-' + customvariant, stylesheet);
 
     if (!document.querySelector('#R-variant-styles-' + customvariant)) {
       this.addCustomVariantStyles(customvariant);
@@ -261,7 +261,7 @@ var variants = {
   // ------------------------------------------------------------------------
 
   changeColor: function (c) {
-    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant') ?? '';
+    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
     var customvariantbase = variant;
     var customvariant = variant;
     if (!variant.startsWith(window.relearn.customvariantprefix)) {
@@ -315,14 +315,14 @@ var variants = {
   },
 
   resetVariant: function () {
-    var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
+    var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
     if (!customvariant.startsWith(window.relearn.customvariantprefix)) {
       alert('There is nothing to be reset here as built-in variants can not be changed.');
       return;
     }
 
     if (confirm('You have made changes to your custom variant "' + customvariant + '". Are you sure you want to reset all changes?')) {
-      window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
+      window.localStorage.removeItem(window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
       this.updateCustomVariantStyles(customvariant, '');
       this.removeCustomVariantOption(customvariant);
 
@@ -331,7 +331,7 @@ var variants = {
         customvariantbase = window.relearn.themevariants[0];
       }
 
-      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariantbase);
+      window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariantbase);
       window.relearn.markVariant();
       window.relearn.changeVariant(customvariantbase);
     }
@@ -345,9 +345,9 @@ var variants = {
 
     var variantList = customVariants.map((v) => '"' + v + '"').join(', ');
     if (confirm('Are you sure you want to reset all ' + customVariants.length + ' custom variant(s): ' + variantList + '?')) {
-      var customvariant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
+      var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
       customVariants.forEach((customvariant) => {
-        window.relearn.removeItem(window.localStorage, window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
+        window.localStorage.removeItem(window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
         this.updateCustomVariantStyles(customvariant, '');
         this.removeCustomVariantOption(customvariant);
       });
@@ -357,14 +357,14 @@ var variants = {
         customvariantbase = window.relearn.themevariants[0];
       }
 
-      window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + '/variant', customvariantbase);
+      window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariantbase);
       window.relearn.markVariant();
       window.relearn.changeVariant(customvariantbase);
     }
   },
 
   getStylesheet: function () {
-    var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + '/variant');
+    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
     var style = this.generateStylesheet(variant);
     if (style) {
       console.log(style);

@@ -49,7 +49,7 @@
       state.contentScrollTop = +elc.scrollTop;
       var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
       window.history.pushState(state, '', url);
-      window.relearn.removeItem(window.sessionStorage, scrollPositionKey);
+      window.sessionStorage.removeItem(scrollPositionKey);
     }
   };
 
