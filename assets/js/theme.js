@@ -1895,9 +1895,9 @@ ready(function () {
       });
   }
   function moveTopbarButtons() {
-    var isS = body.classList.contains('menu-width-s');
-    var isM = body.classList.contains('menu-width-m');
-    var isL = body.classList.contains('menu-width-l');
+    var isS = body.classList.contains('menu-s-width');
+    var isM = body.classList.contains('menu-m-width');
+    var isL = body.classList.contains('menu-l-width');
     // move buttons once, width has a distinct value
     if (isS && !isM && !isL) {
       moveAreaTopbarButtons('s');
@@ -1940,13 +1940,13 @@ ready(function () {
     });
   }
   function setWidthS(e) {
-    body.classList[e.matches ? 'add' : 'remove']('menu-width-s');
+    body.classList[e.matches ? 'add' : 'remove']('menu-s-width');
   }
   function setWidthM(e) {
-    body.classList[e.matches ? 'add' : 'remove']('menu-width-m');
+    body.classList[e.matches ? 'add' : 'remove']('menu-m-width');
   }
   function setWidthL(e) {
-    body.classList[e.matches ? 'add' : 'remove']('menu-width-l');
+    body.classList[e.matches ? 'add' : 'remove']('menu-l-width');
   }
   function onWidthChange(setWidth, e) {
     setWidth(e);
@@ -1973,12 +1973,12 @@ ready(function () {
 (function () {
   var body = document.querySelector('body');
   function setWidth(e) {
-    body.classList[e.matches ? 'add' : 'remove']('main-width-max');
+    body.classList[e.matches ? 'add' : 'remove']('main-max-width');
   }
   function onWidthChange(setWidth, e) {
     setWidth(e);
   }
-  var width = getColorValue('MAIN-WIDTH-MAX');
+  var width = getColorValue('MAIN-MAX-width');
   var mqm = window.matchMedia('screen and ( min-width: ' + width + ')');
   mqm.addEventListener('change', onWidthChange.bind(null, setWidth));
   setWidth(mqm);

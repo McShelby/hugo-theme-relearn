@@ -179,9 +179,9 @@ a:focus {
   min-height: 100%;
   overflow: hidden;
   position: fixed;
-  min-width: var(--INTERNAL-MENU-WIDTH-L);
-  max-width: var(--INTERNAL-MENU-WIDTH-L);
-  width: var(--INTERNAL-MENU-WIDTH-L);
+  min-width: var(--INTERNAL-MENU-L-width);
+  max-width: var(--INTERNAL-MENU-L-width);
+  width: var(--INTERNAL-MENU-L-width);
 }
 
 #R-sidebar a {
@@ -490,13 +490,13 @@ article .R-taxonomy.tags a.term-link:hover:after {
   flex-grow: 1;
   flex-shrink: 0;
   height: 100%;
-  margin-inline-start: var(--INTERNAL-MENU-WIDTH-L);
+  margin-inline-start: var(--INTERNAL-MENU-L-width);
   min-height: 100%;
   overflow-wrap: break-word; /* avoid x-scrolling of body if it is to large to fit */
   position: relative; /* PS */
-  min-width: calc(100% - var(--INTERNAL-MENU-WIDTH-L));
-  max-width: calc(100% - var(--INTERNAL-MENU-WIDTH-L));
-  width: calc(100% - var(--INTERNAL-MENU-WIDTH-L));
+  min-width: calc(100% - var(--INTERNAL-MENU-L-width));
+  max-width: calc(100% - var(--INTERNAL-MENU-L-width));
+  width: calc(100% - var(--INTERNAL-MENU-L-width));
   z-index: 70;
 }
 
@@ -645,17 +645,17 @@ article a:focus > img:only-child:empty {
 #R-body .flex-block-wrapper {
   margin-left: auto;
   margin-right: auto;
-  max-width: calc(var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem);
+  max-width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 3.25rem);
   width: 100%;
 }
 #R-body .flex-block-wrapper:has(article.narrow) {
-  max-width: calc(var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem);
+  max-width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 9.75rem);
 }
-.main-width-max #R-body .flex-block-wrapper {
-  width: calc(var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 3.25rem);
+.main-max-width #R-body .flex-block-wrapper {
+  width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 3.25rem);
 }
-.main-width-max #R-body .flex-block-wrapper:has(article.narrow) {
-  width: calc(var(--INTERNAL-MAIN-WIDTH-MAX) - var(--INTERNAL-MENU-WIDTH-L) - 2 * 9.75rem);
+.main-max-width #R-body .flex-block-wrapper:has(article.narrow) {
+  width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 9.75rem);
 }
 
 #R-body-inner:has(> .flex-block-wrapper article.narrow) {
@@ -1337,24 +1337,24 @@ html[dir='rtl'] .topbar-button-next i {
 
 @media screen and (max-width: 59.999rem) {
   #R-sidebar {
-    min-width: var(--INTERNAL-MENU-WIDTH-M);
-    max-width: var(--INTERNAL-MENU-WIDTH-M);
-    width: var(--INTERNAL-MENU-WIDTH-M);
+    min-width: var(--INTERNAL-MENU-M-width);
+    max-width: var(--INTERNAL-MENU-M-width);
+    width: var(--INTERNAL-MENU-M-width);
   }
   #R-body {
-    margin-inline-start: var(--INTERNAL-MENU-WIDTH-M);
-    min-width: calc(100% - var(--INTERNAL-MENU-WIDTH-M));
-    max-width: calc(100% - var(--INTERNAL-MENU-WIDTH-M));
-    width: calc(100% - var(--INTERNAL-MENU-WIDTH-M));
+    margin-inline-start: var(--INTERNAL-MENU-M-width);
+    min-width: calc(100% - var(--INTERNAL-MENU-M-width));
+    max-width: calc(100% - var(--INTERNAL-MENU-M-width));
+    width: calc(100% - var(--INTERNAL-MENU-M-width));
   }
 }
 @media screen and (max-width: 47.999rem) {
   /* we don't support sidebar flyout in mobile */
   .mobile-support #R-sidebar {
-    inset-inline-start: calc(-1 * var(--INTERNAL-MENU-WIDTH-S));
-    min-width: var(--INTERNAL-MENU-WIDTH-S);
-    max-width: var(--INTERNAL-MENU-WIDTH-S);
-    width: var(--INTERNAL-MENU-WIDTH-S);
+    inset-inline-start: calc(-1 * var(--INTERNAL-MENU-S-width));
+    min-width: var(--INTERNAL-MENU-S-width);
+    max-width: var(--INTERNAL-MENU-S-width);
+    width: var(--INTERNAL-MENU-S-width);
   }
   .mobile-support #navshow {
     display: inline;
@@ -1373,7 +1373,7 @@ html[dir='rtl'] .topbar-button-next i {
     z-index: 90;
   }
   .mobile-support.sidebar-flyout #R-body {
-    margin-inline-start: var(--INTERNAL-MENU-WIDTH-S);
+    margin-inline-start: var(--INTERNAL-MENU-S-width);
     overflow: hidden;
   }
   .mobile-support.sidebar-flyout #R-body-overlay {

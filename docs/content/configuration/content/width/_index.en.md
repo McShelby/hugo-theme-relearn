@@ -18,7 +18,7 @@ For full width, use a large value like `1000rem`.
 ````html {title="layouts/partials/custom-header.html"}
 <style>
 :root {
-    --MAIN-WIDTH-MAX: 1000rem;
+    --MAIN-MAX-width: 1000rem;
 }
 </style>
 ````

@@ -21,14 +21,14 @@ The menu width changes for different screen sizes:
 
 You can change the menu width but not the screen width breakpoints.
 
-To adjust the menu width, use these CSS variables. Note that `--MENU-WIDTH-S` is for the mobile menu flyout on small screens.
+To adjust the menu width, use these CSS variables. Note that `--MENU-S-width` is for the mobile menu flyout on small screens.
 
 ````html {title="layouts/partials/custom-header.html"}
 <style>
 :root {
-    --MENU-WIDTH-S: 14.375rem;
-    --MENU-WIDTH-M: 14.375rem;
-    --MENU-WIDTH-L: 18.75rem;
+    --MENU-S-width: 14.375rem;
+    --MENU-M-width: 14.375rem;
+    --MENU-L-width: 18.75rem;
 }
 </style>
 ````
