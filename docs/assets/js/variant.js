@@ -507,6 +507,22 @@ var variants = {
         title: 'brand colors',
         direction: 'LR',
         color: 'TOPBAR-BG-color',
+        children: [
+          {
+            id: 'logo',
+            title: 'logo formatting',
+            direction: 'LR',
+            color: 'TOPBAR-BG-color',
+            variables: [
+              { name: 'LOGO-font-size', default: '1em', tooltip: 'font-size of the text beside the logo' },
+              { name: 'LOGO-LINK-color', fallback: 'MENU-HEADER-color', tooltip: 'color of the logo SVG and text beside' },
+              { name: 'LOGO-LINK-HOVER-color', fallback: 'LOGO-LINK-color', tooltip: 'hovered color of the logo SVG and text beside' },
+              { name: 'LOGO-IMAGE-width', default: '4em', tooltip: 'width of the logo image' },
+              { name: 'LOGO-IMAGE-color', fallback: 'LOGO-LINK-color', tooltip: 'color of the logo SVG' },
+              { name: 'LOGO-IMAGE-HOVER-color', fallback: 'LOGO-LINK-HOVER-color', tooltip: 'hovered color of the logo SVG' },
+            ],
+          },
+        ],
         variables: [
           { name: 'PRIMARY-color', fallback: 'MENU-HEADER-BG-color', tooltip: 'brand primary color' },
           { name: 'PRIMARY-HOVER-color', fallback: 'MENU-HEADER-BORDER-color', tooltip: 'brand primary hover color' },
@@ -570,6 +586,11 @@ var variants = {
             ],
           },
         ],
+        variables: [
+          { name: 'MENU-S-width', default: '14.375rem', tooltip: 'menu width of the mobile layout' },
+          { name: 'MENU-M-width', default: '14.375rem', tooltip: 'menu width of the desktop layout for smaller screens' },
+          { name: 'MENU-L-width', default: '18.75rem', tooltip: 'menu width of the desktop layout' },
+        ],
       },
       {
         id: 'maintopbar',
@@ -602,6 +623,7 @@ var variants = {
           { name: 'TAG-BG-color', fallback: 'PRIMARY-color', tooltip: 'tag color' },
           { name: 'MAIN-TEXT-color', default: '#101010', tooltip: 'text color of content and titles' },
           { name: 'MAIN-font', default: '"Roboto Flex", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif', tooltip: 'text font of content and titles' },
+          { name: 'MAIN-MAX-width', default: '81.25rem', tooltip: 'maximum width of the content' },
         ],
         children: [
           {

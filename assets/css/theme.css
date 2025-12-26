@@ -2425,22 +2425,40 @@ html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.
 
 /* common logo */
 
-body a#R-logo,
-body a#R-logo:hover,
 body #R-logo svg,
 body #R-logo svg :not([color]),
 body #R-logo svg [color='black'],
 body #R-logo svg [color='#000000'] {
-  color: var(--INTERNAL-MENU-HEADER-color);
+  color: var(--INTERNAL-LOGO-IMAGE-color);
 }
 
-body a#R-logo,
-body a#R-logo:hover,
-body #R-logo svg,
+body #R-logo:hover svg,
+body #R-logo:hover svg :not([color]),
+body #R-logo:hover svg [color='black'],
+body #R-logo:hover svg [color='#000000'] {
+  color: var(--INTERNAL-LOGO-IMAGE-HOVER-color);
+}
+
 body #R-logo svg :not([fill]),
 body #R-logo svg [fill='black'],
 body #R-logo svg [fill='#000000'] {
-  fill: var(--INTERNAL-MENU-HEADER-color);
+  fill: var(--INTERNAL-LOGO-IMAGE-color);
+}
+
+body #R-logo:hover svg :not([fill]),
+body #R-logo:hover svg [fill='black'],
+body #R-logo:hover svg [fill='#000000'] {
+  fill: var(--INTERNAL-LOGO-IMAGE-HOVER-color);
+}
+
+body a#R-logo,
+body a#R-logo * {
+  color: var(--INTERNAL-LOGO-LINK-color);
+}
+
+body a#R-logo:hover,
+body a#R-logo:hover * {
+  color: var(--INTERNAL-LOGO-LINK-HOVER-color);
 }
 
 /* default logo */
@@ -2450,6 +2468,7 @@ body #R-logo svg [fill='#000000'] {
   column-gap: 0.4em;
   display: flex;
   flex-direction: row;
+  font-family: var(--INTERNAL-LOGO-font);
   font-size: var(--INTERNAL-LOGO-font-size);
   justify-content: center;
   line-height: 1;
@@ -2472,12 +2491,11 @@ body #R-logo svg [fill='#000000'] {
   display: none;
   flex-shrink: 0;
   height: auto;
-  width: var(--INTERNAL-LOGO-width);
+  width: var(--INTERNAL-LOGO-IMAGE-width);
 }
 
 #R-logo.R-default .logo-image > * {
-  opacity: 0.945;
-  max-width: var(--INTERNAL-LOGO-width);
+  max-width: var(--INTERNAL-LOGO-IMAGE-width);
 }
 
 #R-logo.R-default .logo-title {
