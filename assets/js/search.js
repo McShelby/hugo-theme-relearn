@@ -47,7 +47,7 @@
       // here, too; we only need a simplified version of transferScrollToHistory
       // as the scroll position can be directly taken from the content element
       state.contentScrollTop = +elc.scrollTop;
-      var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
+      var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.origin;
       window.history.pushState(state, '', url);
       window.sessionStorage.removeItem(scrollPositionKey);
     }

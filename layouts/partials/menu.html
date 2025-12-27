@@ -142,7 +142,7 @@
       {{- end }}
       {{- $entryId := md5 .Path }}
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-            <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-url="{{ $url }}">
+            <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
       {{- if $url }}
         {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding default-animation")) -}}
@@ -175,7 +175,7 @@
         {{- end }}
       {{- end }}</ul></li>
     {{- else if $url }}
-            <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $isCrosslink }}crosslink {{end}}" data-nav-url="{{ $url }}">
+            <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $isCrosslink }}crosslink {{end}}" data-nav-id="{{ $url }}">
       {{- if $url }}
         {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding")) -}}
         <a
@@ -298,7 +298,7 @@
       {{- end }}
       {{- $entryId := md5 (or $entryMenu.KeyName $entryMenu.Identifier $entryMenu.Name $entryMenu.Title) }}
       {{- $isOpen := or $currentAlwaysopen $isSelf $isAncestor }}
-            <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-url="{{ $url }}">
+            <li class="{{if $isActive }}active {{end}}{{if (or $isSelf $isAncestor) }}parent {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}{{if $currentAlwaysopen}}alwaysopen {{end}}" data-nav-id="{{ $url }}">
       {{- if $isCollapsible }}<input type="checkbox" id="R-section-{{ $entryId }}" aria-controls="R-subsections-{{ $entryId }}"{{ if $isOpen }} checked{{ end }}><label for="R-section-{{ $entryId }}"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">{{ T "Submenu" $title }}</span></label>{{ end }}
       {{- if $url }}
         {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding default-animation")) -}}
@@ -332,7 +332,7 @@
         {{- end }}
       {{- end }}</ul></li>
     {{- else if $url }}
-            <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}" data-nav-url="{{ $url }}">
+            <li class="{{if $isActive }}active {{end}}{{if $isHidden }}hidden {{end}}{{if not $url }}headless {{end}}" data-nav-id="{{ $url }}">
       {{- if $url }}
         {{- $attributes := partial "_relearn/linkAttributes.gotmpl" (dict "url" $url "page" $currentNode "attributes" (dict "class" "padding")) -}}
         <a

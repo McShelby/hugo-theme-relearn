@@ -1318,15 +1318,12 @@ function initExpand() {
 }
 
 function clearHistory() {
-  var visitedItem = window.relearn.absBaseUri + '/visited-url/';
+  var visitedItem = window.relearn.absBaseUri + '/visited-url';
   for (var item in window.sessionStorage) {
     if (item.substring(0, visitedItem.length) === visitedItem) {
       window.sessionStorage.removeItem(item);
       var url = item.substring(visitedItem.length);
-      // in case we have `relativeURLs=true` we have to strip the
-      // relative path to root
-      url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-url="' + url + '"]').forEach(function (e) {
+      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
         e.classList.remove('visited');
       });
     }
@@ -1334,8 +1331,8 @@ function clearHistory() {
 }
 
 function initHistory() {
-  var visitedItem = window.relearn.absBaseUri + '/visited-url/';
-  window.sessionStorage.setItem(visitedItem + document.querySelector('body').dataset.url, 1);
+  var visitedItem = window.relearn.absBaseUri + '/visited-url';
+  window.sessionStorage.setItem(visitedItem + document.querySelector('body').dataset.origin, 1);
 
   // loop through the sessionStorage and see if something should be marked as visited
   for (var item in window.sessionStorage) {
@@ -1343,8 +1340,7 @@ function initHistory() {
       var url = item.substring(visitedItem.length);
       // in case we have `relativeURLs=true` we have to strip the
       // relative path to root
-      url = url.replace(/\.\.\//g, '/').replace(/^\/+\//, '/');
-      document.querySelectorAll('[data-nav-url="' + url + '"]').forEach(function (e) {
+      document.querySelectorAll('[data-nav-id="' + url + '"]').forEach(function (e) {
         e.classList.add('visited');
       });
     }
@@ -1352,7 +1348,7 @@ function initHistory() {
 }
 
 function initScrollPositionSaver() {
-  var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
+  var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.origin;
 
   function savePosition(event) {
     // #959 if we fiddle around with the history during print preview
@@ -1386,7 +1382,7 @@ function transferScrollToHistory(event) {
     return;
   }
 
-  var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
+  var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.origin;
   var scrollTop = window.sessionStorage.getItem(scrollPositionKey);
   if (scrollTop != null) {
     var state = window.history.state || {};
