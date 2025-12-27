@@ -1352,16 +1352,15 @@ function initHistory() {
 }
 
 function initScrollPositionSaver() {
+  var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
+
   function savePosition(event) {
     // #959 if we fiddle around with the history during print preview
     // GC will close the preview immediatley
     if (isPrintPreview) {
       return;
     }
-    var state = window.history.state || {};
-    state = Object.assign({}, typeof state === 'object' ? state : {});
-    state.contentScrollTop = +elc.scrollTop;
-    window.history.replaceState(state, '');
+    window.relearn.setItem(window.sessionStorage, scrollPositionKey, +elc.scrollTop);
   }
 
   var ticking = false;
@@ -1376,7 +1375,26 @@ function initScrollPositionSaver() {
     }
   });
 
-  document.addEventListener('click', savePosition);
+  document.addEventListener('click', transferScrollToHistory);
+  window.addEventListener('pagehide', transferScrollToHistory);
+  window.addEventListener('beforeunload', transferScrollToHistory);
+}
+
+function transferScrollToHistory(event) {
+  // #959 Don't modify history during print preview
+  if (isPrintPreview) {
+    return;
+  }
+
+  var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
+  var scrollTop = window.relearn.getItem(window.sessionStorage, scrollPositionKey);
+  if (scrollTop != null) {
+    var state = window.history.state || {};
+    state = Object.assign({}, typeof state === 'object' ? state : {});
+    state.contentScrollTop = +scrollTop;
+    window.history.replaceState(state, '');
+    window.relearn.removeItem(window.sessionStorage, scrollPositionKey);
+  }
 }
 
 function scrollToPositions() {

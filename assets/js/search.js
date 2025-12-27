@@ -44,9 +44,12 @@
       state.search = url.toString();
       // with normal pages, this is handled by the 'pagehide' event, but this
       // doesn't fire in case of pushState, so we have to do the same thing
-      // here, too
+      // here, too; we only need a simplified version of transferScrollToHistory
+      // as the scroll position can be directly taken from the content element
       state.contentScrollTop = +elc.scrollTop;
+      var scrollPositionKey = window.relearn.absBaseUri + '/scroll-position/' + document.querySelector('body').dataset.url;
       window.history.pushState(state, '', url);
+      window.relearn.removeItem(window.sessionStorage, scrollPositionKey);
     }
   };
 
