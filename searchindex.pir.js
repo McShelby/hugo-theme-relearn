@@ -1115,7 +1115,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configurrrat'n",
-    "content": "Directory Structure Yer site’s directory structure\nMultilingual How t' set up a multilingual ship\nVersion'n How t' keep older versions o' yer ship\nMeta Informat'n What site-wide meta informat'n can be set\nDeployment Scenarios Opt'ns fer specific deployment needs\nStored Informat'n Informat'n on what’s stored on th' reader’s side\nAvail'ble Output Formats What formats can a plank be displayed 'n\nStable Output How t' make yer generated HTML output stable",
+    "content": "Directory Structure Yer site’s directory structure\nMultilingual How t' set up a multilingual ship\nVersion'n How t' keep older versions o' yer ship\nMeta Informat'n What site-wide meta informat'n can be set\nDeployment Scenarios Opt'ns fer specific deployment needs\nGDPR \u0026 Cookie Consent Informat'n on what’s stored on th' reader’s side\nAvail'ble Output Formats What formats can a plank be displayed 'n\nStable Output How t' make yer generated HTML output stable",
     "description": "Get yourself familiar with the general structure of your website",
     "tags": [],
     "title": "Site Management",
@@ -1426,6 +1426,14 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/pir/development/index.html"
   },
   {
+    "breadcrumb": "Configurrrat'n \u003e Site Management",
+    "content": "Th' theme will store informat'n 'n th' reader’s browser. Those be essential informat'n an' be considered t' fall under th' except'n clause 'n DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3).\nThis shall not prevent any technical storage or access fer th' sole purpose o' carry'n out th' transmission o' a communicat'n over an electronic communicat'ns network, or as strictly necessary 'n order fer th' provider o' an informat'n society service explicitly requested by th' subscriber or user t' provide th' service.\nStored Theme Informat'n Th' theme stores th' follow'n informat'n 'n localstorage or sessionstorage.\nTh' scroll posit'n o' th' rrrambl'n area t' be restored on browser back navigat'n.\nThis can not be turned off.\nSelected tab o' a tab group t' apply th' select'n t' other tab groups on th' present plank an' all follow'n presented planks.\nThis can not be turned off.\nCurrently applic'ble search term t' carry over t' th' follow'n presented planks. This will be used t' mark th' search term 'n th' page’s text.\nThis can be turned off by disabl'n search.\nVisited planks t' show a check mark 'n th' menu if th' plank was previously visited.\nThis can be turned off by disabl'n th' history.\nTh' selected theme variant t' carry over t' th' follow'n presented planks.\nThis can be turned off by only hav'n one theme variant configured.\nStored Third Party Informat'n Th' theme be not respons'ble fer stored informat'n o' third-party-dependencies (every library stored 'n subdirectories o' assets/js/).\nImplement'n GDPR Cookie Consent Because th' theme stores only essential informat'n, it does not provide a mechanism t' implement stricter data protect'n regulat'ns.\nNevertheless ye can achieve this by us'n a library or implement'n a storage proxy yourself.",
+    "description": "Information on what's stored on the reader's side",
+    "tags": [],
+    "title": "GDPR \u0026 Cookie Consent",
+    "uri": "/hugo-theme-relearn/pir/configuration/sitemanagement/storedinformation/index.html"
+  },
+  {
     "breadcrumb": "Rambl'n",
     "content": "Planks \u0026 Resources How t' link t' planks an' resources\nLink Effects How t' apply effects t' yer links\nImage Effects How t' apply effects t' yer images",
     "description": "How to link your content",
@@ -1448,14 +1456,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter Reference",
     "uri": "/hugo-theme-relearn/pir/authoring/frontmatter/reference/index.html"
-  },
-  {
-    "breadcrumb": "Configurrrat'n \u003e Site Management",
-    "content": "Th' theme will store informat'n 'n th' reader’s browser. It be considered t' fall under th' except'n clause 'n DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3).\nThis shall not prevent any technical storage or access fer th' sole purpose o' carry'n out th' transmission o' a communicat'n over an electronic communicat'ns network, or as strictly necessary 'n order fer th' provider o' an informat'n society service explicitly requested by th' subscriber or user t' provide th' service.\nTh' theme stores th' follow'n informat'n 'n localstorage or sessionstorage.\nCurrently applic'ble search term t' carry over t' th' follow'n presented planks. This will be used t' mark th' search term 'n th' page’s text.\nThis can be turned off by disabl'n search.\nSelected tab o' a tab group t' apply th' select'n t' other tab groups on th' present plank an' all follow'n presented planks.\nThis can not be turned off.\nVisited planks t' show a check mark 'n th' menu if th' plank was previously visited.\nThis can be turned off by disabl'n th' history.\nTh' selected theme variant t' carry over t' th' follow'n presented planks.\nThis can be turned off by only hav'n one theme variant configured.\nTh' theme be not respons'ble fer stored informat'n o' third-party-scripts (every library stored 'n subdirectories o' assets/js/).",
-    "description": "Information on what's stored on the reader's side",
-    "tags": [],
-    "title": "Stored Information",
-    "uri": "/hugo-theme-relearn/pir/configuration/sitemanagement/storedinformation/index.html"
   },
   {
     "breadcrumb": "Configurrrat'n \u003e Customization",

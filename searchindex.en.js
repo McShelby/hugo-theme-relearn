@@ -1123,7 +1123,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configuration",
-    "content": "Directory Structure Your site’s directory structure\nMultilingual How to set up a multilingual site\nVersioning How to keep older versions of your site\nMeta Information What site-wide meta information can be set\nDeployment Scenarios Options for specific deployment needs\nStored Information Information on what’s stored on the reader’s side\nAvailable Output Formats What formats can a page be displayed in\nStable Output How to make your generated HTML output stable",
+    "content": "Directory Structure Your site’s directory structure\nMultilingual How to set up a multilingual site\nVersioning How to keep older versions of your site\nMeta Information What site-wide meta information can be set\nDeployment Scenarios Options for specific deployment needs\nGDPR \u0026 Cookie Consent Information on what’s stored on the reader’s side\nAvailable Output Formats What formats can a page be displayed in\nStable Output How to make your generated HTML output stable",
     "description": "Get yourself familiar with the general structure of your website",
     "tags": [],
     "title": "Site Management",
@@ -1434,6 +1434,14 @@ var relearn_searchindex = [
     "uri": "/hugo-theme-relearn/development/index.html"
   },
   {
+    "breadcrumb": "Configuration \u003e Site Management",
+    "content": "The theme will store information in the reader’s browser. Those are essential information and are considered to fall under the exception clause in DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3).\nThis shall not prevent any technical storage or access for the sole purpose of carrying out the transmission of a communication over an electronic communications network, or as strictly necessary in order for the provider of an information society service explicitly requested by the subscriber or user to provide the service.\nStored Theme Information The theme stores the following information in localstorage or sessionstorage.\nThe scroll position of the content area to be restored on browser back navigation.\nThis can not be turned off.\nSelected tab of a tab group to apply the selection to other tab groups on the present page and all following presented pages.\nThis can not be turned off.\nCurrently applicable search term to carry over to the following presented pages. This will be used to mark the search term in the page’s text.\nThis can be turned off by disabling search.\nVisited pages to show a check mark in the menu if the page was previously visited.\nThis can be turned off by disabling the history.\nThe selected theme variant to carry over to the following presented pages.\nThis can be turned off by only having one theme variant configured.\nStored Third Party Information The theme is not responsible for stored information of third-party-dependencies (every library stored in subdirectories of assets/js/).\nImplementing GDPR Cookie Consent Because the theme stores only essential information, it does not provide a mechanism to implement stricter data protection regulations.\nNevertheless you can achieve this by using a library or implementing a storage proxy yourself.",
+    "description": "Information on what's stored on the reader's side",
+    "tags": [],
+    "title": "GDPR \u0026 Cookie Consent",
+    "uri": "/hugo-theme-relearn/configuration/sitemanagement/storedinformation/index.html"
+  },
+  {
     "breadcrumb": "Authoring",
     "content": "Pages \u0026 Resources How to link to pages and resources\nLink Effects How to apply effects to your links\nImage Effects How to apply effects to your images",
     "description": "How to link your content",
@@ -1456,14 +1464,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Front Matter Reference",
     "uri": "/hugo-theme-relearn/authoring/frontmatter/reference/index.html"
-  },
-  {
-    "breadcrumb": "Configuration \u003e Site Management",
-    "content": "The theme will store information in the reader’s browser. It is considered to fall under the exception clause in DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3).\nThis shall not prevent any technical storage or access for the sole purpose of carrying out the transmission of a communication over an electronic communications network, or as strictly necessary in order for the provider of an information society service explicitly requested by the subscriber or user to provide the service.\nThe theme stores the following information in localstorage or sessionstorage.\nCurrently applicable search term to carry over to the following presented pages. This will be used to mark the search term in the page’s text.\nThis can be turned off by disabling search.\nSelected tab of a tab group to apply the selection to other tab groups on the present page and all following presented pages.\nThis can not be turned off.\nVisited pages to show a check mark in the menu if the page was previously visited.\nThis can be turned off by disabling the history.\nThe selected theme variant to carry over to the following presented pages.\nThis can be turned off by only having one theme variant configured.\nThe theme is not responsible for stored information of third-party-scripts (every library stored in subdirectories of assets/js/).",
-    "description": "Information on what's stored on the reader's side",
-    "tags": [],
-    "title": "Stored Information",
-    "uri": "/hugo-theme-relearn/configuration/sitemanagement/storedinformation/index.html"
   },
   {
     "breadcrumb": "Configuration \u003e Customization",
