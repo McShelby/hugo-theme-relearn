@@ -1,8 +1,8 @@
 +++
 categories = ['howto']
-description = 'Provide your own logo and favicon'
-options = ['logo']
-title = 'Logo'
+description = 'Provide your own logo, favicon and menu title'
+options = ['linkTitle', 'logo']
+title = 'Logo & Title'
 weight = 1
 +++
 
@@ -20,17 +20,70 @@ If you need to change this default behavior, create a new file `layouts/partials
 <link rel="icon" href="/images/favicon.bmp" type="image/bmp">
 ````
 
+## Change the Menu Title
+
+{{% badge style="option" %}}Option{{% /badge %}} The site `title` of your `hugo.toml` will be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite it by setting `params.linkTitle`.
+
+If the title is to long to fit on a single line it is automatically wrapped. If you want manual control over the line breaks, you can insert newline characters.
+
+{{< multiconfig file=hugo section=params >}}
+linkTitle = "Relearn\nis the greatest\ntheme since\nsliced bread"
+{{< /multiconfig >}}
+
+### Changing the Font Settings
+
+You can change font settings with the following CSS variables
+
+````html {title="layouts/partials/custom-header.html"}
+<style>
+:root {
+    --LOGO-font: 'Georgia', serif;
+    --LOGO-font-size: 2rem;
+}
+</style>
+````
+
+On smaller screens the logo font size is automatically reduced to 80% of the configured value for better mobile display. This is not configurable.
+
+### Changing the Colors
+
+The logo inherits its colors from the menu header by default. You can customize the normal and hover states
+
+````html {title="layouts/partials/custom-header.html"}
+<style>
+:root {
+    --LOGO-LINK-color: #ff6600;
+    --LOGO-LINK-HOVER-color: #ff9933;
+}
+</style>
+````
+
+The `--LOGO-LINK-color` variable sets the color of the logo link text, while `--LOGO-LINK-HOVER-color` sets the color when hovering over the logo.
+
+### Set Direction of Title & Logo
+
+You can control the layout direction of the logo and title:
+
+{{< multiconfig file=hugo section=params >}}
+logo = { direction = 'column' }
+{{< /multiconfig >}}
+
+Valid values are:
+
+- `row` (default) - Logo and title side by side
+- `column` - Logo above title
+
 ## Change the Logo
 
-{{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu. By default, it automatically detects logos in your site's `assets/images/`.
+{{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu if found. By default, it automatically detects logos in your site's `assets/images/`.
 
 ### Auto-Detection
 
 If you don't configure a logo explicitly, the theme automatically searches for a logo file in the global `/assets` directory and all its subdirectories named `*logo*`.
 
-If no logo is found, only [your site title](configuration/sidebar/headerfooter#title) will be shown.
+If no logo is found, only your site title will be shown.
 
-The size of the logo will adapt automatically to an opinionated default.
+The size of the logo will adapt automatically to an opinionated default. See below on [how to resize it](#changing-the-logo-image-width).
 
 ### Manual Configuration
 
@@ -45,19 +98,6 @@ To disable the logo entirely, set `src` to a string containing only whitespace:
 {{< multiconfig file=hugo section=params >}}
 logo = { src = ' ' }  # No logo, only site title
 {{< /multiconfig >}}
-
-#### Logo Direction
-
-You can control the layout direction of the logo and title:
-
-{{< multiconfig file=hugo section=params >}}
-logo = { direction = 'column' }
-{{< /multiconfig >}}
-
-Valid values are:
-
-- `row` (default) - Logo and title side by side
-- `column` - Logo above title
 
 ### Variant-Specific Logos
 
@@ -86,21 +126,48 @@ themeVariant = [
 ]
 {{< /multiconfig >}}
 
-### Coloring SVG logos
+### Customizing Size
 
-If you have a monochrome SVG logo and want to display it in the variants color for the logo text, it is mandatory to give it the `inlinecontent` [image effect](authoring/linking/imageeffects). This is not set in the automatic logo detection. The recoloring applies to all black elements in your SVG:
+The theme provides CSS variables to customize the logo's size. You can add these to `layouts/partials/custom-header.html`. The logo image has a default width of `4em`. The height is determined by the aspect ratio of the logo.
+
+````html {title="layouts/partials/custom-header.html"}
+<style>
+:root {
+    --LOGO-IMAGE-width: 6rem;
+}
+</style>
+````
+
+### Coloring SVG Logos
+
+If you have a monochrome SVG logo and want to display it in the variants color for the logo text, it is mandatory to give it the `inlinecontent` [image effect](authoring/linking/imageeffects). This is not set in the automatic logo detection.
+
+The recoloring applies to all black elements in your SVG:
 
 {{< multiconfig file=hugo section=params >}}
 logo = { src = '/images/logo.svg?inlinecontent' }
 {{< /multiconfig >}}
 
-### Custom Logo Partial
+#### Changing the SVG Logo Colors
+
+A SVG logo inherits its color from the menu title by default. You can customize both the normal and hover states
+
+````html {title="layouts/partials/custom-header.html"}
+<style>
+:root {
+    --LOGO-IMAGE-color: #0066cc;
+    --LOGO-IMAGE-HOVER-color: #0088ff;
+}
+</style>
+````
+
+## Custom Title & Logo Partial
 
 For advanced customization beyond configuration options, you can override the logo partial entirely.
 
 Create a new file `layouts/partials/logo.html` in your site's directory. Then write any HTML you want. You could use an `img` HTML tag and reference an image, or you could paste an SVG definition!
 
-#### Example
+### Example
 
 Suppose you've stored your logo as `static/images/logo.png` and want full control over the HTML:
 
