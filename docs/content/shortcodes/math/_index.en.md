@@ -55,9 +55,9 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 
 You can also use [pure Markdown](authoring/markdown#subscript-and-superscript) for writing simple math expressions.
 
-Passthrough syntax is only available by [further configuration](#passthrough-configuration) and has limited features as it does not provide any of the below parameter. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Passthrough syntax is only available by [further configuration](#passthrough-configuration) and has limited features as it does not provide any of the below parameters. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.
 
-### Parameter
+### Parameters
 
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|

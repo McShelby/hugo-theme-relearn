@@ -53,7 +53,7 @@ While the examples are using shortcodes with named parameter you are free to als
 {{% /tab %}}
 {{< /tabs >}}
 
-### Parameter
+### Parameters
 
 | Name        | Default         | Notes       |
 |-------------|-----------------|-------------|

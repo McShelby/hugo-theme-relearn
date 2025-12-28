@@ -172,7 +172,7 @@ disableVersioningWarning = true
 
 You can adjust the text of the versioning warning by overriding the key `Versioning-warning` in your i18n files.
 
-The following parameter are available to be included in the text:
+The following parameters are available to be included in the text:
 
 - `pageVersion` - the element of the displayed page's version from your `versions` array
 - `pageUrl` - the URL of the displayed page
@@ -181,9 +181,9 @@ The following parameter are available to be included in the text:
 
 ### Method 2
 
-You can override `layouts/partials/versioning-waring.html`. This is called once a version conflict was recognized. So the only thing for you to do is writing the message.
+You can override `layouts/partials/versioning-warning.html`. This is called once a version conflict was recognized. So the only thing for you to do is writing the message.
 
-The following parameter are available in this partial:
+The following parameters are available in this partial:
 
 - `page` - the current [Page](https://gohugo.io/methods/page/)
 - `pageVersion` - the element of the displayed page's version from your `versions` array

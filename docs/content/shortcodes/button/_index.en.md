@@ -40,7 +40,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 {{% /tab %}}
 {{< /tabs >}}
 
-### Parameter
+### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|

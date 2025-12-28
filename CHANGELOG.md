@@ -114,7 +114,7 @@
 
 - [**task**] openapi: update swagger-ui to 5.26.1 [#1114](https://github.com/McShelby/hugo-theme-relearn/issues/1114)
 - [**task**] mermaid: update to 11.8.0 [#1113](https://github.com/McShelby/hugo-theme-relearn/issues/1113)
-- [**task**][**breaking**] theme: compatiblity with Hugo 0.146.0 and newer [#1086](https://github.com/McShelby/hugo-theme-relearn/issues/1086)
+- [**task**][**breaking**] theme: compatibility with Hugo 0.146.0 and newer [#1086](https://github.com/McShelby/hugo-theme-relearn/issues/1086)
 - [**task**] tree: simplify code [#1085](https://github.com/McShelby/hugo-theme-relearn/issues/1085)
 
 ---
@@ -337,7 +337,7 @@
 ### Maintenance
 
 - [**task**] theme: remove author deprecation warning [#919](https://github.com/McShelby/hugo-theme-relearn/issues/919)
-- [**task**] theme: remove deprecation waring for usage of .Sites.First [#912](https://github.com/McShelby/hugo-theme-relearn/issues/912)
+- [**task**] theme: remove deprecation warning for usage of .Sites.First [#912](https://github.com/McShelby/hugo-theme-relearn/issues/912)
 - [**task**][**breaking**] theme: restructure code [#891](https://github.com/McShelby/hugo-theme-relearn/issues/891)
 - [**task**][**breaking**] search: improve generation of dedicated search page [#888](https://github.com/McShelby/hugo-theme-relearn/issues/888)
 - [**task**] theme: remove warning for usage of .Site.IsMultiLingual [#877](https://github.com/McShelby/hugo-theme-relearn/issues/877)

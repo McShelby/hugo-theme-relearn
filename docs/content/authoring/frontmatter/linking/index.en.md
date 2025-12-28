@@ -21,11 +21,11 @@ externalLinkTarget = '_blank'
 
 ## Enabling Link and Image Link Warnings
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `link.errorlevel` and `image.errorlevel` to control what should happen if a local link can not be resolved to a page and/or a resource.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `link.errorlevel` and `image.errorlevel` to control what should happen if a local link cannot be resolved to a page and/or a resource.
 
 If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
 
-Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
+Please note that this cannot resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
 Link warnings are also available for the [include](shortcodes/include#enabling-link-warnings) and [openapi](shortcodes/openapi#enabling-link-warnings) shortcodes.
 

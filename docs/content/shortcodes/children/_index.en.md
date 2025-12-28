@@ -35,7 +35,7 @@ The `children` shortcode lists child pages in various layouts.
 {{% /tab %}}
 {{< /tabs >}}
 
-### Parameter
+### Parameters
 
 | Name               | Default           | Notes       |
 |--------------------|-------------------|-------------|
@@ -144,7 +144,7 @@ A card template will be called with the following parameter by the `children` sh
 Because none of the children pages of this example define their own feature images, the theme (and Hugo) falls back to the media image of your site.
 
 > [!note]
-> Note if you want to use the card layout and have `goldmark.renderer.unsafe=false` (which is the default if you don't set it), you have to to use `{{</* children */>}}` instead of `{{%/* children */%}}` as with the other examples.
+> Note if you want to use the card layout and have `goldmark.renderer.unsafe=false` (which is the default if you don't set it), you have to use `{{</* children */>}}` instead of `{{%/* children */%}}` as with the other examples.
 
 ````go
 {{</* children type="card" description="true" */>}}

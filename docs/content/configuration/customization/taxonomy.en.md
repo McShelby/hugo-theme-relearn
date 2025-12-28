@@ -42,7 +42,7 @@ To display your custom taxonomy terms, add this to your page (usually in `layout
 ) }}
 ````
 
-### Parameter
+### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|

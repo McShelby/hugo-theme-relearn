@@ -324,7 +324,7 @@ The following example
 
 - configures the language switcher and history clearer into the menu header
 - changes the icon of the language switcher to {{< icon icon="globe" >}}
-- only shows the the page menu in the main sidebar section
+- only shows the page menu in the main sidebar section
 - keeps the menu footer empty
 
 > [!note]

@@ -61,7 +61,7 @@ The `badge` shortcode displays colorful markers in your text with optional icons
 {{% /tab %}}
 {{< /tabs >}}
 
-### Parameter
+### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|

@@ -60,7 +60,7 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 {{% /tab %}}
 {{< /tabs >}}
 
-### Parameter
+### Parameters
 
 | Name                  | Position | Default         | Notes       |
 |-----------------------|----------|-----------------|-------------|

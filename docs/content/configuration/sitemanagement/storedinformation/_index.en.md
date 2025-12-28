@@ -15,11 +15,11 @@ The theme stores the following information in localstorage or sessionstorage.
 
 - The scroll position of the content area to be restored on browser back navigation.
 
-  This can not be turned off.
+  This cannot be turned off.
 
 - [Selected tab](shortcodes/tabs#behavior-of-the-groupid) of a tab group to apply the selection to other tab groups on the present page and all following presented pages.
 
-  This can not be turned off.
+  This cannot be turned off.
 
 - Currently applicable search term to carry over to the following presented pages. This will be used to mark the search term in the page's text.
 

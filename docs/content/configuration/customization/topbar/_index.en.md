@@ -110,7 +110,7 @@ Call this from your own button templates if you want to implement a button witho
 
 For displaying an area in the button's overlay, see [Area-Button](#area-button).
 
-#### Parameter
+#### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
@@ -132,7 +132,7 @@ Contains the basic functionality to display area overlay buttons ([`layouts/part
 
 Call this from your own button templates if you want to implement a button with an area overlay like the _more_ button ([`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)).
 
-#### Parameter
+#### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
@@ -154,7 +154,7 @@ Call these from your own redefined area templates if you want to use default but
 
 The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
 
-#### Parameter
+#### Parameters
 
 | Name                  | Default           | Notes       |
 |-----------------------|-------------------|-------------|
@@ -171,7 +171,7 @@ Call these from your own redefined area templates if you want to use default but
 
 The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
 
-#### Parameter
+#### Parameters
 
 | Name                  | Default           | Notes       |
 |-----------------------|-------------------|-------------|

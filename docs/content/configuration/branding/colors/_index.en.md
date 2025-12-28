@@ -107,7 +107,7 @@ themeVariant = [
 
 The `identifier` option is mandatory and equivalent to the string in the first example. Further options can be configured, see the table below.
 
-#### Parameter
+#### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|

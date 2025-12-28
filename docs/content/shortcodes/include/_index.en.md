@@ -39,7 +39,7 @@ The `include` shortcode includes other pages, resources or files from your proje
 
 The included files can even contain Markdown and will be taken into account when generating the table of contents.
 
-### Parameter
+### Parameters
 
 | Name                 | Position | Default          | Notes       |
 |----------------------|----------|------------------|-------------|
@@ -50,11 +50,11 @@ The included files can even contain Markdown and will be taken into account when
 
 ### Enabling Link Warnings
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `include.errorlevel` to control what should happen if a local link can not be resolved to a resource.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can use `include.errorlevel` to control what should happen if a local link cannot be resolved to a resource.
 
 If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
 
-Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
+Please note that this cannot resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
 Link warnings are also available for [images & links](authoring/frontmatter/linking#enabling-link-and-image-link-warnings) and the [openapi](shortcodes/openapi#enabling-link-warnings) shortcode.
 

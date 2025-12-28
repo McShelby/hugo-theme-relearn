@@ -55,9 +55,9 @@ The `tree` shortcode displays text as a tree with configurable icons and colors.
 {{% /tab %}}
 {{< /tabs >}}
 
-Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommend syntax for generating portable Markdown.
+Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.
 
-### Parameter
+### Parameters
 
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|

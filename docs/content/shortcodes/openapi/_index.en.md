@@ -35,7 +35,7 @@ If you want to print out (or generate a PDF) from your OpenAPI documentation, do
 
 Instead, open the [print preview](authoring/frontmatter/topbar) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
 
-### Parameter
+### Parameters
 
 | Name                 | Default          | Notes       |
 |----------------------|------------------|-------------|
@@ -45,11 +45,11 @@ Instead, open the [print preview](authoring/frontmatter/topbar) in your browser 
 
 ### Enabling Link Warnings
 
-{{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link can not be resolved to a resource.
+{{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} You can use `openapi.errorlevel` to control what should happen if a local OpenAPI specification link cannot be resolved to a resource.
 
 If not set or empty, any unresolved link is written as given into the resulting output. If set to `warning` the same happens and an additional warning is printed in the built console. If set to `error` an error message is printed and the build is aborted.
 
-Please note that this can not resolve files inside of your `static` directory. The file must be a resource of the page or the site.
+Please note that this cannot resolve files inside of your `static` directory. The file must be a resource of the page or the site.
 
 Link warnings are also available for [images & links](authoring/frontmatter/linking#enabling-link-and-image-link-warnings) and the [include](shortcodes/include#enabling-link-warnings) shortcode.
 

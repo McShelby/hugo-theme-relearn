@@ -57,7 +57,7 @@ If you want multiple tabs grouped together you can wrap your tabs into the [`tab
 
 If you want further options when using a single code tab, you can also use the [`highlight` shortcode](shortcodes/highlight).
 
-### Parameter
+### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
@@ -91,7 +91,7 @@ printf("Hello World!");
 
 ````go
 {{%/* tab title="_**Mixed**_" */%}}
-A tab can not only contain code but arbitrary text. In this case text **and** code will get a margin.
+A tab cannot only contain code but arbitrary text. In this case text **and** code will get a margin.
 ```python
 printf("Hello World!");
 ```
@@ -100,7 +100,7 @@ printf("Hello World!");
 
 {{% tab title="_**Mixed**_" %}}
 
-A tab can not only contain code but arbitrary text. In this case text **and** code will get a margin.
+A tab cannot only contain code but arbitrary text. In this case text **and** code will get a margin.
 
 ```python
 printf("Hello World!");

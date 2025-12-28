@@ -58,7 +58,7 @@ echo "Hello World!"
 For the connoisseur of programming.
 
 ```c
-printf"Hello World!");
+printf("Hello World!");
 ```
 {{%/* /card */%}}
 {{</* /cards */>}}
@@ -95,7 +95,7 @@ If you just want a single card you can instead call the [`card` shortcode](short
 
 Also follow the above link to see the parameter for each nested card.
 
-### Parameter
+### Parameters
 
 | Name                  | Default              | Notes       |
 |-----------------------|----------------------|-------------|

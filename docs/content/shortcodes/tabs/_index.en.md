@@ -62,7 +62,7 @@ echo "Hello World!"
 {{%/* /tab */%}}
 {{%/* tab title="c" */%}}
 ```c
-printf"Hello World!");
+printf("Hello World!");
 ```
 {{%/* /tab */%}}
 {{</* /tabs */>}}
@@ -145,11 +145,11 @@ If you just want a single tab you can instead call the [`tab` shortcode](shortco
 
 Also follow the above link to see the parameter for each nested tab.
 
-### Parameter
+### Parameters
 
 | Name                  | Default              | Notes       |
 |-----------------------|----------------------|-------------|
-| **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** sychronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab can not be found in a tab group the first tab is selected instead.<br><br>This sychronization applies to the whole site! |
+| **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** synchronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab cannot be found in a tab group the first tab is selected instead.<br><br>This synchronization applies to the whole site! |
 | **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values. |
 | **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values. |
 | **title**             | _&lt;empty&gt;_      | Arbitrary title written in front of the tab view. |

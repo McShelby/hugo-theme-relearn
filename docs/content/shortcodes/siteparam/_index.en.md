@@ -37,7 +37,7 @@ To print params from a page's front matter and falling back to the site options,
 {{% /tab %}}
 {{< /tabs >}}
 
-### Parameter
+### Parameters
 
 | Name                 | Position | Default          | Notes       |
 |----------------------|----------|------------------|-------------|

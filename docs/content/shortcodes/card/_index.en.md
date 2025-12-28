@@ -46,7 +46,7 @@ printf("Hello World!");
 
 If you want to show a set of cards grouped together you can wrap your cards into the [`cards` shortcode](shortcodes/cards).
 
-### Parameter
+### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|

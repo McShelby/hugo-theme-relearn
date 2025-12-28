@@ -36,7 +36,7 @@ The `resources` shortcode displays links to resources contained in a [page bundl
 
 Multilanguage features are not supported directly by the shortcode but rely on Hugo's handling for resource translations applied when the theme iterates over all available resources.
 
-### Parameter
+### Parameters
 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
@@ -84,4 +84,4 @@ Multilanguage features are not supported directly by the shortcode but rely on H
 
 ### Style, Color, Title and Icons
 
-For further examples for **style**, **color**, **title** and **icon**, see the [`notice` shortcode](shortcodes/notice) documentation. The parameter are working the same way for both shortcodes, besides having different defaults.
+For further examples for **style**, **color**, **title** and **icon**, see the [`notice` shortcode](shortcodes/notice) documentation. The parameters are working the same way for both shortcodes, besides having different defaults.

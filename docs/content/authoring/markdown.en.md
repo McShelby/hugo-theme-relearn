@@ -725,7 +725,7 @@ That's some more text with a footnote.[^someid]
 
 #### Target
 
-Add query parameter `target=_self` or `target=_blank` to override [site-wide settings](authoring/frontmatter/linking#opening-links) of [the target behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) individuallly for each link.
+Add query parameter `target=_self` or `target=_blank` to override [site-wide settings](authoring/frontmatter/linking#opening-links) of [the target behavior](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) individually for each link.
 
 ````md
 [Magic in new window](images/magic.gif?target=_blank)
