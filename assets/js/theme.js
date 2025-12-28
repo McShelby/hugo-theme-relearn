@@ -1515,11 +1515,10 @@ function mark() {
     var parent = markedElements[i].parentNode;
     while (parent && parent.classList) {
       if (parent.classList.contains('expand')) {
-        var expandInputs = parent.querySelectorAll('input:not(.expand-marked)');
-        if (expandInputs.length) {
-          expandInputs[0].classList.add('expand-marked');
-          expandInputs[0].dataset.checked = expandInputs[0].checked ? 'true' : 'false';
-          expandInputs[0].checked = true;
+        if (!parent.classList.contains('expand-marked')) {
+          parent.classList.add('expand-marked');
+          parent.dataset.open = parent.open ? 'true' : 'false';
+          parent.open = true;
         }
       }
       if (parent.tagName.toLowerCase() === 'li' && parent.parentNode && parent.parentNode.tagName.toLowerCase() === 'ul' && parent.parentNode.classList.contains('collapsible-menu')) {
@@ -1610,11 +1609,10 @@ function unmark() {
         }
       }
       if (parent.classList.contains('expand')) {
-        var expandInputs = parent.querySelectorAll('input.expand-marked');
-        if (expandInputs.length) {
-          expandInputs[0].checked = expandInputs[0].dataset.checked === 'true';
-          expandInputs[0].dataset.checked = null;
-          expandInputs[0].classList.remove('expand-marked');
+        if (parent.classList.contains('expand-marked')) {
+          parent.open = parent.dataset.open === 'true';
+          parent.dataset.open = null;
+          parent.classList.remove('expand-marked');
         }
       }
       parent = parent.parentNode;
