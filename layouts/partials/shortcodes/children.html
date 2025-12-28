@@ -105,7 +105,7 @@
           {{- end }}
         {{- end }}
         {{- if $.withDescription }}
-          {{- $description := or $page.Description $page.Summary | plainify }}
+          {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
           {{- with $description }}
 
 {{ $indent }}    {{ . }}
@@ -138,8 +138,9 @@
           {{- end }}
         {{- end }}
       {{- end }}
+      {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
       {{- $cards = $cards | append (dict
-        "content"  (cond $.withDescription (or $page.Description $page.Summary | plainify) "")
+        "content"  (cond $.withDescription $description "")
         "href"     $page.Path
         "image"    $cardImage
         "title"    $title
