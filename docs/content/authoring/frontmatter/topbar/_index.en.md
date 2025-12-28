@@ -13,7 +13,7 @@ This page is about how to configure the topbar using configuration options. If y
 Your topbar contains the following elements. Some of them are configuarable:
 
 - {{% button style="transparent" icon="bars" %}}{{% /button %}} **sidebar**: opens the sidebar flyout if in mobile layout
-- {{% button style="transparent" icon="list-alt" %}}{{% /button %}} **toc**: [opens the table of contents in an overlay](#table-of-contents)
+- {{% button style="transparent" icon="table-list" %}}{{% /button %}} **toc**: [opens the table of contents in an overlay](#table-of-contents)
 - {{% button style="transparent" icon="empty" %}}{{% /button %}} **breadcrumb**: shows the clickable [breadcrumbs](#breadcrumbs)
 - {{% button style="transparent" icon="pen" %}}{{% /button %}} **edit**: browses to the editable page if the `editURL` [parameter is set](#edit-button)
 - {{% button style="transparent" icon="code" %}}{{% /button %}} **source**: browses to the [chapters source code](#source-button) if [source support](configuration/sitemanagement/outputformats#source-support) was activated
