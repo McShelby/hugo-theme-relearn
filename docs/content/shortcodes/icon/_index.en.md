@@ -70,9 +70,9 @@ The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome
 
 ### Finding an icon
 
-Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/v6/search?m=free). Notice that the **free** filter is enabled, as only the free icons are available by default.
+Browse through the available icons in the [Font Awesome Gallery](https://fontawesome.com/v7/search?ic=free-collection). Notice that the **free** filter is enabled, as only the free icons are available by default.
 
-Once on the Font Awesome page for a specific icon, for example the page for the [heart](https://fontawesome.com/v6/icons/heart?s=solid), copy the icon name and paste into the Markdown content.
+Once on the Font Awesome page for a specific icon, for example the page for the [heart](https://fontawesome.com/v7/icons/heart?s=solid), copy the icon name and paste into the Markdown content.
 
 ### Customizing Icons
 

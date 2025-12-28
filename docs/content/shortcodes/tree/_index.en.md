@@ -69,7 +69,7 @@ Markdown codefence syntax is widely available in other Markdown parsers like Git
 
 The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and further optional pipe to define the icon's **COLOR**.
 
-- **ICON**: [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the **NAME**. If you give a single string, it is selected from Font Awesome's [solid](https://fontawesome.com/icons?d=gallery&s=solid&m=free) icons. If you want to use a different set, you have to give the complete styles after the double colons. See above example for the `home.php`.
+- **ICON**: [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the **NAME**. If you give a single string, it is selected from Font Awesome's [solid](https://fontawesome.com/search?ic=free-collection&s=solid) icons. If you want to use a different set, you have to give the complete styles after the double colons. See above example for the `home.php`.
 
 - **COLOR**: The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the primary color will be used.
 
