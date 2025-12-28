@@ -73,7 +73,7 @@ weight = 5
 
 ### By Other
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. See the [children shortcode](shortcodes/children#parameter) for a complete list.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. See the [children shortcode](shortcodes/children#parameters) for a complete list.
 
 {{< multiconfig section=params >}}
 ordersectionsby = 'linktitle'

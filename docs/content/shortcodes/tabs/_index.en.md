@@ -150,8 +150,8 @@ Also follow the above link to see the parameter for each nested tab.
 | Name                  | Default              | Notes       |
 |-----------------------|----------------------|-------------|
 | **groupid**           | _&lt;random&gt;_     | Arbitrary name of the group the tab view belongs to.<br><br>Tab views with the same **groupid** synchronize their selected tab. The tab selection is restored automatically based on the `groupid` for tab view. If the selected tab cannot be found in a tab group the first tab is selected instead.<br><br>This synchronization applies to the whole site! |
-| **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values. |
-| **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values. |
+| **style**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameters) for possible values. |
+| **color**             | _&lt;empty&gt;_      | Sets a default value for every contained tab. Can be overridden by each tab. See the [`tab` shortcode](shortcodes/tab#parameters) for possible values. |
 | **title**             | _&lt;empty&gt;_      | Arbitrary title written in front of the tab view. |
 | **icon**              | _&lt;empty&gt;_      | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of tabs defined with the `tab` sub-shortcode. |
@@ -276,7 +276,7 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 
 In case you want to nest tab views, the parent tab that contains nested tab views needs to be declared with `{{</* tab */>}}` instead of `{{%/* tab */%}}`. Note, that in this case it is not possible to put markdown in the parent tab.
 
-You can also set style and color parameter for all tabs and overwrite them on tab level. See the [`tab` shortcode](shortcodes/tab#parameter) for possible values.
+You can also set style and color parameter for all tabs and overwrite them on tab level. See the [`tab` shortcode](shortcodes/tab#parameters) for possible values.
 
 ````go
 {{</* tabs groupid="main" style="primary" title="Rationale" icon="thumbtack" */>}}

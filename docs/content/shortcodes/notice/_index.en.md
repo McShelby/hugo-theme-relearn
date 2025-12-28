@@ -75,7 +75,7 @@ If you want to display a transparent expandable box without any border, you can 
 
 ### Defining own Styles
 
-{{% badge style="option" %}}Option{{% /badge %}} Besides the predefined `style` values [from above](#parameter), you are able to define your own.
+{{% badge style="option" %}}Option{{% /badge %}} Besides the predefined `style` values [from above](#parameters), you are able to define your own.
 
 {{< multiconfig file=hugo section=params >}}
 boxStyle = [

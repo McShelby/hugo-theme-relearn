@@ -109,7 +109,7 @@ If used together with wrapping of long lines, use this recommended settings. Oth
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} By default, code will be wrapped if the line is not long enough.
 
-You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameter) individually for each code block.
+You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameters) individually for each code block.
 
 {{< multiconfig section=params >}}
 highlightWrap=false

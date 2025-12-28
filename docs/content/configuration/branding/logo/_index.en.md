@@ -83,7 +83,7 @@ If you don't configure a logo explicitly, the theme automatically searches for a
 
 If no logo is found, only your site title will be shown.
 
-The size of the logo will adapt automatically to an opinionated default. See below on [how to resize it](#changing-the-logo-image-width).
+The size of the logo will adapt automatically to an opinionated default. See below on [how to resize it](#customizing-size).
 
 ### Manual Configuration
 
