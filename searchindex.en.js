@@ -1073,7 +1073,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "",
-    "content": "Discover what this Hugo theme is all about.\nGetting Started Initialize your website in a few simple steps\nUpgrade How to upgrade your Relearn site\nTool Integration All about supported 3rd party tools\nWhat's New What’s new in this version\nChangelog The detailed changelog",
+    "content": "Discover what this Hugo theme is all about.\nGetting Started Initialize your website in a few simple steps\nUpgrade How to upgrade your Relearn site\nTool Integration All about supported 3rd party tools\nWhat's New What's new in this version\nChangelog The detailed changelog",
     "description": "Discover what this Hugo theme is all about.\nGetting Started Initialize your website in a few simple steps",
     "tags": [],
     "title": "Introduction",
@@ -1123,7 +1123,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configuration",
-    "content": "Directory Structure Your site’s directory structure\nMultilingual How to set up a multilingual site\nVersioning How to keep older versions of your site\nMeta Information What site-wide meta information can be set\nDeployment Scenarios Options for specific deployment needs\nGDPR \u0026 Cookie Consent Information on what’s stored on the reader’s side\nAvailable Output Formats What formats can a page be displayed in\nStable Output How to make your generated HTML output stable",
+    "content": "Directory Structure Your site's directory structure\nMultilingual How to set up a multilingual site\nVersioning How to keep older versions of your site\nMeta Information What site-wide meta information can be set\nDeployment Scenarios Options for specific deployment needs\nGDPR \u0026 Cookie Consent Information on what's stored on the reader's side\nAvailable Output Formats What formats can a page be displayed in\nStable Output How to make your generated HTML output stable",
     "description": "Get yourself familiar with the general structure of your website",
     "tags": [],
     "title": "Site Management",
@@ -1155,7 +1155,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configuration",
-    "content": "Logo \u0026 Title Provide your own logo, favicon and menu title\nColors Learn how to customize your site’s colors\nModule Theming Colors of syntax highlighting and 3rd-party modules\nStylesheet Generator An interactive tool to generate color variant stylesheets",
+    "content": "Logo \u0026 Title Provide your own logo, favicon and menu title\nColors Learn how to customize your site's colors\nModule Theming Colors of syntax highlighting and 3rd-party modules\nStylesheet Generator An interactive tool to generate color variant stylesheets",
     "description": "Change colors and logos of your site",
     "tags": [],
     "title": "Branding",
@@ -1235,8 +1235,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "",
-    "content": "Learn how to create and organize your content pages.\nDirectory Structure Your content’s directory structure\nFront Matter All things front matter\nMeta Information What page meta information are available\nMarkdown Syntax Reference of CommonMark and Markdown extensions\nLinking How to link your content\nTaxonomy / Term Pages How to adjust taxonomy and term pages",
-    "description": "Learn how to create and organize your content pages.\nDirectory Structure Your content’s directory structure",
+    "content": "Learn how to create and organize your content pages.\nDirectory Structure Your content's directory structure\nFront Matter All things front matter\nMeta Information What page meta information are available\nMarkdown Syntax Reference of CommonMark and Markdown extensions\nLinking How to link your content\nTaxonomy / Term Pages How to adjust taxonomy and term pages",
+    "description": "Learn how to create and organize your content pages.\nDirectory Structure Your content's directory structure",
     "tags": [],
     "title": "Authoring",
     "uri": "/hugo-theme-relearn/authoring/index.html"

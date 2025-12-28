@@ -1065,7 +1065,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "",
-    "content": "Discover what this Cap'n Hugo theme be all about.\nGett'n Started Initialize yer website 'n a few simple steps\nUpgrade How t' upgrade yer Relearrrn ship\nTool Integrat'n All about supported 3rd party tools\nWhat's New What’s new 'n this version\nChangelog Th' detailed changelog",
+    "content": "Discover what this Cap'n Hugo theme be all about.\nGett'n Started Initialize yer website 'n a few simple steps\nUpgrade How t' upgrade yer Relearrrn ship\nTool Integrat'n All about supported 3rd party tools\nWhat's New What's new 'n this version\nChangelog Th' detailed changelog",
     "description": "Discover what this Cap'n Hugo theme be all about.\nGett'n Started Initialize yer website 'n a few simple steps",
     "tags": [],
     "title": "Introduction",
@@ -1115,7 +1115,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configurrrat'n",
-    "content": "Directory Structure Yer site’s directory structure\nMultilingual How t' set up a multilingual ship\nVersion'n How t' keep older versions o' yer ship\nMeta Informat'n What site-wide meta informat'n can be set\nDeployment Scenarios Opt'ns fer specific deployment needs\nGDPR \u0026 Cookie Consent Informat'n on what’s stored on th' reader’s side\nAvail'ble Output Formats What formats can a plank be displayed 'n\nStable Output How t' make yer generated HTML output stable",
+    "content": "Directory Structure Yer site's directory structure\nMultilingual How t' set up a multilingual ship\nVersion'n How t' keep older versions o' yer ship\nMeta Informat'n What site-wide meta informat'n can be set\nDeployment Scenarios Opt'ns fer specific deployment needs\nGDPR \u0026 Cookie Consent Informat'n on what's stored on th' reader's side\nAvail'ble Output Formats What formats can a plank be displayed 'n\nStable Output How t' make yer generated HTML output stable",
     "description": "Get yourself familiar with the general structure of your website",
     "tags": [],
     "title": "Site Management",
@@ -1147,7 +1147,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configurrrat'n",
-    "content": "Logo \u0026 Title Provide yer own logo, favicon an' menu title\nColors Learrrn how t' cust'mize yer site’s colors\nModule Them'n Colors o' rules highlight'n an' 3rd-party modules\nStylesheet Generator An interactive tool t' generate color variant stylesheets",
+    "content": "Logo \u0026 Title Provide yer own logo, favicon an' menu title\nColors Learrrn how t' cust'mize yer site's colors\nModule Them'n Colors o' rules highlight'n an' 3rd-party modules\nStylesheet Generator An interactive tool t' generate color variant stylesheets",
     "description": "Change colors and logos of your site",
     "tags": [],
     "title": "Brrrand'n",
@@ -1275,8 +1275,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "",
-    "content": "Learrrn how t' create an' org'nize yer rrrambl'n planks.\nDirectory Structure Yer content’s directory structure\nFront Matter All th'ns front matter\nMeta Informat'n What plank meta informat'n be avail'ble\nMarrrkdown Rules Reference o' CommonMark an' Marrrkdown extensions\nLink'n How t' link yer rrrambl'n\nTaxonomy / Term Planks How t' adjust taxonomy an' term planks",
-    "description": "Learrrn how t' create an' org'nize yer rrrambl'n planks.\nDirectory Structure Yer content’s directory structure",
+    "content": "Learrrn how t' create an' org'nize yer rrrambl'n planks.\nDirectory Structure Yer content's directory structure\nFront Matter All th'ns front matter\nMeta Informat'n What plank meta informat'n be avail'ble\nMarrrkdown Rules Reference o' CommonMark an' Marrrkdown extensions\nLink'n How t' link yer rrrambl'n\nTaxonomy / Term Planks How t' adjust taxonomy an' term planks",
+    "description": "Learrrn how t' create an' org'nize yer rrrambl'n planks.\nDirectory Structure Yer content's directory structure",
     "tags": [],
     "title": "Rambl'n",
     "uri": "/hugo-theme-relearn/pir/authoring/index.html"
