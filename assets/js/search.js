@@ -96,9 +96,13 @@
     var divsuggestion = document.createElement('a');
     divsuggestion.className = 'autocomplete-suggestion';
     divsuggestion.setAttribute('href', window.relearn.relBaseUri + page.uri);
+    var divlink = document.createElement('span');
+    divlink.className = 'link';
+    divlink.innerText = page.title;
     var divtitle = document.createElement('div');
     divtitle.className = 'title';
-    divtitle.innerText = '» ' + page.title;
+    divtitle.innerText = '» ';
+    divtitle.appendChild(divlink);
     divsuggestion.appendChild(divtitle);
     var divbreadcrumb = document.createElement('div');
     divbreadcrumb.className = 'breadcrumbs';

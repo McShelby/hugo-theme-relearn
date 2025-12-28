@@ -9,7 +9,7 @@
 {{- if site.Params.description }}
   {{- warnf "UNSUPPORTED usage of 'params.description' config parameter found, move it to the front matter of your home page; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/6/#6-0-0" }}
 {{- end }}
-<html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article" data-r-output-format="{{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}">
+<html id="R-html" lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article" data-r-output-format="{{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}">
   <head>
     {{- partial "meta.html" . }}
     {{- $title := partial "title.gotmpl" (dict "page" . "fullyQualified" true "reverse" true) }}

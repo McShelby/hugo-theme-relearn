@@ -2076,17 +2076,16 @@ span.math:has(> mjx-container[display]) {
   height: 1.5rem;
 }
 
-#R-sidebar .autocomplete-suggestion {
-  /* restore autocomplete default value for sidebar, because it is affectd
-  by coarse element styling */
-  color: rgba(40, 40, 40, 1);
-  display: block;
+#R-sidebar .autocomplete-suggestions {
+  background-color: var(--INTERNAL-MAIN-BG-color);
+  border: 0 solid rgba(134, 134, 134, 0.166);
+  box-shadow: 1px 2px 5px 1px rgba(134, 134, 134, 0.333);
 }
 
-#R-sidebar .autocomplete-suggestion.selected {
-  /* restore autocomplete default value for sidebar, because it is affectd
+#R-sidebar .autocomplete-suggestion {
+  /* restore autocomplete default value for sidebar, because it is affected
   by coarse element styling */
-  color: rgba(255, 255, 255, 1);
+  display: block;
 }
 
 #R-sidebar .autocomplete-suggestions > .autocomplete-suggestion > .breadcrumbs {
@@ -2095,7 +2094,6 @@ span.math:has(> mjx-container[display]) {
 }
 
 #R-searchresults .autocomplete-suggestion {
-  color: var(--VARIABLE-LINK-color);
   display: block;
   font-size: 1.3rem;
   font-weight: 500;
@@ -2103,21 +2101,11 @@ span.math:has(> mjx-container[display]) {
   padding: 1rem;
   text-decoration: none;
 }
-#R-searchresults .autocomplete-suggestion:focus {
-  color: var(--VARIABLE-LINK-HOVER-color);
-  background-color: rgba(134, 134, 134, 0.133);
-}
-#R-searchresults .autocomplete-suggestion:hover {
-  color: var(--VARIABLE-LINK-HOVER-color);
-  background-color: rgba(134, 134, 134, 0.2);
-}
 #R-searchresults .autocomplete-suggestion:after {
   height: 0;
 }
 
 #R-searchresults .autocomplete-suggestion > .breadcrumbs {
-  background-color: transparent;
-  color: var(--INTERNAL-PRIMARY-color);
   font-size: 0.9rem;
   font-weight: 400;
   margin-top: 0.167em;
@@ -2126,13 +2114,41 @@ span.math:has(> mjx-container[display]) {
 }
 
 #R-searchresults .autocomplete-suggestion > .context {
-  background-color: transparent;
-  color: var(--INTERNAL-MAIN-TEXT-color);
   font-size: 1rem;
   font-weight: 300;
   margin-top: 0.66em;
   padding-left: 0.1em;
   padding-right: 0.1em;
+}
+
+#R-html .autocomplete-suggestion {
+  color: var(--VARIABLE-LINK-color);
+}
+#R-html .autocomplete-suggestion.selected,
+#R-html .autocomplete-suggestion:focus {
+  color: var(--VARIABLE-LINK-HOVER-color);
+  background-color: rgba(134, 134, 134, 0.133);
+}
+#R-html .autocomplete-suggestion:hover {
+  color: var(--VARIABLE-LINK-HOVER-color);
+  background-color: rgba(134, 134, 134, 0.2);
+}
+#R-html .autocomplete-suggestion .link {
+  color: inherit;
+}
+#R-html .autocomplete-suggestion.selected .link,
+#R-html .autocomplete-suggestion:focus .link,
+#R-html .autocomplete-suggestion:hover .link {
+  color: inherit;
+  text-decoration: underline;
+}
+#R-html .autocomplete-suggestion > .breadcrumbs {
+  background-color: transparent;
+  color: var(--INTERNAL-PRIMARY-color);
+}
+#R-html .autocomplete-suggestion > .context {
+  background-color: transparent;
+  color: var(--INTERNAL-MAIN-TEXT-color);
 }
 
 .badge {

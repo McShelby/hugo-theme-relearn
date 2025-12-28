@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {{- .Store.Set "relearnOutputFormat" "html" }}
-<html lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article" data-r-output-format="{{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}">
+<html id="R-html" lang="{{ .Page.Language.LanguageCode }}" dir="{{ .Page.Language.LanguageDirection | default (T "Reading-direction") | default "ltr" }}" itemscope itemtype="http://schema.org/Article" data-r-output-format="{{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}">
   <head>
     {{- partial "meta.html" . }}
     {{- $title := partial "title.gotmpl" (dict "page" . "fullyQualified" true "reverse" true) }}
