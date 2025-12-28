@@ -9,9 +9,5 @@ type = 'home'
       render = 'never'
   [cascade.target]
     path = '/introduction/changelog/*/*/*'
-
-[[cascade]]
-  [cascade.params]
-    urlIgnoreCheck = [ '.*' ]
 +++
 {{< piratify true >}}
