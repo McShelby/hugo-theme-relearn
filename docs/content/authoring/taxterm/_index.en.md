@@ -16,7 +16,7 @@ weight = 6
 	type = "card"
 {{< /multiconfig >}}
 
-For example the [_Categories_ taxonomy](categories) does not show a grouped list like in the default (see the [_Tags_ taxonomy](tags)) but some neat cards.
+For example in this docs the [_Categories_ taxonomy](categories) does not show a grouped list like in the default (compare to the [_Tags_ taxonomy](tags)) but some neat cards.
 
 ## Term Parameter
 
@@ -30,4 +30,4 @@ For example the [_Categories_ taxonomy](categories) does not show a grouped list
 	  description = true
 {{< /multiconfig >}}
 
-The term pages of the [_Categories_ taxonomy](categories) do not show their breadcrumbs like in the default but the description of the page.
+For example in this docs the [term pages](categories/explanation) of the _Categories_ taxonomy do not show their breadcrumbs like in the default but the description of the page.

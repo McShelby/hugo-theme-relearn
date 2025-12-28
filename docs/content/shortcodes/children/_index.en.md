@@ -15,6 +15,8 @@ The `children` shortcode lists child pages in various layouts.
 
 ## Usage
 
+Also, the [taxonomy and term pages](authoring/taxterm) internally are using this shortcode and also can be given parameters.
+
 {{< tabs groupid="shortcode-parameter">}}
 {{% tab title="shortcode" %}}
 
