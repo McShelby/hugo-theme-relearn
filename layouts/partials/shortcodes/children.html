@@ -96,7 +96,7 @@
         {{- if not (or (eq $.type "flat") (eq $.type "list")) }}
           {{- $indent = strings.Repeat (sub $.count 1) "  " }}
         {{- end }}
-{{ $indent }}- {{ if eq $.type "list" }}{{ strings.Repeat (math.Min 6 (add $.headingDepth (sub $.count 1))) "#" }} {{ end }}{{ if $page.RelPermalink }}[{{ $title }}]({{ $page.RelPermalink }}){{ else }}{{ $title }}{{ end }}
+{{ $indent }}- {{ if eq $.type "list" }}{{ strings.Repeat (math.Min 6 (add $.headingDepth (sub $.count 1))) "#" }} {{ end }}{{ if $page.RelPermalink }}[{{ $title }}]({{ $page.Path }}){{ else }}{{ $title }}{{ end }}
         {{- if $.withBreadcrumb }}
           {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
           {{- with $breadcrumb }}
