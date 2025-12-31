@@ -13,6 +13,7 @@
   {{- $headingdepth := $.headingdepth | default .Params.children.headingdepth }}
   {{- $image := .Params.children.image }}
   {{- $type := .Params.children.type | default "group" }}
+  {{- $sort := .Params.children.sort }}
 
   {{- .Content }}
   {{- $pages := partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
@@ -25,6 +26,7 @@
     "headingdepth" $headingdepth
     "image"        $image
     "showhidden"   true
+    "sort"         $sort
     "type"         $type
   ) }}
   {{- if $raw  }}
