@@ -31,7 +31,7 @@
 {{- define "partials/inline/prev_page" }}
   {{- $previousVisible := "" }}
   {{- $currentNode := . }}
-  {{- with partial "inline/parent" $currentNode }}
+  {{- with (partial "inline/parent" $currentNode) }}
     {{- $parent := . }}
     {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" $parent) $parent.Path }}
     {{- $previousSibling := partial "inline/prev_sibling" (dict "siblings" $pages "currentNode" $currentNode) }}
@@ -74,7 +74,7 @@
   {{- $pages := (partialCached "_relearn/pages.gotmpl" (dict "page" $rightmostVisible) $rightmostVisible.Path) | collections.Reverse }}
   {{- range $pages }}
     {{- if not (or (eq .Title "") .Params.hidden .Params.menuUrl .Params.menuPageRef) }}
-      {{- with partial "inline/rightmost_descendant" . }}
+      {{- with (partial "inline/rightmost_descendant" .) }}
         {{- if .RelPermalink }}
           {{- $rightmostVisible = . }}
           {{- break }}

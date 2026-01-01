@@ -50,7 +50,7 @@
 {{- define "partials/inline/next_sibling_or_ancestor" }}
   {{- $currentNode := . }}
   {{- $nextSibling := "" }}
-  {{- with partial "inline/parent" $currentNode }}
+  {{- with (partial "inline/parent" $currentNode) }}
     {{- $parent := . }}
     {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" $parent) $parent.Path }}
     {{- $nextVisible := partial "inline/next_sibling" (dict "siblings" $pages "currentNode" $currentNode) }}
@@ -101,7 +101,7 @@
     {{- else }}
       {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
       {{- range $pages }}
-        {{- with partial "inline/leftmost_descendant" . }}
+        {{- with (partial "inline/leftmost_descendant" .) }}
           {{- $leftmostVisible = . }}
           {{- break }}
         {{- end }}
