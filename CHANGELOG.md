@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.0.3 (2026-01-01)
+
+### Fixes
+
+- [**bug**] theme: crash with Hugo 0.154.0 [#1195](https://github.com/McShelby/hugo-theme-relearn/issues/1195)
+
+---
+
 ## 9.0.2 (2026-01-01)
 
 ### Fixes
