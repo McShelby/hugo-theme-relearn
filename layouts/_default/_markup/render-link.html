@@ -1,6 +1,18 @@
+{{- /* #1197 in case of a taxonomy term containing special chars, this will be
+   escapced somewhere inbetween the term page calling the children shortcode
+   and rendering that Markdown output; so we unescape asorted characters */}}
+{{- $path := .Destination  }}
+{{- $htmlchars := dict
+  "&#34;" `"`
+  "&#39;" `'`
+  "&#43;" `+`
+}}
+{{- range $k, $v := $htmlchars }}
+  {{- $path = replace $path $k $v }}
+{{- end }}
 {{- partial "shortcodes/link.html" (dict
   "page" .Page
-  "url" .Destination
+  "url" $path
   "title" .Title
   "content" .Text
 ) }}
