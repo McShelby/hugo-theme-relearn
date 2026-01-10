@@ -70,7 +70,7 @@ async function run() {
       await preview.setViewport({ width: vw2, height: vh2 });
 
       const html = `
-        <!doctype html>
+        <!DOCTYPE html>
         <html>
           <head>
             <meta charset="utf-8" />

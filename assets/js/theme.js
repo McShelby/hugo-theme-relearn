@@ -472,7 +472,7 @@ function initOpenapi(update, attrs) {
     const oi = document.createElement('iframe');
     oi.id = openapiIframeId;
     oi.classList.toggle('sc-openapi-iframe', true);
-    oi.srcdoc = `<!doctype html>
+    oi.srcdoc = `<!DOCTYPE html>
 <html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
     <meta charset="utf-8">
