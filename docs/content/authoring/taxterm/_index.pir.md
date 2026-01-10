@@ -1,7 +1,7 @@
 +++
 categories = ['howto']
 description = 'How to adjust taxonomy and term pages'
-frontmatter = ['children']
+frontmatter = ['pages']
 title = 'Taxonomy / Term Pages'
 weight = 6
 +++

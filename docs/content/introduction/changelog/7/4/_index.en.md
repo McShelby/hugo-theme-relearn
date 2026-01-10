@@ -8,4 +8,4 @@ weight = -4
   hidden = true
 +++
 
-{{% pages showhidden="true" showdivider="true" reverse="true" %}}
+{{% pages display="content" hidden="true" orderby="auto desc" %}}

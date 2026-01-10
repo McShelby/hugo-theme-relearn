@@ -1,0 +1,9 @@
+{{- /* trims a value and strips the `"`, `'` or backtick delimiting it, if any */}}
+{{- $s := trim . " \t\r\n" }}
+{{- if ge (strings.RuneCount $s) 2 }}
+	{{- $first := substr $s 0 1 }}
+	{{- if and (in (slice "\"" "'" "\x60") $first) (eq $first (substr $s -1)) }}
+		{{- $s = substr $s 1 -1 }}
+	{{- end }}
+{{- end }}
+{{- return $s }}

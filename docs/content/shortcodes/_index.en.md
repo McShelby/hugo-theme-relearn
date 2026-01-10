@@ -13,4 +13,4 @@ Hugo uses Markdown as its content format. However, there are a lot of things tha
 
 On top of [Hugo's built-in shortcodes](https://gohugo.io/content-management/shortcodes/#embedded-shortcodes) the Relearn theme supplies the following additional shortcodes.
 
-{{% children type="card" description=true %}}
+{{% pages display="cards" description=true %}}

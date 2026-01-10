@@ -1,0 +1,22 @@
+{{- /* a display of the `pages` shortcode for this documentation: inlines the
+  content of each page, separated by a divider; with `params.showtitle=true`
+  each page's title is written as heading above its content */}}
+{{- $showtitle := eq (printf "%v" (index (.params | default dict) "showtitle")) "true" }}
+{{- $needsdivider := false }}
+{{- range .pages }}
+  {{- $page := .Page }}
+{{- if $needsdivider }}
+
+---
+
+{{ end }}
+{{ if and $showtitle $page.Title }}
+
+# {{ $page.Title }}
+
+{{ end }}
+
+{{ $page.RenderShortcodes }}
+
+{{ $needsdivider = true }}
+{{- end }}

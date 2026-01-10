@@ -1,0 +1,40 @@
+{{- /* a display of the `pages` shortcode: a card for each entry, ignoring its
+	`Level`; renders HTML, so the shortcode has to be called with `{{< >}}` if
+	`goldmark.renderer.unsafe=false`; the shortcode's `params` reach the card
+	template, where the theme's own keys win; `depth` and `showhidden` are only
+	given for card templates written for the `children` shortcode */}}
+{{- $cards := slice }}
+{{- range .pages }}
+  {{- $page := .Page }}
+  {{- $cardImage := "" }}
+  {{- if $.image }}
+    {{- $images := partial "_funcs/get-page-images" $page }}
+    {{- with index $images 0 }}
+      {{- if .Image }}
+        {{- $cardImage = .Image.Name }}
+      {{- else }}
+        {{- $cardImage = .RelPermalink }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
+  {{- $cards = $cards | append (dict
+    "content"  (cond $.description $description "")
+    "href"     $page.Path
+    "image"    $cardImage
+    "title"    .Label
+    "template" $.cardtemplate
+    "params"   (merge ($.params | default dict) (dict
+      "page"        $page
+      "level"       .Level
+      "depth"       $.levels
+      "description" $.description
+      "showhidden"  $.hidden
+    ))
+  ) }}
+{{- end }}
+{{- partial "shortcodes/cards.html" (dict
+  "page"     $.page
+  "content"  $cards
+  "columns"  $.columns
+) }}

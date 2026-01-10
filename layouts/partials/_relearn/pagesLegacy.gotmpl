@@ -1,0 +1,69 @@
+{{- /* translates parameters of the deprecated `children` shortcode into those of
+	the `pages` shortcode; used for the shortcode call as well as for the
+	`params.children` front matter; returns only what was set */}}
+{{- $page := .page }}
+{{- $in := .params | default dict }}
+{{- $out := dict }}
+
+{{- $type := lower (printf "%v" (index $in "type" | default "")) }}
+{{- if $type }}
+	{{- $displays := dict
+		"group" "tree"
+		"list"  "headings"
+		"flat"  "list"
+		"card"  "cards"
+	}}
+	{{- $out = merge $out (dict "display" (index $displays $type | default $type)) }}
+{{- end }}
+
+{{- if eq $type "group" }}
+	{{- $out = merge $out (dict "groupby" "linktitle | left 1 | upper") }}
+{{- else if and $type (in (slice "taxonomy" "term") $page.Kind) }}
+	{{- /* every other type was ungrouped, even where `pages` groups by default */}}
+	{{- $out = merge $out (dict "groupby" " ") }}
+{{- end }}
+
+{{- with index $in "sort" }}
+	{{- $sort := lower (printf "%v" .) }}
+	{{- $isListing := in (slice "taxonomy" "term") $page.Kind }}
+	{{- $orderby := $sort }}
+	{{- if eq $sort "auto" }}
+		{{- /* taxonomy and term listings get their `auto` from the kind default */}}
+		{{- $orderby = cond $isListing "" "auto" }}
+	{{- else if eq $sort "default" }}
+		{{- /* the order of a synthesized listing was by the title shown */}}
+		{{- $orderby = cond $isListing "linktitle" "auto" }}
+	{{- else if in (slice "title" "linktitle" "name") $sort }}
+		{{- /* since 7.1.0 all of them sort by the title shown; `name` is inherited
+			from the Learn theme and unknown to `pages` */}}
+		{{- $orderby = "linktitle" }}
+	{{- else if eq $sort "modifieddate" }}
+		{{- $orderby = "lastmod" }}
+	{{- end }}
+	{{- with $orderby }}
+		{{- $out = merge $out (dict "orderby" .) }}
+	{{- end }}
+{{- end }}
+
+{{- with index $in "showhidden" }}
+	{{- $out = merge $out (dict "hidden" (lower (printf "%v" .))) }}
+{{- end }}
+
+{{- with index $in "depth" }}
+	{{- if and (ne $type "group") (not (in (slice "taxonomy" "term") $page.Kind)) }}
+		{{- $out = merge $out (dict "levels" .) }}
+	{{- end }}
+{{- end }}
+
+{{- with index $in "headingdepth" }}
+	{{- $out = merge $out (dict "headinglevel" .) }}
+{{- end }}
+
+{{- range slice "description" "breadcrumb" "image" "cardtemplate" }}
+	{{- $v := index $in . }}
+	{{- if and (ne $v nil) (ne $v "") }}
+		{{- $out = merge $out (dict . $v) }}
+	{{- end }}
+{{- end }}
+
+{{- return $out }}

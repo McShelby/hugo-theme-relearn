@@ -1,0 +1,44 @@
+{{- /* a display of the `pages` shortcode: each top-level entry is a heading,
+	the entries below it follow as a `tree` display */}}
+{{- $blocks := slice }}
+{{- $head := "" }}
+{{- $nested := slice }}
+{{- range .pages }}
+  {{- if eq .Level 1 }}
+    {{- with $head }}
+      {{- $blocks = $blocks | append (dict "head" . "nested" $nested) }}
+    {{- end }}
+    {{- $head = . }}
+    {{- $nested = slice }}
+  {{- else }}
+    {{- $nested = $nested | append (dict "Page" .Page "Label" .Label "Level" (sub .Level 1)) }}
+  {{- end }}
+{{- end }}
+{{- with $head }}
+  {{- $blocks = $blocks | append (dict "head" . "nested" $nested) }}
+{{- end }}
+{{- /* the columns split the listing, not each of the lists nested below its headings */}}
+{{- $nestedClasses := slice }}
+{{- range split .class " " }}
+  {{- if and . (not (findRE `^columnize(-\d+)?$` .)) }}
+    {{- $nestedClasses = $nestedClasses | append . }}
+  {{- end }}
+{{- end }}
+{{- $nestedClass := delimit $nestedClasses " " }}
+
+{{- range $blocks }}
+  {{- $page := .head.Page }}
+
+{{ strings.Repeat $.headinglevel "#" }} {{ if $page.RelPermalink }}[{{ .head.Label }}]({{ $page.Path }}){{ else }}{{ .head.Label }}{{ end }}
+  {{- if $.description }}
+    {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
+    {{- with $description }}
+
+{{ . }}
+    {{- end }}
+  {{- end }}
+  {{- with .nested }}
+
+{{ partial "pages/tree.html" (merge $ (dict "pages" . "class" $nestedClass)) }}
+  {{- end }}
+{{- end }}

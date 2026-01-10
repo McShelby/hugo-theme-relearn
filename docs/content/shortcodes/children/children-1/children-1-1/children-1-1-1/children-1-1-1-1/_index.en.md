@@ -8,4 +8,4 @@ This is a **non-hidden** demo child page of a hidden parent page with a hidden c
 
 ## Subpages of this page
 
-{{% children showhidden="true" %}}
+{{% pages hidden="true" %}}

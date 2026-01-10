@@ -10,4 +10,4 @@ weight = 3
 
 Learn how to create and organize your content pages.
 
-{{% children type="list" description=true %}}
+{{% pages display="headings" description=true %}}

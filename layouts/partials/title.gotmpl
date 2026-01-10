@@ -2,7 +2,8 @@
 {{- with .page }}
 	{{- $siteTitle := site.Title }}
 	{{- if $.linkTitle }}
-		{{- $siteTitle := or site.Params.linkTitle site.Title }}
+		{{- /* the sidebar's logo text may be broken into lines or be blank */}}
+		{{- $siteTitle = or (trim (replaceRE `\s+` " " (site.Params.linkTitle | default "")) " ") site.Title }}
 	{{- end }}
 	{{- $title = .Title }}
 	{{- if $.linkTitle }}
@@ -13,12 +14,16 @@
 		{{- $title = $title | default $siteTitle }}
 	{{- else if eq .Kind "taxonomy" }}
 		{{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
+		{{- if $.linkTitle }}
+			{{- $title = default $title .Params.linkTitle }}
+		{{- end }}
 	{{- else if eq .Kind "term" }}
 		{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
 		{{- $taxonomy_title := default (default $taxonomy_page.Data.Singular (i18n $taxonomy_page.Data.Singular)) $taxonomy_page.Params.SingularTitle }}
+		{{- /* a term page with its own content file may lack a title */}}
 		{{- $term_title := default (humanize .Data.Term | strings.Title) .Title }}
 		{{- if $.linkTitle }}
-			{{- $title = printf "%s" $term_title }}
+			{{- $title = default $term_title .Params.linkTitle }}
 		{{- else if $.reverse }}
 			{{- $title = printf "%s %s %s" $term_title (default "::" .Site.Params.titleSeparator) $taxonomy_title }}
 		{{- else }}

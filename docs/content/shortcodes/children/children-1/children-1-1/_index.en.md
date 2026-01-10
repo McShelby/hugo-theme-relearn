@@ -11,4 +11,4 @@ This is a demo child page with a hidden child. You can still access the hidden c
 
 ## Subpages of this page
 
-{{% children showhidden="true" %}}
+{{% pages hidden="true" %}}

@@ -7,5 +7,6 @@ title = 'Children'
 
 [params]
   alwaysopen = false
+  hidden = true
 +++
 {{< piratify >}}

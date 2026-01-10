@@ -73,7 +73,7 @@ weight = 5
 
 ### By Other
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. See the [children shortcode](shortcodes/children#parameters) for a complete list.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Use `ordersectionsby` to sort by other aspects if Hugo's default sort order does not match your needs. It accepts `weight`, `title`, `linktitle`, `lastmod`, `expirydate`, `publishdate`, `date`, `length` or `default` (adhering to Hugo's default sort order). Both `title` and `linktitle` sort by the title shown in the menu.
 
 {{< multiconfig section=params >}}
 ordersectionsby = 'linktitle'

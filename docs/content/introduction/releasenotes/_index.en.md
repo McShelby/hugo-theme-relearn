@@ -11,10 +11,10 @@ weight = 4
   minHugoVersion = '0.166.0'
 +++
 
-{{% pages showdivider="true" showhidden="true" hidevisible="true" showtitle="true" %}}
+{{% pages display="content" hidden="true" where="params.hidden = true" params="showtitle: true" %}}
 
 ---
 
 ## Older Versions
 
-{{% children %}}
+{{% pages %}}

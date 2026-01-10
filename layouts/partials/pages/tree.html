@@ -1,0 +1,23 @@
+{{- /* a display of the `pages` shortcode: a nested Markdown list, indented by
+	each entry's `Level` */}}
+{{- range .pages }}
+  {{- $page := .Page }}
+  {{- $indent := strings.Repeat (sub .Level 1) "  " }}
+{{ $indent }}- {{ if $page.RelPermalink }}[{{ .Label }}]({{ $page.Path }}){{ else }}{{ .Label }}{{ end }}
+  {{- if $.breadcrumb }}
+    {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
+    {{- with $breadcrumb }}
+
+{{ $indent }}    {{ . }}
+    {{- end }}
+  {{- end }}
+  {{- if $.description }}
+    {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
+    {{- with $description }}
+      {{- $text := replace (replace . "\r\n" "\n") "\n" (printf "\n%s    " $indent) }}
+
+{{ $indent }}    {{ $text }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{class="{{ .class }}"}

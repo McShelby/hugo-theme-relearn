@@ -1,11 +1,12 @@
 +++
 [params]
-  [params.children]
-    type = "card"
+  [params.pages]
+    display = "cards"
+    groupby = " "
 
 [[cascade]]
   [cascade.params]
-    [cascade.params.children]
+    [cascade.params.pages]
       breadcrumb = false
       description = true
 +++

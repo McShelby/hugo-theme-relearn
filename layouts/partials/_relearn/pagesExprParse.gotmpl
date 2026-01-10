@@ -1,0 +1,113 @@
+{{- /* parses a pipeline `<field> [| <function> [argument]]…` once, so it can be
+	evaluated for many pages by pagesExpr.gotmpl; an argument may be delimited by
+	`"`, `'` or a backtick to hold a `|` or a comma; an invalid pipeline is
+	reported and returned with `valid` set to false */}}
+{{- $page := .page }}
+{{- $param := .param }}
+{{- $expr := trim (.expr | string) " \t\r\n" }}
+
+{{- $fields := slice "title" "linktitle" "weight" "length" "path" "section" "date" "lastmod" "publishdate" "expirydate" }}
+{{- $noArg := slice "upper" "lower" "trim" "year" "month" "day" "weekday" }}
+{{- $intArg := slice "left" "right" }}
+{{- $anyArg := slice "format" "coalesce" "default" }}
+{{- $optArg := slice "translate" }}
+
+{{- $error := "" }}
+{{- $field := "" }}
+{{- $path := slice }}
+{{- $stages := slice }}
+{{- $split := partial "_relearn/pagesExprSplit.gotmpl" (dict "text" $expr "split" "|") }}
+{{- if not $expr }}
+	{{- $error = "the pipeline is empty" }}
+{{- else if $split.open }}
+	{{- $error = "a quote is not closed" }}
+{{- end }}
+{{- range $i, $raw := $split.parts }}
+	{{- if $error }}
+		{{- break }}
+	{{- end }}
+	{{- $raw = trim $raw " \t\r\n" }}
+	{{- $name := "" }}
+	{{- $arg := "" }}
+	{{- /* the argument is the trimmed remainder, so a date layout keeps its spaces */}}
+	{{- with findRESubmatch `^(\S+)\s*(.*)$` $raw 1 }}
+		{{- $name = lower (index . 0 1) }}
+		{{- $arg = partial "_relearn/pagesExprUnquote.gotmpl" (index . 0 2) }}
+	{{- end }}
+	{{- if not $name }}
+		{{- $error = printf "stage %d is empty" (add $i 1) }}
+	{{- else if eq $i 0 }}
+		{{- if $arg }}
+			{{- $error = printf "field '%s' takes no argument" $name }}
+		{{- else if in $fields $name }}
+			{{- $field = $name }}
+		{{- else if findRE `^params(\.[\p{L}\p{N}_-]+)+$` $name }}
+			{{- $field = "params" }}
+			{{- $path = split (strings.TrimPrefix "params." $name) "." }}
+		{{- else }}
+			{{- $error = printf "unknown field '%s'" $name }}
+		{{- end }}
+	{{- else if in $noArg $name }}
+		{{- if $arg }}
+			{{- $error = printf "function '%s' takes no argument" $name }}
+		{{- else }}
+			{{- $stages = $stages | append (dict "name" $name) }}
+		{{- end }}
+	{{- else if in $intArg $name }}
+		{{- $n := 0 }}
+		{{- if findRE `^[0-9]+$` $arg }}
+			{{- $n = int $arg }}
+		{{- end }}
+		{{- if lt $n 1 }}
+			{{- $error = printf "function '%s' needs a positive number as argument" $name }}
+		{{- else }}
+			{{- $stages = $stages | append (dict "name" $name "n" $n) }}
+		{{- end }}
+	{{- else if in $anyArg $name }}
+		{{- if not $arg }}
+			{{- $error = printf "function '%s' needs an argument" $name }}
+		{{- else if eq $name "format" }}
+			{{- $stages = $stages | append (dict "name" $name "arg" $arg "shows" (partial "inline/pagesExprParse/shows" $arg)) }}
+		{{- else }}
+			{{- $stages = $stages | append (dict "name" $name "arg" $arg) }}
+		{{- end }}
+	{{- else if in $optArg $name }}
+		{{- $stages = $stages | append (dict "name" $name "arg" $arg) }}
+	{{- else }}
+		{{- $error = printf "unknown function '%s'" $name }}
+	{{- end }}
+{{- end }}
+
+{{- if $error }}
+	{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+	{{- warnf "%q: invalid parameter '%s=%s' for shortcode 'pages': %s" $filepath $param $expr $error }}
+{{- end }}
+
+{{- return (dict
+	"valid"  (not $error)
+	"field"  $field
+	"path"   $path
+	"stages" $stages
+) }}
+
+{{- define "partials/inline/pagesExprParse/shows" }}
+	{{- /* which parts of a date a `format` layout shows, so a group keyed by the
+		formatted text can be ordered on those parts in calendar order; found by
+		formatting dates that differ from a Saturday in one part only, never by
+		reading the layout, as it may be a localized token like `:date_long` or
+		carry literal text; 28 years on and the 3rd of the next month of 2001 are
+		Saturdays again, and a weekday only counts where no day is shown */}}
+	{{- $layout := . }}
+	{{- $t := time.AsTime "2001-02-03T04:05:06Z" }}
+	{{- $f := time.Format $layout $t }}
+	{{- $day := ne $f (time.Format $layout ($t.AddDate 0 0 7)) }}
+	{{- return (dict
+		"year"    (ne $f (time.Format $layout ($t.AddDate 28 0 0)))
+		"month"   (ne $f (time.Format $layout ($t.AddDate 0 1 0)))
+		"day"     $day
+		"weekday" (and (not $day) (ne $f (time.Format $layout ($t.AddDate 0 0 1))))
+		"hour"    (ne $f (time.Format $layout ($t.Add (time.ParseDuration "1h"))))
+		"minute"  (ne $f (time.Format $layout ($t.Add (time.ParseDuration "1m"))))
+		"second"  (ne $f (time.Format $layout ($t.Add (time.ParseDuration "1s"))))
+	) }}
+{{- end }}

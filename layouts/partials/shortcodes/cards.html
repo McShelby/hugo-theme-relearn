@@ -119,8 +119,9 @@
     {{- end }}
   {{- end }}
 {{- end }}
+{{- $columns := (math.Max 1 (math.Min 5 (.columns | default 3 | float))) | int }}
 {{- if len $cards -}}
-<ul class="card-container">
+<ul class="card-container card-columnize card-columnize-{{ $columns }}">
   {{- range $cards }}
     {{- $template = printf "cards/%s.html" .template }}
     {{- $params := merge . (dict "page" $page) }}

@@ -11,4 +11,4 @@ This is a **hidden** demo child page. This page and all its children are hidden 
 
 ## Subpages of this page
 
-{{% children showhidden="true" %}}
+{{% pages hidden="true" %}}

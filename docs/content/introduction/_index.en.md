@@ -9,4 +9,4 @@ weight = 1
 
 Discover what this Hugo theme is all about.
 
-{{% children type="list" description=true %}}
+{{% pages display="headings" description=true %}}

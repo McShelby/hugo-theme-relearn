@@ -4,34 +4,16 @@
   {{- $term = .page.GetPage $term }}
 {{- end }}
 {{- with $term }}
-  {{- $breadcrumb := (ne .Page.Site.Params.disableTermBreadcrumbs true) }}
-  {{- if and (isset .Params "children") (isset .Params.children "breadcrumb") }}
-    {{- $breadcrumb = .Params.children.breadcrumb }}
-  {{- end }}
-  {{- $cardtemplate := .Params.children.cardtemplate }}
-  {{- $description := .Params.children.description }}
-  {{- $headingdepth := $.headingdepth | default .Params.children.headingdepth }}
-  {{- $image := .Params.children.image }}
-  {{- $type := .Params.children.type | default "group" }}
-  {{- $sort := .Params.children.sort }}
-
   {{- .Content }}
-  {{- $pages := partialCached "_relearn/pagesTerm.gotmpl" . .Path }}
-  {{- $output := partial "shortcodes/children.html" (dict
-    "page"         .
-    "pages"        $pages
-    "breadcrumb"   $breadcrumb
-    "cardtemplate" $cardtemplate
-    "description"  $description
-    "headingdepth" $headingdepth
-    "image"        $image
-    "showhidden"   true
-    "sort"         $sort
-    "type"         $type
-  ) }}
+  {{- $call := dict "page" . }}
+  {{- with $.headingdepth }}
+    {{- $call = merge $call (dict "headinglevel" .) }}
+  {{- end }}
+  {{- $params := partial "_relearn/pagesParams.gotmpl" $call }}
+  {{- $output := partial "shortcodes/pages.html" $call }}
   {{- if $raw  }}
     {{- $output }}
-  {{- else if eq $type "card" }}
+  {{- else if eq $params.display "cards" }}
     {{- $output | safeHTML }}
   {{- else }}
     {{- $output | .RenderString }}

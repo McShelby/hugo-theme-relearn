@@ -2,11 +2,11 @@
 {{- if eq .Page.Kind "term" }}
 	{{- /* go to next term page */}}
 	{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
-	{{- $pages := partialCached "_relearn/pagesTaxonomy.gotmpl" $taxonomy_page $taxonomy_page.Path }}
+	{{- $pages := partialCached "_relearn/pagesEntries.gotmpl" $taxonomy_page $taxonomy_page.Path }}
 	{{- $next = partial "inline/next-term" (dict "collection" $pages "item" .) }}
 {{- else if eq .Page.Kind "taxonomy" }}
 	{{- /* go to first term page */}}
-	{{- $pages := partialCached "_relearn/pagesTaxonomy.gotmpl" . .Path }}
+	{{- $pages := partialCached "_relearn/pagesEntries.gotmpl" . .Path }}
 	{{- with index $pages 0 }}
 		{{- $next = .Page }}
 	{{- end }}

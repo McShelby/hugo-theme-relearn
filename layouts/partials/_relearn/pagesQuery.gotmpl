@@ -1,0 +1,359 @@
+{{- /* retrieves the pages of a `pages` listing: source, flatten, filter, order, limit and
+	group; expects parameters already resolved by pagesParams.gotmpl and returns
+	a slice of groups, each with `Key`, `Sort`, `Label`, `Fallback` and `Pages`,
+	where each entry of `Pages` has `Page`, `Label` and `Level` */}}
+{{- $page := .page }}
+{{- /* warnings name the page the shortcode was called in */}}
+{{- $origin := .origin | default $page }}
+{{- $filepath := "[virtual file]" }}{{ with and $origin $origin.File $origin.File.Filename }}{{ $filepath = . }}{{ end }}
+{{- $axis := .axis | default "descendants" }}
+{{- $levels := int (.levels | default 1) }}
+{{- $kind := .kind | default "all" }}
+{{- $hidden := .hidden | default false }}
+{{- $flatten := .flatten | default false }}
+{{- $limit := int (.limit | default 0) }}
+{{- $grouporder := .grouporder | default "asc" }}
+
+{{- /* parse every expression once instead of once per page */}}
+{{- $where := "" }}
+{{- with .where }}
+	{{- $m := (partial "_relearn/pagesExprSplit.gotmpl" (dict "text" (trim . " \t\r\n") "match" `^(.+?)\s+(!=|<=|>=|=|<|>|in)\s+(.*)$`)).parts }}
+	{{- if $m }}
+		{{- $expr := partial "_relearn/pagesExprParse.gotmpl" (dict "page" $origin "param" "where" "expr" (index $m 0)) }}
+		{{- if $expr.valid }}
+			{{- $op := index $m 1 }}
+			{{- /* `in` compares with a comma separated list of literals, every
+				other operator with one literal */}}
+			{{- $raw := slice (index $m 2) }}
+			{{- if eq $op "in" }}
+				{{- $raw = (partial "_relearn/pagesExprSplit.gotmpl" (dict "text" (index $m 2) "split" ",")).parts }}
+			{{- end }}
+			{{- $literals := slice }}
+			{{- range $raw }}
+				{{- $literals = $literals | append (partial "_relearn/pagesExprUnquote.gotmpl" .) }}
+			{{- end }}
+			{{- $where = dict "expr" $expr "op" $op "literals" $literals }}
+		{{- end }}
+	{{- else }}
+		{{- warnf "%q: invalid parameter 'where=%s' for shortcode 'pages': expected '<pipeline> <operator> <literal>'" $filepath . }}
+	{{- end }}
+{{- end }}
+{{- $groupby := "" }}
+{{- with .groupby }}
+	{{- $expr := partial "_relearn/pagesExprParse.gotmpl" (dict "page" $origin "param" "groupby" "expr" .) }}
+	{{- if $expr.valid }}
+		{{- $groupby = $expr }}
+	{{- end }}
+{{- end }}
+{{- $grouplabel := "" }}
+{{- with and $groupby .grouplabel }}
+	{{- $expr := partial "_relearn/pagesExprParse.gotmpl" (dict "page" $origin "param" "grouplabel" "expr" .) }}
+	{{- if $expr.valid }}
+		{{- $grouplabel = $expr }}
+	{{- end }}
+{{- end }}
+{{- $orderby := slice }}
+{{- range (partial "_relearn/pagesExprSplit.gotmpl" (dict "text" (.orderby | default "auto") "split" ",")).parts }}
+	{{- $item := trim . " \t\r\n" }}
+	{{- $dir := "asc" }}
+	{{- with findRESubmatch `^(.*?)\s+(asc|desc)$` $item 1 }}
+		{{- $item = index . 0 1 }}
+		{{- $dir = index . 0 2 }}
+	{{- end }}
+	{{- if or (eq $item "auto") (eq $item "asc") (eq $item "desc") }}
+		{{- /* `auto` keeps the order of the source, see pages.gotmpl */}}
+		{{- $orderby = $orderby | append (dict "auto" true "dir" (cond (eq $item "desc") "desc" $dir)) }}
+	{{- else }}
+		{{- $expr := partial "_relearn/pagesExprParse.gotmpl" (dict "page" $origin "param" "orderby" "expr" $item) }}
+		{{- if $expr.valid }}
+			{{- $orderby = $orderby | append (dict "auto" false "expr" $expr "dir" $dir) }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+
+{{- /* sources normalise into a forest of nodes, each with `Page`, `Label` and
+	`Children`, where `Label` is the title shown like in the menu; like the menu,
+	retrieval stops at the first hidden page unless hidden pages are asked for */}}
+{{- $roots := slice }}
+{{- if eq $axis "descendants" }}
+	{{- $roots = partial "inline/pagesQuery/walk" (dict "node" $page "level" 1 "levels" $levels "hidden" $hidden) }}
+{{- else if eq $axis "siblings" }}
+	{{- with $page.Parent }}
+		{{- range partial "inline/pagesQuery/walk" (dict "node" . "level" 1 "levels" 1 "hidden" $hidden) }}
+			{{- if ne .Page $page }}
+				{{- $roots = $roots | append . }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+{{- else if eq $axis "ancestors" }}
+	{{- /* the ancestors start with the parent, so the first levels are the closest */}}
+	{{- range first $levels $page.Ancestors }}
+		{{- if or $hidden (not (or .Params.hidden (eq .Title ""))) }}
+			{{- $roots = $roots | append (dict "Page" . "Label" (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "Children" slice) }}
+		{{- end }}
+	{{- end }}
+{{- else if or (eq $axis "taxonomy") (eq $axis "term") }}
+	{{- /* these sources already drop hidden pages according to disableTagHiddenPages */}}
+	{{- $source := cond (eq $axis "taxonomy") "_relearn/pagesTaxonomy.gotmpl" "_relearn/pagesTerm.gotmpl" }}
+	{{- range partialCached $source $page $page.Path }}
+		{{- $roots = $roots | append (dict "Page" .Page "Label" .LinkTitle "Children" slice) }}
+	{{- end }}
+{{- else }}
+	{{- warnf "%q: invalid parameter 'axis=%s' for shortcode 'pages'" $filepath $axis }}
+{{- end }}
+
+{{- /* the structure is only ever changed on request; a flattened forest keeps
+	the order of the tree, parents before their sub-pages */}}
+{{- if $flatten }}
+	{{- $roots = partial "inline/pagesQuery/flatten" $roots }}
+{{- end }}
+
+{{- /* filters decide on what the listing shows: a page they drop takes its
+	sub-pages with it, just as a hidden page does */}}
+{{- if or (ne $kind "all") $where }}
+	{{- $roots = partial "inline/pagesQuery/filter" (dict "nodes" $roots "kind" $kind "where" $where) }}
+{{- end }}
+{{- /* multi-key ordering sorts once per key, from the least significant to the
+	most significant one; this relies on Hugo's sort keeping the order of ties */}}
+{{- $roots = partial "inline/pagesQuery/order" (dict "nodes" $roots "orderby" $orderby) }}
+{{- if gt $limit 0 }}
+	{{- $roots = first $limit $roots }}
+{{- end }}
+
+{{- $groups := slice }}
+{{- if $groupby }}
+	{{- $members := newScratch }}
+	{{- $meta := newScratch }}
+	{{- $keys := slice }}
+	{{- $fallback := slice }}
+	{{- range $roots }}
+		{{- $root := . }}
+		{{- $value := partial "_relearn/pagesExpr.gotmpl" (dict "page" .Page "expr" $groupby) }}
+		{{- if eq $value.Value "" }}
+			{{- $fallback = $fallback | append $root }}
+		{{- else }}
+			{{- $key := partial "inline/pagesQuery/text" $value.Value }}
+			{{- if not ($members.Get $key) }}
+				{{- $keys = $keys | append $key }}
+				{{- $label := $key }}
+				{{- with $grouplabel }}
+					{{- $text := partial "_relearn/pagesExpr.gotmpl" (dict "page" $root.Page "expr" .) }}
+					{{- if ne $text.Value "" }}
+						{{- $label = partial "inline/pagesQuery/text" $text.Value }}
+					{{- end }}
+				{{- end }}
+				{{- $meta.Set $key (dict "Sort" $value.Normalized "Label" $label) }}
+			{{- end }}
+			{{- $members.Add $key (slice $root) }}
+		{{- end }}
+	{{- end }}
+	{{- range $keys }}
+		{{- $m := $meta.Get . }}
+		{{- $groups = $groups | append (dict
+			"Key"      .
+			"Sort"     $m.Sort
+			"Label"    $m.Label
+			"Fallback" false
+			"Pages"    (partial "inline/pagesQuery/entries" (dict "nodes" ($members.Get .) "level" 1))
+		) }}
+	{{- end }}
+	{{- /* ordering on `Sort` alone, never on the key, see Principle 4 */}}
+	{{- $groups = partial "inline/pagesQuery/sort" (dict "items" $groups "key" "Sort" "dir" $grouporder) }}
+	{{- if $fallback }}
+		{{- /* the missing-value group is not part of the ordered domain and always last */}}
+		{{- $groups = $groups | append (dict
+			"Key"      ""
+			"Sort"     ""
+			"Label"    (T "Pages-group-fallback" | default "Other")
+			"Fallback" true
+			"Pages"    (partial "inline/pagesQuery/entries" (dict "nodes" $fallback "level" 1))
+		) }}
+	{{- end }}
+{{- else if $roots }}
+	{{- $groups = $groups | append (dict
+		"Key"      ""
+		"Sort"     ""
+		"Label"    ""
+		"Fallback" false
+		"Pages"    (partial "inline/pagesQuery/entries" (dict "nodes" $roots "level" 1))
+	) }}
+{{- end }}
+
+{{- return $groups }}
+
+{{- define "partials/inline/pagesQuery/walk" }}
+	{{- $nodes := slice }}
+	{{- range partial "_relearn/pages.gotmpl" (dict "page" .node) }}
+		{{- if or $.hidden (not (or .Params.hidden (eq .Title ""))) }}
+			{{- $children := slice }}
+			{{- if lt $.level $.levels }}
+				{{- $children = partial "inline/pagesQuery/walk" (dict "node" . "level" (add $.level 1) "levels" $.levels "hidden" $.hidden) }}
+			{{- end }}
+			{{- $nodes = $nodes | append (dict "Page" . "Label" (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "Children" $children) }}
+		{{- end }}
+	{{- end }}
+	{{- return $nodes }}
+{{- end }}
+
+{{- define "partials/inline/pagesQuery/flatten" }}
+	{{- $nodes := slice }}
+	{{- range . }}
+		{{- $nodes = $nodes | append (dict "Page" .Page "Label" .Label "Children" slice) }}
+		{{- range partial "inline/pagesQuery/flatten" .Children }}
+			{{- $nodes = $nodes | append . }}
+		{{- end }}
+	{{- end }}
+	{{- return $nodes }}
+{{- end }}
+
+{{- define "partials/inline/pagesQuery/filter" }}
+	{{- $nodes := slice }}
+	{{- range .nodes }}
+		{{- $p := .Page }}
+		{{- $accept := true }}
+		{{- if and (eq $.kind "leaf") (not $p.IsPage) }}
+			{{- $accept = false }}
+		{{- else if and (eq $.kind "branch") $p.IsPage }}
+			{{- $accept = false }}
+		{{- else if $.where }}
+			{{- $accept = partial "inline/pagesQuery/where" (dict "page" $p "where" $.where) }}
+		{{- end }}
+		{{- if $accept }}
+			{{- $children := .Children }}
+			{{- if $children }}
+				{{- $children = partial "inline/pagesQuery/filter" (dict "nodes" $children "kind" $.kind "where" $.where) }}
+			{{- end }}
+			{{- $nodes = $nodes | append (dict "Page" $p "Label" .Label "Children" $children) }}
+		{{- end }}
+	{{- end }}
+	{{- return $nodes }}
+{{- end }}
+{{- define "partials/inline/pagesQuery/where" }}
+	{{- $w := .where }}
+	{{- $value := partial "_relearn/pagesExpr.gotmpl" (dict "page" .page "expr" $w.expr) }}
+	{{- $op := $w.op }}
+	{{- $result := false }}
+	{{- if eq $value.Value "" }}
+		{{- $result = eq $op "!=" }}
+	{{- else if eq $op "in" }}
+		{{- $result = in $w.literals (partial "inline/pagesQuery/text" $value.Value) }}
+	{{- else }}
+		{{- $a := partial "inline/pagesQuery/text" $value.Value }}
+		{{- $b := index $w.literals 0 }}
+		{{- $type := printf "%T" $value.Value }}
+		{{- if in (slice "int" "int8" "int16" "int32" "int64" "uint" "uint8" "uint16" "uint32" "uint64" "float32" "float64") $type }}
+			{{- with try (float $b) }}
+				{{- if not .Err }}
+					{{- $a = float $value.Value }}
+					{{- $b = .Value }}
+				{{- end }}
+			{{- end }}
+		{{- else if eq $type "time.Time" }}
+			{{- with try (time.AsTime $b) }}
+				{{- if not .Err }}
+					{{- $a = $value.Value.Unix }}
+					{{- $b = .Value.Unix }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+		{{- if eq $op "=" }}
+			{{- $result = eq $a $b }}
+		{{- else if eq $op "!=" }}
+			{{- $result = ne $a $b }}
+		{{- else if eq $op "<" }}
+			{{- $result = lt $a $b }}
+		{{- else if eq $op "<=" }}
+			{{- $result = le $a $b }}
+		{{- else if eq $op ">" }}
+			{{- $result = gt $a $b }}
+		{{- else if eq $op ">=" }}
+			{{- $result = ge $a $b }}
+		{{- end }}
+	{{- end }}
+	{{- return $result }}
+{{- end }}
+
+{{- define "partials/inline/pagesQuery/order" }}
+	{{- $nodes := slice }}
+	{{- range .nodes }}
+		{{- $children := .Children }}
+		{{- if $children }}
+			{{- $children = partial "inline/pagesQuery/order" (dict "nodes" $children "orderby" $.orderby) }}
+		{{- end }}
+		{{- $nodes = $nodes | append (dict "Page" .Page "Label" .Label "Children" $children) }}
+	{{- end }}
+	{{- range $term := collections.Reverse .orderby }}
+		{{- if $term.auto }}
+			{{- if eq $term.dir "desc" }}
+				{{- $nodes = collections.Reverse $nodes }}
+			{{- end }}
+		{{- else }}
+			{{- $keyed := slice }}
+			{{- $missing := slice }}
+			{{- range $nodes }}
+				{{- $value := partial "_relearn/pagesExpr.gotmpl" (dict "page" .Page "expr" $term.expr) }}
+				{{- if eq $value.Normalized "" }}
+					{{- $missing = $missing | append . }}
+				{{- else }}
+					{{- $keyed = $keyed | append (dict "key" $value.Normalized "node" .) }}
+				{{- end }}
+			{{- end }}
+			{{- $nodes = slice }}
+			{{- range partial "inline/pagesQuery/sort" (dict "items" $keyed "key" "key" "dir" $term.dir) }}
+				{{- $nodes = $nodes | append .node }}
+			{{- end }}
+			{{- /* a missing value is not part of the ordered domain and always last */}}
+			{{- range $missing }}
+				{{- $nodes = $nodes | append . }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+	{{- return $nodes }}
+{{- end }}
+
+{{- define "partials/inline/pagesQuery/sort" }}
+	{{- /* numbers, dates among them, and text have no common order, as Hugo
+		compares text with a number as if it were one or else as 0; each is
+		ordered on its own, the numbers first whatever the direction */}}
+	{{- $numbers := slice }}
+	{{- $texts := slice }}
+	{{- range .items }}
+		{{- $v := index . $.key }}
+		{{- if in (slice "int" "int8" "int16" "int32" "int64" "uint" "uint8" "uint16" "uint32" "uint64" "float32" "float64") (printf "%T" $v) }}
+			{{- $numbers = $numbers | append . }}
+		{{- else }}
+			{{- $texts = $texts | append (merge . (dict $.key (printf "%v" $v))) }}
+		{{- end }}
+	{{- end }}
+	{{- $items := slice }}
+	{{- range sort $numbers $.key $.dir }}
+		{{- $items = $items | append . }}
+	{{- end }}
+	{{- range sort $texts $.key $.dir }}
+		{{- $items = $items | append . }}
+	{{- end }}
+	{{- return $items }}
+{{- end }}
+
+{{- define "partials/inline/pagesQuery/entries" }}
+	{{- $entries := slice }}
+	{{- range .nodes }}
+		{{- $entries = $entries | append (dict "Page" .Page "Label" .Label "Level" $.level) }}
+		{{- with .Children }}
+			{{- range partial "inline/pagesQuery/entries" (dict "nodes" . "level" (add $.level 1)) }}
+				{{- $entries = $entries | append . }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+	{{- return $entries }}
+{{- end }}
+
+{{- define "partials/inline/pagesQuery/text" }}
+	{{- $text := "" }}
+	{{- if eq (printf "%T" .) "time.Time" }}
+		{{- $text = time.Format ":date_long" . }}
+	{{- else }}
+		{{- $text = printf "%v" . }}
+	{{- end }}
+	{{- return $text }}
+{{- end }}

@@ -10,10 +10,10 @@ weight = 5
   disableToc = false
 +++
 
-{{% pages showdivider="true" showhidden="true" hidevisible="true" showtitle="true" %}}
+{{% pages display="content" hidden="true" where="params.hidden = true" params="showtitle: true" %}}
 
 ---
 
 ## Older Versions
 
-{{% children %}}
+{{% pages %}}

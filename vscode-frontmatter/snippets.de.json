@@ -174,45 +174,6 @@
         }
       ]
     },
-    "Children": {
-      "body": ["{{% children description=\"[[&description]]\" depth=\"[[&depth]]\" sort=\"[[&sort]]\" showhidden=\"[[&showhidden]]\" type=\"[[&type]]\" %}}"],
-      "description": "Zeigt eine Liste der Unterseiten dieser Seite an",
-      "fields": [
-        {
-          "choices": ["", "false", "true"],
-          "default": "",
-          "name": "description",
-          "title": "Unterseiten-Beschreibung anzeigen",
-          "type": "choice"
-        },
-        {
-          "default": "",
-          "name": "depth",
-          "title": "Tiefe der anzuzeigenden Unterseiten-Ebenen",
-          "type": "string"
-        },
-        {
-          "default": "",
-          "name": "sort",
-          "title": "Sortierfeld",
-          "type": "string"
-        },
-        {
-          "choices": ["", "false", "true"],
-          "default": "",
-          "name": "showhidden",
-          "title": "Versteckte Unterseiten anzeigen",
-          "type": "choice"
-        },
-        {
-          "choices": ["", "card", "flat", "list", "tree"],
-          "default": "",
-          "name": "type",
-          "title": "Art des Listen-Layout",
-          "type": "string"
-        }
-      ]
-    },
     "Expand": {
       "body": ["{{% expand title=\"[[&title]]\" expanded=\"[[&expanded]]\" %}}[[&content]]{{% /expand %}}"],
       "description": "Zeigt einen ein-/ausklappbaren Textblock an",
@@ -425,6 +386,51 @@
         {
           "name": "src",
           "title": "URL zur OpenAPI Specifikation",
+          "type": "string"
+        }
+      ]
+    },
+    "Pages": {
+      "body": ["{{% pages display=\"[[&display]]\" levels=\"[[&levels]]\" hidden=\"[[&hidden]]\" description=\"[[&description]]\" groupby=\"[[&groupby]]\" orderby=\"[[&orderby]]\" %}}"],
+      "description": "Listet Seiten der Webseite auf",
+      "fields": [
+        {
+          "choices": ["tree", "headings", "sections", "list", "cards"],
+          "default": "tree",
+          "name": "display",
+          "title": "Art der Darstellung",
+          "type": "choice"
+        },
+        {
+          "default": "1",
+          "name": "levels",
+          "title": "Anzahl der aufzulistenden Ebenen",
+          "type": "string"
+        },
+        {
+          "choices": ["false", "true"],
+          "default": "false",
+          "name": "hidden",
+          "title": "Versteckte Seiten auflisten",
+          "type": "choice"
+        },
+        {
+          "choices": ["false", "true"],
+          "default": "false",
+          "name": "description",
+          "title": "Seitenbeschreibung anzeigen",
+          "type": "choice"
+        },
+        {
+          "default": "",
+          "name": "groupby",
+          "title": "Ausdruck, nach dem gruppiert wird",
+          "type": "string"
+        },
+        {
+          "default": "auto",
+          "name": "orderby",
+          "title": "Ausdrücke, nach denen sortiert wird",
           "type": "string"
         }
       ]

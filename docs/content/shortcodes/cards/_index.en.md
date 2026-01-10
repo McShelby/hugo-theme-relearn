@@ -65,6 +65,7 @@ content:
 
 | Name                  | Default              | Notes       |
 |-----------------------|----------------------|-------------|
+| **columns**           | `3`                  | The number of columns in full width mode to display the cards in. Accepts values from `1` to `5`. Numbers are reduced when width gets smaller. |
 | **template**          | `default`            | The template to be used to display all cards in the set. Can be overridden for each card.<br><br>- `default`: The standard layout<br>- `debug`: A debug layout helping you in development<br><br>See below how to [use your own templates](#card-templates). |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_      | Arbitrary number of cards defined with the [`card` sub-shortcode](#card-parameters). |
 
@@ -102,7 +103,7 @@ If you just want a single card, you can call the `card` shortcode standalone, wi
 
 If you have advanced requirements to display your cards, you can place a card layout partial into `layouts/partials/card` that will be used for each single card.
 
-For example, if you want to see debug output displaying the parameter the partial receives, you could set `template=debug` which will cause the partial `layouts/partials/debug.html` to be called. The `debug` card template is shipped with the theme.
+For example, if you want to see debug output displaying the parameter the partial receives, you could set `template=debug` which will cause the partial `layouts/partials/cards/debug.html` to be called. The `debug` card template is shipped with the theme.
 
 A card template will be called with all the [card parameters](#card-parameters). `href` and `image` are transformed into a form ready to be consumed.
 

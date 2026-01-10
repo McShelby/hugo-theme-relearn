@@ -1,0 +1,143 @@
+{{- /* resolves all parameters of a `pages` listing; a parameter given on the call
+	wins over the `params.pages` front matter, which wins over the deprecated
+	`params.children` front matter of taxonomy and term pages, which wins over
+	the defaults for the page kind; like everywhere in the theme, an empty value
+	counts as unset while a value of only whitespace is set and resets the
+	parameter to empty, so `groupby=" "` switches grouping off; a `false` is set */}}
+{{- $page := .page }}
+{{- /* the page the shortcode was called in, for warnings, if `pageref` pointed elsewhere */}}
+{{- $origin := .origin | default $page }}
+{{- $call := . }}
+{{- $isTaxonomy := eq $page.Kind "taxonomy" }}
+{{- $isTerm := eq $page.Kind "term" }}
+
+{{- $layers := slice $call ($page.Params.pages | default dict) }}
+{{- if or $isTaxonomy $isTerm }}
+	{{- with $page.Params.children }}
+		{{- $layers = $layers | append (partial "_relearn/pagesLegacy.gotmpl" (dict "page" $page "params" .)) }}
+	{{- end }}
+{{- end }}
+
+{{- /* taxonomy and term listings are synthesized and have no order of their
+	own; they follow `ordersectionsby` like every other listing but fall back to
+	the title shown instead of Hugo's order */}}
+{{- $orderby := "auto" }}
+{{- if or $isTaxonomy $isTerm }}
+	{{- $orderby = partial "_relearn/sortOrder.gotmpl" (dict "page" $page "by" "") }}
+	{{- if eq $orderby "default" }}
+		{{- $orderby = "linktitle" }}
+	{{- end }}
+{{- end }}
+
+{{- $defaults := dict
+	"axis"         (cond $isTaxonomy "taxonomy" (cond $isTerm "term" "descendants"))
+	"levels"       1
+	"kind"         "all"
+	"hidden"       false
+	"flatten"      false
+	"where"        ""
+	"groupby"      (cond (or $isTaxonomy $isTerm) "linktitle | left 1 | upper" "")
+	"grouplabel"   ""
+	"grouporder"   "asc"
+	"orderby"      $orderby
+	"limit"        0
+	"display"      "tree"
+	"headinglevel" 2
+	"columns"      ""
+	"description"  false
+	"breadcrumb"   (and $isTerm (ne $page.Site.Params.disableTermBreadcrumbs true))
+	"image"        true
+	"cardtemplate" "default"
+	"params"       ""
+}}
+{{- $layers = $layers | append $defaults }}
+
+{{- $p := dict "page" $page "origin" $origin }}
+{{- range $name, $default := $defaults }}
+	{{- if eq $name "params" }}
+		{{- /* a map, resolved below, must not be merged key by key with the other layers */}}
+		{{- continue }}
+	{{- end }}
+	{{- $value := $default }}
+	{{- range $layers }}
+		{{- $v := index . $name }}
+		{{- if and (ne $v nil) (ne $v "") }}
+			{{- $value = $v }}
+			{{- break }}
+		{{- end }}
+	{{- end }}
+	{{- if eq (printf "%T" $value) "string" }}
+		{{- $value = trim $value "\n\r\t " }}
+	{{- end }}
+	{{- $p = merge $p (dict $name $value) }}
+{{- end }}
+
+{{- /* normalize what may arrive as string from a shortcode call */}}
+{{- $display := trim (printf "%v" $p.display) " " | default "tree" }}
+{{- if eq $p.columns "" }}
+	{{- $p = merge $p (dict "columns" (cond (or $isTaxonomy $isTerm (eq $display "cards")) 3 1)) }}
+{{- end }}
+{{- range $name := slice "levels" "limit" "headinglevel" "columns" }}
+	{{- /* a number that isn't one must not abort the build */}}
+	{{- with try (int (index $p $name)) }}
+		{{- if .Err }}
+			{{- $filepath := "[virtual file]" }}{{ with and $origin $origin.File $origin.File.Filename }}{{ $filepath = . }}{{ end }}
+			{{- warnf "%q: invalid parameter '%s=%v' for shortcode 'pages': expected a number" $filepath $name (index $p $name) }}
+			{{- $default := index $defaults $name }}
+			{{- if eq $default "" }}
+				{{- $default = 1 }}
+			{{- end }}
+			{{- $p = merge $p (dict $name $default) }}
+		{{- else }}
+			{{- $p = merge $p (dict $name .Value) }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- $p = merge $p (dict
+	"axis"         (lower (printf "%v" $p.axis))
+	"levels"       (math.Max 1 $p.levels | int)
+	"kind"         (lower (printf "%v" $p.kind))
+	"hidden"       (eq (lower (printf "%v" $p.hidden)) "true")
+	"flatten"      (eq (lower (printf "%v" $p.flatten)) "true")
+	"grouporder"   (lower (printf "%v" $p.grouporder))
+	"limit"        (math.Max 0 $p.limit | int)
+	"display"      $display
+	"headinglevel" (math.Max 1 (math.Min 6 $p.headinglevel) | int)
+	"columns"      (math.Max 1 (math.Min 5 $p.columns) | int)
+	"description"  (eq (lower (printf "%v" $p.description)) "true")
+	"breadcrumb"   (eq (lower (printf "%v" $p.breadcrumb)) "true")
+	"image"        (eq (lower (printf "%v" $p.image)) "true")
+) }}
+
+{{- /* arbitrary parameters for displays and card templates, like the `params`
+	of the `cards` shortcode: a map or a string in JSON, TOML or YAML */}}
+{{- $params := "" }}
+{{- range $layers }}
+	{{- $v := index . "params" }}
+	{{- if and (ne $v nil) (ne $v "") }}
+		{{- $params = $v }}
+		{{- break }}
+	{{- end }}
+{{- end }}
+{{- if eq (printf "%T" $params) "string" }}
+	{{- $params = trim $params "\n\r\t " }}
+	{{- if $params }}
+		{{- $raw := $params }}
+		{{- $params = dict }}
+		{{- with try (unmarshal $raw) }}
+			{{- if and (not .Err) (reflect.IsMap .Value) }}
+				{{- $params = .Value }}
+			{{- else }}
+				{{- $filepath := "[virtual file]" }}{{ with and $origin $origin.File $origin.File.Filename }}{{ $filepath = . }}{{ end }}
+				{{- warnf "%q: invalid parameter 'params' for shortcode 'pages': expected JSON, TOML or YAML describing a map" $filepath }}
+			{{- end }}
+		{{- end }}
+	{{- else }}
+		{{- $params = dict }}
+	{{- end }}
+{{- else if not (reflect.IsMap $params) }}
+	{{- $params = dict }}
+{{- end }}
+{{- $p = merge $p (dict "params" $params) }}
+
+{{- return $p }}

@@ -4,160 +4,37 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'children' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $type := .type | default "tree" }}
-{{- $showHidden := .showhidden | default false }}
-{{- if eq (printf "%T" $showHidden) "string" }}
-  {{- $showHidden = (eq $showHidden "true") }}
-{{- end }}
-{{- $depth := .depth | default 1 }}
-{{- $headingDepth := (math.Max 1 (math.Min 6 (.headingdepth | default 2))) | int }}
-{{- $withBreadcrumb := .breadcrumb | default false }}
-{{- if eq (printf "%T" $withBreadcrumb) "string" }}
-  {{- $withBreadcrumb = (eq $withBreadcrumb "true") }}
-{{- end }}
-{{- $withDescription := .description | default false }}
-{{- if eq (printf "%T" $withDescription) "string" }}
-  {{- $withDescription = (eq $withDescription "true") }}
-{{- end }}
-{{- $withImage := .image | default true }}
-{{- if eq (printf "%T" $withImage) "string" }}
-  {{- $withImage = (eq $withImage "true") }}
-{{- end }}
-{{- $sortTerm := .sort | lower }}
-{{- $cardTemplate := .cardtemplate | default "default" }}
+{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
 
+{{- $defaultType := "tree" }}
 {{- if or .containerstyle .style }}
   {{- if or (eq .containerstyle "ul") (eq .style "li") }}
-    {{- $type = "tree" }}
+    {{- $defaultType = "tree" }}
   {{- else if hasPrefix .style "h" }}
-    {{- $type = "list" }}
+    {{- $defaultType = "list" }}
   {{- else }}
-    {{- $type = "flat" }}
+    {{- $defaultType = "flat" }}
   {{- end }}
-  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-  {{- warnf "%q: DEPRECATED parameter 'containerstyle' or 'style' for shortcode 'children' found, use 'type=%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-1-0" $filepath $type }}
+  {{- warnf "%q: DEPRECATED parameter 'containerstyle' or 'style' for shortcode 'children' found, use 'type=%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-1-0" $filepath $defaultType }}
 {{- end }}
 
-{{- $classes := "" }}
-{{- if eq $type "group" }}
-  {{- $classes = " columnize" }}
-  {{- $depth = 1 }}
+{{- /* the shortcode is a translation layer over the `pages` shortcode */}}
+{{- $type := .type | default $defaultType }}
+{{- $sort := .sort }}
+{{- if in (slice "taxonomy" "term") $page.Kind }}
+  {{- $type = .type | default $page.Params.children.type | default "group" }}
+  {{- $sort = .sort | default $page.Params.children.sort }}
 {{- end }}
+{{- $params := partial "_relearn/pagesLegacy.gotmpl" (dict "page" $page "params" (merge . (dict "type" $type))) }}
 
-{{- $pages := .pages | default (partial "_relearn/pages.gotmpl" (dict "page" $page "by" $sortTerm)) }}
-{{- $groups := slice }}
-{{- if eq $type "group" }}
-  {{- $groupPages := slice }}
-  {{- $lastCapital := "" }}
-  {{- range $pages }}
-    {{- $page := .Page }}
-    {{- $title := .LinkTitle | default $page.LinkTitle }}
-    {{- $capital := substr $title 0 1 | upper }}
-    {{- if ne $lastCapital $capital }}
-      {{- if ne $lastCapital "" }}
-        {{- $groups = $groups | append (dict "capital" $lastCapital "pages" $groupPages) }}
-        {{- $groupPages = slice }}
-      {{- end }}
-      {{- $lastCapital = $capital }}
-    {{- end }}
-    {{- $groupPages = $groupPages | append . }}
-  {{- end }}
-  {{- if ne $lastCapital "" }}
-    {{- $groups = $groups | append (dict "capital" $lastCapital "pages" $groupPages) }}
-  {{- end }}
-{{- else if $pages }}
-  {{- $groups = $groups | append (dict "capital" "" "pages" $pages) }}
+{{- $equivalent := "" }}
+{{- range $name, $value := $params }}
+  {{- $equivalent = printf "%s %s=%q" $equivalent $name (printf "%v" $value) }}
 {{- end }}
+{{- warnf "%q: DEPRECATED shortcode 'children' found, use '{{%% pages%s %%}}' instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children#migration" $filepath $equivalent }}
 
-{{- range $groups }}
-  {{- if .pages }}
-    {{- if eq $.type "card" }}
-      {{- partial "inline/children/cards" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "withImage" $withImage "page" $page "sortTerm" $sortTerm "cardTemplate" $cardTemplate) }}
-    {{- else }}
-{{ if .capital }}
-  {{- strings.Repeat $headingDepth "#" }} {{ .capital }}
-{{- end }}
-
-{{ partial "inline/children/default" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "type" $type "headingDepth" $headingDepth "sortTerm" $sortTerm) }}
-{class="children children-type-{{$type}} children-sort-{{$sortTerm}}{{$classes}}"}
-
-{{ end }}
-  {{- end }}
-{{- end }}
-
-{{- define "partials/inline/children/default" }}
-  {{- range .pages }}
-    {{- $page := .Page }}
-    {{- $title := .LinkTitle | default $page.LinkTitle }}
-    {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
-    {{- if not $hidden }}
-      {{- if not $page.IsHome }}
-        {{- $indent := "" }}
-        {{- if not (or (eq $.type "flat") (eq $.type "list")) }}
-          {{- $indent = strings.Repeat (sub $.count 1) "  " }}
-        {{- end }}
-{{ $indent }}- {{ if eq $.type "list" }}{{ strings.Repeat (math.Min 6 (add $.headingDepth (sub $.count 1))) "#" }} {{ end }}{{ if $page.RelPermalink }}[{{ $title }}]({{ $page.Path }}){{ else }}{{ $title }}{{ end }}
-        {{- if $.withBreadcrumb }}
-          {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
-          {{- with $breadcrumb }}
-
-{{ $indent }}    {{ . }}
-          {{- end }}
-        {{- end }}
-        {{- if $.withDescription }}
-          {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
-          {{- with $description }}
-            {{- $text := replace (replace . "\r\n" "\n") "\n" (printf "\n%s    " $indent) }}
-
-{{ $indent }}    {{ $text }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- if lt $.count $.depth }}
-        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" $page "by" $.sortTerm) }}
-        {{- partial "inline/children/default" (dict "pages" $pages "count" (add $.count 1) "depth" $.depth "showHidden" $.showHidden "withBreadcrumb" $.withBreadcrumb "withDescription" $.withDescription "type" $.type "headingDepth" $.headingDepth "sortTerm" $.sortTerm) }}
-      {{- end }}
-    {{- end }}
-  {{- end }}
-{{- end }}
-
-{{- define "partials/inline/children/cards" }}
-  {{- $cards := slice }}
-  {{- range .pages }}
-    {{- $page := .Page }}
-    {{- $title := .LinkTitle | default $page.LinkTitle }}
-    {{- $hidden := and (or ($page.Params.hidden) (eq $page.Title "")) (not $.showHidden) }}
-    {{- if not $hidden }}
-      {{- $cardImage := "" }}
-      {{- if $.withImage }}
-        {{- $images := partial "_funcs/get-page-images" $page }}
-        {{- with index $images 0 }}
-          {{- if .Image }}
-            {{- $cardImage = .Image.Name }}
-          {{- else }}
-            {{- $cardImage = .RelPermalink }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
-      {{- $cards = $cards | append (dict
-        "content"  (cond $.withDescription $description "")
-        "href"     $page.Path
-        "image"    $cardImage
-        "title"    $title
-        "template" $.cardTemplate
-        "params"   (dict
-          "page"        $page
-          "depth"       $.depth
-          "description" $.withDescription
-          "showhidden"  $.showHidden
-          "sort"        $.sortTerm
-        )
-      ) }}
-    {{- end }}
-  {{- end }}
-  {{- partial "shortcodes/cards.html" (dict
-    "page"     $.page
-    "content"  $cards
-  ) }}
-{{- end }}
+{{- /* keeps the classes of the `children` shortcode, so existing styles still apply */}}
+{{- partial "shortcodes/pages.html" (merge $params (dict
+  "page"  $page
+  "class" (printf "children children-type-%s children-sort-%s" $type (lower (printf "%v" ($sort | default ""))))
+)) }}

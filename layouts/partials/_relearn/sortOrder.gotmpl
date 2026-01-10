@@ -4,12 +4,33 @@
 {{- if eq $by "auto" }}
 	{{- $by = "" }}
 {{- end }}
-{{- /* default sort order for the theme is historically by weight */}}
-{{- $by = $by | default $page.Params.ordersectionsby | default $page.Site.Params.ordersectionsby | default "default" }}
-{{- if or (eq $by "name") (eq $by "linktitle") }}
-	{{- $by = "title" }}
+{{- /* `name` is inherited from the Learn theme */}}
+{{- if not $by }}
+	{{- with $page.Params.ordersectionsby }}
+		{{- $by = . }}
+		{{- if eq . "name" }}
+			{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+			{{- warnf "%q: DEPRECATED front matter 'ordersectionsby=name' found, use 'ordersectionsby=title' instead; see https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/menus#by-other" $filepath }}
+		{{- end }}
+	{{- else }}
+		{{- with $page.Site.Params.ordersectionsby }}
+			{{- $by = . }}
+			{{- if eq . "name" }}
+				{{- warnf "DEPRECATED option 'ordersectionsby=name' found, use 'ordersectionsby=title' instead; see https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/menus#by-other" }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
 {{- end }}
-{{- if not (in (slice "weight" "title" "modifieddate" "expirydate" "publishdate" "date" "length" "default") $by) }}
+{{- /* default sort order for the theme is historically by weight */}}
+{{- $by = $by | default "default" }}
+{{- /* the canonical values are those of the `pages` shortcode's fields, where
+	the title shown is `linktitle`; only `default`, Hugo's order, has none */}}
+{{- if in (slice "name" "title") $by }}
+	{{- $by = "linktitle" }}
+{{- else if eq $by "modifieddate" }}
+	{{- $by = "lastmod" }}
+{{- end }}
+{{- if not (in (slice "weight" "linktitle" "lastmod" "expirydate" "publishdate" "date" "length" "default") $by) }}
 	{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
 	{{- warnf "%q: Unknown pages sort order %q" $filepath $by }}
 	{{- $by = "default" }}

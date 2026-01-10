@@ -21,4 +21,4 @@ weight = 5
 
 This chapter contains information only needed for development and maintaining the theme.
 
-{{%children type="list" description="true" %}}
+{{% pages display="headings" description="true" %}}

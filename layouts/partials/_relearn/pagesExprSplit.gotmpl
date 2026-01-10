@@ -1,0 +1,30 @@
+{{- /* splits `text` at `split`, or matches it against the regular expression
+	`match`, like `split` and `findRESubmatch` would - but a string delimited by
+	`"`, `'` or a backtick is taken as a whole, so a separator or an operator
+	inside it doesn't count; returns `parts`, still carrying their quotes, and
+	`open`, true where a quote isn't closed */}}
+{{- $text := .text }}
+{{- $quoted := findRE "\"[^\"]*\"|'[^']*'|\x60[^\x60]*\x60" $text }}
+{{- range $i, $q := $quoted }}
+	{{- $text = replace $text $q (printf "%d" $i) 1 }}
+{{- end }}
+{{- $masked := slice }}
+{{- if .split }}
+	{{- $masked = split $text .split }}
+{{- else }}
+	{{- with findRESubmatch .match $text 1 }}
+		{{- $masked = after 1 (index . 0) }}
+	{{- end }}
+{{- end }}
+{{- $parts := slice }}
+{{- range $masked }}
+	{{- $part := . }}
+	{{- range $i, $q := $quoted }}
+		{{- $part = replace $part (printf "%d" $i) $q }}
+	{{- end }}
+	{{- $parts = $parts | append $part }}
+{{- end }}
+{{- return (dict
+	"parts" $parts
+	"open"  (gt (len (findRE "[\"'\x60]" $text)) 0)
+) }}

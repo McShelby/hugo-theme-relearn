@@ -1,0 +1,9 @@
+{{- /* the entries of a page's default `pages` listing in display order, so the
+	previous and next buttons walk what the listing shows */}}
+{{- $entries := slice }}
+{{- range partial "_relearn/pagesGroups.gotmpl" (partial "_relearn/pagesParams.gotmpl" (dict "page" .)) }}
+	{{- range .Pages }}
+		{{- $entries = $entries | append . }}
+	{{- end }}
+{{- end }}
+{{- return $entries }}

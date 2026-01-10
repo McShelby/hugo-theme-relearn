@@ -18,9 +18,9 @@ title = 'Example Title'
 
 ## Page Description
 
-The `description` is used for generating HTML meta information, in the [children](shortcodes/children) shortcode and in social media meta information.
+The `description` is used for generating HTML meta information, in the [`pages`](shortcodes/pages) shortcode and in social media meta information.
 
-If not set, the set value of your site's hugo.toml is used for the HTML meta information and social media meta information. It appears empty for the [children](shortcodes/children) shortcode.
+If not set, the set value of your site's hugo.toml is used for the HTML meta information and social media meta information. It appears empty for the [`pages`](shortcodes/pages) shortcode.
 
 {{< multiconfig fm=true >}}
 description = 'Some lenghty example description'

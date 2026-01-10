@@ -8,4 +8,4 @@ weight = -5
   minHugoVersion = '0.121.0'
 +++
 
-{{% pages showhidden="true" showdivider="true" %}}
+{{% pages display="content" hidden="true" %}}

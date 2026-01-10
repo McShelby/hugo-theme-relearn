@@ -1,0 +1,22 @@
+{{- /* a display of the `pages` shortcode: a flat Markdown list whose titles are
+	headings, placed one level deeper for each `Level` */}}
+{{- range .pages }}
+  {{- $page := .Page }}
+- {{ strings.Repeat (math.Min 6 (add $.headinglevel (sub .Level 1))) "#" }} {{ if $page.RelPermalink }}[{{ .Label }}]({{ $page.Path }}){{ else }}{{ .Label }}{{ end }}
+  {{- if $.breadcrumb }}
+    {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
+    {{- with $breadcrumb }}
+
+    {{ . }}
+    {{- end }}
+  {{- end }}
+  {{- if $.description }}
+    {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
+    {{- with $description }}
+      {{- $text := replace (replace . "\r\n" "\n") "\n" "\n    " }}
+
+    {{ $text }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{class="{{ .class }}"}

@@ -1,0 +1,61 @@
+{{- $call := . }}
+{{- with .pageref }}
+  {{- /* a reference into another part of the site replaces the calling page as starting point */}}
+  {{- /* unlike a menu's pageRef, this one may be relative to the calling page */}}
+  {{- $target := partial "_relearn/linkObject.gotmpl" (dict "url" . "page" $call.page "searchResource" false) }}
+  {{- if and $target (eq $target.ResourceType "page") }}
+    {{- /* warnings keep naming the file the shortcode was called in */}}
+    {{- $call = merge $call (dict "page" $target "origin" $call.page) }}
+  {{- else }}
+    {{- $filepath := "[virtual file]" }}{{ with and $call.page $call.page.File $call.page.File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- errorf "%q: parameter 'pageref' %q for shortcode 'pages' is not a page" $filepath . }}
+  {{- end }}
+{{- end }}
+{{- $p := partial "_relearn/pagesParams.gotmpl" $call }}
+{{- $page := $p.page }}
+{{- $filepath := "[virtual file]" }}{{ with and $p.origin $p.origin.File $p.origin.File.Filename }}{{ $filepath = . }}{{ end }}
+
+{{- /* an unknown display, be it a typo or inherited by cascade, must not abort the build */}}
+{{- $display := $p.display }}
+{{- if not (templates.Exists (printf "partials/pages/%s.html" $display)) }}
+  {{- warnf "%q: unknown display '%s' for shortcode 'pages', falling back to 'tree'; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/pages#parameters" $filepath $display }}
+  {{- $display = "tree" }}
+{{- end }}
+
+{{- $groups := partial "_relearn/pagesGroups.gotmpl" $p }}
+
+{{- $grouped := ne $p.groupby "" }}
+{{- $headingLevel := $p.headinglevel }}
+{{- $classes := .class | default (printf "pages pages-%s" $display) }}
+{{- if and (ne $display "cards") (gt $p.columns 1) }}
+  {{- $classes = printf "%s columnize columnize-%d" $classes $p.columns }}
+{{- end }}
+
+{{- range $groups }}
+  {{- $output := partial (printf "pages/%s.html" $display) (dict
+    "page"         $page
+    "group"        .
+    "pages"        .Pages
+    "headinglevel" (cond $grouped (math.Min 6 (add $headingLevel 1) | int) $headingLevel)
+    "class"        $classes
+    "columns"      $p.columns
+    "levels"       $p.levels
+    "hidden"       $p.hidden
+    "description"  $p.description
+    "breadcrumb"   $p.breadcrumb
+    "image"        $p.image
+    "cardtemplate" $p.cardtemplate
+    "params"       $p.params
+  ) }}
+  {{- if and $grouped .Label }}
+    {{- if eq $display "cards" }}
+      {{- /* cards are HTML, called with `{{< >}}` a Markdown heading would show as text */}}
+
+{{ printf `<h%d id="%s">%s</h%d>` $headingLevel (.Label | plainify | anchorize) (.Label | htmlEscape) $headingLevel | safeHTML }}
+    {{- else }}
+
+{{ strings.Repeat $headingLevel "#" }} {{ .Label }}
+    {{- end }}
+  {{- end }}
+  {{- $output }}
+{{- end }}

@@ -7,4 +7,4 @@ weight = -6
   disableToc = false
 +++
 
-{{% pages showhidden="true" showdivider="true" %}}
+{{% pages display="content" hidden="true" %}}

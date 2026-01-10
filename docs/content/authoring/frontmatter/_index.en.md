@@ -8,4 +8,4 @@ weight = 2
   alwaysopen = false
 +++
 
-{{% children type="list" description=true %}}
+{{% pages display="headings" description=true %}}

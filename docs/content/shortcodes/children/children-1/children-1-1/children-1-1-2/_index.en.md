@@ -13,4 +13,4 @@ While the heading is displayed in the theme for hierarchical views like the menu
 
 ## Subpages of this page
 
-{{% children showhidden="true" %}}
+{{% pages hidden="true" %}}

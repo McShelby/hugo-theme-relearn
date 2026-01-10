@@ -1,0 +1,19 @@
+{{- /* runs the query for parameters resolved by pagesParams.gotmpl, keyed by all
+	query parameters, so the table of contents and the page body run it only once;
+	`origin` only names the file in warnings and is no part of the key */}}
+{{- $p := . }}
+{{- $key := dict
+	"page"       $p.page
+	"axis"       $p.axis
+	"levels"     $p.levels
+	"kind"       $p.kind
+	"hidden"     $p.hidden
+	"flatten"    $p.flatten
+	"where"      $p.where
+	"groupby"    $p.groupby
+	"grouplabel" $p.grouplabel
+	"grouporder" $p.grouporder
+	"orderby"    $p.orderby
+	"limit"      $p.limit
+}}
+{{- return partialCached "_relearn/pagesQuery.gotmpl" (merge $key (dict "origin" $p.origin)) $key }}

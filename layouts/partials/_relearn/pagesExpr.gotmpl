@@ -1,0 +1,160 @@
+{{- /* evaluates a pipeline parsed by pagesExprParse.gotmpl for one page; an
+	empty string means no value and passes through every function but
+	`coalesce` and `default`; `Normalized` is the value to order by, which for a
+	trailing `format` is the date's shown parts rather than the display text, so
+	a group can be keyed by display text and still ordered on the date */}}
+{{- $p := .page }}
+{{- $expr := .expr }}
+
+{{- $v := "" }}
+{{- $field := $expr.field }}
+{{- if eq $field "title" }}
+	{{- /* the page's title as its heading shows it */}}
+	{{- $v = partial "title.gotmpl" (dict "page" $p) }}
+{{- else if eq $field "linktitle" }}
+	{{- /* the title shown in the menu, the breadcrumbs and every listing */}}
+	{{- $v = partial "title.gotmpl" (dict "page" $p "linkTitle" true) }}
+{{- else if eq $field "weight" }}
+	{{- $v = $p.Weight }}
+	{{- if eq $v 0 }}
+		{{- /* like for Hugo, a weight of 0 means the page is unweighted, so it
+			orders after the weighted ones */}}
+		{{- $v = "" }}
+	{{- end }}
+{{- else if eq $field "length" }}
+	{{- $v = $p.Len }}
+{{- else if eq $field "path" }}
+	{{- $v = $p.Path }}
+{{- else if eq $field "section" }}
+	{{- $v = $p.Section }}
+{{- else if eq $field "date" }}
+	{{- $v = $p.Date }}
+{{- else if eq $field "lastmod" }}
+	{{- $v = $p.Lastmod }}
+{{- else if eq $field "publishdate" }}
+	{{- $v = $p.PublishDate }}
+{{- else if eq $field "expirydate" }}
+	{{- $v = $p.ExpiryDate }}
+{{- else if eq $field "params" }}
+	{{- $v = $p.Params }}
+	{{- range $expr.path }}
+		{{- if reflect.IsMap $v }}
+			{{- $v = index $v . }}
+			{{- if eq $v nil }}
+				{{- $v = "" }}
+			{{- end }}
+		{{- else }}
+			{{- $v = "" }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- if and (eq (printf "%T" $v) "time.Time") $v.IsZero }}
+	{{- $v = "" }}
+{{- else if or (reflect.IsSlice $v) (reflect.IsMap $v) }}
+	{{- /* a list or a map is no single value to group, order or compare by */}}
+	{{- $v = "" }}
+{{- end }}
+
+{{- $normalized := "" }}
+{{- $isNormalized := false }}
+{{- $last := sub (len $expr.stages) 1 }}
+{{- range $i, $s := $expr.stages }}
+	{{- $name := $s.name }}
+	{{- if eq $name "coalesce" }}
+		{{- if eq $v "" }}
+			{{- $v = $s.arg }}
+		{{- end }}
+	{{- else if eq $name "default" }}
+		{{- if not $v }}
+			{{- $v = $s.arg }}
+		{{- end }}
+	{{- else if eq $v "" }}
+	{{- else if in (slice "upper" "lower" "trim" "left" "right" "translate") $name }}
+		{{- /* a value that is no text, like a number or a date, is taken as the text it prints as */}}
+		{{- $text := printf "%v" $v }}
+		{{- if eq $name "upper" }}
+			{{- $v = upper $text }}
+		{{- else if eq $name "lower" }}
+			{{- $v = lower $text }}
+		{{- else if eq $name "translate" }}
+			{{- /* the argument is a prefix scoping the key, so `status-` looks up
+				`status-draft`; without a translation the text stays as it is */}}
+			{{- $v = T (printf "%s%s" $s.arg $text) | default $text }}
+		{{- else if eq $name "trim" }}
+			{{- $v = trim $text " \t\r\n" }}
+		{{- else if eq $name "left" }}
+			{{- $v = substr $text 0 $s.n }}
+		{{- else }}
+			{{- $count := strings.RuneCount $text }}
+			{{- $v = cond (gt $count $s.n) (substr $text (sub $count $s.n)) $text }}
+		{{- end }}
+	{{- else }}
+		{{- /* the date functions; a value that is no date has no value */}}
+		{{- $time := "" }}
+		{{- if eq (printf "%T" $v) "time.Time" }}
+			{{- $time = $v }}
+		{{- else }}
+			{{- with try (time.AsTime $v) }}
+				{{- if not .Err }}
+					{{- $time = .Value }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+		{{- if or (not $time) (and $time $time.IsZero) }}
+			{{- $v = "" }}
+		{{- else if eq $name "year" }}
+			{{- $v = $time.Year }}
+		{{- else if eq $name "month" }}
+			{{- $v = $time.Month | int }}
+		{{- else if eq $name "day" }}
+			{{- $v = $time.Day }}
+		{{- else if eq $name "weekday" }}
+			{{- /* ISO numbering, Monday is 1 and Sunday is 7 */}}
+			{{- $v = $time.Weekday | int }}
+			{{- if eq $v 0 }}
+				{{- $v = 7 }}
+			{{- end }}
+		{{- else if eq $name "format" }}
+			{{- if eq $i $last }}
+				{{- /* a final `format` only makes display text, so ordering keeps the
+					parts of the date it shows, in calendar order - months January to
+					December even where they are pooled across years */}}
+				{{- $normalized = partial "inline/pagesExpr/calendar" (dict "time" $time "shows" $s.shows) }}
+				{{- $isNormalized = true }}
+			{{- end }}
+			{{- /* Hugo's function, as only it understands `:date_long` and friends */}}
+			{{- $v = time.Format $s.arg $time }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- if not $isNormalized }}
+	{{- $normalized = $v }}
+{{- end }}
+{{- if eq (printf "%T" $normalized) "time.Time" }}
+	{{- $normalized = $normalized.Unix }}
+{{- end }}
+
+{{- return (dict
+	"Value"      $v
+	"Normalized" $normalized
+) }}
+
+{{- define "partials/inline/pagesExpr/calendar" }}
+	{{- /* a key ordering dates on the parts a layout shows, see
+		pagesExprParse.gotmpl; digits of fixed width, so it orders as text */}}
+	{{- $t := .time }}
+	{{- $s := .shows }}
+	{{- $weekday := $t.Weekday | int }}
+	{{- if eq $weekday 0 }}
+		{{- $weekday = 7 }}
+	{{- end }}
+	{{- return printf "%04d%02d%02d%d%02d%02d%02d"
+		(cond $s.year $t.Year 0)
+		(cond $s.month ($t.Month | int) 0)
+		(cond $s.day $t.Day 0)
+		(cond $s.weekday $weekday 0)
+		(cond $s.hour $t.Hour 0)
+		(cond $s.minute $t.Minute 0)
+		(cond $s.second $t.Second 0)
+	}}
+{{- end }}
