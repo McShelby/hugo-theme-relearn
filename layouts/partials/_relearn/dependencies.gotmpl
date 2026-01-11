@@ -5,7 +5,7 @@
 
 	{{- $dep := printf "dependencies/%s.html" $k }}
 	{{- partial $dep (dict "page" $ "location" "default") }}
-    {{- $default := $.Store.Get $needs | default false }}
+	{{- $default := $.Store.Get $needs | default false }}
 
 	{{- $wantsPage := "" }}
 	{{- $filepath := "[virtual file]" }}{{ with and $.File $.File.Filename }}{{ $filepath = . }}{{ end }}

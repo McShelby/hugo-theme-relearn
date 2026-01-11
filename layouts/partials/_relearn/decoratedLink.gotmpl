@@ -44,7 +44,7 @@
 			{{- if gt ($.linkObject.Fragments.Identifiers.Count .) 1 }}
 				{{- $filepath := "[virtual file]" }}{{ with and $.page $.page.File $.page.File.Filename }}{{ $filepath = . }}{{ end }}
 				{{- $msg := printf "%q: duplicate heading ID %q found" $filepath . }}
-			    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $.url "page" $.page "param" $.param "msg" $msg) }}
+				{{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $.url "page" $.page "param" $.param "msg" $msg) }}
 			{{- end }}
 		{{- else }}
 			{{- $msg := printf "heading ID %q not found" . }}

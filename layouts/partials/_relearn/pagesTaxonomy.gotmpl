@@ -1,15 +1,15 @@
 {{- $pages := slice }}
 {{- range .Data.Terms }}
-  {{- $count := 0 }}
-  {{- range .Pages }}
-    {{- /* count pages of term */}}
-    {{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
-      {{- $count = add $count 1 }}
-    {{- end }}
-  {{- end }}
-  {{- if $count }}
-    {{- $pages = $pages| append (dict "LinkTitle" (printf "%s (%d)" (partial "title.gotmpl" (dict "page" .Page "linkTitle" true)) $count) "Page" .Page "Count" $count )}}
-  {{- end }}
+	{{- $count := 0 }}
+	{{- range .Pages }}
+		{{- /* count pages of term */}}
+		{{- if and .Title .RelPermalink (or (ne .Site.Params.disableTagHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" .Site.Home) .Path .Site.Home.Path) ) ) }}
+			{{- $count = add $count 1 }}
+		{{- end }}
+	{{- end }}
+	{{- if $count }}
+		{{- $pages = $pages| append (dict "LinkTitle" (printf "%s (%d)" (partial "title.gotmpl" (dict "page" .Page "linkTitle" true)) $count) "Page" .Page "Count" $count )}}
+	{{- end }}
 {{- end }}
 {{- $pages = sort $pages ".LinkTitle" }}
 {{- return $pages }}

@@ -4,12 +4,12 @@
 
 {{- /* 2. stack configured site effects */}}
 {{- if .page.Site.Params.imageeffects }}
-  {{- $effects = merge $effects .page.Site.Params.imageeffects }}
+	{{- $effects = merge $effects .page.Site.Params.imageeffects }}
 {{- end }}
 
 {{- /* 3. stack pages frontmatter effects */}}
 {{- if .page.Params.imageeffects }}
-  {{- $effects = merge $effects .page.Params.imageeffects }}
+	{{- $effects = merge $effects .page.Params.imageeffects }}
 {{- end }}
 
 {{- /* 4. stack URL query parameter */}}
@@ -18,81 +18,81 @@
 {{- $u := urls.Parse .url }}
 {{- if $u.RawQuery }}
 
-  {{- /* 4.1 stack "classes" parameter effects; handle "no" prefix */}}
-  {{- if $u.Query.Has "classes" }}
-    {{- $classes := slice | append (split ($u.Query.Get "classes") ",") }}
-    {{- range $classes }}
-      {{- $k := . }}
-      {{- $v := true }}
-      {{- if strings.HasPrefix $k "no" }}
-        {{- $k = strings.TrimPrefix "no" $k }}
-        {{- $v = false }}
-      {{- end }}
-      {{- if isset $effects $k }}
-        {{- $effects = merge $effects (dict $k $v) }}
-      {{- end }}
-    {{- end }}
-  {{- end }}
+	{{- /* 4.1 stack "classes" parameter effects; handle "no" prefix */}}
+	{{- if $u.Query.Has "classes" }}
+		{{- $classes := slice | append (split ($u.Query.Get "classes") ",") }}
+		{{- range $classes }}
+			{{- $k := . }}
+			{{- $v := true }}
+			{{- if strings.HasPrefix $k "no" }}
+				{{- $k = strings.TrimPrefix "no" $k }}
+				{{- $v = false }}
+			{{- end }}
+			{{- if isset $effects $k }}
+				{{- $effects = merge $effects (dict $k $v) }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
 
-  {{- /* 4.2 stack other effect parameter; no handling for "no" prefix */}}
-  {{- range $k, $v := $effects }}
-    {{- if $u.Query.Has $k }}
-      {{- $paramValue := $u.Query.Get $k }}
-      {{- $newValue := true }}
-      {{- if eq $paramValue "" }}
-        {{- $newValue = true }}
-      {{- else if eq $paramValue "true" }}
-        {{- $newValue = true }}
-      {{- else if eq $paramValue "false" }}
-        {{- $newValue = false }}
-      {{- else }}
-        {{- $newValue = $paramValue }}
-      {{- end }}
-      {{- $effects = merge $effects (dict $k $newValue) }}
-    {{- end }}
-  {{- end }}
+	{{- /* 4.2 stack other effect parameter; no handling for "no" prefix */}}
+	{{- range $k, $v := $effects }}
+		{{- if $u.Query.Has $k }}
+			{{- $paramValue := $u.Query.Get $k }}
+			{{- $newValue := true }}
+			{{- if eq $paramValue "" }}
+				{{- $newValue = true }}
+			{{- else if eq $paramValue "true" }}
+				{{- $newValue = true }}
+			{{- else if eq $paramValue "false" }}
+				{{- $newValue = false }}
+			{{- else }}
+				{{- $newValue = $paramValue }}
+			{{- end }}
+			{{- $effects = merge $effects (dict $k $newValue) }}
+		{{- end }}
+	{{- end }}
 
-  {{- /* 4.3 special case parameter */}}
-  {{- if $u.Query.Has "featherlight" }}
-    {{- $filepath := "[virtual file]" }}{{ with and .page .page.File .page.File.Filename }}{{ $filepath = . }}{{ end }}
-    {{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-11-0" $filepath }}
-    {{- $attributes = merge $attributes (dict "lightbox" (ne ($u.Query.Get "featherlight") "false")) }}
-  {{- end }}
-  {{- with $u.Query.Get "height" }}
-    {{- $height = . }}
-  {{- end }}
-  {{- with $u.Query.Get "width" }}
-    {{- $width = . }}
-  {{- end }}
+	{{- /* 4.3 special case parameter */}}
+	{{- if $u.Query.Has "featherlight" }}
+		{{- $filepath := "[virtual file]" }}{{ with and .page .page.File .page.File.Filename }}{{ $filepath = . }}{{ end }}
+		{{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-11-0" $filepath }}
+		{{- $attributes = merge $attributes (dict "lightbox" (ne ($u.Query.Get "featherlight") "false")) }}
+	{{- end }}
+	{{- with $u.Query.Get "height" }}
+		{{- $height = . }}
+	{{- end }}
+	{{- with $u.Query.Get "width" }}
+		{{- $width = . }}
+	{{- end }}
 {{- end }}
 
 {{- /* 5. stack caller-provided attributes.class parameter; handle "no" prefix */}}
 {{- $attributeClasses := slice }}
 {{- if $attributes.class }}
-  {{- $classes := split $attributes.class " " }}
-  {{- range $classes }}
-    {{- $k := . }}
-    {{- $v := true }}
-    {{- if strings.HasPrefix $k "no" }}
-      {{- $k = strings.TrimPrefix "no" $k }}
-      {{- $v = false }}
-    {{- end }}
-    {{- if isset $effects $k }}
-      {{- $effects = merge $effects (dict $k $v) }}
-    {{- else }}
-      {{- $attributeClasses = $attributeClasses | append $k }}
-    {{- end }}
-  {{- end }}
+	{{- $classes := split $attributes.class " " }}
+	{{- range $classes }}
+		{{- $k := . }}
+		{{- $v := true }}
+		{{- if strings.HasPrefix $k "no" }}
+			{{- $k = strings.TrimPrefix "no" $k }}
+			{{- $v = false }}
+		{{- end }}
+		{{- if isset $effects $k }}
+			{{- $effects = merge $effects (dict $k $v) }}
+		{{- else }}
+			{{- $attributeClasses = $attributeClasses | append $k }}
+		{{- end }}
+	{{- end }}
 {{- end }}
 
 {{- /* manually translate effects to HTML attributes */}}
 {{- /* "class" should only contain boolean effects if they are true */}}
 {{- range $k, $v := $effects }}
-  {{- if $v }}
-    {{- if eq (printf "%T" $v) "bool" }}
-      {{- $attributeClasses = $attributeClasses | append $k }}
-    {{- end }}
-  {{- end }}
+	{{- if $v }}
+		{{- if eq (printf "%T" $v) "bool" }}
+			{{- $attributeClasses = $attributeClasses | append $k }}
+		{{- end }}
+	{{- end }}
 {{- end }}
 {{- $attributeClasses = delimit $attributeClasses " " }}
 {{- $attributes = merge $attributes (dict "class" $attributeClasses) }}
@@ -104,14 +104,14 @@
 {{- $attributes = merge $attributes (dict "style" $styles) }}
 
 {{- if and .linkObject $effects.inlinecontent (eq .linkObject.MediaType.Type "image/svg+xml") }}
-  {{- $content := .linkObject.Content | replaceRE `(?s)^\s*<\?.*?\?>\s*` "" }}
-  {{- $attributes = merge $attributes (dict "content" $content) }}
+	{{- $content := .linkObject.Content | replaceRE `(?s)^\s*<\?.*?\?>\s*` "" }}
+	{{- $attributes = merge $attributes (dict "content" $content) }}
 {{- else if and .linkObject $effects.dataurl }}
-  {{- $src := printf "data:%s;base64,%s" .linkObject.MediaType.Type (.linkObject.Content | base64Encode) }}
-  {{- $attributes = merge $attributes (dict "src" $src) }}
+	{{- $src := printf "data:%s;base64,%s" .linkObject.MediaType.Type (.linkObject.Content | base64Encode) }}
+	{{- $attributes = merge $attributes (dict "src" $src) }}
 {{- else }}
-  {{- $attributes = merge $attributes (dict "src" .url) }}
-  {{- if $effects.lazy }}{{ $attributes = merge $attributes (dict "loading" "lazy") }}{{ end }}
+	{{- $attributes = merge $attributes (dict "src" .url) }}
+	{{- if $effects.lazy }}{{ $attributes = merge $attributes (dict "loading" "lazy") }}{{ end }}
 {{- end }}
 
 {{- return $attributes }}

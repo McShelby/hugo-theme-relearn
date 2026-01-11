@@ -8,16 +8,16 @@
 {{- end }}
 {{- $searchPageURL := "search" }}
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.page) site.Params.search.page }}
-  {{- $searchPageURL = .URL | default $searchPageURL }}
+	{{- $searchPageURL = .URL | default $searchPageURL }}
 {{- end }}
 {{- $searchPageType := "_relearn_searchpage" }}
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.page) site.Params.search.page }}
-  {{- $searchPageType = .type | default $searchPageType }}
+	{{- $searchPageType = .type | default $searchPageType }}
 {{- end }}
 
 {{- if and (not $disableSearchIndex) (not $disableSearchPage) }}
 	{{- .EnableAllLanguages }}
-	{{- $url := trim $searchPageURL "/"  }}
+	{{- $url := trim $searchPageURL "/" }}
 	{{- $content := dict
 		"mediaType" "text/markdown"
 		"value" ""
