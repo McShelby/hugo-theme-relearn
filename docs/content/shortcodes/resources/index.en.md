@@ -10,29 +10,15 @@ title = 'Resources'
 
 The `resources` shortcode displays links to resources contained in a [page bundle](https://gohugo.io/content-management/page-bundles/).
 
-{{% resources sort="asc" /%}}
+{{% multishortcode name="resources" print="false" %}}
+sort = "asc"
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* resources sort="asc" /*/%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/resources.html" (dict
-  "page" .
-  "sort" "asc"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="resources" execute="false" %}}
+sort = "asc"
+{{% /multishortcode %}}
 
 Multilanguage features are not supported directly by the shortcode but rely on Hugo's handling for resource translations applied when the theme iterates over all available resources.
 

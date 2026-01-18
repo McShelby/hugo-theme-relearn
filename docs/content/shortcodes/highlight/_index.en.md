@@ -8,67 +8,25 @@ title = 'Highlight'
 
 The `highlight` shortcode renders your code with a syntax highlighter.
 
-{{< highlight lineNos="true" type="py" wrap="true" title="python" >}}
-print("Hello World!")
-{{< /highlight >}}
+{{% multishortcode name="highlight" print="false" %}}
+lineNos: "true"
+type: "py"
+wrap: "true"
+title: "python"
+content: |
+  print("Hello World!")
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
-
-````md
-```py {lineNos="true" wrap="true" title="python"}
-print("Hello World!")
-```
-````
-
-{{% /tab %}}
-{{% tab title="shortcode" %}}
-
-````go
-{{</* highlight lineNos="true" type="py" wrap="true" title="python" */>}}
-print("Hello World!")
-{{</* /highlight */>}}
-````
-
-{{% /tab %}}
-{{% tab title="shortcode (positional)" %}}
-
-````go
-{{</* highlight py "lineNos=true,wrap=true,title=python" */>}}
-print("Hello World!")
-{{</* /highlight */>}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/highlight.html" (dict
-  "page"    .
-  "content" "print(\"Hello World!\")"
-  "lineNos" "true"
-  "type"    "py"
-  "wrap"    "true"
-  "title"   "python"
-)}}
-````
-
-{{% /tab %}}
-{{% tab title="partial (compat)" %}}
-
-````go
-{{ partial "shortcodes/highlight.html" (dict
-  "page"    .
-  "content" "print(\"Hello World!\")"
-  "options" "lineNos=true,wrap=true,title=python"
-  "type"    "py"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="highlight" execute="false" %}}
+lineNos: "true"
+type: "py"
+wrap: "true"
+title: "python"
+content: |
+  print("Hello World!")
+{{% /multishortcode %}}
 
 This shortcode is fully compatible with Hugo's [`highlight` shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) but **offers some extensions**.
 
@@ -145,69 +103,48 @@ You can configure the color style used for code blocks in your [color variants s
 
 As mentioned above, line numbers in a `table` layout will shift if code is wrapping, so better use `inline`. To make things easier for you, set `lineNumbersInTable = false` in your `hugo.toml` and add `lineNos = true` when calling the shortcode instead of the specific values `table` or `inline`.
 
-````go
-{{</* highlight lineNos="true" lineNoStart="666" type="py" */>}}
-# the hardest part is to start writing code; here's a kickstart; just copy and paste this; it's free; the next lines will cost you serious credits
-print("Hello")
-print(" ")
-print("World")
-print("!")
-{{</* /highlight */>}}
-````
+{{% multishortcode name="highlight" %}}
+lineNos: "true"
+lineNoStart: "666"
+type: "py"
+content: |
+  # the hardest part is to start writing code; here's a kickstart; just copy and paste this; it's free; the next lines will cost you serious credits
+  print("Hello")
+  print(" ")
+  print("World")
+  print("!")
+{{% /multishortcode %}}
 
-{{< highlight lineNos="true" lineNoStart="666" type="py" >}}
-# the hardest part is to start writing code; here's a kickstart; just copy and paste this; it's free; the next lines will cost you serious credits
-print("Hello")
-print(" ")
-print("World")
-print("!")
-{{< /highlight >}}
+### With Title
 
-### Markdown Codefence with Title
-
-
-````md
-```py { title="python" }
-# a bit shorter
-print("Hello World!")
-```
-````
-
-```py { title="python" }
-# a bit shorter
-print("Hello World!")
-```
-
-
+{{% multishortcode name="highlight" %}}
+type: "py"
+title: "python"
+content: |
+  # a bit shorter
+  print("Hello World!")
+{{% /multishortcode %}}
 
 ### With Wrap
 
-````go
-{{</* highlight type="py" wrap="true" hl_lines="2" */>}}
-# Quicksort Python One-liner
-lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
-# Some more stuff
-{{</* /highlight */>}}
-````
-
-{{< highlight type="py" wrap="true" hl_lines="2" >}}
-# Quicksort Python One-liner
-lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
-# Some more stuff
-{{< /highlight >}}
+{{% multishortcode name="highlight" %}}
+type: "py"
+wrap: "true"
+hl_lines: "2"
+content: |
+  # Quicksort Python One-liner
+  lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+  # Some more stuff
+{{% /multishortcode %}}
 
 ### Without Wrap
 
-````go
-{{</* highlight type="py" wrap="false" hl_lines="2" */>}}
-# Quicksort Python One-liner
-lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
-# Some more stuff
-{{</* /highlight */>}}
-````
-
-{{< highlight type="py" wrap="false" hl_lines="2">}}
-# Quicksort Python One-liner
-lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
-# Some more stuff
-{{< /highlight >}}
+{{% multishortcode name="highlight" %}}
+type: "py"
+wrap: "false"
+hl_lines: "2"
+content: |
+  # Quicksort Python One-liner
+  lambda L: [] if L==[] else qsort([x for x in L[1:] if x< L[0]]) + L[0:1] + qsort([x for x in L[1:] if x>=L[0]])
+  # Some more stuff
+{{% /multishortcode %}}

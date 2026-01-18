@@ -6,43 +6,29 @@ title = 'Card'
 
 Use the `card` shortcode to display content in a nice card.
 
-{{% card title="High performance code" href="https://example.com" %}}
-Awesome AI accelerated code
+{{% multishortcode name="card" print="false" %}}
+- title: "High performance code"
+  href: "https://example.com"
+  content: |
+    Awesome AI accelerated code
 
-```python
-printf("Hello World!");
-```
-{{% /card %}}
+    ```python
+    printf("Hello World!");
+    ```
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
+{{% multishortcode name="card" execute="false" %}}
+- title: "High performance code"
+  href: "https://example.com"
+  content: |
+    Awesome AI accelerated code
 
-````go
-{{%/* card title="High performance code" href="https://example.com" */%}}
-Awesome AI accelerated code
-
-```c
-printf("Hello World!");
-```
-{{%/* /card  */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/card.html" (dict
-  "page"  .
-  "href" "https://example.com"
-  "title" "High performance code"
-  "content" ("Awesome AI accelerated code\n\n```c\nprintf(\"Hello World!\")\n```" | .RenderString)
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+    ```c
+    printf("Hello World!");
+    ```
+{{% /multishortcode %}}
 
 If you want to show a set of cards grouped together you can wrap your cards into the [`cards` shortcode](shortcodes/cards).
 
@@ -69,83 +55,51 @@ A card template will be called with all the above parameter. `href` and `image` 
 
 ### A Bit of Everything
 
-````go
-{{%/* card title="Everything" image="/images/magic.gif" href="https://example.com" */%}}
-Image, title and a text
-{{%/* /card */%}}
-````
-
-{{% card title="Everything" image="/images/magic.gif" href="https://example.com" %}}
-Image, title and a text
-{{% /card %}}
+{{% multishortcode name="card" %}}
+- title: "Everything"
+  image: "/images/magic.gif"
+  href: "https://example.com"
+  content: "Image, title and a text"
+{{% /multishortcode %}}
 
 ### Just Text
 
 Because the text contains source code with the copy-to-clipboard button, you are not allowed to use the `href` parameter or your layout may get messed up.
 
-````go
-{{%/* card */%}}
-reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
+{{% multishortcode name="card" %}}
+- content: |
+    reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
 
-```c
-printf("Hello Code!");
-```
+    ```c
+    printf("Hello Code!");
+    ```
 
----
+    ---
 
-And a bullet list
+    And a bullet list
 
-- blue
-- red
-- yellow
-- marshmallow
-- cardboard box
-- sandals
-- kumi ichi
-- random stuff
-- just made up
-- i guess i reached the end
-- really?
-- you can stop now
-{{%/* /card */%}}
-````
-
-{{% card %}}
-reallylongwordthatdoesnotwraparoundandbehaveslikeaprick
-
-```c
-printf("Hello Code!");
-```
-
----
-
-And a bullet list
-
-- blue
-- red
-- yellow
-- marshmallow
-- cardboard box
-- sandals
-- kumi ichi
-- random stuff
-- just made up
-- i guess i reached the end
-- really?
-- you can stop now
-{{% /card %}}
+    - blue
+    - red
+    - yellow
+    - marshmallow
+    - cardboard box
+    - sandals
+    - kumi ichi
+    - random stuff
+    - just made up
+    - i guess i reached the end
+    - really?
+    - you can stop now
+{{% /multishortcode %}}
 
 ### Image Only
 
 If only an image is displayed, the full card will be used.
 
-````go
-{{%/* card image="/images/magic.gif" */%}}
-{{%/* /card */%}}
-````
-
-{{% card image="/images/magic.gif" %}}
-{{% /card %}}
+{{% multishortcode name="card" %}}
+- image: "/images/magic.gif"
+  content: ""
+{{% /multishortcode %}}
 
 ### Debug Card Template with Arbitrary Parameter
 
@@ -153,10 +107,8 @@ Show all parameter for the card template with the custom `debug` card template.
 
 Adds additional `params` for the template.
 
-````go
-{{%/* card template="debug" params={"blub":"bla"} */%}}
-{{%/* /card */%}}
-````
-
-{{% card template="debug" params={"blub":"bla"} %}}
-{{% /card %}}
+{{% multishortcode name="card" %}}
+- template: "debug"
+  params: '{"blub":"bla"}'
+  content: ""
+{{% /multishortcode %}}

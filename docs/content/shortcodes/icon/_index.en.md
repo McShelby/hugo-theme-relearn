@@ -6,59 +6,25 @@ title = 'Icon'
 
 The `icon` shortcode displays icons using the [Font Awesome](https://fontawesome.com) library.
 
-{{% icon heart %}}
-{{% icon skull-crossbones blue %}}
-{{% icon style="warning" %}}
-{{% icon icon="angle-double-up" color="blue" %}}
+{{% multishortcode name="icon" print="false" format="%s\n%s\n%s\n%s\n" %}}
+- icon: "heart"
+- icon: "skull-crossbones"
+  style: "blue"
+- style: "warning"
+- icon: "angle-double-up"
+  color: "blue"
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* icon icon="heart" */%}}
-{{%/* icon icon="skull-crossbones" style="blue" */%}}
-{{%/* icon style="warning" */%}}
-{{%/* icon icon="angle-double-up" color="blue" */%}}
-````
-
-{{% /tab %}}
-{{% tab title="shortcode (positional)" %}}
-
-````go
-{{%/* icon heart */%}}
-{{%/* icon skull-crossbones blue */%}}
-{{%/* icon exclamation-triangle red */%}}
-{{%/* icon angle-double-up blue */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/icon.html" (dict
-    "page" .
-    "icon" "heart"
-)}}
-{{ partial "shortcodes/icon.html" (dict
-    "page" .
-    "icon" "skull-crossbones"
-    "style" "blue"
-)}}
-{{ partial "shortcodes/icon.html" (dict
-    "page" .
-    "style" "warning"
-)}}
-{{ partial "shortcodes/icon.html" (dict
-    "page" .
-    "icon" "angle-double-up"
-    "color" "blue"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="icon" execute="false" format="%s\n%s\n%s\n%s\n" %}}
+- icon: "heart"
+- icon: "skull-crossbones"
+  style: "blue"
+- style: "warning"
+- icon: "angle-double-up"
+  color: "blue"
+{{% /multishortcode %}}
 
 ### Parameters
 
@@ -89,23 +55,16 @@ Check the full documentation on [web fonts with CSS](https://docs.fontawesome.co
 
 ### Standard Usage
 
-````go
-Built with {{%/* icon heart */%}} by Relearn and Hugo
-````
+{{% multishortcode name="icon" format="Built with %s by Relearn and Hugo" %}}
+icon: "heart"
+{{% /multishortcode %}}
 
-Built with {{% icon heart %}} by Relearn and Hugo
+### With Color
 
-### With color
-
-````go
-- Built with {{%/* icon heart red */%}} by Relearn and Hugo
-- Built with {{%/* icon icon="heart" style="red" */%}} by Relearn and Hugo - long form, same as above
-- Built with {{%/* icon icon="heart" color="red" */%}} by Relearn and Hugo - this uses the HTML color red instead of the red style
-````
-
-- Built with {{% icon heart red %}} by Relearn and Hugo
-- Built with {{% icon icon="heart" style="red" %}} by Relearn and Hugo - long form, same as above
-- Built with {{% icon icon="heart" color="red" %}} by Relearn and Hugo - this uses the HTML color red instead of the red style
+{{% multishortcode name="icon" format="Built with %s by Relearn and Hugo" %}}
+- icon: "heart"
+  style: "red"
+{{% /multishortcode %}}
 
 ### Advanced HTML Usage
 
@@ -128,68 +87,58 @@ To use these native HTML elements in your Markdown, add this in your `hugo.toml`
 
 #### By Severity
 
-````go
-{{%/* icon style="caution" */%}}
-{{%/* icon style="important" */%}}
-{{%/* icon style="info" */%}}
-{{%/* icon style="note" */%}}
-{{%/* icon style="tip" */%}}
-{{%/* icon style="warning" */%}}
-````
-
-{{% icon style="caution" %}}
-{{% icon style="important" %}}
-{{% icon style="info" %}}
-{{% icon style="note" %}}
-{{% icon style="tip" %}}
-{{% icon style="warning" %}}
+{{% multishortcode name="icon" format="%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- style: "caution"
+- style: "important"
+- style: "info"
+- style: "note"
+- style: "tip"
+- style: "warning"
+{{% /multishortcode %}}
 
 #### By Brand Colors
 
-````go
-{{%/* icon style="primary" icon="bullhorn" */%}}
-{{%/* icon style="secondary" icon="bullhorn" */%}}
-{{%/* icon style="accent" icon="bullhorn" */%}}
-````
-
-{{% icon style="primary" icon="bullhorn" %}}
-{{% icon style="secondary" icon="bullhorn" %}}
-{{% icon style="accent" icon="bullhorn" %}}
+{{% multishortcode name="icon" format="%s\n%s\n%s\n" %}}
+- icon: "bullhorn"
+  style: "primary"
+- icon: "bullhorn"
+  style: "secondary"
+- icon: "bullhorn"
+  style: "accent"
+{{% /multishortcode %}}
 
 #### By Color
 
-````go
-{{%/* icon style="blue" icon="palette" */%}}
-{{%/* icon style="cyan" icon="palette" */%}}
-{{%/* icon style="green" icon="palette" */%}}
-{{%/* icon style="grey" icon="palette" */%}}
-{{%/* icon style="magenta" icon="palette" */%}}
-{{%/* icon style="orange" icon="palette" */%}}
-{{%/* icon style="red" icon="palette" */%}}
-````
-
-{{% icon style="blue" icon="palette" %}}
-{{% icon style="cyan" icon="palette" %}}
-{{% icon style="green" icon="palette" %}}
-{{% icon style="grey" icon="palette" %}}
-{{% icon style="magenta" icon="palette" %}}
-{{% icon style="orange" icon="palette" %}}
-{{% icon style="red" icon="palette" %}}
+{{% multishortcode name="icon" format="%s\n%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- icon: "palette"
+  style: "blue"
+- icon: "palette"
+  style: "cyan"
+- icon: "palette"
+  style: "green"
+- icon: "palette"
+  style: "grey"
+- icon: "palette"
+  style: "magenta"
+- icon: "palette"
+  style: "orange"
+- icon: "palette"
+  style: "red"
+{{% /multishortcode %}}
 
 #### By Special Color
 
-````go
-{{%/* icon style="default" icon="palette" */%}}
-{{%/* icon style="transparent" icon="palette" */%}}
-{{%/* icon style="code" icon="palette" */%}}
-{{%/* icon style="link" icon="palette" */%}}
-{{%/* icon style="action" icon="palette" */%}}
-{{%/* icon style="inline" icon="palette" */%}}
-````
-
-{{% icon style="default" icon="palette" %}}
-{{% icon style="transparent" icon="palette" %}}
-{{% icon style="code" icon="palette" %}}
-{{% icon style="link" icon="palette" %}}
-{{% icon style="action" icon="palette" %}}
-{{% icon style="inline" icon="palette" %}}
+{{% multishortcode name="icon" format="%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- icon: "palette"
+  style: "default"
+- icon: "palette"
+  style: "transparent"
+- icon: "palette"
+  style: "code"
+- icon: "palette"
+  style: "link"
+- icon: "palette"
+  style: "action"
+- icon: "palette"
+  style: "inline"
+{{% /multishortcode %}}

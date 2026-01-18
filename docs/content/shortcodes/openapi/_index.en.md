@@ -11,25 +11,9 @@ The `openapi` shortcode displays your OpenAPI / Swagger specifications using the
 
 ## Usage
 
-{{< tabs groupid=`shortcode-parameter`>}}
-{{% tab title=`shortcode` %}}
-
-````go
-{{</* openapi src=`https://petstore3.openapi.io/api/v3/openapi.json` */>}}
-````
-
-{{% /tab %}}
-{{% tab title=`partial` %}}
-
-````go
-{{ partial `shortcodes/openapi.html` (dict
-  `page` .
-  `src`  `https://petstore3.openapi.io/api/v3/openapi.json`
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="openapi" execute="false" %}}
+src = "https://petstore3.openapi.io/api/v3/openapi.json"
+{{% /multishortcode %}}
 
 If you want to print out (or generate a PDF) from your OpenAPI documentation, don't initiate printing directly from the page because the elements are optimized for interactive usage in a browser.
 
@@ -87,8 +71,6 @@ The theme uses Swaggers theming support. For `--OPENAPI-theme` the only allowed 
 
 ### Using Local File
 
-````go
-{{</* openapi src=`petstore.json` */>}}
-````
-
-{{< openapi src=`petstore.json` >}}
+{{% multishortcode name="openapi" %}}
+src = "petstore.json"
+{{% /multishortcode %}}

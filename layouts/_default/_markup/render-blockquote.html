@@ -12,10 +12,13 @@
 {{- if $alerttype }}
   {{- partial "shortcodes/notice.html" (dict
     "page" .Page
-    "content" $text
+    "content"  $text
+    "color"    .Attributes.color
     "expanded" (cond (eq $alertsign "+") true (cond (eq $alertsign "-") false ""))
-    "style" $alerttype
-    "title" $alerttitle
+    "groupid"  .Attributes.groupid
+    "icon"     .Attributes.icon
+    "style"    $alerttype
+    "title"    $alerttitle
   ) }}
 {{ else -}}
 <blockquote>

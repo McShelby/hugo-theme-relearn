@@ -1,16 +1,9 @@
-{{- $open := false }}
-{{- if in (slice "false" false 0) (.Get "open") }}
-    {{- $open = false }}
-{{- else if in (slice "true" true 1) (.Get "open")}}
-    {{- $open = true }}
-{{- end }}
-{{- partial "shortcodes/notice.html" (dict
+{{- partial "shortcodes/details.html" (dict
   "page"     .Page
   "class"    (.Get "class")
   "content"  .Inner
-  "expanded" $open
-  "groupid"  (.Get "name")
-  "style"    "transparent"
-  "title"    ((.Get "summary") | default (T "Details"))
-  "hint"     (.Get "title")
+  "open"     (.Get "open")
+  "name"     (.Get "name")
+  "summary"  (.Get "summary")
+  "title"    (.Get "title")
 ) }}

@@ -1,0 +1,471 @@
+{{- $page := .page }}
+
+{{- $calls := transform.Unmarshal (printf "%s\n\n" .content) }}
+{{- if reflect.IsMap $calls }}
+  {{- $calls = slice $calls }}
+{{- end }}
+
+{{- $format := .format }}
+{{- $outputType := .outputtype }}
+
+{{- /* Helper: Escape string for partial syntax */}}
+{{- define "partials/msc-escape.html" }}
+  {{- return (. | replaceRE `\\` `\\` | replaceRE `\n` `\n` | replaceRE `\r` `\r` | replaceRE `\t` `\t` | replaceRE `"` `\"`) }}
+{{- end }}
+
+{{- /* Helper: Get tag delimiters based on outputType and hasNested */}}
+{{- define "partials/msc-tags.html" }}
+  {{- $outputType := .outputType }}
+  {{- $hasNested := .hasNested | default false }}
+  {{- $start := "%" }}
+  {{- $end := "%" }}
+  {{- if eq $outputType "html" }}
+    {{- $start = "<" }}
+    {{- $end = ">" }}
+  {{- else if $hasNested }}
+    {{- $start = "<" }}
+    {{- $end = ">" }}
+  {{- end }}
+  {{- return (dict "start" $start "end" $end) }}
+{{- end }}
+
+{{- /* Helper: Get compactor info from parameters */}}
+{{- define "partials/msc-compactor-info.html" }}
+  {{- $parameters := . }}
+  {{- $compactorName := "" }}
+  {{- $nonCompactable := slice }}
+  {{- range $parameters }}
+    {{- if .compactor }}
+      {{- $compactorName = .name }}
+    {{- else if isset . "compactable" }}
+      {{- if not .compactable }}
+        {{- $nonCompactable = $nonCompactable | append .name }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- return (dict "compactorName" $compactorName "nonCompactable" $nonCompactable) }}
+{{- end }}
+
+{{- /* Helper: Build compacted value from params */}}
+{{- define "partials/msc-compact-params.html" }}
+  {{- $params := .params }}
+  {{- $compactorName := .compactorName }}
+  {{- $nonCompactable := .nonCompactable }}
+  {{- $pairs := slice }}
+  {{- range $k, $v := $params }}
+    {{- if and (ne $k "content") (ne $k $compactorName) (not (in $nonCompactable $k)) }}
+      {{- $pairs = $pairs | append (printf "%s=%s" $k $v) }}
+    {{- end }}
+  {{- end }}
+  {{- return (delimit $pairs ",") }}
+{{- end }}
+
+{{- /* Recursive: Process nested multishortcode for execution */}}
+{{- define "partials/multishortcode-recurse.html" }}
+  {{- $page := .page }}
+  {{- $item := .item }}
+  {{- $rawContent := .rawContent }}
+  {{- $result := dict }}
+  {{- range $k, $v := $item }}
+    {{- if eq $k "multishortcode" }}
+      {{- $nestedName := $v.name }}
+      {{- $nestedContent := index $v "content" }}
+      {{- $nestedParams := dict "page" $page }}
+      {{- if reflect.IsSlice $nestedContent }}
+        {{- $processedItems := slice }}
+        {{- range $nestedContent }}
+          {{- $processedItems = $processedItems | append (partial "multishortcode-recurse.html" (dict "page" $page "item" . "rawContent" $rawContent)) }}
+        {{- end }}
+        {{- $nestedParams = merge $nestedParams (dict "content" $processedItems) }}
+      {{- else if reflect.IsMap $nestedContent }}
+        {{- range $nck, $ncv := $nestedContent }}
+          {{- $nestedParams = merge $nestedParams (dict $nck $ncv) }}
+        {{- end }}
+      {{- else }}
+        {{- $nestedParams = merge $nestedParams (dict "content" $nestedContent) }}
+      {{- end }}
+      {{- $nestedFormat := "" }}
+      {{- range $nk, $nv := $v }}
+        {{- if eq $nk "format" }}
+          {{- $nestedFormat = $nv }}
+        {{- else if and (ne $nk "name") (ne $nk "content") }}
+          {{- $nestedParams = merge $nestedParams (dict $nk $nv) }}
+        {{- end }}
+      {{- end }}
+      {{- $nestedResult := partial (printf "shortcodes/%s.html" $nestedName) $nestedParams }}
+      {{- if $nestedFormat }}
+        {{- $nestedResult = printf $nestedFormat $nestedResult }}
+      {{- end }}
+      {{- $result = merge $result (dict "content" $nestedResult) }}
+    {{- else if eq $k "content" }}
+      {{- if reflect.IsSlice $v }}
+        {{- $processedItems := slice }}
+        {{- range $v }}
+          {{- $processedItems = $processedItems | append (partial "multishortcode-recurse.html" (dict "page" $page "item" . "rawContent" $rawContent)) }}
+        {{- end }}
+        {{- $result = merge $result (dict $k $processedItems) }}
+      {{- else if $rawContent }}
+        {{- $result = merge $result (dict $k $v) }}
+      {{- else }}
+        {{- $result = merge $result (dict $k ($v | $page.RenderString)) }}
+      {{- end }}
+    {{- else }}
+      {{- $result = merge $result (dict $k $v) }}
+    {{- end }}
+  {{- end }}
+  {{- return $result }}
+{{- end }}
+
+{{- /* Recursive: Generate shortcode syntax for nested structures */}}
+{{- define "partials/multishortcode-syntax.html" }}
+  {{- $item := .item }}
+  {{- $nestedShortcodeInfo := .nestedShortcodeInfo }}
+  {{- $nestedName := $nestedShortcodeInfo.name }}
+  {{- $nestedTagStart := $nestedShortcodeInfo.tagStart }}
+  {{- $nestedTagEnd := $nestedShortcodeInfo.tagEnd }}
+  {{- $indent := .indent | default "" }}
+  {{- $nestedContent := "" }}
+  {{- $nestedProps := slice }}
+  {{- if isset $item "multishortcode" }}
+    {{- $nestedTagStart = "<" }}
+    {{- $nestedTagEnd = ">" }}
+  {{- end }}
+  {{- range $nk, $nv := $item }}
+    {{- if eq $nk "content" }}
+      {{- if findRE `[\n\r]` $nv 1 }}
+        {{- $indentedContent := trim $nv "\n\r" }}
+        {{- $indentedContent = replaceRE `(\r\n|\r|\n)` (printf "\n%s" $indent) $indentedContent }}
+        {{- $nestedContent = printf "\n%s%s\n%s" $indent $indentedContent $indent }}
+      {{- else }}
+        {{- $nestedContent = printf "%s" (trim $nv "\n\r") }}
+      {{- end }}
+    {{- else if eq $nk "multishortcode" }}
+      {{- $innerName := $nv.name }}
+      {{- $innerProperties := index site.Data.shortcodes $innerName }}
+      {{- $innerNestedName := $innerProperties.nestedShortcode }}
+      {{- $innerNestedProperties := index site.Data.shortcodes $innerNestedName }}
+      {{- $innerNestedTags := partial "msc-tags.html" (dict "outputType" $innerNestedProperties.outputType) }}
+      {{- $innerContent := index $nv "content" }}
+      {{- $innerIndent := printf "%s  " $indent }}
+      {{- $innerShortcodes := slice }}
+      {{- if reflect.IsSlice $innerContent }}
+        {{- range $innerContent }}
+          {{- $innerResult := partial "multishortcode-syntax.html" (dict "item" . "nestedShortcodeInfo" (dict "name" $innerNestedName "tagStart" $innerNestedTags.start "tagEnd" $innerNestedTags.end) "indent" $innerIndent) }}
+          {{- $innerShortcodes = $innerShortcodes | append $innerResult }}
+        {{- end }}
+      {{- end }}
+      {{- $innerTags := partial "msc-tags.html" (dict "outputType" $innerProperties.outputType "hasNested" (gt (len $innerShortcodes) 0)) }}
+      {{- $innerProps := slice }}
+      {{- range $ik, $iv := $nv }}
+        {{- if and (ne $ik "name") (ne $ik "content") }}
+          {{- $innerProps = $innerProps | append (printf "%s=\"%s\"" $ik $iv) }}
+        {{- end }}
+      {{- end }}
+      {{- $nestedContent = printf "\n%s%s\n%s{{%s %s%s %s}}\n%s\n%s{{%s /%s %s}}\n%s" $innerIndent (trim $nestedContent "\n\r") $innerIndent $innerTags.start $innerName (cond $innerProps (printf " %s" (delimit $innerProps " ")) "") $innerTags.end (delimit $innerShortcodes "\n") $innerIndent $innerTags.start $innerName $innerTags.end $indent }}
+    {{- else }}
+      {{- $nestedProps = $nestedProps | append (printf "%s=\"%s\"" $nk $nv) }}
+    {{- end }}
+  {{- end }}
+  {{- return (printf "%s{{%s %s%s %s}}%s{{%s /%s %s}}" $indent $nestedTagStart $nestedName (cond $nestedProps (printf " %s" (delimit $nestedProps " ")) "") $nestedTagEnd $nestedContent $nestedTagStart $nestedName $nestedTagEnd) }}
+{{- end }}
+
+{{- /* Recursive: Generate partial syntax for nested structures */}}
+{{- define "partials/multishortcode-partial-syntax.html" }}
+  {{- $item := .item }}
+  {{- $indent := .indent | default "      " }}
+  {{- $baseIndent := .baseIndent | default "    " }}
+  {{- $itemProps := slice }}
+  {{- range $ik, $iv := $item }}
+    {{- if eq $ik "multishortcode" }}
+      {{- $innerName := $iv.name }}
+      {{- $innerContent := index $iv "content" }}
+      {{- $innerBaseIndent := printf "%s    " $indent }}
+      {{- $innerItemIndent := printf "%s  " $innerBaseIndent }}
+      {{- $innerSliceItems := slice }}
+      {{- range $innerContent }}
+        {{- $innerSliceItems = $innerSliceItems | append (partial "multishortcode-partial-syntax.html" (dict "item" . "indent" $innerItemIndent "baseIndent" $innerBaseIndent)) }}
+      {{- end }}
+      {{- $innerProps := slice (printf "%s  \"page\" ." $indent) }}
+      {{- range $ink, $inv := $iv }}
+        {{- if eq $ink "content" }}
+          {{- $innerProps = $innerProps | append (printf "%s  \"content\" (slice\n%s\n%s  )" $indent (delimit $innerSliceItems "\n") $indent) }}
+        {{- else if ne $ink "name" }}
+          {{- $innerProps = $innerProps | append (printf "%s  \"%s\" \"%s\"" $indent $ink (partial "msc-escape.html" $inv)) }}
+        {{- end }}
+      {{- end }}
+      {{- $itemProps = $itemProps | append (printf "%s\"content\" (partial \"shortcodes/%s.html\" (dict\n%s\n%s))" $indent $innerName (delimit $innerProps "\n") $indent) }}
+    {{- else }}
+      {{- $itemProps = $itemProps | append (printf "%s\"%s\" \"%s\"" $indent $ik (partial "msc-escape.html" (trim $iv "\n\r"))) }}
+    {{- end }}
+  {{- end }}
+  {{- return (printf "%s(dict\n%s\n%s)" $baseIndent (delimit $itemProps "\n") $baseIndent) }}
+{{- end }}
+
+{{- range $k, $v := (dict "&amp;#96;" "`" "&#96;" "`") }}
+  {{- $format = replace $format $k $v }}
+{{- end }}
+
+{{- $print := not (in (slice "false" false 0) .print) }}
+{{- $execute := not (in (slice "false" false 0) .execute) }}
+
+{{- $definedFormats := site.Data.shortcodeFormats }}
+{{- $definedProperties := index site.Data.shortcodes .name }}
+{{- $rawContent := $definedProperties.rawContent }}
+
+{{- /* Parse formats parameter - comma-separated list that overrides JSON config */}}
+{{- $activeFormats := $definedProperties.formats }}
+{{- with .formats }}
+  {{- $activeFormats = split . "," }}
+{{- end }}
+
+{{- $tabContent := slice }}
+{{- range $definedFormats }}
+  {{- $definedFormat := . }}
+  {{- if not (in $activeFormats $definedFormat.name) }}
+    {{- continue }}
+  {{- end }}
+
+  {{- $codes := slice }}
+  {{- range $calls }}
+    {{- $params := . }}
+    {{- $content := "" }}
+    {{- $props := slice }}
+
+    {{- if eq $definedFormat.name "markdown-passthrough" }}
+      {{- $codes = $codes | append (index $params "content") }}
+
+    {{- else if eq $definedFormat.name "markdown-blockquote" }}
+      {{- $expanded := "" }}
+      {{- $style := cond (isset $params "expanded") "transparent" "default" }}
+      {{- $title := "" }}
+      {{- $attributes := slice }}
+      {{- range $k, $v := $params }}
+        {{- if eq $k "content" }}
+          {{- $content = replaceRE `(\r\n|\r|\n)` "\n> " (printf "\n%s" (trim $v "\n\r")) }}
+        {{- else if eq $k "expanded" }}
+          {{- $trimmed := trim $v "\n\r" }}
+          {{- if in (slice "false" false 0) $trimmed }}
+            {{- $expanded = "-" }}
+          {{- else if in (slice "true" true 1) $trimmed }}
+            {{- $expanded = "+" }}
+          {{- end }}
+        {{- else if eq $k "style" }}
+          {{- $style = trim $v "\n\r" }}
+        {{- else if eq $k "title" }}
+          {{- $title = printf " %s" (trim $v "\n\r") }}
+        {{- else }}
+          {{- $attributes = $attributes | append (printf "%s=\"%s\"" $k $v) }}
+        {{- end }}
+      {{- end }}
+      {{- $codes = $codes | append (printf "> [!%s]%s%s%s%s" $style $expanded $title $content (cond $attributes (printf "\n{%s}" (delimit $attributes " ")) "")) }}
+
+    {{- else if eq $definedFormat.name "markdown-codefence" }}
+      {{- $langParamName := "" }}
+      {{- range $definedProperties.parameters }}
+        {{- if index . "markdown-codefence-name" }}
+          {{- $langParamName = .name }}
+        {{- end }}
+      {{- end }}
+      {{- $lang := $.name }}
+      {{- range $k, $v := $params }}
+        {{- if eq $k "content" }}
+          {{- $content = printf "%s\n" (trim $v "\n\r") }}
+        {{- else if and $langParamName (eq $k $langParamName) }}
+          {{- $lang = $v }}
+        {{- else }}
+          {{- $props = $props | append (printf "%s=\"%s\"" $k $v) }}
+        {{- end }}
+      {{- end }}
+      {{- $codes = $codes | append (printf "```%s%s\n%s```" $lang (cond $props (printf " {%s}" (delimit $props " ")) "") $content) }}
+
+    {{- else if or (eq $definedFormat.name "shortcode") (eq $definedFormat.name "shortcode-positional") }}
+      {{- $hasNestedContent := false }}
+      {{- if eq $definedFormat.name "shortcode" }}
+        {{- range $k, $v := $params }}
+          {{- if eq $k "content" }}
+            {{- if reflect.IsSlice $v }}
+              {{- $hasNestedContent = true }}
+              {{- $nestedName := $definedProperties.nestedShortcode }}
+              {{- $nestedProperties := index site.Data.shortcodes $nestedName }}
+              {{- $nestedTags := partial "msc-tags.html" (dict "outputType" $nestedProperties.outputType) }}
+              {{- $nestedShortcodes := slice }}
+              {{- range $v }}
+                {{- $nestedShortcodes = $nestedShortcodes | append (partial "multishortcode-syntax.html" (dict "item" . "nestedShortcodeInfo" (dict "name" $nestedName "tagStart" $nestedTags.start "tagEnd" $nestedTags.end))) }}
+              {{- end }}
+              {{- $content = printf "\n%s\n" (delimit $nestedShortcodes "\n") }}
+            {{- else if findRE `[\n\r]` $v 1 }}
+              {{- $content = printf "\n%s\n" (trim $v "\n\r") }}
+            {{- else }}
+              {{- $content = trim $v "\n\r" }}
+            {{- end }}
+          {{- else if eq $k "multishortcode" }}
+            {{- $hasNestedContent = true }}
+            {{- $innerName := $v.name }}
+            {{- $innerContent := index $v "content" }}
+            {{- $innerFormat := index $v "format" }}
+            {{- $innerProperties := index site.Data.shortcodes $innerName }}
+            {{- $innerTags := partial "msc-tags.html" (dict "outputType" $innerProperties.outputType) }}
+            {{- $innerProps := slice }}
+            {{- if reflect.IsMap $innerContent }}
+              {{- range $ink, $inv := $innerContent }}
+                {{- $innerProps = $innerProps | append (printf "%s=\"%s\"" $ink $inv) }}
+              {{- end }}
+            {{- end }}
+            {{- $propsStr := "" }}
+            {{- with $innerProps }}
+              {{- $propsStr = printf "%s " (delimit . " ") }}
+            {{- end }}
+            {{- $shortcodeCall := printf "{{%s %s %s/%s}}" $innerTags.start $innerName $propsStr $innerTags.end }}
+            {{- if $innerFormat }}
+              {{- $content = printf $innerFormat $shortcodeCall }}
+            {{- else }}
+              {{- $content = $shortcodeCall }}
+            {{- end }}
+          {{- else }}
+            {{- $props = $props | append (printf "%s=\"%s\"" $k $v) }}
+          {{- end }}
+        {{- end }}
+      {{- else }}
+        {{- /* shortcode-positional */}}
+        {{- range $k, $v := $params }}
+          {{- if eq $k "content" }}
+            {{- if findRE `[\n\r]` $v 1 }}
+              {{- $content = printf "\n%s\n" (trim $v "\n\r") }}
+            {{- else }}
+              {{- $content = trim $v "\n\r" }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+
+        {{- $compactorInfo := partial "msc-compactor-info.html" $definedProperties.parameters }}
+        {{- $compactedValue := partial "msc-compact-params.html" (dict "params" $params "compactorName" $compactorInfo.compactorName "nonCompactable" $compactorInfo.nonCompactable) }}
+
+        {{- range sort $definedProperties.parameters "position" }}
+          {{- $v := index $params .name }}
+          {{- if .position }}
+            {{- if .compactor }}
+              {{- if $compactedValue }}
+                {{- $props = $props | append (printf "\"%s\"" $compactedValue) }}
+              {{- else }}
+                {{- break }}
+              {{- end }}
+            {{- else if $v }}
+              {{- $props = $props | append (printf "\"%s\"" $v) }}
+            {{- else }}
+              {{- break }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+
+      {{- $tags := partial "msc-tags.html" (dict "outputType" (cond $outputType $outputType $definedProperties.outputType) "hasNested" $hasNestedContent) }}
+      {{- $collapsedEnd := cond (eq $definedProperties.elementType "collapsed-end") "/" "" }}
+      {{- $explicitEnd := cond (eq $definedProperties.elementType "explicit-end") (printf "{{%s /%s %s}}" $tags.start $.name $tags.end) "" }}
+      {{- $codes = $codes | append (printf "{{%s %s%s %s%s}}%s%s" $tags.start $.name (cond $props (printf " %s" (delimit $props " ")) "") $collapsedEnd $tags.end $content $explicitEnd) }}
+
+    {{- else if eq $definedFormat.name "partial" }}
+      {{- $props = $props | append "  \"page\" .\n" }}
+      {{- range $k, $v := $params }}
+        {{- if eq $k "content" }}
+          {{- if reflect.IsSlice $v }}
+            {{- $sliceItems := slice }}
+            {{- range $v }}
+              {{- $sliceItems = $sliceItems | append (partial "multishortcode-partial-syntax.html" (dict "item" .)) }}
+            {{- end }}
+            {{- $props = $props | append (printf "  \"content\" (slice\n%s\n  )\n" (delimit $sliceItems "\n")) }}
+          {{- else }}
+            {{- $props = $props | append (printf "  \"content\" \"%s\"\n" (partial "msc-escape.html" (trim $v "\n\r"))) }}
+          {{- end }}
+        {{- else if eq $k "multishortcode" }}
+          {{- $innerName := $v.name }}
+          {{- $innerContent := index $v "content" }}
+          {{- $innerProps := slice "    \"page\" ." }}
+          {{- if reflect.IsSlice $innerContent }}
+            {{- $innerSliceItems := slice }}
+            {{- range $innerContent }}
+              {{- $innerSliceItems = $innerSliceItems | append (partial "multishortcode-partial-syntax.html" (dict "item" .)) }}
+            {{- end }}
+            {{- $innerProps = $innerProps | append (printf "    \"content\" (slice\n%s\n    )" (delimit $innerSliceItems "\n")) }}
+          {{- else if reflect.IsMap $innerContent }}
+            {{- range $ink, $inv := $innerContent }}
+              {{- $innerProps = $innerProps | append (printf "    \"%s\" \"%s\"" $ink (partial "msc-escape.html" $inv)) }}
+            {{- end }}
+          {{- else }}
+            {{- $innerProps = $innerProps | append (printf "    \"content\" \"%s\"" (partial "msc-escape.html" (trim $innerContent "\n\r"))) }}
+          {{- end }}
+          {{- range $ink, $inv := $v }}
+            {{- if and (ne $ink "name") (ne $ink "content") (ne $ink "format") }}
+              {{- $innerProps = $innerProps | append (printf "    \"%s\" \"%s\"" $ink (partial "msc-escape.html" $inv)) }}
+            {{- end }}
+          {{- end }}
+          {{- $props = $props | append (printf "  \"content\" (partial \"shortcodes/%s.html\" (dict\n%s\n  ))\n" $innerName (delimit $innerProps "\n")) }}
+        {{- else }}
+          {{- $props = $props | append (printf "  \"%s\" \"%s\"\n" $k (partial "msc-escape.html" $v)) }}
+        {{- end }}
+      {{- end }}
+      {{- $codes = $codes | append (printf "{{ partial \"shortcodes/%s.html\"%s}}" $.name (cond $props (printf " (dict\n%s)" (delimit $props "")) " ")) }}
+
+    {{- else if eq $definedFormat.name "partial-compact" }}
+      {{- $compactorInfo := partial "msc-compactor-info.html" $definedProperties.parameters }}
+      {{- $compactedValue := partial "msc-compact-params.html" (dict "params" $params "compactorName" $compactorInfo.compactorName "nonCompactable" $compactorInfo.nonCompactable) }}
+
+      {{- $props = $props | append "  \"page\" .\n" }}
+      {{- range $k, $v := $params }}
+        {{- if eq $k "content" }}
+          {{- $props = $props | append (printf "  \"content\" \"%s\"\n" (partial "msc-escape.html" (trim $v "\n\r"))) }}
+        {{- else if in $compactorInfo.nonCompactable $k }}
+          {{- $props = $props | append (printf "  \"%s\" \"%s\"\n" $k (partial "msc-escape.html" $v)) }}
+        {{- end }}
+      {{- end }}
+      {{- if and $compactorInfo.compactorName $compactedValue }}
+        {{- $props = $props | append (printf "  \"%s\" \"%s\"\n" $compactorInfo.compactorName (partial "msc-escape.html" $compactedValue)) }}
+      {{- end }}
+      {{- $codes = $codes | append (printf "{{ partial \"shortcodes/%s.html\"%s}}" $.name (cond $props (printf " (dict\n%s)" (delimit $props "")) " ")) }}
+    {{- end }}
+  {{- end }}
+
+  {{- if $codes }}
+    {{- $codeContent := delimit $codes "\n\n" }}
+    {{- if $format }}
+      {{- $codeContent = $format }}
+      {{- range $codes }}
+        {{- $codeContent = replace $codeContent "%s" . 1 }}
+      {{- end }}
+    {{- end }}
+    {{- $highlighted := partial "shortcodes/highlight.html" (dict "page" $page "content" $codeContent "type" $definedFormat.lang) }}
+    {{- $highlighted = replace $highlighted "{{" "&#123;&#123;" }}
+    {{- $highlighted = replace $highlighted "}}" "&#125;&#125;" }}
+    {{- $tabContent = $tabContent | append (dict "title" $definedFormat.title "content" $highlighted) }}
+  {{- end }}
+{{- end }}
+
+{{- if $print }}
+{{ partial "shortcodes/tabs.html" (dict "page" $page "groupid" "shortcode-code" "content" $tabContent) }}
+{{- end }}
+{{- if $execute }}
+  {{- if $format }}
+    {{- $executeResults := slice }}
+    {{- range $calls }}
+      {{- $renderedParams := partial "multishortcode-recurse.html" (dict "page" $page "item" . "rawContent" $rawContent) }}
+      {{- $contentVal := index $renderedParams "content" }}
+      {{- if and (not $rawContent) $contentVal (not (reflect.IsSlice $contentVal)) (eq (printf "%T" $contentVal) "string") (not (strings.HasPrefix $contentVal "<")) }}
+        {{- $renderedParams = merge $renderedParams (dict "content" ($contentVal | $page.RenderString)) }}
+      {{- end }}
+      {{- $executeResults = $executeResults | append (partial (printf "shortcodes/%s.html" $.name) (dict "page" $page | merge $renderedParams)) }}
+    {{- end }}
+    {{- $executeContent := $format }}
+    {{- range $executeResults }}
+      {{- $executeContent = replace $executeContent "%s" . 1 }}
+    {{- end }}
+{{ $executeContent | $page.RenderString }}
+  {{- else }}
+    {{- range $calls }}
+      {{- $renderedParams := partial "multishortcode-recurse.html" (dict "page" $page "item" . "rawContent" $rawContent) }}
+      {{- $contentVal := index $renderedParams "content" }}
+      {{- if and (not $rawContent) $contentVal (not (reflect.IsSlice $contentVal)) (eq (printf "%T" $contentVal) "string") (not (strings.HasPrefix $contentVal "<")) }}
+        {{- $renderedParams = merge $renderedParams (dict "content" ($contentVal | $page.RenderString)) }}
+      {{- end }}
+{{ partial (printf "shortcodes/%s.html" $.name) (dict "page" $page | merge $renderedParams) | $page.RenderString }}
+    {{- end }}
+  {{- end }}
+{{- end }}
