@@ -8,7 +8,7 @@ weight = 2
 
 ## Title & Logo
 
-See the [title & logo configuration](configuration/branding/logo#change-the-menu-title) on how to set a title and a logo.
+See the [title & logo configuration](configuration/branding/logo#changing-the-title) on how to set a title and a logo.
 
 ## Home Button Configuration
 

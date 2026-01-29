@@ -20,7 +20,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Integration with the VSCode Front Matter CMS extension](https://mcshelby.github.io/hugo-theme-relearn/introduction/tools#front-matter-cms) for on-premise CMS capabilities
 
 - **Customizable Appearance**
-  - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/logo#change-the-logo)
+  - [Flexible brand image configuration](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/logo#changing-the-logo)
   - [Automatic light/dark mode switching based on OS settings](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#adjust-to-os-settings)
   - [Many pre-defined color variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#shipped-variants)
   - [User-selectable variants](https://mcshelby.github.io/hugo-theme-relearn/configuration/branding/colors#multiple-variants)
