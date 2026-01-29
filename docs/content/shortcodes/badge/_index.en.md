@@ -6,60 +6,37 @@ title = 'Badge'
 
 The `badge` shortcode displays colorful markers in your text with optional icons.
 
-{{% badge %}}Important{{% /badge %}}
-{{% badge style="primary" title="Version" %}}6.6.6{{% /badge %}}
-{{% badge style="red" icon="angle-double-up" %}}Captain{{% /badge %}}
-{{% badge style="info" %}}New{{% /badge %}}
-{{% badge style="hugo" %}}Awesome{{% /badge %}}
+{{% multishortcode name="badge" print="false" format="%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Important"
+- content: "6.6.6"
+  style: "primary"
+  title: "Version"
+- content: "Captain"
+  style: "red"
+  icon: "angle-double-up"
+- content: "New"
+  style: "info"
+- content: "Awesome"
+  color: "fuchsia"
+  icon: "fa-fw fab fa-hackerrank"
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* badge %}}Important{{% /badge */%}}
-{{%/* badge style="primary" title="Version" %}}6.6.6{{% /badge */%}}
-{{%/* badge style="red" icon="angle-double-up" %}}Captain{{% /badge */%}}
-{{%/* badge style="info" %}}New{{% /badge */%}}
-{{%/* badge color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Awesome{{% /badge */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/badge.html" (dict
-    "page"    .
-    "content" "Important"
-)}}
-{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "style" "primary"
-  "title" "Version"
-  "content" "6.6.6"
-)}}
-{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "style" "red"
-  "icon"  "angle-double-up"
-  "content" "Captain"
-)}}
-{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "style" "info"
-  "content" "New"
-)}}
-{{ partial "shortcodes/badge.html" (dict
-  "page"  .
-  "color" "fuchsia"
-  "icon"  "fab fa-hackerrank"
-  "content" "Awesome"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="badge" execute="false" format="%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Important"
+- content: "6.6.6"
+  style: "primary"
+  title: "Version"
+- content: "Captain"
+  style: "red"
+  icon: "angle-double-up"
+- content: "New"
+  style: "info"
+- content: "Awesome"
+  color: "fuchsia"
+  icon: "fa-fw fab fa-hackerrank"
+{{% /multishortcode %}}
 
 ### Parameters
 
@@ -77,139 +54,173 @@ The `badge` shortcode displays colorful markers in your text with optional icons
 
 #### By Severity
 
-````go
-{{%/* badge style="caution" %}}Magenta{{% /badge */%}}
-{{%/* badge style="important" %}}Cyan{{% /badge */%}}
-{{%/* badge style="info" %}}Blue{{% /badge */%}}
-{{%/* badge style="note" %}}Orange{{% /badge */%}}
-{{%/* badge style="tip" %}}Green{{% /badge */%}}
-{{%/* badge style="warning" %}}Red{{% /badge */%}}
-````
-
-{{% badge style="caution" %}}Magenta{{% /badge %}}
-{{% badge style="important" %}}Cyan{{% /badge %}}
-{{% badge style="info" %}}Blue{{% /badge %}}
-{{% badge style="note" %}}Orange{{% /badge %}}
-{{% badge style="tip" %}}Green{{% /badge %}}
-{{% badge style="warning" %}}Red{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Magenta"
+  style: "caution"
+- content: "Cyan"
+  style: "important"
+- content: "Blue"
+  style: "info"
+- content: "Orange"
+  style: "note"
+- content: "Green"
+  style: "tip"
+- content: "Red"
+  style: "warning"
+{{% /multishortcode %}}
 
 #### By Brand Colors
 
-````go
-{{%/* badge style="primary" icon="bullhorn" title="Announcement" %}}Mandatory{{% /badge */%}}
-{{%/* badge style="secondary" icon="bullhorn" title="Announcement" %}}Optional{{% /badge */%}}
-{{%/* badge style="accent" icon="bullhorn" title="Announcement" %}}Special{{% /badge */%}}
-````
-
-{{% badge style="primary" icon="bullhorn" title="Announcement" %}}Mandatory{{% /badge %}}
-{{% badge style="secondary" icon="bullhorn" title="Announcement" %}}Optional{{% /badge %}}
-{{% badge style="accent" icon="bullhorn" title="Announcement" %}}Special{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n" %}}
+- content: "Mandatory"
+  style: "primary"
+  icon: "bullhorn"
+  title: "Announcement"
+- content: "Optional"
+  style: "secondary"
+  icon: "bullhorn"
+  title: "Announcement"
+- content: "Special"
+  style: "accent"
+  icon: "bullhorn"
+  title: "Announcement"
+{{% /multishortcode %}}
 
 #### By Color
 
-````go
-{{%/* badge style="blue" icon="palette" title="Color" %}}Blue{{% /badge */%}}
-{{%/* badge style="cyan" icon="palette" title="Color" %}}Cyan{{% /badge */%}}
-{{%/* badge style="green" icon="palette" title="Color" %}}Green{{% /badge */%}}
-{{%/* badge style="grey" icon="palette" title="Color" %}}Grey{{% /badge */%}}
-{{%/* badge style="magenta" icon="palette" title="Color" %}}Magenta{{% /badge */%}}
-{{%/* badge style="orange" icon="palette" title="Color" %}}Orange{{% /badge */%}}
-{{%/* badge style="red" icon="palette" title="Color" %}}Red{{% /badge */%}}
-````
-
-{{% badge style="blue" icon="palette" title="Color" %}}Blue{{% /badge %}}
-{{% badge style="cyan" icon="palette" title="Color" %}}Cyan{{% /badge %}}
-{{% badge style="green" icon="palette" title="Color" %}}Green{{% /badge %}}
-{{% badge style="grey" icon="palette" title="Color" %}}Grey{{% /badge %}}
-{{% badge style="magenta" icon="palette" title="Color" %}}Magenta{{% /badge %}}
-{{% badge style="orange" icon="palette" title="Color" %}}Orange{{% /badge %}}
-{{% badge style="red" icon="palette" title="Color" %}}Red{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Blue"
+  style: "blue"
+  icon: "palette"
+  title: "Color"
+- content: "Cyan"
+  style: "cyan"
+  icon: "palette"
+  title: "Color"
+- content: "Green"
+  style: "green"
+  icon: "palette"
+  title: "Color"
+- content: "Grey"
+  style: "grey"
+  icon: "palette"
+  title: "Color"
+- content: "Magenta"
+  style: "magenta"
+  icon: "palette"
+  title: "Color"
+- content: "Orange"
+  style: "orange"
+  icon: "palette"
+  title: "Color"
+- content: "Red"
+  style: "red"
+  icon: "palette"
+  title: "Color"
+{{% /multishortcode %}}
 
 #### By Special Color
 
-````go
-{{%/* badge style="default" icon="palette" title="Color" %}}Default{{% /badge */%}}
-{{%/* badge style="transparent" icon="palette" title="Color" %}}Transparent{{% /badge */%}}
-{{%/* badge style="code" icon="palette" title="Color" %}}Code{{% /badge */%}}
-{{%/* badge style="link" icon="palette" title="Color" %}}Link{{% /badge */%}}
-{{%/* badge style="action" icon="palette" title="Color" %}}Action{{% /badge */%}}
-{{%/* badge style="inline" icon="palette" title="Color" %}}Inline{{% /badge */%}}
-````
-
-{{% badge style="default" icon="palette" title="Color" %}}Default{{% /badge %}}
-{{% badge style="transparent" icon="palette" title="Color" %}}Transparent{{% /badge %}}
-{{% badge style="code" icon="palette" title="Color" %}}Code{{% /badge %}}
-{{% badge style="link" icon="palette" title="Color" %}}Link{{% /badge %}}
-{{% badge style="action" icon="palette" title="Color" %}}Action{{% /badge %}}
-{{% badge style="inline" icon="palette" title="Color" %}}Inline{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Default"
+  style: "default"
+  icon: "palette"
+  title: "Color"
+- content: "Transparent"
+  style: "transparent"
+  icon: "palette"
+  title: "Color"
+- content: "Code"
+  style: "code"
+  icon: "palette"
+  title: "Color"
+- content: "Link"
+  style: "link"
+  icon: "palette"
+  title: "Color"
+- content: "Action"
+  style: "action"
+  icon: "palette"
+  title: "Color"
+- content: "Inline"
+  style: "inline"
+  icon: "palette"
+  title: "Color"
+{{% /multishortcode %}}
 
 ### Variants
 
 #### Without Icon and Title Text
 
-````go
-{{%/* badge %}}6.6.6{{% /badge */%}}
-{{%/* badge style="info" icon=" " title=" " %}}Awesome{{% /badge */%}}
-{{%/* badge style="red" %}}Captain{{% /badge */%}}
-````
-
-{{% badge %}}6.6.6{{% /badge %}}
-{{% badge style="info" icon=" " title=" " %}}Awesome{{% /badge %}}
-{{% badge style="red" %}}Captain{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n" %}}
+- content: "6.6.6"
+- content: "Awesome"
+  style: "info"
+  icon: " "
+  title: " "
+- content: "Captain"
+  style: "red"
+{{% /multishortcode %}}
 
 #### Without Icon
 
-````go
-{{%/* badge title="Version" %}}6.6.6{{% /badge */%}}
-{{%/* badge style="info" icon=" " %}}Awesome{{% /badge */%}}
-{{%/* badge style="red" title="Rank" %}}Captain{{% /badge */%}}
-````
-
-{{% badge title="Version" %}}6.6.6{{% /badge %}}
-{{% badge style="info" icon=" " %}}Awesome{{% /badge %}}
-{{% badge style="red" title="Rank" %}}Captain{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n" %}}
+- content: "6.6.6"
+  title: "Version"
+- content: "Awesome"
+  style: "info"
+  icon: " "
+- content: "Captain"
+  style: "red"
+  title: "Rank"
+{{% /multishortcode %}}
 
 #### Without Title Text
 
-````go
-{{%/* badge icon="star" %}}6.6.6{{% /badge */%}}
-{{%/* badge style="info" title=" " %}}Awesome{{% /badge */%}}
-{{%/* badge style="red" icon="angle-double-up" %}}Captain{{% /badge */%}}
-````
-
-{{% badge icon="star" %}}6.6.6{{% /badge %}}
-{{% badge style="info" title=" " %}}Awesome{{% /badge %}}
-{{% badge style="red" icon="angle-double-up" %}}Captain{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n" %}}
+- content: "6.6.6"
+  icon: "star"
+- content: "Awesome"
+  style: "info"
+  title: " "
+- content: "Captain"
+  style: "red"
+  icon: "angle-double-up"
+{{% /multishortcode %}}
 
 #### All Set
 
-````go
-{{%/* badge icon="star" title="Version" %}}6.6.6{{% /badge */%}}
-{{%/* badge style="info" %}}Awesome{{% /badge */%}}
-{{%/* badge style="red" icon="angle-double-up" title="Rank" %}}Captain{{% /badge */%}}
-````
-
-{{% badge icon="star" title="Version" %}}6.6.6{{% /badge %}}
-{{% badge style="info" %}}Awesome{{% /badge %}}
-{{% badge style="red" icon="angle-double-up" title="Rank" %}}Captain{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n%s\n%s\n" %}}
+- content: "6.6.6"
+  icon: "star"
+  title: "Version"
+- content: "Awesome"
+  style: "info"
+- content: "Captain"
+  style: "red"
+  icon: "angle-double-up"
+  title: "Rank"
+{{% /multishortcode %}}
 
 #### Override for Severity
 
-````go
-{{%/* badge style="info" icon="rocket" title="Feature" %}}Awesome{{% /badge */%}}
-````
-
-{{% badge style="info" icon="rocket" title="Feature" %}}Awesome{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n" %}}
+- content: "Awesome"
+  style: "info"
+  icon: "rocket"
+  title: "Feature"
+{{% /multishortcode %}}
 
 ### Other
 
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown Title and Content
 
-````go
-{{%/* badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge */%}}
-````
-
-{{% badge color="fuchsia" icon="fa-fw fab fa-hackerrank" title="**Font**" %}}**Awesome**{{% /badge %}}
+{{% multishortcode name="badge" format="%s\n" %}}
+- content: "**Awesome**"
+  color: "fuchsia"
+  icon: "fa-fw fab fa-hackerrank"
+  title: "**Font**"
+{{% /multishortcode %}}
 
 #### With Icon Content
 
@@ -217,26 +228,54 @@ You can combine the badge with the [`icon` shortcode](shortcodes/icon) to create
 
 In this case you need to declare `{{</* badge */>}}` instead of `{{%/* badge */%}}`. Note, that in this case it is not possible to put markdown in the content.
 
-````go
-{{</* badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}}{{< /badge */>}}  
-{{</* badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}  
-{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge */>}}  
-{{</* badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}  
-{{</* badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge */>}}  
-{{</* badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge */>}}
-````
-
-{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}}{{< /badge >}}  
-{{< badge style="primary" icon="angle-double-up" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}  
-{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}  
-{{< badge style="primary" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}  
-{{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}}{{< /badge >}}  
-{{< badge style="primary" icon="angle-double-up" title="Rank" >}}{{% icon skull-crossbones %}} Pirate{{< /badge >}}
+{{% multishortcode name="badge" format="%s  \n%s  \n%s  \n%s  \n%s  \n%s  " %}}
+- multishortcode:
+    name: "icon"
+    content:
+      icon: "skull-crossbones"
+  style: "primary"
+  icon: "angle-double-up"
+- multishortcode:
+    name: "icon"
+    format: "%s Pirate"
+    content:
+      icon: "skull-crossbones"
+  style: "primary"
+  icon: "angle-double-up"
+- multishortcode:
+    name: "icon"
+    content:
+      icon: "skull-crossbones"
+  style: "primary"
+  title: "Rank"
+- multishortcode:
+    name: "icon"
+    format: "%s Pirate"
+    content:
+      icon: "skull-crossbones"
+  style: "primary"
+  title: "Rank"
+- multishortcode:
+    name: "icon"
+    content:
+      icon: "skull-crossbones"
+  style: "primary"
+  icon: "angle-double-up"
+  title: "Rank"
+- multishortcode:
+    name: "icon"
+    format: "%s Pirate"
+    content:
+      icon: "skull-crossbones"
+  style: "primary"
+  icon: "angle-double-up"
+  title: "Rank"
+{{% /multishortcode %}}
 
 #### Inside of Text
 
-````go
-Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. {{%/* badge style="blue" icon="rocket" %}}Awesome{{% /badge */%}} Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
-````
-
-Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. {{% badge style="blue" icon="rocket" %}}Awesome{{% /badge %}} Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
+{{% multishortcode name="badge" format="Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. %s Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad." %}}
+- content: "Awesome"
+  style: "blue"
+  icon: "rocket"
+{{% /multishortcode %}}

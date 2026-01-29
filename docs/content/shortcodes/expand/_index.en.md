@@ -6,63 +6,25 @@ title = 'Expand'
 
 The `expand` shortcode displays an expandable/collapsible section of text.
 
-{{% expand title="Expand me..." %}}Thank you!
-
-That's some text with a footnote[^1]
-
-[^1]: And that's the footnote.
-
-That's some more text with a footnote.[^someid]
-
-[^someid]:
-    Anything of interest goes here.
-
-    Blue light glows blue.
-{{% /expand %}}
+{{% multishortcode name="expand" print="false" %}}
+title: "Expand me..."
+content: |
+  Thank you!
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
-
-````md
-> [!details]- Expand me...
-> Thank you!
-````
-
-{{% /tab %}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* expand title="Expand me..." */%}}Thank you!{{%/* /expand */%}}
-````
-
-{{% /tab %}}
-{{% tab title="shortcode (positional)" %}}
-
-````go
-{{%/* expand "Expand me..." */%}}Thank you!{{%/* /expand */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/expand.html" (dict
-  "page"  .
-  "title" "Expand me..."
-  "content" "Thank you!"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="expand" execute="false" %}}
+title: "Expand me..."
+content: |
+  Thank you!
+{{% /multishortcode %}}
 
 [Markdown callout syntax](https://gohugo.io/render-hooks/blockquotes/#extended-syntax) is available in other Markdown parsers like [Obsidian](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) and therefore is the recommended syntax for generating portable Markdown.
 
 The [`notice` shortcode](shortcodes/notice) is also capable of displaying expandable/collapsible sections of text but with additional parameters for color and additional icons.
 
-The theme supports Hugo’s built-in [`details` shortcode](https://gohugo.io/content-management/shortcodes/#details) by mapping the parameter to the theme's `expand` shortcode.
+The theme supports Hugo's built-in [`details` shortcode](https://gohugo.io/content-management/shortcodes/#details) by mapping the parameter to the theme's `expand` shortcode.
 
 ### Parameters
 
@@ -76,64 +38,53 @@ The theme supports Hugo’s built-in [`details` shortcode](https://gohugo.io/con
 
 ### All Defaults
 
-````go
-{{%/* expand */%}}Yes, you did it!{{%/* /expand */%}}
-````
-
-{{% expand %}}Yes, you did it!{{% /expand %}}
+{{% multishortcode name="expand" %}}
+content: |
+  Yes, you did it!
+{{% /multishortcode %}}
 
 ### Initially Expanded
 
-````go
-{{%/* expand title="Expand me..." expanded="true" */%}}No need to press you!{{%/* /expand */%}}
-````
-
-{{% expand title="Expand me..." expanded="true" %}}No need to press you!{{% /expand %}}
+{{% multishortcode name="expand" %}}
+title: "Expand me..."
+expanded: "true"
+content: |
+  No need to press you!
+{{% /multishortcode %}}
 
 ### Arbitrary Text
 
-````go
-{{%/* expand title="Show me almost **endless** possibilities" */%}}
-You can add standard markdown syntax:
+{{% multishortcode name="expand" %}}
+title: "Show me almost **endless** possibilities"
+content: |
+  You can add standard markdown syntax:
 
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even **_bold emphasized_** text
-- [links](https://example.com)
-- etc.
+  - multiple paragraphs
+  - bullet point lists
+  - _emphasized_, **bold** and even **_bold emphasized_** text
+  - [links](https://example.com)
+  - etc.
 
-```plaintext
-...and even source code
-```
+  ```plaintext
+  ...and even source code
+  ```
 
-> the possibilities are endless (almost - including other shortcodes may or may not work)
-{{%/* /expand */%}}
-````
+  > the possibilities are endless (almost - including other shortcodes may or may not work)
 
-{{% expand title="Show me almost **endless** possibilities" %}}
-You can add standard markdown syntax:
+  That's some text with a footnote[^1]
 
-- multiple paragraphs
-- bullet point lists
-- _emphasized_, **bold** and even **_bold emphasized_** text
-- [links](https://example.com)
-- etc.
+  [^1]: And that's the footnote.
 
-```plaintext
-...and even source code
-```
+  That's some more text with a footnote.[^someid]
 
-> the possibilities are endless (almost - including other shortcodes may or may not work)
-{{% /expand %}}
+  [^someid]:
+      Anything of interest goes here.
+
+      Blue light glows blue.
+{{% /multishortcode %}}
 
 ### Using Hugo's `details` Shortcode
 
-````go
-{{%/* details */%}}
-...is what it's all about!
-{{%/* /details */%}}
-````
-
-{{% details %}}
-...is what it's all about!
-{{% /details %}}
+{{% multishortcode name="details" %}}
+content: "...is what it's all about!"
+{{% /multishortcode %}}

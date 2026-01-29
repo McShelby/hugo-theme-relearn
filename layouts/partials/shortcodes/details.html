@@ -1,0 +1,16 @@
+{{- $open := false }}
+{{- if in (slice "false" false 0) .open }}
+    {{- $open = false }}
+{{- else if in (slice "true" true 1) .open }}
+    {{- $open = true }}
+{{- end }}
+{{- partial "shortcodes/notice.html" (dict
+  "page"     .page
+  "class"    .class
+  "content"  .content
+  "expanded" $open
+  "groupid"  .name
+  "style"    "transparent"
+  "title"    (.summary | default (T "Details"))
+  "hint"     .title
+) }}

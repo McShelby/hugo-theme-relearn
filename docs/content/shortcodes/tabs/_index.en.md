@@ -6,140 +6,45 @@ title = 'Tabs'
 
 The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
-{{< tabs title="hello." >}}
-{{% tab title="py" %}}
-```python
-print("Hello World!")
-```
-{{% /tab %}}
-{{% tab title="sh" %}}
-```bash
-echo "Hello World!"
-```
-{{% /tab %}}
-{{% tab title="c" %}}
-```c
-printf("Hello World!");
-```
-{{% /tab %}}
-{{< /tabs >}}
-
-{{< tabs >}}
-{{% tab title="Python Saying" %}}
-The AI native programming language.
-{{% /tab %}}
-{{% tab title="Terminal Sourcecode" %}}
-````bash
-echo "For guys who like to tinker."
-````
-{{% /tab %}}
-{{% tab title="C Ramblings" color="fuchsia" %}}
-For the connoisseur of programming.
-{{% /tab %}}
-{{% tab title="C++ Ramblings++" color="red" %}}
-For the guys that can cope with syntax.
-{{% /tab %}}
-{{% tab title="C# ~~GC is cool~~" %}}
-For guys that need two destructors.
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="tabs" print="false" %}}
+content:
+  - title: "Python Saying"
+    content: "The AI native programming language."
+  - title: "Terminal Sourcecode"
+    content: |
+      ````bash
+      echo "For guys who like to tinker."
+      ````
+  - title: "C Ramblings"
+    color: "fuchsia"
+    content: "For the connoisseur of programming."
+  - title: "C++ Ramblings++"
+    color: "red"
+    content: "For the guys that can cope with syntax."
+  - title: "C# ~~GC is cool~~"
+    content: "For guys that need two destructors."
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-````go
-{{</* tabs title="hello." */>}}
-{{%/* tab title="py" */%}}
-```python
-print("Hello World!")
-```
-{{%/* /tab */%}}
-{{%/* tab title="sh" */%}}
-```bash
-echo "Hello World!"
-```
-{{%/* /tab */%}}
-{{%/* tab title="c" */%}}
-```c
-printf("Hello World!");
-```
-{{%/* /tab */%}}
-{{</* /tabs */>}}
-
-{{</* tabs */>}}
-{{%/* tab title="Python Saying" */%}}
-The AI native programming language.
-{{%/* /tab */%}}
-{{%/* tab title="Terminal Sourcecode" */%}}
-```bash
-echo "For guys who like to tinker."
-```
-{{%/* /tab */%}}
-{{%/* tab title="C Ramblings" color="fuchsia" */%}}
-For the connoisseur of programming.
-{{%/* /tab */%}}
-{{%/* tab title="C++ Ramblings++" color="red" */%}}
-For the guys that can cope with syntax.
-{{%/* /tab */%}}
-{{%/* tab title="C# ~~GC is cool~~" */%}}
-For guys that need two destructors.
-{{%/* /tab */%}}
-{{</* /tabs */>}}
-````
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/tabs.html" (dict
-  "page"  .
-  "title" "hello."
-  "content" (slice
-    (dict
-      "title" "py"
-      "content" ("```python\nprint(\"Hello World!\")\n```" | .RenderString)
-    )
-    (dict
-      "title" "sh"
-      "content" ("```bash\necho \"Hello World!\"\n```" | .RenderString)
-    )
-    (dict
-      "title" "c"
-      "content" ("```c\nprintf(\"Hello World!\");\n```" | .RenderString)
-    )
-  )
-)}}
-{{ partial "shortcodes/tabs.html" (dict
-  "page"  .
-  "content" (slice
-    (dict
-      "title" "Python Saying"
-      "content" ("The AI native programming language." | .RenderString)
-    )
-    (dict
-      "title" "Terminal Sourcecode"
-      "content" ("For guys who like to tinker around." | .RenderString)
-    )
-    (dict
-      "color" "fuchsia"
-      "title" "C Ramblings"
-      "content" ("For the connoisseur of programming." | .RenderString)
-    )
-    (dict
-      "color" "red"
-      "title" "C++ Ramblings++"
-      "content" ("For the guys that can cope with syntax." | .RenderString)
-    )
-    (dict
-      "title" "C# ~~GC is cool~~"
-      "content" ("For guys that need two destructors." | .RenderString)
-    )
-  )
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="tabs" execute="false" %}}
+content:
+  - title: "Python Saying"
+    content: "The AI native programming language."
+  - title: "Terminal Sourcecode"
+    content: |
+      ```bash
+      echo "For guys who like to tinker."
+      ```
+  - title: "C Ramblings"
+    color: "fuchsia"
+    content: "For the connoisseur of programming."
+  - title: "C++ Ramblings++"
+    color: "red"
+    content: "For the guys that can cope with syntax."
+  - title: "C# ~~GC is cool~~"
+    content: "For guys that need two destructors."
+{{% /multishortcode %}}
 
 If you just want a single tab you can instead call the [`tab` shortcode](shortcodes/tab) standalone.
 
@@ -167,110 +72,113 @@ While pressing a tab of Group A switches all tab views of Group A in sync (if th
 > [!note]
 > The selected tab will be [stored in the reader's browser](configuration/sitemanagement/storedinformation).
 
-{{< tabs >}}
-{{% tab title="Group A, Tab View 1" %}}
-````go
-{{</* tabs groupid="a" */>}}
-{{%/* tab title="json" */%}}
-{{</* highlight json "linenos=true" */>}}
-{ "Hello": "World" }
-{{</* /highlight */>}}
-{{%/* /tab */%}}
-{{%/* tab title="_**XML**_ stuff" */%}}
-```xml
-<Hello>World</Hello>
-```
-{{%/* /tab */%}}
-{{%/* tab title="text" */%}}
-    Hello World
-{{%/* /tab */%}}
-{{</* /tabs */>}}
-````
-{{% /tab %}}
-{{% tab title="Group A, Tab View 2" %}}
-````go
-{{</* tabs groupid="a" */>}}
-{{%/* tab title="json" */%}}
-{{</* highlight json "linenos=true" */>}}
-{ "Hello": "World" }
-{{</* /highlight */>}}
-{{%/* /tab */%}}
-{{%/* tab title="XML stuff" */%}}
-```xml
-<Hello>World</Hello>
-```
-{{%/* /tab */%}}
-{{</* /tabs */>}}
-````
-{{% /tab %}}
-{{% tab title="Group B" %}}
-````go
-{{</* tabs groupid="b" */>}}
-{{%/* tab title="json" */%}}
-{{</* highlight json "linenos=true" */>}}
-{ "Hello": "World" }
-{{</* /highlight */>}}
-{{%/* /tab */%}}
-{{%/* tab title="XML stuff" */%}}
-```xml
-<Hello>World</Hello>
-```
-{{%/* /tab */%}}
-{{</* /tabs */>}}
-````
-{{% /tab %}}
-{{< /tabs >}}
+#### Group A, Tabs 1
 
+{{% multishortcode name="tabs" execute="false" %}}
+groupid: "tab-example-a"
+title: Group A, Tabs 1
+content:
+  - title: "JSON"
+    content: |
+      ```json
+      { "Hello": "World" }
+      ```
+  - title: "_**XML**_"
+    content: |
+      ```xml
+      <Hello>World</Hello>
+      ```
+  - title: "Text"
+    content: "    World"
+{{% /multishortcode %}}
 
-#### Group A, Tab View 1
+#### Group A, Tabs 2
 
-{{< tabs groupid="tab-example-a" >}}
-{{% tab title="json" %}}
-{{< highlight json "linenos=true" >}}
-{ "Hello": "World" }
-{{< /highlight >}}
-{{% /tab %}}
-{{% tab title="_**XML**_ stuff" %}}
-```xml
-<Hello>World</Hello>
-```
-{{% /tab %}}
-{{% tab title="text" %}}
-
-    Hello World
-
-{{% /tab %}}
-{{< /tabs >}}
-
-#### Group A, Tab View 2
-
-{{< tabs groupid="tab-example-a" >}}
-{{% tab title="json" %}}
-{{< highlight json "linenos=true" >}}
-{ "Hello": "World" }
-{{< /highlight >}}
-{{% /tab %}}
-{{% tab title="XML stuff" %}}
-```xml
-<Hello>World</Hello>
-```
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="tabs" execute="false" %}}
+groupid: "tab-example-a"
+title: Group A, Tabs 2
+content:
+  - title: "JSON"
+    content: |
+      ```json
+      { "Hello": "World" }
+      ```
+  - title: "XML"
+    content: |
+      ```xml
+      <Hello>World</Hello>
+      ```
+{{% /multishortcode %}}
 
 #### Group B
 
-{{< tabs groupid="tab-example-b" >}}
-{{% tab title="json" %}}
-{{< highlight json "linenos=true" >}}
-{ "Hello": "World" }
-{{< /highlight >}}
-{{% /tab %}}
-{{% tab title="XML stuff" %}}
-```xml
-<Hello>World</Hello>
-```
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="tabs" execute="false" %}}
+groupid: "tab-example-b"
+title: Group B
+content:
+  - title: "JSON"
+    content: |
+      ```json
+      { "Hello": "World" }
+      ```
+  - title: "XML"
+    content: |
+      ```xml
+      <Hello>World</Hello>
+      ```
+{{% /multishortcode %}}
+
+#### Rendered Example
+
+{{% multishortcode name="tabs" print="false" %}}
+groupid: "tab-example-a"
+title: Group A, Tabs 1
+content:
+  - title: "JSON"
+    content: |
+      ```json
+      { "Hello": "World" }
+      ```
+  - title: "_**XML**_"
+    content: |
+      ```xml
+      <Hello>World</Hello>
+      ```
+  - title: "Text"
+    content: "    World"
+{{% /multishortcode %}}
+
+{{% multishortcode name="tabs" print="false" %}}
+groupid: "tab-example-a"
+title: Group A, Tabs 2
+content:
+  - title: "JSON"
+    content: |
+      ```json
+      { "Hello": "World" }
+      ```
+  - title: "XML"
+    content: |
+      ```xml
+      <Hello>World</Hello>
+      ```
+{{% /multishortcode %}}
+
+{{% multishortcode name="tabs" print="false" %}}
+groupid: "tab-example-b"
+title: Group B
+content:
+  - title: "JSON"
+    content: |
+      ```json
+      { "Hello": "World" }
+      ```
+  - title: "XML"
+    content: |
+      ```xml
+      <Hello>World</Hello>
+      ```
+{{% /multishortcode %}}
 
 ### Nested Tab Views and Color
 
@@ -278,70 +186,82 @@ In case you want to nest tab views, the parent tab that contains nested tab view
 
 You can also set style and color parameter for all tabs and overwrite them on tab level. See the [`tab` shortcode](shortcodes/tab#parameters) for possible values.
 
-````go
-{{</* tabs groupid="main" style="primary" title="Rationale" icon="thumbtack" */>}}
-{{</* tab title="Text" */>}}
-  Simple text is possible here...
-  {{</* tabs groupid="tabs-example-language" */>}}
-  {{%/* tab title="python" */%}}
-  Python is **super** easy.
+{{% multishortcode name="tabs" execute="false" %}}
+groupid: "main"
+style: "primary"
+title: "Rationale"
+icon: "thumbtack"
+content:
+  - title: "Text"
+    content: "Simple text is possible here..."
+    multishortcode:
+      name: "tabs"
+      groupid: "tabs-example-language"
+      content:
+        - title: "python"
+          content: |
+            Python is **super** easy.
 
-  - most of the time.
-  - if you don't want to output unicode
-  {{%/* /tab */%}}
-  {{%/* tab title="bash" */%}}
-  Bash is for **hackers**.
-  {{%/* /tab */%}}
-  {{</* /tabs */>}}
-{{</* /tab */>}}
+            - most of the time.
+            - if you don't want to output unicode
+        - title: "bash"
+          content: "Bash is for **hackers**."
+  - title: "Code"
+    style: "default"
+    color: "darkorchid"
+    content: "...but no markdown"
+    multishortcode:
+      name: "tabs"
+      groupid: "tabs-example-language"
+      content:
+        - title: "python"
+          content: |
+            ```python
+            print("Hello World!")
+            ```
+        - title: "bash"
+          content: |
+            ```bash
+            echo "Hello World!"
+            ```
+{{% /multishortcode %}}
 
-{{</* tab title="Code" style="default" color="darkorchid" */>}}
-  ...but no markdown
-  {{</* tabs groupid="tabs-example-language" */>}}
-  {{%/* tab title="python" */%}}
-  ```python
-  print("Hello World!")
-  ```
-  {{%/* /tab */%}}
-  {{%/* tab title="bash" */%}}
-  ```bash
-  echo "Hello World!"
-  ```
-  {{%/* /tab */%}}
-  {{</* /tabs */>}}
-{{</* /tab */>}}
-{{</* /tabs */>}}
-````
+{{% multishortcode name="tabs" print="false" %}}
+groupid: "main"
+style: "primary"
+title: "Rationale"
+icon: "thumbtack"
+content:
+  - title: "Text"
+    content: "Simple text is possible here..."
+    multishortcode:
+      name: "tabs"
+      groupid: "tabs-example-language"
+      content:
+        - title: "python"
+          content: |
+            Python is **super** easy.
 
-{{< tabs groupid="main" style="primary" title="Rationale" icon="thumbtack" >}}
-{{< tab title="Text" >}}
-  Simple text is possible here...
-  {{< tabs groupid="tabs-example-language" >}}
-  {{% tab title="python" %}}
-  Python is **super** easy.
-
-  - most of the time.
-  - if you don't want to output unicode
-  {{% /tab %}}
-  {{% tab title="bash" %}}
-  Bash is for **hackers**.
-  {{% /tab %}}
-  {{< /tabs >}}
-{{< /tab >}}
-
-{{< tab title="Code" style="default" color="darkorchid" >}}
-  ...but no markdown
-  {{< tabs groupid="tabs-example-language" >}}
-  {{% tab title="python" %}}
-  ```python
-  print("Hello World!")
-  ```
-  {{% /tab %}}
-  {{% tab title="bash" %}}
-  ```bash
-  echo "Hello World!"
-  ```
-  {{% /tab %}}
-  {{< /tabs >}}
-{{< /tab >}}
-{{< /tabs >}}
+            - most of the time.
+            - if you don't want to output unicode
+        - title: "bash"
+          content: "Bash is for **hackers**."
+  - title: "Code"
+    style: "default"
+    color: "darkorchid"
+    content: "...but no markdown"
+    multishortcode:
+      name: "tabs"
+      groupid: "tabs-example-language"
+      content:
+        - title: "python"
+          content: |
+            ```python
+            print("Hello World!")
+            ```
+        - title: "bash"
+          content: |
+            ```bash
+            echo "Hello World!"
+            ```
+{{% /multishortcode %}}

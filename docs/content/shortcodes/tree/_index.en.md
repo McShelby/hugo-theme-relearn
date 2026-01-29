@@ -6,54 +6,25 @@ title = 'Tree'
 
 The `tree` shortcode displays text as a tree with configurable icons and colors.
 
-````tree
+{{% multishortcode name="tree" print="false" %}}
+content = """
 - home | folder
   - [.config](http://example.com) | folder
   - My Documents | folder | magic
     - home.php | fa-fw fab fa-php | #888cc4
-````
+"""
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
-
-````md
-```tree
+{{% multishortcode name="tree" execute="false" %}}
+content = """
 - home | folder
   - [.config](http://example.com) | folder
   - My Documents | folder | magic
     - home.php | fa-fw fab fa-php | #888cc4
-```
-````
-
-{{% /tab %}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* tree */%}}
-- home | folder
-  - [.config](http://example.com) | folder
-  - My Documents | folder | magic
-    - home.php | fa-fw fab fa-php | #888cc4
-{{%/* /tree */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/tree.html" (dict
-  "page" .
-  "content" `- home | folder
-  - [.config](http://example.com) | folder
-  - My Documents | folder | magic
-    - home.php | fa-fw fab fa-php | #888cc4`
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+"""
+{{% /multishortcode %}}
 
 Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.
 
@@ -89,8 +60,8 @@ The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and
 
 Use the `tree` command of your favorite operating system and dump it right into the shortcode. Note, that the directory marker (here `C:.`) is removed if present.
 
-````md
-```tree
+{{% multishortcode name="tree" %}}
+content = """
 C:.
 │   featured.png
 │   index.en.md
@@ -102,29 +73,15 @@ C:.
 │
 └───subdir
         hugo.png
-```
-````
-
-````tree
-C:.
-│   featured.png
-│   index.en.md
-│   index.pir.md
-│   MaybeTreasure.en.txt
-│   MaybeTreasure.pir.txt
-│   NoTreasure.en.txt
-│   Treasure.pir.txt
-│
-└───subdir
-        hugo.png
-````
+"""
+{{% /multishortcode %}}
 
 ### Markdown List with Styled Items
 
 Every possible combination
 
-````md
-```tree
+{{% multishortcode name="tree" %}}
+content = """
 - just names
   - Document
   - My Document
@@ -139,22 +96,5 @@ Every possible combination
   - script.php | fa-fw fab fa-php | purple
   - alt script.php | fa-fw fab fa-php | #888cc4
   - magic.php | fa-fw fab fa-php | magic
-```
-````
-
-````tree
-- just names
-  - Document
-  - My Document
-  - [My linked Document](http://example.com)
-- simple icons | folder
-  - Document | file
-  - My Document | file
-- mindblowing icons
-  - index.md | fa-fw fab fa-markdown
-  - index.html | fa-fw fab fa-html5
-- and now with color
-  - script.php | fa-fw fab fa-php | purple
-  - alt script.php | fa-fw fab fa-php | #888cc4
-  - magic.php | fa-fw fab fa-php | magic
-````
+"""
+{{% /multishortcode %}}

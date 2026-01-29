@@ -11,31 +11,17 @@ title = 'Children'
 
 The `children` shortcode lists child pages in various layouts.
 
-{{% children sort="title" %}}
+{{% multishortcode name="children" print="false" %}}
+- sort: "title"
+{{% /multishortcode %}}
 
 ## Usage
 
 Also, the [taxonomy and term pages](authoring/taxterm) internally are using this shortcode and also can be given parameters.
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* children sort="title" */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/children.html" (dict
-  "page" .
-  "sort" "title"
-) | .RenderString }}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="children" execute="false" %}}
+- sort: "title"
+{{% /multishortcode %}}
 
 ### Parameters
 
@@ -95,51 +81,46 @@ A card template will be called with the following parameter by the `children` sh
 
 ### All Default
 
-````go
-{{%/* children */%}}
-````
-
-{{% children %}}
+{{% multishortcode name="children" %}}
+- content: ""
+{{% /multishortcode %}}
 
 ### With Description
 
-````go
-{{%/* children description="true" */%}}
-````
-
-{{%children description="true" %}}
+{{% multishortcode name="children" %}}
+- description: "true"
+{{% /multishortcode %}}
 
 ### Infinite Depth and Hidden Pages
 
-````go
-{{%/* children depth="999" showhidden="true" */%}}
-````
-
-{{% children depth="999" showhidden="true" %}}
+{{% multishortcode name="children" %}}
+- depth: "999"
+  showhidden: "true"
+{{% /multishortcode %}}
 
 ### List Type with Depth and Description
 
-````go
-{{%/* children type="list" headingdepth="4" depth="3" description="true" */%}}
-````
-
-{{% children type="list" headingdepth="4" depth="3" description="true" %}}
+{{% multishortcode name="children" %}}
+- type: "list"
+  headingdepth: "4"
+  depth: "3"
+  description: "true"
+{{% /multishortcode %}}
 
 ### Flat Type with Depth
 
-````go
-{{%/* children type="flat" depth="3" */%}}
-````
-
-{{% children type="flat" depth="3" %}}
+{{% multishortcode name="children" %}}
+- type: "flat"
+  depth: "3"
+{{% /multishortcode %}}
 
 ### Group Type
 
-````go
-{{%/* children type="group" headingdepth="4" description="true" */%}}
-````
-
-{{% children type="group" headingdepth="4" description="true" %}}
+{{% multishortcode name="children" %}}
+- type: "group"
+  headingdepth: "4"
+  description: "true"
+{{% /multishortcode %}}
 
 ### Card Type with Description
 
@@ -148,8 +129,7 @@ Because none of the children pages of this example define their own feature imag
 > [!note]
 > Note if you want to use the card layout and have `goldmark.renderer.unsafe=false` (which is the default if you don't set it), you have to use `{{</* children */>}}` instead of `{{%/* children */%}}` as with the other examples.
 
-````go
-{{</* children type="card" description="true" */>}}
-````
-
-{{< children type="card" description="true" >}}
+{{% multishortcode name="children" outputtype="html" %}}
+- type: "card"
+  description: "true"
+{{% /multishortcode %}}

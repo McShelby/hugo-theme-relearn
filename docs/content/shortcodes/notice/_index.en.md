@@ -7,55 +7,25 @@ title = 'Notice'
 
 The `notice` shortcode shows boxes with configurable color, title and icon.
 
-{{% notice style="primary" title="There may be pirates" icon="skull-crossbones" %}}
-It is all about the boxes.
-{{% /notice %}}
+{{% multishortcode name="notice" print="false" %}}
+style: "primary"
+title: "There may be pirates"
+icon: "skull-crossbones"
+content: |
+
+  It is all about the boxes.
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
+{{% multishortcode name="notice" execute="false" %}}
+style: "primary"
+title: "There may be pirates"
+icon: "skull-crossbones"
+content: |
 
-````md
-> [!primary] There may be pirates
-> It is all about the boxes.
-````
-
-{{% /tab %}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* notice style="primary" title="There may be pirates" icon="skull-crossbones" */%}}
-It is all about the boxes.
-{{%/* /notice */%}}
-````
-
-{{% /tab %}}
-{{% tab title="shortcode (positional)" %}}
-
-````go
-{{%/* notice primary "There may be pirates" "skull-crossbones" */%}}
-It is all about the boxes.
-{{%/* /notice */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/notice.html" (dict
-  "page"  .
-  "style" "primary"
-  "title" "There may be pirates"
-  "icon" "skull-crossbones"
-  "content" "It is all about the boxes."
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
-
-[Markdown callout syntax](https://gohugo.io/render-hooks/blockquotes/#extended-syntax) has limited features as not all of the below parameters are accessible. Nevertheless, it is widely available in other Markdown parsers like [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) or [Obsidian](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) and therefore is the recommended syntax for generating portable Markdown.
+  It is all about the boxes.
+{{% /multishortcode %}}
 
 If you want to display a transparent expandable box without any border, you can also use the [`expand` shortcode](/shortcodes/expand).
 
@@ -99,301 +69,215 @@ Below is a [usage example](#user-defined-style).
 
 ### By Severity Using Markdown Callout Syntax
 
-````md
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+{{% multishortcode name="notice" %}}
+- style: "caution"
+  content: |
+    Advises about risks or negative outcomes of certain actions.
 
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+- style: "important"
+  content: |
+    Key information users need to know to achieve their goal.
 
-> [!INFO]
-> Information that users <ins>_might_</ins> find interesting.
+- style: "info"
+  content: |
+    Information that users <ins>_might_</ins> find interesting.
 
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
+- style: "note"
+  content: |
+    Useful information that users should know, even when skimming content.
 
-> [!TIP]
-> Helpful advice for doing things better or more easily.
+- style: "tip"
+  content: |
+    Helpful advice for doing things better or more easily.
 
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
-````
-
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
-
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
-
-> [!INFO]
-> Information that users <ins>_might_</ins> find interesting.
-
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
-
-> [!TIP]
-> Helpful advice for doing things better or more easily.
-
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+- style: "warning"
+  content: |
+    Urgent info that needs immediate user attention to avoid problems.
+{{% /multishortcode %}}
 
 ### By Brand Colors with Title and Icon Variantion
 
-````go
-{{%/* notice style="primary" title="Primary" */%}}
-A **primary** disclaimer
-{{%/* /notice */%}}
+{{% multishortcode name="notice" %}}
+- style: "primary"
+  title: "Primary"
+  content: |
+    A **primary** disclaimer
 
-{{%/* notice style="secondary" title="Secondary" */%}}
-A **secondary** disclaimer
-{{%/* /notice */%}}
+- style: "secondary"
+  title: "Secondary"
+  content: |
+    A **secondary** disclaimer
 
-{{%/* notice style="accent" icon="stopwatch" */%}}
-An **accent** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="primary" title="Primary" %}}
-A **primary** disclaimer
-{{% /notice %}}
-
-{{% notice style="secondary" title="Secondary" %}}
-A **secondary** disclaimer
-{{% /notice %}}
-
-{{% notice style="accent" icon="stopwatch" %}}
-An **accent** disclaimer
-{{% /notice %}}
+- style: "accent"
+  icon: "stopwatch"
+  content: |
+    An **accent** disclaimer
+{{% /multishortcode %}}
 
 ### By Color
 
-````go
-{{%/* notice style="blue" title="Blue"*/%}}
-A **blue** disclaimer
-{{%/* /notice */%}}
+{{% multishortcode name="notice" %}}
+- style: "blue"
+  title: "Blue"
+  content: |
+    A **blue** disclaimer
 
-{{%/* notice style="cyan" title="Cyan" */%}}
-A **cyan** disclaimer
-{{%/* /notice */%}}
+- style: "cyan"
+  title: "Cyan"
+  content: |
+    A **cyan** disclaimer
 
-{{%/* notice style="green" title="Green" */%}}
-A **green** disclaimer
-{{%/* /notice */%}}
+- style: "green"
+  title: "Green"
+  content: |
+    A **green** disclaimer
 
-{{%/* notice style="grey" icon="bug" */%}}
-A **grey** disclaimer
-{{%/* /notice */%}}
+- style: "grey"
+  icon: "bug"
+  content: |
+    A **grey** disclaimer
 
-{{%/* notice style="magenta" title="Magenta" */%}}
-A **magenta** disclaimer
-{{%/* /notice */%}}
+- style: "magenta"
+  title: "Magenta"
+  content: |
+    A **magenta** disclaimer
 
-{{%/* notice style="orange" title="Orange" icon="bug" */%}}
-A **orange** disclaimer
-{{%/* /notice */%}}
+- style: "orange"
+  title: "Orange"
+  icon: "bug"
+  content: |
+    A **orange** disclaimer
 
-{{%/* notice style="red" title="Red" */%}}
-A **red** disclaimer
-{{%/* /notice */%}}
-````
-
-{{% notice style="blue" title="Blue" %}}
-A **blue** disclaimer
-{{% /notice %}}
-
-{{% notice style="cyan" title="Cyan" %}}
-A **cyan** disclaimer
-{{% /notice %}}
-
-{{% notice style="green" title="Green" %}}
-A **green** disclaimer
-{{% /notice %}}
-
-{{% notice style="grey" icon="bug" %}}
-A **grey** disclaimer
-{{% /notice %}}
-
-{{% notice style="magenta" title="Magenta" %}}
-A **magenta** disclaimer
-{{% /notice %}}
-
-{{% notice style="orange" title="Orange" icon="bug" %}}
-A **orange** disclaimer
-{{% /notice %}}
-
-{{% notice style="red" title="Red" %}}
-A **red** disclaimer
-{{% /notice %}}
+- style: "red"
+  title: "Red"
+  content: |
+    A **red** disclaimer
+{{% /multishortcode %}}
 
 ### By Special Color
 
-````go
-{{%/* notice style="default" title="Default" icon="skull-crossbones" */%}}
-Just some default color.
-{{%/* /notice */%}}
+{{% multishortcode name="notice" %}}
+- style: "default"
+  title: "Default"
+  icon: "skull-crossbones"
+  content: |
+    Just some default color.
 
-{{%/* notice style="transparent" title="Transparent" icon="skull-crossbones" */%}}
-No visible borders.
-{{%/* /notice */%}}
+- style: "transparent"
+  title: "Transparent"
+  icon: "skull-crossbones"
+  content: |
+    No visible borders.
 
-{{%/* notice style="code" title="Code" icon="skull-crossbones" */%}}
-Colored like a code fence.
-{{%/* /notice */%}}
+- style: "code"
+  title: "Code"
+  icon: "skull-crossbones"
+  content: |
+    Colored like a code fence.
 
-{{%/* notice style="link" title="Link" icon="skull-crossbones" */%}}
-Style of topbar buttons
-{{%/* /notice */%}}
+- style: "link"
+  title: "Link"
+  icon: "skull-crossbones"
+  content: |
+    Style of topbar buttons
 
-{{%/* notice style="action" title="Action" icon="skull-crossbones" */%}}
-Style of action buttons like Mermaid zoom or block code copy-to-clipboard
-{{%/* /notice */%}}
+- style: "action"
+  title: "Action"
+  icon: "skull-crossbones"
+  content: |
+    Style of action buttons like Mermaid zoom or block code copy-to-clipboard
 
-{{%/* notice style="inline" title="Inline" icon="skull-crossbones" */%}}
-Style of inline buttons like inline code copy-to-clipboard
-{{%/* /notice */%}}
-````
-
-{{% notice style="default" title="Default" icon="skull-crossbones" %}}
-Just some default color.
-{{% /notice %}}
-
-{{% notice style="transparent" title="Transparent" icon="skull-crossbones" %}}
-No visible borders.
-{{% /notice %}}
-
-{{% notice style="code" title="Code" icon="skull-crossbones" %}}
-Colored like a code fence.
-{{% /notice %}}
-
-{{% notice style="link" title="Link" icon="skull-crossbones" %}}
-Style of topbar buttons
-{{% /notice %}}
-
-{{% notice style="action" title="Action" icon="skull-crossbones" %}}
-Style of action buttons like Mermaid zoom or block code copy-to-clipboard
-{{% /notice %}}
-
-{{% notice style="inline" title="Inline" icon="skull-crossbones" %}}
-Style of inline buttons like inline code copy-to-clipboard
-{{% /notice %}}
+- style: "inline"
+  title: "Inline"
+  icon: "skull-crossbones"
+  content: |
+    Style of inline buttons like inline code copy-to-clipboard
+{{% /multishortcode %}}
 
 ### Various Features
 
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown in Title and Content
 
-````go
-{{%/* notice color="fuchsia" title="**Hugo** is _awesome_" icon="fa-fw fab fa-hackerrank" */%}}
-{{% include "shortcodes/include/INCLUDE_ME.md" %}}
-{{%/* /notice */%}}
-````
-
-{{% notice color="fuchsia" title="**Hugo** is _awesome_" icon="fa-fw fab fa-hackerrank" %}}
-{{% include "shortcodes/include/INCLUDE_ME.md" %}}
-{{% /notice %}}
+{{% multishortcode name="notice" %}}
+color: "fuchsia"
+title: "**Hugo** is _awesome_"
+icon: "fa-fw fab fa-hackerrank"
+content: |
+  {{%/* include "shortcodes/include/INCLUDE_ME.md" */%}}
+{{% /multishortcode %}}
 
 #### Expandable Content Area with `groupid`
 
 If you give multiple expandable boxes the same `groupid`, at most one will be open at any given time. If you open one of the boxes, all other boxes of the same group will close.
 
-````go
-{{%/* notice style="green" title="Expand me..." groupid="notice-toggle" expanded="true" */%}}
-No need to press you!
-{{%/* /notice */%}}
+{{% multishortcode name="notice" %}}
+- style: "green"
+  title: "Expand me..."
+  groupid: "notice-toggle"
+  expanded: "true"
+  content: |
 
-{{%/* notice style="red" title="Expand me..." groupid="notice-toggle" expanded="false" */%}}
-Thank you!
-{{%/* /notice */%}}
-````
+    No need to press you!
 
-{{% notice style="green" title="Expand me..." groupid="notice-toggle" expanded="true" %}}
-No need to press you!
-{{% /notice %}}
+- style: "red"
+  title: "Expand me..."
+  groupid: "notice-toggle"
+  expanded: "false"
+  content: |
 
-{{% notice style="red" title="Expand me..." groupid="notice-toggle" expanded="false" %}}
-Thank you!
-{{% /notice %}}
+    Thank you!
+{{% /multishortcode %}}
 
 #### No Content or No Title
 
-````go
-{{%/* notice style="accent" title="Just a bar" */%}}
-{{%/* /notice */%}}
+{{% multishortcode name="notice" %}}
+- style: "accent"
+  title: "Just a bar"
 
-{{%/* notice style="accent" */%}}
-Just a box
-{{%/* /notice */%}}
-````
+- style: "accent"
+  content: |
 
-{{% notice style="accent" title="Just a bar" %}}
-{{% /notice %}}
-
-{{% notice style="accent" %}}
-Just a box
-{{% /notice %}}
+    Just a box
+{{% /multishortcode %}}
 
 #### Various Markdown Callouts
 
-````go
-> [!caution] Callouts can have custom titles
-> Like this one.
+{{% multishortcode name="notice" %}}
+- style: "caution"
+  title: "Callouts can have custom titles"
+  content: |
+    Like this one.
 
-> [!caution] Title-only callout
+- style: "caution"
+  title: "Title-only callout"
 
-> [!note]- Are callouts foldable?
-> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+- style: "note"
+  title: "Are callouts foldable?"
+  expanded: "false"
+  content: |
+    Yes! In a foldable callout, the contents are hidden when the callout is collapsed
 
-> [!note]+ Are callouts foldable?
-> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
+- style: "note"
+  title: "Are callouts foldable?"
+  expanded: "true"
+  content: |
+    Yes! In a foldable callout, the contents are hidden when the callout is collapsed
 
-> [!info] Can callouts be nested?
-> > [!important] Yes!, they can.
-> > > [!tip]  You can even use multiple layers of nesting.
-````
-
-> [!caution] Callouts can have custom titles
-> Like this one.
-
-> [!caution] Title-only callout
-
-> [!note]- Are callouts foldable?
-> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
-
-> [!note]+ Are callouts foldable?
-> Yes! In a foldable callout, the contents are hidden when the callout is collapsed
-
-> [!info] Can callouts be nested?
-> > [!important] Yes!, they can.
-> > > [!tip]  You can even use multiple layers of nesting.
+- style: "info"
+  title: "Can callouts be nested?"
+  content: |
+    > [!important] Yes!, they can.
+    > > [!tip] You can even use multiple layers of nesting.
+{{% /multishortcode %}}
 
 #### Code with Collapsed Colored Borders
 
-````
-> [!secondary]
-> ```c
-> // With colored border in Markdown syntax
-> printf("Hello World!");
-> ```
-
-{{%/* notice style="red" */%}}
-```c
-// With colored border in Shortcode syntax
-printf("Hello World!");
-```
-{{%/* /notice */%}}
-````
-
-> [!secondary]
-> ```c
-> // With colored border in Markdown syntax
-> printf("Hello World!");
-> ```
-
-{{% notice style="red" %}}
-```c
-// With colored border in Shortcode syntax
-printf("Hello World!");
-```
-{{% /notice %}}
+{{% multishortcode name="notice" %}}
+style: "secondary"
+content: '```
+  printf("Hello World!");
+  ```'
+{{% /multishortcode %}}
 
 #### User-defined Style
 
@@ -405,14 +289,10 @@ boxStyle = [
 ]
 {{< /multiconfig >}}
 
-````md {title="page.md"}
-> [!magic]
-> It's a kind of...
->
-> Maaagic!
-````
+{{% multishortcode name="notice" %}}
+style: "magic"
+content: |
+  It's a kind of...
 
-> [!magic]
-> It's a kind of...
->
-> Maaagic!
+  Maaagic!
+{{% /multishortcode %}}

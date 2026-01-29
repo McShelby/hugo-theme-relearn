@@ -8,34 +8,15 @@ title = 'Include'
 
 The `include` shortcode includes other pages, resources or files from your project.
 
+{{% multishortcode name="include" print="false" %}}
+file = "shortcodes/include/INCLUDE_GREETINGS.md"
+{{% /multishortcode %}}
+
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* include file="shortcodes/include/INCLUDE_ME.md" */%}}
-````
-
-{{% /tab %}}
-{{% tab title="shortcode (positional)" %}}
-
-````go
-{{%/* include "shortcodes/include/INCLUDE_ME.md" */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/include .html" (dict
-  "page" .
-  "file" "shortcodes/include/INCLUDE_ME.md"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="include" execute="false" %}}
+file = "shortcodes/include/INCLUDE_GREETINGS.md"
+{{% /multishortcode %}}
 
 The included files can even contain Markdown and will be taken into account when generating the table of contents.
 
@@ -66,8 +47,6 @@ include.errorlevel = 'warning'
 
 ### Arbitrary Content
 
-````go
-{{%/* include "shortcodes/include/INCLUDE_ME.md" */%}}
-````
-
-{{% include "shortcodes/include/INCLUDE_ME.md" %}}
+{{% multishortcode name="include" %}}
+file = "shortcodes/include/INCLUDE_ME.md"
+{{% /multishortcode %}}

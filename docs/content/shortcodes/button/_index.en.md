@@ -6,39 +6,25 @@ title = 'Button'
 
 The `button` shortcode displays a clickable button with adjustable color, title and icon.
 
-{{% button href="https://gohugo.io/" %}}Go Hugo{{% /button %}}
-{{% button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button %}}
+{{% multishortcode name="button" print="false" format="%s\n%s\n" %}}
+- content: "Go Hugo"
+  href: "https://gohugo.io/"
+- content: "Download Magic"
+  href: "images/magic.gif?download"
+  style: "tip"
+  icon: "hand-sparkles"
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="shortcode" %}}
-
-````go
-{{%/* button href="https://gohugo.io/" %}}Go Hugo{{% /button */%}}
-{{%/* button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button */%}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/button.html" (dict
-    "page" .
-    "href" "https://gohugo.io/"
-    "content" "Go Hugo"
-)}}
-{{ partial "shortcodes/button.html" (dict
-  "page" .
-  "href" "https://gohugo.io/"
-  "style" "tip"
-  "icon" "hand-sparkles"
-  "content" "Download Magic"
-)}}
-````
-
-{{% /tab %}}
-{{< /tabs >}}
+{{% multishortcode name="button" execute="false" format="%s\n%s\n" %}}
+- content: "Go Hugo"
+  href: "https://gohugo.io/"
+- content: "Download Magic"
+  href: "images/magic.gif?download"
+  style: "tip"
+  icon: "hand-sparkles"
+{{% /multishortcode %}}
 
 ### Parameters
 
@@ -60,204 +46,234 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 #### By Severity
 
-````go
-{{%/* button href="https://gohugo.io/" style="caution" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="important" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="info" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="note" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="tip" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="warning" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" style="caution" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="important" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="info" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="note" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="tip" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="warning" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "caution"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "important"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "info"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "note"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "tip"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "warning"
+{{% /multishortcode %}}
 
 
 #### By Brand Colors
 
-````go
-{{%/* button href="https://gohugo.io/" style="primary" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="secondary" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="accent" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" style="primary" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="secondary" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="accent" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s\n%s\n%s\n" %}}
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "primary"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "secondary"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "accent"
+{{% /multishortcode %}}
 
 #### By Color
 
-````go
-{{%/* button href="https://gohugo.io/" style="blue" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="cyan" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="green" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="grey" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="magenta" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="orange" %}}Get Hugo{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="red" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" style="blue" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="cyan" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="green" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="grey" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="magenta" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="orange" %}}Get Hugo{{% /button %}}
-{{% button href="https://gohugo.io/" style="red" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s\n%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "blue"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "cyan"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "green"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "grey"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "magenta"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "orange"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "red"
+{{% /multishortcode %}}
 
 #### By Special Color
 
-````go
-{{%/* button href="https://gohugo.io/" style="default" %}}Open Link{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="transparent" %}}Open Link{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="code" %}}Open Link{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="link" %}}Open Link{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="action" %}}Open Link{{% /button */%}}
-{{%/* button href="https://gohugo.io/" style="inline" %}}Open Link{{% /button */%}}
-
-{{%/* button href="javascript:alert('Some JavaScript')" style="default" %}}Run JavaScript{{% /button */%}}
-{{%/* button href="javascript:alert('Some JavaScript')" style="transparent" %}}Run JavaScript{{% /button */%}}
-{{%/* button href="javascript:alert('Some JavaScript')" style="code" %}}Run JavaScript{{% /button */%}}
-{{%/* button href="javascript:alert('Some JavaScript')" style="link" %}}Run JavaScript{{% /button */%}}
-{{%/* button href="javascript:alert('Some JavaScript')" style="action" %}}Run JavaScript{{% /button */%}}
-{{%/* button href="javascript:alert('Some JavaScript')" style="inline" %}}Run JavaScript{{% /button */%}}
-
-{{%/* button style="default" %}}Fake Button{{% /button */%}}
-{{%/* button style="transparent" %}}Fake Button{{% /button */%}}
-{{%/* button style="code" %}}Fake Button{{% /button */%}}
-{{%/* button style="link" %}}Fake Button{{% /button */%}}
-{{%/* button style="action" %}}Fake Button{{% /button */%}}
-{{%/* button style="inline" %}}Fake Button{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" style="default" %}}Open Link{{% /button %}}
-{{% button href="https://gohugo.io/" style="transparent" %}}Open Link{{% /button %}}
-{{% button href="https://gohugo.io/" style="code" %}}Open Link{{% /button %}}
-{{% button href="https://gohugo.io/" style="link" %}}Open Link{{% /button %}}
-{{% button href="https://gohugo.io/" style="action" %}}Open Link{{% /button %}}
-{{% button href="https://gohugo.io/" style="inline" %}}Open Link{{% /button %}}
-
-{{% button href="javascript:alert('Some JavaScript')" style="default" %}}Run JavaScript{{% /button %}}
-{{% button href="javascript:alert('Some JavaScript')" style="transparent" %}}Run JavaScript{{% /button %}}
-{{% button href="javascript:alert('Some JavaScript')" style="code" %}}Run JavaScript{{% /button %}}
-{{% button href="javascript:alert('Some JavaScript')" style="link" %}}Run JavaScript{{% /button %}}
-{{% button href="javascript:alert('Some JavaScript')" style="action" %}}Run JavaScript{{% /button %}}
-{{% button href="javascript:alert('Some JavaScript')" style="inline" %}}Run JavaScript{{% /button %}}
-
-{{% button style="default" %}}Fake Button{{% /button %}}
-{{% button style="transparent" %}}Fake Button{{% /button %}}
-{{% button style="code" %}}Fake Button{{% /button %}}
-{{% button style="link" %}}Fake Button{{% /button %}}
-{{% button style="action" %}}Fake Button{{% /button %}}
-{{% button style="inline" %}}Fake Button{{% /button %}}
+{{% multishortcode name="button" format="%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+- content: "Open Link"
+  href: "https://gohugo.io/"
+  style: "default"
+- content: "Open Link"
+  href: "https://gohugo.io/"
+  style: "transparent"
+- content: "Open Link"
+  href: "https://gohugo.io/"
+  style: "code"
+- content: "Open Link"
+  href: "https://gohugo.io/"
+  style: "link"
+- content: "Open Link"
+  href: "https://gohugo.io/"
+  style: "action"
+- content: "Open Link"
+  href: "https://gohugo.io/"
+  style: "inline"
+- content: "Run JavaScript"
+  href: "javascript:alert('Some JavaScript')"
+  style: "default"
+- content: "Run JavaScript"
+  href: "javascript:alert('Some JavaScript')"
+  style: "transparent"
+- content: "Run JavaScript"
+  href: "javascript:alert('Some JavaScript')"
+  style: "code"
+- content: "Run JavaScript"
+  href: "javascript:alert('Some JavaScript')"
+  style: "link"
+- content: "Run JavaScript"
+  href: "javascript:alert('Some JavaScript')"
+  style: "action"
+- content: "Run JavaScript"
+  href: "javascript:alert('Some JavaScript')"
+  style: "inline"
+- content: "Fake Button"
+  style: "default"
+- content: "Fake Button"
+  style: "transparent"
+- content: "Fake Button"
+  style: "code"
+- content: "Fake Button"
+  style: "link"
+- content: "Fake Button"
+  style: "action"
+- content: "Fake Button"
+  style: "inline"
+{{% /multishortcode %}}
 
 ### Icon
 
 #### Empty
 
-````go
-{{%/* button href="https://gohugo.io/" icon=" " %}}{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" icon=" " %}}{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: ""
+  href: "https://gohugo.io/"
+  icon: " "
+{{% /multishortcode %}}  
 
 #### Only with Hint
 
 Mouse-over the button to see the hint.
 
-````go
-{{%/* button href="https://gohugo.io/" icon="download" hint="Go to Hugo's homepage" %}}{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" icon="download" hint="Go to Hugo's homepage" %}}{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: ""
+  href: "https://gohugo.io/"
+  icon: "download"
+  hint: "Go to Hugo's homepage"
+{{% /multishortcode %}}  
 
 #### To the Left
 
-````go
-{{%/* button href="https://gohugo.io/" icon="download" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" icon="download" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  icon: "download"
+{{% /multishortcode %}}
 
 #### To the Right
 
-````go
-{{%/* button href="https://gohugo.io/" icon="download" iconposition="right" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" icon="download" iconposition="right" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  icon: "download"
+  iconposition: "right"
+{{% /multishortcode %}}
 
 #### Override for Severity
 
-````go
-{{%/* button href="https://gohugo.io/" icon="dragon" style="warning" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" icon="dragon" style="warning" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  icon: "dragon"
+  style: "warning"
+{{% /multishortcode %}}
 
 ### Link Effects (Target, Download)
 
 You can use [link effects](authoring/markdown#link-effects) with your `href` to open the link in a different tab or starting a download.
 
-````go
-{{%/* button href="https://gohugo.io/?target=_blank" %}}Go Hugo{{% /button */%}}
-{{%/* button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/?target=_blank" %}}Go Hugo{{% /button %}}
-{{% button href="images/magic.gif?download" style="tip" icon="hand-sparkles" %}}Download Magic{{% /button %}}
+{{% multishortcode name="button" format="%s\n%s\n" %}}
+- content: "Go Hugo"
+  href: "https://gohugo.io/?target=_blank"
+- content: "Download Magic"
+  href: "images/magic.gif?download"
+  style: "tip"
+  icon: "hand-sparkles"
+{{% /multishortcode %}}
 
 ### Other
 
 #### Borderless
 
-````go
-{{%/* button borderless="true" href="https://gohugo.io/" style="primary" %}}Get Hugo{{% /button */%}}
-{{%/* button borderless="true" href="https://gohugo.io/" style="default" %}}Get Hugo{{% /button */%}}
-{{%/* button borderless="true" href="https://gohugo.io/" style="transparent" %}}Get Hugo{{% /button */%}}
-````
-
-{{% button borderless="true" href="https://gohugo.io/" style="primary" %}}Get Hugo{{% /button %}}
-{{% button borderless="true" href="https://gohugo.io/" style="default" %}}Get Hugo{{% /button %}}
-{{% button borderless="true" href="https://gohugo.io/" style="transparent" %}}Get Hugo{{% /button %}}
+{{% multishortcode name="button" format="%s\n%s\n%s\n" %}}
+- content: "Get Hugo"
+  borderless: "true"
+  href: "https://gohugo.io/"
+  style: "primary"
+- content: "Get Hugo"
+  borderless: "true"
+  href: "https://gohugo.io/"
+  style: "default"
+- content: "Get Hugo"
+  borderless: "true"
+  href: "https://gohugo.io/"
+  style: "transparent"
+{{% /multishortcode %}}
 
 #### With User-Defined Color, Font Awesome Brand Icon and Markdown Title
 
-````go
-{{%/* button href="https://gohugo.io/" color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Get **Hugo**{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" color="fuchsia" icon="fa-fw fab fa-hackerrank" %}}Get **Hugo**{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: "Get **Hugo**"
+  href: "https://gohugo.io/"
+  color: "fuchsia"
+  icon: "fa-fw fab fa-hackerrank"
+{{% /multishortcode %}}
 
 #### Severity Style with All Defaults
 
-````go
-{{%/* button href="https://gohugo.io/" style="tip" %}}{{% /button */%}}
-````
-
-{{% button href="https://gohugo.io/" style="tip" %}}{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: ""
+  href: "https://gohugo.io/"
+  style: "tip"
+{{% /multishortcode %}}  
 
 #### Button to Internal Page
 
-````go
-{{%/* button href="/index.html" %}}Home{{% /button */%}}
-````
-
-{{% button href="/index.html" %}}Home{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: "Home"
+  href: "/index.html"
+{{% /multishortcode %}}
 
 #### Button with JavaScript Action
 
 If your JavaScript action does not change the focus afterwards, make sure to call `this.blur()` in the end to unselect the button.
 
-````go
-{{%/* button style="primary" icon="bullhorn" href="javascript:alert('Hello world!');this.blur();" %}}Shout it out{{% /button */%}}
-````
-
-{{% button style="primary" icon="bullhorn" href="javascript:alert('Hello world!');this.blur();" %}}Shout it out{{% /button %}}
+{{% multishortcode name="button" format="%s" %}}
+- content: "Shout it out"
+  style: "primary"
+  icon: "bullhorn"
+  href: "javascript:alert('Hello world!');this.blur();"
+{{% /multishortcode %}}
 
 #### Button within a `form` Element
 

@@ -8,53 +8,25 @@ title = 'Mermaid'
 
 The `mermaid` shortcode generates diagrams and flowcharts from text using the [Mermaid](https://mermaidjs.github.io/) library.
 
-````mermaid {align="center" zoom="true"}
-graph LR;
-  If --> Then
-  Then --> Else
-````
+{{% multishortcode name="mermaid" print="false" %}}
+align: "center"
+zoom: "true"
+content: |
+  graph LR;
+    If --> Then
+    Then --> Else
+{{% /multishortcode %}}
 
 ## Usage
 
-{{< tabs groupid="shortcode-parameter">}}
-{{% tab title="markdown" %}}
-
-````md
-```mermaid {align="center" zoom="true"}
-graph LR;
-  If --> Then
-  Then --> Else
-```
-````
-
-{{% /tab %}}
-{{% tab title="shortcode" %}}
-
-````go
-{{</* mermaid align="center" zoom="true" */>}}
-graph LR;
-  If --> Then
-  Then --> Else
-{{</* /mermaid */>}}
-````
-
-{{% /tab %}}
-{{% tab title="partial" %}}
-
-````go
-{{ partial "shortcodes/mermaid.html" (dict
-  "page"    .
-  "content" "graph LR;\n  If --> Then\n  Then --> Else"
-  "align"   "center"
-  "zoom"    "true"
-)}}
-
-````
-
-{{% /tab %}}
-{{< /tabs >}}
-
-Markdown codefence syntax is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.
+{{% multishortcode name="mermaid" execute="false" %}}
+align: "center"
+zoom: "true"
+content: |
+  graph LR;
+    If --> Then
+    Then --> Else
+{{% /multishortcode %}}
 
 ### Parameters
 
@@ -123,519 +95,277 @@ While you can configure the Mermaid theme to render your graph by using one of t
 
 ### Flowchart with YAML-Title
 
-````md
-```mermaid
----
-title: Example Diagram
----
-graph LR;
-  A[Hard edge] -->|Link text| B(Round edge)
-  B --> C{<strong>Decision</strong>}
-  C -->|One| D[Result one]
-  C -->|Two| E[Result two]
-```
-````
-
-````mermaid
----
-title: Example Diagram
----
-graph LR;
-  A[Hard edge] -->|Link text| B(Round edge)
-  B --> C{<strong>Decision</strong>}
-  C -->|One| D[Result one]
-  C -->|Two| E[Result two]
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  title: Example Diagram
+  ---
+  graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{<strong>Decision</strong>}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+{{% /multishortcode %}}
 
 ### Sequence Diagram with Configuration Directive
 
-````md
-```mermaid
-%%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
-sequenceDiagram
-  Alice->>John: Hello John, how are you?
-  loop Healthcheck
-      John->>John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts!
-  John-->>Alice: Great!
-  John->>Bob: How about you?
-  Bob-->>John: Jolly good!
-```
-````
-
-````mermaid
-%%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
-sequenceDiagram
-  Alice->>John: Hello John, how are you?
-  loop Healthcheck
-      John->>John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts!
-  John-->>Alice: Great!
-  John->>Bob: How about you?
-  Bob-->>John: Jolly good!
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  %%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
+  sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+{{% /multishortcode %}}
 
 ### Class Diagram
 
-````md
-```mermaid
-classDiagram
-  Animal <|-- Duck
-  Animal <|-- Fish
-  Animal <|-- Zebra
-  Animal : +int age
-  Animal : +String gender
-  Animal: +isMammal()
-  Animal: +mate()
-  class Duck{
-    +String beakColor
-    +swim()
-    +quack()
-  }
-  class Fish{
-    -int sizeInFeet
-    -canEat()
-  }
-  class Zebra{
-    +bool is_wild
-    +run()
-  }
-```
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  classDiagram
+    Animal <|-- Duck
+    Animal <|-- Fish
+    Animal <|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+      +String beakColor
+      +swim()
+      +quack()
+    }
+    class Fish{
+      -int sizeInFeet
+      -canEat()
+    }
+    class Zebra{
+      +bool is_wild
+      +run()
+    }
+{{% /multishortcode %}}
 
-````mermaid
-classDiagram
-  Animal <|-- Duck
-  Animal <|-- Fish
-  Animal <|-- Zebra
-  Animal : +int age
-  Animal : +String gender
-  Animal: +isMammal()
-  Animal: +mate()
-  class Duck{
-    +String beakColor
-    +swim()
-    +quack()
-  }
-  class Fish{
-    -int sizeInFeet
-    -canEat()
-  }
-  class Zebra{
-    +bool is_wild
-    +run()
-  }
-````
+### State Diagram with Right Alignment
 
-### State Diagram Aligned to the Right Using Shortcode Syntax
-
-````go
-{{</* mermaid align="right" */>}}
-stateDiagram-v2
-  open: Open Door
-  closed: Closed Door
-  locked: Locked Door
-  open   --> closed: Close
-  closed --> locked: Lock
-  locked --> closed: Unlock
-  closed --> open: Open
-{{</* /mermaid */>}}
-````
-
-{{< mermaid align="right" >}}
-stateDiagram-v2
-  open: Open Door
-  closed: Closed Door
-  locked: Locked Door
-  open   --> closed: Close
-  closed --> locked: Lock
-  locked --> closed: Unlock
-  closed --> open: Open
-{{< /mermaid >}}
+{{% multishortcode name="mermaid" %}}
+align: "right"
+content: |
+  stateDiagram-v2
+    open: Open Door
+    closed: Closed Door
+    locked: Locked Door
+    open   --> closed: Close
+    closed --> locked: Lock
+    locked --> closed: Unlock
+    closed --> open: Open
+{{% /multishortcode %}}
 
 ### Entity Relationship Model with Non-Default Mermaid Theme
 
-````md
-```mermaid
-%%{init:{"theme":"forest"}}%%
-erDiagram
-  CUSTOMER }|..|{ DELIVERY-ADDRESS : has
-  CUSTOMER ||--o{ ORDER : places
-  CUSTOMER ||--o{ INVOICE : "liable for"
-  DELIVERY-ADDRESS ||--o{ ORDER : receives
-  INVOICE ||--|{ ORDER : covers
-  ORDER ||--|{ ORDER-ITEM : includes
-  PRODUCT-CATEGORY ||--|{ PRODUCT : contains
-  PRODUCT ||--o{ ORDER-ITEM : "ordered in"
-```
-````
-
-````mermaid
-%%{init:{"theme":"forest"}}%%
-erDiagram
-  CUSTOMER }|..|{ DELIVERY-ADDRESS : has
-  CUSTOMER ||--o{ ORDER : places
-  CUSTOMER ||--o{ INVOICE : "liable for"
-  DELIVERY-ADDRESS ||--o{ ORDER : receives
-  INVOICE ||--|{ ORDER : covers
-  ORDER ||--|{ ORDER-ITEM : includes
-  PRODUCT-CATEGORY ||--|{ PRODUCT : contains
-  PRODUCT ||--o{ ORDER-ITEM : "ordered in"
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  %%{init:{"theme":"forest"}}%%
+  erDiagram
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER ||--o{ INVOICE : "liable for"
+    DELIVERY-ADDRESS ||--o{ ORDER : receives
+    INVOICE ||--|{ ORDER : covers
+    ORDER ||--|{ ORDER-ITEM : includes
+    PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+    PRODUCT ||--o{ ORDER-ITEM : "ordered in"
+{{% /multishortcode %}}
 
 ### User Journey
 
-````md
-```mermaid
-journey
-  title My working day
-  section Go to work
-    Make tea: 5: Me
-    Go upstairs: 3: Me
-    Do work: 1: Me, Cat
-  section Go home
-    Go downstairs: 5: Me
-    Sit down: 3: Me
-```
-````
-
-````mermaid
-journey
-  title My working day
-  section Go to work
-    Make tea: 5: Me
-    Go upstairs: 3: Me
-    Do work: 1: Me, Cat
-  section Go home
-    Go downstairs: 5: Me
-    Sit down: 3: Me
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 3: Me
+{{% /multishortcode %}}
 
 ### GANTT Chart
 
-````md
-```mermaid
-gantt
-  dateFormat  YYYY-MM-DD
-  title Adding GANTT diagram functionality to Mermaid
-  section A section
-  Completed task            :done,    des1, 2014-01-06,2014-01-08
-  Active task               :active,  des2, 2014-01-09, 3d
-  Future task               :         des3, after des2, 5d
-  Future task2              :         des4, after des3, 5d
-  section Critical tasks
-  Completed task in the critical line :crit, done, 2014-01-06,24h
-  Implement parser and jison          :crit, done, after des1, 2d
-  Create tests for parser             :crit, active, 3d
-  Future task in critical line        :crit, 5d
-  Create tests for renderer           :2d
-  Add to Mermaid                      :1d
-```
-````
-
-````mermaid
-gantt
-  dateFormat  YYYY-MM-DD
-  title Adding GANTT diagram functionality to Mermaid
-  section A section
-  Completed task            :done,    des1, 2014-01-06,2014-01-08
-  Active task               :active,  des2, 2014-01-09, 3d
-  Future task               :         des3, after des2, 5d
-  Future task2              :         des4, after des3, 5d
-  section Critical tasks
-  Completed task in the critical line :crit, done, 2014-01-06,24h
-  Implement parser and jison          :crit, done, after des1, 2d
-  Create tests for parser             :crit, active, 3d
-  Future task in critical line        :crit, 5d
-  Create tests for renderer           :2d
-  Add to Mermaid                      :1d
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  gantt
+    dateFormat  YYYY-MM-DD
+    title Adding GANTT diagram functionality to Mermaid
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to Mermaid                      :1d
+{{% /multishortcode %}}
 
 ### Pie Chart without Zoom
 
-````md
-```mermaid {zoom="false"}
-pie title Pets adopted by volunteers
-  "Dogs" : 386
-  "Cats" : 85
-  "Rats" : 15
-```
-````
-
-````mermaid {zoom="false"}
-pie title Pets adopted by volunteers
-  "Dogs" : 386
-  "Cats" : 85
-  "Rats" : 15
-````
+{{% multishortcode name="mermaid" %}}
+zoom: "false"
+content: |
+  pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+{{% /multishortcode %}}
 
 ### Quadrant Chart
 
-````md
-```mermaid
-quadrantChart
-  title Reach and engagement of campaigns
-  x-axis Low Reach --> High Reach
-  y-axis Low Engagement --> High Engagement
-  quadrant-1 We should expand
-  quadrant-2 Need to promote
-  quadrant-3 Re-evaluate
-  quadrant-4 May be improved
-  Campaign A: [0.3, 0.6]
-  Campaign B: [0.45, 0.23]
-  Campaign C: [0.57, 0.69]
-  Campaign D: [0.78, 0.34]
-  Campaign E: [0.40, 0.34]
-  Campaign F: [0.35, 0.78]
-```
-````
-
-````mermaid
-quadrantChart
-  title Reach and engagement of campaigns
-  x-axis Low Reach --> High Reach
-  y-axis Low Engagement --> High Engagement
-  quadrant-1 We should expand
-  quadrant-2 Need to promote
-  quadrant-3 Re-evaluate
-  quadrant-4 May be improved
-  Campaign A: [0.3, 0.6]
-  Campaign B: [0.45, 0.23]
-  Campaign C: [0.57, 0.69]
-  Campaign D: [0.78, 0.34]
-  Campaign E: [0.40, 0.34]
-  Campaign F: [0.35, 0.78]
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  quadrantChart
+    title Reach and engagement of campaigns
+    x-axis Low Reach --> High Reach
+    y-axis Low Engagement --> High Engagement
+    quadrant-1 We should expand
+    quadrant-2 Need to promote
+    quadrant-3 Re-evaluate
+    quadrant-4 May be improved
+    Campaign A: [0.3, 0.6]
+    Campaign B: [0.45, 0.23]
+    Campaign C: [0.57, 0.69]
+    Campaign D: [0.78, 0.34]
+    Campaign E: [0.40, 0.34]
+    Campaign F: [0.35, 0.78]
+{{% /multishortcode %}}
 
 ### Requirement Diagram
 
-````md
-```mermaid
-requirementDiagram
+{{% multishortcode name="mermaid" %}}
+content: |
+  requirementDiagram
 
-  requirement test_req {
-    id: 1
-    text: the test text.
-    risk: high
-    verifymethod: test
-  }
+    requirement test_req {
+      id: 1
+      text: the test text.
+      risk: high
+      verifymethod: test
+    }
 
-  element test_entity {
-    type: simulation
-  }
+    element test_entity {
+      type: simulation
+    }
 
-  test_entity - satisfies -> test_req
-```
-````
-
-````mermaid
-requirementDiagram
-
-  requirement test_req {
-    id: 1
-    text: the test text.
-    risk: high
-    verifymethod: test
-  }
-
-  element test_entity {
-    type: simulation
-  }
-
-  test_entity - satisfies -> test_req
-````
+    test_entity - satisfies -> test_req
+{{% /multishortcode %}}
 
 ### Git Graph
 
-````md
-```mermaid
-gitGraph
-  commit
-  commit
-  branch develop
-  checkout develop
-  commit
-  commit
-  checkout main
-  merge develop
-  commit
-  commit
-```
-````
-
-````mermaid
-gitGraph
-  commit
-  commit
-  branch develop
-  checkout develop
-  commit
-  commit
-  checkout main
-  merge develop
-  commit
-  commit
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  gitGraph
+    commit
+    commit
+    branch develop
+    checkout develop
+    commit
+    commit
+    checkout main
+    merge develop
+    commit
+    commit
+{{% /multishortcode %}}
 
 ### C4 Diagrams
 
-````md
-```mermaid
-C4Context
-  title System Context diagram for Internet Banking System
-  Enterprise_Boundary(b0, "BankBoundary0") {
-    Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
-    Person(customerB, "Banking Customer B")
-    Person_Ext(customerC, "Banking Customer C", "desc")
-    Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
+{{% multishortcode name="mermaid" %}}
+content: |
+  C4Context
+    title System Context diagram for Internet Banking System
+    Enterprise_Boundary(b0, "BankBoundary0") {
+      Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
+      Person(customerB, "Banking Customer B")
+      Person_Ext(customerC, "Banking Customer C", "desc")
+      Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
 
-    System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
+      System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
 
-    Enterprise_Boundary(b1, "BankBoundary") {
-      SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+      Enterprise_Boundary(b1, "BankBoundary") {
+        SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
 
-      System_Boundary(b2, "BankBoundary2") {
-        System(SystemA, "Banking System A")
-        System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
-      }
+        System_Boundary(b2, "BankBoundary2") {
+          System(SystemA, "Banking System A")
+          System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
+        }
 
-      System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-      SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+        System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+        SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
 
-      Boundary(b3, "BankBoundary3", "boundary") {
-        SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
-        SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
-      }
-    }
-  }
-
-  BiRel(customerA, SystemAA, "Uses")
-  BiRel(SystemAA, SystemE, "Uses")
-  Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-  Rel(SystemC, customerA, "Sends e-mails to")
-
-  UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-  UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-  UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-  UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-  UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
-
-  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-```
-````
-
-````mermaid
-C4Context
-  title System Context diagram for Internet Banking System
-  Enterprise_Boundary(b0, "BankBoundary0") {
-    Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
-    Person(customerB, "Banking Customer B")
-    Person_Ext(customerC, "Banking Customer C", "desc")
-    Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
-
-    System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
-
-    Enterprise_Boundary(b1, "BankBoundary") {
-      SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
-
-      System_Boundary(b2, "BankBoundary2") {
-        System(SystemA, "Banking System A")
-        System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
-      }
-
-      System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-      SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
-
-      Boundary(b3, "BankBoundary3", "boundary") {
-        SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
-        SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
+        Boundary(b3, "BankBoundary3", "boundary") {
+          SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
+          SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
+        }
       }
     }
-  }
 
-  BiRel(customerA, SystemAA, "Uses")
-  BiRel(SystemAA, SystemE, "Uses")
-  Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-  Rel(SystemC, customerA, "Sends e-mails to")
+    BiRel(customerA, SystemAA, "Uses")
+    BiRel(SystemAA, SystemE, "Uses")
+    Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
+    Rel(SystemC, customerA, "Sends e-mails to")
 
-  UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-  UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-  UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-  UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-  UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+    UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
+    UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+    UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
+    UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
+    UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
 
-  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-````
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+{{% /multishortcode %}}
 
 ### Mindmaps
 
-````md
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-````
-
-````mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  mindmap
+    root((mindmap))
+      Origins
+        Long history
+        ::icon(fa fa-book)
+        Popularisation
+          British popular psychology author Tony Buzan
+      Research
+        On effectiveness<br/>and features
+        On Automatic creation
+          Uses
+              Creative techniques
+              Strategic planning
+              Argument mapping
+      Tools
+        Pen and paper
+        Mermaid
+{{% /multishortcode %}}
 
 ### Timeline
 
-````md
-```mermaid
-timeline
-  title History of Social Media Platform
-  2002 : LinkedIn
-  2004 : Facebook
-       : Google
-  2005 : Youtube
-  2006 : Twitter
-```
-````
-
-````mermaid
-timeline
-  title History of Social Media Platform
-  2002 : LinkedIn
-  2004 : Facebook
-       : Google
-  2005 : Youtube
-  2006 : Twitter
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook
+         : Google
+    2005 : Youtube
+    2006 : Twitter
+{{% /multishortcode %}}
 
 ### ZenUML
 
@@ -665,278 +395,147 @@ zenuml
 
 ### Sankey
 
-````md
-```mermaid
-sankey-beta
-  %% source,target,value
-  Electricity grid,Over generation / exports,104.453
-  Electricity grid,Heating and cooling - homes,113.726
-  Electricity grid,H2 conversion,27.14
-```
-````
-
-````mermaid
-sankey-beta
-  %% source,target,value
-  Electricity grid,Over generation / exports,104.453
-  Electricity grid,Heating and cooling - homes,113.726
-  Electricity grid,H2 conversion,27.14
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  sankey-beta
+    %% source,target,value
+    Electricity grid,Over generation / exports,104.453
+    Electricity grid,Heating and cooling - homes,113.726
+    Electricity grid,H2 conversion,27.14
+{{% /multishortcode %}}
 
 ### XYChart
 
-````md
-```mermaid
-xychart-beta
-  title "Sales Revenue"
-  x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
-  y-axis "Revenue (in $)" 4000 --> 11000
-  bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-  line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-```
-````
-
-````mermaid
-xychart-beta
-  title "Sales Revenue"
-  x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
-  y-axis "Revenue (in $)" 4000 --> 11000
-  bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-  line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  xychart-beta
+    title "Sales Revenue"
+    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    y-axis "Revenue (in $)" 4000 --> 11000
+    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+{{% /multishortcode %}}
 
 ### Block Diagram
 
-````md
-```mermaid
-block-beta
-  columns 1
-    db(("DB"))
-    blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
-    block:ID
-      A
-      B["A wide one in the middle"]
-      C
-    end
-    space
-    D
-    ID --> D
-    C --> D
-    style B fill:#969,stroke:#333,stroke-width:4px
-```
-````
-
-````mermaid
-block-beta
-  columns 1
-    db(("DB"))
-    blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
-    block:ID
-      A
-      B["A wide one in the middle"]
-      C
-    end
-    space
-    D
-    ID --> D
-    C --> D
-    style B fill:#969,stroke:#333,stroke-width:4px
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  block-beta
+    columns 1
+      db(("DB"))
+      blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
+      block:ID
+        A
+        B["A wide one in the middle"]
+        C
+      end
+      space
+      D
+      ID --> D
+      C --> D
+      style B fill:#969,stroke:#333,stroke-width:4px
+{{% /multishortcode %}}
 
 ### Packet
 
-````md
-```mermaid
----
-title: "TCP Packet"
----
-packet-beta
-  0-15: "Source Port"
-  16-31: "Destination Port"
-  32-63: "Sequence Number"
-  64-95: "Acknowledgment Number"
-  96-99: "Data Offset"
-  100-105: "Reserved"
-  106: "URG"
-  107: "ACK"
-  108: "PSH"
-  109: "RST"
-  110: "SYN"
-  111: "FIN"
-  112-127: "Window"
-  128-143: "Checksum"
-  144-159: "Urgent Pointer"
-  160-191: "(Options and Padding)"
-  192-255: "Data (variable length)"
-```
-````
-
-````mermaid
----
-title: "TCP Packet"
----
-packet-beta
-  0-15: "Source Port"
-  16-31: "Destination Port"
-  32-63: "Sequence Number"
-  64-95: "Acknowledgment Number"
-  96-99: "Data Offset"
-  100-105: "Reserved"
-  106: "URG"
-  107: "ACK"
-  108: "PSH"
-  109: "RST"
-  110: "SYN"
-  111: "FIN"
-  112-127: "Window"
-  128-143: "Checksum"
-  144-159: "Urgent Pointer"
-  160-191: "(Options and Padding)"
-  192-255: "Data (variable length)"
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  title: "TCP Packet"
+  ---
+  packet-beta
+    0-15: "Source Port"
+    16-31: "Destination Port"
+    32-63: "Sequence Number"
+    64-95: "Acknowledgment Number"
+    96-99: "Data Offset"
+    100-105: "Reserved"
+    106: "URG"
+    107: "ACK"
+    108: "PSH"
+    109: "RST"
+    110: "SYN"
+    111: "FIN"
+    112-127: "Window"
+    128-143: "Checksum"
+    144-159: "Urgent Pointer"
+    160-191: "(Options and Padding)"
+    192-255: "Data (variable length)"
+{{% /multishortcode %}}
 
 ### Kanban
 
-````md
-```mermaid
----
-config:
-  kanban:
-    ticketBaseUrl: 'https://mermaidchart.atlassian.net/browse/#TICKET#'
----
-kanban
-  Todo
-    [Create Documentation]
-    docs[Create Blog about the new diagram]
-  [In progress]
-    id6[Create renderer so that it works in all cases. We also add som extra text here for testing purposes. And some more just for the extra flare.]
-  id9[Ready for deploy]
-    id8[Design grammar]@{ assigned: 'knsv' }
-  id10[Ready for test]
-    id4[Create parsing tests]@{ ticket: MC-2038, assigned: 'K.Sveidqvist', priority: 'High' }
-    id66[last item]@{ priority: 'Very Low', assigned: 'knsv' }
-  id11[Done]
-    id5[define getData]
-    id2[Title of diagram is more than 100 chars when user duplicates diagram with 100 char]@{ ticket: MC-2036, priority: 'Very High'}
-    id3[Update DB function]@{ ticket: MC-2037, assigned: knsv, priority: 'High' }
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  config:
+    kanban:
+      ticketBaseUrl: 'https://mermaidchart.atlassian.net/browse/#TICKET#'
+  ---
+  kanban
+    Todo
+      [Create Documentation]
+      docs[Create Blog about the new diagram]
+    [In progress]
+      id6[Create renderer so that it works in all cases. We also add som extra text here for testing purposes. And some more just for the extra flare.]
+    id9[Ready for deploy]
+      id8[Design grammar]@{ assigned: 'knsv' }
+    id10[Ready for test]
+      id4[Create parsing tests]@{ ticket: MC-2038, assigned: 'K.Sveidqvist', priority: 'High' }
+      id66[last item]@{ priority: 'Very Low', assigned: 'knsv' }
+    id11[Done]
+      id5[define getData]
+      id2[Title of diagram is more than 100 chars when user duplicates diagram with 100 char]@{ ticket: MC-2036, priority: 'Very High'}
+      id3[Update DB function]@{ ticket: MC-2037, assigned: knsv, priority: 'High' }
 
-  id12[Can't reproduce]
-    id3[Weird flickering in Firefox]
-```
-````
-
-````mermaid
----
-config:
-  kanban:
-    ticketBaseUrl: 'https://mermaidchart.atlassian.net/browse/#TICKET#'
----
-kanban
-  Todo
-    [Create Documentation]
-    docs[Create Blog about the new diagram]
-  [In progress]
-    id6[Create renderer so that it works in all cases. We also add som extra text here for testing purposes. And some more just for the extra flare.]
-  id9[Ready for deploy]
-    id8[Design grammar]@{ assigned: 'knsv' }
-  id10[Ready for test]
-    id4[Create parsing tests]@{ ticket: MC-2038, assigned: 'K.Sveidqvist', priority: 'High' }
-    id66[last item]@{ priority: 'Very Low', assigned: 'knsv' }
-  id11[Done]
-    id5[define getData]
-    id2[Title of diagram is more than 100 chars when user duplicates diagram with 100 char]@{ ticket: MC-2036, priority: 'Very High'}
-    id3[Update DB function]@{ ticket: MC-2037, assigned: knsv, priority: 'High' }
-
-  id12[Can't reproduce]
-    id3[Weird flickering in Firefox]
-````
+    id12[Can't reproduce]
+      id3[Weird flickering in Firefox]
+{{% /multishortcode %}}
 
 ### Architecture
 
-````md
-```mermaid
-architecture-beta
-  group api(cloud)[API]
+{{% multishortcode name="mermaid" %}}
+content: |
+  architecture-beta
+    group api(cloud)[API]
 
-  service db(database)[Database] in api
-  service disk1(disk)[Storage] in api
-  service disk2(disk)[Storage] in api
-  service server(server)[Server] in api
+    service db(database)[Database] in api
+    service disk1(disk)[Storage] in api
+    service disk2(disk)[Storage] in api
+    service server(server)[Server] in api
 
-  db:L -- R:server
-  disk1:T -- B:server
-  disk2:T -- B:db
-```
-````
-
-````mermaid
-architecture-beta
-  group api(cloud)[API]
-
-  service db(database)[Database] in api
-  service disk1(disk)[Storage] in api
-  service disk2(disk)[Storage] in api
-  service server(server)[Server] in api
-
-  db:L -- R:server
-  disk1:T -- B:server
-  disk2:T -- B:db
-````
+    db:L -- R:server
+    disk1:T -- B:server
+    disk2:T -- B:db
+{{% /multishortcode %}}
 
 ### Radar
 
-````md
-```mermaid
----
-title: "Grades"
----
-radar-beta
-  axis m["Math"], s["Science"], e["English"]
-  axis h["History"], g["Geography"], a["Art"]
-  curve a["Alice"]{85, 90, 80, 70, 75, 90}
-  curve b["Bob"]{70, 75, 85, 80, 90, 85}
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  title: "Grades"
+  ---
+  radar-beta
+    axis m["Math"], s["Science"], e["English"]
+    axis h["History"], g["Geography"], a["Art"]
+    curve a["Alice"]{85, 90, 80, 70, 75, 90}
+    curve b["Bob"]{70, 75, 85, 80, 90, 85}
 
-  max 100
-  min 0
-```
-````
-
-````mermaid
----
-title: "Grades"
----
-radar-beta
-  axis m["Math"], s["Science"], e["English"]
-  axis h["History"], g["Geography"], a["Art"]
-  curve a["Alice"]{85, 90, 80, 70, 75, 90}
-  curve b["Bob"]{70, 75, 85, 80, 90, 85}
-
-  max 100
-  min 0
-````
+    max 100
+    min 0
+{{% /multishortcode %}}
 
 ### Treemap
 
-````md
-```mermaid
-treemap-beta
-"Section 1"
-    "Leaf 1.1": 12
-    "Section 1.2"
-      "Leaf 1.2.1": 12
-"Section 2"
-    "Leaf 2.1": 20
-    "Leaf 2.2": 25
-```
-````
-
-````mermaid
-treemap-beta
-"Section 1"
-    "Leaf 1.1": 12
-    "Section 1.2"
-      "Leaf 1.2.1": 12
-"Section 2"
-    "Leaf 2.1": 20
-    "Leaf 2.2": 25
-````
+{{% multishortcode name="mermaid" %}}
+content: |
+  treemap-beta
+  "Section 1"
+      "Leaf 1.1": 12
+      "Section 1.2"
+        "Leaf 1.2.1": 12
+  "Section 2"
+      "Leaf 2.1": 20
+      "Leaf 2.2": 25
+{{% /multishortcode %}}

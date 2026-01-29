@@ -1,36 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI agents when working with code in this repository.
 
 ## Overview
 
-Hugo Relearn Theme is a documentation theme for Hugo, forked from the Learn theme. It's designed for creating documentation sites with features like multilingual support, dark mode, search, print support, and extensive shortcodes.
+Hugo Relearn Theme is a documentation theme for the static site generator [Hugo](https://github.com/gohugoio/hugo), forked from the [Learn](https://github.com/matcornic/hugo-theme-learn) theme. It's designed for creating documentation sites with features like multilingual support, dark mode, search, print support, and extensive shortcodes.
 
-Minimum Hugo version required can be found in `theme.toml`.
+This projects contains its documentation in `docs` which is built with Hugo and the theme itself (eat your own dogfood). A simplified example to be used as a starting point for new users is in `exampleSite`.
 
-## Development Commands
+### Testing the Theme
 
-### Running the Theme
-
-Development uses the `docs` for manual testing and documenting new features.
+The user starts Hugo webserver on the default port (1313). This is prohibited for AI agents which _must_ use port 3131.
 
 ```bash
-# Run the dev server from exampleSite directory
-cd exampleSite
-hugo server -p 1414
+cd docs && hugo server -p 3131 --printPathWarnings --printI18nWarnings --cleanDestinationDir --logLevel info
 ```
 
-Development uses the `exampleSite` for manual testing and providing a simple showcase. The goal is to keep configuration minimal and be a first starting point for new users.
+### Configurations
 
-```bash
-# Run the dev server from exampleSite directory
-cd exampleSite
-hugo server
-```
-
-#### Configurations
-
-During development cycles, the server is started manually without an environment option.
+During development cycles, the server is started without an environment option which effectivley only loads the **_default** configuration.
 
 The following other environments are available:
 
@@ -40,23 +28,37 @@ The following other environments are available:
 - **performance** - disables all performance intensive features to make building as fast as possible
 - **versioning** - used to manually test the versioning feature
 
-### Building
+To run a specifig configuration
 
 ```bash
-# Build from docs
-cd docs
-hugo
-
-# Build with minification (production)
-hugo --minify
+cd docs && hugo server -p 3131 -e performance
 ```
+
+### Debugging
+
+If necessary to find a problem, add debug output into the templates.
+
+- To write to the console
+
+  ````go
+  {{ warnf "%d %q" math.Counter $thing_to_see }}
+  ````
+
+- To write into the resulting HTML (this only works in templates that don't `return` at the end)
+
+  ````go
+  {{ printf "\n%d %q" math.Counter $thing_to_see }}
+  ````
+
+## Tools
 
 ### Screenshots Tool
 
+For development, a tool to automatically generate screenshots for the docs can be run with
+
 ```bash
-# Generate screenshots using Puppeteer
 cd tools
-npm install
+npm ci
 npm run screenshots
 ```
 
@@ -180,7 +182,8 @@ Python-based git hooks in `.githooks/`:
 
 ### Front Matter
 
-Standard front matter for content:
+Standard front matter for content is in TOML format:
+
 ````toml
 +++
 title = "Page Title"
@@ -202,7 +205,8 @@ weight = 10  # Ordering in sidebar
 
 ## Testing
 
-Test against the exampleSite which demonstrates all theme features. Verify:
+Test against the `docs` directory which demonstrates all theme features. Verify:
+
 - Search functionality (both Lunr and Orama)
 - Print output
 - Theme variant switching
