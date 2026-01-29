@@ -1,6 +1,8 @@
 {{- $page := .page }}
 
-{{- $calls := transform.Unmarshal (printf "%s\n\n" .content) }}
+{{- /* Normalize line endings to CRLF so that \r survives YAML single-quoted string folding */}}
+{{- $normalizedContent := replaceRE `\r?\n` "\r\n" .content }}
+{{- $calls := transform.Unmarshal (printf "%s\n\n" $normalizedContent) }}
 {{- if reflect.IsMap $calls }}
   {{- $calls = slice $calls }}
 {{- end }}
