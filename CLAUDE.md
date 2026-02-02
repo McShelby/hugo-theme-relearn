@@ -166,7 +166,6 @@ Example: `search: improve Orama integration for multilingual sites`
 ### Git Hooks
 
 Python-based git hooks in `.githooks/`:
-- `post-commit.py` - Post-commit processing
 - `pre-push.py` - Pre-push validation
 
 ## Important Files
