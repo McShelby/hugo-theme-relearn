@@ -14,29 +14,20 @@
 # #!/bin/sh
 # python3 .githooks/post-commit.py
 # ```
+#
+# also add the following line to your ".git/config" to avoid
+# merge conflicts on amending the commit during a merge or rebase
+#
+# ```sh
+# git config --local merge.ours.driver true
+# ```
 
 from datetime import datetime
 import os
 import re
 import subprocess
 
-def is_special_git_operation():
-    git_dir = subprocess.check_output(['git', 'rev-parse', '--git-dir'], universal_newlines=True).strip()
-    indicators = [
-        os.path.join(git_dir, 'rebase-merge'),
-        os.path.join(git_dir, 'rebase-apply'),
-        os.path.join(git_dir, 'CHERRY_PICK_HEAD'),
-        os.path.join(git_dir, 'MERGE_HEAD'),
-        os.path.join(git_dir, 'BISECT_LOG'),
-        os.path.join(git_dir, 'REVERT_HEAD'),
-    ]
-    return any(os.path.exists(ind) for ind in indicators)
-
 def update_version(script_name, log_file, time, repo_name):
-    if is_special_git_operation():
-        print(f'{time}: {repo_name} - {script_name} - Skipping during rebase/cherry-pick/merge', file=open(log_file, "a"))
-        return
-
     file_path = 'layouts/partials/version.txt'
     try:
         f = open(file_path, 'r+')
