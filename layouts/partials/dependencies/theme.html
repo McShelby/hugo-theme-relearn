@@ -22,7 +22,9 @@
     {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
     {{- $quotedthemevariants := slice }}
     {{- range $themevariants }}
-      {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
+      {{- if not .hidden }}
+        {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
+      {{- end }}
     {{- end }}
     {{- $wrap := true }}
     {{- if isset site.Params "highlightwrap" }}

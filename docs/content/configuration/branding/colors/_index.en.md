@@ -115,6 +115,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
 | auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
 | logo                  | _&lt;empty&gt;_ | [Override for the default logo](configuration/branding/logo#variant-specific-logos) |
+| hidden                | `false`         | If `true`, the variant will not be shown in the variant switcher but is still available for internal use (e.g. to override parameter when used as a sub-variant of an auto mode variant). |
 
 #### Example Configuration
 

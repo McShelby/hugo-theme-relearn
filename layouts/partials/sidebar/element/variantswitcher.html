@@ -1,4 +1,10 @@
-{{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
+{{- $allthemevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
+{{- $themevariants := slice }}
+{{- range $allthemevariants }}
+  {{- if not .hidden }}
+    {{- $themevariants = $themevariants | append . }}
+  {{- end }}
+{{- end }}
 {{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
 {{- if $showvariantswitch }}
   {{- $icon := .element.icon | default "paint-brush" }}
