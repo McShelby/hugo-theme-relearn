@@ -107,8 +107,9 @@
         {{- if $.withDescription }}
           {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
           {{- with $description }}
+            {{- $text := replace (replace . "\r\n" "\n") "\n" (printf "\n%s    " $indent) }}
 
-{{ $indent }}    {{ . }}
+{{ $indent }}    {{ $text }}
           {{- end }}
         {{- end }}
       {{- end }}

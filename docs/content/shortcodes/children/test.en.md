@@ -1,6 +1,8 @@
 ---
 description: |
-  This is a plain page test, and the beginning of a YAML multiline description...
+  This is a plain page test, and the beginning of a YAML multiline description with...
+
+  multiple paragraphs
 tags:
   - "Children"
 title: "page X"
