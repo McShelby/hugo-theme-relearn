@@ -51,14 +51,14 @@ Here's how to make your site multilingual using [translations by file name](http
     [languages]
       [languages.en]
         weight = 1
-        languageName = 'English'
-        languageCode = 'en'
+        label = 'English'
+        locale = 'en'
         title = 'My Website'
 
       [languages.pir]
         weight = 2
-        languageName = 'Pirrratish'
-        languageCode = 'art-x-pir'
+        label = 'Pirrratish'
+        locale = 'art-x-pir'
         languageDirection = 'rtl'
         title = 'Arrr, my Website'
     {{< /multiconfig >}}
@@ -98,15 +98,15 @@ The theme also support [translations by content directory](https://gohugo.io/con
     [languages]
       [languages.en]
         weight = 1
-        languageName = 'English'
-        languageCode = 'en'
+        label = 'English'
+        locale = 'en'
         contentDir = 'content/en'
         title = 'My Website'
 
       [languages.pir]
         weight = 2
-        languageName = 'Pirrratish'
-        languageCode = 'art-x-pir'
+        label = 'Pirrratish'
+        locale = 'art-x-pir'
         languageDirection = 'rtl'
         contentDir = 'content/pir'
         title = 'Arrr, my Website'

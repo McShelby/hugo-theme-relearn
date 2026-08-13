@@ -14,7 +14,7 @@
                   <select id="R-select-language">
                     {{- $pageLang := .page.Language.Lang }}
                     {{- range .page.AllTranslations }}
-                    <option id="R-select-language-{{ .Language.Lang }}" value="{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.LanguageCode }}"{{ if eq $pageLang .Language.Lang }} selected data-selected{{ end }}>{{ .Language.LanguageName }}</option>
+                    <option id="R-select-language-{{ .Language.Lang }}" value="{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.Locale }}"{{ if eq $pageLang .Language.Lang }} selected data-selected{{ end }}>{{ .Language.Label }}</option>
                     {{- end }}
                   </select>
                 </div>

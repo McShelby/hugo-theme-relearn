@@ -8,7 +8,7 @@
 
 {{- if eq $location "header" }}
   {{- with $page }}
-    {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Language.LanguageCode }}
+    {{- $pageBaseLang := replaceRE "([a-z]+).*" "${1}" .Page.Language.Locale }}
     {{- $additionalContentLanguage := slice }}
     {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.adapter) (reflect.IsMap site.Params.search.adapter.params) site.Params.search.adapter.params }}
       {{- $additionalContentLanguage = .additionalContentLanguage | default $additionalContentLanguage }}
