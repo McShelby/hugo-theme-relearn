@@ -3,9 +3,14 @@
 {{- if and
 	(or .page.Params.urlExternalCheck site.Params.urlExternalCheck)
 	(partial "_relearn/urlErrorCheck.gotmpl" (dict "page" $page "url" .url)) }}
-	{{- $checkedUrls := (hugo.Store.Get "r-checked-urls") | default dict }}
-	{{- if not (isset $checkedUrls .url) }}
-		{{- hugo.Store.SetInMap "r-checked-urls" .url 1 }}
+	{{- /* One store key per URL, never a map: hugo.Store.Get hands back the
+	underlying map by reference, so reading it with isset while a sibling
+	goroutine writes through SetInMap crashes Hugo with "concurrent map read
+	and map write". Get and Set are individually locked, so per-URL keys are
+	safe. */}}
+	{{- $checkedKey := printf "r-checked-url-%s" .url }}
+	{{- if not (hugo.Store.Get $checkedKey) }}
+		{{- hugo.Store.Set $checkedKey true }}
 		{{- with try (resources.GetRemote .url) }}
 			{{- with .Value }}
 				{{- with .Data }}
