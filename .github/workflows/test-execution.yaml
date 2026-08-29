@@ -1,0 +1,62 @@
+name: test-execution
+
+# Validates a theme change against the test suite in hugo-theme-relearn-infra.
+# The suite is not in this repository because it is not shipped to theme users.
+
+# Runs on every branch and every pull request. It never releases, deploys or
+# publishes anything, and it is deliberately not hand-triggerable: a test
+# result should always correspond to a commit somebody actually pushed.
+on:
+  push:
+  pull_request:
+  # Called by version-release, so that a release cannot happen on a red suite.
+  # This is not a manual trigger - it only fires as part of that workflow.
+  workflow_call:
+
+jobs:
+  test:
+    name: hugo ${{ matrix.hugo }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        hugo: [min, latest]
+    steps:
+      - name: Checkout theme
+        uses: actions/checkout@v4
+        with:
+          path: theme
+
+      # A change spanning both repositories is reviewed as a pair of
+      # same-named branches. Everything else runs against infra main.
+      - name: Pick infra branch
+        id: pick
+        shell: bash
+        run: |
+          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+          if git ls-remote --exit-code --heads \
+               https://github.com/McShelby/hugo-theme-relearn-infra "$BRANCH" >/dev/null 2>&1; then
+            REF="$BRANCH"
+          else
+            REF=main
+          fi
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+          echo "Using infra branch $REF"
+
+      - name: Checkout infra
+        uses: actions/checkout@v4
+        with:
+          repository: McShelby/hugo-theme-relearn-infra
+          ref: ${{ steps.pick.outputs.ref }}
+          path: infra
+
+      # Referenced through the checkout rather than by @main, so that a
+      # matching infra branch supplies its own version of the action too.
+      # GitHub does not allow expressions in `uses`, so this is also the only
+      # way to follow the branch chosen above.
+      - name: Run tests
+        uses: ./infra/.github/actions/run-test
+        with:
+          theme_dir: theme
+          infra_dir: infra
+          hugo: ${{ matrix.hugo }}

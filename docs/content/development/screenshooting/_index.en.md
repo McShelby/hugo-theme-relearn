@@ -1,7 +1,8 @@
 +++
 categories = ['explanation', 'howto']
 description = 'Recipe to create various documentation screenshots'
-title = 'Screenshots'
+title = 'Screenshooting'
+weight = 5
 +++
 
 Sometimes screenshots need to be redone. This page explains how to create the different screenshots, tools and settings
@@ -87,10 +88,19 @@ The content should be:
 
 The feature images for the [shortcodes](shortcodes) are generated automatically via a [Node.js](https://nodejs.org) script.
 
-It is located in the repository inside of the `/tools` directory. All following commands need to be executed from this directory.
+It lives in the [infra repository](development/developing) inside of the `tools/screenshots` directory. All following commands need to be executed from the root of that repository.
 
 To recreate the screenshots
 
 - install Node.js according to their installation guide
-- run `npm install`
+- check out the infra repository next to the theme, as described in [Developing](development/developing)
+- run `npm ci`
 - run `npm run screenshots`
+
+The script serves the documentation itself on port 3132, captures each page and writes the result back into `docs/content/<shortcode>/featured.png` of the resolved theme checkout. To capture against a server you are already running instead, pass its address:
+
+````shell
+npm run screenshots -- --base=http://localhost:1313
+````
+
+Run this locally and commit the resulting images with the change that made them stale. The regenerated files land in your theme checkout, so they show up in `git status` alongside everything else.

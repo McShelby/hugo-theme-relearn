@@ -25,3 +25,10 @@ disableHugoGeneratorInject = true
   disableAssetsBusting = true
   disableRandomIds = true
   minify = false
+  # Checking external links reaches out to the network on every build, and a
+  # cold cache - which is what CI always has - means every external URL in the
+  # docs is fetched again. That makes an otherwise deterministic test run
+  # depend on third-party sites being up, and turns link rot into a test
+  # failure indistinguishable from a theme regression. Link checking still
+  # happens in the default environment, where it belongs.
+  urlExternalCheck = false

@@ -1,30 +1,19 @@
-name: version-release
-
-# On main this performs a full release.
-#
-# On any other branch it runs everything that is safe to repeat - tests,
-# documentation build, artifact upload - and skips the steps that mutate the world:
-# tagging, committing, publishing and deployment. The built site is uploaded as an
-# artifact either way, so a release can be rehearsed and its output inspected
-# before it is made for real.
+name: docs-publication
 
 on:
-  workflow_dispatch:
-    inputs:
-      milestone:
-        description: 'Milestone for this release (required on main, ignored elsewhere)'
-        required: false
+  push: # Build on all pushes but only deploy for main branch
+  workflow_dispatch: # Allow this task to be manually started (you'll never know)
 
 jobs:
-  # A release must not happen on a red suite.
-  test:
-    name: Run tests
-    uses: ./.github/workflows/test-execution.yaml
-
-  release:
-    name: Run release
-    needs: test
+  deploy:
+    name: Run deploy
     runs-on: ubuntu-latest
+    # Deployment happens from main and nowhere else. The previous condition
+    # only constrained the branch for `push`, so a manual dispatch from any
+    # branch would have published that branch to GitHub Pages. Branch builds
+    # are covered by test-execution, which builds the docs in both the `testing`
+    # and `github` environments.
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -32,8 +21,9 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           # fetch-depth: 0   # Fetch all history for .GitInfo and .Lastmod - not necessary for this repo
 
-      # A change spanning both repositories is reviewed as a pair of same-named
-      # branches. Everything else runs against infra main.
+      # This job only runs on main, so the lookup resolves to infra main in
+      # practice. It is kept identical to the other workflows so there is one
+      # rule to remember rather than an exception.
       - name: Pick infra branch
         id: pick
         shell: bash
@@ -55,24 +45,6 @@ jobs:
           ref: ${{ steps.pick.outputs.ref }}
           path: infra
 
-      # Owns the branch rule: `success` only on main with a releasable
-      # milestone, `skipped` on any other branch, and a non-zero exit when the
-      # milestone is not releasable. Nothing below needs to know about
-      # branches - it all keys off this one outcome.
-      - name: Check milestone
-        id: check
-        uses: ./infra/.github/actions/check-milestone
-        with:
-          milestone: ${{ github.event.inputs.milestone }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create release
-        if: steps.check.outputs.outcome == 'success'
-        uses: ./infra/.github/actions/release-milestone
-        with:
-          milestone: ${{ github.event.inputs.milestone }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build site
         uses: ./infra/.github/actions/build-site
 
@@ -80,11 +52,11 @@ jobs:
       # rather than relying on the uploader to accept a path above the root.
       #
       # These two steps come before the deployment so that a failed deploy
-      # still leaves an artifact to inspect. They are continue-on-error
-      # because the reverse must not hold: steps carry an implicit success(),
-      # so without it a flaky upload would skip the deployment - and by this
-      # point the release is already tagged, committed and published, so that
-      # would strand a completed release behind a stale site.
+      # still leaves an artifact to inspect - which is exactly when one is
+      # wanted. They are continue-on-error because the reverse must not hold:
+      # steps carry an implicit success(), so without it a flaky upload would
+      # skip the deployment, letting a convenience block the whole point of
+      # the workflow.
       - name: Stage the built site artifact
         continue-on-error: true
         shell: bash
@@ -102,7 +74,6 @@ jobs:
           path: ${{ runner.temp }}/site
           retention-days: 30
 
-      # No condition needed: deploy-site publishes from main and nowhere else.
       - name: Deploy site
         uses: ./infra/.github/actions/deploy-site
         with:

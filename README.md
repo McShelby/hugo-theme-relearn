@@ -78,6 +78,8 @@ Visit the [What's New](https://mcshelby.github.io/hugo-theme-relearn/introductio
 
 We welcome contributions for bug fixes and new features. Please see the [contribution guidelines](https://mcshelby.github.io/hugo-theme-relearn/development/contributing) before getting started.
 
+If you want to go further - running the test suite or regenerating the documentation screenshots - the [Development](https://mcshelby.github.io/hugo-theme-relearn/development) section explains the setup.
+
 ## Licensing
 
 The Relearn theme is distributed under the [MIT License](https://github.com/McShelby/hugo-theme-relearn/blob/main/LICENSE).

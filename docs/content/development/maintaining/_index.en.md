@@ -2,6 +2,7 @@
 categories = ['explanation', 'howto']
 description = 'What to know as a maintainer'
 title = 'Maintaining'
+weight = 4
 +++
 
 ## Semver
@@ -96,26 +97,21 @@ If the issue is not caused by a programming error in the themes own code, you ca
 | {{% badge color="#e550a7" %}}hugo{{% /badge %}}     | This is a topic related to Hugo itself but not the theme    |
 | {{% badge color="#e550a7" %}}mermaid{{% /badge %}}  | This is a topic related to Mermaid itself but not the theme |
 
-## Setting Up a Development Environment
-
-Git Hooks are used to automate some tasks. They are stored in the `.githooks` root folder.
-
-Documentation for each hook is contained in each file.
-
-At least the `pre-commit` hook is required, as it updates the version number on each commit. This helps to help debugging of user related issues.
-
 ## Making Releases
 
 A release is based on a milestone named like the release itself - just the version number, eg: `1.2.3`. It's in the maintainers responsibility to check [semver semantics](#semver) of the milestone's name prior to release and change it if necessary.
 
-Making releases is automated by the `version-release` GitHub Action. It requires the version number of the milestone that should be released. The release will be created from the `main` branch of the repository.
+Making releases is automated by the `version-release` GitHub workflow. It requires the version number of the milestone that should be released. The release will be created from the `main` branch of the repository.
 
 Treat released milestones as immutable. Don't rerelease an already released milestone. An already released milestone may already been consumed by your users.
 
-During execution of the action a few things are checked. If a check fails the action fails, resulting in no new release. You can correct the errors afterwards and rerun the action.
+### Automation Steps
+
+During execution of the workflow a few things are checked. If a check fails the action fails, resulting in no new release. You can correct the errors afterwards and rerun the action.
 
 The following checks will be enforced
 
+- the [test suite](development/testing) passes against both the minimum supported and the latest Hugo release
 - the milestone exists
 - there is at least one closed issue assigned to the milestone
 - all assigned issues for this milestone are closed
@@ -135,3 +131,9 @@ After a successful run of the action
 - the [official documentation](https://mcshelby.github.io/hugo-theme-relearn/) is built and deployed
 - the version number for the `<meta generator>` is updated to a temporary and committed (this helps to determine if users are running directly on the main branch or are using releases)
 - a new milestone for the next patch release is created (this can later be renamed to a main release if necessary)
+
+### Rehearsing on a Branch
+
+The workflow only performs an actual release when it runs on `main`. Started on any other branch it runs the parts that are safe to repeat - the [test suite](development/testing) and the documentation build - and skips every step that changes something outside the run: the milestone check, tagging, committing, publishing the GitHub release and deploying to GitHub Pages. The milestone input is ignored there, and only required on `main`.
+
+In both cases the built site is uploaded as a workflow artifact named `<workflow>-<run number>-<run id>` and kept for 30 days, so you can download the result of a run and inspect it before releasing for real. It is found at the bottom of the run's summary page in the [Actions tab](https://github.com/McShelby/hugo-theme-relearn/actions/workflows/version-release.yaml).

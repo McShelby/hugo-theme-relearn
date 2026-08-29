@@ -22,7 +22,7 @@ During development cycles, the server is started without an environment option w
 
 The following other environments are available:
 
-- **testing** - used to test the site during development using `test-hugo.bat`
+- **testing** - makes output deterministic so it can be compared byte for byte; used by the test suite in the infra repo
 - **github** - used to release the site on GitHub Pages
 - **dev** - used to generate the site similar to GitHub Pages but usable locally
 - **performance** - disables all performance intensive features to make building as fast as possible
@@ -52,12 +52,31 @@ If necessary to find a problem, add debug output into the templates.
 
 ## Tools
 
+Tests, tooling and CI automation live in a separate repository,
+[hugo-theme-relearn-infra](https://github.com/McShelby/hugo-theme-relearn-infra),
+checked out as a sibling of this one. This repository holds only what is
+shipped to theme users.
+
+```
+repos/
+  hugo-theme-relearn/         # this repo - shipped
+  hugo-theme-relearn-infra/   # tests, screenshots, CI actions, git hooks
+```
+
+### Tests
+
+```bash
+cd ../hugo-theme-relearn-infra
+npm ci
+npm test
+```
+
 ### Screenshots Tool
 
 For development, a tool to automatically generate screenshots for the docs can be run with
 
 ```bash
-cd tools
+cd ../hugo-theme-relearn-infra
 npm ci
 npm run screenshots
 ```
@@ -165,8 +184,17 @@ Example: `search: improve Orama integration for multilingual sites`
 
 ### Git Hooks
 
-Python-based git hooks in `.githooks/`:
-- `pre-push.py` - Pre-push validation
+Python-based git hooks in `.githooks/`. They act on this repository, so they
+stay here rather than moving to the infra repo, and are installed into
+`.git/hooks/`:
+
+```sh
+# .git/hooks/post-commit
+#!/bin/sh
+python3 .githooks/post-commit.py
+```
+
+- `post-commit.py` - stamps the commit hash into `layouts/partials/version.txt`
 
 ## Important Files
 
