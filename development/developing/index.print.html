@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html id="R-html" lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.165.0">
+    <meta name="generator" content="Relearn 9.0.3+9207504ae35b0a0861faf667a6e296b12cc8a575">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="How to set up, and how the theme and its tooling are split">
+    <meta name="author" content="Sören Weber">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta name="twitter:title" content="Developing :: Hugo Relearn Theme">
+    <meta name="twitter:description" content="How to set up, and how the theme and its tooling are split">
+    <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/development/developing/index.html">
+    <meta property="og:site_name" content="Hugo Relearn Theme">
+    <meta property="og:title" content="Developing :: Hugo Relearn Theme">
+    <meta property="og:description" content="How to set up, and how the theme and its tooling are split">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="name" content="Developing :: Hugo Relearn Theme">
+    <meta itemprop="description" content="How to set up, and how the theme and its tooling are split">
+    <meta itemprop="wordCount" content="638">
+    <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
+    <meta itemprop="keywords" content="Explanation,Howto">
+    <title>Developing :: Hugo Relearn Theme</title>
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/development/developing/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/development/developing/index.html" rel="alternate" hreflang="en">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/pir/development/developing/index.html" rel="alternate" hreflang="art-x-pir">
+    <link href="https://mcshelby.github.io/hugo-theme-relearn/development/developing/index.html" rel="canonical" type="text/html" title="Developing :: Hugo Relearn Theme">
+    <link href="/hugo-theme-relearn/development/developing/index.xml" rel="alternate" type="application/rss+xml" title="Developing :: Hugo Relearn Theme">
+    <link href="/hugo-theme-relearn/images/logo.svg?1788388847" rel="icon" type="image/svg+xml">
+    <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.css?1788388847" rel="stylesheet">
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.js?1788388847" defer></script>
+    <script src="/hugo-theme-relearn/js/search-lunr.min.js?1788388847" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.js?1788388847" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.en.js?1788388847";
+    </script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.min.js?1788388847" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.js?1788388847" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.multi.min.js?1788388847" defer></script>
+    <script src="/hugo-theme-relearn/js/lunr/lunr.en.min.js?1788388847" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.css?1788388847" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.css?1788388847" rel="stylesheet"></noscript>
+    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.css?1788388847" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.css?1788388847" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.css?1788388847" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/development\/developing\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/mcshelby.github.io\/hugo-theme-relearn';
+      window.relearn.disableInlineCopyToClipboard=true;
+      window.relearn.enableBlockCodeWrap=true;
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'relearn-auto', 'relearn-dark', 'relearn-light', 'relearn-bright', 'zen-auto', 'zen-dark', 'zen-light', 'retro-auto', 'neon', 'learn', 'blue', 'green', 'red' ];
+      window.relearn.customvariantprefix = "my-custom-";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( !variant ||
+            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
+            (variant.startsWith(window.relearn.customvariantprefix) && !window.localStorage.getItem(window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+    <style>
+       
+      #R-body img.bg-white {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body class="mobile-support print" data-origin="/hugo-theme-relearn/development/developing/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-table-list"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#why-the-split">Why the Split</a></li>
+    <li><a href="#setting-up">Setting Up</a>
+      <ul>
+        <li><a href="#the-simple-setup">The Simple Setup</a></li>
+        <li><a href="#the-full-setup">The Full Setup</a></li>
+        <li><a href="#git-hooks">Git Hooks</a></li>
+      </ul>
+    </li>
+    <li><a href="#working-across-both-repositories">Working Across Both Repositories</a></li>
+  </ul>
+</nav> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="/hugo-theme-relearn/index.html"><span itemprop="name">Hugo Relearn Theme</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/development/index.html"><span itemprop="name">Development</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Developing</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-edit default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle button link noborder notitle interactive"><a href="https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/development/developing/_index.en.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-theme-relearn/development/developing/index.print.html" title="Print whole chapter (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-theme-relearn/development/contributing/index.html" title="Contributing (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-theme-relearn/development/testing/index.html" title="Testing (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable development" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="developing">Developing</h1>
+
+<p>The theme is developed across two repositories.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Repository</th>
+					<th>Contents</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><a href="https://github.com/McShelby/hugo-theme-relearn" rel="external" target="_self">hugo-theme-relearn</a></td>
+					<td>The theme itself, and the workflows, release actions and git hooks that act on it.</td>
+			</tr>
+			<tr>
+					<td><a href="https://github.com/McShelby/hugo-theme-relearn-infra" rel="external" target="_self">hugo-theme-relearn-infra</a></td>
+					<td>The test suite and the tooling that drives it. Nothing here is shipped to users.</td>
+			</tr>
+	</tbody>
+</table>
+<p>The rule for deciding where something belongs is a single question: <strong>does somebody installing the theme need this file?</strong> If not, it belongs in the infra repository - unless it can only act from the theme repository. GitHub runs a workflow only in the repository holding it, and a git hook only fires on the checkout it sits in, so those stay put, along with the actions those workflows call.</p>
+
+<details open class="box cstyle notices important">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-bolt"></i> 
+    Where to report
+  </summary>
+  <div class="box-content">
+<p>Open issues in the <a href="https://github.com/McShelby/hugo-theme-relearn/issues" rel="external" target="_self">theme repository</a>, even when they concern the tests or the tooling.</p>
+<p>Issues, milestones and releases are all tracked there, and a release is cut from a milestone in that repository. A second tracker would split that history apart.</p>
+  </div>
+</details>
+<h2 id="why-the-split">Why the Split<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>For a Hugo theme the repository <em>is</em> the distributed artifact. Anything committed to it is downloaded by every user, so a test suite and a screenshot generator would be dead weight for every consumer.</p>
+<p>The <code>docs</code> and <code>exampleSite</code> directory stay in the theme repository despite not being needed to run the theme to make the theme self-contained and help to quickly set up a test installation.</p>
+<h2 id="setting-up">Setting Up<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>There are two setups. Pick the smaller one unless you need what the larger one adds - most contributions never do.</p>
+<h3 id="the-simple-setup">The Simple Setup<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
+<p>One repository and Hugo. Nothing else to install.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/McShelby/hugo-theme-relearn.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn/docs
+</span></span><span class="line"><span class="cl">hugo server</span></span></code></pre></div>
+<p>That serves the documentation site, built with the theme itself, so your changes show up as you save. Swap <code>docs</code> for <code>exampleSite</code> to work against the simpler starting-point site instead.</p>
+<p>This is enough for most changes. If that is what you came to do, stop here.</p>
+
+<details open class="box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    Note
+  </summary>
+  <div class="box-content">
+<p>You cannot run the test suite in this setup, so your change gets verified by CI rather than by you. Take the second setup if you want the answer before pushing.</p>
+  </div>
+</details>
+<h3 id="the-full-setup">The Full Setup<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
+<p>Add the infra repository as a sibling of the theme. This is what you need to run the <a href="/hugo-theme-relearn/development/testing/index.html">test suite</a>, regenerate the <a href="/hugo-theme-relearn/development/screenshooting/index.html">screenshots</a>, or change the CI workflows.</p>
+<div class="list-tree"><ul>
+<li>hugo-theme-relearn/</li>
+<li>hugo-theme-relearn-infra/</li>
+</ul>
+</div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
+</span></span><span class="line"><span class="cl">npm ci
+</span></span><span class="line"><span class="cl">npm test</span></span></code></pre></div>
+<p>The tooling finds the theme by looking at the <code>RELEARN_THEME_DIR</code> environment variable, then a sibling directory named <code>hugo-theme-relearn</code>, then the parent directory. The theme is never copied into the infra repository, so the tests always run against a real checkout.</p>
+<p>To point the tooling at a checkout somewhere else:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">RELEARN_THEME_DIR</span><span class="o">=</span>/path/to/hugo-theme-relearn npm test</span></span></code></pre></div>
+<h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
+<p>Optional, and independent of which setup you chose - the hooks live in the theme repository, in the <code>.githooks</code> root folder. Documentation for each hook is contained in each file.</p>
+<p>The <code>post-commit</code> hook updates the version number on each commit, which is what makes a build from <code>main</code> distinguishable from a release when debugging user reports. Nothing depends on you having it.</p>
+<div class="tab-panel" data-tab-group="R-tabs-8d3ee611ea597c205079e108c73f13ed">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      aria-controls="R-tab-id-f1586ea93a1a329bb5bfb1b80cbba2a5" aria-expanded="true"
+      data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('R-tabs-8d3ee611ea597c205079e108c73f13ed','R-tab-f7180604fa78a35320b04d0d8432a023')"
+    >
+      <span class="tab-nav-text">.git/hooks/post-commit</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      id="R-tab-id-f1586ea93a1a329bb5bfb1b80cbba2a5"
+      data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl">python3 .githooks/post-commit.py</span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div><h2 id="working-across-both-repositories">Working Across Both Repositories<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>Only this repository triggers test runs; the infra repository triggers nothing.</p>
+<p><strong>A change spanning both</strong> - a theme change that alters what the tests expect - takes the same branch name in each, and the infra branch is pushed <strong>first</strong>. The single run the push here then starts sees both halves. The other way round it pairs against infra <code>main</code> and can pass while testing only half the change; nothing detects that, so the order is the safeguard.</p>
+<p><strong>A change to the suite alone</strong> - a runner refactor, a regenerated baseline - never reaches this repository, so nothing triggers. Start a run from the Actions tab and name the infra branch in <code>infra_ref</code>.</p>
+<p>Each workflow is described on the page for the thing it does: the <a href="/hugo-theme-relearn/development/testing/index.html#continuous-integration">test suite</a> and <a href="/hugo-theme-relearn/development/maintaining/index.html#making-releases">releases</a>.</p>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/explanation/index.html">Explanation</a></li>
+    <li><a class="term-link" href="/hugo-theme-relearn/categories/howto/index.html">Howto</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.js?1788388847" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.js?1788388847" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
