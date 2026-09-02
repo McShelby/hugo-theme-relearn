@@ -1,0 +1,35 @@
+name: Build site
+description: Builds the docs for later deploy on GitHub-Pages
+runs:
+  using: composite
+  steps:
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: 'latest'
+
+    # GitHub Pages serves a project site at https://<owner>.github.io/<repo>/,
+    # which the site configuration cannot know. Deriving it here overrides the
+    # value the `github` environment carries for local use, and keeps a fork or
+    # a throwaway `test-` copy of the pair from publishing links to the
+    # original. The owner is lowercased: `github.repository_owner` preserves
+    # the casing of `McShelby`, the Pages host does not.
+    - name: Resolve base URL
+      id: base
+      shell: bash
+      run: |
+        OWNER=$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
+        NAME="${GITHUB_REPOSITORY#*/}"
+        URL="https://${OWNER}.github.io/${NAME}/"
+        echo "url=$URL" >> "$GITHUB_OUTPUT"
+        echo "Base URL $URL"
+
+    - name: Build docs
+      shell: bash
+      run: |
+        hugo --source ${GITHUB_WORKSPACE}/docs --destination ${GITHUB_WORKSPACE}/../public --cleanDestinationDir --environment github --baseURL "${{ steps.base.outputs.url }}"
+
+    - name: Build exampleSite
+      shell: bash
+      run: |
+        hugo --source ${GITHUB_WORKSPACE}/exampleSite --destination ${GITHUB_WORKSPACE}/../public/exampleSite --environment github --baseURL "${{ steps.base.outputs.url }}exampleSite/"

@@ -9,10 +9,10 @@ The theme is developed across two repositories.
 
 | Repository | Contents |
 |------------|----------|
-| [hugo-theme-relearn](https://github.com/McShelby/hugo-theme-relearn) | The theme itself. Everything here is shipped to users. |
-| [hugo-theme-relearn-infra](https://github.com/McShelby/hugo-theme-relearn-infra) | Tests, tooling and CI automation. Nothing here is shipped to users. |
+| [hugo-theme-relearn](https://github.com/McShelby/hugo-theme-relearn) | The theme itself, and the workflows, release actions and git hooks that act on it. |
+| [hugo-theme-relearn-infra](https://github.com/McShelby/hugo-theme-relearn-infra) | The test suite and the tooling that drives it. Nothing here is shipped to users. |
 
-The rule for deciding where something belongs is a single question: **does somebody installing the theme need this file?** If not, it belongs in the infra repository.
+The rule for deciding where something belongs is a single question: **does somebody installing the theme need this file?** If not, it belongs in the infra repository - unless it can only act from the theme repository. GitHub runs a workflow only in the repository holding it, and a git hook only fires on the checkout it sits in, so those stay put, along with the actions those workflows call.
 
 {{% notice style="important" title="Where to report" %}}
 Open issues in the [theme repository](https://github.com/McShelby/hugo-theme-relearn/issues), even when they concern the tests or the tooling.
@@ -22,7 +22,7 @@ Issues, milestones and releases are all tracked there, and a release is cut from
 
 ## Why the Split
 
-For a Hugo theme the repository *is* the distributed artifact. Anything committed to it is downloaded by every user, so a test suite, a screenshot generator and a set of CI actions would be dead weight for every consumer.
+For a Hugo theme the repository *is* the distributed artifact. Anything committed to it is downloaded by every user, so a test suite and a screenshot generator would be dead weight for every consumer.
 
 The `docs` and `exampleSite` directory stay in the theme repository despite not being needed to run the theme to make the theme self-contained and help to quickly set up a test installation.
 
@@ -85,6 +85,10 @@ python3 .githooks/post-commit.py
 
 ## Working Across Both Repositories
 
-When a change spans both repositories - a theme change that alters what the tests expect - give both branches the same name. Every workflow looks for a branch of that name in the other repository, falling back to `main`, and takes that repository's actions from the same checkout. A matching pair is therefore tested against itself.
+Only this repository triggers test runs; the infra repository triggers nothing.
+
+**A change spanning both** - a theme change that alters what the tests expect - takes the same branch name in each, and the infra branch is pushed **first**. The single run the push here then starts sees both halves. The other way round it pairs against infra `main` and can pass while testing only half the change; nothing detects that, so the order is the safeguard.
+
+**A change to the suite alone** - a runner refactor, a regenerated baseline - never reaches this repository, so nothing triggers. Start a run from the Actions tab and name the infra branch in `infra_ref`.
 
 Each workflow is described on the page for the thing it does: the [test suite](development/testing#continuous-integration) and [releases](development/maintaining#making-releases).

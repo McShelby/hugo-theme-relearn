@@ -3,15 +3,27 @@ name: test-execution
 # Validates a theme change against the test suite in hugo-theme-relearn-infra.
 # The suite is not in this repository because it is not shipped to theme users.
 
-# Runs on every branch and every pull request. It never releases, deploys or
-# publishes anything, and it is deliberately not hand-triggerable: a test
-# result should always correspond to a commit somebody actually pushed.
+# This is the only workflow in either repository that runs the suite. The infra
+# repository triggers nothing, so a change spanning both is pushed there first
+# and here second, and the single run this produces already sees both halves.
+#
+# It never releases, deploys or publishes anything.
 on:
   push:
   pull_request:
+  # Hugo breaks themes on its own schedule; find out from CI, not from an issue
+  # report. Scheduled runs only ever fire on the default branch.
+  schedule:
+    - cron: '17 4 * * *'
   # Called by version-release, so that a release cannot happen on a red suite.
-  # This is not a manual trigger - it only fires as part of that workflow.
   workflow_call:
+  # The only way to test a change to the suite that has no counterpart here -
+  # a runner refactor, a regenerated baseline. Everything else arrives by push.
+  workflow_dispatch:
+    inputs:
+      infra_ref:
+        description: 'Infra branch to test against (blank: the branch of this name, else main)'
+        required: false
 
 # Declared rather than inherited, so the workflow does not depend on a
 # repository setting that differs between an old repository and a new one.
@@ -38,17 +50,27 @@ jobs:
       # The sibling is derived from this repository rather than named, so a
       # fork or a throwaway `test-` copy of the pair stays inside itself
       # instead of silently reaching into the original.
+      #
+      # `infra_ref` overrides the lookup and is the only thing that does. It is
+      # empty for push, pull request and workflow_call, and for a dispatch that
+      # left it blank - so the emptiness test alone decides, and no step here
+      # needs to know which event started the run.
       - name: Pick infra repository and branch
         id: pick
         shell: bash
+        env:
+          INFRA_REF: ${{ inputs.infra_ref }}
         run: |
           SIBLING="${GITHUB_REPOSITORY}-infra"
-          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
-          if git ls-remote --exit-code --heads \
-               "https://github.com/${SIBLING}" "$BRANCH" >/dev/null 2>&1; then
-            REF="$BRANCH"
-          else
-            REF=main
+          REF="$INFRA_REF"
+          if [ -z "$REF" ]; then
+            BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+            if git ls-remote --exit-code --heads \
+                 "https://github.com/${SIBLING}" "$BRANCH" >/dev/null 2>&1; then
+              REF="$BRANCH"
+            else
+              REF=main
+            fi
           fi
           echo "repo=$SIBLING" >> "$GITHUB_OUTPUT"
           echo "ref=$REF" >> "$GITHUB_OUTPUT"

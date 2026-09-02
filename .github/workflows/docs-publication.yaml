@@ -27,34 +27,8 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           # fetch-depth: 0   # Fetch all history for .GitInfo and .Lastmod - not necessary for this repo
 
-      # This job only runs on main, so the lookup resolves to infra main in
-      # practice. It is kept identical to the other workflows so there is one
-      # rule to remember rather than an exception.
-      - name: Pick infra repository and branch
-        id: pick
-        shell: bash
-        run: |
-          SIBLING="${GITHUB_REPOSITORY}-infra"
-          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
-          if git ls-remote --exit-code --heads \
-               "https://github.com/${SIBLING}" "$BRANCH" >/dev/null 2>&1; then
-            REF="$BRANCH"
-          else
-            REF=main
-          fi
-          echo "repo=$SIBLING" >> "$GITHUB_OUTPUT"
-          echo "ref=$REF" >> "$GITHUB_OUTPUT"
-          echo "Using $SIBLING branch $REF"
-
-      - name: Checkout infra
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ steps.pick.outputs.repo }}
-          ref: ${{ steps.pick.outputs.ref }}
-          path: infra
-
       - name: Build site
-        uses: ./infra/.github/actions/build-site
+        uses: ./.github/actions/build-site
 
       # build-site writes outside the workspace; stage it somewhere predictable
       # rather than relying on the uploader to accept a path above the root.
@@ -83,6 +57,6 @@ jobs:
           retention-days: 30
 
       - name: Deploy site
-        uses: ./infra/.github/actions/deploy-site
+        uses: ./.github/actions/deploy-site
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -52,16 +52,20 @@ If necessary to find a problem, add debug output into the templates.
 
 ## Tools
 
-Tests, tooling and CI automation live in a separate repository,
+Tests and tooling live in a separate repository,
 [hugo-theme-relearn-infra](https://github.com/McShelby/hugo-theme-relearn-infra),
-checked out as a sibling of this one. This repository holds only what is
-shipped to theme users.
+checked out as a sibling of this one. This repository holds what is shipped to
+theme users, plus what acts on this repository - the workflows, their actions
+and the git hooks, none of which can live anywhere else.
 
 ```
 repos/
-  hugo-theme-relearn/         # this repo - shipped
-  hugo-theme-relearn-infra/   # tests, screenshots, CI actions, git hooks
+  hugo-theme-relearn/         # this repo - shipped, plus its own CI
+  hugo-theme-relearn-infra/   # tests, screenshots, the test procedure
 ```
+
+All test runs are triggered from this repository; infra triggers nothing. A
+change spanning both is pushed to infra first and here second.
 
 ### Tests
 

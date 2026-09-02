@@ -1,0 +1,27 @@
+name: Deploy site
+description: Deploys a built site on GitHub-Pages, from main only
+inputs:
+  github_token:
+    description: Secret GitHub token
+    required: true
+runs:
+  using: composite
+  steps:
+    # Publishing is the one irreversible thing here, and this action is called
+    # from more than one workflow. So it decides for itself rather than
+    # trusting the caller to have gated it: nothing but main is ever published,
+    # whatever the caller believes.
+    - name: Skip deployment outside main
+      if: github.ref != 'refs/heads/main'
+      shell: bash
+      run: echo "Not on main (${{ github.ref_name }}) - skipping deployment."
+
+    - name: Deploy site
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GITHUB_WORKSPACE: ${{ github.workspace }}
+      with:
+        github_token: ${{ env.GITHUB_TOKEN }}
+        publish_dir: ${{ env.GITHUB_WORKSPACE }}/../public

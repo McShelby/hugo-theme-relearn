@@ -206,6 +206,8 @@ These baselines record outstanding work, not noise to be silenced. Adding an ent
 
 ## Continuous Integration
 
-Both repositories run the suite on every branch and every pull request, and the infra repository runs it nightly against the latest Hugo release - which is how a Hugo change that breaks the theme is found in CI rather than in an issue report.
+This repository runs the suite on every branch and every pull request, and nightly against the latest Hugo release - which is how a Hugo change that breaks the theme is found in CI rather than in an issue report. The infra repository runs nothing; one run tests the pair, and this is where it happens.
 
-The suite never releases, deploys or publishes anything, and it is deliberately not hand-triggerable, so a result always corresponds to a commit somebody actually pushed.
+That is why a change spanning both repositories is pushed to infra first, then here, and why a change to the suite alone has to be started by hand: see [Developing](development/developing#working-across-both-repositories).
+
+The suite never releases, deploys or publishes anything.

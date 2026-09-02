@@ -39,51 +39,27 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           # fetch-depth: 0   # Fetch all history for .GitInfo and .Lastmod - not necessary for this repo
 
-      # A change spanning both repositories is reviewed as a pair of same-named
-      # branches. Everything else runs against infra main.
-      - name: Pick infra repository and branch
-        id: pick
-        shell: bash
-        run: |
-          SIBLING="${GITHUB_REPOSITORY}-infra"
-          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
-          if git ls-remote --exit-code --heads \
-               "https://github.com/${SIBLING}" "$BRANCH" >/dev/null 2>&1; then
-            REF="$BRANCH"
-          else
-            REF=main
-          fi
-          echo "repo=$SIBLING" >> "$GITHUB_OUTPUT"
-          echo "ref=$REF" >> "$GITHUB_OUTPUT"
-          echo "Using $SIBLING branch $REF"
-
-      - name: Checkout infra
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ steps.pick.outputs.repo }}
-          ref: ${{ steps.pick.outputs.ref }}
-          path: infra
-
       # Owns the branch rule: `success` only on main with a releasable
       # milestone, `skipped` on any other branch, and a non-zero exit when the
       # milestone is not releasable. Nothing below needs to know about
       # branches - it all keys off this one outcome.
       - name: Check milestone
         id: check
-        uses: ./infra/.github/actions/check-milestone
+        uses: ./.github/actions/check-milestone
         with:
           milestone: ${{ github.event.inputs.milestone }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release
-        if: steps.check.outputs.outcome == 'success'
-        uses: ./infra/.github/actions/release-milestone
+        if: ${{ steps.check.outputs.outcome == 'success' }}
+        uses: ./.github/actions/release-milestone
         with:
           milestone: ${{ github.event.inputs.milestone }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      # We need to deploy the site again to show the updated changelog
       - name: Build site
-        uses: ./infra/.github/actions/build-site
+        uses: ./.github/actions/build-site
 
       # build-site writes outside the workspace; stage it somewhere predictable
       # rather than relying on the uploader to accept a path above the root.
@@ -113,6 +89,6 @@ jobs:
 
       # No condition needed: deploy-site publishes from main and nowhere else.
       - name: Deploy site
-        uses: ./infra/.github/actions/deploy-site
+        uses: ./.github/actions/deploy-site
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
