@@ -9,7 +9,7 @@
     <meta property="og:title" content="{{ . }}">
 {{- end }}
 
-{{- with trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " }}
+{{- with trim (or .Description .Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
     <meta property="og:description" content="{{ . }}">
 {{- end }}
 

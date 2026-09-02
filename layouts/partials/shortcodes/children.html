@@ -105,7 +105,7 @@
           {{- end }}
         {{- end }}
         {{- if $.withDescription }}
-          {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
+          {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
           {{- with $description }}
             {{- $text := replace (replace . "\r\n" "\n") "\n" (printf "\n%s    " $indent) }}
 
@@ -139,7 +139,7 @@
           {{- end }}
         {{- end }}
       {{- end }}
-      {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
+      {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
       {{- $cards = $cards | append (dict
         "content"  (cond $.withDescription $description "")
         "href"     $page.Path

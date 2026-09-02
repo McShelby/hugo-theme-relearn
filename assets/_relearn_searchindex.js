@@ -11,8 +11,8 @@
       "title" (partial "title.gotmpl" (dict "page" .) | plainify)
       "tags" $tags
       "breadcrumb" (trim (partial "breadcrumbs.html" (dict "page" . "dirOnly" true) | plainify | htmlUnescape) "\n\r\t ")
-      "description" (trim (or .Description .Summary | plainify | htmlUnescape) "\n\r\t " )
-      "content" (trim (.Plain | htmlUnescape) "\n\r\t ")
+      "description" (trim (or .Description .Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " )
+      "content" (trim (.Plain | htmlUnescape | replaceRE `\r` " ") "\n\r\t ")
     ) }}
   {{- end }}
 {{- end -}}
