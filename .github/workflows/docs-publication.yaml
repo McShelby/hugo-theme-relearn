@@ -4,6 +4,12 @@ on:
   push: # Build on all pushes but only deploy for main branch
   workflow_dispatch: # Allow this task to be manually started (you'll never know)
 
+# Declared rather than inherited: deploying pushes the `gh-pages` branch, and a
+# repository whose default token is read-only would fail that push with a 403
+# that looks like a GitHub Pages problem and is not.
+permissions:
+  contents: write
+
 jobs:
   deploy:
     name: Run deploy
@@ -24,24 +30,26 @@ jobs:
       # This job only runs on main, so the lookup resolves to infra main in
       # practice. It is kept identical to the other workflows so there is one
       # rule to remember rather than an exception.
-      - name: Pick infra branch
+      - name: Pick infra repository and branch
         id: pick
         shell: bash
         run: |
+          SIBLING="${GITHUB_REPOSITORY}-infra"
           BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
           if git ls-remote --exit-code --heads \
-               https://github.com/McShelby/hugo-theme-relearn-infra "$BRANCH" >/dev/null 2>&1; then
+               "https://github.com/${SIBLING}" "$BRANCH" >/dev/null 2>&1; then
             REF="$BRANCH"
           else
             REF=main
           fi
+          echo "repo=$SIBLING" >> "$GITHUB_OUTPUT"
           echo "ref=$REF" >> "$GITHUB_OUTPUT"
-          echo "Using infra branch $REF"
+          echo "Using $SIBLING branch $REF"
 
       - name: Checkout infra
         uses: actions/checkout@v4
         with:
-          repository: McShelby/hugo-theme-relearn-infra
+          repository: ${{ steps.pick.outputs.repo }}
           ref: ${{ steps.pick.outputs.ref }}
           path: infra
 

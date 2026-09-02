@@ -9,7 +9,9 @@ The test suite lives in the [infra repository](development/developing) and runs 
 
 ## Requirements
 
-**Node.js** at the version `package.json` declares. Install it through a version manager - [nvm](https://github.com/nvm-sh/nvm), or [nvm-windows](https://github.com/coreybutler/nvm-windows) - rather than as a system package, so the version can follow the project rather than the machine.
+**Node.js** at the version `.nvmrc` pins. Install it through a version manager - [nvm](https://github.com/nvm-sh/nvm), or [nvm-windows](https://github.com/coreybutler/nvm-windows) - rather than as a system package, so the version can follow the project rather than the machine. `nvm use` in the infra checkout reads that file, and so does CI, so the two cannot drift.
+
+The pin is not arbitrary. Before v26.8.1, Node's `fs.rmSync` silently removed nothing on Windows when a path contained a non-ASCII character, which made "replace this directory" quietly mean "merge into it" - and a suite whose whole job is comparing directories cannot live with that.
 
 **Hugo** at least the minimum the theme declares in its `theme.toml`. The plain edition is enough, as the theme uses no Sass. Install it the same way, through [hvm](https://github.com/jmooring/hvm), which keeps several versions side by side - the suite can then build against any of them, including the declared minimum, rather than only the one on your `PATH`.
 

@@ -13,6 +13,11 @@ on:
   # This is not a manual trigger - it only fires as part of that workflow.
   workflow_call:
 
+# Declared rather than inherited, so the workflow does not depend on a
+# repository setting that differs between an old repository and a new one.
+permissions:
+  contents: read
+
 jobs:
   test:
     name: hugo ${{ matrix.hugo }}
@@ -29,24 +34,30 @@ jobs:
 
       # A change spanning both repositories is reviewed as a pair of
       # same-named branches. Everything else runs against infra main.
-      - name: Pick infra branch
+      #
+      # The sibling is derived from this repository rather than named, so a
+      # fork or a throwaway `test-` copy of the pair stays inside itself
+      # instead of silently reaching into the original.
+      - name: Pick infra repository and branch
         id: pick
         shell: bash
         run: |
+          SIBLING="${GITHUB_REPOSITORY}-infra"
           BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
           if git ls-remote --exit-code --heads \
-               https://github.com/McShelby/hugo-theme-relearn-infra "$BRANCH" >/dev/null 2>&1; then
+               "https://github.com/${SIBLING}" "$BRANCH" >/dev/null 2>&1; then
             REF="$BRANCH"
           else
             REF=main
           fi
+          echo "repo=$SIBLING" >> "$GITHUB_OUTPUT"
           echo "ref=$REF" >> "$GITHUB_OUTPUT"
-          echo "Using infra branch $REF"
+          echo "Using $SIBLING branch $REF"
 
       - name: Checkout infra
         uses: actions/checkout@v4
         with:
-          repository: McShelby/hugo-theme-relearn-infra
+          repository: ${{ steps.pick.outputs.repo }}
           ref: ${{ steps.pick.outputs.ref }}
           path: infra
 
