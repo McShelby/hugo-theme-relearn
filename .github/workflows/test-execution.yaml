@@ -34,6 +34,14 @@ jobs:
   test:
     name: hugo ${{ matrix.hugo }}
     runs-on: ubuntu-latest
+    # A branch in this repository fires both `push` and `pull_request` once a
+    # pull request is open - `synchronize` on every later push - so the same
+    # commit would be built twice. The push already covers it, and its result
+    # shows on the pull request because a check is attached to the commit.
+    #
+    # A pull request from a fork is the case that must still run: the push
+    # happened over there, so this is the only event that reaches us.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:

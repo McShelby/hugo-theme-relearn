@@ -1,7 +1,12 @@
 name: docs-publication
 
 on:
-  push: # Build on all pushes but only deploy for main branch
+  # Only main, because that is the only branch this ever publishes from. Branch
+  # pushes used to start a run that skipped immediately; test-execution is what
+  # covers them, building the docs in both the `testing` and `github`
+  # environments.
+  push:
+    branches: [main]
   workflow_dispatch: # Allow this task to be manually started (you'll never know)
 
 # Declared rather than inherited: deploying pushes the `gh-pages` branch, and a
