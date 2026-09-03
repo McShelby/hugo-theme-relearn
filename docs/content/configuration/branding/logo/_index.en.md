@@ -146,11 +146,11 @@ The theme provides CSS variables to customize the logo's size. You can add these
 
 If you have a monochrome SVG logo and want to display it in the variants color for the logo text, it is mandatory to give it the `inlinecontent` [image effect](authoring/linking/imageeffects). This is not set in the automatic logo detection.
 
-The recoloring applies to all black elements in your SVG:
-
 {{< multiconfig file=hugo section=params >}}
 logo = { src = '/images/logo.svg?inlinecontent' }
 {{< /multiconfig >}}
+
+The recoloring applies to all black elements in your SVG. Elements that get their color from their parent are left untouched. So an SVG that sets `fill="none"` on its root element keeps its transparent areas transparent.
 
 #### Changing the SVG Logo Colors
 

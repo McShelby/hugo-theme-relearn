@@ -2475,39 +2475,58 @@ html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.
 
 /* common logo */
 
+/* only recolor parts of an inlined SVG that are black or don't define a color
+   of their own; a part that inherits its color from an ancestor - like a
+   `fill="none"` on the root element - has to keep it, otherwise the theme
+   would paint areas the logo wants to leave blank */
+
 body #R-logo svg,
-body #R-logo svg :not([color]),
-body #R-logo svg [color='black'],
-body #R-logo svg [color='#000000'] {
+body #R-logo svg :is([color='black'], [color='#000'], [color='#000000']) {
   color: var(--INTERNAL-LOGO-IMAGE-color);
 }
 
 body #R-logo:hover svg,
-body #R-logo:hover svg :not([color]),
-body #R-logo:hover svg [color='black'],
-body #R-logo:hover svg [color='#000000'] {
+body #R-logo:hover svg :is([color='black'], [color='#000'], [color='#000000']) {
   color: var(--INTERNAL-LOGO-IMAGE-HOVER-color);
 }
 
-body #R-logo svg :not([fill]),
-body #R-logo svg [fill='black'],
-body #R-logo svg [fill='#000000'] {
+body #R-logo svg :not([fill]):not([fill] *),
+body #R-logo svg:is([fill='black'], [fill='#000'], [fill='#000000']),
+body #R-logo svg :is([fill='black'], [fill='#000'], [fill='#000000']) {
   fill: var(--INTERNAL-LOGO-IMAGE-color);
 }
 
-body #R-logo:hover svg :not([fill]),
-body #R-logo:hover svg [fill='black'],
-body #R-logo:hover svg [fill='#000000'] {
+body #R-logo:hover svg :not([fill]):not([fill] *),
+body #R-logo:hover svg:is([fill='black'], [fill='#000'], [fill='#000000']),
+body #R-logo:hover svg :is([fill='black'], [fill='#000'], [fill='#000000']) {
   fill: var(--INTERNAL-LOGO-IMAGE-HOVER-color);
 }
 
+/* the initial value of `stroke` is `none` and not black, so unlike for `fill`
+   there must be no blanket rule for parts without a `stroke` - that would draw
+   an outline around every filled logo */
+
+body #R-logo svg:is([stroke='black'], [stroke='#000'], [stroke='#000000']),
+body #R-logo svg :is([stroke='black'], [stroke='#000'], [stroke='#000000']) {
+  stroke: var(--INTERNAL-LOGO-IMAGE-color);
+}
+
+body #R-logo:hover svg:is([stroke='black'], [stroke='#000'], [stroke='#000000']),
+body #R-logo:hover svg :is([stroke='black'], [stroke='#000'], [stroke='#000000']) {
+  stroke: var(--INTERNAL-LOGO-IMAGE-HOVER-color);
+}
+
+/* the link color must not reach into an inlined SVG, otherwise it would win
+   over the rules above and `--LOGO-IMAGE-color` could not color the parts
+   drawn with `currentColor` */
+
 body a#R-logo,
-body a#R-logo * {
+body a#R-logo *:not(svg, svg *) {
   color: var(--INTERNAL-LOGO-LINK-color);
 }
 
 body a#R-logo:hover,
-body a#R-logo:hover * {
+body a#R-logo:hover *:not(svg, svg *) {
   color: var(--INTERNAL-LOGO-LINK-HOVER-color);
 }
 
