@@ -677,6 +677,40 @@ function initAnchorClipboard() {
   }
 }
 
+
+function initAnchorScrolling() {
+  // scroll the content area when an in-page anchor link (eg. in the TOC
+  // flyout or a footnote) is clicked; the browser's default fragment
+  // navigation does not scroll our custom scroll container in all cases
+  document.addEventListener('click', function (event) {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    var link = event.target.closest('a[href^="#"]');
+    if (!link) {
+      return;
+    }
+    var hash = link.getAttribute('href');
+    if (hash.length < 2) {
+      return;
+    }
+    var target = null;
+    try {
+      target = document.getElementById(decodeURIComponent(hash.substring(1)));
+    } catch (e) {
+      return;
+    }
+    if (!target) {
+      return;
+    }
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+    let state = window.history.state || {};
+    state = Object.assign({}, typeof state === 'object' ? state : {});
+    history.pushState(state, '', hash);
+  });
+}
+
 function initCodeClipboard() {
   function getCodeText(node) {
     // if highlight shortcode is used in inline lineno mode, remove lineno nodes before generating text, otherwise it doesn't hurt
@@ -1868,6 +1902,7 @@ ready(function () {
   initMenuScrollbar();
   initToc();
   initAnchorClipboard();
+  initAnchorScrolling();
   initCodeClipboard();
   fixCodeTabs();
   restoreTabSelections();
