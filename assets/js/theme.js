@@ -600,6 +600,57 @@ function initOpenapi(update, attrs) {
   }
 }
 
+// set while we copy with our own textarea, so the global copy event handler
+// in initCodeClipboard() doesn't hijack the clipboard data with a possibly
+// still active page selection
+let isFakeClipboardCopy = false;
+
+// the async clipboard API is only available in secure contexts, so for http
+// connections we have to fall back to the deprecated execCommand; see #1222
+function writeTextToClipboardFallback(text) {
+  const fake = document.createElement('textarea');
+  fake.className = 'copy-to-clipboard-fake';
+  // keep the element in the current viewport vertically, so focussing it
+  // doesn't scroll the page
+  fake.style.top = (window.scrollY || document.documentElement.scrollTop) + 'px';
+  fake.setAttribute('readonly', '');
+  fake.value = text;
+  document.body.appendChild(fake);
+  fake.select();
+  fake.setSelectionRange(0, fake.value.length);
+  let copied = false;
+  isFakeClipboardCopy = true;
+  try {
+    copied = document.execCommand('copy');
+  } catch (e) {
+    copied = false;
+  }
+  isFakeClipboardCopy = false;
+  fake.remove();
+  return copied ? Promise.resolve() : Promise.reject();
+}
+
+function writeTextToClipboard(text, message) {
+  let copy;
+  if (navigator.clipboard?.writeText) {
+    copy = navigator.clipboard.writeText(text).catch(function () {
+      // writing may still be rejected, eg. if the document isn't focused,
+      // so give the fallback a chance in that case, too
+      return writeTextToClipboardFallback(text);
+    });
+  } else {
+    copy = writeTextToClipboardFallback(text);
+  }
+  copy.then(
+    function () {
+      showToast(message);
+    },
+    function () {
+      showToast(window.T_Browser_unsupported_feature);
+    }
+  );
+}
+
 function initAnchorClipboard() {
   const url = document.location.origin == 'null' ? `${document.location.protocol}//${document.location.host}${document.location.pathname}` : `${document.location.origin}${document.location.pathname}`;
 
@@ -611,13 +662,8 @@ function initAnchorClipboard() {
     if (anchor.classList.contains('copyanchor')) {
       anchor.addEventListener('click', function () {
         this.blur();
-        if (!navigator.clipboard?.writeText) {
-          showToast(window.T_Browser_unsupported_feature);
-          return;
-        }
         const text = this.getAttribute('data-clipboard-text');
-        navigator.clipboard.writeText(text);
-        showToast(window.T_Link_copied_to_clipboard);
+        writeTextToClipboard(text, window.T_Link_copied_to_clipboard);
       });
     }
     if (anchor.classList.contains('scrollanchor')) {
@@ -646,6 +692,10 @@ function initCodeClipboard() {
   }
 
   document.addEventListener('copy', function (ev) {
+    if (isFakeClipboardCopy) {
+      return;
+    }
+
     // shabby FF generates empty lines on cursor selection that we need to filter out; see #925
     var selection = document.getSelection();
     var node = selection.anchorNode;
@@ -796,18 +846,13 @@ function initCodeClipboard() {
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
       this.blur();
-      if (!navigator.clipboard?.writeText) {
-        showToast(window.T_Browser_unsupported_feature);
-        return;
-      }
       // For block buttons, get the actionbar's previous sibling; for inline, use wrapper's previous sibling
       var codeElement = this.closest('.actionbar') ? this.closest('.actionbar').previousElementSibling : this.parentElement.previousElementSibling;
       if (!codeElement) {
         return;
       }
       var text = codeElement.dataset.code || '';
-      navigator.clipboard.writeText(text);
-      showToast(window.T_Copied_to_clipboard);
+      writeTextToClipboard(text, window.T_Copied_to_clipboard);
     });
   });
 }

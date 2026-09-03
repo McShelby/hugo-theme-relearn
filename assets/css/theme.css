@@ -2002,6 +2002,19 @@ span.math:has(> mjx-container[display]) {
   top: -9999px;
 }
 
+.copy-to-clipboard-fake {
+  /* the element needs to be selectable and focusable to copy from it, so it
+  can only be moved out of the viewport horizontally; its vertical position
+  is set to the current scroll offset by JS to not scroll on focus */
+  border: 0;
+  /* prevent zooming on iOS */
+  font-size: 12pt;
+  inset-inline-start: -9999px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
 .include.hide-first-heading h1:first-of-type,
 .include.hide-first-heading h2:first-of-type,
 .include.hide-first-heading h3:first-of-type,
