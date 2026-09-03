@@ -236,7 +236,24 @@ weight = 10  # Ordering in sidebar
 
 ## Testing
 
-Test against the `docs` directory which demonstrates all theme features. Verify:
+The automated suite lives in the infra repo; run `npm test` from there. Cases,
+layers, axes and sequences are documented in
+`docs/content/development/testing/_index.en.md`.
+
+What matters when changing the theme:
+
+- Regenerate baselines with `node tests/run.js --update`, then read the diff -
+  it *is* the test result. Commit it with the change that caused it.
+- A baseline belongs to the Hugo that produced it, recorded in `hugo.txt`. Only
+  `path` and `latest` compare; anything else drops to the build layer.
+- A `WARN` or `ERROR` fails a build unless a warnings baseline lists it. Those
+  entries are accepted defects - delete one when its issue is fixed.
+- Output must be identical on Windows and Linux. A template's own line endings
+  must never reach the content stream.
+
+### What the Suite Cannot Check
+
+Verify these by hand against the `docs` site:
 
 - Search functionality (both Lunr and Orama)
 - Print output

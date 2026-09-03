@@ -64,7 +64,11 @@
   {{- end }}
   {{- $title := "" }}
   {{- if and $rootObject (not ($config.disableTitle | default true)) }}
-    {{- $title = $rootObject.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
+    {{- with $rootObject.Params.menuTitle }}
+      {{- $filepath := "[virtual file]" }}{{ with and $rootObject.File $rootObject.File.Filename }}{{ $filepath = . }}{{ end }}
+      {{- warnf "%q: DEPRECATED front matter 'menuTitle' found, use 'linkTitle' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/6/#6-0-0" $filepath }}
+    {{- end }}
+    {{- $title = $rootObject.Params.linkTitle | default $rootObject.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
   {{- end }}
   {{- $entries := "" }}
   {{- with $rootObject }}

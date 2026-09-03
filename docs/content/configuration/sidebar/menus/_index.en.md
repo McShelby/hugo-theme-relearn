@@ -181,9 +181,9 @@ other = "Other Great Stuff"
 
 ## Title for Arbitrary Menus
 
-Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableMenuTitle=false` for each sidebar menu configuration](#defining-sidebar-menus).
+Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableTitle=false` for each sidebar menu configuration](#defining-sidebar-menus).
 
-{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} For page menus, set the `menuTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `menuTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} For page menus, set the `linkTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `linkTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
 {{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
