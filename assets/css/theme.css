@@ -2521,9 +2521,15 @@ body a#R-logo:hover * {
   font-family: var(--INTERNAL-LOGO-font);
   font-size: var(--INTERNAL-LOGO-font-size);
   justify-content: center;
-  line-height: 1;
-  overflow: hidden;
-  margin-block: 0.5rem;
+  /* must not be smaller than the glyph box of the used font, otherwise
+  ascenders and descenders reach out of the line box and the title looks
+  cramped for scripts with stacked diacritics (eg. Turkish İ, Ğ) */
+  line-height: 1.25;
+  /* clip an overlong title horizontally but never vertically, as glyphs may
+  still exceed the line box for scripts we don't know about */
+  overflow-x: clip;
+  overflow-y: visible;
+  margin-block: 0.5rem 0.625rem;
   row-gap: 0.1em;
   width: 100%;
 }
@@ -2545,6 +2551,9 @@ body a#R-logo:hover * {
 }
 
 #R-logo.R-default .logo-image > * {
+  /* don't let the image sit on the text baseline, as it would add the
+  descender of the line box below the image */
+  display: block;
   max-width: var(--INTERNAL-LOGO-IMAGE-width);
 }
 
