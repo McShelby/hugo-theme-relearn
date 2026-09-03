@@ -1155,7 +1155,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Configuration \u003e Content",
-    "content": "The theme adjusts the content width when you resize your browser.\nIf you want to change the chosen default width, you can add CSS variables to layouts/partials/custom-header.html.\nChanging the Main Area’s Maximum Width The main area has a default maximum width of 80.25rem for better readability. If you want to change this, you can set a CSS variable\nFor full width, use a large value like 1000rem.\n​ layouts/partials/custom-header.html \u003cstyle\u003e :root { --MAIN-MAX-width: 1000rem; } \u003c/style\u003e",
+    "content": "The theme adjusts the content width when you resize your browser.\nIf you want to change the chosen default width, you can add CSS variables to layouts/partials/custom-header.html.\nChanging the Main Area’s Maximum Width The main area has a default maximum width of 81.25rem for better readability. If you want to change this, you can set a CSS variable\nFor full width, use a large value like 1000rem.\n​ layouts/partials/custom-header.html \u003cstyle\u003e :root { --MAIN-MAX-width: 1000rem; } \u003c/style\u003e",
     "description": "Changing the content area width",
     "tags": [],
     "title": "Width",
