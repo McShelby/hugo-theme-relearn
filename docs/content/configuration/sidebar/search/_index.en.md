@@ -70,7 +70,6 @@ Lunr doesn't support all languages of the theme. Content of an unsupported langu
 - Czech
 - Indonesian
 - Persian
-- Polish
 - Swahili
 - Ukrainian
 
