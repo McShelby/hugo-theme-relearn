@@ -65,7 +65,7 @@ search.adapter.identifier = 'lunr'
 
 #### Supported Languages
 
-Lunr doesn't support all languages of the theme. Unsupported languages will show errors in the browser console. Currently unsupported are
+Lunr doesn't support all languages of the theme. Content of an unsupported language is dropped from the search index, so searching it will not return any results. The theme warns you about this during your Hugo build. Currently unsupported are
 
 - Czech
 - Indonesian

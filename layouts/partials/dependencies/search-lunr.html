@@ -53,6 +53,9 @@
           {{- $missingcontentlangs = $missingcontentlangs | append . }}
         {{- end }}
       {{- end }}
+      {{- with $missingcontentlangs }}
+        {{- warnf "UNSUPPORTED search language %v found, content of this language will not be findable by the lunr search adapter; see https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/search#supported-languages" . }}
+      {{- end }}
       {{- $contentlangs = $contentlangs | complement $missingcontentlangs }}
     {{- end }}
     {{- /* with resources.Get "/js/search-lunr.js" }}
