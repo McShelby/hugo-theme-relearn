@@ -1,0 +1,11 @@
+{{- /* see list.html */}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML -}}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ partial "title.gotmpl" (dict "page" site.Home "fullyQualified" true "reverse" true) }}</title>
+    <link>{{ partial "permalink.gotmpl" (dict "to" site.Home "abs" true) }}</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>{{ site.Language.LanguageCode }}</language>
+  </channel>
+</rss>
