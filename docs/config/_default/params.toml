@@ -246,7 +246,12 @@ disableNextPrev = false
 # also the keyboard shortcuts are disabled. The value can contain the macro
 # `${FilePath}` which will be replaced by the file path of your displayed page.
 # If no `${FilePath}` is given in the value, the value is treated as if the
-# `${FilePath}` was appended at the end of the value. This can be overridden
+# `${FilePath}` was appended at the end of the value. The value can also
+# contain the macro `${BaseDir}` which will be replaced by the directory
+# `${FilePath}` is resolved against during build, written with forward slashes
+# and without a leading slash; joined with `${FilePath}` this is the location
+# of the page on your disk, which lets you open it in a local editor, e.g.
+# `vscode://file/${BaseDir}/${FilePath}`. This can be overridden
 # in the pages frontmatter. This is useful if you want to give the opportunity
 # for people to create merge request for your content.
 editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/${FilePath}'

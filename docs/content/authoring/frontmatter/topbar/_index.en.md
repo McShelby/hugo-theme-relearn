@@ -51,6 +51,20 @@ The value can contain the macro `${FilePath}` which will be replaced by the file
 editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/${FilePath}'
 {{< /multiconfig >}}
 
+The value can also contain the macro `${BaseDir}` which will be replaced by the directory `${FilePath}` is resolved against - your content directory, or whatever your page was mounted from. The two joined are the location of the page on your disk.
+
+`${BaseDir}` is written the way a URL writes a path: with forward slashes and without a leading slash. So the same setting works on Windows and on Unix-like systems, where it expands to `C:/Users/you/mysite/content` and `home/you/mysite/content` respectively.
+
+This is how you send the edit button to your local editor instead of a web service. For [Visual Studio Code](https://code.visualstudio.com):
+
+{{< multiconfig >}}
+editURL = 'vscode://file/${BaseDir}/${FilePath}'
+{{< /multiconfig >}}
+
+{{% notice note %}}
+An editor URL only works on the machine your site was built on, as it names a path in your file system. Don't set one for a site you deploy.
+{{% /notice %}}
+
 ## Markdown Button
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Markdown button if the [Markdown output format](configuration/sitemanagement/outputformats/#markdown-support) is active by setting `disableMarkdownButton=true`.

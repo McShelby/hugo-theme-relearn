@@ -123,7 +123,7 @@ Every result is checked in three layers, and the one that fails tells you what k
 |-------|---------|-------------------------|
 | Build | the build exits cleanly, with no unexpected `WARN` or `ERROR` | a template error, or a Hugo deprecation |
 | File set | exactly the expected files were generated | output formats, permalinks or a renamed page |
-| Content | every file is what was stored, byte for byte bar line endings | either a regression, or a change you meant to make |
+| Content | every file is what was stored, byte for byte bar line endings and the checkout path | either a regression, or a change you meant to make |
 
 Layers are cumulative, and a case declares how deep to go with `layer`. It defaults to `content`, so a case opts down rather than up and always says why - the theme's own sites stop at the file set, because a content baseline over 2000 files would churn on every prose edit and be read by nobody.
 
