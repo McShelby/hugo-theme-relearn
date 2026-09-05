@@ -503,8 +503,7 @@ article .R-taxonomy.tags a.term-link:hover:after {
 #R-body svg,
 #R-body img,
 #R-body figure > figcaption > h4,
-#R-body figure > figcaption > p,
-#R-body .video-container {
+#R-body figure > figcaption > p {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -523,15 +522,17 @@ article .R-taxonomy.tags a.term-link:hover:after {
 }
 
 #R-body svg:not(.lightbox-image).border,
-#R-body img:not(.lightbox-image).border,
-#R-body .video-container.border {
+#R-body img:not(.lightbox-image).border {
   background-clip: padding-box;
   border: 1px solid rgba(134, 134, 134, 0.333);
+  /* an image carries its own dimensions so a browser can reserve its space, and
+     those size the border box; the border would otherwise eat into the picture
+     and resample it, so here it goes outside instead */
+  box-sizing: content-box;
 }
 
 #R-body svg:not(.lightbox-image).shadow,
-#R-body img:not(.lightbox-image).shadow,
-#R-body .video-container.shadow {
+#R-body img:not(.lightbox-image).shadow {
   box-shadow: 0 10px 30px rgba(176, 176, 176, 0.666);
 }
 

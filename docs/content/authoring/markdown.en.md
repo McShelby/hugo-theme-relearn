@@ -797,6 +797,10 @@ Images can also be linked by reference ID to later define the URL location. This
 
 Add query parameter `width` and/or `height` to the link image to resize the image. Values are CSS values (default is `auto`).
 
+{{% notice style="note" %}}
+Regardless of this, an image that resolves to a resource the theme can measure - a page resource or a file in your `assets` directory, in one of the common raster formats - is given its own dimensions in the markup, so a browser can reserve the space it will take before it has loaded. An SVG, a remote address or a path in your `static` directory has none to give.
+{{% /notice %}}
+
 ````md
 ![Minion](https://octodex.github.com/images/minion.png?width=20vw)
 ````

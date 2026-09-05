@@ -13,8 +13,8 @@
 {{- end }}
 
 {{- /* 4. stack URL query parameter */}}
-{{- $height := "auto" }}
-{{- $width := "auto" }}
+{{- $height := "" }}
+{{- $width := "" }}
 {{- $u := urls.Parse .url }}
 {{- if $u.RawQuery }}
 
@@ -97,11 +97,31 @@
 {{- $attributeClasses = delimit $attributeClasses " " }}
 {{- $attributes = merge $attributes (dict "class" $attributeClasses) }}
 
-{{- $styles := slice (printf "height: %s" $height) (printf "width: %s" $width) }}
+{{- /* an unasked-for width is left out instead of set to `auto`; `auto` would
+	override the width the `width` attribute presents, and a browser needs one
+	definite side to compute the other from the aspect ratio before the image has
+	loaded. Once a height is asked for, `auto` comes back: the width has to stay
+	free to follow it, or the image is stretched to the given height */}}
+{{- $styles := slice (printf "height: %s" (or $height "auto")) }}
+{{- if or $width $height }}
+	{{- $styles = $styles | append (printf "width: %s" (or $width "auto")) }}
+{{- end }}
 {{- if $attributes.style }}{{ $styles = $styles | append (split $attributes.style ";") }}{{ end }}
 {{- $styles = delimit $styles ";" }}
 {{- if $styles }}{{ $styles = print $styles ";" }}{{ end }}
 {{- $attributes = merge $attributes (dict "style" $styles) }}
+
+{{- /* the resource's own dimensions, so a browser can reserve the space an image
+	will take before it has arrived. Only a resource Hugo can decode has any, and
+	asking one that cannot - an SVG, a page - fails the build rather than
+	answering zero, hence the `try`. A caller that set its own outranks the file */}}
+{{- if and .linkObject (not $attributes.width) (not $attributes.height) }}
+	{{- $intrinsicWidth := try .linkObject.Width }}
+	{{- $intrinsicHeight := try .linkObject.Height }}
+	{{- if and $intrinsicWidth.Value $intrinsicHeight.Value }}
+		{{- $attributes = merge $attributes (dict "width" (string $intrinsicWidth.Value) "height" (string $intrinsicHeight.Value)) }}
+	{{- end }}
+{{- end }}
 
 {{- if and .linkObject $effects.inlinecontent (eq .linkObject.MediaType.Type "image/svg+xml") }}
 	{{- $content := .linkObject.Content | replaceRE `(?s)^\s*<\?.*?\?>\s*` "" }}

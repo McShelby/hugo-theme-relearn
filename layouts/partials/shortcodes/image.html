@@ -40,7 +40,9 @@
 <a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}">
 {{- $attributes_lightbox := $attributes }}
 {{- $attributes_lightbox = merge $attributes_lightbox (dict "class" (delimit ((split $attributes_lightbox.class " ") | append "lightbox-image") " ")) }}
-{{- $attributes_lightbox = merge $attributes_lightbox (dict "style" "") -}}
+{{- /* the enlarged copy is sized by CSS alone; intrinsic dimensions would be
+	clamped against `max-width`/`max-height` one axis at a time and stretch it */}}
+{{- $attributes_lightbox = merge $attributes_lightbox (dict "style" "" "width" "" "height" "") -}}
 {{- partial "inline/img" (dict "attributes" $attributes_lightbox) }}</a>
 {{- end }}
 
