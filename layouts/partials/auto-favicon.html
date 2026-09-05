@@ -15,9 +15,9 @@
         {{- range $faviconVariants }}
           {{- $faviconVariant := . }}
           {{- /* never minified: a favicon is an image and images are published as they are, whether or not Hugo happens to have a minifier for the format */}}
-          {{- with (resources.Get (printf "/images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
+          {{- with partial "asset.gotmpl" (dict "res" (printf "/images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext) "minify" false) }}
             {{- $faviconMatch = true }}
-    <link href="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
+    <link href="{{ .RelPermalink }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
           {{- else }}
             {{- with (partial "_relearn/staticResource.gotmpl" (printf "images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
               {{- $faviconMatch = true }}

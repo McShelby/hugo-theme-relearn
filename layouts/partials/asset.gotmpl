@@ -1,41 +1,69 @@
 {{- /*
-Returns the given resource ready to be linked.
+Returns an asset ready to be linked, or nothing if it does not exist.
 
-Takes the resource, or a map holding it as `res` alongside options:
+Takes a path below your `assets` directory, a resource you built yourself, or a
+map holding either as `res` alongside options:
 
-	{{ partial "asset.gotmpl" . }}
-	{{ partial "asset.gotmpl" (dict "res" . "minify" false) }}
+	{{ with partial "asset.gotmpl" "/js/mine.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+	{{ end }}
 
-`minify` says whether the resource may be minified at all, and defaults to
-`true` - which leaves the decision to your site's `minify` setting. Pass `false`
-for a resource that arrives already built, like a third party bundle: running
-one of those through the minifier a second time gains nothing and can break it.
+	{{ with partial "asset.gotmpl" (dict "res" "/js/bundle.js" "minify" false) }}
 
-The resource is fingerprinted so its URL changes whenever its content changes,
+For a path, a name ending in `.min` says the file arrives already built and is
+linked as it is; anything else is minified on the way out if your site's
+`minify` setting asks for it. A call site names the asset and nothing else.
+
+`minify` overrides that and defaults to `true`. Pass `false` for something that
+is already built but is not named `.min`, a bundle say, which the naming rule
+above has no way to recognise. Anything Hugo has no minifier for - an image -
+is left alone whatever this says.
+
+The asset is fingerprinted so its URL changes whenever its content changes,
 unless the site parameter `disableAssetsBusting` is set.
 */}}
-{{- $res := . }}
+{{- $arg := . }}
 {{- $options := dict }}
 {{- if reflect.IsMap . }}
-	{{- $res = .res }}
+	{{- $arg = .res }}
 	{{- $options = . }}
 {{- end }}
 
-{{- $mayMinify := true }}
-{{- if isset $options "minify" }}
-	{{- $mayMinify = $options.minify }}
+{{- $minify := not hugo.IsServer }}
+{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
+	{{- $minify = site.Params.minify }}
 {{- end }}
-{{- if $mayMinify }}
-	{{- $minify := not hugo.IsServer }}
-	{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
-		{{- $minify = site.Params.minify }}
-	{{- end }}
-	{{- if $minify }}
-		{{- $res = $res | minify }}
-	{{- end }}
+{{- if isset $options "minify" }}
+	{{- $minify = and $minify $options.minify }}
 {{- end }}
 
-{{- if not site.Params.disableAssetsBusting }}
-	{{- $res = $res | fingerprint }}
+{{- $res := "" }}
+{{- $doMinify := false }}
+
+{{- if eq (printf "%T" $arg) "string" }}
+	{{- /* a name ending in `.min` says the file arrives already built, so it is
+		linked as it is instead of being minified a second time */}}
+	{{- $parts := split (path.BaseName $arg) "." }}
+	{{- $isMin := eq (index $parts (sub (len $parts) 1)) "min" }}
+	{{- with resources.Get $arg }}
+		{{- $res = . }}
+		{{- $doMinify = and $minify (not $isMin) }}
+	{{- end }}
+{{- else }}
+	{{- $res = $arg }}
+	{{- $doMinify = $minify }}
+{{- end }}
+
+{{- /* everything Hugo ships a minifier for; asking it for anything else - an
+	image, a font - is a build error rather than a no-op */}}
+{{- $minifiable := slice "text/css" "text/javascript" "application/javascript" "application/json" "application/xml" "text/html" "image/svg+xml" }}
+
+{{- if $res }}
+	{{- if and $doMinify (in $minifiable $res.MediaType.Type) }}
+		{{- $res = $res | minify }}
+	{{- end }}
+	{{- if not site.Params.disableAssetsBusting }}
+		{{- $res = $res | fingerprint }}
+	{{- end }}
 {{- end }}
 {{- return $res }}

@@ -1,9 +1,13 @@
 {{- /*
-Generates the search index from the given template and returns the URL it can
-be linked by.
+Generates the search index from the given template and returns the bare name it
+was published under - the busted name, with no path.
 
 Expects a dict of `url`, the target path of the generated index, and
 `template`, the resource to generate it from.
+
+Only the name comes from here. A deferred template resolves a URL against the
+bare site, so anything it worked out about the site root would be wrong for a
+site published below a subdirectory; the page prepends its own path instead.
 */}}
 {{- $res := resources.Get .template | resources.ExecuteAsTemplate .url site.Home }}
-{{- return (partial "asset.gotmpl" $res).RelPermalink }}
+{{- return path.Base (partial "asset.gotmpl" $res).RelPermalink }}

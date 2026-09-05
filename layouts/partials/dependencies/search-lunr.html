@@ -16,34 +16,36 @@
       {{- $disableSearchIndex = . }}
     {{- end }}
     {{- if not $disableSearchIndex }}
-      {{- with resources.Get "/js/lunr/lunr.min.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+      {{- with partial "asset.gotmpl" "/js/lunr/lunr.min.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
-      {{- with resources.Get "/js/lunr/lunr.stemmer.support.min.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+      {{- with partial "asset.gotmpl" "/js/lunr/lunr.stemmer.support.min.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
-      {{- with resources.Get "/js/lunr/lunr.multi.min.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+      {{- with partial "asset.gotmpl" "/js/lunr/lunr.multi.min.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
       {{- $missingcontentlangs := slice }}
       {{- $tinyseg := false }}
       {{- $wordcut := false }}
       {{- range $contentlangs }}
         {{- $lang := . }}
-        {{- with resources.Get (printf "/js/lunr/lunr.%s.min.js" $lang) }}
+        {{- with partial "asset.gotmpl" (printf "/js/lunr/lunr.%s.min.js" $lang) }}
+          {{- $lunrlang := . }}
           {{- if and (not $tinyseg) (or (eq $lang "ja")) }}
             {{- $tinyseg = true }}
-            {{- with resources.Get "/js/lunr/tinyseg.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+            {{- /* built segmenters that are not named `.min` */}}
+            {{- with partial "asset.gotmpl" (dict "res" "/js/lunr/tinyseg.js" "minify" false) }}
+    <script src="{{ .RelPermalink }}" defer></script>
             {{- end }}
           {{- end }}
           {{- if and (not $wordcut) (or (eq $lang "hi") (eq $lang "th")) }}
             {{- $wordcut = true }}
-            {{- with resources.Get "/js/lunr/wordcut.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+            {{- with partial "asset.gotmpl" (dict "res" "/js/lunr/wordcut.js" "minify" false) }}
+    <script src="{{ .RelPermalink }}" defer></script>
             {{- end }}
           {{- end }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+    <script src="{{ $lunrlang.RelPermalink }}" defer></script>
         {{- else }}
           {{- $missingcontentlangs = $missingcontentlangs | append . }}
         {{- end }}
@@ -53,8 +55,8 @@
       {{- end }}
       {{- $contentlangs = $contentlangs | complement $missingcontentlangs }}
     {{- end }}
-    {{- /* with resources.Get "/js/search-lunr.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+    {{- /* with partial "asset.gotmpl" "/js/search-lunr.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
     {{- end */}}
     {{- range $contentlangs }}
       {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}

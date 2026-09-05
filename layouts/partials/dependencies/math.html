@@ -24,8 +24,9 @@
     {{- else if and (isset .Site.Params "custommathjaxurl") .Site.Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
     {{- else }}
-      {{- with resources.Get "/js/mathjax/tex-mml-chtml.js" }}
-    <script id="MathJax-script" async src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}"></script>
+      {{- /* a built bundle that is not named `.min`, so it has to say so itself */}}
+      {{- with partial "asset.gotmpl" (dict "res" "/js/mathjax/tex-mml-chtml.js" "minify" false) }}
+    <script id="MathJax-script" async src="{{ .RelPermalink }}"></script>
       {{- end }}
       {{- range resources.Match "/js/mathjax/**" }}
         {{- /* the following code causes Hugo to generate our file in public */}}

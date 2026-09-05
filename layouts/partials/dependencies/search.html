@@ -43,32 +43,35 @@
 {{- else if eq $location "header" }}
   {{- with $page }}
     {{- $searchIndexUrl := "" }}
-    {{- with resources.Get "/css/auto-complete/auto-complete.css" }}
-    <link href="{{ (partial "asset.gotmpl" .).RelPermalink }}" rel="stylesheet">
+    {{- with partial "asset.gotmpl" "/css/auto-complete/auto-complete.css" }}
+    <link href="{{ .RelPermalink }}" rel="stylesheet">
     {{- end }}
-    {{- with resources.Get "/js/auto-complete/auto-complete.js" }}
-    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
+    {{- with partial "asset.gotmpl" "/js/auto-complete/auto-complete.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
     {{- if not $disableSearchIndex }}
       {{- $searchIndexUrl = trim $searchIndexURL "/" }}
       {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." .Language.Lang (path.Ext $searchIndexUrl)) }}
-      {{- /* the following code causes Hugo to generate our file in public and gives us the URL it was busted to */}}
-      {{- $searchIndexUrl = partialCached "_relearn/searchIndexUrl.gotmpl" (dict "url" $searchIndexUrl "template" $searchIndexTemplate) $searchIndexUrl }}
-      {{- with resources.Get (printf "/js/search-%s.js" $adapter) }}
-    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
+      {{- with partial "asset.gotmpl" (printf "/js/search-%s.js" $adapter) }}
+    <script src="{{ .RelPermalink }}" defer></script>
       {{- else }}
-        {{- with resources.Get (printf "/js/search-%s.mjs" $adapter) }}
-    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" type="module" defer></script>
+        {{- with partial "asset.gotmpl" (printf "/js/search-%s.mjs" $adapter) }}
+    <script src="{{ .RelPermalink }}" type="module" defer></script>
         {{- end }}
       {{- end }}
     {{- end }}
-    {{- with resources.Get "/js/search.js" }}
-    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
+    {{- with partial "asset.gotmpl" "/js/search.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
     {{- if $searchIndexUrl }}
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url={{ $searchIndexUrl }};
+      {{- $indexDir := path.Dir $searchIndexUrl }}
+      {{- $indexDir = cond (eq $indexDir ".") "" (printf "%s/" $indexDir) }}
+      {{- /* the deferred half has to stand as a value of its own: inside a string
+        literal Hugo's placeholder gets its slashes escaped and the substitution
+        that fills it in afterwards no longer finds it */}}
+      window.relearn.index_js_url={{ printf "%s/%s" (partial "_relearn/relBasePath.gotmpl" .) $indexDir }}+{{ with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}{{ partial "_relearn/searchIndexUrl.gotmpl" . }}{{ end }};
     </script>
     {{- end }}
   {{- end }}

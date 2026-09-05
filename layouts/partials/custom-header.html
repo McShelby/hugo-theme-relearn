@@ -1,18 +1,18 @@
 <!-- compat way of adding custom scripts in old Hugo documentation -->
 {{- $filePath := "css/custom.css" }}
-{{- with (resources.Get (printf "/%s" $filePath)) }}
-    <link href="{{ (partial "asset.gotmpl" .).RelPermalink }}" rel="stylesheet">
+{{- with partial "asset.gotmpl" (print "/" $filePath) }}
+    <link href="{{ .RelPermalink }}" rel="stylesheet">
 {{- else }}
-  {{- with (partial "_relearn/staticResource.gotmpl" $filePath) }}
+  {{- with partial "_relearn/staticResource.gotmpl" $filePath }}
     <link href="{{ (partial "asset.gotmpl" .).RelPermalink }}" rel="stylesheet">
   {{- end }}
 {{- end }}
 
 {{- $filePath := "js/custom.js" }}
-{{- with (resources.Get (printf "/%s" $filePath)) }}
-    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
+{{- with partial "asset.gotmpl" (print "/" $filePath) }}
+    <script src="{{ .RelPermalink }}" defer></script>
 {{- else }}
-  {{- with (partial "_relearn/staticResource.gotmpl" $filePath) }}
+  {{- with partial "_relearn/staticResource.gotmpl" $filePath }}
     <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
   {{- end }}
 {{- end }}

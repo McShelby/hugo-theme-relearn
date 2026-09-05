@@ -12,8 +12,8 @@
     {{- $css := (partialCached "_relearn/themeVariants.gotmpl" site.Home).css }}
     {{- $cssUrl := "" }}
     {{- $urlOpenapi := "" }}
-    {{- with resources.Get "/js/js-yaml/js-yaml.min.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+    {{- with partial "asset.gotmpl" "/js/js-yaml/js-yaml.min.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/css/swagger-light.css" }}
       {{- $res := . }}
@@ -48,15 +48,16 @@
       {{- $urlOpenapi = replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
     <script src="{{ $urlOpenapi }}" defer></script>
     {{- else }}
-      {{- with resources.Get "/css/swagger-ui/swagger-ui.css" }}
+      {{- /* the swagger-ui distribution arrives built but is not named `.min` */}}
+      {{- with partial "asset.gotmpl" (dict "res" "/css/swagger-ui/swagger-ui.css" "minify" false) }}
         {{- /* the following code causes Hugo to generate our file in public */}}
-        {{- $cssUrl = (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}
+        {{- $cssUrl = .RelPermalink }}
       {{- end }}
-      {{- with resources.Get "/js/swagger-ui/swagger-ui-bundle.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+      {{- with partial "asset.gotmpl" (dict "res" "/js/swagger-ui/swagger-ui-bundle.js" "minify" false) }}
+    <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
-      {{- with resources.Get "/js/swagger-ui/swagger-ui-standalone-preset.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+      {{- with partial "asset.gotmpl" (dict "res" "/js/swagger-ui/swagger-ui-standalone-preset.js" "minify" false) }}
+    <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
     {{- end }}
     <script>

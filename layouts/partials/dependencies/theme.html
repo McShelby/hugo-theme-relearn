@@ -31,12 +31,12 @@
     {{- end }}
     {{- $disableInlineCopyToClipboard := site.Params.disableInlineCopyToClipBoard }}
     {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
-    {{- with resources.Get "/fonts/fontawesome/css/all.min.css" }}
-      {{- $url := (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}
+    {{- with partial "asset.gotmpl" "/fonts/fontawesome/css/all.min.css" }}
+      {{- $url := .RelPermalink }}
     <link href="{{ $url }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{ $url }}" rel="stylesheet"></noscript>
     {{- end }}
-    {{- with resources.Get "/css/perfect-scrollbar/perfect-scrollbar.min.css" }}
-    <link href="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" rel="stylesheet">
+    {{- with partial "asset.gotmpl" "/css/perfect-scrollbar/perfect-scrollbar.min.css" }}
+    <link href="{{ .RelPermalink }}" rel="stylesheet">
     {{- end }}
     <link href="{{ $css.theme }}" rel="stylesheet">
     <link href="{{ index $css (printf "format-%s" $outputFormat) }}" rel="stylesheet" id="R-format-style">
@@ -112,11 +112,11 @@
   {{- end }}
 {{- else if eq $location "footer" }}
   {{- with $page }}
-    {{- with resources.Get "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
-    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
+    {{- with partial "asset.gotmpl" "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
-    {{- with resources.Get "/js/theme.js" }}
-    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
+    {{- with partial "asset.gotmpl" "/js/theme.js" }}
+    <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
   {{- end }}
 {{- end }}
