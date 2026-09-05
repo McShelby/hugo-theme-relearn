@@ -1,7 +1,7 @@
 /*!
  * Lunr languages, `Artificial` language
  * Local to this site, not part of the theme: our Piratish translation uses
- * `languageCode = 'art-x-pir'`, which the lunr search adapter reduces to the
+ * `locale = 'art-x-pir'`, which the lunr search adapter reduces to the
  * base code `art`. Without this file the language is dropped from the search
  * index and the build warns about it. Piratish is autotranslated from English,
  * so it reuses the English support that is build in into lunr
