@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.165.0">
-    <meta name="generator" content="Relearn 9.0.3+b2a7e7b3b04efaa5e77f306cbe74fa00e4cd7fcb">
+    <meta name="generator" content="Relearn 9.0.3+290ca8bc272486f2f89b28a2a35cbd9020eb2a5d">
     <meta name="description" content="What&#39;s new in this version">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search.min.c58b508bccda750a48211b66c89002539e69e1ef1f10dbde995b328356a36f14.js" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-theme-relearn/searchindex.pir.min.fb2acb95cf3a1cc9951e2434a41e1cb09f8c0ce86d0d3604c91fcb150d58ff08.js";
+      window.relearn.index_js_url="../../../"+"searchindex.pir.min.630373727271ecef4da188e744ea3f4deb5f9793f44db28859c66802e28bd20d.js";
     </script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -222,6 +222,38 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <h3 id="change">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <ul>
 <li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
+<p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
+<div class="tab-panel" data-tab-group="R-tabs-86738f98720c0d9b5d09a031b804b42c">
+  <div class="tab-nav">
+    <div class="tab-nav-title">&#8203;</div>
+    <button
+      aria-controls="R-tab-id-9a75104891f6b1baa9b0c57d635dbc59" aria-expanded="true"
+      data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
+      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
+      onclick="switchTab('R-tabs-86738f98720c0d9b5d09a031b804b42c','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
+    >
+      <span class="tab-nav-text">layouts/partials/custom-header.html</span>
+    </button>
+  </div>
+  <div class="tab-content-container">
+    <div
+      id="R-tab-id-9a75104891f6b1baa9b0c57d635dbc59"
+      data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
+      class="tab-content tab-panel-style cstyle initial active">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ wit' resources.Get &#34;/css/mine.css&#34; }}
+</span></span><span class="line"><span class="cl">  {{ wit' partial &#34;asset.gotmpl&#34; . }}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .RelPermalink }}&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  {{ end }}
+</span></span><span class="line"><span class="cl">{{ end }}</span></span></code></pre></div>
+      </div>
+    </div>
+  </div>
+</div><p>Below <code>static</code> this only concerns <code>css/custom.css</code>, <code>js/custom.js</code> an' th' favicon an' logo images; everyth'n else there be published as before. Those be published twice, once untouched an' once processed - move them t' <code>assets</code> t' avoid th' superfluous copy.</p>
+<p>As a busted name changes wit' its rrrambl'n, a build no longer overwrites th' file its predecessor wrote an' both remain. Purge yer output directory, e.g. by build'n wit' Hugo&rsquo;s <code>--cleanDestinationDir</code>, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish'n t' a GitHub Planks branch does.</p>
+</li>
+<li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Th' <a href="/hugo-theme-relearn/pir/configuration/branding/colors/index.html#parameters">theme variant configurat'n</a> has a new <code>hidden</code> parameter.</p>
 <p>If set t' <code>true</code>, th' variant will not be shown 'n th' <a href="/hugo-theme-relearn/pir/configuration/sidebar/menus/index.html">variant switcher</a> but be still us'ble, e.g. as a sub-variant o' an auto mode variant.</p>
 </li>
@@ -241,38 +273,6 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Yer build now warns if yer rrrambl'n uses a <a href="/hugo-theme-relearn/pir/configuration/sidebar/search/index.html#supported-languages">language th' Lunr adapter doesn&rsquo;t support</a>.</p>
 <p>Formerly such a language was dropped without notice an' search'n that rrrambl'n silently returned no results.</p>
 </li>
-<li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
-<p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-f5a1131e990560075c0b6ddf29815e00">
-  <div class="tab-nav">
-    <div class="tab-nav-title">&#8203;</div>
-    <button
-      aria-controls="R-tab-id-7686890024eb4291eca37b3bd09f1ae7" aria-expanded="true"
-      data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
-      class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-f5a1131e990560075c0b6ddf29815e00','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
-    >
-      <span class="tab-nav-text">layouts/partials/custom-header.html</span>
-    </button>
-  </div>
-  <div class="tab-content-container">
-    <div
-      id="R-tab-id-7686890024eb4291eca37b3bd09f1ae7"
-      data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
-      class="tab-content tab-panel-style cstyle initial active">
-      <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ wit' resources.Get &#34;/css/mine.css&#34; }}
-</span></span><span class="line"><span class="cl">  {{ wit' partial &#34;asset.gotmpl&#34; . }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .RelPermalink }}&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl">{{ end }}</span></span></code></pre></div>
-      </div>
-    </div>
-  </div>
-</div><p>Below <code>static</code> this only concerns <code>css/custom.css</code>, <code>js/custom.js</code> an' th' favicon an' logo images; everyth'n else there be published as before. Those be published twice, once untouched an' once processed - move them t' <code>assets</code> t' avoid th' superfluous copy.</p>
-<p>As a busted name changes wit' its rrrambl'n, a build no longer overwrites th' file its predecessor wrote an' both remain. Purge yer output directory, e.g. by build'n wit' Hugo&rsquo;s <code>--cleanDestinationDir</code>, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish'n t' a GitHub Planks branch does.</p>
-</li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <ul>
@@ -283,7 +283,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-29fc4de933ea4d62712605a5aca21b1a" aria-expanded="true"
+      aria-controls="R-tab-id-1c50e11f6ab1f43fcbd4f70bb2d06594" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -291,7 +291,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a38b0fd1362b041036ba33395256f274" aria-expanded="false"
+      aria-controls="R-tab-id-3d866f5a3db2a2f1b03256a1af041562" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -299,7 +299,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-12d3504a06054300e8997f6abb101a18" aria-expanded="false"
+      aria-controls="R-tab-id-a23a924fea214dcbff21474164f7ec03" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -309,7 +309,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-29fc4de933ea4d62712605a5aca21b1a"
+      id="R-tab-id-1c50e11f6ab1f43fcbd4f70bb2d06594"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -317,7 +317,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-a38b0fd1362b041036ba33395256f274"
+      id="R-tab-id-3d866f5a3db2a2f1b03256a1af041562"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -325,7 +325,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-12d3504a06054300e8997f6abb101a18"
+      id="R-tab-id-a23a924fea214dcbff21474164f7ec03"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -769,7 +769,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/b2a7e7b3b04efaa5e77f306cbe74fa00e4cd7fcb" title="Relearn 9.0.3&#43;b2a7e7b3b04efaa5e77f306cbe74fa00e4cd7fcb"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.165.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/290ca8bc272486f2f89b28a2a35cbd9020eb2a5d" title="Relearn 9.0.3&#43;290ca8bc272486f2f89b28a2a35cbd9020eb2a5d"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.165.0">Hugo</a></p>
 <script>
   function githubButtonsScheme(){
     var scheme = 'light';
