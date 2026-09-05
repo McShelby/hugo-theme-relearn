@@ -1,1 +1,14 @@
+# Keep the working tree on LF, whatever platform it was checked out on.
+#
+# Asset busting hashes the bytes of a file as they lie in the working tree, so
+# a CRLF checkout and an LF checkout give the same asset two different names -
+# and a name is not something the test suite can normalise the way it
+# normalises the line endings inside a file. Git's Windows default converts to
+# CRLF on checkout, which would make every published asset name depend on who
+# built the site. This overrides that, and states for Git what .editorconfig
+# already states for editors.
+#
+# Git detects the fonts and images as binary on its own and leaves them alone.
+* text=auto eol=lf
+
 layouts/partials/version.txt merge=ours
