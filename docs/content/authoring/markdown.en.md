@@ -144,7 +144,7 @@ Blockquotes can also be nested.
 
 ### GitHub Alerts
 
-{{% badge style="gfm" %}}GFM{{% /badge %}} Since Hugo {{% badge style="hugo" %}}0.132.0{{% /badge %}} [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are also supported. Please note, that coloring and icons of severities may defer between GitHub and this theme.
+{{% badge style="gfm" %}}GFM{{% /badge %}} [GitHub alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts) are supported. Please note, that coloring and icons of severities may differ between GitHub and this theme.
 
 If you are in need of more advanced options to style your alerts, like icons, use the [notice shortcode](shortcodes/notice).
 
@@ -190,7 +190,7 @@ If you are in need of more advanced options to style your alerts, like icons, us
 
 ### Obsidian Callouts
 
-{{% badge style="obsidian" %}}Obsidian{{% /badge %}} Since Hugo {{% badge style="hugo" %}}0.134.0{{% /badge %}} [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are also supported. Which enables configurable title text and expand/collapse.
+{{% badge style="obsidian" %}}Obsidian{{% /badge %}} [Obsidian callouts](https://help.obsidian.md/Editing+and+formatting/Callouts#Change+the+title) are supported. Which enables configurable title text and expand/collapse.
 
 If you are in need of more advanced options to style your alerts, like icons, use the [notice shortcode](shortcodes/notice).
 
@@ -250,7 +250,7 @@ I am rendered with _italicized text_
 
 You can mark text in the predefined accent color of your stylesheet.
 
-{{% badge style="hugo" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
 
 ````md
 ==Parts== of this text ==are marked!==
@@ -270,7 +270,7 @@ You can mark text in the predefined accent color of your stylesheet.
 
 You can mark text additions to existing text.
 
-{{% badge style="hugo" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
 
 ````md
 The ++hot, new++ stuff
@@ -328,7 +328,7 @@ Three consecutive dots `...` are replaced by an ellipsis **...** entity.
 
 You can also use  subscript and superscript text. For more complex stuff, you can use the [`math` shortcode](shortcodes/math).
 
-{{% badge style="hugo" %}}Hugo{{% /badge %}} Since Hugo 0.126.0, you can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
 
 ````md
 How many liters H~2~O fit into 1dm^3^?
