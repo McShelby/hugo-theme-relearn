@@ -20,7 +20,7 @@ The docs are at [https://gohugo.io/documentation/](https://gohugo.io/documentati
   `latest` is supported by `hvm`. If the user requiers `oldest` or `minimal`, look into `theme.toml` under `module.hugoVersion.min`:
 
   - `hvm use latest` - Use the latest Hugo version
-  - `hvm use 0.141.0` - Use a specific version if minimal version is 0.141.0
+  - `hvm use 0.165.0` - Use a specific version if minimal version is 0.165.0
 
 ## Usage
 

@@ -8,6 +8,6 @@ weight = 4
 [params]
   alwaysopen = false
   disableToc = false
-  minHugoVersion = '0.141.0'
+  minHugoVersion = '0.165.0'
 +++
 {{< piratify >}}
