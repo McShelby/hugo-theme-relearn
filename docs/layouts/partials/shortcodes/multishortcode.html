@@ -143,9 +143,9 @@
       {{- end }}
     {{- else if eq $nk "multishortcode" }}
       {{- $innerName := $nv.name }}
-      {{- $innerProperties := index site.Data.shortcodes $innerName }}
+      {{- $innerProperties := index hugo.Data.shortcodes $innerName }}
       {{- $innerNestedName := $innerProperties.nestedShortcode }}
-      {{- $innerNestedProperties := index site.Data.shortcodes $innerNestedName }}
+      {{- $innerNestedProperties := index hugo.Data.shortcodes $innerNestedName }}
       {{- $innerNestedTags := partial "msc-tags.html" (dict "outputType" $innerNestedProperties.outputType) }}
       {{- $innerContent := index $nv "content" }}
       {{- $innerIndent := printf "%s  " $indent }}
@@ -210,8 +210,8 @@
 {{- $print := not (in (slice "false" false 0) .print) }}
 {{- $execute := not (in (slice "false" false 0) .execute) }}
 
-{{- $definedFormats := site.Data.shortcodeFormats }}
-{{- $definedProperties := index site.Data.shortcodes .name }}
+{{- $definedFormats := hugo.Data.shortcodeFormats }}
+{{- $definedProperties := index hugo.Data.shortcodes .name }}
 {{- $rawContent := $definedProperties.rawContent }}
 
 {{- /* Parse formats parameter - comma-separated list that overrides JSON config */}}
@@ -288,7 +288,7 @@
             {{- if reflect.IsSlice $v }}
               {{- $hasNestedContent = true }}
               {{- $nestedName := $definedProperties.nestedShortcode }}
-              {{- $nestedProperties := index site.Data.shortcodes $nestedName }}
+              {{- $nestedProperties := index hugo.Data.shortcodes $nestedName }}
               {{- $nestedTags := partial "msc-tags.html" (dict "outputType" $nestedProperties.outputType) }}
               {{- $nestedShortcodes := slice }}
               {{- range $v }}
@@ -305,7 +305,7 @@
             {{- $innerName := $v.name }}
             {{- $innerContent := index $v "content" }}
             {{- $innerFormat := index $v "format" }}
-            {{- $innerProperties := index site.Data.shortcodes $innerName }}
+            {{- $innerProperties := index hugo.Data.shortcodes $innerName }}
             {{- $innerTags := partial "msc-tags.html" (dict "outputType" $innerProperties.outputType) }}
             {{- $innerProps := slice }}
             {{- if reflect.IsMap $innerContent }}

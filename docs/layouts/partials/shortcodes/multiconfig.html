@@ -6,11 +6,11 @@
 
   @param {Page} [page] The page to render on.
   @param {string} [content] Plain content to render.
-  @param {string} [config] The section of site.Data.docs.config to render.
+  @param {string} [config] The section of hugo.Data.docs.config to render.
   @param {string} [dataKey] Only render specific section
   @param {string} [file] The file name to display above the rendered code.
   @param {bool} [fm=false] If true, render the code as front matter.
-  @param {bool} [skipHeader=false] If false, omit top level key(s) when rendering a section of site.Data.docs.config.
+  @param {bool} [skipHeader=false] If false, omit top level key(s) when rendering a section of hugo.Data.docs.config.
   @param {string} [section] The file name to display above the rendered code.
 
   @returns {template.HTML}
@@ -45,7 +45,7 @@
 {{- if $config }}
   {{- $file = $file | default "hugo" }}
   {{- $sections := (split $config ".") }}
-  {{- $configSection := index $page.Site.Data.docs.config $sections }}
+  {{- $configSection := index hugo.Data.docs.config $sections }}
   {{- $code = dict $sections $configSection }}
   {{- if $skipHeader }}
     {{- $code = $configSection }}
@@ -53,7 +53,7 @@
 {{- else if $dataKey }}
   {{- $file = $file | default $dataKey }}
   {{- $sections := (split $dataKey ".") }}
-  {{- $code = index $page.Site.Data.docs $sections }}
+  {{- $code = index hugo.Data.docs $sections }}
 {{- else }}
   {{- $code = $content }}
 {{- end }}

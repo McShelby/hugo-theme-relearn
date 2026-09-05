@@ -13,7 +13,7 @@
 {{- if and $site.Params.enableLegacyLanguageLinks (not $lang) }}
 	{{- /* is it a legacy link into another translation? */}}
 	{{- if strings.HasPrefix $path "/" }}
-		{{- range $site.Sites }}
+		{{- range hugo.Sites }}
 			{{- $lang = .Language.Lang }}
 			{{- $prefix := printf "/%s" $lang }}
 			{{- $suffix := strings.TrimPrefix $prefix $path | default "/" }}
@@ -34,7 +34,7 @@
 		{{- $transPage = $page }}
 	{{- end }}
 {{- else if $lang }}
-	{{- with where $site.Sites "Language.Lang" "eq" $lang }}
+	{{- with where hugo.Sites "Language.Lang" "eq" $lang }}
 		{{- with index . 0 }}
 			{{- $transSite = . }}
 			{{- $transPage = $transSite.GetPage $page.Path }}

@@ -9,9 +9,11 @@
         {{- end }}
       <div class="card-content-text">
         <p>All Parameter</p>
+{{- /* the page is dumped by its path only; serializing the object itself makes
+	Hugo's own marshaller in 0.165.0 call its deprecated .Page.IsNode */}}
 {{ partial "shortcodes/highlight.html" (dict
   "page"    $page
-  "content" (. | jsonify (dict "indent" "  "))
+  "content" (merge . (dict "page" $page.Path) | jsonify (dict "indent" "  "))
   "type"    "json"
 )}}
       </div>

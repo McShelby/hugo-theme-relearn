@@ -126,8 +126,8 @@ To stay with the above example, here's the configuration for your current versio
 [languages]
   [languages.en]
     weight = 1
-    languageName = 'English'
-    languageCode = 'en'
+    label = 'English'
+    locale = 'en'
     contentDir = 'content/en'
     title = 'My Website'
     baseURL = 'https://example.com/'
@@ -141,9 +141,9 @@ To stay with the above example, here's the configuration for your current versio
 
   [languages.pir]
     weight = 2
-    languageName = 'Pirrratish'
-    languageCode = 'art-x-pir'
-    languageDirection = 'rtl'
+    label = 'Pirrratish'
+    locale = 'art-x-pir'
+    direction = 'rtl'
     contentDir = 'content/pir'
     title = 'Arrr, my Website'
     baseURL = 'https://pir.example.com/'

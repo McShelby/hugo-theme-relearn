@@ -5,7 +5,7 @@
 	{{- $show := not (.Param "disableNextPrev") }}
 	{{- if $show }}
 		{{- $startarrow := "🡐" }}
-		{{- if eq (.Language.LanguageDirection | default (T "Reading-direction") | default "ltr") "rtl" }}
+		{{- if eq (.Language.Direction | default (T "Reading-direction") | default "ltr") "rtl" }}
 			{{- $startarrow = "🡒" }}
 		{{- end }}
         {{- $prev := partialCached "_relearn/pagePrev.gotmpl" . .Path }}
