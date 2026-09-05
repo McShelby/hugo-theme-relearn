@@ -1,0 +1,14 @@
+{{- /*
+Returns a resource for the given path in your site's `static` directory, or
+nothing if no such file exists.
+
+Files in `static` are no resources Hugo can process, so we have to read them
+in ourself. Prefer putting such files into your `assets` directory, as that
+avoids the copy Hugo publishes for the untouched static file.
+*/}}
+{{- $res := "" }}
+{{- $filePath := . }}
+{{- if fileExists (printf "/static/%s" $filePath) }}
+	{{- $res = resources.FromString $filePath (os.ReadFile (printf "/static/%s" $filePath)) }}
+{{- end }}
+{{- return $res }}

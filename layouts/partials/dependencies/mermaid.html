@@ -2,36 +2,35 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
     {{- with resources.Get "/js/js-yaml/js-yaml.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-color.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-dispatch.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-drag.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-ease.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-interpolate.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-selection.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-timer.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-transition.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/d3/d3-zoom.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- if and (isset .Params "custommermaidurl") .Params.customMermaidURL }}
     <script src="{{ .Params.customMermaidURL }}" defer></script>
@@ -39,7 +38,7 @@
     <script src="{{ .Site.Params.customMermaidURL }}" defer></script>
     {{- else }}
       {{- with resources.Get "/js/mermaid/mermaid.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
       {{- end }}
     {{- end }}
     {{- $init := "{}" }}

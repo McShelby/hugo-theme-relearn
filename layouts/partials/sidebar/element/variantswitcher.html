@@ -1,4 +1,4 @@
-{{- $allthemevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
+{{- $allthemevariants := (partialCached "_relearn/themeVariants.gotmpl" site.Home).variants }}
 {{- $themevariants := slice }}
 {{- range $allthemevariants }}
   {{- if not .hidden }}

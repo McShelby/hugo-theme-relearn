@@ -1,10 +1,6 @@
 {{- $nonautothemevariants := slice }}
 {{- $formathtmlpre := ":root:not([data-r-output-format='print']):not([data-r-theme-variant^='my-custom-'])" }}
 {{- $formathtml := "" }}
-{{- $minify := not hugo.IsServer }}
-{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
-	{{- $minify = site.Params.minify }}
-{{- end }}
 
 {{- /*
 Logo Detection:
@@ -186,6 +182,9 @@ Generator run:
 	{{- $printcontent = .Content }}
 {{- end }}
 {{- $styles := partialCached "_relearn/boxStyles.gotmpl" site.Home }}
+{{- /* the URLs of the CSS we generate below; they carry a cache buster, so they
+	can not be guessed by their name and have to be handed to whoever links them */}}
+{{- $css := dict }}
 
 {{- /*
 - Read variables.css and add custom box styles
@@ -245,11 +244,8 @@ Generator run:
 		"\n" $fontscontent
 	}}
 	{{- $cssres := $themecontent | resources.FromString "css/theme.css" }}
-	{{- if $minify }}
-		{{- $cssres = $cssres | minify }}
-	{{- end }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
-	{{- $url := $cssres.RelPermalink }}
+	{{- $css = merge $css (dict "theme" (partial "asset.gotmpl" $cssres).RelPermalink) }}
 {{- end }}
 
 {{- /*
@@ -262,11 +258,8 @@ Generator run:
 		$fontscontent "\n"
 	}}
 	{{- $cssres := $swaggercontent | resources.FromString "css/swagger.css" }}
-	{{- if $minify }}
-		{{- $cssres = $cssres | minify }}
-	{{- end }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
-	{{- $url := $cssres.RelPermalink }}
+	{{- $css = merge $css (dict "swagger" (partial "asset.gotmpl" $cssres).RelPermalink) }}
 {{- end }}
 
 {{- /*
@@ -287,11 +280,8 @@ Generator run:
 	"\n" $htmlcontent
 }}
 {{- $cssres := $htmlcontent | resources.FromString "css/format-html.css" }}
-{{- if $minify }}
-	{{- $cssres = $cssres | minify }}
-{{- end }}
 {{- /* the following code causes Hugo to generate our file in public */}}
-{{- $url := $cssres.RelPermalink }}
+{{- $css = merge $css (dict "format-html" (partial "asset.gotmpl" $cssres).RelPermalink) }}
 
 {{- /*
 - Write format-print.css
@@ -304,11 +294,8 @@ Generator run:
 	"\n" $printcontent
 }}
 {{- $cssres := $printcontent | resources.FromString "css/format-print.css" }}
-{{- if $minify }}
-	{{- $cssres = $cssres | minify }}
-{{- end }}
 {{- /* the following code causes Hugo to generate our file in public */}}
-{{- $url := $cssres.RelPermalink }}
+{{- $css = merge $css (dict "format-print" (partial "asset.gotmpl" $cssres).RelPermalink) }}
 
 {{- /*
 Write yet non-dynamic stuff
@@ -324,7 +311,7 @@ Write yet non-dynamic stuff
 	{{- $url := .RelPermalink }}
 {{- end }}
 
-{{- return $themevariants }}
+{{- return (dict "variants" $themevariants "css" $css) }}
 
 {{- define "partials/inline/get-theme-details" }}
 	{{- $themevariant := .themevariant }}

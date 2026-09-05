@@ -2,7 +2,6 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
     {{- $init := "{}" }}
     {{- if isset .Params "mathjaxinitialize" }}
       {{- $init = .Params.mathJaxInitialize }}
@@ -26,7 +25,7 @@
     <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
     {{- else }}
       {{- with resources.Get "/js/mathjax/tex-mml-chtml.js" }}
-    <script id="MathJax-script" async src="{{ .RelPermalink }}{{ $assetBusting }}"></script>
+    <script id="MathJax-script" async src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}"></script>
       {{- end }}
       {{- range resources.Match "/js/mathjax/**" }}
         {{- /* the following code causes Hugo to generate our file in public */}}

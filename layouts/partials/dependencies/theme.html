@@ -1,10 +1,5 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
-{{- $minify := not hugo.IsServer }}
-{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
-  {{- $minify = site.Params.minify }}
-{{- end }}
 
 {{- if eq $location "default" }}
   {{- with $page }}
@@ -18,8 +13,9 @@
     {{- else }}
       {{- warnf "WARNING no key `relearnOutputFormat` found in page store; define a block `storeOutputFormat` for your HTML based output format templates and add `{{- .Store.Set \"relearnOutputFormat\" \"<your-output-format-name>\" }}`; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" }}
     {{- end }}
-    {{- $min := cond $minify ".min" "" }}
-    {{- $themevariants := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
+    {{- $themevariantsdata := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
+    {{- $themevariants := $themevariantsdata.variants }}
+    {{- $css := $themevariantsdata.css }}
     {{- $quotedthemevariants := slice }}
     {{- range $themevariants }}
       {{- if not .hidden }}
@@ -36,13 +32,14 @@
     {{- $disableInlineCopyToClipboard := site.Params.disableInlineCopyToClipBoard }}
     {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
     {{- with resources.Get "/fonts/fontawesome/css/all.min.css" }}
-    <link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="stylesheet"></noscript>
+      {{- $url := (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}
+    <link href="{{ $url }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{ $url }}" rel="stylesheet"></noscript>
     {{- end }}
     {{- with resources.Get "/css/perfect-scrollbar/perfect-scrollbar.min.css" }}
-    <link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="stylesheet">
+    <link href="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" rel="stylesheet">
     {{- end }}
-    <link href="{{(printf "css/theme%s.css" $min) | relURL}}{{ $assetBusting }}" rel="stylesheet">
-    <link href="{{(printf "css/format-%s%s.css" $outputFormat $min) | relURL}}{{ $assetBusting }}" rel="stylesheet" id="R-format-style">
+    <link href="{{ $css.theme }}" rel="stylesheet">
+    <link href="{{ index $css (printf "format-%s" $outputFormat) }}" rel="stylesheet" id="R-format-style">
     {{- $versionIndexUrl := "" }}
     {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
     {{- if $versions }}
@@ -64,13 +61,13 @@
     <script>
       window.relearn = window.relearn || {};
       {{ "// configuration" | safeJS }}
-      {{ printf "window.relearn.min = `%s`;" $min | safeJS }}
       window.relearn.path='{{ $path | safeJS }}';
       window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
       window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
       window.relearn.absBaseUri='{{ replaceRE "/*$" "" site.BaseURL | safeJS }}';
       {{- if $versionIndexUrl }}
-      window.relearn.version_js_url={{ (printf "%s%s" $versionIndexUrl $assetBusting) | relURL }};
+      {{- /* no cache busting: this URL points into the latest version's build, so its hash is unknowable from here and a build time id would pin the very file that must change */}}
+      window.relearn.version_js_url={{ $versionIndexUrl | relURL }};
       {{- end }}
       window.relearn.disableInlineCopyToClipboard={{ printf "%t" (eq $disableInlineCopyToClipboard true) | safeJS }};
       window.relearn.enableBlockCodeWrap={{ printf "%t" (eq $wrap true) | safeJS }};
@@ -116,14 +113,10 @@
 {{- else if eq $location "footer" }}
   {{- with $page }}
     {{- with resources.Get "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/js/theme.js" }}
-      {{- $res := . }}
-      {{- if $minify }}
-        {{- $res = $res | minify }}
-      {{- end }}
-    <script src="{{ $res.RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" .).RelPermalink }}" defer></script>
     {{- end }}
   {{- end }}
 {{- end }}

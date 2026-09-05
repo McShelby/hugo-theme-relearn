@@ -1,10 +1,5 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
-{{- $minify := not hugo.IsServer }}
-{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
-  {{- $minify = site.Params.minify }}
-{{- end }}
 
 {{- if eq $location "header" }}
   {{- with $page }}
@@ -22,13 +17,13 @@
     {{- end }}
     {{- if not $disableSearchIndex }}
       {{- with resources.Get "/js/lunr/lunr.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
       {{- end }}
       {{- with resources.Get "/js/lunr/lunr.stemmer.support.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
       {{- end }}
       {{- with resources.Get "/js/lunr/lunr.multi.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
       {{- end }}
       {{- $missingcontentlangs := slice }}
       {{- $tinyseg := false }}
@@ -39,16 +34,16 @@
           {{- if and (not $tinyseg) (or (eq $lang "ja")) }}
             {{- $tinyseg = true }}
             {{- with resources.Get "/js/lunr/tinyseg.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
             {{- end }}
           {{- end }}
           {{- if and (not $wordcut) (or (eq $lang "hi") (eq $lang "th")) }}
             {{- $wordcut = true }}
             {{- with resources.Get "/js/lunr/wordcut.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
             {{- end }}
           {{- end }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
         {{- else }}
           {{- $missingcontentlangs = $missingcontentlangs | append . }}
         {{- end }}
@@ -59,7 +54,7 @@
       {{- $contentlangs = $contentlangs | complement $missingcontentlangs }}
     {{- end }}
     {{- /* with resources.Get "/js/search-lunr.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end */}}
     {{- range $contentlangs }}
       {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}

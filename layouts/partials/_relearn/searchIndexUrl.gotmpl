@@ -1,0 +1,9 @@
+{{- /*
+Generates the search index from the given template and returns the URL it can
+be linked by.
+
+Expects a dict of `url`, the target path of the generated index, and
+`template`, the resource to generate it from.
+*/}}
+{{- $res := resources.Get .template | resources.ExecuteAsTemplate .url site.Home }}
+{{- return (partial "asset.gotmpl" $res).RelPermalink }}

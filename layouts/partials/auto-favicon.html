@@ -1,4 +1,3 @@
-    {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
     {{- $faviconMatch := false }}
     {{- $svg := dict "ext" "svg" "type" "type=\"image/svg+xml\"" }}
     {{- $png := dict "ext" "png" "type" "type=\"image/png\"" }}
@@ -15,13 +14,14 @@
         {{- $faviconType := . }}
         {{- range $faviconVariants }}
           {{- $faviconVariant := . }}
+          {{- /* never minified: a favicon is an image and images are published as they are, whether or not Hugo happens to have a minifier for the format */}}
           {{- with (resources.Get (printf "/images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
             {{- $faviconMatch = true }}
-    <link href="{{ .RelPermalink }}{{ $assetBusting }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
+    <link href="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
           {{- else }}
-            {{- if (fileExists (printf "/static/images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
+            {{- with (partial "_relearn/staticResource.gotmpl" (printf "images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext)) }}
               {{- $faviconMatch = true }}
-    <link href="{{ printf "images/%s%s.%s" $faviconName $faviconVariant.suffix $faviconType.ext | relURL }}{{ $assetBusting }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
+    <link href="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" rel="icon" {{ $faviconType.type | safeHTMLAttr }}{{ $faviconVariant.media | safeHTMLAttr }}>
             {{- end }}
           {{- end }}
         {{- end }}

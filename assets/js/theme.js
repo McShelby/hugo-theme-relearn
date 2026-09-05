@@ -448,12 +448,9 @@ function initOpenapi(update, attrs) {
   function addFunctionToResizeEvent() {}
   function getFirstAncestorByClass() {}
   function renderOpenAPI(oc) {
-    var relBasePath = window.relearn.relBasePath;
-    var assetBuster = window.relearn.themeUseOpenapi.assetsBuster;
     var print = isPrint || isPrintPreview ? 'PRINT-' : '';
     var format = print ? `print` : `html`;
-    var min = window.relearn.min;
-    var theme = `${relBasePath}/css/format-${format}${min}.css${assetBuster}`;
+    var theme = print ? window.relearn.format_print_css_url : window.relearn.format_html_css_url;
     var variant = document.documentElement.dataset.rThemeVariant;
     var swagger_theme = getColorValue(print + 'OPENAPI-theme');
     var swagger_code_theme = getColorValue(print + 'OPENAPI-CODE-theme');
@@ -476,8 +473,8 @@ function initOpenapi(update, attrs) {
 <html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="${window.relearn.themeUseOpenapi.css}${assetBuster}">
-    <link rel="stylesheet" href="${relBasePath}/css/swagger${min}.css${assetBuster}">
+    <link rel="stylesheet" href="${window.relearn.openapi_css_url}">
+    <link rel="stylesheet" href="${window.relearn.swagger_css_url}">
     <link rel="stylesheet" href="${theme}">
     <script>
       function relearn_expand_all() {
@@ -1837,15 +1834,6 @@ function useMermaid(config) {
 }
 if (window.relearn.themeUseMermaid) {
   useMermaid(window.relearn.themeUseMermaid);
-}
-
-function useOpenapi(config) {
-  if (config.css && config.cssInProject) {
-    config.css = window.relearn.relBasePath + config.css;
-  }
-}
-if (window.relearn.themeUseOpenapi) {
-  useOpenapi(window.relearn.themeUseOpenapi);
 }
 
 function ready(fn) {

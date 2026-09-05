@@ -2,16 +2,18 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- $assetBusting := partialCached "assetbusting.gotmpl" site.Home }}
+    {{- /* the swagger variant stylesheets below are published under their own
+      name for the iframe to pick up rather than linked from here, so they can
+      not be busted and have to be minified by hand */}}
     {{- $minify := not hugo.IsServer }}
     {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
       {{- $minify = site.Params.minify }}
     {{- end }}
-    {{- $cssInProject := false }}
+    {{- $css := (partialCached "_relearn/themeVariants.gotmpl" site.Home).css }}
     {{- $cssUrl := "" }}
     {{- $urlOpenapi := "" }}
     {{- with resources.Get "/js/js-yaml/js-yaml.min.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
     {{- end }}
     {{- with resources.Get "/css/swagger-light.css" }}
       {{- $res := . }}
@@ -46,21 +48,27 @@
       {{- $urlOpenapi = replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
     <script src="{{ $urlOpenapi }}" defer></script>
     {{- else }}
-      {{- $cssInProject = true }}
-      {{- $cssUrl = "/css/swagger-ui/swagger-ui.css" }}
-      {{- with resources.Get $cssUrl }}
+      {{- with resources.Get "/css/swagger-ui/swagger-ui.css" }}
         {{- /* the following code causes Hugo to generate our file in public */}}
-        {{- $url := .RelPermalink }}
+        {{- $cssUrl = (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}
       {{- end }}
       {{- with resources.Get "/js/swagger-ui/swagger-ui-bundle.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
       {{- end }}
       {{- with resources.Get "/js/swagger-ui/swagger-ui-standalone-preset.js" }}
-    <script src="{{ .RelPermalink }}{{ $assetBusting }}" defer></script>
+    <script src="{{ (partial "asset.gotmpl" (dict "res" . "minify" false)).RelPermalink }}" defer></script>
       {{- end }}
     {{- end }}
     <script>
-      window.relearn.themeUseOpenapi = { css: {{ $cssUrl }}, cssInProject: {{ $cssInProject | safeJS }}, assetsBuster: "{{ $assetBusting }}" };
+      window.relearn.themeUseOpenapi = true;
+      {{- /* the iframe we render the spec into is a document of its own and has to
+        be handed every stylesheet it needs; these names have to end in `url=` for
+        Hugo to rewrite them if `relativeURLs` is set, so they can not be
+        collected into a map */}}
+      window.relearn.openapi_css_url={{ $cssUrl }};
+      window.relearn.swagger_css_url={{ index $css "swagger" }};
+      window.relearn.format_html_css_url={{ index $css "format-html" }};
+      window.relearn.format_print_css_url={{ index $css "format-print" }};
     </script>
   {{- end }}
 {{- end }}

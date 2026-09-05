@@ -22,9 +22,9 @@ If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting
 
 ## Disabling IDs for Referenced Assets
 
-{{% badge style="option" %}}Option{{% /badge %}} The theme creates a unique ID for each build and adds it to each referenced asset's URL to make browsers not keep outdated cached assets.
+{{% badge style="option" %}}Option{{% /badge %}} The theme puts a hash of each referenced asset's content into its file name to make browsers not keep outdated cached assets.
 
-This is good for production sites but can be problematic during development. It makes comparing outputs difficult as each build has new IDs.
+As the hash only changes once the asset itself changes, a rebuild of unchanged content results in unchanged file names. You only need to switch this off if your setup can not deal with file names that change at all.
 
 To disable this, set `disableAssetsBusting=true`.
 

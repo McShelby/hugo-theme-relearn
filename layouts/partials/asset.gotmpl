@@ -1,0 +1,41 @@
+{{- /*
+Returns the given resource ready to be linked.
+
+Takes the resource, or a map holding it as `res` alongside options:
+
+	{{ partial "asset.gotmpl" . }}
+	{{ partial "asset.gotmpl" (dict "res" . "minify" false) }}
+
+`minify` says whether the resource may be minified at all, and defaults to
+`true` - which leaves the decision to your site's `minify` setting. Pass `false`
+for a resource that arrives already built, like a third party bundle: running
+one of those through the minifier a second time gains nothing and can break it.
+
+The resource is fingerprinted so its URL changes whenever its content changes,
+unless the site parameter `disableAssetsBusting` is set.
+*/}}
+{{- $res := . }}
+{{- $options := dict }}
+{{- if reflect.IsMap . }}
+	{{- $res = .res }}
+	{{- $options = . }}
+{{- end }}
+
+{{- $mayMinify := true }}
+{{- if isset $options "minify" }}
+	{{- $mayMinify = $options.minify }}
+{{- end }}
+{{- if $mayMinify }}
+	{{- $minify := not hugo.IsServer }}
+	{{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
+		{{- $minify = site.Params.minify }}
+	{{- end }}
+	{{- if $minify }}
+		{{- $res = $res | minify }}
+	{{- end }}
+{{- end }}
+
+{{- if not site.Params.disableAssetsBusting }}
+	{{- $res = $res | fingerprint }}
+{{- end }}
+{{- return $res }}
