@@ -34,7 +34,7 @@
 		{{- $transPage = $page }}
 	{{- end }}
 {{- else if $lang }}
-	{{- with where $site.Sites "Language.Lang" "eq" $lang }}
+	{{- with where hugo.Sites "Language.Lang" "eq" $lang }}
 		{{- with index . 0 }}
 			{{- $transSite = . }}
 			{{- $transPage = $transSite.GetPage $page.Path }}

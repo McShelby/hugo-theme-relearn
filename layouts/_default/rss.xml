@@ -24,7 +24,7 @@
     <link>{{ partial "permalink.gotmpl" (dict "to" . "abs" true) }}</link>
     <description>{{ trim (or .Description .Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " | transform.XMLEscape | safeHTML }}</description>
     <generator>Hugo</generator>
-    <language>{{ site.Language.LanguageCode }}</language>{{ with $authorEmail }}
+    <language>{{ site.Language.Locale }}</language>{{ with $authorEmail }}
     <managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
     <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with site.Copyright }}
     <copyright>{{ . }}</copyright>{{ end }}{{ if not .Date.IsZero }}
