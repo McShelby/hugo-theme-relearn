@@ -72,13 +72,13 @@
 {{- range $groups }}
   {{- if .pages }}
     {{- if eq $.type "card" }}
-      {{- partial "inline/children/cards" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "withImage" $withImage "page" $page) }}
+      {{- partial "inline/children/cards" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "withImage" $withImage "page" $page "sortTerm" $sortTerm "cardTemplate" $cardTemplate) }}
     {{- else }}
 {{ if .capital }}
   {{- strings.Repeat $headingDepth "#" }} {{ .capital }}
 {{- end }}
 
-{{ partial "inline/children/default" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "type" $type "headingDepth" $headingDepth) }}
+{{ partial "inline/children/default" (dict "pages" .pages "count" 1 "depth" $depth "showHidden" $showHidden "withBreadcrumb" $withBreadcrumb "withDescription" $withDescription "type" $type "headingDepth" $headingDepth "sortTerm" $sortTerm) }}
 {class="children children-type-{{$type}} children-sort-{{$sortTerm}}{{$classes}}"}
 
 {{ end }}
@@ -114,8 +114,8 @@
         {{- end }}
       {{- end }}
       {{- if lt $.count $.depth }}
-        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" $page) }}
-        {{- partial "inline/children/default" (dict "pages" $pages "count" (add $.count 1) "depth" $.depth "showHidden" $.showHidden "withBreadcrumb" $.withBreadcrumb "withDescription" $.withDescription "type" $.type "headingDepth" $.headingDepth) }}
+        {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" $page "by" $.sortTerm) }}
+        {{- partial "inline/children/default" (dict "pages" $pages "count" (add $.count 1) "depth" $.depth "showHidden" $.showHidden "withBreadcrumb" $.withBreadcrumb "withDescription" $.withDescription "type" $.type "headingDepth" $.headingDepth "sortTerm" $.sortTerm) }}
       {{- end }}
     {{- end }}
   {{- end }}

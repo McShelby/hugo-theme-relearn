@@ -11,5 +11,5 @@
 		{{- $pages = $pages| append (dict "LinkTitle" (printf "%s (%d)" (partial "title.gotmpl" (dict "page" .Page "linkTitle" true)) $count) "Page" .Page "Count" $count )}}
 	{{- end }}
 {{- end }}
-{{- $pages = sort $pages ".LinkTitle" }}
+{{- $pages = partial "_relearn/pagesSort.gotmpl" (dict "page" . "pages" $pages "by" .Params.children.sort) }}
 {{- return $pages }}

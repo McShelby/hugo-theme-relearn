@@ -17,7 +17,7 @@ The `children` shortcode lists child pages in various layouts.
 
 ## Usage
 
-Also, the [taxonomy and term pages](authoring/taxterm) internally are using this shortcode and also can be given parameters.
+Also, the [taxonomy and term pages](authoring/taxterm) internally are using this shortcode and also can be given parameters. Their list of children is assembled by the theme instead of taken from your content, so `sort=default` orders it by `title` there, and whatever you sort by also becomes the order the previous and next buttons walk.
 
 {{% multishortcode name="children" execute="false" %}}
 - sort: "title"

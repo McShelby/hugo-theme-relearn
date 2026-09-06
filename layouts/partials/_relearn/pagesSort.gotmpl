@@ -1,0 +1,26 @@
+{{- /* sorts a list of taxonomy or term entries, each carrying its own LinkTitle */}}
+{{- $page := .page }}
+{{- $pages := .pages }}
+{{- $by := .by }}
+{{- if $by }}
+	{{- $by = partial "_relearn/sortOrder.gotmpl" (dict "page" $page "by" $by) }}
+{{- end }}
+
+{{- /* these listings are synthesized, so their historic and default order is by title */}}
+{{- if eq $by "weight" }}
+	{{- $pages = sort $pages ".Page.Weight" }}
+{{- else if eq $by "modifieddate" }}
+	{{- $pages = sort $pages ".Page.Lastmod" }}
+{{- else if eq $by "expirydate" }}
+	{{- $pages = sort $pages ".Page.ExpiryDate" }}
+{{- else if eq $by "publishdate" }}
+	{{- $pages = sort $pages ".Page.PublishDate" }}
+{{- else if eq $by "date" }}
+	{{- $pages = sort $pages ".Page.Date" }}
+{{- else if eq $by "length" }}
+	{{- $pages = sort $pages ".Page.Len" }}
+{{- else }}
+	{{- $pages = sort $pages ".LinkTitle" }}
+{{- end }}
+
+{{- return $pages }}

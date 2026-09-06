@@ -1,19 +1,14 @@
 {{- $page := .page }}
-{{- /* default sort order for the theme is historically by weight */}}
-{{- $by := .by }}
-{{- if eq $by "auto" }}
-	{{- $by = "" }}
-{{- end }}
-{{- $by = $by | default $page.Params.ordersectionsby | default $page.Site.Params.ordersectionsby | default "default" }}
+{{- $by := partial "_relearn/sortOrder.gotmpl" (dict "page" $page "by" .by) }}
 
 {{- $pages := slice }}
 
 {{- if eq $by "weight" }}
 	{{- $pages = $page.Pages.ByWeight }}
-{{- else if or (eq $by "name") (eq $by "title") (eq $by "linktitle") }}
+{{- else if eq $by "title" }}
 	{{- $pages = $page.Pages.ByLinkTitle }}
 {{- else if eq $by "modifieddate" }}
-	{{- $pages = $page.Pages.Lastmod }}
+	{{- $pages = $page.Pages.ByLastmod }}
 {{- else if eq $by "expirydate" }}
 	{{- $pages = $page.Pages.ByExpiryDate }}
 {{- else if eq $by "publishdate" }}
@@ -22,11 +17,7 @@
 	{{- $pages = $page.Pages.ByDate }}
 {{- else if eq $by "length" }}
 	{{- $pages = $page.Pages.ByLength }}
-{{- else if eq $by "default" }}
-	{{- $pages = $page.Pages }}
 {{- else }}
-	{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-	{{- warnf "%q: Unknown pages sort order %q" $filepath $by }}
 	{{- $pages = $page.Pages }}
 {{- end }}
 

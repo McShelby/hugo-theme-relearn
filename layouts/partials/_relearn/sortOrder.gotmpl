@@ -1,0 +1,18 @@
+{{- /* normalizes a sort criteria to one of the theme's canonical values */}}
+{{- $page := .page }}
+{{- $by := .by }}
+{{- if eq $by "auto" }}
+	{{- $by = "" }}
+{{- end }}
+{{- /* default sort order for the theme is historically by weight */}}
+{{- $by = $by | default $page.Params.ordersectionsby | default $page.Site.Params.ordersectionsby | default "default" }}
+{{- if or (eq $by "name") (eq $by "linktitle") }}
+	{{- $by = "title" }}
+{{- end }}
+{{- if not (in (slice "weight" "title" "modifieddate" "expirydate" "publishdate" "date" "length" "default") $by) }}
+	{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+	{{- warnf "%q: Unknown pages sort order %q" $filepath $by }}
+	{{- $by = "default" }}
+{{- end }}
+
+{{- return $by }}

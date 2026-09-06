@@ -4,5 +4,5 @@
 		{{- $pages = $pages | append (dict "LinkTitle" .Title "Page" . )}}
 	{{- end }}
 {{- end }}
-{{- $pages = sort $pages ".LinkTitle" }}
+{{- $pages = partial "_relearn/pagesSort.gotmpl" (dict "page" . "pages" $pages "by" .Params.children.sort) }}
 {{- return $pages }}
