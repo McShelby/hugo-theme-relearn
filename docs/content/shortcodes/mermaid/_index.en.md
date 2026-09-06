@@ -107,6 +107,33 @@ content: |
     C -->|Two| E[Result two]
 {{% /multishortcode %}}
 
+### Swimlanes
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  swimlane-beta LR
+    subgraph Customer
+      request[Request service]
+      receive[Receive update]
+    end
+
+    subgraph Support
+      triage[Triage request]
+      answer[Send answer]
+    end
+
+    subgraph Engineering
+      investigate[Investigate issue]
+      fix[Prepare fix]
+    end
+
+    request --> triage
+    triage -->|Known issue| answer
+    triage -->|Needs code change| investigate
+    investigate --> fix --> answer
+    answer --> receive
+{{% /multishortcode %}}
+
 ### Sequence Diagram with Configuration Directive
 
 {{% multishortcode name="mermaid" %}}
@@ -538,4 +565,106 @@ content: |
   "Section 2"
       "Leaf 2.1": 20
       "Leaf 2.2": 25
+{{% /multishortcode %}}
+
+### Venn
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  venn-beta
+    title "Team overlap"
+    set Frontend
+    set Backend
+    union Frontend,Backend["APIs"]
+{{% /multishortcode %}}
+
+### Ishikawa
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  ishikawa-beta
+    Blurry Photo
+    Process
+        Out of focus
+        Shutter speed too slow
+        Protective film not removed
+        Beautification filter applied
+    User
+        Shaky hands
+    Equipment
+        LENS
+            Inappropriate lens
+            Damaged lens
+            Dirty lens
+        SENSOR
+            Damaged sensor
+            Dirty sensor
+    Environment
+        Subject moved too quickly
+        Too dark
+{{% /multishortcode %}}
+
+### Wardley
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  wardley-beta
+    title Tea Shop Value Chain
+
+    anchor Business [0.95, 0.63]
+    component Cup of Tea [0.79, 0.61]
+    component Tea [0.63, 0.81]
+    component Hot Water [0.52, 0.80]
+    component Kettle [0.43, 0.35]
+    component Power [0.10, 0.70]
+
+    Business -> Cup of Tea
+    Cup of Tea -> Tea
+    Cup of Tea -> Hot Water
+    Hot Water -> Kettle
+    Kettle -> Power
+
+    evolve Kettle 0.62
+    evolve Power 0.89
+
+    note "Standardising power allows Kettles to evolve faster" [0.30, 0.49]
+{{% /multishortcode %}}
+
+### Cynefin
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  cynefin-beta
+  title Optional Diagram Title
+
+  complex
+  "Item label"
+  "Another item"
+
+  complicated
+  "Expert analysis needed"
+
+  clear
+  "Known procedure"
+
+  chaotic
+  "Crisis response"
+
+  confusion
+  "Item of unknown domain"
+
+  complex --> complicated : "Pattern identified"
+  clear --> chaotic : "Complacency"
+{{% /multishortcode %}}
+
+### TreeView
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  treeView-beta
+    my-project/
+        src/
+            index.js
+        package.json
+        README.md
 {{% /multishortcode %}}
