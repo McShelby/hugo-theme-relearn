@@ -38,6 +38,7 @@ If you want to show a set of cards grouped together you can wrap your cards into
 |-----------------------|-----------------|-------------|
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the card or JavaScript code to be executed on click. If this parameter is set, the card will hover on mouse over.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well. |
 | **image**             | _&lt;empty&gt;_ | URL to an image to be displayed at the start of the card. |
+| **imagealt**          | _&lt;empty&gt;_ | Text alternative for the `image`, announced by a screen reader in place of the image.<br><br>Set it if the card shows nothing but its image, as the image is then the only thing left to name the card. Without it such a card falls back to the title of the page its `href` leads to, or to the `href` itself.<br><br>Leave it empty if the card also shows a title. The title names the card, so the image beside it is marked as decorative with an empty `alt` attribute. |
 | **title**             | _&lt;empty&gt;_ | Arbitrary title for the card. |
 | **template**          | `default`       | The template to be used to display the card. <br><br>- `default`: The standard layout<br>- `debug`: A debug layout helping you in development<br><br>See below how to [use your own templates](#card-templates). |
 | **params**            | _&lt;empty&gt;_ | Arbitrary additional parameter for your template as string (JSON, TOML, YAML) or in a `dict`.<br><br>[See example below](#debug-card-template-with-arbitrary-parameter). |
@@ -96,8 +97,11 @@ Because the text contains source code with the copy-to-clipboard button, you are
 
 If only an image is displayed, the full card will be used.
 
+As no title is left to name the card, describe the image with the `imagealt` parameter.
+
 {{% multishortcode name="card" %}}
 - image: "/images/magic.gif"
+  imagealt: "A top hat with a rabbit peeking out"
   content: ""
 {{% /multishortcode %}}
 
