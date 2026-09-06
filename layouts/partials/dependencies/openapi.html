@@ -2,47 +2,28 @@
 {{- $location := .location }}
 {{- if eq $location "footer" }}
   {{- with $page }}
-    {{- /* the swagger variant stylesheets below are published under their own
-      name for the iframe to pick up rather than linked from here, so they can
-      not be busted and have to be minified by hand */}}
-    {{- $minify := not hugo.IsServer }}
-    {{- if and (isset site.Params "minify") (ne site.Params.minify "") }}
-      {{- $minify = site.Params.minify }}
-    {{- end }}
     {{- $css := (partialCached "_relearn/themeVariants.gotmpl" site.Home).css }}
     {{- $cssUrl := "" }}
     {{- $urlOpenapi := "" }}
     {{- with partial "asset.gotmpl" "/js/js-yaml/js-yaml.min.js" }}
     <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
-    {{- with resources.Get "/css/swagger-light.css" }}
-      {{- $res := . }}
-      {{- if $minify }}
-        {{- $res = $res | minify }}
-      {{- end }}
-      {{- /* the following code causes Hugo to generate our file in public */}}
-      {{- $url := $res.RelPermalink }}
-    {{- end }}
-    {{- with resources.Get "/css/swagger-dark.css" }}
-      {{- $res := . }}
-      {{- if $minify }}
-        {{- $res = $res | minify }}
-      {{- end }}
-      {{- /* the following code causes Hugo to generate our file in public */}}
-      {{- $url := $res.RelPermalink }}
-    {{- end }}
-    {{- if and (isset .Params "custommermaidurl") .Params.customMermaidURL }}
+    {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
       {{- $cssUrl = .Params.customOpenapiURL }}
       {{- $cssUrl = replace $cssUrl "swagger-ui-bundle" "swagger-ui" }}
-      {{- $cssUrl = replace $cssUrl ".js" ".css" }}
+      {{- /* only the trailing `.js` is the extension; a host like
+        `cdn.jsdelivr.net` carries one too and must be left alone */}}
+      {{- $cssUrl = replaceRE "\\.js$" ".css" $cssUrl }}
       {{- $urlOpenapi = .Params.customOpenapiURL }}
     <script src="{{ $urlOpenapi }}" defer></script>
       {{- $urlOpenapi = replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
     <script src="{{ $urlOpenapi }}" defer></script>
-    {{- else if and (isset .Site.Params "custommermaidurl") .Site.Params.customMermaidURL }}
+    {{- else if and (isset .Site.Params "customopenapiurl") .Site.Params.customOpenapiURL }}
       {{- $cssUrl = .Site.Params.customOpenapiURL }}
       {{- $cssUrl = replace $cssUrl "swagger-ui-bundle" "swagger-ui" }}
-      {{- $cssUrl = replace $cssUrl ".js" ".css" }}
+      {{- /* only the trailing `.js` is the extension; a host like
+        `cdn.jsdelivr.net` carries one too and must be left alone */}}
+      {{- $cssUrl = replaceRE "\\.js$" ".css" $cssUrl }}
       {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
     <script src="{{ $urlOpenapi }}" defer></script>
       {{- $urlOpenapi = replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
