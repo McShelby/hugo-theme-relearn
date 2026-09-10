@@ -35,9 +35,6 @@
       {{- $url := .RelPermalink }}
     <link href="{{ $url }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{ $url }}" rel="stylesheet"></noscript>
     {{- end }}
-    {{- with partial "asset.gotmpl" "/css/perfect-scrollbar/perfect-scrollbar.min.css" }}
-    <link href="{{ .RelPermalink }}" rel="stylesheet">
-    {{- end }}
     <link href="{{ $css.theme }}" rel="stylesheet">
     <link href="{{ index $css (printf "format-%s" $outputFormat) }}" rel="stylesheet" id="R-format-style">
     {{- $versionIndexUrl := "" }}
@@ -108,13 +105,28 @@
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
+      {{- /* the browsers scrollbar style has to be known before the first paint; measuring it in
+             theme.js would leave the menu with a space taking scrollbar - clipping its border and
+             the active entry - for as long as the scripts loaded before it take to run */}}
+      window.relearn.scrollbarSize = (function() {
+        {{- /* https://davidwalsh.name/detect-scrollbar-width; we run in the head, so there is no body yet */}}
+        var scrollDiv = document.createElement('div');
+        scrollDiv.className = 'scrollbar-measure';
+        var parent = document.body || document.documentElement;
+        parent.appendChild(scrollDiv);
+        var size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        parent.removeChild(scrollDiv);
+        return size;
+      })();
+      if (window.relearn.scrollbarSize) {
+        {{- /* classic scrollbars take away space, overlay scrollbars - measuring zero - don't;
+               only in the first case the menu has to draw its scrollbar itself */}}
+        document.documentElement.classList.add('classic-scrollbars');
+      }
     </script>
   {{- end }}
 {{- else if eq $location "footer" }}
   {{- with $page }}
-    {{- with partial "asset.gotmpl" "/js/perfect-scrollbar/perfect-scrollbar.min.js" }}
-    <script src="{{ .RelPermalink }}" defer></script>
-    {{- end }}
     {{- with partial "asset.gotmpl" "/js/theme.js" }}
     <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}

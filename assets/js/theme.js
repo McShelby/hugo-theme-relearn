@@ -6,27 +6,24 @@ var isPrintPreview = false;
 
 var isRtl = document.querySelector('html').getAttribute('dir') == 'rtl';
 var lang = document.querySelector('html').getAttribute('lang');
-var dir_padding_start = 'padding-left';
-var dir_padding_end = 'padding-right';
 var dir_key_start = 37;
 var dir_key_end = 39;
 var dir_scroll = 1;
 if (isRtl) {
-  dir_padding_start = 'padding-right';
-  dir_padding_end = 'padding-left';
   dir_key_start = 39;
   dir_key_end = 37;
   dir_scroll = -1;
 }
 
 var touchsupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+var reducedmotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
 
-// PerfectScrollbar
-var psc;
-var psm;
-var pst = new Map();
+// how far a cursor key scrolls one of our scroll containers; the browsers
+// default for this is neither exposed to us nor the same in all of them
+var LINE_SCROLL = 40;
+
 var elc = document.querySelector('#R-body-inner');
 
 function regexEscape(s) {
@@ -35,31 +32,6 @@ function regexEscape(s) {
 
 function documentFocus() {
   elc.focus();
-  psc && psc.scrollbarY.focus();
-}
-
-function scrollbarWidth() {
-  // https://davidwalsh.name/detect-scrollbar-width
-  // Create the measurement node
-  var scrollDiv = document.createElement('div');
-  scrollDiv.className = 'scrollbar-measure';
-  document.body.appendChild(scrollDiv);
-  // Get the scrollbar width
-  var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-  // Delete the DIV
-  document.body.removeChild(scrollDiv);
-  return scrollbarWidth;
-}
-
-var scrollbarSize = scrollbarWidth();
-function adjustContentWidth() {
-  var start = parseFloat(getComputedStyle(elc).getPropertyValue(dir_padding_start));
-  var end = start;
-  if (elc.scrollHeight > elc.clientHeight) {
-    // if we have a scrollbar reduce the end margin by the scrollbar width
-    end = Math.max(0, start - scrollbarSize);
-  }
-  elc.style[dir_padding_end] = '' + end + 'px';
 }
 
 let debounceTimeout;
@@ -1047,27 +1019,206 @@ function initArrowHorizontalNav() {
   });
 }
 
+// === classic scrollbar quirks ===============================================
+// the only JavaScript part of what the `classic scrollbar quirks` block in
+// theme.css describes; it goes away together with that block and the
+// `#R-scrollbar` markup in menu.html once no supported browser reports a space
+// taking scrollbar anymore
+function initMenuThumb(elm) {
+  // a space taking scrollbar would clip away the menu border and the active entry
+  // bleeding into the content area; if the browser gives us overlay scrollbars it
+  // draws them itself, otherwise we draw our own and leave the scrolling to it
+  if (!window.relearn.scrollbarSize) {
+    return;
+  }
+  if (!CSS.supports('scrollbar-width: none') && !CSS.supports('selector(::-webkit-scrollbar)')) {
+    // the same condition the stylesheet gates our rail on: without a way to hide
+    // the browsers own scrollbar we would only add a second one on top of it
+    return;
+  }
+
+  var rail = document.querySelector('#R-scrollbar');
+  var thumb = document.querySelector('#R-scrollbar-thumb');
+  if (!elm || !rail || !thumb) {
+    return;
+  }
+
+  var scrolling;
+  var ticking = false;
+  // the menus geometry only changes when something is resized, so remember it
+  // instead of forcing a layout on every scroll event
+  var scrollport = 0;
+  var scrollable = 0;
+  var size = 0;
+
+  function measure() {
+    scrollport = elm.clientHeight;
+    scrollable = elm.scrollHeight - scrollport;
+    rail.classList.toggle('scrollable', scrollable > 0);
+    if (scrollable <= 0) {
+      return;
+    }
+    // the rail covers the menus scrollport
+    rail.style.setProperty('--INTERNAL-SCROLLBAR-height', '' + scrollport + 'px');
+    // enforce a minimum size, so the thumb stays grabbable in long menus, but
+    // never the whole rail, as that would leave it nothing to travel
+    size = Math.max(scrollport / elm.scrollHeight, Math.min(0.9, 20 / scrollport));
+    thumb.style.setProperty('--INTERNAL-SCROLLBAR-THUMB-size', size);
+  }
+
+  function position() {
+    if (scrollable <= 0) {
+      return;
+    }
+    thumb.style.setProperty('--INTERNAL-SCROLLBAR-THUMB-position', (elm.scrollTop / scrollable) * (1 - size));
+  }
+
+  elm.addEventListener(
+    'scroll',
+    function () {
+      // however many scroll events the browser fires, the thumb only has to be
+      // drawn once per frame
+      if (ticking) {
+        return;
+      }
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        position();
+        rail.classList.add('scrolling');
+        clearTimeout(scrolling);
+        scrolling = setTimeout(function () {
+          rail.classList.remove('scrolling');
+        }, 1000);
+      });
+    },
+    { passive: true }
+  );
+  // the menu changes its height if sections are expanded/collapsed or if the
+  // window is resized; a resize observer already runs after layout, so we can
+  // measure right away
+  var observer = new ResizeObserver(function () {
+    measure();
+    position();
+  });
+  observer.observe(elm);
+  Array.from(elm.children).forEach(function (e) {
+    if (e != rail) {
+      observer.observe(e);
+    }
+  });
+
+  // a browsers scrollbar only reacts to the primary button, so a right click
+  // reaches the context menu instead of scrolling us away; a second finger must
+  // not take over a gesture the first one is already doing
+  function isPrimaryButton(event) {
+    return event.button == 0 && event.isPrimary;
+  }
+
+  rail.addEventListener('pointerdown', function (event) {
+    if (event.target != rail) {
+      // the thumb drags itself
+      return;
+    }
+    if (!isPrimaryButton(event)) {
+      return;
+    }
+    // scroll by a page towards the click, like a browsers scrollbar does
+    var rect = thumb.getBoundingClientRect();
+    var reduced = reducedmotion.matches;
+    elm.scrollBy({ top: event.clientY < rect.top ? -elm.clientHeight : elm.clientHeight, behavior: reduced ? 'auto' : 'smooth' });
+    event.preventDefault();
+  });
+
+  thumb.addEventListener('pointerdown', function (event) {
+    if (!isPrimaryButton(event)) {
+      return;
+    }
+    var pointerId = event.pointerId;
+    var startY = event.clientY;
+    var startTop = elm.scrollTop;
+    // none of this changes while we are being dragged, so don't make the
+    // browser lay out the menu again for every pointer move
+    var track = elm.clientHeight - thumb.offsetHeight;
+    var range = elm.scrollHeight - elm.clientHeight;
+    function move(e) {
+      if (e.pointerId != pointerId) {
+        return;
+      }
+      if (track > 0) {
+        elm.scrollTop = startTop + ((e.clientY - startY) * range) / track;
+      }
+    }
+    function end(e) {
+      if (e.pointerId != pointerId) {
+        return;
+      }
+      thumb.classList.remove('dragging');
+      thumb.removeEventListener('pointermove', move);
+      thumb.removeEventListener('pointerup', end);
+      thumb.removeEventListener('pointercancel', end);
+      // our capture can also be lost without a pointerup reaching us; without
+      // this the drag would stay alive and hovering the thumb would scroll us
+      thumb.removeEventListener('lostpointercapture', end);
+    }
+    thumb.classList.add('dragging');
+    thumb.setPointerCapture(pointerId);
+    thumb.addEventListener('pointermove', move);
+    thumb.addEventListener('pointerup', end);
+    thumb.addEventListener('pointercancel', end);
+    thumb.addEventListener('lostpointercapture', end);
+    // don't start a text selection while dragging
+    event.preventDefault();
+  });
+
+  // not redundant to the observer above: it only reports while we are rendered
+  measure();
+  position();
+}
+// === end of classic scrollbar quirks ========================================
+
 function initMenuScrollbar() {
   if (isPrint) {
     return;
   }
 
   var elm = document.querySelector('#R-content-wrapper');
-  var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-content-wrapper');
 
-  var autofocus = true;
   document.addEventListener('keydown', function (event) {
     // for initial keyboard scrolling support, no element
     // may be hovered, but we still want to react on
-    // cursor/page up/down. because we can't hack
-    // the scrollbars implementation, we try to trick
-    // it and give focus to the scrollbar - only
-    // to just remove the focus right after scrolling
-    // happend
-    autofocus = false;
+    // cursor/page up/down; a scroll container only reacts to
+    // those keys if it contains the focus, so hand it over
+    // to the element the user expects to scroll
     if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || event.which < 32 || event.which > 40) {
-      // if tab key was pressed, we are ended with our initial
-      // focus job
+      return;
+    }
+
+    var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-content-wrapper');
+    var scroller = (elm && elm.contains(event.target) && elm) || (elt && elt.contains(event.target) && elt) || (elc && elc.contains(event.target) && elc);
+    if (scroller) {
+      // the focus already is in one of our scroll containers; taking it away
+      // would scroll the wrong one, but browsers disagree on whether they
+      // scroll the focused container themselves, so we always do it ourselves
+      var by = 0;
+      if (event.which == 38) {
+        by = -LINE_SCROLL;
+      } else if (event.which == 40) {
+        by = LINE_SCROLL;
+      } else if (event.which == 33) {
+        by = -scroller.clientHeight;
+      } else if (event.which == 34) {
+        by = scroller.clientHeight;
+      } else if (event.which == 36) {
+        by = -scroller.scrollHeight;
+      } else if (event.which == 35) {
+        by = scroller.scrollHeight;
+      }
+      if (by) {
+        // left/right stay untouched, they page to the prev/next article
+        scroller.scrollBy({ top: by });
+        event.preventDefault();
+      }
       return;
     }
 
@@ -1076,97 +1227,27 @@ function initMenuScrollbar() {
     var t = elt && elt.matches(':hover');
     var f = event.target.matches(formelements);
     if (!c && !m && !t && !f) {
-      // only do this hack if none of our scrollbars
-      // is hovered
+      // only do this if none of our scrollable areas is hovered
+      // as the browser scrolls the hovered one anyways
       // if we are showing the sidebar as a flyout we
       // want to scroll the content-wrapper, otherwise we want
       // to scroll the body
       var nt = document.querySelector('body').matches('.topbar-flyout');
       var nm = document.querySelector('body').matches('.sidebar-flyout');
       if (nt) {
-        var psb = pst.get(document.querySelector('.topbar-button.topbar-flyout'));
-        psb && psb.scrollbarY.focus();
+        elt && elt.focus();
       } else if (nm) {
-        psm && psm.scrollbarY.focus();
+        elm && elm.focus();
       } else {
-        document.querySelector('#R-body-inner').focus();
-        psc && psc.scrollbarY.focus();
+        elc.focus();
       }
     }
   });
-  // scrollbars will install their own keyboard handlers
-  // that need to be executed inbetween our own handlers
-  // PSC removed for #242 #243 #244
-  // psc = elc && new PerfectScrollbar('#R-body-inner');
-  psm = elm && new PerfectScrollbar('#R-content-wrapper', { scrollingThreshold: 2000, swipeEasing: false, wheelPropagation: false });
   document.querySelectorAll('.topbar-button .topbar-content-wrapper').forEach(function (e) {
-    var button = getTopbarButtonParent(e);
-    if (!button) {
-      return;
-    }
-    pst.set(button, new PerfectScrollbar(e, { scrollingThreshold: 2000, swipeEasing: false, wheelPropagation: false }));
     e.addEventListener('click', toggleTopbarFlyoutEvent);
   });
 
-  document.addEventListener('keydown', function () {
-    // if we facked initial scrolling, we want to
-    // remove the focus to not leave visual markers on
-    // the scrollbar
-    if (autofocus) {
-      psc && psc.scrollbarY.blur();
-      psm && psm.scrollbarY.blur();
-      pst.forEach(function (psb) {
-        psb.scrollbarY.blur();
-      });
-      autofocus = false;
-    }
-  });
-  // on resize, we have to redraw the scrollbars to let new height
-  // affect their size
-  window.addEventListener('resize', function () {
-    pst.forEach(function (psb) {
-      setTimeout(function () {
-        psb.update();
-      }, 10);
-    });
-    psm &&
-      setTimeout(function () {
-        psm.update();
-      }, 10);
-    psc &&
-      setTimeout(function () {
-        psc.update();
-      }, 10);
-  });
-  // now that we may have collapsible menus, we need to call a resize
-  // for the menu scrollbar if sections are expanded/collapsed
-  document.querySelectorAll('#R-sidebar .collapsible-menu input').forEach(function (e) {
-    e.addEventListener('change', function () {
-      psm &&
-        setTimeout(function () {
-          psm.update();
-        }, 10);
-    });
-  });
-  // bugfix for PS in RTL mode: the initial scrollbar position is off;
-  // calling update() once, fixes this
-  pst.forEach(function (psb) {
-    setTimeout(function () {
-      psb.update();
-    }, 10);
-  });
-  psm &&
-    setTimeout(function () {
-      psm.update();
-    }, 10);
-  psc &&
-    setTimeout(function () {
-      psc.update();
-    }, 10);
-
-  // finally, we want to adjust the contents end padding if there is a scrollbar visible
-  window.addEventListener('resize', adjustContentWidth);
-  adjustContentWidth();
+  initMenuThumb(elm);
 }
 
 function imageEscapeHandler(event) {
@@ -1229,11 +1310,6 @@ function openNav() {
   closeSomeTopbarButtonFlyout();
   var b = document.querySelector('body');
   b.classList.add('sidebar-flyout');
-  psm &&
-    setTimeout(function () {
-      psm.update();
-    }, 10);
-  psm && psm.scrollbarY.focus();
   var a = document.querySelector('#R-sidebar a');
   if (a) {
     a.focus();
@@ -1274,12 +1350,6 @@ function openTopbarButtonFlyout(button) {
   var body = document.querySelector('body');
   button.classList.add('topbar-flyout');
   body.classList.add('topbar-flyout');
-  var psb = pst.get(button);
-  psb &&
-    setTimeout(function () {
-      psb.update();
-    }, 10);
-  psb && psb.scrollbarY.focus();
   var a = button.querySelector('.topbar-content-wrapper a');
   if (a) {
     a.focus();
@@ -1317,7 +1387,7 @@ function toggleTopbarFlyout(e) {
 }
 
 function toggleTopbarFlyoutEvent(event) {
-  if (event.target.classList.contains('topbar-content') || event.target.classList.contains('topbar-content-wrapper') || event.target.classList.contains('ps__rail-x') || event.target.classList.contains('ps__rail-y') || event.target.classList.contains('ps__thumb-x') || event.target.classList.contains('ps__thumb-y')) {
+  if (event.target.classList.contains('topbar-content') || event.target.classList.contains('topbar-content-wrapper')) {
     // the scrollbar was used, don't close flyout
     return;
   }
@@ -1650,10 +1720,6 @@ function mark() {
       parent = parent.parentNode;
     }
   }
-  psm &&
-    setTimeout(function () {
-      psm.update();
-    }, 10);
 }
 window.relearn.markSearch = mark;
 
@@ -1739,10 +1805,6 @@ function unmark() {
 
   var highlighted = document.querySelectorAll('.highlightable');
   unhighlight(highlighted, { element: 'mark', className: 'search' });
-  psm &&
-    setTimeout(function () {
-      psm.update();
-    }, 10);
 }
 
 function unhighlight(es, options) {
@@ -2067,12 +2129,7 @@ ready(function () {
             }
           });
         } else {
-          var clone = wrapper.cloneNode(true);
-          var irrelevant = clone.querySelectorAll('div.ps__rail-x, div.ps__rail-y');
-          irrelevant.forEach(function (e) {
-            e.parentNode.removeChild(e);
-          });
-          isEmpty = !clone.innerHTML.trim();
+          isEmpty = !wrapper.innerHTML.trim();
         }
         button.querySelector('button').disabled = isEmpty;
         button.querySelector('.btn').classList.toggle('interactive', !isEmpty);

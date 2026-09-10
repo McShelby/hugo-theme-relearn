@@ -146,7 +146,6 @@
         hint.innerText = resolvePlaceholders(window.T_No_results_found, [value]);
       }
       input.focus();
-      setTimeout(adjustContentWidth, 0);
 
       // if we are initiating search because of a browser history
       // operation, we have to restore the scrolling postion the

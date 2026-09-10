@@ -161,7 +161,6 @@ Theme supports custom output formats:
   - `clipboard/` - Copy-to-clipboard
   - `lunr/`, `orama/` - Search engines
   - `mathjax/`, `mermaid/`, `d3/` - Feature libraries
-  - `perfect-scrollbar/` - Scrollbar customization
 
 ## Code Quality Standards
 

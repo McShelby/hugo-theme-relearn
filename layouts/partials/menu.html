@@ -13,7 +13,8 @@
         {{- end }}
         {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" false) }}
       </div>
-      <div id="R-content-wrapper" class="highlightable">
+      <div id="R-content-wrapper" class="highlightable" tabindex="-1">
+        <div id="R-scrollbar" aria-hidden="true"><div id="R-scrollbar-thumb"></div></div>
         {{- $menuconfigs := .Params.sidebarmenus | default site.Params.sidebarmenus }}
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
           {{- $menuconfigs = partialCached "_relearn/defaultSidebar.gotmpl" site.Home }}

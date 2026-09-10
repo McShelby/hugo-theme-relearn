@@ -116,7 +116,7 @@ body {
   background-color: var(--INTERNAL-MAIN-BG-color);
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
-  flex-direction: row-reverse; /* to allow body to have initial focus for PS in some browsers and better SEO and a11y */
+  flex-direction: row-reverse; /* for better SEO and a11y */
   font-size: 1.015625rem;
   font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-font-weight);
@@ -125,7 +125,6 @@ body {
   justify-content: flex-end;
   letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
   line-height: 1.574;
-  /* overflow: hidden; PSC removed for #242 #243 #244; to avoid browser scrollbar to flicker before we create our own */
   width: 100%;
 }
 
@@ -177,7 +176,9 @@ a:focus {
   inset-inline-start: 0;
   line-height: 1.574;
   min-height: 100%;
-  overflow: hidden;
+  /* clip instead of hidden: this must not become a scroll container itself, as
+     a focused menu entry would scroll us instead of the menu */
+  overflow: clip;
   position: fixed;
   min-width: var(--INTERNAL-MENU-L-width);
   max-width: var(--INTERNAL-MENU-L-width);
@@ -271,14 +272,183 @@ a:focus {
 }
 
 #R-content-wrapper {
-  --ps-rail-hover-color: rgba(176, 176, 176, 0.25);
   display: flex;
   flex-direction: column;
   flex: 1; /* fill rest of vertical space */
-  overflow: hidden;
-  position: relative; /* PS */
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* the menu can hold custom content; without us as their containing block,
+     absolutely positioned elements would resolve against the fixed sidebar and
+     stay put while the menu scrolls */
+  position: relative;
+  /* our colors for the scrollbar the browser draws on top of us; on a device with
+     a mouse the rules below hide it again until the menu is hovered */
+  scrollbar-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-color) var(--INTERNAL-MENU-SCROLLBAR-TRACK-color);
+  transition: scrollbar-color 0.2s linear;
   z-index: 100;
 }
+
+@media (hover: hover) {
+  #R-content-wrapper {
+    /* the browsers overlay scrollbar shows up on every scroll, even when the
+       active entry is scrolled into view on load; we only want it on hover */
+    scrollbar-color: transparent transparent;
+  }
+
+  #R-sidebar:hover #R-content-wrapper {
+    /* the rail we draw ourselves knows three states, a scrollbar of the browser
+       only ever gets two: there is no selector for it being hovered - the mouse
+       over it is inside of the menu like the mouse over an entry is - so we take
+       the hovered colors here, as they are the ones that make us stand out */
+    scrollbar-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MENU-SCROLLBAR-TRACK-HOVER-color);
+  }
+}
+
+/* === classic scrollbar quirks ============================================ */
+/* everything down to the end marker only exists for browsers without overlay
+   scrollbars: a classic scrollbar takes away space and would clip the menu
+   border at the sidebars edge and the active entry bleeding into the content
+   area, so we hide the browsers scrollbar and draw our own rail instead.
+
+   two things have to be true before we take over: our header script must have
+   measured a scrollbar that takes space - it sets `classic-scrollbars` for that -
+   and the browser must know one of the two ways to hide its own, which the
+   @supports below asks for.
+
+   this block, the `#R-scrollbar` markup in menu.html and `initMenuThumb()` in
+   theme.js are the whole of it and can be dropped together once no supported
+   browser reports a space taking scrollbar anymore; as overlay scrollbars are a
+   user setting on every platform, that needs more than Chromium defaulting to
+   them - https://issues.chromium.org/issues/40280779 */
+
+.scrollbar-measure {
+  /* the probe our header script measures to decide `classic-scrollbars`, so it
+     can not be scoped to that class itself */
+  /* https://davidwalsh.name/detect-scrollbar-width */
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  width: 100px;
+  top: -9999px;
+}
+
+#R-scrollbar {
+  /* unscoped as well: without the class we must never be seen */
+  display: none;
+}
+
+/* measuring a scrollbar that takes space is only half of the decision: we may
+   only take over where we can also make the browsers own one go away, or we end
+   up with two of them; it understands either the standard property or the pseudo
+   element, and declaring both is harmless as each is ignored where it is not */
+@supports (scrollbar-width: none) or selector(::-webkit-scrollbar) {
+  .classic-scrollbars #R-content-wrapper {
+    scrollbar-width: none;
+  }
+
+  .classic-scrollbars #R-content-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .classic-scrollbars #R-scrollbar.scrollable {
+    display: block;
+  }
+}
+
+.classic-scrollbars #R-scrollbar {
+  /* we live inside of the menu, so the browser still scrolls it if the mouse is
+     over us, but stay in place and take no space of our own */
+  align-self: flex-end;
+  /* we are the track of the menu, the thumb below has colors of its own */
+  background-color: var(--INTERNAL-MENU-SCROLLBAR-TRACK-color);
+  flex-shrink: 0;
+  margin-bottom: calc(-1 * var(--INTERNAL-SCROLLBAR-height, 0px));
+  position: sticky;
+  top: 0;
+  height: var(--INTERNAL-SCROLLBAR-height, 0);
+  opacity: 0;
+  transition:
+    background-color 0.2s linear,
+    opacity 0.2s linear,
+    width 0.2s ease-in-out;
+  /* narrow until the mouse reaches us; we are no flex item of any row, so growing
+     us moves none of the menu entries; whatever our width is, we take the mouse
+     over all of it, so a click next to the thumb scrolls by a page instead of
+     hitting the menu entry below us */
+  width: 8px;
+  z-index: 100;
+}
+
+@media (hover: none) {
+  .classic-scrollbars #R-scrollbar {
+    /* we can not be seen until a scroll happens, so a tap has to reach the menu
+       entry underneath us instead of us; scrolling is done by swiping the menu */
+    pointer-events: none;
+  }
+
+  .classic-scrollbars #R-scrollbar.scrolling {
+    /* show up while scrolling, as we can not be hovered here */
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) {
+  .classic-scrollbars #R-sidebar:hover #R-scrollbar {
+    /* hovering the menu only lets us show up; our own colors and width wait for
+       the mouse to reach us */
+    opacity: 1;
+  }
+}
+
+.classic-scrollbars #R-scrollbar:hover {
+  /* we tint and widen once the mouse reaches us, the thumb inside grows with us */
+  background-color: var(--INTERNAL-MENU-SCROLLBAR-TRACK-HOVER-color);
+  width: 15px;
+}
+
+.classic-scrollbars #R-scrollbar-thumb {
+  background-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-color);
+  border-radius: 6px;
+  height: calc(var(--INTERNAL-SCROLLBAR-THUMB-size, 0) * 100%);
+  inset-inline-end: 2px;
+  position: absolute;
+  top: calc(var(--INTERNAL-SCROLLBAR-THUMB-position, 0) * 100%);
+  transition:
+    background-color 0.2s linear,
+    width 0.2s ease-in-out;
+  width: 6px;
+}
+
+.classic-scrollbars #R-scrollbar:hover > #R-scrollbar-thumb,
+.classic-scrollbars #R-scrollbar-thumb.dragging {
+  /* gain contrast once the mouse is over us */
+  background-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-HOVER-color);
+  width: 11px;
+}
+
+@media (forced-colors: active) {
+  /* our translucent grays are overridden in forced colors, so we have to name
+     system colors to stay visible; a browsers scrollbar does this for us */
+  .classic-scrollbars #R-scrollbar,
+  .classic-scrollbars #R-scrollbar:hover {
+    background-color: Canvas;
+  }
+
+  .classic-scrollbars #R-scrollbar-thumb,
+  .classic-scrollbars #R-scrollbar:hover > #R-scrollbar-thumb,
+  .classic-scrollbars #R-scrollbar-thumb.dragging {
+    background-color: CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .classic-scrollbars #R-scrollbar,
+  .classic-scrollbars #R-scrollbar-thumb {
+    transition: none;
+  }
+}
+/* === end of classic scrollbar quirks ===================================== */
 
 #R-sidebar .padding {
   padding: 0 1rem;
@@ -493,7 +663,7 @@ article .R-taxonomy.tags a.term-link:hover:after {
   margin-inline-start: var(--INTERNAL-MENU-L-width);
   min-height: 100%;
   overflow-wrap: break-word; /* avoid x-scrolling of body if it is to large to fit */
-  position: relative; /* PS */
+  position: relative;
   min-width: calc(100% - var(--INTERNAL-MENU-L-width));
   max-width: calc(100% - var(--INTERNAL-MENU-L-width));
   width: calc(100% - var(--INTERNAL-MENU-L-width));
@@ -568,7 +738,80 @@ article .R-taxonomy.tags a.term-link:hover:after {
   flex-direction: column;
   overflow-y: auto;
   padding: 0 3.25rem 4rem 3.25rem;
-  position: relative; /* PS */
+  position: relative;
+  /* reserve the space of a classic scrollbar on both sides, so the content
+     stays horizontally centered regardless of whether it is scrollable;
+     overlay scrollbars don't create gutters, so this is a no-op for them */
+  scrollbar-gutter: stable both-edges;
+}
+
+/* the browser draws the scrollbar of the content and we take whichever styling it
+   offers us: the standard property knows two colors but no state of its own, the
+   webkit pseudo elements give us a hover of the thumb itself; they are mutually
+   exclusive, as naming a scrollbar-color makes the pseudo elements be ignored */
+@supports not selector(::-webkit-scrollbar) {
+  #R-body-inner {
+    scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+    transition: scrollbar-color 0.2s linear;
+  }
+
+  @media (hover: hover) {
+    #R-body-inner:hover {
+      /* the best we get here: the thumb reacts to us being hovered, not to itself */
+      scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
+    }
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  .classic-scrollbars #R-body-inner::-webkit-scrollbar {
+    /* the rules below stay dead until this one is here: only styling the scrollbar
+       itself makes Chrome draw its own instead of the platforms, and it then takes
+       its thickness from us; where the browser has an overlay scrollbar it keeps
+       drawing it and we let it, so this is the same width the classic one has */
+    height: 15px;
+    width: 15px;
+  }
+
+  #R-body-inner::-webkit-scrollbar-button,
+  #R-body-inner::-webkit-scrollbar-corner {
+    /* drawing our own scrollbar also gets us the steppers of the platform, which
+       none of the browsers overlay scrollbars has */
+    display: none;
+  }
+
+  #R-body-inner::-webkit-scrollbar-track {
+    background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+  }
+
+  #R-body-inner::-webkit-scrollbar-thumb {
+    /* the thumb of a drawn scrollbar fills its full width with square corners, so
+       we have to give it a slim, rounded and inset shape ourselves, like the one
+       our menu rail gives its thumb; the transparent border does the insetting,
+       the background must not reach into it */
+    background-clip: padding-box;
+    background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color);
+    border: 4px solid transparent;
+    border-radius: 8px;
+  }
+
+  @media (hover: hover) {
+    #R-body-inner:hover::-webkit-scrollbar-track {
+      background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
+    }
+
+    #R-body-inner::-webkit-scrollbar-thumb:hover {
+      /* grows like the menu thumb does */
+      background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color);
+      border-width: 2px;
+    }
+
+    #R-body-inner:hover {
+      /* Safari does not recompute the rules above once we are hovered unless a
+         custom property makes it; its value is never read */
+      --fix: ;
+    }
+  }
 }
 @media screen and (max-width: 59.999rem) {
   #R-body-inner {
@@ -633,7 +876,9 @@ article a:focus > img:only-child:empty {
   outline: 0.15rem solid var(--VARIABLE-LINK-HOVER-color);
 }
 
-#R-body-inner:focus-visible {
+#R-body-inner:focus-visible,
+#R-content-wrapper:focus-visible,
+.topbar-content-wrapper:focus-visible {
   /* remove focus indicator for programatically set focus */
   outline: none;
 }
@@ -1611,11 +1856,69 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 }
 
 .topbar-content-wrapper {
-  --ps-rail-hover-color: rgba(176, 176, 176, 0.25);
   max-height: 90vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 0.5rem 1rem;
-  position: relative; /* PS */
+}
+
+/* split in two for the same reason the scrollbar of the content is */
+@supports not selector(::-webkit-scrollbar) {
+  .topbar-content-wrapper {
+    scrollbar-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color) var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
+    transition: scrollbar-color 0.2s linear;
+  }
+
+  @media (hover: hover) {
+    .topbar-content-wrapper:hover {
+      /* the best we get here: the thumb reacts to us being hovered, not to itself */
+      scrollbar-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
+    }
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  .classic-scrollbars .topbar-content-wrapper::-webkit-scrollbar {
+    /* only styling the scrollbar itself makes the rules below apply at all, see
+       the scrollbar of the content for the why */
+    height: 15px;
+    width: 15px;
+  }
+
+  .topbar-content-wrapper::-webkit-scrollbar-button,
+  .topbar-content-wrapper::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  .topbar-content-wrapper::-webkit-scrollbar-track {
+    background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
+  }
+
+  .topbar-content-wrapper::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color);
+    border: 4px solid transparent;
+    border-radius: 8px;
+  }
+
+  @media (hover: hover) {
+    .topbar-content-wrapper:hover::-webkit-scrollbar-track {
+      background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
+    }
+
+    .topbar-content-wrapper::-webkit-scrollbar-thumb:hover {
+      /* grows like the menu thumb does */
+      background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
+      border-width: 2px;
+    }
+
+    .topbar-content-wrapper:hover {
+      /* Safari does not recompute the rules above once we are hovered unless a
+         custom property makes it; its value is never read */
+      --fix: ;
+    }
+  }
 }
 
 .topbar-content .topbar-button {
@@ -1992,15 +2295,6 @@ span.math:has(> mjx-container[display]) {
 
 .math.align-right > mjx-container {
   text-align: right !important;
-}
-
-.scrollbar-measure {
-  /* https://davidwalsh.name/detect-scrollbar-width */
-  height: 100px;
-  overflow: scroll;
-  position: absolute;
-  width: 100px;
-  top: -9999px;
 }
 
 .copy-to-clipboard-fake {
@@ -2762,7 +3056,7 @@ body a#R-logo:hover *:not(svg, svg *) {
 }
 
 :has(~ #R-content-wrapper),
-#R-content-wrapper > * {
+#R-content-wrapper > *:not(#R-scrollbar) {
   border-inline-end-color: var(--INTERNAL-MENU-BORDER-color);
   border-inline-end-style: solid;
   border-inline-end-width: 1px;
