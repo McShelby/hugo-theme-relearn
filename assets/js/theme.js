@@ -1733,7 +1733,27 @@ function searchInputHandler(value) {
   if (value.length) {
     window.sessionStorage.setItem(window.relearn.absBaseUri + '/search-value', value);
     mark();
+    scrollMarkedIntoView();
   }
+}
+
+function scrollMarkedIntoView() {
+  // marking expands the sections on the way to a match, so the match itself can
+  // end up below the menus fold without anything telling the reader about it
+  var wrapper = document.querySelector('#R-content-wrapper');
+  var marked = wrapper && wrapper.querySelector('mark.search');
+  if (!marked) {
+    return;
+  }
+  var port = wrapper.getBoundingClientRect();
+  var box = marked.getBoundingClientRect();
+  if (box.top >= port.top && box.bottom <= port.bottom) {
+    // it can be seen already, so don't move the menu under the readers eyes
+    return;
+  }
+  // center it like we do for the active entry; a section can be taller than the
+  // menu, so we go for the match itself and not for the section containing it
+  wrapper.scrollTop += box.top - port.top - (port.height - box.height) / 2;
 }
 
 function initSearch() {
