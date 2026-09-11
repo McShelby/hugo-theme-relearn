@@ -199,6 +199,119 @@ function restoreTabSelections() {
   }
 }
 
+function mermaidPostRender(id) {
+  // zoom for Mermaid
+  // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
+  var svgs = d3.selectAll('body:not(.print) .mermaid-container.zoomable > .mermaid > #' + id);
+  svgs.each(function () {
+    var parent = this.parentElement;
+    // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
+    parent.style.maxWidth = this.style.maxWidth || this.getAttribute('width');
+    // if no unit is given for the width
+    parent.style.maxWidth = parent.style.maxWidth || 'calc( ' + this.getAttribute('width') + 'px + 1rem )';
+    var svg = d3.select(this);
+    svg.html('<g>' + svg.html() + '</g>');
+    var inner = svg.select('*:scope > g');
+    parent.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button></span></div>');
+    var wrapper = parent.querySelector('.svg-reset-button');
+    var button = wrapper.querySelector('button');
+    var zoom = d3.zoom().on('zoom', function (e) {
+      inner.attr('transform', e.transform);
+      if (e.transform.k == 1 && e.transform.x == 0 && e.transform.y == 0) {
+        wrapper.classList.remove('zoomed');
+      } else {
+        wrapper.classList.add('zoomed');
+      }
+    });
+    button.addEventListener('click', function () {
+      this.blur();
+      svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
+      showToast(window.T_View_reset);
+    });
+    svg.call(zoom);
+  });
+  // we have to mark again once a graph was drawn, to mark terms inside its SVG
+  mark();
+}
+
+// drawing a graph is by far the most expensive thing we do - a page full of them
+// freezes the browser for seconds if we draw them in one go - so we only draw
+// what the reader is about to see and hand the thread back between two of them
+var mermaidObserver = null;
+var mermaidQueue = [];
+var mermaidIsDrawing = false;
+
+function drawMermaidQueue() {
+  if (mermaidIsDrawing) {
+    return;
+  }
+  mermaidIsDrawing = true;
+  (function next() {
+    var element = mermaidQueue.shift();
+    while (element && element.dataset.processed) {
+      // somebody queued us twice, e.g. by printing while we came into view
+      element = mermaidQueue.shift();
+    }
+    if (!element) {
+      mermaidIsDrawing = false;
+      return;
+    }
+    mermaid
+      .run({ nodes: [element], postRenderCallback: mermaidPostRender, suppressErrors: true })
+      // a graph we can not draw must not stop the ones behind it
+      .catch(function () {})
+      .then(function () {
+        // hand the thread back, so the page stays usable while we work through the rest
+        setTimeout(next, 0);
+      });
+  })();
+}
+
+function drawMermaidRest() {
+  // everything that never came into view, e.g. because we are about to be printed;
+  // nobody scrolls a page that goes to the printer, so we draw it in one go instead
+  // of handing back the thread - a throttled timer must not make us end up on paper
+  // with half of our graphs missing
+  mermaidObserver && mermaidObserver.disconnect();
+  mermaidQueue.length = 0;
+  mermaid.run({
+    querySelector: '.mermaid.mermaid-render:not([data-processed])',
+    postRenderCallback: mermaidPostRender,
+    suppressErrors: true,
+  });
+}
+
+function drawMermaid() {
+  if (document.readyState != 'complete') {
+    // the graphs are the last thing the reader needs, so let the page load first
+    window.addEventListener('load', drawMermaid, { once: true });
+    return;
+  }
+  if (isPrint || !window.IntersectionObserver) {
+    drawMermaidRest();
+    return;
+  }
+  mermaidObserver && mermaidObserver.disconnect();
+  mermaidObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        mermaidObserver.unobserve(entry.target);
+        mermaidQueue.push(entry.target);
+      });
+      drawMermaidQueue();
+    },
+    // a viewport ahead of time, so scrolling and jumps to an anchor usually find
+    // the graph drawn instead of having it grow into place under the reader
+    { rootMargin: '100% 0px' }
+  );
+  document.querySelectorAll('.mermaid.mermaid-render:not([data-processed])').forEach(function (element) {
+    mermaidObserver.observe(element);
+  });
+}
+
 function initMermaid(update, attrs) {
   if (!window.relearn.themeUseMermaid) {
     return;
@@ -344,6 +457,9 @@ function initMermaid(update, attrs) {
         initMermaid(true, {
           theme: getColorValue('PRINT-MERMAID-theme'),
         });
+        // the print dialog will not wait for us, but a graph that never came into
+        // view must at least be on its way instead of being left out entirely
+        drawMermaidRest();
       }.bind(this)
     );
     window.addEventListener(
@@ -365,54 +481,14 @@ function initMermaid(update, attrs) {
   var is_initialized = update ? update_func(attrs) : init_func(attrs);
   if (is_initialized) {
     mermaid.initialize(Object.assign({ securityLevel: 'antiscript', startOnLoad: false }, window.relearn.mermaidConfig, { theme: attrs.theme }));
-    mermaid.run({
-      postRenderCallback: function (id) {
-        // zoom for Mermaid
-        // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
-        var svgs = d3.selectAll('body:not(.print) .mermaid-container.zoomable > .mermaid > #' + id);
-        svgs.each(function () {
-          var parent = this.parentElement;
-          // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
-          parent.style.maxWidth = this.style.maxWidth || this.getAttribute('width');
-          // if no unit is given for the width
-          parent.style.maxWidth = parent.style.maxWidth || 'calc( ' + this.getAttribute('width') + 'px + 1rem )';
-          var svg = d3.select(this);
-          svg.html('<g>' + svg.html() + '</g>');
-          var inner = svg.select('*:scope > g');
-          parent.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button></span></div>');
-          var wrapper = parent.querySelector('.svg-reset-button');
-          var button = wrapper.querySelector('button');
-          var zoom = d3.zoom().on('zoom', function (e) {
-            inner.attr('transform', e.transform);
-            if (e.transform.k == 1 && e.transform.x == 0 && e.transform.y == 0) {
-              wrapper.classList.remove('zoomed');
-            } else {
-              wrapper.classList.add('zoomed');
-            }
-          });
-          button.addEventListener('click', function () {
-            this.blur();
-            svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
-            showToast(window.T_View_reset);
-          });
-          svg.call(zoom);
-        });
-        // we need to mark again once the SVGs were drawn
-        // to mark terms inside an SVG;
-        // as we can not determine when all graphs are done,
-        // we debounce the call
-        debounce(mark, 200)();
-      },
-      querySelector: '.mermaid.mermaid-render',
-      suppressErrors: true,
-    });
+    drawMermaid();
   }
   if (update) {
     // if the page loads Mermaid but does not contain any
-    // graphs, we will not call the above debounced mark()
-    // and have to do it at least once here to redo our unmark()
+    // graphs, no drawing will mark() for us and we have to
+    // do it at least once here to redo our unmark()
     // call from the beginning of this function
-    debounce(mark, 200)();
+    mark();
   }
 }
 
