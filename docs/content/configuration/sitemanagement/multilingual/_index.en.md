@@ -30,6 +30,7 @@ It supports many languages, including right-to-left languages.
 - Persian
 - Polish
 - Portuguese
+- Brazilian Portuguese
 - Romanian
 - Russian
 - Spanish
