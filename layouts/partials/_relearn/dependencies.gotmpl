@@ -23,17 +23,16 @@
 		{{- $wantsPage = true }}
 		{{- warnf "%q: DEPRECATED front matter 'disableMathJax' found, use 'math' or 'math.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" $filepath }}
 	{{- end }}
-	{{- $typePage := printf "%T" (index $.Params $enable) }}
-	{{- if eq $typePage "bool" }}
-		{{- $wants := index $.Params $enable }}
-		{{- if and (eq .name "Math") (not $wants) }}
+	{{- $valuePage := index $.Params $enable }}
+	{{- if eq (printf "%T" $valuePage) "bool" }}
+		{{- if and (eq .name "Math") (not $valuePage) }}
 			{{- warnf "%q: WARNING front matter 'math=false' found, remove it or use 'math.disable=true' instead if you really meant to turn it off; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" $filepath }}
 		{{- end }}
-		{{- $wantsPage = $wants }}
-	{{- else if eq $typePage "maps.Params" }}
-		{{- if eq (index (index $.Params $enable) "disable") true }}
+		{{- $wantsPage = $valuePage }}
+	{{- else if reflect.IsMap $valuePage }}
+		{{- if eq (index $valuePage "disable") true }}
 			{{- $wantsPage = false }}
-		{{- else if eq (index (index $.Params $enable) "force") true }}
+		{{- else if eq (index $valuePage "force") true }}
 			{{- $wantsPage = true }}
 		{{- end }}
 	{{- end }}
@@ -53,17 +52,16 @@
 		{{- $wantsSite = true }}
 		{{- warnf "DEPRECATED option 'disableMathJax' found, use 'math' or 'math.force' instead and invert the value; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-0-0" }}
 	{{- end }}
-	{{- $typeSite := printf "%T" (index site.Params $enable) }}
-	{{- if eq $typeSite "bool" }}
-		{{- $wants := index site.Params $enable }}
-		{{- if and (eq .name "Math") (not $wants) }}
+	{{- $valueSite := index site.Params $enable }}
+	{{- if eq (printf "%T" $valueSite) "bool" }}
+		{{- if and (eq .name "Math") (not $valueSite) }}
 			{{- warnf "WARNING option 'math=false' found, remove it or use 'math.disable=true' instead if you really meant to turn it off; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0" }}
 		{{- end }}
-		{{- $wantsPage = $wants }}
-	{{- else if eq $typeSite "maps.Params" }}
-		{{- if eq (index (index site.Params $enable) "disable") true }}
+		{{- $wantsSite = $valueSite }}
+	{{- else if reflect.IsMap $valueSite }}
+		{{- if eq (index $valueSite "disable") true }}
 			{{- $wantsSite = false }}
-		{{- else if eq (index (index site.Params $enable) "force") true }}
+		{{- else if eq (index $valueSite "force") true }}
 			{{- $wantsSite = true }}
 		{{- end }}
 	{{- end }}

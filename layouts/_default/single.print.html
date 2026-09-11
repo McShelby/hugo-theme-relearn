@@ -1,8 +1,12 @@
 {{- define "storeOutputFormat" }}
 	{{- .Store.Set "relearnOutputFormat" "print" }}
+	{{- /* the tree only learns the dependencies of its nested pages while
+	       rendering them; do this before the head is written so dependencies
+	       loading into the head are seen as well */}}
+	{{- .Store.Set "relearnBody" (partial "bodys/tree.html" .) }}
 {{- end }}
 {{- define "body" }}
-	{{- partial "bodys/tree.html" . }}
+	{{- .Store.Get "relearnBody" }}
 {{- end }}
 {{- define "menu" }}
 {{- end }}
