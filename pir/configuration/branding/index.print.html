@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.0.3+b7d0c3ad83be7779e9485e9e7a40bcf59da1afb5">
+    <meta name="generator" content="Relearn 9.0.3+52337cea9b27083ca33f755465541adce658b209">
     <meta name="description" content="Change colors and logos of your site">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -33,10 +33,10 @@
     <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.78b49c23f59ffb08554285843ed4c841484fe34c489058b2991edc027cdd47fc.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.7b340a2a0841d2466dca47e43cbd8c4dfe6a4f77a6c81c984d49ebb60ba2e299.js" defer></script>
     <script src="/hugo-theme-relearn/js/search-lunr.min.9af015a288d1c0d444de2d8fb41fd8fdd679ead7dd60e637608740d50078fdf9.js" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.c58b508bccda750a48211b66c89002539e69e1ef1f10dbde995b328356a36f14.js" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.795bf51f4b531fcd29fe7ffb27f174f6bb6b0ce086465e2be48643dea742dfbb.js" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="../../../"+"searchindex.pir.min.9994619d42685e1fec7676fe6c60775ddff150f6e3447c4c1dd42f5f0253862a.js";
+      window.relearn.index_js_url="../../../"+"searchindex.pir.min.302f2a2cbc8bec8022a228ca4e69804de471abad66a1173c2b588f1da68c2485.js";
     </script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -48,8 +48,7 @@
       window.relearn.contentLangs=['en', 'art'];
     </script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.c66b59a97910bc3557f3b388f9b0d6662405c65f245bdc1ede3f339d96b7f30e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.ef8860872a334d7e8e7222371833236e6b7e9465d9926110b99bfd3915e8499b.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.33b9cb9d39e97c6d22ee6bb0751e11d29c890c0876d3d9c742bbdc2ffe4e350c.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.39e0dc30e3ca73e623fcf660fac10bf09db5539b3d13e59e90977cf7137e6aee.css" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
@@ -97,8 +96,20 @@
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
+      window.relearn.scrollbarSize = (function() {
+        var scrollDiv = document.createElement('div');
+        scrollDiv.className = 'scrollbar-measure';
+        var parent = document.body || document.documentElement;
+        parent.appendChild(scrollDiv);
+        var size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        parent.removeChild(scrollDiv);
+        return size;
+      })();
+      if (window.relearn.scrollbarSize) {
+        document.documentElement.classList.add('classic-scrollbars');
+      }
     </script>
-    <script src="/hugo-theme-relearn/js/variant.min.b57bdaacf79f2b6c6e6c17e848e4dd949f64d13204d0be1a4c971b5a3431dedf.js"></script>
+    <script src="/hugo-theme-relearn/js/variant.min.4cc6ec2c71b1c4f4a2e5a93deac2f22a5682d34ba528fb0d3114eeba3d539a01.js"></script>
     <style>
        
       #R-body img.bg-white {
@@ -119,7 +130,7 @@
             <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table o&#39; Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-table-list"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
 <nav class="TableOfContents">
   <ul>
     <li><a href="#logo--title">Logo &amp; Title</a></li>
@@ -150,7 +161,7 @@
             <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Morrre"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
                   <div class="topbar-area topbar-area-more" data-area="more">
                   </div>
                 </div>
@@ -210,21 +221,21 @@
 <p>If ye want t' adjust yer favicon accord'n t' yer OS sett'ns fer light/dark mode, add th' image files <code>assets/images/favicon-light.svg</code> an' <code>assets/images/favicon-dark.svg</code> t' yer site&rsquo;s directory, respectively, correspond'n t' yer file format. In case some o' th' files be miss'n, th' theme falls back t' <code>favicon.svg</code> fer each miss'n file. All supplied favicons must be o' th' same file format.</p>
 <p>If no favicon file be found, th' theme will look up th' alternative filename <code>logo</code> 'n th' same locat'n an' will repeat th' search fer th' list o' supported file types.</p>
 <p>If ye need t' change this default behavior, create a new file <code>layouts/partials/favicon.html</code> 'n yer site&rsquo;s directory an' write someth'n like this:</p>
-<div class="tab-panel" data-tab-group="R-tabs-6cd9f78277e24eff29d085da2d1e579a">
+<div class="tab-panel" data-tab-group="R-tabs-2a2635980f07d7627a33f3ecb3dead44">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-5cacb77926aa8af2c9b6707b214986a8" aria-expanded="true"
+      aria-controls="R-tab-id-f07620bc41579a5a9eabfa5e8ff1e2ce" aria-expanded="true"
       data-tab-item="R-tab-21be57bd4266fa95efd73ea1d33ce733"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-6cd9f78277e24eff29d085da2d1e579a','R-tab-21be57bd4266fa95efd73ea1d33ce733')"
+      onclick="switchTab('R-tabs-2a2635980f07d7627a33f3ecb3dead44','R-tab-21be57bd4266fa95efd73ea1d33ce733')"
     >
       <span class="tab-nav-text">layouts/partials/favicon.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5cacb77926aa8af2c9b6707b214986a8"
+      id="R-tab-id-f07620bc41579a5a9eabfa5e8ff1e2ce"
       data-tab-item="R-tab-21be57bd4266fa95efd73ea1d33ce733"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -241,7 +252,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-9df7f0556c0a5cbcc5d17f4067bb560f" aria-expanded="true"
+      aria-controls="R-tab-id-dc8f703bf186826edf67d2d52ba734a0" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -249,7 +260,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-2794c40d70837da6dbabc1fd2c58da91" aria-expanded="false"
+      aria-controls="R-tab-id-819f669554192ea34f2cfdc504de06d4" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -257,7 +268,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-eda4620e7dbf4340a7e6307aab99c81a" aria-expanded="false"
+      aria-controls="R-tab-id-f2e68975be51096c2058b5a7e840b34d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -267,7 +278,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9df7f0556c0a5cbcc5d17f4067bb560f"
+      id="R-tab-id-dc8f703bf186826edf67d2d52ba734a0"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -276,7 +287,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-2794c40d70837da6dbabc1fd2c58da91"
+      id="R-tab-id-819f669554192ea34f2cfdc504de06d4"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -289,7 +300,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-eda4620e7dbf4340a7e6307aab99c81a"
+      id="R-tab-id-f2e68975be51096c2058b5a7e840b34d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -304,21 +315,21 @@
 </div>
 <h3 id="changing-the-title-font-settings">Chang'n th' Title Font Sett'ns<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Ye can change font sett'ns wit' th' follow'n CSS variables</p>
-<div class="tab-panel" data-tab-group="R-tabs-57183c1fef63fcc9857b01a2c021c8ab">
+<div class="tab-panel" data-tab-group="R-tabs-2f5480dbb443b3a39a0b338d9fa0a02e">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-a0db772a628738d82b450836b67c4cb5" aria-expanded="true"
+      aria-controls="R-tab-id-e2db9f2b1851fe986a047e74b00fc24b" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-57183c1fef63fcc9857b01a2c021c8ab','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
+      onclick="switchTab('R-tabs-2f5480dbb443b3a39a0b338d9fa0a02e','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a0db772a628738d82b450836b67c4cb5"
+      id="R-tab-id-e2db9f2b1851fe986a047e74b00fc24b"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -334,21 +345,21 @@
 </div><p>On smaller screens th' logo font size be automatically reduced t' 80% o' th' configured value fer better mobile display. This be not configur'ble.</p>
 <h3 id="changing-the-title-colors">Chang'n th' Title Colors<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Th' logo inherits its colors from th' menu header by default. Ye can cust'mize th' normal an' hover states</p>
-<div class="tab-panel" data-tab-group="R-tabs-30912a4cc33548a6c98c07e82009ccfc">
+<div class="tab-panel" data-tab-group="R-tabs-f777a330bc686f7b1ec40c6fc4337b15">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-46203939291da232f687125f00b5ac1e" aria-expanded="true"
+      aria-controls="R-tab-id-33a37d9b183ef63ab3a96b98e3ac2502" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-30912a4cc33548a6c98c07e82009ccfc','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
+      onclick="switchTab('R-tabs-f777a330bc686f7b1ec40c6fc4337b15','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-46203939291da232f687125f00b5ac1e"
+      id="R-tab-id-33a37d9b183ef63ab3a96b98e3ac2502"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -368,7 +379,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-84a686987511c31f0cf99bfad8db9f90" aria-expanded="true"
+      aria-controls="R-tab-id-635a404f91bf04931c36b23d7e5c80c6" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -376,7 +387,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-35b18db86c93928cd1c8a805a3c97e53" aria-expanded="false"
+      aria-controls="R-tab-id-b9e4c862fa4d7a9872aa84c288fe15f9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -384,7 +395,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-29d12044272b5e735f8dfc9318dc54a3" aria-expanded="false"
+      aria-controls="R-tab-id-02a9f71c9a0bef28646d09e1046634e0" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -394,7 +405,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-84a686987511c31f0cf99bfad8db9f90"
+      id="R-tab-id-635a404f91bf04931c36b23d7e5c80c6"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -404,7 +415,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-35b18db86c93928cd1c8a805a3c97e53"
+      id="R-tab-id-b9e4c862fa4d7a9872aa84c288fe15f9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -414,7 +425,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-29d12044272b5e735f8dfc9318dc54a3"
+      id="R-tab-id-02a9f71c9a0bef28646d09e1046634e0"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -446,7 +457,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-c6a6406c9318032e3b5947fdaa4eb213" aria-expanded="true"
+      aria-controls="R-tab-id-4bb252e38fad2ec7cad3bf7e0637fa18" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -454,7 +465,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a7315c4e4b69631273c61a9a5db363e2" aria-expanded="false"
+      aria-controls="R-tab-id-246de2c740d23226a0f116ddaba86376" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -462,7 +473,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-317d44b98a3afaefe73e58f7e0194e03" aria-expanded="false"
+      aria-controls="R-tab-id-872985aa93f6b233a98fd85fbf3bdf8d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -472,7 +483,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c6a6406c9318032e3b5947fdaa4eb213"
+      id="R-tab-id-4bb252e38fad2ec7cad3bf7e0637fa18"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -482,7 +493,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-a7315c4e4b69631273c61a9a5db363e2"
+      id="R-tab-id-246de2c740d23226a0f116ddaba86376"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -492,7 +503,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-317d44b98a3afaefe73e58f7e0194e03"
+      id="R-tab-id-872985aa93f6b233a98fd85fbf3bdf8d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -512,7 +523,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-4f0c48139ea3bf58de572933317236d8" aria-expanded="true"
+      aria-controls="R-tab-id-25b2d98877656b66837df8ba6d494d4a" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -520,7 +531,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-5080d0abafbb951ed78093b37761a8b1" aria-expanded="false"
+      aria-controls="R-tab-id-6cab9005768d1db405fdda0e83f2c317" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -528,7 +539,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-cc958ab3ac08c782b5d9f86d950e13fc" aria-expanded="false"
+      aria-controls="R-tab-id-cbee1babc2da06144d512111fde39bb9" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -538,7 +549,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4f0c48139ea3bf58de572933317236d8"
+      id="R-tab-id-25b2d98877656b66837df8ba6d494d4a"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -548,7 +559,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-5080d0abafbb951ed78093b37761a8b1"
+      id="R-tab-id-6cab9005768d1db405fdda0e83f2c317"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -558,7 +569,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-cc958ab3ac08c782b5d9f86d950e13fc"
+      id="R-tab-id-cbee1babc2da06144d512111fde39bb9"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -581,7 +592,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-ddbdb9763ab6ed2119aa4c0efa01feac" aria-expanded="true"
+      aria-controls="R-tab-id-2d7f8df6fe23b9945970ca98795260c1" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -589,7 +600,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-208e52274816c6632eb9087461f22d17" aria-expanded="false"
+      aria-controls="R-tab-id-6182ecfea7f9f5e2572c34be49531b51" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -597,7 +608,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1b2ddb6e7a692f1b41a97d2dd88941f0" aria-expanded="false"
+      aria-controls="R-tab-id-f4f5b8cadbcd6a8fa0ea4dd000ab84a6" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -607,7 +618,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ddbdb9763ab6ed2119aa4c0efa01feac"
+      id="R-tab-id-2d7f8df6fe23b9945970ca98795260c1"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -632,7 +643,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-208e52274816c6632eb9087461f22d17"
+      id="R-tab-id-6182ecfea7f9f5e2572c34be49531b51"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -650,7 +661,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1b2ddb6e7a692f1b41a97d2dd88941f0"
+      id="R-tab-id-f4f5b8cadbcd6a8fa0ea4dd000ab84a6"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -688,7 +699,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-da5641e6a6224f66edc7496e9bae9fe5" aria-expanded="true"
+      aria-controls="R-tab-id-2d2169c311942b56143ead6e84f6136a" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -696,7 +707,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-138b0f1a20f6321c4bf5a390f829d312" aria-expanded="false"
+      aria-controls="R-tab-id-51aa3957bc8f803b95f29f0719763f09" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -704,7 +715,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-4d49405ee0a949dc2ce4d0934911c214" aria-expanded="false"
+      aria-controls="R-tab-id-4dd20e7c95d7bbabd8ec6d93aba69e54" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -714,7 +725,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-da5641e6a6224f66edc7496e9bae9fe5"
+      id="R-tab-id-2d2169c311942b56143ead6e84f6136a"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -730,7 +741,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-138b0f1a20f6321c4bf5a390f829d312"
+      id="R-tab-id-51aa3957bc8f803b95f29f0719763f09"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -743,7 +754,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-4d49405ee0a949dc2ce4d0934911c214"
+      id="R-tab-id-4dd20e7c95d7bbabd8ec6d93aba69e54"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -768,21 +779,21 @@
 </div>
 <h3 id="changing-the-size-of-the-logo">Chang'n th' Size o' th' Logo<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Th' theme provides CSS variables t' cust'mize th' logo&rsquo;s size. Ye can add these t' <code>layouts/partials/custom-header.html</code>. Th' logo image has a default width o' <code>4em</code>. Th' height be determined by th' aspect ratio o' th' logo.</p>
-<div class="tab-panel" data-tab-group="R-tabs-b9a49c61a7652b24d7674758752f2233">
+<div class="tab-panel" data-tab-group="R-tabs-55c480909152636709bafccf768a4ff8">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-1fae152bbeb0bf7022ba2eb42e4d2488" aria-expanded="true"
+      aria-controls="R-tab-id-724380fd8bd2a0bf1da1930c1bbdb8ad" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-b9a49c61a7652b24d7674758752f2233','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
+      onclick="switchTab('R-tabs-55c480909152636709bafccf768a4ff8','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1fae152bbeb0bf7022ba2eb42e4d2488"
+      id="R-tab-id-724380fd8bd2a0bf1da1930c1bbdb8ad"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -800,7 +811,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-f3fd477642999ceb53ebd671be0a8208" aria-expanded="true"
+      aria-controls="R-tab-id-5e031246fba3980c3bfc1a1f9ff6b13d" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -808,7 +819,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7d0314b16c9d0f9ca16226ebf36a10cd" aria-expanded="false"
+      aria-controls="R-tab-id-92eadae7c5e1330ef3bf1e5a8de5ae99" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -816,7 +827,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b98a2e61a8084419918a279ee9b5e69e" aria-expanded="false"
+      aria-controls="R-tab-id-c926c9a35599fe00d806a5b6d01ff6e2" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -826,7 +837,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f3fd477642999ceb53ebd671be0a8208"
+      id="R-tab-id-5e031246fba3980c3bfc1a1f9ff6b13d"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -836,7 +847,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-7d0314b16c9d0f9ca16226ebf36a10cd"
+      id="R-tab-id-92eadae7c5e1330ef3bf1e5a8de5ae99"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -846,7 +857,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b98a2e61a8084419918a279ee9b5e69e"
+      id="R-tab-id-c926c9a35599fe00d806a5b6d01ff6e2"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -864,21 +875,21 @@
 <p>Th' recolor'n applies t' all black elements 'n yer SVG. Elements that get their color from their parent be left untouched. So an SVG that sets <code>fill=&quot;none&quot;</code> on its root element keeps its transparent areas transparent.</p>
 <h4 id="changing-the-svg-logo-colors">Chang'n th' SVG Logo Colors<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h4>
 <p>A SVG logo inherits its color from th' menu title by default. Ye can cust'mize both th' normal an' hover states</p>
-<div class="tab-panel" data-tab-group="R-tabs-1fc1c281f365e91810b2619285d8c2ad">
+<div class="tab-panel" data-tab-group="R-tabs-43f7c5c2cd9e49fe1b881f0c912b2846">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-15193a1f3e1f48a7eff222aff89d5259" aria-expanded="true"
+      aria-controls="R-tab-id-b1f786d27a7e9dd41cf1d266cac870a0" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-1fc1c281f365e91810b2619285d8c2ad','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
+      onclick="switchTab('R-tabs-43f7c5c2cd9e49fe1b881f0c912b2846','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-15193a1f3e1f48a7eff222aff89d5259"
+      id="R-tab-id-b1f786d27a7e9dd41cf1d266cac870a0"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -896,21 +907,21 @@
 <p>Create a new file <code>layouts/partials/logo.html</code> 'n yer site&rsquo;s directory. Then write any HTML ye want. Ye could use an <code>img</code> HTML tag an' reference an image, or ye could paste an SVG definit'n!</p>
 <h3 id="example">Example<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Suppose you&rsquo;ve stored yer logo as <code>static/images/logo.png</code> an' want full control over th' HTML:</p>
-<div class="tab-panel" data-tab-group="R-tabs-04270bfe18d05488ccbf4b29ed297d8e">
+<div class="tab-panel" data-tab-group="R-tabs-eaa0987294f2c347e0a332c41eb0ea80">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-f1c21634713e97797bf3593c3d28559e" aria-expanded="true"
+      aria-controls="R-tab-id-323e73912b13b8b5cf02fee0451acc41" aria-expanded="true"
       data-tab-item="R-tab-47527151ab2de0ef294b128b27095b76"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-04270bfe18d05488ccbf4b29ed297d8e','R-tab-47527151ab2de0ef294b128b27095b76')"
+      onclick="switchTab('R-tabs-eaa0987294f2c347e0a332c41eb0ea80','R-tab-47527151ab2de0ef294b128b27095b76')"
     >
       <span class="tab-nav-text">layouts/partials/logo.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f1c21634713e97797bf3593c3d28559e"
+      id="R-tab-id-323e73912b13b8b5cf02fee0451acc41"
       data-tab-item="R-tab-47527151ab2de0ef294b128b27095b76"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -990,7 +1001,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-2e6d784c9d730c758067515cc7cbfbac" aria-expanded="true"
+      aria-controls="R-tab-id-e5453b216a9d724973b54f172fce538b" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -998,7 +1009,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-668031c71a340b0fbccbcdd7f7a8ce75" aria-expanded="false"
+      aria-controls="R-tab-id-40e8f07c61d5ba02157937b1090751a0" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1006,7 +1017,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1337a38c2f07688fb9057a1a80919ffa" aria-expanded="false"
+      aria-controls="R-tab-id-7fd05841300007bf791c7f85dba9a249" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1016,7 +1027,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2e6d784c9d730c758067515cc7cbfbac"
+      id="R-tab-id-e5453b216a9d724973b54f172fce538b"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1025,7 +1036,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-668031c71a340b0fbccbcdd7f7a8ce75"
+      id="R-tab-id-40e8f07c61d5ba02157937b1090751a0"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1034,7 +1045,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1337a38c2f07688fb9057a1a80919ffa"
+      id="R-tab-id-7fd05841300007bf791c7f85dba9a249"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1055,7 +1066,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-d88ec53a23c7caefdf08a0cc650d9346" aria-expanded="true"
+      aria-controls="R-tab-id-79dbc254e5095b70f44314f301782b6e" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1063,7 +1074,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-225bccf30b37e274700fd8272ce6055e" aria-expanded="false"
+      aria-controls="R-tab-id-a356fe3606457c04aedd647890398a0f" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1071,7 +1082,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-e5d316ebf0b4ef88ca599d20c2f666d3" aria-expanded="false"
+      aria-controls="R-tab-id-4ccdd8b558c6dd24d5a14edec8c359c3" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1081,7 +1092,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d88ec53a23c7caefdf08a0cc650d9346"
+      id="R-tab-id-79dbc254e5095b70f44314f301782b6e"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1090,7 +1101,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-225bccf30b37e274700fd8272ce6055e"
+      id="R-tab-id-a356fe3606457c04aedd647890398a0f"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1101,7 +1112,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-e5d316ebf0b4ef88ca599d20c2f666d3"
+      id="R-tab-id-4ccdd8b558c6dd24d5a14edec8c359c3"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1135,7 +1146,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-ef6c17f2d945774934d4179a1c126603" aria-expanded="true"
+      aria-controls="R-tab-id-e877041c7d180e436e47d88a6fc18d82" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1143,7 +1154,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6a3a90351b7ab11d87c176bbf98d711f" aria-expanded="false"
+      aria-controls="R-tab-id-4e3d1317089aaba8b52ae12bdb2f0716" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1151,7 +1162,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-fc2548e9acf923d574ae4780079239ac" aria-expanded="false"
+      aria-controls="R-tab-id-575c356f633c302072a7ead5c75da303" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1161,7 +1172,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ef6c17f2d945774934d4179a1c126603"
+      id="R-tab-id-e877041c7d180e436e47d88a6fc18d82"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1170,7 +1181,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-6a3a90351b7ab11d87c176bbf98d711f"
+      id="R-tab-id-4e3d1317089aaba8b52ae12bdb2f0716"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1181,7 +1192,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-fc2548e9acf923d574ae4780079239ac"
+      id="R-tab-id-575c356f633c302072a7ead5c75da303"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1204,7 +1215,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-7ed14a6f207d27fa431a31338a195126" aria-expanded="true"
+      aria-controls="R-tab-id-8a78dacac4d59cde6eb669b8ba4b3d2a" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1212,7 +1223,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a53a4330d739139a72fa83103e721d01" aria-expanded="false"
+      aria-controls="R-tab-id-385bc68bb9dbda5050d91a0c53222534" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1220,7 +1231,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b67d0fa50d2fcb05916f2b7c403242c8" aria-expanded="false"
+      aria-controls="R-tab-id-675c9c9eb0a26b9e38c149c95da2269f" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1230,7 +1241,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7ed14a6f207d27fa431a31338a195126"
+      id="R-tab-id-8a78dacac4d59cde6eb669b8ba4b3d2a"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1239,7 +1250,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-a53a4330d739139a72fa83103e721d01"
+      id="R-tab-id-385bc68bb9dbda5050d91a0c53222534"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1250,7 +1261,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b67d0fa50d2fcb05916f2b7c403242c8"
+      id="R-tab-id-675c9c9eb0a26b9e38c149c95da2269f"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1274,7 +1285,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-ee5aeb988e3d45d176b98e088ad98f8c" aria-expanded="true"
+      aria-controls="R-tab-id-9c65179a7a53b2e11767eba23deb205c" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1282,7 +1293,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b3c43c75ed78dab542ab90629815f395" aria-expanded="false"
+      aria-controls="R-tab-id-125836fcbff4992850613349bf99d42b" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1290,7 +1301,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a61491f7f1696c213b2f4c8e680f06b3" aria-expanded="false"
+      aria-controls="R-tab-id-9648e7b7e27d53ce627f5b841101d201" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1300,7 +1311,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ee5aeb988e3d45d176b98e088ad98f8c"
+      id="R-tab-id-9c65179a7a53b2e11767eba23deb205c"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1309,7 +1320,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b3c43c75ed78dab542ab90629815f395"
+      id="R-tab-id-125836fcbff4992850613349bf99d42b"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1320,7 +1331,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-a61491f7f1696c213b2f4c8e680f06b3"
+      id="R-tab-id-9648e7b7e27d53ce627f5b841101d201"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1341,7 +1352,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-c87733365585fbbbcb2ff426efd571ed" aria-expanded="true"
+      aria-controls="R-tab-id-098803a0872ae4d848b2e446fdf22a76" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1349,7 +1360,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-49c927472e6e0bf54a128337f4b0d622" aria-expanded="false"
+      aria-controls="R-tab-id-7c648beb448b98dfbbaab4a5770515d6" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1357,7 +1368,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8db130dc017dbe0229a4f7a33b3f2579" aria-expanded="false"
+      aria-controls="R-tab-id-da6030141046b2bc8931bacc2cd818ef" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1367,7 +1378,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c87733365585fbbbcb2ff426efd571ed"
+      id="R-tab-id-098803a0872ae4d848b2e446fdf22a76"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1380,7 +1391,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-49c927472e6e0bf54a128337f4b0d622"
+      id="R-tab-id-7c648beb448b98dfbbaab4a5770515d6"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1391,7 +1402,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-8db130dc017dbe0229a4f7a33b3f2579"
+      id="R-tab-id-da6030141046b2bc8931bacc2cd818ef"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1454,7 +1465,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-0d533ae80620a662da6d7ec3322608f4" aria-expanded="true"
+      aria-controls="R-tab-id-5f38b96ca67f5ff72714ba6bffea9832" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1462,7 +1473,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-3a376cc85ee18ff66312e53fd2bfcfd2" aria-expanded="false"
+      aria-controls="R-tab-id-f101d04208ed9149cb3fd62536e4edc6" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1470,7 +1481,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-f6ba826c574a8c85d9104d80e0559fb8" aria-expanded="false"
+      aria-controls="R-tab-id-bf5d5651e04c14f420c3222404af7fbf" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1480,7 +1491,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0d533ae80620a662da6d7ec3322608f4"
+      id="R-tab-id-5f38b96ca67f5ff72714ba6bffea9832"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1523,7 +1534,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-3a376cc85ee18ff66312e53fd2bfcfd2"
+      id="R-tab-id-f101d04208ed9149cb3fd62536e4edc6"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1552,7 +1563,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-f6ba826c574a8c85d9104d80e0559fb8"
+      id="R-tab-id-bf5d5651e04c14f420c3222404af7fbf"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1622,21 +1633,21 @@
 <p>Create an' import</p>
 <p>Ye can create a new variant file 'n th' site&rsquo;s <code>assets/css</code> directory an' give it a new name. Import th' shipped variant, add th' sett'ns ye want t' change an' save th' new file. Afterwards, ye can use it 'n yer <code>hugo.toml</code> by th' chosen name.</p>
 <p>For example, ye want t' use th' <code>relearn-light</code> variant but want t' change th' rules highlight'n schema t' th' one used 'n th' <code>neon</code> variant. For that, create a new <code>assets/css/theme-my-brand'n.css</code> 'n yer site&rsquo;s directory an' add th' follow'n lines:</p>
-<div class="tab-panel" data-tab-group="R-tabs-5c59ff67752c0667c93d69e8201cb83c">
+<div class="tab-panel" data-tab-group="R-tabs-10b80ee6e9adcc6488f43a709ffdca51">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-8f683cdc977ec7dee270534d6d795258" aria-expanded="true"
+      aria-controls="R-tab-id-76653a8a77d1331e7bdb8383bcfea168" aria-expanded="true"
       data-tab-item="R-tab-1d0e7577390b23d2c46ecc92963ebda9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-5c59ff67752c0667c93d69e8201cb83c','R-tab-1d0e7577390b23d2c46ecc92963ebda9')"
+      onclick="switchTab('R-tabs-10b80ee6e9adcc6488f43a709ffdca51','R-tab-1d0e7577390b23d2c46ecc92963ebda9')"
     >
       <span class="tab-nav-text">assets/css/theme-my-brand'n.css</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-8f683cdc977ec7dee270534d6d795258"
+      id="R-tab-id-76653a8a77d1331e7bdb8383bcfea168"
       data-tab-item="R-tab-1d0e7577390b23d2c46ecc92963ebda9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1655,7 +1666,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-96bce0d22f4bc17a181028b01abfd802" aria-expanded="true"
+      aria-controls="R-tab-id-ac3f5348260573c75b32d4c6931e36b0" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1663,7 +1674,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-5e1181e9eede23aad54c75c85b9f4d11" aria-expanded="false"
+      aria-controls="R-tab-id-e7e1bdc8161a275d4050646dea2f4f37" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1671,7 +1682,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a4f91288c6fff5a7cd0258b3d986332e" aria-expanded="false"
+      aria-controls="R-tab-id-cde66c08e35cd959919e13d065ab00de" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1681,7 +1692,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-96bce0d22f4bc17a181028b01abfd802"
+      id="R-tab-id-ac3f5348260573c75b32d4c6931e36b0"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1690,7 +1701,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-5e1181e9eede23aad54c75c85b9f4d11"
+      id="R-tab-id-e7e1bdc8161a275d4050646dea2f4f37"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1699,7 +1710,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-a4f91288c6fff5a7cd0258b3d986332e"
+      id="R-tab-id-cde66c08e35cd959919e13d065ab00de"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1724,21 +1735,21 @@
 </ul>
 <h3 id="react-to-variant-switches-in-javascript">React t' Variant Switches 'n JavaScript<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Once a color variant be fully boarded, either initially or by switch'n th' color variant manually wit' th' variant selector, th' custom event <code>themeVariantLoaded</code> on th' <code>document</code> will be dispatched. Ye can add an event listener an' react t' changes.</p>
-<div class="tab-panel" data-tab-group="R-tabs-35bf2148b61aa1868712f29bff193f14">
+<div class="tab-panel" data-tab-group="R-tabs-29901fc554ddd1dd5ca10558c8656b6d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-44db7640bd2d9f082943922c463cf36f" aria-expanded="true"
+      aria-controls="R-tab-id-562eacb66a10c03f163e5266de709330" aria-expanded="true"
       data-tab-item="R-tab-686155af75a60a0f6e9d80c1f7edd3e9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-35bf2148b61aa1868712f29bff193f14','R-tab-686155af75a60a0f6e9d80c1f7edd3e9')"
+      onclick="switchTab('R-tabs-29901fc554ddd1dd5ca10558c8656b6d','R-tab-686155af75a60a0f6e9d80c1f7edd3e9')"
     >
       <span class="tab-nav-text">JavaScript</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-44db7640bd2d9f082943922c463cf36f"
+      id="R-tab-id-562eacb66a10c03f163e5266de709330"
       data-tab-item="R-tab-686155af75a60a0f6e9d80c1f7edd3e9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1772,7 +1783,7 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-0002f891a7e119211cec8772802748f8" aria-expanded="true"
+      aria-controls="R-tab-id-e15a88d17edd6ae58674da9a413590a1" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1780,7 +1791,7 @@
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-81d1acb1554f0f51c850b48ccdb8c29a" aria-expanded="false"
+      aria-controls="R-tab-id-e50436cdc5554bbd8f2d07de66b4d305" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1788,7 +1799,7 @@
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7baffdf95a914dda873bc346b0172d59" aria-expanded="false"
+      aria-controls="R-tab-id-9986a22a11f8a231d5e2be47ec08cc06" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1798,7 +1809,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0002f891a7e119211cec8772802748f8"
+      id="R-tab-id-e15a88d17edd6ae58674da9a413590a1"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1808,7 +1819,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-81d1acb1554f0f51c850b48ccdb8c29a"
+      id="R-tab-id-e50436cdc5554bbd8f2d07de66b4d305"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1818,7 +1829,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-7baffdf95a914dda873bc346b0172d59"
+      id="R-tab-id-9986a22a11f8a231d5e2be47ec08cc06"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1836,21 +1847,21 @@
 <p>Ye can use one o' th' shipped stylesheet files or use Cap'n Hugo t' generate a file fer ye.</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo gen chromastyles --style<span class="o">=</span>monokai &gt; chroma-mycode.css</span></span></code></pre></div>
 <p>Th' file must be written t' <code>assets/css/chroma-&lt;NAME&gt;.css</code>. T' use it wit' yer color variant, ye have t' modify <code>--CODE-theme: &lt;NAME&gt;</code> 'n th' color variant stylesheet file.</p>
-<div class="tab-panel" data-tab-group="R-tabs-6b331e810df519b77d478dcea1af36e9">
+<div class="tab-panel" data-tab-group="R-tabs-fde895d8faa85388f420410fb530457a">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-b7424c14abd401f3f677ec1a07e5e580" aria-expanded="true"
+      aria-controls="R-tab-id-2956f795813bd540c25c7c97a5399f62" aria-expanded="true"
       data-tab-item="R-tab-1d0e7577390b23d2c46ecc92963ebda9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-6b331e810df519b77d478dcea1af36e9','R-tab-1d0e7577390b23d2c46ecc92963ebda9')"
+      onclick="switchTab('R-tabs-fde895d8faa85388f420410fb530457a','R-tab-1d0e7577390b23d2c46ecc92963ebda9')"
     >
       <span class="tab-nav-text">assets/css/theme-my-brand'n.css</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b7424c14abd401f3f677ec1a07e5e580"
+      id="R-tab-id-2956f795813bd540c25c7c97a5399f62"
       data-tab-item="R-tab-1d0e7577390b23d2c46ecc92963ebda9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1952,8 +1963,7 @@ Th' <code>CODE-theme</code> parameter can be changed 'n th' generator but th' ch
     <script>
       window.relearn.themeUseMermaid = JSON.parse("{ \"securityLevel\": \"loose\" }");
     </script>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.db7463db58ffbf17da815a125672d269b005017f2e343e731f69a22d157b2170.js" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.6e511025eeb3da02573330b2d6b065987672fd30bd839db10c8b73e809aea089.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.410bf32423228937f507cf4642569b2917bf39b96362db3519c6aa79bfe3c471.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.0.3+b7d0c3ad83be7779e9485e9e7a40bcf59da1afb5">
+    <meta name="generator" content="Relearn 9.0.3+52337cea9b27083ca33f755465541adce658b209">
     <meta name="description" content="Learrrn how t&#39; create an&#39; org&#39;nize yer rrrambl&#39;n planks.
 Directory Structure Yer content&#39;s directory structure">
     <meta name="author" content="Sören Weber">
@@ -37,10 +37,10 @@ Directory Structure Yer content&#39;s directory structure">
     <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.78b49c23f59ffb08554285843ed4c841484fe34c489058b2991edc027cdd47fc.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.7b340a2a0841d2466dca47e43cbd8c4dfe6a4f77a6c81c984d49ebb60ba2e299.js" defer></script>
     <script src="/hugo-theme-relearn/js/search-lunr.min.9af015a288d1c0d444de2d8fb41fd8fdd679ead7dd60e637608740d50078fdf9.js" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.c58b508bccda750a48211b66c89002539e69e1ef1f10dbde995b328356a36f14.js" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.795bf51f4b531fcd29fe7ffb27f174f6bb6b0ce086465e2be48643dea742dfbb.js" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="../../"+"searchindex.pir.min.9994619d42685e1fec7676fe6c60775ddff150f6e3447c4c1dd42f5f0253862a.js";
+      window.relearn.index_js_url="../../"+"searchindex.pir.min.302f2a2cbc8bec8022a228ca4e69804de471abad66a1173c2b588f1da68c2485.js";
     </script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -52,8 +52,7 @@ Directory Structure Yer content&#39;s directory structure">
       window.relearn.contentLangs=['en', 'art'];
     </script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.c66b59a97910bc3557f3b388f9b0d6662405c65f245bdc1ede3f339d96b7f30e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.ef8860872a334d7e8e7222371833236e6b7e9465d9926110b99bfd3915e8499b.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.33b9cb9d39e97c6d22ee6bb0751e11d29c890c0876d3d9c742bbdc2ffe4e350c.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.39e0dc30e3ca73e623fcf660fac10bf09db5539b3d13e59e90977cf7137e6aee.css" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
@@ -101,6 +100,18 @@ Directory Structure Yer content&#39;s directory structure">
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
+      window.relearn.scrollbarSize = (function() {
+        var scrollDiv = document.createElement('div');
+        scrollDiv.className = 'scrollbar-measure';
+        var parent = document.body || document.documentElement;
+        parent.appendChild(scrollDiv);
+        var size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        parent.removeChild(scrollDiv);
+        return size;
+      })();
+      if (window.relearn.scrollbarSize) {
+        document.documentElement.classList.add('classic-scrollbars');
+      }
     </script>
     <style>
        
@@ -122,7 +133,7 @@ Directory Structure Yer content&#39;s directory structure">
             <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table o&#39; Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-table-list"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
 <nav class="TableOfContents">
   <ul>
     <li><a href="#directory-structure">Directory Structure</a></li>
@@ -155,7 +166,7 @@ Directory Structure Yer content&#39;s directory structure">
             <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Morrre"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
                   <div class="topbar-area topbar-area-more" data-area="more">
                   </div>
                 </div>
@@ -332,21 +343,21 @@ Directory Structure Yer content&#39;s directory structure">
 </li>
 <li>
 <p>If ye be creat'n yer Marrrkdown files manually, ye can achieve th' same by just sett'n <code>type='chapter'</code> 'n th' front matter t' make yer plank displayed wit' th' <code>chapter</code> plank design.</p>
-<div class="tab-panel" data-tab-group="R-tabs-d5efa0690b2c6658d30be34a8acf286a">
+<div class="tab-panel" data-tab-group="R-tabs-60822f8acf81813d675233dcab44198f">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-0eae04caf6753f167d22e88fa7dd7246" aria-expanded="true"
+      aria-controls="R-tab-id-1df8fbf1bb9565d695b8a38cbb33377a" aria-expanded="true"
       data-tab-item="R-tab-514a327c51262a33a7efbe12a75be6d6"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-d5efa0690b2c6658d30be34a8acf286a','R-tab-514a327c51262a33a7efbe12a75be6d6')"
+      onclick="switchTab('R-tabs-60822f8acf81813d675233dcab44198f','R-tab-514a327c51262a33a7efbe12a75be6d6')"
     >
       <span class="tab-nav-text">log/_index.md</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0eae04caf6753f167d22e88fa7dd7246"
+      id="R-tab-id-1df8fbf1bb9565d695b8a38cbb33377a"
       data-tab-item="R-tab-514a327c51262a33a7efbe12a75be6d6"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -365,16 +376,16 @@ Directory Structure Yer content&#39;s directory structure">
 <p>A <strong>Home</strong> plank be th' start'n plank o' yer project. It&rsquo;s best t' have only one plank o' this kind 'n yer project.</p>
 <p>T' create a home plank, run th' follow'n command</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new --kind home _index.md</span></span></code></pre></div>
-<p><a href="#R-image-d747087e201167423c2e82b6c17fb415" class="lightbox-link"><img alt="Home page" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-home.png?width=60pc" style="height: auto;width: 60pc;" width="1500"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d747087e201167423c2e82b6c17fb415"><img alt="Home page" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-home.png?width=60pc"></a></p>
+<p><a href="#R-image-f935045d9ae8076fb68e9941201a9bb5" class="lightbox-link"><img alt="Home page" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-home.png?width=60pc" style="height: auto;width: 60pc;" width="1500"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f935045d9ae8076fb68e9941201a9bb5"><img alt="Home page" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-home.png?width=60pc"></a></p>
 <h3 id="archetypes-chapter">Chapter<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>A <strong>Chapter</strong> displays a plank meant t' be used as introduct'n fer a set o' child planks.</p>
 <p>Commonly, it contains a title front matter an' a short descript'n 'n th' rrrambl'n.</p>
 <p>T' create a chapter plank, run th' follow'n command</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new --kind chapter log/_index.md</span></span></code></pre></div>
 <p>If a numerical <code>weight</code> front matter be set, it will be used t' generate th' subtitle o' th' chapter plank. Set th' number t' a consecutive value start'n at 1 fer each new chapter on th' same directory level.</p>
-<p><a href="#R-image-81fe10aea7c505f6b571e8d2e6daa0c3" class="lightbox-link"><img alt="Chapter page" class="bg-white border lazy lightbox figure-image" height="1500" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-chapter.png?width=60pc" style="height: auto;width: 60pc;" width="2000"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-81fe10aea7c505f6b571e8d2e6daa0c3"><img alt="Chapter page" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-chapter.png?width=60pc"></a></p>
+<p><a href="#R-image-f96939d431ec0e0718a148daaf58fd75" class="lightbox-link"><img alt="Chapter page" class="bg-white border lazy lightbox figure-image" height="1500" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-chapter.png?width=60pc" style="height: auto;width: 60pc;" width="2000"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f96939d431ec0e0718a148daaf58fd75"><img alt="Chapter page" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-chapter.png?width=60pc"></a></p>
 <h3 id="archetypes-default">Default<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>A <strong>Default</strong> plank be any other rrrambl'n plank.</p>
 <p>T' create a default plank, run either one o' th' follow'n commands</p>
@@ -383,8 +394,8 @@ Directory Structure Yer content&#39;s directory structure">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new log/second-day/index.md</span></span></code></pre></div>
 <p>or</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new log/third-day.md</span></span></code></pre></div>
-<p><a href="#R-image-08d2c36d9917126f10038183a7825a52" class="lightbox-link"><img alt="Default page" class="bg-white border lazy lightbox figure-image" height="1500" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-default.png?width=60pc" style="height: auto;width: 60pc;" width="2000"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-08d2c36d9917126f10038183a7825a52"><img alt="Default page" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-default.png?width=60pc"></a></p>
+<p><a href="#R-image-0b05ef9bd30753663fbb5f82bdc6418f" class="lightbox-link"><img alt="Default page" class="bg-white border lazy lightbox figure-image" height="1500" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-default.png?width=60pc" style="height: auto;width: 60pc;" width="2000"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0b05ef9bd30753663fbb5f82bdc6418f"><img alt="Default page" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/authoring/frontmatter/designs/pages-default.png?width=60pc"></a></p>
  
 
   <footer class="footline">
@@ -420,7 +431,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-85b9081fa2c304d588bcc70a46f4040f" aria-expanded="true"
+      aria-controls="R-tab-id-be6d11bcc08bfc320d6f16d2282319e9" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -428,7 +439,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c13670eea79154bf238725331ec30bf7" aria-expanded="false"
+      aria-controls="R-tab-id-cf3678a68c6f062a9b3569d630de3dcf" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -436,7 +447,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c7d27b3ef4da7d6951b37274616aa919" aria-expanded="false"
+      aria-controls="R-tab-id-99e9a58de8b4c7ab70e5928cffd3290c" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -446,7 +457,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-85b9081fa2c304d588bcc70a46f4040f"
+      id="R-tab-id-be6d11bcc08bfc320d6f16d2282319e9"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -455,7 +466,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-c13670eea79154bf238725331ec30bf7"
+      id="R-tab-id-cf3678a68c6f062a9b3569d630de3dcf"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -464,7 +475,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-c7d27b3ef4da7d6951b37274616aa919"
+      id="R-tab-id-99e9a58de8b4c7ab70e5928cffd3290c"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -486,7 +497,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-031b533e6ca93f2d196ca54bc1b8f901" aria-expanded="true"
+      aria-controls="R-tab-id-0bbfff5a65ef01f3fc8a5b159437b9e7" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -494,7 +505,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-daa285788cf3abd5adaec806cb4b553f" aria-expanded="false"
+      aria-controls="R-tab-id-41ba819149b68519d7a849f3adbf6f75" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -502,7 +513,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-da29607a1a3ec040dc4f20cde65b1898" aria-expanded="false"
+      aria-controls="R-tab-id-f43a8c798a87c62d5eeb03667826e12d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -512,7 +523,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-031b533e6ca93f2d196ca54bc1b8f901"
+      id="R-tab-id-0bbfff5a65ef01f3fc8a5b159437b9e7"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -525,7 +536,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-daa285788cf3abd5adaec806cb4b553f"
+      id="R-tab-id-41ba819149b68519d7a849f3adbf6f75"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -537,7 +548,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-da29607a1a3ec040dc4f20cde65b1898"
+      id="R-tab-id-f43a8c798a87c62d5eeb03667826e12d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -561,7 +572,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-2e66116b3d2218b44b459cb9e6dfcded" aria-expanded="true"
+      aria-controls="R-tab-id-c57ce71032e8ca3169c110ae8daa7c18" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -569,7 +580,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-fd38016eb1e67c216d08c715005dc1bf" aria-expanded="false"
+      aria-controls="R-tab-id-8b28adf2bf0699bd6b1afc49d755fd33" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -577,7 +588,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-144de2b81dd49ea652f1a606a77fcb1c" aria-expanded="false"
+      aria-controls="R-tab-id-ca10ce122dbe35e33d524074f75a0c7f" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -587,7 +598,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2e66116b3d2218b44b459cb9e6dfcded"
+      id="R-tab-id-c57ce71032e8ca3169c110ae8daa7c18"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -596,7 +607,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-fd38016eb1e67c216d08c715005dc1bf"
+      id="R-tab-id-8b28adf2bf0699bd6b1afc49d755fd33"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -607,7 +618,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-144de2b81dd49ea652f1a606a77fcb1c"
+      id="R-tab-id-ca10ce122dbe35e33d524074f75a0c7f"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -629,7 +640,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-7e53d02c6f607769b6952b8963dedbfb" aria-expanded="true"
+      aria-controls="R-tab-id-6c759bcd971b2c1842de41fdc7fec560" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -637,7 +648,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-2a2c3cafae714e14f2b8af4ffc824b83" aria-expanded="false"
+      aria-controls="R-tab-id-0bb8c5cda50629840ad5abd5d6f17084" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -645,7 +656,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-5865f53f6ce1f7a2f5357ec2d66f4556" aria-expanded="false"
+      aria-controls="R-tab-id-1ce2f4ba191a5ddc33ec10be967a9c89" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -655,7 +666,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7e53d02c6f607769b6952b8963dedbfb"
+      id="R-tab-id-6c759bcd971b2c1842de41fdc7fec560"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -664,7 +675,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-2a2c3cafae714e14f2b8af4ffc824b83"
+      id="R-tab-id-0bb8c5cda50629840ad5abd5d6f17084"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -673,7 +684,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-5865f53f6ce1f7a2f5357ec2d66f4556"
+      id="R-tab-id-1ce2f4ba191a5ddc33ec10be967a9c89"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -723,7 +734,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-7fe675eafcb13329084b35ac0d0fd505" aria-expanded="true"
+      aria-controls="R-tab-id-53895b9d1bf3121d11fb7fbe1a6011a5" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -731,7 +742,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-71433461b081af8bc60d1d86bccadbfc" aria-expanded="false"
+      aria-controls="R-tab-id-26ad7c99281a27e845ab1b8ab0f11a68" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -739,7 +750,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-556b8df268e808b37481e284a5f21872" aria-expanded="false"
+      aria-controls="R-tab-id-5fe135d638d6e0a85724c1d22d49436d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -749,7 +760,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7fe675eafcb13329084b35ac0d0fd505"
+      id="R-tab-id-53895b9d1bf3121d11fb7fbe1a6011a5"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -757,7 +768,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-71433461b081af8bc60d1d86bccadbfc"
+      id="R-tab-id-26ad7c99281a27e845ab1b8ab0f11a68"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -765,7 +776,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-556b8df268e808b37481e284a5f21872"
+      id="R-tab-id-5fe135d638d6e0a85724c1d22d49436d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -783,7 +794,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-b9da275e12faa6e28bb459371e8b76bf" aria-expanded="true"
+      aria-controls="R-tab-id-64fb2865e85f87bb7afc617ece27c80a" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -791,7 +802,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-04f28352ffddf0bc6e486fda18d0c213" aria-expanded="false"
+      aria-controls="R-tab-id-4b3dd8a7192c3da4c8207d3e95b20030" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -799,7 +810,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c886f8a7ecb6daf800103018784e2ff3" aria-expanded="false"
+      aria-controls="R-tab-id-61ef5dfc4b201c33dd9a4673f6fd0c29" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -809,7 +820,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b9da275e12faa6e28bb459371e8b76bf"
+      id="R-tab-id-64fb2865e85f87bb7afc617ece27c80a"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -817,7 +828,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-04f28352ffddf0bc6e486fda18d0c213"
+      id="R-tab-id-4b3dd8a7192c3da4c8207d3e95b20030"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -825,7 +836,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-c886f8a7ecb6daf800103018784e2ff3"
+      id="R-tab-id-61ef5dfc4b201c33dd9a4673f6fd0c29"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -843,7 +854,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-992cbd2ef015c14b31a077808fb57515" aria-expanded="true"
+      aria-controls="R-tab-id-965173ec49fd3c31d83508ab817b2e60" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -851,7 +862,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-671397adab84c0a166d00bd940c78f1c" aria-expanded="false"
+      aria-controls="R-tab-id-f443eb358935f2e925f1cf80eae3fbf3" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -859,7 +870,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-731235727f38ee113c991bf5545929bb" aria-expanded="false"
+      aria-controls="R-tab-id-953851c37b3f6f84093e261302fb225d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -869,7 +880,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-992cbd2ef015c14b31a077808fb57515"
+      id="R-tab-id-965173ec49fd3c31d83508ab817b2e60"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -877,7 +888,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-671397adab84c0a166d00bd940c78f1c"
+      id="R-tab-id-f443eb358935f2e925f1cf80eae3fbf3"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -885,7 +896,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-731235727f38ee113c991bf5545929bb"
+      id="R-tab-id-953851c37b3f6f84093e261302fb225d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -903,7 +914,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-f77575b598e5cbc4b5266732a58732b0" aria-expanded="true"
+      aria-controls="R-tab-id-b9317b8304e442a8c2324f60b9428fe9" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -911,7 +922,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-f21834a274b560be8bb730a9aaa51f37" aria-expanded="false"
+      aria-controls="R-tab-id-c8204b3b1f85845f2ff024f7b5e8d3d9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -919,7 +930,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c78b5ffe1073150a2379f478f915434a" aria-expanded="false"
+      aria-controls="R-tab-id-c850a5cbcfe1159cc698a0ef4ea7579a" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -929,7 +940,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f77575b598e5cbc4b5266732a58732b0"
+      id="R-tab-id-b9317b8304e442a8c2324f60b9428fe9"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -937,7 +948,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-f21834a274b560be8bb730a9aaa51f37"
+      id="R-tab-id-c8204b3b1f85845f2ff024f7b5e8d3d9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -945,7 +956,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-c78b5ffe1073150a2379f478f915434a"
+      id="R-tab-id-c850a5cbcfe1159cc698a0ef4ea7579a"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -972,7 +983,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-ffd61789af75e5f1a774720b88b8afa3" aria-expanded="true"
+      aria-controls="R-tab-id-ed4ebdda277973ac552556c05899b878" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -980,7 +991,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d5f7f44ba422e51abadf46b91f93fc1e" aria-expanded="false"
+      aria-controls="R-tab-id-31de8ca67b77889b48d852482f6094ec" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -988,7 +999,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b878a332f92783e5c1ae751c4ca8f874" aria-expanded="false"
+      aria-controls="R-tab-id-c7c4b6358808adb262ef5b5852e45eb6" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -998,7 +1009,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ffd61789af75e5f1a774720b88b8afa3"
+      id="R-tab-id-ed4ebdda277973ac552556c05899b878"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1006,7 +1017,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-d5f7f44ba422e51abadf46b91f93fc1e"
+      id="R-tab-id-31de8ca67b77889b48d852482f6094ec"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1014,7 +1025,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-b878a332f92783e5c1ae751c4ca8f874"
+      id="R-tab-id-c7c4b6358808adb262ef5b5852e45eb6"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1031,7 +1042,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-5304ef995afbc0a360b6300282d85306" aria-expanded="true"
+      aria-controls="R-tab-id-554c83415ba37c17d46adc948d3f28e6" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1039,7 +1050,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7341db3d2ad18bc20185b4f13ba72e06" aria-expanded="false"
+      aria-controls="R-tab-id-c8f12edb552f5f2d93f175b34e2f0c4c" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1047,7 +1058,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6ba7c5659a770648d51f82f71e5950a4" aria-expanded="false"
+      aria-controls="R-tab-id-47104f2297e380b0e774239717bc64d0" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1057,7 +1068,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5304ef995afbc0a360b6300282d85306"
+      id="R-tab-id-554c83415ba37c17d46adc948d3f28e6"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1065,7 +1076,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-7341db3d2ad18bc20185b4f13ba72e06"
+      id="R-tab-id-c8f12edb552f5f2d93f175b34e2f0c4c"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1073,7 +1084,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-6ba7c5659a770648d51f82f71e5950a4"
+      id="R-tab-id-47104f2297e380b0e774239717bc64d0"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1090,7 +1101,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c7c7abc084abf8095f080b1541b9ea2c" aria-expanded="true"
+      aria-controls="R-tab-id-bbe475ac717a3b78231f9bb25ae1a3d3" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1098,7 +1109,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-25a39d107b179dffb5d0d030a9d0450d" aria-expanded="false"
+      aria-controls="R-tab-id-681076edd17096d1dfa28916a1f88715" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1106,7 +1117,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-788f86451a183e62d91953650e860bfc" aria-expanded="false"
+      aria-controls="R-tab-id-7c423bc6bbb4c6a294051ecc40ab0978" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1116,7 +1127,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c7c7abc084abf8095f080b1541b9ea2c"
+      id="R-tab-id-bbe475ac717a3b78231f9bb25ae1a3d3"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1124,7 +1135,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-25a39d107b179dffb5d0d030a9d0450d"
+      id="R-tab-id-681076edd17096d1dfa28916a1f88715"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1132,7 +1143,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-788f86451a183e62d91953650e860bfc"
+      id="R-tab-id-7c423bc6bbb4c6a294051ecc40ab0978"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1149,7 +1160,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-7330d470f778924962961635049df16b" aria-expanded="true"
+      aria-controls="R-tab-id-c25cd99c9048d4b0feedfa221acd3a16" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1157,7 +1168,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-70f1f23981b3a55a02cd9f6d2394ccfe" aria-expanded="false"
+      aria-controls="R-tab-id-c09a268f5334e5abed6cd1ba7213bed7" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1165,7 +1176,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-4fc3824ba9aeb6c6977371b19599bca1" aria-expanded="false"
+      aria-controls="R-tab-id-bec01546da081d2f428134779c7b4af9" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1175,7 +1186,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7330d470f778924962961635049df16b"
+      id="R-tab-id-c25cd99c9048d4b0feedfa221acd3a16"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1183,7 +1194,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-70f1f23981b3a55a02cd9f6d2394ccfe"
+      id="R-tab-id-c09a268f5334e5abed6cd1ba7213bed7"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1191,7 +1202,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-4fc3824ba9aeb6c6977371b19599bca1"
+      id="R-tab-id-bec01546da081d2f428134779c7b4af9"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1227,7 +1238,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-fbca4056ebe935b3f21e04293ead79f1" aria-expanded="true"
+      aria-controls="R-tab-id-95ba23e18e36fea2db198126d32c71c5" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1235,7 +1246,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ca33567d7915b0e8b62d1d4dd294a5f7" aria-expanded="false"
+      aria-controls="R-tab-id-09b60cc67f1b4d7496a6a5d89fc407b9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1243,7 +1254,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-3ab7cb3ced0c9c7fa14e58b6b674b809" aria-expanded="false"
+      aria-controls="R-tab-id-30c8557d97111fa5ba3cebb157a1a880" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1253,7 +1264,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-fbca4056ebe935b3f21e04293ead79f1"
+      id="R-tab-id-95ba23e18e36fea2db198126d32c71c5"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1264,7 +1275,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-ca33567d7915b0e8b62d1d4dd294a5f7"
+      id="R-tab-id-09b60cc67f1b4d7496a6a5d89fc407b9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1275,7 +1286,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-3ab7cb3ced0c9c7fa14e58b6b674b809"
+      id="R-tab-id-30c8557d97111fa5ba3cebb157a1a880"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1373,7 +1384,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-94174ca3305407be0f426753f82e9f5b" aria-expanded="true"
+      aria-controls="R-tab-id-8424f53f3ef97822dc38b706c38096b4" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -1381,7 +1392,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-77f8085f626a623b83201a146941903b" aria-expanded="false"
+      aria-controls="R-tab-id-3a52d25fedc6a296ce35fef27e227d76" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -1389,7 +1400,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8124a4c4dda45f8946f79087b981d60c" aria-expanded="false"
+      aria-controls="R-tab-id-e12e64fa64f9fb8b91b6a75cd64d6c1a" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -1399,7 +1410,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-94174ca3305407be0f426753f82e9f5b"
+      id="R-tab-id-8424f53f3ef97822dc38b706c38096b4"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1473,7 +1484,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-77f8085f626a623b83201a146941903b"
+      id="R-tab-id-3a52d25fedc6a296ce35fef27e227d76"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1539,7 +1550,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-8124a4c4dda45f8946f79087b981d60c"
+      id="R-tab-id-e12e64fa64f9fb8b91b6a75cd64d6c1a"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1616,21 +1627,21 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
 </div>
 <h2 id="annotated-front-matter">Annotated Front Matter<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<div class="tab-panel" data-tab-group="R-tabs-46aaa5fa71b682feb727d1054f6618c1">
+<div class="tab-panel" data-tab-group="R-tabs-760dde7db0873f47833f0d9ea2da745b">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-42b6fe0a3b58ab6017149c353cbfc5c9" aria-expanded="true"
+      aria-controls="R-tab-id-24d61ec712a6230d973a1086f95ec348" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-46aaa5fa71b682feb727d1054f6618c1','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
+      onclick="switchTab('R-tabs-760dde7db0873f47833f0d9ea2da745b','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
     >
       <span class="tab-nav-text">toml</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-42b6fe0a3b58ab6017149c353cbfc5c9"
+      id="R-tab-id-24d61ec712a6230d973a1086f95ec348"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2125,7 +2136,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-1eece3068115cc1fc30b02047893c65e" aria-expanded="true"
+      aria-controls="R-tab-id-e5475fc554b18322225efcd747ab0b40" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -2133,7 +2144,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1b225db34c8a32b796a8595480fe3cd6" aria-expanded="false"
+      aria-controls="R-tab-id-2c9ae39824237e531766c7d180d9b629" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -2141,7 +2152,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1ac8c58ec602a9adc2546883f9d33cd7" aria-expanded="false"
+      aria-controls="R-tab-id-d1c5e14842b484de6721b8ee527c4b75" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -2151,7 +2162,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1eece3068115cc1fc30b02047893c65e"
+      id="R-tab-id-e5475fc554b18322225efcd747ab0b40"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2161,7 +2172,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-1b225db34c8a32b796a8595480fe3cd6"
+      id="R-tab-id-2c9ae39824237e531766c7d180d9b629"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2171,7 +2182,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-1ac8c58ec602a9adc2546883f9d33cd7"
+      id="R-tab-id-d1c5e14842b484de6721b8ee527c4b75"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2189,7 +2200,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-40a984d114cbe6559619279f6946949c" aria-expanded="true"
+      aria-controls="R-tab-id-e949e7f3b276164147109c5c90d857b0" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -2197,7 +2208,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-dca983da4bfd0800c546a8f635484030" aria-expanded="false"
+      aria-controls="R-tab-id-e6fc2939f2f51f9261969fef57c64dc0" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -2205,7 +2216,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-596d2a49eb28900a9b0b8617a4a30c24" aria-expanded="false"
+      aria-controls="R-tab-id-7924207025f577d58400316aa592c0e8" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -2215,7 +2226,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-40a984d114cbe6559619279f6946949c"
+      id="R-tab-id-e949e7f3b276164147109c5c90d857b0"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2225,7 +2236,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-dca983da4bfd0800c546a8f635484030"
+      id="R-tab-id-e6fc2939f2f51f9261969fef57c64dc0"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2235,7 +2246,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-596d2a49eb28900a9b0b8617a4a30c24"
+      id="R-tab-id-7924207025f577d58400316aa592c0e8"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2252,7 +2263,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-6758ea5548e4fd73cfeb6b7231815473" aria-expanded="true"
+      aria-controls="R-tab-id-20ded3ed093fdb9277fd2167ac4da2d8" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -2260,7 +2271,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8e01352a179b7c8a1e446abdb2dce864" aria-expanded="false"
+      aria-controls="R-tab-id-0ac9265c7027225797fb4025412b485b" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -2268,7 +2279,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-4f7ec4b844cb97a1d481c2473c22bb69" aria-expanded="false"
+      aria-controls="R-tab-id-41590c532ff7538483fabbe1a2134c85" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -2278,7 +2289,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6758ea5548e4fd73cfeb6b7231815473"
+      id="R-tab-id-20ded3ed093fdb9277fd2167ac4da2d8"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2288,7 +2299,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-8e01352a179b7c8a1e446abdb2dce864"
+      id="R-tab-id-0ac9265c7027225797fb4025412b485b"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2299,7 +2310,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-4f7ec4b844cb97a1d481c2473c22bb69"
+      id="R-tab-id-41590c532ff7538483fabbe1a2134c85"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2320,7 +2331,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-f9d161e4d2255e735c0c2fcc988ab2b0" aria-expanded="true"
+      aria-controls="R-tab-id-853ffb8ee575e8de6f182dc7a556fc16" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -2328,7 +2339,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-88785b7d127e8e8bd344537c743953ab" aria-expanded="false"
+      aria-controls="R-tab-id-e66e1d8abfe9b56e1b6e7e2f917c9301" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -2336,7 +2347,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-3b2498f78b0dddd66f2caad250701fef" aria-expanded="false"
+      aria-controls="R-tab-id-d62ec64b6a6423766ef6ed51c71eb231" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -2346,7 +2357,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f9d161e4d2255e735c0c2fcc988ab2b0"
+      id="R-tab-id-853ffb8ee575e8de6f182dc7a556fc16"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2357,7 +2368,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-88785b7d127e8e8bd344537c743953ab"
+      id="R-tab-id-e66e1d8abfe9b56e1b6e7e2f917c9301"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2368,7 +2379,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-3b2498f78b0dddd66f2caad250701fef"
+      id="R-tab-id-d62ec64b6a6423766ef6ed51c71eb231"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2388,7 +2399,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-a05f6b9735dd53045fa93884092e7d49" aria-expanded="true"
+      aria-controls="R-tab-id-637bc2cb50bdf2a61675d3d9b6dc8608" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -2396,7 +2407,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-3a723d14cd8db267d73055fab2a55c0b" aria-expanded="false"
+      aria-controls="R-tab-id-bf3a6da097c273cb2db1291bb1b01ea3" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -2404,7 +2415,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6b0ce4c5b91d9480e82cb2111621ccc4" aria-expanded="false"
+      aria-controls="R-tab-id-d961ac65b38a1262ea1e9a2b74931469" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -2414,7 +2425,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a05f6b9735dd53045fa93884092e7d49"
+      id="R-tab-id-637bc2cb50bdf2a61675d3d9b6dc8608"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2425,7 +2436,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-3a723d14cd8db267d73055fab2a55c0b"
+      id="R-tab-id-bf3a6da097c273cb2db1291bb1b01ea3"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2436,7 +2447,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-6b0ce4c5b91d9480e82cb2111621ccc4"
+      id="R-tab-id-d961ac65b38a1262ea1e9a2b74931469"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2461,7 +2472,7 @@ Directory Structure Yer content&#39;s directory structure">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-dfa1d5eb4415a72680b4228b312d889d" aria-expanded="true"
+      aria-controls="R-tab-id-ba7b9d7e53c98796342082ddd8e24791" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -2469,7 +2480,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7862fa0e1be8ebbdf5196a294b859e27" aria-expanded="false"
+      aria-controls="R-tab-id-e0cbd9544d1334e666f6055c1d98d9e7" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -2477,7 +2488,7 @@ Directory Structure Yer content&#39;s directory structure">
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-50ec07fb75277924cf87764537b8e400" aria-expanded="false"
+      aria-controls="R-tab-id-845910ac2ebad9850079e49bd76c8285" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -2487,7 +2498,7 @@ Directory Structure Yer content&#39;s directory structure">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-dfa1d5eb4415a72680b4228b312d889d"
+      id="R-tab-id-ba7b9d7e53c98796342082ddd8e24791"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -2500,7 +2511,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-7862fa0e1be8ebbdf5196a294b859e27"
+      id="R-tab-id-e0cbd9544d1334e666f6055c1d98d9e7"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -2513,7 +2524,7 @@ Directory Structure Yer content&#39;s directory structure">
       </div>
     </div>
     <div
-      id="R-tab-id-50ec07fb75277924cf87764537b8e400"
+      id="R-tab-id-845910ac2ebad9850079e49bd76c8285"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3428,8 +3439,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-d01a5b831ab85bd916b50516cb8d520b" class="lightbox-link"><img alt="Spock" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d01a5b831ab85bd916b50516cb8d520b"><img alt="Spock" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw"></a></p>
+<p><a href="#R-image-a998a9e23b4f1766cea3af8ea00a0b2e" class="lightbox-link"><img alt="Spock" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a998a9e23b4f1766cea3af8ea00a0b2e"><img alt="Spock" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spocktocat.png?width=20vw"></a></p>
   </div>
 </details>
 <h3 id="image-with-tooltip">Image wit' Tooltip<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
@@ -3442,8 +3453,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-61cb90192160ced4039590338ee1b909" class="lightbox-link"><img alt="Picard" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" style="height: auto;width: 20vw;" title="Jean Luc Picard"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-61cb90192160ced4039590338ee1b909"><img alt="Picard" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" title="Jean Luc Picard"></a></p>
+<p><a href="#R-image-3f4a27f94143f30b291e0db0f90274de" class="lightbox-link"><img alt="Picard" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" style="height: auto;width: 20vw;" title="Jean Luc Picard"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3f4a27f94143f30b291e0db0f90274de"><img alt="Picard" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/jean-luc-picat.jpg?width=20vw" title="Jean Luc Picard"></a></p>
   </div>
 </details>
 <h3 id="image-references">Image References<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
@@ -3458,8 +3469,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-6f00cfe3c5a7f6e199ee5c0c55ece8a7" class="lightbox-link"><img alt="La Forge" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" style="height: auto;width: 20vw;" title="Geordi La Forge"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6f00cfe3c5a7f6e199ee5c0c55ece8a7"><img alt="La Forge" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" title="Geordi La Forge"></a></p>
+<p><a href="#R-image-43fb0668419c4f4bc346bd3e966844a0" class="lightbox-link"><img alt="La Forge" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" style="height: auto;width: 20vw;" title="Geordi La Forge"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-43fb0668419c4f4bc346bd3e966844a0"><img alt="La Forge" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/trekkie.jpg?width=20vw" title="Geordi La Forge"></a></p>
   </div>
 </details>
 <h3 id="image-effects">Image Effects<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
@@ -3484,8 +3495,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-0ce4fde707b3a85fce45f39e734d3d4f" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0ce4fde707b3a85fce45f39e734d3d4f"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw"></a></p>
+<p><a href="#R-image-83c6822fb4cdfec5e9a1e9688a6ebf9e" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-83c6822fb4cdfec5e9a1e9688a6ebf9e"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?width=20vw"></a></p>
   </div>
 </details>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px</span>)</span></span></code></pre></div>
@@ -3496,8 +3507,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-134d46f529d3e005becd7fc2d0b5ba5a" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px" style="height: 50px;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-134d46f529d3e005becd7fc2d0b5ba5a"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px"></a></p>
+<p><a href="#R-image-f130e7fb3e102158a20cdb202c2fa19a" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px" style="height: 50px;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f130e7fb3e102158a20cdb202c2fa19a"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px"></a></p>
   </div>
 </details>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">![<span class="nt">Minion</span>](<span class="na">https://octodex.github.com/images/minion.png?height=50px&amp;width=40vw</span>)</span></span></code></pre></div>
@@ -3508,8 +3519,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-0b7f6f8cdc3de9a48bbebbd929d7a6db" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw" style="height: 50px;width: 40vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0b7f6f8cdc3de9a48bbebbd929d7a6db"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw"></a></p>
+<p><a href="#R-image-febdd33389cd1549fd2352b529e29fa0" class="lightbox-link"><img alt="Minion" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw" style="height: 50px;width: 40vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-febdd33389cd1549fd2352b529e29fa0"><img alt="Minion" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/minion.png?height=50px&width=40vw"></a></p>
   </div>
 </details>
 <h4 id="css-classes">CSS Classes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h4>
@@ -3523,8 +3534,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-499bd4518a78d4e9609f2249ce295d99" class="lightbox-link"><img alt="Spidertocat" class="bg-white lazy lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-499bd4518a78d4e9609f2249ce295d99"><img alt="Spidertocat" class="bg-white lazy lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder"></a></p>
+<p><a href="#R-image-865bde1086e859dfa95544b4ffab5024" class="lightbox-link"><img alt="Spidertocat" class="bg-white lazy lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-865bde1086e859dfa95544b4ffab5024"><img alt="Spidertocat" class="bg-white lazy lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=20vw&classes=shadow,noborder"></a></p>
   </div>
 </details>
 <h5 id="border">Border<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -3536,8 +3547,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-a41db352f244a734bf45001d734b47a8" class="lightbox-link"><img alt="DrOctocat" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a41db352f244a734bf45001d734b47a8"><img alt="DrOctocat" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow"></a></p>
+<p><a href="#R-image-f8d74877ae0595b37f73084c30994aa3" class="lightbox-link"><img alt="DrOctocat" class="bg-white border lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f8d74877ae0595b37f73084c30994aa3"><img alt="DrOctocat" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=20vw&classes=border,noshadow"></a></p>
   </div>
 </details>
 <h5 id="left">Left<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -3549,8 +3560,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-2fb730b1232e1ec851c402d3b3652558" class="lightbox-link"><img alt="Supertocat" class="bg-white border lazy left lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2fb730b1232e1ec851c402d3b3652558"><img alt="Supertocat" class="bg-white border lazy left lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left"></a></p>
+<p><a href="#R-image-30307d9afbd908637e7766ac05601d0a" class="lightbox-link"><img alt="Supertocat" class="bg-white border lazy left lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-30307d9afbd908637e7766ac05601d0a"><img alt="Supertocat" class="bg-white border lazy left lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=20vw&classes=left"></a></p>
   </div>
 </details>
 <h5 id="right">Right<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -3562,8 +3573,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-4c9edfb718e92a673e9b727dca45e5e6" class="lightbox-link"><img alt="Riddlocat" class="bg-white border lazy lightbox right figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4c9edfb718e92a673e9b727dca45e5e6"><img alt="Riddlocat" class="bg-white border lazy lightbox right lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right"></a></p>
+<p><a href="#R-image-9614f3c2d425a8e6231fe249c1acc464" class="lightbox-link"><img alt="Riddlocat" class="bg-white border lazy lightbox right figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9614f3c2d425a8e6231fe249c1acc464"><img alt="Riddlocat" class="bg-white border lazy lightbox right lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=20vw&classes=right"></a></p>
   </div>
 </details>
 <h5 id="inline">Inline<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -3578,14 +3589,14 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-ec4a7ba865b5e343625b366c61415ed7" class="lightbox-link"><img alt="Spidertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ec4a7ba865b5e343625b366c61415ed7"><img alt="Spidertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline"></a>
-<a href="#R-image-4c83abe57dceca13f827e4ec15ccba97" class="lightbox-link"><img alt="DrOctocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4c83abe57dceca13f827e4ec15ccba97"><img alt="DrOctocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline"></a>
-<a href="#R-image-b3dba4450389e7e06f81f055dd63552a" class="lightbox-link"><img alt="Supertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b3dba4450389e7e06f81f055dd63552a"><img alt="Supertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline"></a>
-<a href="#R-image-885b35e09ec8601c930a50e0c48845d5" class="lightbox-link"><img alt="Riddlocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-885b35e09ec8601c930a50e0c48845d5"><img alt="Riddlocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline"></a></p>
+<p><a href="#R-image-b2447d0adf47ac0f9411822b25e636f3" class="lightbox-link"><img alt="Spidertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b2447d0adf47ac0f9411822b25e636f3"><img alt="Spidertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/spidertocat.png?width=10vw&classes=inline"></a>
+<a href="#R-image-029256380b46e1098897f269e61998f9" class="lightbox-link"><img alt="DrOctocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-029256380b46e1098897f269e61998f9"><img alt="DrOctocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/droctocat.png?width=10vw&classes=inline"></a>
+<a href="#R-image-14eb9edd13f433655f3df06674b40ac7" class="lightbox-link"><img alt="Supertocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-14eb9edd13f433655f3df06674b40ac7"><img alt="Supertocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/okal-eltocat.jpg?width=10vw&classes=inline"></a>
+<a href="#R-image-d186c8bbceb96799d90e3afe8592c64f" class="lightbox-link"><img alt="Riddlocat" class="bg-white border inline lazy lightbox figure-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline" style="height: auto;width: 10vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d186c8bbceb96799d90e3afe8592c64f"><img alt="Riddlocat" class="bg-white border inline lazy lightbox lightbox-image" loading="lazy" src="https://octodex.github.com/images/riddlocat.jpg?width=10vw&classes=inline"></a></p>
   </div>
 </details>
 <h5 id="combination">Combinat'n<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h5>
@@ -3597,8 +3608,8 @@ line 3 o' code
     Result
   </summary>
   <div class="box-content">
-<p><a href="#R-image-3e2809183647e1fb3e0d840e620550c0" class="lightbox-link"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left" style="height: auto;width: 20vw;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3e2809183647e1fb3e0d840e620550c0"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left"></a></p>
+<p><a href="#R-image-de9e3012c4a2a3a349c8dfb07835da12" class="lightbox-link"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow figure-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left" style="height: auto;width: 20vw;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-de9e3012c4a2a3a349c8dfb07835da12"><img alt="X-tocat" class="bg-white border lazy left lightbox shadow lightbox-image" loading="lazy" src="https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left"></a></p>
   </div>
 </details>
 <h4 id="lightbox">Lightbox<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h4>
@@ -3740,7 +3751,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-df14f03dfe79ad5df7d6a3553fe7f01e" aria-expanded="true"
+      aria-controls="R-tab-id-e155b34f8a51cc557042897bfc01599d" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -3748,7 +3759,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-47aef80b4731de3c7fdc565394fff32d" aria-expanded="false"
+      aria-controls="R-tab-id-34e852819770daf85567984e0dba0a6a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -3756,7 +3767,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-50050fa3a984e9138606c6b0e409dcb9" aria-expanded="false"
+      aria-controls="R-tab-id-7f4f03aca2121f903b318fc1dd4d8ebb" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -3766,7 +3777,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-df14f03dfe79ad5df7d6a3553fe7f01e"
+      id="R-tab-id-e155b34f8a51cc557042897bfc01599d"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -3776,7 +3787,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-47aef80b4731de3c7fdc565394fff32d"
+      id="R-tab-id-34e852819770daf85567984e0dba0a6a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3786,7 +3797,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-50050fa3a984e9138606c6b0e409dcb9"
+      id="R-tab-id-7f4f03aca2121f903b318fc1dd4d8ebb"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3805,7 +3816,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-e8234e528762e36465d8ccbd25a90c4e" aria-expanded="true"
+      aria-controls="R-tab-id-c7b7681db68435a14fcc78be2ab8e483" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -3813,7 +3824,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-73a2134d947593e7536ab9547849a878" aria-expanded="false"
+      aria-controls="R-tab-id-589fbe9ae5170813d804d7774f62e9a0" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -3821,7 +3832,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a13856828a415a2263a9c94fc83ced34" aria-expanded="false"
+      aria-controls="R-tab-id-c743fc2db28f634dfbd821a4fd4617f8" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -3831,7 +3842,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e8234e528762e36465d8ccbd25a90c4e"
+      id="R-tab-id-c7b7681db68435a14fcc78be2ab8e483"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -3843,7 +3854,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-73a2134d947593e7536ab9547849a878"
+      id="R-tab-id-589fbe9ae5170813d804d7774f62e9a0"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3855,7 +3866,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-a13856828a415a2263a9c94fc83ced34"
+      id="R-tab-id-c743fc2db28f634dfbd821a4fd4617f8"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3871,21 +3882,21 @@ line 3 o' code
   </div>
 </div>
 <p>Or by explicitly override sett'ns by URL query parameter</p>
-<div class="tab-panel" data-tab-group="R-tabs-ec9d7ec08593872e7fd6848664ee9fac">
+<div class="tab-panel" data-tab-group="R-tabs-9f08b04c219ed47c1bda37e0eeaeaccc">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-750c807e8ff5ef7e246d172ca3027df5" aria-expanded="true"
+      aria-controls="R-tab-id-059d7e0411358ebff7ff67fd21b5dbc0" aria-expanded="true"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-ec9d7ec08593872e7fd6848664ee9fac','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
+      onclick="switchTab('R-tabs-9f08b04c219ed47c1bda37e0eeaeaccc','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
     >
       <span class="tab-nav-text">URL</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-750c807e8ff5ef7e246d172ca3027df5"
+      id="R-tab-id-059d7e0411358ebff7ff67fd21b5dbc0"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -3898,7 +3909,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-458cee38af472fef3fe3cb3255027db9" aria-expanded="true"
+      aria-controls="R-tab-id-4be06f866039cb041d0f9292b6980dd2" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -3906,7 +3917,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-04ca0d3567a55b3a7f5511573af7e214" aria-expanded="false"
+      aria-controls="R-tab-id-b1eed2422ce0f222db0ba613788d6e91" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -3914,7 +3925,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ccd46232337bcbb395ec93f71874034e" aria-expanded="false"
+      aria-controls="R-tab-id-0a34799e6fe91e387ef656563dc1af2e" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -3924,7 +3935,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-458cee38af472fef3fe3cb3255027db9"
+      id="R-tab-id-4be06f866039cb041d0f9292b6980dd2"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -3934,7 +3945,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-04ca0d3567a55b3a7f5511573af7e214"
+      id="R-tab-id-b1eed2422ce0f222db0ba613788d6e91"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3944,7 +3955,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-ccd46232337bcbb395ec93f71874034e"
+      id="R-tab-id-0a34799e6fe91e387ef656563dc1af2e"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -3960,21 +3971,21 @@ line 3 o' code
 </div>
 <h2 id="template-usage">Template Usage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>When call'n th' link partial directly from templates, ye can pass effect preferences via th' <code>attributes</code> parameter. Effect names can be prefixed wit' <code>no</code> t' dis'ble them.</p>
-<div class="tab-panel" data-tab-group="R-tabs-895f605873cff390ff05a9d79040e166">
+<div class="tab-panel" data-tab-group="R-tabs-a5a62328b1edf39c2d80097ea81eadd4">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-39040797726ed9807fc03278fe9b3f95" aria-expanded="true"
+      aria-controls="R-tab-id-97558cf83674d9a1cb2fd9a8e140b523" aria-expanded="true"
       data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-895f605873cff390ff05a9d79040e166','R-tab-278c491bdd8a53618c149c4ac790da34')"
+      onclick="switchTab('R-tabs-a5a62328b1edf39c2d80097ea81eadd4','R-tab-278c491bdd8a53618c149c4ac790da34')"
     >
       <span class="tab-nav-text">Template</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-39040797726ed9807fc03278fe9b3f95"
+      id="R-tab-id-97558cf83674d9a1cb2fd9a8e140b523"
       data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4057,7 +4068,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-d9306562507bc05b2d3d5372ec06bc5c" aria-expanded="true"
+      aria-controls="R-tab-id-a9c0a88e16be5714915d54f8d21dadab" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -4065,7 +4076,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7e0b5054309c6075890cf0eb9a5ce58c" aria-expanded="false"
+      aria-controls="R-tab-id-8115e9c7cf41ae9418bb89fcd6e2a0b2" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -4073,7 +4084,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b0e321fa1de6b0fe65a022cef01d71de" aria-expanded="false"
+      aria-controls="R-tab-id-d2d5c4eb617c9546fc8897a963d17bea" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -4083,7 +4094,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d9306562507bc05b2d3d5372ec06bc5c"
+      id="R-tab-id-a9c0a88e16be5714915d54f8d21dadab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4097,7 +4108,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-7e0b5054309c6075890cf0eb9a5ce58c"
+      id="R-tab-id-8115e9c7cf41ae9418bb89fcd6e2a0b2"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4111,7 +4122,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-b0e321fa1de6b0fe65a022cef01d71de"
+      id="R-tab-id-d2d5c4eb617c9546fc8897a963d17bea"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4134,7 +4145,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-9ad6acb2cc9506584ddb690155af7bd4" aria-expanded="true"
+      aria-controls="R-tab-id-40bae07a477aca89adc6dc4411853540" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -4142,7 +4153,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a3cb6571ffb723c1187eb2ba61588273" aria-expanded="false"
+      aria-controls="R-tab-id-d68db434e2716c9d5c3735d32b34c3a8" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -4150,7 +4161,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-f659bff736c42ef5568fa7098690c9c1" aria-expanded="false"
+      aria-controls="R-tab-id-a3c0597db8dd7fe93edf47048dc5e1bc" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -4160,7 +4171,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9ad6acb2cc9506584ddb690155af7bd4"
+      id="R-tab-id-40bae07a477aca89adc6dc4411853540"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4172,7 +4183,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-a3cb6571ffb723c1187eb2ba61588273"
+      id="R-tab-id-d68db434e2716c9d5c3735d32b34c3a8"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4184,7 +4195,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-f659bff736c42ef5568fa7098690c9c1"
+      id="R-tab-id-a3c0597db8dd7fe93edf47048dc5e1bc"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4200,21 +4211,21 @@ line 3 o' code
   </div>
 </div>
 <p>Or by explicitly override sett'ns by URL query parameter</p>
-<div class="tab-panel" data-tab-group="R-tabs-fcb4cb5c37797a26fe424983d3968180">
+<div class="tab-panel" data-tab-group="R-tabs-1f52f4b408b6c1f53f93b689b4d8a9af">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-4c55bffc6b1114516bf68fb525287180" aria-expanded="true"
+      aria-controls="R-tab-id-13198c4e51ca8ffaf3ece26ba5cea598" aria-expanded="true"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-fcb4cb5c37797a26fe424983d3968180','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
+      onclick="switchTab('R-tabs-1f52f4b408b6c1f53f93b689b4d8a9af','R-tab-e6b391a8d2c4d45902a23a8b6585703d')"
     >
       <span class="tab-nav-text">URL</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4c55bffc6b1114516bf68fb525287180"
+      id="R-tab-id-13198c4e51ca8ffaf3ece26ba5cea598"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4227,7 +4238,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-6a20065278cdb5125a923053ab3b60b8" aria-expanded="true"
+      aria-controls="R-tab-id-69841a7a44a27097831953d42d94629b" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -4235,7 +4246,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-94fb05bac418024e648faf28769a0429" aria-expanded="false"
+      aria-controls="R-tab-id-046bf9e3cf4c1729d8d5491bfabd716a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -4243,7 +4254,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-3f636dbc3b2bfdb95a3b7678c106d302" aria-expanded="false"
+      aria-controls="R-tab-id-a3cede7e63001fd35552566962353dc3" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -4253,7 +4264,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6a20065278cdb5125a923053ab3b60b8"
+      id="R-tab-id-69841a7a44a27097831953d42d94629b"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4267,7 +4278,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-94fb05bac418024e648faf28769a0429"
+      id="R-tab-id-046bf9e3cf4c1729d8d5491bfabd716a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4281,7 +4292,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-3f636dbc3b2bfdb95a3b7678c106d302"
+      id="R-tab-id-a3cede7e63001fd35552566962353dc3"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4301,21 +4312,21 @@ line 3 o' code
 </div>
 <h2 id="template-usage">Template Usage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>When call'n th' image partial directly from templates, ye can pass effect preferences via th' <code>attributes</code> parameter. Effect names can be prefixed wit' <code>no</code> t' dis'ble them.</p>
-<div class="tab-panel" data-tab-group="R-tabs-4a187fb0b7fb0f7f9bda5a4e93253416">
+<div class="tab-panel" data-tab-group="R-tabs-cd2dd8892ce3b6f10c5b2d2e06fc92f0">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-73a0a036c5baf830bf00b691ecd7c21e" aria-expanded="true"
+      aria-controls="R-tab-id-2be8a2910f9197d6846efa3144b63025" aria-expanded="true"
       data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-4a187fb0b7fb0f7f9bda5a4e93253416','R-tab-278c491bdd8a53618c149c4ac790da34')"
+      onclick="switchTab('R-tabs-cd2dd8892ce3b6f10c5b2d2e06fc92f0','R-tab-278c491bdd8a53618c149c4ac790da34')"
     >
       <span class="tab-nav-text">Template</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-73a0a036c5baf830bf00b691ecd7c21e"
+      id="R-tab-id-2be8a2910f9197d6846efa3144b63025"
       data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4350,7 +4361,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-d3c0e631c9f66c13a424956c9fb302e7" aria-expanded="true"
+      aria-controls="R-tab-id-39b64a080236403efcc39e4f1be58f22" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -4358,7 +4369,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-9836dda6fd8b0dd536863d643154aff8" aria-expanded="false"
+      aria-controls="R-tab-id-ad21f004d101d20a79f4d5c6aba21832" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -4366,7 +4377,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-31d5c8076ead40e146fe40cde2e91064" aria-expanded="false"
+      aria-controls="R-tab-id-cf6249795b62308f0a467a5fa85626d9" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -4376,7 +4387,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d3c0e631c9f66c13a424956c9fb302e7"
+      id="R-tab-id-39b64a080236403efcc39e4f1be58f22"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4388,7 +4399,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-9836dda6fd8b0dd536863d643154aff8"
+      id="R-tab-id-ad21f004d101d20a79f4d5c6aba21832"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4400,7 +4411,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-31d5c8076ead40e146fe40cde2e91064"
+      id="R-tab-id-cf6249795b62308f0a467a5fa85626d9"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4422,7 +4433,7 @@ line 3 o' code
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-e6c8293c03a009a860e4db32bb14589d" aria-expanded="true"
+      aria-controls="R-tab-id-b25c4d0b3e0d7b54f92a2f50626da9ce" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -4430,7 +4441,7 @@ line 3 o' code
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a6c8fa66bd4d23885bf73ea9fef434c3" aria-expanded="false"
+      aria-controls="R-tab-id-4a3de80737904815351f77cbcf26b33a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -4438,7 +4449,7 @@ line 3 o' code
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8def449e34f162388678180b5abd1298" aria-expanded="false"
+      aria-controls="R-tab-id-7ea32a5f915d269860e7e70c8298402c" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -4448,7 +4459,7 @@ line 3 o' code
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e6c8293c03a009a860e4db32bb14589d"
+      id="R-tab-id-b25c4d0b3e0d7b54f92a2f50626da9ce"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -4462,7 +4473,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-a6c8fa66bd4d23885bf73ea9fef434c3"
+      id="R-tab-id-4a3de80737904815351f77cbcf26b33a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4476,7 +4487,7 @@ line 3 o' code
       </div>
     </div>
     <div
-      id="R-tab-id-8def449e34f162388678180b5abd1298"
+      id="R-tab-id-7ea32a5f915d269860e7e70c8298402c"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -4512,8 +4523,7 @@ line 3 o' code
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.db7463db58ffbf17da815a125672d269b005017f2e343e731f69a22d157b2170.js" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.6e511025eeb3da02573330b2d6b065987672fd30bd839db10c8b73e809aea089.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.410bf32423228937f507cf4642569b2917bf39b96362db3519c6aa79bfe3c471.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

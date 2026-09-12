@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.0.3+b7d0c3ad83be7779e9485e9e7a40bcf59da1afb5">
+    <meta name="generator" content="Relearn 9.0.3+52337cea9b27083ca33f755465541adce658b209">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.1.0 (XXXX-XX-XX) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.">
     <meta name="author" content="Sören Weber">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 9 :: Cap&#39;n Hugo Relearrrn Theme">
     <meta itemprop="description" content="9.1.0 (XXXX-XX-XX) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.">
-    <meta itemprop="wordCount" content="1023">
+    <meta itemprop="wordCount" content="1193">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9 :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html" rel="alternate" hreflang="x-default">
@@ -33,10 +33,10 @@
     <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.78b49c23f59ffb08554285843ed4c841484fe34c489058b2991edc027cdd47fc.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.7b340a2a0841d2466dca47e43cbd8c4dfe6a4f77a6c81c984d49ebb60ba2e299.js" defer></script>
     <script src="/hugo-theme-relearn/js/search-lunr.min.9af015a288d1c0d444de2d8fb41fd8fdd679ead7dd60e637608740d50078fdf9.js" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.c58b508bccda750a48211b66c89002539e69e1ef1f10dbde995b328356a36f14.js" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.795bf51f4b531fcd29fe7ffb27f174f6bb6b0ce086465e2be48643dea742dfbb.js" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="../../../../"+"searchindex.pir.min.9994619d42685e1fec7676fe6c60775ddff150f6e3447c4c1dd42f5f0253862a.js";
+      window.relearn.index_js_url="../../../../"+"searchindex.pir.min.302f2a2cbc8bec8022a228ca4e69804de471abad66a1173c2b588f1da68c2485.js";
     </script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -48,9 +48,8 @@
       window.relearn.contentLangs=['en', 'art'];
     </script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.c66b59a97910bc3557f3b388f9b0d6662405c65f245bdc1ede3f339d96b7f30e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.ef8860872a334d7e8e7222371833236e6b7e9465d9926110b99bfd3915e8499b.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.08b8aac0db89ffc5844eef3fb40cbe373bacbbf43f195fc72b21033c90993869.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.33b9cb9d39e97c6d22ee6bb0751e11d29c890c0876d3d9c742bbdc2ffe4e350c.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.0bdad0ef33f30c347c20237f08e93dca8ea0207d9da7b653021e5e207eed03f1.css" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -97,6 +96,18 @@
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
+      window.relearn.scrollbarSize = (function() {
+        var scrollDiv = document.createElement('div');
+        scrollDiv.className = 'scrollbar-measure';
+        var parent = document.body || document.documentElement;
+        parent.appendChild(scrollDiv);
+        var size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        parent.removeChild(scrollDiv);
+        return size;
+      })();
+      if (window.relearn.scrollbarSize) {
+        document.documentElement.classList.add('classic-scrollbars');
+      }
     </script>
     <style>
        
@@ -118,7 +129,7 @@
             <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table o&#39; Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-table-list"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
 <nav class="TableOfContents">
   <ul>
     <li><a href="#9-1-0">9.1.0 (XXXX-XX-XX)</a>
@@ -160,7 +171,7 @@
             <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Morrre"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
                   <div class="topbar-area topbar-area-more" data-area="more">
                   </div>
                 </div>
@@ -198,21 +209,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-2b7a6a6e3b1291d050c0f9a153037f7b">
+<div class="tab-panel" data-tab-group="R-tabs-dd59418bf4f77a4ac3beae3eeb0583dc">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-0bda0bacd6a6090eafa65d37fd7e6da5" aria-expanded="true"
+      aria-controls="R-tab-id-8736708ecb79b273fc95251a321aea02" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-2b7a6a6e3b1291d050c0f9a153037f7b','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
+      onclick="switchTab('R-tabs-dd59418bf4f77a4ac3beae3eeb0583dc','R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a')"
     >
       <span class="tab-nav-text">layouts/partials/custom-header.html</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0bda0bacd6a6090eafa65d37fd7e6da5"
+      id="R-tab-id-8736708ecb79b273fc95251a321aea02"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -228,6 +239,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <p>As a busted name changes wit' its rrrambl'n, a build no longer overwrites th' file its predecessor wrote an' both remain. Purge yer output directory, e.g. by build'n wit' Hugo&rsquo;s <code>--cleanDestinationDir</code>, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish'n t' a GitHub Planks branch does.</p>
 </li>
 <li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Th' Perfect Scrollbar library be no longer shipped wit' th' theme. Th' scrollbars o' th' sidebar menu an' th' topbar flyouts be th' ones o' yer browser now, styled by th' theme - as be th' scrollbar o' th' rrrambl'n, which th' theme left alone before.</p>
+<p>For th' menu only, th' theme keeps draw'n a scrollbar o' its own whar' yer browsers scrollbars take away space, as one o' those would clip th' menus border an' its active entry. Whether they do be a matter o' yer operat'n systems an' browsers sett'ns - both o' them know space tak'n an' overlay scrollbars - an' not o' which browser ye use.</p>
+<p>Th' scrollbars colors come from new <a href="/hugo-theme-relearn/pir/configuration/branding/colors/index.html#modifying-variants">theme variant</a> variables, four fer each o' th' three areas - th' rrrambl'n, th' menu an' th' topbar flyouts. <code>MAIN-SCROLLBAR-THUMB-color</code>, <code>MENU-SCROLLBAR-THUMB-color</code> an' <code>TOPBAR-SCROLLBAR-THUMB-color</code> color th' mov'n thumb, <code>MAIN-SCROLLBAR-TRACK-color</code>, <code>MENU-SCROLLBAR-TRACK-color</code> an' <code>TOPBAR-SCROLLBAR-TRACK-color</code> th' track it moves 'n. Each o' them has a <code>-HOVER-</code> counterpart - like <code>MAIN-SCROLLBAR-THUMB-HOVER-color</code> or <code>MENU-SCROLLBAR-TRACK-HOVER-color</code> - fer th' respective hovered area.</p>
+</li>
+<li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Th' <a href="/hugo-theme-relearn/pir/configuration/branding/colors/index.html#parameters">theme variant configurat'n</a> has a new <code>hidden</code> parameter.</p>
 <p>If set t' <code>true</code>, th' variant will not be shown 'n th' <a href="/hugo-theme-relearn/pir/configuration/sidebar/menus/index.html">variant switcher</a> but be still us'ble, e.g. as a sub-variant o' an auto mode variant.</p>
 </li>
@@ -236,7 +252,8 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <p>Formerly this was documented t' use th' <code>menuTitle</code> front matter, although that was already <a href="/hugo-theme-relearn/pir/introduction/releasenotes/6/index.html#6-0-0">removed 'n 6.0.0</a> 'n favor o' Hugo&rsquo;s own <code>linkTitle</code>. It be still honored if no <code>linkTitle</code> be set but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
 </li>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Images now carry th' dimensions o' their resource, so a browser can reserve th' space they will take before they have arrived. This avoids plank reflows as each image loads. This affects images that resolve t' a resource Cap'n Hugo can measure - a plank resource or a file 'n yer <code>assets</code> directory, 'n one o' th' common raster formats. An SVG, a remote address or a path 'n yer <code>static</code> directory has no dimensions t' give an' be unchanged.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Images now carry th' dimensions o' their resource, so a browser can reserve th' space they will take before they have arrived.</p>
+<p>This avoids plank reflows as each image loads an' affects images that resolve t' a resource Cap'n Hugo can measure: a plank resource or a file 'n yer <code>assets</code> directory, 'n one o' th' common raster formats. An SVG, a remote address or a path 'n yer <code>static</code> directory has no dimensions t' give an' be unchanged.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Th' <a href="https://github.com/MihaiValentin/lunr-languages" rel="external" target="_self">Lunr Languages</a> whar' updated t' 1.21.0.</p>
@@ -252,7 +269,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-35ec60882c2a51368c205551e2e12ad3" aria-expanded="true"
+      aria-controls="R-tab-id-6b1eae1e22a3d093737c92f3cb5c75fe" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-ec18ad9a83c312380533fa93ac6fc61c')"
@@ -260,7 +277,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-fe70d42fb1dc98760c9ae4324688276a" aria-expanded="false"
+      aria-controls="R-tab-id-d1975ff071b728509b5b0528eb36396d" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-6eedc03a68a69933c763e674f2d7c42f')"
@@ -268,7 +285,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ff1131805e3391242e35332065aa7d69" aria-expanded="false"
+      aria-controls="R-tab-id-0f5e3c571a6f5505369ce26fe449f849" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9','R-tab-466deec76ecdf5fca6d38571f6324d54')"
@@ -278,7 +295,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-35ec60882c2a51368c205551e2e12ad3"
+      id="R-tab-id-6b1eae1e22a3d093737c92f3cb5c75fe"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -286,7 +303,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-fe70d42fb1dc98760c9ae4324688276a"
+      id="R-tab-id-d1975ff071b728509b5b0528eb36396d"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -294,7 +311,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-ff1131805e3391242e35332065aa7d69"
+      id="R-tab-id-0f5e3c571a6f5505369ce26fe449f849"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -425,7 +442,8 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
           <hr class="padding default-animation">
         </div>
       </div>
-      <div id="R-content-wrapper" class="highlightable">
+      <div id="R-content-wrapper" class="highlightable" tabindex="-1">
+        <div id="R-scrollbar" aria-hidden="true"><div id="R-scrollbar-thumb"></div></div>
         <div class="R-sidebarmenu R-shortcutmenu-main default-animation">
           <ul class="enlarge morespace collapsible-menu">
             <li class="parent " data-nav-id="/hugo-theme-relearn/pir/introduction/index.html"><input type="checkbox" id="R-section-e1ed3a04f1f57a27be4a8d0eb274be18" aria-controls="R-subsections-e1ed3a04f1f57a27be4a8d0eb274be18" checked><label for="R-section-e1ed3a04f1f57a27be4a8d0eb274be18"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Introduction</span></label><a class="padding default-animation" href="/hugo-theme-relearn/pir/introduction/index.html"><i class='fa-fw fas fa-star'></i> Introduction<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-e1ed3a04f1f57a27be4a8d0eb274be18" class="collapsible-menu">
@@ -602,7 +620,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/b7d0c3ad83be7779e9485e9e7a40bcf59da1afb5" title="Relearn 9.0.3&#43;b7d0c3ad83be7779e9485e9e7a40bcf59da1afb5"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.166.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/52337cea9b27083ca33f755465541adce658b209" title="Relearn 9.0.3&#43;52337cea9b27083ca33f755465541adce658b209"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.166.0">Hugo</a></p>
 <script>
   function githubButtonsScheme(){
     var scheme = 'light';
@@ -642,8 +660,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </div>
     </aside>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.db7463db58ffbf17da815a125672d269b005017f2e343e731f69a22d157b2170.js" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.6e511025eeb3da02573330b2d6b065987672fd30bd839db10c8b73e809aea089.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.410bf32423228937f507cf4642569b2917bf39b96362db3519c6aa79bfe3c471.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

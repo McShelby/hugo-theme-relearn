@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.0.3+b7d0c3ad83be7779e9485e9e7a40bcf59da1afb5">
+    <meta name="generator" content="Relearn 9.0.3+52337cea9b27083ca33f755465541adce658b209">
     <meta name="description" content="Show content in tabbed views">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -33,10 +33,10 @@
     <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.78b49c23f59ffb08554285843ed4c841484fe34c489058b2991edc027cdd47fc.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.7b340a2a0841d2466dca47e43cbd8c4dfe6a4f77a6c81c984d49ebb60ba2e299.js" defer></script>
     <script src="/hugo-theme-relearn/js/search-lunr.min.9af015a288d1c0d444de2d8fb41fd8fdd679ead7dd60e637608740d50078fdf9.js" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.c58b508bccda750a48211b66c89002539e69e1ef1f10dbde995b328356a36f14.js" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.795bf51f4b531fcd29fe7ffb27f174f6bb6b0ce086465e2be48643dea742dfbb.js" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="../../"+"searchindex.en.min.2db2050c81c4513d65cc746330a3dbf3bec227bfc644959a038aaabda4588916.js";
+      window.relearn.index_js_url="../../"+"searchindex.en.min.f448639e0c8c1a26486647d356a8210eb80fbaea3622b40f9fd8b4c9aa15b1d1.js";
     </script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -47,8 +47,7 @@
       window.relearn.contentLangs=['en'];
     </script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/perfect-scrollbar/perfect-scrollbar.min.c66b59a97910bc3557f3b388f9b0d6662405c65f245bdc1ede3f339d96b7f30e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/theme.min.ef8860872a334d7e8e7222371833236e6b7e9465d9926110b99bfd3915e8499b.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.33b9cb9d39e97c6d22ee6bb0751e11d29c890c0876d3d9c742bbdc2ffe4e350c.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.39e0dc30e3ca73e623fcf660fac10bf09db5539b3d13e59e90977cf7137e6aee.css" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
@@ -96,6 +95,18 @@
       }
       window.relearn.initVariant();
       window.relearn.markVariant();
+      window.relearn.scrollbarSize = (function() {
+        var scrollDiv = document.createElement('div');
+        scrollDiv.className = 'scrollbar-measure';
+        var parent = document.body || document.documentElement;
+        parent.appendChild(scrollDiv);
+        var size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        parent.removeChild(scrollDiv);
+        return size;
+      })();
+      if (window.relearn.scrollbarSize) {
+        document.documentElement.classList.add('classic-scrollbars');
+      }
     </script>
     <style>
        
@@ -117,7 +128,7 @@
             <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-table-list"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
 <nav class="TableOfContents">
   <ul>
     <li><a href="#usage">Usage</a>
@@ -155,7 +166,7 @@
             <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
+                <div class="topbar-content-wrapper" tabindex="-1">
                   <div class="topbar-area topbar-area-more" data-area="more">
                   </div>
                 </div>
@@ -175,53 +186,53 @@
 
 <p>The <code>tabs</code> shortcode displays arbitrary content in an unlimited number of tabs.</p>
 
-<div class="tab-panel" data-tab-group="R-tabs-402d85a82e0d48e198d148ae4dc871af">
+<div class="tab-panel" data-tab-group="R-tabs-b5fc28912b8278ddfcff91ec02d801fd">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-2ec9940320d68178f15e306f38a9c1c3" aria-expanded="true"
+      aria-controls="R-tab-id-9ac2c461ee30c668aef5e6c0d25f5365" aria-expanded="true"
       data-tab-item="R-tab-c4e0fd5fb3f65eef402b7d6133e84793"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-402d85a82e0d48e198d148ae4dc871af','R-tab-c4e0fd5fb3f65eef402b7d6133e84793')"
+      onclick="switchTab('R-tabs-b5fc28912b8278ddfcff91ec02d801fd','R-tab-c4e0fd5fb3f65eef402b7d6133e84793')"
     >
       <span class="tab-nav-text">Python Saying</span>
     </button>
     <button
-      aria-controls="R-tab-id-aad290a668b725079e37c7d6e0582045" aria-expanded="false"
+      aria-controls="R-tab-id-034be93bb59821ad017f1fccdd5e3692" aria-expanded="false"
       data-tab-item="R-tab-56a9e485b57b5be9c078d433cce753a9"
       class="tab-nav-button tab-panel-style cstyle initial"
-      onclick="switchTab('R-tabs-402d85a82e0d48e198d148ae4dc871af','R-tab-56a9e485b57b5be9c078d433cce753a9')"
+      onclick="switchTab('R-tabs-b5fc28912b8278ddfcff91ec02d801fd','R-tab-56a9e485b57b5be9c078d433cce753a9')"
     >
       <span class="tab-nav-text">Terminal Sourcecode</span>
     </button>
     <button
-      aria-controls="R-tab-id-20d658c093b740b19300335b6bc9772a" aria-expanded="false"
+      aria-controls="R-tab-id-a73d5964f42dbf1dec789b0f7d1861af" aria-expanded="false"
       data-tab-item="R-tab-b65dcd58a37234549d8d78ddd99e1467"
       class="tab-nav-button tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: fuchsia;"
-      onclick="switchTab('R-tabs-402d85a82e0d48e198d148ae4dc871af','R-tab-b65dcd58a37234549d8d78ddd99e1467')"
+      onclick="switchTab('R-tabs-b5fc28912b8278ddfcff91ec02d801fd','R-tab-b65dcd58a37234549d8d78ddd99e1467')"
     >
       <span class="tab-nav-text">C Ramblings</span>
     </button>
     <button
-      aria-controls="R-tab-id-08e45cad4afa94dbe14cefc623cbd3b6" aria-expanded="false"
+      aria-controls="R-tab-id-de02c6e1023d241abf35c2a5ae7356f1" aria-expanded="false"
       data-tab-item="R-tab-9858236d7f2923b665c7c824de9d9a9e"
       class="tab-nav-button tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: red;"
-      onclick="switchTab('R-tabs-402d85a82e0d48e198d148ae4dc871af','R-tab-9858236d7f2923b665c7c824de9d9a9e')"
+      onclick="switchTab('R-tabs-b5fc28912b8278ddfcff91ec02d801fd','R-tab-9858236d7f2923b665c7c824de9d9a9e')"
     >
       <span class="tab-nav-text">C++ Ramblings++</span>
     </button>
     <button
-      aria-controls="R-tab-id-ab0e9876898d799306b1cc41a192045e" aria-expanded="false"
+      aria-controls="R-tab-id-4ce2ddc3c305f26dc1d4eb80907989e5" aria-expanded="false"
       data-tab-item="R-tab-46cea276b8a59b7573296a9ec8bc9dac"
       class="tab-nav-button tab-panel-style cstyle initial"
-      onclick="switchTab('R-tabs-402d85a82e0d48e198d148ae4dc871af','R-tab-46cea276b8a59b7573296a9ec8bc9dac')"
+      onclick="switchTab('R-tabs-b5fc28912b8278ddfcff91ec02d801fd','R-tab-46cea276b8a59b7573296a9ec8bc9dac')"
     >
       <span class="tab-nav-text">C# <del>GC is cool</del></span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2ec9940320d68178f15e306f38a9c1c3"
+      id="R-tab-id-9ac2c461ee30c668aef5e6c0d25f5365"
       data-tab-item="R-tab-c4e0fd5fb3f65eef402b7d6133e84793"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -229,7 +240,7 @@ The AI native programming language.
       </div>
     </div>
     <div
-      id="R-tab-id-aad290a668b725079e37c7d6e0582045"
+      id="R-tab-id-034be93bb59821ad017f1fccdd5e3692"
       data-tab-item="R-tab-56a9e485b57b5be9c078d433cce753a9"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -237,7 +248,7 @@ The AI native programming language.
       </div>
     </div>
     <div
-      id="R-tab-id-20d658c093b740b19300335b6bc9772a"
+      id="R-tab-id-a73d5964f42dbf1dec789b0f7d1861af"
       data-tab-item="R-tab-b65dcd58a37234549d8d78ddd99e1467"
       class="tab-content tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: fuchsia;">
       <div class="tab-content-text">
@@ -245,7 +256,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-08e45cad4afa94dbe14cefc623cbd3b6"
+      id="R-tab-id-de02c6e1023d241abf35c2a5ae7356f1"
       data-tab-item="R-tab-9858236d7f2923b665c7c824de9d9a9e"
       class="tab-content tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: red;">
       <div class="tab-content-text">
@@ -253,7 +264,7 @@ For the guys that can cope with syntax.
       </div>
     </div>
     <div
-      id="R-tab-id-ab0e9876898d799306b1cc41a192045e"
+      id="R-tab-id-4ce2ddc3c305f26dc1d4eb80907989e5"
       data-tab-item="R-tab-46cea276b8a59b7573296a9ec8bc9dac"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -268,7 +279,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c1d678d0b50a1fdc82a8340ac094091f" aria-expanded="true"
+      aria-controls="R-tab-id-3291bcc604925f7f4d71eddb29c85ed5" aria-expanded="true"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-6feadb455c64759731e453380c52fbd9')"
@@ -276,7 +287,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-9b6ba0dc425778ef412724cad5e2d2c2" aria-expanded="false"
+      aria-controls="R-tab-id-6db0164969ec59fdd6bdf7c5812f4ee4" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-44ffd38a6dea695cbe2b34efdcc6cf27')"
@@ -286,7 +297,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c1d678d0b50a1fdc82a8340ac094091f"
+      id="R-tab-id-3291bcc604925f7f4d71eddb29c85ed5"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -304,7 +315,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-9b6ba0dc425778ef412724cad5e2d2c2"
+      id="R-tab-id-6db0164969ec59fdd6bdf7c5812f4ee4"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -403,7 +414,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-63d6fde48b706ad9958bc9380be23c88" aria-expanded="true"
+      aria-controls="R-tab-id-129380ad4de84c0e9931c70ae42da1a9" aria-expanded="true"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-6feadb455c64759731e453380c52fbd9')"
@@ -411,7 +422,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-175f4c71cf129d16ea3ed4b370e74871" aria-expanded="false"
+      aria-controls="R-tab-id-7b25b16392892cc8ee951f3e2ff72dcd" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-44ffd38a6dea695cbe2b34efdcc6cf27')"
@@ -421,7 +432,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-63d6fde48b706ad9958bc9380be23c88"
+      id="R-tab-id-129380ad4de84c0e9931c70ae42da1a9"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -441,7 +452,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-175f4c71cf129d16ea3ed4b370e74871"
+      id="R-tab-id-7b25b16392892cc8ee951f3e2ff72dcd"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -474,7 +485,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-af867d42c5115e954513b79749c6dbd7" aria-expanded="true"
+      aria-controls="R-tab-id-c3c17be53754325ce735fa3831d0e092" aria-expanded="true"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-6feadb455c64759731e453380c52fbd9')"
@@ -482,7 +493,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-2496e86daf95311c0a5c6d868ac30152" aria-expanded="false"
+      aria-controls="R-tab-id-47880402b998728775505499cfa74144" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-44ffd38a6dea695cbe2b34efdcc6cf27')"
@@ -492,7 +503,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-af867d42c5115e954513b79749c6dbd7"
+      id="R-tab-id-c3c17be53754325ce735fa3831d0e092"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -511,7 +522,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-2496e86daf95311c0a5c6d868ac30152"
+      id="R-tab-id-47880402b998728775505499cfa74144"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -540,7 +551,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c8282939ed502942c91c34e980f6b33a" aria-expanded="true"
+      aria-controls="R-tab-id-d82adcec9ee9eeb672f0a6c0121b902d" aria-expanded="true"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-6feadb455c64759731e453380c52fbd9')"
@@ -548,7 +559,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-158ab82994f0a45cf7881c2fa428544b" aria-expanded="false"
+      aria-controls="R-tab-id-e16702a126d35e56e4eddfe51d69a2b3" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-44ffd38a6dea695cbe2b34efdcc6cf27')"
@@ -558,7 +569,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c8282939ed502942c91c34e980f6b33a"
+      id="R-tab-id-d82adcec9ee9eeb672f0a6c0121b902d"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -577,7 +588,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-158ab82994f0a45cf7881c2fa428544b"
+      id="R-tab-id-e16702a126d35e56e4eddfe51d69a2b3"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -606,7 +617,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">Group A, Tabs 1</div>
     <button
-      aria-controls="R-tab-id-bb13222176ceec13e6cdf0f64436f0a8" aria-expanded="true"
+      aria-controls="R-tab-id-307bf0b187a16623bef52fa16647ff98" aria-expanded="true"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d','R-tab-0ecd11c1d7a287401d148a23bbd7a2f8')"
@@ -614,7 +625,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">JSON</span>
     </button>
     <button
-      aria-controls="R-tab-id-580bd446eb6a6c2d934d4c29cae6b524" aria-expanded="false"
+      aria-controls="R-tab-id-54edc413b86481274d6313ee936a4d68" aria-expanded="false"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d','R-tab-3501bb093d363810b671059b9cfed3f8')"
@@ -622,7 +633,7 @@ For guys that need two destructors.
       <span class="tab-nav-text"><em><strong>XML</strong></em></span>
     </button>
     <button
-      aria-controls="R-tab-id-3195e854ff8eb7a24956bf35cb38758d" aria-expanded="false"
+      aria-controls="R-tab-id-a4480364fcf00e0ede2cec77d01f4382" aria-expanded="false"
       data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d','R-tab-9dffbf69ffba8bc38bc4e01abf4b1675')"
@@ -632,7 +643,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-bb13222176ceec13e6cdf0f64436f0a8"
+      id="R-tab-id-307bf0b187a16623bef52fa16647ff98"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -640,7 +651,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-580bd446eb6a6c2d934d4c29cae6b524"
+      id="R-tab-id-54edc413b86481274d6313ee936a4d68"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -648,7 +659,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-3195e854ff8eb7a24956bf35cb38758d"
+      id="R-tab-id-a4480364fcf00e0ede2cec77d01f4382"
       data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -663,7 +674,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">Group A, Tabs 2</div>
     <button
-      aria-controls="R-tab-id-b8683f15878d33c90c665d2f10bc1652" aria-expanded="true"
+      aria-controls="R-tab-id-d928f1ac2d16e897671813420a352f40" aria-expanded="true"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d','R-tab-0ecd11c1d7a287401d148a23bbd7a2f8')"
@@ -671,7 +682,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">JSON</span>
     </button>
     <button
-      aria-controls="R-tab-id-cff0494d497e7f95d7cab17dcc33c326" aria-expanded="false"
+      aria-controls="R-tab-id-d53def088b4fc31a121a872703565b85" aria-expanded="false"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d','R-tab-3501bb093d363810b671059b9cfed3f8')"
@@ -681,7 +692,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b8683f15878d33c90c665d2f10bc1652"
+      id="R-tab-id-d928f1ac2d16e897671813420a352f40"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -689,7 +700,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-cff0494d497e7f95d7cab17dcc33c326"
+      id="R-tab-id-d53def088b4fc31a121a872703565b85"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -703,7 +714,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">Group B</div>
     <button
-      aria-controls="R-tab-id-b916c45127188b2ece713bd4c9b2a2ed" aria-expanded="true"
+      aria-controls="R-tab-id-2d965fbb5048e15e652526864bc55a39" aria-expanded="true"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-7fe8053a023f8e50e519830def56ae42','R-tab-0ecd11c1d7a287401d148a23bbd7a2f8')"
@@ -711,7 +722,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">JSON</span>
     </button>
     <button
-      aria-controls="R-tab-id-378846f73f402ef096732bf57312ea41" aria-expanded="false"
+      aria-controls="R-tab-id-aaa1023fd1b19539f2ca12b86764f9ff" aria-expanded="false"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-7fe8053a023f8e50e519830def56ae42','R-tab-3501bb093d363810b671059b9cfed3f8')"
@@ -721,7 +732,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b916c45127188b2ece713bd4c9b2a2ed"
+      id="R-tab-id-2d965fbb5048e15e652526864bc55a39"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -729,7 +740,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-378846f73f402ef096732bf57312ea41"
+      id="R-tab-id-aaa1023fd1b19539f2ca12b86764f9ff"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -746,7 +757,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-aa6534c6ec58d706aa72af2e948862ff" aria-expanded="true"
+      aria-controls="R-tab-id-fc1d40983065762a0b902d04b013d254" aria-expanded="true"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-6feadb455c64759731e453380c52fbd9')"
@@ -754,7 +765,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-889acdc3959cfd3b73010f114c86fa15" aria-expanded="false"
+      aria-controls="R-tab-id-e0bc96ef9ea1cbb5db41ec4245737b9b" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-e1fc9564fa2c053a1e6269a64309529d','R-tab-44ffd38a6dea695cbe2b34efdcc6cf27')"
@@ -764,7 +775,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-aa6534c6ec58d706aa72af2e948862ff"
+      id="R-tab-id-fc1d40983065762a0b902d04b013d254"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -800,7 +811,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-889acdc3959cfd3b73010f114c86fa15"
+      id="R-tab-id-e0bc96ef9ea1cbb5db41ec4245737b9b"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -860,7 +871,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title"><i class="fa-fw fas fa-thumbtack"></i> Rationale</div>
     <button
-      aria-controls="R-tab-id-497a31ebd038df798a63f0cf2ae63d2d" aria-expanded="true"
+      aria-controls="R-tab-id-b08ee9104986b7270fd12846d3d447c2" aria-expanded="true"
       data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
       class="tab-nav-button tab-panel-style cstyle primary active" tabindex="-1"
       onclick="switchTab('R-tabs-fad58de7366495db4650cfefac2fcd61','R-tab-9dffbf69ffba8bc38bc4e01abf4b1675')"
@@ -868,7 +879,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">Text</span>
     </button>
     <button
-      aria-controls="R-tab-id-f39c40144b123cafe0ae54e52dc6c057" aria-expanded="false"
+      aria-controls="R-tab-id-28011fecc7c50991f127b99f45c5b51c" aria-expanded="false"
       data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
       class="tab-nav-button tab-panel-style cstyle default" style="--VARIABLE-BOX-color: darkorchid;"
       onclick="switchTab('R-tabs-fad58de7366495db4650cfefac2fcd61','R-tab-ca0dbad92a874b2f69b549293387925e')"
@@ -878,7 +889,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-497a31ebd038df798a63f0cf2ae63d2d"
+      id="R-tab-id-b08ee9104986b7270fd12846d3d447c2"
       data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
       class="tab-content tab-panel-style cstyle primary active">
       <div class="tab-content-text">
@@ -886,7 +897,7 @@ For guys that need two destructors.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-6bfd17619e54321de4f1f5fd94251009" aria-expanded="true"
+      aria-controls="R-tab-id-5de4a41c74ddacc1bfc415300ec37bbc" aria-expanded="true"
       data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-684da3d4a062ce84a1077bc558ba12cc','R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd')"
@@ -894,7 +905,7 @@ For guys that need two destructors.
       <span class="tab-nav-text">python</span>
     </button>
     <button
-      aria-controls="R-tab-id-f5e44ba9b928de5ff6d0b5c7d3eabce3" aria-expanded="false"
+      aria-controls="R-tab-id-f0d6469ba6de9f7b4e5800c842b24355" aria-expanded="false"
       data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-684da3d4a062ce84a1077bc558ba12cc','R-tab-d574d4bb40c84861791a694a999cce69')"
@@ -904,7 +915,7 @@ For guys that need two destructors.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6bfd17619e54321de4f1f5fd94251009"
+      id="R-tab-id-5de4a41c74ddacc1bfc415300ec37bbc"
       data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -916,7 +927,7 @@ For guys that need two destructors.
       </div>
     </div>
     <div
-      id="R-tab-id-f5e44ba9b928de5ff6d0b5c7d3eabce3"
+      id="R-tab-id-f0d6469ba6de9f7b4e5800c842b24355"
       data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -928,7 +939,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-f39c40144b123cafe0ae54e52dc6c057"
+      id="R-tab-id-28011fecc7c50991f127b99f45c5b51c"
       data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
       class="tab-content tab-panel-style cstyle default" style="--VARIABLE-BOX-color: darkorchid;">
       <div class="tab-content-text">
@@ -936,7 +947,7 @@ Bash is for <strong>hackers</strong>.
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-d8f7caf8e98297831eea728e51adbc65" aria-expanded="true"
+      aria-controls="R-tab-id-8f140595c35ba0d107ab5ddd00113fb8" aria-expanded="true"
       data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
       onclick="switchTab('R-tabs-684da3d4a062ce84a1077bc558ba12cc','R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd')"
@@ -944,7 +955,7 @@ Bash is for <strong>hackers</strong>.
       <span class="tab-nav-text">python</span>
     </button>
     <button
-      aria-controls="R-tab-id-52242b274e9f15cfaaa9b49320318ca1" aria-expanded="false"
+      aria-controls="R-tab-id-44319fcb1339cea877f4638d55e713c8" aria-expanded="false"
       data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
       class="tab-nav-button tab-panel-style cstyle initial"
       onclick="switchTab('R-tabs-684da3d4a062ce84a1077bc558ba12cc','R-tab-d574d4bb40c84861791a694a999cce69')"
@@ -954,7 +965,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d8f7caf8e98297831eea728e51adbc65"
+      id="R-tab-id-8f140595c35ba0d107ab5ddd00113fb8"
       data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -962,7 +973,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-52242b274e9f15cfaaa9b49320318ca1"
+      id="R-tab-id-44319fcb1339cea877f4638d55e713c8"
       data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -989,8 +1000,7 @@ Bash is for <strong>hackers</strong>.
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/perfect-scrollbar/perfect-scrollbar.min.db7463db58ffbf17da815a125672d269b005017f2e343e731f69a22d157b2170.js" defer></script>
-    <script src="/hugo-theme-relearn/js/theme.min.6e511025eeb3da02573330b2d6b065987672fd30bd839db10c8b73e809aea089.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.410bf32423228937f507cf4642569b2917bf39b96362db3519c6aa79bfe3c471.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
