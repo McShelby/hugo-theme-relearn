@@ -16,11 +16,13 @@ on:
         required: false
 
 # Declared rather than inherited. A release commits back to the branch, creates
-# a tag and a GitHub release, and pushes `gh-pages`; the milestone check reads
-# issues. A repository whose default token is read-only would fail all of that.
+# a tag and a GitHub release, and pushes `gh-pages`; it also closes the milestone
+# it releases and opens the next patch one, which is a write to issues and not
+# just a read. A repository whose default token is read-only would fail all of
+# that.
 permissions:
   contents: write
-  issues: read
+  issues: write
 
 jobs:
   # A release must not happen on a red suite.

@@ -7,7 +7,7 @@ module.exports = {
     Maintenance: ['task'],
     Uncategorised: ['closed'],
   },
-  ignoreLabels: ['asciidoc', 'blocked', 'browser', 'device', 'helpwanted', 'hugo', 'idea', 'mermaid', 'needsfeedback', 'undecided'],
+  ignoreLabels: ['asciidoc', 'blocked', 'browser', 'device', 'helpwanted', 'hugo', 'idea', 'mermaid', 'needsfeedback', 'undecided', 'upstream'],
   ignoreIssuesWith: ['discussion', 'documentation', 'duplicate', 'invalid', 'support', 'unresolved', 'update', 'wontchange'],
   ignoreTagsWith: ['Relearn', 'x'],
   milestoneMatch: '{{tag_name}}',

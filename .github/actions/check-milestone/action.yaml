@@ -129,7 +129,7 @@ runs:
         if [[ \
           ${{ fromJSON(steps.closed_issues.outputs.data).search.issueCount }} -gt 0 && \
           ${{ fromJSON(steps.open_issues.outputs.data).search.issueCount }} -eq 0 && \
-          ${{ steps.releasenotes.outputs.file_exists == 'true' }} \
+          "${{ steps.releasenotes.outputs.file_exists }}" == "true" \
         ]]; then
           echo "outcome=success" >> $GITHUB_OUTPUT
         else
