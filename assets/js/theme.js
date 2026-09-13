@@ -17,6 +17,7 @@ if (isRtl) {
 
 var touchsupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 var reducedmotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+var hovernone = window.matchMedia('(hover: none)');
 
 var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
 
@@ -1031,11 +1032,6 @@ function initMenuThumb(elm) {
   if (!window.relearn.scrollbarSize) {
     return;
   }
-  if (!CSS.supports('scrollbar-width: none') && !CSS.supports('selector(::-webkit-scrollbar)')) {
-    // the same condition the stylesheet gates our rail on: without a way to hide
-    // the browsers own scrollbar we would only add a second one on top of it
-    return;
-  }
 
   var rail = document.querySelector('#R-scrollbar');
   var thumb = document.querySelector('#R-scrollbar-thumb');
@@ -1085,6 +1081,11 @@ function initMenuThumb(elm) {
       window.requestAnimationFrame(function () {
         ticking = false;
         position();
+        if (!hovernone.matches) {
+          // only where there is no mouse does scrolling reveal us; with one, hover
+          // and focus do it and the stylesheet has no rule for the class at all
+          return;
+        }
         rail.classList.add('scrolling');
         clearTimeout(scrolling);
         scrolling = setTimeout(function () {
@@ -2166,20 +2167,6 @@ ready(function () {
     moveTopbarButtons();
     adjustEmptyTopbarContents();
   }
-})();
-
-(function () {
-  var body = document.querySelector('body');
-  function setWidth(e) {
-    body.classList[e.matches ? 'add' : 'remove']('main-max-width');
-  }
-  function onWidthChange(setWidth, e) {
-    setWidth(e);
-  }
-  var width = getColorValue('MAIN-MAX-width');
-  var mqm = window.matchMedia('screen and ( min-width: ' + width + ')');
-  mqm.addEventListener('change', onWidthChange.bind(null, setWidth));
-  setWidth(mqm);
 })();
 
 function getColorValue(c) {

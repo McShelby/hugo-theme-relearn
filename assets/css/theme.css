@@ -296,11 +296,14 @@ a:focus {
     scrollbar-color: transparent transparent;
   }
 
-  #R-sidebar:hover #R-content-wrapper {
+  #R-sidebar:hover #R-content-wrapper,
+  #R-content-wrapper:focus-within {
     /* the rail we draw ourselves knows three states, a scrollbar of the browser
        only ever gets two: there is no selector for it being hovered - the mouse
        over it is inside of the menu like the mouse over an entry is - so we take
-       the hovered colors here, as they are the ones that make us stand out */
+       the hovered colors here, as they are the ones that make us stand out.
+       the focus makes us show up for the keyboard, which never hovers us but
+       scrolls us with the cursor keys once it is inside of the menu */
     scrollbar-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MENU-SCROLLBAR-TRACK-HOVER-color);
   }
 }
@@ -311,10 +314,11 @@ a:focus {
    border at the sidebars edge and the active entry bleeding into the content
    area, so we hide the browsers scrollbar and draw our own rail instead.
 
-   two things have to be true before we take over: our header script must have
-   measured a scrollbar that takes space - it sets `classic-scrollbars` for that -
-   and the browser must know one of the two ways to hide its own, which the
-   @supports below asks for.
+   one thing has to be true before we take over: our header script must have
+   measured a scrollbar that takes space - it sets `classic-scrollbars` for that.
+   whether the browser can hide its own we do not ask; every engine that gets
+   this far understands one of the two ways below, as the `:has()` and
+   `color-mix()` we use elsewhere ask for far newer versions than those do.
 
    this block, the `#R-scrollbar` markup in menu.html and `initMenuThumb()` in
    theme.js are the whole of it and can be dropped together once no supported
@@ -338,22 +342,19 @@ a:focus {
   display: none;
 }
 
-/* measuring a scrollbar that takes space is only half of the decision: we may
-   only take over where we can also make the browsers own one go away, or we end
-   up with two of them; it understands either the standard property or the pseudo
-   element, and declaring both is harmless as each is ignored where it is not */
-@supports (scrollbar-width: none) or selector(::-webkit-scrollbar) {
-  .classic-scrollbars #R-content-wrapper {
-    scrollbar-width: none;
-  }
+/* taking over means making the browsers own scrollbar go away, or we end up with
+   two of them; it understands either the standard property or the pseudo element,
+   and declaring both is harmless as each is ignored where it is not */
+.classic-scrollbars #R-content-wrapper {
+  scrollbar-width: none;
+}
 
-  .classic-scrollbars #R-content-wrapper::-webkit-scrollbar {
-    display: none;
-  }
+.classic-scrollbars #R-content-wrapper::-webkit-scrollbar {
+  display: none;
+}
 
-  .classic-scrollbars #R-scrollbar.scrollable {
-    display: block;
-  }
+.classic-scrollbars #R-scrollbar.scrollable {
+  display: block;
 }
 
 .classic-scrollbars #R-scrollbar {
@@ -394,9 +395,11 @@ a:focus {
 }
 
 @media (hover: hover) {
-  .classic-scrollbars #R-sidebar:hover #R-scrollbar {
+  .classic-scrollbars #R-sidebar:hover #R-scrollbar,
+  .classic-scrollbars #R-content-wrapper:focus-within > #R-scrollbar {
     /* hovering the menu only lets us show up; our own colors and width wait for
-       the mouse to reach us */
+       the mouse to reach us. the focus does the same for the keyboard, which
+       scrolls us with the cursor keys once it is inside of the menu */
     opacity: 1;
   }
 }
@@ -812,6 +815,23 @@ article .R-taxonomy.tags a.term-link:hover:after {
       --fix: ;
     }
   }
+
+  @media (forced-colors: active) {
+    /* our translucent grays are overridden in forced colors and would leave the
+       thumb in the color of its track, so we name system colors like the menu
+       rail does; the transparent border insetting the thumb is given a color of
+       its own here, so it has to become the one of the track */
+    #R-body-inner::-webkit-scrollbar-track,
+    #R-body-inner:hover::-webkit-scrollbar-track {
+      background-color: Canvas;
+    }
+
+    #R-body-inner::-webkit-scrollbar-thumb,
+    #R-body-inner::-webkit-scrollbar-thumb:hover {
+      background-color: CanvasText;
+      border-color: Canvas;
+    }
+  }
 }
 @media screen and (max-width: 59.999rem) {
   #R-body-inner {
@@ -891,17 +911,14 @@ article a:focus > img:only-child:empty {
 #R-body .flex-block-wrapper {
   margin-left: auto;
   margin-right: auto;
+  /* the width grows us to whatever room we are given, the max-width caps us at the
+     configured one; that cap can not overflow us the way naming the width itself
+     would once the scrollbar gutter has taken its share of the room */
   max-width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 3.25rem);
   width: 100%;
 }
 #R-body .flex-block-wrapper:has(article.narrow) {
   max-width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 9.75rem);
-}
-.main-max-width #R-body .flex-block-wrapper {
-  width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 3.25rem);
-}
-.main-max-width #R-body .flex-block-wrapper:has(article.narrow) {
-  width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 9.75rem);
 }
 
 #R-body-inner:has(> .flex-block-wrapper article.narrow) {
@@ -1917,6 +1934,20 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
       /* Safari does not recompute the rules above once we are hovered unless a
          custom property makes it; its value is never read */
       --fix: ;
+    }
+  }
+
+  @media (forced-colors: active) {
+    /* same as for the scrollbar of the content */
+    .topbar-content-wrapper::-webkit-scrollbar-track,
+    .topbar-content-wrapper:hover::-webkit-scrollbar-track {
+      background-color: Canvas;
+    }
+
+    .topbar-content-wrapper::-webkit-scrollbar-thumb,
+    .topbar-content-wrapper::-webkit-scrollbar-thumb:hover {
+      background-color: CanvasText;
+      border-color: Canvas;
     }
   }
 }
