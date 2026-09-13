@@ -1,5 +1,50 @@
 # Changelog
 
+## 9.1.0 (2026-09-13)
+
+### Enhancements
+
+- [**feature**] i18n: split pt into true pt and pt-BR [#1260](https://github.com/McShelby/hugo-theme-relearn/issues/1260)
+- [**feature**] edit: support filesystem edit paths [#1252](https://github.com/McShelby/hugo-theme-relearn/issues/1252)
+- [**feature**] theme: switch cache busting to fingerprint [#1249](https://github.com/McShelby/hugo-theme-relearn/issues/1249)
+- [**feature**] cards: improve a11y alt text in generated img tag [#1203](https://github.com/McShelby/hugo-theme-relearn/issues/1203)
+
+### Fixes
+
+- [**bug**] dependencies: don't ignore header dependencies of nested pages for print [#1263](https://github.com/McShelby/hugo-theme-relearn/issues/1263)
+- [**bug**] mermaid: defer drawing [#1262](https://github.com/McShelby/hugo-theme-relearn/issues/1262)
+- [**bug**] search: fix scrolling into view for menu items [#1261](https://github.com/McShelby/hugo-theme-relearn/issues/1261)
+- [**bug**] openapi: fix various issues [#1254](https://github.com/McShelby/hugo-theme-relearn/issues/1254)
+- [**bug**] image: support width/height to avoid layout shift [#1251](https://github.com/McShelby/hugo-theme-relearn/issues/1251)
+- [**bug**] theme: fix stray \r in windows build [#1250](https://github.com/McShelby/hugo-theme-relearn/issues/1250)
+- [**bug**] link: fix occasional crash in checker [#1246](https://github.com/McShelby/hugo-theme-relearn/issues/1246)
+- [**bug**] search: disarm internal `_relearn` page rendered in non-default languages [#1245](https://github.com/McShelby/hugo-theme-relearn/issues/1245)
+- [**bug**][**upstream**] search: fix Lunr searching for numbers only [#1240](https://github.com/McShelby/hugo-theme-relearn/issues/1240)
+- [**bug**] logo: fix added fill for inlined SVG [#1236](https://github.com/McShelby/hugo-theme-relearn/issues/1236)
+- [**bug**] logo: fix cut off title for scripts with diacritics [#1233](https://github.com/McShelby/hugo-theme-relearn/issues/1233)
+- [**bug**] theme: fix body width override [#1223](https://github.com/McShelby/hugo-theme-relearn/issues/1223)
+- [**bug**] clipboard: let it work over http connections [#1222](https://github.com/McShelby/hugo-theme-relearn/issues/1222)
+- [**bug**] i18n: nl change "Fooi" to "Tip" [#1221](https://github.com/McShelby/hugo-theme-relearn/issues/1221)
+- [**bug**] logo: not showing when auto variants are not set explicitly [#1214](https://github.com/McShelby/hugo-theme-relearn/issues/1214)
+- [**bug**] children: multi-line description does not look nice [#1213](https://github.com/McShelby/hugo-theme-relearn/issues/1213)
+- [**bug**] children: bad links for children with ampersand in their name [#1212](https://github.com/McShelby/hugo-theme-relearn/issues/1212)
+- [**bug**] children: sort doesn't sort as documented [#1198](https://github.com/McShelby/hugo-theme-relearn/issues/1198)
+- [**bug**] taxonomy: fix term page url if term contains special chars [#1197](https://github.com/McShelby/hugo-theme-relearn/issues/1197)
+
+### Maintenance
+
+- [**task**] mermaid: update to 11.17.2 [#1257](https://github.com/McShelby/hugo-theme-relearn/issues/1257)
+- [**task**] fontawesome: update to 7.3.1 [#1256](https://github.com/McShelby/hugo-theme-relearn/issues/1256)
+- [**task**] math: update MathJax to 4.1.3 [#1255](https://github.com/McShelby/hugo-theme-relearn/issues/1255)
+- [**task**] openapi: update swagger-ui to 5.32.15 [#1253](https://github.com/McShelby/hugo-theme-relearn/issues/1253)
+- [**task**] build: implement CI testing [#1247](https://github.com/McShelby/hugo-theme-relearn/issues/1247)
+- [**task**] menu: remove references for deprecated `menuTitle` [#1225](https://github.com/McShelby/hugo-theme-relearn/issues/1225)
+- [**task**] theme: remove recent Hugo deprecations [#1219](https://github.com/McShelby/hugo-theme-relearn/issues/1219)
+- [**task**] security: update dependency to address CVEs [#1215](https://github.com/McShelby/hugo-theme-relearn/issues/1215)
+- [**task**] scrollbar: remove PerfectScrollbar [#1187](https://github.com/McShelby/hugo-theme-relearn/issues/1187)
+
+---
+
 ## 9.0.3 (2026-01-01)
 
 ### Fixes
