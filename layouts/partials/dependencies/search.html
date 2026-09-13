@@ -64,15 +64,14 @@
     <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
     {{- if $searchIndexUrl }}
-    <script>
-      window.relearn = window.relearn || {};
       {{- $indexDir := path.Dir $searchIndexUrl }}
       {{- $indexDir = cond (eq $indexDir ".") "" (printf "%s/" $indexDir) }}
-      {{- /* the deferred half has to stand as a value of its own: inside a string
-        literal Hugo's placeholder gets its slashes escaped and the substitution
-        that fills it in afterwards no longer finds it */}}
-      window.relearn.index_js_url={{ printf "%s/%s" (partial "_relearn/relBasePath.gotmpl" .) $indexDir }}+{{ with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}{{ partial "_relearn/searchIndexUrl.gotmpl" . }}{{ end }};
-    </script>
+      {{- /* our data for `theme-head.js`, which is loaded by the `theme` dependency and
+        sorts after us. the URL rides as an attribute and not as a JSON key for two
+        reasons: Hugo only rewrites a value for `relativeURLs` where the text `url=`
+        precedes it, and its deferred placeholder must not land inside a string literal,
+        where the slashes get escaped and the substitution afterwards no longer finds it */}}
+    <script type="application/json" id="R-search-config" data-index-js-url="{{ printf "%s/%s" (partial "_relearn/relBasePath.gotmpl" .) $indexDir }}{{ with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}{{ partial "_relearn/searchIndexUrl.gotmpl" . }}{{ end }}">{{ dict | jsonify | safeJS }}</script>
     {{- end }}
   {{- end }}
 {{- else if eq $location "search" }}

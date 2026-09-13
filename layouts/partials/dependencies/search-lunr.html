@@ -9,7 +9,6 @@
       {{- $additionalContentLanguage = .additionalContentLanguage | default $additionalContentLanguage }}
     {{- end }}
     {{- $contentlangs := (union (slice | append $additionalContentLanguage) (slice $pageBaseLang)) }}
-    {{- $quotedcontentlangs := slice }}
     {{- $searchIndexUrl := "" }}
     {{- $disableSearchIndex := false }}
     {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.index) site.Params.search.index.disable }}
@@ -58,12 +57,9 @@
     {{- /* with partial "asset.gotmpl" "/js/search-lunr.js" }}
     <script src="{{ .RelPermalink }}" defer></script>
     {{- end */}}
-    {{- range $contentlangs }}
-      {{- $quotedcontentlangs = $quotedcontentlangs | append (printf "'%s'" .) }}
-    {{- end }}
-    <script>
-      window.relearn = window.relearn || {};
-      window.relearn.contentLangs=[{{ delimit $quotedcontentlangs ", " | safeJS }}];
-    </script>
+    {{- /* our data for `theme-head.js`, which is loaded by the `theme` dependency and
+           sorts after us; a script element of a non JavaScript type is a data block the
+           browser never executes, so a strict CSP has nothing to allow here */}}
+    <script type="application/json" id="R-search-lunr-config">{{ dict "contentLangs" $contentlangs | jsonify | safeJS }}</script>
   {{- end }}
 {{- end }}

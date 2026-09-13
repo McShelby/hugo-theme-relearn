@@ -16,10 +16,10 @@
     {{- $themevariantsdata := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
     {{- $themevariants := $themevariantsdata.variants }}
     {{- $css := $themevariantsdata.css }}
-    {{- $quotedthemevariants := slice }}
+    {{- $themevariantids := slice }}
     {{- range $themevariants }}
       {{- if not .hidden }}
-        {{- $quotedthemevariants = $quotedthemevariants | append (printf "'%s'" .identifier) }}
+        {{- $themevariantids = $themevariantids | append .identifier }}
       {{- end }}
     {{- end }}
     {{- $wrap := true }}
@@ -55,75 +55,40 @@
       {{- end }}
     {{- end }}
     {{- $path := partial "_relearn/pageLangPath.gotmpl" . }}
-    <script>
-      window.relearn = window.relearn || {};
-      {{ "// configuration" | safeJS }}
-      window.relearn.path='{{ $path | safeJS }}';
-      window.relearn.relBasePath='{{ partial "_relearn/relBasePath.gotmpl" . | safeJS }}';
-      window.relearn.relBaseUri='{{ partial "_relearn/relBaseUri.gotmpl" . | safeJS }}';
-      window.relearn.absBaseUri='{{ replaceRE "/*$" "" site.BaseURL | safeJS }}';
-      {{- if $versionIndexUrl }}
-      {{- /* no cache busting: this URL points into the latest version's build, so its hash is unknowable from here and a build time id would pin the very file that must change */}}
-      window.relearn.version_js_url={{ $versionIndexUrl | relURL }};
-      {{- end }}
-      window.relearn.disableInlineCopyToClipboard={{ printf "%t" (eq $disableInlineCopyToClipboard true) | safeJS }};
-      window.relearn.enableBlockCodeWrap={{ printf "%t" (eq $wrap true) | safeJS }};
-      {{ "// translations" | safeJS }}
-      {{ printf "window.T_Copy_to_clipboard = `%s`;" (T `Copy-to-clipboard`) | safeJS }}
-      {{ printf "window.T_Copied_to_clipboard = `%s`;" (T `Copied-to-clipboard`) | safeJS }}
-      {{ printf "window.T_Link_copied_to_clipboard = `%s`;" (T `Link-copied-to-clipboard`) | safeJS }}
-      {{ printf "window.T_Reset_view = `%s`;" (T `Reset-view`) | safeJS }}
-      {{ printf "window.T_View_reset = `%s`;" (T `View-reset`) | safeJS }}
-      {{ printf "window.T_No_results_found = `%s`;" (T "No-results-found") | safeJS }}
-      {{ printf "window.T_N_results_found = `%s`;" (T "N-results-found") | safeJS }}
-      {{ printf "window.T_Browser_unsupported_feature = `%s`;" (T "Browser-unsupported-feature") | safeJS }}
-      {{ "// variant stuff" | safeJS }}
-      window.relearn.themevariants = [ {{ delimit $quotedthemevariants ", " | safeJS }} ];
-      window.relearn.customvariantprefix = "my-custom-";
-      window.relearn.changeVariant = function(variant) {
-        var oldVariant = document.documentElement.dataset.rThemeVariant;
-        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
-        document.documentElement.dataset.rThemeVariant = variant;
-        if (oldVariant != variant) {
-          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
-          window.relearn.markVariant();
-        }
-      }
-      window.relearn.markVariant = function() {
-        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
-        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
-      }
-      window.relearn.initVariant = function() {
-        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
-        if( !variant ||
-            (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) ||
-            (variant.startsWith(window.relearn.customvariantprefix) && !window.localStorage.getItem(window.relearn.absBaseUri + "/variantstylesheet-" + variant)) ){
-          variant = window.relearn.themevariants[0];
-          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
-        }
-        document.documentElement.dataset.rThemeVariant = variant;
-      }
-      window.relearn.initVariant();
-      window.relearn.markVariant();
-      {{- /* the browsers scrollbar style has to be known before the first paint; measuring it in
-             theme.js would leave the menu with a space taking scrollbar - clipping its border and
-             the active entry - for as long as the scripts loaded before it take to run */}}
-      window.relearn.scrollbarSize = (function() {
-        {{- /* https://davidwalsh.name/detect-scrollbar-width; we run in the head, so there is no body yet */}}
-        var scrollDiv = document.createElement('div');
-        scrollDiv.className = 'scrollbar-measure';
-        var parent = document.body || document.documentElement;
-        parent.appendChild(scrollDiv);
-        var size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-        parent.removeChild(scrollDiv);
-        return size;
-      })();
-      if (window.relearn.scrollbarSize) {
-        {{- /* classic scrollbars take away space, overlay scrollbars - measuring zero - don't;
-               only in the first case the menu has to draw its scrollbar itself */}}
-        document.documentElement.classList.add('classic-scrollbars');
-      }
-    </script>
+    {{- /* everything site or page specific travels as data, not as code: a script element
+           of a non JavaScript type is a data block the browser never executes, so a strict
+           CSP does not apply to it and needs no per page hash - which we could not give it
+           anyway, as `path` and the two relative bases differ on every single page */}}
+    {{- $config := dict
+      "path" $path
+      "relBasePath" (partial "_relearn/relBasePath.gotmpl" .)
+      "relBaseUri" (partial "_relearn/relBaseUri.gotmpl" .)
+      "absBaseUri" (replaceRE "/*$" "" site.BaseURL)
+      "disableInlineCopyToClipboard" (eq $disableInlineCopyToClipboard true)
+      "enableBlockCodeWrap" (eq $wrap true)
+      "themevariants" $themevariantids
+      "translations" (dict
+        "Copy_to_clipboard" (T `Copy-to-clipboard`)
+        "Copied_to_clipboard" (T `Copied-to-clipboard`)
+        "Link_copied_to_clipboard" (T `Link-copied-to-clipboard`)
+        "Reset_view" (T `Reset-view`)
+        "View_reset" (T `View-reset`)
+        "No_results_found" (T "No-results-found")
+        "N_results_found" (T "N-results-found")
+        "Browser_unsupported_feature" (T "Browser-unsupported-feature")
+      )
+    }}
+    {{- /* jsonify escapes `<` to `<`, so the payload can not close this element.
+           URLs are not part of it but ride as `data-*-url` attributes: Hugo only rewrites
+           a value for `relativeURLs` where the text `url=` precedes it, which no JSON key
+           can offer */}}
+    {{- /* no cache busting for the version index: this URL points into the latest version's build, so its hash is unknowable from here and a build time id would pin the very file that must change */}}
+    <script type="application/json" id="R-theme-config"{{ with $versionIndexUrl }} data-version-js-url="{{ . | relURL }}"{{ end }}>{{ $config | jsonify | safeJS }}</script>
+    {{- /* no `defer`: we have to run before the first paint or the page flashes in the wrong
+           variant and the menu is drawn for the wrong scrollbar model */}}
+    {{- with partial "asset.gotmpl" "/js/theme-head.js" }}
+    <script src="{{ .RelPermalink }}"></script>
+    {{- end }}
   {{- end }}
 {{- else if eq $location "footer" }}
   {{- with $page }}

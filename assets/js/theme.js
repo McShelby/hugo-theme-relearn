@@ -1,5 +1,17 @@
 window.relearn = window.relearn || {};
 
+// every dependency hands its data over in a `R-<dependency>-config` block instead of
+// an inline script, so a strict CSP has nothing to allow. we are deferred and
+// therefore run once the whole document is parsed, which lets us pick up every block
+// no matter where its dependency landed - including one a consumer added. a
+// dependency needing its data before us reads its own block itself, as the theme and
+// search ones do; applying a block twice changes nothing
+if (window.relearn.readConfig) {
+  document.querySelectorAll('script[type="application/json"][id^="R-"][id$="-config"]').forEach(function (element) {
+    Object.assign(window.relearn, window.relearn.readConfig(element.id));
+  });
+}
+
 var theme = true;
 var isPrint = document.querySelector('body').classList.contains('print');
 var isPrintPreview = false;
