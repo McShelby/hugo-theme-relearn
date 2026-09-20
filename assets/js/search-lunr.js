@@ -58,6 +58,8 @@ Each array item needs the following layout:
   let lunrIndex, pagesIndex;
 
   function init() {
+    var contentLangs = JSON.parse(document.getElementById('R-search-lunr-config').textContent).contentLangs;
+
     function initIndex(index) {
       if (!window.lunr) {
         return;
@@ -66,7 +68,7 @@ Each array item needs the following layout:
       // Set up Lunr by declaring the fields we use
       // Also provide their boost level for the ranking
       lunrIndex = lunr(function () {
-        this.use(lunr.multiLanguage.apply(null, window.relearn.contentLangs));
+        this.use(lunr.multiLanguage.apply(null, contentLangs));
         this.ref('index');
         this.field('title', {
           boost: 15,

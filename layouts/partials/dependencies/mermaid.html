@@ -1,19 +1,6 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- if eq $location "header" }}
-  {{- with $page }}
-    {{- $init := "{}" }}
-    {{- if isset .Params "mermaidinitialize" }}
-      {{- $init = .Params.mermaidInitialize }}
-    {{- else if isset .Site.Params "mermaidinitialize" }}
-      {{- $init = .Site.Params.mermaidInitialize }}
-    {{- end }}
-    {{- /* our data for `theme-head.js`, which is loaded by the `theme` dependency and
-           sorts after us; a script element of a non JavaScript type is a data block the
-           browser never executes, so a strict CSP has nothing to allow here */}}
-    <script type="application/json" id="R-mermaid-config">{{ dict "themeUseMermaid" ($init | transform.Unmarshal) | jsonify | safeJS }}</script>
-  {{- end }}
-{{- else if eq $location "footer" }}
+{{- if eq $location "footer" }}
   {{- with $page }}
     {{- with partial "asset.gotmpl" "/js/js-yaml/js-yaml.min.js" }}
     <script src="{{ .RelPermalink }}" defer></script>
@@ -54,5 +41,19 @@
     <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
     {{- end }}
+    {{- $init := "{}" }}
+    {{- if isset .Params "mermaidinitialize" }}
+      {{- $init = .Params.mermaidInitialize }}
+    {{- else if isset .Site.Params "mermaidinitialize" }}
+      {{- $init = .Site.Params.mermaidInitialize }}
+    {{- end }}
+    {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
+    {{- $jsonOptions := dict
+      "indent" "  "
+      "prefix" "    "
+    }}
+    {{- /* our data for `theme.js`; a script element of a non JavaScript type is a data
+           block the browser never executes, so a strict CSP has nothing to allow here */}}
+    <script type="application/json" id="R-mermaid-config">{{ $init | transform.Unmarshal | jsonify $jsonOptions | safeJS }}</script>
   {{- end }}
 {{- end }}

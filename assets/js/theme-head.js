@@ -2,88 +2,33 @@
 // first paint, so the variant is applied and the scrollbar model is known before
 // anything is drawn; everything that may wait for the document lives in theme.js
 //
-// our input are the `R-<dependency>-config` blocks the dependencies write into the
-// head - script elements of a non JavaScript type, which are data blocks the browser
-// never executes and a strict CSP therefore never has to allow. the loader hands us
-// the `theme` dependency last, so all of them stand in the document by the time we
-// run, whatever a consumer called theirs
-//
-// being parser blocking, we also come before every deferred and every footer script:
-// the search adapters find their values, and MathJax - which loads `async` further
-// down - finds its global long before it can run itself
+// our input is the `R-theme-config` block standing right before our tag - a script
+// element of a non JavaScript type, which is a data block the browser never executes
+// and a strict CSP therefore never has to allow. we only read our own block; every
+// other dependency reads its own from its own script
 //
 // this file carries no site or page specific value of its own and is therefore byte
 // identical on every page of every site; `script-src 'self'` is all it asks for
 window.relearn = window.relearn || {};
-window.relearn.readConfig = function (id) {
-  var element = document.getElementById(id);
-  if (!element) {
-    return null;
-  }
-  var config = {};
-  try {
-    config = JSON.parse(element.textContent || '{}');
-  } catch (e) {
-    console.error('relearn: malformed ' + id, e);
-  }
+
+(function () {
+  var element = document.getElementById('R-theme-config');
+  var config = JSON.parse(element.textContent);
+
+  // the translations stay globals of their own, that is how our scripts read them
+  Object.keys(config.translations).forEach(function (key) {
+    window['T_' + key] = config.translations[key];
+  });
+  delete config.translations;
+  Object.assign(window.relearn, config);
+
   // URLs travel as `data-*-url` attributes instead of inside the JSON: Hugo only
   // rewrites them for `relativeURLs` where the text `url=` precedes the value, and
   // a JSON key can not end in that
-  Object.keys(element.dataset).forEach(function (key) {
-    config[
-      key.replace(/[A-Z]/g, function (c) {
-        return '_' + c.toLowerCase();
-      })
-    ] = element.dataset[key];
-  });
-  return config;
-};
-
-(function () {
-  var config = {};
-  document.querySelectorAll('script[type="application/json"][id^="R-"][id$="-config"]').forEach(function (element) {
-    Object.assign(config, window.relearn.readConfig(element.id));
-  });
-
-  Object.keys(config).forEach(function (key) {
-    if (key == 'translations' || key == 'themeUseMathJax') {
-      return;
-    }
-    window.relearn[key] = config[key];
-  });
-
-  // the translations stay globals of their own, that is how theme.js reads them
-  var translations = config.translations || {};
-  Object.keys(translations).forEach(function (key) {
-    window['T_' + key] = translations[key];
-  });
+  window.relearn.version_js_url = element.dataset.versionJsUrl;
 
   // the prefix is ours and not configurable, so it stays code and not data
   window.relearn.customvariantprefix = 'my-custom-';
-
-  // MathJax reads a global of its own instead of ours; the defaults are ours,
-  // whatever the site configured wins over them
-  if (config.themeUseMathJax) {
-    window.MathJax = Object.assign(
-      window.MathJax || {},
-      {
-        tex: {
-          inlineMath: [
-            ['\\(', '\\)'],
-            ['$', '$'],
-          ],
-          displayMath: [
-            ['\\[', '\\]'],
-            ['$$', '$$'],
-          ],
-        },
-        options: {
-          enableMenu: false, // avoid translation hassle for context menu
-        },
-      },
-      config.themeUseMathJax
-    );
-  }
 })();
 
 window.relearn.changeVariant = function (variant) {

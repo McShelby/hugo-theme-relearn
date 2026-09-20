@@ -1,17 +1,5 @@
 window.relearn = window.relearn || {};
 
-// every dependency hands its data over in a `R-<dependency>-config` block instead of
-// an inline script, so a strict CSP has nothing to allow. we are deferred and
-// therefore run once the whole document is parsed, which lets us pick up every block
-// no matter where its dependency landed - including one a consumer added. a
-// dependency needing its data before us reads its own block itself, as the theme and
-// search ones do; applying a block twice changes nothing
-if (window.relearn.readConfig) {
-  document.querySelectorAll('script[type="application/json"][id^="R-"][id$="-config"]').forEach(function (element) {
-    Object.assign(window.relearn, window.relearn.readConfig(element.id));
-  });
-}
-
 var theme = true;
 var isPrint = document.querySelector('body').classList.contains('print');
 var isPrintPreview = false;
@@ -478,7 +466,10 @@ function initMermaid(update, attrs) {
 }
 
 function initOpenapi(update, attrs) {
-  if (!window.relearn.themeUseOpenapi) {
+  // the block is only written by the openapi dependency, so without it the page has
+  // nothing to render
+  var config = document.getElementById('R-openapi-config');
+  if (!config) {
     return;
   }
   var state = this;
@@ -511,7 +502,7 @@ function initOpenapi(update, attrs) {
   function renderOpenAPI(oc) {
     var print = isPrint || isPrintPreview ? 'PRINT-' : '';
     var format = print ? `print` : `html`;
-    var theme = print ? window.relearn.format_print_css_url : window.relearn.format_html_css_url;
+    var theme = print ? config.dataset.formatPrintCssUrl : config.dataset.formatHtmlCssUrl;
     var variant = document.documentElement.dataset.rThemeVariant;
     var swagger_theme = getColorValue(print + 'OPENAPI-theme');
     var swagger_code_theme = getColorValue(print + 'OPENAPI-CODE-theme');
@@ -534,8 +525,8 @@ function initOpenapi(update, attrs) {
 <html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="${window.relearn.openapi_css_url}">
-    <link rel="stylesheet" href="${window.relearn.swagger_css_url}">
+    <link rel="stylesheet" href="${config.dataset.openapiCssUrl}">
+    <link rel="stylesheet" href="${config.dataset.swaggerCssUrl}">
     <link rel="stylesheet" href="${theme}">
     <script>
       function relearn_expand_all() {
@@ -2003,9 +1994,15 @@ function useMermaid(config) {
     mermaid.initialize(Object.assign({ securityLevel: 'antiscript', startOnLoad: false }, config));
   }
 }
-if (window.relearn.themeUseMermaid) {
-  useMermaid(window.relearn.themeUseMermaid);
-}
+(function () {
+  // the block is only written by the mermaid dependency; we are deferred, so it
+  // stands in the document by now wherever the dependency put it
+  var config = document.getElementById('R-mermaid-config');
+  if (config) {
+    window.relearn.themeUseMermaid = JSON.parse(config.textContent);
+    useMermaid(window.relearn.themeUseMermaid);
+  }
+})();
 
 function ready(fn) {
   if (document.readyState == 'complete') {

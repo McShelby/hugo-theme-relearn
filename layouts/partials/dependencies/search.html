@@ -66,12 +66,13 @@
     {{- if $searchIndexUrl }}
       {{- $indexDir := path.Dir $searchIndexUrl }}
       {{- $indexDir = cond (eq $indexDir ".") "" (printf "%s/" $indexDir) }}
-      {{- /* our data for `theme-head.js`, which is loaded by the `theme` dependency and
-        sorts after us. the URL rides as an attribute and not as a JSON key for two
-        reasons: Hugo only rewrites a value for `relativeURLs` where the text `url=`
-        precedes it, and its deferred placeholder must not land inside a string literal,
-        where the slashes get escaped and the substitution afterwards no longer finds it */}}
-    <script type="application/json" id="R-search-config" data-index-js-url="{{ printf "%s/%s" (partial "_relearn/relBasePath.gotmpl" .) $indexDir }}{{ with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}{{ partial "_relearn/searchIndexUrl.gotmpl" . }}{{ end }}">{{ dict | jsonify | safeJS }}</script>
+      {{- /* our data for `search.js`; a script element of a non JavaScript type is a data
+        block the browser never executes, so a strict CSP has nothing to allow here. the
+        URL rides as an attribute and not as a JSON key for two reasons: Hugo only
+        rewrites a value for `relativeURLs` where the text `url=` precedes it, and its
+        deferred placeholder must not land inside a string literal, where the slashes
+        get escaped and the substitution afterwards no longer finds it */}}
+    <script type="application/json" id="R-search-config" data-index-js-url="{{ printf "%s/%s" (partial "_relearn/relBasePath.gotmpl" .) $indexDir }}{{ with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}{{ partial "_relearn/searchIndexUrl.gotmpl" . }}{{ end }}">{}</script>
     {{- end }}
   {{- end }}
 {{- else if eq $location "search" }}

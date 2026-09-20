@@ -78,14 +78,20 @@
         "Browser_unsupported_feature" (T "Browser-unsupported-feature")
       )
     }}
-    {{- /* jsonify escapes `<` to `<`, so the payload can not close this element.
+    {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
+    {{- $jsonOptions := dict
+      "indent" "  "
+      "prefix" "    "
+    }}
+    {{- /* jsonify writes `<` as a unicode escape, so the payload can not close this element.
            URLs are not part of it but ride as `data-*-url` attributes: Hugo only rewrites
            a value for `relativeURLs` where the text `url=` precedes it, which no JSON key
            can offer */}}
     {{- /* no cache busting for the version index: this URL points into the latest version's build, so its hash is unknowable from here and a build time id would pin the very file that must change */}}
-    <script type="application/json" id="R-theme-config"{{ with $versionIndexUrl }} data-version-js-url="{{ . | relURL }}"{{ end }}>{{ $config | jsonify | safeJS }}</script>
-    {{- /* no `defer`: we have to run before the first paint or the page flashes in the wrong
-           variant and the menu is drawn for the wrong scrollbar model */}}
+    <script type="application/json" id="R-theme-config"{{ with $versionIndexUrl }} data-version-js-url="{{ . | relURL }}"{{ end }}>{{ $config | jsonify $jsonOptions | safeJS }}</script>
+    {{- /* no `defer`: `theme-head.js` reads the block above and has to run before the first
+           paint or the page flashes in the wrong variant and the menu is drawn for the
+           wrong scrollbar model */}}
     {{- with partial "asset.gotmpl" "/js/theme-head.js" }}
     <script src="{{ .RelPermalink }}"></script>
     {{- end }}

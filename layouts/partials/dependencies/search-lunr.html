@@ -57,9 +57,16 @@
     {{- /* with partial "asset.gotmpl" "/js/search-lunr.js" }}
     <script src="{{ .RelPermalink }}" defer></script>
     {{- end */}}
-    {{- /* our data for `theme-head.js`, which is loaded by the `theme` dependency and
-           sorts after us; a script element of a non JavaScript type is a data block the
-           browser never executes, so a strict CSP has nothing to allow here */}}
-    <script type="application/json" id="R-search-lunr-config">{{ dict "contentLangs" $contentlangs | jsonify | safeJS }}</script>
+    {{- $config := dict
+      "contentLangs" $contentlangs
+    }}
+    {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
+    {{- $jsonOptions := dict
+      "indent" "  "
+      "prefix" "    "
+    }}
+    {{- /* our data for `search-lunr.js`; a script element of a non JavaScript type is a
+           data block the browser never executes, so a strict CSP has nothing to allow here */}}
+    <script type="application/json" id="R-search-lunr-config">{{ $config | jsonify $jsonOptions | safeJS }}</script>
   {{- end }}
 {{- end }}

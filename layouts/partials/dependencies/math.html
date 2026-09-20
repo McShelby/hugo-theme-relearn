@@ -1,6 +1,6 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- if eq $location "header" }}
+{{- if eq $location "footer" }}
   {{- with $page }}
     {{- $init := "{}" }}
     {{- if isset .Params "mathjaxinitialize" }}
@@ -8,16 +8,20 @@
     {{- else if isset .Site.Params "mathjaxinitialize" }}
       {{- $init = .Site.Params.mathJaxInitialize }}
     {{- end }}
-    {{- /* our data for `theme-head.js`, which builds `window.MathJax` from it and is
-           loaded by the `theme` dependency, sorting after us; that it happens in the
-           head is what lets MathJax stay `async` - its global stands long before it
-           can run itself */}}
-    <script type="application/json" id="R-math-config">{{ dict "themeUseMathJax" ($init | transform.Unmarshal) | jsonify | safeJS }}</script>
-  {{- end }}
-{{- else if eq $location "footer" }}
-  {{- with $page }}
-    {{- /* `theme-head.js` has built `window.MathJax` from our block in the head, so it
-           stands before this `async` tag can run */}}
+    {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
+    {{- $jsonOptions := dict
+      "indent" "  "
+      "prefix" "    "
+    }}
+    {{- /* a script element of a non JavaScript type is a data block the browser never
+           executes, so a strict CSP has nothing to allow here */}}
+    <script type="application/json" id="R-math-config">{{ $init | transform.Unmarshal | jsonify $jsonOptions | safeJS }}</script>
+    {{- /* no `defer`: `math.js` builds `window.MathJax` from our block and has to be done
+           before the `async` MathJax script below can run; holding the parser this
+           late in the page delays nothing that would be drawn */}}
+    {{- with partial "asset.gotmpl" "/js/math.js" }}
+    <script src="{{ .RelPermalink }}"></script>
+    {{- end }}
     {{- if and (isset .Params "custommathjaxurl") .Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
     {{- else if and (isset .Site.Params "custommathjaxurl") .Site.Params.customMathJaxURL }}

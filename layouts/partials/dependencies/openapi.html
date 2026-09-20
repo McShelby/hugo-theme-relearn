@@ -1,46 +1,39 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- if eq $location "header" }}
+{{- if eq $location "footer" }}
   {{- with $page }}
     {{- $css := (partialCached "_relearn/themeVariants.gotmpl" site.Home).css }}
     {{- $cssUrl := "" }}
-    {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
-      {{- $cssUrl = replace .Params.customOpenapiURL "swagger-ui-bundle" "swagger-ui" }}
-      {{- $cssUrl = replaceRE "\\.js$" ".css" $cssUrl }}
-    {{- else if and (isset .Site.Params "customopenapiurl") .Site.Params.customOpenapiURL }}
-      {{- $cssUrl = replace .Site.Params.customOpenapiURL "swagger-ui-bundle" "swagger-ui" }}
-      {{- $cssUrl = replaceRE "\\.js$" ".css" $cssUrl }}
-    {{- else }}
-      {{- with partial "asset.gotmpl" (dict "res" "/css/swagger-ui/swagger-ui.css" "minify" false) }}
-        {{- $cssUrl = .RelPermalink }}
-      {{- end }}
-    {{- end }}
-    {{- /* the iframe we render the spec into is a document of its own and has to be
-           handed every stylesheet it needs; these are attributes and not JSON keys
-           because only a value preceded by the text `url=` is rewritten by Hugo if
-           `relativeURLs` is set */}}
-    <script type="application/json" id="R-openapi-config" data-openapi-css-url="{{ $cssUrl }}" data-swagger-css-url="{{ index $css "swagger" }}" data-format-html-css-url="{{ index $css "format-html" }}" data-format-print-css-url="{{ index $css "format-print" }}">{{ dict "themeUseOpenapi" true | jsonify | safeJS }}</script>
-  {{- end }}
-{{- else if eq $location "footer" }}
-  {{- with $page }}
     {{- $urlOpenapi := "" }}
     {{- with partial "asset.gotmpl" "/js/js-yaml/js-yaml.min.js" }}
     <script src="{{ .RelPermalink }}" defer></script>
     {{- end }}
-    {{- /* the stylesheet the iframe needs is resolved by our `header` branch, which
-           also makes Hugo generate it; here we only load the scripts */}}
     {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
+      {{- $cssUrl = .Params.customOpenapiURL }}
+      {{- $cssUrl = replace $cssUrl "swagger-ui-bundle" "swagger-ui" }}
+      {{- /* only the trailing `.js` is the extension; a host like
+        `cdn.jsdelivr.net` carries one too and must be left alone */}}
+      {{- $cssUrl = replaceRE "\\.js$" ".css" $cssUrl }}
       {{- $urlOpenapi = .Params.customOpenapiURL }}
     <script src="{{ $urlOpenapi }}" defer></script>
       {{- $urlOpenapi = replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
     <script src="{{ $urlOpenapi }}" defer></script>
     {{- else if and (isset .Site.Params "customopenapiurl") .Site.Params.customOpenapiURL }}
+      {{- $cssUrl = .Site.Params.customOpenapiURL }}
+      {{- $cssUrl = replace $cssUrl "swagger-ui-bundle" "swagger-ui" }}
+      {{- /* only the trailing `.js` is the extension; a host like
+        `cdn.jsdelivr.net` carries one too and must be left alone */}}
+      {{- $cssUrl = replaceRE "\\.js$" ".css" $cssUrl }}
       {{- $urlOpenapi = .Site.Params.customOpenapiURL }}
     <script src="{{ $urlOpenapi }}" defer></script>
       {{- $urlOpenapi = replace $urlOpenapi "swagger-ui-bundle" "swagger-ui-standalone-preset" }}
     <script src="{{ $urlOpenapi }}" defer></script>
     {{- else }}
       {{- /* the swagger-ui distribution arrives built but is not named `.min` */}}
+      {{- with partial "asset.gotmpl" (dict "res" "/css/swagger-ui/swagger-ui.css" "minify" false) }}
+        {{- /* the following code causes Hugo to generate our file in public */}}
+        {{- $cssUrl = .RelPermalink }}
+      {{- end }}
       {{- with partial "asset.gotmpl" (dict "res" "/js/swagger-ui/swagger-ui-bundle.js" "minify" false) }}
     <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
@@ -48,5 +41,11 @@
     <script src="{{ .RelPermalink }}" defer></script>
       {{- end }}
     {{- end }}
+    {{- /* our data for `theme.js`; a script element of a non JavaScript type is a data
+      block the browser never executes, so a strict CSP has nothing to allow here. the
+      iframe we render the spec into is a document of its own and has to be handed
+      every stylesheet it needs; these are attributes and not JSON keys because Hugo
+      only rewrites a value for `relativeURLs` where the text `url=` precedes it */}}
+    <script type="application/json" id="R-openapi-config" data-openapi-css-url="{{ $cssUrl }}" data-swagger-css-url="{{ index $css "swagger" }}" data-format-html-css-url="{{ index $css "format-html" }}" data-format-print-css-url="{{ index $css "format-print" }}">{}</script>
   {{- end }}
 {{- end }}

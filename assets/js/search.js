@@ -166,6 +166,9 @@
     if (!window.relearn.search || !window.relearn.search.adapter) {
       return;
     }
+    // the adapters expect the index URL as a global; it travels as an attribute of
+    // our data block because Hugo only rewrites it for `relativeURLs` there
+    window.relearn.index_js_url = document.getElementById('R-search-config').dataset.indexJsUrl;
     window.relearn.search.adapter.init();
 
     var input = document.querySelector('#R-search-by-detail');

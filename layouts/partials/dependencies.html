@@ -1,30 +1,7 @@
 {{- $page := .page }}
 {{- $location := .location }}
 {{- partialCached "_relearn/dependencies.gotmpl" $page $page.Path }}
-{{- /* dependencies are loaded by ascending `weight` like everything else Hugo orders
-	that way; it is optional and counts as zero if it is not given, and dependencies
-	of equal weight keep the alphabetical order of their names. `theme` is pinned
-	behind all of them whatever its weight says, because `theme.js` has to be the
-	last of ours to run */}}
-{{- $deps := site.Params.relearn.dependencies }}
-{{- $ordered := slice }}
-{{- range $k, $v := $deps }}
-	{{- if ne $k "theme" }}
-		{{- /* the offset keeps a negative weight sortable, the padding keeps 10 from
-			landing in front of 9, and the name breaks the tie */}}
-		{{- $weight := add 1000000 (int (default 0 $v.weight)) }}
-		{{- $ordered = $ordered | append (dict "key" $k "order" (printf "%010d-%s" $weight $k)) }}
-	{{- end }}
-{{- end }}
-{{- $keys := slice }}
-{{- range sort $ordered "order" }}
-	{{- $keys = $keys | append .key }}
-{{- end }}
-{{- if isset $deps "theme" }}
-	{{- $keys = $keys | append "theme" }}
-{{- end }}
-{{- range $k := $keys }}
-	{{- $v := index $deps $k }}
+{{- range $k, $v := site.Params.relearn.dependencies }}
 	{{- $needs := printf "needs%s" $v.name }}
 	{{- $has := printf "has%s" $v.name }}
 	{{- $hasnested := printf "relearnHasNested%s" $v.name }}
