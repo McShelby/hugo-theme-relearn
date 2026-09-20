@@ -1,5 +1,5 @@
 +++
-aliases = '/pir/shortcodes/swagger'
+aliases = '/shortcodes/swagger'
 categories = ['howto', 'reference']
 description = "UI fer yer OpenAPI / Swaggerrr Specificat'ns"
 frontmatter = ['customOpenapiURL', 'openapi.errorlevel', 'openapi.force']
