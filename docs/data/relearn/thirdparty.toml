@@ -1,0 +1,580 @@
+# Every third-party resource this project uses, declared once.
+#
+# Read by the credits page, which renders from it instead of being kept by
+# hand; by the CycloneDX SBOM at `sbom.cdx.json`, generated from it; and by the
+# drift check in the infra suite, which fails when a vendored directory holds
+# files no entry claims, or an entry claims files that are gone.
+#
+# Only `scope = 'theme'` reaches the SBOM - that is what a site using the theme
+# publishes. `docs`, `dev` and `build` exist for the credits page; putting them
+# in the SBOM would misdescribe what a user serves.
+#
+# `requires` names the components another one depends on, by their `name`. It
+# becomes the dependency graph in the SBOM and the nesting on the credits page:
+# a component something requires counts as having come along with it, so it
+# hangs off that component rather than off the theme, and a reader can tell
+# what the theme calls from what merely came along.
+#
+# `extends` names the one component another only runs inside - a plugin its
+# engine, an extension its editor, an action its platform. The credits page
+# nests the extension beneath that host, and the SBOM records its dependency on
+# it. Neither may also require the other.
+#
+# `paths` are repository-relative with forward slashes and claim a directory or
+# a single file. The longest matching prefix wins, which is how one directory
+# holds several components: `assets/js/lunr` is Lunr Languages, and the one
+# file `assets/js/lunr/lunr.min.js` inside it is Lunr.
+#
+# Below each vendor root - `VENDOR_ROOTS` in the infra repository's
+# `tools/sbom/declaration.js` holds them - a subdirectory is third-party and a
+# flat file is ours, the convention `.prettierignore` already encodes wherever
+# it does not skip a root whole. Every file below such a subdirectory needs
+# an entry here or under `[[own]]`; a flat file needs none, and declaring one
+# is rejected. `assets/css/nucleus.css` is the one judgement call: it arrived
+# with the Learn theme, carries no licence header and names no upstream, and
+# years of edits have left little of whatever it once was. It is treated as
+# ours.
+#
+# When you vendor an update, change `version` in the same commit that changes
+# the files. Nothing can re-derive it afterwards: a version is knowable at the
+# moment of vendoring and at no other time.
+
+# ------------------------------------------------------------------
+
+[[components]]
+  scope = 'theme'
+  name = 'autoComplete'
+  version = '1.0.4'
+  license = 'MIT'
+  copyright = 'Copyright (c) 2014 Simon Steinberger / Pixabay'
+  description = 'A lightweight and powerful vanilla JavaScript completion suggester'
+  homepage = 'https://github.com/Pixabay/JavaScript-autoComplete'
+  vcs = 'https://github.com/Pixabay/JavaScript-autoComplete'
+  paths = ['assets/js/auto-complete', 'assets/css/auto-complete']
+  patched = true
+  notes = 'Upstream is unmaintained. Carries fixes for theme issues #155, #387 and #452, listed in the file header. No registry coordinate, so no purl.'
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-color'
+  version = '3.1.0'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2022 Mike Bostock'
+  description = 'Color spaces! RGB, HSL, Cubehelix, CIELAB, and more'
+  homepage = 'https://github.com/d3/d3-color'
+  vcs = 'https://github.com/d3/d3-color'
+  purl = 'pkg:npm/d3-color@3.1.0'
+  paths = ['assets/js/d3/d3-color.min.js']
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-dispatch'
+  version = '3.0.1'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'Register named callbacks and call them with arguments'
+  homepage = 'https://github.com/d3/d3-dispatch'
+  vcs = 'https://github.com/d3/d3-dispatch'
+  purl = 'pkg:npm/d3-dispatch@3.0.1'
+  paths = ['assets/js/d3/d3-dispatch.min.js']
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-drag'
+  version = '3.0.0'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'Drag and drop SVG, HTML or Canvas using mouse or touch input'
+  homepage = 'https://github.com/d3/d3-drag'
+  vcs = 'https://github.com/d3/d3-drag'
+  purl = 'pkg:npm/d3-drag@3.0.0'
+  paths = ['assets/js/d3/d3-drag.min.js']
+  requires = [
+    'd3-dispatch',
+    'd3-selection',
+  ]
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-ease'
+  version = '3.0.1'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock, 2001 Robert Penner'
+  description = 'Easing functions for smooth animation'
+  homepage = 'https://github.com/d3/d3-ease'
+  vcs = 'https://github.com/d3/d3-ease'
+  purl = 'pkg:npm/d3-ease@3.0.1'
+  paths = ['assets/js/d3/d3-ease.min.js']
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-interpolate'
+  version = '3.0.1'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'Interpolate numbers, colors, strings, arrays, objects, whatever'
+  homepage = 'https://github.com/d3/d3-interpolate'
+  vcs = 'https://github.com/d3/d3-interpolate'
+  purl = 'pkg:npm/d3-interpolate@3.0.1'
+  paths = ['assets/js/d3/d3-interpolate.min.js']
+  requires = [
+    'd3-color',
+  ]
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-selection'
+  version = '3.0.0'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'Transform the DOM by selecting elements and joining to data'
+  homepage = 'https://github.com/d3/d3-selection'
+  vcs = 'https://github.com/d3/d3-selection'
+  purl = 'pkg:npm/d3-selection@3.0.0'
+  paths = ['assets/js/d3/d3-selection.min.js']
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-timer'
+  version = '3.0.1'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'An efficient queue for managing thousands of concurrent animations'
+  homepage = 'https://github.com/d3/d3-timer'
+  vcs = 'https://github.com/d3/d3-timer'
+  purl = 'pkg:npm/d3-timer@3.0.1'
+  paths = ['assets/js/d3/d3-timer.min.js']
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-transition'
+  version = '3.0.1'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'Animated transitions for D3 selections'
+  homepage = 'https://github.com/d3/d3-transition'
+  vcs = 'https://github.com/d3/d3-transition'
+  purl = 'pkg:npm/d3-transition@3.0.1'
+  paths = ['assets/js/d3/d3-transition.min.js']
+  requires = [
+    'd3-color',
+    'd3-dispatch',
+    'd3-ease',
+    'd3-interpolate',
+    'd3-selection',
+    'd3-timer',
+  ]
+
+[[components]]
+  scope = 'theme'
+  name = 'd3-zoom'
+  version = '3.0.0'
+  license = 'ISC'
+  copyright = 'Copyright 2010-2021 Mike Bostock'
+  description = 'Pan and zoom SVG, HTML or Canvas using mouse or touch input'
+  homepage = 'https://github.com/d3/d3-zoom'
+  vcs = 'https://github.com/d3/d3-zoom'
+  purl = 'pkg:npm/d3-zoom@3.0.0'
+  paths = ['assets/js/d3/d3-zoom.min.js']
+  requires = [
+    'd3-dispatch',
+    'd3-drag',
+    'd3-interpolate',
+    'd3-selection',
+    'd3-transition',
+  ]
+  notes = 'The only d3 package the theme calls directly. The rest are vendored because this one needs them, directly or through one another. The `requires` of each package follow its own package.json, peer dependencies included.'
+
+[[components]]
+  scope = 'theme'
+  name = 'Font Awesome Free'
+  version = '7.3.1'
+  license = 'MIT AND CC-BY-4.0 AND OFL-1.1'
+  copyright = 'Copyright Fonticons, Inc.'
+  description = "The internet's icon library and toolkit"
+  homepage = 'https://fontawesome.com'
+  vcs = 'https://github.com/FortAwesome/Font-Awesome'
+  purl = 'pkg:npm/%40fortawesome/fontawesome-free@7.3.1'
+  paths = ['assets/fonts/fontawesome']
+  notes = 'Tri-licensed by file kind, as the banner in css/all.min.css states: the icon designs are CC-BY-4.0, the webfonts OFL-1.1, the CSS MIT. The expression covers all three without saying which file is which.'
+
+[[components]]
+  scope = 'theme'
+  name = 'js-yaml'
+  version = '4.1.1'
+  license = 'MIT'
+  copyright = 'Copyright (C) 2011-2015 by Vitaly Puzrin'
+  description = 'JavaScript YAML parser and dumper'
+  homepage = 'https://github.com/nodeca/js-yaml'
+  vcs = 'https://github.com/nodeca/js-yaml'
+  purl = 'pkg:npm/js-yaml@4.1.1'
+  paths = ['assets/js/js-yaml']
+
+[[components]]
+  scope = 'theme'
+  name = 'Lunr'
+  version = '2.3.9'
+  license = 'MIT'
+  copyright = 'Copyright (C) 2020 Oliver Nightingale'
+  description = 'Enables a great search experience without the need for external, server-side, search services'
+  homepage = 'https://lunrjs.com'
+  vcs = 'https://github.com/olivernn/lunr.js'
+  purl = 'pkg:npm/lunr@2.3.9'
+  paths = ['assets/js/lunr/lunr.min.js']
+
+[[components]]
+  scope = 'theme'
+  name = 'Lunr Languages'
+  version = '1.21.0'
+  license = 'MPL-2.0'
+  copyright = 'Copyright (C) 2014 Mihai Valentin'
+  description = 'A collection of languages stemmers and stopwords for Lunr Javascript library'
+  homepage = 'https://github.com/MihaiValentin/lunr-languages'
+  vcs = 'https://github.com/MihaiValentin/lunr-languages'
+  purl = 'pkg:npm/lunr-languages@1.21.0'
+  paths = ['assets/js/lunr']
+  bundled = true
+  notes = 'Ships TinySegmenter for Japanese and wordcut for Thai; wordcut in turn bundles underscore. Lunr itself is a component of its own, vendored into the same directory.'
+
+[[components]]
+  scope = 'theme'
+  name = 'MathJax'
+  version = '4.1.3'
+  license = 'Apache-2.0'
+  copyright = 'Copyright (c) 2009-2024 The MathJax Consortium'
+  description = 'Beautiful math and chemical formulae in all browsers'
+  homepage = 'https://mathjax.org/'
+  vcs = 'https://github.com/mathjax/MathJax'
+  purl = 'pkg:npm/mathjax@4.1.3'
+  paths = ['assets/js/mathjax']
+  bundled = true
+  notes = 'The speech and accessibility files compile in a dependency tree of their own, which is not enumerated: a hand-kept inventory of a bundle cannot be verified and would go stale unnoticed.'
+
+[[components]]
+  scope = 'theme'
+  name = 'Mermaid'
+  version = '11.17.2'
+  license = 'MIT'
+  copyright = 'Copyright (c) 2014 - 2024 Knut Sveidqvist'
+  description = 'Generation of diagram and flowchart from text in a similar manner as markdown'
+  homepage = 'https://mermaid.js.org'
+  vcs = 'https://github.com/mermaid-js/mermaid'
+  purl = 'pkg:npm/mermaid@11.17.2'
+  paths = ['assets/js/mermaid']
+  bundled = true
+  notes = 'An esbuild bundle with its own dependency tree compiled in, which is not enumerated: a hand-kept inventory of a bundle cannot be verified and would go stale unnoticed. The version is the one recorded at vendoring time - the file itself carries several conflicting ones.'
+
+[[components]]
+  scope = 'theme'
+  name = 'Orama'
+  version = '3.0.8'
+  license = 'Apache-2.0'
+  copyright = 'Copyright (c) 2023-present Michele Riva'
+  description = 'A high performance full-text and vector search engine with zero dependencies'
+  homepage = 'https://orama.com'
+  vcs = 'https://github.com/oramasearch/orama'
+  purl = 'pkg:npm/%40orama/orama@3.0.8'
+  paths = ['assets/js/orama']
+  patched = true
+  notes = 'The jsDelivr ESM build, with import specifiers rewritten for local hosting. The rewrites are listed in the header of orama.js. A vulnerability match against the upstream coordinate should account for the copy not being pristine.'
+
+[[components]]
+  scope = 'theme'
+  name = 'Orama Plugin PT15'
+  version = '3.0.8'
+  license = 'Apache-2.0'
+  copyright = 'Copyright 2024 OramaSearch Inc'
+  homepage = 'https://docs.orama.com/docs/orama-js/plugins/plugin-pt15'
+  vcs = 'https://github.com/oramasearch/orama'
+  purl = 'pkg:npm/%40orama/plugin-pt15@3.0.8'
+  paths = ['assets/js/orama/plugin-pt15.js']
+  extends = 'Orama'
+  patched = true
+  notes = 'A package of its own, vendored into the Orama directory. Its import specifiers carry the same rewrite as Orama, listed in the header of orama.js.'
+
+[[components]]
+  scope = 'theme'
+  name = 'Orama Plugin QPS'
+  version = '3.0.8'
+  license = 'Apache-2.0'
+  copyright = 'Copyright 2024 OramaSearch Inc'
+  homepage = 'https://docs.orama.com/docs/orama-js/plugins/plugin-qps'
+  vcs = 'https://github.com/oramasearch/orama'
+  purl = 'pkg:npm/%40orama/plugin-qps@3.0.8'
+  paths = ['assets/js/orama/plugin-qps.js']
+  extends = 'Orama'
+  patched = true
+  notes = 'A package of its own, vendored into the Orama directory. Its import specifiers carry the same rewrite as Orama, listed in the header of orama.js.'
+
+[[components]]
+  scope = 'theme'
+  name = 'Roboto Flex'
+  version = '3.200'
+  license = 'OFL-1.1'
+  copyright = 'Copyright 2017 The Roboto Flex Project Authors'
+  description = "Google's most popular font gets customizable"
+  homepage = 'https://github.com/googlefonts/roboto-flex'
+  vcs = 'https://github.com/googlefonts/roboto-flex'
+  purl = 'pkg:github/googlefonts/roboto-flex@3.200'
+  paths = ['assets/fonts/robotoflex']
+  notes = 'Unicode-range subsets from Google Fonts, beside the full variable font converted from the upstream TTF. Every file carries the same version in its `name` table, which is where `version` comes from - the serial in the Google Fonts download path numbers their packaging rather than the font.'
+
+[[components]]
+  scope = 'theme'
+  name = 'SwaggerUI'
+  version = '5.32.15'
+  license = 'Apache-2.0'
+  copyright = 'Copyright 2020 SmartBear Software Inc.'
+  description = 'Generate beautiful documentation from a Swagger-compliant API'
+  homepage = 'https://github.com/swagger-api/swagger-ui'
+  vcs = 'https://github.com/swagger-api/swagger-ui'
+  purl = 'pkg:npm/swagger-ui-dist@5.32.15'
+  paths = ['assets/js/swagger-ui', 'assets/css/swagger-ui']
+  bundled = true
+  notes = 'A webpack bundle with its own dependency tree compiled in, not enumerated here for the same reason as Mermaid. Its banner points at a LICENSE.txt that is not vendored alongside it.'
+
+# ------------------------------------------------------------------- docs
+#
+# Published with the theme documentation, not with the theme.
+
+[[components]]
+  scope = 'docs'
+  name = 'github-buttons'
+  version = '2.27.0'
+  license = 'MIT'
+  copyright = 'Copyright (c) 2015 なつき'
+  description = 'Unofficial github:buttons'
+  homepage = 'https://github.com/buttons/github-buttons'
+  vcs = 'https://github.com/buttons/github-buttons'
+  purl = 'pkg:npm/github-buttons@2.27.0'
+  paths = ['docs/assets/js/github-buttons']
+
+[[components]]
+  scope = 'docs'
+  name = 'Octodex'
+  description = 'Playground and home for all octocats'
+  homepage = 'https://octodex.github.com/'
+
+[[components]]
+  scope = 'docs'
+  name = 'Pixeden Club'
+  description = 'Inspired Design Resources for Creatives'
+  homepage = 'https://www.pixeden.com/'
+
+# -------------------------------------------------------------------- dev
+#
+# Used to write code and documentation, run tests, and generate screenshots.
+
+[[components]]
+  scope = 'dev'
+  name = 'Claude Code'
+  description = 'Meet your thinking partner'
+  homepage = 'https://www.claude.com/product/claude-code'
+
+[[components]]
+  scope = 'dev'
+  name = 'Hugo Version Manager'
+  description = 'Helps you manage different versions of Hugo'
+  homepage = 'https://github.com/jmooring/hvm'
+
+[[components]]
+  scope = 'dev'
+  name = 'git'
+  description = '--distributed-even-if-your-workflow-isnt'
+  homepage = 'https://git-scm.com/'
+
+[[components]]
+  scope = 'dev'
+  name = 'js-toml'
+  description = 'A TOML parser for JavaScript'
+  homepage = 'https://github.com/sunnyadn/js-toml'
+
+[[components]]
+  scope = 'dev'
+  name = 'Node.js'
+  description = 'Node.js JavaScript runtime'
+  homepage = 'https://github.com/nodejs/node'
+
+[[components]]
+  scope = 'dev'
+  name = 'Prettier'
+  description = 'Prettier is an opinionated code formatter'
+  homepage = 'https://github.com/prettier/prettier'
+
+[[components]]
+  scope = 'dev'
+  name = 'Puppeteer'
+  description = 'JavaScript API for Chrome and Firefox'
+  homepage = 'https://github.com/puppeteer/puppeteer'
+
+[[components]]
+  scope = 'dev'
+  name = 'Python'
+  description = 'The Python programming language'
+  homepage = 'https://github.com/python/cpython'
+
+[[components]]
+  scope = 'dev'
+  name = 'VS Code'
+  description = 'The open source code editor'
+  homepage = 'https://github.com/microsoft/vscode'
+
+[[components]]
+  scope = 'dev'
+  name = 'prettier/prettier-vscode'
+  homepage = 'https://github.com/prettier/prettier-vscode'
+  extends = 'VS Code'
+
+# ------------------------------------------------------------------ build
+#
+# Used for deployment of releases and documentation on GitHub.
+
+[[components]]
+  scope = 'build'
+  name = 'GitHub'
+  description = "Continuous deployment, testing and hosting of this project's sources and its documentation"
+  homepage = 'https://github.com'
+
+[[components]]
+  scope = 'build'
+  name = 'GitHub CLI'
+  description = 'GitHub on the command line'
+  homepage = 'https://cli.github.com/'
+
+[[components]]
+  scope = 'build'
+  name = 'actions/attest-build-provenance'
+  homepage = 'https://github.com/actions/attest-build-provenance'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'actions/checkout'
+  homepage = 'https://github.com/actions/checkout'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'actions/setup-node'
+  homepage = 'https://github.com/actions/setup-node'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'actions/upload-artifact'
+  homepage = 'https://github.com/actions/upload-artifact'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'Akkjon/close-milestone'
+  homepage = 'https://github.com/Akkjon/close-milestone'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'ashley-taylor/regex-property-action'
+  homepage = 'https://github.com/ashley-taylor/regex-property-action'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'guibranco/github-file-reader-action-v2'
+  homepage = 'https://github.com/guibranco/github-file-reader-action-v2'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'Kaven-Universe/github-action-current-date-time'
+  homepage = 'https://github.com/Kaven-Universe/github-action-current-date-time'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'ncipollo/release-action'
+  homepage = 'https://github.com/ncipollo/release-action'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'octokit/graphql-action'
+  homepage = 'https://github.com/octokit/graphql-action'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'peaceiris/actions-gh-pages'
+  homepage = 'https://github.com/peaceiris/actions-gh-pages'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'peaceiris/actions-hugo'
+  homepage = 'https://github.com/peaceiris/actions-hugo'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'planetscale/ghcommit-action'
+  homepage = 'https://github.com/planetscale/ghcommit-action'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'surahmansada/file-regex-replace'
+  homepage = 'https://github.com/surahmansada/file-regex-replace'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'WyriHaximus/github-action-create-milestone'
+  homepage = 'https://github.com/WyriHaximus/github-action-create-milestone'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'WyriHaximus/github-action-next-semvers'
+  homepage = 'https://github.com/WyriHaximus/github-action-next-semvers'
+  extends = 'GitHub'
+
+[[components]]
+  scope = 'build'
+  name = 'gren'
+  description = 'A releasenotes generator for GitHub'
+  homepage = 'https://github.com/github-tools/github-release-notes'
+
+[[components]]
+  scope = 'build'
+  name = 'Hugo'
+  description = 'The static site generator of your choice'
+  homepage = 'https://gohugo.io/'
+
+[[components]]
+  scope = 'build'
+  name = 'Imgbot'
+  description = 'Relax while Imgbot optimizes your images'
+  homepage = 'https://imgbot.net/'
+
+[[components]]
+  scope = 'build'
+  name = 'Sigstore'
+  description = 'Software Supply Chain Security'
+  homepage = 'https://sigstore.dev'
+
+# -------------------------------------------------------------------- own
+#
+# Files that sit inside a vendored directory but are this project's own work.
+# Without these the drift check could not tell a first-party file apart from a
+# vendored one that nobody declared.
+
+[[own]]
+  path = 'assets/js/lunr/lunr.en.min.js'
+  reason = 'English needs no stemmer - Lunr has one built in. The stub exists so the adapter can load a language file for every language uniformly.'
+
+[[own]]
+  path = 'docs/assets/js/lunr/lunr.art.min.js'
+  reason = 'Local to the documentation site. The Piratish translation uses `art-x-pir`, which the search adapter reduces to `art`, and without this file the language drops out of the index.'
+
+[[own]]
+  path = 'exampleSite/assets/js/lunr/lunr.art.min.js'
+  reason = 'The same stub as the one under `docs`, for the same reason. Each site carries its own copy because a Hugo site cannot reach an asset in another.'

@@ -25,20 +25,36 @@ npm ci
 npm test
 ````
 
-That checks the runner itself, then builds every case, and takes well under a minute.
+The parts run cheapest first and stop at the first failure, so a stale declaration fails at once rather than after a full round of Hugo builds. The whole suite is quick enough to run on every change.
 
-`npm test` is a wrapper around `tests/run.js`, which is the actual runner. Either form works - these two are the same command:
+The checks are `tests/checks.js` and cover what the build layer cannot see: the runner's own configuration handling, the [dependency declaration](development/maintaining#sbom) - that it matches the vendored tree, and that every shipped component carries a license - and the properties the [SBOM](configuration/sitemanagement/sbom) promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is `npm run sbom`, a narrower question: whether the committed `sbom.cdx.json` is still what that declaration renders.
+
+Each part also runs alone, and those with something to write back do it under an `:update` name:
+
+| Command | Runs |
+|---------|------|
+| `npm test` | everything |
+| `npm run test:update` | everything, rewriting whatever has something to write back |
+| `npm run format` | the formatting check |
+| `npm run format:update` | the formatting check, rewriting what it flags |
+| `npm run checks` | the runner checks |
+| `npm run sbom` | the SBOM comparison |
+| `npm run sbom:update` | the SBOM comparison, rewriting `sbom.cdx.json` |
+| `npm run golden` | the cases |
+| `npm run golden:update` | the cases, rewriting the expected output |
+
+`tests/golden.js` is the actual runner behind `golden`. Calling it directly takes the same flags and skips the rest, which is what you want while iterating on one case:
 
 ````shell
 npm test -- --build=<name>
-node tests/run.js --build=<name>
+node tests/golden.js --build=<name>
 ````
 
-Flags reach the runner directly; through `npm` they have to follow a `--` separator first. The examples below use the runner, being the shorter of the two.
+Flags reach the runner directly; through `npm` they have to follow a `--` separator first, and land on the last command in the chain - so the first form still runs every part before the cases, and only then narrows. The examples below use the runner, being the shorter of the two.
 
 ## The Vocabulary
 
-Five words, because a run is not simply a list of sites any more.
+A run is more than a list of sites, hence these words:
 
 | Term | Meaning |
 |------|---------|
@@ -54,7 +70,7 @@ Cases live in `tests/cases/<name>/case.toml` in the infra repository, and readin
 
 ## Shaping a Run
 
-Three parameters, all optional:
+The parameters, all optional:
 
 | Parameter | Selects | Default |
 |-----------|---------|---------|
@@ -65,17 +81,17 @@ Three parameters, all optional:
 ### `--build` - run part of the suite
 
 ````shell
-node tests/run.js --build=minimal
-node tests/run.js --build=url-permutations
-node tests/run.js --build=url-permutations/urls-relative
+node tests/golden.js --build=minimal
+node tests/golden.js --build=url-permutations
+node tests/golden.js --build=url-permutations/urls-relative
 ````
 
-`--build` matches a path prefix, so naming a case runs everything in it and naming a combination runs the one. A small case takes about a second, which is cheap enough to run on every save while working on one thing.
+`--build` matches a path prefix, so naming a case runs everything in it and naming a combination runs the one. A small case is cheap enough to run on every save while working on one thing.
 
 The accepted names are the ones a run prints. To see them without waiting for a full run, ask for something that does not exist and the runner lists them:
 
 ````shell
-node tests/run.js --build=?
+node tests/golden.js --build=?
 ````
 
 A sequence is the exception: its builds share one tree, so it is named as a whole and a prefix reaching inside it is rejected. A build lifted out of a sequence proves nothing, which is what makes it a sequence.
@@ -87,9 +103,9 @@ Left out, each site is built with the version an interactive shell would use in 
 Passing `--hugo` overrides every pin and holds the whole run to one version:
 
 ````shell
-node tests/run.js --hugo=min
-node tests/run.js --hugo=latest
-node tests/run.js --hugo=v0.150.0
+node tests/golden.js --hugo=min
+node tests/golden.js --hugo=latest
+node tests/golden.js --hugo=v0.150.0
 ````
 
 `min` is whatever the theme declares in its `theme.toml`, and `latest` the newest release. Anything not already installed is fetched for you.
@@ -101,8 +117,8 @@ Use `min` before pushing something that might rely on a newer Hugo feature, and 
 When a change legitimately alters what the theme produces, record the new output as the expectation:
 
 ````shell
-node tests/run.js --update
-node tests/run.js --build=<name> --update
+npm run golden:update
+node tests/golden.js --build=<name> --update
 ````
 
 A full regeneration also prunes: a stored result no case produces any more is deleted rather than left behind. A filtered run does not, having no way to know whether a result it did not build still exists.
@@ -117,7 +133,7 @@ If the change spans both repositories, give both branches the same name; see [De
 
 ## Reading a Failure
 
-Every result is checked in three layers, and the one that fails tells you what kind of problem you have.
+Every result is checked in layers, and the one that fails tells you what kind of problem you have.
 
 | Layer | Asserts | A failure usually means |
 |-------|---------|-------------------------|
@@ -149,7 +165,7 @@ Everything lives in the infra repository.
 4. Generate its expected output, and read it:
 
    ````shell
-   node tests/run.js --build=<name> --update
+   node tests/golden.js --build=<name> --update
    ````
 
 5. Look at `tests/expected/<name>/`. This is the moment the case is worth something or not: if the output does not show the behaviour you set out to pin, it will not catch a regression in it either.
@@ -169,7 +185,7 @@ environment = "testing"
   urls = ["relative", "absolute", "ugly"]
 ````
 
-One content set, three results, compared separately. Adding a further mode is a directory and one more name. An axis with a single value still applies - it just does not branch the tree, so nothing is nested that carries no information.
+One content set, one result per mode, compared separately. Adding a further mode is a directory and one more name. An axis with a single value still applies - it just does not branch the tree, so nothing is nested that carries no information.
 
 ### Builds That Belong Together
 
@@ -192,7 +208,7 @@ Those spell the sequence out, and share one output tree:
 
 ### Accepting a Known Warning
 
-Any `WARN` or `ERROR` fails a build unless it is listed in a baseline. Three are consulted and their entries unioned:
+Any `WARN` or `ERROR` fails a build unless it is listed in a baseline. These are consulted and their entries unioned:
 
 | File | Holds |
 |------|-------|

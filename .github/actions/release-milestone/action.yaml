@@ -10,10 +10,14 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup node
-      uses: actions/setup-node@v4
+    # Pinned to main rather than looked up: a release only ever happens there,
+    # as check-milestone reports `skipped` on every other branch.
+    - name: Checkout infra
+      uses: actions/checkout@v4
       with:
-        node-version: '16'
+        repository: ${{ github.repository }}-infra
+        ref: main
+        path: infra
 
     - name: Setup git
       shell: bash
@@ -129,6 +133,11 @@ runs:
         echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.165.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
         echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.165.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
 
+    - name: Setup node for gren
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+
     - name: Generate english changelogs
       shell: bash
       env:
@@ -161,6 +170,27 @@ runs:
         replacement: "${{ steps.changelog_docs.outputs.contents }}\n---\n\n$1\n$2"
         include: CHANGELOG.md
 
+    # The version lives in infra's `.nvmrc`, so a working copy and CI cannot
+    # drift apart.
+    - name: Setup node for the generator
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: infra/.nvmrc
+
+    # `npm ci` installs all of infra, although the generator itself
+    # only needs js-toml and nothing else. The packages are cheap; the browser
+    # Puppeteer's install script fetches for itself is not, so suppressed here     - name: Install generator dependencies
+      shell: bash
+      working-directory: infra
+      run: npm ci --ignore-scripts
+
+    - name: Generate SBOM
+      shell: bash
+      working-directory: infra
+      env:
+        RELEARN_THEME_DIR: ${{ github.workspace }}
+      run: npm run sbom:update
+
     # Same derivation as build-site, so the release notes link at the site this
     # very run publishes rather than at whatever repository the pair was forked
     # or copied from.
@@ -182,19 +212,18 @@ runs:
         regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
         replacement: "[★ What's new in this version ★](${{ steps.base.outputs.url }}introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
 
-    - name: Stage files
-      shell: bash
-      run: |
-        git add *
-
+    # Nothing is staged first, and nothing needs to be. This action selects
+    # what to commit by running `git status -- <file_pattern>`, reading the
+    # index and the worktree alike, and sends the files through the API.
     - name: Commit updates
-      uses: planetscale/ghcommit-action@v0.2.18
+      uses: planetscale/ghcommit-action@v0.2.22
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
       with:
         commit_message: "Release ${{ inputs.milestone }}"
         repo: ${{ github.repository }}
-        branch: ${{ github.head_ref || github.ref_name }}
+        # Pinned to main for the same reason as the infra checkout at the top
+        branch: main
         file_pattern: "*.*"
 
     - name: Create final tags
@@ -222,7 +251,21 @@ runs:
         git tag  --force --message "" "x"
         git push --force origin "x"
 
+    # This step creates the release and nothing else. Attaching the SBOM to it
+    # and signing provenance for it are both done by jobs in the caller, for
+    # the same reason: they are additions to a release, and neither may be able
+    # to prevent one.
+    #
+    # Creating a release and attaching a file to one also want opposite error
+    # policies, which is why they cannot share a step. Creation happens after
+    # the commit and the tags are pushed, so it carries continue-on-error:
+    # nothing from here on may take the steps behind it down - they have an
+    # implicit success(), so an abort would skip the next milestone and the
+    # caller's site rebuild as well. A failure is left as a release to repair
+    # by hand. Attaching, by contrast, is idempotent and costs nothing to
+    # repeat, so it is allowed to fail loudly where it now lives.
     - name: Publish release
+      continue-on-error: true
       uses: ncipollo/release-action@v1
       env:
         MILESTONE: ${{ inputs.milestone }}

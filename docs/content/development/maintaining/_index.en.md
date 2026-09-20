@@ -97,6 +97,26 @@ If the issue is not caused by a programming error in the themes own code, you ca
 | {{% badge color="#e550a7" %}}hugo{{% /badge %}}     | This is a topic related to Hugo itself but not the theme    |
 | {{% badge color="#e550a7" %}}mermaid{{% /badge %}}  | This is a topic related to Mermaid itself but not the theme |
 
+## SBOM
+
+Every third-party resource the project uses is declared in `docs/data/relearn/thirdparty.toml`. That file is the single source of truth behind the [credits](more/credits) page, the [SBOM](configuration/sitemanagement/sbom) at `sbom.cdx.json`, and several checks in the test suite.
+
+**When you vendor an update, change its `version` in the same commit that changes the files.** A version is knowable at the moment of vendoring and at no other time. Some of these bundles carry no version string at all, and the ones that do disagree about where to put it. Nothing can check it, which is why every component carries a digest of its files as well: a component that changed on disk without changing its `version` still shows up in the diff of `sbom.cdx.json`.
+
+A font is the exception that can be asked. It declares its own version inside the file, where subsetting and conversion both leave it, so `npm run fontversion` in the infra repository reads it back out of what you vendored rather than out of the page you downloaded from.
+
+The test suite fails when the declaration and the vendored tree disagree, in either direction: a directory holding files that no component claims, or a component claiming paths that no longer exist. Add a new dependency to the declaration or the build stays red.
+
+**`npm test` also fails when the committed `sbom.cdx.json` is not what the declaration currently renders**, so regenerating is a step of the change rather than an afterthought.
+
+````bash
+cd ../hugo-theme-relearn-infra
+npm ci
+npm run sbom:update
+````
+
+The release workflow regenerates the file too, after it has stamped the new version - the document's own version and timestamp come from `layouts/partials/version.txt` and `CHANGELOG.md`, which hold the values of the release being made only from that point on. Until then those two fields keep naming the previous release, while the components track whatever is vendored.
+
 ## Making Releases
 
 A release is based on a milestone named like the release itself - just the version number, eg: `1.2.3`. It's in the maintainers responsibility to check [semver semantics](#semver) of the milestone's name prior to release and change it if necessary.
@@ -111,7 +131,7 @@ During execution of the workflow a few things are checked. If a check fails the 
 
 The following checks will be enforced
 
-- the [test suite](development/testing) passes against both the minimum supported and the latest Hugo release
+- the [test suite](development/testing) passes against both the minimum supported and the latest Hugo release, which includes the [dependency declaration](#sbom) matching the vendored tree and `sbom.cdx.json` matching the declaration
 - the milestone exists
 - there is at least one closed issue assigned to the milestone
 - all assigned issues for this milestone are closed
@@ -124,16 +144,19 @@ After a successful run of the action
 - the releasenotes at `introduction/releasenotes/<major>/<minor>.en.md` are updated, including release version and release date
 - missing generic upper level files for english and piratish are created
 - the version number for the `<meta generator>` is updated
+- the [SBOM](#sbom) at `sbom.cdx.json` is regenerated
 - the updated files are committed
 - the milestone is closed
 - the repository is tagged with the version number (eg. `1.2.3`), the main version number (eg. `1.2.x`) and the major version number (eg. `1.x`)
 - a new entry in the [GitHub release list](https://github.com/McShelby/hugo-theme-relearn/releases) with the according changelog will be created
+- `sbom.cdx.json` is attached to that release, so it can be downloaded by version
+- a signed build provenance attestation is issued for the `sbom.cdx.json` at that tag, unless the signing service is unavailable - a release is never held up for it
 - the [official documentation](https://mcshelby.github.io/hugo-theme-relearn/) is built and deployed
 - the version number for the `<meta generator>` is updated to a temporary and committed (this helps to determine if users are running directly on the main branch or are using releases)
 - a new milestone for the next patch release is created (this can later be renamed to a main release if necessary)
 
 ### Rehearsing on a Branch
 
-The workflow only performs an actual release when it runs on `main`. Started on any other branch it runs the parts that are safe to repeat - the [test suite](development/testing) and the documentation build - and skips every step that changes something outside the run: the milestone check, tagging, committing, publishing the GitHub release and deploying to GitHub Pages. The milestone input is ignored there, and only required on `main`.
+The workflow only performs an actual release when it runs on `main`. Started on any other branch it runs the parts that are safe to repeat - the [test suite](development/testing) and the documentation build - and skips every step that changes something outside the run. The milestone input is ignored there, and only required on `main`.
 
 In both cases the built site is uploaded as a workflow artifact named `<workflow>-<run number>-<run id>` and kept for 30 days, so you can download the result of a run and inspect it before releasing for real. It is found at the bottom of the run's summary page in the [Actions tab](https://github.com/McShelby/hugo-theme-relearn/actions/workflows/version-release.yaml).

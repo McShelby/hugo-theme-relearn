@@ -1,0 +1,193 @@
+{{- $page := .page }}
+{{- $scope := .scope }}
+
+{{- $filepath := "[virtual file]" }}
+{{- with and $page $page.File $page.File.Filename }}
+  {{- $filepath = . }}
+{{- end }}
+
+{{- /* One cause, one message: an absent scope leaves `$components` empty too,
+  and reporting that as well would send the reader to the declaration when the
+  mistake is in the page. Everything below is gated on `$sound`, so neither
+  case goes on to render a list.
+
+  The declaration is reached through one `index` all the way down to
+  `components` rather than dereferenced, because every level can go missing on
+  its own. A file renamed, deleted or failing to parse takes the whole
+  `relearn` key with it - `docs/data/relearn/` holds nothing else - and one that
+  parses but has lost its `[[components]]` leaves just the last level nil.
+  Either way a plain `hugo.Data.relearn.thirdparty.components` would end in a
+  Go template error naming a field, the one message here that says neither
+  which page nor which file to go and look at. */}}
+{{- $sound := true }}
+{{- $components := slice }}
+{{- if not $scope }}
+  {{- errorf "%q: the thirdparty shortcode was called without a scope" $filepath }}
+  {{- $sound = false }}
+{{- else }}
+  {{- with index hugo.Data "relearn" "thirdparty" "components" }}
+    {{- $components = where . "scope" $scope }}
+  {{- else }}
+    {{- errorf "%q: docs/data/relearn/thirdparty.toml is missing, could not be read or declares no components" $filepath }}
+    {{- $sound = false }}
+  {{- end }}
+  {{- if and $sound (not $components) }}
+    {{- errorf "%q: no components declared for scope %q in docs/data/relearn/thirdparty.toml" $filepath $scope }}
+    {{- $sound = false }}
+  {{- end }}
+{{- end }}
+
+{{- /* No version numbers here. `version` is hand-kept, so a vendored update
+  that forgot to bump it would publish a wrong number on a page everybody
+  reads. The SBOM carries the versions. */}}
+
+{{- /* The declaration is checked below before a line of the list is rendered,
+  and nothing is rendered unless it passed. `errorf` marks the build failed but
+  lets the template run on, so `$sound` is what actually keeps the recursion
+  away from a graph it cannot walk out of: a cycle would recurse until Hugo
+  gave up, burying the message that had already said what was wrong.
+
+  The infra repository's loader checks the same things and reports them better,
+  seeing every scope at once and naming a cycle edge by edge. It is repeated
+  here not for want of trust but for want of timing: it runs under `npm test`,
+  and the declaration is edited under `hugo server`. */}}
+
+{{- /* Checked before anything resolves a name, because a name declared twice
+  makes every lookup below ambiguous: `where` matches both copies, so the
+  component renders once per copy wherever it is required, while the settle
+  pass counts the name once and stays quiet about it. The page would simply
+  look as though it had been written twice.
+
+  A missing name is caught in the same pass, before anything prints one: it
+  would otherwise reach the list as `%!s(<nil>)` with no error at all. */}}
+{{- $names := slice }}
+{{- range $components }}
+  {{- if not .name }}
+    {{- errorf "%q: a component in scope %q in docs/data/relearn/thirdparty.toml has no name" $filepath $scope }}
+    {{- $sound = false }}
+  {{- else if in $names .name }}
+    {{- errorf "%q: %q is declared more than once in scope %q in docs/data/relearn/thirdparty.toml" $filepath .name $scope }}
+    {{- $sound = false }}
+  {{- else }}
+    {{- $names = $names | append .name }}
+  {{- end }}
+{{- end }}
+
+{{- /* A name matching nothing in this scope would render nothing, dropping the
+  edge without a word and leaving the component standing on its own as if the
+  declaration had said so. A name in another scope is the same mistake here,
+  the scope being all this page can see. An `extends` naming nothing is worse
+  still: the extension would stand neither on its own nor beneath anything,
+  and vanish. */}}
+{{- range $components }}
+  {{- $owner := .name }}
+  {{- range .requires }}
+    {{- if not (where $components "name" .) }}
+      {{- errorf "%q: %q requires %q, which is not declared in scope %q in docs/data/relearn/thirdparty.toml" $filepath $owner . $scope }}
+      {{- $sound = false }}
+    {{- end }}
+  {{- end }}
+  {{- with .extends }}
+    {{- if not (where $components "name" .) }}
+      {{- errorf "%q: %q extends %q, which is not declared in scope %q in docs/data/relearn/thirdparty.toml" $filepath $owner . $scope }}
+      {{- $sound = false }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* A component settles once everything nested beneath it - what it
+  requires, and what extends it - has settled, so whatever is still unsettled
+  after a pass per component cannot be ordered at all: it lies on a cycle or
+  nests its way onto one. That is the shape the recursion cannot report for
+  itself - a cycle nothing points into from outside leaves every one of its
+  members out of the roots below, so none of them is rendered and nothing
+  notices the list came out short.
+
+  Skipped once a name has failed to resolve, because an unresolvable
+  requirement never settles either and would be reported a second time as a
+  cycle it has nothing to do with. */}}
+{{- if $sound }}
+  {{- $settled := slice }}
+  {{- range seq (len $components) }}
+    {{- range $components }}
+      {{- if not (in $settled .name) }}
+        {{- $ready := true }}
+        {{- range .requires }}
+          {{- if not (in $settled .) }}
+            {{- $ready = false }}
+          {{- end }}
+        {{- end }}
+        {{- range where $components "extends" .name }}
+          {{- if not (in $settled .name) }}
+            {{- $ready = false }}
+          {{- end }}
+        {{- end }}
+        {{- if $ready }}
+          {{- $settled = $settled | append .name }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- $stuck := slice }}
+  {{- range $components }}
+    {{- if not (in $settled .name) }}
+      {{- $stuck = $stuck | append .name }}
+    {{- end }}
+  {{- end }}
+  {{- with $stuck }}
+    {{- errorf "%q: circular `requires` or `extends` in scope %q in docs/data/relearn/thirdparty.toml, involving %s" $filepath $scope (delimit . ", ") }}
+    {{- $sound = false }}
+  {{- end }}
+{{- end }}
+
+{{- define "partials/inline/thirdparty-component.html" }}
+  {{- $components := .components }}
+  {{- $indent := .indent }}
+  {{- with .component }}
+    {{- $text := .name }}
+    {{- with .homepage }}
+      {{- $text = printf "[%s](%s)" $text . }}
+    {{- end }}
+    {{- with .description }}
+      {{- $text = printf "%s - %s" $text . }}
+    {{- end }}
+    {{- printf "\n%s- %s" $indent $text | safeHTML }}
+    {{- /* Recursive, and safe to be so only because the caller established
+      there is no cycle. A component that came along with something that itself
+      came along with the theme is still listed; one that two components both
+      require is listed under each of them, which is what the SBOM says as
+      well - it appears in both their `dependsOn`.
+
+      Extensions follow, beneath the host they run inside. The SBOM records
+      that edge the other way round, from the extension to its host. */}}
+    {{- range .requires }}
+      {{- range where $components "name" . }}
+        {{- partial "inline/thirdparty-component.html" (dict "components" $components "component" . "indent" (printf "%s  " $indent)) }}
+      {{- end }}
+    {{- end }}
+    {{- range where $components "extends" .name }}
+      {{- partial "inline/thirdparty-component.html" (dict "components" $components "component" . "indent" (printf "%s  " $indent)) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- if $sound }}
+  {{- /* A component named by another component's `requires` is nested beneath
+    it instead of standing on its own, so the list says what the theme calls
+    and what merely came along with it. A component that `extends` another is
+    nested beneath its host, because it only runs inside it. The SBOM records
+    the same relations as a graph, out of the same fields, in the infra
+    repository's `tools/sbom/cyclonedx.js` - a change to either rule belongs
+    in both. */}}
+  {{- $required := slice }}
+  {{- range $components }}
+    {{- range .requires }}
+      {{- $required = $required | append . }}
+    {{- end }}
+  {{- end }}
+  {{- range $components }}
+    {{- if and (not .extends) (not (in $required .name)) }}
+      {{- partial "inline/thirdparty-component.html" (dict "components" $components "component" . "indent" "") }}
+    {{- end }}
+  {{- end }}
+{{- end }}

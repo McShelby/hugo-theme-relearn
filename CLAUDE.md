@@ -85,6 +85,18 @@ npm ci
 npm run screenshots
 ```
 
+### Font Versions Tool
+
+A vendored font declares its own version inside the file. Read it rather than
+leaving the component in `docs/data/relearn/thirdparty.toml` without one - the
+distributor's numbering describes their packaging, not the font.
+
+```bash
+cd ../hugo-theme-relearn-infra
+npm ci
+npm run fontversion
+```
+
 ## Architecture
 
 ### Directory Structure
@@ -235,20 +247,25 @@ weight = 10  # Ordering in sidebar
 
 ## Testing
 
-The automated suite lives in the infra repo; run `npm test` from there. Cases,
-layers, axes and sequences are documented in
+The automated suite lives in the infra repo; run `npm test` from there. It runs
+its parts cheapest first and stops at the first failure. What those parts are,
+along with cases, layers, axes and sequences, is documented in
 `docs/content/development/testing/_index.en.md`.
 
 What matters when changing the theme:
 
-- Regenerate baselines with `node tests/run.js --update`, then read the diff -
-  it *is* the test result. Commit it with the change that caused it.
+- Regenerate baselines with `npm run golden:update`, then read the diff - it
+  *is* the test result. Commit it with the change that caused it.
 - A baseline belongs to the Hugo that produced it, recorded in `hugo.txt`. Only
   `path` and `latest` compare; anything else drops to the build layer.
 - A `WARN` or `ERROR` fails a build unless a warnings baseline lists it. Those
   entries are accepted defects - delete one when its issue is fixed.
 - Output must be identical on Windows and Linux. A template's own line endings
   must never reach the content stream.
+- Vendoring a third-party file means editing
+  `docs/data/relearn/thirdparty.toml` in the same commit, then
+  `npm run sbom:update`. The suite fails on a declaration that does not match
+  the tree, and on a stale `sbom.cdx.json`.
 
 ### What the Suite Cannot Check
 

@@ -3,10 +3,10 @@ name: version-release
 # On main this performs a full release.
 #
 # On any other branch it runs everything that is safe to repeat - tests,
-# documentation build, artifact upload - and skips the steps that mutate the world:
-# tagging, committing, publishing and deployment. The built site is uploaded as an
-# artifact either way, so a release can be rehearsed and its output inspected
-# before it is made for real.
+# documentation build, artifact upload - and skips every step that changes
+# something outside the run. The built site is uploaded as an artifact either
+# way, so a release can be rehearsed and its output inspected before it is made
+# for real.
 
 on:
   workflow_dispatch:
@@ -14,15 +14,6 @@ on:
       milestone:
         description: 'Milestone for this release (required on main, ignored elsewhere)'
         required: false
-
-# Declared rather than inherited. A release commits back to the branch, creates
-# a tag and a GitHub release, and pushes `gh-pages`; it also closes the milestone
-# it releases and opens the next patch one, which is a write to issues and not
-# just a read. A repository whose default token is read-only would fail all of
-# that.
-permissions:
-  contents: write
-  issues: write
 
 jobs:
   # A release must not happen on a red suite.
@@ -34,6 +25,18 @@ jobs:
     name: Run release
     needs: test
     runs-on: ubuntu-latest
+    # Declared per job rather than per workflow, so the signing grants below
+    # reach `attest` and nothing else.
+    permissions:
+      contents: write
+      issues: write
+    # `success` when the release steps ran through, `skipped` on every branch
+    # but main, `failure` if they broke off part way. It gates `asset` and
+    # `attest` below, and is the outcome of the release step rather than of
+    # this job: the job carries the site build and deployment too, and those
+    # run after the release is already published.
+    outputs:
+      created: ${{ steps.create.outcome }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -53,6 +56,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release
+        id: create
         if: ${{ steps.check.outputs.outcome == 'success' }}
         uses: ./.github/actions/release-milestone
         with:
@@ -94,3 +98,75 @@ jobs:
         uses: ./.github/actions/deploy-site
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # The SBOM rides along as a release asset so it can be fetched by version
+  # without cloning - `releases/latest/download/sbom.cdx.json` above all, which
+  # the documentation hands out. It is committed in the repository too, but a
+  # raw URL there is not something a consumer discovers.
+  asset:
+    name: Attach SBOM
+    needs: release
+    # `always()` for the reasons given at `attest` below.
+    if: ${{ always() && needs.release.outputs.created == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.milestone }}
+
+      # Retried, because the realistic failure here is a transient 5xx from the
+      # upload endpoint rather than anything wrong with the release. `--clobber`
+      # is what keeps both a retry and a re-run of this job idempotent.
+      #
+      # The other way to fail here is a tolerated `Publish release` failure,
+      # which leaves `created` at `success` with no release to upload to. The
+      # message names both repairs rather than asking the API which one applies:
+      # an API that has just refused every upload is no more likely to answer
+      # that, and a wrong answer sends the maintainer to the wrong repair.
+      - name: Attach the SBOM
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MILESTONE: ${{ github.event.inputs.milestone }}
+        run: |
+          for attempt in 1 2 3; do
+            if [ "$attempt" -gt 1 ]; then
+              sleep $(( (attempt - 1) * 5 ))
+            fi
+            if gh release upload "$MILESTONE" sbom.cdx.json --clobber; then
+              exit 0
+            fi
+            echo "attempt $attempt failed"
+          done
+          echo "::error::could not attach sbom.cdx.json to release $MILESTONE"
+          echo "If Publish release failed in the release job, create the release for tag"
+          echo "$MILESTONE first. Then re-run this job, or attach the file by hand with:"
+          echo "  gh release upload $MILESTONE sbom.cdx.json --clobber"
+          exit 1
+
+  attest:
+    name: Attest SBOM
+    needs: release
+    if: ${{ always() && needs.release.outputs.created == 'success' }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      # The tag rather than the workspace the release job left behind: it is the
+      # same copy either way, and taking it from the tag says which bytes are
+      # being vouched for.
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.milestone }}
+
+      - name: Attest SBOM
+        uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: sbom.cdx.json
