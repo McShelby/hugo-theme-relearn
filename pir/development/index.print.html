@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+4d96fe77a42796c8cf6a983c113d8e48a8eb91ea">
+    <meta name="generator" content="Relearn 9.1.0+84ffe8fa7d96e9e939e739b1fe396b32e2a65dde">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="This chapter contains informat&#39;n only needed fer development an&#39; maintain&#39;n th&#39; theme.">
     <meta name="author" content="Sören Weber">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search.min.795bf51f4b531fcd29fe7ffb27f174f6bb6b0ce086465e2be48643dea742dfbb.js" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="../../"+"searchindex.pir.min.1cf489cae24e52c3b8df30fe97641bdb0eef3536ee47acc644ee3571b67d7604.js";
+      window.relearn.index_js_url="../../"+"searchindex.pir.min.7904843388d9c3f4e9a9f5f405f69f02413e3b0bfc82421c12a76f82d12c16ff.js";
     </script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -418,21 +418,21 @@
 <h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Optional, an' independent o' which setup ye chose - th' hooks live 'n th' theme repository, 'n th' <code>.githooks</code> root folder. Documentat'n fer each hook be contained 'n each file.</p>
 <p>Th' <code>post-commit</code> hook updates th' version number on each commit, which be what makes a build from <code>main</code> distinguish'ble from a release when debugg'n user reports. Noth'n depends on ye hav'n it.</p>
-<div class="tab-panel" data-tab-group="R-tabs-205ed48cbd9e29a170f32bb49f6188f6">
+<div class="tab-panel" data-tab-group="R-tabs-5b70f394504f40a4518d7b4e56791c62">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-9840b2ac98ef38fc3374b2db87029519" aria-expanded="true"
+      aria-controls="R-tab-id-8cae8105414e587814ad8790b17dadf4" aria-expanded="true"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-nav-button tab-panel-style cstyle initial active" tabindex="-1"
-      onclick="switchTab('R-tabs-205ed48cbd9e29a170f32bb49f6188f6','R-tab-f7180604fa78a35320b04d0d8432a023')"
+      onclick="switchTab('R-tabs-5b70f394504f40a4518d7b4e56791c62','R-tab-f7180604fa78a35320b04d0d8432a023')"
     >
       <span class="tab-nav-text">.git/hooks/post-commit</span>
     </button>
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9840b2ac98ef38fc3374b2db87029519"
+      id="R-tab-id-8cae8105414e587814ad8790b17dadf4"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -474,13 +474,61 @@
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
 </span></span><span class="line"><span class="cl">npm ci
 </span></span><span class="line"><span class="cl">npm test</span></span></code></pre></div>
-<p>That checks th' runner itself, then builds every case, an' takes well under a minute.</p>
-<p><code>npm test</code> be a wrapper around <code>tests/run.js</code>, which be th' actual runner. Either form works - these two be th' same command:</p>
+<p>Th' parts run cheapest first an' stop at th' first failure, so a stale declarat'n fails at once rather than after a full round o' Cap'n Hugo builds. Th' whole suite be quick enough t' run on every change.</p>
+<p>Th' checks be <code>tests/checks.js</code> an' cover what th' build layer cannot see: th' runner&rsquo;s own configurat'n handl'n, th' <a href="/hugo-theme-relearn/pir/development/maintaining/index.html#sbom">dependency declarat'n</a> - that it matches th' vendored tree, an' that every shipped component carries a license - an' th' properties th' <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/sbom/index.html">SBOM</a> promises its readers, that it renders identically twice an' that its serial number be recomputable from th' document an' moves wit' th' contents. Th' SBOM comparison be <code>npm run sbom</code>, a narrower quest'n: whether th' committed <code>sbom.cdx.json</code> be still what that declarat'n renders.</p>
+<p>Each part also runs alone, an' those wit' someth'n t' write back do it under an <code>:update</code> name:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Command</th>
+					<th>Runs</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>npm test</code></td>
+					<td>everyth'n</td>
+			</tr>
+			<tr>
+					<td><code>npm run test:update</code></td>
+					<td>everyth'n, rewrit'n whatever has someth'n t' write back</td>
+			</tr>
+			<tr>
+					<td><code>npm run format</code></td>
+					<td>th' formatt'n check</td>
+			</tr>
+			<tr>
+					<td><code>npm run format:update</code></td>
+					<td>th' formatt'n check, rewrit'n what it flags</td>
+			</tr>
+			<tr>
+					<td><code>npm run checks</code></td>
+					<td>th' runner checks</td>
+			</tr>
+			<tr>
+					<td><code>npm run sbom</code></td>
+					<td>th' SBOM comparison</td>
+			</tr>
+			<tr>
+					<td><code>npm run sbom:update</code></td>
+					<td>th' SBOM comparison, rewrit'n <code>sbom.cdx.json</code></td>
+			</tr>
+			<tr>
+					<td><code>npm run golden</code></td>
+					<td>th' cases</td>
+			</tr>
+			<tr>
+					<td><code>npm run golden:update</code></td>
+					<td>th' cases, rewrit'n th' expected output</td>
+			</tr>
+	</tbody>
+</table>
+<p><code>tests/golden.js</code> be th' actual runner behind <code>golden</code>. Call'n it directly takes th' same flags an' skips th' rest, which be what ye want while iterat'n on one case:</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm <span class="nb">test</span> -- --build<span class="o">=</span>&lt;name&gt;
-</span></span><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>&lt;name&gt;</span></span></code></pre></div>
-<p>Flags reach th' runner directly; through <code>npm</code> they have t' follow a <code>--</code> separator first. Th' examples below use th' runner, be'n th' shorter o' th' two.</p>
+</span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt;</span></span></code></pre></div>
+<p>Flags reach th' runner directly; through <code>npm</code> they have t' follow a <code>--</code> separator first, an' land on th' last command 'n th' chain - so th' first form still runs every part before th' cases, an' only then narrows. Th' examples below use th' runner, be'n th' shorter o' th' two.</p>
 <h2 id="the-vocabulary">Th' Vocabulary<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<p>Five words, because a run be not simply a list o' sites any more.</p>
+<p>A run be more than a list o' sites, hence these words:</p>
 <table>
 	<thead>
 			<tr>
@@ -514,7 +562,7 @@
 <p>Most cases be one ship, one configurat'n, one result. A case that varies an axis produces a result per combinat'n. A case whose builds only mean someth'n as a pair - a versioned ship, or th' docs an' th' exampleSite as GitHub Planks serves them - produces several builds shar'n one result.</p>
 <p>Cases live 'n <code>tests/cases/&lt;name&gt;/case.toml</code> 'n th' infra repository, an' read'n them be th' quickest way t' see what th' suite covers.</p>
 <h2 id="shaping-a-run">Shap'n a Run<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<p>Three parameters, all optional:</p>
+<p>Th' parameters, all optional:</p>
 <table>
 	<thead>
 			<tr>
@@ -542,25 +590,25 @@
 	</tbody>
 </table>
 <h3 id="--build---run-part-of-the-suite"><code>--build</code> - run part o' th' suite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>minimal
-</span></span><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>url-permutat'ns
-</span></span><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>url-permutations/urls-relative</span></span></code></pre></div>
-<p><code>--build</code> matches a path prefix, so nam'n a case runs everyth'n 'n it an' nam'n a combinat'n runs th' one. A small case takes about a second, which be cheap enough t' run on every save while work'n on one th'n.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>minimal
+</span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>url-permutat'ns
+</span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>url-permutations/urls-relative</span></span></code></pre></div>
+<p><code>--build</code> matches a path prefix, so nam'n a case runs everyth'n 'n it an' nam'n a combinat'n runs th' one. A small case be cheap enough t' run on every save while work'n on one th'n.</p>
 <p>Th' accepted names be th' ones a run prints. T' see them without wait'n fer a full run, ask fer someth'n that does not exist an' th' runner lists them:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>?</span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>?</span></span></code></pre></div>
 <p>A sequence be th' except'n: its builds share one tree, so it be named as a whole an' a prefix reach'n inside it be rejected. A build lifted out o' a sequence proves noth'n, which be what makes it a sequence.</p>
 <h3 id="--hugo---build-with-a-particular-version"><code>--hugo</code> - build wit' a particular version<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Left out, each ship be built wit' th' version an interactive shell would use 'n its own directory: th' one its <code>.hvm</code> file names, or th' <code>hugo</code> on yer <code>PATH</code> when there be none. A pin therefore applies t' th' ship it sits beside, an' a run can legitimately span several versions. Each ship a pin applies t' says so 'n th' output, so a result never looks like it came from a version it did not.</p>
 <p>Pass'n <code>--hugo</code> overrides every pin an' holds th' whole run t' one version:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/run.js --hugo<span class="o">=</span>min
-</span></span><span class="line"><span class="cl">node tests/run.js --hugo<span class="o">=</span>latest
-</span></span><span class="line"><span class="cl">node tests/run.js --hugo<span class="o">=</span>v0.150.0</span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>min
+</span></span><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>latest
+</span></span><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>v0.150.0</span></span></code></pre></div>
 <p><code>min</code> be whatever th' theme declares 'n its <code>theme.toml</code>, an' <code>latest</code> th' newest release. Anyth'n not already installed be fetched fer ye.</p>
 <p>Use <code>min</code> before push'n someth'n that might rely on a newer Cap'n Hugo feature, an' <code>latest</code> t' see a com'n Hugo release before it reaches yer users.</p>
 <h3 id="--update---rewrite-the-expected-output"><code>--update</code> - rewrite th' expected output<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>When a change legitimately alters what th' theme produces, record th' new output as th' expectat'n:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/run.js --update
-</span></span><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm run golden:update
+</span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
 <p>A full regenerat'n also prunes: a stored result no case produces any more be deleted rather than left behind. A filtered run does not, hav'n no way t' know whether a result it did not build still exists.</p>
 <p>Commit th' regenerated output together wit' th' change that caused it, never as a commit o' its own - otherwise th' next person cannot tell which change produced which output.</p>
 
@@ -575,7 +623,7 @@
 </details>
 <p>If th' change spans both repositories, give both branches th' same name; see <a href="/hugo-theme-relearn/pir/development/developing/index.html#working-across-both-repositories">Develop'n</a>.</p>
 <h2 id="reading-a-failure">Read'n a Failure<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<p>Every result be checked 'n three layers, an' th' one that fails tells ye what kind o' problem ye have.</p>
+<p>Every result be checked 'n layers, an' th' one that fails tells ye what kind o' problem ye have.</p>
 <table>
 	<thead>
 			<tr>
@@ -622,7 +670,7 @@
 </li>
 <li>
 <p>Generate its expected output, an' read it:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/run.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
 </li>
 <li>
 <p>Look at <code>tests/expected/&lt;name&gt;/</code>. This be th' moment th' case be worth someth'n or not: if th' output does not show th' behaviour ye set out t' pin, it will not catch a regression 'n it either.</p>
@@ -639,7 +687,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">axes</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">urls</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;relative&#34;</span><span class="p">,</span> <span class="s2">&#34;absolute&#34;</span><span class="p">,</span> <span class="s2">&#34;ugly&#34;</span><span class="p">]</span></span></span></code></pre></div>
-<p>One rrrambl'n set, three results, compared separately. Add'n a further mode be a directory an' one more name. An axis wit' a single value still applies - it just does not branch th' tree, so noth'n be nested that carries no informat'n.</p>
+<p>One rrrambl'n set, one result per mode, compared separately. Add'n a further mode be a directory an' one more name. An axis wit' a single value still applies - it just does not branch th' tree, so noth'n be nested that carries no informat'n.</p>
 <h3 id="builds-that-belong-together">Builds That Belong Together<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Some results be not one Cap'n Hugo build. A versioned ship be two, each configured t' know about th' other; th' published GitHub Planks ship be th' docs wit' th' exampleSite beneath it. Neither half says anyth'n alone.</p>
 <p>Those spell th' sequence out, an' share one output tree:</p>
@@ -653,7 +701,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nx">dest</span>        <span class="p">=</span> <span class="s2">&#34;0.666&#34;</span></span></span></code></pre></div>
 <p><code>dest</code> says whar' 'n th' shared tree a build writes. Th' builds run 'n th' order written, an' th' result be compared once, as a whole.</p>
 <h3 id="accepting-a-known-warning">Accept'n a Known Arrr<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p>Any <code>WARN</code> or <code>ERROR</code> fails a build unless it be listed 'n a baseline. Three be consulted an' their entries unioned:</p>
+<p>Any <code>WARN</code> or <code>ERROR</code> fails a build unless it be listed 'n a baseline. These be consulted an' their entries unioned:</p>
 <table>
 	<thead>
 			<tr>
@@ -875,6 +923,16 @@
 			</tr>
 	</tbody>
 </table>
+<h2 id="sbom">SBOM<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>Every third-party resource th' project uses be declared 'n <code>docs/data/relearn/thirdparty.toml</code>. That file be th' single source o' truth behind th' <a href="/hugo-theme-relearn/pir/more/credits/index.html">credits</a> plank, th' <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, an' several checks 'n th' test suite.</p>
+<p><strong>When ye vendor an update, change its <code>version</code> 'n th' same commit that changes th' files.</strong> A version be know'ble at th' moment o' vendor'n an' at no other time. Some o' these bundles carry no version str'n at all, an' th' ones that do disagree about whar' t' put it. Noth'n can check it, which be why every component carries a digest o' its files as well: a component that changed on disk without chang'n its <code>version</code> still shows up 'n th' diff o' <code>sbom.cdx.json</code>.</p>
+<p>A font be th' except'n that can be asked. It declares its own version inside th' file, whar' subsett'n an' conversion both leave it, so <code>npm run fontversion</code> 'n th' infra repository reads it back out o' what ye vendored rather than out o' th' plank ye downloaded from.</p>
+<p>Th' test suite fails when th' declarat'n an' th' vendored tree disagree, 'n either direct'n: a directory hold'n files that no component claims, or a component claim'n paths that no longer exist. Add a new dependency t' th' declarat'n or th' build stays red.</p>
+<p><strong><code>npm test</code> also fails when th' committed <code>sbom.cdx.json</code> be not what th' declarat'n currently renders</strong>, so regenerat'n be a step o' th' change rather than an afterthought.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ../hugo-theme-relearn-infra
+</span></span><span class="line"><span class="cl">npm ci
+</span></span><span class="line"><span class="cl">npm run sbom:update</span></span></code></pre></div>
+<p>Th' release workflow regenerates th' file too, after it has stamped th' new version - th' document&rsquo;s own version an' timestamp come from <code>layouts/partials/version.txt</code> an' <code>CHANGELOG.md</code>, which hold th' values o' th' release be'n made only from that point on. Until then those two fields keep nam'n th' previous release, while th' components track whatever be vendored.</p>
 <h2 id="making-releases">Mak'n Releases<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>A release be based on a milestone named like th' release itself - just th' version number, eg: <code>1.2.3</code>. It&rsquo;s 'n th' maintainers responsibility t' check <a href="/hugo-theme-relearn/pir/development/maintaining/index.html#semver">semver semantics</a> o' th' milestone&rsquo;s name prior t' release an' change it if necessary.</p>
 <p>Mak'n releases be automated by th' <code>version-release</code> GitHub workflow. It requires th' version number o' th' milestone that should be released. Th' release will be created from th' <code>main</code> branch o' th' repository.</p>
@@ -883,7 +941,7 @@
 <p>Dur'n execut'n o' th' workflow a few th'ns be checked. If a check fails th' act'n fails, result'n 'n no new release. Ye can correct th' errors afterwards an' rerun th' act'n.</p>
 <p>Th' follow'n checks will be enforced</p>
 <ul>
-<li>th' <a href="/hugo-theme-relearn/pir/development/testing/index.html">test suite</a> passes against both th' minimum supported an' th' latest Cap'n Hugo release</li>
+<li>th' <a href="/hugo-theme-relearn/pir/development/testing/index.html">test suite</a> passes against both th' minimum supported an' th' latest Cap'n Hugo release, which includes th' <a href="/hugo-theme-relearn/pir/development/maintaining/index.html#sbom">dependency declarat'n</a> match'n th' vendored tree an' <code>sbom.cdx.json</code> match'n th' declarat'n</li>
 <li>th' milestone exists</li>
 <li>there be at least one closed issue assigned t' th' milestone</li>
 <li>all assigned issues fer this milestone be closed</li>
@@ -896,16 +954,19 @@
 <li>th' releasenotes at <code>introduction/releasenotes/&lt;major&gt;/&lt;minor&gt;.en.md</code> be updated, includ'n release version an' release date</li>
 <li>miss'n generic upper level files fer english an' piratish be created</li>
 <li>th' version number fer th' <code>&lt;meta generator&gt;</code> be updated</li>
+<li>th' <a href="/hugo-theme-relearn/pir/development/maintaining/index.html#sbom">SBOM</a> at <code>sbom.cdx.json</code> be regenerated</li>
 <li>th' updated files be committed</li>
 <li>th' milestone be closed</li>
 <li>th' repository be tagged wit' th' version number (eg. <code>1.2.3</code>), th' main version number (eg. <code>1.2.x</code>) an' th' major version number (eg. <code>1.x</code>)</li>
 <li>a new entry 'n th' <a href="https://github.com/McShelby/hugo-theme-relearn/releases" rel="external" target="_self">GitHub release list</a> wit' th' accord'n changelog will be created</li>
+<li><code>sbom.cdx.json</code> be attached t' that release, so it can be downloaded by version</li>
+<li>a signed build provenance attestat'n be issued fer th' <code>sbom.cdx.json</code> at that tag, unless th' sign'n service be unavail'ble - a release be never held up fer it</li>
 <li>th' <a href="https://mcshelby.github.io/hugo-theme-relearn/" rel="external" target="_self">official documentat'n</a> be built an' deployed</li>
 <li>th' version number fer th' <code>&lt;meta generator&gt;</code> be updated t' a temporary an' committed (this helps t' determine if users be runn'n directly on th' main branch or be us'n releases)</li>
 <li>a new milestone fer th' next patch release be created (this can later be renamed t' a main release if necessary)</li>
 </ul>
 <h3 id="rehearsing-on-a-branch">Rehears'n on a Branch<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p>Th' workflow only performs an actual release when it runs on <code>main</code>. Started on any other branch it runs th' parts that be safe t' repeat - th' <a href="/hugo-theme-relearn/pir/development/testing/index.html">test suite</a> an' th' documentat'n build - an' skips every step that changes someth'n outside th' run: th' milestone check, tagg'n, committ'n, publish'n th' GitHub release an' deploy'n t' GitHub Planks. Th' milestone input be ignored there, an' only required on <code>main</code>.</p>
+<p>Th' workflow only performs an actual release when it runs on <code>main</code>. Started on any other branch it runs th' parts that be safe t' repeat - th' <a href="/hugo-theme-relearn/pir/development/testing/index.html">test suite</a> an' th' documentat'n build - an' skips every step that changes someth'n outside th' run. Th' milestone input be ignored there, an' only required on <code>main</code>.</p>
 <p>In both cases th' built ship be uploaded as a workflow artifact named <code>&lt;workflow&gt;-&lt;run number&gt;-&lt;run id&gt;</code> an' kept fer 30 days, so ye can download th' result o' a run an' inspect it before releas'n fer real. It be found at th' bottom o' th' run&rsquo;s summary plank 'n th' <a href="https://github.com/McShelby/hugo-theme-relearn/actions/workflows/version-release.yaml" rel="external" target="_self">Act'ns tab</a>.</p>
  
 
@@ -958,11 +1019,11 @@
 <p><strong>Remarks</strong>:</p>
 <p>Th' locat'ns be mandatory due t' Hugo&rsquo;s theme ship builder.</p>
 <p><strong>Preview</strong> <code>images/screenshot.png</code>:</p>
-<p><a href="#R-image-daa4c3a9a1de47a2dcfe96deee680d22" class="lightbox-link"><img alt="Screenshot" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1500"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-daa4c3a9a1de47a2dcfe96deee680d22"><img alt="Screenshot" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-e904b886c6d5ccf64bd519c9b68cb8ac" class="lightbox-link"><img alt="Screenshot" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1500"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e904b886c6d5ccf64bd519c9b68cb8ac"><img alt="Screenshot" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25"></a></p>
 <p><strong>Preview</strong> <code>images/tn.png</code>:</p>
-<p><a href="#R-image-52965bd293659f32603e5fbc44c6f613" class="lightbox-link"><img alt="tn" class="bg-white border lazy lightbox figure-image" height="600" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="900"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-52965bd293659f32603e5fbc44c6f613"><img alt="tn" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-3929949f5ccd3016c743dc7cca8c7fd8" class="lightbox-link"><img alt="tn" class="bg-white border lazy lightbox figure-image" height="600" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="900"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3929949f5ccd3016c743dc7cca8c7fd8"><img alt="tn" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25"></a></p>
 <h2 id="hero-image">Hero Image<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p><strong>Rrrambl'n</strong>:</p>
 <p>Show th' <a href="/hugo-theme-relearn/pir/development/screenshooting/index.html#demo-screenshot">Demo Screenshot</a> plank on different devices an' different themes. Composit'n o' th' different device screenshots into a template.</p>
@@ -987,8 +1048,8 @@
 <li>From original template resize t' <em>3000 x 1500</em> offset y: <em>-330</em>, scale t' <em>1280 x 640</em> an' save as <code>images/hero.png</code></li>
 </ul>
 <p><strong>Preview</strong> <code>images/hero.png</code>:</p>
-<p><a href="#R-image-f7a2b13976730409ffca1251f4283204" class="lightbox-link"><img alt="Hero" class="bg-white border lazy lightbox figure-image" height="640" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1280"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f7a2b13976730409ffca1251f4283204"><img alt="Hero" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-fc1f7c11805f80cbe1f312d698594492" class="lightbox-link"><img alt="Hero" class="bg-white border lazy lightbox figure-image" height="640" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1280"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fc1f7c11805f80cbe1f312d698594492"><img alt="Hero" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25"></a></p>
 <h2 id="shortcode-feature-images">Shortcode Feature Images<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>Th' feature images fer th' <a href="/hugo-theme-relearn/pir/shortcodes/index.html">shorrrtcodes</a> be generated automatically via a <a href="https://nodejs.org" rel="external" target="_self">Node.js</a> script.</p>
 <p>It lives 'n th' <a href="/hugo-theme-relearn/pir/development/developing/index.html">infra repository</a> inside o' th' <code>tools/screenshots</code> directory. All follow'n commands need t' be executed from th' root o' that repository.</p>
