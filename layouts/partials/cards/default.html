@@ -2,14 +2,17 @@
 {{- $renderedtitle := .title | $page.RenderString }}
 {{- $renderedcontent := .content | $page.RenderString }}
 {{- $itemid := printf "R-card-%s" (printf "%s%s" $renderedtitle $renderedcontent | plainify | md5) }}
-{{- $popout := or .href .hrefattributes }}
+{{- $isButton := or .action .onclick }}
+{{- $popout := or .href .hrefattributes $isButton }}
 <li>
   <article class="card{{ if $popout }} card-popout{{ end }}"{{if .title}} aria-labelledby="{{ $itemid }}"{{end}}>
       {{- if or $renderedtitle $renderedcontent }}
     <div class="card-content">
         {{- if $renderedtitle }}
       <div class="card-title" id="{{ $itemid }}">
-        {{- if .hrefattributes }}
+        {{- if $isButton }}
+        <button type="button"{{ with .action }} data-button-action="{{ . }}"{{ end }}{{ with .onclick }} onclick="{{ . | safeJS }}"{{ end }}>
+        {{- else if .hrefattributes }}
         <a
           {{- range $k, $v := .hrefattributes }}
             {{- if $v }}
@@ -24,7 +27,9 @@
         <a href="{{ .href | safeJS }}">
         {{- end }}
         {{ $renderedtitle | safeHTML }}
-        {{- if or .hrefattributes .href }}
+        {{- if $isButton }}
+        </button>
+        {{- else if or .hrefattributes .href }}
         </a>
         {{- end }}
       </div>
@@ -38,7 +43,9 @@
       {{- end }}
       {{- if .image }}
     <div class="card-image">
-        {{- if and (not $renderedtitle) .hrefattributes }}
+        {{- if and (not $renderedtitle) $isButton }}
+      <button type="button"{{ with .action }} data-button-action="{{ . }}"{{ end }}{{ with .onclick }} onclick="{{ . | safeJS }}"{{ end }}>
+        {{- else if and (not $renderedtitle) .hrefattributes }}
       <a
           {{- range $k, $v := .hrefattributes }}
             {{- if $v }}
@@ -53,7 +60,9 @@
       <a href="{{ .href | safeJS }}">
         {{- end }}
         <img src="{{ .image }}" alt="{{ .imagealt }}">
-        {{- if and (not $renderedtitle) (or .hrefattributes .href) }}
+        {{- if and (not $renderedtitle) $isButton }}
+      </button>
+        {{- else if and (not $renderedtitle) (or .hrefattributes .href) }}
       </a>
         {{- end }}
     </div>

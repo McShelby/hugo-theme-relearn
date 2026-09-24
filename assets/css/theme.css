@@ -3310,7 +3310,7 @@ article.notfound #shrug svg {
   word-break: break-word;
 }
 
-.card-container .card:focus-within:has(.card-title > a:focus) {
+.card-container .card:focus-within:has(.card-title > a:focus, .card-title > button:focus) {
   outline: auto;
 }
 
@@ -3354,6 +3354,12 @@ article.notfound #shrug svg {
   height: 160px;
 }
 
+.card-container .card-image button {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 .card-container .card-image img {
   height: 100%;
   object-fit: cover;
@@ -3378,13 +3384,28 @@ article.notfound #shrug svg {
   margin-top: 0;
 }
 
-.card-container .card-title a {
+.card-container .card-title a,
+.card-container .card-title button {
   color: inherit;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.card-container .card-title a:before {
+/* a card running code is a button, which is dressed like the link of any other card */
+.card-container .card-title button,
+.card-container .card-image button {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: inherit;
+}
+
+.card-container .card-title a:before,
+.card-container .card-title button:before {
   content: '';
   position: absolute;
   inset: 0;

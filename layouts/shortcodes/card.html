@@ -1,4 +1,5 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
+{{- $action   := (.Get "action") }}
 {{- $color    := (.Get "color") }}
 {{- $content  := .Inner }}
 {{- $href     := (.Get "href") }}
@@ -14,6 +15,7 @@
     {{- $cards = .Parent.Store.Get "cards" }}
 {{- end }}
 {{- $cards = $cards | append (dict
+    "action"   $action
     "color"    $color
     "content"  $content
     "href"     $href

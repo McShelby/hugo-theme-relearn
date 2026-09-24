@@ -30,20 +30,18 @@
     {{- end }}
 
     {{- $hrefattributes := .attributes | default dict }}
-    {{- $buttontype := "" }}
-    {{- $isButton := false }}
-    {{- $isLink := false }}
+    {{- $action := (trim .action " ") | default "" }}
+    {{- $onclick := "" }}
     {{- $hreftitle := "" }}
     {{- $href := (trim .href " ") | default "" }}
-    {{- if or $buttontype (strings.HasPrefix $href "javascript:") }}
-      {{- $isButton = true }}
-      {{- $href = substr $href (len "javascript:") }}
-      {{- if not $buttontype }}
-        {{- $buttontype = "button" }}
+    {{- if or $action (strings.HasPrefix $href "javascript:") }}
+      {{- /* the card becomes a button; its code is no destination to link to */}}
+      {{- if strings.HasPrefix $href "javascript:" }}
+        {{- $onclick = substr $href (len "javascript:") }}
       {{- end }}
+      {{- $href = "" }}
     {{- else if not $href }}
     {{- else }}
-      {{- $isLink = true }}
       {{- $u := urls.Parse .href }}
       {{- if $u.IsAbs }}
         {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .href "page" $page "type" "link") $u.String }}
@@ -103,6 +101,7 @@
 
     {{- if or $image $title $hasContent $params }}
       {{- $cards = $cards | append (dict
+        "action"   $action
         "color"    $color
         "content"  (cond $hasContent $content "")
         "href"     $href
@@ -111,6 +110,7 @@
         "image"    $image
         "imagealt" $imagealt
         "imageattributes" $imageattributes
+        "onclick"  $onclick
         "params"   $params
         "style"    $style
         "template" $template

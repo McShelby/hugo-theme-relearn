@@ -37,6 +37,7 @@ If you want to show a set of cards grouped together you can wrap your cards into
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the card or JavaScript code to be executed on click. If this parameter is set, the card will hover on mouse over.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well. |
+| **action**            | _&lt;empty&gt;_ | Name of an action executed by your own script on click, without inline JavaScript. Use this instead of a JavaScript **href** if your site uses a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP). If this parameter is set, the card will hover on mouse over. See [example](#card-with-own-action). |
 | **image**             | _&lt;empty&gt;_ | URL to an image to be displayed at the start of the card. |
 | **imagealt**          | _&lt;empty&gt;_ | Text alternative for the `image`, announced by a screen reader in place of the image.<br><br>Set it if the card shows nothing but its image, as the image is then the only thing left to name the card. Without it such a card falls back to the title of the page its `href` leads to, or to the `href` itself.<br><br>Leave it empty if the card also shows a title. The title names the card, so the image beside it is marked as decorative with an empty `alt` attribute. |
 | **title**             | _&lt;empty&gt;_ | Arbitrary title for the card. |
@@ -104,6 +105,26 @@ As no title is left to name the card, describe the image with the `imagealt` par
   imagealt: "A top hat with a rabbit peeking out"
   content: ""
 {{% /multishortcode %}}
+
+### Card with Own Action
+
+The card is written with a `data-button-action` attribute. Handle it in a script file of your own, for example loaded by `layouts/partials/custom-footer.html`.
+
+{{% multishortcode name="card" execute="false" %}}
+- title: "Shout it out"
+  action: "shout"
+  content: "Click to greet the world"
+{{% /multishortcode %}}
+
+````js {title="custom.js"}
+document.addEventListener('click', function (event) {
+  var button = event.target.closest('button[data-button-action="shout"]');
+  if (button) {
+    alert('Hello world!');
+    button.blur();
+  }
+});
+````
 
 ### Debug Card Template with Arbitrary Parameter
 
