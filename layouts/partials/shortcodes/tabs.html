@@ -30,11 +30,37 @@
     {{- $icon := $boxStyle.icon }}
     {{- $title := $boxStyle.title }}
 
+    {{- /* a tab holding nothing but a single code block is drawn as such; the code itself is
+           always escaped, so each tag we find belongs to the markup around it */}}
+    {{- $isCode := false }}
+    {{- if and (findRE `^<div\b[^>]*\bclass="(?:[^"]*\s)?highlight[\s"]` $content) (strings.HasSuffix $content "</div>") }}
+      {{- /* one element only, if the depth drops back to zero at the very last tag */}}
+      {{- $depth := 0 }}
+      {{- $closed := 0 }}
+      {{- range findRE `</?div\b` $content }}
+        {{- if strings.HasPrefix . "</" }}
+          {{- $depth = sub $depth 1 }}
+          {{- if eq $depth 0 }}
+            {{- $closed = add $closed 1 }}
+          {{- end }}
+        {{- else }}
+          {{- $depth = add $depth 1 }}
+        {{- end }}
+      {{- end }}
+      {{- $isCode = and (eq $depth 0) (eq $closed 1) }}
+    {{- else if and (findRE `^<pre\b[^>]*>\s*<code\b` $content) (not (findRE `^<pre\b[^>]*\bclass="(?:[^"]*\s)?mermaid[\s"]` $content)) (strings.HasSuffix $content "</pre>") }}
+      {{- $isCode = eq (len (findRE `<pre\b` $content)) 1 }}
+    {{- end }}
+    {{- if and $isCode (eq $style "initial") }}
+      {{- $style = "code" }}
+    {{- end }}
+
     {{- $id := partial "_relearn/makeRandomMd5.gotmpl" $page }}
     {{- /* a tab may have only an icon with no title, so we need to take this into account for groupid switching */}}
     {{- $itemid := or ($title | $page.RenderString | plainify) $icon | md5 }}
     {{- if $hasContent }}
       {{- $tabs = $tabs | append (dict
+        "code"    $isCode
         "color"   $color
         "content" $content
         "icon"    $icon
@@ -67,7 +93,6 @@
       aria-controls="{{ .id }}" aria-expanded="{{ cond (eq $idx 0) "true" "false" }}"
       data-tab-item="{{ .itemid }}"
       class="tab-nav-button tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" "" }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}{{ if eq $idx 0 }} tabindex="-1"{{ end }}
-      onclick="switchTab('{{ $groupid }}','{{ .itemid }}')"
     >
       <span class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $page.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</span>
     </button>
@@ -78,7 +103,7 @@
     <div
       id="{{ .id }}"
       data-tab-item="{{ .itemid }}"
-      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
+      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}{{ if .code }} codify{{ end }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
       <div class="tab-content-text">
 {{ .content | safeHTML }}
       </div>

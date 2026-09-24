@@ -70,94 +70,18 @@ function showToast(message) {
 
 window.relearn.showToast = showToast;
 
-function fixCodeTabs() {
-  /* if only a single code block is contained in the tab and no style was selected, treat it like style=code */
-  var codeTabContents = Array.from(document.querySelectorAll('.tab-content.tab-panel-style')).filter(function (tabContent) {
-    return tabContent.querySelector('*:scope > .tab-content-text > div.highlight:only-child, *:scope > .tab-content-text > pre:not(.mermaid).pre-code:only-child');
-  });
+function switchTab(tabGroup, tabId, button) {
+  // save button position relative to viewport
+  var yposButton = button.getBoundingClientRect().top;
 
-  codeTabContents.forEach(function (tabContent) {
-    var tabId = tabContent.dataset.tabItem;
-    var tabPanel = tabContent.parentNode.parentNode;
-    var tabButton = tabPanel.querySelector('.tab-nav-button.tab-panel-style[data-tab-item="' + tabId + '"]');
-    if (tabContent.classList.contains('initial')) {
-      tabButton.classList.remove('initial');
-      tabButton.classList.add('code');
-      tabContent.classList.remove('initial');
-      tabContent.classList.add('code');
-    }
-    // mark code blocks for FF without :has()
-    tabContent.classList.add('codify');
-  });
-}
+  window.relearn.selectTab(tabGroup, tabId);
+  initMermaid(true);
 
-function switchTab(tabGroup, tabId) {
-  var tabs = Array.from(document.querySelectorAll('.tab-panel[data-tab-group="' + tabGroup + '"]')).filter(function (e) {
-    return !!e.querySelector('[data-tab-item="' + tabId + '"]');
-  });
-  var allTabItems =
-    tabs &&
-    tabs.reduce(function (a, e) {
-      return a.concat(
-        Array.from(e.querySelectorAll('[data-tab-item]')).filter(function (es) {
-          return es.parentNode.parentNode == e;
-        })
-      );
-    }, []);
-  var targetTabItems =
-    tabs &&
-    tabs.reduce(function (a, e) {
-      return a.concat(
-        Array.from(e.querySelectorAll('[data-tab-item="' + tabId + '"]')).filter(function (es) {
-          return es.parentNode.parentNode == e;
-        })
-      );
-    }, []);
+  // reset screen to the same position relative to clicked button to prevent page jump
+  var yposButtonDiff = button.getBoundingClientRect().top - yposButton;
+  window.scrollTo(window.scrollX, window.scrollY + yposButtonDiff);
 
-  // if event is undefined then switchTab was called from restoreTabSelection
-  // so it's not a button event and we don't need to safe the selction or
-  // prevent page jump
-  var isButtonEvent = event && event.target && event.target.getBoundingClientRect;
-  if (isButtonEvent) {
-    // save button position relative to viewport
-    var yposButton = event.target.getBoundingClientRect().top;
-  }
-
-  allTabItems &&
-    allTabItems.forEach(function (e) {
-      e.classList.remove('active');
-      e.setAttribute('aria-expanded', 'false');
-      e.removeAttribute('tabindex');
-    });
-  targetTabItems &&
-    targetTabItems.forEach(function (e) {
-      e.classList.add('active');
-      e.setAttribute('aria-expanded', 'true');
-      e.setAttribute('tabindex', '-1');
-    });
-
-  if (isButtonEvent) {
-    initMermaid(true);
-
-    // reset screen to the same position relative to clicked button to prevent page jump
-    var yposButtonDiff = event.target.getBoundingClientRect().top - yposButton;
-    window.scrollTo(window.scrollX, window.scrollY + yposButtonDiff);
-
-    // Store the selection to make it persistent
-    if (window.localStorage) {
-      var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections');
-      if (selectionsJSON) {
-        var tabSelections = JSON.parse(selectionsJSON);
-      } else {
-        var tabSelections = {};
-      }
-      tabSelections[tabGroup] = tabId;
-      window.localStorage.setItem(window.relearn.absBaseUri + '/tab-selections', JSON.stringify(tabSelections));
-    }
-  }
-}
-
-function restoreTabSelections() {
+  // Store the selection to make it persistent
   if (window.localStorage) {
     var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections');
     if (selectionsJSON) {
@@ -165,11 +89,22 @@ function restoreTabSelections() {
     } else {
       var tabSelections = {};
     }
-    Object.keys(tabSelections).forEach(function (tabGroup) {
-      var tabItem = tabSelections[tabGroup];
-      switchTab(tabGroup, tabItem);
-    });
+    tabSelections[tabGroup] = tabId;
+    window.localStorage.setItem(window.relearn.absBaseUri + '/tab-selections', JSON.stringify(tabSelections));
   }
+}
+
+function handleTabs() {
+  // one listener for all tabs, also those added later; the innermost panel is the
+  // one a button belongs to
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('.tab-nav-button[data-tab-item]');
+    if (!button) {
+      return;
+    }
+    var tabPanel = button.closest('.tab-panel[data-tab-group]');
+    tabPanel && switchTab(tabPanel.dataset.tabGroup, button.dataset.tabItem, button);
+  });
 }
 
 function mermaidPostRender(id) {
@@ -2025,8 +1960,7 @@ ready(function () {
   initToc();
   initAnchorClipboard();
   initCodeClipboard();
-  fixCodeTabs();
-  restoreTabSelections();
+  handleTabs();
   initSwipeHandler();
   initHistory();
   initSearch();

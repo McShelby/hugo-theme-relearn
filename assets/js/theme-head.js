@@ -78,20 +78,51 @@ window.relearn.initVariant = function () {
 
 window.relearn.initVariant();
 
-// the markup preselects the first variant and the switcher is drawn while the parser
-// is still busy. mutation callbacks run before the next paint, so we correct the
-// switcher as soon as it appears; its options arrive one by one, so we keep at it
-// until the document is parsed
-(function () {
-  var observer = new MutationObserver(function () {
-    window.relearn.markVariant();
+// activates the tab `tabId` in every panel of `tabGroup` that has one. it only touches
+// what is already there and can be run again at will, so it is safe on a panel the
+// parser is still busy with: a panel whose tab has not arrived yet is left alone
+window.relearn.selectTab = function (tabGroup, tabId) {
+  var tabs = Array.from(document.querySelectorAll('.tab-panel[data-tab-group="' + tabGroup + '"]')).filter(function (e) {
+    return !!e.querySelector('[data-tab-item="' + tabId + '"]');
   });
+  tabs.forEach(function (tab) {
+    // only the items of this panel, not those of a panel nested in one of its tabs
+    Array.from(tab.querySelectorAll('[data-tab-item]'))
+      .filter(function (e) {
+        return e.parentNode.parentNode == tab;
+      })
+      .forEach(function (e) {
+        var active = e.dataset.tabItem == tabId;
+        e.classList.toggle('active', active);
+        e.setAttribute('aria-expanded', active ? 'true' : 'false');
+        if (active) {
+          e.setAttribute('tabindex', '-1');
+        } else {
+          e.removeAttribute('tabindex');
+        }
+      });
+  });
+};
+
+// the markup preselects the first variant and the first tab of each panel, and both
+// are drawn while the parser is still busy. mutation callbacks run before the next
+// paint, so we correct them as soon as they appear; as they arrive piece by piece, we
+// keep at it until the document is parsed
+(function () {
+  var tabSelections = JSON.parse(window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections') || '{}');
+  var restoreSelections = function () {
+    window.relearn.markVariant();
+    Object.keys(tabSelections).forEach(function (tabGroup) {
+      window.relearn.selectTab(tabGroup, tabSelections[tabGroup]);
+    });
+  };
+  var observer = new MutationObserver(restoreSelections);
   observer.observe(document.documentElement, { childList: true, subtree: true });
   document.addEventListener(
     'DOMContentLoaded',
     function () {
       observer.disconnect();
-      window.relearn.markVariant();
+      restoreSelections();
     },
     { once: true }
   );
