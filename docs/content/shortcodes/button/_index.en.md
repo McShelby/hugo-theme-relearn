@@ -31,7 +31,8 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well. |
-| **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript. Otherwise the parameter is not used. If the parameter is not given it defaults to `button`. |
+| **action**            | _&lt;empty&gt;_ | Name of an action executed by your own script on click, without inline JavaScript. Use this instead of a JavaScript **href** if your site uses a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP). See [example](#button-with-own-action). |
+| **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript or **action** is set. Otherwise the parameter is not used. If the parameter is not given it defaults to `button`. |
 | **borderless**        | `false`         | When `true`, no border will be shown around the button. |
 | **hint**              | _&lt;empty&gt;_ | Tooltip for the button. |
 | **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/notice#defining-own-styles). |
@@ -274,6 +275,27 @@ If your JavaScript action does not change the focus afterwards, make sure to cal
   icon: "bullhorn"
   href: "javascript:alert('Hello world!');this.blur();"
 {{% /multishortcode %}}
+
+#### Button with Own Action
+
+The button is written with a `data-button-action` attribute. Handle it in a script file of your own, for example loaded by `layouts/partials/custom-footer.html`.
+
+{{% multishortcode name="button" execute="false" format="%s" %}}
+- content: "Shout it out"
+  style: "primary"
+  icon: "bullhorn"
+  action: "shout"
+{{% /multishortcode %}}
+
+````js {title="custom.js"}
+document.addEventListener('click', function (event) {
+  var button = event.target.closest('button[data-button-action="shout"]');
+  if (button) {
+    alert('Hello world!');
+    button.blur();
+  }
+});
+````
 
 #### Button within a `form` Element
 

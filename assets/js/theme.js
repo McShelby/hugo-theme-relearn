@@ -1333,6 +1333,23 @@ function toggleTopbarFlyoutEvent(event) {
   toggleTopbarFlyout(event.target);
 }
 
+function handleTopbarButtons() {
+  // one listener for all buttons declaring an action, wherever they were moved to;
+  // an action we don't know is left to the author's own listener
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('button[data-button-action]');
+    if (!button) {
+      return;
+    }
+    var action = button.dataset.buttonAction;
+    if (action == 'toggle-nav') {
+      toggleNav();
+    } else if (action == 'toggle-flyout') {
+      toggleTopbarFlyout(button);
+    }
+  });
+}
+
 function topbarFlyoutEscapeHandler(event) {
   if (event.key == 'Escape') {
     closeSomeTopbarButtonFlyout();
@@ -1961,6 +1978,7 @@ ready(function () {
   initAnchorClipboard();
   initCodeClipboard();
   handleTabs();
+  handleTopbarButtons();
   initSwipeHandler();
   initHistory();
   initSearch();

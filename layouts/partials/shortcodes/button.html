@@ -9,10 +9,11 @@
 {{- $borderless := .borderless | default false }}
 {{- $hint := .hint | default "" }}
 {{- $type := .type | default "" }}
+{{- $action := (trim .action " ") | default "" }}
 {{- $isButton := false }}
 {{- $isLink := false }}
 {{- $href := (trim .href " ") | default "" }}
-{{- if or $type (strings.HasPrefix $href "javascript:") }}
+{{- if or $type $action (strings.HasPrefix $href "javascript:") }}
   {{- $isButton = true }}
   {{- $href = substr $href (len "javascript:") }}
   {{- if not $type }}
@@ -89,7 +90,7 @@
     {{- end }}
   {{- end }}>
   {{- if $isButton -}}
-  <button{{ with $href }} onclick="{{ . | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}>
+  <button{{ with $action }} data-button-action="{{ . }}"{{ end }}{{ with $href }} onclick="{{ . | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}>
   {{- else if $isLink -}}
   <a
     {{- range $k, $v := $attributes }}

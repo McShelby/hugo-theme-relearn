@@ -6,6 +6,7 @@
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- $type := .type | default "" }}
+{{- $action := (trim .action " ") | default "" }}
 {{- $title := (trim .title " ") | default "" }}
 {{- $hint := (trim .hint " ") | default "" }}
 {{- $icon := (trim .icon " ") | default "" }}
@@ -13,6 +14,7 @@
             <div class="topbar-button {{ $class }} default-animation" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}">
 {{ partial "shortcodes/button.html" (dict
   "page" $page
+  "action" $action
   "href" $href
   "style" "link"
   "icon" $icon
