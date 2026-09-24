@@ -205,6 +205,11 @@
 
     var input = document.querySelector('#R-search-by-detail');
     if (input) {
+      // search in place instead of reloading the page with the term in its URL
+      input.form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        window.relearn.executeTriggeredSearch();
+      });
       input.addEventListener('keydown', function (event) {
         // if we are pressing ESC in the searchdetail our focus will
         // be stolen by the other event handlers, so we have to refocus

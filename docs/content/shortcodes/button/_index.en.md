@@ -307,15 +307,15 @@ To use native HTML elements in your Markdown, add this in your `hugo.toml`
 ````
 
 ````html
-<form action="../../search.html" method="get">
-  <input name="search-by-detail" class="search-by" type="search">
+<form action="../../search/index.html" method="get">
+  <input name="search-by" class="search-by" type="search">
   {{%/* button type="submit" style="secondary" icon="search" %}}Search{{% /button */%}}
 </form>
 ````
 
-<form action="../../search.html" method="get">
+<form action="../../search/index.html" method="get">
   <div class="searchform" style="width: 20vw;">
-    <input name="search-by-detail" class="search-by" type="search" placeholder="Search...">
+    <input name="search-by" class="search-by" type="search" placeholder="Search...">
     {{% button type="submit" style="secondary" icon="search" %}}Search{{% /button %}}
   </div>
 </form>
