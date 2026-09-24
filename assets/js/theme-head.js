@@ -77,7 +77,25 @@ window.relearn.initVariant = function () {
 };
 
 window.relearn.initVariant();
-window.relearn.markVariant();
+
+// the markup preselects the first variant and the switcher is drawn while the parser
+// is still busy. mutation callbacks run before the next paint, so we correct the
+// switcher as soon as it appears; its options arrive one by one, so we keep at it
+// until the document is parsed
+(function () {
+  var observer = new MutationObserver(function () {
+    window.relearn.markVariant();
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+      observer.disconnect();
+      window.relearn.markVariant();
+    },
+    { once: true }
+  );
+})();
 
 // the browsers scrollbar style has to be known before the first paint; measuring it
 // in theme.js would leave the menu with a space taking scrollbar - clipping its
