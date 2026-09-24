@@ -31,6 +31,21 @@ window.relearn = window.relearn || {};
   window.relearn.customvariantprefix = 'my-custom-';
 })();
 
+// stylesheets marked `R-async-style` are fetched for print media so they do not hold
+// the first paint; once one is there we apply it everywhere. it may have arrived
+// before we run - its `sheet` is set then and no `load` event will follow - and as we
+// check and listen in the same task, it can not slip in between
+document.querySelectorAll('link.R-async-style').forEach(function (link) {
+  var apply = function () {
+    link.media = 'all';
+  };
+  if (link.sheet) {
+    apply();
+  } else {
+    link.addEventListener('load', apply, { once: true });
+  }
+});
+
 window.relearn.changeVariant = function (variant) {
   var oldVariant = document.documentElement.dataset.rThemeVariant;
   window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);

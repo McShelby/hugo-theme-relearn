@@ -30,10 +30,12 @@
       {{- $wrap = .Params.highlightWrap }}
     {{- end }}
     {{- $disableInlineCopyToClipboard := site.Params.disableInlineCopyToClipBoard }}
-    {{- /* https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use */}}
+    {{- /* a stylesheet for a media that does not match is fetched without holding the first
+           paint; `theme-head.js` switches every `R-async-style` to all media once it has
+           arrived, so such a link has to stand before that script */}}
     {{- with partial "asset.gotmpl" "/fonts/fontawesome/css/all.min.css" }}
       {{- $url := .RelPermalink }}
-    <link href="{{ $url }}" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="{{ $url }}" rel="stylesheet"></noscript>
+    <link href="{{ $url }}" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="{{ $url }}" rel="stylesheet"></noscript>
     {{- end }}
     <link href="{{ $css.theme }}" rel="stylesheet">
     <link href="{{ index $css (printf "format-%s" $outputFormat) }}" rel="stylesheet" id="R-format-style">
