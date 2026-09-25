@@ -6,7 +6,7 @@
     {{- $cssUrl := "" }}
     {{- $urlOpenapi := "" }}
     {{- with partial "asset.gotmpl" "/js/js-yaml/js-yaml.min.js" }}
-    <script src="{{ .RelPermalink }}" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
     {{- end }}
     {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
       {{- $cssUrl = .Params.customOpenapiURL }}
@@ -35,10 +35,10 @@
         {{- $cssUrl = .RelPermalink }}
       {{- end }}
       {{- with partial "asset.gotmpl" (dict "res" "/js/swagger-ui/swagger-ui-bundle.js" "minify" false) }}
-    <script src="{{ .RelPermalink }}" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
       {{- end }}
       {{- with partial "asset.gotmpl" (dict "res" "/js/swagger-ui/swagger-ui-standalone-preset.js" "minify" false) }}
-    <script src="{{ .RelPermalink }}" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
       {{- end }}
     {{- end }}
     {{- /* our data for `theme.js`; a script element of a non JavaScript type is a data

@@ -185,6 +185,8 @@ Generator run:
 {{- /* the URLs of the CSS we generate below; they carry a cache buster, so they
 	can not be guessed by their name and have to be handed to whoever links them */}}
 {{- $css := dict }}
+{{- /* the subresource integrity of each of them, by the same key */}}
+{{- $integrity := dict }}
 
 {{- /*
 - Read variables.css and add custom box styles
@@ -245,7 +247,10 @@ Generator run:
 	}}
 	{{- $cssres := $themecontent | resources.FromString "css/theme.css" }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
-	{{- $css = merge $css (dict "theme" (partial "asset.gotmpl" $cssres).RelPermalink) }}
+	{{- with partial "asset.gotmpl" $cssres }}
+		{{- $css = merge $css (dict "theme" .RelPermalink) }}
+		{{- $integrity = merge $integrity (dict "theme" (fingerprint .).Data.Integrity) }}
+	{{- end }}
 {{- end }}
 
 {{- /*
@@ -259,7 +264,10 @@ Generator run:
 	}}
 	{{- $cssres := $swaggercontent | resources.FromString "css/swagger.css" }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
-	{{- $css = merge $css (dict "swagger" (partial "asset.gotmpl" $cssres).RelPermalink) }}
+	{{- with partial "asset.gotmpl" $cssres }}
+		{{- $css = merge $css (dict "swagger" .RelPermalink) }}
+		{{- $integrity = merge $integrity (dict "swagger" (fingerprint .).Data.Integrity) }}
+	{{- end }}
 {{- end }}
 
 {{- /*
@@ -281,7 +289,10 @@ Generator run:
 }}
 {{- $cssres := $htmlcontent | resources.FromString "css/format-html.css" }}
 {{- /* the following code causes Hugo to generate our file in public */}}
-{{- $css = merge $css (dict "format-html" (partial "asset.gotmpl" $cssres).RelPermalink) }}
+{{- with partial "asset.gotmpl" $cssres }}
+	{{- $css = merge $css (dict "format-html" .RelPermalink) }}
+	{{- $integrity = merge $integrity (dict "format-html" (fingerprint .).Data.Integrity) }}
+{{- end }}
 
 {{- /*
 - Write format-print.css
@@ -295,7 +306,10 @@ Generator run:
 }}
 {{- $cssres := $printcontent | resources.FromString "css/format-print.css" }}
 {{- /* the following code causes Hugo to generate our file in public */}}
-{{- $css = merge $css (dict "format-print" (partial "asset.gotmpl" $cssres).RelPermalink) }}
+{{- with partial "asset.gotmpl" $cssres }}
+	{{- $css = merge $css (dict "format-print" .RelPermalink) }}
+	{{- $integrity = merge $integrity (dict "format-print" (fingerprint .).Data.Integrity) }}
+{{- end }}
 
 {{- /*
 Write yet non-dynamic stuff
@@ -311,7 +325,7 @@ Write yet non-dynamic stuff
 	{{- $url := .RelPermalink }}
 {{- end }}
 
-{{- return (dict "variants" $themevariants "css" $css) }}
+{{- return (dict "variants" $themevariants "css" $css "integrity" $integrity) }}
 
 {{- define "partials/inline/get-theme-details" }}
 	{{- $themevariant := .themevariant }}

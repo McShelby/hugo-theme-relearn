@@ -20,7 +20,7 @@
            before the `async` MathJax script below can run; holding the parser this
            late in the page delays nothing that would be drawn */}}
     {{- with partial "asset.gotmpl" "/js/math.js" }}
-    <script src="{{ .RelPermalink }}"></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}></script>
     {{- end }}
     {{- if and (isset .Params "custommathjaxurl") .Params.customMathJaxURL }}
     <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
@@ -29,7 +29,7 @@
     {{- else }}
       {{- /* a built bundle that is not named `.min`, so it has to say so itself */}}
       {{- with partial "asset.gotmpl" (dict "res" "/js/mathjax/tex-mml-chtml.js" "minify" false) }}
-    <script id="MathJax-script" async src="{{ .RelPermalink }}"></script>
+    <script id="MathJax-script" async src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}></script>
       {{- end }}
       {{- range resources.Match "/js/mathjax/**" }}
         {{- /* the following code causes Hugo to generate our file in public */}}

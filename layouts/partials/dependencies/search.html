@@ -44,24 +44,24 @@
   {{- with $page }}
     {{- $searchIndexUrl := "" }}
     {{- with partial "asset.gotmpl" "/css/auto-complete/auto-complete.css" }}
-    <link href="{{ .RelPermalink }}" rel="stylesheet">
+    <link href="{{ .RelPermalink }}" rel="stylesheet" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}>
     {{- end }}
     {{- with partial "asset.gotmpl" "/js/auto-complete/auto-complete.js" }}
-    <script src="{{ .RelPermalink }}" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
     {{- end }}
     {{- if not $disableSearchIndex }}
       {{- $searchIndexUrl = trim $searchIndexURL "/" }}
       {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." .Language.Lang (path.Ext $searchIndexUrl)) }}
       {{- with partial "asset.gotmpl" (printf "/js/search-%s.js" $adapter) }}
-    <script src="{{ .RelPermalink }}" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
       {{- else }}
         {{- with partial "asset.gotmpl" (printf "/js/search-%s.mjs" $adapter) }}
-    <script src="{{ .RelPermalink }}" type="module" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} type="module" defer></script>
         {{- end }}
       {{- end }}
     {{- end }}
     {{- with partial "asset.gotmpl" "/js/search.js" }}
-    <script src="{{ .RelPermalink }}" defer></script>
+    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
     {{- end }}
     {{- if $searchIndexUrl }}
       {{- $indexDir := path.Dir $searchIndexUrl }}

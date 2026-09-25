@@ -1,6 +1,6 @@
 {{- /* Partial intended to be overwritten. Appended at the end of each page (usually for JavaScript)
 
-A inline script (not CSP compliant):
+An inline script (not CSP compliant):
 
 <script>
   console.log("running some javascript");
@@ -9,6 +9,6 @@ A inline script (not CSP compliant):
 A script file, placed in `assets/js/my.js`:
 
 {{- with resources.Get "js/my.js" | fingerprint }}
-<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+<script src="{{ .RelPermalink }}" {{ printf "integrity=%q" (.Data.Integrity) | safeHTMLAttr }}></script>
 {{- end }}
 */}}
