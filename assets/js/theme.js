@@ -862,6 +862,15 @@ function initArrowVerticalNav() {
   }
 
   document.addEventListener('keydown', function (event) {
+    if (event.shiftKey || event.ctrlKey || !event.altKey || event.metaKey || (event.key != 'ArrowUp' && event.key != 'ArrowDown')) {
+      return;
+    }
+    // a form field keeps the combination, where Alt+Down opens a select
+    if (event.target.matches(formelements)) {
+      return;
+    }
+    // the jump is all that should happen; some browsers scroll on top of it
+    event.preventDefault();
     var elems = Array.from(
       document.querySelectorAll(`main :not(.include.hide-first-heading) > :where(
                 .article-subheading,
@@ -872,36 +881,34 @@ function initArrowVerticalNav() {
             main .include.hide-first-heading > :where( h1, h2, h3, h4, h5, h6 ) ~ :where( h1, h2, h3, h4, h5, h6 )
         `)
     );
-    if (!event.shiftKey && !event.ctrlKey && event.altKey && !event.metaKey) {
-      if (event.key == 'ArrowUp') {
-        var target = isPrint ? document.querySelector('#R-body') : document.querySelector('.flex-block-wrapper');
-        elems.some(function (elem, i) {
-          var top = elem.getBoundingClientRect().top;
-          var topBoundary = top - topMain;
-          if (topBoundary > -1) {
+    if (event.key == 'ArrowUp') {
+      var target = isPrint ? document.querySelector('#R-body') : document.querySelector('.flex-block-wrapper');
+      elems.some(function (elem, i) {
+        var top = elem.getBoundingClientRect().top;
+        var topBoundary = top - topMain;
+        if (topBoundary > -1) {
+          target.scrollIntoView();
+          return true;
+        }
+        target = elem;
+      });
+    } else {
+      elems.some(function (elem, i) {
+        var top = elem.getBoundingClientRect().top;
+        var topBoundary = top - topMain;
+        if (topBoundary > -1 && topBoundary < 1) {
+          if (i + 1 < elems.length) {
+            var target = elems[i + 1];
             target.scrollIntoView();
-            return true;
           }
-          target = elem;
-        });
-      } else if (event.key == 'ArrowDown') {
-        elems.some(function (elem, i) {
-          var top = elem.getBoundingClientRect().top;
-          var topBoundary = top - topMain;
-          if (topBoundary > -1 && topBoundary < 1) {
-            if (i + 1 < elems.length) {
-              var target = elems[i + 1];
-              target.scrollIntoView();
-            }
-            return true;
-          }
-          if (topBoundary >= 1) {
-            var target = elem;
-            target.scrollIntoView();
-            return true;
-          }
-        });
-      }
+          return true;
+        }
+        if (topBoundary >= 1) {
+          var target = elem;
+          target.scrollIntoView();
+          return true;
+        }
+      });
     }
   });
 }
