@@ -15,9 +15,9 @@
 <p>Built with <a href="{{ $url }}" title="{{ print $ver }}"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="{{ $gen }}">Hugo</a></p>
 {{- with resources.Get "/js/github-buttons/github-buttons.js" }}
   {{- with partial "asset.gotmpl" "/js/github-buttons-init.js" }}
-<script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}></script>
+<script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
   {{- end }}
   {{- with partial "asset.gotmpl" . }}
-<script async src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}></script>
+<script async src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
   {{- end }}
 {{- end }}

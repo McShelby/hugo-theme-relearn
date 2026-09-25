@@ -3,7 +3,7 @@
 {{- if eq $location "header" }}
   {{- with $page }}
     {{- with partial "asset.gotmpl" "/js/variant.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
     {{- end }}
   {{- end }}
 {{- end }}

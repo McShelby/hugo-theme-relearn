@@ -44,24 +44,24 @@
   {{- with $page }}
     {{- $searchIndexUrl := "" }}
     {{- with partial "asset.gotmpl" "/css/auto-complete/auto-complete.css" }}
-    <link href="{{ .RelPermalink }}" rel="stylesheet" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}>
+    <link href="{{ .RelPermalink }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" . }}>
     {{- end }}
     {{- with partial "asset.gotmpl" "/js/auto-complete/auto-complete.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
     {{- end }}
     {{- if not $disableSearchIndex }}
       {{- $searchIndexUrl = trim $searchIndexURL "/" }}
       {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." .Language.Lang (path.Ext $searchIndexUrl)) }}
       {{- with partial "asset.gotmpl" (printf "/js/search-%s.js" $adapter) }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
       {{- else }}
         {{- with partial "asset.gotmpl" (printf "/js/search-%s.mjs" $adapter) }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} type="module" defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} type="module" defer></script>
         {{- end }}
       {{- end }}
     {{- end }}
     {{- with partial "asset.gotmpl" "/js/search.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
     {{- end }}
     {{- if $searchIndexUrl }}
       {{- $indexDir := path.Dir $searchIndexUrl }}
@@ -77,7 +77,7 @@
         stays with the element above */}}
       {{- with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}
         {{- with partial "_relearn/searchIndex.gotmpl" . }}
-    <script type="application/json" id="R-search-index" data-index-js-name="{{ path.Base .RelPermalink }}" {{ printf "data-index-js-integrity=%q" (fingerprint .).Data.Integrity | safeHTMLAttr }}>{}</script>
+    <script type="application/json" id="R-search-index" data-index-js-name="{{ path.Base .RelPermalink }}"{{ with (partial "_relearn/integrity.gotmpl" .) }}{{ printf " data-index-js-integrity=%q" . | safeHTMLAttr }}{{ end }}>{}</script>
         {{- end }}
       {{- end }}
     {{- end }}

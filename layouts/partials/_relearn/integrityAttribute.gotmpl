@@ -1,0 +1,18 @@
+{{- /*
+Returns the `integrity` attribute for a script or stylesheet tag, with its leading
+space, or nothing if there is no integrity to write; so it can stand right after
+the preceding attribute:
+
+	<script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
+
+Takes the linked resource, or an integrity worked out before.
+*/}}
+{{- $integrity := . }}
+{{- if ne (printf "%T" .) "string" }}
+	{{- $integrity = partial "_relearn/integrity.gotmpl" . }}
+{{- end }}
+{{- $attribute := "" }}
+{{- with $integrity }}
+	{{- $attribute = printf " integrity=%q" . }}
+{{- end }}
+{{- return safeHTMLAttr $attribute }}

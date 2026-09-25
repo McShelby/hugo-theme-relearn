@@ -36,11 +36,11 @@
            arrived, so such a link has to stand before that script */}}
     {{- with partial "asset.gotmpl" "/fonts/fontawesome/css/all.min.css" }}
       {{- $url := .RelPermalink }}
-      {{- $integrity := (fingerprint .).Data.Integrity }}
-    <link href="{{ $url }}" rel="stylesheet" {{ printf "integrity=%q" ($integrity) | safeHTMLAttr }} media="print" class="R-async-style"><noscript><link href="{{ $url }}" rel="stylesheet" {{ printf "integrity=%q" ($integrity) | safeHTMLAttr }}></noscript>
+      {{- $integrity := (partial "_relearn/integrity.gotmpl" .) }}
+    <link href="{{ $url }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" $integrity }} media="print" class="R-async-style"><noscript><link href="{{ $url }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" $integrity }}></noscript>
     {{- end }}
-    <link href="{{ $themecss.theme }}" rel="stylesheet" {{ printf "integrity=%q" ($themeintegrity.theme) | safeHTMLAttr }}>
-    <link href="{{ index $themecss (printf "format-%s" $outputFormat) }}" rel="stylesheet" {{ printf "integrity=%q" (index $themeintegrity (printf "format-%s" $outputFormat)) | safeHTMLAttr }} id="R-format-style">
+    <link href="{{ $themecss.theme }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" $themeintegrity.theme }}>
+    <link href="{{ index $themecss (printf "format-%s" $outputFormat) }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" (index $themeintegrity (printf "format-%s" $outputFormat)) }} id="R-format-style">
     {{- $versionIndexUrl := "" }}
     {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
     {{- if $versions }}
@@ -97,13 +97,13 @@
            paint or the page flashes in the wrong variant and the menu is drawn for the
            wrong scrollbar model */}}
     {{- with partial "asset.gotmpl" "/js/theme-head.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }}></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
     {{- end }}
   {{- end }}
 {{- else if eq $location "footer" }}
   {{- with $page }}
     {{- with partial "asset.gotmpl" "/js/theme.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
     {{- end }}
   {{- end }}
 {{- end }}

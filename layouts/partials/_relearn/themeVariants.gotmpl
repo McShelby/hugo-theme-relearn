@@ -249,7 +249,7 @@ Generator run:
 	{{- /* the following code causes Hugo to generate our file in public */}}
 	{{- with partial "asset.gotmpl" $cssres }}
 		{{- $css = merge $css (dict "theme" .RelPermalink) }}
-		{{- $integrity = merge $integrity (dict "theme" (fingerprint .).Data.Integrity) }}
+		{{- $integrity = merge $integrity (dict "theme" (partial "_relearn/integrity.gotmpl" .)) }}
 	{{- end }}
 {{- end }}
 
@@ -266,7 +266,7 @@ Generator run:
 	{{- /* the following code causes Hugo to generate our file in public */}}
 	{{- with partial "asset.gotmpl" $cssres }}
 		{{- $css = merge $css (dict "swagger" .RelPermalink) }}
-		{{- $integrity = merge $integrity (dict "swagger" (fingerprint .).Data.Integrity) }}
+		{{- $integrity = merge $integrity (dict "swagger" (partial "_relearn/integrity.gotmpl" .)) }}
 	{{- end }}
 {{- end }}
 
@@ -291,7 +291,7 @@ Generator run:
 {{- /* the following code causes Hugo to generate our file in public */}}
 {{- with partial "asset.gotmpl" $cssres }}
 	{{- $css = merge $css (dict "format-html" .RelPermalink) }}
-	{{- $integrity = merge $integrity (dict "format-html" (fingerprint .).Data.Integrity) }}
+	{{- $integrity = merge $integrity (dict "format-html" (partial "_relearn/integrity.gotmpl" .)) }}
 {{- end }}
 
 {{- /*
@@ -308,7 +308,7 @@ Generator run:
 {{- /* the following code causes Hugo to generate our file in public */}}
 {{- with partial "asset.gotmpl" $cssres }}
 	{{- $css = merge $css (dict "format-print" .RelPermalink) }}
-	{{- $integrity = merge $integrity (dict "format-print" (fingerprint .).Data.Integrity) }}
+	{{- $integrity = merge $integrity (dict "format-print" (partial "_relearn/integrity.gotmpl" .)) }}
 {{- end }}
 
 {{- /*

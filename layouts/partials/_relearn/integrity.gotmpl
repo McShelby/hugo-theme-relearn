@@ -1,0 +1,12 @@
+{{- /*
+Returns the subresource integrity of the given resource, or nothing unless the site
+asks for it with `enableSubresourceIntegrity`.
+
+A browser can not check an integrity for a page opened from the file system and
+refuses the file instead, which is why this is opt-in.
+*/}}
+{{- $integrity := "" }}
+{{- if site.Params.enableSubresourceIntegrity }}
+	{{- $integrity = (fingerprint .).Data.Integrity }}
+{{- end }}
+{{- return $integrity }}

@@ -16,13 +16,13 @@
     {{- end }}
     {{- if not $disableSearchIndex }}
       {{- with partial "asset.gotmpl" "/js/lunr/lunr.min.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
       {{- end }}
       {{- with partial "asset.gotmpl" "/js/lunr/lunr.stemmer.support.min.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
       {{- end }}
       {{- with partial "asset.gotmpl" "/js/lunr/lunr.multi.min.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
       {{- end }}
       {{- $missingcontentlangs := slice }}
       {{- $tinyseg := false }}
@@ -35,16 +35,16 @@
             {{- $tinyseg = true }}
             {{- /* built segmenters that are not named `.min` */}}
             {{- with partial "asset.gotmpl" (dict "res" "/js/lunr/tinyseg.js" "minify" false) }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
             {{- end }}
           {{- end }}
           {{- if and (not $wordcut) (or (eq $lang "hi") (eq $lang "th")) }}
             {{- $wordcut = true }}
             {{- with partial "asset.gotmpl" (dict "res" "/js/lunr/wordcut.js" "minify" false) }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
             {{- end }}
           {{- end }}
-    <script src="{{ $lunrlang.RelPermalink }}" {{ printf "integrity=%q" ((fingerprint $lunrlang).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ $lunrlang.RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" $lunrlang }} defer></script>
         {{- else }}
           {{- $missingcontentlangs = $missingcontentlangs | append . }}
         {{- end }}
@@ -55,7 +55,7 @@
       {{- $contentlangs = $contentlangs | complement $missingcontentlangs }}
     {{- end }}
     {{- /* with partial "asset.gotmpl" "/js/search-lunr.js" }}
-    <script src="{{ .RelPermalink }}" {{ printf "integrity=%q" ((fingerprint .).Data.Integrity) | safeHTMLAttr }} defer></script>
+    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
     {{- end */}}
     {{- $config := dict
       "contentLangs" $contentlangs
