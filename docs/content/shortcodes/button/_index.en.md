@@ -278,7 +278,7 @@ If your JavaScript action does not change the focus afterwards, make sure to cal
 
 #### Button with Own Action
 
-The button is written with a `data-button-action` attribute. Handle it in a script file of your own, for example loaded by `layouts/partials/custom-footer.html`.
+The button is written with a `data-button-action` attribute. Handle it in your `assets/js/custom.js`, which the theme [loads on every page](configuration/customization/extending#simple-solution).
 
 {{% multishortcode name="button" execute="false" format="%s" %}}
 - content: "Shout it out"

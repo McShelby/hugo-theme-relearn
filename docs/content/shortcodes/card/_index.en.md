@@ -108,7 +108,7 @@ As no title is left to name the card, describe the image with the `imagealt` par
 
 ### Card with Own Action
 
-The card is written with a `data-button-action` attribute. Handle it in a script file of your own, for example loaded by `layouts/partials/custom-footer.html`.
+The card is written with a `data-button-action` attribute. Handle it in your `assets/js/custom.js`, which the theme [loads on every page](configuration/customization/extending#simple-solution).
 
 {{% multishortcode name="card" execute="false" %}}
 - title: "Shout it out"

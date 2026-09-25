@@ -1,5 +1,14 @@
-<!-- Partial intended to be overwritten with tags loaded at the end of the page loading (usually for Javascript)
+{{- /* Partial intended to be overwritten. Appended at the end of each page (usually for JavaScript)
+
+A inline script (not CSP compliant):
+
 <script>
   console.log("running some javascript");
 </script>
--->
+
+A script file, placed in `assets/js/my.js`:
+
+{{- with resources.Get "js/my.js" | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+{{- end }}
+*/}}
