@@ -10,17 +10,19 @@ The theme writes no inline JavaScript. Its settings travel as JSON data blocks a
 
 ## Policy
 
-This policy covers every feature of the theme except math
+This policy covers every feature of the theme except Mermaid and math
 
 ````http
-Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:
+Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:
 ````
 
-`style-src` needs `'unsafe-inline'`, as the theme writes colors given to shortcodes as `style` attributes, and Mermaid and Swagger UI inject styles of their own.
+`style-src-attr 'unsafe-inline'` allows `style` attributes: the theme writes colors and image sizes given in your content as such, and Hugo does the same for the alignment of table columns. Inline `<style>` elements stay forbidden; the theme writes none.
 
 ## What Needs More
 
-- **Math**: MathJax starts a worker from a `blob:` URL and loads its fonts from `https://cdn.jsdelivr.net`. Add `worker-src blob:` and `https://cdn.jsdelivr.net` to `font-src`.
+- **Mermaid**: Mermaid writes its styles into inline `<style>` elements. Add `style-src-elem 'self' 'unsafe-inline'` - with `'self'` repeated, as it replaces `style-src` for all style elements.
+- **Math**: MathJax does the same and needs the same `style-src-elem`. It also starts a worker from a `blob:` URL and loads its fonts from `https://cdn.jsdelivr.net`, so add `worker-src blob:` and `https://cdn.jsdelivr.net` to `font-src`.
+- **Inlined SVGs**: an SVG shown with the [`inlinecontent` image effect](authoring/linking/imageeffects) brings its own `<style>` elements into the page, if it has any, and needs the same `style-src-elem`.
 - **Libraries from elsewhere**: if you set `customMathJaxURL`, `customMermaidURL` or `customOpenapiURL`, add their origin to `script-src`, and for Swagger UI to `style-src` as well.
 - **Your own inline JavaScript**: a `javascript:` URL as the `href` of a [button](shortcodes/button), [card](shortcodes/card) or [topbar button](configuration/customization/topbar#button) is blocked. Give it an `action` instead and [handle that in a script file](shortcodes/button#button-with-own-action).
 
