@@ -1,0 +1,36 @@
+{{- /* Hugo's own table template, with the alignment of a column given as a class instead of a style attribute, so no Content Security Policy has to allow inline styles for it */ -}}
+<table
+	{{- range $k, $v := .Attributes }}
+		{{- if $v }}
+			{{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr }}
+		{{- end }}
+	{{- end }}>
+	<thead>
+		{{- range .THead }}
+			<tr>
+				{{- range . }}
+					<th
+						{{- with .Alignment }}
+							{{- printf " class=%q" (printf "align-%s" .) | safeHTMLAttr }}
+						{{- end -}}>
+						{{- .Text -}}
+					</th>
+				{{- end }}
+			</tr>
+		{{- end }}
+	</thead>
+	<tbody>
+		{{- range .TBody }}
+			<tr>
+				{{- range . }}
+					<td
+						{{- with .Alignment }}
+							{{- printf " class=%q" (printf "align-%s" .) | safeHTMLAttr }}
+						{{- end -}}>
+						{{- .Text -}}
+					</td>
+				{{- end }}
+			</tr>
+		{{- end }}
+	</tbody>
+</table>
