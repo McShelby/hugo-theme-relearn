@@ -62,6 +62,9 @@ async function init() {
   if (window.relearn.index_js_url) {
     var js = document.createElement('script');
     js.src = window.relearn.index_js_url;
+    if (window.relearn.index_js_integrity) {
+      js.integrity = window.relearn.index_js_integrity;
+    }
     js.setAttribute('async', '');
     js.onload = function () {
       initIndex(relearn_searchindex);

@@ -166,9 +166,13 @@
     if (!window.relearn.search || !window.relearn.search.adapter) {
       return;
     }
-    // the adapters expect the index URL as a global; it travels as an attribute of
-    // our data block because Hugo only rewrites it for `relativeURLs` there
-    window.relearn.index_js_url = document.getElementById('R-search-config').dataset.indexJsUrl;
+    // the adapters expect the index URL and its integrity as globals; the path in
+    // front of the URL is the page's own, while the name and integrity come from the
+    // element of the generated index, which is the same for every page
+    var config = document.getElementById('R-search-config');
+    var index = document.getElementById('R-search-index');
+    window.relearn.index_js_url = config.dataset.indexJsBaseUrl + index.dataset.indexJsName;
+    window.relearn.index_js_integrity = index.dataset.indexJsIntegrity;
     window.relearn.search.adapter.init();
 
     var input = document.querySelector('#R-search-by-detail');

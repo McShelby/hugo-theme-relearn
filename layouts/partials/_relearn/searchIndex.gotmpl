@@ -1,0 +1,14 @@
+{{- /*
+Generates the search index from the given template and returns it as an asset
+ready to be linked.
+
+Expects a dict of `url`, the target path of the generated index, and
+`template`, the resource to generate it from.
+
+It is meant to be called from a deferred template, which resolves a URL against
+the bare site; anything it worked out about the site root would be wrong for a
+site published below a subdirectory, so only the name of the result is of use and
+the page prepends its own path.
+*/}}
+{{- $res := resources.Get .template | resources.ExecuteAsTemplate .url site.Home }}
+{{- return partial "asset.gotmpl" $res }}
