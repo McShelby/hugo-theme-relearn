@@ -29,7 +29,7 @@
 {{- $classes := split $attributes.class " " }}
 {{- $isLightbox := in $classes "lightbox" }}
 {{- if $isLightbox -}}
-<a href="#R-image-{{ $id }}" class="lightbox-link">
+<a href="#R-image-{{ $id }}" class="lightbox-link" id="R-image-{{ $id }}-link">
 {{- end }}
 {{- $attributes_figure := $attributes }}
 {{- $attributes_figure = merge $attributes_figure (dict "class" (delimit ((split $attributes_figure.class " ") | append "figure-image") " ")) }}
@@ -37,7 +37,7 @@
 {{- partial "inline/img" (dict "attributes" $attributes_figure) }}
 {{- if $isLightbox -}}
 </a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-{{ $id }}">
+<a href="#R-image-{{ $id }}-link" class="lightbox-back" id="R-image-{{ $id }}">
 {{- $attributes_lightbox := $attributes }}
 {{- $attributes_lightbox = merge $attributes_lightbox (dict "class" (delimit ((split $attributes_lightbox.class " ") | append "lightbox-image") " ")) }}
 {{- /* the enlarged copy is sized by CSS alone; intrinsic dimensions would be

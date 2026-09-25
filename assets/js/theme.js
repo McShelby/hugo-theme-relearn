@@ -1452,6 +1452,11 @@ function initSwipeHandler() {
 function initImage() {
   document.querySelectorAll('.lightbox-back').forEach(function (e) {
     e.addEventListener('keydown', imageEscapeHandler);
+    e.addEventListener('click', function (event) {
+      // leave the lightbox the way we came instead of adding another history entry
+      event.preventDefault();
+      history.back();
+    });
   });
 }
 
