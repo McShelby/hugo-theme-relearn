@@ -438,6 +438,11 @@ function initOpenapi(update, attrs) {
     var print = isPrint || isPrintPreview ? 'PRINT-' : '';
     var format = print ? `print` : `html`;
     var theme = print ? config.dataset.formatPrintCssUrl : config.dataset.formatHtmlCssUrl;
+    var themeIntegrity = print ? config.dataset.formatPrintCssIntegrity : config.dataset.formatHtmlCssIntegrity;
+    function integrity(value) {
+      // a stylesheet from a custom URL is none of ours, so there is no hash to check against
+      return value ? ` integrity="${value}"` : '';
+    }
     var variant = document.documentElement.dataset.rThemeVariant;
     var swagger_theme = getColorValue(print + 'OPENAPI-theme');
     var swagger_code_theme = getColorValue(print + 'OPENAPI-CODE-theme');
@@ -460,35 +465,28 @@ function initOpenapi(update, attrs) {
 <html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="${config.dataset.openapiCssUrl}">
-    <link rel="stylesheet" href="${config.dataset.swaggerCssUrl}">
-    <link rel="stylesheet" href="${theme}">
-    <script>
-      function relearn_expand_all() {
-        document.querySelectorAll(".expand-operation[aria-expanded=false]").forEach(btn => btn.click());
-        document.querySelectorAll(".models-control[aria-expanded=false]").forEach(btn => btn.click());
-        document.querySelectorAll(".opblock-summary-control[aria-expanded=false]").forEach(btn => btn.click());
-        document.querySelectorAll(".model-container > .model-box > button[aria-expanded=false]").forEach(btn => btn.click());
-        return false;
-      }
-      function relearn_collapse_all() {
-        document.querySelectorAll(".expand-operation[aria-expanded=true]").forEach(btn => btn.click());
-        document.querySelectorAll(".models-control[aria-expanded=true]").forEach(btn => btn.click());
-        document.querySelectorAll(".opblock-summary-control[aria-expanded=true]").forEach(btn => btn.click());
-        document.querySelectorAll(".model-container > .model-box > .model-box > .model > span > button[aria-expanded=true]").forEach(btn => btn.click());
-        return false;
-      }
-    </script>
+    <link rel="stylesheet" href="${config.dataset.openapiCssUrl}"${integrity(config.dataset.openapiCssIntegrity)}>
+    <link rel="stylesheet" href="${config.dataset.swaggerCssUrl}"${integrity(config.dataset.swaggerCssIntegrity)}>
+    <link rel="stylesheet" href="${theme}"${integrity(themeIntegrity)}>
   </head>
   <body>
-    <a class="relearn-expander" href="" onclick="return relearn_collapse_all()">Collapse all</a>
-    <a class="relearn-expander" href="" onclick="return relearn_expand_all()">Expand all</a>
+    <a class="relearn-expander" href="" data-expand="false">Collapse all</a>
+    <a class="relearn-expander" href="" data-expand="true">Expand all</a>
     <div id="relearn-swagger-ui"></div>
   </body>
 </html>`;
     oi.height = '100%';
     oi.width = '100%';
     oi.onload = function () {
+      // the iframe runs no script of its own, so its expanders are served from here
+      oi.contentWindow.document.addEventListener('click', function (event) {
+        var expander = event.target.closest('.relearn-expander');
+        if (!expander) {
+          return;
+        }
+        event.preventDefault();
+        expandOpenAPI(oi.contentWindow.document, expander.dataset.expand == 'true');
+      });
       const openapiWrapper = getFirstAncestorByClass(oc, 'sc-openapi-wrapper');
       const openapiPromise = new Promise(function (resolve) {
         resolve();
@@ -564,6 +562,23 @@ function initOpenapi(update, attrs) {
         });
     };
     oc.appendChild(oi);
+  }
+  function expandOpenAPI(doc, expand) {
+    // only what is not yet in the wanted state gets clicked
+    var current = expand ? 'false' : 'true';
+    var clickAll = function (selector) {
+      doc.querySelectorAll(selector).forEach(function (btn) {
+        btn.click();
+      });
+    };
+    clickAll('.expand-operation[aria-expanded=' + current + ']');
+    clickAll('.models-control[aria-expanded=' + current + ']');
+    clickAll('.opblock-summary-control[aria-expanded=' + current + ']');
+    if (expand) {
+      clickAll('.model-container > .model-box > button[aria-expanded=false]');
+    } else {
+      clickAll('.model-container > .model-box > .model-box > .model > span > button[aria-expanded=true]');
+    }
   }
   function setOpenAPIHeight(oi) {
     // add empirical offset if in print preview (GC 103)
