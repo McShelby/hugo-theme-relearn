@@ -12,7 +12,7 @@
 window.relearn = window.relearn || {};
 
 (function () {
-  var element = document.getElementById('R-theme-config');
+  var element = document.querySelector('#R-theme-config');
   var config = JSON.parse(element.textContent);
 
   // the translations stay globals of their own, that is how our scripts read them

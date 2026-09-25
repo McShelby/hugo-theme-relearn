@@ -6,16 +6,16 @@ var isPrintPreview = false;
 
 var isRtl = document.querySelector('html').getAttribute('dir') == 'rtl';
 var lang = document.querySelector('html').getAttribute('lang');
-var dir_key_start = 37;
-var dir_key_end = 39;
+var dir_key_start = 'ArrowLeft';
+var dir_key_end = 'ArrowRight';
 var dir_scroll = 1;
 if (isRtl) {
-  dir_key_start = 39;
-  dir_key_end = 37;
+  dir_key_start = 'ArrowRight';
+  dir_key_end = 'ArrowLeft';
   dir_scroll = -1;
 }
 
-var touchsupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+var touchsupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 var reducedmotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 var hovernone = window.matchMedia('(hover: none)');
 
@@ -24,6 +24,8 @@ var formelements = 'button, datalist, fieldset, input, label, legend, meter, opt
 // how far a cursor key scrolls one of our scroll containers; the browsers
 // default for this is neither exposed to us nor the same in all of them
 var LINE_SCROLL = 40;
+// the keys a browser scrolls with
+var SCROLL_KEYS = [' ', 'PageUp', 'PageDown', 'End', 'Home', 'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown'];
 
 var elc = document.querySelector('#R-body-inner');
 
@@ -47,7 +49,7 @@ function debounce(func, delay) {
 function showToast(message) {
   if (!message) return;
 
-  var container = document.getElementById('toast-container');
+  var container = document.querySelector('#toast-container');
   if (!container) return;
 
   var toast = document.createElement('div');
@@ -403,7 +405,7 @@ function initMermaid(update, attrs) {
 function initOpenapi(update, attrs) {
   // the block is only written by the openapi dependency, so without it the page has
   // nothing to render
-  var config = document.getElementById('R-openapi-config');
+  var config = document.querySelector('#R-openapi-config');
   if (!config) {
     return;
   }
@@ -449,12 +451,12 @@ function initOpenapi(update, attrs) {
 
     const openapiId = 'relearn-swagger-ui';
     const openapiIframeId = openapiId + '-iframe';
-    const openapiIframe = document.getElementById(openapiIframeId);
+    const openapiIframe = document.querySelector('#' + openapiIframeId);
     if (openapiIframe) {
       openapiIframe.remove();
     }
     const openapiErrorId = openapiId + '-error';
-    const openapiError = document.getElementById(openapiErrorId);
+    const openapiError = document.querySelector('#' + openapiErrorId);
     if (openapiError) {
       openapiError.remove();
     }
@@ -477,7 +479,7 @@ function initOpenapi(update, attrs) {
 </html>`;
     oi.height = '100%';
     oi.width = '100%';
-    oi.onload = function () {
+    oi.addEventListener('load', function () {
       // the iframe runs no script of its own, so its expanders are served from here
       oi.contentWindow.document.addEventListener('click', function (event) {
         var expander = event.target.closest('.relearn-expander');
@@ -488,16 +490,13 @@ function initOpenapi(update, attrs) {
         expandOpenAPI(oi.contentWindow.document, expander.dataset.expand == 'true');
       });
       const openapiWrapper = getFirstAncestorByClass(oc, 'sc-openapi-wrapper');
-      const openapiPromise = new Promise(function (resolve) {
-        resolve();
-      });
-      openapiPromise
+      Promise.resolve()
         .then(function () {
           var options = {
             defaultModelsExpandDepth: 2,
             defaultModelExpandDepth: 2,
             docExpansion: isPrint || isPrintPreview ? 'full' : 'list',
-            domNode: oi.contentWindow.document.getElementById(openapiId),
+            domNode: oi.contentWindow.document.querySelector('#' + openapiId),
             filter: !(isPrint || isPrintPreview),
             layout: 'BaseLayout',
             onComplete: function () {
@@ -560,7 +559,7 @@ function initOpenapi(update, attrs) {
             openapiWrapper.insertAdjacentElement('afterbegin', ed);
           }
         });
-    };
+    });
     oc.appendChild(oi);
   }
   function expandOpenAPI(doc, expand) {
@@ -585,12 +584,12 @@ function initOpenapi(update, attrs) {
     oi.style.height = oi.contentWindow.document.documentElement.getBoundingClientRect().height + (isPrintPreview ? 200 : 0) + 'px';
   }
   function resizeOpenAPI() {
-    let divi = document.getElementsByClassName('sc-openapi-iframe');
+    let divi = document.querySelectorAll('.sc-openapi-iframe');
     for (let i = 0; i < divi.length; i++) {
       setOpenAPIHeight(divi[i]);
     }
   }
-  let divo = document.getElementsByClassName('sc-openapi-container');
+  let divo = document.querySelectorAll('.sc-openapi-container');
   for (let i = 0; i < divo.length; i++) {
     renderOpenAPI(divo[i]);
   }
@@ -874,8 +873,7 @@ function initArrowVerticalNav() {
         `)
     );
     if (!event.shiftKey && !event.ctrlKey && event.altKey && !event.metaKey) {
-      if (event.which == 38) {
-        // up
+      if (event.key == 'ArrowUp') {
         var target = isPrint ? document.querySelector('#R-body') : document.querySelector('.flex-block-wrapper');
         elems.some(function (elem, i) {
           var top = elem.getBoundingClientRect().top;
@@ -886,8 +884,7 @@ function initArrowVerticalNav() {
           }
           target = elem;
         });
-      } else if (event.which == 40) {
-        // down
+      } else if (event.key == 'ArrowDown') {
         elems.some(function (elem, i) {
           var top = elem.getBoundingClientRect().top;
           var topBoundary = top - topMain;
@@ -930,7 +927,7 @@ function initArrowHorizontalNav() {
       if (f) {
         return;
       }
-      if (event.which == dir_key_start) {
+      if (event.key == dir_key_start) {
         if (!scrollStart && +el.scrollLeft.toFixed() * dir_scroll <= 0) {
           prev && prev.click();
         } else if (scrollStart != -1) {
@@ -938,7 +935,7 @@ function initArrowHorizontalNav() {
         }
         scrollStart = -1;
       }
-      if (event.which == dir_key_end) {
+      if (event.key == dir_key_end) {
         if (!scrollEnd && +el.scrollLeft.toFixed() * dir_scroll + +el.clientWidth.toFixed() >= +el.scrollWidth.toFixed()) {
           next && next.click();
         } else if (scrollEnd != -1) {
@@ -954,7 +951,7 @@ function initArrowHorizontalNav() {
       if (f) {
         return;
       }
-      if (event.which == dir_key_start) {
+      if (event.key == dir_key_start) {
         // check for false indication if keyup is delayed after navigation
         if (scrollStart == -1) {
           scrollStart = setTimeout(function () {
@@ -962,7 +959,7 @@ function initArrowHorizontalNav() {
           }, 300);
         }
       }
-      if (event.which == dir_key_end) {
+      if (event.key == dir_key_end) {
         if (scrollEnd == -1) {
           scrollEnd = setTimeout(function () {
             scrollEnd = 0;
@@ -1144,7 +1141,7 @@ function initMenuScrollbar() {
     // cursor/page up/down; a scroll container only reacts to
     // those keys if it contains the focus, so hand it over
     // to the element the user expects to scroll
-    if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || event.which < 32 || event.which > 40) {
+    if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || !SCROLL_KEYS.includes(event.key)) {
       return;
     }
 
@@ -1155,17 +1152,17 @@ function initMenuScrollbar() {
       // would scroll the wrong one, but browsers disagree on whether they
       // scroll the focused container themselves, so we always do it ourselves
       var by = 0;
-      if (event.which == 38) {
+      if (event.key == 'ArrowUp') {
         by = -LINE_SCROLL;
-      } else if (event.which == 40) {
+      } else if (event.key == 'ArrowDown') {
         by = LINE_SCROLL;
-      } else if (event.which == 33) {
+      } else if (event.key == 'PageUp') {
         by = -scroller.clientHeight;
-      } else if (event.which == 34) {
+      } else if (event.key == 'PageDown') {
         by = scroller.clientHeight;
-      } else if (event.which == 36) {
+      } else if (event.key == 'Home') {
         by = -scroller.scrollHeight;
-      } else if (event.which == 35) {
+      } else if (event.key == 'End') {
         by = scroller.scrollHeight;
       }
       if (by) {
@@ -1211,6 +1208,12 @@ function imageEscapeHandler(event) {
   }
 }
 
+// our shortcuts stay on the deprecated `event.which`: it names the letter on the
+// key in the reader's layout, which neither replacement does. `event.key` gives
+// the character typed, so a non-Latin layout never produces our letters and on
+// Windows, where Ctrl+Alt is AltGr, some layouts type another character instead;
+// `event.code` gives the key's position on a US keyboard, which moves our
+// letters on layouts like AZERTY
 function navShortcutHandler(event) {
   if (!event.shiftKey && event.altKey && event.ctrlKey && !event.metaKey && event.which == 78 /* n */) {
     toggleNav();
@@ -1578,7 +1581,7 @@ function scrollToPositions() {
 
   var state = window.history.state || {};
   state = typeof state === 'object' ? state : {};
-  if (state.hasOwnProperty('contentScrollTop')) {
+  if (Object.hasOwn(state, 'contentScrollTop')) {
     window.setTimeout(function () {
       elc.scrollTop = +state.contentScrollTop;
     }, 10);
@@ -1907,9 +1910,7 @@ function initSearch() {
     e.addEventListener('click', function () {
       inputs.forEach(function (e) {
         e.value = '';
-        var event = document.createEvent('Event');
-        event.initEvent('input', false, false);
-        e.dispatchEvent(event);
+        e.dispatchEvent(new Event('input'));
       });
       window.sessionStorage.removeItem(window.relearn.absBaseUri + '/search-value');
       unmark();
@@ -1928,9 +1929,7 @@ function initSearch() {
   if (search) {
     inputs.forEach(function (e) {
       e.value = search;
-      var event = document.createEvent('Event');
-      event.initEvent('input', false, false);
-      e.dispatchEvent(event);
+      e.dispatchEvent(new Event('input'));
     });
   }
 
@@ -1969,7 +1968,7 @@ function useMermaid(config) {
 (function () {
   // the block is only written by the mermaid dependency; we are deferred, so it
   // stands in the document by now wherever the dependency put it
-  var config = document.getElementById('R-mermaid-config');
+  var config = document.querySelector('#R-mermaid-config');
   if (config) {
     window.relearn.themeUseMermaid = JSON.parse(config.textContent);
     useMermaid(window.relearn.themeUseMermaid);
@@ -2233,12 +2232,12 @@ function initVersionJs() {
     url.searchParams.set('v', randomNum.toString());
     js.src = url.toString();
     js.setAttribute('async', '');
-    js.onload = function () {
+    js.addEventListener('load', function () {
       initVersionIndex(relearn_versionindex);
-    };
-    js.onerror = function (e) {
+    });
+    js.addEventListener('error', function (e) {
       console.error('Error getting version index file');
-    };
+    });
     document.head.appendChild(js);
   }
 }

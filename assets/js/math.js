@@ -23,5 +23,5 @@ window.MathJax = Object.assign(
       enableMenu: false, // avoid translation hassle for context menu
     },
   },
-  JSON.parse(document.getElementById('R-math-config').textContent)
+  JSON.parse(document.querySelector('#R-math-config').textContent)
 );

@@ -67,9 +67,7 @@
           var inputs = document.querySelectorAll('input.search-by');
           inputs.forEach(function (e) {
             e.value = search;
-            var event = document.createEvent('Event');
-            event.initEvent('input', false, false);
-            e.dispatchEvent(event);
+            e.dispatchEvent(new Event('input'));
           });
 
           // recreate the last search results and eventually
@@ -153,7 +151,7 @@
       // by a browser history operation, it simply does nothing
       var state = window.history.state || {};
       state = Object.assign({}, typeof state === 'object' ? state : {});
-      if (state.hasOwnProperty('contentScrollTop')) {
+      if (Object.hasOwn(state, 'contentScrollTop')) {
         window.setTimeout(function () {
           elc.scrollTop = +state.contentScrollTop;
         }, 10);
@@ -169,7 +167,7 @@
     // the adapters expect the index URL and its integrity as globals; our data block
     // is the same for every page, so it knows the index's path from the site's root
     // and we put the page's own way up there in front of it
-    var config = JSON.parse(document.getElementById('R-search-config').textContent);
+    var config = JSON.parse(document.querySelector('#R-search-config').textContent);
     window.relearn.index_js_url = window.relearn.relBasePath + '/' + config.indexFile;
     window.relearn.index_js_integrity = config.indexIntegrity;
     window.relearn.search.adapter.init();

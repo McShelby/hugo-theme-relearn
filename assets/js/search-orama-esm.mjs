@@ -66,12 +66,12 @@ async function init() {
       js.integrity = window.relearn.index_js_integrity;
     }
     js.setAttribute('async', '');
-    js.onload = function () {
+    js.addEventListener('load', function () {
       initIndex(relearn_searchindex);
-    };
-    js.onerror = function (e) {
+    });
+    js.addEventListener('error', function (e) {
       console.error('Error getting Hugo index file');
-    };
+    });
     document.head.appendChild(js);
   }
 }

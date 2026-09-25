@@ -58,7 +58,7 @@ Each array item needs the following layout:
   let lunrIndex, pagesIndex;
 
   function init() {
-    var contentLangs = JSON.parse(document.getElementById('R-search-lunr-config').textContent).contentLangs;
+    var contentLangs = JSON.parse(document.querySelector('#R-search-lunr-config').textContent).contentLangs;
 
     function initIndex(index) {
       if (!window.lunr) {
@@ -101,12 +101,12 @@ Each array item needs the following layout:
         js.integrity = window.relearn.index_js_integrity;
       }
       js.setAttribute('async', '');
-      js.onload = function () {
+      js.addEventListener('load', function () {
         initIndex(relearn_searchindex);
-      };
-      js.onerror = function (e) {
+      });
+      js.addEventListener('error', function (e) {
         console.error('Error getting Hugo index file');
-      };
+      });
       document.head.appendChild(js);
     }
   }
