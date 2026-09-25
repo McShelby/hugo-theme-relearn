@@ -166,13 +166,12 @@
     if (!window.relearn.search || !window.relearn.search.adapter) {
       return;
     }
-    // the adapters expect the index URL and its integrity as globals; the path in
-    // front of the URL is the page's own, while the name and integrity come from the
-    // element of the generated index, which is the same for every page
-    var config = document.getElementById('R-search-config');
-    var index = document.getElementById('R-search-index');
-    window.relearn.index_js_url = config.dataset.indexJsBaseUrl + index.dataset.indexJsName;
-    window.relearn.index_js_integrity = index.dataset.indexJsIntegrity;
+    // the adapters expect the index URL and its integrity as globals; our data block
+    // is the same for every page, so it knows the index's path from the site's root
+    // and we put the page's own way up there in front of it
+    var config = JSON.parse(document.getElementById('R-search-config').textContent);
+    window.relearn.index_js_url = window.relearn.relBasePath + '/' + config.indexFile;
+    window.relearn.index_js_integrity = config.indexIntegrity;
     window.relearn.search.adapter.init();
 
     var input = document.querySelector('#R-search-by-detail');

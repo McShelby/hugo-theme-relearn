@@ -68,16 +68,25 @@
       {{- $indexDir = cond (eq $indexDir ".") "" (printf "%s/" $indexDir) }}
       {{- /* our data for `search.js`; a script element of a non JavaScript type is a data
         block the browser never executes, so a strict CSP has nothing to allow here. the
-        URL rides as an attribute and not as a JSON key because Hugo only rewrites a
-        value for `relativeURLs` where the text `url=` precedes it */}}
-    <script type="application/json" id="R-search-config" data-index-js-base-url="{{ printf "%s/%s" (partial "_relearn/relBasePath.gotmpl" .) $indexDir }}">{}</script>
-      {{- /* the index can only be generated once all pages are rendered, so its name and
-        integrity arrive in an element of their own; it is the same for every page and
-        therefore generated once for all of them, which is why the page's own path
-        stays with the element above */}}
-      {{- with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate))) }}
+        index can only be generated once all pages are rendered, so the element is
+        deferred; it is the same for every page and therefore generated once for all of
+        them, which is why it holds the index's path from the site's root and
+        `search.js` puts the page's own way up there in front of it */}}
+      {{- with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate "dir" $indexDir))) }}
+        {{- $dir := .dir }}
         {{- with partial "_relearn/searchIndex.gotmpl" . }}
-    <script type="application/json" id="R-search-index" data-index-js-name="{{ path.Base .RelPermalink }}"{{ with (partial "_relearn/integrity.gotmpl" .) }}{{ printf " data-index-js-integrity=%q" . | safeHTMLAttr }}{{ end }}>{}</script>
+          {{- $config := dict
+            "indexFile" (print $dir (path.Base .RelPermalink))
+          }}
+          {{- with partial "_relearn/integrity.gotmpl" . }}
+            {{- $config = merge $config (dict "indexIntegrity" .) }}
+          {{- end }}
+          {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
+          {{- $jsonOptions := dict
+            "indent" "  "
+            "prefix" "    "
+          }}
+    <script type="application/json" id="R-search-config">{{ $config | jsonify $jsonOptions | safeJS }}</script>
         {{- end }}
       {{- end }}
     {{- end }}
