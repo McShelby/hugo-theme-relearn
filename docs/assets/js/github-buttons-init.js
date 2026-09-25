@@ -16,15 +16,17 @@ function githubButtonsInit(){
   }
   var scheme = githubButtonsScheme();
   var githubButtonsHTML = `
-    <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/archive/main.zip" data-color-scheme="${scheme}" data-icon="octicon-cloud-download"  aria-label="Download McShelby/hugo-theme-relearn on GitHub">Download</a>
-    <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn" data-color-scheme="${scheme}" data-icon="octicon-star" data-show-count="true"  aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
-    <a class="github-button" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-color-scheme="${scheme}" data-icon="octicon-repo-forked"   data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
+    <a class="github-buttons-link" href="https://github.com/McShelby/hugo-theme-relearn/archive/main.zip" data-color-scheme="${scheme}" data-icon="octicon-cloud-download"  aria-label="Download McShelby/hugo-theme-relearn on GitHub">Download</a>
+    <a class="github-buttons-link" href="https://github.com/McShelby/hugo-theme-relearn" data-color-scheme="${scheme}" data-icon="octicon-star" data-show-count="true"  aria-label="Star McShelby/hugo-theme-relearn on GitHub">Star</a>
+    <a class="github-buttons-link" href="https://github.com/McShelby/hugo-theme-relearn/fork" data-color-scheme="${scheme}" data-icon="octicon-repo-forked"   data-show-count="true" aria-label="Fork McShelby/hugo-theme-relearn on GitHub">Fork</a>
     `;
   document.querySelector( '.github-buttons' ).innerHTML = githubButtonsHTML;
-  document.querySelectorAll( '.github-button' ).forEach( function( anchor ){
+  // not the library's own class, or it renders our links a second time on its own
+  document.querySelectorAll( '.github-buttons .github-buttons-link' ).forEach( function( anchor ){
     anchor.dataset.colorScheme = scheme;
     window.githubButtons.render( anchor, function( el ){
-      anchor.parentNode.replaceChild( el, anchor );
+      // a later call may have replaced our links while this one was rendering
+      anchor.parentNode && anchor.parentNode.replaceChild( el, anchor );
     });
   });
 }
