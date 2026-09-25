@@ -68,6 +68,31 @@ var variants = {
 
     this.init();
     ready(this.init.bind(this));
+
+    // we are loaded in the head, so our listener comes before the one of theme.js
+    // and the graph definition is in place before Mermaid draws it
+    ready(
+      function () {
+        if (document.querySelector('#R-vargenerator')) {
+          this.generator('#R-vargenerator');
+        }
+      }.bind(this)
+    );
+    document.addEventListener(
+      'click',
+      function (event) {
+        var button = event.target.closest('button[data-button-action^="variant-"]');
+        var actions = {
+          'variant-download': this.getStylesheet,
+          'variant-reset': this.resetVariant,
+          'variant-reset-all': this.resetAllVariants,
+        };
+        if (button && actions[button.dataset.buttonAction]) {
+          actions[button.dataset.buttonAction].call(this);
+          button.blur();
+        }
+      }.bind(this)
+    );
   },
 
   init: function (variant, old_path) {
