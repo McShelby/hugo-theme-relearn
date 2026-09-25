@@ -16,7 +16,7 @@ This policy covers every feature of the theme except Mermaid and math
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:
 ````
 
-`style-src-attr 'unsafe-inline'` allows `style` attributes: the theme writes colors and image sizes given in your content as such, and Hugo does the same for the alignment of table columns. Inline `<style>` elements stay forbidden; the theme writes none.
+`style-src-attr 'unsafe-inline'` allows `style` attributes: the theme writes colors and image sizes given in your content as such, and Hugo colors highlighted code this way unless you [set `markup.highlight.noClasses=false`](configuration/branding/modules#change-syntax-highlighting). If none of this applies and you use neither Mermaid nor math, which write `style` attributes as well, you can leave it out. Inline `<style>` elements stay forbidden; the theme writes none.
 
 ## What Needs More
 
