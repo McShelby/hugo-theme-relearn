@@ -1,12 +1,12 @@
 +++
 categories = ['howto', 'reference']
 description = 'Beautiful math and chemical formulae'
-frontmatter = ['customMathJaxURL', 'math', 'math.force', 'mathJaxInitialize']
-options = ['customMathJaxURL', 'math', 'math.force', 'mathJaxInitialize']
+frontmatter = ['math', 'math.force', 'math.output']
+options = ['math', 'math.force', 'math.output']
 title = 'Math'
 +++
 
-The `math` shortcode renders complex math and chemical formulae using the [MathJax](https://mathjax.org/) library.
+The `math` shortcode renders complex math and chemical formulae using [Hugo's built-in KaTeX](https://gohugo.io/functions/transform/tomath/).
 
 {{% multishortcode name="math" print="false" %}}
 align: "center"
@@ -26,54 +26,55 @@ content: |
 
 You can also use [pure Markdown](authoring/markdown#subscript-and-superscript) for writing simple math expressions.
 
-Passthrough syntax is only available by [further configuration](#passthrough-configuration) and has limited features as it does not provide any of the below parameters besides **content**. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.
+Delimiters around your formulae require the [Passthrough configuration](#passthrough-configuration), as the theme finds your formulae by them. Passthrough syntax itself has limited features as it does not provide any of the below parameters besides **content**. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.
 
 ### Parameters
 
 | Name                  | Default          | Notes       |
 |-----------------------|------------------|-------------|
 | **align**             | `center`         | The vertical alignment.<br><br>Allowed values are `left`, `center` or `right`. |
-| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your formulae. |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your formulae.<br><br>Enclose each formula in the block or inline delimiters of your [Passthrough configuration](#passthrough-configuration). Text outside of them is written as Markdown.<br><br>Without any delimiters, the whole content is one formula displayed as a block. |
 
 ## Settings
 
-### Providing Initialization Options for the MathJax Library
+### Output of the Formulae
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The MathJax library is configured with default settings for initialization.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} By default, formulae are written as [MathML](https://developer.mozilla.org/docs/Web/MathML), which every current browser displays without any stylesheet or font of the theme. The display quality depends on the browser and the math fonts installed on your reader's system.
 
-You can overwrite the settings by providing a JSON object in `mathJaxInitialize`. See [MathJax's documentation](https://docs.mathjax.org/en/latest/options/index.html) for all allowed settings.
-
-Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.
+If you want your formulae to look the same in every browser, set `math.output` to `htmlAndMathml`. The theme then links the KaTeX stylesheet and fonts to every page containing math. The MathML is kept for screen readers. The value `html` omits it.
 
 {{< multiconfig section=params >}}
-mathJaxInitialize = '{ "chtml": { "displayAlign": "left" }, { "tex": { "inlineMath": [["\(", "\)"], ["@", "@"]], displayMath: [["\[", "\]"], ["@@", "@@"]] }, "options": { "enableMenu": false }'
+math.output = 'htmlAndMathml'
 {{< /multiconfig >}}
 
-### Loading an External Version of the MathJax Library
+### Providing Options for KaTeX
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The theme uses the shipped MathJax library by default.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Besides `output`, you can set every option of [Hugo's `transform.ToMath` function](https://gohugo.io/functions/transform/tomath/#options) in `math`, for example your own macros.
 
-In case you want do use a different version of the MathJax library but don't want to override the shipped version, you can set `customMathJaxURL` to the URL of the external MathJax library.
+Each option of your page's front matter overwrites the option of the same name of your configuration options.
 
 {{< multiconfig section=params >}}
-customMathJaxURL = 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
+[math.macros]
+  '\R' = '\mathbb{R}'
 {{< /multiconfig >}}
 
-### Force Loading of the MathJax Library
+A formula that KaTeX can not render is written as its source and reported as a warning in your build.
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The MathJax library will be loaded if the page contains a `math` shortcode, Markdown codefence or the partial is called from your templates.
+### Force Loading of the KaTeX Stylesheet
 
-You can force loading the MathJax library if you are using Passthrough syntax by setting `math=true`. If a shortcode, Markdown codefence or partial was called, the option has no effect. This must be set in case you are using the [Passthrough configuration](#passthrough-configuration) to render math.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} If your [output](#output-of-the-formulae) needs the KaTeX stylesheet, it will be linked to your page if the page contains a `math` shortcode, Markdown codefence, Passthrough syntax or the partial is called from your templates.
 
-Instead of `math=true` you can also use the alias `math.force=true`.
+If you write KaTeX's HTML by other means, you can force linking the stylesheet by setting `math.force=true`. If a formula was rendered, the option has no effect.
+
+`math=true` does the same but can't be combined with other `math.*` options.
 
 {{< multiconfig section=params >}}
-math = true
+math.force = true
 {{< /multiconfig >}}
 
 ### Passthrough Configuration
 
-You can use your math without enclosing it in a shortcode or Markdown codefence by using a [Passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1)
+The theme finds your formulae by the delimiters of Hugo's [Passthrough configuration](https://gohugo.io/content-management/mathematics/#step-1), so it is required if you use delimiters in any syntax. It also lets you write math without enclosing it in a shortcode or Markdown codefence.
 
 {{< multiconfig file=hugo >}}
 [markup]
@@ -86,8 +87,6 @@ You can use your math without enclosing it in a shortcode or Markdown codefence 
           block  = [['\[', '\]'], ['$$', '$$']]
 {{< /multiconfig >}}
 
-In this case you have to [force load](#force-loading-of-the-mathjax-library) the MathJax library either in your `hugo.toml` or in your page's front matter as the theme doesn't know if math is used.
-
 [See the example](#examples) on how a Passthrough configurations makes using math really easy.
 
 ## Examples
@@ -95,8 +94,6 @@ In this case you have to [force load](#force-loading-of-the-mathjax-library) the
 ### Block Math
 
 In Passthrough default configuration, block math is generated if you use two consecutive `$$` as a delimiter around your formulae.
-
-Anyways your formulae still needs to be enclosed by `$` or `$$` with any of the other available syntax as well.
 
 {{% multishortcode name="math" %}}
 content: |
@@ -128,7 +125,7 @@ content: |
 
 ### Chemical Formulae
 
-The MathJax library can also be used for chemical formulae.
+KaTeX can also render chemical formulae.
 
 {{% multishortcode name="math" %}}
 content: |

@@ -1,31 +1,26 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- if eq $location "footer" }}
+{{- if eq $location "default" }}
   {{- with $page }}
-    {{- $init := "{}" }}
-    {{- if isset .Params "mathjaxinitialize" }}
-      {{- $init = .Params.mathJaxInitialize }}
-    {{- else if isset .Site.Params "mathjaxinitialize" }}
-      {{- $init = .Site.Params.mathJaxInitialize }}
-    {{- end }}
-    {{- $jsonOptions := dict
-      "indent" "  "
-      "prefix" "    "
-    }}
-    <script type="application/json" id="R-math-config">{{ $init | transform.Unmarshal | jsonify $jsonOptions | safeJS }}</script>
-    {{- with partial "asset.gotmpl" "/js/math.js" }}
-    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
-    {{- end }}
-    {{- if and (isset .Params "custommathjaxurl") .Params.customMathJaxURL }}
-    <script id="MathJax-script" async src="{{ .Params.customMathJaxURL }}"></script>
-    {{- else if and (isset .Site.Params "custommathjaxurl") .Site.Params.customMathJaxURL }}
-    <script id="MathJax-script" async src="{{ .Site.Params.customMathJaxURL }}"></script>
-    {{- else }}
-      {{- /* a built bundle that is not named `.min`, so it has to say so itself */}}
-      {{- with partial "asset.gotmpl" (dict "res" "/js/mathjax/tex-mml-chtml.js" "minify" false) }}
-    <script id="MathJax-script" async src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
+    {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- range slice "mathJaxInitialize" "customMathJaxURL" }}
+      {{- if isset $page.Params (lower .) }}
+        {{- warnf "%q: UNSUPPORTED front matter '%s' found, math is rendered by KaTeX now, configure it with 'math' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" $filepath . }}
       {{- end }}
-      {{- range resources.Match "/js/mathjax/**" }}
+      {{- if and $page.IsHome (isset site.Params (lower .)) }}
+        {{- warnf "UNSUPPORTED option '%s' found, math is rendered by KaTeX now, configure it with 'math' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- else if eq $location "header" }}
+  {{- with $page }}
+    {{- $options := partial "_relearn/mathOptions.gotmpl" . }}
+    {{- /* MathML is styled by the browser; any other output needs KaTeX's stylesheet and fonts */}}
+    {{- if ne $options.output "mathml" }}
+      {{- with partial "asset.gotmpl" "/fonts/katex/katex.min.css" }}
+    <link href="{{ .RelPermalink }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" . }}>
+      {{- end }}
+      {{- range resources.Match "/fonts/katex/fonts/**" }}
         {{- /* the following code causes Hugo to generate our file in public */}}
         {{- $url := .RelPermalink }}
       {{- end }}

@@ -2331,28 +2331,39 @@ input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
-span.math:has(> mjx-container[display]) {
+span.math:has(math[display='block'], .katex-display) {
   display: block;
 }
 
-@supports selector(.math:has(> mjx-container)) {
-  .math {
-    visibility: hidden;
-  }
-  .math:has(> mjx-container) {
-    visibility: visible;
-  }
-}
-.math.align-left > mjx-container {
-  text-align: left !important;
+/* a formula without an alignment of its own inherits the one of an enclosing formula */
+.math.align-left {
+  --VARIABLE-MATH-align: left;
+  --VARIABLE-MATH-MARGIN-left: 0;
+  --VARIABLE-MATH-MARGIN-right: auto;
 }
 
-.math.align-center > mjx-container {
-  text-align: center !important;
+.math.align-center {
+  --VARIABLE-MATH-align: center;
+  --VARIABLE-MATH-MARGIN-left: auto;
+  --VARIABLE-MATH-MARGIN-right: auto;
 }
 
-.math.align-right > mjx-container {
-  text-align: right !important;
+.math.align-right {
+  --VARIABLE-MATH-align: right;
+  --VARIABLE-MATH-MARGIN-left: auto;
+  --VARIABLE-MATH-MARGIN-right: 0;
+}
+
+/* MathML output */
+.math > .katex > math[display='block'] {
+  margin-left: var(--VARIABLE-MATH-MARGIN-left, auto);
+  margin-right: var(--VARIABLE-MATH-MARGIN-right, auto);
+  width: fit-content;
+}
+
+/* HTML output */
+.math > .katex-display > .katex {
+  text-align: var(--VARIABLE-MATH-align, center);
 }
 
 .copy-to-clipboard-fake {

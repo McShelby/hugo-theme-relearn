@@ -1,0 +1,24 @@
+{{- /*
+Returns the options handed to `transform.ToMath` for the formulae of a page.
+
+They are read from the `math` map of the site's params, overwritten key by key
+by the `math` map of the page's front matter. `force` and `disable` belong to
+the dependency loader and are left out; so is `displayMode`, which every
+formula says for itself by its delimiters.
+
+`output` is always set and defaults to `mathml`, the only output that needs no
+stylesheet.
+*/}}
+{{- $page := . }}
+{{- $options := dict }}
+{{- range slice (index site.Params "math") (index $page.Params "math") }}
+	{{- if reflect.IsMap . }}
+		{{- range $k, $v := . }}
+			{{- if not (in (slice "force" "disable" "displaymode") (lower $k)) }}
+				{{- $options = merge $options (dict (lower $k) $v) }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- $options = merge (dict "output" "mathml") $options }}
+{{- return $options }}

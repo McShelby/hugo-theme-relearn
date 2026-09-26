@@ -6,7 +6,7 @@ weight = -9
 [params]
   disableToc = false
   hidden = true
-  minHugoVersion = '0.165.0'
+  minHugoVersion = '0.166.0'
 +++
 
 {{% pages showhidden="true" showdivider="true" %}}

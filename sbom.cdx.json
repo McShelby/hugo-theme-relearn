@@ -1,7 +1,7 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0768c57d-4aea-5776-90b0-1ee730d8ffb1",
+  "serialNumber": "urn:uuid:6b9ee4a9-c7f8-5e9d-8e04-4f84b8f908fb",
   "version": 1,
   "metadata": {
     "timestamp": "2026-09-13T00:00:00Z",
@@ -485,6 +485,46 @@
     },
     {
       "type": "library",
+      "bom-ref": "pkg:npm/katex@0.18.4",
+      "name": "KaTeX",
+      "version": "0.18.4",
+      "description": "Fast math typesetting for the web",
+      "purl": "pkg:npm/katex@0.18.4",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "copyright": "Copyright (c) 2013-2020 Khan Academy and other contributors",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://katex.org"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/KaTeX/KaTeX"
+        }
+      ],
+      "properties": [
+        {
+          "name": "relearn:notes",
+          "value": "Only the stylesheet and its woff2 fonts; the formulae are rendered by the KaTeX that Hugo embeds for `transform.ToMath`, and the version follows that one. The stylesheet also names woff and ttf fonts, which a browser never asks for while it reads woff2."
+        },
+        {
+          "name": "relearn:treehash",
+          "value": "651975c60193ddc25af507e50e14cfa572243fbe45fb49986c3f5cb9b1ddf1eb"
+        },
+        {
+          "name": "relearn:path",
+          "value": "assets/fonts/katex"
+        }
+      ]
+    },
+    {
+      "type": "library",
       "bom-ref": "pkg:npm/lunr@2.3.9",
       "name": "Lunr",
       "version": "2.3.9",
@@ -558,50 +598,6 @@
         {
           "name": "relearn:path",
           "value": "assets/js/lunr"
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/mathjax@4.1.3",
-      "name": "MathJax",
-      "version": "4.1.3",
-      "description": "Beautiful math and chemical formulae in all browsers",
-      "purl": "pkg:npm/mathjax@4.1.3",
-      "licenses": [
-        {
-          "license": {
-            "id": "Apache-2.0"
-          }
-        }
-      ],
-      "copyright": "Copyright (c) 2009-2024 The MathJax Consortium",
-      "externalReferences": [
-        {
-          "type": "website",
-          "url": "https://mathjax.org/"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/mathjax/MathJax"
-        }
-      ],
-      "properties": [
-        {
-          "name": "relearn:notes",
-          "value": "The speech and accessibility files compile in a dependency tree of their own, which is not enumerated: a hand-kept inventory of a bundle cannot be verified and would go stale unnoticed."
-        },
-        {
-          "name": "relearn:bundled",
-          "value": "true"
-        },
-        {
-          "name": "relearn:treehash",
-          "value": "a52eb4d39abecc4de43ff232366c70a141c098334489e96e86894d6a7dd04190"
-        },
-        {
-          "name": "relearn:path",
-          "value": "assets/js/mathjax"
         }
       ]
     },
@@ -905,9 +901,9 @@
         "pkg:npm/d3-zoom@3.0.0",
         "pkg:npm/%40fortawesome/fontawesome-free@7.3.1",
         "pkg:npm/js-yaml@4.1.1",
+        "pkg:npm/katex@0.18.4",
         "pkg:npm/lunr@2.3.9",
         "pkg:npm/lunr-languages@1.21.0",
-        "pkg:npm/mathjax@4.1.3",
         "pkg:npm/mermaid@11.17.2",
         "pkg:npm/%40orama/orama@3.0.8",
         "pkg:npm/%40orama/plugin-pt15@3.0.8",
@@ -983,15 +979,15 @@
       "dependsOn": []
     },
     {
+      "ref": "pkg:npm/katex@0.18.4",
+      "dependsOn": []
+    },
+    {
       "ref": "pkg:npm/lunr@2.3.9",
       "dependsOn": []
     },
     {
       "ref": "pkg:npm/lunr-languages@1.21.0",
-      "dependsOn": []
-    },
-    {
-      "ref": "pkg:npm/mathjax@4.1.3",
       "dependsOn": []
     },
     {

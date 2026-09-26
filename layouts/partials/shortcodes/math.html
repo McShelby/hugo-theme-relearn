@@ -4,8 +4,9 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'math' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $content := .content }}
-{{- $align := .align | default "center" }}
+{{- $content := trim .content "\n\r\t " }}
+{{- $type := .type }}
+{{- $align := .align }}
 
 {{- /* separate shortcode attributes from rest */}}
 {{- $attributes := .attributes | default dict }}
@@ -20,14 +21,77 @@
 
 {{- /* enrich attributes */}}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "math" slice) " ")) }}
-{{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "align-%s" $align) slice) " ")) }}
+{{- /* without an alignment of its own, a formula takes the one of an enclosing
+  formula; that is where Passthrough syntax puts the formulae it finds in a
+  shortcode or codefence */}}
+{{- with $align }}
+  {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "align-%s" .) slice) " ")) }}
+{{- end }}
 
-{{- with $page -}}
+{{- with $page }}
+  {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- $options := partial "_relearn/mathOptions.gotmpl" . }}
+
+  {{- $html := "" }}
+  {{- if $type }}
+    {{- /* one formula, its delimiters already taken off by Passthrough syntax;
+      counted, so the caller of `RenderString` below learns it was found */}}
+    {{- $html = partial "inline/math-render" (dict "tex" $content "display" (eq $type "block") "options" $options "filepath" $filepath) }}
+    {{- .Store.Add "relearnMathCount" 1 }}
+  {{- else }}
+    {{- /* delimited formulae, possibly among text; Passthrough syntax finds
+      them by the delimiters configured for Hugo and hands each one back to
+      this partial; if it found none, the content is one formula without
+      delimiters */}}
+    {{- $count := .Store.Get "relearnMathCount" | default 0 }}
+    {{- $html = .RenderString $content }}
+    {{- if eq $count (.Store.Get "relearnMathCount" | default 0) }}
+      {{- $html = partial "inline/math-render" (dict "tex" $content "display" true "options" $options "filepath" $filepath) }}
+    {{- end }}
+  {{- end -}}
 <span
   {{- range $k, $v := $attributes }}
     {{- if $v }}
       {{- printf " %s=%q" $k $v | safeHTMLAttr }}
     {{- end }}
-  {{- end }}>{{ $content | safeHTML }}</span>
-{{- .Store.Set "hasMath" true }}
+  {{- end }}>{{ $html | safeHTML }}</span>
+  {{- .Store.Set "hasMath" true }}
+{{- end }}
+
+{{- define "partials/inline/math-render" }}
+  {{- $html := "" }}
+  {{- with try (transform.ToMath .tex (merge .options (dict "displayMode" .display))) }}
+    {{- with .Err }}
+      {{- /* only KaTeX's own message is of use, not the template call wrapped around it */}}
+      {{- $err := replaceRE `^.*?error calling ToMath: ` "" (printf "%s" .) }}
+      {{- warnf "%q: math formula %q could not be rendered: %s" $.filepath $.tex $err }}
+      {{- $html = partial "inline/math-markdown-proof" (printf "<span class=\"katex-error\" title=\"%s\">%s</span>" (htmlEscape $err) (htmlEscape $.tex)) }}
+    {{- else }}
+      {{- $html = partial "inline/math-markdown-proof" .Value }}
+    {{- end }}
+  {{- end }}
+  {{- return $html }}
+{{- end }}
+
+{{- define "partials/inline/math-markdown-proof" }}
+  {{- /* the rendered formula may go through Markdown once more, eg. if the
+    shortcode's output is handed to `RenderString`; its text is written as character references
+    wherever Markdown would take a character as syntax, so the formula comes
+    out unchanged instead of losing its TeX to emphasis or superscript */}}
+  {{- $references := dict "\\" "&#92;" "^" "&#94;" "~" "&#126;" "_" "&#95;" "*" "&#42;" "=" "&#61;" "+" "&#43;" "`" "&#96;" "[" "&#91;" "]" "&#93;" "$" "&#36;" "!" "&#33;" "|" "&#124;" }}
+  {{- $html := "" }}
+  {{- range $i, $part := split . "<" }}
+    {{- $tag := "" }}
+    {{- $text := $part }}
+    {{- if $i }}
+      {{- $pieces := split $part ">" }}
+      {{- $tag = print "<" (index $pieces 0) ">" }}
+      {{- $text = delimit (after 1 $pieces) ">" }}
+    {{- end }}
+    {{- range $char, $reference := $references }}
+      {{- $text = replace $text $char $reference }}
+    {{- end }}
+    {{- $html = print $html $tag $text }}
+  {{- end }}
+  {{- return $html }}
 {{- end }}

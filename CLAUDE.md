@@ -172,7 +172,7 @@ Theme supports custom output formats:
   - `auto-complete/` - Search autocomplete
   - `clipboard/` - Copy-to-clipboard
   - `lunr/`, `orama/` - Search engines
-  - `mathjax/`, `mermaid/`, `d3/` - Feature libraries
+  - `katex/`, `mermaid/`, `d3/` - Feature libraries
 
 ## Code Quality Standards
 

@@ -716,32 +716,29 @@ linkEffects.download = false
 linkEffects.target = false
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# MathJax
+# Math
 # These options configure how math formulae are displayed.
 
-# Initialization options for MathJax.
-# Default: not set
-# A JSON value. See the MathJaxdocumentation for possible parameter.
+# Output of the rendered formulae.
+# Default: 'mathml'
+# `mathml` is styled by the browser alone. `html` and `htmlAndMathml` look the
+# same in every browser but need the KaTeX stylesheet and fonts, which are
+# linked to pages containing math.
+# Any other option of Hugo's `transform.ToMath` function can be set besides
+# `output`, like `macros`, `throwOnError` or `strict`.
 # This can be overridden in the page's frontmatter.
-mathJaxInitialize = '{}'
+math.output = 'mathml'
 
-# Force load Math on every page.
+# Force load the KaTeX stylesheet on every page.
 # Default: false
-# If a Math shortcode or codefence is found, the option will be ignored and
-# Math will be loaded regardlessly. This option is useful in case you
-# are using passthrough configuration to render your math. In this case no shortcode or
-# codefence is involved and the library is not loaded by default so you can
-# force loading it by setting `math.force=true`.
-# This option has an alias `math=true`.
+# The stylesheet is linked to every page that contains math, if the `output`
+# needs it. This option is only useful if you write KaTeX's HTML yourself. In
+# this case no formula is rendered by the theme so you can force linking it by
+# setting `math.force=true`.
+# This option has an alias `math=true`, which can't be combined with other
+# `math.*` options.
 # This can be overridden in the page's frontmatter.
 math.force = false
-
-# URL for external MathJax library.
-# Default: not set
-# Specifies the remote location of the MathJax library. By default the shipped
-# version will be used.
-# This can be overridden in the page's frontmatter.
-customMathJaxURL = '' # 'https://unpkg.com/mathjax/es5/tex-mml-chtml.js'
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Mermaid
