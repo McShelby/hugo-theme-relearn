@@ -301,10 +301,10 @@ document.addEventListener('click', function (event) {
 
 To use native HTML elements in your Markdown, add this in your `hugo.toml`
 
-````toml
+{{< multiconfig file=hugo >}}
 [markup.goldmark.renderer]
   unsafe = true
-````
+{{< /multiconfig >}}
 
 ````html
 <form action="../../search/index.html" method="get">

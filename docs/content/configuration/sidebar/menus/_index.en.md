@@ -87,7 +87,7 @@ ordersectionsby = 'linktitle'
 
 For example for a page named `install/linux.md`
 
-{{< multiconfig fm=true >}}
+{{< multiconfig fm=true file="install/linux.md" >}}
 title = 'Install on Linux'
 linkTitle = 'Linux'
 {{< /multiconfig >}}
@@ -118,7 +118,7 @@ To stay with the [initial example](authoring/structure): Suppose you want `log/f
 
 For this, open `content/log/first-day/_index.md` and add the following front matter
 
-{{< multiconfig fm=true >}}
+{{< multiconfig fm=true file="content/log/first-day/_index.md" >}}
 [build]
   render = 'never'
 {{< /multiconfig >}}
@@ -131,7 +131,7 @@ If you want to learn how to configure different Hugo menus for each language, [s
 
 The following example will not generate clickable menu entries for the `Parent 1` and `Parent 2` menu entries.
 
-{{< multiconfig fm=true >}}
+{{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
   name = 'Parent 1'
   weight = 1
@@ -155,7 +155,7 @@ The following example will not generate clickable menu entries for the `Parent 1
 
 By default, the theme supports one additional Hugo menu below the page menu in the sidebar named `shortcuts`. You only need to configure it in your `hugo.toml` to appear in your sidebar. For example:
 
-{{< multiconfig fm=true >}}
+{{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
   name = 'Example Entry'
   weight = 1
@@ -174,10 +174,10 @@ disableShortcutsTitle = true
 
 To change the title, override your translation file.
 
-````toml {title="i18n/en.toml"}
+{{< multiconfig file=i18n/en >}}
 [shortcuts-menuTitle]
 other = "Other Great Stuff"
-````
+{{< /multiconfig >}}
 
 ## Title for Arbitrary Menus
 
@@ -193,7 +193,7 @@ In this case, the `title` or `name` is taken for the menu heading.
 
 If you want to learn how to configure different Hugo menus for each language, [see here](https://gohugo.io/content-management/multilingual/#menus).
 
-{{< multiconfig fm=true >}}
+{{< multiconfig file=hugo >}}
 [[menu.addendum]]
   identifier = 'addendum-top'
   name = 'A Menu Title for the Whole Menu'
@@ -454,6 +454,6 @@ Sometimes you want to hide pages from the page menu but instead want to show the
 
     The child page can be any type of content.
 
-    {{< multiconfig fm=true file="content/more/credits_index.en.md" >}}
+    {{< multiconfig fm=true file="content/more/credits/_index.en.md" >}}
     title = 'Credits'
     {{< /multiconfig >}}

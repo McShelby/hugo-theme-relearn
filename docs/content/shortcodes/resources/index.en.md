@@ -38,35 +38,31 @@ Multilanguage features are not supported directly by the shortcode but rely on H
 
 ### Custom Title, List of Resources Ending in png, jpg or gif
 
-````go
-{{%/* resources title="Related **files**" pattern=".*\.(png|jpg|gif)" /*/%}}
-````
-
-{{% resources title="Related **files**" pattern=".*\.(png|jpg|gif)" /%}}
+{{% multishortcode name="resources" %}}
+title = "Related **files**"
+pattern = '.*\.(png|jpg|gif)'
+{{% /multishortcode %}}
 
 ### Info Styled Box, Descending Sort Order
 
-````go
-{{%/* resources style="info" sort="desc" /*/%}}
-````
-
-{{% resources style="info" sort="desc" /%}}
+{{% multishortcode name="resources" %}}
+style = "info"
+sort = "desc"
+{{% /multishortcode %}}
 
 ### With User-Defined Color and Font Awesome Brand Icon
 
-````go
-{{%/* resources color="fuchsia" icon="fa-fw fab fa-hackerrank" /*/%}}
-````
-
-{{% resources color="fuchsia" icon="fa-fw fab fa-hackerrank" /%}}
+{{% multishortcode name="resources" %}}
+color = "fuchsia"
+icon = "fa-fw fab fa-hackerrank"
+{{% /multishortcode %}}
 
 ### Expander with Initially Hidden Resource List
 
-````go
-{{%/* resources style="primary" expanded="false" /*/%}}
-````
-
-{{% resources style="primary" expanded="false" /%}}
+{{% multishortcode name="resources" %}}
+style = "primary"
+expanded = "false"
+{{% /multishortcode %}}
 
 ### Style, Color, Title and Icons
 

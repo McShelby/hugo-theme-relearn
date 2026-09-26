@@ -23,12 +23,10 @@ Regardless of shipped or custom page design, you are using them in the same way.
 
 - If you are creating your Markdown files manually, you can achieve the same by just setting `type='chapter'` in the front matter to make your page displayed with the `chapter` page design.
 
-    ````toml {title="log/_index.md"}
-    +++
+    {{< multiconfig fm=true file="log/_index.md" >}}
     title = "Captain's Log"
     type = "chapter"
-    +++
-    ````
+    {{< /multiconfig >}}
 
 If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type='default'` was set.
 

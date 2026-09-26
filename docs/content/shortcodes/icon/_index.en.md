@@ -78,10 +78,10 @@ Built with <i class="fas fa-heart"></i> by Relearn and Hugo
 
 To use these native HTML elements in your Markdown, add this in your `hugo.toml`:
 
-````toml
+{{< multiconfig file=hugo >}}
 [markup.goldmark.renderer]
   unsafe = true
-````
+{{< /multiconfig >}}
 
 ### Style
 
