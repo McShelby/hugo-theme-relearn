@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+dc52aea83d03aabf871ee7f54a895941431d8864">
+    <meta name="generator" content="Relearn 9.1.0+9d57c227ead72417eb883f801605f4f4ac3f68bc">
     <meta name="description" content="Beautiful math and chemical formulae">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,9 +20,9 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math/featured.png">
     <meta itemprop="name" content="Math :: Hugo Relearn Theme">
     <meta itemprop="description" content="Beautiful math and chemical formulae">
-    <meta itemprop="wordCount" content="1007">
+    <meta itemprop="wordCount" content="995">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math/featured.png">
-    <meta itemprop="keywords" content="Howto,Reference,CustomMathJaxURL,Math,Math.force,MathJaxInitialize,CustomMathJaxURL,Math,Math.force,MathJaxInitialize">
+    <meta itemprop="keywords" content="Howto,Reference,Math,Math.force,Math.output,Math,Math.force,Math.output">
     <title>Math :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math/index.html" rel="alternate" hreflang="x-default">
     <link href="https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math/index.html" rel="alternate" hreflang="en">
@@ -35,7 +35,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.2f90c741ddf36063aca55467c1d13040e6f818860593590723ca57d0339219d0.js"
+      "indexFile": "searchindex.en.min.fc154a1dea37e93b24847df3d40b0caf071db27b06b9e5803528cd30ae85c890.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -47,7 +47,7 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.974a7c2b96c31589bd09942daae438941df869a05204436db313a08ee08b1f62.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.c5e57f8072c26c3936afb7f1f29896beccceeb26ad977baa337cb1cbf585deea.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.39e0dc30e3ca73e623fcf660fac10bf09db5539b3d13e59e90977cf7137e6aee.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
@@ -113,9 +113,9 @@
     </li>
     <li><a href="#settings">Settings</a>
       <ul>
-        <li><a href="#providing-initialization-options-for-the-mathjax-library">Providing Initialization Options for the MathJax Library</a></li>
-        <li><a href="#loading-an-external-version-of-the-mathjax-library">Loading an External Version of the MathJax Library</a></li>
-        <li><a href="#force-loading-of-the-mathjax-library">Force Loading of the MathJax Library</a></li>
+        <li><a href="#output-of-the-formulae">Output of the Formulae</a></li>
+        <li><a href="#providing-options-for-katex">Providing Options for KaTeX</a></li>
+        <li><a href="#force-loading-of-the-katex-stylesheet">Force Loading of the KaTeX Stylesheet</a></li>
         <li><a href="#passthrough-configuration">Passthrough Configuration</a></li>
       </ul>
     </li>
@@ -169,39 +169,37 @@
 
 <h1 id="math">Math</h1>
 
-<p>The <code>math</code> shortcode renders complex math and chemical formulae using the <a href="https://mathjax.org/" rel="external" target="_self">MathJax</a> library.</p>
+<p>The <code>math</code> shortcode renders complex math and chemical formulae using <a href="https://gohugo.io/functions/transform/tomath/" rel="external" target="_self">Hugo&rsquo;s built-in KaTeX</a>.</p>
 
-<p><span class="math align-center"></p>
-$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$<p></span></p>
-
+<span class="math align-center"><span class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mrow><mo fence="true">(</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>k</mi></msub><msub><mi>b</mi><mi>k</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup><mo>≤</mo><mrow><mo fence="true">(</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>a</mi><mi>k</mi><mn>2</mn></msubsup><mo fence="true">)</mo></mrow><mrow><mo fence="true">(</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>b</mi><mi>k</mi><mn>2</mn></msubsup><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)</annotation></semantics></math></span></span></span>
 <h2 id="usage">Usage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 
 <div class="tab-panel" data-tab-group="R-tabs-e1fc9564fa2c053a1e6269a64309529d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-ec014fd21369b4475fa663aaa925542f" aria-expanded="true"
+      aria-controls="R-tab-id-d9250bc743edb8835e10fc1feb75245d" aria-expanded="true"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">Passthrough</span>
     </button>
     <button
-      aria-controls="R-tab-id-b0d5e5f53d119014e53c97b4b7d49200" aria-expanded="false"
+      aria-controls="R-tab-id-3c813f4ecc257362d679e6e7350102be" aria-expanded="false"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Markdown</span>
     </button>
     <button
-      aria-controls="R-tab-id-a11c42f9c76bab50f1486291c6489b92" aria-expanded="false"
+      aria-controls="R-tab-id-241a74e6970549d288f5462e0c3c80aa" aria-expanded="false"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-8f5f40d9ffdb61bcf660ab4c9b703964" aria-expanded="false"
+      aria-controls="R-tab-id-9887af471af67b0ced9cd96914a10a04" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -210,7 +208,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ec014fd21369b4475fa663aaa925542f"
+      id="R-tab-id-d9250bc743edb8835e10fc1feb75245d"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -218,7 +216,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-b0d5e5f53d119014e53c97b4b7d49200"
+      id="R-tab-id-3c813f4ecc257362d679e6e7350102be"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -228,7 +226,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-a11c42f9c76bab50f1486291c6489b92"
+      id="R-tab-id-241a74e6970549d288f5462e0c3c80aa"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -238,7 +236,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-8f5f40d9ffdb61bcf660ab4c9b703964"
+      id="R-tab-id-9887af471af67b0ced9cd96914a10a04"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -252,7 +250,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
 </div>
 <p>You can also use <a href="/hugo-theme-relearn/authoring/markdown/index.html#subscript-and-superscript">pure Markdown</a> for writing simple math expressions.</p>
-<p>Passthrough syntax is only available by <a href="/hugo-theme-relearn/shortcodes/math/index.html#passthrough-configuration">further configuration</a> and has limited features as it does not provide any of the below parameters besides <strong>content</strong>. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.</p>
+<p>Delimiters around your formulae require the <a href="/hugo-theme-relearn/shortcodes/math/index.html#passthrough-configuration">Passthrough configuration</a>, as the theme finds your formulae by them. Passthrough syntax itself has limited features as it does not provide any of the below parameters besides <strong>content</strong>. Nevertheless, it is widely available in other Markdown parsers like GitHub and therefore is the recommended syntax for generating portable Markdown.</p>
 <h3 id="parameters">Parameters<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <table>
 	<thead>
@@ -271,34 +269,33 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
 			<tr>
 					<td><em><strong>&lt;content&gt;</strong></em></td>
 					<td><em>&lt;empty&gt;</em></td>
-					<td>Your formulae.</td>
+					<td>Your formulae.<br><br>Enclose each formula in the block or inline delimiters of your <a href="/hugo-theme-relearn/shortcodes/math/index.html#passthrough-configuration">Passthrough configuration</a>. Text outside of them is written as Markdown.<br><br>Without any delimiters, the whole content is one formula displayed as a block.</td>
 			</tr>
 	</tbody>
 </table>
 <h2 id="settings">Settings<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<h3 id="providing-initialization-options-for-the-mathjax-library">Providing Initialization Options for the MathJax Library<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle frontmatter badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> The MathJax library is configured with default settings for initialization.</p>
-<p>You can overwrite the settings by providing a JSON object in <code>mathJaxInitialize</code>. See <a href="https://docs.mathjax.org/en/latest/options/index.html" rel="external" target="_self">MathJax&rsquo;s documentation</a> for all allowed settings.</p>
-<p>Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.</p>
+<h3 id="output-of-the-formulae">Output of the Formulae<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
+<p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle frontmatter badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> By default, formulae are written as <a href="https://developer.mozilla.org/docs/Web/MathML" rel="external" target="_self">MathML</a>, which every current browser displays without any stylesheet or font of the theme. The display quality depends on the browser and the math fonts installed on your reader&rsquo;s system.</p>
+<p>If you want your formulae to look the same in every browser, set <code>math.output</code> to <code>htmlAndMathml</code>. The theme then links the KaTeX stylesheet and fonts to every page containing math. The MathML is kept for screen readers. The value <code>html</code> omits it.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-ba88f56f1525f2e7f3a9e4ea1c9f8f13" aria-expanded="true"
+      aria-controls="R-tab-id-63fff5ff4a3a2e40741781bc883611ca" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-258ab88110e779f4a730bb19c7af8742" aria-expanded="false"
+      aria-controls="R-tab-id-561af02da26b627e655994cbf201a196" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-78a480fd69bc41b583c4562a07f78660" aria-expanded="false"
+      aria-controls="R-tab-id-54e1c0c856b7002a2802f387295f724e" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -307,59 +304,63 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ba88f56f1525f2e7f3a9e4ea1c9f8f13"
+      id="R-tab-id-63fff5ff4a3a2e40741781bc883611ca"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">mathJaxInitialize</span> <span class="p">=</span> <span class="s1">&#39;{ &#34;chtml&#34;: { &#34;displayAlign&#34;: &#34;left&#34; }, { &#34;tex&#34;: { &#34;inlineMath&#34;: [[&#34;\(&#34;, &#34;\)&#34;], [&#34;@&#34;, &#34;@&#34;]], displayMath: [[&#34;\[&#34;, &#34;\]&#34;], [&#34;@@&#34;, &#34;@@&#34;]] }, &#34;options&#34;: { &#34;enableMenu&#34;: false }&#39;</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">output</span> <span class="p">=</span> <span class="s1">&#39;htmlAndMathml&#39;</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-258ab88110e779f4a730bb19c7af8742"
+      id="R-tab-id-561af02da26b627e655994cbf201a196"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mathJaxInitialize</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;{ &#34;chtml&#34;: { &#34;displayAlign&#34;: &#34;left&#34; }, { &#34;tex&#34;: { &#34;inlineMath&#34;: [[&#34;\(&#34;, &#34;\)&#34;], [&#34;@&#34;, &#34;@&#34;]], displayMath: [[&#34;\[&#34;, &#34;\]&#34;], [&#34;@@&#34;, &#34;@@&#34;]] }, &#34;options&#34;: { &#34;enableMenu&#34;: false }&#39;</span></span></span></code></pre></div>
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">math</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l">htmlAndMathml</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-78a480fd69bc41b583c4562a07f78660"
+      id="R-tab-id-54e1c0c856b7002a2802f387295f724e"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;mathJaxInitialize&#34;</span><span class="p">:</span> <span class="s2">&#34;{ \&#34;chtml\&#34;: { \&#34;displayAlign\&#34;: \&#34;left\&#34; }, { \&#34;tex\&#34;: { \&#34;inlineMath\&#34;: [[\&#34;\\(\&#34;, \&#34;\\)\&#34;], [\&#34;@\&#34;, \&#34;@\&#34;]], displayMath: [[\&#34;\\[\&#34;, \&#34;\\]\&#34;], [\&#34;@@\&#34;, \&#34;@@\&#34;]] }, \&#34;options\&#34;: { \&#34;enableMenu\&#34;: false }&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;math&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="s2">&#34;htmlAndMathml&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
       </div>
     </div>
   </div>
 </div>
-<h3 id="loading-an-external-version-of-the-mathjax-library">Loading an External Version of the MathJax Library<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle frontmatter badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> The theme uses the shipped MathJax library by default.</p>
-<p>In case you want do use a different version of the MathJax library but don&rsquo;t want to override the shipped version, you can set <code>customMathJaxURL</code> to the URL of the external MathJax library.</p>
+<h3 id="providing-options-for-katex">Providing Options for KaTeX<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
+<p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle frontmatter badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> Besides <code>output</code>, you can set every option of <a href="https://gohugo.io/functions/transform/tomath/#options" rel="external" target="_self">Hugo&rsquo;s <code>transform.ToMath</code> function</a> in <code>math</code>, for example your own macros.</p>
+<p>Each option of your page&rsquo;s front matter overwrites the option of the same name of your configuration options.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-b3fc24dd4533582357fdfd2151732f3a" aria-expanded="true"
+      aria-controls="R-tab-id-3cfe94ede03f6678907e02d9dcf2c12c" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-12e5a233498003b7e708c7dbae79cdee" aria-expanded="false"
+      aria-controls="R-tab-id-1b106823680473c2017b328282d76cba" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8d5c68f681fea7aa159b6c3126a01851" aria-expanded="false"
+      aria-controls="R-tab-id-256e536f39451b139edce09f0e86e3ae" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -368,60 +369,69 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b3fc24dd4533582357fdfd2151732f3a"
+      id="R-tab-id-3cfe94ede03f6678907e02d9dcf2c12c"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">customMathJaxURL</span> <span class="p">=</span> <span class="s1">&#39;https://unpkg.com/mathjax/es5/tex-mml-chtml.js&#39;</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">math</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">math</span><span class="p">.</span><span class="nx">macros</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;\R&#39;</span> <span class="p">=</span> <span class="s1">&#39;\mathbb{R}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-12e5a233498003b7e708c7dbae79cdee"
+      id="R-tab-id-1b106823680473c2017b328282d76cba"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">customMathJaxURL</span><span class="p">:</span><span class="w"> </span><span class="l">https://unpkg.com/mathjax/es5/tex-mml-chtml.js</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">math</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">macros</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">&#39;\R&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;\mathbb{R}&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w"> </span>{}</span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-8d5c68f681fea7aa159b6c3126a01851"
+      id="R-tab-id-256e536f39451b139edce09f0e86e3ae"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;customMathJaxURL&#34;</span><span class="p">:</span> <span class="s2">&#34;https://unpkg.com/mathjax/es5/tex-mml-chtml.js&#34;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;math&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;macros&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;\\R&#34;</span><span class="p">:</span> <span class="s2">&#34;\\mathbb{R}&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
       </div>
     </div>
   </div>
 </div>
-<h3 id="force-loading-of-the-mathjax-library">Force Loading of the MathJax Library<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle frontmatter badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> The MathJax library will be loaded if the page contains a <code>math</code> shortcode, Markdown codefence or the partial is called from your templates.</p>
-<p>You can force loading the MathJax library if you are using Passthrough syntax by setting <code>math=true</code>. If a shortcode, Markdown codefence or partial was called, the option has no effect. This must be set in case you are using the <a href="/hugo-theme-relearn/shortcodes/math/index.html#passthrough-configuration">Passthrough configuration</a> to render math.</p>
-<p>Instead of <code>math=true</code> you can also use the alias <code>math.force=true</code>.</p>
+<p>A formula that KaTeX can not render is written as its source and reported as a warning in your build.</p>
+<h3 id="force-loading-of-the-katex-stylesheet">Force Loading of the KaTeX Stylesheet<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
+<p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears"></i></span><span class="badge-content">Option</span></span> <span class="badge cstyle frontmatter badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-markdown"></i></span><span class="badge-content">Front Matter</span></span> If your <a href="/hugo-theme-relearn/shortcodes/math/index.html#output-of-the-formulae">output</a> needs the KaTeX stylesheet, it will be linked to your page if the page contains a <code>math</code> shortcode, Markdown codefence, Passthrough syntax or the partial is called from your templates.</p>
+<p>If you write KaTeX&rsquo;s HTML by other means, you can force linking the stylesheet by setting <code>math.force=true</code>. If a formula was rendered, the option has no effect.</p>
+<p><code>math=true</code> does the same but can&rsquo;t be combined with other <code>math.*</code> options.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-1d747bd8ff9fb9877cc0a09faa3f2a61" aria-expanded="true"
+      aria-controls="R-tab-id-430cef8f3337d6d104dd27ba6a71ed31" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-30a763475e0385db2f3c01551a69c132" aria-expanded="false"
+      aria-controls="R-tab-id-cd7a6194c0b55805abf6f488be530a7c" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-638679d8e60356bd7b72a3933097f55e" aria-expanded="false"
+      aria-controls="R-tab-id-e2a3efea72c1087c2a96343344ce82c6" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -430,31 +440,35 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1d747bd8ff9fb9877cc0a09faa3f2a61"
+      id="R-tab-id-430cef8f3337d6d104dd27ba6a71ed31"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">math</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">force</span> <span class="p">=</span> <span class="kc">true</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-30a763475e0385db2f3c01551a69c132"
+      id="R-tab-id-cd7a6194c0b55805abf6f488be530a7c"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">math</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">math</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">force</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-638679d8e60356bd7b72a3933097f55e"
+      id="R-tab-id-e2a3efea72c1087c2a96343344ce82c6"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;math&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;math&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nt">&#34;force&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
       </div>
@@ -462,26 +476,26 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
 </div>
 <h3 id="passthrough-configuration">Passthrough Configuration<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p>You can use your math without enclosing it in a shortcode or Markdown codefence by using a <a href="https://gohugo.io/content-management/mathematics/#step-1" rel="external" target="_self">Passthrough configuration</a></p>
+<p>The theme finds your formulae by the delimiters of Hugo&rsquo;s <a href="https://gohugo.io/content-management/mathematics/#step-1" rel="external" target="_self">Passthrough configuration</a>, so it is required if you use delimiters in any syntax. It also lets you write math without enclosing it in a shortcode or Markdown codefence.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-0858592c45cac27bf980b273e172ae7b" aria-expanded="true"
+      aria-controls="R-tab-id-4423d261d7e8c63beb3b87534021b05e" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-dec7d63870ab086d4a406e0d6ea81b16" aria-expanded="false"
+      aria-controls="R-tab-id-b63ec4f441ee77e9d31c8c0d7ebfb0d9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-864b771da3f6457bfebd4004b4c366e1" aria-expanded="false"
+      aria-controls="R-tab-id-440676ada00a1787aed8f47631a49c6f" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -490,7 +504,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0858592c45cac27bf980b273e172ae7b"
+      id="R-tab-id-4423d261d7e8c63beb3b87534021b05e"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -506,7 +520,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-dec7d63870ab086d4a406e0d6ea81b16"
+      id="R-tab-id-b63ec4f441ee77e9d31c8c0d7ebfb0d9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -529,7 +543,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-864b771da3f6457bfebd4004b4c366e1"
+      id="R-tab-id-440676ada00a1787aed8f47631a49c6f"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -570,39 +584,37 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
     </div>
   </div>
 </div>
-<p>In this case you have to <a href="/hugo-theme-relearn/shortcodes/math/index.html#force-loading-of-the-mathjax-library">force load</a> the MathJax library either in your <code>hugo.toml</code> or in your page&rsquo;s front matter as the theme doesn&rsquo;t know if math is used.</p>
 <p><a href="/hugo-theme-relearn/shortcodes/math/index.html#examples">See the example</a> on how a Passthrough configurations makes using math really easy.</p>
 <h2 id="examples">Examples<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <h3 id="block-math">Block Math<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>In Passthrough default configuration, block math is generated if you use two consecutive <code>$$</code> as a delimiter around your formulae.</p>
-<p>Anyways your formulae still needs to be enclosed by <code>$</code> or <code>$$</code> with any of the other available syntax as well.</p>
 
 <div class="tab-panel" data-tab-group="R-tabs-e1fc9564fa2c053a1e6269a64309529d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-fa85a0609b4bc2d6386edd203a85e6ed" aria-expanded="true"
+      aria-controls="R-tab-id-987b2df5d13ee520c28cfc23bc656680" aria-expanded="true"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">Passthrough</span>
     </button>
     <button
-      aria-controls="R-tab-id-97d27edd789ce288715fb194b85dbeb8" aria-expanded="false"
+      aria-controls="R-tab-id-cd208fd9593a0b9510630a88930f7a28" aria-expanded="false"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Markdown</span>
     </button>
     <button
-      aria-controls="R-tab-id-783c69bfb7ceaa253a970252620af7bd" aria-expanded="false"
+      aria-controls="R-tab-id-bc203d2806890d1ca6478330d47a18f7" aria-expanded="false"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-6e522defb30f2cada4cf5385d8460c9e" aria-expanded="false"
+      aria-controls="R-tab-id-952db8c26ab85665f51f10c35f317f3b" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -611,7 +623,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-fa85a0609b4bc2d6386edd203a85e6ed"
+      id="R-tab-id-987b2df5d13ee520c28cfc23bc656680"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -623,7 +635,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-97d27edd789ce288715fb194b85dbeb8"
+      id="R-tab-id-cd208fd9593a0b9510630a88930f7a28"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -637,7 +649,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-783c69bfb7ceaa253a970252620af7bd"
+      id="R-tab-id-bc203d2806890d1ca6478330d47a18f7"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -651,7 +663,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-6e522defb30f2cada4cf5385d8460c9e"
+      id="R-tab-id-952db8c26ab85665f51f10c35f317f3b"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -663,13 +675,11 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
     </div>
   </div>
 </div>
-<p><span class="math align-center"></p>
-$$\left|
+<span class="math"><span class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">∣</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>d</mi></mstyle></mtd></mtr></mtable><mo fence="true">∣</mo></mrow><annotation encoding="application/x-tex">\left|
 \begin{array}{cc}
-a & b \\
-c & d
-\end{array}\right|$$<p></span></p>
-
+a &amp; b \\
+c &amp; d
+\end{array}\right|</annotation></semantics></math></span></span></span>
 <h3 id="inline-math">Inline Math<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>In Passthrough default configuration, inline math is generated if you use a single <code>$</code> as a delimiter around your formulae.</p>
 
@@ -677,21 +687,21 @@ c & d
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-ef930551eca8e51958eef713353b429f" aria-expanded="true"
+      aria-controls="R-tab-id-78430b7594cfcfec2ce1f1797a8ad1f0" aria-expanded="true"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">Passthrough</span>
     </button>
     <button
-      aria-controls="R-tab-id-488d3a487fb6512e1ecf6de6e8906b9d" aria-expanded="false"
+      aria-controls="R-tab-id-583c1c6b08897eaf81ef3fb38348ac1e" aria-expanded="false"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-4305d6a43bbdb4aa1569cc484b21560d" aria-expanded="false"
+      aria-controls="R-tab-id-4912ecaaf2dd8a540475b81576651e7b" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -700,7 +710,7 @@ c & d
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ef930551eca8e51958eef713353b429f"
+      id="R-tab-id-78430b7594cfcfec2ce1f1797a8ad1f0"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -708,7 +718,7 @@ c & d
       </div>
     </div>
     <div
-      id="R-tab-id-488d3a487fb6512e1ecf6de6e8906b9d"
+      id="R-tab-id-583c1c6b08897eaf81ef3fb38348ac1e"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -716,7 +726,7 @@ c & d
       </div>
     </div>
     <div
-      id="R-tab-id-4305d6a43bbdb4aa1569cc484b21560d"
+      id="R-tab-id-4912ecaaf2dd8a540475b81576651e7b"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -728,7 +738,7 @@ c & d
     </div>
   </div>
 </div>
-Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrational.
+Euclid already knew, <span class="math"><span class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{2}</annotation></semantics></math></span></span></span> is irrational.
 <h3 id="block-math-with-right-alignment">Block Math with Right Alignment<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>With Passthrough syntax, only the <a href="/hugo-theme-relearn/shortcodes/math/index.html#parameters"><strong>content</strong> parameter</a> is available.</p>
 
@@ -736,28 +746,28 @@ Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrati
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-1095d04525c3d627a22b32d26a929211" aria-expanded="true"
+      aria-controls="R-tab-id-bf225df8d7584323dd49718b8b700ef2" aria-expanded="true"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">Passthrough</span>
     </button>
     <button
-      aria-controls="R-tab-id-bb9d73c7193a141780fa8a5577d77ef4" aria-expanded="false"
+      aria-controls="R-tab-id-d874305ba0a08c124d09223b3836beb6" aria-expanded="false"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Markdown</span>
     </button>
     <button
-      aria-controls="R-tab-id-0b6960fe50469543d2daa5b33f18fcd2" aria-expanded="false"
+      aria-controls="R-tab-id-c9fa4f2758a709b2845ddff4e0b2d15c" aria-expanded="false"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-aa9283f9c79d862d68dee2b65c280abb" aria-expanded="false"
+      aria-controls="R-tab-id-4d980c2d2b5108eb04e11794148f9e2f" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -766,7 +776,7 @@ Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrati
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1095d04525c3d627a22b32d26a929211"
+      id="R-tab-id-bf225df8d7584323dd49718b8b700ef2"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -774,7 +784,7 @@ Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrati
       </div>
     </div>
     <div
-      id="R-tab-id-bb9d73c7193a141780fa8a5577d77ef4"
+      id="R-tab-id-d874305ba0a08c124d09223b3836beb6"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -784,7 +794,7 @@ Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrati
       </div>
     </div>
     <div
-      id="R-tab-id-0b6960fe50469543d2daa5b33f18fcd2"
+      id="R-tab-id-c9fa4f2758a709b2845ddff4e0b2d15c"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -794,7 +804,7 @@ Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrati
       </div>
     </div>
     <div
-      id="R-tab-id-aa9283f9c79d862d68dee2b65c280abb"
+      id="R-tab-id-4d980c2d2b5108eb04e11794148f9e2f"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -807,38 +817,36 @@ Euclid already knew, <span class="math align-center">$\sqrt{2}$</span> is irrati
     </div>
   </div>
 </div>
-<p><span class="math align-right"></p>
-$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$<p></span></p>
-
+<span class="math align-right"><span class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mrow><mo fence="true">(</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>k</mi></msub><msub><mi>b</mi><mi>k</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup><mo>≤</mo><mrow><mo fence="true">(</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>a</mi><mi>k</mi><mn>2</mn></msubsup><mo fence="true">)</mo></mrow><mrow><mo fence="true">(</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>b</mi><mi>k</mi><mn>2</mn></msubsup><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)</annotation></semantics></math></span></span></span>
 <h3 id="chemical-formulae">Chemical Formulae<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
-<p>The MathJax library can also be used for chemical formulae.</p>
+<p>KaTeX can also render chemical formulae.</p>
 
 <div class="tab-panel" data-tab-group="R-tabs-e1fc9564fa2c053a1e6269a64309529d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-9969f6b56e4e14458ac94f0f2bd7e424" aria-expanded="true"
+      aria-controls="R-tab-id-b364f79a0d78ea219daab6ac7c36958c" aria-expanded="true"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">Passthrough</span>
     </button>
     <button
-      aria-controls="R-tab-id-dc735ffd16ab825c6eef12d42b4e6d46" aria-expanded="false"
+      aria-controls="R-tab-id-7b6cee0805f206c12c8926d6b8fba80a" aria-expanded="false"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Markdown</span>
     </button>
     <button
-      aria-controls="R-tab-id-e42564512fea43d8286b3a61986d5fe5" aria-expanded="false"
+      aria-controls="R-tab-id-6d638780c3953495f1b5b8a5f756bcee" aria-expanded="false"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">Shortcode</span>
     </button>
     <button
-      aria-controls="R-tab-id-a2f3fe5dd99cd3cda3663f4341af380e" aria-expanded="false"
+      aria-controls="R-tab-id-9e2affb2deb203307015c5d5693601ba" aria-expanded="false"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -847,7 +855,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9969f6b56e4e14458ac94f0f2bd7e424"
+      id="R-tab-id-b364f79a0d78ea219daab6ac7c36958c"
       data-tab-item="R-tab-f6124225f7555a9190621c9886890973"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -855,7 +863,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-dc735ffd16ab825c6eef12d42b4e6d46"
+      id="R-tab-id-7b6cee0805f206c12c8926d6b8fba80a"
       data-tab-item="R-tab-2182a74bab7188d959e795d9301e87ff"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -865,7 +873,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-e42564512fea43d8286b3a61986d5fe5"
+      id="R-tab-id-6d638780c3953495f1b5b8a5f756bcee"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -875,7 +883,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
       </div>
     </div>
     <div
-      id="R-tab-id-a2f3fe5dd99cd3cda3663f4341af380e"
+      id="R-tab-id-9e2affb2deb203307015c5d5693601ba"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -887,9 +895,7 @@ $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \
     </div>
   </div>
 </div>
-<p><span class="math align-center"></p>
-$$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$<p></span></p>
-
+<span class="math"><span class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">g</mi></mrow><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mn>2</mn><mo>+</mo></mrow></msup><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mrow><mi mathvariant="normal">I</mi><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mo lspace="0em" rspace="0em">−</mo></msup></mrow></mpadded></mover><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">I</mi></mrow><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>2</mn></mpadded></msub><mover><mo stretchy="true" minsize="3.0em">→</mo><mpadded width="+0.6em" lspace="0.3em"><mrow><mi mathvariant="normal">I</mi><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mo lspace="0em" rspace="0em">−</mo></msup></mrow></mpadded></mover><mo stretchy="false">[</mo><mrow><mi mathvariant="normal">H</mi><mi mathvariant="normal">g</mi></mrow><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">I</mi></mrow></msup><mi mathvariant="normal">I</mi><msub><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mpadded height="0px"><mn>4</mn></mpadded></msub><mo stretchy="false">]</mo><msup><mpadded width="0px"><mphantom><mi>X</mi></mphantom></mpadded><mrow><mn>2</mn><mo>−</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\ce{Hg^2+ -&gt;[I-] HgI2 -&gt;[I-] [Hg^{II}I4]^2-}</annotation></semantics></math></span></span></span>
 
   <footer class="footline">
 <div class="R-taxonomy taxonomy-categories" title="Categories">
@@ -904,9 +910,6 @@ $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$<p></span></p>
         </div>
       </main>
     </div>
-    <script type="application/json" id="R-math-config">{}</script>
-    <script src="/hugo-theme-relearn/js/math.min.3277bdbc1dd7ea7de29debd0dd89a38e712ea120856774e06203e73586134c14.js"></script>
-    <script id="MathJax-script" async src="/hugo-theme-relearn/js/mathjax/tex-mml-chtml.8a13ed0c39bba5399217d56212c22d96fb2b053b0d933d0c39731c8733b0090c.js"></script>
     <script src="/hugo-theme-relearn/js/theme.min.5e81b78e5900bce96f55e277df01b5b477b164c8094c7fc0a689ccfd86eeb4b3.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+dc52aea83d03aabf871ee7f54a895941431d8864">
+    <meta name="generator" content="Relearn 9.1.0+9d57c227ead72417eb883f801605f4f4ac3f68bc">
     <meta name="description" content="Serving your site with a strict Content Security Policy">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Content Security Policy :: Hugo Relearn Theme">
     <meta itemprop="description" content="Serving your site with a strict Content Security Policy">
-    <meta itemprop="wordCount" content="369">
+    <meta itemprop="wordCount" content="341">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,Howto,EnableSubresourceIntegrity">
     <title>Content Security Policy :: Hugo Relearn Theme</title>
@@ -35,7 +35,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.2f90c741ddf36063aca55467c1d13040e6f818860593590723ca57d0339219d0.js"
+      "indexFile": "searchindex.en.min.fc154a1dea37e93b24847df3d40b0caf071db27b06b9e5803528cd30ae85c890.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -47,7 +47,7 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.974a7c2b96c31589bd09942daae438941df869a05204436db313a08ee08b1f62.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.c5e57f8072c26c3936afb7f1f29896beccceeb26ad977baa337cb1cbf585deea.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.39e0dc30e3ca73e623fcf660fac10bf09db5539b3d13e59e90977cf7137e6aee.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
@@ -153,15 +153,14 @@
 
 <p>The theme writes no inline JavaScript. Its settings travel as JSON data blocks and all of its code comes from script files, so your site can be served with a strict <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP" rel="external" target="_self">Content Security Policy</a>.</p>
 <h2 id="policy">Policy<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<p>This policy covers every feature of the theme except Mermaid and math</p>
+<p>This policy covers every feature of the theme except Mermaid</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">Content-Security-Policy: default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39;; style-src-attr &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39; data:</span></span></span></code></pre></div>
-<p><code>style-src-attr 'unsafe-inline'</code> allows <code>style</code> attributes: the theme writes colors and image sizes given in your content as such, and Hugo colors highlighted code this way unless you <a href="/hugo-theme-relearn/configuration/branding/modules/index.html#change-syntax-highlighting">set <code>markup.highlight.noClasses=false</code></a>. If none of this applies and you use neither Mermaid nor math, which write <code>style</code> attributes as well, you can leave it out. Inline <code>&lt;style&gt;</code> elements stay forbidden; the theme writes none.</p>
+<p><code>style-src-attr 'unsafe-inline'</code> allows <code>style</code> attributes: the theme writes colors and image sizes given in your content as such, and Hugo colors highlighted code this way unless you <a href="/hugo-theme-relearn/configuration/branding/modules/index.html#change-syntax-highlighting">set <code>markup.highlight.noClasses=false</code></a>. If none of this applies, you use no Mermaid and your <a href="/hugo-theme-relearn/shortcodes/math/index.html#output-of-the-formulae">math output</a> is <code>mathml</code>, you can leave it out: Mermaid and the other math outputs write <code>style</code> attributes as well. Inline <code>&lt;style&gt;</code> elements stay forbidden; the theme writes none.</p>
 <h2 id="what-needs-more">What Needs More<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <ul>
 <li><strong>Mermaid</strong>: Mermaid writes its styles into inline <code>&lt;style&gt;</code> elements. Add <code>style-src-elem 'self' 'unsafe-inline'</code> - with <code>'self'</code> repeated, as it replaces <code>style-src</code> for all style elements.</li>
-<li><strong>Math</strong>: MathJax does the same and needs the same <code>style-src-elem</code>. It also starts a worker from a <code>blob:</code> URL and loads its fonts from <code>https://cdn.jsdelivr.net</code>, so add <code>worker-src blob:</code> and <code>https://cdn.jsdelivr.net</code> to <code>font-src</code>.</li>
 <li><strong>Inlined SVGs</strong>: an SVG shown with the <a href="/hugo-theme-relearn/authoring/linking/imageeffects/index.html"><code>inlinecontent</code> image effect</a> brings its own <code>&lt;style&gt;</code> elements into the page, if it has any, and needs the same <code>style-src-elem</code>.</li>
-<li><strong>Libraries from elsewhere</strong>: if you set <code>customMathJaxURL</code>, <code>customMermaidURL</code> or <code>customOpenapiURL</code>, add their origin to <code>script-src</code>, and for Swagger UI to <code>style-src</code> as well.</li>
+<li><strong>Libraries from elsewhere</strong>: if you set <code>customMermaidURL</code> or <code>customOpenapiURL</code>, add their origin to <code>script-src</code>, and for Swagger UI to <code>style-src</code> as well.</li>
 <li><strong>Your own inline JavaScript</strong>: a <code>javascript:</code> URL as the <code>href</code> of a <a href="/hugo-theme-relearn/shortcodes/button/index.html">button</a>, <a href="/hugo-theme-relearn/shortcodes/card/index.html">card</a> or <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#button">topbar button</a> is blocked. Give it an <code>action</code> instead and <a href="/hugo-theme-relearn/shortcodes/button/index.html#button-with-own-action">handle that in a script file</a>.</li>
 </ul>
 <h2 id="subresource-integrity">Subresource Integrity<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
@@ -170,21 +169,21 @@
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-8d2445207f76684b0c7152dad8006933" aria-expanded="true"
+      aria-controls="R-tab-id-ad422b82f0f132d7565e5b2f8dbee9bb" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-14041d50230e84736bd455e293bce857" aria-expanded="false"
+      aria-controls="R-tab-id-07bce495ed4774a242594f1b863817fc" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d3a2f5756823db8d666d879b96616ec1" aria-expanded="false"
+      aria-controls="R-tab-id-a57fbe70908948a48358d26f9de6148c" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -193,7 +192,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-8d2445207f76684b0c7152dad8006933"
+      id="R-tab-id-ad422b82f0f132d7565e5b2f8dbee9bb"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -202,7 +201,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-14041d50230e84736bd455e293bce857"
+      id="R-tab-id-07bce495ed4774a242594f1b863817fc"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -211,7 +210,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-d3a2f5756823db8d666d879b96616ec1"
+      id="R-tab-id-a57fbe70908948a48358d26f9de6148c"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
