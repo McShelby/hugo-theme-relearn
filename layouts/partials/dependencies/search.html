@@ -66,12 +66,9 @@
     {{- if $searchIndexUrl }}
       {{- $indexDir := path.Dir $searchIndexUrl }}
       {{- $indexDir = cond (eq $indexDir ".") "" (printf "%s/" $indexDir) }}
-      {{- /* our data for `search.js`; a script element of a non JavaScript type is a data
-        block the browser never executes, so a strict CSP has nothing to allow here. the
-        index can only be generated once all pages are rendered, so the element is
+      {{- /* the index can only be generated once all pages are rendered, so the element is
         deferred; it is the same for every page and therefore generated once for all of
-        them, which is why it holds the index's path from the site's root and
-        `search.js` puts the page's own way up there in front of it */}}
+        them */}}
       {{- with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate "dir" $indexDir))) }}
         {{- $dir := .dir }}
         {{- with partial "_relearn/searchIndex.gotmpl" . }}
@@ -81,7 +78,6 @@
           {{- with partial "_relearn/integrity.gotmpl" . }}
             {{- $config = merge $config (dict "indexIntegrity" .) }}
           {{- end }}
-          {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
           {{- $jsonOptions := dict
             "indent" "  "
             "prefix" "    "

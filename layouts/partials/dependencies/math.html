@@ -8,17 +8,11 @@
     {{- else if isset .Site.Params "mathjaxinitialize" }}
       {{- $init = .Site.Params.mathJaxInitialize }}
     {{- end }}
-    {{- /* the prefix is the indentation of our element, so the payload lines up with it */}}
     {{- $jsonOptions := dict
       "indent" "  "
       "prefix" "    "
     }}
-    {{- /* a script element of a non JavaScript type is a data block the browser never
-           executes, so a strict CSP has nothing to allow here */}}
     <script type="application/json" id="R-math-config">{{ $init | transform.Unmarshal | jsonify $jsonOptions | safeJS }}</script>
-    {{- /* no `defer`: `math.js` builds `window.MathJax` from our block and has to be done
-           before the `async` MathJax script below can run; holding the parser this
-           late in the page delays nothing that would be drawn */}}
     {{- with partial "asset.gotmpl" "/js/math.js" }}
     <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }}></script>
     {{- end }}
