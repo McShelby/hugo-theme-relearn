@@ -1,0 +1,116 @@
+{{- /* Hugo's own table template, with the alignment of a column given as a class instead of a style attribute, so no Content Security Policy has to allow inline styles for it.
+  Cells can be merged, compatible with Markdown Preview Enhanced and remark-extended-table:
+  - a cell containing only `>` merges into the cell to its right (colspan)
+  - a cell containing only `^` merges into the cell above (rowspan)
+  - markers chain and combine, so a block of `>` and `^` around one content cell makes it span both ways
+  - a `>` in the last column or a `^` in the first row of a section is literal
+  - merging never crosses from the header into the body
+  - `\>` and `\^` merge too, as Goldmark renders them the same as the unescaped markers; instead `\\>` and `\\^`
+    arrive as `\>` and `\^` and are shown as literal `>` and `^`, each further backslash pair keeps one backslash */}}
+{{- define "relearn-table-cell-attributes" }}
+  {{- with .Alignment }}
+    {{- printf " class=%q" (printf "align-%s" .) | safeHTMLAttr }}
+  {{- end }}
+  {{- if gt .rowspan 1 }}
+    {{- printf " rowspan=\"%d\"" .rowspan | safeHTMLAttr }}
+  {{- end }}
+  {{- if gt .colspan 1 }}
+    {{- printf " colspan=\"%d\"" .colspan | safeHTMLAttr }}
+  {{- end }}
+{{- end }}
+{{- $attributes := .attributes | default dict }}
+{{- $thead := .thead | default slice }}
+{{- $tbody := .tbody | default slice }}
+{{- $s := newScratch }}
+{{- range $section := slice (dict "name" "thead" "rows" $thead) (dict "name" "tbody" "rows" $tbody) }}
+  {{- $rows := $section.rows }}
+  {{- /* classify each cell as merging to the right, merging up or holding content */}}
+  {{- range $r, $row := $rows }}
+    {{- range $c, $cell := $row }}
+      {{- $t := trim (string $cell.Text) " \t\r\n" }}
+      {{- $kind := "cell" }}
+      {{- if and (eq $t "&gt;") (lt (add $c 1) (len $row)) }}
+        {{- $kind = "right" }}
+      {{- else if and (eq $t "^") (gt $r 0) }}
+        {{- $kind = "up" }}
+      {{- else if findRE `^\\+(&gt;|\^)$` $t }}
+        {{- $s.Set (printf "%s/text/%d/%d" $section.name $r $c) (substr $t 1 | safeHTML) }}
+      {{- end }}
+      {{- $s.Set (printf "%s/kind/%d/%d" $section.name $r $c) $kind }}
+    {{- end }}
+  {{- end }}
+  {{- /* follow each cell's marker chain to its content cell and grow the box that content cell spans */}}
+  {{- range $r, $row := $rows }}
+    {{- range $c, $_ := $row }}
+      {{- $or := $r }}
+      {{- $oc := $c }}
+      {{- range seq (add (len $rows) (len $row)) }}
+        {{- $kind := $s.Get (printf "%s/kind/%d/%d" $section.name $or $oc) }}
+        {{- if eq $kind "right" }}
+          {{- $oc = add $oc 1 }}
+        {{- else if eq $kind "up" }}
+          {{- $or = sub $or 1 }}
+        {{- else }}
+          {{- break }}
+        {{- end }}
+      {{- end }}
+      {{- $key := printf "%s/box/%d/%d" $section.name $or $oc }}
+      {{- $s.Set (printf "%s/owner/%d/%d" $section.name $r $c) $key }}
+      {{- $box := dict "r" $or "c" $oc "minr" $r "minc" $c "maxr" $r "maxc" $c }}
+      {{- with $s.Get $key }}
+        {{- $box = dict "r" $or "c" $oc "minr" (math.Min .minr $r | int) "minc" (math.Min .minc $c | int) "maxr" (math.Max .maxr $r | int) "maxc" (math.Max .maxc $c | int) }}
+      {{- end }}
+      {{- $s.Set $key $box }}
+    {{- end }}
+  {{- end }}
+  {{- /* each box is written once, at its top left cell */}}
+  {{- range $r, $row := $rows }}
+    {{- range $c, $_ := $row }}
+      {{- $box := $s.Get ($s.Get (printf "%s/owner/%d/%d" $section.name $r $c)) }}
+      {{- if and (eq $box.minr $r) (eq $box.minc $c) }}
+        {{- $content := index $rows $box.r $box.c }}
+        {{- $s.Set (printf "%s/cell/%d/%d" $section.name $r $c) (dict
+          "Text" ($s.Get (printf "%s/text/%d/%d" $section.name $box.r $box.c) | default $content.Text)
+          "Alignment" $content.Alignment
+          "rowspan" (add (sub $box.maxr $box.minr) 1)
+          "colspan" (add (sub $box.maxc $box.minc) 1)
+        ) }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end -}}
+<table
+  {{- range $k, $v := $attributes }}
+    {{- if $v }}
+      {{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr }}
+    {{- end }}
+  {{- end }}>
+  <thead>
+  {{- range $r, $row := $thead }}
+    <tr>
+    {{- range $c, $_ := $row }}
+      {{- with $s.Get (printf "thead/cell/%d/%d" $r $c) }}
+      <th
+        {{- template "relearn-table-cell-attributes" . }}>
+        {{- .Text -}}
+      </th>
+      {{- end }}
+    {{- end }}
+    </tr>
+  {{- end }}
+  </thead>
+  <tbody>
+  {{- range $r, $row := $tbody }}
+    <tr>
+    {{- range $c, $_ := $row }}
+      {{- with $s.Get (printf "tbody/cell/%d/%d" $r $c) }}
+      <td
+        {{- template "relearn-table-cell-attributes" . }}>
+        {{- .Text -}}
+      </td>
+      {{- end }}
+    {{- end }}
+    </tr>
+  {{- end }}
+  </tbody>
+</table>

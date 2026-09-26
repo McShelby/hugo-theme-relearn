@@ -41,6 +41,8 @@ If not otherwise noted, the shown examples adhere to the [CommonMark](https://co
 
 - {{% badge style="obsidian" %}}Obsidian{{% /badge %}} Extension implemented by [Obsidian](https://obsidian.md/).
 
+- {{% badge style="mpe" %}}MPE{{% /badge %}} Extension implemented by [Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/).
+
 - {{% badge style="html" %}}HTML{{% /badge %}} If the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) is allowed, the theme supports styling for further HTML elements.
 
 - {{% badge style="relearn" %}}Relearn{{% /badge %}} Extension specific to this theme.
@@ -628,6 +630,34 @@ Adding a colon on the left and/or right side of the dashes below any heading wil
 | data   | 1      | path to data files to supply the data that will be passed into templates. |
 | engine | 2      | engine to be used for processing templates. Handlebars is the default. |
 | ext    | 3      | extension to be used for dest files. |
+{{% /notice %}}
+
+### Merged Cells
+
+{{% badge style="mpe" %}}MPE{{% /badge %}} A cell containing only `>` merges into the cell to its right, a cell containing only `^` merges into the cell above. Markers can be chained and combined to let a cell span multiple columns and rows. Merging never crosses from the header into the body.
+
+A `>` in the last column or a `^` in the first row of the header or body has nothing to merge into and is shown as is. Elsewhere, to show only `>` or `^` in a cell, escape it with two backslashes as `\\>` or `\\^`. A single backslash does not help, as `\>` and `\^` result in the unescaped character.
+
+````md
+| Option | Number | Description |
+|--------|--------|-------------|
+| data   | 1      | path to data files to supply the data that will be passed into templates. |
+| engine | >      | engine to be used for processing templates. Handlebars is the default. |
+| ^      | 2      | also used for partials. |
+| layout | >      | directories that are merged with those of the theme. |
+| static | ^      | ^           |
+| ext    | \\>    | extension to be used for dest files. |
+````
+
+{{% notice style="code" icon="eye" title="Result" %}}
+| Option | Number | Description |
+|--------|--------|-------------|
+| data   | 1      | path to data files to supply the data that will be passed into templates. |
+| engine | >      | engine to be used for processing templates. Handlebars is the default. |
+| ^      | 2      | also used for partials. |
+| layout | >      | directories that are merged with those of the theme. |
+| static | ^      | ^           |
+| ext    | \\>    | extension to be used for dest files. |
 {{% /notice %}}
 
 ## Links
