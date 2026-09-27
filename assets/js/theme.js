@@ -1252,18 +1252,23 @@ function printShortcutHandler(event) {
 }
 
 function showSearch() {
-  var s = document.querySelector('#R-search-by');
+  // depending on the configuration and the layout, the search box is shown in
+  // the topbar or the sidebar; we take the first one displayed
+  var s = Array.from(document.querySelectorAll('#R-search-by-topbar, #R-search-by')).find(function (e) {
+    return e.offsetParent;
+  });
   if (!s) {
     return;
   }
+  var isSidebar = !!s.closest('#R-sidebar');
   var b = document.querySelector('body');
   if (s == document.activeElement) {
-    if (b.classList.contains('sidebar-flyout')) {
+    if (isSidebar && b.classList.contains('sidebar-flyout')) {
       closeNav();
     }
     documentFocus();
   } else {
-    if (!b.classList.contains('sidebar-flyout')) {
+    if (isSidebar && !b.classList.contains('sidebar-flyout')) {
       openNav();
     }
     s.focus();
@@ -1353,6 +1358,10 @@ function toggleTopbarFlyout(e) {
 function toggleTopbarFlyoutEvent(event) {
   if (event.target.classList.contains('topbar-content') || event.target.classList.contains('topbar-content-wrapper')) {
     // the scrollbar was used, don't close flyout
+    return;
+  }
+  if (event.target.closest('search')) {
+    // the reader is working with the search box, don't close flyout
     return;
   }
   toggleTopbarFlyout(event.target);

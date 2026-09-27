@@ -180,24 +180,28 @@
       window.history.replaceState(state, '');
     }
 
-    new autoComplete({
-      /* selector for the search box element */
-      selectorToInsert: 'search:has(.searchbox)',
-      selector: '#R-search-by',
-      /* source is the callback to perform the search */
-      source: async function (term, response) {
-        let a = await window.relearn.search.adapter.search(term);
-        response(a);
-      },
-      /* renderItem displays individual search results */
-      renderItem: function (item, _term) {
-        return renderItem(item).outerHTML;
-      },
-      /* onSelect callback fires when a search suggestion is chosen */
-      onSelect: function (e, term, item) {
-        location.href = item.getAttribute('href');
-        e.preventDefault();
-      },
+    // each search box - like the one in the sidebar and the one in the topbar -
+    // gets its own suggestions, shown below itself
+    document.querySelectorAll('search:has(.searchbox) input.search-by').forEach(function (input) {
+      new autoComplete({
+        /* selector for the search box element */
+        selectorToInsert: 'search:has(#' + input.id + ')',
+        selector: input,
+        /* source is the callback to perform the search */
+        source: async function (term, response) {
+          let a = await window.relearn.search.adapter.search(term);
+          response(a);
+        },
+        /* renderItem displays individual search results */
+        renderItem: function (item, _term) {
+          return renderItem(item).outerHTML;
+        },
+        /* onSelect callback fires when a search suggestion is chosen */
+        onSelect: function (e, term, item) {
+          location.href = item.getAttribute('href');
+          e.preventDefault();
+        },
+      });
     });
   }
 

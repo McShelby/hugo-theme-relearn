@@ -110,6 +110,10 @@ html {
   width: 100%;
   --VARIABLE-LINK-color: var(--INTERNAL-MAIN-LINK-color);
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  --VARIABLE-SEARCH-color: var(--INTERNAL-MENU-SEARCH-color);
+  --VARIABLE-SEARCH-HOVER-color: var(--INTERNAL-MENU-SEARCH-HOVER-color);
+  --VARIABLE-SEARCH-BG-color: var(--INTERNAL-MENU-SEARCH-BG-color);
+  --VARIABLE-SEARCH-BORDER-color: var(--INTERNAL-MENU-SEARCH-BORDER-color);
 }
 
 body {
@@ -193,7 +197,7 @@ a:focus {
   padding-inline: 1rem;
 }
 #R-header-wrapper > search {
-  color: var(--INTERNAL-MENU-SEARCH-color);
+  color: var(--VARIABLE-SEARCH-color);
   display: block;
   margin-block: 0.5rem;
 }
@@ -207,9 +211,17 @@ a:focus {
   overflow: hidden;
 }
 
+/* if the search box is shown in the topbar, the sidebar only offers its own
+   in mobile layout, where the topbar has no room for it */
+@media screen and (min-width: 48rem) {
+  #R-header-wrapper > search.position-topbar {
+    display: none;
+  }
+}
+
 .searchbox {
-  background-color: var(--INTERNAL-MENU-SEARCH-BG-color);
-  border-color: var(--INTERNAL-MENU-SEARCH-BORDER-color);
+  background-color: var(--VARIABLE-SEARCH-BG-color);
+  border-color: var(--VARIABLE-SEARCH-BORDER-color);
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
@@ -240,13 +252,15 @@ a:focus {
   position: absolute;
 }
 
-#R-sidebar .searchbox > button {
-  color: var(--INTERNAL-MENU-SEARCH-color);
+#R-sidebar .searchbox > button,
+#R-topbar .searchbox > button {
+  color: var(--VARIABLE-SEARCH-color);
   opacity: 0.75;
 }
 
-#R-sidebar .searchbox button:hover {
-  color: var(--INTERNAL-MENU-SEARCH-HOVER-color);
+#R-sidebar .searchbox button:hover,
+#R-topbar .searchbox button:hover {
+  color: var(--VARIABLE-SEARCH-HOVER-color);
   opacity: 1;
 }
 
@@ -264,10 +278,10 @@ a:focus {
 }
 
 .searchbox input::-webkit-input-placeholder {
-  color: var(--INTERNAL-MENU-SEARCH-color);
+  color: var(--VARIABLE-SEARCH-color);
 }
 .searchbox input::placeholder {
-  color: var(--INTERNAL-MENU-SEARCH-color);
+  color: var(--VARIABLE-SEARCH-color);
   opacity: 0.45;
 }
 
@@ -1519,6 +1533,10 @@ tbody > tr:nth-child(even) > td {
   height: 100%;
   --VARIABLE-LINK-color: var(--INTERNAL-TOPBAR-LINK-color);
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-TOPBAR-LINK-HOVER-color);
+  --VARIABLE-SEARCH-color: var(--INTERNAL-TOPBAR-SEARCH-color);
+  --VARIABLE-SEARCH-HOVER-color: var(--INTERNAL-TOPBAR-SEARCH-HOVER-color);
+  --VARIABLE-SEARCH-BG-color: var(--INTERNAL-TOPBAR-SEARCH-BG-color);
+  --VARIABLE-SEARCH-BORDER-color: var(--INTERNAL-TOPBAR-SEARCH-BORDER-color);
 }
 
 .topbar-button {
@@ -1545,6 +1563,15 @@ tbody > tr:nth-child(even) > td {
 
 .topbar-button > .btn {
   font-size: 1rem;
+}
+
+/* the search box is shown directly in the topbar instead of a button; its
+   suggestions are positioned below it */
+.topbar-button-search search {
+  color: var(--VARIABLE-SEARCH-color);
+  display: block;
+  position: relative;
+  width: 15rem;
 }
 .topbar-button > .btn.cstyle {
   --VARIABLE-LINK-color: var(--INTERNAL-TOPBAR-BUTTON-color);
@@ -2482,13 +2509,24 @@ span.math:has(math[display='block'], .katex-display) {
   height: 1.5rem;
 }
 
-#R-sidebar .autocomplete-suggestions {
+#R-sidebar .autocomplete-suggestions,
+#R-topbar .autocomplete-suggestions {
   background-color: var(--INTERNAL-MAIN-BG-color);
   border: 0 solid rgba(134, 134, 134, 0.166);
   box-shadow: 1px 2px 5px 1px rgba(134, 134, 134, 0.333);
 }
 
-#R-sidebar .autocomplete-suggestion {
+#R-topbar .autocomplete-suggestions {
+  width: 100%;
+}
+
+#R-topbar a.autocomplete-suggestion :not(i) {
+  /* like in the sidebar, a suggestion is not underlined on hover */
+  text-decoration: none;
+}
+
+#R-sidebar .autocomplete-suggestion,
+#R-topbar .autocomplete-suggestion {
   /* restore autocomplete default value for sidebar, because it is affected
   by coarse element styling */
   display: block;

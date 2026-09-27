@@ -1,7 +1,7 @@
 +++
 categories = ['howto']
 description = 'Configure search and the search form'
-options = ['search.adapter.params.additionalContentLanguage', 'search.disable', 'search.index.disable', 'search.index.URL', 'search.page.disable', 'search.page.URL']
+options = ['search.adapter.params.additionalContentLanguage', 'search.disable', 'search.index.disable', 'search.index.URL', 'search.page.disable', 'search.page.URL', 'search.position']
 title = 'Search'
 weight = 3
 +++
@@ -30,6 +30,21 @@ search.disable = true
 search.index.disable = true
 search.page.disable = true
 {{< /multiconfig >}}
+
+## Position of the Search Form
+
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} By default, the search form is shown at the top of the menu. You can move it into the topbar instead:
+
+{{< multiconfig file=hugo section=params >}}
+search.position = 'topbar'
+{{< /multiconfig >}}
+
+Valid values are:
+
+- `sidebar` (default) - Search form at the top of the menu
+- `topbar` - Search form in the topbar
+
+In mobile layout, the topbar has no room for the search form. It is then shown in the menu regardless of this setting.
 
 ## Search URLs
 

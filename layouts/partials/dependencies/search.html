@@ -21,6 +21,10 @@
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.page) site.Params.search.page.disable }}
   {{- $disableSearchPage = . }}
 {{- end }}
+{{- $position := "sidebar" }}
+{{- with and (reflect.IsMap site.Params.search) site.Params.search.position }}
+  {{- $position = . }}
+{{- end }}
 
 {{- if eq $location "default" }}
   {{- with $page }}
@@ -87,7 +91,8 @@
       {{- end }}
     {{- end }}
   {{- end }}
-{{- else if eq $location "search" }}
+{{- else if or (eq $location "search") (and (eq $location "topbar") (eq $position "topbar")) }}
+  {{- $id := cond (eq $location "topbar") "R-search-by-topbar" "R-search-by" }}
   {{- $link := "" }}
   {{- if not $disableSearchIndex }}
     {{- if not $disableSearchPage }}
@@ -96,11 +101,11 @@
       {{- end }}
     {{- end }}
   {{- end }}
-        <search>{{ if $link }}<form action="{{ $link }}" method="get">{{ end }}
+        <search class="position-{{ $position }}">{{ if $link }}<form action="{{ $link }}" method="get">{{ end }}
           <div class="searchbox default-animation">
             {{ if $link }}<button class="search-detail" type="submit" title="{{ T "Search" }} (CTRL+ALT+f)">{{ end }}<i class="fas fa-fw fa-search"{{ if not $link }} title="{{ T "Search" }} (CTRL+ALT+f)"{{ end }}></i>{{ if $link }}</button>{{ end }}
-            <label class="a11y-only" for="R-search-by">{{ T "Search" }}</label>
-            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="{{ T "Search-placeholder" }}">
+            <label class="a11y-only" for="{{ $id }}">{{ T "Search" }}</label>
+            <input data-search-input id="{{ $id }}" name="search-by" class="search-by" type="search" placeholder="{{ T "Search-placeholder" }}">
             <button class="search-clear" type="button" data-search-clear="" title="{{ T "Clear-search" }}"><i class="fas fa-fw fa-times" title="{{ T "Clear-search" }}"></i></button>
           </div>
         {{ if $link }}</form>{{ end }}</search>
