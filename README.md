@@ -17,6 +17,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Looks nice on paper](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats) - if it has to
   - [Usable offline with no external dependencies](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment#offline-usage)
   - [Usable from your local file system without a web server](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment#file-system) via `file://` protocol
+  - [Servable with a strict Content Security Policy](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/csp)
   - [Integration with the VSCode Front Matter CMS extension](https://mcshelby.github.io/hugo-theme-relearn/introduction/tools#front-matter-cms) for on-premise CMS capabilities
 
 - **Customizable Appearance**
