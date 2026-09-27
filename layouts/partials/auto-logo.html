@@ -11,6 +11,7 @@
 {{- $manualWrap := strings.Contains $title "\n" }}
 
 {{- $direction := site.Params.logo.direction | default "row" }}
+{{- $position := site.Params.logo.position | default "sidebar" }}
 
 {{- /* Build map of variant logos */}}
 {{- $logoMap := dict }}
@@ -37,7 +38,7 @@
 
 {{- /* Render logo container with all variants */}}
 {{- if or $logoGroups $title }}
-        <a id="R-logo" class="R-default direction-{{ $direction }}{{ if $manualWrap }} manual-wrap{{ end }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
+        <a id="R-logo" class="R-default direction-{{ $direction }} position-{{ $position }}{{ if $manualWrap }} manual-wrap{{ end }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
   {{- range $logoSrc, $variants := $logoGroups }}
     {{- $variantList := delimit $variants " " }}
           <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">

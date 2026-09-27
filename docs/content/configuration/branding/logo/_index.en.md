@@ -77,6 +77,21 @@ Valid values are:
 - `row` (default) - Logo and title side by side
 - `column` - Logo above title
 
+### Setting Position of Title & Logo
+
+By default, the logo and title are shown at the top of the sidebar. You can move them into the topbar instead, which is then extended over the sidebar:
+
+{{< multiconfig file=hugo section=params >}}
+logo = { position = 'topbar' }
+{{< /multiconfig >}}
+
+Valid values are:
+
+- `sidebar` (default) - Logo and title at the top of the sidebar
+- `topbar` - Logo and title in the topbar above the sidebar
+
+In the topbar, the logo and title are always arranged side by side, regardless of the `direction` setting. To keep the topbar's height, the logo image is shrunk to a fixed height and the title is shown on a single line, ignoring manual line breaks and cut off if it is too long. The title and logo colors default to the topbar's text color.
+
 ## Changing the Logo
 
 {{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu if found. By default, it automatically detects logos in your site's `assets/images/`.

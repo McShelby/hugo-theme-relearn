@@ -2972,6 +2972,48 @@ body a#R-logo:hover *:not(svg, svg *) {
   white-space: pre;
 }
 
+/* logo in the topbar area of the sidebar; it must never grow this area, so
+   it is always arranged in a row with a fixed image height and a single line
+   title */
+
+#R-logo.R-default.position-topbar {
+  --INTERNAL-LOGO-LINK-color: var(--LOGO-LINK-color, var(--INTERNAL-TOPBAR-TEXT-color));
+  --INTERNAL-LOGO-LINK-HOVER-color: var(--LOGO-LINK-HOVER-color, var(--INTERNAL-LOGO-LINK-color));
+  --INTERNAL-LOGO-IMAGE-color: var(--LOGO-IMAGE-color, var(--INTERNAL-LOGO-LINK-color));
+  --INTERNAL-LOGO-IMAGE-HOVER-color: var(--LOGO-IMAGE-HOVER-color, var(--INTERNAL-LOGO-LINK-HOVER-color));
+  flex-direction: row;
+  /* the bottom border of the topbar area is painted below the logo */
+  height: calc(3rem - 1px);
+  justify-content: flex-start;
+  margin-block: 0;
+  /* above the topbar area painted by #R-header-topbar */
+  position: relative;
+  z-index: 2;
+}
+
+#R-logo.R-default.position-topbar + search {
+  margin-top: 1rem;
+}
+
+#R-logo.R-default.position-topbar .logo-image {
+  height: 2rem;
+  width: auto;
+}
+
+#R-logo.R-default.position-topbar .logo-image > * {
+  height: 100%;
+  max-width: none;
+  width: auto;
+}
+
+#R-logo.R-default.position-topbar .logo-title {
+  font-size: 1.5em;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* columnize content */
 
 @media screen and (max-width: 47.999rem) {
@@ -3219,6 +3261,15 @@ body a#R-logo:hover *:not(svg, svg *) {
   .mobile-support #R-header-topbar {
     border-inline-end-color: var(--INTERNAL-MENU-BORDER-color);
   }
+}
+
+/* extend the topbar over the sidebar to hold the logo; the topbar background
+   may be translucent, so it is layered over the main background it is
+   designed for instead of the menu header */
+#R-sidebar:has(#R-logo.position-topbar) #R-header-topbar {
+  background: linear-gradient(var(--INTERNAL-TOPBAR-BG-color), var(--INTERNAL-TOPBAR-BG-color)), var(--INTERNAL-MAIN-BG-color);
+  border-bottom-color: var(--INTERNAL-MAIN-TOPBAR-BORDER-color);
+  border-inline-end-color: transparent;
 }
 
 #topics > ul {
