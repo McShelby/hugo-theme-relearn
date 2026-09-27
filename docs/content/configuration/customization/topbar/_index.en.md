@@ -1,7 +1,8 @@
 +++
 categories = ['explanation', 'reference']
 description = 'How to extend the topbar'
-options = ['editURL']
+frontmatter = ['topbarend', 'topbarmore', 'topbarstart']
+options = ['editURL', 'topbarend', 'topbarmore', 'topbarstart']
 outputs = ['html', 'rss', 'print', 'markdown', 'source']
 title = 'Topbar'
 weight = 5
@@ -23,45 +24,99 @@ The default configuration comes with three predefined areas that may contain an 
 
 ![topbar with default areas marked](topbar-areas.png)
 
-- [**start**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/start.html): shown between menu and breadcrumb
-- [**end**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/end.html): shown on the opposite breadcrumb side in comparison to the _start_ area
-- [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/more.html): shown when pressing the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button in the topbar
+- **start**: shown between menu and breadcrumb
+- **end**: shown on the opposite breadcrumb side in comparison to the _start_ area
+- **more**: shown when pressing the {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} _more_ button in the topbar
 
-While you cannot add additional areas in the topbar, you are free to configure additional buttons that behave like the _more_ button, providing further user-defined areas.
+While you cannot add additional areas in the topbar, you are free to configure additional [area buttons](#area) that behave like the _more_ button, providing further user-defined areas.
 
 ## Buttons
 
-The theme ships with the following predefined buttons (from left to right in the screenshot):
+The theme ships with the following predefined buttons (from left to right in the screenshot). Each is identified by its type:
 
 - {{% button style="transparent" icon="bars" %}}{{% /button %}} [**sidebar**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/sidebar.html): opens the sidebar flyout if in mobile layout
 - {{% button style="transparent" icon="table-list" %}}{{% /button %}} [**toc**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/toc.html): [opens the table of contents in an overlay](authoring/frontmatter/topbar#table-of-contents)
 - {{% button style="transparent" icon="search" %}}{{% /button %}} [**search**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/search.html): the search box itself, shown if [configured to be in the topbar](configuration/sidebar/search#position-of-the-search-form); in mobile layout it collapses into a button opening the search box in an overlay
 - {{% button style="transparent" icon="pen" %}}{{% /button %}} [**edit**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/edit.html): browses to the editable page if the `editURL` [parameter is set](authoring/frontmatter/topbar#edit-button)
-- {{% button style="transparent" icon="code" %}}{{% /button %}} [**source**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/markdown.html): shows the page's source code if [markdown support](configuration/sitemanagement/outputformats#source-support) was activated
+- {{% button style="transparent" icon="code" %}}{{% /button %}} [**source**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/source.html): shows the page's source code if [source support](configuration/sitemanagement/outputformats#source-support) was activated
 - {{% button style="transparent" icon="fa-fw fab fa-markdown" %}}{{% /button %}} [**markdown**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/markdown.html): shows the page's markdown source if [markdown support](configuration/sitemanagement/outputformats#markdown-support) was activated
 - {{% button style="transparent" icon="print" %}}{{% /button %}} [**print**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/print.html): browses to the chapter's printable page if [print support](configuration/sitemanagement/outputformats#print-support) was activated
 - {{% button style="transparent" icon="chevron-left" %}}{{% /button %}} [**prev**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/prev.html): browses to the [previous page](authoring/frontmatter/topbar#arrow-navigation) if there is one
-- {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} [**next**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/next.html): browses to the [next page]authoring/frontmatter/topbar(#arrow-navigation) if there is one
+- {{% button style="transparent" icon="chevron-right" %}}{{% /button %}} [**next**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/next.html): browses to the [next page](authoring/frontmatter/topbar#arrow-navigation) if there is one
 - {{% button style="transparent" icon="ellipsis-v" %}}{{% /button %}} [**more**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html): opens the overlay for the _more_ area
+- [**area**](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/area.html): opens the overlay for an area you define yourself, see [below](#area)
 
 Not all buttons are displayed at every given time. This is configurable (see below if interested).
 
-## Redefining Areas
+## Defining Topbar Buttons
 
-Each predefined area and button comes in its own file. By that, it is easy for you to overwrite an area file in your installation, reusing only the buttons you like.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The buttons are defined for each area of the topbar:
 
-E.g., you can redefine the predefined _end_ area by adding the file [`layouts/partials/topbar/area/end.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/area/end.html) in your installation (not in the theme itself) to remove all but the _more_ button.
+- `topbarstart`: the _start_ area
+- `topbarend`: the _end_ area
+- `topbarmore`: the _more_ area
 
-The below example sets an explicit value for the `onempty` parameter, overriding the specific default value for this button (these defaults vary depending on the button). The parameter causes the _more_ button to always be displayed instead of hiding once its content is empty.
+As these options are arrays, you can define as many buttons as you like in each area. The buttons are displayed in the given order. Each button is identified by its `type` and may be given further parameters, depending on the button.
 
-````go
-{{ partial "topbar/button/more.html" (dict
-  "page" .
-  "onempty" "disable"
-)}}
-````
+If you don't set these options in your `hugo.toml`, the theme defaults to the following configuration. The _more_ area is empty by default; some buttons are moved there depending on the screen width.
+
+{{< multiconfig section=params >}}
+topbarstart = [
+  { type = 'sidebar' },
+  { type = 'toc' }
+]
+
+topbarend = [
+  { type = 'search' },
+  { type = 'edit' },
+  { type = 'source' },
+  { type = 'markdown' },
+  { type = 'print' },
+  { type = 'prev' },
+  { type = 'next' },
+  { type = 'more' }
+]
+
+topbarmore = []
+{{< /multiconfig >}}
+
+> [!note]
+> If you want to reconfigure an area, you have to copy over every button from the default configuration you want to keep, as reconfiguration will reset all buttons of that area.
+
+### Example
+
+The following example
+
+- removes all buttons but the _more_ button from the _end_ area
+- displays the _more_ button even if its overlay is empty by explicitly setting the `onempty` parameter, overriding the specific default value for this button (these defaults vary depending on the button)
+- puts the _print_ button into the _more_ area on all screen widths
+
+{{< multiconfig section=params >}}
+topbarend = [
+  { type = 'more', onempty = 'disable' }
+]
+topbarmore = [
+  { type = 'print' }
+]
+{{< /multiconfig >}}
 
 ## Defining Own Buttons
+
+Besides the predefined buttons, you can write your own. Store its template in `layouts/partials/topbar/button/<TYPE>.html` of your site and add it with `{ type = '<TYPE>' }` to one of the topbar areas.
+
+Your template receives every parameter of its configuration, and additionally the displayed page as `page`. Use the [button](#button) function to display it.
+
+````go {title="layouts/partials/topbar/button/home.html"}
+{{- with .page }}
+  {{- partial "topbar/func/button.html" (dict
+    "page" .
+    "class" "topbar-button-home"
+    "href" (partial "permalink.gotmpl" (dict "to" site.Home))
+    "icon" "home"
+    "hint" "Home"
+  )}}
+{{- end }}
+````
 
 ### Button Types
 
@@ -103,6 +158,50 @@ If you want to disable a button containing _no overlay_, this can be achieved by
 
 ## Reference
 
+### Predefined Buttons
+
+The predefined buttons by the theme (all other buttons besides the _more_, _toc_ and _area_ button).
+
+The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
+
+| Name                  | Default           | Notes       |
+|-----------------------|-------------------|-------------|
+| **type**              | _&lt;empty&gt;_   | Mandatory name of the button. |
+| **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
+| **onwidthm**          | _&lt;varying&gt;_ | See above. |
+| **onwidthl**          | _&lt;varying&gt;_ | See above. |
+
+### Predefined Overlay-Buttons
+
+The predefined buttons by the theme that open an overlay (the _more_ and _toc_ button).
+
+The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
+
+| Name                  | Default           | Notes       |
+|-----------------------|-------------------|-------------|
+| **type**              | _&lt;empty&gt;_   | Mandatory name of the button. |
+| **onempty**           | `hide`            | Defines what to do with the button if the content overlay is empty:<br><br>- `disable`: The button is displayed in a disabled state.<br>- `hide`: The button is removed. |
+| **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
+| **onwidthm**          | _&lt;varying&gt;_ | See above. |
+| **onwidthl**          | _&lt;varying&gt;_ | See above. |
+
+### Area
+
+A button opening the overlay of an area you define yourself, like the _more_ button does for the _more_ area ([`layouts/partials/topbar/button/area.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/area.html)).
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **type**              | _&lt;empty&gt;_ | `area`, required |
+| **identifier**        | _&lt;empty&gt;_ | Mandatory unique name for this area. Displaying two areas with the same value for **identifier** is undefined. Other buttons move into this area with the `area-<IDENTIFIER>` action. |
+| **buttons**           | _&lt;empty&gt;_ | The buttons displayed in this area, configured the same way as the buttons of the topbar's areas. |
+| **icon**              | _&lt;empty&gt;_ | [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
+| **onempty**           | `disable`       | Defines what to do with the button if the content overlay is empty:<br><br>- `disable`: The button is displayed in a disabled state.<br>- `hide`: The button is removed. |
+| **onwidths**          | `show`          | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
+| **onwidthm**          | `show`          | See above. |
+| **onwidthl**          | `show`          | See above. |
+| **hint**              | _&lt;empty&gt;_ | Arbitrary text displayed in the tooltip. |
+| **title**             | _&lt;empty&gt;_ | Arbitrary text for the button. |
+
 ### Button
 
 Contains the basic button functionality and is used as a base implementation for all other buttons ([`layouts/partials/topbar/func/button.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/func/button.html)).
@@ -132,7 +231,7 @@ For displaying an area in the button's overlay, see [Area-Button](#area-button).
 
 Contains the basic functionality to display area overlay buttons ([`layouts/partials/topbar/func/area-button.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/func/area-button.html)).
 
-Call this from your own button templates if you want to implement a button with an area overlay like the _more_ button ([`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)).
+Call this from your own button templates if you want to implement a button with an area overlay like the _more_ button ([`layouts/partials/topbar/button/more.html`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button/more.html)). If you only need a different icon or title, configure an [area](#area) button instead.
 
 #### Parameters
 
@@ -140,6 +239,7 @@ Call this from your own button templates if you want to implement a button with 
 |-----------------------|-----------------|-------------|
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
 | **area**              | _&lt;empty&gt;_ | Mandatory unique area name for this area. Displaying two areas with the same value for **area** is undefined. |
+| **buttons**           | _&lt;empty&gt;_ | The buttons displayed in this area, configured the same way as the buttons of the topbar's areas. |
 | **icon**              | _&lt;empty&gt;_ | [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
 | **onempty**           | `disable`       | Defines what to do with the button if the content overlay is empty:<br><br>- `disable`: The button is displayed in a disabled state.<br>- `hide`: The button is removed. |
 | **onwidths**          | `show`          | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
@@ -147,38 +247,3 @@ Call this from your own button templates if you want to implement a button with 
 | **onwidthl**          | `show`          | See above. |
 | **hint**              | _&lt;empty&gt;_ | Arbitrary text displayed in the tooltip. |
 | **title**             | _&lt;empty&gt;_ | Arbitrary text for the button. |
-
-### Predefined Buttons
-
-The predefined buttons by the theme (all other buttons besides the _more_ and _toc_ button in [`layouts/partials/topbar/button`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button)).
-
-Call these from your own redefined area templates if you want to use default button behavior.
-
-The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
-
-#### Parameters
-
-| Name                  | Default           | Notes       |
-|-----------------------|-------------------|-------------|
-| **page**              | _&lt;empty&gt;_   | Mandatory reference to the page. |
-| **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
-| **onwidthm**          | _&lt;varying&gt;_ | See above. |
-| **onwidthl**          | _&lt;varying&gt;_ | See above. |
-
-### Predefined Overlay-Buttons
-
-The predefined buttons by the theme that open an overlay (the _more_ and _toc_ button in [`layouts/partials/topbar/button`](https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/button)).
-
-Call these from your own redefined area templates if you want to use default button behavior utilizing overlay functionality.
-
-The _&lt;varying&gt;_ parameter values are different for each button and configured for standard behavior as seen on this page.
-
-#### Parameters
-
-| Name                  | Default           | Notes       |
-|-----------------------|-------------------|-------------|
-| **page**              | _&lt;empty&gt;_   | Mandatory reference to the page. |
-| **onempty**           | `disable`         | Defines what to do with the button if the content overlay is empty:<br><br>- `disable`: The button is displayed in a disabled state.<br>- `hide`: The button is removed. |
-| **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The button is displayed in its given area<br>- `hide`: The button is removed.<br>- `area-XXX`: The button is moved from its given area into the area `XXX`. |
-| **onwidthm**          | _&lt;varying&gt;_ | See above. |
-| **onwidthl**          | _&lt;varying&gt;_ | See above. |

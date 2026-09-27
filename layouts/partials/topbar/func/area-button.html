@@ -2,12 +2,13 @@
 {{- $icon := .icon }}
 {{- $hint := .hint }}
 {{- $title := .title }}
+{{- $buttons := .buttons | default slice }}
 {{- $onempty := cond (isset . "onempty") .onempty "disable" }}
 {{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
-	{{- $content := printf "\n                  <div class=\"topbar-area topbar-area-%s\" data-area=\"%s\">%s\n                  </div>" $area $area (partial (printf "topbar/area/%s.html" $area) .) | safeHTML }}
+	{{- $content := printf "\n                  <div class=\"topbar-area topbar-area-%s\" data-area=\"%s\">%s\n                  </div>" $area $area (partial "topbar/func/area.html" (dict "page" . "buttons" $buttons)) | safeHTML }}
 	{{- partial "topbar/func/button.html" (dict
 		"page" .
 		"class" (printf "topbar-button-%s" $area)

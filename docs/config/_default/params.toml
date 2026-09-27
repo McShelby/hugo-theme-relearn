@@ -273,6 +273,44 @@ disableNextPrev = false
 # for people to create merge request for your content.
 editURL = 'vscode://file/${BaseDir}/${FilePath}'
 
+# Define your own topbar buttons.
+# Buttons are written from the area's start to end in the order given in
+# these arrays.
+# This can be overridden in the page's frontmatter.
+# Each entry can contain the following keys:
+# - `type` is mandatory. The name of the button, either one of the theme's
+#    predefined buttons `sidebar`, `toc`, `search`, `edit`, `source`,
+#    `markdown`, `print`, `prev`, `next`, `more` and `area` or the name of
+#    your own button template in `layouts/partials/topbar/button`.
+# - `onwidths`, `onwidthm`, `onwidthl`, optional. What to do with the button
+#    in the mobile, small and large layout: `show`, `hide` or `area-<NAME>`
+#    to move it into another area. Default: depending on the button.
+# - `onempty`, optional. For buttons with an overlay, what to do if the
+#    overlay is empty: `disable` or `hide`. Default: depending on the button.
+# - `buttons`, optional. In case of `type=area` the list of buttons in its
+#    area.
+# - `identifier`, `icon`, `title`, `hint`. In case of `type=area` the name of
+#    the area and the looks of its button.
+
+# The buttons of the topbar's start area.
+# Default: see notes
+# - the sidebar button in mobile layout
+# - the table of contents button
+topbarstart = ''
+
+# The buttons of the topbar's end area.
+# Default: see notes
+# - the search box if configured to be in the topbar
+# - the edit, source, markdown and print buttons if configured
+# - the previous and next buttons
+# - the more button showing the more area
+topbarend = ''
+
+# The buttons of the topbar's more area.
+# Default: empty
+# Other buttons may still move into this area depending on the screen width.
+topbarmore = ''
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Search
 # These options modify various aspects of the search functionality.

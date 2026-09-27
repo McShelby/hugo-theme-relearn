@@ -47,7 +47,7 @@
         <div class="topbar-wrapper default-animation">
           <div class="topbar-sidebar-divider default-animation"></div>
           <div class="topbar-area topbar-area-start" data-area="start">
-            {{- partial "topbar/area/start.html" . }}
+            {{- partial "topbar/func/area.html" (dict "page" . "buttons" (partial "_relearn/topbarButtons.gotmpl" (dict "page" . "area" "start"))) }}
           </div>
           {{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not site.Params.disableBreadcrumb)) }}
           {{- if $showBreadcrumb }}
@@ -61,7 +61,7 @@
           </span>
           {{- end }}
           <div class="topbar-area topbar-area-end" data-area="end">
-            {{- partial "topbar/area/end.html" . }}
+            {{- partial "topbar/func/area.html" (dict "page" . "buttons" (partial "_relearn/topbarButtons.gotmpl" (dict "page" . "area" "end"))) }}
           </div>
         </div>
       </nav>

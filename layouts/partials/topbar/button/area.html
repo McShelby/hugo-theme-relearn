@@ -1,0 +1,16 @@
+{{- $area := .identifier | default "" }}
+{{- if not $area }}
+	{{- errorf "topbar button of type 'area' found without an 'identifier'; see https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar/#area" }}
+{{- end }}
+{{- partial "topbar/func/area-button.html" (dict
+	"page" .page
+	"area" $area
+	"icon" .icon
+	"title" .title
+	"hint" .hint
+	"buttons" .buttons
+	"onempty" (cond (isset . "onempty") .onempty "disable")
+	"onwidths" (cond (isset . "onwidths") .onwidths "show")
+	"onwidthm" (cond (isset . "onwidthm") .onwidthm "show")
+	"onwidthl" (cond (isset . "onwidthl") .onwidthl "show")
+)}}

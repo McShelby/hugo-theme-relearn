@@ -1,0 +1,17 @@
+{{- $page := .page }}
+{{- $area := .area }}
+{{- partialCached "inline/topbar-legacy-check" site.Home }}
+{{- $param := printf "topbar%s" $area }}
+{{- $configs := index $page.Params $param | default (index site.Params $param) }}
+{{- if or (eq (printf "%T" $configs) "string") (eq (printf "%T" $configs) "<nil>") }}
+	{{- $configs = partialCached (printf "_relearn/defaultTopbar%s.gotmpl" (title $area)) site.Home }}
+{{- end }}
+{{- return $configs }}
+
+{{- define "partials/inline/topbar-legacy-check" }}
+	{{- range slice "start" "end" "more" }}
+		{{- if templates.Exists (printf "partials/topbar/area/%s.html" .) }}
+			{{- warnf "UNSUPPORTED override 'layouts/partials/topbar/area/%s.html' found, remove it and configure its buttons with the 'topbar%s' option instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" . . }}
+		{{- end }}
+	{{- end }}
+{{- end }}

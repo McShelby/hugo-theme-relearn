@@ -1,0 +1,12 @@
+{{- $page := .page }}
+{{- range .buttons }}
+	{{- $type := .type | default "" }}
+	{{- $partial := printf "topbar/button/%s.html" $type }}
+	{{- if and $type (templates.Exists (printf "partials/%s" $partial)) }}
+		{{- /* the button receives all of its configuration; the page is added, as
+			a button can not be configured without knowing it */}}
+		{{- partial $partial (merge . (dict "page" $page)) }}
+	{{- else }}
+		{{- errorf "unknown topbar button type '%s' found; use one of the theme's predefined buttons or add your own button as 'layouts/partials/%s'; see https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar/#defining-own-buttons" $type $partial }}
+	{{- end }}
+{{- end }}
