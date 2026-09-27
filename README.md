@@ -53,7 +53,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Rich Shortcode Library**
   - [Marker badges](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/badge)
   - [Flexible buttons](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/button)
-  - [Card-based content organization](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/card) and [card sets](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/cards)
+  - [Card-based content organization](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/cards#single-card)
   - [Child page listing](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children)
   - [Expandable content areas](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/expand)
   - [Font Awesome icon integration](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/icon)

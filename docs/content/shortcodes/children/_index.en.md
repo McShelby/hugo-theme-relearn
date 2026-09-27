@@ -60,7 +60,7 @@ If you have advanced requirements, you can [write your own cardtemplate](#own-ca
 
 ### Own Card Templates
 
-The `children` shortcode displays each children using the [`card` shortcode](/shortcodes/card) for display. If you have advanced requirements to display the children, you can place a card layout partial into `layouts/partials/card`.
+The `children` shortcode displays each children using the [`card` shortcode](/shortcodes/cards#card-parameters) for display. If you have advanced requirements to display the children, you can place a card layout partial into `layouts/partials/card`.
 
 For example, if you want to see debug output displaying the parameter the partial receives, you could set `cardtemplate=debug` which will cause the partial `layouts/partials/debug.html` to be called. The `debug` card template is shipped with the theme.
 

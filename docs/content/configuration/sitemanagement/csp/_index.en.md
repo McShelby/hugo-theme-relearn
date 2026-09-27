@@ -23,7 +23,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 - **Mermaid**: Mermaid writes its styles into inline `<style>` elements. Add `style-src-elem 'self' 'unsafe-inline'` - with `'self'` repeated, as it replaces `style-src` for all style elements.
 - **Inlined SVGs**: an SVG shown with the [`inlinecontent` image effect](authoring/linking/imageeffects) brings its own `<style>` elements into the page, if it has any, and needs the same `style-src-elem`.
 - **Libraries from elsewhere**: if you set `customMermaidURL` or `customOpenapiURL`, add their origin to `script-src`, and for Swagger UI to `style-src` as well.
-- **Your own inline JavaScript**: a `javascript:` URL as the `href` of a [button](shortcodes/button), [card](shortcodes/card) or [topbar button](configuration/customization/topbar#button) is blocked. Give it an `action` instead and [handle that in a script file](shortcodes/button#button-with-own-action).
+- **Your own inline JavaScript**: a `javascript:` URL as the `href` of a [button](shortcodes/button), [card](shortcodes/cards) or [topbar button](configuration/customization/topbar#button) is blocked. Give it an `action` instead and [handle that in a script file](shortcodes/button#button-with-own-action).
 
 ## Subresource Integrity
 
