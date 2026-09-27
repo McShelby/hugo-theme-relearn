@@ -473,6 +473,9 @@ a:focus {
 
 #R-sidebar .R-sidebarmenu > ul {
   margin-top: 1rem;
+  /* indents the entries of all menus but not their titles or the dividers
+  between them */
+  padding-inline-start: var(--INTERNAL-MENU-SECTIONS-INDENT-width);
 }
 
 #R-sidebar ul {
@@ -2742,6 +2745,19 @@ article ul > li > span > input[type='checkbox']:checked::before {
 #R-sidebar li.active > label,
 #R-sidebar li.active > a {
   color: var(--INTERNAL-MENU-SECTION-ACTIVE-CATEGORY-color);
+}
+
+#R-sidebar li > a,
+#R-sidebar li > .menu-control {
+  border-radius: var(--INTERNAL-MENU-SECTIONS-LINK-border-radius);
+}
+
+/* the chevron of a collapsible entry lies above its link, so hovering it must
+   highlight the link as well */
+#R-sidebar li:not(.active) > a:hover,
+#R-sidebar li:not(.active):has(> label:hover) > a,
+#R-sidebar li > .menu-control:hover {
+  background-color: var(--INTERNAL-MENU-SECTIONS-LINK-HOVER-BG-color);
 }
 
 #R-sidebar li.active > a {
