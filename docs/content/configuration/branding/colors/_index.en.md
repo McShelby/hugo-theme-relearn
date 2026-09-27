@@ -23,6 +23,9 @@ The theme ships with the following set of variants
 - Zen
   - Light: a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
   - Dark: dark variant of Light, coming with blue accents, dark sidebar and dark content area
+- Calamity
+  - Light: a variant of Zen Light without a border between sidebar and content area, coming with blue accents, sidebar, topbar and content area sharing the same light background
+  - Dark: dark variant of Light, coming with blue accents, sidebar, topbar and content area sharing the same dark background
 - Experimental
   - Neon: a variant that glows in the dark, gradient sidebar and dark content area
 - Retro
