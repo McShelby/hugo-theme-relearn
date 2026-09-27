@@ -44,7 +44,7 @@ Valid values are:
 - `sidebar` (default) - Search form at the top of the menu
 - `topbar` - Search form in the topbar
 
-In mobile layout, the topbar has no room for the search form. It is then shown in the menu regardless of this setting.
+In mobile layout, the topbar has no room for the search form. It then collapses into a button that opens the search form below the topbar.
 
 ## Search URLs
 

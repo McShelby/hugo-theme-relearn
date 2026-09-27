@@ -211,14 +211,6 @@ a:focus {
   overflow: hidden;
 }
 
-/* if the search box is shown in the topbar, the sidebar only offers its own
-   in mobile layout, where the topbar has no room for it */
-@media screen and (min-width: 48rem) {
-  #R-header-wrapper > search.position-topbar {
-    display: none;
-  }
-}
-
 .searchbox {
   background-color: var(--VARIABLE-SEARCH-BG-color);
   border-color: var(--VARIABLE-SEARCH-BORDER-color);
@@ -1568,13 +1560,52 @@ tbody > tr:nth-child(even) > td {
   font-size: 1rem;
 }
 
-/* the search box is shown directly in the topbar instead of a button; its
-   suggestions are positioned below it */
+/* the search box is shown directly in the topbar; in mobile layout, where the
+   topbar has no room for it, it collapses into its button, opening it in an
+   overlay below the topbar; in any case its suggestions must drop out below
+   it instead of being clipped or scrolled */
 .topbar-button-search search {
   color: var(--VARIABLE-SEARCH-color);
   display: block;
   position: relative;
-  width: 15rem;
+}
+#R-topbar .topbar-button-search.topbar-flyout > .topbar-content,
+#R-topbar .topbar-button-search > .topbar-content > .topbar-content-wrapper {
+  overflow: visible;
+}
+@media screen and (max-width: 47.999rem) {
+  #R-topbar .topbar-button-search {
+    /* the overlay spans the topbar instead of being aligned to the button */
+    position: static;
+  }
+  #R-topbar .topbar-button-search > .topbar-content {
+    inset-inline: 0.5rem;
+    top: 3rem;
+  }
+}
+@media screen and (min-width: 48rem) {
+  #R-topbar .topbar-button-search > .btn {
+    display: none;
+  }
+  #R-topbar .topbar-button-search > .topbar-content {
+    background: none;
+    border-width: 0;
+    box-shadow: none;
+    height: auto;
+    opacity: 1;
+    overflow: visible;
+    position: static;
+    visibility: visible;
+    width: auto;
+  }
+  #R-topbar .topbar-button-search > .topbar-content > .topbar-content-wrapper {
+    background-color: transparent;
+    max-height: none;
+    padding: 0;
+  }
+  #R-topbar .topbar-button-search search {
+    width: 15rem;
+  }
 }
 .topbar-button > .btn.cstyle {
   --VARIABLE-LINK-color: var(--INTERNAL-TOPBAR-BUTTON-color);
@@ -1944,6 +1975,15 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 
 .topbar-content .topbar-content-wrapper {
   background-color: rgba(134, 134, 134, 0.066);
+}
+
+/* an animated element inherits the visibility of the overlay; if it would
+   transition, it would still be hidden when the overlay is opened and could
+   not receive the focus, like the search box */
+.topbar-content .default-animation {
+  transition:
+    all 0.35s ease,
+    visibility 0s;
 }
 
 .topbar-content-wrapper {

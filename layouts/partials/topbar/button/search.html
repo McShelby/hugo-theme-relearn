@@ -1,11 +1,21 @@
-{{- $onwidths := cond (isset . "onwidths") .onwidths "hide" }}
+{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
 {{- with .page }}
 	{{- $content := partial "dependencies.html" (dict "page" . "location" "topbar") }}
 	{{- if trim (string $content) "\n\r\t " }}
-            <div class="topbar-button topbar-button-search default-animation" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}">
-		{{- $content }}
-            </div>
+		{{- /* the search box is shown directly in the topbar; only in mobile
+			layout it collapses into this button, opening it in an overlay */}}
+		{{- partial "topbar/func/button.html" (dict
+			"page" .
+			"class" "topbar-button-search"
+			"action" "toggle-flyout"
+			"icon" "search"
+			"onwidths" $onwidths
+			"onwidthm" $onwidthm
+			"onwidthl" $onwidthl
+			"hint" (printf "%s (CTRL+ALT+f)" (T "Search"))
+			"content" ($content | safeHTML)
+		)}}
 	{{- end }}
 {{- end }}

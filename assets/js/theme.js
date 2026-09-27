@@ -1252,23 +1252,34 @@ function printShortcutHandler(event) {
 }
 
 function showSearch() {
-  // depending on the configuration and the layout, the search box is shown in
-  // the topbar or the sidebar; we take the first one displayed
-  var s = Array.from(document.querySelectorAll('#R-search-by-topbar, #R-search-by')).find(function (e) {
-    return e.offsetParent;
-  });
+  // depending on the configuration, the search box is shown in the topbar or
+  // the sidebar
+  var t = document.querySelector('#R-search-by-topbar');
+  if (t) {
+    var button = getTopbarButtonParent(t);
+    var toggle = button.querySelector(':scope > .btn');
+    if (toggle && toggle.offsetParent) {
+      // in mobile layout the box is collapsed into its button
+      toggleTopbarButtonFlyout(button);
+    } else if (t == document.activeElement) {
+      documentFocus();
+    } else {
+      t.focus();
+    }
+    return;
+  }
+  var s = document.querySelector('#R-search-by');
   if (!s) {
     return;
   }
-  var isSidebar = !!s.closest('#R-sidebar');
   var b = document.querySelector('body');
   if (s == document.activeElement) {
-    if (isSidebar && b.classList.contains('sidebar-flyout')) {
+    if (b.classList.contains('sidebar-flyout')) {
       closeNav();
     }
     documentFocus();
   } else {
-    if (isSidebar && !b.classList.contains('sidebar-flyout')) {
+    if (!b.classList.contains('sidebar-flyout')) {
       openNav();
     }
     s.focus();
@@ -1319,7 +1330,7 @@ function openTopbarButtonFlyout(button) {
   var body = document.querySelector('body');
   button.classList.add('topbar-flyout');
   body.classList.add('topbar-flyout');
-  var a = button.querySelector('.topbar-content-wrapper a');
+  var a = button.querySelector('.topbar-content-wrapper :is(a, input)');
   if (a) {
     a.focus();
   }
