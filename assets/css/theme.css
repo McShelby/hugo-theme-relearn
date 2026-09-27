@@ -3303,11 +3303,14 @@ body a#R-logo:hover *:not(svg, svg *) {
 
 /* extend the topbar over the sidebar to hold the logo; the topbar background
    may be translucent, so it is layered over the main background it is
-   designed for instead of the menu header */
+   designed for instead of the menu header; this is done by an inset shadow
+   and not a gradient, as only the former transitions like the topbar of the
+   content does when the variant is switched */
 #R-sidebar:has(#R-logo.position-topbar) #R-header-topbar {
-  background: linear-gradient(var(--INTERNAL-TOPBAR-BG-color), var(--INTERNAL-TOPBAR-BG-color)), var(--INTERNAL-MAIN-BG-color);
+  background-color: var(--INTERNAL-MAIN-BG-color);
   border-bottom-color: var(--INTERNAL-MAIN-TOPBAR-BORDER-color);
-  border-inline-end-color: transparent;
+  border-inline-end-color: var(--INTERNAL-TOPBAR-BG-color);
+  box-shadow: inset 0 0 0 100vmax var(--INTERNAL-TOPBAR-BG-color);
 }
 
 #topics > ul {
