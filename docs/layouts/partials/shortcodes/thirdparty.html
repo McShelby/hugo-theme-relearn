@@ -152,19 +152,38 @@
       {{- $text = printf "%s - %s" $text . }}
     {{- end }}
     {{- printf "\n%s- %s" $indent $text | safeHTML }}
-    {{- /* Recursive, and safe to be so only because the caller established
-      there is no cycle. A component that came along with something that itself
-      came along with the theme is still listed; one that two components both
-      require is listed under each of them, which is what the SBOM says as
-      well - it appears in both their `dependsOn`.
-
-      Extensions follow, beneath the host they run inside. The SBOM records
-      that edge the other way round, from the extension to its host. */}}
-    {{- range .requires }}
-      {{- range where $components "name" . }}
-        {{- partial "inline/thirdparty-component.html" (dict "components" $components "component" . "indent" (printf "%s  " $indent)) }}
+    {{- /* Everything a component requires, directly or through one another, is
+      one flat list beneath it, each listed once and without its description.
+      How the requirements hang together is the SBOM's to say; here they only
+      need crediting, and the chain from one to the next would bury the
+      component that actually brought them. Growing the set a pass per
+      component reaches its end only because the caller established there is
+      no cycle. Listed in declaration order, not in the order they were
+      reached, so the list does not reshuffle when a `requires` changes. */}}
+    {{- $required := .requires | default slice }}
+    {{- range seq (len $components) }}
+      {{- range $components }}
+        {{- if in $required .name }}
+          {{- range .requires }}
+            {{- if not (in $required .) }}
+              {{- $required = $required | append . }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
       {{- end }}
     {{- end }}
+    {{- range $components }}
+      {{- if in $required .name }}
+        {{- $name := .name }}
+        {{- with .homepage }}
+          {{- $name = printf "[%s](%s)" $name . }}
+        {{- end }}
+        {{- printf "\n%s  - %s" $indent $name | safeHTML }}
+      {{- end }}
+    {{- end }}
+    {{- /* Extensions follow, beneath the host they run inside. The SBOM records
+      that edge the other way round, from the extension to its host. Recursive,
+      and safe to be so for the same reason as above. */}}
     {{- range where $components "extends" .name }}
       {{- partial "inline/thirdparty-component.html" (dict "components" $components "component" . "indent" (printf "%s  " $indent)) }}
     {{- end }}

@@ -13,7 +13,8 @@
 # becomes the dependency graph in the SBOM and the nesting on the credits page:
 # a component something requires counts as having come along with it, so it
 # hangs off that component rather than off the theme, and a reader can tell
-# what the theme calls from what merely came along.
+# what the theme calls from what merely came along. The page lists everything
+# a component requires, directly or not, as one flat list of names beneath it.
 #
 # `extends` names the one component another only runs inside - a plugin its
 # engine, an extension its editor, an action its platform. The credits page
@@ -241,11 +242,11 @@
   version = '1.21.0'
   license = 'MPL-2.0'
   copyright = 'Copyright (C) 2014 Mihai Valentin'
-  description = 'A collection of languages stemmers and stopwords for Lunr Javascript library'
   homepage = 'https://github.com/MihaiValentin/lunr-languages'
   vcs = 'https://github.com/MihaiValentin/lunr-languages'
   purl = 'pkg:npm/lunr-languages@1.21.0'
   paths = ['assets/js/lunr']
+  extends = 'Lunr'
   bundled = true
   notes = 'Ships TinySegmenter for Japanese and wordcut for Thai; wordcut in turn bundles underscore. Lunr itself is a component of its own, vendored into the same directory.'
 
