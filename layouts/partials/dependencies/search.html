@@ -21,10 +21,6 @@
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.page) site.Params.search.page.disable }}
   {{- $disableSearchPage = . }}
 {{- end }}
-{{- $position := "sidebar" }}
-{{- with and (reflect.IsMap site.Params.search) site.Params.search.position }}
-  {{- $position = . }}
-{{- end }}
 
 {{- if eq $location "default" }}
   {{- with $page }}
@@ -91,7 +87,9 @@
       {{- end }}
     {{- end }}
   {{- end }}
-{{- else if or (and (eq $location "search") (eq $position "sidebar")) (and (eq $location "topbar") (eq $position "topbar")) }}
+{{- else if or (eq $location "search") (eq $location "topbar") }}
+  {{- /* the form is written for the sidebar as well as for the topbar; the
+    variant decides which one is displayed */}}
   {{- $id := cond (eq $location "topbar") "R-search-by-topbar" "R-search-by" }}
   {{- $link := "" }}
   {{- if not $disableSearchIndex }}

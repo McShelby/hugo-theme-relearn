@@ -4,8 +4,9 @@
 {{- with .page }}
 	{{- $content := partial "dependencies.html" (dict "page" . "location" "topbar") }}
 	{{- if trim (string $content) "\n\r\t " }}
-		{{- /* the search box is shown directly in the topbar; only in mobile
-			layout it collapses into this button, opening it in an overlay */}}
+		{{- /* the search box is shown directly in the topbar if the variant
+			places it there; only in mobile layout it collapses into this button,
+			opening it in an overlay */}}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-search"

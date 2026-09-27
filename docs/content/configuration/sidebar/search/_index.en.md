@@ -46,6 +46,15 @@ Valid values are:
 
 In mobile layout, the topbar has no room for the search form. It then collapses into a button that opens the search form below the topbar.
 
+Each [color variant](configuration/branding/colors#theme-variant-advanced) can override the position in its `search` field. When the reader switches the variant, the search form moves accordingly. A variant that doesn't set it uses the value from above; an auto variant takes the position of its light or dark variant, depending on the reader's OS setting.
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+  { identifier = 'relearn-light' },
+  { identifier = 'nu-light', search = { position = 'topbar' } }
+]
+{{< /multiconfig >}}
+
 ## Search URLs
 
 {{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} Default URLs can be changed with the following parameter

@@ -1252,11 +1252,11 @@ function printShortcutHandler(event) {
 }
 
 function showSearch() {
-  // depending on the configuration, the search box is shown in the topbar or
-  // the sidebar
+  // the search box is written for the topbar and the sidebar, the variant
+  // decides which of them is displayed
   var t = document.querySelector('#R-search-by-topbar');
-  if (t) {
-    var button = getTopbarButtonParent(t);
+  var button = t && getTopbarButtonParent(t);
+  if (button && button.offsetParent) {
     var toggle = button.querySelector(':scope > .btn');
     if (toggle && toggle.offsetParent) {
       // in mobile layout the box is collapsed into its button

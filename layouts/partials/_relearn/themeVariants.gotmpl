@@ -31,12 +31,34 @@ Logo Detection:
 {{- end }}
 
 {{- /*
+Layout Detection:
+- Detect the default placement of logo and search from the site's params; each
+  variant may override them, the page applies them when the variant changes
+*/}}
+{{- $defaultLayout := dict
+	"logoPosition" "sidebar"
+	"logoDirection" "row"
+	"searchPosition" "sidebar"
+}}
+{{- with site.Params.logo }}
+	{{- with .position }}
+		{{- $defaultLayout = merge $defaultLayout (dict "logoPosition" .) }}
+	{{- end }}
+	{{- with .direction }}
+		{{- $defaultLayout = merge $defaultLayout (dict "logoDirection" .) }}
+	{{- end }}
+{{- end }}
+{{- with and (reflect.IsMap site.Params.search) site.Params.search.position }}
+	{{- $defaultLayout = merge $defaultLayout (dict "searchPosition" .) }}
+{{- end }}
+
+{{- /*
 Unification run:
 - convert from old forms to slice of dicts
 - add default name property
 - convert auto property to slice
 - remember default variants for auto mode
-- compute effective logo for non-auto variants
+- compute effective logo and layout for non-auto variants
 */}}
 {{- $tempthemevariants := slice | append (site.Params.themeVariant | default "auto" ) }}
 {{- $themevariants := slice }}
@@ -53,9 +75,22 @@ Unification run:
 	{{- end }}
 	{{- if not (isset $themevariant "auto") }}
 		{{- $nonautothemevariants = $nonautothemevariants | append $themevariant.identifier }}
+		{{- $layout := $defaultLayout }}
+		{{- with and (reflect.IsMap $themevariant.logo) $themevariant.logo }}
+			{{- with .position }}
+				{{- $layout = merge $layout (dict "logoPosition" .) }}
+			{{- end }}
+			{{- with .direction }}
+				{{- $layout = merge $layout (dict "logoDirection" .) }}
+			{{- end }}
+		{{- end }}
+		{{- with and (reflect.IsMap $themevariant.search) $themevariant.search.position }}
+			{{- $layout = merge $layout (dict "searchPosition" .) }}
+		{{- end }}
+		{{- $themevariant = collections.Merge $themevariant (dict "layout" $layout) }}
 		{{- $logo := dict }}
 		{{- $logoSrc := $defaultLogoSrc }}
-		{{- if isset $themevariant "logo" }}
+		{{- if and (reflect.IsMap $themevariant.logo) (isset $themevariant.logo "src") }}
 			{{- $logo := $themevariant.logo }}
 			{{- $themeLogoSrc := trim $themevariant.logo.src "\n\r\t " }}
 			{{- if $themeLogoSrc }}
@@ -135,7 +170,7 @@ Generator run:
 				{{- end }}
 			{{- end }}
 			{{- if not $subExists }}
-				{{- $hiddenVariants = $hiddenVariants | append (dict "identifier" $subId "logo" (dict "src" $defaultLogoSrc) "hidden" true) }}
+				{{- $hiddenVariants = $hiddenVariants | append (dict "identifier" $subId "logo" (dict "src" $defaultLogoSrc) "layout" $defaultLayout "hidden" true) }}
 			{{- end }}
 		{{- end }}
 	{{- else }}
@@ -325,7 +360,7 @@ Write yet non-dynamic stuff
 	{{- $url := .RelPermalink }}
 {{- end }}
 
-{{- return (dict "variants" $themevariants "css" $css "integrity" $integrity) }}
+{{- return (dict "variants" $themevariants "layout" $defaultLayout "css" $css "integrity" $integrity) }}
 
 {{- define "partials/inline/get-theme-details" }}
 	{{- $themevariant := .themevariant }}

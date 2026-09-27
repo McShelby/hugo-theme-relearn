@@ -34,10 +34,28 @@ document.querySelectorAll('link.R-async-style').forEach(function (link) {
   }
 });
 
+// places logo and search as configured for the variant; an auto variant takes
+// the placement of its light or dark variant, whichever the OS asks for, and a
+// variant of the generator the one of the site
+var darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+window.relearn.applyVariantLayout = function () {
+  var layouts = window.relearn.themevariantlayouts || {};
+  var layout = layouts[document.documentElement.dataset.rThemeVariant];
+  if (layout && layout.auto) {
+    layout = layouts[layout.auto[darkScheme.matches ? 1 : 0]];
+  }
+  layout = layout || window.relearn.themevariantlayout;
+  document.documentElement.dataset.rLogoPosition = layout.logoPosition;
+  document.documentElement.dataset.rLogoDirection = layout.logoDirection;
+  document.documentElement.dataset.rSearchPosition = layout.searchPosition;
+};
+darkScheme.addEventListener('change', window.relearn.applyVariantLayout);
+
 window.relearn.changeVariant = function (variant) {
   var oldVariant = document.documentElement.dataset.rThemeVariant;
   window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
   document.documentElement.dataset.rThemeVariant = variant;
+  window.relearn.applyVariantLayout();
   if (oldVariant != variant) {
     document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
     window.relearn.markVariant();
@@ -58,6 +76,7 @@ window.relearn.initVariant = function () {
     window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
   }
   document.documentElement.dataset.rThemeVariant = variant;
+  window.relearn.applyVariantLayout();
 };
 
 window.relearn.initVariant();

@@ -211,6 +211,12 @@ a:focus {
   overflow: hidden;
 }
 
+/* the search box is written for the sidebar and the topbar, the variant
+   decides where it is displayed */
+:root[data-r-search-position='topbar'] #R-header-wrapper > search {
+  display: none;
+}
+
 .searchbox {
   background-color: var(--VARIABLE-SEARCH-BG-color);
   border-color: var(--VARIABLE-SEARCH-BORDER-color);
@@ -1564,6 +1570,10 @@ tbody > tr:nth-child(even) > td {
    topbar has no room for it, it collapses into its button, opening it in an
    overlay below the topbar; in any case its suggestions must drop out below
    it instead of being clipped or scrolled */
+:root:not([data-r-search-position='topbar']) #R-topbar .topbar-button-search {
+  /* overrides the display the topbar management sets on each of its buttons */
+  display: none !important;
+}
 .topbar-button-search search {
   color: var(--VARIABLE-SEARCH-color);
   display: block;
@@ -3027,7 +3037,7 @@ body a#R-logo:hover *:not(svg, svg *) {
   row-gap: 0.1em;
   width: 100%;
 }
-#R-logo.R-default.direction-column {
+:root[data-r-logo-direction='column'] #R-logo.R-default {
   flex-direction: column;
 }
 @media only all and (max-width: 59.999rem) {
@@ -3059,7 +3069,7 @@ body a#R-logo:hover *:not(svg, svg *) {
   text-wrap: auto;
   word-break: break-word;
 }
-#R-logo.R-default.direction-column .logo-title {
+:root[data-r-logo-direction='column'] #R-logo.R-default .logo-title {
   text-align: center;
 }
 #R-logo.R-default.manual-wrap .logo-title {
@@ -3070,7 +3080,7 @@ body a#R-logo:hover *:not(svg, svg *) {
    it is always arranged in a row with a fixed image height and a single line
    title */
 
-#R-logo.R-default.position-topbar {
+:root[data-r-logo-position='topbar'] #R-logo.R-default {
   --INTERNAL-LOGO-LINK-color: var(--LOGO-LINK-color, var(--INTERNAL-TOPBAR-TEXT-color));
   --INTERNAL-LOGO-LINK-HOVER-color: var(--LOGO-LINK-HOVER-color, var(--INTERNAL-LOGO-LINK-color));
   --INTERNAL-LOGO-IMAGE-color: var(--LOGO-IMAGE-color, var(--INTERNAL-LOGO-LINK-color));
@@ -3085,22 +3095,22 @@ body a#R-logo:hover *:not(svg, svg *) {
   z-index: 2;
 }
 
-#R-logo.R-default.position-topbar + search {
+:root[data-r-logo-position='topbar'] #R-logo.R-default + search {
   margin-top: 1rem;
 }
 
-#R-logo.R-default.position-topbar .logo-image {
+:root[data-r-logo-position='topbar'] #R-logo.R-default .logo-image {
   height: 2rem;
   width: auto;
 }
 
-#R-logo.R-default.position-topbar .logo-image > * {
+:root[data-r-logo-position='topbar'] #R-logo.R-default .logo-image > * {
   height: 100%;
   max-width: none;
   width: auto;
 }
 
-#R-logo.R-default.position-topbar .logo-title {
+:root[data-r-logo-position='topbar'] #R-logo.R-default .logo-title {
   font-size: 1.5em;
   overflow: hidden;
   text-align: start;
@@ -3362,7 +3372,7 @@ body a#R-logo:hover *:not(svg, svg *) {
    designed for instead of the menu header; this is done by an inset shadow
    and not a gradient, as only the former transitions like the topbar of the
    content does when the variant is switched */
-#R-sidebar:has(#R-logo.position-topbar) #R-header-topbar {
+:root[data-r-logo-position='topbar'] #R-header-topbar {
   background-color: var(--INTERNAL-MAIN-BG-color);
   border-bottom-color: var(--INTERNAL-MAIN-TOPBAR-BORDER-color);
   border-inline-end-color: var(--INTERNAL-TOPBAR-BG-color);

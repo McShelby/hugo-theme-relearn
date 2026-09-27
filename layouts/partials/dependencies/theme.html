@@ -18,9 +18,17 @@
     {{- $themecss := $themevariantsdata.css }}
     {{- $themeintegrity := $themevariantsdata.integrity }}
     {{- $themevariantids := slice }}
+    {{- /* the placement of logo and search for each variant; an auto variant
+      names its light and dark variant instead, as the reader's OS decides */}}
+    {{- $themevariantlayouts := dict }}
     {{- range $themevariants }}
       {{- if not .hidden }}
         {{- $themevariantids = $themevariantids | append .identifier }}
+      {{- end }}
+      {{- if isset . "auto" }}
+        {{- $themevariantlayouts = merge $themevariantlayouts (dict .identifier (dict "auto" .auto)) }}
+      {{- else }}
+        {{- $themevariantlayouts = merge $themevariantlayouts (dict .identifier .layout) }}
       {{- end }}
     {{- end }}
     {{- $wrap := true }}
@@ -67,6 +75,8 @@
       "disableInlineCopyToClipboard" (eq $disableInlineCopyToClipboard true)
       "enableBlockCodeWrap" (eq $wrap true)
       "themevariants" $themevariantids
+      "themevariantlayouts" $themevariantlayouts
+      "themevariantlayout" $themevariantsdata.layout
       "translations" (dict
         "Copy_to_clipboard" (T `Copy-to-clipboard`)
         "Copied_to_clipboard" (T `Copied-to-clipboard`)

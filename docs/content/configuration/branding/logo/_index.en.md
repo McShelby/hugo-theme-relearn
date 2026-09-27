@@ -92,6 +92,19 @@ Valid values are:
 
 In the topbar, the logo and title are always arranged side by side, regardless of the `direction` setting. To keep the topbar's height, the logo image is shrunk to a fixed height and the title is shown on a single line, ignoring manual line breaks and cut off if it is too long. The title and logo colors default to the topbar's text color.
 
+### Variant-Specific Position & Direction
+
+Each [color variant](configuration/branding/colors#theme-variant-advanced) can override `position` and `direction` in its `logo` field. When the reader switches the variant, logo and title move accordingly. A variant that doesn't set them uses the values from above.
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+  { identifier = 'relearn-light' },
+  { identifier = 'nu-light', logo = { position = 'topbar' } }
+]
+{{< /multiconfig >}}
+
+An auto variant takes the position and direction of its light or dark variant, depending on the reader's OS setting.
+
 ## Changing the Logo
 
 {{% badge style="option" %}}Option{{% /badge %}} The theme displays a logo in the sidebar menu if found. By default, it automatically detects logos in your site's `assets/images/`.
