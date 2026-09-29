@@ -3,25 +3,81 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e">
+    <meta name="generator" content="Hugo 0.167.0">
+    <meta name="generator" content="Relearn 9.1.0+9722fa302ab9631006f39bd55f0573fbed57df7b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.">
+    <meta name="description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id to each asset’s URL, emptying a visitor’s cache on each deployment even when no asset was different. If you referenced assets from your own partials, assetbusting.gotmpl is replaced by asset.gotmpl, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.
+​ layouts/partials/custom-header.html {{ with resources.Get &#34;/css/mine.css&#34; }} {{ with partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js and the favicon and logo images; everything else there is published as before. Those are published twice, once untouched and once processed - move them to assets to avoid the superfluous copy.
+As a busted name changes with its content, a build no longer overwrites the file its predecessor wrote and both remain. Purge your output directory, e.g. by building with Hugo’s --cleanDestinationDir, or it accumulates every version you ever built - which weighs most if you commit what you build, as publishing to a GitHub Pages branch does.
+Change The Perfect Scrollbar library is no longer shipped with the theme. All scrollbars are the ones of your browser now, styled by the theme.
+The scrollbars colors come from new theme variant variables, four for each of the three areas, the main content, the menu and the topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color and TOPBAR-SCROLLBAR-THUMB-color color the moving thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color and TOPBAR-SCROLLBAR-TRACK-color the track it moves in. Each of them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - for the respective hovered area.
+How many of those twelve colors you see an effect from depends on the scrollbar model your browser implements, so don’t expect all of them to show everywhere. Where the theme draws the menus scrollbar itself, all four of its colors apply and the thumb reacts to being hovered on its own. A browser that offers only the standard styling has no state for the thumb, so there the -HOVER colors are taken while the surrounding area is hovered instead. And where a browser draws an overlay scrollbar for the content or the topbar flyouts, it keeps its own and the four colors of that area go unused.
+Change The theme variant configuration has a new hidden parameter.
+If set to true, the variant will not be shown in the variant switcher but is still usable, e.g. as a sub-variant of an auto mode variant.
+Change The title above a page sidebar menu is now taken from the root page’s linkTitle front matter.
+Formerly this was documented to use the menuTitle front matter, although that was already removed in 6.0.0 in favor of Hugo’s own linkTitle. It is still honored if no linkTitle is set but now issues a deprecation warning and will be removed with a future update of the theme.
+Change Images now carry the dimensions of their resource, so a browser can reserve the space they will take before they have arrived.
+This avoids page reflows as each image loads and affects images that resolve to a resource Hugo can measure: a page resource or a file in your assets directory, in one of the common raster formats. An SVG, a remote address or a path in your static directory has no dimensions to give and is unchanged.
+Change The Lunr Languages where updated to 1.21.0.
+Searching with the Lunr adapter now finds terms that consist of digits only, like part or standard numbers.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 9.1 :: Hugo Relearn Theme">
-    <meta name="twitter:description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.">
+    <meta name="twitter:description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id to each asset’s URL, emptying a visitor’s cache on each deployment even when no asset was different. If you referenced assets from your own partials, assetbusting.gotmpl is replaced by asset.gotmpl, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.
+​ layouts/partials/custom-header.html {{ with resources.Get &#34;/css/mine.css&#34; }} {{ with partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js and the favicon and logo images; everything else there is published as before. Those are published twice, once untouched and once processed - move them to assets to avoid the superfluous copy.
+As a busted name changes with its content, a build no longer overwrites the file its predecessor wrote and both remain. Purge your output directory, e.g. by building with Hugo’s --cleanDestinationDir, or it accumulates every version you ever built - which weighs most if you commit what you build, as publishing to a GitHub Pages branch does.
+Change The Perfect Scrollbar library is no longer shipped with the theme. All scrollbars are the ones of your browser now, styled by the theme.
+The scrollbars colors come from new theme variant variables, four for each of the three areas, the main content, the menu and the topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color and TOPBAR-SCROLLBAR-THUMB-color color the moving thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color and TOPBAR-SCROLLBAR-TRACK-color the track it moves in. Each of them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - for the respective hovered area.
+How many of those twelve colors you see an effect from depends on the scrollbar model your browser implements, so don’t expect all of them to show everywhere. Where the theme draws the menus scrollbar itself, all four of its colors apply and the thumb reacts to being hovered on its own. A browser that offers only the standard styling has no state for the thumb, so there the -HOVER colors are taken while the surrounding area is hovered instead. And where a browser draws an overlay scrollbar for the content or the topbar flyouts, it keeps its own and the four colors of that area go unused.
+Change The theme variant configuration has a new hidden parameter.
+If set to true, the variant will not be shown in the variant switcher but is still usable, e.g. as a sub-variant of an auto mode variant.
+Change The title above a page sidebar menu is now taken from the root page’s linkTitle front matter.
+Formerly this was documented to use the menuTitle front matter, although that was already removed in 6.0.0 in favor of Hugo’s own linkTitle. It is still honored if no linkTitle is set but now issues a deprecation warning and will be removed with a future update of the theme.
+Change Images now carry the dimensions of their resource, so a browser can reserve the space they will take before they have arrived.
+This avoids page reflows as each image loads and affects images that resolve to a resource Hugo can measure: a page resource or a file in your assets directory, in one of the common raster formats. An SVG, a remote address or a path in your static directory has no dimensions to give and is unchanged.
+Change The Lunr Languages where updated to 1.21.0.
+Searching with the Lunr adapter now finds terms that consist of digits only, like part or standard numbers.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/1/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 9.1 :: Hugo Relearn Theme">
-    <meta property="og:description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.">
+    <meta property="og:description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id to each asset’s URL, emptying a visitor’s cache on each deployment even when no asset was different. If you referenced assets from your own partials, assetbusting.gotmpl is replaced by asset.gotmpl, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.
+​ layouts/partials/custom-header.html {{ with resources.Get &#34;/css/mine.css&#34; }} {{ with partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js and the favicon and logo images; everything else there is published as before. Those are published twice, once untouched and once processed - move them to assets to avoid the superfluous copy.
+As a busted name changes with its content, a build no longer overwrites the file its predecessor wrote and both remain. Purge your output directory, e.g. by building with Hugo’s --cleanDestinationDir, or it accumulates every version you ever built - which weighs most if you commit what you build, as publishing to a GitHub Pages branch does.
+Change The Perfect Scrollbar library is no longer shipped with the theme. All scrollbars are the ones of your browser now, styled by the theme.
+The scrollbars colors come from new theme variant variables, four for each of the three areas, the main content, the menu and the topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color and TOPBAR-SCROLLBAR-THUMB-color color the moving thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color and TOPBAR-SCROLLBAR-TRACK-color the track it moves in. Each of them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - for the respective hovered area.
+How many of those twelve colors you see an effect from depends on the scrollbar model your browser implements, so don’t expect all of them to show everywhere. Where the theme draws the menus scrollbar itself, all four of its colors apply and the thumb reacts to being hovered on its own. A browser that offers only the standard styling has no state for the thumb, so there the -HOVER colors are taken while the surrounding area is hovered instead. And where a browser draws an overlay scrollbar for the content or the topbar flyouts, it keeps its own and the four colors of that area go unused.
+Change The theme variant configuration has a new hidden parameter.
+If set to true, the variant will not be shown in the variant switcher but is still usable, e.g. as a sub-variant of an auto mode variant.
+Change The title above a page sidebar menu is now taken from the root page’s linkTitle front matter.
+Formerly this was documented to use the menuTitle front matter, although that was already removed in 6.0.0 in favor of Hugo’s own linkTitle. It is still honored if no linkTitle is set but now issues a deprecation warning and will be removed with a future update of the theme.
+Change Images now carry the dimensions of their resource, so a browser can reserve the space they will take before they have arrived.
+This avoids page reflows as each image loads and affects images that resolve to a resource Hugo can measure: a page resource or a file in your assets directory, in one of the common raster formats. An SVG, a remote address or a path in your static directory has no dimensions to give and is unchanged.
+Change The Lunr Languages where updated to 1.21.0.
+Searching with the Lunr adapter now finds terms that consist of digits only, like part or standard numbers.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 9.1 :: Hugo Relearn Theme">
-    <meta itemprop="description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.">
+    <meta itemprop="description" content="9.1.0 (2026-09-13) Hugo 0.165.0 0.165.0 This release requires a newer Hugo version. Change Change Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id to each asset’s URL, emptying a visitor’s cache on each deployment even when no asset was different. If you referenced assets from your own partials, assetbusting.gotmpl is replaced by asset.gotmpl, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.
+​ layouts/partials/custom-header.html {{ with resources.Get &#34;/css/mine.css&#34; }} {{ with partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js and the favicon and logo images; everything else there is published as before. Those are published twice, once untouched and once processed - move them to assets to avoid the superfluous copy.
+As a busted name changes with its content, a build no longer overwrites the file its predecessor wrote and both remain. Purge your output directory, e.g. by building with Hugo’s --cleanDestinationDir, or it accumulates every version you ever built - which weighs most if you commit what you build, as publishing to a GitHub Pages branch does.
+Change The Perfect Scrollbar library is no longer shipped with the theme. All scrollbars are the ones of your browser now, styled by the theme.
+The scrollbars colors come from new theme variant variables, four for each of the three areas, the main content, the menu and the topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color and TOPBAR-SCROLLBAR-THUMB-color color the moving thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color and TOPBAR-SCROLLBAR-TRACK-color the track it moves in. Each of them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - for the respective hovered area.
+How many of those twelve colors you see an effect from depends on the scrollbar model your browser implements, so don’t expect all of them to show everywhere. Where the theme draws the menus scrollbar itself, all four of its colors apply and the thumb reacts to being hovered on its own. A browser that offers only the standard styling has no state for the thumb, so there the -HOVER colors are taken while the surrounding area is hovered instead. And where a browser draws an overlay scrollbar for the content or the topbar flyouts, it keeps its own and the four colors of that area go unused.
+Change The theme variant configuration has a new hidden parameter.
+If set to true, the variant will not be shown in the variant switcher but is still usable, e.g. as a sub-variant of an auto mode variant.
+Change The title above a page sidebar menu is now taken from the root page’s linkTitle front matter.
+Formerly this was documented to use the menuTitle front matter, although that was already removed in 6.0.0 in favor of Hugo’s own linkTitle. It is still honored if no linkTitle is set but now issues a deprecation warning and will be removed with a future update of the theme.
+Change Images now carry the dimensions of their resource, so a browser can reserve the space they will take before they have arrived.
+This avoids page reflows as each image loads and affects images that resolve to a resource Hugo can measure: a page resource or a file in your assets directory, in one of the common raster formats. An SVG, a remote address or a path in your static directory has no dimensions to give and is unchanged.
+Change The Lunr Languages where updated to 1.21.0.
+Searching with the Lunr adapter now finds terms that consist of digits only, like part or standard numbers.">
     <meta itemprop="wordCount" content="777">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.1 :: Hugo Relearn Theme</title>
@@ -35,7 +91,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.00b99188351628699a21cf5dfc96dcbfb52e0b985835ac4b1c8faf03933fbfa8.js"
+      "indexFile": "searchindex.en.min.681e77eb1de2a4a88cb7b6f9e98a2aa9edd6c2787a3cf40af3fe4458d5c2a9e4.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -175,11 +231,11 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/1/index.html">chan
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id to each asset&rsquo;s URL, emptying a visitor&rsquo;s cache on each deployment even when no asset was different. If you referenced assets from your own partials, <code>assetbusting.gotmpl</code> is replaced by <code>asset.gotmpl</code>, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-a028b31e5de45205de8cf0a18425178c">
+<div class="tab-panel" data-tab-group="R-tabs-171ba7c2fd37efb50338a9b06a31e8f3">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-62a8460afc1d698f6526ba4d43888724" aria-expanded="true"
+      aria-controls="R-tab-id-734dd520f3018dfd098fabd53273bc14" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -188,7 +244,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/1/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-62a8460afc1d698f6526ba4d43888724"
+      id="R-tab-id-734dd520f3018dfd098fabd53273bc14"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -234,21 +290,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/1/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-92123393452ea20e285e6b3666132168" aria-expanded="true"
+      aria-controls="R-tab-id-96dcde070df0fea8f652b47156f46173" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b058cf4ac2192f56fec44cfd0be60c7b" aria-expanded="false"
+      aria-controls="R-tab-id-3a0ad22c8178d8849d2ead230e28ff2d" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d985e64211b2a2f5b42c95e992f8779f" aria-expanded="false"
+      aria-controls="R-tab-id-1bd58f7c83d4d5281abc3bff38023e2f" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -257,7 +313,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/1/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-92123393452ea20e285e6b3666132168"
+      id="R-tab-id-96dcde070df0fea8f652b47156f46173"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -265,7 +321,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/1/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-b058cf4ac2192f56fec44cfd0be60c7b"
+      id="R-tab-id-3a0ad22c8178d8849d2ead230e28ff2d"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -273,7 +329,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/1/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-d985e64211b2a2f5b42c95e992f8779f"
+      id="R-tab-id-1bd58f7c83d4d5281abc3bff38023e2f"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">

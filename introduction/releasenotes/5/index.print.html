@@ -3,23 +3,39 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e">
-    <meta name="description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.">
+    <meta name="generator" content="Hugo 0.167.0">
+    <meta name="generator" content="Relearn 9.1.0+9722fa302ab9631006f39bd55f0573fbed57df7b">
+    <meta name="description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.
+Change The dependency loader was made more versatile.
+The configuration in your hugo.toml does not require the location parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don’t need to change anything, yet.
+With the new mechanism, your dependency loader now receives an additional location parameter instead that you can query to inject your dependencies in the desired location.
+By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct location parameter. In addition your injected files can now be spread to multiple locations which wasn’t previously possible.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 5 :: Hugo Relearn Theme">
-    <meta name="twitter:description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.">
+    <meta name="twitter:description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.
+Change The dependency loader was made more versatile.
+The configuration in your hugo.toml does not require the location parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don’t need to change anything, yet.
+With the new mechanism, your dependency loader now receives an additional location parameter instead that you can query to inject your dependencies in the desired location.
+By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct location parameter. In addition your injected files can now be spread to multiple locations which wasn’t previously possible.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 5 :: Hugo Relearn Theme">
-    <meta property="og:description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.">
+    <meta property="og:description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.
+Change The dependency loader was made more versatile.
+The configuration in your hugo.toml does not require the location parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don’t need to change anything, yet.
+With the new mechanism, your dependency loader now receives an additional location parameter instead that you can query to inject your dependencies in the desired location.
+By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct location parameter. In addition your injected files can now be spread to multiple locations which wasn’t previously possible.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 5 :: Hugo Relearn Theme">
-    <meta itemprop="description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.">
+    <meta itemprop="description" content="5.27.0 (2024-04-07) Hugo 0.121.0 0.121.0 This release requires a newer Hugo version. Change Change If the theme is configured to generate warnings or errors during build by setting image.errorlevel to either warning or error in your hugo.toml, it will now also generate output if a link fragment is not found in the target page.
+Change The dependency loader was made more versatile.
+The configuration in your hugo.toml does not require the location parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don’t need to change anything, yet.
+With the new mechanism, your dependency loader now receives an additional location parameter instead that you can query to inject your dependencies in the desired location.
+By that you can now call the dependency mechanism in your own overriden partials by giving it a distinct location parameter. In addition your injected files can now be spread to multiple locations which wasn’t previously possible.">
     <meta itemprop="wordCount" content="5332">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 5 :: Hugo Relearn Theme</title>
@@ -34,7 +50,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.00b99188351628699a21cf5dfc96dcbfb52e0b985835ac4b1c8faf03933fbfa8.js"
+      "indexFile": "searchindex.en.min.681e77eb1de2a4a88cb7b6f9e98a2aa9edd6c2787a3cf40af3fe4458d5c2a9e4.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -449,21 +465,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-5bdc4ad5aef13868693597f01bc0adf3" aria-expanded="true"
+      aria-controls="R-tab-id-d1c92d824dd3601742b59dffd7c9e85f" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-32368be90742160ec0815225aac2b9eb" aria-expanded="false"
+      aria-controls="R-tab-id-cf50a4389a8ff313b9550c16b3fca56b" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-6bcffd6c25d39d1851492d6f7626e8df" aria-expanded="false"
+      aria-controls="R-tab-id-1fcb8ef3bd72c9d35ee2baeb139816f8" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -472,7 +488,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5bdc4ad5aef13868693597f01bc0adf3"
+      id="R-tab-id-d1c92d824dd3601742b59dffd7c9e85f"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -481,7 +497,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-32368be90742160ec0815225aac2b9eb"
+      id="R-tab-id-cf50a4389a8ff313b9550c16b3fca56b"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -490,7 +506,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-6bcffd6c25d39d1851492d6f7626e8df"
+      id="R-tab-id-1fcb8ef3bd72c9d35ee2baeb139816f8"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -508,21 +524,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-843636cbd8b0717af9c877d3958e5182" aria-expanded="true"
+      aria-controls="R-tab-id-0b71be2661b9670cb600ef01894c1abd" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-22472b5b1ee31dcec4c89003f704d2c9" aria-expanded="false"
+      aria-controls="R-tab-id-a653c3f1d8c6701da7ba5469162f083d" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1c027cd50c9f1fd2bcd7f016343720b8" aria-expanded="false"
+      aria-controls="R-tab-id-8af59f8efd88b72d07e9f6a91c135ef1" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -531,7 +547,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-843636cbd8b0717af9c877d3958e5182"
+      id="R-tab-id-0b71be2661b9670cb600ef01894c1abd"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -541,7 +557,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-22472b5b1ee31dcec4c89003f704d2c9"
+      id="R-tab-id-a653c3f1d8c6701da7ba5469162f083d"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -551,7 +567,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-1c027cd50c9f1fd2bcd7f016343720b8"
+      id="R-tab-id-8af59f8efd88b72d07e9f6a91c135ef1"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -601,42 +617,42 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <p>Now it&rsquo;s possible to use the same path of a call to <code>relref</code> in a plain Markdown link (eg <code>[generator](../generator)</code>). This is independent of any configuration settings or the page types involved in linking. Note, that this requires your links to be given without any extension, so <code>[generator](generator/index.html)</code> will work as before.</p>
 <p>The following types of linking are supported:</p>
 <table>
-	<thead>
-			<tr>
-					<th>link</th>
-					<th>description</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>[generator](en/configuration/branding/generator)</code></td>
-					<td>absolute from your project root (multilang)</td>
-			</tr>
-			<tr>
-					<td><code>[generator](/en/configuration/branding/generator)</code></td>
-					<td>absolute from your project root (multilang)</td>
-			</tr>
-			<tr>
-					<td><code>[generator](configuration/branding/generator)</code></td>
-					<td>absolute from your current language root</td>
-			</tr>
-			<tr>
-					<td><code>[generator](/configuration/branding/generator)</code></td>
-					<td>absolute from your current language root</td>
-			</tr>
-			<tr>
-					<td><code>[generator](./../generator)</code></td>
-					<td>relative from the current page</td>
-			</tr>
-			<tr>
-					<td><code>[generator](../generator)</code></td>
-					<td>relative from the current page</td>
-			</tr>
-			<tr>
-					<td></td>
-					<td></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>link</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>[generator](en/configuration/branding/generator)</code></td>
+      <td>absolute from your project root (multilang)</td>
+    </tr>
+    <tr>
+      <td><code>[generator](/en/configuration/branding/generator)</code></td>
+      <td>absolute from your project root (multilang)</td>
+    </tr>
+    <tr>
+      <td><code>[generator](configuration/branding/generator)</code></td>
+      <td>absolute from your current language root</td>
+    </tr>
+    <tr>
+      <td><code>[generator](/configuration/branding/generator)</code></td>
+      <td>absolute from your current language root</td>
+    </tr>
+    <tr>
+      <td><code>[generator](./../generator)</code></td>
+      <td>relative from the current page</td>
+    </tr>
+    <tr>
+      <td><code>[generator](../generator)</code></td>
+      <td>relative from the current page</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 </li>
 </ul>
@@ -874,11 +890,11 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Support for the great <a href="https://github.com/estruyf/vscode-front-matter" rel="external" target="_self">VSCode Front Matter CMS extension</a> which provides on-premise CMS capabilties to Hugo.</p>
 <p>The theme provides Front Matter CMS snippets for its shortcodes. Currently only English and German is supported. Put a reference into your <code>frontmatter.json</code> like this</p>
-<div class="tab-panel" data-tab-group="R-tabs-faf62f627f8f720f1fb5ab904639131a">
+<div class="tab-panel" data-tab-group="R-tabs-dc23df7558fafedf53fbd3989b840a66">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-4314ecc2d8bc3be192230de673334d03" aria-expanded="true"
+      aria-controls="R-tab-id-e83a7aa8d1c9b424d136a6f6bf5e84c6" aria-expanded="true"
       data-tab-item="R-tab-42a431011ae2471d003574e031c3356a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -887,7 +903,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4314ecc2d8bc3be192230de673334d03"
+      id="R-tab-id-e83a7aa8d1c9b424d136a6f6bf5e84c6"
       data-tab-item="R-tab-42a431011ae2471d003574e031c3356a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -916,11 +932,11 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> The theme removed the popular <a href="https://jquery.com" rel="external" target="_self">jQuery</a> library from its distribution.</p>
 <p>In case you made changes to the theme that are depending on this library you can place a copy of jQuery into your <code>static/js</code> directory and load it from your own <code>layouts/partials/custom-header.html</code> like this:</p>
-<div class="tab-panel" data-tab-group="R-tabs-1cf8f57590f6a754269dda89399cdbe7">
+<div class="tab-panel" data-tab-group="R-tabs-8f5935f4bfcbaf966647f8806a62be41">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-0b60d7bfdebae85cb41bbe7fc0fada63" aria-expanded="true"
+      aria-controls="R-tab-id-04d6a36cc6f2a9830ed927b55db4639b" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -929,7 +945,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0b60d7bfdebae85cb41bbe7fc0fada63"
+      id="R-tab-id-04d6a36cc6f2a9830ed927b55db4639b"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -989,21 +1005,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-db5f484361cd3e164fa619fe7a5bd379" aria-expanded="true"
+      aria-controls="R-tab-id-a00f0127a56d55f66e96f54eff7a60dd" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8050c3be6204d1b0c996ae8ffb7de4e5" aria-expanded="false"
+      aria-controls="R-tab-id-d5b2696d529e7adaf15845ee3647914e" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-de4a79eacbaf7b69d62965acd43150f7" aria-expanded="false"
+      aria-controls="R-tab-id-1962acfd29138c937db7d76f2e6ea553" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1012,7 +1028,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-db5f484361cd3e164fa619fe7a5bd379"
+      id="R-tab-id-a00f0127a56d55f66e96f54eff7a60dd"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1027,7 +1043,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-8050c3be6204d1b0c996ae8ffb7de4e5"
+      id="R-tab-id-d5b2696d529e7adaf15845ee3647914e"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1041,7 +1057,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-de4a79eacbaf7b69d62965acd43150f7"
+      id="R-tab-id-1962acfd29138c937db7d76f2e6ea553"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1064,21 +1080,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-b9fb4f1998df78f1a59af99b7d49cf1c" aria-expanded="true"
+      aria-controls="R-tab-id-6661f247a82725a812bb825cab144325" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-99d9bafde7bf5cce1394bd1b9ed3128f" aria-expanded="false"
+      aria-controls="R-tab-id-0c31d84412805da245a512aa9b6a866a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ffed6e445974468cf76a8ac6c477eefb" aria-expanded="false"
+      aria-controls="R-tab-id-ddf69155bc688cf54b105f0db5148eae" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1087,7 +1103,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b9fb4f1998df78f1a59af99b7d49cf1c"
+      id="R-tab-id-6661f247a82725a812bb825cab144325"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1100,7 +1116,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-99d9bafde7bf5cce1394bd1b9ed3128f"
+      id="R-tab-id-0c31d84412805da245a512aa9b6a866a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1113,7 +1129,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-ffed6e445974468cf76a8ac6c477eefb"
+      id="R-tab-id-ddf69155bc688cf54b105f0db5148eae"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1133,21 +1149,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-9e7b82bc2938e343f9ce9db882668e7c" aria-expanded="true"
+      aria-controls="R-tab-id-ea16e6855d2798b75d299472eb529284" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d676d960202b8c416114ccf323be9e9b" aria-expanded="false"
+      aria-controls="R-tab-id-e612106f0f0763a705c40c3d033af968" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-9f1230773ab31e232a1a287d9e12c965" aria-expanded="false"
+      aria-controls="R-tab-id-b60e1bff871c9b10f1c898ea15a167c2" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1156,7 +1172,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9e7b82bc2938e343f9ce9db882668e7c"
+      id="R-tab-id-ea16e6855d2798b75d299472eb529284"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1166,7 +1182,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-d676d960202b8c416114ccf323be9e9b"
+      id="R-tab-id-e612106f0f0763a705c40c3d033af968"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1176,7 +1192,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-9f1230773ab31e232a1a287d9e12c965"
+      id="R-tab-id-b60e1bff871c9b10f1c898ea15a167c2"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1272,18 +1288,18 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <p>For that the JavaScript code to handle the <a href="/hugo-theme-relearn/authoring/markdown/index.html#image-effects">lightbox and image effects</a> on the client side was removed in favour for static generation of those effects on the server.</p>
 <p>If you have used HTML directly in your Markdown files, this now has the downside that it doesn&rsquo;t respect the effect query parameter anymore. In this case you have to migrate all your HTML <code>img</code> URLs manually to the respective HTML attributes.</p>
 <table>
-	<thead>
-			<tr>
-					<th>Old</th>
-					<th>New</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>&lt;img src=&quot;pic.png?width=20vw&amp;classes=shadow,border&quot;&gt;</code></td>
-					<td><code>&lt;img src=&quot;pic.png&quot; style=&quot;width:20vw;&quot; class=&quot;shadow border&quot;&gt;</code></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Old</th>
+      <th>New</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;img src=&quot;pic.png?width=20vw&amp;classes=shadow,border&quot;&gt;</code></td>
+      <td><code>&lt;img src=&quot;pic.png&quot; style=&quot;width:20vw;&quot; class=&quot;shadow border&quot;&gt;</code></td>
+    </tr>
+  </tbody>
 </table>
 </li>
 </ul>
@@ -1348,21 +1364,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-04e11ff99f43ef3b0db9f34b1bf16807" aria-expanded="true"
+      aria-controls="R-tab-id-bf4c7cc373ec0f14bec206b908a659a3" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-111511429a061da62142f9a0fb617a58" aria-expanded="false"
+      aria-controls="R-tab-id-584672d3a369a645e37e0d19e949ab68" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-483ad858baa7c2c7ca82c5d345f61442" aria-expanded="false"
+      aria-controls="R-tab-id-46e9f5d38932f13a9ca4807815496815" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1371,7 +1387,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-04e11ff99f43ef3b0db9f34b1bf16807"
+      id="R-tab-id-bf4c7cc373ec0f14bec206b908a659a3"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1386,7 +1402,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-111511429a061da62142f9a0fb617a58"
+      id="R-tab-id-584672d3a369a645e37e0d19e949ab68"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1401,7 +1417,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-483ad858baa7c2c7ca82c5d345f61442"
+      id="R-tab-id-46e9f5d38932f13a9ca4807815496815"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">

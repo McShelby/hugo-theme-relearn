@@ -3,25 +3,81 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e">
+    <meta name="generator" content="Hugo 0.167.0">
+    <meta name="generator" content="Relearn 9.1.0+9722fa302ab9631006f39bd55f0573fbed57df7b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.">
+    <meta name="description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id t&#39; each asset’s URL, empty&#39;n a visitor’s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, assetbust&#39;n.gotmpl be replaced by asset.gotmpl, which takes a resource an&#39; returns it ready t&#39; be linked. It be still honored but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+​ layouts/partials/custom-header.html {{ wit&#39; resources.Get &#34;/css/mine.css&#34; }} {{ wit&#39; partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js an&#39; th&#39; favicon an&#39; logo images; everyth&#39;n else there be published as before. Those be published twice, once untouched an&#39; once processed - move them t&#39; assets t&#39; avoid th&#39; superfluous copy.
+As a busted name changes wit&#39; its rrrambl&#39;n, a build no longer overwrites th&#39; file its predecessor wrote an&#39; both remain. Purge yer output directory, e.g. by build&#39;n wit&#39; Hugo’s --cleanDestinationDir, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish&#39;n t&#39; a GitHub Planks branch does.
+Change Th&#39; Perfect Scrollbar library be no longer shipped wit&#39; th&#39; theme. All scrollbars be th&#39; ones o&#39; yer browser now, styled by th&#39; theme.
+Th&#39; scrollbars colors come from new theme variant variables, four fer each o&#39; th&#39; three areas, th&#39; main rrrambl&#39;n, th&#39; menu an&#39; th&#39; topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color an&#39; TOPBAR-SCROLLBAR-THUMB-color color th&#39; mov&#39;n thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color an&#39; TOPBAR-SCROLLBAR-TRACK-color th&#39; track it moves &#39;n. Each o&#39; them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - fer th&#39; respective hovered area.
+How many o&#39; those twelve colors ye see an effect from depends on th&#39; scrollbar model yer browser implements, so don’t expect all o&#39; them t&#39; show everywhere. Whar&#39; th&#39; theme draws th&#39; menus scrollbar itself, all four o&#39; its colors apply an&#39; th&#39; thumb reacts t&#39; be&#39;n hovered on its own. A browser that offers only th&#39; standard styl&#39;n has no state fer th&#39; thumb, so there th&#39; -HOVER colors be taken while th&#39; surround&#39;n area be hovered instead. An&#39; whar&#39; a browser draws an overlay scrollbar fer th&#39; rrrambl&#39;n or th&#39; topbar flyouts, it keeps its own an&#39; th&#39; four colors o&#39; that area go unused.
+Change Th&#39; theme variant configurat&#39;n has a new hidden parameter.
+If set t&#39; true, th&#39; variant will not be shown &#39;n th&#39; variant switcher but be still us&#39;ble, e.g. as a sub-variant o&#39; an auto mode variant.
+Change Th&#39; title above a plank sidebar menu be now taken from th&#39; root page’s linkTitle front matter.
+Formerly this was documented t&#39; use th&#39; menuTitle front matter, although that was already removed &#39;n 6.0.0 &#39;n favor o&#39; Hugo’s own linkTitle. It be still honored if no linkTitle be set but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+Change Images now carry th&#39; dimensions o&#39; their resource, so a browser can reserve th&#39; space they will take before they have arrived.
+This avoids plank reflows as each image loads an&#39; affects images that resolve t&#39; a resource Cap&#39;n Hugo can measure: a plank resource or a file &#39;n yer assets directory, &#39;n one o&#39; th&#39; common raster formats. An SVG, a remote address or a path &#39;n yer static directory has no dimensions t&#39; give an&#39; be unchanged.
+Change Th&#39; Lunr Languages whar&#39; updated t&#39; 1.21.0.
+Search&#39;n wit&#39; th&#39; Lunr adapter now finds terms that consist o&#39; digits only, like part or standard numbers.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 9.1 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta name="twitter:description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.">
+    <meta name="twitter:description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id t&#39; each asset’s URL, empty&#39;n a visitor’s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, assetbust&#39;n.gotmpl be replaced by asset.gotmpl, which takes a resource an&#39; returns it ready t&#39; be linked. It be still honored but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+​ layouts/partials/custom-header.html {{ wit&#39; resources.Get &#34;/css/mine.css&#34; }} {{ wit&#39; partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js an&#39; th&#39; favicon an&#39; logo images; everyth&#39;n else there be published as before. Those be published twice, once untouched an&#39; once processed - move them t&#39; assets t&#39; avoid th&#39; superfluous copy.
+As a busted name changes wit&#39; its rrrambl&#39;n, a build no longer overwrites th&#39; file its predecessor wrote an&#39; both remain. Purge yer output directory, e.g. by build&#39;n wit&#39; Hugo’s --cleanDestinationDir, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish&#39;n t&#39; a GitHub Planks branch does.
+Change Th&#39; Perfect Scrollbar library be no longer shipped wit&#39; th&#39; theme. All scrollbars be th&#39; ones o&#39; yer browser now, styled by th&#39; theme.
+Th&#39; scrollbars colors come from new theme variant variables, four fer each o&#39; th&#39; three areas, th&#39; main rrrambl&#39;n, th&#39; menu an&#39; th&#39; topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color an&#39; TOPBAR-SCROLLBAR-THUMB-color color th&#39; mov&#39;n thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color an&#39; TOPBAR-SCROLLBAR-TRACK-color th&#39; track it moves &#39;n. Each o&#39; them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - fer th&#39; respective hovered area.
+How many o&#39; those twelve colors ye see an effect from depends on th&#39; scrollbar model yer browser implements, so don’t expect all o&#39; them t&#39; show everywhere. Whar&#39; th&#39; theme draws th&#39; menus scrollbar itself, all four o&#39; its colors apply an&#39; th&#39; thumb reacts t&#39; be&#39;n hovered on its own. A browser that offers only th&#39; standard styl&#39;n has no state fer th&#39; thumb, so there th&#39; -HOVER colors be taken while th&#39; surround&#39;n area be hovered instead. An&#39; whar&#39; a browser draws an overlay scrollbar fer th&#39; rrrambl&#39;n or th&#39; topbar flyouts, it keeps its own an&#39; th&#39; four colors o&#39; that area go unused.
+Change Th&#39; theme variant configurat&#39;n has a new hidden parameter.
+If set t&#39; true, th&#39; variant will not be shown &#39;n th&#39; variant switcher but be still us&#39;ble, e.g. as a sub-variant o&#39; an auto mode variant.
+Change Th&#39; title above a plank sidebar menu be now taken from th&#39; root page’s linkTitle front matter.
+Formerly this was documented t&#39; use th&#39; menuTitle front matter, although that was already removed &#39;n 6.0.0 &#39;n favor o&#39; Hugo’s own linkTitle. It be still honored if no linkTitle be set but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+Change Images now carry th&#39; dimensions o&#39; their resource, so a browser can reserve th&#39; space they will take before they have arrived.
+This avoids plank reflows as each image loads an&#39; affects images that resolve t&#39; a resource Cap&#39;n Hugo can measure: a plank resource or a file &#39;n yer assets directory, &#39;n one o&#39; th&#39; common raster formats. An SVG, a remote address or a path &#39;n yer static directory has no dimensions t&#39; give an&#39; be unchanged.
+Change Th&#39; Lunr Languages whar&#39; updated t&#39; 1.21.0.
+Search&#39;n wit&#39; th&#39; Lunr adapter now finds terms that consist o&#39; digits only, like part or standard numbers.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/pir/introduction/releasenotes/9/1/index.html">
     <meta property="og:site_name" content="Cap&#39;n Hugo Relearrrn Theme">
     <meta property="og:title" content="Version 9.1 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta property="og:description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.">
+    <meta property="og:description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id t&#39; each asset’s URL, empty&#39;n a visitor’s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, assetbust&#39;n.gotmpl be replaced by asset.gotmpl, which takes a resource an&#39; returns it ready t&#39; be linked. It be still honored but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+​ layouts/partials/custom-header.html {{ wit&#39; resources.Get &#34;/css/mine.css&#34; }} {{ wit&#39; partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js an&#39; th&#39; favicon an&#39; logo images; everyth&#39;n else there be published as before. Those be published twice, once untouched an&#39; once processed - move them t&#39; assets t&#39; avoid th&#39; superfluous copy.
+As a busted name changes wit&#39; its rrrambl&#39;n, a build no longer overwrites th&#39; file its predecessor wrote an&#39; both remain. Purge yer output directory, e.g. by build&#39;n wit&#39; Hugo’s --cleanDestinationDir, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish&#39;n t&#39; a GitHub Planks branch does.
+Change Th&#39; Perfect Scrollbar library be no longer shipped wit&#39; th&#39; theme. All scrollbars be th&#39; ones o&#39; yer browser now, styled by th&#39; theme.
+Th&#39; scrollbars colors come from new theme variant variables, four fer each o&#39; th&#39; three areas, th&#39; main rrrambl&#39;n, th&#39; menu an&#39; th&#39; topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color an&#39; TOPBAR-SCROLLBAR-THUMB-color color th&#39; mov&#39;n thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color an&#39; TOPBAR-SCROLLBAR-TRACK-color th&#39; track it moves &#39;n. Each o&#39; them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - fer th&#39; respective hovered area.
+How many o&#39; those twelve colors ye see an effect from depends on th&#39; scrollbar model yer browser implements, so don’t expect all o&#39; them t&#39; show everywhere. Whar&#39; th&#39; theme draws th&#39; menus scrollbar itself, all four o&#39; its colors apply an&#39; th&#39; thumb reacts t&#39; be&#39;n hovered on its own. A browser that offers only th&#39; standard styl&#39;n has no state fer th&#39; thumb, so there th&#39; -HOVER colors be taken while th&#39; surround&#39;n area be hovered instead. An&#39; whar&#39; a browser draws an overlay scrollbar fer th&#39; rrrambl&#39;n or th&#39; topbar flyouts, it keeps its own an&#39; th&#39; four colors o&#39; that area go unused.
+Change Th&#39; theme variant configurat&#39;n has a new hidden parameter.
+If set t&#39; true, th&#39; variant will not be shown &#39;n th&#39; variant switcher but be still us&#39;ble, e.g. as a sub-variant o&#39; an auto mode variant.
+Change Th&#39; title above a plank sidebar menu be now taken from th&#39; root page’s linkTitle front matter.
+Formerly this was documented t&#39; use th&#39; menuTitle front matter, although that was already removed &#39;n 6.0.0 &#39;n favor o&#39; Hugo’s own linkTitle. It be still honored if no linkTitle be set but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+Change Images now carry th&#39; dimensions o&#39; their resource, so a browser can reserve th&#39; space they will take before they have arrived.
+This avoids plank reflows as each image loads an&#39; affects images that resolve t&#39; a resource Cap&#39;n Hugo can measure: a plank resource or a file &#39;n yer assets directory, &#39;n one o&#39; th&#39; common raster formats. An SVG, a remote address or a path &#39;n yer static directory has no dimensions t&#39; give an&#39; be unchanged.
+Change Th&#39; Lunr Languages whar&#39; updated t&#39; 1.21.0.
+Search&#39;n wit&#39; th&#39; Lunr adapter now finds terms that consist o&#39; digits only, like part or standard numbers.">
     <meta property="og:locale" content="art_x_pir">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 9.1 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta itemprop="description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.">
+    <meta itemprop="description" content="9.1.0 (2026-09-13) Cap&#39;n Hugo 0.165.0 0.165.0 This release requires a newer Cap&#39;n Hugo version. Change Change Assets be now busted by their rrrambl&#39;n instead o&#39; by th&#39; time o&#39; yer build, so a visitor only refetches what actually changed.
+Formerly every build appended a new id t&#39; each asset’s URL, empty&#39;n a visitor’s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, assetbust&#39;n.gotmpl be replaced by asset.gotmpl, which takes a resource an&#39; returns it ready t&#39; be linked. It be still honored but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+​ layouts/partials/custom-header.html {{ wit&#39; resources.Get &#34;/css/mine.css&#34; }} {{ wit&#39; partial &#34;asset.gotmpl&#34; . }} &lt;link href=&#34;{{ .RelPermalink }}&#34; rel=&#34;stylesheet&#34;&gt; {{ end }} {{ end }} Below static this only concerns css/custom.css, js/custom.js an&#39; th&#39; favicon an&#39; logo images; everyth&#39;n else there be published as before. Those be published twice, once untouched an&#39; once processed - move them t&#39; assets t&#39; avoid th&#39; superfluous copy.
+As a busted name changes wit&#39; its rrrambl&#39;n, a build no longer overwrites th&#39; file its predecessor wrote an&#39; both remain. Purge yer output directory, e.g. by build&#39;n wit&#39; Hugo’s --cleanDestinationDir, or it accumulates every version ye ever built - which weighs most if ye commit what ye build, as publish&#39;n t&#39; a GitHub Planks branch does.
+Change Th&#39; Perfect Scrollbar library be no longer shipped wit&#39; th&#39; theme. All scrollbars be th&#39; ones o&#39; yer browser now, styled by th&#39; theme.
+Th&#39; scrollbars colors come from new theme variant variables, four fer each o&#39; th&#39; three areas, th&#39; main rrrambl&#39;n, th&#39; menu an&#39; th&#39; topbar flyouts. MAIN-SCROLLBAR-THUMB-color, MENU-SCROLLBAR-THUMB-color an&#39; TOPBAR-SCROLLBAR-THUMB-color color th&#39; mov&#39;n thumb, MAIN-SCROLLBAR-TRACK-color, MENU-SCROLLBAR-TRACK-color an&#39; TOPBAR-SCROLLBAR-TRACK-color th&#39; track it moves &#39;n. Each o&#39; them has a -HOVER counterpart - like MAIN-SCROLLBAR-THUMB-HOVER-color or MENU-SCROLLBAR-TRACK-HOVER-color - fer th&#39; respective hovered area.
+How many o&#39; those twelve colors ye see an effect from depends on th&#39; scrollbar model yer browser implements, so don’t expect all o&#39; them t&#39; show everywhere. Whar&#39; th&#39; theme draws th&#39; menus scrollbar itself, all four o&#39; its colors apply an&#39; th&#39; thumb reacts t&#39; be&#39;n hovered on its own. A browser that offers only th&#39; standard styl&#39;n has no state fer th&#39; thumb, so there th&#39; -HOVER colors be taken while th&#39; surround&#39;n area be hovered instead. An&#39; whar&#39; a browser draws an overlay scrollbar fer th&#39; rrrambl&#39;n or th&#39; topbar flyouts, it keeps its own an&#39; th&#39; four colors o&#39; that area go unused.
+Change Th&#39; theme variant configurat&#39;n has a new hidden parameter.
+If set t&#39; true, th&#39; variant will not be shown &#39;n th&#39; variant switcher but be still us&#39;ble, e.g. as a sub-variant o&#39; an auto mode variant.
+Change Th&#39; title above a plank sidebar menu be now taken from th&#39; root page’s linkTitle front matter.
+Formerly this was documented t&#39; use th&#39; menuTitle front matter, although that was already removed &#39;n 6.0.0 &#39;n favor o&#39; Hugo’s own linkTitle. It be still honored if no linkTitle be set but now issues a deprecat&#39;n warning an&#39; will be removed wit&#39; a future update o&#39; th&#39; theme.
+Change Images now carry th&#39; dimensions o&#39; their resource, so a browser can reserve th&#39; space they will take before they have arrived.
+This avoids plank reflows as each image loads an&#39; affects images that resolve t&#39; a resource Cap&#39;n Hugo can measure: a plank resource or a file &#39;n yer assets directory, &#39;n one o&#39; th&#39; common raster formats. An SVG, a remote address or a path &#39;n yer static directory has no dimensions t&#39; give an&#39; be unchanged.
+Change Th&#39; Lunr Languages whar&#39; updated t&#39; 1.21.0.
+Search&#39;n wit&#39; th&#39; Lunr adapter now finds terms that consist o&#39; digits only, like part or standard numbers.">
     <meta itemprop="wordCount" content="780">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.1 :: Cap&#39;n Hugo Relearrrn Theme</title>
@@ -35,7 +91,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.236bf34e230f11bc60ca718bcc3e07adbb46b91291717cb8bce31038c88717bb.js"
+      "indexFile": "searchindex.pir.min.39ca3fb9e3abad613035d37643f09db8bc4a7568cde253fe45f5a61f1342ddca.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -177,11 +233,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-a028b31e5de45205de8cf0a18425178c">
+<div class="tab-panel" data-tab-group="R-tabs-171ba7c2fd37efb50338a9b06a31e8f3">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-62a8460afc1d698f6526ba4d43888724" aria-expanded="true"
+      aria-controls="R-tab-id-734dd520f3018dfd098fabd53273bc14" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -190,7 +246,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-62a8460afc1d698f6526ba4d43888724"
+      id="R-tab-id-734dd520f3018dfd098fabd53273bc14"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -236,21 +292,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-92123393452ea20e285e6b3666132168" aria-expanded="true"
+      aria-controls="R-tab-id-96dcde070df0fea8f652b47156f46173" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b058cf4ac2192f56fec44cfd0be60c7b" aria-expanded="false"
+      aria-controls="R-tab-id-3a0ad22c8178d8849d2ead230e28ff2d" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d985e64211b2a2f5b42c95e992f8779f" aria-expanded="false"
+      aria-controls="R-tab-id-1bd58f7c83d4d5281abc3bff38023e2f" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -259,7 +315,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-92123393452ea20e285e6b3666132168"
+      id="R-tab-id-96dcde070df0fea8f652b47156f46173"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -267,7 +323,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-b058cf4ac2192f56fec44cfd0be60c7b"
+      id="R-tab-id-3a0ad22c8178d8849d2ead230e28ff2d"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -275,7 +331,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-d985e64211b2a2f5b42c95e992f8779f"
+      id="R-tab-id-1bd58f7c83d4d5281abc3bff38023e2f"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -527,7 +583,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/1/index.html">
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e" title="Relearn 9.1.0&#43;edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.166.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/9722fa302ab9631006f39bd55f0573fbed57df7b" title="Relearn 9.1.0&#43;9722fa302ab9631006f39bd55f0573fbed57df7b"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </div>

@@ -3,25 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e">
+    <meta name="generator" content="Hugo 0.167.0">
+    <meta name="generator" content="Relearn 9.1.0+9722fa302ab9631006f39bd55f0573fbed57df7b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.">
+    <meta name="description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.
+It was later discovered, that this causes pages only meant to be displayed in the More section of the menu and stored directly inside your content directory to now show up in the menu as well.
+To get rid of this undesired behavior you have two choices:
+Make the page file a headless branch bundle (contained in its own subdirectory and called _index.md) and add the following front matter configuration to the file (see docs content/showcase/_index.en.md). This causes its content to not be ontained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store the page file for below a parent headless branch bundle and add the following front matter to he parent (see docs content/more/_index.en.md). Don’t give this page a title as this will cause it to be shown in the breadcrumbs - a thing you most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, the file itself can be a branch bundle, leaf bundle or simple page (see docs content/more/credits.en.md). This causes its content to be contained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 5.9 :: Hugo Relearn Theme">
-    <meta name="twitter:description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.">
+    <meta name="twitter:description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.
+It was later discovered, that this causes pages only meant to be displayed in the More section of the menu and stored directly inside your content directory to now show up in the menu as well.
+To get rid of this undesired behavior you have two choices:
+Make the page file a headless branch bundle (contained in its own subdirectory and called _index.md) and add the following front matter configuration to the file (see docs content/showcase/_index.en.md). This causes its content to not be ontained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store the page file for below a parent headless branch bundle and add the following front matter to he parent (see docs content/more/_index.en.md). Don’t give this page a title as this will cause it to be shown in the breadcrumbs - a thing you most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, the file itself can be a branch bundle, leaf bundle or simple page (see docs content/more/credits.en.md). This causes its content to be contained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/9/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 5.9 :: Hugo Relearn Theme">
-    <meta property="og:description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.">
+    <meta property="og:description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.
+It was later discovered, that this causes pages only meant to be displayed in the More section of the menu and stored directly inside your content directory to now show up in the menu as well.
+To get rid of this undesired behavior you have two choices:
+Make the page file a headless branch bundle (contained in its own subdirectory and called _index.md) and add the following front matter configuration to the file (see docs content/showcase/_index.en.md). This causes its content to not be ontained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store the page file for below a parent headless branch bundle and add the following front matter to he parent (see docs content/more/_index.en.md). Don’t give this page a title as this will cause it to be shown in the breadcrumbs - a thing you most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, the file itself can be a branch bundle, leaf bundle or simple page (see docs content/more/credits.en.md). This causes its content to be contained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 5.9 :: Hugo Relearn Theme">
-    <meta itemprop="description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.">
+    <meta itemprop="description" content="5.9.0 (2022-12-23) Breaking Breaking With this version it is now possible to not only have sections on the first menu level but also pages.
+It was later discovered, that this causes pages only meant to be displayed in the More section of the menu and stored directly inside your content directory to now show up in the menu as well.
+To get rid of this undesired behavior you have two choices:
+Make the page file a headless branch bundle (contained in its own subdirectory and called _index.md) and add the following front matter configuration to the file (see docs content/showcase/_index.en.md). This causes its content to not be ontained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store the page file for below a parent headless branch bundle and add the following front matter to he parent (see docs content/more/_index.en.md). Don’t give this page a title as this will cause it to be shown in the breadcrumbs - a thing you most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, the file itself can be a branch bundle, leaf bundle or simple page (see docs content/more/credits.en.md). This causes its content to be contained in the sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta itemprop="wordCount" content="424">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 5.9 :: Hugo Relearn Theme</title>
@@ -35,7 +59,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.00b99188351628699a21cf5dfc96dcbfb52e0b985835ac4b1c8faf03933fbfa8.js"
+      "indexFile": "searchindex.en.min.681e77eb1de2a4a88cb7b6f9e98a2aa9edd6c2787a3cf40af3fe4458d5c2a9e4.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -179,21 +203,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-795f65f6906c019e4858f0675a375bbd" aria-expanded="true"
+      aria-controls="R-tab-id-1b099ca844f69ba07082a1519884b353" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a1d0e080fd8c3dec6462d967128eb5e4" aria-expanded="false"
+      aria-controls="R-tab-id-6a1034110245e9475af084fb078dbbd9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-20839d133f1d3cc4a0cf51a15227e78d" aria-expanded="false"
+      aria-controls="R-tab-id-43f4103b365e0365121310ffa7d8a6d2" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -202,7 +226,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-795f65f6906c019e4858f0675a375bbd"
+      id="R-tab-id-1b099ca844f69ba07082a1519884b353"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -217,7 +241,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-a1d0e080fd8c3dec6462d967128eb5e4"
+      id="R-tab-id-6a1034110245e9475af084fb078dbbd9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -231,7 +255,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-20839d133f1d3cc4a0cf51a15227e78d"
+      id="R-tab-id-43f4103b365e0365121310ffa7d8a6d2"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -254,21 +278,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c6241bc7645c32931ce837c32260e81e" aria-expanded="true"
+      aria-controls="R-tab-id-3dc587551888890731500f8a44a3d835" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-0605c97feffbf8f88d99d8f253122fd0" aria-expanded="false"
+      aria-controls="R-tab-id-f2b2da46808347674568694497ccc6a5" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-18c15016f9752f37b2d3d07ae7c4b38a" aria-expanded="false"
+      aria-controls="R-tab-id-06ac1b0d984bd55ac9da656d9cf0a119" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -277,7 +301,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c6241bc7645c32931ce837c32260e81e"
+      id="R-tab-id-3dc587551888890731500f8a44a3d835"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -290,7 +314,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-0605c97feffbf8f88d99d8f253122fd0"
+      id="R-tab-id-f2b2da46808347674568694497ccc6a5"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -303,7 +327,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-18c15016f9752f37b2d3d07ae7c4b38a"
+      id="R-tab-id-06ac1b0d984bd55ac9da656d9cf0a119"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -323,21 +347,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-773ac9cdefe292453039995b9f5996e5" aria-expanded="true"
+      aria-controls="R-tab-id-5c9e702aa0653ac5c8477182cbbdbd64" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-4f4319aebf51e96422299db6a57470a6" aria-expanded="false"
+      aria-controls="R-tab-id-b66f6422dd206dd5bf7a3a8c6d360f3e" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-130b807d73c12e679f60046a402ffa38" aria-expanded="false"
+      aria-controls="R-tab-id-9ad8932c4dcdc925581075bae1ded633" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -346,7 +370,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-773ac9cdefe292453039995b9f5996e5"
+      id="R-tab-id-5c9e702aa0653ac5c8477182cbbdbd64"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -356,7 +380,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-4f4319aebf51e96422299db6a57470a6"
+      id="R-tab-id-b66f6422dd206dd5bf7a3a8c6d360f3e"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -366,7 +390,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/9/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-130b807d73c12e679f60046a402ffa38"
+      id="R-tab-id-9ad8932c4dcdc925581075bae1ded633"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">

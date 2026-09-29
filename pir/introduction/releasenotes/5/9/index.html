@@ -3,25 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e">
+    <meta name="generator" content="Hugo 0.167.0">
+    <meta name="generator" content="Relearn 9.1.0+9722fa302ab9631006f39bd55f0573fbed57df7b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.">
+    <meta name="description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.
+It was later discovered, that this causes planks only meant t&#39; be displayed &#39;n th&#39; More section o&#39; th&#39; menu an&#39; stored directly inside yer rrrambl&#39;n directory t&#39; now show up &#39;n th&#39; menu as well.
+T&#39; get rid o&#39; this undesired behavior ye have two choices:
+Make th&#39; plank file a headless branch bundle (contained &#39;n its own subdirectory an&#39; called _index.md) an&#39; add th&#39; follow&#39;n front matter configurat&#39;n t&#39; th&#39; file (see docs content/showcase/_index.en.md). This causes its rrrambl&#39;n t&#39; not be ontained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store th&#39; plank file fer below a parent headless branch bundle an&#39; add th&#39; follow&#39;n front matter t&#39; he parent (see docs content/more/_index.en.md). Don’t give this plank a title as this will cause it t&#39; be shown &#39;n th&#39; breadcrumbs - a th&#39;n ye most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, th&#39; file itself can be a branch bundle, leaf bundle or simple plank (see docs content/more/credits.en.md). This causes its rrrambl&#39;n t&#39; be contained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 5.9 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta name="twitter:description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.">
+    <meta name="twitter:description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.
+It was later discovered, that this causes planks only meant t&#39; be displayed &#39;n th&#39; More section o&#39; th&#39; menu an&#39; stored directly inside yer rrrambl&#39;n directory t&#39; now show up &#39;n th&#39; menu as well.
+T&#39; get rid o&#39; this undesired behavior ye have two choices:
+Make th&#39; plank file a headless branch bundle (contained &#39;n its own subdirectory an&#39; called _index.md) an&#39; add th&#39; follow&#39;n front matter configurat&#39;n t&#39; th&#39; file (see docs content/showcase/_index.en.md). This causes its rrrambl&#39;n t&#39; not be ontained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store th&#39; plank file fer below a parent headless branch bundle an&#39; add th&#39; follow&#39;n front matter t&#39; he parent (see docs content/more/_index.en.md). Don’t give this plank a title as this will cause it t&#39; be shown &#39;n th&#39; breadcrumbs - a th&#39;n ye most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, th&#39; file itself can be a branch bundle, leaf bundle or simple plank (see docs content/more/credits.en.md). This causes its rrrambl&#39;n t&#39; be contained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/pir/introduction/releasenotes/5/9/index.html">
     <meta property="og:site_name" content="Cap&#39;n Hugo Relearrrn Theme">
     <meta property="og:title" content="Version 5.9 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta property="og:description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.">
+    <meta property="og:description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.
+It was later discovered, that this causes planks only meant t&#39; be displayed &#39;n th&#39; More section o&#39; th&#39; menu an&#39; stored directly inside yer rrrambl&#39;n directory t&#39; now show up &#39;n th&#39; menu as well.
+T&#39; get rid o&#39; this undesired behavior ye have two choices:
+Make th&#39; plank file a headless branch bundle (contained &#39;n its own subdirectory an&#39; called _index.md) an&#39; add th&#39; follow&#39;n front matter configurat&#39;n t&#39; th&#39; file (see docs content/showcase/_index.en.md). This causes its rrrambl&#39;n t&#39; not be ontained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store th&#39; plank file fer below a parent headless branch bundle an&#39; add th&#39; follow&#39;n front matter t&#39; he parent (see docs content/more/_index.en.md). Don’t give this plank a title as this will cause it t&#39; be shown &#39;n th&#39; breadcrumbs - a th&#39;n ye most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, th&#39; file itself can be a branch bundle, leaf bundle or simple plank (see docs content/more/credits.en.md). This causes its rrrambl&#39;n t&#39; be contained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta property="og:locale" content="art_x_pir">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 5.9 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta itemprop="description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.">
+    <meta itemprop="description" content="5.9.0 (2022-12-23) Break&#39;n Break&#39;n Wit&#39; this version it be now poss&#39;ble t&#39; not only have sections on th&#39; first menu level but also planks.
+It was later discovered, that this causes planks only meant t&#39; be displayed &#39;n th&#39; More section o&#39; th&#39; menu an&#39; stored directly inside yer rrrambl&#39;n directory t&#39; now show up &#39;n th&#39; menu as well.
+T&#39; get rid o&#39; this undesired behavior ye have two choices:
+Make th&#39; plank file a headless branch bundle (contained &#39;n its own subdirectory an&#39; called _index.md) an&#39; add th&#39; follow&#39;n front matter configurat&#39;n t&#39; th&#39; file (see docs content/showcase/_index.en.md). This causes its rrrambl&#39;n t&#39; not be ontained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Showcase&#39; [build] list = &#39;never&#39; publishResources = true render = &#39;always&#39; &#43;&#43;&#43; --- build: list: never publishResources: true render: always title: Showcase --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: true, &#34;render&#34;: &#34;always&#34; }, &#34;title&#34;: &#34;Showcase&#34; } Store th&#39; plank file fer below a parent headless branch bundle an&#39; add th&#39; follow&#39;n front matter t&#39; he parent (see docs content/more/_index.en.md). Don’t give this plank a title as this will cause it t&#39; be shown &#39;n th&#39; breadcrumbs - a th&#39;n ye most likely don’t want.
+​ toml yaml json &#43;&#43;&#43; [build] list = &#39;never&#39; publishResources = false render = &#39;never&#39; &#43;&#43;&#43; --- build: list: never publishResources: false render: never --- { &#34;build&#34;: { &#34;list&#34;: &#34;never&#34;, &#34;publishResources&#34;: false, &#34;render&#34;: &#34;never&#34; } } In this case, th&#39; file itself can be a branch bundle, leaf bundle or simple plank (see docs content/more/credits.en.md). This causes its rrrambl&#39;n t&#39; be contained &#39;n th&#39; sitemap.
+​ toml yaml json &#43;&#43;&#43; title = &#39;Credits&#39; &#43;&#43;&#43; --- title: Credits --- { &#34;title&#34;: &#34;Credits&#34; }">
     <meta itemprop="wordCount" content="424">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 5.9 :: Cap&#39;n Hugo Relearrrn Theme</title>
@@ -35,7 +59,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.236bf34e230f11bc60ca718bcc3e07adbb46b91291717cb8bce31038c88717bb.js"
+      "indexFile": "searchindex.pir.min.39ca3fb9e3abad613035d37643f09db8bc4a7568cde253fe45f5a61f1342ddca.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -181,21 +205,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-795f65f6906c019e4858f0675a375bbd" aria-expanded="true"
+      aria-controls="R-tab-id-1b099ca844f69ba07082a1519884b353" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a1d0e080fd8c3dec6462d967128eb5e4" aria-expanded="false"
+      aria-controls="R-tab-id-6a1034110245e9475af084fb078dbbd9" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-20839d133f1d3cc4a0cf51a15227e78d" aria-expanded="false"
+      aria-controls="R-tab-id-43f4103b365e0365121310ffa7d8a6d2" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -204,7 +228,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-795f65f6906c019e4858f0675a375bbd"
+      id="R-tab-id-1b099ca844f69ba07082a1519884b353"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -219,7 +243,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-a1d0e080fd8c3dec6462d967128eb5e4"
+      id="R-tab-id-6a1034110245e9475af084fb078dbbd9"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -233,7 +257,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-20839d133f1d3cc4a0cf51a15227e78d"
+      id="R-tab-id-43f4103b365e0365121310ffa7d8a6d2"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -256,21 +280,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c6241bc7645c32931ce837c32260e81e" aria-expanded="true"
+      aria-controls="R-tab-id-3dc587551888890731500f8a44a3d835" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-0605c97feffbf8f88d99d8f253122fd0" aria-expanded="false"
+      aria-controls="R-tab-id-f2b2da46808347674568694497ccc6a5" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-18c15016f9752f37b2d3d07ae7c4b38a" aria-expanded="false"
+      aria-controls="R-tab-id-06ac1b0d984bd55ac9da656d9cf0a119" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -279,7 +303,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c6241bc7645c32931ce837c32260e81e"
+      id="R-tab-id-3dc587551888890731500f8a44a3d835"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -292,7 +316,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-0605c97feffbf8f88d99d8f253122fd0"
+      id="R-tab-id-f2b2da46808347674568694497ccc6a5"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -305,7 +329,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-18c15016f9752f37b2d3d07ae7c4b38a"
+      id="R-tab-id-06ac1b0d984bd55ac9da656d9cf0a119"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -325,21 +349,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-773ac9cdefe292453039995b9f5996e5" aria-expanded="true"
+      aria-controls="R-tab-id-5c9e702aa0653ac5c8477182cbbdbd64" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-4f4319aebf51e96422299db6a57470a6" aria-expanded="false"
+      aria-controls="R-tab-id-b66f6422dd206dd5bf7a3a8c6d360f3e" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-130b807d73c12e679f60046a402ffa38" aria-expanded="false"
+      aria-controls="R-tab-id-9ad8932c4dcdc925581075bae1ded633" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -348,7 +372,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-773ac9cdefe292453039995b9f5996e5"
+      id="R-tab-id-5c9e702aa0653ac5c8477182cbbdbd64"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -358,7 +382,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-4f4319aebf51e96422299db6a57470a6"
+      id="R-tab-id-b66f6422dd206dd5bf7a3a8c6d360f3e"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -368,7 +392,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-130b807d73c12e679f60046a402ffa38"
+      id="R-tab-id-9ad8932c4dcdc925581075bae1ded633"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -624,7 +648,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/9/index.html">
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e" title="Relearn 9.1.0&#43;edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.166.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/9722fa302ab9631006f39bd55f0573fbed57df7b" title="Relearn 9.1.0&#43;9722fa302ab9631006f39bd55f0573fbed57df7b"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </div>

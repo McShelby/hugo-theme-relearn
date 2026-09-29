@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.166.0">
-    <meta name="generator" content="Relearn 9.1.0+edd32dd46699cf37d4c81be4a1fbeb8bd7112e9e">
+    <meta name="generator" content="Hugo 0.167.0">
+    <meta name="generator" content="Relearn 9.1.0+9722fa302ab9631006f39bd55f0573fbed57df7b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How to run and extend the automated test suite">
     <meta name="author" content="Sören Weber">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.00b99188351628699a21cf5dfc96dcbfb52e0b985835ac4b1c8faf03933fbfa8.js"
+      "indexFile": "searchindex.en.min.681e77eb1de2a4a88cb7b6f9e98a2aa9edd6c2787a3cf40af3fe4458d5c2a9e4.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -183,50 +183,50 @@
 <p>The checks are <code>tests/checks.js</code> and cover what the build layer cannot see: the runner&rsquo;s own configuration handling, the <a href="/hugo-theme-relearn/development/maintaining/index.html#sbom">dependency declaration</a> - that it matches the vendored tree, and that every shipped component carries a license - and the properties the <a href="/hugo-theme-relearn/configuration/sitemanagement/sbom/index.html">SBOM</a> promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is <code>npm run sbom</code>, a narrower question: whether the committed <code>sbom.cdx.json</code> is still what that declaration renders.</p>
 <p>Each part also runs alone, and those with something to write back do it under an <code>:update</code> name:</p>
 <table>
-	<thead>
-			<tr>
-					<th>Command</th>
-					<th>Runs</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>npm test</code></td>
-					<td>everything</td>
-			</tr>
-			<tr>
-					<td><code>npm run test:update</code></td>
-					<td>everything, rewriting whatever has something to write back</td>
-			</tr>
-			<tr>
-					<td><code>npm run format</code></td>
-					<td>the formatting check</td>
-			</tr>
-			<tr>
-					<td><code>npm run format:update</code></td>
-					<td>the formatting check, rewriting what it flags</td>
-			</tr>
-			<tr>
-					<td><code>npm run checks</code></td>
-					<td>the runner checks</td>
-			</tr>
-			<tr>
-					<td><code>npm run sbom</code></td>
-					<td>the SBOM comparison</td>
-			</tr>
-			<tr>
-					<td><code>npm run sbom:update</code></td>
-					<td>the SBOM comparison, rewriting <code>sbom.cdx.json</code></td>
-			</tr>
-			<tr>
-					<td><code>npm run golden</code></td>
-					<td>the cases</td>
-			</tr>
-			<tr>
-					<td><code>npm run golden:update</code></td>
-					<td>the cases, rewriting the expected output</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Runs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>npm test</code></td>
+      <td>everything</td>
+    </tr>
+    <tr>
+      <td><code>npm run test:update</code></td>
+      <td>everything, rewriting whatever has something to write back</td>
+    </tr>
+    <tr>
+      <td><code>npm run format</code></td>
+      <td>the formatting check</td>
+    </tr>
+    <tr>
+      <td><code>npm run format:update</code></td>
+      <td>the formatting check, rewriting what it flags</td>
+    </tr>
+    <tr>
+      <td><code>npm run checks</code></td>
+      <td>the runner checks</td>
+    </tr>
+    <tr>
+      <td><code>npm run sbom</code></td>
+      <td>the SBOM comparison</td>
+    </tr>
+    <tr>
+      <td><code>npm run sbom:update</code></td>
+      <td>the SBOM comparison, rewriting <code>sbom.cdx.json</code></td>
+    </tr>
+    <tr>
+      <td><code>npm run golden</code></td>
+      <td>the cases</td>
+    </tr>
+    <tr>
+      <td><code>npm run golden:update</code></td>
+      <td>the cases, rewriting the expected output</td>
+    </tr>
+  </tbody>
 </table>
 <p><code>tests/golden.js</code> is the actual runner behind <code>golden</code>. Calling it directly takes the same flags and skips the rest, which is what you want while iterating on one case:</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm <span class="nb">test</span> -- --build<span class="o">=</span>&lt;name&gt;
@@ -235,64 +235,64 @@
 <h2 id="the-vocabulary">The Vocabulary<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>A run is more than a list of sites, hence these words:</p>
 <table>
-	<thead>
-			<tr>
-					<th>Term</th>
-					<th>Meaning</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Site</td>
-					<td>content plus the configuration it needs to be itself</td>
-			</tr>
-			<tr>
-					<td>Axis</td>
-					<td>a dimension of configuration, each of whose values is a config directory</td>
-			</tr>
-			<tr>
-					<td>Case</td>
-					<td>what to build, and how deeply to check it</td>
-			</tr>
-			<tr>
-					<td>Build</td>
-					<td>one Hugo invocation - one site, one configuration</td>
-			</tr>
-			<tr>
-					<td>Result</td>
-					<td>one output tree, compared as a whole</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Site</td>
+      <td>content plus the configuration it needs to be itself</td>
+    </tr>
+    <tr>
+      <td>Axis</td>
+      <td>a dimension of configuration, each of whose values is a config directory</td>
+    </tr>
+    <tr>
+      <td>Case</td>
+      <td>what to build, and how deeply to check it</td>
+    </tr>
+    <tr>
+      <td>Build</td>
+      <td>one Hugo invocation - one site, one configuration</td>
+    </tr>
+    <tr>
+      <td>Result</td>
+      <td>one output tree, compared as a whole</td>
+    </tr>
+  </tbody>
 </table>
 <p>Most cases are one site, one configuration, one result. A case that varies an axis produces a result per combination. A case whose builds only mean something as a pair - a versioned site, or the docs and the exampleSite as GitHub Pages serves them - produces several builds sharing one result.</p>
 <p>Cases live in <code>tests/cases/&lt;name&gt;/case.toml</code> in the infra repository, and reading them is the quickest way to see what the suite covers.</p>
 <h2 id="shaping-a-run">Shaping a Run<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>The parameters, all optional:</p>
 <table>
-	<thead>
-			<tr>
-					<th>Parameter</th>
-					<th>Selects</th>
-					<th>Default</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>--build</code></td>
-					<td>which builds to run</td>
-					<td>all of them</td>
-			</tr>
-			<tr>
-					<td><code>--hugo</code></td>
-					<td>which Hugo to build with</td>
-					<td>each site&rsquo;s own, see below</td>
-			</tr>
-			<tr>
-					<td><code>--update</code></td>
-					<td>rewrite the stored output instead of comparing against it</td>
-					<td>compare</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Selects</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>--build</code></td>
+      <td>which builds to run</td>
+      <td>all of them</td>
+    </tr>
+    <tr>
+      <td><code>--hugo</code></td>
+      <td>which Hugo to build with</td>
+      <td>each site&rsquo;s own, see below</td>
+    </tr>
+    <tr>
+      <td><code>--update</code></td>
+      <td>rewrite the stored output instead of comparing against it</td>
+      <td>compare</td>
+    </tr>
+  </tbody>
 </table>
 <h3 id="--build---run-part-of-the-suite"><code>--build</code> - run part of the suite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>minimal
@@ -330,30 +330,30 @@
 <h2 id="reading-a-failure">Reading a Failure<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>Every result is checked in layers, and the one that fails tells you what kind of problem you have.</p>
 <table>
-	<thead>
-			<tr>
-					<th>Layer</th>
-					<th>Asserts</th>
-					<th>A failure usually means</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Build</td>
-					<td>the build exits cleanly, with no unexpected <code>WARN</code> or <code>ERROR</code></td>
-					<td>a template error, or a Hugo deprecation</td>
-			</tr>
-			<tr>
-					<td>File set</td>
-					<td>exactly the expected files were generated</td>
-					<td>output formats, permalinks or a renamed page</td>
-			</tr>
-			<tr>
-					<td>Content</td>
-					<td>every file is what was stored, byte for byte bar line endings and the checkout path</td>
-					<td>either a regression, or a change you meant to make</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Asserts</th>
+      <th>A failure usually means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Build</td>
+      <td>the build exits cleanly, with no unexpected <code>WARN</code> or <code>ERROR</code></td>
+      <td>a template error, or a Hugo deprecation</td>
+    </tr>
+    <tr>
+      <td>File set</td>
+      <td>exactly the expected files were generated</td>
+      <td>output formats, permalinks or a renamed page</td>
+    </tr>
+    <tr>
+      <td>Content</td>
+      <td>every file is what was stored, byte for byte bar line endings and the checkout path</td>
+      <td>either a regression, or a change you meant to make</td>
+    </tr>
+  </tbody>
 </table>
 <p>Layers are cumulative, and a case declares how deep to go with <code>layer</code>. It defaults to <code>content</code>, so a case opts down rather than up and always says why - the theme&rsquo;s own sites stop at the file set, because a content baseline over 2000 files would churn on every prose edit and be read by nobody.</p>
 <p>A pinned older Hugo reduces every case to the build layer, since Hugo legitimately changes what it emits between releases and a baseline holds for the version that produced it. The run says when that happened, so a build check never reads as a content check.</p>
@@ -408,26 +408,26 @@
 <h3 id="accepting-a-known-warning">Accepting a Known Warning<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Any <code>WARN</code> or <code>ERROR</code> fails a build unless it is listed in a baseline. These are consulted and their entries unioned:</p>
 <table>
-	<thead>
-			<tr>
-					<th>File</th>
-					<th>Holds</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>tests/warnings.txt</code></td>
-					<td>theme-wide, mostly Hugo deprecations</td>
-			</tr>
-			<tr>
-					<td><code>tests/sites/&lt;site&gt;/warnings.txt</code></td>
-					<td>what a site&rsquo;s own content provokes</td>
-			</tr>
-			<tr>
-					<td><code>tests/cases/&lt;case&gt;/warnings.txt</code></td>
-					<td>what a configuration provokes</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Holds</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>tests/warnings.txt</code></td>
+      <td>theme-wide, mostly Hugo deprecations</td>
+    </tr>
+    <tr>
+      <td><code>tests/sites/&lt;site&gt;/warnings.txt</code></td>
+      <td>what a site&rsquo;s own content provokes</td>
+    </tr>
+    <tr>
+      <td><code>tests/cases/&lt;case&gt;/warnings.txt</code></td>
+      <td>what a configuration provokes</td>
+    </tr>
+  </tbody>
 </table>
 <p>A site&rsquo;s file is checked against the build of that site, so what the docs provoke applies wherever the docs are built. Each entry is a substring; a warning containing it is accepted.</p>
 <p>These baselines record outstanding work, not noise to be silenced. Adding an entry means consciously accepting a defect, so delete it as soon as the underlying issue is fixed and let a regression fail the suite again.</p>
