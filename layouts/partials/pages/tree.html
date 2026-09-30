@@ -9,6 +9,7 @@
     {{- with $breadcrumb }}
 
 {{ $indent }}    {{ . }}
+{{ $indent }}    {data-overflow-title="{{ replace (replace . `\` `\\`) `"` `\"` | safeHTML }}"}
     {{- end }}
   {{- end }}
   {{- if $.description }}

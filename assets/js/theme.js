@@ -1491,6 +1491,21 @@ function initExpand() {
   });
 }
 
+function initOverflowTitle() {
+  // truncation depends on the current width, so decide on each hover whether the tooltip is needed
+  document.addEventListener('pointerover', function (event) {
+    var e = event.target.closest('[data-overflow-title]');
+    if (!e) {
+      return;
+    }
+    if (e.scrollWidth > e.clientWidth) {
+      e.setAttribute('title', e.dataset.overflowTitle);
+    } else {
+      e.removeAttribute('title');
+    }
+  });
+}
+
 function clearHistory() {
   var visitedItem = window.relearn.absBaseUri + '/visited-url';
   for (var item in window.sessionStorage) {
@@ -2010,6 +2025,7 @@ ready(function () {
   initSearch();
   initImage();
   initExpand();
+  initOverflowTitle();
   initScrollPositionSaver();
 });
 
