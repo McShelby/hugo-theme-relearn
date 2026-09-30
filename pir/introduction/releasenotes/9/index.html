@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+6b89373d62dc96aaad2386a9676e193767ba142c">
+    <meta name="generator" content="Relearn 9.1.0+f0096ea8c391a3404fe56c49eff0898dc5c9ae62">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.2.0 (XXXX-XX-XX) Cap&#39;n Hugo 0.166.0 0.166.0 This release requires a newer Cap&#39;n Hugo version. Change Change Th&#39; math shortcode now renders yer formulae us&#39;n Hugo’s built-in KaTeX while yer ship be built, instead o&#39; th&#39; MathJax library &#39;n th&#39; browser.
 Th&#39; theme finds yer formulae by th&#39; delimiters o&#39; Hugo’s Passthrough configurat&#39;n. If yer ship doesn’t have it yet, add it, otherwise their delimited formulae be not rendered. Rrrambl&#39;n without delimiters be rendered as one formula regardless fer codefence, shortcode an&#39; partial rules.
@@ -65,7 +65,7 @@ Th&#39; children shortcode still works but issues a deprecat&#39;n warning fer e
 Wit&#39; type=group, th&#39; children shortcode no longer shows a multi-column layout. If ye want t&#39; restore th&#39; previous behavior, replace it by th&#39; planks shortcode wit&#39; columns=3.
 Change Th&#39; list&#39;ns o&#39; taxonomy an&#39; term planks be now configured by params.pages &#39;n their front matter, us&#39;n th&#39; parameters o&#39; th&#39; planks shortcode. Th&#39; former params.children be still honored as long as th&#39; children shortcode exists.
 Change Th&#39; front matter params.pages be now honored on every plank, not only on taxonomy an&#39; term planks. Together wit&#39; Hugo’s cascade, ye can give all list&#39;ns o&#39; a subtree th&#39; same look.">
-    <meta itemprop="wordCount" content="1718">
+    <meta itemprop="wordCount" content="1735">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9 :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html" rel="alternate" hreflang="x-default">
@@ -79,7 +79,7 @@ Change Th&#39; front matter params.pages be now honored on every plank, not only
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.8ae00d68469d66b7e70cbbbd4e7d443f9dd0483d1b0c8de09944c58b4c0f7da6.js"
+      "indexFile": "searchindex.pir.min.4caaa3ec70d206ab78ed184a556f8acce1a548f82b9c9674f5bb8c11ad8ab2d7.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -262,6 +262,9 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html"><code>cards</code> shortcode</a> has a new <code>columns</code> parameter t' set th' number o' columns 'n full width mode.</p>
 </li>
 <li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/resources/index.html"><code>resources</code> shortcode</a> has a new <code>pageref</code> parameter t' list th' resources o' another plank bundle.</p>
+</li>
+<li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme writes no inline JavaScript anymore, so yer ship can be served wit' a strict <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html">Rrrambl'n Security Policy</a>. On request, it also adds a <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html#subresource-integrity">subresource integrity</a> t' its scripts an' stylesheets. Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> an' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shorrrtcodes an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>act'n</code> parameter t' run yer own code without inline JavaScript.</p>
 </li>
 <li>
@@ -279,11 +282,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-07656164047f4c4236c99d21179468b1">
+<div class="tab-panel" data-tab-group="R-tabs-f8184902efa8d89c96c1a7595c5476a0">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-cf1a0018ba70c012dcc00786c7dce3fd" aria-expanded="true"
+      aria-controls="R-tab-id-f442b34119a7b1a21b67a699d908aadb" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -292,7 +295,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-cf1a0018ba70c012dcc00786c7dce3fd"
+      id="R-tab-id-f442b34119a7b1a21b67a699d908aadb"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -338,21 +341,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-df9c2b52ad11ec09490eee8f4d5f2b6c" aria-expanded="true"
+      aria-controls="R-tab-id-7bae59efe856754fdb76cbc83f11b0f3" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-b310d636fe5f31e23413831602bda8ca" aria-expanded="false"
+      aria-controls="R-tab-id-f37505ef92cd7c5b0895192ec841bc42" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-077320302af886c6c5db03efa0195038" aria-expanded="false"
+      aria-controls="R-tab-id-247b5c8c5fa2efe2c69adb4c979e4f7b" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -361,7 +364,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-df9c2b52ad11ec09490eee8f4d5f2b6c"
+      id="R-tab-id-7bae59efe856754fdb76cbc83f11b0f3"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -369,7 +372,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-b310d636fe5f31e23413831602bda8ca"
+      id="R-tab-id-f37505ef92cd7c5b0895192ec841bc42"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -377,7 +380,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-077320302af886c6c5db03efa0195038"
+      id="R-tab-id-247b5c8c5fa2efe2c69adb4c979e4f7b"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -677,7 +680,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/6b89373d62dc96aaad2386a9676e193767ba142c" title="Relearn 9.1.0&#43;6b89373d62dc96aaad2386a9676e193767ba142c"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/f0096ea8c391a3404fe56c49eff0898dc5c9ae62" title="Relearn 9.1.0&#43;f0096ea8c391a3404fe56c49eff0898dc5c9ae62"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </div>
