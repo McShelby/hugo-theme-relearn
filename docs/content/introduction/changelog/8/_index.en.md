@@ -5,7 +5,6 @@ weight = -8
 
 [params]
   disableToc = false
-  hidden = true
 +++
 
 {{% pages display="content" hidden="true" %}}

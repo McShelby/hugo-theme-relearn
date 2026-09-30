@@ -5,6 +5,5 @@ weight = -8
 
 [params]
   disableToc = false
-  hidden = true
 +++
 {{< piratify >}}
