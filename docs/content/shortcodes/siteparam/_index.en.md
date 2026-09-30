@@ -6,13 +6,17 @@ title = 'SiteParam'
 
 The `siteparam` shortcode prints values of site-wide params contained in your `hugo.toml`.
 
+{{% multishortcode name="siteparam" print="false" %}}
+name = "siteparam.test.greetings"
+{{% /multishortcode %}}
+
 ## Usage
 
-To print params from a page's front matter and falling back to the site options, use Hugo's built-in [`param` shortcode](https://gohugo.io/shortcodes/param/).
-
 {{% multishortcode name="siteparam" execute="false" %}}
-name = "editURL"
+name = "siteparam.test.greetings"
 {{% /multishortcode %}}
+
+To print params from a page's front matter and falling back to the site options, use Hugo's built-in [`param` shortcode](https://gohugo.io/shortcodes/param/).
 
 ### Parameters
 

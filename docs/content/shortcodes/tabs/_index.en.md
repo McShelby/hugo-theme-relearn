@@ -9,21 +9,16 @@ The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
 {{% multishortcode name="tabs" print="false" %}}
 content:
-  - title: "Python Saying"
+  - title: "Python"
     content: "The AI native programming language."
-  - title: "Terminal Sourcecode"
+  - title: "Bash"
     content: |
       ````bash
       echo "For guys who like to tinker."
       ````
-  - title: "C Ramblings"
+  - title: "C"
     color: "fuchsia"
     content: "For the connoisseur of programming."
-  - title: "C++ Ramblings++"
-    color: "red"
-    content: "For the guys that can cope with syntax."
-  - title: "C# ~~GC is cool~~"
-    content: "For guys that need two destructors."
 {{% /multishortcode %}}
 
 ## Usage

@@ -97,7 +97,7 @@ To recreate the screenshots
 - run `npm ci`
 - run `npm run screenshots`
 
-The script serves the documentation itself on port 3132, captures each page and writes the result back into `docs/content/<shortcode>/featured.png` of the resolved theme checkout. To capture against a server you are already running instead, pass its address:
+The script serves the documentation itself on port 3132, captures the page of every directory below `docs/content/shortcodes` and writes the result back into `docs/content/shortcodes/<shortcode>/featured.png` of the resolved theme checkout. To capture against a server you are already running instead, pass its address:
 
 ````shell
 npm run screenshots -- --base=http://localhost:1313
