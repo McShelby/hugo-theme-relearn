@@ -1,7 +1,7 @@
 {{- $page := .page }}
 {{- $to := $page }}
 {{- $pageurl := partial "permalink.gotmpl" (dict "to" $page) }}
-{{- $lasturl := partial "permalink.gotmpl" (dict "to" $page) }}
+{{- $lasturl := $pageurl }}
 {{- if .dirOnly }}
   {{- $page = $page.Parent }}
   {{- $to = $page }}
@@ -15,7 +15,7 @@
     {{- if partial "_relearn/pageIsSpecial.gotmpl" $to }}
       {{- break }}
     {{- else if or $title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
-      {{- $breadcrumb = $breadcrumb | append $to }}
+      {{- $breadcrumb = $breadcrumb | append (dict "page" $to "title" $title) }}
     {{- end }}
   {{- else }}
     {{- break }}
@@ -29,13 +29,13 @@
 {{- end }}
 {{- $depth := 0 }}
 {{- range $i, $e := $breadcrumbReversed }}
-  {{- $to := $e }}
+  {{- $to := $e.page }}
   {{- $depth = add $depth 1 }}
   {{- $class := "" }}
   {{- if and (eq $depth 1) site.Params.disableRootBreadcrumb }}
     {{- $class = "a11y-only" }}
   {{- end }}
-  {{- $title := partial "title.gotmpl" (dict "page" $to "linkTitle" true) }}
+  {{- $title := $e.title }}
   {{- $url := partial "permalink.gotmpl" (dict "to" $to) }}
   {{- $isPage := eq $url $pageurl }}
   {{- $isLast := eq $url $lasturl }}
