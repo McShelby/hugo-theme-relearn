@@ -220,6 +220,27 @@ A site's file is checked against the build of that site, so what the docs provok
 
 These baselines record outstanding work, not noise to be silenced. Adding an entry means consciously accepting a defect, so delete it as soon as the underlying issue is fixed and let a regression fail the suite again.
 
+## Building a Site Outside the Suite
+
+A site that is not a case - a user's site attached to an issue, say - can still be built the way the suite would build it. Install the tool once as a global command:
+
+````shell
+cd hugo-theme-relearn-infra
+npm install -g .
+````
+
+The global command links to the checkout, so it always runs the current state of the infra repository. Then run it from the site's directory, the one holding `content/`:
+
+````shell
+test-hugo
+test-hugo min
+test-hugo 0.150.0
+````
+
+The argument selects the Hugo version through hvm, defaulting to `latest`. The theme's `testing` configuration is layered onto the site's own, so the output is deterministic, and the result lands in a `public.<theme version>+hugo.<hugo version>` directory inside the site. Beside the generated files it holds `metrics.log`, Hugo's log with template metrics, and `dir.log`, a list of every generated file - so two runs against different theme or Hugo versions diff directly.
+
+Nothing is compared or stored; reading the difference is up to you.
+
 ## Continuous Integration
 
 This repository runs the suite on every branch and every pull request, and nightly against the latest Hugo release - which is how a Hugo change that breaks the theme is found in CI rather than in an issue report. The infra repository runs nothing; one run tests the pair, and this is where it happens.

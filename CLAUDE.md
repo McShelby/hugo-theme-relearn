@@ -109,6 +109,21 @@ npm ci
 npm run fontversion
 ```
 
+### Test Hugo Tool
+
+Builds any site with the theme in the `testing` environment and a chosen Hugo
+version (`latest` by default, `min`, or a version number), writing output, log
+and template metrics into `public.<theme version>+hugo.<hugo version>/` inside
+the site. Install it once as a global command, then run it from the site's
+directory:
+
+```bash
+cd ../hugo-theme-relearn-infra
+npm install -g .
+cd <site>
+test-hugo min
+```
+
 ## Architecture
 
 ### Directory Structure
