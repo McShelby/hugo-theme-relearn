@@ -6,9 +6,8 @@ The theme comes with a reasonably configured topbar. You can learn how to [confi
 
 Nevertheless, your requirements may differ from this configuration. Luckily, the theme has you covered as the topbar, its buttons, and the functionality behind these buttons are fully configurable by you.
 
-{{% notice tip %}}
-All mentioned file names below can be clicked and show you the implementation for a better understanding.
-{{% /notice %}}
+> [!tip]
+> All mentioned file names below can be clicked and show you the implementation for a better understanding.
 
 ## Areas
 
