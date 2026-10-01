@@ -62,12 +62,11 @@ Important notes:
 
 See the `math`, `mermaid`, and `openapi` shortcodes for examples.
 
-{{% notice note %}}
-For advanced customization, you can use the dependency loader in your own partials:
-
-````go
-{{- partial "dependencies.html" (dict "page" . "location" "mylocation") }}
-````
-{{% /notice %}}
+> [!note]
+> For advanced customization, you can use the dependency loader in your own partials:
+>
+> ````go
+> {{- partial "dependencies.html" (dict "page" . "location" "mylocation") }}
+> ````
 
 Give a unique name for the `location` parameter when you call it, so you can distinguish your loaders behavior depending on the location it was called from.

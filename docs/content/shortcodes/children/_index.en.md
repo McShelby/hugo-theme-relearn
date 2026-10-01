@@ -10,11 +10,10 @@ title = 'Children'
   hidden = true
 +++
 
-{{% notice warning %}}
-This shortcode is deprecated in favor of the new [`pages` shortcode](shortcodes/pages). See [migration instructions](#migration) below.
-
-The examples on this page were removed.
-{{% /notice %}}
+> [!warning]
+> This shortcode is deprecated in favor of the new [`pages` shortcode](shortcodes/pages). See [migration instructions](#migration) below.
+>
+> The examples on this page were removed.
 
 The `children` shortcode lists child pages in various layouts.
 

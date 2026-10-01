@@ -32,7 +32,7 @@ relativeURLs = false
 
 If you are still using Hugo's `relref` shortcode (which you shouldn't), you will need [further configuration](configuration/content/linking#patching-the-relref-shortcode).
 
-> [!WARNING]
+> [!warning]
 > Don't use a `baseURL` with a subdirectory and `relativeURLs=true` together. [Hugo doesn't apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130) in this case. If you need both, generate your site twice with different settings into separate directories.
 
 ### Private Web Server (LAN)

@@ -50,7 +50,7 @@ alwaysopen = false
 collapsibleMenu = true
 {{< /multiconfig >}}
 
-> [!WARNING]
+> [!warning]
 > Using this option may cause degraded build performance by slowing down your build process.
 >
 > This is usually the case for menus with many entries and happens for page menus as well as for Hugo menus.

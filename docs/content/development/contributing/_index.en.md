@@ -36,13 +36,13 @@ Following is an incomplete list of some of the used conventional commit types. B
 | build      | a11y       | favicon         | attachments |
 | browser    | archetypes | search          | badge       |
 | chore      | alias      | menu            | button      |
-| docs       | generator  | history         | children    |
-| shortcodes | i18n       | scrollbar       | expand      |
-| theme      | mobile     | nav             | icon        |
-|            | print      | toc             | include     |
-|            | rss        | clipboard       | math        |
-|            | variant    | syntaxhighlight | mermaid     |
-|            |            | boxes           | notice      |
+| docs       | generator  | history         | callout     |
+| shortcodes | i18n       | scrollbar       | children    |
+| theme      | mobile     | nav             | expand      |
+|            | print      | toc             | icon        |
+|            | rss        | clipboard       | include     |
+|            | variant    | syntaxhighlight | math        |
+|            |            | boxes           | mermaid     |
 |            |            |                 | openapi     |
 |            |            |                 | piratify    |
 |            |            |                 | siteparam   |

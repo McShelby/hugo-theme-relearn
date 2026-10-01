@@ -43,11 +43,10 @@ search.index.URL = 'omnisearchindex.js'
 search.page.URL = 'omnisearch'
 {{< /multiconfig >}}
 
-{{% notice note %}}
-You only need to change these if you have own content created for those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
-
-Check for duplicate URLs by running `hugo --printPathWarnings`.
-{{% /notice %}}
+> [!note]
+> You only need to change these if you have own content created for those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
+>
+> Check for duplicate URLs by running `hugo --printPathWarnings`.
 
 ## Search Adapter / Engine
 
@@ -83,9 +82,8 @@ search.adapter.params.additionalContentLanguage = [ "en" ]
 
 You can add multiple languages to this array.
 
-{{% notice note %}}
-Use the base language code. For example, if your page is using `zh-CN`, add `zh` to this parameter.
-{{% /notice %}}
+> [!note]
+> Use the base language code. For example, if your page is using `zh-CN`, add `zh` to this parameter.
 
 ### Experimental Adapters
 

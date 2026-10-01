@@ -56,7 +56,7 @@ mermaidZoom = true
 
 You can overwrite the settings by providing a JSON object in `mermaidInitialize`. See [Mermaid's documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
 
-> [!NOTE]
+> [!note]
 > Using the `theme` setting in the initialization options is unsupported. To set the theme globally edit the `--MERMAID-theme` variable of your [color variant](configuration/branding/colors/#modifying-variants).
 
 Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.

@@ -14,11 +14,10 @@ The theme is developed across two repositories.
 
 The rule for deciding where something belongs is a single question: **does somebody installing the theme need this file?** If not, it belongs in the infra repository - unless it can only act from the theme repository. GitHub runs a workflow only in the repository holding it, and a git hook only fires on the checkout it sits in, so those stay put, along with the actions those workflows call.
 
-{{% notice style="important" title="Where to report" %}}
-Open issues in the [theme repository](https://github.com/McShelby/hugo-theme-relearn/issues), even when they concern the tests or the tooling.
-
-Issues, milestones and releases are all tracked there, and a release is cut from a milestone in that repository. A second tracker would split that history apart.
-{{% /notice %}}
+> [!important] Where to report
+> Open issues in the [theme repository](https://github.com/McShelby/hugo-theme-relearn/issues), even when they concern the tests or the tooling.
+>
+> Issues, milestones and releases are all tracked there, and a release is cut from a milestone in that repository. A second tracker would split that history apart.
 
 ## Why the Split
 
@@ -44,9 +43,8 @@ That serves the documentation site, built with the theme itself, so your changes
 
 This is enough for most changes. If that is what you came to do, stop here.
 
-{{% notice style="note" %}}
-You cannot run the test suite in this setup, so your change gets verified by CI rather than by you. Take the second setup if you want the answer before pushing.
-{{% /notice %}}
+> [!note]
+> You cannot run the test suite in this setup, so your change gets verified by CI rather than by you. Take the second setup if you want the answer before pushing.
 
 ### The Full Setup
 

@@ -199,8 +199,7 @@ The following parameters are available in this partial:
 versionIndexURL = 'myversionindex.js'
 {{< /multiconfig >}}
 
-{{% notice note %}}
-You only need to change these if you have other own content created for those URLs.
-
-Check for duplicate URLs by running `hugo --printPathWarnings`.
-{{% /notice %}}
+> [!note]
+> You only need to change these if you have other own content created for those URLs.
+>
+> Check for duplicate URLs by running `hugo --printPathWarnings`.

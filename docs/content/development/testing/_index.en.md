@@ -125,9 +125,8 @@ A full regeneration also prunes: a stored result no case produces any more is de
 
 Commit the regenerated output together with the change that caused it, never as a commit of its own - otherwise the next person cannot tell which change produced which output.
 
-{{% notice style="warning" %}}
-The resulting diff **is** the test result. Read it before committing. An unreviewed regeneration turns the suite from a safety net into a rubber stamp.
-{{% /notice %}}
+> [!warning]
+> The resulting diff **is** the test result. Read it before committing. An unreviewed regeneration turns the suite from a safety net into a rubber stamp.
 
 If the change spans both repositories, give both branches the same name; see [Developing](development/developing#working-across-both-repositories).
 

@@ -33,6 +33,5 @@ For example in this docs the [_Categories_ taxonomy](categories) does not show a
 
 For example in this docs the [term pages](categories/explanation) of the _Categories_ taxonomy do not show their breadcrumbs like in the default but the description of the page.
 
-{{% notice note %}}
-Before the `pages` shortcode existed, these parameters were set in the `children` front matter. It is still honored as long as the deprecated [`children` shortcode](shortcodes/children#migration) exists.
-{{% /notice %}}
+> [!note]
+> Before the `pages` shortcode existed, these parameters were set in the `children` front matter. It is still honored as long as the deprecated [`children` shortcode](shortcodes/children#migration) exists.
