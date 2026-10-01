@@ -21,7 +21,7 @@ Some of the key benefits are:
 John Gruber, the author of Markdown, puts it like this:
 
 > The overriding design goal for Markdown's formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it's been marked up with tags or formatting instructions. While Markdown's syntax has been influenced by several existing text-to-HTML filters, the single biggest source of inspiration for Markdown's syntax is the format of plain text email.
-> <cite>John Gruber</cite>
+{author="John Gruber"}
 
 > [!tip]
 > {{% icon bookmark %}} Bookmark this page for easy future reference!
@@ -139,6 +139,23 @@ Blockquotes can also be nested.
 > > > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 > >
 > > Mauris sit amet ligula egestas, feugiat metus tincidunt, luctus libero. Donec congue finibus tempor. Vestibulum aliquet sollicitudin erat, ut aliquet purus posuere luctus.
+
+### Quotations with Attribution
+
+{{% badge style="relearn" %}}Relearn{{% /badge %}} You can attribute a quotation with [Markdown attributes](https://gohugo.io/render-hooks/blockquotes/#attributes) in a line following the blockquote. Use `author` for the person quoted and `source` for the title of the work the quotation is taken from. Both are optional, are displayed below the quotation and may contain Markdown itself.
+
+With `href` you can give the address the quotation is taken from. It turns the displayed author and source into a link and is written to the `cite` attribute of the quotation for machines to read. It is resolved like any other link, so it can also point to a page of your site.
+
+This requires `markup.goldmark.parser.attribute.block=true` in your `hugo.toml`. The attributes are ignored for the alerts and callouts below.
+
+````md
+> Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula.
+{author="Marcus Tullius Cicero" source="De finibus bonorum et malorum" href="https://en.wikipedia.org/wiki/De_finibus_bonorum_et_malorum"}
+````
+
+> [!example]
+> > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula.
+> {author="Marcus Tullius Cicero" source="De finibus bonorum et malorum" href="https://en.wikipedia.org/wiki/De_finibus_bonorum_et_malorum"}
 
 ### GitHub Alerts
 

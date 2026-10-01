@@ -20,7 +20,12 @@
     "style"    $alerttype
     "title"    $alerttitle
   ) }}
-{{ else -}}
-<blockquote>
-{{ $text | safeHTML }}</blockquote>
+{{ else }}
+  {{- partial "shortcodes/blockquote.html" (dict
+    "page"    .Page
+    "author"  .Attributes.author
+    "content" $text
+    "href"    .Attributes.href
+    "source"  .Attributes.source
+  ) }}
 {{ end }}
