@@ -106,9 +106,7 @@
         {{ if $link }}</form>{{ end }}</search>
 {{- end }}
 
-{{- if or (eq $location "default") .Store.Get "hasSearch" }}
-  {{- if not $disableSearchIndex }}
-    {{- $dep := printf "dependencies/search-%s.html" $adapter }}
-    {{- partial $dep (dict "page" $page "location" $location) }}
-  {{- end }}
+{{- if not $disableSearchIndex }}
+  {{- $dep := printf "dependencies/search-%s.html" $adapter }}
+  {{- partial $dep (dict "page" $page "location" $location) }}
 {{- end }}

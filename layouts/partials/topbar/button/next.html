@@ -8,7 +8,7 @@
 		{{- if eq (.Language.Direction | default (T "Reading-direction") | default "ltr") "rtl" }}
 			{{- $endarrow = "🡐" }}
 		{{- end }}
-        {{- $next := partialCached "_relearn/pageNext.gotmpl" . .Path }}
+        {{- $next := partial "_relearn/pageNext.gotmpl" . }}
 		{{- $nextTitle := partial "title.gotmpl" (dict "page" $next "outputFormat" "html") }}
 		{{- $href := "" }}
 		{{- with (and $next $next.Path) }}
