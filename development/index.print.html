@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+f0096ea8c391a3404fe56c49eff0898dc5c9ae62">
+    <meta name="generator" content="Relearn 9.1.0+75b3bd9e53d94764438202b63cb261cf04c1c29b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="This chapter contains information only needed for development and maintaining the theme.">
     <meta name="author" content="Sören Weber">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.ba9a1325a1ddd84316ecab5318be8cc00eecf4607f9d7c215d3edaf04c3fdeda.js"
+      "indexFile": "searchindex.en.min.0f217f9f514c771a7f8cb3e2896142ea780147fb4c369238e308743dbb078cfb.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -390,11 +390,11 @@
 <h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Optional, and independent of which setup you chose - the hooks live in the theme repository, in the <code>.githooks</code> root folder. Documentation for each hook is contained in each file.</p>
 <p>The <code>post-commit</code> hook updates the version number on each commit, which is what makes a build from <code>main</code> distinguishable from a release when debugging user reports. Nothing depends on you having it.</p>
-<div class="tab-panel" data-tab-group="R-tabs-1a97029e2457d2be57e28caadf611e67">
+<div class="tab-panel" data-tab-group="R-tabs-380afaf0a43609255328c51d1f0ea848">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-3fcf32de63ff583205db47f33323834b" aria-expanded="true"
+      aria-controls="R-tab-id-177501e665065979b069b565b132e659" aria-expanded="true"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -403,7 +403,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-3fcf32de63ff583205db47f33323834b"
+      id="R-tab-id-177501e665065979b069b565b132e659"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -696,6 +696,16 @@
 </table>
 <p>A site&rsquo;s file is checked against the build of that site, so what the docs provoke applies wherever the docs are built. Each entry is a substring; a warning containing it is accepted.</p>
 <p>These baselines record outstanding work, not noise to be silenced. Adding an entry means consciously accepting a defect, so delete it as soon as the underlying issue is fixed and let a regression fail the suite again.</p>
+<h2 id="building-a-site-outside-the-suite">Building a Site Outside the Suite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>A site that is not a case - a user&rsquo;s site attached to an issue, say - can still be built the way the suite would build it. Install the tool once as a global command:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
+</span></span><span class="line"><span class="cl">npm install -g .</span></span></code></pre></div>
+<p>The global command links to the checkout, so it always runs the current state of the infra repository. Then run it from the site&rsquo;s directory, the one holding <code>content/</code>:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">test-hugo
+</span></span><span class="line"><span class="cl">test-hugo min
+</span></span><span class="line"><span class="cl">test-hugo 0.150.0</span></span></code></pre></div>
+<p>The argument selects the Hugo version through hvm, defaulting to <code>latest</code>. The theme&rsquo;s <code>testing</code> configuration is layered onto the site&rsquo;s own, so the output is deterministic, and the result lands in a <code>public.&lt;theme version&gt;+hugo.&lt;hugo version&gt;</code> directory inside the site. Beside the generated files it holds <code>metrics.log</code>, Hugo&rsquo;s log with template metrics, and <code>dir.log</code>, a list of every generated file - so two runs against different theme or Hugo versions diff directly.</p>
+<p>Nothing is compared or stored; reading the difference is up to you.</p>
 <h2 id="continuous-integration">Continuous Integration<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>This repository runs the suite on every branch and every pull request, and nightly against the latest Hugo release - which is how a Hugo change that breaks the theme is found in CI rather than in an issue report. The infra repository runs nothing; one run tests the pair, and this is where it happens.</p>
 <p>That is why a change spanning both repositories is pushed to infra first, then here, and why a change to the suite alone has to be started by hand: see <a href="/hugo-theme-relearn/development/developing/index.html#working-across-both-repositories">Developing</a>.</p>
@@ -987,11 +997,11 @@
 <p><strong>Remarks</strong>:</p>
 <p>The locations are mandatory due to Hugo&rsquo;s theme site builder.</p>
 <p><strong>Preview</strong> <code>images/screenshot.png</code>:</p>
-<p><a href="#R-image-c6c8910884269bb6c88c41f0f68d5a35" class="lightbox-link" id="R-image-c6c8910884269bb6c88c41f0f68d5a35-link"><img alt="Screenshot" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1500"></a>
-<a href="#R-image-c6c8910884269bb6c88c41f0f68d5a35-link" class="lightbox-back" id="R-image-c6c8910884269bb6c88c41f0f68d5a35"><img alt="Screenshot" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-ecde2bc8d00d89978e4824cb63f68989" class="lightbox-link" id="R-image-ecde2bc8d00d89978e4824cb63f68989-link"><img alt="Screenshot" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1500"></a>
+<a href="#R-image-ecde2bc8d00d89978e4824cb63f68989-link" class="lightbox-back" id="R-image-ecde2bc8d00d89978e4824cb63f68989"><img alt="Screenshot" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25"></a></p>
 <p><strong>Preview</strong> <code>images/tn.png</code>:</p>
-<p><a href="#R-image-2742c48c04013db52eb3b8480ea285a3" class="lightbox-link" id="R-image-2742c48c04013db52eb3b8480ea285a3-link"><img alt="tn" class="bg-white border lazy lightbox figure-image" height="600" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="900"></a>
-<a href="#R-image-2742c48c04013db52eb3b8480ea285a3-link" class="lightbox-back" id="R-image-2742c48c04013db52eb3b8480ea285a3"><img alt="tn" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-e43b7e052d8f3bda2aa6e97d469c860a" class="lightbox-link" id="R-image-e43b7e052d8f3bda2aa6e97d469c860a-link"><img alt="tn" class="bg-white border lazy lightbox figure-image" height="600" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="900"></a>
+<a href="#R-image-e43b7e052d8f3bda2aa6e97d469c860a-link" class="lightbox-back" id="R-image-e43b7e052d8f3bda2aa6e97d469c860a"><img alt="tn" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25"></a></p>
 <h2 id="hero-image">Hero Image<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p><strong>Content</strong>:</p>
 <p>Show the <a href="/hugo-theme-relearn/development/screenshooting/index.html#demo-screenshot">Demo Screenshot</a> page on different devices and different themes. Composition of the different device screenshots into a template.</p>
@@ -1016,8 +1026,8 @@
 <li>From original template resize to <em>3000 x 1500</em> offset y: <em>-330</em>, scale to <em>1280 x 640</em> and save as <code>images/hero.png</code></li>
 </ul>
 <p><strong>Preview</strong> <code>images/hero.png</code>:</p>
-<p><a href="#R-image-908072f72839d00ce45d73cd08f3493a" class="lightbox-link" id="R-image-908072f72839d00ce45d73cd08f3493a-link"><img alt="Hero" class="bg-white border lazy lightbox figure-image" height="640" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1280"></a>
-<a href="#R-image-908072f72839d00ce45d73cd08f3493a-link" class="lightbox-back" id="R-image-908072f72839d00ce45d73cd08f3493a"><img alt="Hero" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-e8b8a06d0b0eb450e80bb358cf9dae5e" class="lightbox-link" id="R-image-e8b8a06d0b0eb450e80bb358cf9dae5e-link"><img alt="Hero" class="bg-white border lazy lightbox figure-image" height="640" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1280"></a>
+<a href="#R-image-e8b8a06d0b0eb450e80bb358cf9dae5e-link" class="lightbox-back" id="R-image-e8b8a06d0b0eb450e80bb358cf9dae5e"><img alt="Hero" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25"></a></p>
 <h2 id="shortcode-feature-images">Shortcode Feature Images<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>The feature images for the <a href="/hugo-theme-relearn/shortcodes/index.html">shortcodes</a> are generated automatically via a <a href="https://nodejs.org" rel="external" target="_self">Node.js</a> script.</p>
 <p>It lives in the <a href="/hugo-theme-relearn/development/developing/index.html">infra repository</a> inside of the <code>tools/screenshots</code> directory. All following commands need to be executed from the root of that repository.</p>

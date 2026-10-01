@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+f0096ea8c391a3404fe56c49eff0898dc5c9ae62">
+    <meta name="generator" content="Relearn 9.1.0+75b3bd9e53d94764438202b63cb261cf04c1c29b">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How to run and extend the automated test suite">
     <meta name="author" content="Sören Weber">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Testing :: Hugo Relearn Theme">
     <meta itemprop="description" content="How to run and extend the automated test suite">
-    <meta itemprop="wordCount" content="1865">
+    <meta itemprop="wordCount" content="2030">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,Howto">
     <title>Testing :: Hugo Relearn Theme</title>
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.ba9a1325a1ddd84316ecab5318be8cc00eecf4607f9d7c215d3edaf04c3fdeda.js"
+      "indexFile": "searchindex.en.min.0f217f9f514c771a7f8cb3e2896142ea780147fb4c369238e308743dbb078cfb.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -126,6 +126,7 @@
         <li><a href="#accepting-a-known-warning">Accepting a Known Warning</a></li>
       </ul>
     </li>
+    <li><a href="#building-a-site-outside-the-suite">Building a Site Outside the Suite</a></li>
     <li><a href="#continuous-integration">Continuous Integration</a></li>
   </ul>
 </nav> 
@@ -431,6 +432,16 @@
 </table>
 <p>A site&rsquo;s file is checked against the build of that site, so what the docs provoke applies wherever the docs are built. Each entry is a substring; a warning containing it is accepted.</p>
 <p>These baselines record outstanding work, not noise to be silenced. Adding an entry means consciously accepting a defect, so delete it as soon as the underlying issue is fixed and let a regression fail the suite again.</p>
+<h2 id="building-a-site-outside-the-suite">Building a Site Outside the Suite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
+<p>A site that is not a case - a user&rsquo;s site attached to an issue, say - can still be built the way the suite would build it. Install the tool once as a global command:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
+</span></span><span class="line"><span class="cl">npm install -g .</span></span></code></pre></div>
+<p>The global command links to the checkout, so it always runs the current state of the infra repository. Then run it from the site&rsquo;s directory, the one holding <code>content/</code>:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">test-hugo
+</span></span><span class="line"><span class="cl">test-hugo min
+</span></span><span class="line"><span class="cl">test-hugo 0.150.0</span></span></code></pre></div>
+<p>The argument selects the Hugo version through hvm, defaulting to <code>latest</code>. The theme&rsquo;s <code>testing</code> configuration is layered onto the site&rsquo;s own, so the output is deterministic, and the result lands in a <code>public.&lt;theme version&gt;+hugo.&lt;hugo version&gt;</code> directory inside the site. Beside the generated files it holds <code>metrics.log</code>, Hugo&rsquo;s log with template metrics, and <code>dir.log</code>, a list of every generated file - so two runs against different theme or Hugo versions diff directly.</p>
+<p>Nothing is compared or stored; reading the difference is up to you.</p>
 <h2 id="continuous-integration">Continuous Integration<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>This repository runs the suite on every branch and every pull request, and nightly against the latest Hugo release - which is how a Hugo change that breaks the theme is found in CI rather than in an issue report. The infra repository runs nothing; one run tests the pair, and this is where it happens.</p>
 <p>That is why a change spanning both repositories is pushed to infra first, then here, and why a change to the suite alone has to be started by hand: see <a href="/hugo-theme-relearn/development/developing/index.html#working-across-both-repositories">Developing</a>.</p>
