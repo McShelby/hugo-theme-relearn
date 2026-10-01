@@ -11,4 +11,8 @@ site published below a subdirectory, so only the name of the result is of use an
 the page prepends its own path.
 */}}
 {{- $res := resources.Get .template | resources.ExecuteAsTemplate .url site.Home }}
+{{- /* execute the template here rather than lazily; without asset busting the
+  returned resource still holds it unexecuted, and `--templateMetricsHints`
+  executing it while hashing the return value deadlocks Hugo */}}
+{{- $_ := $res.Content }}
 {{- return partial "asset.gotmpl" $res }}
