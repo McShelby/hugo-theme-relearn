@@ -38,7 +38,7 @@ Following is an incomplete list of some of the used conventional commit types. B
 | chore      | alias      | menu            | button      |
 | docs       | generator  | history         | callout     |
 | shortcodes | i18n       | scrollbar       | children    |
-| theme      | mobile     | nav             | expand      |
+| theme      | mobile     | nav             | details     |
 |            | print      | toc             | icon        |
 |            | rss        | clipboard       | include     |
 |            | variant    | syntaxhighlight | math        |

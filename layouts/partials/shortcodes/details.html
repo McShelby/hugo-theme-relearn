@@ -4,10 +4,16 @@
 {{- else if in (slice "true" true 1) .open }}
     {{- $open = true }}
 {{- end }}
+{{- /* Hugo's own `details` shortcode renders its content as Markdown in either notation */}}
+{{- /* `raw` writes it as it is, which the `expand` shortcode and nested shortcodes rely on */}}
+{{- $content := .content | default "" }}
+{{- if not (in (slice "true" true 1) .raw) }}
+    {{- $content = $content | .page.RenderString (dict "display" "block") }}
+{{- end }}
 {{- partial "shortcodes/callout.html" (dict
   "page"     .page
-  "class"    .class
-  "content"  .content
+  "class"    (trim (printf "callout %s" (.class | default "")) " ")
+  "content"  $content
   "expanded" $open
   "groupid"  .name
   "style"    "transparent"

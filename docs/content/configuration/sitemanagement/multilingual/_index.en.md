@@ -10,35 +10,34 @@ The Relearn theme works with [Hugo's multilingual mode](https://gohugo.io/conten
 
 It supports many languages, including right-to-left languages.
 
-{{% expand "Supported languages" %}}
-- Arabic
-- Simplified Chinese
-- Traditional Chinese
-- Czech
-- Danish
-- Dutch
-- English
-- Finnish
-- French
-- German
-- Hindi
-- Hungarian
-- Indonesian
-- Italian
-- Japanese
-- Korean
-- Persian
-- Polish
-- Portuguese
-- Brazilian Portuguese
-- Romanian
-- Russian
-- Spanish
-- Swahili
-- Turkish
-- Ukrainian
-- Vietnamese
-{{% /expand %}}
+> [!details]- Supported languages
+> - Arabic
+> - Simplified Chinese
+> - Traditional Chinese
+> - Czech
+> - Danish
+> - Dutch
+> - English
+> - Finnish
+> - French
+> - German
+> - Hindi
+> - Hungarian
+> - Indonesian
+> - Italian
+> - Japanese
+> - Korean
+> - Persian
+> - Polish
+> - Portuguese
+> - Brazilian Portuguese
+> - Romanian
+> - Russian
+> - Spanish
+> - Swahili
+> - Turkish
+> - Ukrainian
+> - Vietnamese
 
 ## Translation by File Name
 

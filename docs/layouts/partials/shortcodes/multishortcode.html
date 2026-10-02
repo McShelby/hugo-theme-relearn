@@ -237,11 +237,22 @@
       {{- $codes = $codes | append (index $params "content") }}
 
     {{- else if eq $definedFormat.name "markdown-blockquote" }}
+      {{- /* a shortcode whose parameters are named differently from the ones of a callout maps them, and may preset some */}}
+      {{- $blockquoteNames := dict }}
+      {{- range $parameter := $definedProperties.parameters }}
+        {{- with index $parameter "markdown-blockquote-name" }}
+          {{- $blockquoteNames = merge $blockquoteNames (dict $parameter.name .) }}
+        {{- end }}
+      {{- end }}
+      {{- $blockquoteParams := index $definedProperties "markdown-blockquote" | default dict }}
+      {{- range $k, $v := $params }}
+        {{- $blockquoteParams = merge $blockquoteParams (dict (index $blockquoteNames $k | default $k) $v) }}
+      {{- end }}
       {{- $expanded := "" }}
-      {{- $style := cond (isset $params "expanded") "transparent" "default" }}
+      {{- $style := cond (isset $blockquoteParams "expanded") "transparent" "default" }}
       {{- $title := "" }}
       {{- $attributes := slice }}
-      {{- range $k, $v := $params }}
+      {{- range $k, $v := $blockquoteParams }}
         {{- if eq $k "content" }}
           {{- $content = replaceRE `(\r\n|\r|\n)` "\n> " (printf "\n%s" (trim $v "\n\r")) }}
         {{- else if eq $k "expanded" }}

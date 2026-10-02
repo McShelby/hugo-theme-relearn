@@ -52,6 +52,9 @@
 {{ if $groupid }}
   {{- $params = dict "name" $groupid | merge $params }}
 {{- end }}
+{{- with .hint }}
+  {{- $params = dict "title" . | merge $params }}
+{{- end }}
 
 {{- with $page }}
   {{- if or $icon $title $hasContent -}}
@@ -69,7 +72,7 @@
     <span class="a11y-only">{{ T "Details" }}</span>{{ end }}
   </summary>
     {{- if $hasContent }}
-  <div class="box-content">
+  <div class="box-content"{{ if $.hint }} title=""{{ end }}>
 {{ $content | safeHTML }}
   </div>
     {{- end }}

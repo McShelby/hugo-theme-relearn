@@ -212,7 +212,7 @@ Common commit types:
 - **Common:** build, browser, chore, docs, shortcodes, theme
 - **Features:** a11y, archetypes, alias, generator, i18n, mobile, print, rss, variant
 - **Structure:** favicon, search, menu, history, scrollbar, nav, toc, clipboard, syntaxhighlight, boxes
-- **Shortcodes:** attachments, badge, button, callout, children, expand, icon, include, math, mermaid, openapi, piratify, siteparam, tabs
+- **Shortcodes:** attachments, badge, button, callout, children, details, icon, include, math, mermaid, openapi, piratify, siteparam, tabs
 
 Example: `search: improve Orama integration for multilingual sites`
 

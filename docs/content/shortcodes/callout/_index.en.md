@@ -27,7 +27,7 @@ content: |
   It is all about the boxes.
 {{% /multishortcode %}}
 
-If you want to display a transparent expandable box without any border, you can also use the [`expand` shortcode](/shortcodes/expand).
+If you want to display a transparent expandable box without any border, you can also use the [`details` shortcode](/shortcodes/details).
 
 ### Parameters
 
@@ -39,6 +39,7 @@ If you want to display a transparent expandable box without any border, you can 
 | **title**             | 2        | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **icon**              | 3        | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **expanded**          |          | _&lt;empty&gt;_ | Whether to draw an expander and how the content is displayed.<br><br>- _&lt;empty&gt;_: no expander is drawn and the content is permanently shown<br>- `true`: the expander is drawn and the content is initially shown<br>- `false`: the expander is drawn and the content is initially hidden |
+| **hint**              |          | _&lt;empty&gt;_ | Tooltip for the title of the box. |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_ | Arbitrary text to be displayed in box. |
 
 ## Settings
@@ -67,7 +68,7 @@ Below is a [usage example](#user-defined-style).
 
 ### Markdown Attributes Configuration
 
-The first line of the Markdown syntax only has room for **style**, **title** and **expanded**. The parameters **color**, **icon** and **groupid** are written as [Markdown attributes](https://gohugo.io/render-hooks/blockquotes/#attributes) in a line following the callout instead, so Hugo's block attributes are required if you use one of them in Markdown syntax.
+The first line of the Markdown syntax only has room for **style**, **title** and **expanded**. The parameters **color**, **icon**, **groupid** and **hint** are written as [Markdown attributes](https://gohugo.io/render-hooks/blockquotes/#attributes) in a line following the callout instead, so Hugo's block attributes are required if you use one of them in Markdown syntax.
 
 {{< multiconfig file=hugo >}}
 [markup]
@@ -242,6 +243,18 @@ If you give multiple expandable boxes the same `groupid`, at most one will be op
   content: |
 
     Thank you!
+{{% /multishortcode %}}
+
+#### With Hint
+
+Mouse-over the title of the box to see the hint.
+
+{{% multishortcode name="callout" %}}
+style: "tip"
+hint: "Hugo is a static site generator"
+content: |
+
+  Built with Hugo.
 {{% /multishortcode %}}
 
 #### No Content or No Title
