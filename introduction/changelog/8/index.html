@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+1d520221f7728c6011d572e591af753ff7e5b81d">
+    <meta name="generator" content="Relearn 9.1.0+be2b1bebd417409e602dbec675fb70d318ca37c6">
     <meta name="description" content="8.3.0 (2025-11-27) Enhancements [feature][change] children: adjust image selection for cards #1169 [feature] toast: remove tooltip and replace it with toast #1166 [feature] anchor: use button implementation #1162 [feature] breadcrumbs: show title on mobile #1161 [feature] tree: accept native tree command output #1159 [feature] frontmatter: update snippets #1158 [feature] link: add checker for external links #964 Fixes [bug] anchor: don’t replace browser history with clicked anchor #1163 [bug] cards: description not showing if unsafe HTML is not allowed #1160 [bug] theme: fix invalid HTML #1156 Maintenance [task][dependencies] security: js-yaml #1168 [task] clipboard: use button implementation #1165 [task] mermaid: use button implementation #1164 [task] theme: switch to verified release commits #1157 [task] theme: remove .Scratch with .Store #948 8.2.0 (2025-11-01) Enhancements [feature] button: add more styling #1154 [feature] boxstyle: support style parameter as default for user defined styles #1149 [feature] i18n: add Danish translation #1148 [feature] topbar: introduce CSS color variables #863 Fixes [bug] mermaid: don’t ignore codefence zoom attribute #1150 Maintenance [task] build: make it build from any directory #1155 [task] code: regenerate chroma styles #1152 [task] test: switch to hvm #1151 8.1.1 (2025-10-05) Fixes [bug] cards: restore compat with Hugo 0.126.3 #1145 8.1.0 (2025-10-05) Enhancements [feature] tabs: improve a11y #1144 [feature] cards: create new card shortcode #1138 [feature][change] children: new presentation with cards #1124 Fixes [bug] history: fix checkmarks for canonifyURLs=true #1142 [bug] versioning: use consistent language in german translation #1139 [bug] version: translation text for “Version” is missing #1133 [bug] tabs: can’t toggle tabs with similar names #1132 Maintenance [task][change] linkeffects: make default externalLinkTarget behave like standard #1143 [task] alias: remove noindex #1137 8.0.1 (2025-09-11) Fixes [bug] search: improve readability of highlighted text #1125 [bug] search: fix searching of description with Orama engine #1115 Maintenance [task] task: fix release automation #1128 8.0.0 (2025-07-07) Enhancements [feature][change] theme: make H1 CSS inheritance reasonable #1111 [feature] search: mark each word of a multi word in-page search independently #1106 [feature] theme: optimize display of main heading on mobile #1100 [feature][change] theme: use Hugo’s default sort order if no ordersectionsby was set #1092 [feature][breaking] search: add more filtering options for results #407 Fixes [bug] breadcrumbs: fix spacing of separator #1108 [bug] openapi: fix duplicated baseURL for swagger-ui.css #1102 [bug] children: fix broken console warning #1099 [bug] clipboard: fix link when using special characters #1097 [bug] i18n: fix spelling mistake for spanish #1090 Maintenance [task] openapi: update swagger-ui to 5.26.1 #1114 [task] mermaid: update to 11.8.0 #1113 [task][breaking] theme: compatibility with Hugo 0.146.0 and newer #1086 [task] tree: simplify code #1085">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -34,7 +34,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.eadbe72a7b9ab94d1cfe3a63f128273d425d28cd97d95147f8be843af0c65dce.js"
+      "indexFile": "searchindex.en.min.ab49d96ad5c84d9a6d617cb5b302a83613b451cde3871cd55a4f7830feb89d07.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -46,7 +46,7 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.ab428e0a14c45e9484879499dbdc6bbd1bac8d4318870030005e4fd35c52ef13.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.09fc08f76169bd5ce54ab937deedc95c33b05bd9eead77f843584bd0acacd518.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-html.min.deb22930473c957c17489dd61bdb9bfff60f42e58230a0356b13fb73b6adbbfa.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
@@ -432,7 +432,7 @@
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/button/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/button/index.html">Button<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/callout/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/callout/index.html">Callout<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/cards/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/cards/index.html">Cards<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/expand/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/expand/index.html">Expand<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/details/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/details/index.html">Details<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/highlight/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/highlight/index.html">Highlight<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/icon/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/icon/index.html">Icon<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/include/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/include/index.html">Include<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -515,7 +515,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/1d520221f7728c6011d572e591af753ff7e5b81d" title="Relearn 9.1.0&#43;1d520221f7728c6011d572e591af753ff7e5b81d"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/be2b1bebd417409e602dbec675fb70d318ca37c6" title="Relearn 9.1.0&#43;be2b1bebd417409e602dbec675fb70d318ca37c6"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </div>
