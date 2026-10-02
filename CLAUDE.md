@@ -95,6 +95,7 @@ For development, a tool to automatically generate screenshots for the docs can b
 cd ../hugo-theme-relearn-infra
 npm ci
 npm run screenshots
+npm run screenshots -- --page=tabs,tree   # only the named shortcode pages
 ```
 
 ### Font Versions Tool

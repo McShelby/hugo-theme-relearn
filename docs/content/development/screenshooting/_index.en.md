@@ -103,4 +103,10 @@ The script serves the documentation itself on port 3132, captures the page of ev
 npm run screenshots -- --base=http://localhost:1313
 ````
 
+To capture only some of the pages, name their directories, separated by commas:
+
+````shell
+npm run screenshots -- --page=tabs,tree
+````
+
 Run this locally and commit the resulting images with the change that made them stale. The regenerated files land in your theme checkout, so they show up in `git status` alongside everything else.
