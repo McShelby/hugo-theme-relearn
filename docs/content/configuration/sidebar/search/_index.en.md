@@ -7,7 +7,7 @@ weight = 3
 +++
 
 > [!note]
-> The search term will be [stored in the reader's browser](configuration/sitemanagement/storedinformation) as long as it is present.
+> The search term will be [stored in the reader's browser](configuration/publishing/storedinformation) as long as it is present.
 
 ## Configure Search
 

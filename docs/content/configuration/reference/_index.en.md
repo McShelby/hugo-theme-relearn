@@ -2,7 +2,7 @@
 categories = ['reference']
 description = 'All configuration options for the Relearn theme'
 title = 'Options Reference'
-weight = 6
+weight = 7
 +++
 
 This page explains how to configure the Relearn theme in your `hugo.toml` file.

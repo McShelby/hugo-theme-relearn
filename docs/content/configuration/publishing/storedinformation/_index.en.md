@@ -2,7 +2,7 @@
 categories = ['explanation']
 description = "Information on what's stored on the reader's side"
 title = 'GDPR & Cookie Consent'
-weight = 5
+weight = 2
 +++
 
 The theme will store information in the reader's browser. Those are essential information and are considered to fall under the exception clause in [DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3)](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02002L0058-20091219#id-8b90d9c9-eb09-44f5-a58d-51d9cb3a50cd).

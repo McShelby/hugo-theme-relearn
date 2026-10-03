@@ -99,7 +99,7 @@ If the issue is not caused by a programming error in the themes own code, you ca
 
 ## SBOM
 
-Every third-party resource the project uses is declared in `docs/data/relearn/thirdparty.toml`. That file is the single source of truth behind the [credits](more/credits) page, the [SBOM](configuration/sitemanagement/sbom) at `sbom.cdx.json`, and several checks in the test suite.
+Every third-party resource the project uses is declared in `docs/data/relearn/thirdparty.toml`. That file is the single source of truth behind the [credits](more/credits) page, the [SBOM](configuration/publishing/sbom) at `sbom.cdx.json`, and several checks in the test suite.
 
 **When you vendor an update, change its `version` in the same commit that changes the files.** A version is knowable at the moment of vendoring and at no other time. Some of these bundles carry no version string at all, and the ones that do disagree about where to put it. Nothing can check it, which is why every component carries a digest of its files as well: a component that changed on disk without changing its `version` still shows up in the diff of `sbom.cdx.json`.
 

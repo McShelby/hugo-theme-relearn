@@ -27,7 +27,7 @@ npm test
 
 The parts run cheapest first and stop at the first failure, so a stale declaration fails at once rather than after a full round of Hugo builds. The whole suite is quick enough to run on every change.
 
-The checks are `tests/checks.js` and cover what the build layer cannot see: the runner's own configuration handling, the [dependency declaration](development/maintaining#sbom) - that it matches the vendored tree, and that every shipped component carries a license - and the properties the [SBOM](configuration/sitemanagement/sbom) promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is `npm run sbom`, a narrower question: whether the committed `sbom.cdx.json` is still what that declaration renders.
+The checks are `tests/checks.js` and cover what the build layer cannot see: the runner's own configuration handling, the [dependency declaration](development/maintaining#sbom) - that it matches the vendored tree, and that every shipped component carries a license - and the properties the [SBOM](configuration/publishing/sbom) promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is `npm run sbom`, a narrower question: whether the committed `sbom.cdx.json` is still what that declaration renders.
 
 Each part also runs alone, and those with something to write back do it under an `:update` name:
 

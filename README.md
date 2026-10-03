@@ -15,9 +15,9 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Versatile Usage**
   - [Responsive design for mobile devices](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/width)
   - [Looks nice on paper](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats) - if it has to
-  - [Usable offline with no external dependencies](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment#offline-usage)
-  - [Usable from your local file system without a web server](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/deployment#file-system) via `file://` protocol
-  - [Servable with a strict Content Security Policy](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/csp)
+  - [Usable offline with no external dependencies](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/deployment#offline-usage)
+  - [Usable from your local file system without a web server](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/deployment#file-system) via `file://` protocol
+  - [Servable with a strict Content Security Policy](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/csp)
   - [Integration with the VSCode Front Matter CMS extension](https://mcshelby.github.io/hugo-theme-relearn/introduction/tools#front-matter-cms) for on-premise CMS capabilities
 
 - **Customizable Appearance**
@@ -37,7 +37,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
   - [Comprehensive taxonomy support](https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/taxonomy)
   - [Versioning support](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/versioning)
   - [Social media integration](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/meta#social-media-images)
-  - [SBOM available](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/sbom)
+  - [SBOM available](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/sbom)
 
 - **Multilingual Support**
   - [Full right-to-left (RTL) language support](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/multilingual)

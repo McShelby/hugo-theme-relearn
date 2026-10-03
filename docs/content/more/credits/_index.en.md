@@ -20,7 +20,7 @@ Sincere thanks as well to [Mathieu Cornic](https://github.com/matcornic) for por
 
 Resources published with your site.
 
-The same list is available machine-readable as an [SBOM](configuration/sitemanagement/sbom).
+The same list is available machine-readable as an [SBOM](configuration/publishing/sbom).
 
 {{% thirdparty scope="theme" %}}
 

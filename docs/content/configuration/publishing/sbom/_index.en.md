@@ -2,7 +2,7 @@
 categories = ['explanation', 'howto']
 description = 'What the theme publishes with your site, as a CycloneDX SBOM'
 title = 'SBOM'
-weight = 9
+weight = 4
 +++
 
 The theme ships a [CycloneDX](https://cyclonedx.org/) 1.6 SBOM at `sbom.cdx.json`, listing every third-party resource it can publish with your site, each with a license, a SHA-256 digest of the files the theme ships and - where upstream publishes them - a version and a package URL.
