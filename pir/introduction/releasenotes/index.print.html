@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+0783efd2c2b01b738e0b62734b8c16b9f2f32896">
+    <meta name="generator" content="Relearn 9.1.0+81f9db17a57fbd248debc5f846edd32a6a66ef32">
     <meta name="description" content="What&#39;s new in this version">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.854c5290becf73f1f44439b3d9146c9fea6866bef14cdd576d795cb969d20e04.js"
+      "indexFile": "searchindex.pir.min.3953b6d567a4c62bc514b32c5e3d34a25c3ec4ea04c39dd3fa276a2f73e1c8b5.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -262,10 +262,10 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/resources/index.html"><code>resources</code> shortcode</a> has a new <code>pageref</code> parameter t' list th' resources o' another plank bundle.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme writes no inline JavaScript anymore, so yer ship can be served wit' a strict <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html">Rrrambl'n Security Policy</a>. On request, it also adds a <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html#subresource-integrity">subresource integrity</a> t' its scripts an' stylesheets. Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> an' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shorrrtcodes an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter t' run yer own code without inline JavaScript.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme writes no inline JavaScript anymore, so yer ship can be served wit' a strict <a href="/hugo-theme-relearn/pir/configuration/publishing/csp/index.html">Rrrambl'n Security Policy</a>. On request, it also adds a <a href="/hugo-theme-relearn/pir/configuration/publishing/csp/index.html#subresource-integrity">subresource integrity</a> t' its scripts an' stylesheets. Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> an' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shorrrtcodes an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter t' run yer own code without inline JavaScript.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme now ships a machine-read'ble <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, list'n every third-party resource it can publish wit' yer ship, each wit' a license, a digest o' th' files th' theme ships an' - whar' upstream publishes them - a version an' a package URL.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme now ships a machine-read'ble <a href="/hugo-theme-relearn/pir/configuration/publishing/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, list'n every third-party resource it can publish wit' yer ship, each wit' a license, a digest o' th' files th' theme ships an' - whar' upstream publishes them - a version an' a package URL.</p>
 </li>
 </ul>
 <hr>
@@ -279,11 +279,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-71fd87264f21be0dc0c4934b02a246eb">
+<div class="tab-panel" data-tab-group="R-tabs-e49833e8541de29057105caafd37f245">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-7e563b3dbf4ceaf442943b6e39cfe6a5" aria-expanded="true"
+      aria-controls="R-tab-id-65f8a8f2159b57c19bfbe8a3b963540f" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -292,7 +292,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7e563b3dbf4ceaf442943b6e39cfe6a5"
+      id="R-tab-id-65f8a8f2159b57c19bfbe8a3b963540f"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -338,21 +338,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-6cc88f6182ec7164a107159c8f0a35b7" aria-expanded="true"
+      aria-controls="R-tab-id-0a3ca0c59d2e9fbecb54b79cad520a13" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a060409f82d986353dd3f8981195ad8c" aria-expanded="false"
+      aria-controls="R-tab-id-cd6c8a8aafba3a3150cbef6eb0d76046" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-bc2fddc7c6e559e80ef7d1ec21287ccc" aria-expanded="false"
+      aria-controls="R-tab-id-b8537d8106db95823d8b39b765708678" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -361,7 +361,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6cc88f6182ec7164a107159c8f0a35b7"
+      id="R-tab-id-0a3ca0c59d2e9fbecb54b79cad520a13"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -369,7 +369,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-a060409f82d986353dd3f8981195ad8c"
+      id="R-tab-id-cd6c8a8aafba3a3150cbef6eb0d76046"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -377,7 +377,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-bc2fddc7c6e559e80ef7d1ec21287ccc"
+      id="R-tab-id-b8537d8106db95823d8b39b765708678"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -653,7 +653,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/7/index.html">ch
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <ul>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Informat'n was added t' th' docs about th' kind o' <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/storedinformation/index.html">data th' theme stores 'n th' readers browser</a>.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Informat'n was added t' th' docs about th' kind o' <a href="/hugo-theme-relearn/pir/configuration/publishing/storedinformation/index.html">data th' theme stores 'n th' readers browser</a>.</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' new <a href="/hugo-theme-relearn/pir/shortcodes/tree/index.html"><code>tree</code> shortcode</a> displays lists as nicely formatted trees wit' configur'ble ay'con an' ay'con color.</p>
@@ -819,7 +819,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/7/index.html">ch
 <h3 id="new-3">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <ul>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> As a fallout o' fix'n th' flash'n issue, ye can now minify th' bundled stylesheets by sett'n th' <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/stableoutput/index.html#disabling-assets-minification"><code>minify</code> parameter</a> 'n yer <code>hugo.toml</code>. Without configur'n this parameter, th' theme will minify th' stylesheets fer product'n (<code>hugo</code>) but not fer development (<code>hugo server</code>).</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> As a fallout o' fix'n th' flash'n issue, ye can now minify th' bundled stylesheets by sett'n th' <a href="/hugo-theme-relearn/pir/configuration/publishing/stableoutput/index.html#disabling-assets-minification"><code>minify</code> parameter</a> 'n yer <code>hugo.toml</code>. Without configur'n this parameter, th' theme will minify th' stylesheets fer product'n (<code>hugo</code>) but not fer development (<code>hugo server</code>).</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/callout/index.html"><code>notice</code> shortcode</a> was improved fer accessibility an' comes wit' a <a href="/hugo-theme-relearn/pir/shortcodes/callout/index.html#expandable-content-area-with-groupid">brand new parameter <code>groupid</code></a>.</p>
@@ -892,21 +892,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/7/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-d5104c3c050f7477594cf83b73558b99" aria-expanded="true"
+      aria-controls="R-tab-id-1a590f5bce9869914c5f07f56aed6e3d" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-ad65fe0e9e11b4f75ab0e32dd949e00a" aria-expanded="false"
+      aria-controls="R-tab-id-f47131fd0fc816826dcfcabba763f721" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d6ea1529ec02911c3a889573f8b529e5" aria-expanded="false"
+      aria-controls="R-tab-id-d9faffd0fd73dc47d2aae9e3ea4e783d" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -915,7 +915,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/7/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d5104c3c050f7477594cf83b73558b99"
+      id="R-tab-id-1a590f5bce9869914c5f07f56aed6e3d"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -924,7 +924,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/7/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-ad65fe0e9e11b4f75ab0e32dd949e00a"
+      id="R-tab-id-f47131fd0fc816826dcfcabba763f721"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -936,7 +936,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/7/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-d6ea1529ec02911c3a889573f8b529e5"
+      id="R-tab-id-d9faffd0fd73dc47d2aae9e3ea4e783d"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1107,21 +1107,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/6/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-f751822f58f9a02f59a496a6ddf140ec" aria-expanded="true"
+      aria-controls="R-tab-id-12385811f975a843bb7f05e67f04c454" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-f3ee2b9ac3a597e4db49b50cc0ce0f5a" aria-expanded="false"
+      aria-controls="R-tab-id-15a0c4ef5a48c091ff2fdb804e21e46c" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-166f5687c860530a97e3b34f153195ad" aria-expanded="false"
+      aria-controls="R-tab-id-a7bc6ddab56c53fcd0a2e88b7c84145a" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1130,7 +1130,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/6/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f751822f58f9a02f59a496a6ddf140ec"
+      id="R-tab-id-12385811f975a843bb7f05e67f04c454"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1139,7 +1139,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/6/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-f3ee2b9ac3a597e4db49b50cc0ce0f5a"
+      id="R-tab-id-15a0c4ef5a48c091ff2fdb804e21e46c"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1148,7 +1148,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/6/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-166f5687c860530a97e3b34f153195ad"
+      id="R-tab-id-a7bc6ddab56c53fcd0a2e88b7c84145a"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1369,21 +1369,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-00bcc437f229f612d1f1892606eb06cc" aria-expanded="true"
+      aria-controls="R-tab-id-9a335fe384ef4d248275eefef5c50482" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-92e103266826b22cecfc729f5debe605" aria-expanded="false"
+      aria-controls="R-tab-id-1427fde4ff66545ba70df0bc3bfd7ccb" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-7caf91324b13d163fabc2a4ce6ed5e6c" aria-expanded="false"
+      aria-controls="R-tab-id-a0a62843a19d6a3f493cf7fb7833e6c9" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1392,7 +1392,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-00bcc437f229f612d1f1892606eb06cc"
+      id="R-tab-id-9a335fe384ef4d248275eefef5c50482"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1401,7 +1401,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-92e103266826b22cecfc729f5debe605"
+      id="R-tab-id-1427fde4ff66545ba70df0bc3bfd7ccb"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1410,7 +1410,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-7caf91324b13d163fabc2a4ce6ed5e6c"
+      id="R-tab-id-a0a62843a19d6a3f493cf7fb7833e6c9"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1428,21 +1428,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-6f3187dcb090294c13bae46334497da2" aria-expanded="true"
+      aria-controls="R-tab-id-8c116804b0c5df4603821e8d427ec27f" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c05c2b2cf5a7b60af353c08fc12d54d0" aria-expanded="false"
+      aria-controls="R-tab-id-c13daf2b43ca29d4e50fd8f4250716c1" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c27310866f8b48955a46dfabaa1b883a" aria-expanded="false"
+      aria-controls="R-tab-id-97ca7dbb1bf31501738a0fe5e41578e7" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1451,7 +1451,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6f3187dcb090294c13bae46334497da2"
+      id="R-tab-id-8c116804b0c5df4603821e8d427ec27f"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1461,7 +1461,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-c05c2b2cf5a7b60af353c08fc12d54d0"
+      id="R-tab-id-c13daf2b43ca29d4e50fd8f4250716c1"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1471,7 +1471,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-c27310866f8b48955a46dfabaa1b883a"
+      id="R-tab-id-97ca7dbb1bf31501738a0fe5e41578e7"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1794,11 +1794,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Support fer th' great <a href="https://github.com/estruyf/vscode-front-matter" rel="external" target="_self">VSCode Front Matter CMS extension</a> which provides on-premise CMS capabilties t' Cap'n Hugo.</p>
 <p>Th' theme provides Front Matter CMS snippets fer its shorrrtcodes. Currently only English an' German be supported. Put a reference into yer <code>frontmatter.json</code> like this</p>
-<div class="tab-panel" data-tab-group="R-tabs-2c54022fb9270f31b910380e2b358b7a">
+<div class="tab-panel" data-tab-group="R-tabs-3c870d02334401431dec8bd44aab28e1">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-7fd5dcdb12bcafb1701fcf0301621324" aria-expanded="true"
+      aria-controls="R-tab-id-33a48ae25b5a0c0dffcce625f8312200" aria-expanded="true"
       data-tab-item="R-tab-42a431011ae2471d003574e031c3356a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -1807,7 +1807,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7fd5dcdb12bcafb1701fcf0301621324"
+      id="R-tab-id-33a48ae25b5a0c0dffcce625f8312200"
       data-tab-item="R-tab-42a431011ae2471d003574e031c3356a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1836,11 +1836,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Th' theme removed th' popular <a href="https://jquery.com" rel="external" target="_self">jQuery</a> library from its distribut'n.</p>
 <p>In case ye made changes t' th' theme that be depend'n on this library ye can place a copy o' jQuery into yer <code>static/js</code> directory an' board it from yer own <code>layouts/partials/custom-header.html</code> like this:</p>
-<div class="tab-panel" data-tab-group="R-tabs-a30766794028e9999c6197cd5aee4853">
+<div class="tab-panel" data-tab-group="R-tabs-e91857f7f43e078cc68169437ee73ab0">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-0489ff2bd53e9d8dde6d5db0e9d7d5c8" aria-expanded="true"
+      aria-controls="R-tab-id-fff397c990fb15af6c231b9b33fd45ea" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -1849,7 +1849,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0489ff2bd53e9d8dde6d5db0e9d7d5c8"
+      id="R-tab-id-fff397c990fb15af6c231b9b33fd45ea"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1909,21 +1909,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-1fd53f5d1a00a394f9703fc37dccf52d" aria-expanded="true"
+      aria-controls="R-tab-id-c6b976017b1ad7c85600a92fd7912898" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-d1fa1ba80f6e01409dc40147f7e6e116" aria-expanded="false"
+      aria-controls="R-tab-id-bfb6769dc2df588d15f8fddd048a231a" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-8206ec1f30395f7152b7080e6380a91d" aria-expanded="false"
+      aria-controls="R-tab-id-70d83ac2e845bb0bd04b1ecb378626c4" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -1932,7 +1932,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1fd53f5d1a00a394f9703fc37dccf52d"
+      id="R-tab-id-c6b976017b1ad7c85600a92fd7912898"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1947,7 +1947,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-d1fa1ba80f6e01409dc40147f7e6e116"
+      id="R-tab-id-bfb6769dc2df588d15f8fddd048a231a"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1961,7 +1961,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-8206ec1f30395f7152b7080e6380a91d"
+      id="R-tab-id-70d83ac2e845bb0bd04b1ecb378626c4"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1984,21 +1984,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-c3349475d171ba2af6aaabf9db117523" aria-expanded="true"
+      aria-controls="R-tab-id-21acc9bf0d7d3e0acfa4c9681850afd4" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-5146745593892dbb20fd90035e13707f" aria-expanded="false"
+      aria-controls="R-tab-id-bacb03eba502da4026b8cf0088424462" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-f4f6ea1330c9fbcd5ae69e3e158d374b" aria-expanded="false"
+      aria-controls="R-tab-id-c93aa02db66bf88bb51b1803922510b9" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -2007,7 +2007,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c3349475d171ba2af6aaabf9db117523"
+      id="R-tab-id-21acc9bf0d7d3e0acfa4c9681850afd4"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2020,7 +2020,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-5146745593892dbb20fd90035e13707f"
+      id="R-tab-id-bacb03eba502da4026b8cf0088424462"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2033,7 +2033,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-f4f6ea1330c9fbcd5ae69e3e158d374b"
+      id="R-tab-id-c93aa02db66bf88bb51b1803922510b9"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2053,21 +2053,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-be7bfa9ca2db1c81c291fc7b080834a7" aria-expanded="true"
+      aria-controls="R-tab-id-b8f78697d0380d5888a37f8e50a71511" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-1bd87965adaba4d10c303b24d80b9740" aria-expanded="false"
+      aria-controls="R-tab-id-349be234583562d59ea54414963adebf" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-64f1f89d5b8b84ea85fe59374f258fe9" aria-expanded="false"
+      aria-controls="R-tab-id-1c378e2d14b1cbd162f41fa03b9bb282" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -2076,7 +2076,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-be7bfa9ca2db1c81c291fc7b080834a7"
+      id="R-tab-id-b8f78697d0380d5888a37f8e50a71511"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2086,7 +2086,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-1bd87965adaba4d10c303b24d80b9740"
+      id="R-tab-id-349be234583562d59ea54414963adebf"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2096,7 +2096,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-64f1f89d5b8b84ea85fe59374f258fe9"
+      id="R-tab-id-1c378e2d14b1cbd162f41fa03b9bb282"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2212,7 +2212,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
 <h3 id="change-17">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <ul>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/deployment/index.html">Wit' th' proper sett'ns</a> 'n yer <code>hugo.toml</code> yer plank be now serv'ble from th' local file system us'n <code>file://</code> URLs.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> <a href="/hugo-theme-relearn/pir/configuration/publishing/deployment/index.html">Wit' th' proper sett'ns</a> 'n yer <code>hugo.toml</code> yer plank be now serv'ble from th' local file system us'n <code>file://</code> URLs.</p>
 <p>Please note that th' searchbox will only work fer this if ye reconfigure yer outputformat fer th' home plank 'n yer <code>hugo.toml</code> from <code>json</code> t' <code>search</code>. Th' now deprecated <code>json</code> outputformat still works as before, so there be no need t' reconfigure yer installat'n if it be only served from <code>http://</code> or <code>https://</code>.</p>
 </li>
 <li>
@@ -2268,21 +2268,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   <div class="tab-nav">
     <div class="tab-nav-title">hugo.</div>
     <button
-      aria-controls="R-tab-id-b1d37d5f8048f66ea65f12f1496051c1" aria-expanded="true"
+      aria-controls="R-tab-id-656b0f3844b02a2780e6a35840b3a121" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-c6789e56b29f2810f074b6b34f74eb43" aria-expanded="false"
+      aria-controls="R-tab-id-13204bd779615029cf88effa5cbc945c" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-347e8a0949d47d5d8b085d9b7351e3cf" aria-expanded="false"
+      aria-controls="R-tab-id-0658ed61a7172a668b92f0f28f45fc76" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -2291,7 +2291,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b1d37d5f8048f66ea65f12f1496051c1"
+      id="R-tab-id-656b0f3844b02a2780e6a35840b3a121"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2306,7 +2306,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-c6789e56b29f2810f074b6b34f74eb43"
+      id="R-tab-id-13204bd779615029cf88effa5cbc945c"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2321,7 +2321,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-347e8a0949d47d5d8b085d9b7351e3cf"
+      id="R-tab-id-0658ed61a7172a668b92f0f28f45fc76"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2667,7 +2667,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <h2 id="2-6-0">2.6.0 (2021-10-21)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <h3 id="new-2">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <ul>
-<li><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Yer ship can now be served from a subdirectory if ye set <code>baseURL</code> 'n yer <code>hugo.toml</code>. See th' <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/deployment/index.html">documentat'n</a> fer a detailed example.
+<li><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Yer ship can now be served from a subdirectory if ye set <code>baseURL</code> 'n yer <code>hugo.toml</code>. See th' <a href="/hugo-theme-relearn/pir/configuration/publishing/deployment/index.html">documentat'n</a> fer a detailed example.
 </li>
 </ul>
 <hr>

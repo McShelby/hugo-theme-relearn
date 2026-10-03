@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+0783efd2c2b01b738e0b62734b8c16b9f2f32896">
+    <meta name="generator" content="Relearn 9.1.0+81f9db17a57fbd248debc5f846edd32a6a66ef32">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="What to know as a maintainer">
     <meta name="author" content="Sören Weber">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.3ea6d11bf9a8a4741daa5db03f6443c90ca749961c4eea257e015467643f1a1a.js"
+      "indexFile": "searchindex.en.min.4bb8d5769023e3f435e7ad30d3cbd3900a401705cfe0efaf94440d50163235ea.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -346,7 +346,7 @@
   </tbody>
 </table>
 <h2 id="sbom">SBOM<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<p>Every third-party resource the project uses is declared in <code>docs/data/relearn/thirdparty.toml</code>. That file is the single source of truth behind the <a href="/hugo-theme-relearn/more/credits/index.html">credits</a> page, the <a href="/hugo-theme-relearn/configuration/sitemanagement/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, and several checks in the test suite.</p>
+<p>Every third-party resource the project uses is declared in <code>docs/data/relearn/thirdparty.toml</code>. That file is the single source of truth behind the <a href="/hugo-theme-relearn/more/credits/index.html">credits</a> page, the <a href="/hugo-theme-relearn/configuration/publishing/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, and several checks in the test suite.</p>
 <p><strong>When you vendor an update, change its <code>version</code> in the same commit that changes the files.</strong> A version is knowable at the moment of vendoring and at no other time. Some of these bundles carry no version string at all, and the ones that do disagree about where to put it. Nothing can check it, which is why every component carries a digest of its files as well: a component that changed on disk without changing its <code>version</code> still shows up in the diff of <code>sbom.cdx.json</code>.</p>
 <p>A font is the exception that can be asked. It declares its own version inside the file, where subsetting and conversion both leave it, so <code>npm run fontversion</code> in the infra repository reads it back out of what you vendored rather than out of the page you downloaded from.</p>
 <p>The test suite fails when the declaration and the vendored tree disagree, in either direction: a directory holding files that no component claims, or a component claiming paths that no longer exist. Add a new dependency to the declaration or the build stays red.</p>

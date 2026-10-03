@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+0783efd2c2b01b738e0b62734b8c16b9f2f32896">
+    <meta name="generator" content="Relearn 9.1.0+81f9db17a57fbd248debc5f846edd32a6a66ef32">
     <meta name="description" content="What&#39;s new in this version">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.854c5290becf73f1f44439b3d9146c9fea6866bef14cdd576d795cb969d20e04.js"
+      "indexFile": "searchindex.pir.min.3953b6d567a4c62bc514b32c5e3d34a25c3ec4ea04c39dd3fa276a2f73e1c8b5.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -262,10 +262,10 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/resources/index.html"><code>resources</code> shortcode</a> has a new <code>pageref</code> parameter t' list th' resources o' another plank bundle.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme writes no inline JavaScript anymore, so yer ship can be served wit' a strict <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html">Rrrambl'n Security Policy</a>. On request, it also adds a <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html#subresource-integrity">subresource integrity</a> t' its scripts an' stylesheets. Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> an' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shorrrtcodes an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter t' run yer own code without inline JavaScript.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme writes no inline JavaScript anymore, so yer ship can be served wit' a strict <a href="/hugo-theme-relearn/pir/configuration/publishing/csp/index.html">Rrrambl'n Security Policy</a>. On request, it also adds a <a href="/hugo-theme-relearn/pir/configuration/publishing/csp/index.html#subresource-integrity">subresource integrity</a> t' its scripts an' stylesheets. Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> an' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shorrrtcodes an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter t' run yer own code without inline JavaScript.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme now ships a machine-read'ble <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, list'n every third-party resource it can publish wit' yer ship, each wit' a license, a digest o' th' files th' theme ships an' - whar' upstream publishes them - a version an' a package URL.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle"></i></span><span class="badge-content">New</span></span> Th' theme now ships a machine-read'ble <a href="/hugo-theme-relearn/pir/configuration/publishing/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, list'n every third-party resource it can publish wit' yer ship, each wit' a license, a digest o' th' files th' theme ships an' - whar' upstream publishes them - a version an' a package URL.</p>
 </li>
 </ul>
 <hr>
@@ -279,11 +279,11 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-71fd87264f21be0dc0c4934b02a246eb">
+<div class="tab-panel" data-tab-group="R-tabs-e49833e8541de29057105caafd37f245">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-7e563b3dbf4ceaf442943b6e39cfe6a5" aria-expanded="true"
+      aria-controls="R-tab-id-65f8a8f2159b57c19bfbe8a3b963540f" aria-expanded="true"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -292,7 +292,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7e563b3dbf4ceaf442943b6e39cfe6a5"
+      id="R-tab-id-65f8a8f2159b57c19bfbe8a3b963540f"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -338,21 +338,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-6cc88f6182ec7164a107159c8f0a35b7" aria-expanded="true"
+      aria-controls="R-tab-id-0a3ca0c59d2e9fbecb54b79cad520a13" aria-expanded="true"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
       <span class="tab-nav-text">toml</span>
     </button>
     <button
-      aria-controls="R-tab-id-a060409f82d986353dd3f8981195ad8c" aria-expanded="false"
+      aria-controls="R-tab-id-cd6c8a8aafba3a3150cbef6eb0d76046" aria-expanded="false"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-nav-button tab-panel-style cstyle code"
     >
       <span class="tab-nav-text">yaml</span>
     </button>
     <button
-      aria-controls="R-tab-id-bc2fddc7c6e559e80ef7d1ec21287ccc" aria-expanded="false"
+      aria-controls="R-tab-id-b8537d8106db95823d8b39b765708678" aria-expanded="false"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-nav-button tab-panel-style cstyle code"
     >
@@ -361,7 +361,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6cc88f6182ec7164a107159c8f0a35b7"
+      id="R-tab-id-0a3ca0c59d2e9fbecb54b79cad520a13"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -369,7 +369,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-a060409f82d986353dd3f8981195ad8c"
+      id="R-tab-id-cd6c8a8aafba3a3150cbef6eb0d76046"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -377,7 +377,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-bc2fddc7c6e559e80ef7d1ec21287ccc"
+      id="R-tab-id-b8537d8106db95823d8b39b765708678"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -558,12 +558,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/multilingual/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/multilingual/index.html">Multilingual<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/versioning/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/versioning/index.html">Versioning<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/meta/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/meta/index.html">Meta Information<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/deployment/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/deployment/index.html">Deployment Scenarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/storedinformation/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/storedinformation/index.html">GDPR &amp; Cookie Consent<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.html">Available Output Formats<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/stableoutput/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/stableoutput/index.html">Stable Output<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/sbom/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/sbom/index.html">SBOM<i class="fa-fw fas fa-check read-icon"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/csp/index.html">Content Security Policy<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/sitemanagement/outputformats/index.html">Available Output Formats<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/branding/index.html"><input type="checkbox" id="R-section-f4b18c0bbd92c3635c0cb3ea3fa97f55" aria-controls="R-subsections-f4b18c0bbd92c3635c0cb3ea3fa97f55"><label for="R-section-f4b18c0bbd92c3635c0cb3ea3fa97f55"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Brrrand&#39;n</span></label><a class="padding default-animation" href="/hugo-theme-relearn/pir/configuration/branding/index.html">Brrrand&#39;n<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-f4b18c0bbd92c3635c0cb3ea3fa97f55" class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/branding/logo/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/branding/logo/index.html">Logo &amp; Title<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/branding/colors/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/branding/colors/index.html">Brrrand&#39;n<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -590,6 +585,12 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/customization/designs/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/customization/designs/index.html">Page Designs<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/customization/outputformats/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/customization/outputformats/index.html">Output Formats<i class="fa-fw fas fa-check read-icon"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/customization/taxonomy/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/customization/taxonomy/index.html">Taxonomies<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/publishing/index.html"><input type="checkbox" id="R-section-6651aab50e972d58e8110698f873f1b4" aria-controls="R-subsections-6651aab50e972d58e8110698f873f1b4"><label for="R-section-6651aab50e972d58e8110698f873f1b4"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Publishing</span></label><a class="padding default-animation" href="/hugo-theme-relearn/pir/configuration/publishing/index.html">Publishing<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-6651aab50e972d58e8110698f873f1b4" class="collapsible-menu">
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/publishing/deployment/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/publishing/deployment/index.html">Deployment Scenarios<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/publishing/storedinformation/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/publishing/storedinformation/index.html">GDPR &amp; Cookie Consent<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/publishing/stableoutput/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/publishing/stableoutput/index.html">Stable Output<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/publishing/sbom/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/publishing/sbom/index.html">SBOM<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/publishing/csp/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/publishing/csp/index.html">Content Security Policy<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/configuration/reference/index.html"><a class="padding" href="/hugo-theme-relearn/pir/configuration/reference/index.html">Options Reference<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
             <li class="" data-nav-id="/hugo-theme-relearn/pir/authoring/index.html"><input type="checkbox" id="R-section-8b31cad8bcabec610b76d42ea98e772d" aria-controls="R-subsections-8b31cad8bcabec610b76d42ea98e772d"><label for="R-section-8b31cad8bcabec610b76d42ea98e772d"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">Submenu Rambl&#39;n</span></label><a class="padding default-animation" href="/hugo-theme-relearn/pir/authoring/index.html"><i class='fa-fw fab fa-markdown'></i> Rambl&#39;n<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-8b31cad8bcabec610b76d42ea98e772d" class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/pir/authoring/structure/index.html"><a class="padding" href="/hugo-theme-relearn/pir/authoring/structure/index.html">Directory Structure<i class="fa-fw fas fa-check read-icon"></i></a></li>
@@ -694,7 +695,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/0783efd2c2b01b738e0b62734b8c16b9f2f32896" title="Relearn 9.1.0&#43;0783efd2c2b01b738e0b62734b8c16b9f2f32896"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/81f9db17a57fbd248debc5f846edd32a6a66ef32" title="Relearn 9.1.0&#43;81f9db17a57fbd248debc5f846edd32a6a66ef32"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </div>

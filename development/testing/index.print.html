@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+0783efd2c2b01b738e0b62734b8c16b9f2f32896">
+    <meta name="generator" content="Relearn 9.1.0+81f9db17a57fbd248debc5f846edd32a6a66ef32">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How to run and extend the automated test suite">
     <meta name="author" content="Sören Weber">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.3ea6d11bf9a8a4741daa5db03f6443c90ca749961c4eea257e015467643f1a1a.js"
+      "indexFile": "searchindex.en.min.4bb8d5769023e3f435e7ad30d3cbd3900a401705cfe0efaf94440d50163235ea.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -183,7 +183,7 @@
 </span></span><span class="line"><span class="cl">npm ci
 </span></span><span class="line"><span class="cl">npm test</span></span></code></pre></div>
 <p>The parts run cheapest first and stop at the first failure, so a stale declaration fails at once rather than after a full round of Hugo builds. The whole suite is quick enough to run on every change.</p>
-<p>The checks are <code>tests/checks.js</code> and cover what the build layer cannot see: the runner&rsquo;s own configuration handling, the <a href="/hugo-theme-relearn/development/maintaining/index.html#sbom">dependency declaration</a> - that it matches the vendored tree, and that every shipped component carries a license - and the properties the <a href="/hugo-theme-relearn/configuration/sitemanagement/sbom/index.html">SBOM</a> promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is <code>npm run sbom</code>, a narrower question: whether the committed <code>sbom.cdx.json</code> is still what that declaration renders.</p>
+<p>The checks are <code>tests/checks.js</code> and cover what the build layer cannot see: the runner&rsquo;s own configuration handling, the <a href="/hugo-theme-relearn/development/maintaining/index.html#sbom">dependency declaration</a> - that it matches the vendored tree, and that every shipped component carries a license - and the properties the <a href="/hugo-theme-relearn/configuration/publishing/sbom/index.html">SBOM</a> promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is <code>npm run sbom</code>, a narrower question: whether the committed <code>sbom.cdx.json</code> is still what that declaration renders.</p>
 <p>Each part also runs alone, and those with something to write back do it under an <code>:update</code> name:</p>
 <table>
   <thead>

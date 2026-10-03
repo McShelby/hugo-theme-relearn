@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+0783efd2c2b01b738e0b62734b8c16b9f2f32896">
+    <meta name="generator" content="Relearn 9.1.0+81f9db17a57fbd248debc5f846edd32a6a66ef32">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="This chapter contains information only needed for development and maintaining the theme.">
     <meta name="author" content="Sören Weber">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.3ea6d11bf9a8a4741daa5db03f6443c90ca749961c4eea257e015467643f1a1a.js"
+      "indexFile": "searchindex.en.min.4bb8d5769023e3f435e7ad30d3cbd3900a401705cfe0efaf94440d50163235ea.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -392,11 +392,11 @@
 <h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>Optional, and independent of which setup you chose - the hooks live in the theme repository, in the <code>.githooks</code> root folder. Documentation for each hook is contained in each file.</p>
 <p>The <code>post-commit</code> hook updates the version number on each commit, which is what makes a build from <code>main</code> distinguishable from a release when debugging user reports. Nothing depends on you having it.</p>
-<div class="tab-panel" data-tab-group="R-tabs-a1f2b67f3de63430550e50ac3f5ee5d1">
+<div class="tab-panel" data-tab-group="R-tabs-1fbd1b8b118249dcef77f2a910e2bf4d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <button
-      aria-controls="R-tab-id-662ef5289bf5337328974f2e401990c4" aria-expanded="true"
+      aria-controls="R-tab-id-5a7301b67a65e8b79649042993013942" aria-expanded="true"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-nav-button tab-panel-style cstyle code active" tabindex="-1"
     >
@@ -405,7 +405,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-662ef5289bf5337328974f2e401990c4"
+      id="R-tab-id-5a7301b67a65e8b79649042993013942"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -447,7 +447,7 @@
 </span></span><span class="line"><span class="cl">npm ci
 </span></span><span class="line"><span class="cl">npm test</span></span></code></pre></div>
 <p>The parts run cheapest first and stop at the first failure, so a stale declaration fails at once rather than after a full round of Hugo builds. The whole suite is quick enough to run on every change.</p>
-<p>The checks are <code>tests/checks.js</code> and cover what the build layer cannot see: the runner&rsquo;s own configuration handling, the <a href="/hugo-theme-relearn/development/maintaining/index.html#sbom">dependency declaration</a> - that it matches the vendored tree, and that every shipped component carries a license - and the properties the <a href="/hugo-theme-relearn/configuration/sitemanagement/sbom/index.html">SBOM</a> promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is <code>npm run sbom</code>, a narrower question: whether the committed <code>sbom.cdx.json</code> is still what that declaration renders.</p>
+<p>The checks are <code>tests/checks.js</code> and cover what the build layer cannot see: the runner&rsquo;s own configuration handling, the <a href="/hugo-theme-relearn/development/maintaining/index.html#sbom">dependency declaration</a> - that it matches the vendored tree, and that every shipped component carries a license - and the properties the <a href="/hugo-theme-relearn/configuration/publishing/sbom/index.html">SBOM</a> promises its readers, that it renders identically twice and that its serial number is recomputable from the document and moves with the contents. The SBOM comparison is <code>npm run sbom</code>, a narrower question: whether the committed <code>sbom.cdx.json</code> is still what that declaration renders.</p>
 <p>Each part also runs alone, and those with something to write back do it under an <code>:update</code> name:</p>
 <table>
   <thead>
@@ -905,7 +905,7 @@
   </tbody>
 </table>
 <h2 id="sbom">SBOM<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
-<p>Every third-party resource the project uses is declared in <code>docs/data/relearn/thirdparty.toml</code>. That file is the single source of truth behind the <a href="/hugo-theme-relearn/more/credits/index.html">credits</a> page, the <a href="/hugo-theme-relearn/configuration/sitemanagement/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, and several checks in the test suite.</p>
+<p>Every third-party resource the project uses is declared in <code>docs/data/relearn/thirdparty.toml</code>. That file is the single source of truth behind the <a href="/hugo-theme-relearn/more/credits/index.html">credits</a> page, the <a href="/hugo-theme-relearn/configuration/publishing/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, and several checks in the test suite.</p>
 <p><strong>When you vendor an update, change its <code>version</code> in the same commit that changes the files.</strong> A version is knowable at the moment of vendoring and at no other time. Some of these bundles carry no version string at all, and the ones that do disagree about where to put it. Nothing can check it, which is why every component carries a digest of its files as well: a component that changed on disk without changing its <code>version</code> still shows up in the diff of <code>sbom.cdx.json</code>.</p>
 <p>A font is the exception that can be asked. It declares its own version inside the file, where subsetting and conversion both leave it, so <code>npm run fontversion</code> in the infra repository reads it back out of what you vendored rather than out of the page you downloaded from.</p>
 <p>The test suite fails when the declaration and the vendored tree disagree, in either direction: a directory holding files that no component claims, or a component claiming paths that no longer exist. Add a new dependency to the declaration or the build stays red.</p>
@@ -999,11 +999,11 @@
 <p><strong>Remarks</strong>:</p>
 <p>The locations are mandatory due to Hugo&rsquo;s theme site builder.</p>
 <p><strong>Preview</strong> <code>images/screenshot.png</code>:</p>
-<p><a href="#R-image-29666ba7f90b65942caaaf4ea7b7f126" class="lightbox-link" id="R-image-29666ba7f90b65942caaaf4ea7b7f126-link"><img alt="Screenshot" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1500"></a>
-<a href="#R-image-29666ba7f90b65942caaaf4ea7b7f126-link" class="lightbox-back" id="R-image-29666ba7f90b65942caaaf4ea7b7f126"><img alt="Screenshot" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-33f708eeceac05721c7905c245eaad3f" class="lightbox-link" id="R-image-33f708eeceac05721c7905c245eaad3f-link"><img alt="Screenshot" class="bg-white border lazy lightbox figure-image" height="1000" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1500"></a>
+<a href="#R-image-33f708eeceac05721c7905c245eaad3f-link" class="lightbox-back" id="R-image-33f708eeceac05721c7905c245eaad3f"><img alt="Screenshot" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/screenshot.png?width=50%25&height=50%25"></a></p>
 <p><strong>Preview</strong> <code>images/tn.png</code>:</p>
-<p><a href="#R-image-a10d0e469e8ebf6b797994c45d9e4f47" class="lightbox-link" id="R-image-a10d0e469e8ebf6b797994c45d9e4f47-link"><img alt="tn" class="bg-white border lazy lightbox figure-image" height="600" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="900"></a>
-<a href="#R-image-a10d0e469e8ebf6b797994c45d9e4f47-link" class="lightbox-back" id="R-image-a10d0e469e8ebf6b797994c45d9e4f47"><img alt="tn" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-ae9c9e1881d69a191adcc19492ecca7c" class="lightbox-link" id="R-image-ae9c9e1881d69a191adcc19492ecca7c-link"><img alt="tn" class="bg-white border lazy lightbox figure-image" height="600" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="900"></a>
+<a href="#R-image-ae9c9e1881d69a191adcc19492ecca7c-link" class="lightbox-back" id="R-image-ae9c9e1881d69a191adcc19492ecca7c"><img alt="tn" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/tn.png?width=50%25&height=50%25"></a></p>
 <h2 id="hero-image">Hero Image<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p><strong>Content</strong>:</p>
 <p>Show the <a href="/hugo-theme-relearn/development/screenshooting/index.html#demo-screenshot">Demo Screenshot</a> page on different devices and different themes. Composition of the different device screenshots into a template.</p>
@@ -1028,8 +1028,8 @@
 <li>From original template resize to <em>3000 x 1500</em> offset y: <em>-330</em>, scale to <em>1280 x 640</em> and save as <code>images/hero.png</code></li>
 </ul>
 <p><strong>Preview</strong> <code>images/hero.png</code>:</p>
-<p><a href="#R-image-fb4648675294e4e766bd67d0923871c3" class="lightbox-link" id="R-image-fb4648675294e4e766bd67d0923871c3-link"><img alt="Hero" class="bg-white border lazy lightbox figure-image" height="640" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1280"></a>
-<a href="#R-image-fb4648675294e4e766bd67d0923871c3-link" class="lightbox-back" id="R-image-fb4648675294e4e766bd67d0923871c3"><img alt="Hero" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25"></a></p>
+<p><a href="#R-image-936f1c3129a36ca317bc6ffb196aa8ec" class="lightbox-link" id="R-image-936f1c3129a36ca317bc6ffb196aa8ec-link"><img alt="Hero" class="bg-white border lazy lightbox figure-image" height="640" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25" style="height: 50%;width: 50%;" width="1280"></a>
+<a href="#R-image-936f1c3129a36ca317bc6ffb196aa8ec-link" class="lightbox-back" id="R-image-936f1c3129a36ca317bc6ffb196aa8ec"><img alt="Hero" class="bg-white border lazy lightbox lightbox-image" loading="lazy" src="/hugo-theme-relearn/images/hero.png?width=50%25&height=50%25"></a></p>
 <h2 id="shortcode-feature-images">Shortcode Feature Images<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>The feature images for the <a href="/hugo-theme-relearn/shortcodes/index.html">shortcodes</a> are generated automatically via a <a href="https://nodejs.org" rel="external" target="_self">Node.js</a> script.</p>
 <p>It lives in the <a href="/hugo-theme-relearn/development/developing/index.html">infra repository</a> inside of the <code>tools/screenshots</code> directory. All following commands need to be executed from the root of that repository.</p>
