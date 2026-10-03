@@ -220,7 +220,10 @@ a:focus {
 }
 
 #R-header-wrapper > search > form {
+  /* room for the focus outline of the box, which is cut off otherwise */
+  margin: -0.3rem;
   overflow: hidden;
+  padding: 0.3rem;
 }
 
 .searchbox {
@@ -230,6 +233,11 @@ a:focus {
   border-style: solid;
   border-width: 1px;
   position: relative;
+}
+
+/* the box is what looks like the input, so it shows the focus for it */
+.searchbox:has(input:focus-visible) {
+  outline: auto;
 }
 
 .searchbox > :first-child {
@@ -2547,6 +2555,10 @@ span.math:has(math[display='block'], .katex-display) {
   display: block;
   margin: 0;
   margin-inline-end: 0.5rem;
+}
+
+.searchform input:focus-visible {
+  outline: auto;
 }
 
 .searchform input::-webkit-input-placeholder,
