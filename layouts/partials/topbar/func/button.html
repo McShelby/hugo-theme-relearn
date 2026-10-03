@@ -11,10 +11,12 @@
 {{- $hint := (trim .hint " ") | default "" }}
 {{- $icon := (trim .icon " ") | default "" }}
 {{- $content := .content }}
+{{- $istoggle := .istoggle | default false }}
             <div class="topbar-button {{ $class }} default-animation" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}">
 {{ partial "shortcodes/button.html" (dict
   "page" $page
   "action" $action
+  "istoggle" $istoggle
   "href" $href
   "style" "link"
   "icon" $icon

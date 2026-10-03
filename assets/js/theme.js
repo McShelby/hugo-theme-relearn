@@ -1260,10 +1260,30 @@ function showSearch() {
   }
 }
 
+// a toggling button tells assistive technology whether its target is shown
+function setExpanded(toggles, expanded) {
+  toggles.forEach(function (e) {
+    e.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  });
+}
+
+// back to the button that opened what was just closed; one that is not
+// displayed can not take the focus, which then stays where it is
+function focusToggle(toggle) {
+  if (toggle) {
+    toggle.focus();
+  }
+}
+
+function getNavToggles() {
+  return document.querySelectorAll('button[data-button-action="toggle-nav"]');
+}
+
 function openNav() {
   closeSomeTopbarButtonFlyout();
   var b = document.querySelector('body');
   b.classList.add('sidebar-flyout');
+  setExpanded(getNavToggles(), true);
   var a = document.querySelector('#R-sidebar a');
   if (a) {
     a.focus();
@@ -1273,6 +1293,7 @@ function openNav() {
 function closeNav() {
   var b = document.querySelector('body');
   b.classList.remove('sidebar-flyout');
+  setExpanded(getNavToggles(), false);
   documentFocus();
 }
 
@@ -1287,7 +1308,11 @@ function toggleNav() {
 
 function navEscapeHandler(event) {
   if (event.key == 'Escape') {
+    var wasOpen = document.querySelector('body').classList.contains('sidebar-flyout');
     closeNav();
+    if (wasOpen) {
+      focusToggle(getNavToggles()[0]);
+    }
   }
 }
 
@@ -1299,11 +1324,16 @@ function getTopbarButtonParent(e) {
   return button;
 }
 
+function getTopbarButtonToggles(button) {
+  return button.querySelectorAll(':scope > .btn > button');
+}
+
 function openTopbarButtonFlyout(button) {
   closeNav();
   var body = document.querySelector('body');
   button.classList.add('topbar-flyout');
   body.classList.add('topbar-flyout');
+  setExpanded(getTopbarButtonToggles(button), true);
   var a = button.querySelector('.topbar-content-wrapper a');
   if (a) {
     a.focus();
@@ -1314,6 +1344,7 @@ function closeTopbarButtonFlyout(button) {
   var body = document.querySelector('body');
   button.classList.remove('topbar-flyout');
   body.classList.remove('topbar-flyout');
+  setExpanded(getTopbarButtonToggles(button), false);
   documentFocus();
 }
 
@@ -1349,6 +1380,22 @@ function toggleTopbarFlyoutEvent(event) {
 }
 
 function handleTopbarButtons() {
+  // a toggle of the author: what it shows and hides is unknown to us, so each
+  // click changes its state; capturing, for the author's own listener to
+  // already find the new state. our own toggles are set where their target
+  // is shown and hidden, as that happens by other means than a click as well
+  document.addEventListener(
+    'click',
+    function (event) {
+      var button = event.target.closest('.btn > button[aria-expanded]');
+      if (!button || ['toggle-nav', 'toggle-flyout'].includes(button.dataset.buttonAction)) {
+        return;
+      }
+      setExpanded([button], button.getAttribute('aria-expanded') != 'true');
+    },
+    true
+  );
+
   // one listener for all buttons declaring an action, wherever they were moved to;
   // an action we don't know is left to the author's own listener
   document.addEventListener('click', function (event) {
@@ -1357,17 +1404,29 @@ function handleTopbarButtons() {
       return;
     }
     var action = button.dataset.buttonAction;
+    // closing hands the focus to the content, but who closes with the button
+    // itself stays on it
     if (action == 'toggle-nav') {
       toggleNav();
+      if (!document.querySelector('body').classList.contains('sidebar-flyout')) {
+        focusToggle(button);
+      }
     } else if (action == 'toggle-flyout') {
       toggleTopbarFlyout(button);
+      var parent = getTopbarButtonParent(button);
+      if (parent && !parent.classList.contains('topbar-flyout')) {
+        focusToggle(button);
+      }
     }
   });
 }
 
 function topbarFlyoutEscapeHandler(event) {
   if (event.key == 'Escape') {
-    closeSomeTopbarButtonFlyout();
+    var button = closeSomeTopbarButtonFlyout();
+    if (button) {
+      focusToggle(getTopbarButtonToggles(button)[0]);
+    }
   }
 }
 

@@ -1658,6 +1658,13 @@ html[dir='rtl'] .topbar-button-next i {
   /* we don't allow flyouts in flyouts; come on, don't get funny... */
   display: none;
 }
+.topbar-content .default-animation {
+  /* visibility is inherited; animating it here as well would leave the
+     contents out of reach at the moment the flyout opens */
+  transition:
+    all 0.35s ease,
+    visibility 0s;
+}
 
 .topbar-breadcrumbs {
   margin: 0;
@@ -1682,7 +1689,6 @@ html[dir='rtl'] .topbar-button-next i {
     width: 1px;
   }
 }
-
 .breadcrumbs {
   min-width: 0;
   overflow: hidden;

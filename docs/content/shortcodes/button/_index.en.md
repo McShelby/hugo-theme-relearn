@@ -33,6 +33,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click. If this parameter is not set, the button will do nothing but is still displayed as clickable.<br><br>- if starting with `javascript:` all following text will be executed in your browser<br>- every other string will be interpreted as URL, you can use [link effects](authoring/markdown#link-effects) as well. |
 | **action**            | _&lt;empty&gt;_ | Name of an action executed by your own script on click, without inline JavaScript. Use this instead of a JavaScript **href** if your site uses a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP). See [example](#button-with-own-action). |
 | **type**              | see notes       | The [button type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) if **href** is JavaScript or **action** is set. Otherwise the parameter is not used. If the parameter is not given it defaults to `button`. |
+| **istoggle**          | `false`         | When `true`, the button announces to assistive technology that it shows and hides something. It starts as hidden and the theme changes the state with each click. Only used if **href** is JavaScript or **action** is set. See [example](#toggle-button). |
 | **borderless**        | `false`         | When `true`, no border will be shown around the button. |
 | **hint**              | _&lt;empty&gt;_ | Tooltip for the button. |
 | **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/callout#defining-own-styles). |
@@ -296,6 +297,31 @@ document.addEventListener('click', function (event) {
   }
 });
 ````
+
+#### Toggle Button
+
+If your button shows and hides something, set `istoggle`. The button is written with an `aria-expanded` attribute telling assistive technology whether the thing is shown, and the theme flips it with each click.
+
+{{% multishortcode name="button" execute="false" format="%s" %}}
+- content: "Details"
+  icon: "eye"
+  action: "details"
+  istoggle: "true"
+{{% /multishortcode %}}
+
+Your script reads the attribute to know what to do. The theme has flipped it by the time your listener runs, so it already tells the new state.
+
+````js {title="custom.js"}
+document.addEventListener('click', function (event) {
+  var button = event.target.closest('button[data-button-action="details"]');
+  if (button) {
+    var show = button.getAttribute('aria-expanded') == 'true';
+    document.querySelector('#my-details').hidden = !show;
+  }
+});
+````
+
+If what you show can also be hidden by other means than the button, your script has to set the attribute itself in that case.
 
 #### Button within a `form` Element
 
