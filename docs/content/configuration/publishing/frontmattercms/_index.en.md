@@ -1,11 +1,9 @@
 +++
 categories = ['howto']
-description = 'All about supported 3rd party tools'
-title = 'Tool Integration'
-weight = 3
+description = 'Use the shortcodes from inside the VS Code Front Matter CMS extension'
+title = 'VS Code Front Matter CMS'
+weight = 6
 +++
-
-## Front Matter CMS
 
 The theme supports the great [VSCode Front Matter CMS extension](https://github.com/estruyf/vscode-front-matter) which provides on-premise CMS capabilties to Hugo.
 
