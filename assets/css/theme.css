@@ -116,13 +116,12 @@ body {
   background-color: var(--INTERNAL-MAIN-BG-color);
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
-  flex-direction: row-reverse; /* for better SEO and a11y */
+  flex-direction: row;
   font-size: 1.015625rem;
   font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-font-weight);
   font-family: var(--INTERNAL-MAIN-font);
   height: 100%;
-  justify-content: flex-end;
   letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
   line-height: 1.574;
   width: 100%;
@@ -162,6 +161,23 @@ a:focus {
 
 .default-animation {
   transition: all 0.35s ease;
+}
+
+/* the first stop for keyboard users, out of sight until it has the focus */
+#R-skip-link {
+  background-color: var(--INTERNAL-MAIN-BG-color);
+  border: 0.15rem solid var(--INTERNAL-MAIN-LINK-color);
+  color: var(--INTERNAL-MAIN-LINK-color);
+  inset-inline-start: 0.5rem;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  text-decoration: none;
+  top: 0.5rem;
+  transform: translateY(calc(-100% - 1rem));
+  z-index: 5000;
+}
+#R-skip-link:focus {
+  transform: none;
 }
 
 #R-sidebar {
@@ -1675,6 +1691,12 @@ html[dir='rtl'] .topbar-button-next i {
   white-space: nowrap;
 }
 
+.breadcrumbs > ol {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
 .breadcrumbs meta {
   display: none;
 }
@@ -1708,7 +1730,20 @@ html[dir='rtl'] .topbar-button-next i {
     inset-inline-start: calc(-1 * var(--INTERNAL-MENU-S-width));
     min-width: var(--INTERNAL-MENU-S-width);
     max-width: var(--INTERNAL-MENU-S-width);
+    /* out of reach for the keyboard and screen readers as long as it is out of
+       sight; so only once it has left and as soon as it enters */
+    transition:
+      all 0.35s ease,
+      visibility 0s 0.35s;
+    visibility: hidden;
     width: var(--INTERNAL-MENU-S-width);
+  }
+  .mobile-support #R-sidebar .default-animation {
+    /* visibility is inherited; animating it here as well would leave the
+       contents out of reach at the moment the sidebar enters */
+    transition:
+      all 0.35s ease,
+      visibility 0s;
   }
   .mobile-support #navshow {
     display: inline;
@@ -1724,6 +1759,10 @@ html[dir='rtl'] .topbar-button-next i {
   }
   .mobile-support.sidebar-flyout #R-sidebar {
     inset-inline-start: 0;
+    transition:
+      all 0.35s ease,
+      visibility 0s;
+    visibility: visible;
     z-index: 90;
   }
   .mobile-support.sidebar-flyout #R-body {

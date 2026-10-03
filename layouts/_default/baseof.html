@@ -41,6 +41,8 @@
     {{- partial "custom-header.html" . }}
   </head>
   <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-origin="{{ partial "permalink.gotmpl" (dict "to" .) }}">
+    <a id="R-skip-link" href="#R-body-inner">{{ T "Skip-to-content" }}</a>
+{{- block "menu" . }}{{ end }}
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       {{- partial "topbar.html" . }}
@@ -52,7 +54,6 @@
       </main>
 {{- partial "custom-comments.html" . }}
     </div>
-{{- block "menu" . }}{{ end }}
 {{- partial "dependencies.html" (dict "page" . "location" "footer") }}
 {{- partial "custom-footer.html" . }}
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>

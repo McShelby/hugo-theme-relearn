@@ -1143,62 +1143,52 @@ function initMenuScrollbar() {
   var elm = document.querySelector('#R-content-wrapper');
 
   document.addEventListener('keydown', function (event) {
-    // for initial keyboard scrolling support, no element
-    // may be hovered, but we still want to react on
-    // cursor/page up/down; a scroll container only reacts to
-    // those keys if it contains the focus, so hand it over
-    // to the element the user expects to scroll
+    // a browser only scrolls the container that holds the focus; the page
+    // itself never scrolls, so without our help these keys do nothing as long
+    // as the focus is anywhere else, namely right after the page was loaded
     if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || !SCROLL_KEYS.includes(event.key)) {
+      return;
+    }
+    if (event.target.matches('select, textarea, input:not([type="checkbox"])')) {
+      // these need the keys for themselves
       return;
     }
 
     var elt = document.querySelector('.topbar-button.topbar-flyout .topbar-content-wrapper');
     var scroller = (elm && elm.contains(event.target) && elm) || (elt && elt.contains(event.target) && elt) || (elc && elc.contains(event.target) && elc);
-    if (scroller) {
-      // the focus already is in one of our scroll containers; taking it away
-      // would scroll the wrong one, but browsers disagree on whether they
-      // scroll the focused container themselves, so we always do it ourselves
-      var by = 0;
-      if (event.key == 'ArrowUp') {
-        by = -LINE_SCROLL;
-      } else if (event.key == 'ArrowDown') {
-        by = LINE_SCROLL;
-      } else if (event.key == 'PageUp') {
-        by = -scroller.clientHeight;
-      } else if (event.key == 'PageDown') {
-        by = scroller.clientHeight;
-      } else if (event.key == 'Home') {
-        by = -scroller.scrollHeight;
-      } else if (event.key == 'End') {
-        by = scroller.scrollHeight;
+    var focused = !!scroller;
+    if (!scroller) {
+      if (event.target.matches(formelements)) {
+        return;
       }
-      if (by) {
-        // left/right stay untouched, they page to the prev/next article
-        scroller.scrollBy({ top: by });
-        event.preventDefault();
-      }
-      return;
+      // the focus is in none of our scroll containers, so we scroll the one
+      // the user expects: the hovered one, else the one of an open flyout,
+      // else the content
+      var b = document.querySelector('body');
+      scroller = (elt && elt.matches(':hover') && elt) || (elm && elm.matches(':hover') && elm) || (elc && elc.matches(':hover') && elc) || (b.matches('.topbar-flyout') && elt) || (b.matches('.sidebar-flyout') && elm) || elc;
     }
 
-    var c = elc && elc.matches(':hover');
-    var m = elm && elm.matches(':hover');
-    var t = elt && elt.matches(':hover');
-    var f = event.target.matches(formelements);
-    if (!c && !m && !t && !f) {
-      // only do this if none of our scrollable areas is hovered
-      // as the browser scrolls the hovered one anyways
-      // if we are showing the sidebar as a flyout we
-      // want to scroll the content-wrapper, otherwise we want
-      // to scroll the body
-      var nt = document.querySelector('body').matches('.topbar-flyout');
-      var nm = document.querySelector('body').matches('.sidebar-flyout');
-      if (nt) {
-        elt && elt.focus();
-      } else if (nm) {
-        elm && elm.focus();
-      } else {
-        elc.focus();
-      }
+    // browsers disagree on whether they scroll the focused container
+    // themselves, so we always do it ourselves
+    var by = 0;
+    if (event.key == 'ArrowUp') {
+      by = -LINE_SCROLL;
+    } else if (event.key == 'ArrowDown') {
+      by = LINE_SCROLL;
+    } else if (event.key == 'PageUp') {
+      by = -scroller.clientHeight;
+    } else if (event.key == 'PageDown' || (event.key == ' ' && !focused)) {
+      // inside of a container the space key belongs to the focused element
+      by = scroller.clientHeight;
+    } else if (event.key == 'Home') {
+      by = -scroller.scrollHeight;
+    } else if (event.key == 'End') {
+      by = scroller.scrollHeight;
+    }
+    if (by) {
+      // left/right stay untouched, they page to the prev/next article
+      scroller.scrollBy({ top: by });
+      event.preventDefault();
     }
   });
   document.querySelectorAll('.topbar-button .topbar-content-wrapper').forEach(function (e) {
@@ -1421,8 +1411,14 @@ function initToc() {
     m.addEventListener('click', closeSomeTopbarButtonFlyout);
   }
 
-  // finally give initial focus to allow keyboard scrolling in FF
-  documentFocus();
+  // the link works without us, but would leave its fragment in the address bar
+  var s = document.querySelector('#R-skip-link');
+  if (s) {
+    s.addEventListener('click', function (event) {
+      event.preventDefault();
+      documentFocus();
+    });
+  }
 }
 
 function initSwipeHandler() {
@@ -1585,11 +1581,14 @@ function transferScrollToHistory(event) {
 function scrollToPositions() {
   // show active menu entry
   window.setTimeout(function () {
-    var e = document.querySelector('#R-sidebar li.active a');
-    if (e && e.scrollIntoView) {
-      e.scrollIntoView({
-        block: 'center',
-      });
+    // we move the menu ourselves: `scrollIntoView` also makes the entry the
+    // point the tab key starts from, which would lead past the skip link
+    var e = document.querySelector('#R-content-wrapper li.active a');
+    if (e) {
+      var wrapper = document.querySelector('#R-content-wrapper');
+      var port = wrapper.getBoundingClientRect();
+      var box = e.getBoundingClientRect();
+      wrapper.scrollTop += box.top - port.top - (port.height - box.height) / 2;
     }
   }, 10);
 

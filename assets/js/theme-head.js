@@ -78,6 +78,10 @@ window.relearn.selectTab = function (tabGroup, tabId) {
       .forEach(function (e) {
         var active = e.dataset.tabItem == tabId;
         e.classList.toggle('active', active);
+        // the state attributes belong to the buttons only, the contents have no role to carry them
+        if (!e.classList.contains('tab-nav-button')) {
+          return;
+        }
         e.setAttribute('aria-expanded', active ? 'true' : 'false');
         if (active) {
           e.setAttribute('tabindex', '-1');
