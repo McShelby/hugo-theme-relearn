@@ -42,6 +42,6 @@ Besides the keys every browser knows, the theme brings shortcuts of its own. Tho
 | <kbd>CTRL</kbd> <kbd>ALT</kbd> <kbd>t</kbd>  | Shows or hides the table of contents. |
 | <kbd>CTRL</kbd> <kbd>ALT</kbd> <kbd>w</kbd>  | Opens the page for editing, if [configured](configuration/customization/topbar). |
 | <kbd>CTRL</kbd> <kbd>ALT</kbd> <kbd>p</kbd>  | Opens the print view, if [configured](configuration/customization/topbar). |
-| <kbd>🡐</kbd> / <kbd>🡒</kbd>                  | Goes to the previous or next page. |
+| <kbd>🡐</kbd> / <kbd>🡒</kbd>                  | Goes to the previous or next page. If the focus is on a tab, selects the previous or next tab instead, as <kbd>HOME</kbd> and <kbd>END</kbd> select the first and last one. |
 | <kbd>ALT</kbd> <kbd>🡑</kbd> / <kbd>ALT</kbd> <kbd>🡓</kbd> | Scrolls to the previous or next heading of the page. |
 | <kbd>ESC</kbd>                               | Closes what was opened, like the menu of the mobile layout, the table of contents or an enlarged image, and clears the search. |

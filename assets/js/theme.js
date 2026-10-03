@@ -107,6 +107,35 @@ function handleTabs() {
     var tabPanel = button.closest('.tab-panel[data-tab-group]');
     tabPanel && switchTab(tabPanel.dataset.tabGroup, button.dataset.tabItem, button);
   });
+
+  // inside of a list of tabs the arrow keys move on to the neighbouring tab,
+  // which is selected right away
+  document.addEventListener('keydown', function (event) {
+    if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    var button = event.target.closest('.tab-nav-button[data-tab-item]');
+    var list = button && button.parentNode;
+    if (!list) {
+      return;
+    }
+    var buttons = Array.from(list.querySelectorAll(':scope > .tab-nav-button[data-tab-item]'));
+    var index = buttons.indexOf(button);
+    if (event.key == dir_key_start) {
+      index = (index + buttons.length - 1) % buttons.length;
+    } else if (event.key == dir_key_end) {
+      index = (index + 1) % buttons.length;
+    } else if (event.key == 'Home') {
+      index = 0;
+    } else if (event.key == 'End') {
+      index = buttons.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    buttons[index].focus();
+    buttons[index].click();
+  });
 }
 
 function mermaidPostRender(id) {
@@ -1164,6 +1193,10 @@ function initMenuScrollbar() {
     }
     if (event.target.matches('select, textarea, input:not([type="checkbox"])')) {
       // these need the keys for themselves
+      return;
+    }
+    if (event.target.matches('[role="tab"]') && (event.key == 'Home' || event.key == 'End')) {
+      // in a list of tabs these lead to its first and last tab
       return;
     }
 

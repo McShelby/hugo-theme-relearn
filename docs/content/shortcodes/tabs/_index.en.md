@@ -63,6 +63,7 @@ Each tab of the view is defined with the `tab` shortcode.
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **title**             | see notes       | Arbitrary title for the tab. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **hint**              | _&lt;empty&gt;_ | Tooltip for the tab. A tab showing an icon but no title should have one, as it is what assistive technology announces for it. |
 | _**&lt;content&gt;**_ | _&lt;empty&gt;_ | Arbitrary text to be displayed in the tab. |
 
 ### Single Tab
@@ -303,6 +304,20 @@ content:
     ```python
     printf("Hello World!");
     ```
+{{% /multishortcode %}}
+
+### Icon with Hint
+
+A tab showing nothing but an icon needs a `hint`: it is shown as a tooltip and is what assistive technology announces for the tab.
+
+{{% multishortcode name="tabs" %}}
+content:
+  - icon: "download"
+    hint: "Download"
+    content: "Get the theme from its repository."
+  - icon: "gears"
+    hint: "Configure"
+    content: "Set the options in your `hugo.toml`."
 {{% /multishortcode %}}
 
 ### Understanding `style` and `color` Behavior

@@ -73,21 +73,19 @@ window.relearn.selectTab = function (tabGroup, tabId) {
     // only the items of this panel, not those of a panel nested in one of its tabs
     Array.from(tab.querySelectorAll('[data-tab-item]'))
       .filter(function (e) {
-        return e.parentNode.parentNode == tab;
+        return e.closest('.tab-panel') == tab;
       })
       .forEach(function (e) {
         var active = e.dataset.tabItem == tabId;
         e.classList.toggle('active', active);
-        // the state attributes belong to the buttons only, the contents have no role to carry them
+        // the state attributes belong to the tabs only, their contents carry none
         if (!e.classList.contains('tab-nav-button')) {
           return;
         }
-        e.setAttribute('aria-expanded', active ? 'true' : 'false');
-        if (active) {
-          e.setAttribute('tabindex', '-1');
-        } else {
-          e.removeAttribute('tabindex');
-        }
+        // of all tabs of a panel only the selected one is a stop for the tab key,
+        // the others are reached from there by the arrow keys
+        e.setAttribute('aria-selected', active ? 'true' : 'false');
+        e.setAttribute('tabindex', active ? '0' : '-1');
       });
   });
 };
