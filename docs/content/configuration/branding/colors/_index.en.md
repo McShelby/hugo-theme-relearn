@@ -23,6 +23,9 @@ The theme ships with the following set of variants
 - Zen
   - Light: a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
   - Dark: dark variant of Light, coming with blue accents, dark sidebar and dark content area
+- Contrast
+  - Light: [colors chosen for high contrast](configuration/publishing/accessibility), coming with black text on white, darker boxes and a matching syntax highlighting
+  - Dark: dark variant of Light, coming with white text on black, brighter boxes and a matching syntax highlighting
 - Experimental
   - Neon: a variant that glows in the dark, gradient sidebar and dark content area
 - Retro

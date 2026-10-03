@@ -14,7 +14,7 @@ The theme takes the [Web Content Accessibility Guidelines](https://www.w3.org/WA
 
 The theme can only care for what it writes itself. The rest is yours.
 
-- **Colors**: The contrast of text depends on the [color variant](configuration/branding/colors) you choose or write. Not every shipped variant has enough of it in every place.
+- **Colors**: The contrast of text depends on the [color variant](configuration/branding/colors) you choose or write. Not every shipped variant has enough of it in every place, the [contrast variants](configuration/branding/colors#shipped-variants) do. Colors you set yourself, like the one of a badge or a box, are yours to check.
 - **Headings**: The theme writes the title of a page as its first heading, so start the headings of your content one level below and don't skip a level. The headings the theme writes for you fit in on their own. The exception is the [`pages` shortcode](shortcodes/pages), whose `headinglevel` you have to set to match the place you call it from.
 - **Images**: Give each image an alternative text.
 - **Links**: Write link texts that tell where they lead even if read on their own.
