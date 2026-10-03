@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+be2b1bebd417409e602dbec675fb70d318ca37c6">
+    <meta name="generator" content="Relearn 9.1.0+1b8e0f91f589e71a40af593e3c77ab3d378217ef">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="5.24.3 (2024-02-28) Fixes [bug] theme: avoid crash on 404 if author settings want to warn #785 5.24.2 (2024-02-24) Enhancements [feature] image: adjust to Hugo 0.123 #777 Fixes [bug] link: resolve fragments #775 5.24.1 (2024-02-18) Enhancements [feature] link: make resolution reporting configurable #774 5.24.0 (2024-02-17) Enhancements [feature] theme: compatibility with Hugo 0.123 #771 [feature] topbar: support editURL in frontmatter #764 [feature] menu: use –MENU-S-width to adjust mobile flyout #761 [feature] figure: support built-in shortcode #746 [feature] theme: make heading a template #744 [feature] taxonomy: make arrow nav browse through terms #742 [feature] theme: switch from config.toml to hugo.toml #741 [feature] button: make non-interactive if used as mock #740 [feature][change] topbar: allow text for button #739 [feature] theme: run hugo demo site without warning #736 [feature] menu: make swipe handler passive #735 [feature] i18n: support standard Hugo options #733 [feature] a11y: show tab focus on images #730 [feature] a11y: improve discovering links on keyboard navigation #726 [feature][change] variant: increase contrast for light themes #722 [feature] theme: break build if minimum Hugo version is not matched #719 [feature] taxonomy: humanize term on missing term title #713 Fixes [bug] taxonomy: display translated title #772 [bug] highlight: fix codefence syntax in Hugo &gt;= 0.121.0 #749 [bug] link: fix links to pages containing dots in their name #748 [bug] image: get resource images if link is prefixed with ./ #747 [bug] theme: switch dependency colors on OS color scheme change #745 [bug] clipboard: fix O(n²) buttons #738 [bug] button: fix whitespacing in FF #737 [bug] i18n: fix warning messages for zh-CN #732 [bug] mermaid: fix zoom button #725 [bug] theme: fix JS errors on hugo --minifiy #724 [bug] include: fix whitespacing in codefences #723">
     <meta name="author" content="Sören Weber">
@@ -35,7 +35,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.373845112980472e938f57e7ec9a00ff9d7b651d7e72cacce2b29211ad5f1924.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.ab49d96ad5c84d9a6d617cb5b302a83613b451cde3871cd55a4f7830feb89d07.js"
+      "indexFile": "searchindex.en.min.5d1aaa3297e1b7277d4e08e0e5c86f73714b62b4749f1ce10e362e4d6847f6ec.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -47,7 +47,7 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.09fc08f76169bd5ce54ab937deedc95c33b05bd9eead77f843584bd0acacd518.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.a73baf143a82c5f8d4f3db6b1eff73f0cb7128709219fbfe18e2757316ab9229.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.69a0061cdc38adc6bc7058be78dfd97a272a8a2e3f35926918f9fb6b1ba3a794.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
@@ -134,8 +134,10 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" data-overflow-title="Introduction &gt; Changelog &gt; Version 5 &gt; Version 5.24" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="/hugo-theme-relearn/index.html"><span itemprop="name">Hugo Relearn Theme</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/introduction/index.html"><span itemprop="name">Introduction</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/introduction/changelog/index.html"><span itemprop="name">Changelog</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/introduction/changelog/5/index.html"><span itemprop="name">Version 5</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Version 5.24</span><meta itemprop="position" content="5"></li>
-          </ol>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <ol class="topbar-breadcrumbs breadcrumbs highlightable" data-overflow-title="Introduction &gt; Changelog &gt; Version 5 &gt; Version 5.24" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="a11y-only"><a itemprop="item" href="/hugo-theme-relearn/index.html"><span itemprop="name">Hugo Relearn Theme</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/introduction/index.html"><span itemprop="name">Introduction</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/introduction/changelog/index.html"><span itemprop="name">Changelog</span></a><meta itemprop="position" content="3">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-theme-relearn/introduction/changelog/5/index.html"><span itemprop="name">Version 5</span></a><meta itemprop="position" content="4">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Version 5.24</span><meta itemprop="position" content="5"></li>
+            </ol>
+          </div>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-edit default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show">
 <span class="btn cstyle button link noborder notitle interactive"><a href="https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/introduction/changelog/5/24/_index.en.md" rel="external" target="_self" title="Edit (CTRL+ALT+w)"><i class="fa-fw fas fa-pen"></i></a></span>
