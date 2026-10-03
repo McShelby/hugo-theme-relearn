@@ -2199,6 +2199,19 @@ ready(function () {
       }
     });
   }
+  function adjustBreadcrumbTabstops() {
+    // the small layout puts the linked entries out of sight, where they must
+    // not be a stop for the tab key but stay for screen readers; an entry
+    // that is always out of sight is written that way and left alone
+    var isS = body.classList.contains('menu-s-width');
+    topbar.querySelectorAll('.topbar-breadcrumbs li:not(.a11y-only) > a').forEach(function (a) {
+      if (isS) {
+        a.setAttribute('tabindex', '-1');
+      } else {
+        a.removeAttribute('tabindex');
+      }
+    });
+  }
   function setWidthS(e) {
     body.classList[e.matches ? 'add' : 'remove']('menu-s-width');
   }
@@ -2212,6 +2225,7 @@ ready(function () {
     setWidth(e);
     moveTopbarButtons();
     adjustEmptyTopbarContents();
+    adjustBreadcrumbTabstops();
   }
   if (topbar) {
     var mqs = window.matchMedia('only screen and (max-width: 47.999rem)');
@@ -2227,6 +2241,7 @@ ready(function () {
     setWidthL(mql);
     moveTopbarButtons();
     adjustEmptyTopbarContents();
+    adjustBreadcrumbTabstops();
   }
 })();
 
