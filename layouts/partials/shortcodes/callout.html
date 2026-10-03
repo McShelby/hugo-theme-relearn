@@ -49,33 +49,37 @@
   {{- $styles = $styles | append (printf "--VARIABLE-BOX-color: %s" $color) }}
   {{- $params = dict "style" (delimit $styles ";") | merge $params }}
 {{- end }}
-{{ if $groupid }}
+{{ if and $groupid $expander }}
   {{- $params = dict "name" $groupid | merge $params }}
 {{- end }}
 {{- with .hint }}
   {{- $params = dict "title" . | merge $params }}
 {{- end }}
 
+{{- /* only a box that can be collapsed is a disclosure; any other is a note, named by its title */}}
+{{- $labelid := "" }}
+{{- if and (not $expander) $title }}
+  {{- $labelid = printf "R-box-label-%s" (partial "_relearn/makeRandomMd5.gotmpl" $page) }}
+{{- end }}
 {{- with $page }}
   {{- if or $icon $title $hasContent -}}
-<details
-  {{- if $expanded }} open{{ end }}
+{{ if $expander }}<details{{ if $expanded }} open{{ end }}{{ else }}<div role="note"{{ with $labelid }} aria-labelledby="{{ . }}"{{ end }}{{ end }}
   {{- range $k, $v := $params }}
     {{- if and $v (not (in (slice "open" "summary") $k)) }}
       {{- printf " %s=%q" $k $v | safeHTMLAttr }}
     {{- end }}
   {{- end }}>
-  <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}"{{ if not $expander }} tabindex="-1"{{ end }}>{{ if $expander }}
+  {{ if $expander }}<summary{{ else }}<div{{ with $labelid }} id="{{ . }}"{{ end }}{{ end }} class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}">{{ if $expander }}
     <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> {{ end }}{{ if $icon }}
     <i class="{{ $icon }}" aria-hidden="true"></i> {{ end }}{{ if $title }}
     {{ $title | .RenderString }}{{ else }}
     <span class="a11y-only">{{ T "Details" }}</span>{{ end }}
-  </summary>
+  {{ if $expander }}</summary>{{ else }}</div>{{ end }}
     {{- if $hasContent }}
   <div class="box-content"{{ if $.hint }} title=""{{ end }}>
 {{ $content | safeHTML }}
   </div>
     {{- end }}
-</details>
+{{ if $expander }}</details>{{ else }}</div>{{ end }}
   {{- end }}
 {{- end }}
