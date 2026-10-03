@@ -66,8 +66,8 @@
     {{- end }}
   {{- end }}>
   <summary class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}"{{ if not $expander }} tabindex="-1"{{ end }}>{{ if $expander }}
-    <i class="expander-icon fa-fw fas fa-chevron-right"></i> {{ end }}{{ if $icon }}
-    <i class="{{ $icon }}"></i> {{ end }}{{ if $title }}
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> {{ end }}{{ if $icon }}
+    <i class="{{ $icon }}" aria-hidden="true"></i> {{ end }}{{ if $title }}
     {{ $title | .RenderString }}{{ else }}
     <span class="a11y-only">{{ T "Details" }}</span>{{ end }}
   </summary>

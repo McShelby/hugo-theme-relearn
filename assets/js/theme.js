@@ -122,7 +122,7 @@ function mermaidPostRender(id) {
     var svg = d3.select(this);
     svg.html('<g>' + svg.html() + '</g>');
     var inner = svg.select('*:scope > g');
-    parent.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt"></i></button></span></div>');
+    parent.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '" aria-label="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt" aria-hidden="true"></i></button></span></div>');
     var wrapper = parent.querySelector('.svg-reset-button');
     var button = wrapper.querySelector('button');
     var zoom = d3.zoom().on('zoom', function (e) {
@@ -785,10 +785,11 @@ function initCodeClipboard() {
         button = document.createElement('button');
         button.type = 'button';
         button.setAttribute('title', window.T_Copy_to_clipboard);
+        button.setAttribute('aria-label', window.T_Copy_to_clipboard);
 
         if (isBlock) {
           // Wrap in actionbar structure for block buttons
-          button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
+          button.innerHTML = '<i class="fa-fw far fa-copy" aria-hidden="true"></i>';
           wrapper = document.createElement('span');
           wrapper.classList.add('btn', 'cstyle', 'block-copy-to-clipboard-button', 'action', 'noborder', 'notitle', 'interactive');
           wrapper.appendChild(button);
@@ -798,7 +799,7 @@ function initCodeClipboard() {
           insertElement = actionbar;
         } else {
           // Wrap in btn structure for inline buttons
-          button.innerHTML = '<i class="fa-fw far fa-copy"></i>';
+          button.innerHTML = '<i class="fa-fw far fa-copy" aria-hidden="true"></i>';
           wrapper = document.createElement('span');
           wrapper.classList.add('btn', 'cstyle', 'inline-copy-to-clipboard-button', 'inline', 'notitle', 'interactive');
           wrapper.appendChild(button);
@@ -2070,6 +2071,14 @@ function useMermaid(config) {
   }
 })();
 
+// an icon written by the author, like the one of a menu entry, comes as it is;
+// it is decoration unless it says otherwise, so assistive technology skips it
+function initIcons() {
+  document.querySelectorAll('i[class*="fa-"]:not([aria-hidden]):not([aria-label]):not([role]):not([title])').forEach(function (e) {
+    e.setAttribute('aria-hidden', 'true');
+  });
+}
+
 function ready(fn) {
   if (document.readyState == 'complete') {
     fn();
@@ -2079,6 +2088,7 @@ function ready(fn) {
 }
 
 ready(function () {
+  initIcons();
   initArrowVerticalNav();
   initArrowHorizontalNav();
   handleHistoryClearer();

@@ -17,7 +17,7 @@
 		{{- $post = (replaceRE (printf `.*?%s` $escapedTitle) "" site.Params.landingPageName) | safeHTML }}
 	{{- else }}
 		{{- $title = T "home-button" }}
-		{{- $pre = `<i class="fa-fw fas fa-home"></i> ` | safeHTML }}
+		{{- $pre = `<i class="fa-fw fas fa-home" aria-hidden="true"></i> ` | safeHTML }}
 	{{- end }}
 	{{- $defaultconfigentries = $defaultconfigentries | append
 		(dict "Menu" "" "Pre" $pre "Post" $post "Title" $title "PageRef" "/" )

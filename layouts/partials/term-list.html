@@ -21,7 +21,7 @@
 {{- with $term_pages }}
 <div class="R-taxonomy taxonomy-{{ $taxonomy }}{{ with $style }} cstyle {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ with $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" . | safeHTMLAttr }}{{ end }}>
   {{- if $icon }}
-  <i class="{{ $icon }}"></i>
+  <i class="{{ $icon }}" aria-hidden="true"></i>
   {{- end }}
   <ul>
   {{- range sort . ".Title" }}

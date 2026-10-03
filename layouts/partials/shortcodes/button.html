@@ -83,6 +83,11 @@
   {{- $params = dict "style" (print "--VARIABLE-BOX-color: " $color ";") | merge $params }}
 {{- end }}
 
+{{- /* a button showing nothing but an icon is named by its hint */}}
+{{- if and $isLink $hint (not $title) }}
+  {{- $attributes = merge $attributes (dict "aria-label" $hint) }}
+{{- end }}
+
 {{- with $page -}}
 <span
   {{- range $k, $v := $params }}
@@ -91,7 +96,7 @@
     {{- end }}
   {{- end }}>
   {{- if $isButton -}}
-  <button{{ with $action }} data-button-action="{{ . }}"{{ end }}{{ with $href }} onclick="{{ . | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}{{ if $istoggle }} aria-expanded="false"{{ end }}>
+  <button{{ with $action }} data-button-action="{{ . }}"{{ end }}{{ with $href }} onclick="{{ . | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}{{ if and $hint (not $title) }} aria-label="{{ $hint }}"{{ end }}{{ if $istoggle }} aria-expanded="false"{{ end }}>
   {{- else if $isLink -}}
   <a
     {{- range $k, $v := $attributes }}
@@ -106,11 +111,11 @@
   {{- else -}}
   <span>
   {{- end }}
-  {{- if and $icon (eq $iconposition "left") }}<i class="{{ $icon }}"></i>{{ end }}
+  {{- if and $icon (eq $iconposition "left") }}<i class="{{ $icon }}" aria-hidden="true"></i>{{ end }}
   {{- if and $icon (eq $iconposition "left") $title }} {{ end }}
   {{- if $title }}<span class="title">{{- $title | safeHTML }}</span>{{ end }}
   {{- if and $icon (eq $iconposition "right") $title }} {{ end }}
-  {{- if and $icon (eq $iconposition "right") }}<i class="{{ $icon }}"></i>{{ end }}
+  {{- if and $icon (eq $iconposition "right") }}<i class="{{ $icon }}" aria-hidden="true"></i>{{ end }}
   {{- if $isButton -}}
   </button>
   {{- else if $isLink -}}
