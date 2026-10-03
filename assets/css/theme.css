@@ -163,6 +163,16 @@ a:focus {
   transition: all 0.35s ease;
 }
 
+/* readers asking for less motion get none: what changes, changes at once */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* the first stop for keyboard users, out of sight until it has the focus */
 #R-skip-link {
   background-color: var(--INTERNAL-MAIN-BG-color);
@@ -480,13 +490,6 @@ a:focus {
   .classic-scrollbars #R-scrollbar:hover > #R-scrollbar-thumb,
   .classic-scrollbars #R-scrollbar-thumb.dragging {
     background-color: CanvasText;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .classic-scrollbars #R-scrollbar,
-  .classic-scrollbars #R-scrollbar-thumb {
-    transition: none;
   }
 }
 /* === end of classic scrollbar quirks ===================================== */

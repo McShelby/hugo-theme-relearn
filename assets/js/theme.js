@@ -666,7 +666,7 @@ function initAnchorClipboard() {
     }
     if (anchor.classList.contains('scrollanchor')) {
       anchor.addEventListener('click', function () {
-        this.parentElement.scrollIntoView({ behavior: 'smooth' });
+        this.parentElement.scrollIntoView({ behavior: reducedmotion.matches ? 'auto' : 'smooth' });
         let state = window.history.state || {};
         state = Object.assign({}, typeof state === 'object' ? state : {});
         history.pushState({}, '', this.dataset.clipboardText);
