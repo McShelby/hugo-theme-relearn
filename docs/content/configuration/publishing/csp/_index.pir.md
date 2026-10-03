@@ -3,6 +3,6 @@ categories = ['explanation', 'howto']
 description = 'Serving your site with a strict Content Security Policy'
 options = ['enableSubresourceIntegrity']
 title = 'Content Security Policy'
-weight = 5
+weight = 6
 +++
 {{< piratify >}}

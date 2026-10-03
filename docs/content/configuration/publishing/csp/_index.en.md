@@ -3,7 +3,7 @@ categories = ['explanation', 'howto']
 description = 'Serving your site with a strict Content Security Policy'
 options = ['enableSubresourceIntegrity']
 title = 'Content Security Policy'
-weight = 5
+weight = 6
 +++
 
 The theme writes no inline JavaScript. Its settings travel as JSON data blocks and all of its code comes from script files, so your site can be served with a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).

@@ -2,6 +2,6 @@
 categories = ['explanation']
 description = "Information on what's stored on the reader's side"
 title = 'GDPR & Cookie Consent'
-weight = 2
+weight = 3
 +++
 {{< piratify >}}

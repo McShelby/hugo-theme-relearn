@@ -15,6 +15,7 @@ The Relearn theme is an enhanced fork of the popular [Learn theme](https://githu
 - **Versatile Usage**
   - [Responsive design for mobile devices](https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/width)
   - [Looks nice on paper](https://mcshelby.github.io/hugo-theme-relearn/configuration/sitemanagement/outputformats) - if it has to
+  - [Accessible by keyboard and screen reader](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/accessibility)
   - [Usable offline with no external dependencies](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/deployment#offline-usage)
   - [Usable from your local file system without a web server](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/deployment#file-system) via `file://` protocol
   - [Servable with a strict Content Security Policy](https://mcshelby.github.io/hugo-theme-relearn/configuration/publishing/csp)

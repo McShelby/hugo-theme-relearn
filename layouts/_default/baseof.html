@@ -40,7 +40,7 @@
     {{- partial "dependencies.html" (dict "page" . "location" "header") }}
     {{- partial "custom-header.html" . }}
   </head>
-  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}" data-origin="{{ partial "permalink.gotmpl" (dict "to" .) }}">
+  <body class="mobile-support {{ with .Store.Get "relearnOutputFormat" }}{{ . }}{{ else }}html{{ end }}{{- if site.Params.disableHoverBlockCopyToClipBoard }} disableHoverBlockCopyToClipBoard{{ end }}{{- if site.Params.link.underline }} link-underline{{ end }}" data-origin="{{ partial "permalink.gotmpl" (dict "to" .) }}">
     <a id="R-skip-link" href="#R-body-inner">{{ T "Skip-to-content" }}</a>
 {{- block "menu" . }}{{ end }}
     <div id="R-body" class="default-animation">
