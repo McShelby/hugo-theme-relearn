@@ -1084,12 +1084,10 @@ You can continue configuring your site to your needs.
 Or just start authoring content and discover what’s possible.`,description:"Initialize your website in a few simple steps",tags:[],title:"Getting Started",uri:"/hugo-theme-relearn/introduction/quickstart/index.html"},{breadcrumb:"",content:`Discover what this Hugo theme is all about.
 Getting Started Initialize your website in a few simple steps
 Upgrade How to upgrade your Relearn site
-Tool Integration All about supported 3rd party tools
 What's New What's new in this version
 Changelog The detailed changelog`,description:`Discover what this Hugo theme is all about.
 Getting Started Initialize your website in a few simple steps
 Upgrade How to upgrade your Relearn site
-Tool Integration All about supported 3rd party tools
 What's New What's new in this version
 Changelog The detailed changelog`,tags:[],title:"Introduction",uri:"/hugo-theme-relearn/introduction/index.html"},{breadcrumb:"Configuration > Branding",content:`Changing the Favicon If your favicon is an SVG, PNG, or ICO, just drop your image in your site’s assets/images/ or static/images/ directory and name it favicon.svg, favicon.png, or favicon.ico respectively.
 If you want to adjust your favicon according to your OS settings for light/dark mode, add the image files assets/images/favicon-light.svg and assets/images/favicon-dark.svg to your site’s directory, respectively, corresponding to your file format. In case some of the files are missing, the theme falls back to favicon.svg for each missing file. All supplied favicons must be of the same file format.
@@ -1507,11 +1505,7 @@ test-hugo test-hugo min test-hugo 0.150.0 The argument selects the Hugo version 
 Nothing is compared or stored; reading the difference is up to you.
 Continuous Integration This repository runs the suite on every branch and every pull request, and nightly against the latest Hugo release - which is how a Hugo change that breaks the theme is found in CI rather than in an issue report. The infra repository runs nothing; one run tests the pair, and this is where it happens.
 That is why a change spanning both repositories is pushed to infra first, then here, and why a change to the suite alone has to be started by hand: see Developing.
-The suite never releases, deploys or publishes anything.`,description:"How to run and extend the automated test suite",tags:[],title:"Testing",uri:"/hugo-theme-relearn/development/testing/index.html"},{breadcrumb:"Introduction",content:`Front Matter CMS The theme supports the great VSCode Front Matter CMS extension which provides on-premise CMS capabilties to Hugo.
-For that, the theme provides a snippets file so you can use shortcodes from inside the Front Matter CMS.
-Currently only English and German is supported.
-To use them in your Front Matter CMS, put a reference into your frontmatter.json like this
-​ frontmatter.json { "frontMatter.extends": [ "./vscode-frontmatter/snippets.en.json" ] }`,description:"All about supported 3rd party tools",tags:[],title:"Tool Integration",uri:"/hugo-theme-relearn/introduction/tools/index.html"},{breadcrumb:"Configuration > Site Management",content:`Option The theme offers a way to version your site. This is useful if you want to keep older versions of your site available while also providing links to the current version. Each site version needs to be created separately and is functional independent of each other.
+The suite never releases, deploys or publishes anything.`,description:"How to run and extend the automated test suite",tags:[],title:"Testing",uri:"/hugo-theme-relearn/development/testing/index.html"},{breadcrumb:"Configuration > Site Management",content:`Option The theme offers a way to version your site. This is useful if you want to keep older versions of your site available while also providing links to the current version. Each site version needs to be created separately and is functional independent of each other.
 A version switcher will be displayed at the top of the sidebar if versioning is configured. If the user selects a different version, the theme will navigate to the actual page location but in the selected version. If this page does not exist in the selected version, the 404 page will be displayed.
 If you want to have more control, where the version switcher is positioned or you want to configure a different icon, see the chapter on sidebar configuration.
 Example: Versioning an Existing Nonversioned Site Assume, you have written a documentation for an app. At some point you are a releasing a new major version. This new version requires enhanced documentation while the older documentation must still be available for users of the older app version.
@@ -2100,11 +2094,16 @@ Old:
 GDPR & Cookie Consent Information on what's stored on the reader's side
 Stable Output How to make your generated HTML output stable
 SBOM What the theme publishes with your site, as a CycloneDX SBOM
-Content Security Policy Serving your site with a strict Content Security Policy`,description:"Serve your site to your readers",tags:[],title:"Publishing",uri:"/hugo-theme-relearn/configuration/publishing/index.html"},{breadcrumb:"Authoring",content:`Taxonomy Parameter Front Matter The list of taxonomies is displayed using the pages shortcode. By default the output is grouped by the first letter of each term but you can overwrite any parameter of the pages shortcode in the pages front matter.
+Content Security Policy Serving your site with a strict Content Security Policy
+VS Code Front Matter CMS Use the shortcodes from inside the VS Code Front Matter CMS extension`,description:"Serve your site to your readers",tags:[],title:"Publishing",uri:"/hugo-theme-relearn/configuration/publishing/index.html"},{breadcrumb:"Authoring",content:`Taxonomy Parameter Front Matter The list of taxonomies is displayed using the pages shortcode. By default the output is grouped by the first letter of each term but you can overwrite any parameter of the pages shortcode in the pages front matter.
 ​ toml yaml json +++ [params] [params.pages] display = 'cards' groupby = ' ' +++ --- params: pages: display: cards groupby: ' ' --- { "params": { "pages": { "display": "cards", "groupby": " " } } } For example in this docs the Categories taxonomy does not show a grouped list like in the default (compare to the Tags taxonomy) but some neat cards.
 Term Parameter Front Matter The list of pages of a term is displayed using the pages shortcode. You can overwrite any parameter of the pages shortcode in the pages front matter. Use a cascade configuration on your taxonomy page to inherit parameter down to every term page.
 ​ toml yaml json +++ [[cascade]] [cascade.params] [cascade.params.pages] breadcrumb = false description = true +++ --- cascade: - params: pages: breadcrumb: false description: true --- { "cascade": [ { "params": { "pages": { "breadcrumb": false, "description": true } } } ] } For example in this docs the term pages of the Categories taxonomy do not show their breadcrumbs like in the default but the description of the page.
-Note Before the pages shortcode existed, these parameters were set in the children front matter. It is still honored as long as the deprecated children shortcode exists.`,description:"How to adjust taxonomy and term pages",tags:[],title:"Taxonomy / Term Pages",uri:"/hugo-theme-relearn/authoring/taxterm/index.html"},{breadcrumb:"Configuration",content:`This page explains how to configure the Relearn theme in your hugo.toml file.
+Note Before the pages shortcode existed, these parameters were set in the children front matter. It is still honored as long as the deprecated children shortcode exists.`,description:"How to adjust taxonomy and term pages",tags:[],title:"Taxonomy / Term Pages",uri:"/hugo-theme-relearn/authoring/taxterm/index.html"},{breadcrumb:"Configuration > Publishing",content:`The theme supports the great VSCode Front Matter CMS extension which provides on-premise CMS capabilties to Hugo.
+For that, the theme provides a snippets file so you can use shortcodes from inside the Front Matter CMS.
+Currently only English and German is supported.
+To use them in your Front Matter CMS, put a reference into your frontmatter.json like this
+​ frontmatter.json { "frontMatter.extends": [ "./vscode-frontmatter/snippets.en.json" ] }`,description:"Use the shortcodes from inside the VS Code Front Matter CMS extension",tags:[],title:"VS Code Front Matter CMS",uri:"/hugo-theme-relearn/configuration/publishing/frontmattercms/index.html"},{breadcrumb:"Configuration",content:`This page explains how to configure the Relearn theme in your hugo.toml file.
 In addition to Hugo’s standard options, the Relearn theme offers extra settings listed here.
 Throughout the documentation, theme-specific options are marked with a Option badge.
 Add theme options to the params section of your hugo.toml. For example:

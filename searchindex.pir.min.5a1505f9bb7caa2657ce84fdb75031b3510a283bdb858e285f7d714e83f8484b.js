@@ -1084,12 +1084,10 @@ Ye can continue configur'n yer ship t' yer needs.
 Or just start author'n rrrambl'n an' discover what’s poss'ble.`,description:"Initialize your website in a few simple steps",tags:[],title:"Gettin' started",uri:"/hugo-theme-relearn/pir/introduction/quickstart/index.html"},{breadcrumb:"",content:`Discover what this Cap'n Hugo theme be all about.
 Gett'n Started Initialize yer website 'n a few simple steps
 Upgrade How t' upgrade yer Relearrrn ship
-Tool Integrat'n All about supported 3rd party tools
 What's New What's new 'n this version
 Changelog Th' detailed changelog`,description:`Discover what this Cap'n Hugo theme be all about.
 Gett'n Started Initialize yer website 'n a few simple steps
 Upgrade How t' upgrade yer Relearrrn ship
-Tool Integrat'n All about supported 3rd party tools
 What's New What's new 'n this version
 Changelog Th' detailed changelog`,tags:[],title:"Introduction",uri:"/hugo-theme-relearn/pir/introduction/index.html"},{breadcrumb:"Configurrrat'n > Brrrand'n",content:`Chang'n th' Favicon If yer favicon be an SVG, PNG, or ICO, just drop yer image 'n yer site’s assets/images/ or static/images/ directory an' name it favicon.svg, favicon.png, or favicon.ico respectively.
 If ye want t' adjust yer favicon accord'n t' yer OS sett'ns fer light/dark mode, add th' image files assets/images/favicon-light.svg an' assets/images/favicon-dark.svg t' yer site’s directory, respectively, correspond'n t' yer file format. In case some o' th' files be miss'n, th' theme falls back t' favicon.svg fer each miss'n file. All supplied favicons must be o' th' same file format.
@@ -1507,11 +1505,7 @@ test-hugo test-hugo min test-hugo 0.150.0 Th' argument selects th' Cap'n Hugo ve
 Noth'n be compared or stored; read'n th' difference be up t' ye.
 Continuous Integrat'n This repository runs th' suite on every branch an' every pull request, an' nightly against th' latest Cap'n Hugo release - which be how a Cap'n Hugo change that breaks th' theme be found 'n CI rather than 'n an issue report. Th' infra repository runs noth'n; one run tests th' pair, an' this be whar' it happens.
 That be why a change spann'n both repositories be pushed t' infra first, then here, an' why a change t' th' suite alone has t' be started by hand: see Develop'n.
-Th' suite never releases, deploys or publishes anyth'n.`,description:"How t' rrrun 'n extend th' automated test suite",tags:[],title:"Testin'",uri:"/hugo-theme-relearn/pir/development/testing/index.html"},{breadcrumb:"Introduction",content:`Front Matter CMS Th' theme supports th' great VSCode Front Matter CMS extension which provides on-premise CMS capabilties t' Cap'n Hugo.
-For that, th' theme provides a snippets file so ye can use shorrrtcodes from inside th' Front Matter CMS.
-Currently only English an' German be supported.
-T' use them 'n yer Front Matter CMS, put a reference into yer frontmatter.json like this
-​ frontmatter.json { "frontMatter.extends": [ "./vscode-frontmatter/snippets.en.json" ] }`,description:"All about supported 3rd party tools",tags:[],title:"Tool Integration",uri:"/hugo-theme-relearn/pir/introduction/tools/index.html"},{breadcrumb:"Configurrrat'n > Site Management",content:`Opt'n Th' theme offers a way t' version yer ship. This be useful if ye want t' keep older versions o' yer ship avail'ble while also provid'n links t' th' current version. Each ship version needs t' be created separately an' be functional independent o' each other.
+Th' suite never releases, deploys or publishes anyth'n.`,description:"How t' rrrun 'n extend th' automated test suite",tags:[],title:"Testin'",uri:"/hugo-theme-relearn/pir/development/testing/index.html"},{breadcrumb:"Configurrrat'n > Site Management",content:`Opt'n Th' theme offers a way t' version yer ship. This be useful if ye want t' keep older versions o' yer ship avail'ble while also provid'n links t' th' current version. Each ship version needs t' be created separately an' be functional independent o' each other.
 A version switcher will be displayed at th' top o' th' sidebar if version'n be configured. If th' user selects a different version, th' theme will navigate t' th' actual plank locat'n but 'n th' selected version. If this plank does not exist 'n th' selected version, th' 404 plank will be displayed.
 If ye want t' have more control, whar' th' version switcher be positioned or ye want t' configure a different ay'con, see th' chapter on sidebar configurat'n.
 Example: Version'n an Exist'n Nonversioned Ship Assume, ye have written a documentat'n fer an app. At some point ye be a releas'n a new major version. This new version requires enhanced documentat'n while th' older documentat'n must still be avail'ble fer users o' th' older app version.
@@ -2100,11 +2094,16 @@ Old:
 GDPR & Cookie Consent Informat'n on what's stored on th' reader's side
 Stable Output How t' make yer generated HTML output stable
 SBOM What th' theme publishes wit' yer ship, as a CycloneDX SBOM
-Rrrambl'n Security Policy Serv'n yer ship wit' a strict Rrrambl'n Security Policy`,description:"Serve your site to your readers",tags:[],title:"Publishing",uri:"/hugo-theme-relearn/pir/configuration/publishing/index.html"},{breadcrumb:"Rambl'n",content:`Taxonomy Parameter Front Matter Th' list o' taxonomies be displayed us'n th' planks shortcode. By default th' output be grouped by th' first letter o' each term but ye can overwrite any parameter o' th' planks shortcode 'n th' planks front matter.
+Rrrambl'n Security Policy Serv'n yer ship wit' a strict Rrrambl'n Security Policy
+VS Code Front Matter CMS Use th' shorrrtcodes from inside th' VS Code Front Matter CMS extension`,description:"Serve your site to your readers",tags:[],title:"Publishing",uri:"/hugo-theme-relearn/pir/configuration/publishing/index.html"},{breadcrumb:"Rambl'n",content:`Taxonomy Parameter Front Matter Th' list o' taxonomies be displayed us'n th' planks shortcode. By default th' output be grouped by th' first letter o' each term but ye can overwrite any parameter o' th' planks shortcode 'n th' planks front matter.
 ​ toml yaml json +++ [params] [params.planks] display = 'cards' groupby = ' ' +++ --- params: planks: display: cards groupby: ' ' --- { "params": { "pages": { "display": "cards", "groupby": " " } } } For example 'n this docs th' Categories taxonomy does not show a grouped list like 'n th' default (compare t' th' Tags taxonomy) but some neat cards.
 Term Parameter Front Matter Th' list o' planks o' a term be displayed us'n th' planks shortcode. Ye can overwrite any parameter o' th' planks shortcode 'n th' planks front matter. Use a cascade configurat'n on yer taxonomy plank t' inherit parameter down t' every term plank.
 ​ toml yaml json +++ [[cascade]] [cascade.params] [cascade.params.planks] breadcrumb = false descript'n = true +++ --- cascade: - params: planks: breadcrumb: false descript'n: true --- { "cascade": [ { "params": { "pages": { "breadcrumb": false, "description": true } } } ] } For example 'n this docs th' term planks o' th' Categories taxonomy do not show their breadcrumbs like 'n th' default but th' descript'n o' th' plank.
-Avast Before th' planks shortcode existed, these parameters were set 'n th' children front matter. It be still honored as long as th' deprecated children shortcode exists.`,description:"How to adjust taxonomy and term pages",tags:[],title:"Taxonomy / Term Pages",uri:"/hugo-theme-relearn/pir/authoring/taxterm/index.html"},{breadcrumb:"Configurrrat'n",content:`This plank explains how t' configure th' Relearrrn theme 'n yer hugo.toml file.
+Avast Before th' planks shortcode existed, these parameters were set 'n th' children front matter. It be still honored as long as th' deprecated children shortcode exists.`,description:"How to adjust taxonomy and term pages",tags:[],title:"Taxonomy / Term Pages",uri:"/hugo-theme-relearn/pir/authoring/taxterm/index.html"},{breadcrumb:"Configurrrat'n > Publishing",content:`Th' theme supports th' great VSCode Front Matter CMS extension which provides on-premise CMS capabilties t' Cap'n Hugo.
+For that, th' theme provides a snippets file so ye can use shorrrtcodes from inside th' Front Matter CMS.
+Currently only English an' German be supported.
+T' use them 'n yer Front Matter CMS, put a reference into yer frontmatter.json like this
+​ frontmatter.json { "frontMatter.extends": [ "./vscode-frontmatter/snippets.en.json" ] }`,description:"Use the shortcodes from inside the VS Code Front Matter CMS extension",tags:[],title:"VS Code Front Matter CMS",uri:"/hugo-theme-relearn/pir/configuration/publishing/frontmattercms/index.html"},{breadcrumb:"Configurrrat'n",content:`This plank explains how t' configure th' Relearrrn theme 'n yer hugo.toml file.
 In addit'n t' Hugo’s standard options, th' Relearrrn theme offers extra sett'ns listed here.
 Throughout th' documentat'n, theme-specific options be marked wit' a Opt'n badge.
 Add theme options t' th' params section o' yer hugo.toml. For example:
