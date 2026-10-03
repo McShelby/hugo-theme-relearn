@@ -1,23 +1,2 @@
-{{- $onwidths := cond (isset . "onwidths") .onwidths "area-more" }}
-{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
-{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
-{{- with .page }}
-	{{- $format := .OutputFormats.Get "source" }}
-	{{- $show := and $format (not (.Param "disableSourceButton")) }}
-	{{- if $show }}
-		{{- $show = and (not (partial "_relearn/pageIsSpecial.gotmpl" .)) .File .File.Filename }}
-	{{- end }}
-	{{- if $show }}
-		{{- $href := printf "%s?format=source" .Path }}
-		{{- partial "topbar/func/button.html" (dict
-			"page" .
-			"class" "topbar-button-source"
-			"href" $href
-			"icon" "code"
-			"onwidths" $onwidths
-			"onwidthm" $onwidthm
-			"onwidthl" $onwidthl
-			"hint" (T "Show-source")
-		)}}
-	{{- end }}
-{{- end }}
+{{- warnf "DEPRECATED partial 'topbar/button/source.html' called, call 'topbar/element/sourcebutton.html' instead or configure an element of type 'sourcebutton'; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" }}
+{{- partial "topbar/element/sourcebutton.html" . }}

@@ -11,7 +11,7 @@
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
           {{- $menuconfigs = partialCached "_relearn/defaultSidebarHeader.gotmpl" site.Home }}
         {{- end }}
-        {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" false) }}
+        {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "param" "sidebarheadermenus" "showvisitedlinks" false) }}
       </div>
       <div id="R-content-wrapper" class="highlightable" tabindex="-1">
         <div id="R-scrollbar" aria-hidden="true"><div id="R-scrollbar-thumb"></div></div>
@@ -19,13 +19,13 @@
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
           {{- $menuconfigs = partialCached "_relearn/defaultSidebar.gotmpl" site.Home }}
         {{- end }}
-        {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" $showvisitedlinks) }}
+        {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "param" "sidebarmenus" "showvisitedlinks" $showvisitedlinks) }}
         <div id="R-footer-margin" class="default-animation"></div>
         {{- $menuconfigs := .Params.sidebarfootermenus | default site.Params.sidebarfootermenus }}
         {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}
           {{- $menuconfigs = partialCached "_relearn/defaultSidebarFooter.gotmpl" site.Home }}
         {{- end }}
-        {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "showvisitedlinks" $showvisitedlinks) }}
+        {{- partial "inline/menu" (dict "currentnode" $currentNode "configs" $menuconfigs "param" "sidebarfootermenus" "showvisitedlinks" $showvisitedlinks) }}
 <div id="R-footer" class="default-animation">{{ partial "menu-footer.html" . }}</div>
       </div>
     </aside>
@@ -33,6 +33,7 @@
 {{- define "partials/inline/menu" }}
   {{- $currentNode := .currentnode }}
   {{- $configs := .configs }}
+  {{- $param := .param }}
   {{- $showvisitedlinks := .showvisitedlinks }}
   {{- range $configs }}
     {{- $config := . }}
@@ -41,11 +42,11 @@
     {{- else if eq $config.type "menu" }}
       {{- partial "inline/menu-tree" (dict "currentnode" $currentNode "config" $config "showvisitedlinks" $showvisitedlinks "entries" ($config.entries | default (index site.Menus $config.identifier))) }}
     {{- else if eq $config.type "custom" }}
-      {{- partial "inline/custom-list" (dict "currentnode" $currentNode "config" $config "elements" $config.elements) }}
+      {{- partial "inline/custom-list" (dict "currentnode" $currentNode "config" $config "param" $param "elements" $config.elements) }}
     {{- else if eq $config.type "divider" }}
       {{- partial "inline/divider" (dict "currentnode" $currentNode "config" $config "elements" $config.elements) }}
     {{- else }}
-      {{- warnf "WARNING: unknown menu type '%s' found in parameter 'sidebarmenus' for menu '%s'; use either 'page', 'menu', 'custom' or 'divider'" $config.type $config.identifier }}
+      {{- warnf "WARNING: unknown menu type '%s' found in parameter '%s' for menu '%s'; use either 'page', 'menu', 'custom' or 'divider'; see https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/menus/#defining-sidebar-menus" ($config.type | default "") $param ($config.identifier | default "") }}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -362,6 +363,7 @@
 {{- define "partials/inline/custom-list" }}
   {{- $currentNode := .currentnode }}
   {{- $config := .config }}
+  {{- $param := .param }}
         <div class="R-sidebarmenu R-shortcutmenu-{{ $config.identifier }} default-animation">
   {{- $classes := "" }}
   {{- if ($config.main | default false) }}
@@ -369,7 +371,13 @@
   {{- end }}
           <ul class="{{ $classes }}">
   {{- range .elements }}
-    {{- partial (printf "sidebar/element/%s.html" .type) (dict "page" $currentNode "config" $config "element" .) }}
+    {{- $type := .type | default "" }}
+    {{- $partial := printf "sidebar/element/%s.html" $type }}
+    {{- if and $type (templates.Exists (printf "partials/%s" $partial)) }}
+      {{- partial $partial (dict "page" $currentNode "config" $config "element" .) }}
+    {{- else }}
+      {{- errorf "unknown element type '%s' found in parameter '%s' for menu '%s'; use one of the theme's predefined elements or add your own element as 'layouts/partials/%s'; see https://mcshelby.github.io/hugo-theme-relearn/configuration/sidebar/menus/#custom-element" $type $param ($config.identifier | default "") $partial }}
+    {{- end }}
   {{- end }}
           </ul>
         </div>

@@ -1,0 +1,14 @@
+{{- with .page }}
+	{{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not site.Params.disableBreadcrumb)) }}
+	{{- if $showBreadcrumb }}
+		{{- $breadcrumb := partial "breadcrumbs.html" (dict "page" . "schema" true) }}
+		{{- $breadcrumbTitle := trim ($breadcrumb | replaceRE `(?s)<li[^>]*class="a11y-only"[^>]*>.*?</li>` "" | plainify | htmlUnescape) "\n\r\t " }}
+            <ol class="topbar-breadcrumbs breadcrumbs highlightable"{{ with $breadcrumbTitle }} data-overflow-title="{{ . }}"{{ end }} itemscope itemtype="http://schema.org/BreadcrumbList">
+              {{- $breadcrumb }}
+            </ol>
+	{{- else }}
+            <span class="topbar-breadcrumbs highlightable">
+              {{ partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
+            </span>
+	{{- end }}
+{{- end }}

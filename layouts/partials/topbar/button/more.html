@@ -1,14 +1,2 @@
-{{- $onempty := cond (isset . "onempty") .onempty "hide" }}
-{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
-{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
-{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
-{{- partial "topbar/func/area-button.html" (dict
-	"page" .page
-	"area" "more"
-	"icon" "ellipsis-v"
-	"onempty" $onempty
-	"onwidths" $onwidths
-	"onwidthm" $onwidthm
-	"onwidthl" $onwidthl
-	"hint" (printf "%s" (T "More-action"))
-)}}
+{{- warnf "DEPRECATED partial 'topbar/button/more.html' called, call 'topbar/element/morebutton.html' instead or configure an element of type 'morebutton'; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" }}
+{{- partial "topbar/element/morebutton.html" . }}

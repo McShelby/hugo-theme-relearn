@@ -1,15 +1,2 @@
-{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
-{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "hide" }}
-{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "hide" }}
-{{- with .page }}
-	{{- partial "topbar/func/button.html" (dict
-		"page" .
-		"class" "topbar-button-sidebar"
-		"action" "toggle-nav"
-		"icon" "bars"
-		"onwidths" $onwidths
-		"onwidthm" $onwidthm
-		"onwidthl" $onwidthl
-		"hint" (printf "%s (CTRL+ALT+n)" (T "Navigation-toggle"))
-	)}}
-{{- end }}
+{{- warnf "DEPRECATED partial 'topbar/button/sidebar.html' called, call 'topbar/element/sidebarbutton.html' instead or configure an element of type 'sidebarbutton'; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" }}
+{{- partial "topbar/element/sidebarbutton.html" . }}

@@ -1,0 +1,13 @@
+{{- $page := .page }}
+{{- $area := .area }}
+{{- $param := printf "topbar%s" $area }}
+{{- $configs := index $page.Params $param | default (index site.Params $param) }}
+{{- if or (eq (printf "%T" $configs) "string") (eq (printf "%T" $configs) "<nil>") }}
+	{{- /* only the areas of the theme come with default elements */}}
+	{{- $configs = slice }}
+	{{- $default := printf "_relearn/defaultTopbar%s.gotmpl" (title $area) }}
+	{{- if templates.Exists (printf "partials/%s" $default) }}
+		{{- $configs = partialCached $default site.Home }}
+	{{- end }}
+{{- end }}
+{{- return $configs }}

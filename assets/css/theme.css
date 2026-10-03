@@ -1606,15 +1606,19 @@ tbody > tr:nth-child(even) > td {
   content: '\00a0';
 }
 
-.topbar-wrapper > .topbar-area-start {
+.topbar-wrapper > .topbar-area {
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
 }
 .topbar-wrapper > .topbar-area-end {
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
+  /* at the end, even if nothing in the middle area takes the remaining space */
+  margin-inline-start: auto;
+}
+/* the elements of the middle area are laid out as if they were written
+   directly into the topbar, so the breadcrumbs take the remaining space */
+.topbar-wrapper > .topbar-area-middle {
+  display: contents;
 }
 .topbar-wrapper > .topbar-hidden {
   display: none;
@@ -1628,7 +1632,7 @@ html[dir='rtl'] .topbar-button-next i {
 .topbar-content {
   top: 1rem;
 }
-.topbar-wrapper > .topbar-area-start .topbar-content {
+.topbar-wrapper > .topbar-area:not(.topbar-area-end) .topbar-content {
   inset-inline-start: 1.5rem;
 }
 .topbar-wrapper > .topbar-area-end .topbar-content {

@@ -1,0 +1,40 @@
+{{- $onwidths := cond (isset . "onwidths") .onwidths "area-more" }}
+{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
+{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
+{{- with .page }}
+	{{- $show := .File }}
+	{{- if $show }}
+		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+	{{- end }}
+	{{- if $show }}
+		{{- $filePath := printf "%s%s" (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName }}
+		{{- /* the directory $filePath is resolved against, written as a URL spells
+		a path: forward slashes and no leading slash, so it can be appended to a
+		URL prefix on Windows and Unix alike */}}
+		{{- $baseDir := strings.TrimLeft "/" (strings.TrimSuffix "/" (strings.TrimSuffix $filePath (replace .File.Filename "\\" "/"))) }}
+		{{- $href := "" }}
+		{{- if site.Params.editURL }}
+			{{- $href = site.Params.editURL }}
+			{{- if not (strings.Contains $href "${FilePath}") }}
+				{{- $href = printf "%s%s" $href "${FilePath}" }}
+			{{- end }}
+		{{- end }}
+		{{- if isset .Params "editurl" }}
+			{{- $href = .Params.editURL }}
+		{{- end }}
+		{{- $href = strings.Replace $href "${BaseDir}" $baseDir }}
+		{{- $href = strings.Replace $href "${FilePath}" $filePath }}
+		{{- if $href }}
+			{{- partial "topbar/func/button.html" (dict
+				"page" .
+				"class" "topbar-button-edit"
+				"href" $href
+				"icon" "pen"
+				"onwidths" $onwidths
+				"onwidthm" $onwidthm
+				"onwidthl" $onwidthl
+				"hint" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
+			)}}
+		{{- end }}
+	{{- end }}
+{{- end }}
