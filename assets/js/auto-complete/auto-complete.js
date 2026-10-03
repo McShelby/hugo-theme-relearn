@@ -13,6 +13,8 @@
             - on ESC, close overlay without deleting search term if overlay is open
             - on ESC, delete search term if overlay is closed
             - on UP, preventDefault to keep cursor in position
+        McShelby/hugo-theme-relearn#1258
+            - tell assistive technology about the combobox, its list, its options and their state
 
     Copyright (c) 2014 Simon Steinberger / Pixabay
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
@@ -75,6 +77,30 @@ var autoComplete = (function(){
             that.cache = {};
             that.last_val = '';
 
+            // the input and its suggestions are a combobox and its list
+            that.sc.id = (that.id || 'autocomplete') + '-suggestions';
+            that.sc.setAttribute('role', 'listbox');
+            if (that.labels && that.labels.length) that.sc.setAttribute('aria-label', that.labels[0].textContent.replace(/^\s+|\s+$/g, ''));
+            that.setAttribute('role', 'combobox');
+            that.setAttribute('aria-autocomplete', 'list');
+            that.setAttribute('aria-controls', that.sc.id);
+            that.setAttribute('aria-expanded', 'false');
+            var hide = function(){
+                that.sc.style.display = 'none';
+                that.setAttribute('aria-expanded', 'false');
+                that.removeAttribute('aria-activedescendant');
+            };
+            var select = function(el){
+                el.className += ' selected';
+                el.setAttribute('aria-selected', 'true');
+                that.setAttribute('aria-activedescendant', el.id);
+            };
+            var deselect = function(el){
+                el.className = el.className.replace('selected', '');
+                el.setAttribute('aria-selected', 'false');
+                if (that.getAttribute('aria-activedescendant') == el.id) that.removeAttribute('aria-activedescendant');
+            };
+
 			var parentElement;
             if (typeof o.selectorToInsert === "string" && document.querySelector(o.selectorToInsert) instanceof HTMLElement) {
 				parentElement = document.querySelector(o.selectorToInsert);
@@ -98,6 +124,7 @@ var autoComplete = (function(){
                 // that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
                 if (!resize) {
                     that.sc.style.display = 'block';
+                    that.setAttribute('aria-expanded', 'true');
                     if (!that.sc.maxHeight) { that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight); }
                     if (!that.sc.suggestionHeight) that.sc.suggestionHeight = that.sc.querySelector('.autocomplete-suggestion').offsetHeight;
                     if (that.sc.suggestionHeight)
@@ -121,13 +148,13 @@ var autoComplete = (function(){
 
             live('autocomplete-suggestion', 'mouseleave', function(e){
                 var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
-                if (sel) setTimeout(function(){ sel.className = sel.className.replace('selected', ''); }, 20);
+                if (sel) setTimeout(function(){ deselect(sel); }, 20);
             }, that.sc);
 
             live('autocomplete-suggestion', 'mouseover', function(e){
                 var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
-                if (sel) sel.className = sel.className.replace('selected', '');
-                this.className += ' selected';
+                if (sel) deselect(sel);
+                select(this);
             }, that.sc);
 
             live('autocomplete-suggestion', 'mousedown', function(e){
@@ -135,7 +162,7 @@ var autoComplete = (function(){
                     var v = this.getAttribute('data-val');
                     that.value = v;
                     o.onSelect(e, v, this);
-                    that.sc.style.display = 'none';
+                    hide();
                 }
             }, that.sc);
 
@@ -143,8 +170,8 @@ var autoComplete = (function(){
                 try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch(e){ var over_sb = 0; }
                 if (!over_sb) {
                     that.last_val = that.value;
-                    that.sc.style.display = 'none';
-                    setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast input
+                    hide();
+                    setTimeout(function(){ hide(); }, 350); // hide suggestions on fast input
                 } else if (that !== document.activeElement) setTimeout(function(){ that.focus(); }, 20);
             };
             addEvent(that, 'blur', that.blurHandler);
@@ -156,10 +183,17 @@ var autoComplete = (function(){
                     var s = '';
                     for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
                     that.sc.innerHTML = s;
+                    var items = that.sc.querySelectorAll('.autocomplete-suggestion');
+                    for (var j=0;j<items.length;j++) {
+                        items[j].id = that.sc.id + '-' + j;
+                        items[j].setAttribute('role', 'option');
+                        items[j].setAttribute('aria-selected', 'false');
+                    }
+                    that.removeAttribute('aria-activedescendant');
                     that.updateSC(0);
                 }
                 else
-                    that.sc.style.display = 'none';
+                    hide();
             }
 
             that.keydownHandler = function(e){
@@ -170,17 +204,17 @@ var autoComplete = (function(){
                     var next, sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                     if (!sel) {
                         next = (key == 40) ? that.sc.querySelector('.autocomplete-suggestion') : that.sc.childNodes[that.sc.childNodes.length - 1]; // first : last
-                        next.className += ' selected';
+                        select(next);
                         if (next.getAttribute('data-val')) that.value = next.getAttribute('data-val');
                     } else {
                         next = (key == 40) ? sel.nextSibling : sel.previousSibling;
                         if (next) {
-                            sel.className = sel.className.replace('selected', '');
-                            next.className += ' selected';
+                            deselect(sel);
+                            select(next);
                             if (next.getAttribute('data-val')) that.value = next.getAttribute('data-val');
                         }
                         else {
-                            sel.className = sel.className.replace('selected', '');
+                            deselect(sel);
                             that.value = that.last_val;
                             next = 0;
                         }
@@ -195,7 +229,7 @@ var autoComplete = (function(){
                         // from recognizing it; this is not for you!
                         e.preventDefault();
                         e.stopImmediatePropagation();
-                        that.sc.style.display = 'none';
+                        hide();
                         var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                         if (sel) {
                             that.focus();
@@ -210,7 +244,7 @@ var autoComplete = (function(){
                 // enter
                 else if (key == 13 || key == 9) {
                     var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
-                    if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); }
+                    if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function(){ hide(); }, 20); }
                 }
             };
             addEvent(that, 'keydown', that.keydownHandler);
@@ -235,7 +269,7 @@ var autoComplete = (function(){
                         }
                     } else {
                         that.last_val = val;
-                        that.sc.style.display = 'none';
+                        hide();
                     }
                 }
             };

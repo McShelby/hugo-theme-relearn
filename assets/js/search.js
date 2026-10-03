@@ -99,7 +99,11 @@
     divlink.innerText = page.title;
     var divtitle = document.createElement('div');
     divtitle.className = 'title';
-    divtitle.innerText = '» ';
+    // the mark in front of the title is decoration
+    var spanmark = document.createElement('span');
+    spanmark.setAttribute('aria-hidden', 'true');
+    spanmark.innerText = '» ';
+    divtitle.appendChild(spanmark);
     divtitle.appendChild(divlink);
     divsuggestion.appendChild(divtitle);
     var divbreadcrumb = document.createElement('div');
@@ -115,18 +119,28 @@
     return divsuggestion;
   }
 
+  function resolvePlaceholders(s, args) {
+    var args = args || [];
+    // use replace to iterate over the string
+    // select the match and check if the related argument is present
+    // if yes, replace the match with the argument
+    return s.replace(/{([0-9]+)}/g, function (match, index) {
+      // check if the argument is present
+      return typeof args[index] == 'undefined' ? match : args[index];
+    });
+  }
+
+  // how many suggestions there are is told without having to look at them
+  function initStatus(list) {
+    var status = document.createElement('div');
+    status.className = 'a11y-only';
+    status.setAttribute('role', 'status');
+    list.insertAdjacentElement('afterend', status);
+    return status;
+  }
+
   function executeSearch(value) {
     var input = document.querySelector('#R-search-by-detail');
-    function resolvePlaceholders(s, args) {
-      var args = args || [];
-      // use replace to iterate over the string
-      // select the match and check if the related argument is present
-      // if yes, replace the match with the argument
-      return s.replace(/{([0-9]+)}/g, function (match, index) {
-        // check if the argument is present
-        return typeof args[index] == 'undefined' ? match : args[index];
-      });
-    }
 
     var results = document.querySelector('#R-searchresults');
     var hint = document.querySelector('.searchhint');
@@ -180,6 +194,7 @@
       window.history.replaceState(state, '');
     }
 
+    var status = null;
     new autoComplete({
       /* selector for the search box element */
       selectorToInsert: 'search:has(.searchbox)',
@@ -188,6 +203,9 @@
       source: async function (term, response) {
         let a = await window.relearn.search.adapter.search(term);
         response(a);
+        if (status) {
+          status.innerText = resolvePlaceholders(a.length ? window.T_N_results_found : window.T_No_results_found, [term, a.length]);
+        }
       },
       /* renderItem displays individual search results */
       renderItem: function (item, _term) {
@@ -199,6 +217,10 @@
         e.preventDefault();
       },
     });
+    var box = document.querySelector('#R-search-by');
+    if (box && box.sc) {
+      status = initStatus(box.sc);
+    }
   }
 
   function initSearch() {
