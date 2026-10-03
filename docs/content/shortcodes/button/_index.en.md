@@ -171,6 +171,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 - content: ""
   href: "https://gohugo.io/"
   icon: " "
+  hint: "Go Hugo"
 {{% /multishortcode %}}  
 
 #### Only with Hint
