@@ -463,6 +463,9 @@ function initOpenapi(update, attrs) {
     const oi = document.createElement('iframe');
     oi.id = openapiIframeId;
     oi.classList.toggle('sc-openapi-iframe', true);
+    // a frame needs a name for assistive technology; the one of the spec
+    // replaces this once it is known
+    oi.title = 'OpenAPI';
     oi.srcdoc = `<!DOCTYPE html>
 <html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
@@ -492,6 +495,7 @@ function initOpenapi(update, attrs) {
       const openapiWrapper = getFirstAncestorByClass(oc, 'sc-openapi-wrapper');
       Promise.resolve()
         .then(function () {
+          var ui = null;
           var options = {
             defaultModelsExpandDepth: 2,
             defaultModelExpandDepth: 2,
@@ -500,6 +504,10 @@ function initOpenapi(update, attrs) {
             filter: !(isPrint || isPrintPreview),
             layout: 'BaseLayout',
             onComplete: function () {
+              var info = ui && ui.specSelectors.info();
+              if (info && info.get('title')) {
+                oi.title = info.get('title');
+              }
               if (isPrint || isPrintPreview) {
                 oi.contentWindow.document.querySelectorAll('.model-container > .model-box > button[aria-expanded=false]').forEach(function (btn) {
                   btn.click();
@@ -528,7 +536,11 @@ function initOpenapi(update, attrs) {
           } else {
             Object.assign(options, { url: oc.dataset.openapiUrl });
           }
-          SwaggerUIBundle(options);
+          if (options.spec && options.spec.info && options.spec.info.title) {
+            // a spec given with the page is known right away
+            oi.title = options.spec.info.title;
+          }
+          ui = SwaggerUIBundle(options);
         })
         .then(function () {
           let observerCallback = function () {
