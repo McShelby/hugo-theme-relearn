@@ -248,11 +248,25 @@ a:focus {
 .searchbox > button {
   -webkit-appearance: none;
   appearance: none;
+  align-items: center;
   background-color: transparent;
   border: 0;
-  margin: 0;
+  /* a square in the vertical center of the box, with the icon in its center */
+  bottom: 0;
+  display: flex;
+  height: 1.5rem;
+  justify-content: center;
+  margin: auto 0;
   padding: 0;
-  top: 0.25rem;
+  top: 0;
+  width: 1.5rem;
+}
+/* the square is wider than its icon, which is to stay where it is */
+.searchbox > button:first-child {
+  inset-inline-start: calc(0.333rem - (1.5rem - 1.25em) / 2);
+}
+.searchbox > button:last-child {
+  inset-inline-end: calc(0.333rem - (1.5rem - 1.25em) / 2);
 }
 
 .searchbox > i {
