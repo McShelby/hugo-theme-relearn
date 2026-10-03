@@ -2872,9 +2872,12 @@ article ul > li > span > input[type='checkbox']:checked::before {
   appearance: none;
   cursor: pointer;
   display: inline-block;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0.65rem;
+  /* nothing to see but the focus outline: a square around the chevron */
+  height: 1rem;
+  margin-bottom: 0;
+  margin-inline-end: 0;
+  margin-inline-start: -0.075rem;
+  margin-top: 0.5875rem;
   position: absolute;
   width: 1rem;
   z-index: 1;
@@ -2896,6 +2899,23 @@ article ul > li > span > input[type='checkbox']:checked::before {
 #R-sidebar ul.collapsible-menu.enlarge > li > label {
   font-size: 1.1rem;
   line-height: 2rem;
+}
+
+/* a bigger area to click than the label is, a square around the chevron as
+   well; it reaches into the indentation, which the outermost level has none of */
+#R-sidebar ul.collapsible-menu > li > label:before {
+  content: '';
+  height: 1.5rem;
+  inset-inline-start: -0.325rem;
+  position: absolute;
+  top: 0.3375rem;
+  width: 1.5rem;
+}
+#R-sidebar ul.collapsible-menu.enlarge > li > label:before {
+  top: 0.65rem;
+}
+#R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label:before {
+  inset-inline-start: 0;
 }
 
 #R-sidebar ul.collapsible-menu > li > label:after {
