@@ -933,24 +933,21 @@ article a:active .copy-to-clipboard,
 article a:focus .copy-to-clipboard {
   text-decoration: underline;
 }
-.topbar-content a:hover,
-.topbar-content a:active,
-.topbar-content a:focus,
-article a:hover,
-article a:active,
-article a:focus,
-article a:hover .copy-to-clipboard,
-article a:active .copy-to-clipboard,
-article a:focus .copy-to-clipboard,
+/* no outline for the pointer; who uses the keyboard keeps the one of the
+   browser to see where the focus is */
+.topbar-content a:focus:not(:focus-visible),
+article a:focus:not(:focus-visible),
+article a:focus:not(:focus-visible) .copy-to-clipboard,
 article a.lightbox-back:hover > svg:only-child:empty,
 article a.lightbox-back:active > svg:only-child:empty,
 article a.lightbox-back:focus > svg:only-child:empty,
 article a.lightbox-back:hover > img:only-child:empty,
 article a.lightbox-back:active > img:only-child:empty,
 article a.lightbox-back:focus > img:only-child:empty,
-article .btn > button:hover,
-article .btn > button:active,
-article .btn > button:focus {
+article .btn > button:focus:not(:focus-visible),
+/* these show the focus on what they hold or on what holds them */
+article a:focus:has(> :is(img, svg):only-child:empty),
+.card-container .card-title > :is(a, button):focus {
   outline: none;
 }
 article a:hover > svg:only-child:empty,
