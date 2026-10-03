@@ -1244,10 +1244,21 @@ function initMenuScrollbar() {
   initMenuThumb(elm);
 }
 
-function imageEscapeHandler(event) {
+function imageKeyHandler(event) {
+  // an enlarged image lies above everything else, so the keys are its own
+  // wherever the focus is, and none reaches the page below it
+  var shown = document.querySelector('.lightbox-back:target');
+  if (!shown) {
+    return;
+  }
+  event.stopPropagation();
   if (event.key == 'Escape') {
-    var image = event.target;
-    image.click();
+    shown.click();
+  } else if (event.key == 'Tab') {
+    // the link that closes it is all there is to move to, so the focus stays inside
+    event.preventDefault();
+    var close = shown.querySelector('.lightbox-close');
+    close && close.focus();
   }
 }
 
@@ -1591,14 +1602,49 @@ function initSwipeHandler() {
 }
 
 function initImage() {
+  // whether the enlarged image was opened from this page, which leaves a history
+  // entry to return to; a page loaded with the image already enlarged has none
+  var openedHere = false;
+
+  // capturing, to be asked before anyone else
+  document.addEventListener('keydown', imageKeyHandler, true);
+
   document.querySelectorAll('.lightbox-back').forEach(function (e) {
-    e.addEventListener('keydown', imageEscapeHandler);
     e.addEventListener('click', function (event) {
-      // leave the lightbox the way we came instead of adding another history entry
       event.preventDefault();
-      history.back();
+      var close = e.querySelector('.lightbox-close');
+      var opener = close && document.querySelector(close.getAttribute('href'));
+      if (openedHere) {
+        // leave the lightbox the way we came instead of adding another history entry
+        history.back();
+      } else if (close) {
+        // going back would leave the page, so its entry is replaced instead. the
+        // browser only lets go of the enlarged image if the URL targets something
+        // else, which is the image's place; after that the fragment can go
+        window.location.replace(close.getAttribute('href'));
+        window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
+      }
+      // return to the image it was opened from
+      opener && opener.focus();
     });
   });
+
+  // the browser hands the focus to an enlarged image it navigates to, but not
+  // to one it returns to through its history or still shows after a reload
+  var focusShown = function () {
+    var shown = document.querySelector('.lightbox-back:target');
+    shown && !shown.contains(document.activeElement) && shown.focus();
+  };
+  window.addEventListener('hashchange', function () {
+    openedHere = !!document.querySelector('.lightbox-back:target');
+    focusShown();
+  });
+  // on a reload it only knows the target of the URL once the page is loaded
+  if (document.readyState == 'complete') {
+    focusShown();
+  } else {
+    window.addEventListener('load', focusShown);
+  }
 }
 
 function initExpand() {
@@ -1810,7 +1856,7 @@ function mark() {
   }
 
   // mark some additional stuff as searchable
-  var bodyInnerLinks = document.querySelectorAll('#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-back)');
+  var bodyInnerLinks = document.querySelectorAll('#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-close)');
   for (var i = 0; i < bodyInnerLinks.length; i++) {
     bodyInnerLinks[i].classList.add('highlight');
   }

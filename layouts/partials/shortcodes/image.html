@@ -37,13 +37,15 @@
 {{- partial "inline/img" (dict "attributes" $attributes_figure) }}
 {{- if $isLightbox -}}
 </a>
-<a href="#R-image-{{ $id }}-link" class="lightbox-back" id="R-image-{{ $id }}">
+{{- /* the enlarged copy is a dialog named by the image; all of it is the link that closes it.
+  as it can take the focus, the browser hands it over once the dialog is the target of the URL */}}
+<span class="lightbox-back" id="R-image-{{ $id }}" role="dialog" aria-modal="true"{{ with $alt }} aria-label="{{ . }}"{{ end }} tabindex="-1"><a href="#R-image-{{ $id }}-link" class="lightbox-close" aria-label="{{ T "Close-image" }}">
 {{- $attributes_lightbox := $attributes }}
 {{- $attributes_lightbox = merge $attributes_lightbox (dict "class" (delimit ((split $attributes_lightbox.class " ") | append "lightbox-image") " ")) }}
 {{- /* the enlarged copy is sized by CSS alone; intrinsic dimensions would be
 	clamped against `max-width`/`max-height` one axis at a time and stretch it */}}
 {{- $attributes_lightbox = merge $attributes_lightbox (dict "style" "" "width" "" "height" "") -}}
-{{- partial "inline/img" (dict "attributes" $attributes_lightbox) }}</a>
+{{- partial "inline/img" (dict "attributes" $attributes_lightbox) }}</a></span>
 {{- end }}
 
 {{- define "partials/inline/img" }}
