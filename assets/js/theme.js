@@ -1279,10 +1279,22 @@ function getNavToggles() {
   return document.querySelectorAll('button[data-button-action="toggle-nav"]');
 }
 
+// in the small layout the open sidebar lies above the page, which then is out
+// of reach for the keyboard and screen readers, same as it is for the mouse;
+// the overlay stays in reach, as a click on it closes the sidebar
+function adjustNavInert() {
+  var b = document.querySelector('body');
+  var covered = b.classList.contains('menu-s-width') && b.classList.contains('sidebar-flyout');
+  document.querySelectorAll('#R-body > :not(#R-body-overlay)').forEach(function (e) {
+    e.inert = covered;
+  });
+}
+
 function openNav() {
   closeSomeTopbarButtonFlyout();
   var b = document.querySelector('body');
   b.classList.add('sidebar-flyout');
+  adjustNavInert();
   setExpanded(getNavToggles(), true);
   var a = document.querySelector('#R-sidebar a');
   if (a) {
@@ -1293,6 +1305,7 @@ function openNav() {
 function closeNav() {
   var b = document.querySelector('body');
   b.classList.remove('sidebar-flyout');
+  adjustNavInert();
   setExpanded(getNavToggles(), false);
   documentFocus();
 }
@@ -1470,12 +1483,14 @@ function initToc() {
     m.addEventListener('click', closeSomeTopbarButtonFlyout);
   }
 
-  // the link works without us, but would leave its fragment in the address bar
+  // the link works without us, but would leave its fragment in the address bar;
+  // closing the sidebar hands the focus to the content, which is out of reach
+  // as long as the sidebar lies above it
   var s = document.querySelector('#R-skip-link');
   if (s) {
     s.addEventListener('click', function (event) {
       event.preventDefault();
-      documentFocus();
+      closeNav();
     });
   }
 }
@@ -2226,6 +2241,7 @@ ready(function () {
     moveTopbarButtons();
     adjustEmptyTopbarContents();
     adjustBreadcrumbTabstops();
+    adjustNavInert();
   }
   if (topbar) {
     var mqs = window.matchMedia('only screen and (max-width: 47.999rem)');
