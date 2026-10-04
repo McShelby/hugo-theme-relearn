@@ -1976,16 +1976,19 @@ option {
 
 .expand > .box-label > .expander-icon {
   font-size: 0.8rem;
+  transition: transform 0.175s ease;
   width: 0.6rem;
 }
 .expand[open] > .box-label > i.expander-icon {
   transform: rotate(90deg);
 }
+/* the mirroring stays in the open state as well, so the chevron turns instead
+   of flipping over; pointing down, it looks the same mirrored or not */
 html[dir='rtl'] .expand > .box-label > i.expander-icon {
-  transform: scaleX(-1);
+  transform: scaleX(-1) rotate(0deg);
 }
 html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
-  transform: rotate(90deg);
+  transform: scaleX(-1) rotate(90deg);
 }
 
 #R-body footer.footline {
@@ -3068,6 +3071,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
 #R-sidebar ul.collapsible-menu > li > input + label > .fa-chevron-right {
   display: inline-block;
   text-align: right;
+  transition: transform 0.175s ease;
 }
 
 /* open menu  */
@@ -3082,13 +3086,15 @@ article ul > li > span > input[type='checkbox']:checked::before {
   transform: translateY(-0.125em) rotate(90deg);
 }
 
-/* adjust menu for RTL reading direction */
+/* adjust menu for RTL reading direction; the mirroring stays in the open state
+   as well, so the chevron turns instead of flipping over; pointing down, it
+   looks the same mirrored or not */
 
 html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input + label > i.fa-chevron-right {
-  transform: scaleX(-1);
+  transform: scaleX(-1) translateY(0) rotate(0deg);
 }
 html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.fa-chevron-right {
-  transform: translateY(-0.125em) rotate(90deg);
+  transform: scaleX(-1) translateY(-0.125em) rotate(90deg);
 }
 
 /* common logo */
