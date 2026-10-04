@@ -1,4 +1,7 @@
 {{- $versions := slice }}
+{{- with site.Params.versions }}
+	{{- warnf "DEPRECATED option 'versions' configured in your hugo.toml, use Hugo's 'versions' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" }}
+{{- end }}
 {{- range site.Params.versions | default slice }}
 	{{- $version := . }}
 	{{- $isAbs := (urls.Parse .baseURL).IsAbs }}

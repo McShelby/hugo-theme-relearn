@@ -188,19 +188,19 @@ One content set, one result per mode, compared separately. Adding a further mode
 
 ### Builds That Belong Together
 
-Some results are not one Hugo build. A versioned site is two, each configured to know about the other; the published GitHub Pages site is the docs with the exampleSite beneath it. Neither half says anything alone.
+Some results are not one Hugo build. The published GitHub Pages site is the docs with the exampleSite beneath it. Neither half says anything alone.
 
-Those spell the sequence out, and share one output tree:
+Such a case spells the sequence out, and its builds share one output tree:
 
 ````toml
 [[builds]]
-  site        = "versioning-current"
-  environment = "testing"
+  site        = "docs@theme"
+  environment = "github"
 
 [[builds]]
-  site        = "versioning-archived"
-  environment = "testing"
-  dest        = "0.666"
+  site        = "exampleSite@theme"
+  environment = "github"
+  dest        = "exampleSite"
 ````
 
 `dest` says where in the shared tree a build writes. The builds run in the order written, and the result is compared once, as a whole.

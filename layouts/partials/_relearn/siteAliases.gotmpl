@@ -1,0 +1,12 @@
+{{- /* maps each alias of the site of the given home to the path of its page */}}
+{{- $aliases := dict }}
+{{- range .Site.Pages }}
+	{{- $page := . }}
+	{{- range slice | append (.Params.aliases | default slice) }}
+		{{- $alias := partial "_relearn/aliasPath.gotmpl" (dict "page" $page "alias" .) }}
+		{{- if not (index $aliases $alias) }}
+			{{- $aliases = merge $aliases (dict $alias $page.Path) }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- return $aliases }}

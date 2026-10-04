@@ -1,5 +1,6 @@
+{{- $pageVersions := partial "_relearn/pageVersions.gotmpl" .page }}
 {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
-{{- if $versions }}
+{{- if or $pageVersions $versions }}
   {{- $pageVersion := site.Params.version | default "" }}
   {{- $icon := .element.icon | default "code-branch" }}
   {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -12,8 +13,14 @@
                 <div class="control-style">
                   <label class="a11y-only" for="R-select-version">{{ T "Version" }}</label>
                   <select id="R-select-version">
+                    {{- if $pageVersions }}
+                    {{- range $pageVersions }}
+                    <option id="R-select-version-{{ .identifier | anchorize }}" value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-url="{{ .url }}"{{ if .isCurrent }} selected data-selected{{ end }}>{{ .title }}</option>
+                    {{- end }}
+                    {{- else }}
                     {{- range $versions }}
                     <option id="R-select-version-{{ .identifier | anchorize }}" value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-abs="{{ .isAbs }}" data-uri="{{ .baseURL }}"{{ if eq $pageVersion .identifier }} selected data-selected{{ end }}>{{ .title }}</option>
+                    {{- end }}
                     {{- end }}
                   </select>
                 </div>

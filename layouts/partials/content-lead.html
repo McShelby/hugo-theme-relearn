@@ -1,17 +1,39 @@
-{{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
-{{- $pageVersion := site.Params.version | default "" }}
-{{- if and $versions (not $pageVersion) }}
-	{{- warnf "WARNING you have configured `versions` but did not mark this site with a `version`; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-6-0" }}
-{{- end }}
+{{- $pageVersions := partial "_relearn/pageVersions.gotmpl" . }}
+{{- $pageVersion := "" }}
 {{- $latestVersion := "" }}
-{{- with (where $versions "isLatest" true | first 1) }}
-	{{- range . }}
-		{{- $latestVersion = . }}
+{{- $latestUrl := "" }}
+{{- if $pageVersions }}
+	{{- range $pageVersions }}
+		{{- if .isCurrent }}
+			{{- $pageVersion = . }}
+		{{- end }}
+		{{- if .isLatest }}
+			{{- $latestVersion = . }}
+			{{- $latestUrl = .url }}
+		{{- end }}
 	{{- end }}
-{{- end }}
-{{- with (where $versions "identifier" $pageVersion | first 1) }}
-	{{- range . }}
-		{{- $pageVersion = . }}
+{{- else }}
+	{{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
+	{{- $pageVersion = site.Params.version | default "" }}
+	{{- if and $versions (not $pageVersion) }}
+		{{- warnf "WARNING you have configured `versions` but did not mark this site with a `version`; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-6-0" }}
+	{{- end }}
+	{{- with (where $versions "isLatest" true | first 1) }}
+		{{- range . }}
+			{{- $latestVersion = . }}
+		{{- end }}
+	{{- end }}
+	{{- with (where $versions "identifier" $pageVersion | first 1) }}
+		{{- range . }}
+			{{- $pageVersion = . }}
+		{{- end }}
+	{{- end }}
+	{{- if $latestVersion }}
+		{{- $path := partial "_relearn/pageLangPath.gotmpl" . }}
+		{{- $latestUrl = print $latestVersion.baseURL $path }}
+		{{- if not $latestVersion.isAbs }}
+			{{- $latestUrl = print (partial "_relearn/relBaseUri.gotmpl" .) $latestUrl }}
+		{{- end }}
 	{{- end }}
 {{- end }}
 {{- if and
@@ -21,10 +43,5 @@
 	$latestVersion
 	(ne $pageVersion.identifier $latestVersion.identifier)
 }}
-	{{- $path := partial "_relearn/pageLangPath.gotmpl" . }}
-	{{- $url := print $latestVersion.baseURL $path }}
-	{{- if not $latestVersion.isAbs }}
-		{{- $url = print (partial "_relearn/relBaseUri.gotmpl" .) $url }}
-	{{- end }}
-	{{- partial "versioning-warning.html" (dict "page" . "pageUrl" (partial "permalink.gotmpl" (dict "to" .)) "pageVersion" $pageVersion "latestUrl" $url "latestVersion" "$latestVersion") }}
+	{{- partial "versioning-warning.html" (dict "page" . "pageUrl" (partial "permalink.gotmpl" (dict "to" .)) "pageVersion" $pageVersion "latestUrl" $latestUrl "latestVersion" $latestVersion) }}
 {{- end }}

@@ -1,0 +1,7 @@
+{{- /* an alias in the notation of a page path; a relative alias starts at the
+	parent of its page */}}
+{{- $alias := lower .alias }}
+{{- if not (hasPrefix $alias "/") }}
+	{{- $alias = path.Join (path.Dir .page.Path) $alias }}
+{{- end }}
+{{- return printf "/%s" (trim $alias "/") }}

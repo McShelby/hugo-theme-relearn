@@ -38,7 +38,6 @@ The following other environments are available:
 - **github** - used to release the site on GitHub Pages
 - **dev** - used to generate the site similar to GitHub Pages but usable locally
 - **performance** - disables all performance intensive features to make building as fast as possible
-- **versioning** - used to manually test the versioning feature
 
 To run a specifig configuration
 

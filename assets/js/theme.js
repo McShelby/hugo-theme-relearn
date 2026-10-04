@@ -1832,7 +1832,8 @@ function handleVariantSwitcher() {
 function handleVersionSwitcher() {
   document.querySelectorAll('.R-versionswitcher select').forEach(function (select) {
     select.addEventListener('change', function (event) {
-      const url = (this.options[`R-select-version-${this.value}`].dataset.abs == 'true' ? '' : window.relearn.relBaseUri) + this.options[`R-select-version-${this.value}`].dataset.uri + window.relearn.path;
+      const option = this.options[`R-select-version-${this.value}`];
+      const url = option.dataset.url ?? (option.dataset.abs == 'true' ? '' : window.relearn.relBaseUri) + option.dataset.uri + window.relearn.path;
       this.value = this.querySelector('[data-selected]')?.value ?? select.value;
       window.location = url;
     });

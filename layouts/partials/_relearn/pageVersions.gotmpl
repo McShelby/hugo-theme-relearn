@@ -1,0 +1,43 @@
+{{- /* the versions of Hugo's sites matrix as seen from this page; a page that
+	moved between versions is found by its aliases, a version lacking this
+	page is entered through its home */}}
+{{- $versions := slice }}
+{{- $homes := site.Home.Rotate "version" }}
+{{- if gt (len $homes) 1 }}
+	{{- $page := . }}
+	{{- $rotation := .Rotate "version" }}
+	{{- range $homes }}
+		{{- $home := . }}
+		{{- $name := .Site.Version.Name }}
+		{{- $to := "" }}
+		{{- range $rotation }}
+			{{- if eq .Site.Version.Name $name }}
+				{{- $to = . }}
+			{{- end }}
+		{{- end }}
+		{{- if not $to }}
+			{{- range slice | append ($page.Params.aliases | default slice) }}
+				{{- if not $to }}
+					{{- $to = $home.Site.GetPage (partial "_relearn/aliasPath.gotmpl" (dict "page" $page "alias" .)) }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+		{{- if not $to }}
+			{{- with index (partialCached "_relearn/siteAliases.gotmpl" $home $name) $page.Path }}
+				{{- $to = $home.Site.GetPage . }}
+			{{- end }}
+		{{- end }}
+		{{- if not $to }}
+			{{- $to = $home }}
+		{{- end }}
+		{{- $versions = $versions | append (dict
+			"identifier" $name
+			"title" $name
+			"baseURL" (partial "permalink.gotmpl" (dict "to" .))
+			"url" (partial "permalink.gotmpl" (dict "to" $to))
+			"isLatest" .Site.Version.IsDefault
+			"isCurrent" (eq $name site.Version.Name)
+		) }}
+	{{- end }}
+{{- end }}
+{{- return $versions }}

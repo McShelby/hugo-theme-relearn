@@ -43,7 +43,7 @@
     <link href="{{ index $themecss (printf "format-%s" $outputFormat) }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" (index $themeintegrity (printf "format-%s" $outputFormat)) }} id="R-format-style">
     {{- $versionIndexUrl := "" }}
     {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
-    {{- if $versions }}
+    {{- if and $versions (le (len (site.Home.Rotate "version")) 1) }}
       {{- $versionIndexUrl = trim (or site.Params.versionIndexURL "versionindex.js") "/" }}
       {{- $versionIndexUrl = path.Join (path.Dir $versionIndexUrl) (print (path.BaseName $versionIndexUrl) "." site.Language.Lang (path.Ext $versionIndexUrl)) }}
       {{- if .IsHome }}

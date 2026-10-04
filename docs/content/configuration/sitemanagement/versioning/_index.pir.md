@@ -1,7 +1,7 @@
 +++
 categories = ['howto']
 description = 'How to keep older versions of your site'
-options = ['disableVersioningWarning', 'version', 'versionIndexURL', 'versions']
+options = ['disableVersioningWarning']
 title = 'Versioning'
 weight = 3
 +++
