@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+5a4ff1bf271ce4091149e3e8648675b109900d0e">
+    <meta name="generator" content="Relearn 9.1.0+0714a73709802c3b6abf75684fa412993a7790ee">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.2.0 (XXXX-XX-XX) Heads-up fer th&#39; upcom&#39;n 10.0.0 version, th&#39; Decade Release – Clear&#39;n Out Ten Years o&#39; Baggage Th&#39; Relearrrn theme has come a long way. Its predecessor, th&#39; Learrrn theme, was started more than ten years ago, an&#39; Relearrrn was forked from it over five years ago. Since then, a lot has been added t&#39; th&#39; theme, an&#39; Cap&#39;n Hugo itself has evolved tremendously.
 All that history left its marks, an&#39; th&#39; source code still carries a lot o&#39; it along: options an&#39; features that have long been replaced an&#39; forgotten but be kept alive fer compatibility, an&#39; remnants whose only remain&#39;n job be t&#39; print a warning. In other places, th&#39; theme got there first, an&#39; Cap&#39;n Hugo later added similar functionality o&#39; its own, often under a different name. Today it be hard t&#39; argue why th&#39; theme should do th&#39;ns differently from Cap&#39;n Hugo, an&#39; two terms fer th&#39; same th&#39;n (like menuTitle vs. linkTitle, or th&#39; expand shortcode vs. details) only cause confusion.
@@ -38,7 +38,7 @@ All that history left its marks, an&#39; th&#39; source code still carries a lot
 Version 10.0.0 be about clean&#39;n this up. It removes everyth&#39;n that currently triggers a DEPRECATED or UNSUPPORTED message dur&#39;n a build. That covers deprecated features that still work as well as th&#39; hints fer features that were already dropped.
 What ye should do now
 No messages, no work: if yer ship builds on th&#39; latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from th&#39; theme, ye can update t&#39; 10.0.0 without chang&#39;n anyth&#39;n. Messages? Fix them now: each message names th&#39; replacement an&#39; links t&#39; th&#39; release notes describ&#39;n th&#39; migrat&#39;n. Don’t wait: wit&#39; 10.0.0, these messages be gone. Old usages will simply stop work&#39;n, either silently or wit&#39; a build error.">
-    <meta itemprop="wordCount" content="1234">
+    <meta itemprop="wordCount" content="1301">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.2 :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/2/index.html" rel="alternate" hreflang="x-default">
@@ -51,7 +51,7 @@ No messages, no work: if yer ship builds on th&#39; latest 9.x release without D
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.bf943812c9de778f5420eb962af7493f30ff82505b051e3265be72c31221a38c.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.481676088bfae07fc9125d790564936be7f06dc7fd4200123ec8791a8fb43ceb.js"
+      "indexFile": "searchindex.pir.min.f894068a96ce9fee224e8b4fe50bb226b99a88a58eb1f2ba27f45b7be9589b9f.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -253,6 +253,10 @@ No messages, no work: if yer ship builds on th&#39; latest 9.x release without D
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Th' elements o' th' topbar, like its buttons, be now <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#defining-topbar-elements">configured</a> wit' th' <code>topbarstart</code>, <code>topbarmiddle</code>, <code>topbarend</code> an' <code>topbarmore</code> options, th' same way as th' sidebar menus. Th' breadcrumb be now an element o' th' new <em>middle</em> area. Ye can set them 'n yer <code>hugo.toml</code> or 'n th' front matter o' yer planks.</p>
 <p>Redefin'n an area by a template 'n <code>layouts/partials/topbar/area</code> an' call'n th' theme&rsquo;s templates 'n <code>layouts/partials/topbar/button</code> be deprecated. Such an area template still defines its area, tak'n precedence over th' options, an' th' button templates can still be called, but th' theme warns ye if ye use them. Th' elements now live 'n <code>layouts/partials/topbar/element</code>. See th' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#migration-for-relearn-9">migrat'n instruct'ns</a>.</p>
 </li>
+<li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/versioning/index.html">Version'n</a> now builds on Hugo&rsquo;s <code>versions</code>. All versions o' yer ship be generated 'n one build o' one project, an' th' version switcher links directly t' th' same plank 'n th' other versions.</p>
+<p>Th' options <code>versions</code>, <code>version</code> an' <code>versionIndexURL</code> be deprecated. They still work as long as ye have not configured Hugo&rsquo;s <code>versions</code>, but th' theme warns ye if ye use them. See th' <a href="/hugo-theme-relearn/pir/configuration/sitemanagement/versioning/index.html#migration-for-relearn-9">migrat'n instruct'ns</a>.</p>
+</li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
@@ -266,10 +270,10 @@ No messages, no work: if yer ship builds on th&#39; latest 9.x release without D
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/callout/index.html#with-hint"><code>callout</code> shortcode</a> has a new <code>hint</code> parameter t' show a tooltip fer th' title o' th' box.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#toggle-button"><code>button</code> shortcode</a> an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>istoggle</code> parameter fer buttons that show an' hide someth'n, tell'n assistive technology whether it be shown.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/tabs/index.html#tab-parameters"><code>tab</code> shortcode</a> has a new <code>hint</code> parameter t' show a tooltip fer a tab, which also names a tab that shows noth'n but an ay'con.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/tabs/index.html#tab-parameters"><code>tab</code> shortcode</a> has a new <code>hint</code> parameter t' show a tooltip fer a tab, which also names a tab that shows noth'n but an ay'con.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html#toggle-button"><code>button</code> shortcode</a> an' <a href="/hugo-theme-relearn/pir/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>istoggle</code> parameter fer buttons that show an' hide someth'n, tell'n assistive technology whether it be shown.</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/cards/index.html"><code>cards</code> shortcode</a> has a new <code>columns</code> parameter t' set th' number o' columns 'n full width mode.</p>
@@ -292,7 +296,7 @@ No messages, no work: if yer ship builds on th&#39; latest 9.x release without D
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.e213b789752831997fb204240321320ab900a69f2e2f72fcb33995646963ff57.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.38dd9faa78173a0445b237d70bf21a27077fd235414bd25e813056c2444ff9e9.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
