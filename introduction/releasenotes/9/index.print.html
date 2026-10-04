@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+33c297bfdf39532daed5c3647e3071a00c0394b6">
+    <meta name="generator" content="Relearn 9.1.0+f6cc3fce508525f5d2c65a358c97f02446b017e1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.2.0 (XXXX-XX-XX) Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
 All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
@@ -37,7 +37,7 @@ All that history left its marks, and the source code still carries a lot of it a
 Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
 What you should do now
 No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
-    <meta itemprop="wordCount" content="2553">
+    <meta itemprop="wordCount" content="2632">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html" rel="alternate" hreflang="x-default">
@@ -51,7 +51,7 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.bf943812c9de778f5420eb962af7493f30ff82505b051e3265be72c31221a38c.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.18e8ec08e133fae223ed7f5df99b0638c3b5b983ee09ff0f0dbae764f652c29a.js"
+      "indexFile": "searchindex.en.min.3b2959032d8791788e1ad0a6ce37a9874ec8ebe3857b47f04a27865fd5c25bf6.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -63,8 +63,8 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.b679f69273dd8c7e01cf6fe3c34390d40fd7906e31499bc7302d04e3e4886f3e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.4408662708e07dd67d4e488ed8dfd5e4a6bf0f812f2312e046330a88f735051d.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.430c4103caa4efc857b09cd53baa64c8c252f41ed373a2391a2809beb0246d34.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.fde31a3bc19a193360c646fd67b62d0fb98ae684449d1922b5ac0ed941277607.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
       "disableInlineCopyToClipboard": true,
@@ -92,8 +92,11 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
+        "Enlarge_graph": "Enlarge graph",
+        "History_cleared": "History cleared",
         "Link_copied_to_clipboard": "Link copied to clipboard!",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
@@ -301,6 +304,15 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The <a href="/hugo-theme-relearn/shortcodes/resources/index.html"><code>resources</code> shortcode</a> has a new <code>pageref</code> parameter to list the resources of another page bundle.</p>
 </li>
 <li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The <a href="/hugo-theme-relearn/shortcodes/openapi/index.html"><code>openapi</code> shortcode</a> has a new <code>lang</code> parameter to set the language used for the reading direction of the Swagger UI and for the texts the theme adds to it. These texts are now translated.</p>
+</li>
+<li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The <a href="/hugo-theme-relearn/shortcodes/mermaid/index.html#configuring-pan-and-zoom"><code>mermaid</code> shortcode&rsquo;s</a> graph can now be focused, panned and zoomed with the <a href="/hugo-theme-relearn/configuration/publishing/accessibility/index.html#keyboard-shortcuts">keyboard</a>.</p>
+</li>
+<li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The <a href="/hugo-theme-relearn/shortcodes/mermaid/index.html"><code>mermaid</code> shortcode&rsquo;s</a> graph has a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page.</p>
+</li>
+<li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The theme writes no inline JavaScript anymore, so your site can be served with a strict <a href="/hugo-theme-relearn/configuration/publishing/csp/index.html">Content Security Policy</a>. On request, it also adds <a href="/hugo-theme-relearn/configuration/publishing/csp/index.html#subresource-integrity">subresource integrity</a> hashes to its scripts and stylesheets. The <a href="/hugo-theme-relearn/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> and <a href="/hugo-theme-relearn/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shortcodes and <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter to run your own code without inline JavaScript.</p>
 </li>
 <li>
@@ -318,12 +330,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id to each asset&rsquo;s URL, emptying a visitor&rsquo;s cache on each deployment even when no asset was different. If you referenced assets from your own partials, <code>assetbusting.gotmpl</code> is replaced by <code>asset.gotmpl</code>, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-f2b386bfeafa4628190fba1b64f7e15a">
+<div class="tab-panel" data-tab-group="R-tabs-7dd232090706d4702cbc8507fc885369">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-bf0980e98a14bae64ee2816dab15c8e5-tab" aria-controls="R-tab-id-bf0980e98a14bae64ee2816dab15c8e5" aria-selected="true"
+        role="tab" id="R-tab-id-f0a26315e8eb563f08d2b302fa7aa0c3-tab" aria-controls="R-tab-id-f0a26315e8eb563f08d2b302fa7aa0c3" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -333,11 +345,11 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-bf0980e98a14bae64ee2816dab15c8e5" role="tabpanel" aria-labelledby="R-tab-id-bf0980e98a14bae64ee2816dab15c8e5-tab"
+      id="R-tab-id-f0a26315e8eb563f08d2b302fa7aa0c3" role="tabpanel" aria-labelledby="R-tab-id-f0a26315e8eb563f08d2b302fa7aa0c3-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ with resources.Get &#34;/css/mine.css&#34; }}
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ with resources.Get &#34;/css/mine.css&#34; }}
 </span></span><span class="line"><span class="cl">  {{ with partial &#34;asset.gotmpl&#34; . }}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .RelPermalink }}&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
@@ -380,21 +392,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-462bf8ecc5a8f695b8379a51fc265269-tab" aria-controls="R-tab-id-462bf8ecc5a8f695b8379a51fc265269" aria-selected="true"
+        role="tab" id="R-tab-id-693daa8d38f62ce2f20f0a1929ceb10e-tab" aria-controls="R-tab-id-693daa8d38f62ce2f20f0a1929ceb10e" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-cf08b1275699632357671e9b2ada622d-tab" aria-controls="R-tab-id-cf08b1275699632357671e9b2ada622d" aria-selected="false"
+        role="tab" id="R-tab-id-996afa89fc030e55a62753077ae5cf96-tab" aria-controls="R-tab-id-996afa89fc030e55a62753077ae5cf96" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-0a7ea4019d4912f46d05c4ed9eb18c00-tab" aria-controls="R-tab-id-0a7ea4019d4912f46d05c4ed9eb18c00" aria-selected="false"
+        role="tab" id="R-tab-id-d101d32262a873c8fc23ada2e8ac2f66-tab" aria-controls="R-tab-id-d101d32262a873c8fc23ada2e8ac2f66" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -404,27 +416,27 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-462bf8ecc5a8f695b8379a51fc265269" role="tabpanel" aria-labelledby="R-tab-id-462bf8ecc5a8f695b8379a51fc265269-tab"
+      id="R-tab-id-693daa8d38f62ce2f20f0a1929ceb10e" role="tabpanel" aria-labelledby="R-tab-id-693daa8d38f62ce2f20f0a1929ceb10e-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">editURL</span> <span class="p">=</span> <span class="s1">&#39;vscode://file/${BaseDir}/${FilePath}&#39;</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">editURL</span> <span class="p">=</span> <span class="s1">&#39;vscode://file/${BaseDir}/${FilePath}&#39;</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-cf08b1275699632357671e9b2ada622d" role="tabpanel" aria-labelledby="R-tab-id-cf08b1275699632357671e9b2ada622d-tab"
+      id="R-tab-id-996afa89fc030e55a62753077ae5cf96" role="tabpanel" aria-labelledby="R-tab-id-996afa89fc030e55a62753077ae5cf96-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">editURL</span><span class="p">:</span><span class="w"> </span><span class="l">vscode://file/${BaseDir}/${FilePath}</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">editURL</span><span class="p">:</span><span class="w"> </span><span class="l">vscode://file/${BaseDir}/${FilePath}</span></span></span></code></pre></div>
       </div>
     </div>
     <div
-      id="R-tab-id-0a7ea4019d4912f46d05c4ed9eb18c00" role="tabpanel" aria-labelledby="R-tab-id-0a7ea4019d4912f46d05c4ed9eb18c00-tab"
+      id="R-tab-id-d101d32262a873c8fc23ada2e8ac2f66" role="tabpanel" aria-labelledby="R-tab-id-d101d32262a873c8fc23ada2e8ac2f66-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="nt">&#34;editURL&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode://file/${BaseDir}/${FilePath}&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
       </div>
@@ -510,7 +522,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.38dd9faa78173a0445b237d70bf21a27077fd235414bd25e813056c2444ff9e9.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.162126d449c2df00d258d434cbe36574567f414eed8991fa2a54d87066e76ebe.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+33c297bfdf39532daed5c3647e3071a00c0394b6">
+    <meta name="generator" content="Relearn 9.1.0+f6cc3fce508525f5d2c65a358c97f02446b017e1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How t&#39; rrrun &#39;n extend th&#39; automated test suite">
     <meta name="author" content="Sören Weber">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.bf943812c9de778f5420eb962af7493f30ff82505b051e3265be72c31221a38c.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.29347c61a1a351b0d3d9ccf802f18ae341cfc7092c1c6e68c682cdb50ce71d4c.js"
+      "indexFile": "searchindex.pir.min.0386e4174b8a4073c7fb490e2f77def7344f503caaa4d2dd8d71354452e65a85.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -50,8 +50,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.b679f69273dd8c7e01cf6fe3c34390d40fd7906e31499bc7302d04e3e4886f3e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.4408662708e07dd67d4e488ed8dfd5e4a6bf0f812f2312e046330a88f735051d.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.430c4103caa4efc857b09cd53baa64c8c252f41ed373a2391a2809beb0246d34.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.fde31a3bc19a193360c646fd67b62d0fb98ae684449d1922b5ac0ed941277607.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
       "disableInlineCopyToClipboard": true,
@@ -79,8 +79,11 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browserrr doesn't supporrrt this featurrre",
+        "Close_graph": "Close th' enlarrrged chart",
         "Copied_to_clipboard": "Text copied t' clipboard!",
         "Copy_to_clipboard": "Copy text t' clipboard",
+        "Enlarge_graph": "Enlarrrge th' chart",
+        "History_cleared": "Historrry clearrred",
         "Link_copied_to_clipboard": "Link copied t' clipboard!",
         "N_results_found": "{1} rrresults found fer \"{0}\"",
         "No_results_found": "No rrresults found fer \"{0}\"",
@@ -187,7 +190,7 @@
 <p><strong>Cap'n Hugo</strong> at least th' minimum th' theme declares 'n its <code>theme.toml</code>. Th' plain edit'n be enough, as th' theme uses no Sass. Install it th' same way, through <a href="https://github.com/jmooring/hvm" rel="external" target="_self">hvm</a>, which keeps several versions side by side - th' suite can then build against any o' them, includ'n th' declared minimum, rather than only th' one on yer <code>PATH</code>.</p>
 <h2 id="running-the-tests">Runn'n th' Tests<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>Check both repositories out side by side, then:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
 </span></span><span class="line"><span class="cl">npm ci
 </span></span><span class="line"><span class="cl">npm test</span></span></code></pre></div>
 <p>Th' parts run cheapest first an' stop at th' first failure, so a stale declarat'n fails at once rather than after a full round o' Cap'n Hugo builds. Th' whole suite be quick enough t' run on every change.</p>
@@ -240,7 +243,7 @@
   </tbody>
 </table>
 <p><code>tests/golden.js</code> be th' actual runner behind <code>golden</code>. Call'n it directly takes th' same flags an' skips th' rest, which be what ye want while iterat'n on one case:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm <span class="nb">test</span> -- --build<span class="o">=</span>&lt;name&gt;
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm <span class="nb">test</span> -- --build<span class="o">=</span>&lt;name&gt;
 </span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt;</span></span></code></pre></div>
 <p>Flags reach th' runner directly; through <code>npm</code> they have t' follow a <code>--</code> separator first, an' land on th' last command 'n th' chain - so th' first form still runs every part before th' cases, an' only then narrows. Th' examples below use th' runner, be'n th' shorter o' th' two.</p>
 <h2 id="the-vocabulary">Th' Vocabulary<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
@@ -306,30 +309,30 @@
   </tbody>
 </table>
 <h3 id="--build---run-part-of-the-suite"><code>--build</code> - run part o' th' suite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>minimal
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>minimal
 </span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>url-permutat'ns
 </span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>url-permutations/urls-relative</span></span></code></pre></div>
 <p><code>--build</code> matches a path prefix, so nam'n a case runs everyth'n 'n it an' nam'n a combinat'n runs th' one. A small case be cheap enough t' run on every save while work'n on one th'n.</p>
 <p>Th' accepted names be th' ones a run prints. T' see them without wait'n fer a full run, ask fer someth'n that does not exist an' th' runner lists them:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>?</span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>?</span></span></code></pre></div>
 <p>A sequence be th' except'n: its builds share one tree, so it be named as a whole an' a prefix reach'n inside it be rejected. A build lifted out o' a sequence proves noth'n, which be what makes it a sequence.</p>
 <h3 id="--hugo---build-with-a-particular-version"><code>--hugo</code> - build wit' a particular version<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>Left out, each ship be built wit' th' version an interactive shell would use 'n its own directory: th' one its <code>.hvm</code> file names, or th' <code>hugo</code> on yer <code>PATH</code> when there be none. A pin therefore applies t' th' ship it sits beside, an' a run can legitimately span several versions. Each ship a pin applies t' says so 'n th' output, so a result never looks like it came from a version it did not.</p>
 <p>Pass'n <code>--hugo</code> overrides every pin an' holds th' whole run t' one version:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>min
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>min
 </span></span><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>latest
 </span></span><span class="line"><span class="cl">node tests/golden.js --hugo<span class="o">=</span>v0.150.0</span></span></code></pre></div>
 <p><code>min</code> be whatever th' theme declares 'n its <code>theme.toml</code>, an' <code>latest</code> th' newest release. Anyth'n not already installed be fetched fer ye.</p>
 <p>Use <code>min</code> before push'n someth'n that might rely on a newer Cap'n Hugo feature, an' <code>latest</code> t' see a com'n Hugo release before it reaches yer users.</p>
 <h3 id="--update---rewrite-the-expected-output"><code>--update</code> - rewrite th' expected output<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>When a change legitimately alters what th' theme produces, record th' new output as th' expectat'n:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm run golden:update
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm run golden:update
 </span></span><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
 <p>A full regenerat'n also prunes: a stored result no case produces any more be deleted rather than left behind. A filtered run does not, hav'n no way t' know whether a result it did not build still exists.</p>
 <p>Commit th' regenerated output together wit' th' change that caused it, never as a commit o' its own - otherwise th' next person cannot tell which change produced which output.</p>
 
-<div role="note" aria-labelledby="R-box-label-29bd4304b1773e7383879c758801e7f5" class="box cstyle callout warning">
-  <div id="R-box-label-29bd4304b1773e7383879c758801e7f5" class="box-label">
+<div role="note" aria-labelledby="R-box-label-897bc74e01bb430cdfa905912ad1ca35" class="box cstyle callout warning">
+  <div id="R-box-label-897bc74e01bb430cdfa905912ad1ca35" class="box-label">
     <i class="fa-fw fas fa-exclamation-triangle" aria-hidden="true"></i> 
     Arrr
   </div>
@@ -381,12 +384,12 @@
 </li>
 <li>
 <p>Add <code>tests/cases/&lt;name&gt;/case.toml</code>:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">ship</span>        <span class="p">=</span> <span class="s2">&#34;&lt;name&gt;&#34;</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">ship</span>        <span class="p">=</span> <span class="s2">&#34;&lt;name&gt;&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">environment</span> <span class="p">=</span> <span class="s2">&#34;testing&#34;</span></span></span></code></pre></div>
 </li>
 <li>
 <p>Generate its expected output, an' read it:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node tests/golden.js --build<span class="o">=</span>&lt;name&gt; --update</span></span></code></pre></div>
 </li>
 <li>
 <p>Look at <code>tests/expected/&lt;name&gt;/</code>. This be th' moment th' case be worth someth'n or not: if th' output does not show th' behaviour ye set out t' pin, it will not catch a regression 'n it either.</p>
@@ -398,7 +401,7 @@
 <h3 id="varying-a-configuration">Vary'n a Configurat'n<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>Some behaviour only differs by configurat'n - URL generat'n be'n th' stand'n example, whar' relative, absolute an' ugly URLs be genuinely different paths through th' theme.</p>
 <p>That be what an axis be fer. Each value be a config directory under <code>tests/axes/&lt;axis&gt;/&lt;value&gt;/</code>, an' a case lists th' values it wants:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">ship</span>        <span class="p">=</span> <span class="s2">&#34;url-permutations&#34;</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">ship</span>        <span class="p">=</span> <span class="s2">&#34;url-permutations&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">environment</span> <span class="p">=</span> <span class="s2">&#34;testing&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">axes</span><span class="p">]</span>
@@ -407,7 +410,7 @@
 <h3 id="builds-that-belong-together">Builds That Belong Together<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>Some results be not one Cap'n Hugo build. Th' published GitHub Planks ship be th' docs wit' th' exampleSite beneath it. Neither half says anyth'n alone.</p>
 <p>Such a case spells th' sequence out, an' its builds share one output tree:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">builds</span><span class="p">]]</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">builds</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">ship</span>        <span class="p">=</span> <span class="s2">&#34;docs@theme&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">environment</span> <span class="p">=</span> <span class="s2">&#34;github&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -444,10 +447,10 @@
 <p>These baselines record outstand'n work, not noise t' be silenced. Add'n an entry means consciously accept'n a defect, so delete it as soon as th' underly'n issue be fixed an' let a regression fail th' suite again.</p>
 <h2 id="building-a-site-outside-the-suite">Build'n a Ship Outside th' Suite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>A ship that be not a case - a user&rsquo;s ship attached t' an issue, say - can still be built th' way th' suite would build it. Install th' tool once as a global command:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
 </span></span><span class="line"><span class="cl">npm install -g .</span></span></code></pre></div>
 <p>Th' global command links t' th' checkout, so it always runs th' current state o' th' infra repository. Then run it from th' site&rsquo;s directory, th' one hold'n <code>content/</code>:</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">test-hugo
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">test-hugo
 </span></span><span class="line"><span class="cl">test-hugo min
 </span></span><span class="line"><span class="cl">test-hugo 0.150.0</span></span></code></pre></div>
 <p>Th' argument selects th' Cap'n Hugo version through hvm, default'n t' <code>latest</code>. Th' theme&rsquo;s <code>test'n</code> configurat'n be layered onto th' site&rsquo;s own, so th' output be deterministic, an' th' result lands 'n a <code>public.&lt;theme version&gt;+hugo.&lt;hugo version&gt;</code> directory inside th' ship. Beside th' generated files it holds <code>metrics.log</code>, Hugo&rsquo;s log wit' template metrics, an' <code>dir.log</code>, a list o' every generated file - so two runs against different theme or Cap'n Hugo versions diff directly.</p>
@@ -471,7 +474,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.38dd9faa78173a0445b237d70bf21a27077fd235414bd25e813056c2444ff9e9.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.162126d449c2df00d258d434cbe36574567f414eed8991fa2a54d87066e76ebe.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
