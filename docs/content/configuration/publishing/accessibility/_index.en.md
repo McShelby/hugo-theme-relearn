@@ -46,4 +46,4 @@ Besides the keys every browser knows, the theme brings shortcuts of its own. Tho
 | <kbd>ALT</kbd> <kbd>🡑</kbd> / <kbd>ALT</kbd> <kbd>🡓</kbd> | Scrolls to the previous or next heading of the page. |
 | <kbd>🡐</kbd> / <kbd>🡒</kbd> / <kbd>🡑</kbd> / <kbd>🡓</kbd> | Pans a [Mermaid](shortcodes/mermaid#configuring-pan-and-zoom) graph, if the focus is on it and it is zoomable. |
 | <kbd>+</kbd> / <kbd>-</kbd>                  | Zooms into or out of a [Mermaid](shortcodes/mermaid#configuring-pan-and-zoom) graph, if the focus is on it and it is zoomable. |
-| <kbd>ESC</kbd>                               | Closes what was opened, like the menu of the mobile layout, the table of contents or an enlarged image, and clears the search. |
+| <kbd>ESC</kbd>                               | Closes what was opened, like the menu of the mobile layout, the table of contents or the lightbox of an image or graph, and clears the search. |

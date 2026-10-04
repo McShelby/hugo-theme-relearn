@@ -17,6 +17,8 @@ content: |
     Then --> Else
 {{% /multishortcode %}}
 
+Every graph has a button to show it in a lightbox. Press the button again, click beside the graph or press <kbd>ESC</kbd> to return to the page. In the lightbox, a graph is [panned and zoomed](#configuring-pan-and-zoom) the same way as on the page.
+
 ## Usage
 
 {{% multishortcode name="mermaid" execute="false" %}}

@@ -227,20 +227,107 @@ function handleExpanders() {
   });
 }
 
+function mermaidLightbox(box, show) {
+  // the graph itself is enlarged instead of a copy of it, so it stays the
+  // one graph the reader pans and zooms; returns the button that toggles it
+  box.classList.toggle('lightbox', show);
+  if (show) {
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+  } else {
+    box.removeAttribute('role');
+    box.removeAttribute('aria-modal');
+  }
+  var button = box.querySelector('.svg-lightbox-button button');
+  if (button) {
+    var label = show ? window.T_Close_graph : window.T_Enlarge_graph;
+    button.setAttribute('title', label);
+    button.setAttribute('aria-label', label);
+    button.querySelector('i').className = 'fa-fw fas ' + (show ? 'fa-compress' : 'fa-expand');
+  }
+  return button;
+}
+
+function closeMermaidLightbox() {
+  var shown = document.querySelector('.mermaid.lightbox');
+  if (!shown) {
+    return;
+  }
+  // return to the button it was opened from
+  var button = mermaidLightbox(shown, false);
+  button && button.focus();
+}
+
+function mermaidLightboxKeyHandler(event) {
+  // an enlarged graph lies above everything else, so no key reaches the page below it
+  var shown = document.querySelector('.mermaid.lightbox');
+  if (!shown) {
+    return;
+  }
+  if (event.key == 'Escape') {
+    event.stopPropagation();
+    closeMermaidLightbox();
+  } else if (event.key == 'Tab') {
+    // the focus stays inside
+    event.preventDefault();
+    event.stopPropagation();
+    var stops = Array.from(shown.querySelectorAll(':scope > svg[tabindex], .actionbar button')).filter(function (e) {
+      return e.getClientRects().length;
+    });
+    var index = stops.indexOf(document.activeElement);
+    if (index == -1) {
+      index = event.shiftKey ? 0 : -1;
+    }
+    var next = stops[(index + (event.shiftKey ? -1 : 1) + stops.length) % stops.length];
+    next && next.focus();
+  } else if (!shown.contains(event.target)) {
+    event.stopPropagation();
+  }
+}
+
+function mermaidLightboxClickHandler(event) {
+  // the backdrop is drawn by the box, so a click on it has the box as its target
+  var shown = document.querySelector('.mermaid.lightbox');
+  if (!shown || (event.target != shown && shown.contains(event.target))) {
+    return;
+  }
+  event.preventDefault();
+  event.stopPropagation();
+  closeMermaidLightbox();
+}
+
 function mermaidPostRender(id) {
-  // zoom for Mermaid
-  // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
-  var svgs = d3.selectAll('body:not(.print) .mermaid-container.zoomable > .mermaid > #' + id);
+  var svgs = d3.selectAll('body:not(.print) .mermaid-container > .mermaid > #' + id);
   svgs.each(function () {
     var parent = this.parentElement;
-    // we need to copy the maxWidth, otherwise our reset button will not align in the upper right
+    // we need to copy the maxWidth, otherwise our buttons will not align in the upper right
     parent.style.maxWidth = this.style.maxWidth || this.getAttribute('width');
     // if no unit is given for the width
     parent.style.maxWidth = parent.style.maxWidth || 'calc( ' + this.getAttribute('width') + 'px + 1rem )';
+    var reset = '<span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '" aria-label="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt" aria-hidden="true"></i></button></span>';
+    var enlarge = '<span class="btn cstyle svg-lightbox-button action noborder notitle interactive"><button type="button" title="' + window.T_Enlarge_graph + '" aria-label="' + window.T_Enlarge_graph + '"><i class="fa-fw fas fa-expand" aria-hidden="true"></i></button></span>';
+    parent.insertAdjacentHTML('beforeend', '<div class="actionbar">' + reset + enlarge + '</div>');
+    parent.querySelector('.svg-lightbox-button button').addEventListener('click', function () {
+      mermaidLightbox(parent, !parent.classList.contains('lightbox'));
+    });
+    // the keys the enlarged graph has no use for must not reach the page below it
+    var keepKey = function (event) {
+      if (parent.classList.contains('lightbox')) {
+        event.stopPropagation();
+      }
+    };
+    this.addEventListener('keydown', keepKey);
+    parent.querySelector('.actionbar').addEventListener('keydown', keepKey);
+  });
+
+  // zoom for Mermaid
+  // https://github.com/mermaid-js/mermaid/issues/1860#issuecomment-1345440607
+  svgs = d3.selectAll('body:not(.print) .mermaid-container.zoomable > .mermaid > #' + id);
+  svgs.each(function () {
+    var parent = this.parentElement;
     var svg = d3.select(this);
     svg.html('<g>' + svg.html() + '</g>');
     var inner = svg.select('*:scope > g');
-    parent.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '" aria-label="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt" aria-hidden="true"></i></button></span></div>');
     var wrapper = parent.querySelector('.svg-reset-button');
     var button = wrapper.querySelector('button');
     var zoom = d3.zoom().on('zoom', function (e) {
@@ -263,12 +350,12 @@ function mermaidPostRender(id) {
     // the keyboard has neither a wheel nor can it drag, so the graph is a stop
     // for the tab key and takes the keys a browser scrolls and zooms with
     this.setAttribute('tabindex', '0');
-    this.addEventListener('keydown', function (event) {
+    var panZoomKey = function (event) {
       if (event.altKey || event.ctrlKey || event.metaKey) {
         return;
       }
       // a step is as far on the screen no matter how far we are zoomed in
-      var step = LINE_SCROLL / d3.zoomTransform(this).k;
+      var step = LINE_SCROLL / d3.zoomTransform(svg.node()).k;
       if (event.key == 'ArrowLeft') {
         svg.call(zoom.translateBy, step, 0);
       } else if (event.key == 'ArrowRight') {
@@ -287,7 +374,10 @@ function mermaidPostRender(id) {
       // the key is used up; otherwise the page would scroll or be left for its neighbour
       event.preventDefault();
       event.stopPropagation();
-    });
+    };
+    this.addEventListener('keydown', panZoomKey);
+    // the buttons belong to the graph, so its keys work from them as well
+    parent.querySelector('.actionbar').addEventListener('keydown', panZoomKey);
   });
   // we have to mark again once a graph was drawn, to mark terms inside its SVG
   mark();
@@ -509,6 +599,9 @@ function initMermaid(update, attrs) {
 
   if (!state.is_initialized) {
     state.is_initialized = true;
+    // capturing, to be asked before anyone else
+    document.addEventListener('keydown', mermaidLightboxKeyHandler, true);
+    document.addEventListener('click', mermaidLightboxClickHandler, true);
     window.addEventListener(
       'beforeprint',
       function () {
@@ -535,6 +628,9 @@ function initMermaid(update, attrs) {
   };
 
   if (update) {
+    // an enlarged graph is taken out of the page, where it can neither be
+    // printed nor tell whether it is visible
+    closeMermaidLightbox();
     unmark();
   }
   var is_initialized = update ? update_func(attrs) : init_func(attrs);

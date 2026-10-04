@@ -1925,6 +1925,8 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
 }
 
 .actionbar {
+  display: flex;
+  gap: 4px;
   inset-inline-end: 4px;
   /* out of sight but not hidden, to keep it a stop for the tab key */
   opacity: 0;
@@ -2080,7 +2082,38 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 }
 
 .svg-reset-button.btn.zoomed {
-  display: block;
+  display: inline-block;
+}
+
+/* the graph itself is enlarged instead of a copy of it, so it keeps its pan and zoom */
+.mermaid.lightbox {
+  border-width: 0;
+  inset: 2.5%;
+  /* the box was narrowed to the width of its graph */
+  max-width: none !important;
+  padding: 0;
+  position: fixed;
+  width: auto;
+  z-index: 1999;
+}
+.mermaid.lightbox::before {
+  background: rgba(0, 0, 0, 0.8);
+  content: '';
+  inset: 0;
+  position: fixed;
+  z-index: -1;
+}
+.mermaid.lightbox > svg {
+  background-color: var(--INTERNAL-MAIN-BG-color);
+  box-sizing: border-box;
+  height: 100% !important;
+  /* the graph limits itself to its natural width */
+  max-width: none !important;
+  padding: min(2vh, 2vw);
+  width: 100%;
+}
+.mermaid.lightbox > .actionbar {
+  opacity: 1;
 }
 
 .mermaid-code {
