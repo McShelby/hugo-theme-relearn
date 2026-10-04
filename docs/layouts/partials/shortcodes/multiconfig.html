@@ -13,6 +13,11 @@
   @param {bool} [skipHeader=false] If false, omit top level key(s) when rendering a section of hugo.Data.docs.config.
   @param {string} [section] The file name to display above the rendered code.
 
+  Lines of plain content enclosed by the comments `# <mark>` and `# </mark>`
+  are highlighted in every format. The enclosed lines must be removable
+  without leaving invalid TOML behind, as they are found by comparing the
+  rendering of the content with and without them.
+
   @returns {template.HTML}
 */}}
 
@@ -57,11 +62,24 @@
 {{- else }}
   {{- $code = $content }}
 {{- end }}
+{{- /* The content without its marked lines; equal to the content if nothing is marked. */}}
+{{- $base := $code }}
+{{- if not (or $config $dataKey) }}
+  {{- $base = $code | replaceRE `(?s)#[ \t]*<mark>.*?#[ \t]*</mark>[^\r\n]*(\r\n|\r|\n)?` "" }}
+{{- end }}
+{{- $marked := ne $base $code }}
 {{- /* Remove toml comments. */}}
 {{- $code = $code | replaceRE `#.*(\r\n|\r|\n)?` "" }}
 {{- $code = trim $code "\n\r\t " }}
 {{- if and $section $code }}
   {{- $code = printf "[%s]\n%s" $section $code }}
+{{- end }}
+{{- if $marked }}
+  {{- $base = $base | replaceRE `#.*(\r\n|\r|\n)?` "" }}
+  {{- $base = trim $base "\n\r\t " }}
+  {{- if and $section $base }}
+    {{- $base = printf "[%s]\n%s" $section $base }}
+  {{- end }}
 {{- end }}
 {{- $params := dict "page" $page "groupid" "config-code" }}
 {{- with $file }}
@@ -73,11 +91,35 @@
   {{- if $hCode }}
     {{- $hCode = $hCode | transform.Remarshal . }}
   {{- end }}
+  {{- $hBase := "" }}
+  {{- if and $marked $base }}
+    {{- $hBase = $base | transform.Remarshal . }}
+  {{- end }}
   {{- if and $fm (in (slice "toml" "yaml") .) }}
     {{- $placeHolder := (index $delimiters .) }}
     {{- $hCode = printf "%s\n%s%s\n" $placeHolder $hCode $placeHolder }}
+    {{- $hBase = printf "%s\n%s%s\n" $placeHolder $hBase $placeHolder }}
   {{- end }}
-  {{- $contentparam = $contentparam | append (dict "title" . "content" (printf "````%s\n%s````" . $hCode | $page.RenderString)) }}
+  {{- /* The marked lines are those the rendering of the base lacks. Both are
+    walked in step, so this only holds while marking adds lines; a trailing
+    comma is no difference, as JSON sets one once an element follows. */}}
+  {{- $attributes := "" }}
+  {{- if $marked }}
+    {{- $baseLines := split (chomp $hBase) "\n" }}
+    {{- $hlLines := slice }}
+    {{- $j := 0 }}
+    {{- range $i, $line := split (chomp $hCode) "\n" }}
+      {{- if and (lt $j (len $baseLines)) (eq (strings.TrimSuffix "," $line) (strings.TrimSuffix "," (index $baseLines $j))) }}
+        {{- $j = add $j 1 }}
+      {{- else }}
+        {{- $hlLines = $hlLines | append (add $i 1) }}
+      {{- end }}
+    {{- end }}
+    {{- with $hlLines }}
+      {{- $attributes = printf " {hl_Lines=%q}" (delimit . " ") }}
+    {{- end }}
+  {{- end }}
+  {{- $contentparam = $contentparam | append (dict "title" . "content" (printf "````%s%s\n%s````" . $attributes $hCode | $page.RenderString)) }}
 {{- end }}
 {{- $params = $params | merge (dict "content" $contentparam) }}
 {{- partial "shortcodes/tabs.html" $params }}
