@@ -1645,6 +1645,20 @@ function initImage() {
   } else {
     window.addEventListener('load', focusShown);
   }
+
+  // paper has no lightbox to open, so a printout must not carry a link to it
+  window.addEventListener('beforeprint', function () {
+    document.querySelectorAll('.lightbox-link[href]').forEach(function (e) {
+      e.dataset.href = e.getAttribute('href');
+      e.removeAttribute('href');
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    document.querySelectorAll('.lightbox-link[data-href]').forEach(function (e) {
+      e.setAttribute('href', e.dataset.href);
+      delete e.dataset.href;
+    });
+  });
 }
 
 function initExpand() {
