@@ -19,6 +19,7 @@ The default image effects shipped with the theme are
 | inlinecontent | if the linked image points to a SVG resource, the content will be used instead of an `<img>` element, this is useful for applying additional CSS styles to the elements inside of the SVG which is otherwise impossible |
 | lazy          | Lets the image be lazy loaded                                     |
 | lightbox      | The image will be clickable to show it enlarged                   |
+| rounded       | Rounds the corners of the image                                   |
 | shadow        | Draws a shadow around the image to make it appear hovered/glowing |
 
 One way to use them is to add them as URL query parameter to each individually linked image.
@@ -47,6 +48,7 @@ imageEffects.dataurl = false
 imageEffects.inlinecontent = false
 imageEffects.lazy = true
 imageEffects.lightbox = true
+imageEffects.rounded = true
 imageEffects.shadow = false
 {{< /multiconfig >}}
 
@@ -70,6 +72,7 @@ imageEffects.dataurl = false
 imageEffects.inlinecontent = false
 imageEffects.lazy = true
 imageEffects.lightbox = false
+imageEffects.rounded = true
 imageEffects.shadow = false
 {{< /multiconfig >}}
 

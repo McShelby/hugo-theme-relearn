@@ -892,12 +892,14 @@ Add a query parameter `classes` to the link image to add CSS classes. Add some o
 
 ##### Combination
 
+Images come with rounded corners. Add `norounded` to keep the corners of an image as they are.
+
 ````md
-![X-tocat](https://octodex.github.com/images/xtocat.jpg?classes=shadow,border,left)
+![X-tocat](https://octodex.github.com/images/xtocat.jpg?classes=shadow,border,left,norounded)
 ````
 
 > [!example]
-> ![X-tocat](https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left)
+> ![X-tocat](https://octodex.github.com/images/xtocat.jpg?width=20vw&classes=shadow,border,left,norounded)
 
 #### Lightbox
 

@@ -20,6 +20,7 @@ imageEffects.dataurl = false
 imageEffects.inlinecontent = false
 imageEffects.lazy = true
 imageEffects.lightbox = true
+imageEffects.rounded = true
 imageEffects.shadow = false
 {{< /multiconfig >}}
 
@@ -42,6 +43,7 @@ imageEffects.dataurl = false
 imageEffects.inlinecontent = false
 imageEffects.lazy = false
 imageEffects.lightbox = true
+imageEffects.rounded = true
 imageEffects.shadow = false
 {{< /multiconfig >}}
 
@@ -56,7 +58,7 @@ With this configuration in effect, the following URL
 would result in
 
 ````html {title="HTML"}
-<img src="https://octodex.github.com/images/minion.png" loading="lazy" alt="Minion" class="bg-white border lightbox">
+<img src="https://octodex.github.com/images/minion.png" loading="lazy" alt="Minion" class="bg-white border lightbox rounded">
 ````
 
 ## Styling Effects
