@@ -72,19 +72,35 @@ function showToast(message) {
 
 window.relearn.showToast = showToast;
 
-// the latest switch is the one that holds its tab in place
-var tabSwitches = 0;
+// the latest hold is the one that keeps its element in place
+var holds = 0;
+
+// keeps `element` where it is in the viewport by scrolling the content against
+// whatever moves it. `isMoving` is asked once the caller is done with its changes
+// and from then on with every step of what it has set off, until it denies; the
+// element is put back each time, so once more after the last step
+function holdInPlace(element, isMoving) {
+  var ypos = element.getBoundingClientRect().top;
+  var hold = ++holds;
+  var step = function () {
+    if (hold != holds) {
+      return;
+    }
+    var yposDiff = element.getBoundingClientRect().top - ypos;
+    if (yposDiff && elc) {
+      elc.scrollTop += yposDiff;
+    }
+    isMoving() && requestAnimationFrame(step);
+  };
+  return step;
+}
 
 function switchTab(tabGroup, tabId, button) {
-  // save button position relative to viewport
-  var yposButton = button.getBoundingClientRect().top;
-  // reset screen to the same position relative to clicked button to prevent page jump
-  var holdButton = function () {
-    var yposButtonDiff = button.getBoundingClientRect().top - yposButton;
-    if (yposButtonDiff && elc) {
-      elc.scrollTop += yposButtonDiff;
-    }
-  };
+  var holdButton = holdInPlace(button, function () {
+    return animations.some(function (animation) {
+      return animation.playState == 'running';
+    });
+  });
 
   var activeText = function (panel) {
     return panel.querySelector(':scope > .tab-content-container > .tab-content.active > .tab-content-text');
@@ -126,20 +142,8 @@ function switchTab(tabGroup, tabId, button) {
     );
   });
 
-  // the areas above the button move it with every step they take, so it is put
-  // back for each of them and once more after the last
-  var tabSwitch = ++tabSwitches;
-  var holdButtonWhileAnimating = function () {
-    if (tabSwitch != tabSwitches) {
-      return;
-    }
-    holdButton();
-    var running = animations.some(function (animation) {
-      return animation.playState == 'running';
-    });
-    running && requestAnimationFrame(holdButtonWhileAnimating);
-  };
-  holdButtonWhileAnimating();
+  // the areas above the button move it with every step they take
+  holdButton();
 
   // Store the selection to make it persistent
   if (window.localStorage) {
@@ -193,6 +197,33 @@ function handleTabs() {
     event.preventDefault();
     buttons[index].focus();
     buttons[index].click();
+  });
+}
+
+function handleExpanders() {
+  // opening an expander closes the open one of its group; if that sits above, the
+  // pressed label moves with every step it rolls in. the expander only changes
+  // after the click is through, so we look at it with the next frame
+  document.addEventListener('click', function (event) {
+    var label = event.target.closest('details.expand[name] > summary');
+    if (!label) {
+      return;
+    }
+    // the browser does not tell of the transition of the disclosed content, so we
+    // take the time it is given by the stylesheet; without one the label is put
+    // back just once
+    var duration = getComputedStyle(label.parentNode, '::details-content')
+      .transitionDuration.split(',')
+      .reduce(function (max, duration) {
+        return Math.max(max, parseFloat(duration) * 1000 || 0);
+      }, 0);
+    var end = 0;
+    var holdLabel = holdInPlace(label, function () {
+      // a frame may be late, so there is some time to spare
+      end = end || performance.now() + duration + 50;
+      return performance.now() < end;
+    });
+    requestAnimationFrame(holdLabel);
   });
 }
 
@@ -2267,6 +2298,7 @@ ready(function () {
   initAnchorClipboard();
   initCodeClipboard();
   handleTabs();
+  handleExpanders();
   handleTopbarButtons();
   initSwipeHandler();
   initHistory();
