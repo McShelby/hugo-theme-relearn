@@ -72,16 +72,74 @@ function showToast(message) {
 
 window.relearn.showToast = showToast;
 
+// the latest switch is the one that holds its tab in place
+var tabSwitches = 0;
+
 function switchTab(tabGroup, tabId, button) {
   // save button position relative to viewport
   var yposButton = button.getBoundingClientRect().top;
+  // reset screen to the same position relative to clicked button to prevent page jump
+  var holdButton = function () {
+    var yposButtonDiff = button.getBoundingClientRect().top - yposButton;
+    if (yposButtonDiff && elc) {
+      elc.scrollTop += yposButtonDiff;
+    }
+  };
+
+  var activeText = function (panel) {
+    return panel.querySelector(':scope > .tab-content-container > .tab-content.active > .tab-content-text');
+  };
+  var areas = Array.from(document.querySelectorAll('.tab-panel[data-tab-group="' + tabGroup + '"]')).map(function (panel) {
+    var text = activeText(panel);
+    return { panel: panel, text: text, height: text ? text.getBoundingClientRect().height : 0 };
+  });
 
   window.relearn.selectTab(tabGroup, tabId);
   initMermaid(true);
 
-  // reset screen to the same position relative to clicked button to prevent page jump
-  var yposButtonDiff = button.getBoundingClientRect().top - yposButton;
-  window.scrollTo(window.scrollX, window.scrollY + yposButtonDiff);
+  // the new content is there at once and stays at the upper edge, while the area
+  // grows or shrinks from the height of the former content to its own
+  var animations = [];
+  areas.forEach(function (area) {
+    var text = activeText(area.panel);
+    if (!text || !area.text || text == area.text || reducedmotion.matches) {
+      return;
+    }
+    // a content still on its way from an earlier switch would report the height
+    // it has reached by now instead of its own
+    text.getAnimations().forEach(function (animation) {
+      animation.cancel();
+    });
+    var height = text.getBoundingClientRect().height;
+    if (height == area.height) {
+      return;
+    }
+    // cut off at the height of the area but not to the sides
+    animations.push(
+      text.animate(
+        [
+          { height: area.height + 'px', overflowY: 'clip' },
+          { height: height + 'px', overflowY: 'clip' },
+        ],
+        { duration: 175, easing: 'ease' }
+      )
+    );
+  });
+
+  // the areas above the button move it with every step they take, so it is put
+  // back for each of them and once more after the last
+  var tabSwitch = ++tabSwitches;
+  var holdButtonWhileAnimating = function () {
+    if (tabSwitch != tabSwitches) {
+      return;
+    }
+    holdButton();
+    var running = animations.some(function (animation) {
+      return animation.playState == 'running';
+    });
+    running && requestAnimationFrame(holdButtonWhileAnimating);
+  };
+  holdButtonWhileAnimating();
 
   // Store the selection to make it persistent
   if (window.localStorage) {
