@@ -41,7 +41,10 @@
 {{- range site.Params.boxStyle }}
 	{{- $set := merge (dict "identifier" "" "style" "" "color" "" "textcolor" "" "captioncolor" "" "bgcolor" "" "icon" "" "title" "" "i18n" "") (index $styles .identifier | default (index $baseStyles .identifier)) . }}
 	{{- if $set.i18n }}
-		{{- $set = merge $set (dict "title" $set.i18n | T "i18n" "") }}
+		{{- with T $set.i18n }}
+			{{- $set = merge $set (dict "title" .) }}
+		{{- end }}
+		{{- $set = merge $set (dict "i18n" "") }}
 	{{- end }}
 	{{- $base := index $styles $set.style | default (index $baseStyles $set.style) }}
 	{{- if and (not $base) $set.style }}
