@@ -2533,6 +2533,7 @@ html[dir='rtl'] .menu-control span {
      list of a select opens as wide as that box, so it reaches out to both
      sides to be as far from one edge of the menu as from the other */
   margin-inline: -2em -0.5em;
+  max-width: none;
   outline: none;
   padding-inline: 2em 0.5em;
   width: calc(100% + 2.5em);
@@ -2550,8 +2551,11 @@ html[dir='rtl'] .menu-control span {
   box-shadow: none;
 }
 
+/* the browsers disagree on the background of the opened list once the select
+   itself is transparent, so each entry brings its own pair of colors */
 .menu-control option {
-  color: rgba(0, 0, 0, 1);
+  background-color: Canvas;
+  color: CanvasText;
   padding: 0;
   margin: 0;
 }
