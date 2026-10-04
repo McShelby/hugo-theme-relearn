@@ -2494,19 +2494,24 @@ h6 a {
 
 .menu-control .control-style {
   cursor: pointer;
+  display: flow-root;
   height: 1.574em;
-  overflow: hidden;
+  overflow-x: visible;
+  overflow-y: clip;
 }
 
 .menu-control i {
   padding-top: 0.25em;
 }
 
+/* the control reaches below the icon, so a click on the icon has to fall
+   through to it */
 .menu-control i,
 .menu-control span {
   cursor: pointer;
   display: block;
   float: left;
+  pointer-events: none;
 }
 html[dir='rtl'] .menu-control i,
 html[dir='rtl'] .menu-control span {
@@ -2524,8 +2529,13 @@ html[dir='rtl'] .menu-control span {
   -webkit-appearance: none;
   appearance: none;
   height: 1.33rem;
+  /* shifting the box by what it is padded with keeps the text in place; the
+     list of a select opens as wide as that box, so it reaches out to both
+     sides to be as far from one edge of the menu as from the other */
+  margin-inline: -2em -0.5em;
   outline: none;
-  width: 100%;
+  padding-inline: 2em 0.5em;
+  width: calc(100% + 2.5em);
 }
 /* the control is cut off by its wrapper and so would be its focus outline;
    the row shows it instead, same as the entries of the menu do */
@@ -2538,8 +2548,6 @@ html[dir='rtl'] .menu-control span {
   background-image: none;
   border: none;
   box-shadow: none;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .menu-control option {
@@ -2552,6 +2560,7 @@ html[dir='rtl'] .menu-control span {
   background-color: transparent;
   cursor: pointer;
   display: block;
+  overflow: hidden;
   text-align: start;
 }
 
@@ -2921,14 +2930,12 @@ article ul > li > span > input[type='checkbox']:checked::before {
 
 /* basic menu list styles (non-collapsible) */
 
-#R-sidebar select,
 #R-sidebar .collapsible-menu label,
 #R-sidebar .menu-control,
 #R-sidebar :is(a, span) {
   color: var(--INTERNAL-MENU-SECTIONS-LINK-color);
 }
 
-#R-sidebar select:hover,
 #R-sidebar .collapsible-menu li:not(.active) > label:hover,
 #R-sidebar .menu-control:hover,
 #R-sidebar a:hover {
@@ -3628,7 +3635,6 @@ body a#R-logo:hover *:not(svg, svg *) {
 
 /* override for the menu header */
 
-#R-homelinks select,
 #R-homelinks .collapsible-menu label,
 #R-homelinks .menu-control,
 #R-homelinks :is(a, span) {
@@ -3642,7 +3648,6 @@ body a#R-logo:hover *:not(svg, svg *) {
   border-inline-end-color: transparent;
 }
 
-#R-homelinks select:hover,
 #R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) li:not(.active) > label:hover,
 #R-homelinks .menu-control:hover,
 #R-homelinks :is(.collapsible-menu, :not(.collapsible-menu)) a:hover {
