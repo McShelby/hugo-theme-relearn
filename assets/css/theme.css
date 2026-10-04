@@ -1991,6 +1991,39 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
   transform: scaleX(-1) rotate(90deg);
 }
 
+/* the content is the only row of what the box discloses and rolls out from
+   below the label as that row grows; it hangs on the lower edge of the row, so
+   it moves along with what it pushes down */
+@supports selector(::details-content) {
+  .expand::details-content {
+    /* while it grows, the row is shorter than the room there is for it; what
+       is left must not end up below the content */
+    align-content: end;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 0fr;
+    /* cut off at the height of the row but not to the sides */
+    overflow-y: clip;
+    /* the content stays to be seen until it is rolled in */
+    transition:
+      content-visibility 0.175s allow-discrete,
+      grid-template-rows 0.175s ease;
+  }
+  .expand[open]::details-content {
+    grid-template-rows: 1fr;
+  }
+  .expand > .box-content {
+    align-self: end;
+    min-height: 0;
+    transition: padding 0.175s ease;
+  }
+  /* the row can only collapse completely if nothing of the content is left */
+  #R-body .expand:not([open]) > .box-content {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
 #R-body footer.footline {
   margin-top: 2rem;
 }
@@ -3060,10 +3093,59 @@ article ul > li > span > input[type='checkbox']:checked::before {
   display: block;
 }
 
-/* closed menu */
+/* the submenu is the second row of its entry and rolls out from below the
+   entry as that row grows; it hangs on the lower edge of the row, so it moves
+   along with the entries it pushes down */
+
+#R-sidebar ul.collapsible-menu > li:has(> input) {
+  /* while it grows, the row of the submenu is shorter than the room the entry
+     has for it; what is left must neither stretch the row of the entry itself
+     nor end up below the submenu */
+  align-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 0fr;
+  transition: grid-template-rows 0.175s ease;
+}
 
 #R-sidebar ul.collapsible-menu > li > input + label ~ ul {
-  display: none;
+  align-self: end;
+  display: block;
+  min-height: 0;
+}
+
+#R-sidebar ul.collapsible-menu .default-animation {
+  /* visibility is inherited; animating it here as well would leave the
+     contents in reach after the submenu has closed */
+  transition:
+    all 0.35s ease,
+    visibility 0s;
+}
+
+/* closed menu */
+
+#R-sidebar ul.collapsible-menu > li > input:not(:checked) + label ~ ul {
+  /* the submenu reaches out of the row at the top, so it is cut off from there
+     by as much as the row is short of it; never to the sides, where the active
+     entry leaves the submenu */
+  clip-path: inset(100% -100vw -1rem);
+  /* the row can only collapse completely if nothing of the submenu is left */
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  /* out of reach for the keyboard and screen readers as long as it is out of
+     sight; so only once it is rolled in and as soon as it rolls out */
+  transition:
+    clip-path 0.175s ease,
+    margin 0.175s ease,
+    padding 0.175s ease,
+    visibility 0s 0.175s;
+  visibility: hidden;
+}
+#R-sidebar #R-homelinks ul.collapsible-menu > li > input:not(:checked) + label ~ ul {
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 /* the closed chevron keeps a bit of distance to the border of the browser; in
@@ -3076,8 +3158,20 @@ article ul > li > span > input[type='checkbox']:checked::before {
 
 /* open menu  */
 
+#R-sidebar ul.collapsible-menu > li:has(> input:checked) {
+  grid-template-rows: auto 1fr;
+}
+
 #R-sidebar ul.collapsible-menu > li > input:checked + label ~ ul {
-  display: block;
+  /* there is room for the focus outline of the entries at its edges, just a
+     bit at the top, as that much shows above the row while rolling out; its
+     visibility stays inherited, as it may sit in a closed menu */
+  clip-path: inset(-0.25rem -100vw -1rem);
+  transition:
+    clip-path 0.175s ease,
+    margin 0.175s ease,
+    padding 0.175s ease,
+    visibility 0s;
 }
 
 /* the chevron is not in the middle of the box we rotate, so it is taken down
