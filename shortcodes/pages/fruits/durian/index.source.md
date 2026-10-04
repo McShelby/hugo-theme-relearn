@@ -10,4 +10,6 @@ weight = 20
   status = 'published'
 +++
 
+![Durian](featured.png)
+
 This is a demo page for the `pages` shortcode.

@@ -11,4 +11,6 @@ weight = 40
   status = 'published'
 +++
 
+![Banana](featured.png)
+
 This is a demo page for the `pages` shortcode.
