@@ -1821,6 +1821,7 @@ function handleHistoryClearer() {
   document.querySelectorAll('.R-historyclearer button').forEach(function (select) {
     select.addEventListener('click', function (event) {
       clearHistory();
+      showToast(window.T_History_cleared);
     });
   });
 }
