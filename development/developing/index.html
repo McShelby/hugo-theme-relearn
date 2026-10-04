@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+abb0d03c734a9b2564f99b0bf6e1e18f217f7f24">
+    <meta name="generator" content="Relearn 9.1.0+5a4ff1bf271ce4091149e3e8648675b109900d0e">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How to set up, and how the theme and its tooling are split">
     <meta name="author" content="Sören Weber">
@@ -49,7 +49,7 @@
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
     <link href="/hugo-theme-relearn/css/theme.min.143a730f9075016f5e2096c8a76f8ca0f2ce76e4990e1bdf48e67e3cbafa6332.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.78f1c1779626b5713a65e2e293ef4f961e2a7dddeca85c788967963e0df9f882.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/format-html.min.3226dd15a3c0ce92615d9c0598d87dc4e52e6ba8a69b8805883ddfdab10aeea4.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "absBaseUri": "https://mcshelby.github.io/hugo-theme-relearn",
       "disableInlineCopyToClipboard": true,
@@ -315,7 +315,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/abb0d03c734a9b2564f99b0bf6e1e18f217f7f24" title="Relearn 9.1.0&#43;abb0d03c734a9b2564f99b0bf6e1e18f217f7f24"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/5a4ff1bf271ce4091149e3e8648675b109900d0e" title="Relearn 9.1.0&#43;5a4ff1bf271ce4091149e3e8648675b109900d0e"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -411,8 +411,8 @@
 </table>
 <p>The rule for deciding where something belongs is a single question: <strong>does somebody installing the theme need this file?</strong> If not, it belongs in the infra repository - unless it can only act from the theme repository. GitHub runs a workflow only in the repository holding it, and a git hook only fires on the checkout it sits in, so those stay put, along with the actions those workflows call.</p>
 
-<div role="note" aria-labelledby="R-box-label-13fdc6170ecbfdc1e2ea9d7b384132d9" class="box cstyle callout important">
-  <div id="R-box-label-13fdc6170ecbfdc1e2ea9d7b384132d9" class="box-label">
+<div role="note" aria-labelledby="R-box-label-b9c1b4678edd506322d8844812abab27" class="box cstyle callout important">
+  <div id="R-box-label-b9c1b4678edd506322d8844812abab27" class="box-label">
     <i class="fa-fw fas fa-bolt" aria-hidden="true"></i> 
     Where to report
   </div>
@@ -434,8 +434,8 @@
 <p>That serves the documentation site, built with the theme itself, so your changes show up as you save. Swap <code>docs</code> for <code>exampleSite</code> to work against the simpler starting-point site instead.</p>
 <p>This is enough for most changes. If that is what you came to do, stop here.</p>
 
-<div role="note" aria-labelledby="R-box-label-c356e5da339dbd584efafd53f654c1ed" class="box cstyle callout note">
-  <div id="R-box-label-c356e5da339dbd584efafd53f654c1ed" class="box-label">
+<div role="note" aria-labelledby="R-box-label-2aa37b0c10e91b8f9db5feb5bca618c5" class="box cstyle callout note">
+  <div id="R-box-label-2aa37b0c10e91b8f9db5feb5bca618c5" class="box-label">
     <i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i> 
     Note
   </div>
@@ -459,12 +459,12 @@
 <h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>Optional, and independent of which setup you chose - the hooks live in the theme repository, in the <code>.githooks</code> root folder. Documentation for each hook is contained in each file.</p>
 <p>The <code>post-commit</code> hook updates the version number on each commit, which is what makes a build from <code>main</code> distinguishable from a release when debugging user reports. Nothing depends on you having it.</p>
-<div class="tab-panel" data-tab-group="R-tabs-d8a224189a966098c29f3fe7626ccc0b">
+<div class="tab-panel" data-tab-group="R-tabs-a06a36270d9f475d661ec8796a7176f7">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-b686775d0353a71eae22d378d9e4b3ec-tab" aria-controls="R-tab-id-b686775d0353a71eae22d378d9e4b3ec" aria-selected="true"
+        role="tab" id="R-tab-id-60f27eb61bf681558285b919b6e7c6fa-tab" aria-controls="R-tab-id-60f27eb61bf681558285b919b6e7c6fa" aria-selected="true"
         data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -474,7 +474,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b686775d0353a71eae22d378d9e4b3ec" role="tabpanel" aria-labelledby="R-tab-id-b686775d0353a71eae22d378d9e4b3ec-tab"
+      id="R-tab-id-60f27eb61bf681558285b919b6e7c6fa" role="tabpanel" aria-labelledby="R-tab-id-60f27eb61bf681558285b919b6e7c6fa-tab"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
