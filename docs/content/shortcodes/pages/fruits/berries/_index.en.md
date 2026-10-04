@@ -12,6 +12,8 @@ weight = 10
   status = 'published'
 +++
 
+![Berries](featured.png)
+
 This is a demo section for the `pages` shortcode.
 
 {{< pages display="cards" hidden="true" >}}
