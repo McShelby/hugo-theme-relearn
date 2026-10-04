@@ -2049,11 +2049,15 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
   display: inline-block;
   border: 1px solid transparent;
   border-radius: var(--block-radius);
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.25rem 0 0.25rem;
   position: relative;
   /* don't use display: none, as this will cause no renderinge by Mermaid */
   visibility: hidden;
   width: 100%;
+}
+/* a graph not drawn yet still holds its source, whose long lines must not widen the page */
+.mermaid:not([data-processed]) {
+  overflow: hidden;
 }
 .mermaid-container.zoomable > .mermaid:hover {
   border-color: rgba(134, 134, 134, 0.333);
@@ -2089,8 +2093,6 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 .mermaid.lightbox {
   border-width: 0;
   inset: 2.5%;
-  /* the box was narrowed to the width of its graph */
-  max-width: none !important;
   padding: 0;
   position: fixed;
   width: auto;
@@ -2107,7 +2109,8 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
   background-color: var(--INTERNAL-MAIN-BG-color);
   box-sizing: border-box;
   height: 100% !important;
-  /* the graph limits itself to its natural width */
+  /* the graph limits itself to its natural size */
+  max-height: none !important;
   max-width: none !important;
   padding: min(2vh, 2vw);
   width: 100%;

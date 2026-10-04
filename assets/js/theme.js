@@ -300,10 +300,6 @@ function mermaidPostRender(id) {
   var svgs = d3.selectAll('body:not(.print) .mermaid-container > .mermaid > #' + id);
   svgs.each(function () {
     var parent = this.parentElement;
-    // we need to copy the maxWidth, otherwise our buttons will not align in the upper right
-    parent.style.maxWidth = this.style.maxWidth || this.getAttribute('width');
-    // if no unit is given for the width
-    parent.style.maxWidth = parent.style.maxWidth || 'calc( ' + this.getAttribute('width') + 'px + 1rem )';
     var reset = '<span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '" aria-label="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt" aria-hidden="true"></i></button></span>';
     var enlarge = '<span class="btn cstyle svg-lightbox-button action noborder notitle interactive"><button type="button" title="' + window.T_Enlarge_graph + '" aria-label="' + window.T_Enlarge_graph + '"><i class="fa-fw fas fa-expand" aria-hidden="true"></i></button></span>';
     parent.insertAdjacentHTML('beforeend', '<div class="actionbar">' + reset + enlarge + '</div>');
@@ -326,6 +322,18 @@ function mermaidPostRender(id) {
   svgs.each(function () {
     var parent = this.parentElement;
     var svg = d3.select(this);
+    // the graph is panned across the whole box instead of vanishing at its own edges;
+    // so it spans the box and is kept from growing by its natural height instead
+    var viewBox = this.viewBox.baseVal;
+    var naturalWidth = this.style.maxWidth || this.getAttribute('width') || '';
+    if (viewBox && viewBox.width && parseFloat(naturalWidth) && !naturalWidth.endsWith('%')) {
+      this.style.maxHeight = (parseFloat(naturalWidth) * viewBox.height) / viewBox.width + 'px';
+      this.style.maxWidth = 'none';
+      this.style.width = '100%';
+      var container = parent.parentElement;
+      var align = container.classList.contains('align-left') ? 'xMin' : container.classList.contains('align-right') ? 'xMax' : 'xMid';
+      this.setAttribute('preserveAspectRatio', align + 'YMid meet');
+    }
     svg.html('<g>' + svg.html() + '</g>');
     var inner = svg.select('*:scope > g');
     var wrapper = parent.querySelector('.svg-reset-button');
