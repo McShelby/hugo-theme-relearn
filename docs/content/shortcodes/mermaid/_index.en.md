@@ -40,7 +40,7 @@ content: |
 
 ### Configuring Pan and Zoom
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures. With the keyboard, a focused graph is panned by the cursor keys and zoomed by <kbd>+</kbd> and <kbd>-</kbd>, as listed with the other [keyboard shortcuts](configuration/publishing/accessibility#keyboard-shortcuts).
 
 By default this is disabled. Set `mermaidZoom=true` to enable it.
 

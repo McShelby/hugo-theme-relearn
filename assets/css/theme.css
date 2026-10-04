@@ -2067,6 +2067,13 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
 .mermaid-container.zoomable > .mermaid > svg {
   cursor: grab;
 }
+/* the graph shows its focus on the box that holds it */
+.mermaid-container.zoomable > .mermaid > svg:focus {
+  outline: none;
+}
+.mermaid-container.zoomable > .mermaid:has(> svg:focus-visible) {
+  outline: auto;
+}
 
 .svg-reset-button.btn {
   display: none;

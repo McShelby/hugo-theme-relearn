@@ -246,6 +246,10 @@ function mermaidPostRender(id) {
     var zoom = d3.zoom().on('zoom', function (e) {
       inner.attr('transform', e.transform);
       if (e.transform.k == 1 && e.transform.x == 0 && e.transform.y == 0) {
+        // the button is about to vanish, so the focus it holds goes back to the graph
+        if (document.activeElement == button) {
+          svg.node().focus();
+        }
         wrapper.classList.remove('zoomed');
       } else {
         wrapper.classList.add('zoomed');
@@ -256,6 +260,34 @@ function mermaidPostRender(id) {
       showToast(window.T_View_reset);
     });
     svg.call(zoom);
+    // the keyboard has neither a wheel nor can it drag, so the graph is a stop
+    // for the tab key and takes the keys a browser scrolls and zooms with
+    this.setAttribute('tabindex', '0');
+    this.addEventListener('keydown', function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey) {
+        return;
+      }
+      // a step is as far on the screen no matter how far we are zoomed in
+      var step = LINE_SCROLL / d3.zoomTransform(this).k;
+      if (event.key == 'ArrowLeft') {
+        svg.call(zoom.translateBy, step, 0);
+      } else if (event.key == 'ArrowRight') {
+        svg.call(zoom.translateBy, -step, 0);
+      } else if (event.key == 'ArrowUp') {
+        svg.call(zoom.translateBy, 0, step);
+      } else if (event.key == 'ArrowDown') {
+        svg.call(zoom.translateBy, 0, -step);
+      } else if (event.key == '+' || event.key == '=') {
+        svg.call(zoom.scaleBy, 1.25);
+      } else if (event.key == '-') {
+        svg.call(zoom.scaleBy, 0.8);
+      } else {
+        return;
+      }
+      // the key is used up; otherwise the page would scroll or be left for its neighbour
+      event.preventDefault();
+      event.stopPropagation();
+    });
   });
   // we have to mark again once a graph was drawn, to mark terms inside its SVG
   mark();
