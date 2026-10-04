@@ -40,7 +40,8 @@ pre:not(.mermaid) {
   }
 }
 
-code.copy-to-clipboard-code:after {
+code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after,
+.inline-copy-to-clipboard-button.btn {
   display: none;
 }
 
@@ -74,9 +75,20 @@ code.copy-to-clipboard-code:after {
 #R-body p,
 #R-body a,
 #R-body button,
-#R-body .badge .badge-content {
+#R-body .badge .badge-content,
+#R-body .box > .box-label {
   /* better contrast for colored elements */
   color: rgba(0, 0, 0, 1);
+}
+blockquote p,
+blockquote cite,
+#R-body figure.quote > figcaption {
+  /* nothing is toned down, as that costs contrast */
+  opacity: 1;
+}
+blockquote::before,
+figure.quote::before {
+  background-color: rgba(0, 0, 0, 1);
 }
 #R-body .anchor {
   display: none;
@@ -88,7 +100,7 @@ code.copy-to-clipboard-code:after {
 }
 
 hr {
-  border-bottom: 1px solid rgba(221, 221, 221, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 #R-body #R-body-inner {
   overflow: visible; /* turn off scrolling, so the whole content is printed */
