@@ -252,7 +252,6 @@ function mermaidPostRender(id) {
       }
     });
     button.addEventListener('click', function () {
-      this.blur();
       svg.transition().duration(350).call(zoom.transform, d3.zoomIdentity);
       showToast(window.T_View_reset);
     });
@@ -979,7 +978,6 @@ function initCodeClipboard() {
   var buttons = document.querySelectorAll('.block-copy-to-clipboard-button button, .inline-copy-to-clipboard-button button');
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
-      this.blur();
       // For block buttons, get the actionbar's previous sibling; for inline, use wrapper's previous sibling
       var codeElement = this.closest('.actionbar') ? this.closest('.actionbar').previousElementSibling : this.parentElement.previousElementSibling;
       if (!codeElement) {
