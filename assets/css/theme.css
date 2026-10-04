@@ -755,7 +755,7 @@ article .R-taxonomy.tags a.term-link:hover:after {
 #R-body svg:not(.lightbox-image).border,
 #R-body img:not(.lightbox-image).border {
   background-clip: padding-box;
-  border: 1px solid rgba(134, 134, 134, 0.333);
+  border: 1px solid color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 10%, transparent);
   /* an image carries its own dimensions so a browser can reserve its space, and
      those size the border box; the border would otherwise eat into the picture
      and resample it, so here it goes outside instead */
@@ -769,7 +769,11 @@ article .R-taxonomy.tags a.term-link:hover:after {
 
 #R-body svg:not(.lightbox-image).shadow,
 #R-body img:not(.lightbox-image).shadow {
-  box-shadow: 0 10px 30px rgba(176, 176, 176, 0.666);
+  /* the shadow is tinted by the background and inverts its lightness, so it is dark on a light
+     background and light on a dark one; a light one has to stand up to a bright image, so the
+     darker the background the denser it is */
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 20%, transparent);
+  box-shadow: 0 3px 12px oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) c h / calc(0.2 + 0.6 * (1 - l)));
 }
 
 #R-body svg:not(.lightbox-image).inline,
@@ -3634,7 +3638,9 @@ article.notfound #shrug svg {
   background: var(--INTERNAL-BOX-BG-color);
   border: 1px solid color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 10%, transparent);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* the same shadow as for the `shadow` effect of an image */
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 20%, transparent);
+  box-shadow: 0 3px 12px oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) c h / calc(0.2 + 0.6 * (1 - l)));
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
   flex-direction: column;
@@ -3671,7 +3677,7 @@ article.notfound #shrug svg {
 
 .card-container .card.card-popout:hover {
   border-color: color-mix(in srgb, var(--VARIABLE-LINK-color) 40%, transparent);
-  box-shadow: 0 8px 25px color-mix(in srgb, var(--VARIABLE-LINK-color) 25%, transparent);
+  box-shadow: 0 9px 24px color-mix(in srgb, var(--VARIABLE-LINK-color) 40%, transparent);
   transform: translateY(-4px) translateX(4px);
 }
 
@@ -3823,17 +3829,6 @@ article.notfound #shrug svg {
   article.narrow .card-columnize-5 {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-/* Dark theme compatibility */
-body[data-theme='dark'] .card-container .card,
-.relearn-dark .card-container .card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-body[data-theme='dark'] .card-container .card:hover,
-.relearn-dark .card-container .card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* color style definitions */
