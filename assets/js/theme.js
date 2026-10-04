@@ -564,6 +564,8 @@ function initOpenapi(update, attrs) {
       return value ? ` integrity="${value}"` : '';
     }
     var variant = document.documentElement.dataset.rThemeVariant;
+    // the shortcode may ask for another language than the one of the page
+    var dir = (oc.dataset.openapiDir ? oc.dataset.openapiDir == 'rtl' : isRtl) ? 'rtl' : 'ltr';
     var swagger_theme = getColorValue(print + 'OPENAPI-theme');
     var swagger_code_theme = getColorValue(print + 'OPENAPI-CODE-theme');
 
@@ -585,7 +587,7 @@ function initOpenapi(update, attrs) {
     // replaces this once it is known
     oi.title = 'OpenAPI';
     oi.srcdoc = `<!DOCTYPE html>
-<html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${isRtl ? 'rtl' : 'ltr'}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
+<html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${dir}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="${config.dataset.openapiCssUrl}"${integrity(config.dataset.openapiCssIntegrity)}>
@@ -593,15 +595,18 @@ function initOpenapi(update, attrs) {
     <link rel="stylesheet" href="${theme}"${integrity(themeIntegrity)}>
   </head>
   <body>
-    <a class="relearn-expander" href="" data-expand="false">Collapse all</a>
-    <a class="relearn-expander" href="" data-expand="true">Expand all</a>
+    <a class="relearn-expander" href="" data-expand="false"></a>
+    <a class="relearn-expander" href="" data-expand="true"></a>
     <div id="relearn-swagger-ui"></div>
   </body>
 </html>`;
     oi.height = '100%';
     oi.width = '100%';
     oi.addEventListener('load', function () {
-      // the iframe runs no script of its own, so its expanders are served from here
+      // the iframe runs no script of its own, so its expanders are served from here;
+      // their texts are translated by the shortcode and set as text, so they need no escaping
+      oi.contentWindow.document.querySelector('.relearn-expander[data-expand=false]').textContent = oc.dataset.openapiCollapseAll || 'Collapse all';
+      oi.contentWindow.document.querySelector('.relearn-expander[data-expand=true]').textContent = oc.dataset.openapiExpandAll || 'Expand all';
       oi.contentWindow.document.addEventListener('click', function (event) {
         var expander = event.target.closest('.relearn-expander');
         if (!expander) {

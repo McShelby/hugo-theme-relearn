@@ -7,6 +7,18 @@
 {{- $u := urls.Parse .src }}
 {{- $src := $u.String }}
 {{- $spec := "" }}
+{{- $lang := .lang | default $page.Language.Lang }}
+{{- $site := $page.Site }}
+{{- with where hugo.Sites "Language.Lang" "eq" $lang }}
+  {{- $site = index . 0 }}
+{{- else }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: WARNING parameter 'lang' for shortcode 'openapi' is '%s' which is not a language of this site, using the language of the page instead" $filepath $lang }}
+{{- end }}
+{{- $i18n := $site.Home.Render "_relearn_i18n" | string | transform.Unmarshal }}
+{{- $expandAll := index $i18n "Expand-all" }}
+{{- $collapseAll := index $i18n "Collapse-all" }}
+{{- $dir := $site.Language.Direction | default (index $i18n "Reading-direction") | default "ltr" }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
 {{- if $u.IsAbs }}
   {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .src "page" $page "type" "OpenAPI spec link") $u.String }}
@@ -31,6 +43,9 @@
     id="R-openapi-{{ $id }}"
     data-openapi-url="{{ $src }}"
     data-openapi-spec="{{ $spec | safeHTMLAttr }}"
+    data-openapi-dir="{{ $dir }}"
+    data-openapi-expand-all="{{ $expandAll }}"
+    data-openapi-collapse-all="{{ $collapseAll }}"
   ></div>
 </div>
 {{- .Store.Set "hasOpenApi" true }}

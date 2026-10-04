@@ -24,6 +24,7 @@ Instead, open the [print preview](authoring/frontmatter/topbar) in your browser 
 | Name                 | Default          | Notes       |
 |----------------------|------------------|-------------|
 | **src**              | _&lt;empty&gt;_  | The path to the to the OpenAPI specification resource or URL to be used. Resource paths adhere to [Hugo's logical path](https://gohugo.io/methods/page/path/). |
+| **lang**             | _&lt;empty&gt;_  | The language code used for the reading direction of the Swagger UI and for the texts the theme adds to it, like _Expand all_ and _Collapse all_. This must be one of the languages configured for your site. If not set, the language of the page is used. |
 
 ## Settings
 
