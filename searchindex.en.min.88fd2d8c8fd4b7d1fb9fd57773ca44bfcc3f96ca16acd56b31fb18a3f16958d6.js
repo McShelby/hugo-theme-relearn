@@ -236,8 +236,8 @@ The former params.children is still honored as long as the children shortcode ex
 Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 New New The new color variants contrast-light and contrast-dark have colors chosen for high contrast.
-New The callout shortcode has a new hint parameter to show a tooltip for the title of the box.
 New Markdown blockquotes can name the author and the source of the quotation with the new author, source and href Markdown attributes.
+New The callout shortcode has a new hint parameter to show a tooltip for the title of the box.
 New The button shortcode and topbar buttons have a new istoggle parameter for buttons that show and hide something, telling assistive technology whether it is shown.
 New The tab shortcode has a new hint parameter to show a tooltip for a tab, which also names a tab that shows nothing but an icon.
 New The cards shortcode has a new columns parameter to set the number of columns in full width mode.
@@ -947,8 +947,8 @@ The former params.children is still honored as long as the children shortcode ex
 Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 New New The new color variants contrast-light and contrast-dark have colors chosen for high contrast.
-New The callout shortcode has a new hint parameter to show a tooltip for the title of the box.
 New Markdown blockquotes can name the author and the source of the quotation with the new author, source and href Markdown attributes.
+New The callout shortcode has a new hint parameter to show a tooltip for the title of the box.
 New The button shortcode and topbar buttons have a new istoggle parameter for buttons that show and hide something, telling assistive technology whether it is shown.
 New The tab shortcode has a new hint parameter to show a tooltip for a tab, which also names a tab that shows nothing but an icon.
 New The cards shortcode has a new columns parameter to set the number of columns in full width mode.
@@ -1873,8 +1873,8 @@ The former params.children is still honored as long as the children shortcode ex
 Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 New New The new color variants contrast-light and contrast-dark have colors chosen for high contrast.
-New The callout shortcode has a new hint parameter to show a tooltip for the title of the box.
 New Markdown blockquotes can name the author and the source of the quotation with the new author, source and href Markdown attributes.
+New The callout shortcode has a new hint parameter to show a tooltip for the title of the box.
 New The button shortcode and topbar buttons have a new istoggle parameter for buttons that show and hide something, telling assistive technology whether it is shown.
 New The tab shortcode has a new hint parameter to show a tooltip for a tab, which also names a tab that shows nothing but an icon.
 New The cards shortcode has a new columns parameter to set the number of columns in full width mode.

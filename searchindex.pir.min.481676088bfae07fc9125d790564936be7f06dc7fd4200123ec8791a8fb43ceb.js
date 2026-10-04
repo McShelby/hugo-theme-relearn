@@ -236,8 +236,8 @@ Th' former params.children be still honored as long as th' children shortcode ex
 Change Th' elements o' th' topbar, like its buttons, be now configured wit' th' topbarstart, topbarmiddle, topbarend an' topbarmore options, th' same way as th' sidebar menus. Th' breadcrumb be now an element o' th' new middle area. Ye can set them 'n yer hugo.toml or 'n th' front matter o' yer planks.
 Redefin'n an area by a template 'n layouts/partials/topbar/area an' call'n th' theme’s templates 'n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak'n precedence over th' options, an' th' button templates can still be called, but th' theme warns ye if ye use them. Th' elements now live 'n layouts/partials/topbar/element. See th' migrat'n instruct'ns.
 New New Th' new color variants contrast-light an' contrast-dark have colors chosen fer high contrast.
-New Th' callout shortcode has a new hint parameter t' show a tooltip fer th' title o' th' box.
 New Marrrkdown blockquotes can name th' author an' th' source o' th' quotat'n wit' th' new author, source an' href Marrrkdown attributes.
+New Th' callout shortcode has a new hint parameter t' show a tooltip fer th' title o' th' box.
 New Th' button shortcode an' topbar buttons have a new istoggle parameter fer buttons that show an' hide someth'n, tell'n assistive technology whether it be shown.
 New Th' tab shortcode has a new hint parameter t' show a tooltip fer a tab, which also names a tab that shows noth'n but an ay'con.
 New Th' cards shortcode has a new columns parameter t' set th' number o' columns 'n full width mode.
@@ -947,8 +947,8 @@ Th' former params.children be still honored as long as th' children shortcode ex
 Change Th' elements o' th' topbar, like its buttons, be now configured wit' th' topbarstart, topbarmiddle, topbarend an' topbarmore options, th' same way as th' sidebar menus. Th' breadcrumb be now an element o' th' new middle area. Ye can set them 'n yer hugo.toml or 'n th' front matter o' yer planks.
 Redefin'n an area by a template 'n layouts/partials/topbar/area an' call'n th' theme’s templates 'n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak'n precedence over th' options, an' th' button templates can still be called, but th' theme warns ye if ye use them. Th' elements now live 'n layouts/partials/topbar/element. See th' migrat'n instruct'ns.
 New New Th' new color variants contrast-light an' contrast-dark have colors chosen fer high contrast.
-New Th' callout shortcode has a new hint parameter t' show a tooltip fer th' title o' th' box.
 New Marrrkdown blockquotes can name th' author an' th' source o' th' quotat'n wit' th' new author, source an' href Marrrkdown attributes.
+New Th' callout shortcode has a new hint parameter t' show a tooltip fer th' title o' th' box.
 New Th' button shortcode an' topbar buttons have a new istoggle parameter fer buttons that show an' hide someth'n, tell'n assistive technology whether it be shown.
 New Th' tab shortcode has a new hint parameter t' show a tooltip fer a tab, which also names a tab that shows noth'n but an ay'con.
 New Th' cards shortcode has a new columns parameter t' set th' number o' columns 'n full width mode.
@@ -1873,8 +1873,8 @@ Th' former params.children be still honored as long as th' children shortcode ex
 Change Th' elements o' th' topbar, like its buttons, be now configured wit' th' topbarstart, topbarmiddle, topbarend an' topbarmore options, th' same way as th' sidebar menus. Th' breadcrumb be now an element o' th' new middle area. Ye can set them 'n yer hugo.toml or 'n th' front matter o' yer planks.
 Redefin'n an area by a template 'n layouts/partials/topbar/area an' call'n th' theme’s templates 'n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak'n precedence over th' options, an' th' button templates can still be called, but th' theme warns ye if ye use them. Th' elements now live 'n layouts/partials/topbar/element. See th' migrat'n instruct'ns.
 New New Th' new color variants contrast-light an' contrast-dark have colors chosen fer high contrast.
-New Th' callout shortcode has a new hint parameter t' show a tooltip fer th' title o' th' box.
 New Marrrkdown blockquotes can name th' author an' th' source o' th' quotat'n wit' th' new author, source an' href Marrrkdown attributes.
+New Th' callout shortcode has a new hint parameter t' show a tooltip fer th' title o' th' box.
 New Th' button shortcode an' topbar buttons have a new istoggle parameter fer buttons that show an' hide someth'n, tell'n assistive technology whether it be shown.
 New Th' tab shortcode has a new hint parameter t' show a tooltip fer a tab, which also names a tab that shows noth'n but an ay'con.
 New Th' cards shortcode has a new columns parameter t' set th' number o' columns 'n full width mode.
