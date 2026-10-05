@@ -305,14 +305,11 @@ var variants = {
       return;
     }
 
+    // as long as nothing was changed, there is no custom variant and the value is the one of its base
     var custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
-    if (!custom_style) {
-      this.saveCustomVariant();
-      custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
-    }
 
     var e = this.findColor(c);
-    var v = this.getColorProperty(c, custom_style);
+    var v = this.getColorProperty(c, custom_style ?? base_style);
     var t = c + '\n\n' + e.tooltip + '\n';
     if (e.fallback) {
       t += '\nInherits value "' + this.getColorValue(e.fallback) + '" from ' + e.fallback + ' if not set\n';
@@ -325,12 +322,20 @@ var variants = {
       return;
     }
 
+    if (this.normalizeColor(n).replace('--INTERNAL-', '--') == v) {
+      // a value that was only looked at leaves the variant as it is
+      return;
+    }
+
+    if (!custom_style) {
+      this.saveCustomVariant();
+      custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
+    }
+
     if (n) {
       // value set to specific value
       n = this.normalizeColor(n).replace('--INTERNAL-', '--').replace('--', '--INTERNAL-');
-      if (n != v) {
-        custom_style.setProperty('--' + c, n);
-      }
+      custom_style.setProperty('--' + c, n);
     } else {
       // value emptied, so delete it
       custom_style.removeProperty('--' + c);
