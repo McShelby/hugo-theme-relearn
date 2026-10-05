@@ -81,21 +81,17 @@ var variants = {
     window.localStorage.setItem(window.relearn.absBaseUri + '/customvariants', JSON.stringify(customVariants));
     window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
 
-    var prefix = 'R-variant-styles-';
-    document.querySelectorAll('style[id^="' + prefix + '"]').forEach((style) => {
-      if (!Object.hasOwn(customVariants, style.id.substring(prefix.length))) {
-        style.remove();
-      }
-    });
-    Object.keys(customVariants).forEach((identifier) => {
-      var style = document.getElementById(prefix + identifier);
-      if (!style) {
-        style = document.createElement('style');
-        style.id = prefix + identifier;
-        document.head.appendChild(style);
-      }
-      style.textContent = customVariants[identifier].stylesheet;
-    });
+    // the stylesheets of the custom variants were made by the theme on loading the page or by us on
+    // an earlier change; either way they are known by what they select, and we replace them all
+    document.adoptedStyleSheets = document.adoptedStyleSheets
+      .filter((sheet) => !sheet.cssRules[0]?.selectorText?.includes('[data-r-theme-variant="' + this.customvariantprefix))
+      .concat(
+        Object.values(customVariants).map((customVariant) => {
+          var sheet = new CSSStyleSheet();
+          sheet.replaceSync(customVariant.stylesheet);
+          return sheet;
+        })
+      );
 
     // the theme adds the entries that are missing in the variant switcher, those that are gone are ours to remove
     document.querySelectorAll('.R-variantswitcher option').forEach((option) => {
@@ -180,6 +176,17 @@ var variants = {
     return null;
   },
 
+  // a custom variant has no element to be found by, its stylesheet is one of those made in script
+  findCustomStylesheet: function (customvariant) {
+    for (let sheet of document.adoptedStyleSheets) {
+      var style = this.findRootRule(sheet.cssRules, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
+      if (style) {
+        return style;
+      }
+    }
+    return null;
+  },
+
   findColor: function (name) {
     var f = this.variantvariables.find(function (x) {
       return x.name == name;
@@ -209,7 +216,7 @@ var variants = {
         return;
       }
     } else {
-      style = this.findLoadedStylesheet('R-variant-styles-' + variant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + variant + '"]']);
+      style = this.findCustomStylesheet(variant);
       if (!style) {
         var customvariantbase = this.getCustomVariantBase(variant);
         style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariantbase + '"]']);
@@ -269,7 +276,7 @@ var variants = {
     }
 
     // as long as nothing was changed, there is no custom variant and the value is the one of its base
-    var custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
+    var custom_style = this.findCustomStylesheet(customvariant);
 
     var e = this.findColor(c);
     var v = this.getColorProperty(c, custom_style ?? base_style);
@@ -292,7 +299,7 @@ var variants = {
 
     if (!custom_style) {
       this.saveCustomVariant();
-      custom_style = this.findLoadedStylesheet('R-variant-styles-' + customvariant, [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + customvariant + '"]']);
+      custom_style = this.findCustomStylesheet(customvariant);
     }
 
     if (n) {
@@ -414,13 +421,11 @@ var variants = {
   // the rules of the graph are kept in a stylesheet of our own: Mermaid draws the graph
   // anew for every variant, and takes along whatever was put into the styles of its SVG
   graphSheet: function () {
-    var style = document.getElementById('R-vargenerator-styles');
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'R-vargenerator-styles';
-      document.head.appendChild(style);
+    if (!this.graphsheet) {
+      this.graphsheet = new CSSStyleSheet();
+      document.adoptedStyleSheets.push(this.graphsheet);
     }
-    return style.sheet;
+    return this.graphsheet;
   },
 
   styleGraphGroup: function (selector, colorvar) {
@@ -441,7 +446,8 @@ var variants = {
     var styleSubgraphs = function (node) {
       if (!node) return;
       if (node.id && node.color) {
-        this.styleGraphGroup('#' + node.id, node.color);
+        // Mermaid puts the id of its SVG in front of the one we gave the subgraph
+        this.styleGraphGroup('[id$="-' + node.id + '"]', node.color);
       }
       if (node.children) {
         node.children.forEach((child) => styleSubgraphs.call(this, child));

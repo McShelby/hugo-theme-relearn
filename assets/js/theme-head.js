@@ -79,11 +79,11 @@ window.relearn.initVariant = function () {
   document.documentElement.dataset.rThemeVariant = variant;
 };
 
-Object.entries(window.relearn.customVariants()).forEach(function ([identifier, customVariant]) {
-  var style = document.createElement('style');
-  style.id = 'R-variant-styles-' + identifier;
-  style.textContent = customVariant.stylesheet;
-  document.head.appendChild(style);
+// a stylesheet made in script is none a content security policy has a say in, other than a `<style>` element
+Object.values(window.relearn.customVariants()).forEach(function (customVariant) {
+  var sheet = new CSSStyleSheet();
+  sheet.replaceSync(customVariant.stylesheet);
+  document.adoptedStyleSheets.push(sheet);
 });
 window.relearn.initVariant();
 
