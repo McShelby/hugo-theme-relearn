@@ -99,6 +99,17 @@ window.relearn.initVariant = function () {
   document.documentElement.dataset.rThemeVariant = variant;
 };
 
+// a change of the variant recolors the whole page at once, so we let the browser fade
+// from what it shows to what `update` makes of it; where it can not, or the reader
+// asked for less motion, the change is there at once
+window.relearn.fadeVariant = function (update) {
+  if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    update();
+    return;
+  }
+  document.startViewTransition(update);
+};
+
 window.relearn.applyCustomVariants();
 window.relearn.initVariant();
 
@@ -110,12 +121,20 @@ window.addEventListener('pageshow', function (event) {
     return;
   }
   var oldVariant = document.documentElement.dataset.rThemeVariant;
-  window.relearn.applyCustomVariants();
-  window.relearn.initVariant();
-  window.relearn.markVariant();
-  var variant = document.documentElement.dataset.rThemeVariant;
-  if (oldVariant != variant) {
-    document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
+  var update = function () {
+    window.relearn.applyCustomVariants();
+    window.relearn.initVariant();
+    window.relearn.markVariant();
+    var variant = document.documentElement.dataset.rThemeVariant;
+    if (oldVariant != variant) {
+      document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
+    }
+  };
+  // a page that keeps its variant has nothing to fade
+  if (window.localStorage.getItem(window.relearn.absBaseUri + '/variant') == oldVariant) {
+    update();
+  } else {
+    window.relearn.fadeVariant(update);
   }
 });
 

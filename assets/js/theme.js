@@ -2067,7 +2067,10 @@ function handleLanguageSwitcher() {
 function handleVariantSwitcher() {
   document.querySelectorAll('.R-variantswitcher select').forEach(function (select) {
     select.addEventListener('change', function (event) {
-      window.relearn.changeVariant(this.value);
+      var variant = this.value;
+      window.relearn.fadeVariant(function () {
+        window.relearn.changeVariant(variant);
+      });
     });
   });
 }
