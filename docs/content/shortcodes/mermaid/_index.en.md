@@ -1,8 +1,8 @@
 +++
 categories = ['howto', 'reference']
 description = 'Generate diagrams and flowcharts from text'
-frontmatter = ['customMermaidURL', 'mermaid.force', 'mermaidInitialize', 'mermaidZoom']
-options = ['customMermaidURL', 'mermaid.force', 'mermaidInitialize', 'mermaidZoom']
+frontmatter = ['mermaid.force', 'mermaidInitialize', 'mermaidZoom']
+options = ['mermaid.force', 'mermaidInitialize', 'mermaidZoom']
 title = 'Mermaid'
 +++
 
@@ -69,15 +69,11 @@ In addition, you can merge settings for each individual graph through [diagram d
 mermaidInitialize = '{ "securityLevel": "loose" }'
 {{< /multiconfig >}}
 
-### Loading an External Version of the Mermaid Library
+### Using a Different Version of the Mermaid Library
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The theme uses the shipped Mermaid library by default.
+The theme uses the shipped Mermaid library by default.
 
-In case you want do use a different version of the Mermaid library but don't want to override the shipped version, you can set `customMermaidURL` to the URL of the external Mermaid library.
-
-{{< multiconfig section=params >}}
-customMermaidURL = 'https://unpkg.com/mermaid/dist/mermaid.min.js'
-{{< /multiconfig >}}
+In case you want to use a different version of the Mermaid library, store it as `assets/js/mermaid/mermaid.min.js` in your site. It replaces the shipped version.
 
 ### Force Loading of the Mermaid Library
 

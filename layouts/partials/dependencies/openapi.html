@@ -1,6 +1,16 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- if eq $location "footer" }}
+{{- if eq $location "default" }}
+  {{- with $page }}
+    {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- if and (isset .Params "customopenapiurl") .Params.customOpenapiURL }}
+      {{- warnf "%q: DEPRECATED front matter 'customOpenapiURL' found, replace the shipped library with your own files in 'assets/js/swagger-ui' and 'assets/css/swagger-ui' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" $filepath }}
+    {{- end }}
+    {{- if and .IsHome (isset .Site.Params "customopenapiurl") .Site.Params.customOpenapiURL }}
+      {{- warnf "DEPRECATED option 'customOpenapiURL' found, replace the shipped library with your own files in 'assets/js/swagger-ui' and 'assets/css/swagger-ui' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" }}
+    {{- end }}
+  {{- end }}
+{{- else if eq $location "footer" }}
   {{- with $page }}
     {{- $themevariantsdata := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
     {{- $themecss := $themevariantsdata.css }}

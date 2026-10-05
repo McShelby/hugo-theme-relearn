@@ -2,8 +2,8 @@
 aliases = '/shortcodes/swagger'
 categories = ['howto', 'reference']
 description = 'UI for your OpenAPI / Swagger specifications'
-frontmatter = ['customOpenapiURL', 'openapi.errorlevel', 'openapi.force']
-options = ['customOpenapiURL', 'openapi.errorlevel', 'openapi.force']
+frontmatter = ['openapi.errorlevel', 'openapi.force']
+options = ['openapi.errorlevel', 'openapi.force']
 title = 'OpenAPI'
 +++
 
@@ -42,15 +42,11 @@ Link warnings are also available for [images & links](authoring/frontmatter/link
 openapi.errorlevel = 'warning'
 {{< /multiconfig >}}
 
-### Loading an External Version of the Swagger UI Library
+### Using a Different Version of the Swagger UI Library
 
-{{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} The theme uses the shipped Swagger UI library by default.
+The theme uses the shipped Swagger UI library by default.
 
-In case you want do use a different version of the Swagger UI library but don't want to override the shipped version, you can set `customOpenapiURL` to the URL of the external Swagger UI library.
-
-{{< multiconfig section=params >}}
-customOpenapiURL = 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
-{{< /multiconfig >}}
+In case you want to use a different version of the Swagger UI library, store its files as `assets/js/swagger-ui/swagger-ui-bundle.js`, `assets/js/swagger-ui/swagger-ui-standalone-preset.js` and `assets/css/swagger-ui/swagger-ui.css` in your site. They replace the shipped version.
 
 ### Force Loading of the Swagger UI Library
 

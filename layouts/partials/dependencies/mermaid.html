@@ -1,6 +1,16 @@
 {{- $page := .page }}
 {{- $location := .location }}
-{{- if eq $location "footer" }}
+{{- if eq $location "default" }}
+  {{- with $page }}
+    {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
+    {{- if and (isset .Params "custommermaidurl") .Params.customMermaidURL }}
+      {{- warnf "%q: DEPRECATED front matter 'customMermaidURL' found, replace the shipped library with your own 'assets/js/mermaid/mermaid.min.js' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" $filepath }}
+    {{- end }}
+    {{- if and .IsHome (isset .Site.Params "custommermaidurl") .Site.Params.customMermaidURL }}
+      {{- warnf "DEPRECATED option 'customMermaidURL' found, replace the shipped library with your own 'assets/js/mermaid/mermaid.min.js' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" }}
+    {{- end }}
+  {{- end }}
+{{- else if eq $location "footer" }}
   {{- with $page }}
     {{- with partial "asset.gotmpl" "/js/js-yaml/js-yaml.min.js" }}
     <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
