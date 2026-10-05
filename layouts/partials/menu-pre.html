@@ -1,1 +1,5 @@
-{{ if .Params.menuPre }}{{ .Params.menuPre | safeHTML }}{{ else }}{{ .Params.Pre | safeHTML }}{{ end }}
+{{ if .Params.menuPre }}{{ .Params.menuPre | safeHTML }}{{ else if .Params.Pre }}
+  {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED front matter 'pre' found, use 'menuPre' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-0-0" $filepath }}
+  {{- .Params.Pre | safeHTML }}
+{{- end }}

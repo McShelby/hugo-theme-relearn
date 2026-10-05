@@ -1,1 +1,5 @@
-{{ if .Params.menuPost }}{{ .Params.menuPost | safeHTML }}{{ else }}{{ .Params.Post | safeHTML }}{{ end }}
+{{ if .Params.menuPost }}{{ .Params.menuPost | safeHTML }}{{ else if .Params.Post }}
+  {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED front matter 'post' found, use 'menuPost' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-0-0" $filepath }}
+  {{- .Params.Post | safeHTML }}
+{{- end }}

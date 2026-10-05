@@ -14,6 +14,8 @@
 {{- $layers := slice $call ($page.Params.pages | default dict) }}
 {{- if or $isTaxonomy $isTerm }}
 	{{- with $page.Params.children }}
+		{{- $filepath := "[virtual file]" }}{{ with and $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+		{{- warnf "%q: DEPRECATED front matter 'children' found, use 'pages' instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children#migration" $filepath }}
 		{{- $layers = $layers | append (partial "_relearn/pagesLegacy.gotmpl" (dict "page" $page "params" .)) }}
 	{{- end }}
 {{- end }}
