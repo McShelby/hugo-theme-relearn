@@ -411,11 +411,24 @@ var variants = {
     }
   },
 
+  // the rules of the graph are kept in a stylesheet of our own: Mermaid draws the graph
+  // anew for every variant, and takes along whatever was put into the styles of its SVG
+  graphSheet: function () {
+    var style = document.getElementById('R-vargenerator-styles');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'R-vargenerator-styles';
+      document.head.appendChild(style);
+    }
+    return style.sheet;
+  },
+
   styleGraphGroup: function (selector, colorvar) {
-    this.adjustCSSRules('#R-body svg ' + selector + ' > rect', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;');
-    this.adjustCSSRules('#R-body svg ' + selector + ' > .label .nodeLabel', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;');
-    this.adjustCSSRules('#R-body svg ' + selector + ' > .cluster-label .nodeLabel', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;');
-    this.adjustCSSRules('#R-body svg ' + selector + ' .nodeLabel', 'filter: grayscale(1) invert(1) contrast(10000);');
+    var sheet = this.graphSheet();
+    this.adjustCSSRules('#R-body svg ' + selector + ' > rect', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;', sheet);
+    this.adjustCSSRules('#R-body svg ' + selector + ' > .label .nodeLabel', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;', sheet);
+    this.adjustCSSRules('#R-body svg ' + selector + ' > .cluster-label .nodeLabel', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;', sheet);
+    this.adjustCSSRules('#R-body svg ' + selector + ' .nodeLabel', 'filter: grayscale(1) invert(1) contrast(10000);', sheet);
   },
 
   styleGraph: function () {
