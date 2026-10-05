@@ -334,14 +334,16 @@ var variants = {
 
     var variantList = customVariants.map((v) => '"' + v + '"').join(', ');
     if (confirm('Are you sure you want to reset all ' + customVariants.length + ' custom variant(s): ' + variantList + '?')) {
-      var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
-
-      var customvariantbase = this.getCustomVariantBase(customvariant);
-      if (!customvariantbase || !window.relearn.themevariants.includes(customvariantbase)) {
-        customvariantbase = window.relearn.themevariants[0];
+      // a built variant stays, a custom one makes way for the one it was made from
+      var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+      if (variant.startsWith(this.customvariantprefix)) {
+        variant = this.getCustomVariantBase(variant);
+        if (!variant || !window.relearn.themevariants.includes(variant)) {
+          variant = window.relearn.themevariants[0];
+        }
       }
 
-      this.storeCustomVariants({}, customvariantbase);
+      this.storeCustomVariants({}, variant);
     }
   },
 
