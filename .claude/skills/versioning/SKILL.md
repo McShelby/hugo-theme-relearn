@@ -99,7 +99,7 @@ The build is the test. Every warning that the build did not have before the vers
 - **A heading ID that is not found**: a heading was renamed later. Store the file of the release for the page that links to it.
 - **A deprecation warning in a stored file**: patch it as in step 3.
 
-Repeat until the build has the same warnings as before the version was added. Then check in the generated HTML of `docs/public` that
+Repeat until the build has the same warnings as before the version was added. Then check in the generated HTML of `docs/public.agent` that
 
 - pages added later are missing below the subdirectory of the version,
 - pages removed later are present there,

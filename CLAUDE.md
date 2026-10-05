@@ -13,16 +13,18 @@ This projects contains its documentation in `docs` which is built with Hugo and 
 For build validation use the one-shot build — it exits on its own, where the server never does.
 
 ```bash
-cd docs && hugo build --printPathWarnings --printI18nWarnings --cleanDestinationDir --logLevel info
+cd docs && hugo build -d public.agent --printPathWarnings --printI18nWarnings --cleanDestinationDir --logLevel info
 ```
 
-The generated HTML is written to `docs/public/` and can be inspected with `Grep` or `Read` tools directly — no need to spawn a subagent for parsing.
+The generated HTML is written to `docs/public.agent/` and can be inspected with `Grep` or `Read` tools directly — no need to spawn a subagent for parsing.
 
 The user starts Hugo webserver on the default port (1313). This is prohibited for AI agents which _must_ use port 3131. The port is a server option; `hugo build` has none — see `.claude/skills/hugo/SKILL.md`.
 
 ```bash
-cd docs && hugo server -p 3131
+cd docs && hugo server -p 3131 -d public.agent
 ```
+
+The user's webserver serves `docs/public/` from disk. AI agents _must_ pass `-d public.agent` to every build and server run, so their output never lands in the files the user is browsing.
 
 **Known pre-existing warnings** in this repo (not caused by template changes, safe to ignore):
 - `i18n|MISSING_TRANSLATION|en|frontmatter`, `|option`, `|options`
@@ -42,7 +44,7 @@ The following other environments are available:
 To run a specifig configuration
 
 ```bash
-cd docs && hugo build -e performance
+cd docs && hugo build -e performance -d public.agent
 ```
 
 ### Debugging

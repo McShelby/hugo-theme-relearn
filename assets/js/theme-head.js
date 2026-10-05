@@ -14,6 +14,11 @@ window.relearn = window.relearn || {};
   delete config.translations;
   Object.assign(window.relearn, config);
 
+  // what we keep in the browsers storage is filed below the root of the site as it is
+  // served, which may be another host than the configured `baseURL` or the file
+  // system; this script sits in the `js` directory of that root, whatever page loads it
+  window.relearn.absBaseUri = new URL('..', document.currentScript.src).href.replace(/\/+$/, '');
+
   window.relearn.version_js_url = element.dataset.versionJsUrl;
 
   window.relearn.customvariantprefix = 'my-custom-';
