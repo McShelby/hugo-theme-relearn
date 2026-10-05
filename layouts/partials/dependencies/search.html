@@ -51,7 +51,13 @@
     {{- end }}
     {{- if not $disableSearchIndex }}
       {{- $searchIndexUrl = trim $searchIndexURL "/" }}
-      {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." .Language.Lang (path.Ext $searchIndexUrl)) }}
+      {{- /* every site of Hugo's sites matrix has an index of its own; all of them are
+        published into the same directory, so the name has to tell them apart */}}
+      {{- $searchIndexSite := .Language.Lang }}
+      {{- if gt (len (site.Home.Rotate "version")) 1 }}
+        {{- $searchIndexSite = print $searchIndexSite "." site.Version.Name }}
+      {{- end }}
+      {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." $searchIndexSite (path.Ext $searchIndexUrl)) }}
       {{- with partial "asset.gotmpl" (printf "/js/search-%s.js" $adapter) }}
     <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
       {{- else }}
