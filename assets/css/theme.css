@@ -1254,10 +1254,10 @@ figure.quote > figcaption::before {
 
 .box > .box-label {
   color: var(--VARIABLE-BOX-CAPTION-color);
+  /* the label fills the box up to its border, so its focus outline follows the inner edge of the box's corners */
+  border-radius: calc(var(--block-radius) - 1px) calc(var(--block-radius) - 1px) 0 0;
   font-weight: 500;
-  margin-left: 0.6rem;
-  margin-right: 0.6rem;
-  padding: 0.2rem 0;
+  padding: 0.2rem 0.6rem;
 }
 .box > .box-label::-webkit-details-marker,
 .box > .box-label::marker {
@@ -1971,6 +1971,10 @@ option {
 .expand > .box-label {
   cursor: pointer;
 }
+/* without its content, the label reaches the bottom of the box as well */
+.expand:not([open]) > .box-label {
+  border-radius: calc(var(--block-radius) - 1px);
+}
 .expand > .box-label:hover,
 .expand > .box-label:active,
 .expand > .box-label:focus {
@@ -1979,18 +1983,27 @@ option {
 
 .expand > .box-label > .expander-icon {
   font-size: 0.8rem;
-  transition: transform 0.175s ease;
-  width: 0.6rem;
+  /* as wide as it is high, so the chevron has the room to turn in it; what
+     that adds in width is taken from the gap to the title */
+  margin-inline-end: -0.2rem;
+  /* the icon itself stays in place and holds what turns in it, so the focus
+     outline of the label has nothing to follow */
+  overflow: clip;
+  width: 0.8rem;
 }
-.expand[open] > .box-label > i.expander-icon {
+.expand > .box-label > i.expander-icon::before {
+  display: inline-block;
+  transition: transform 0.175s ease;
+}
+.expand[open] > .box-label > i.expander-icon::before {
   transform: rotate(90deg);
 }
 /* the mirroring stays in the open state as well, so the chevron turns instead
    of flipping over; pointing down, it looks the same mirrored or not */
-html[dir='rtl'] .expand > .box-label > i.expander-icon {
+html[dir='rtl'] .expand > .box-label > i.expander-icon::before {
   transform: scaleX(-1) rotate(0deg);
 }
-html[dir='rtl'] .expand[open] > .box-label > i.expander-icon {
+html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
   transform: scaleX(-1) rotate(90deg);
 }
 
@@ -3769,9 +3782,7 @@ article.notfound #shrug svg {
 /* transparent boxes have different margins and - apperantly - different coloring */
 
 .box.cstyle.transparent > .box-label {
-  margin: 0;
-  padding-bottom: 0;
-  padding-top: 0;
+  padding: 0;
 }
 .box.expand.cstyle.transparent > .box-label {
   color: var(--VARIABLE-LINK-color);
