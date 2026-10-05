@@ -36,16 +36,32 @@
 		{{- $transPage = $page }}
 	{{- end }}
 {{- else if $lang }}
-	{{- with where hugo.Sites "Language.Lang" "eq" $lang }}
-		{{- with index . 0 }}
-			{{- $transSite = . }}
+	{{- /* the same site in another language of Hugo's sites matrix */}}
+	{{- range $site.Home.Rotate "language" }}
+		{{- if eq .Site.Language.Lang $lang }}
+			{{- $transSite = .Site }}
 			{{- $transPage = $transSite.GetPage $page.Path }}
+			{{- break }}
 		{{- end }}
 	{{- end }}
 {{- else }}
 	{{- $lang = $site.Language.Lang }}
 	{{- $transSite = $site }}
 	{{- $transPage = $page }}
+{{- end }}
+{{- $version := $u.Query.Get "version" }}
+{{- if and $version $transSite }}
+	{{- /* the same site in another version of Hugo's sites matrix */}}
+	{{- $homes := $transSite.Home.Rotate "version" }}
+	{{- $transSite = "" }}
+	{{- $transPage = "" }}
+	{{- range $homes }}
+		{{- if eq .Site.Version.Name $version }}
+			{{- $transSite = .Site }}
+			{{- $transPage = $transSite.GetPage $page.Path }}
+			{{- break }}
+		{{- end }}
+	{{- end }}
 {{- end }}
 {{- if $transSite }}
 	{{- if $path }}

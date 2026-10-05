@@ -159,6 +159,12 @@ The version switcher then navigates between both pages in either direction. If a
 
 A page at the same path always takes precedence over a page found by an alias.
 
+## Linking to Other Versions
+
+Your content can [link to a page of another version](authoring/linking/pages#links-to-other-page-versions) by giving the query parameter `version`, containing the name of the version, e.g. `[some archived page](my-page?version=v1.0.0)`.
+
+Unlike the version switcher, such a link does not follow aliases. The page has to exist in the given version under the path you link to.
+
 ## Hiding the Versioning Warning
 
 {{% badge style="option" %}}Option{{% /badge %}} If visitors navigate to an archived version of your site, they will see a versioning warning at the top of each page.

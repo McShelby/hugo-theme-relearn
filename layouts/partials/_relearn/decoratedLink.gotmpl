@@ -33,6 +33,10 @@
 {{- $href = replaceRE `&lang=\w*\b` "" $href }}
 {{- $href = replaceRE `\?lang=\w*&\b` "?" $href }}
 {{- $href = replaceRE `\?lang=\w*\b` "" $href }}
+{{- /* a version name may contain dots */}}
+{{- $href = replaceRE `&version=[^&#]*` "" $href }}
+{{- $href = replaceRE `\?version=[^&#]*&\b` "?" $href }}
+{{- $href = replaceRE `\?version=[^&#]*` "" $href }}
 {{- $href = replaceRE `&format=\w*\b` "" $href }}
 {{- $href = replaceRE `\?format=\w*&\b` "?" $href }}
 {{- $href = replaceRE `\?format=\w*\b` "" $href }}
