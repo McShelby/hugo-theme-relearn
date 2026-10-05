@@ -1,7 +1,10 @@
 window.relearn = window.relearn || {};
 
-// we need to load this script in the html head to avoid flickering
-// on page load if the user has selected a non default variant
+// the generator makes and changes custom variants and keeps them in the storage of the
+// browser, ready to use: by their identifier, with a name and a stylesheet that applies
+// as it is. on loading a page, the theme replays what it finds there - the styles and
+// the entries in the variant switcher - without knowing what it means; keeping the page
+// we are on in line with a change is up to us
 
 function ready(fn) {
   if (document.readyState == 'complete') {
@@ -14,32 +17,21 @@ function ready(fn) {
 var variants = {
   variants: window.relearn.themevariants,
   isstylesheetloaded: true,
+  // also known to the theme's stylesheet, which keeps its fallback colors away from such a variant
+  customvariantprefix: 'my-custom-',
 
   getCustomVariant: function (customvariantbase) {
-    return window.relearn.customvariantprefix + customvariantbase;
+    return this.customvariantprefix + customvariantbase;
   },
 
-  getAllCustomVariants: function () {
-    var customVariants = [];
-    var prefix = window.relearn.absBaseUri + '/variantstylesheet-' + window.relearn.customvariantprefix;
-    for (var i = 0; i < window.localStorage.length; i++) {
-      var key = window.localStorage.key(i);
-      if (key && key.startsWith(prefix)) {
-        var variantName = key.substring((window.relearn.absBaseUri + '/variantstylesheet-').length);
-        customVariants.push(variantName);
-      }
-    }
-    return customVariants;
-  },
-
-  getCustomVariantStylesheet: function (customVariantName) {
-    return window.localStorage.getItem(window.relearn.absBaseUri + '/variantstylesheet-' + customVariantName) || '';
+  hasCustomVariant: function (customvariant) {
+    return Object.hasOwn(window.relearn.customVariants(), customvariant);
   },
 
   getCustomVariantBase: function (customvariant) {
     // Derive source variant from custom variant name
-    if (customvariant && customvariant.startsWith(window.relearn.customvariantprefix)) {
-      return customvariant.substring(window.relearn.customvariantprefix.length);
+    if (customvariant && customvariant.startsWith(this.customvariantprefix)) {
+      return customvariant.substring(this.customvariantprefix.length);
     }
     return '';
   },
@@ -57,17 +49,6 @@ var variants = {
       }
     }.bind(this);
     extractVariables(this.structure);
-
-    // Load all custom variants from localStorage
-    var customVariants = this.getAllCustomVariants();
-    customVariants.forEach((customvariant) => {
-      var stylesheet = this.getCustomVariantStylesheet(customvariant);
-      this.addCustomVariantStyles(customvariant);
-      this.updateCustomVariantStyles(customvariant, stylesheet);
-    });
-
-    this.init();
-    ready(this.init.bind(this));
 
     // we are loaded in the head, so our listener comes before the one of theme.js
     // and the graph definition is in place before Mermaid draws it
@@ -95,72 +76,54 @@ var variants = {
     );
   },
 
-  init: function (variant, old_path) {
-    this.addCustomVariantOption();
+  // stores the custom variants and the variant to show from now on, and brings this page in line with them
+  storeCustomVariants: function (customVariants, variant) {
+    window.localStorage.setItem(window.relearn.absBaseUri + '/customvariants', JSON.stringify(customVariants));
+    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+
+    var prefix = 'R-variant-styles-';
+    document.querySelectorAll('style[id^="' + prefix + '"]').forEach((style) => {
+      if (!Object.hasOwn(customVariants, style.id.substring(prefix.length))) {
+        style.remove();
+      }
+    });
+    Object.keys(customVariants).forEach((identifier) => {
+      var style = document.getElementById(prefix + identifier);
+      if (!style) {
+        style = document.createElement('style');
+        style.id = prefix + identifier;
+        document.head.appendChild(style);
+      }
+      style.textContent = customVariants[identifier].stylesheet;
+    });
+
+    // the theme adds the entries that are missing in the variant switcher, those that are gone are ours to remove
+    document.querySelectorAll('.R-variantswitcher option').forEach((option) => {
+      if (option.value.startsWith(this.customvariantprefix) && !Object.hasOwn(customVariants, option.value)) {
+        option.remove();
+      }
+    });
     window.relearn.markVariant();
-    window.relearn.changeVariant(window.localStorage.getItem(window.relearn.absBaseUri + '/variant'));
-  },
-
-  addCustomVariantOption: function (customvariant) {
-    var customVariants = customvariant ? [customvariant] : this.getAllCustomVariants();
-    customVariants.forEach((customvariant) => {
-      document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
-        var option = select.options[`R-select-variant-${customvariant}`];
-        if (!option) {
-          option = document.createElement('option');
-          option.id = `R-select-variant-${customvariant}`;
-          option.value = customvariant;
-          option.text = customvariant.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
-            return w.replace(/^\w/g, function (c) {
-              return c.toUpperCase();
-            });
-          });
-          select.appendChild(option);
-        }
-      });
-    });
-  },
-
-  removeCustomVariantOption: function (customvariant) {
-    document.querySelectorAll(`.R-variantswitcher option[value="${customvariant}"]`).forEach((option) => {
-      option.remove();
-    });
-  },
-
-  addCustomVariantStyles: function (customvariant) {
-    var head = document.querySelector('head');
-    var style = document.createElement('style');
-    style.id = 'R-variant-styles-' + customvariant;
-    head.appendChild(style);
-  },
-
-  updateCustomVariantStyles: function (customvariant, stylesheet) {
-    stylesheet = ":root:not([data-r-output-format='print'])[data-r-theme-variant='" + customvariant + "']  {" + '\n&' + stylesheet + '\n}';
-    var style = document.querySelector('#R-variant-styles-' + customvariant);
-    if (style) {
-      style.textContent = stylesheet;
-    }
+    window.relearn.changeVariant(variant);
   },
 
   saveCustomVariant: function () {
     var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
     var customvariant = variant;
-    if (!variant.startsWith(window.relearn.customvariantprefix)) {
+    if (!variant.startsWith(this.customvariantprefix)) {
       customvariant = this.getCustomVariant(variant);
     }
 
-    var stylesheet = this.generateStylesheet(customvariant);
-    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariant);
-    window.localStorage.setItem(window.relearn.absBaseUri + '/variantstylesheet-' + customvariant, stylesheet);
-
-    if (!document.querySelector('#R-variant-styles-' + customvariant)) {
-      this.addCustomVariantStyles(customvariant);
-    }
-    this.updateCustomVariantStyles(customvariant, stylesheet);
-
-    this.addCustomVariantOption(customvariant);
-    window.relearn.markVariant();
-    window.relearn.changeVariant(customvariant);
+    var customVariants = window.relearn.customVariants();
+    customVariants[customvariant] = {
+      name: customvariant.replace(/-/g, ' ').replace(/\w\S*/g, function (w) {
+        return w.replace(/^\w/g, function (c) {
+          return c.toUpperCase();
+        });
+      }),
+      stylesheet: ":root:not([data-r-output-format='print'])[data-r-theme-variant='" + customvariant + "']  {" + '\n&' + this.generateStylesheet(customvariant) + '\n}',
+    };
+    this.storeCustomVariants(customVariants, customvariant);
   },
 
   normalizeColor: function (c) {
@@ -239,7 +202,7 @@ var variants = {
 
   generateStylesheet: function (variant) {
     var style = null;
-    if (!variant.startsWith(window.relearn.customvariantprefix)) {
+    if (!variant.startsWith(this.customvariantprefix)) {
       style = this.findLoadedStylesheet('R-format-style', [':root:not([data-r-output-format="print"])[data-r-theme-variant="' + variant + '"]']);
       if (!style) {
         alert('There is nothing to be generated as auto mode variants will be generated by Hugo.');
@@ -289,9 +252,9 @@ var variants = {
     var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
     var customvariantbase = variant;
     var customvariant = variant;
-    if (!variant.startsWith(window.relearn.customvariantprefix)) {
+    if (!variant.startsWith(this.customvariantprefix)) {
       customvariant = this.getCustomVariant(customvariantbase);
-      if (this.getCustomVariantStylesheet(customvariant)) {
+      if (this.hasCustomVariant(customvariant)) {
         alert('You already have changes based on the "' + customvariantbase + '" variant. Please proceed editing the custom variant, reset your changes or ignore this message.');
         return;
       }
@@ -346,29 +309,25 @@ var variants = {
 
   resetVariant: function () {
     var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
-    if (!customvariant.startsWith(window.relearn.customvariantprefix)) {
+    if (!customvariant.startsWith(this.customvariantprefix)) {
       alert('There is nothing to be reset here as built-in variants can not be changed.');
       return;
     }
 
     if (confirm('You have made changes to your custom variant "' + customvariant + '". Are you sure you want to reset all changes?')) {
-      window.localStorage.removeItem(window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
-      this.updateCustomVariantStyles(customvariant, '');
-      this.removeCustomVariantOption(customvariant);
-
       var customvariantbase = this.getCustomVariantBase(customvariant);
       if (!customvariantbase || !window.relearn.themevariants.includes(customvariantbase)) {
         customvariantbase = window.relearn.themevariants[0];
       }
 
-      window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariantbase);
-      window.relearn.markVariant();
-      window.relearn.changeVariant(customvariantbase);
+      var customVariants = window.relearn.customVariants();
+      delete customVariants[customvariant];
+      this.storeCustomVariants(customVariants, customvariantbase);
     }
   },
 
   resetAllVariants: function () {
-    var customVariants = this.getAllCustomVariants();
+    var customVariants = Object.keys(window.relearn.customVariants());
     if (!customVariants.length) {
       return;
     }
@@ -376,20 +335,13 @@ var variants = {
     var variantList = customVariants.map((v) => '"' + v + '"').join(', ');
     if (confirm('Are you sure you want to reset all ' + customVariants.length + ' custom variant(s): ' + variantList + '?')) {
       var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
-      customVariants.forEach((customvariant) => {
-        window.localStorage.removeItem(window.relearn.absBaseUri + '/variantstylesheet-' + customvariant);
-        this.updateCustomVariantStyles(customvariant, '');
-        this.removeCustomVariantOption(customvariant);
-      });
 
       var customvariantbase = this.getCustomVariantBase(customvariant);
       if (!customvariantbase || !window.relearn.themevariants.includes(customvariantbase)) {
         customvariantbase = window.relearn.themevariants[0];
       }
 
-      window.localStorage.setItem(window.relearn.absBaseUri + '/variant', customvariantbase);
-      window.relearn.markVariant();
-      window.relearn.changeVariant(customvariantbase);
+      this.storeCustomVariants({}, customvariantbase);
     }
   },
 

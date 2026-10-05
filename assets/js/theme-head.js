@@ -20,8 +20,6 @@ window.relearn = window.relearn || {};
   window.relearn.absBaseUri = new URL('..', document.currentScript.src).href.replace(/\/+$/, '');
 
   window.relearn.version_js_url = element.dataset.versionJsUrl;
-
-  window.relearn.customvariantprefix = 'my-custom-';
 })();
 
 // stylesheets marked `R-async-style` are fetched for print media so they do not hold
@@ -49,22 +47,44 @@ window.relearn.changeVariant = function (variant) {
   }
 };
 
+// a custom variant is not built by Hugo but made in the browser, which keeps it in its
+// storage by its identifier: a `name` like any other variant has and a `stylesheet`
+// that applies as it is. we replay what we find there and leave the rest to its author
+window.relearn.customVariants = function () {
+  return JSON.parse(window.localStorage.getItem(window.relearn.absBaseUri + '/customvariants') || '{}');
+};
+
 window.relearn.markVariant = function () {
   var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+  var customVariants = window.relearn.customVariants();
   document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
+    // a custom variant follows the ones of the markup, so it has to wait until the parser is done with those
+    if (select.nextSibling || document.readyState != 'loading') {
+      Object.keys(customVariants).forEach((identifier) => {
+        if (!Array.from(select.options).some((option) => option.value == identifier)) {
+          select.add(new Option(customVariants[identifier].name, identifier));
+        }
+      });
+    }
     select.value = variant;
   });
 };
 
 window.relearn.initVariant = function () {
   var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
-  if (!variant || (!variant.startsWith(window.relearn.customvariantprefix) && !window.relearn.themevariants.includes(variant)) || (variant.startsWith(window.relearn.customvariantprefix) && !window.localStorage.getItem(window.relearn.absBaseUri + '/variantstylesheet-' + variant))) {
+  if (!window.relearn.themevariants.includes(variant) && !Object.hasOwn(window.relearn.customVariants(), variant)) {
     variant = window.relearn.themevariants[0];
     window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
   }
   document.documentElement.dataset.rThemeVariant = variant;
 };
 
+Object.entries(window.relearn.customVariants()).forEach(function ([identifier, customVariant]) {
+  var style = document.createElement('style');
+  style.id = 'R-variant-styles-' + identifier;
+  style.textContent = customVariant.stylesheet;
+  document.head.appendChild(style);
+});
 window.relearn.initVariant();
 
 // activates the tab `tabId` in every panel of `tabGroup` that has one. it only touches
