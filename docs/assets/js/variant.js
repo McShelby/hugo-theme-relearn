@@ -81,24 +81,8 @@ var variants = {
     window.localStorage.setItem(window.relearn.absBaseUri + '/customvariants', JSON.stringify(customVariants));
     window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
 
-    // the stylesheets of the custom variants were made by the theme on loading the page or by us on
-    // an earlier change; either way they are known by what they select, and we replace them all
-    document.adoptedStyleSheets = document.adoptedStyleSheets
-      .filter((sheet) => !sheet.cssRules[0]?.selectorText?.includes('[data-r-theme-variant="' + this.customvariantprefix))
-      .concat(
-        Object.values(customVariants).map((customVariant) => {
-          var sheet = new CSSStyleSheet();
-          sheet.replaceSync(customVariant.stylesheet);
-          return sheet;
-        })
-      );
-
-    // the theme adds the entries that are missing in the variant switcher, those that are gone are ours to remove
-    document.querySelectorAll('.R-variantswitcher option').forEach((option) => {
-      if (option.value.startsWith(this.customvariantprefix) && !Object.hasOwn(customVariants, option.value)) {
-        option.remove();
-      }
-    });
+    // the theme replays the storage: the stylesheets and the entries in the variant switcher
+    window.relearn.applyCustomVariants();
     window.relearn.markVariant();
     window.relearn.changeVariant(variant);
   },

@@ -54,10 +54,30 @@ window.relearn.customVariants = function () {
   return JSON.parse(window.localStorage.getItem(window.relearn.absBaseUri + '/customvariants') || '{}');
 };
 
+// the stylesheets of the custom variants are replaced as a whole by what the storage holds
+// now; we remember the ones we made, as others adopt stylesheets of their own.
+// a stylesheet made in script is none a content security policy has a say in, other than a `<style>` element
+window.relearn.customVariantSheets = [];
+window.relearn.applyCustomVariants = function () {
+  var sheets = Object.values(window.relearn.customVariants()).map(function (customVariant) {
+    var sheet = new CSSStyleSheet();
+    sheet.replaceSync(customVariant.stylesheet);
+    return sheet;
+  });
+  document.adoptedStyleSheets = document.adoptedStyleSheets.filter((sheet) => !window.relearn.customVariantSheets.includes(sheet)).concat(sheets);
+  window.relearn.customVariantSheets = sheets;
+};
+
 window.relearn.markVariant = function () {
   var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
   var customVariants = window.relearn.customVariants();
   document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
+    // an entry that is neither of the markup nor in the storage is a custom variant that is gone
+    Array.from(select.options).forEach((option) => {
+      if (!window.relearn.themevariants.includes(option.value) && !Object.hasOwn(customVariants, option.value)) {
+        option.remove();
+      }
+    });
     // a custom variant follows the ones of the markup, so it has to wait until the parser is done with those
     if (select.nextSibling || document.readyState != 'loading') {
       Object.keys(customVariants).forEach((identifier) => {
@@ -79,13 +99,25 @@ window.relearn.initVariant = function () {
   document.documentElement.dataset.rThemeVariant = variant;
 };
 
-// a stylesheet made in script is none a content security policy has a say in, other than a `<style>` element
-Object.values(window.relearn.customVariants()).forEach(function (customVariant) {
-  var sheet = new CSSStyleSheet();
-  sheet.replaceSync(customVariant.stylesheet);
-  document.adoptedStyleSheets.push(sheet);
-});
+window.relearn.applyCustomVariants();
 window.relearn.initVariant();
+
+// a page the browser kept alive in its back/forward cache comes back as it was left,
+// without running us again; what was selected or changed on another page since then
+// is in the storage, and we bring the page in line with it
+window.addEventListener('pageshow', function (event) {
+  if (!event.persisted) {
+    return;
+  }
+  var oldVariant = document.documentElement.dataset.rThemeVariant;
+  window.relearn.applyCustomVariants();
+  window.relearn.initVariant();
+  window.relearn.markVariant();
+  var variant = document.documentElement.dataset.rThemeVariant;
+  if (oldVariant != variant) {
+    document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
+  }
+});
 
 // activates the tab `tabId` in every panel of `tabGroup` that has one. it only touches
 // what is already there and can be run again at will, so it is safe on a panel the
