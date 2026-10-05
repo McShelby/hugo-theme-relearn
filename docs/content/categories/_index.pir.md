@@ -1,5 +1,7 @@
 +++
 [params.pages]
+  columns = 2
+  description = true
   display = 'cards'
   groupby = ' '
 
