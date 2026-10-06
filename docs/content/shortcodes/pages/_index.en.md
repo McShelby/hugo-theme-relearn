@@ -7,11 +7,6 @@ title = 'Pages'
 
 [params]
   alwaysopen = false
-
-[[cascade]]
-  outputs = ['html', 'print', 'source']
-  [cascade.target]
-    path = '/shortcodes/pages/fruits**'
 +++
 
 The `pages` shortcode lists pages of your site in various display layouts, optionally grouped and ordered.

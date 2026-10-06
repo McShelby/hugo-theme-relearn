@@ -7,10 +7,5 @@ title = 'Pages'
 
 [params]
   alwaysopen = false
-
-[[cascade]]
-  outputs = ['html', 'print', 'source']
-  [cascade.target]
-    path = '/shortcodes/pages/fruits**'
 +++
 {{< piratify >}}
