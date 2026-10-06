@@ -1,0 +1,3 @@
+# Configurrrat'n
+
+{{< piratify >}}

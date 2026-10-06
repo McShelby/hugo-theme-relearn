@@ -1,0 +1,662 @@
+# Mermaid
+
+The `mermaid` shortcode generates diagrams and flowcharts from text using the [Mermaid](https://mermaidjs.github.io/) library.
+
+{{% multishortcode name="mermaid" print="false" %}}
+align: "center"
+zoom: "true"
+content: |
+  graph LR;
+    If --> Then
+    Then --> Else
+{{% /multishortcode %}}
+
+Every graph has a button to show it in a lightbox. Press the button again, click beside the graph or press <kbd>ESC</kbd> to return to the page. In the lightbox, a graph is [panned and zoomed](#configuring-pan-and-zoom) the same way as on the page.
+
+## Usage
+
+{{% multishortcode name="mermaid" execute="false" %}}
+align: "center"
+zoom: "true"
+content: |
+  graph LR;
+    If --> Then
+    Then --> Else
+{{% /multishortcode %}}
+
+### Parameters
+
+| Name                  | Default          | Notes       |
+|-----------------------|------------------|-------------|
+| **align**             | `center`         | The vertical alignment.<br><br>Allowed values are `left`, `center` or `right`. |
+| **zoom**              | see notes        | Whether the graph is pan- and zoomable.<br><br>If not set the value is determined by the [`mermaidZoom` setting](#configuring-pan-and-zoom) of your configurations options or the pages front matter or `false` if not set at all.<br><br>- `false`: no pan or zoom<br>- `true`: pan and zoom active |
+| _**&lt;content&gt;**_ | _&lt;empty&gt;_  | Your Mermaid graph. |
+
+## Settings
+
+### Configuring Pan and Zoom
+
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures. With the keyboard, a focused graph is panned by the cursor keys and zoomed by <kbd>+</kbd> and <kbd>-</kbd>, as listed with the other [keyboard shortcuts](configuration/publishing/accessibility#keyboard-shortcuts).
+
+By default this is disabled. Set `mermaidZoom=true` to enable it.
+
+Individual settings of a graphs [`zoom` parameter](#parameters) have precedence over the page's front matter and configuration options in that order.
+
+{{< multiconfig section=params >}}
+mermaidZoom = true
+{{< /multiconfig >}}
+
+### Providing Initialization Options for the Mermaid Library
+
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The Mermaid library is configured with default settings for initialization.
+
+You can overwrite the settings by providing a JSON object in `mermaidInitialize`. See [Mermaid's documentation](https://mermaid-js.github.io/mermaid/#/Setup?id=mermaidapi-configuration-defaults) for all allowed settings.
+
+> [!note]
+> Using the `theme` setting in the initialization options is unsupported. To set the theme globally edit the `--MERMAID-theme` variable of your [color variant](configuration/branding/colors/#modifying-variants).
+
+Keep in mind that initialization settings of your pages front matter overwrite all settings of your configuration options.
+
+In addition, you can merge settings for each individual graph through [diagram directives](https://mermaid-js.github.io/mermaid/#/directives?id=directives) on top of the settings of your page's front matter or configuration options.
+
+{{< multiconfig section=params >}}
+mermaidInitialize = '{ "securityLevel": "loose" }'
+{{< /multiconfig >}}
+
+### Using a Different Version of the Mermaid Library
+
+The theme uses the shipped Mermaid library by default.
+
+In case you want to use a different version of the Mermaid library, store it as `assets/js/mermaid/mermaid.min.js` in your site. It replaces the shipped version.
+
+### Force Loading of the Mermaid Library
+
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains an `mermaid` shortcode, Markdown codefence or the partial is called from your templates.
+
+You can force loading the Mermaid library if no shortcode, Markdown codefence or partial was called by setting `mermaid.force=true`. If a shortcode, Markdown codefence or partial was called, this option has no effect. This comes handy in case you are using scripting to render a graph.
+
+{{< multiconfig section=params >}}
+mermaid.force = true
+{{< /multiconfig >}}
+
+### Setting a Specific Mermaid Theme
+
+While you can configure the Mermaid theme to render your graph by using one of the [initialization options](#providing-initialization-options-for-the-mermaid-library), the recommended way is to set the default value using the `--MERMAID-theme` variable in your [color variant stylesheet](configuration/branding/generator). This allows your graphs to look pretty when the user switches the color variant.
+
+## Examples
+
+### Flowchart with YAML-Title
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  title: Example Diagram
+  ---
+  graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{<strong>Decision</strong>}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+{{% /multishortcode %}}
+
+### Swimlanes
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  swimlane-beta LR
+    subgraph Customer
+      request[Request service]
+      receive[Receive update]
+    end
+
+    subgraph Support
+      triage[Triage request]
+      answer[Send answer]
+    end
+
+    subgraph Engineering
+      investigate[Investigate issue]
+      fix[Prepare fix]
+    end
+
+    request --> triage
+    triage -->|Known issue| answer
+    triage -->|Needs code change| investigate
+    investigate --> fix --> answer
+    answer --> receive
+{{% /multishortcode %}}
+
+### Sequence Diagram with Configuration Directive
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  %%{init:{"fontFamily":"monospace", "sequence":{"showSequenceNumbers":true}}}%%
+  sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+{{% /multishortcode %}}
+
+### Class Diagram
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  classDiagram
+    Animal <|-- Duck
+    Animal <|-- Fish
+    Animal <|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+      +String beakColor
+      +swim()
+      +quack()
+    }
+    class Fish{
+      -int sizeInFeet
+      -canEat()
+    }
+    class Zebra{
+      +bool is_wild
+      +run()
+    }
+{{% /multishortcode %}}
+
+### State Diagram with Right Alignment
+
+{{% multishortcode name="mermaid" %}}
+align: "right"
+content: |
+  stateDiagram-v2
+    open: Open Door
+    closed: Closed Door
+    locked: Locked Door
+    open   --> closed: Close
+    closed --> locked: Lock
+    locked --> closed: Unlock
+    closed --> open: Open
+{{% /multishortcode %}}
+
+### Entity Relationship Model with Non-Default Mermaid Theme
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  %%{init:{"theme":"forest"}}%%
+  erDiagram
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : has
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER ||--o{ INVOICE : "liable for"
+    DELIVERY-ADDRESS ||--o{ ORDER : receives
+    INVOICE ||--|{ ORDER : covers
+    ORDER ||--|{ ORDER-ITEM : includes
+    PRODUCT-CATEGORY ||--|{ PRODUCT : contains
+    PRODUCT ||--o{ ORDER-ITEM : "ordered in"
+{{% /multishortcode %}}
+
+### User Journey
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 3: Me
+{{% /multishortcode %}}
+
+### GANTT Chart
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  gantt
+    dateFormat  YYYY-MM-DD
+    title Adding GANTT diagram functionality to Mermaid
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to Mermaid                      :1d
+{{% /multishortcode %}}
+
+### Pie Chart without Zoom
+
+{{% multishortcode name="mermaid" %}}
+zoom: "false"
+content: |
+  pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+{{% /multishortcode %}}
+
+### Quadrant Chart
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  quadrantChart
+    title Reach and engagement of campaigns
+    x-axis Low Reach --> High Reach
+    y-axis Low Engagement --> High Engagement
+    quadrant-1 We should expand
+    quadrant-2 Need to promote
+    quadrant-3 Re-evaluate
+    quadrant-4 May be improved
+    Campaign A: [0.3, 0.6]
+    Campaign B: [0.45, 0.23]
+    Campaign C: [0.57, 0.69]
+    Campaign D: [0.78, 0.34]
+    Campaign E: [0.40, 0.34]
+    Campaign F: [0.35, 0.78]
+{{% /multishortcode %}}
+
+### Requirement Diagram
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  requirementDiagram
+
+    requirement test_req {
+      id: 1
+      text: the test text.
+      risk: high
+      verifymethod: test
+    }
+
+    element test_entity {
+      type: simulation
+    }
+
+    test_entity - satisfies -> test_req
+{{% /multishortcode %}}
+
+### Git Graph
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  gitGraph
+    commit
+    commit
+    branch develop
+    checkout develop
+    commit
+    commit
+    checkout main
+    merge develop
+    commit
+    commit
+{{% /multishortcode %}}
+
+### C4 Diagrams
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  C4Context
+    title System Context diagram for Internet Banking System
+    Enterprise_Boundary(b0, "BankBoundary0") {
+      Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
+      Person(customerB, "Banking Customer B")
+      Person_Ext(customerC, "Banking Customer C", "desc")
+      Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
+
+      System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
+
+      Enterprise_Boundary(b1, "BankBoundary") {
+        SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+
+        System_Boundary(b2, "BankBoundary2") {
+          System(SystemA, "Banking System A")
+          System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
+        }
+
+        System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+        SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+
+        Boundary(b3, "BankBoundary3", "boundary") {
+          SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
+          SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
+        }
+      }
+    }
+
+    BiRel(customerA, SystemAA, "Uses")
+    BiRel(SystemAA, SystemE, "Uses")
+    Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
+    Rel(SystemC, customerA, "Sends e-mails to")
+
+    UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
+    UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+    UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
+    UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
+    UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+{{% /multishortcode %}}
+
+### Mindmaps
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  mindmap
+    root((mindmap))
+      Origins
+        Long history
+        ::icon(fa fa-book)
+        Popularisation
+          British popular psychology author Tony Buzan
+      Research
+        On effectiveness<br/>and features
+        On Automatic creation
+          Uses
+              Creative techniques
+              Strategic planning
+              Argument mapping
+      Tools
+        Pen and paper
+        Mermaid
+{{% /multishortcode %}}
+
+### Timeline
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook
+         : Google
+    2005 : Youtube
+    2006 : Twitter
+{{% /multishortcode %}}
+
+### ZenUML
+
+ZenUML is currently not available with the Mermaid version shipped with the theme due to further required dependencies. Use [sequence diagrams](#sequence-diagram-with-configuration-directive) instead.
+
+<!--
+````md
+```mermaid
+zenuml
+    title Annotators
+    @Actor Alice
+    @Database Bob
+    Alice->Bob: Hi Bob
+    Bob->Alice: Hi Alice
+```
+````
+
+````mermaid
+zenuml
+    title Annotators
+    @Actor Alice
+    @Database Bob
+    Alice->Bob: Hi Bob
+    Bob->Alice: Hi Alice
+````
+-->
+
+### Sankey
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  sankey-beta
+    %% source,target,value
+    Electricity grid,Over generation / exports,104.453
+    Electricity grid,Heating and cooling - homes,113.726
+    Electricity grid,H2 conversion,27.14
+{{% /multishortcode %}}
+
+### XYChart
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  xychart-beta
+    title "Sales Revenue"
+    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    y-axis "Revenue (in $)" 4000 --> 11000
+    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]
+{{% /multishortcode %}}
+
+### Block Diagram
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  block-beta
+    columns 1
+      db(("DB"))
+      blockArrowId6<["&nbsp;&nbsp;&nbsp;"]>(down)
+      block:ID
+        A
+        B["A wide one in the middle"]
+        C
+      end
+      space
+      D
+      ID --> D
+      C --> D
+      style B fill:#969,stroke:#333,stroke-width:4px
+{{% /multishortcode %}}
+
+### Packet
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  title: "TCP Packet"
+  ---
+  packet-beta
+    0-15: "Source Port"
+    16-31: "Destination Port"
+    32-63: "Sequence Number"
+    64-95: "Acknowledgment Number"
+    96-99: "Data Offset"
+    100-105: "Reserved"
+    106: "URG"
+    107: "ACK"
+    108: "PSH"
+    109: "RST"
+    110: "SYN"
+    111: "FIN"
+    112-127: "Window"
+    128-143: "Checksum"
+    144-159: "Urgent Pointer"
+    160-191: "(Options and Padding)"
+    192-255: "Data (variable length)"
+{{% /multishortcode %}}
+
+### Kanban
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  config:
+    kanban:
+      ticketBaseUrl: 'https://mermaidchart.atlassian.net/browse/#TICKET#'
+  ---
+  kanban
+    Todo
+      [Create Documentation]
+      docs[Create Blog about the new diagram]
+    [In progress]
+      id6[Create renderer so that it works in all cases. We also add som extra text here for testing purposes. And some more just for the extra flare.]
+    id9[Ready for deploy]
+      id8[Design grammar]@{ assigned: 'knsv' }
+    id10[Ready for test]
+      id4[Create parsing tests]@{ ticket: MC-2038, assigned: 'K.Sveidqvist', priority: 'High' }
+      id66[last item]@{ priority: 'Very Low', assigned: 'knsv' }
+    id11[Done]
+      id5[define getData]
+      id2[Title of diagram is more than 100 chars when user duplicates diagram with 100 char]@{ ticket: MC-2036, priority: 'Very High'}
+      id3[Update DB function]@{ ticket: MC-2037, assigned: knsv, priority: 'High' }
+
+    id12[Can't reproduce]
+      id3[Weird flickering in Firefox]
+{{% /multishortcode %}}
+
+### Architecture
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  architecture-beta
+    group api(cloud)[API]
+
+    service db(database)[Database] in api
+    service disk1(disk)[Storage] in api
+    service disk2(disk)[Storage] in api
+    service server(server)[Server] in api
+
+    db:L -- R:server
+    disk1:T -- B:server
+    disk2:T -- B:db
+{{% /multishortcode %}}
+
+### Radar
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  ---
+  title: "Grades"
+  ---
+  radar-beta
+    axis m["Math"], s["Science"], e["English"]
+    axis h["History"], g["Geography"], a["Art"]
+    curve a["Alice"]{85, 90, 80, 70, 75, 90}
+    curve b["Bob"]{70, 75, 85, 80, 90, 85}
+
+    max 100
+    min 0
+{{% /multishortcode %}}
+
+### Treemap
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  treemap-beta
+  "Section 1"
+      "Leaf 1.1": 12
+      "Section 1.2"
+        "Leaf 1.2.1": 12
+  "Section 2"
+      "Leaf 2.1": 20
+      "Leaf 2.2": 25
+{{% /multishortcode %}}
+
+### Venn
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  venn-beta
+    title "Team overlap"
+    set Frontend
+    set Backend
+    union Frontend,Backend["APIs"]
+{{% /multishortcode %}}
+
+### Ishikawa
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  ishikawa-beta
+    Blurry Photo
+    Process
+        Out of focus
+        Shutter speed too slow
+        Protective film not removed
+        Beautification filter applied
+    User
+        Shaky hands
+    Equipment
+        LENS
+            Inappropriate lens
+            Damaged lens
+            Dirty lens
+        SENSOR
+            Damaged sensor
+            Dirty sensor
+    Environment
+        Subject moved too quickly
+        Too dark
+{{% /multishortcode %}}
+
+### Wardley
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  wardley-beta
+    title Tea Shop Value Chain
+
+    anchor Business [0.95, 0.63]
+    component Cup of Tea [0.79, 0.61]
+    component Tea [0.63, 0.81]
+    component Hot Water [0.52, 0.80]
+    component Kettle [0.43, 0.35]
+    component Power [0.10, 0.70]
+
+    Business -> Cup of Tea
+    Cup of Tea -> Tea
+    Cup of Tea -> Hot Water
+    Hot Water -> Kettle
+    Kettle -> Power
+
+    evolve Kettle 0.62
+    evolve Power 0.89
+
+    note "Standardising power allows Kettles to evolve faster" [0.30, 0.49]
+{{% /multishortcode %}}
+
+### Cynefin
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  cynefin-beta
+  title Optional Diagram Title
+
+  complex
+  "Item label"
+  "Another item"
+
+  complicated
+  "Expert analysis needed"
+
+  clear
+  "Known procedure"
+
+  chaotic
+  "Crisis response"
+
+  confusion
+  "Item of unknown domain"
+
+  complex --> complicated : "Pattern identified"
+  clear --> chaotic : "Complacency"
+{{% /multishortcode %}}
+
+### TreeView
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  treeView-beta
+    my-project/
+        src/
+            index.js
+        package.json
+        README.md
+{{% /multishortcode %}}

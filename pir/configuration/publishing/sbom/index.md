@@ -1,0 +1,3 @@
+# SBOM
+
+{{< piratify >}}

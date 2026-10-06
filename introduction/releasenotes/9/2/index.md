@@ -1,0 +1,115 @@
+# Version 9.2
+
+## 9.2.0 (XXXX-XX-XX) {#9-2-0}
+
+> [!primary]+ Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage
+>
+> The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
+>
+> All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like `menuTitle` vs. `linkTitle`, or the `expand` shortcode vs. `details`) only cause confusion.
+>
+> Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a `DEPRECATED` or `UNSUPPORTED` message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
+>
+> **What you should do now**
+>
+> - **No messages, no work:** if your site builds on the latest 9.x release without `DEPRECATED`, `UNSUPPORTED` or `WARNING` messages from the theme, you can update to 10.0.0 without changing anything.
+> - **Messages? Fix them now:** each message names the replacement and links to the release notes describing the migration.
+> - **Don't wait:** with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.
+
+### Hugo 0.166.0
+
+- {{% badge style="hugo" %}}0.166.0{{% /badge %}} This release requires a newer Hugo version.
+
+### Change
+
+- {{% badge style="change" %}}Change{{% /badge %}} [Accessibility](configuration/publishing/accessibility) is now a supported feature of the theme.
+
+  With the new option `link.underline=true`, links in your content are underlined, so they are told apart from the text around them by more than their color.
+
+  To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
+
+  As a side effect, the [keyboard shortcuts](configuration/publishing/accessibility#keyboard-shortcuts) of the theme are now documented as well.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
+
+  For images, this is the new [image effect](authoring/linking/imageeffects) `rounded`, which is enabled by default. If you want to restore the previous look of your images, set `imageEffects.rounded=false` in your `hugo.toml`.
+
+- {{% badge style="change" %}}Change{{% /badge %}} Markdown tables can now [merge cells](authoring/markdown#merged-cells), using the syntax of Markdown Preview Enhanced. A cell containing only `>` merges into the cell to its right, a cell containing only `^` into the cell above.
+
+  If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like `\\>`.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The new [`pages` shortcode](shortcodes/pages) lists pages of your site. Besides the layouts known from the now deprecated `children` shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
+
+  The [`children` shortcode](shortcodes/children) still works but issues a deprecation warning for each use, naming the `pages` call that replaces it. See the [migration instructions](shortcodes/children#migration).
+
+  With `type=group`, the [`children` shortcode](shortcodes/children) no longer shows a multi-column layout. If you want to restore the previous behavior, replace it with the `pages` shortcode and `columns=3`.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The new [`callout` shortcode](shortcodes/callout) replaces the now deprecated [`notice` shortcode](shortcodes/notice), matching the name of the Markdown callouts it shares its boxes with. The parameters are unchanged.
+
+  The [`notice` shortcode](shortcodes/notice) still works but issues a deprecation warning for each use. Rename your calls to `callout`. See the [migration instructions](shortcodes/notice#migration).
+
+- {{% badge style="change" %}}Change{{% /badge %}} Hugo's built-in [`details` shortcode](shortcodes/details) replaces the now deprecated [`expand` shortcode](shortcodes/expand), so your content stays portable to other themes.
+
+  The [`expand` shortcode](shortcodes/expand) still works but issues a deprecation warning for each use. The parameters of the `details` shortcode are named differently, so a call can not just be renamed. See the [migration instructions](shortcodes/expand#migration).
+
+  If you already use the `details` shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with `{{</* details */>}}`, and the `title` parameter is honored. If your content is HTML or contains other shortcodes, set the new `raw=true` parameter to have it written as it is.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The [`math` shortcode](shortcodes/math) now renders your formulae using Hugo's built-in KaTeX while your site is built, instead of the MathJax library in the browser.
+
+  The theme finds your formulae by the delimiters of Hugo's [Passthrough configuration](shortcodes/math#passthrough-configuration). If your site doesn't have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
+
+  By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set [`math.output='htmlAndMathml'`](shortcodes/math#output-of-the-formulae).
+
+  The options `mathJaxInitialize` and `customMathJaxURL` are gone. Instead, you can set [any KaTeX option](shortcodes/math#providing-options-for-katex) in `math`. If you defined your own macros, move them to `math.macros`.
+
+  KaTeX doesn't know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The front matter `params.pages` replaces `params.children` and is now honored on every page, not only on taxonomy and term pages. Together with Hugo's `cascade`, you can give all listings of a subtree the same look.
+
+  The former `params.children` is still honored as long as the `children` shortcode exists, but using it now prints a warning.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The elements of the topbar, like its buttons, are now [configured](configuration/customization/topbar#defining-topbar-elements) with the `topbarstart`, `topbarmiddle`, `topbarend` and `topbarmore` options, the same way as the sidebar menus. The breadcrumb is now an element of the new _middle_ area. You can set them in your `hugo.toml` or in the front matter of your pages.
+
+  Redefining an area by a template in `layouts/partials/topbar/area` and calling the theme's templates in `layouts/partials/topbar/button` is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in `layouts/partials/topbar/element`. See the [migration instructions](configuration/customization/topbar#migration-for-relearn-9).
+
+- {{% badge style="change" %}}Change{{% /badge %}} [Versioning](configuration/sitemanagement/versioning) now builds on Hugo's `versions`. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
+
+  Links can point to a page in [another version](configuration/sitemanagement/versioning#linking-to-other-versions) of your site with the new `version` query parameter, like `/my-page?version=v1.0.0`.
+
+  The options `versions`, `version` and `versionIndexURL` are deprecated. They still work as long as you have not configured Hugo's `versions`, but the theme warns you if you use them. See the [migration instructions](configuration/sitemanagement/versioning#migration-for-relearn-9).
+
+- {{% badge style="change" %}}Change{{% /badge %}} Links into another language written with a language prefix like `/pir/my-page` are deprecated, and with them the option `enableLegacyLanguageLinks`. They still work if the option is set, but the theme warns you for each such link. Use the [`lang` query parameter](authoring/linking/pages) instead, like `/my-page?lang=pir`.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The front matter `pre` and `post`, [renamed in 5.0.0](introduction/releasenotes/5#5-0-0), now issue a deprecation warning. Use `menuPre` and `menuPost` instead.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The options `customMermaidURL` and `customOpenapiURL` are deprecated. They still work, but the theme warns you if you use them.
+
+  To use a different version of a library, store it in the `assets` directory of your site, where it replaces the shipped version. See the documentation of the [`mermaid`](shortcodes/mermaid#using-a-different-version-of-the-mermaid-library) and [`openapi`](shortcodes/openapi#using-a-different-version-of-the-swagger-ui-library) shortcodes.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) `contrast-light` and `contrast-dark` have colors chosen for high contrast.
+
+- {{% badge style="new" %}}New{{% /badge %}} A [color variant](configuration/branding/colors#linking-to-a-variant) can now be selected by a link with the new `variant` query parameter, like `/my-page?variant=relearn-dark`.
+
+- {{% badge style="new" %}}New{{% /badge %}} Markdown blockquotes can [name the author and the source of the quotation](authoring/markdown#quotations-with-attribution) with the new `author`, `source` and `href` Markdown attributes.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`callout` shortcode](shortcodes/callout#with-hint) has a new `hint` parameter to show a tooltip for the title of the box.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`tab` shortcode](shortcodes/tabs#tab-parameters) has a new `hint` parameter to show a tooltip for a tab, which also names a tab that shows nothing but an icon.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`button` shortcode](shortcodes/button#toggle-button) and [topbar buttons](configuration/customization/topbar#button) have a new `istoggle` parameter for buttons that show and hide something, telling assistive technology whether it is shown.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`cards` shortcode](shortcodes/cards) has a new `columns` parameter to set the number of columns in full width mode.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`resources` shortcode](shortcodes/resources) has a new `pageref` parameter to list the resources of another page bundle.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`openapi` shortcode](shortcodes/openapi) has a new `lang` parameter to set the language used for the reading direction of the Swagger UI and for the texts the theme adds to it. These texts are now translated.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`mermaid` shortcode's](shortcodes/mermaid#configuring-pan-and-zoom) graph can now be focused, panned and zoomed with the [keyboard](configuration/publishing/accessibility#keyboard-shortcuts).
+
+  They now contain a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page itself.
+
+- {{% badge style="new" %}}New{{% /badge %}} The theme writes no inline JavaScript anymore, so your site can be served with a strict [Content Security Policy](configuration/publishing/csp). On request, it also adds [subresource integrity](configuration/publishing/csp#subresource-integrity) hashes to its scripts and stylesheets. The [`button`](shortcodes/button#button-with-own-action) and [`card`](shortcodes/cards#card-with-own-action) shortcodes and [topbar buttons](configuration/customization/topbar#button) have a new `action` parameter to run your own code without inline JavaScript.
+
+- {{% badge style="new" %}}New{{% /badge %}} The theme now ships a machine-readable [SBOM](configuration/publishing/sbom) at `sbom.cdx.json`, listing every third-party resource it can publish with your site, each with a license, a digest of the files the theme ships and - where upstream publishes them - a version and a package URL.

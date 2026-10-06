@@ -1,0 +1,25 @@
+# Version 4.0
+
+## 4.0.0 (2022-06-05) {#4-0-0}
+
+### Breaking
+
+- {{% badge style="breaking" %}}Breaking{{% /badge %}} The `custom_css` config parameter was removed from the configuration. If used in an existing installation, it can be achieved by overriding the `custom-header.html` template in a much more generic manner.
+
+- {{% badge style="breaking" %}}Breaking{{% /badge %}} Because anchor hover color was not configurable without introducing more complexity to the variant stylesheets, we decided to remove `--MAIN-ANCHOR-color` instead. You don't need to change anything in your custom color stylesheet as the anchors now get their colors from `--MAIN-LINK-color` and `--MAIN-ANCHOR-HOVER-color` respectively.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} All shortcodes now support named parameters. The positional parameters are still supported but will not be enhanced with new features, so you don't need to change anything in your installation.
+
+  This applies to [`expand`](shortcodes/details), [`include`](shortcodes/include), [`notice`](shortcodes/callout) and [`siteparam`](shortcodes/siteparam).
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`button`](shortcodes/button) shortcode received some love and now has a parameter for the color style similar to other shortcodes.
+
+- {{% badge style="new" %}}New{{% /badge %}} New colors `--PRIMARY-color` and `--SECONDARY-color` were added to provide easier modification of your custom style. Shortcodes with a color style can now have `primary` or `secondary` as additional values.
+
+  These two colors are the default for other, more specific color variables. You don't need to change anything in your existing custom color stylesheets as those variables get reasonable default values.
+
+- {{% badge style="new" %}}New{{% /badge %}} Translation into Polish. This language is not supported for search.
+
+- {{% badge style="new" %}}New{{% /badge %}} The documentation for all shortcodes were revised.

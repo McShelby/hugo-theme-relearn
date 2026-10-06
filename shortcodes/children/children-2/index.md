@@ -1,0 +1,5 @@
+# page 2
+
+This is a demo child page with no description.
+
+So its content is used as description.

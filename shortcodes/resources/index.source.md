@@ -1,0 +1,77 @@
++++
+categories = ['howto', 'reference']
+description = 'List resources contained in a page bundle'
+title = 'Resources'
+
+[[resources]]
+  name = 'MaybeTreasure.txt'
+  src = 'MaybeTreasure.en.txt'
++++
+
+The `resources` shortcode displays links to resources contained in a [page bundle](https://gohugo.io/content-management/page-bundles/).
+
+{{% multishortcode name="resources" print="false" %}}
+sort = "asc"
+{{% /multishortcode %}}
+
+## Usage
+
+{{% multishortcode name="resources" execute="false" %}}
+sort = "asc"
+{{% /multishortcode %}}
+
+Multilanguage features are not supported directly by the shortcode but rely on Hugo's handling for resource translations applied when the theme iterates over all available resources.
+
+### Parameters
+
+| Name                  | Default         | Notes       |
+|-----------------------|-----------------|-------------|
+| **pageref**           | _&lt;empty&gt;_ | A reference to the page bundle whose resources are listed, like `/shortcodes/attachments` or relative to the current page.<br><br>If set and it doesn't resolve to a page, the build fails. If not set, the current page is used or, if called as partial, the page given in `page`. |
+| **style**             | `transparent`   | The style scheme used for the box.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/callout#defining-own-styles). |
+| **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
+| **title**             | see notes       | Arbitrary text for the box title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: `Resources`<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: `paperclip`<br><br>If you want no icon, you have to set this parameter to `" "` (a non empty string filled with spaces) |
+| **expanded**          | _&lt;empty&gt;_ | Whether to draw an expander and how the resource list is displayed.<br><br>- _&lt;empty&gt;_: no expander is drawn and the resource list is permanently shown<br>- `true`: the expander is drawn and the resource list is initially shown<br>- `false`: the expander is drawn and the resource list is initially hidden |
+| **sort**              | `asc`           | Sorting the output in `asc`ending or `desc`ending order. |
+| **pattern**           | `.*`            | A [regular expressions](https://en.wikipedia.org/wiki/Regular_expression), used to filter the resources [by name](https://gohugo.io/methods/resource/name/). For example:<br><br>- to match a file suffix of 'jpg', use `.*\.jpg` (not `*.\.jpg`)<br>- to match file names ending in `jpg` or `png`, use `.*\.(jpg\|png)` |
+
+## Examples
+
+### Custom Title, List of Resources Ending in png, jpg or gif
+
+{{% multishortcode name="resources" %}}
+title = "Related **files**"
+pattern = '.*\.(png|jpg|gif)'
+{{% /multishortcode %}}
+
+### Info Styled Box, Descending Sort Order
+
+{{% multishortcode name="resources" %}}
+style = "info"
+sort = "desc"
+{{% /multishortcode %}}
+
+### With User-Defined Color and Font Awesome Brand Icon
+
+{{% multishortcode name="resources" %}}
+color = "fuchsia"
+icon = "fa-fw fab fa-hackerrank"
+{{% /multishortcode %}}
+
+### Expander with Initially Hidden Resource List
+
+{{% multishortcode name="resources" %}}
+style = "primary"
+expanded = "false"
+{{% /multishortcode %}}
+
+### Resources of Another Page
+
+{{% multishortcode name="resources" %}}
+pageref = "/shortcodes/attachments"
+pattern = '.*/hugo\..*'
+{{% /multishortcode %}}
+
+### Style, Color, Title and Icons
+
+For further examples for **style**, **color**, **title** and **icon**, see the [`callout` shortcode](shortcodes/callout) documentation. The parameters are working the same way for both shortcodes, besides having different defaults.

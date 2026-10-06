@@ -1,0 +1,3 @@
+# Marrrkdown Rules
+
+{{< piratify >}}

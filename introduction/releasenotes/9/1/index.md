@@ -1,0 +1,67 @@
+# Version 9.1
+
+## 9.1.0 (2026-09-13) {#9-1-0}
+
+### Hugo 0.165.0
+
+- {{% badge style="hugo" %}}0.165.0{{% /badge %}} This release requires a newer Hugo version.
+
+### Change
+
+- {{% badge style="change" %}}Change{{% /badge %}} Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.
+
+  Formerly every build appended a new id to each asset's URL, emptying a visitor's cache on each deployment even when no asset was different. If you referenced assets from your own partials, `assetbusting.gotmpl` is replaced by `asset.gotmpl`, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.
+
+  ````html {title="layouts/partials/custom-header.html"}
+  {{ with resources.Get "/css/mine.css" }}
+    {{ with partial "asset.gotmpl" . }}
+  <link href="{{ .RelPermalink }}" rel="stylesheet">
+    {{ end }}
+  {{ end }}
+  ````
+
+  Below `static` this only concerns `css/custom.css`, `js/custom.js` and the favicon and logo images; everything else there is published as before. Those are published twice, once untouched and once processed - move them to `assets` to avoid the superfluous copy.
+
+  As a busted name changes with its content, a build no longer overwrites the file its predecessor wrote and both remain. Purge your output directory, e.g. by building with Hugo's `--cleanDestinationDir`, or it accumulates every version you ever built - which weighs most if you commit what you build, as publishing to a GitHub Pages branch does.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The Perfect Scrollbar library is no longer shipped with the theme. All scrollbars are the ones of your browser now, styled by the theme.
+
+  The scrollbars colors come from new [theme variant](configuration/branding/colors/#modifying-variants) variables, four for each of the three areas, the main content, the menu and the topbar flyouts. `MAIN-SCROLLBAR-THUMB-color`, `MENU-SCROLLBAR-THUMB-color` and `TOPBAR-SCROLLBAR-THUMB-color` color the moving thumb, `MAIN-SCROLLBAR-TRACK-color`, `MENU-SCROLLBAR-TRACK-color` and `TOPBAR-SCROLLBAR-TRACK-color` the track it moves in. Each of them has a `-HOVER` counterpart - like `MAIN-SCROLLBAR-THUMB-HOVER-color` or `MENU-SCROLLBAR-TRACK-HOVER-color` - for the respective hovered area.
+
+  How many of those twelve colors you see an effect from depends on the scrollbar model your browser implements, so don't expect all of them to show everywhere. Where the theme draws the menus scrollbar itself, all four of its colors apply and the thumb reacts to being hovered on its own. A browser that offers only the standard styling has no state for the thumb, so there the `-HOVER` colors are taken while the surrounding area is hovered instead. And where a browser draws an overlay scrollbar for the content or the topbar flyouts, it keeps its own and the four colors of that area go unused.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The [theme variant configuration](configuration/branding/colors#parameters) has a new `hidden` parameter.
+
+  If set to `true`, the variant will not be shown in the [variant switcher](configuration/sidebar/menus) but is still usable, e.g. as a sub-variant of an auto mode variant.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The [title above a page sidebar menu](configuration/sidebar/menus#title-for-arbitrary-menus) is now taken from the root page's `linkTitle` front matter.
+
+  Formerly this was documented to use the `menuTitle` front matter, although that was already [removed in 6.0.0](introduction/releasenotes/6#6-0-0) in favor of Hugo's own `linkTitle`. It is still honored if no `linkTitle` is set but now issues a deprecation warning and will be removed with a future update of the theme.
+
+- {{% badge style="change" %}}Change{{% /badge %}} Images now carry the dimensions of their resource, so a browser can reserve the space they will take before they have arrived.
+
+  This avoids page reflows as each image loads and affects images that resolve to a resource Hugo can measure: a page resource or a file in your `assets` directory, in one of the common raster formats. An SVG, a remote address or a path in your `static` directory has no dimensions to give and is unchanged.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The [Lunr Languages](https://github.com/MihaiValentin/lunr-languages) where updated to 1.21.0.
+
+  Searching with the Lunr adapter now finds terms that consist of digits only, like part or standard numbers.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`editURL` option](authoring/frontmatter/topbar#edit-button) has a new macro `${BaseDir}`, containing the directory `${FilePath}` is resolved against.
+
+  Joined, the two are the location of the displayed page on your disk during build, which lets the edit button open your local editor instead of a web service.
+
+  {{< multiconfig >}}
+  editURL = 'vscode://file/${BaseDir}/${FilePath}'
+  {{< /multiconfig >}}
+
+  The macro is written the way a URL writes a path - with forward slashes and without a leading slash - so the same setting works on Windows and on Unix-like systems.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`card` shortcode](shortcodes/cards#card-parameters) has a new `imagealt` parameter, giving the card's image a text alternative.
+
+- {{% badge style="new" %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 11.17.2. This adds support for [swimlanes](shortcodes/mermaid#swimlanes), [Venn](shortcodes/mermaid#venn), [Ishikawa](shortcodes/mermaid#ishikawa), [Wardley](shortcodes/mermaid#wardley), [Cynefin](shortcodes/mermaid#cynefin) and [TreeView](shortcodes/mermaid#treeview).
+
+- {{% badge style="new" %}}New{{% /badge %}} The translation for Portuguese was divided into European Portuguese and Brazilian Portuguese.
+
+- {{% badge style="new" %}}New{{% /badge %}} The search now supports the Polish language.

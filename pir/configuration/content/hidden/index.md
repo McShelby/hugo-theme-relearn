@@ -1,0 +1,3 @@
+# Hidden Pages
+
+{{< piratify >}}

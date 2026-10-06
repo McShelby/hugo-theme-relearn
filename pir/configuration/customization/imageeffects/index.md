@@ -1,0 +1,3 @@
+# Image Effects
+
+{{< piratify >}}

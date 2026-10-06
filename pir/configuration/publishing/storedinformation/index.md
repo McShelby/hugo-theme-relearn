@@ -1,0 +1,3 @@
+# GDPR & Cookie Consent
+
+{{< piratify >}}

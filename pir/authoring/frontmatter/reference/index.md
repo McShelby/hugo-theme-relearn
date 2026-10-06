@@ -1,0 +1,3 @@
+# Front Matter Reference
+
+{{< piratify >}}

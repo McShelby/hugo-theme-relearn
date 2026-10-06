@@ -1,0 +1,3 @@
+# Multilingual
+
+{{< piratify >}}

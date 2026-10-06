@@ -1,0 +1,3 @@
+# Kumquat (hidden)
+
+{{< piratify >}}

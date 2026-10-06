@@ -1,0 +1,51 @@
+# Version 9.0
+
+## 9.0.0 (2026-01-01) {#9-0-0}
+
+### Hugo
+
+- {{% badge style="hugo" %}}Hugo{{% /badge %}} When the theme introduced compatibility with Hugo {{% badge style="hugo" %}}0.146.7{{% /badge %}} it had to remove a performance optimization due to a limitation in Hugo. This was later fixed in Hugo {{% badge style="hugo" %}}0.149.0{{% /badge %}}.
+
+  This release reintroduces the performance optimization and will cause your page build to fail with the above mentioned Hugo versions. You either need to upgrade or downgrade Hugo to an unaffected version.
+
+### Breaking
+
+- {{% badge style="breaking" %}}Breaking{{% /badge %}} The [`children` shortcode](shortcodes/children) has a new layout resembling the taxonomy and term pages by setting `type=group`.
+
+  Sadly, introducing usage of the shortcode in the taxonomy and term pages (see below) caused necessary breaking changes
+
+  - the shortcode now requires enabling block attributes in your `hugo.toml` by setting `markup.goldmark.parser.attribute.block=true`
+  - the call syntax for `type=card` now is `{{</* children */>}}` instead of `{{%/* children */%}}` if `goldmark.unsafe=false` is configured in your `hugo.toml` (which is the default)
+
+  In addition the shortcode learned some new parameter for displaying breadcrumbs and setting a heading depth.
+
+### Change
+
+- {{% badge style="change" %}}Change{{% /badge %}} This release comes with a new way to [configure your logo image and title](configuration/branding/logo#changing-the-title) in the menu sidebar.
+
+  With the new system you can
+
+  - rely on auto detection for an image
+  - remove the image completely
+  - override the image for each variant
+  - set color, sizes and fonts for title and image
+  - let the image and title lay out vertically or horizontally
+  - override the complete layout with your own partial (that's the old way and still works)
+
+  Nevertheless, this required massive changes to the CSS and most likely your logo will require tweaking of the CSS styles after an update.
+
+  The easiest way to fix this is to remove a overridden `layouts/partials/logo.html` template in **your installation** and rely on the new configuration.
+
+- {{% badge style="change" %}}Change{{% /badge %}} Font Awesome was updated to version 7.1.0 which results in slightly different icons.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The search results of the search box are now colored in the same way as the search results on the dedicated search page using color styles of the content area.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The [`expand` shortcode](shortcodes/details) has changed its default text of `Expand me...` to `Details` to be in sync with Hugo's built-in `details` shortcode and the `details` HTML element.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} The [taxonomy and term](authoring/taxterm) pages are now internally using the [`children` shortcode](shortcodes/children). This makes it possible for you to set parameter of the children shortcode in your taxonomy/term pages front matter to change the layout.
+
+  By that you can - for example - display the sub pages in a card layout. See the [categories taxonomy](categories) for an example.
+
+- {{% badge style="new" %}}New{{% /badge %}} The themes dark-mode support for the [`openapi` shortcode](shortcodes/openapi) was changed to the built-in implementation of the used Swagger library.

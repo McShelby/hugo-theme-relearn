@@ -1,0 +1,13 @@
+# Version 6.4
+
+## 6.4.0 (2024-10-11) {#6-4-0}
+
+### Change
+
+- {{% badge style="change" %}}Change{{% /badge %}} If you now display a single code block in a `notice` box, its [margin and border will be removed](shortcodes/callout#code-with-collapsed-colored-borders) so only the colored notice border is visible.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} It is now possible to have user-defined styles for all shortcodes that accept the `style` parameter. See the [`notice` shortcode](shortcodes/callout#defining-own-styles) for configuration.
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`resources` shortcode](shortcodes/resources) has a new parameter `expanded` to make the resource list collapsible.

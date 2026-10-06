@@ -1,0 +1,3 @@
+# Link Effects
+
+{{< piratify >}}

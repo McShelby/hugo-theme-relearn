@@ -1,0 +1,3 @@
+# Cranberry
+
+{{< piratify >}}

@@ -1,0 +1,30 @@
+# Version 7.2
+
+## 7.2.0 (2024-12-10) {#7-2-0}
+
+### Change
+
+- {{% badge style="change" %}}Change{{% /badge %}} The [`expand` shortcode](shortcodes/details) was refactored and now internally uses the [`notice` shortcode](shortcodes/callout).
+
+  Due to these changes, `expand` and `notice` with `style=transparent` will now generate slightly different margins.
+
+- {{% badge style="change" %}}Change{{% /badge %}} This release fixes a long standing issue, where loading a page with a non-default variant may caused screen flashing.
+
+  Fixing this resulted in major changes how stylesheets are bundled during built and ultimately leads to different stylesheets been loaded in the browser. If you haven't done any undocumented stuff with the stylesheets, this change should not have any negative effects to your site.
+
+  You need to make changes to your custom theme variant stylesheet if it contains
+
+  - `@font-face` rules - they need to be moved to `assets/css/fonts.css`, `assets/css/custom.css` or `layouts/partials/custom-header.html`
+  - rules selecting the `html` element - replace `html` with `:root`
+
+  Also, please note that now the [variant generator](configuration/branding/generator) is not included in the theme release anymore but is only available in the docs. As a side effect, less JavaScript will be loaded on your site.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} As a fallout of fixing the flashing issue, you can now minify the bundled stylesheets by setting the [`minify` parameter](configuration/publishing/stableoutput/#disabling-assets-minification) in your `hugo.toml`. Without configuring this parameter, the theme will minify the stylesheets for production (`hugo`) but not for development (`hugo server`).
+
+- {{% badge style="new" %}}New{{% /badge %}} The [`notice` shortcode](shortcodes/callout) was improved for accessibility and comes with a [brand new parameter `groupid`](shortcodes/callout#expandable-content-area-with-groupid).
+
+- {{% badge style="new" %}}New{{% /badge %}} The theme has updated its Mermaid dependency to 11.4.1. This adds support for [Kanban](shortcodes/mermaid#kanban) diagrams.
+
+- {{% badge style="new" %}}New{{% /badge %}} Translation into Persian. This language is not supported for search.

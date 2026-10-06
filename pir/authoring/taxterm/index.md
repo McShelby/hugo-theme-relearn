@@ -1,0 +1,3 @@
+# Taxonomy / Term Pages
+
+{{< piratify >}}

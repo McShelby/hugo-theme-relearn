@@ -1,0 +1,3 @@
+# Pages
+
+{{< piratify >}}

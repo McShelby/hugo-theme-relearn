@@ -1,0 +1,3 @@
+# Directory Structure
+
+{{< piratify >}}

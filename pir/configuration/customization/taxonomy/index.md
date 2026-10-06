@@ -1,0 +1,3 @@
+# Taxonomies
+
+{{< piratify >}}
