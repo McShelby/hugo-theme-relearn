@@ -414,10 +414,29 @@ var variants = {
 
   styleGraphGroup: function (selector, colorvar) {
     var sheet = this.graphSheet();
-    this.adjustCSSRules('#R-body svg ' + selector + ' > rect', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;', sheet);
-    this.adjustCSSRules('#R-body svg ' + selector + ' > .label .nodeLabel', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;', sheet);
-    this.adjustCSSRules('#R-body svg ' + selector + ' > .cluster-label .nodeLabel', 'color: var(--INTERNAL-' + colorvar + '); fill: var(--INTERNAL-' + colorvar + '); stroke: #80808080;', sheet);
-    this.adjustCSSRules('#R-body svg ' + selector + ' .nodeLabel', 'filter: grayscale(1) invert(1) contrast(10000);', sheet);
+    var color = 'var(--INTERNAL-' + colorvar + ')';
+    // the text is black or white, whatever is further away from the lightness of the color it is
+    // written on; the halo is the other one and shows the more of what is behind shines through
+    // the color; a value that is no color leaves all of this to the fallback
+    var text = 'oklch(from ' + color + ' clamp(0, (0.6 - l) * 1000, 1) 0 0 / 1)';
+    var halo = 'oklch(from ' + color + ' clamp(0, (l - 0.6) * 1000, 1) 0 0 / calc(1 - alpha))';
+    var label = 'color: ' + text + '; -webkit-text-stroke-color: ' + halo + ';';
+    this.adjustCSSRules('#R-body svg ' + selector + ' > rect', 'fill: ' + color + ';', sheet);
+    this.adjustCSSRules('#R-body svg ' + selector + ' > .label .nodeLabel', label, sheet);
+    this.adjustCSSRules('#R-body svg ' + selector + ' > .cluster-label .nodeLabel', label, sheet);
+  },
+
+  // whatever is drawn in the graph may end up on any color, so it comes in a light and
+  // a dark color at once, of which at least one is set apart from what is behind it
+  styleGraphContrast: function () {
+    var sheet = this.graphSheet();
+    var graph = '#R-vargenerator svg';
+    sheet.insertRule(graph + ' :is(.node, .cluster) > rect { stroke: #fff; stroke-width: 2px; outline: 2px solid #000; }', sheet.cssRules.length);
+    // the fallback for a value that is no color: its box inherits the fill, its text the color
+    sheet.insertRule(graph + ' :is(.node, .cluster) { fill: #fff; }', sheet.cssRules.length);
+    sheet.insertRule(graph + ' :is(.label, .cluster-label) { color: #000; -webkit-text-stroke: 3px transparent; paint-order: stroke fill; }', sheet.cssRules.length);
+    sheet.insertRule(graph + ' path.flowchart-link { stroke: #fff !important; stroke-width: 4px !important; }', sheet.cssRules.length);
+    sheet.insertRule(graph + ' .edgePaths { filter: drop-shadow(0 0 2px #000) drop-shadow(0 0 2px #000); }', sheet.cssRules.length);
   },
 
   styleGraph: function () {
@@ -440,8 +459,9 @@ var variants = {
 
     styleSubgraphs(this.structure);
 
+    this.styleGraphContrast();
+
     var sheet = this.graphSheet();
-    sheet.insertRule('#R-vargenerator svg path.flowchart-link { stroke-width: 4px !important; }', sheet.cssRules.length);
     // the arrow ends grow from their tip, so they still end at the box and not inside of it
     sheet.insertRule('#R-vargenerator svg marker.flowchart-v2 { overflow: visible; }', sheet.cssRules.length);
     sheet.insertRule('#R-vargenerator svg marker.flowchart-v2 .arrowMarkerPath { transform: scale(3); transform-origin: 10px 5px; }', sheet.cssRules.length);
