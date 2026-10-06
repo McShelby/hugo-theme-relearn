@@ -26,3 +26,9 @@ You can combine it with the `lang` query parameter, e.g. `[some archived transla
 ## Links to Other Page Output Formats
 
 You can link to different output formats of a page by adding the query parameter `format`. For example to link to the print format of a page, write `[a printable page](my-page?format=print)`.
+
+## Links to a Color Variant
+
+By giving the query parameter `variant`, containing the identifier of one of your configured [color variants](configuration/branding/colors#linking-to-a-variant), the linked page is shown in that variant, e.g. `[some dark page](my-page?variant=relearn-dark)`.
+
+The variant stays selected for the following presented pages, as if the reader had selected it with the variant switcher.

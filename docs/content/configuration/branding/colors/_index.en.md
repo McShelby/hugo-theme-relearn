@@ -143,6 +143,14 @@ themeVariant = [
 
 You can [override the default logo](configuration/branding/logo#variant-specific-logos) of a site for each variant.
 
+### Linking to a Variant
+
+You can select a variant by adding the query parameter `variant`, containing the identifier of the variant, to the URL of any page of your site, e.g. `https://example.com/my-page?variant=relearn-dark`. This also works for [links in your content](authoring/linking/pages#links-to-a-color-variant).
+
+This has the same effect as if the reader had selected the variant with the variant switcher: The selection is [stored in the reader's browser](configuration/publishing/storedinformation), replacing a previous one, and carried over to the following presented pages. The query parameter is removed from the URL in the browser's address bar afterwards.
+
+The variant must be one of your configured variants and must not be `hidden`. Otherwise the query parameter is ignored.
+
 ### Modifying Variants
 
 In case you like a shipped variant but only want to tweak some aspects, you have some choices. **Don't edit the file in the theme's directory!** You will lose the ability to later easily upgrade your theme to a newer version.

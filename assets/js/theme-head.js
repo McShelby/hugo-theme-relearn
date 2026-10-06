@@ -90,6 +90,23 @@ window.relearn.markVariant = function () {
   });
 };
 
+// a `variant` query parameter selects a variant like the reader does with the variant
+// switcher: it goes into the storage, where everything else reads it from. it is a
+// one-time request, so it leaves the URL afterwards; if it stayed, a reload would undo
+// what the reader has selected since. a variant we don't know leaves the selection alone
+window.relearn.adoptVariantParam = function () {
+  var url = new URL(window.location.href);
+  var variant = url.searchParams.get('variant');
+  if (variant === null) {
+    return;
+  }
+  if (window.relearn.themevariants.includes(variant) || Object.hasOwn(window.relearn.customVariants(), variant)) {
+    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+  }
+  url.searchParams.delete('variant');
+  window.history.replaceState(window.history.state, '', url);
+};
+
 window.relearn.initVariant = function () {
   var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
   if (!window.relearn.themevariants.includes(variant) && !Object.hasOwn(window.relearn.customVariants(), variant)) {
@@ -111,6 +128,7 @@ window.relearn.fadeVariant = function (update) {
 };
 
 window.relearn.applyCustomVariants();
+window.relearn.adoptVariantParam();
 window.relearn.initVariant();
 
 // a page the browser kept alive in its back/forward cache comes back as it was left,
