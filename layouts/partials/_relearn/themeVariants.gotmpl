@@ -257,14 +257,8 @@ Generator run:
 - Write swagger.css
 */}}
 {{- with resources.Get "/css/swagger.css" }}
-	{{- $swaggercontent := print
-		$variablescontent "\n"
-		.Content "\n"
-		$fontscontent "\n"
-	}}
-	{{- $cssres := $swaggercontent | resources.FromString "css/swagger.css" }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
-	{{- with partial "asset.gotmpl" $cssres }}
+	{{- with partial "asset.gotmpl" . }}
 		{{- $css = merge $css (dict "swagger" .RelPermalink) }}
 		{{- $integrity = merge $integrity (dict "swagger" (partial "_relearn/integrity.gotmpl" .)) }}
 	{{- end }}

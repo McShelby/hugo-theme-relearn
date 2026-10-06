@@ -5,7 +5,6 @@ var isPrint = document.querySelector('body').classList.contains('print');
 var isPrintPreview = false;
 
 var isRtl = document.querySelector('html').getAttribute('dir') == 'rtl';
-var lang = document.querySelector('html').getAttribute('lang');
 var dir_key_start = 'ArrowLeft';
 var dir_key_end = 'ArrowRight';
 var dir_scroll = 1;
@@ -655,6 +654,9 @@ function initMermaid(update, attrs) {
   }
 }
 
+// the Swagger UI instance of each spec on the page, by the element it is rendered into
+var openapiStates = new WeakMap();
+
 function initOpenapi(update, attrs) {
   // the block is only written by the openapi dependency, so without it the page has
   // nothing to render
@@ -687,150 +689,134 @@ function initOpenapi(update, attrs) {
 
   attrs = attrs || {};
 
-  function addFunctionToResizeEvent() {}
-  function getFirstAncestorByClass() {}
+  function loadStylesheet(root, url, integrity) {
+    return new Promise(function (resolve) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = url;
+      // a stylesheet from a custom URL is none of ours, so there is no hash to check against
+      if (integrity) {
+        link.integrity = integrity;
+      }
+      // a stylesheet that can not be loaded must not keep the spec from being shown
+      link.addEventListener('load', function () {
+        resolve(link);
+      });
+      link.addEventListener('error', function () {
+        resolve(link);
+      });
+      root.appendChild(link);
+    });
+  }
   function renderOpenAPI(oc) {
     var print = isPrint || isPrintPreview ? 'PRINT-' : '';
-    var format = print ? `print` : `html`;
-    var theme = print ? config.dataset.formatPrintCssUrl : config.dataset.formatHtmlCssUrl;
-    var themeIntegrity = print ? config.dataset.formatPrintCssIntegrity : config.dataset.formatHtmlCssIntegrity;
-    function integrity(value) {
-      // a stylesheet from a custom URL is none of ours, so there is no hash to check against
-      return value ? ` integrity="${value}"` : '';
-    }
-    var variant = document.documentElement.dataset.rThemeVariant;
-    // the shortcode may ask for another language than the one of the page
-    var dir = (oc.dataset.openapiDir ? oc.dataset.openapiDir == 'rtl' : isRtl) ? 'rtl' : 'ltr';
     var swagger_theme = getColorValue(print + 'OPENAPI-theme');
     var swagger_code_theme = getColorValue(print + 'OPENAPI-CODE-theme');
 
     const openapiId = 'relearn-swagger-ui';
-    const openapiIframeId = openapiId + '-iframe';
-    const openapiIframe = document.querySelector('#' + openapiIframeId);
-    if (openapiIframe) {
-      openapiIframe.remove();
-    }
-    const openapiErrorId = openapiId + '-error';
-    const openapiError = document.querySelector('#' + openapiErrorId);
-    if (openapiError) {
+    const openapiErrorClass = 'sc-openapi-error';
+    const openapiError = oc.previousElementSibling;
+    if (openapiError && openapiError.classList.contains(openapiErrorClass)) {
       openapiError.remove();
     }
-    const oi = document.createElement('iframe');
-    oi.id = openapiIframeId;
-    oi.classList.toggle('sc-openapi-iframe', true);
-    // a frame needs a name for assistive technology; the one of the spec
-    // replaces this once it is known
-    oi.title = 'OpenAPI';
-    oi.srcdoc = `<!DOCTYPE html>
-<html id="R-html" class="relearn ${swagger_theme}-mode" lang="${lang}" dir="${dir}" data-r-output-format="${format}" data-r-theme-variant="${variant}">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="${config.dataset.openapiCssUrl}"${integrity(config.dataset.openapiCssIntegrity)}>
-    <link rel="stylesheet" href="${config.dataset.swaggerCssUrl}"${integrity(config.dataset.swaggerCssIntegrity)}>
-    <link rel="stylesheet" href="${theme}"${integrity(themeIntegrity)}>
-  </head>
-  <body>
-    <a class="relearn-expander" href="" data-expand="false"></a>
-    <a class="relearn-expander" href="" data-expand="true"></a>
-    <div id="relearn-swagger-ui"></div>
-  </body>
-</html>`;
-    oi.height = '100%';
-    oi.width = '100%';
-    oi.addEventListener('load', function () {
-      // the iframe runs no script of its own, so its expanders are served from here;
-      // their texts are translated by the shortcode and set as text, so they need no escaping
-      oi.contentWindow.document.querySelector('.relearn-expander[data-expand=false]').textContent = oc.dataset.openapiCollapseAll || 'Collapse all';
-      oi.contentWindow.document.querySelector('.relearn-expander[data-expand=true]').textContent = oc.dataset.openapiExpandAll || 'Expand all';
-      oi.contentWindow.document.addEventListener('click', function (event) {
+    // the spec is rendered into a shadow tree, so the styles of the page and the
+    // ones of the library don't get into each other's way; the variables of the
+    // theme are inherited by the tree and follow the variant of the page
+    var root = oc.shadowRoot;
+    if (!root) {
+      root = oc.attachShadow({ mode: 'open' });
+      root.addEventListener('click', function (event) {
         var expander = event.target.closest('.relearn-expander');
         if (!expander) {
           return;
         }
         event.preventDefault();
-        expandOpenAPI(oi.contentWindow.document, expander.dataset.expand == 'true');
+        expandOpenAPI(root, expander.dataset.expand == 'true');
       });
-      const openapiWrapper = getFirstAncestorByClass(oc, 'sc-openapi-wrapper');
-      Promise.resolve()
-        .then(function () {
-          var ui = null;
-          var options = {
-            defaultModelsExpandDepth: 2,
-            defaultModelExpandDepth: 2,
-            docExpansion: isPrint || isPrintPreview ? 'full' : 'list',
-            domNode: oi.contentWindow.document.querySelector('#' + openapiId),
-            filter: !(isPrint || isPrintPreview),
-            layout: 'BaseLayout',
-            onComplete: function () {
-              var info = ui && ui.specSelectors.info();
-              if (info && info.get('title')) {
-                oi.title = info.get('title');
-              }
-              if (isPrint || isPrintPreview) {
-                oi.contentWindow.document.querySelectorAll('.model-container > .model-box > button[aria-expanded=false]').forEach(function (btn) {
-                  btn.click();
-                });
-                setOpenAPIHeight(oi);
-              }
-            },
-            plugins: [SwaggerUIBundle.plugins.DownloadUrl],
-            presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-            syntaxHighlight: {
-              activated: true,
-              theme: swagger_code_theme,
-            },
-            validatorUrl: 'none',
-          };
-          if (oc.dataset.openapiSpec) {
-            try {
-              Object.assign(options, { spec: JSON.parse(oc.dataset.openapiSpec) });
-            } catch (err) {
-              try {
-                Object.assign(options, { spec: jsyaml.load(oc.dataset.openapiSpec) });
-              } catch (err) {
-                console.error('OpenAPI: file "' + oc.dataset.openapiUrl + '" could not be parsed as JSON or YAML');
-              }
-            }
-          } else {
-            Object.assign(options, { url: oc.dataset.openapiUrl });
-          }
-          if (options.spec && options.spec.info && options.spec.info.title) {
-            // a spec given with the page is known right away
-            oi.title = options.spec.info.title;
-          }
-          ui = SwaggerUIBundle(options);
-        })
-        .then(function () {
-          let observerCallback = function () {
-            setOpenAPIHeight(oi);
-          };
-          let observer = new MutationObserver(observerCallback);
-          observer.observe(oi.contentWindow.document.documentElement, {
-            childList: true,
-            subtree: true,
-          });
-        })
-        .then(function () {
-          if (openapiWrapper) {
-            openapiWrapper.classList.toggle('is-loading', false);
-          }
-          setOpenAPIHeight(oi);
-        })
-        .catch(function (error) {
-          const ed = document.createElement('div');
-          ed.classList.add('sc-alert', 'sc-alert-error');
-          ed.innerHTML = error;
-          ed.id = openapiErrorId;
-          while (oc.lastChild) {
-            oc.removeChild(oc.lastChild);
-          }
-          if (openapiWrapper) {
-            openapiWrapper.classList.toggle('is-loading', false);
-            openapiWrapper.insertAdjacentElement('afterbegin', ed);
-          }
+      new MutationObserver(scheduleMarkOpenapi).observe(root, { childList: true, subtree: true, characterData: true });
+    }
+    root.replaceChildren();
+    // what the reader has opened is known by the instance we are about to replace
+    // and is handed on to the new one; printing opens everything by itself and
+    // keeps what was there before for the run after it
+    var previous = openapiStates.get(oc) || {};
+    var shown = previous.shown;
+    if (previous.ui && !previous.print) {
+      shown = previous.ui.getState().getIn(['layout', 'shown']);
+    }
+    var current = { ui: null, print: !!print, shown: shown };
+    openapiStates.set(oc, current);
+    // the shortcode may ask for another language than the one of the page
+    oc.dir = (oc.dataset.openapiDir ? oc.dataset.openapiDir == 'rtl' : isRtl) ? 'rtl' : 'ltr';
+    oc.classList.toggle('dark-mode', swagger_theme == 'dark');
+    Promise.all([loadStylesheet(root, config.dataset.openapiCssUrl, config.dataset.openapiCssIntegrity), loadStylesheet(root, config.dataset.swaggerCssUrl, config.dataset.swaggerCssIntegrity)])
+      .then(function (links) {
+        if (links[0].parentNode !== root) {
+          // a later run has taken over the tree while the stylesheets were loading
+          return;
+        }
+        // the texts of the expanders are translated by the shortcode and set as
+        // text, so they need no escaping
+        [false, true].forEach(function (expand) {
+          var expander = document.createElement('a');
+          expander.classList.add('relearn-expander');
+          expander.href = '';
+          expander.dataset.expand = expand;
+          expander.textContent = expand ? oc.dataset.openapiExpandAll || 'Expand all' : oc.dataset.openapiCollapseAll || 'Collapse all';
+          root.appendChild(expander);
         });
-    });
-    oc.appendChild(oi);
+        var mount = document.createElement('div');
+        mount.id = openapiId;
+        root.appendChild(mount);
+        var options = {
+          defaultModelsExpandDepth: 2,
+          defaultModelExpandDepth: 2,
+          docExpansion: isPrint || isPrintPreview ? 'full' : 'list',
+          domNode: mount,
+          filter: !(isPrint || isPrintPreview),
+          layout: 'BaseLayout',
+          onComplete: function () {
+            if (isPrint || isPrintPreview) {
+              root.querySelectorAll('.model-container > .model-box > button[aria-expanded=false]').forEach(function (btn) {
+                btn.click();
+              });
+            }
+          },
+          plugins: [SwaggerUIBundle.plugins.DownloadUrl],
+          presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+          syntaxHighlight: {
+            activated: true,
+            theme: swagger_code_theme,
+          },
+          validatorUrl: 'none',
+        };
+        if (oc.dataset.openapiSpec) {
+          try {
+            Object.assign(options, { spec: JSON.parse(oc.dataset.openapiSpec) });
+          } catch (err) {
+            try {
+              Object.assign(options, { spec: jsyaml.load(oc.dataset.openapiSpec) });
+            } catch (err) {
+              console.error('OpenAPI: file "' + oc.dataset.openapiUrl + '" could not be parsed as JSON or YAML');
+            }
+          }
+        } else {
+          Object.assign(options, { url: oc.dataset.openapiUrl });
+        }
+        current.ui = SwaggerUIBundle(options);
+        if (!print && shown) {
+          shown.forEach(function (isShown, thing) {
+            current.ui.layoutActions.show(thing && thing.toJS ? thing.toJS() : thing, isShown);
+          });
+        }
+      })
+      .catch(function (error) {
+        const ed = document.createElement('div');
+        ed.classList.add('sc-alert', 'sc-alert-error', openapiErrorClass);
+        ed.innerHTML = error;
+        root.replaceChildren();
+        oc.insertAdjacentElement('beforebegin', ed);
+      });
   }
   function expandOpenAPI(doc, expand) {
     // only what is not yet in the wanted state gets clicked
@@ -849,22 +835,21 @@ function initOpenapi(update, attrs) {
       clickAll('.model-container > .model-box > .model-box > .model > span > button[aria-expanded=true]');
     }
   }
-  function setOpenAPIHeight(oi) {
-    // add empirical offset if in print preview (GC 103)
-    oi.style.height = oi.contentWindow.document.documentElement.getBoundingClientRect().height + (isPrintPreview ? 200 : 0) + 'px';
-  }
-  function resizeOpenAPI() {
-    let divi = document.querySelectorAll('.sc-openapi-iframe');
-    for (let i = 0; i < divi.length; i++) {
-      setOpenAPIHeight(divi[i]);
+  // the shortcode writes a spec as the text of a hidden `pre`, which gives way to
+  // the element the spec is rendered into
+  document.querySelectorAll('pre.sc-openapi-spec').forEach(function (pre) {
+    var oc = document.createElement('div');
+    oc.classList.add('sc-openapi-container');
+    oc.id = pre.id;
+    for (var key in pre.dataset) {
+      oc.dataset[key] = pre.dataset[key];
     }
-  }
+    oc.dataset.openapiSpec = pre.textContent;
+    pre.replaceWith(oc);
+  });
   let divo = document.querySelectorAll('.sc-openapi-container');
   for (let i = 0; i < divo.length; i++) {
     renderOpenAPI(divo[i]);
-  }
-  if (divo.length) {
-    addFunctionToResizeEvent(resizeOpenAPI);
   }
 }
 
@@ -2095,7 +2080,59 @@ const observer = new PerformanceObserver(function () {
 });
 observer.observe({ type: 'navigation' });
 
+// the nodes inside the shadow tree of a spec belong to the library rendering
+// them, which stumbles over an element of ours wrapped around its text; so the
+// terms in there are painted by ranges, which leave the tree as it is
+function markOpenapi() {
+  if (!window.Highlight || !CSS.highlights) {
+    return;
+  }
+  var search = window.sessionStorage.getItem(window.relearn.absBaseUri + '/search-value');
+  var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
+  var ranges = [];
+  if (words.length) {
+    var re = new RegExp(words.map((word) => regexEscape(word)).join('|'), 'gi');
+    document.querySelectorAll('.sc-openapi-container').forEach(function (oc) {
+      if (!oc.shadowRoot) {
+        return;
+      }
+      var walker = document.createTreeWalker(oc.shadowRoot, NodeFilter.SHOW_TEXT);
+      for (var node = walker.nextNode(); node; node = walker.nextNode()) {
+        if (!node.parentElement || /^(script|style)$/i.test(node.parentElement.tagName)) {
+          continue;
+        }
+        re.lastIndex = 0;
+        for (var match = re.exec(node.data); match; match = re.exec(node.data)) {
+          var range = new Range();
+          range.setStart(node, match.index);
+          range.setEnd(node, match.index + match[0].length);
+          ranges.push(range);
+        }
+      }
+    });
+  }
+  if (ranges.length) {
+    CSS.highlights.set('relearn-search', new Highlight(...ranges));
+  } else {
+    CSS.highlights.delete('relearn-search');
+  }
+}
+
+// the library renders a part of a spec once it is opened, so the terms have to
+// be marked again whenever its tree changes
+function scheduleMarkOpenapi() {
+  if (scheduleMarkOpenapi.pending) {
+    return;
+  }
+  scheduleMarkOpenapi.pending = true;
+  requestAnimationFrame(function () {
+    scheduleMarkOpenapi.pending = false;
+    markOpenapi();
+  });
+}
+
 function mark() {
+  markOpenapi();
   var search = window.sessionStorage.getItem(window.relearn.absBaseUri + '/search-value');
   var words = (search ?? '').split(' ').filter((word) => word.trim() != '');
   if (!words || !words.length) {
@@ -2218,6 +2255,7 @@ function unmark() {
 
   var highlighted = document.querySelectorAll('.highlightable');
   unhighlight(highlighted, { element: 'mark', className: 'search' });
+  markOpenapi();
 }
 
 function unhighlight(es, options) {

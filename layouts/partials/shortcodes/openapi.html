@@ -37,16 +37,17 @@
   {{- end }}
 {{- end }}
 {{- with $page -}}
-<div class="sc-openapi-wrapper is-loading helper-loading-container">
-  <div
-    class="sc-openapi-container"
-    id="R-openapi-{{ $id }}"
-    data-openapi-url="{{ $src }}"
-    data-openapi-spec="{{ $spec | safeHTMLAttr }}"
-    data-openapi-dir="{{ $dir }}"
-    data-openapi-expand-all="{{ $expandAll }}"
-    data-openapi-collapse-all="{{ $collapseAll }}"
-  ></div>
-</div>
+{{- /* a spec that is a resource is written as text, so it is part of the plain
+  content of the page and found by the search; it has to be a `pre`, the only
+  element whose content Markdown leaves alone whatever it holds */ -}}
+<pre
+  class="sc-openapi-spec"
+  id="R-openapi-{{ $id }}"
+  data-openapi-url="{{ $src }}"
+  data-openapi-dir="{{ $dir }}"
+  data-openapi-expand-all="{{ $expandAll }}"
+  data-openapi-collapse-all="{{ $collapseAll }}"
+  hidden
+>{{ $spec | htmlEscape | safeHTML }}</pre>
 {{- .Store.Set "hasOpenApi" true }}
 {{- end }}

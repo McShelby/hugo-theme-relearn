@@ -19,6 +19,8 @@ If you want to print out (or generate a PDF) from your OpenAPI documentation, do
 
 Instead, open the [print preview](authoring/frontmatter/topbar) in your browser and initiate printing from that page. This page is optimized for reading and expands most of the available sections.
 
+A specification that is a resource of your page or site is found by the search. A specification given by URL is loaded by the browser of your reader and is not.
+
 ### Parameters
 
 | Name                 | Default          | Notes       |
