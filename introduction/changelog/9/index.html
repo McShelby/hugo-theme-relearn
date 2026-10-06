@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+9fc439ee8747ac6d741abeaed5a5dd51d44c5b2b">
+    <meta name="generator" content="Relearn 9.1.0+8094ea83c5aa5a215df77776699bf513e9ed48e6">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.1.0 (2026-09-13) Enhancements [feature] i18n: split pt into true pt and pt-BR #1260 [feature] edit: support filesystem edit paths #1252 [feature] theme: switch cache busting to fingerprint #1249 [feature] cards: improve a11y alt text in generated img tag #1203 Fixes [bug] dependencies: don’t ignore header dependencies of nested pages for print #1263 [bug] mermaid: defer drawing #1262 [bug] search: fix scrolling into view for menu items #1261 [bug] openapi: fix various issues #1254 [bug] image: support width/height to avoid layout shift #1251 [bug] theme: fix stray \r in windows build #1250 [bug] link: fix occasional crash in checker #1246 [bug] search: disarm internal _relearn page rendered in non-default languages #1245 [bug] search: fix Lunr searching for numbers only #1240 [bug] logo: fix added fill for inlined SVG #1236 [bug] logo: fix cut off title for scripts with diacritics #1233 [bug] theme: fix body width override #1223 [bug] clipboard: let it work over http connections #1222 [bug] i18n: nl change “Fooi” to “Tip” #1221 [bug] logo: not showing when auto variants are not set explicitly #1214 [bug] children: multi-line description does not look nice #1213 [bug] children: bad links for children with ampersand in their name #1212 [bug] children: sort doesn’t sort as documented #1198 [bug] taxonomy: fix term page url if term contains special chars #1197 Maintenance [task] mermaid: update to 11.17.2 #1257 [task] fontawesome: update to 7.3.1 #1256 [task] math: update MathJax to 4.1.3 #1255 [task] openapi: update swagger-ui to 5.32.15 #1253 [task] build: implement CI testing #1247 [task] menu: remove references for deprecated menuTitle #1225 [task] theme: remove recent Hugo deprecations #1219 [task] security: update dependency to address CVEs #1215 [task] scrollbar: remove PerfectScrollbar #1187 9.0.3 (2026-01-01) Fixes [bug] theme: crash with Hugo 0.154.0 #1195 9.0.2 (2026-01-01) Fixes [bug] notice: setting custom titles with Markdown syntax doesn’t work #1193 [bug] taxonomy: support sorting #1192 [bug] theme: improve version display in footer #1190 9.0.1 (2025-12-29) Fixes [bug] children: remove false url check warning if baseURL contains subdirectory #1189 9.0.0 (2025-12-28) Enhancements [feature][breaking] children: add group layout #1183 [feature][change] expand: fix minor quirks #1182 [feature] taxonomy: allow layout customization #1181 [feature] variant: make zen variant more modular #1177 [feature][change] search: fit coloring of search box #937 [feature][change] logo: simplify basic usage, allow for extended functionality #679 [feature] search: add CSS variable for styling the hover color #629 Fixes [bug] expand: open if search term is contained #1188 [bug] anchor: fix neon variant button color #1186 [bug] history: fix for localhost #1185 [bug] openapi: make links colorful again #1176 [bug][breaking] theme: remove fix for some Hugo versions #1175 [bug] variant: fixing some issues after recent changes #1172 [bug] theme: remove favicon flickering on page interaction #1127 Maintenance [task] width: consolidate naming of width variables #1184 [task] openapi: use native dark-mode #1179 [task] theme: use site instead of .Site #1174 [task][change][upstream] fontawesome: update to 7.1.0 #1118">
     <meta name="author" content="Sören Weber">
@@ -35,7 +35,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.2e613f0a1ce042c097f61ecc0e3f843d395bf3a42717715f9c08a11dc2f21122.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.bf943812c9de778f5420eb962af7493f30ff82505b051e3265be72c31221a38c.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.c1ece93075fd06ac9300b2d842456f1df9d7d6533f10fc9942fd3806222ebe42.js"
+      "indexFile": "searchindex.en.min.5632ad435c1109d72852d46441868325c1f41108bb9ce46df2ccc959b31b360d.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -47,8 +47,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.5f228268f41dabc875658af831038d4bb461b4d8eb33f0bbd99513b7b198d4a0.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.a54262a85440e65fffc32b4a2fc62272990adc1ac2970953ae120089e00f8b44.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.2246bf93a21f8c4fbefb619d8a7752a056faf95c32252f1f703c5df38921a45f.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.d9d89d2b0c7be576a9a3c5da17a40de88eaff951e6c7426fb6da55f364f7dcd9.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -87,7 +87,7 @@
         "View_reset": "View reset!"
       }
     }</script>
-    <script src="/hugo-theme-relearn/js/theme-head.min.9cc807abc24cbde34fa99fc38084cd5ead8484fd8bc0368d1ed02048cfd2b2d8.js"></script>
+    <script src="/hugo-theme-relearn/js/theme-head.min.8c8c3bb99b655d91386ff7fefb5fceeb088bff4bb82bcde54fbef7dacb3388cc.js"></script>
     <style>
        
       #R-body img.bg-white {
@@ -311,7 +311,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/9fc439ee8747ac6d741abeaed5a5dd51d44c5b2b" title="Relearn 9.1.0&#43;9fc439ee8747ac6d741abeaed5a5dd51d44c5b2b"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/8094ea83c5aa5a215df77776699bf513e9ed48e6" title="Relearn 9.1.0&#43;8094ea83c5aa5a215df77776699bf513e9ed48e6"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
