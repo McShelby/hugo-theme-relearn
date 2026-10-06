@@ -2372,6 +2372,84 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
   margin-inline-end: 0.25rem;
 }
 
+/* the stylesheet of Font Awesome arrives after the first paint, so until then
+   an icon is an empty inline without any size; we reserve its box up front
+   with the very values of that stylesheet, so nothing moves once it is there;
+   `:where()` keeps this without specificity, so every other rule wins over it */
+
+:where(.fa, .fa-brands, .fa-classic, .fa-regular, .fa-solid, .fab, .far, .fas) {
+  display: var(--fa-display, inline-block);
+  line-height: 1;
+  width: var(--fa-width, 1.25em);
+}
+/* the box only gains its height from a line, which needs content to exist */
+:where(.fa, .fa-brands, .fa-classic, .fa-regular, .fa-solid, .fab, .far, .fas)::before {
+  content: '\200b';
+}
+:where(.fa-1x) {
+  font-size: 1em;
+}
+:where(.fa-2x) {
+  font-size: 2em;
+}
+:where(.fa-3x) {
+  font-size: 3em;
+}
+:where(.fa-4x) {
+  font-size: 4em;
+}
+:where(.fa-5x) {
+  font-size: 5em;
+}
+:where(.fa-6x) {
+  font-size: 6em;
+}
+:where(.fa-7x) {
+  font-size: 7em;
+}
+:where(.fa-8x) {
+  font-size: 8em;
+}
+:where(.fa-9x) {
+  font-size: 9em;
+}
+:where(.fa-10x) {
+  font-size: 10em;
+}
+:where(.fa-2xs) {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+:where(.fa-xs) {
+  font-size: 0.75em;
+  line-height: 0.08333em;
+  vertical-align: 0.125em;
+}
+:where(.fa-sm) {
+  font-size: 0.875em;
+  line-height: 0.07143em;
+  vertical-align: 0.05357em;
+}
+:where(.fa-lg) {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+:where(.fa-xl) {
+  font-size: 1.5em;
+  line-height: 0.04167em;
+  vertical-align: -0.125em;
+}
+:where(.fa-2xl) {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+:where(.fa-width-auto) {
+  --fa-width: auto;
+}
+
 /* icons with style attribute */
 
 i.cstyle {
