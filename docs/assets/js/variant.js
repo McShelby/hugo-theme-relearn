@@ -439,6 +439,36 @@ var variants = {
     }.bind(this);
 
     styleSubgraphs(this.structure);
+
+    var sheet = this.graphSheet();
+    sheet.insertRule('#R-vargenerator svg path.flowchart-link { stroke-width: 4px !important; }', sheet.cssRules.length);
+    // the arrow ends grow from their tip, so they still end at the box and not inside of it
+    sheet.insertRule('#R-vargenerator svg marker.flowchart-v2 { overflow: visible; }', sheet.cssRules.length);
+    sheet.insertRule('#R-vargenerator svg marker.flowchart-v2 .arrowMarkerPath { transform: scale(3); transform-origin: 10px 5px; }', sheet.cssRules.length);
+    // an arrow end is shared by all edges, so it takes its color from the edge it is drawn for
+    sheet.insertRule('#R-vargenerator svg marker.flowchart-v2 .arrowMarkerPath { fill: context-stroke !important; stroke: context-stroke !important; }', sheet.cssRules.length);
+    sheet.insertRule('#R-vargenerator svg .node:hover > rect { ' + this.graphhighlight + ' }', sheet.cssRules.length);
+    this.variantvariables.forEach(
+      function (e) {
+        if (e.fallback) {
+          this.styleGraphEdge(e.fallback, e.name);
+        }
+      }.bind(this)
+    );
+  },
+
+  graphhighlight: 'stroke: var(--INTERNAL-ACCENT-color) !important; stroke-width: 8px !important;',
+
+  // hovering a box highlights the edges it is connected by, hovering an edge the boxes it connects
+  styleGraphEdge: function (from, to) {
+    var sheet = this.graphSheet();
+    var highlight = this.graphhighlight;
+    var graph = '#R-vargenerator svg';
+    // Mermaid makes the id of an edge from the names of the boxes it connects, followed by a counter
+    var edge = 'path[data-id*="L_' + from + '_' + to + '_"]';
+    var boxes = ':is(.node.' + from + ', .node.' + to + ')';
+    sheet.insertRule(graph + ' ' + edge + ':hover, ' + graph + ':has(' + boxes + ':hover) ' + edge + ' { ' + highlight + ' }', sheet.cssRules.length);
+    sheet.insertRule(graph + ':has(' + edge + ':hover) ' + boxes + ' > rect { ' + highlight + ' }', sheet.cssRules.length);
   },
 
   generateGraphGroupedEdge: function (e) {

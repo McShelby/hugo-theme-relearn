@@ -13,7 +13,7 @@ This interactive tool may help you to generate your own color variant stylesheet
 >
 > The graph is interactive and reflects the current colors. You can click on any of the colored boxes to adjust the respective color. The graph **and the page** will update accordingly.
 >
-> The arrowed lines reflect how colors are inherited through different parts of the theme if the descendant isn't overwritten. If you want to delete a color and let it inherit from its parent, just delete the value from the input field.
+> The arrowed lines reflect how colors are inherited through different parts of the theme if the descendant isn't overwritten. If you want to delete a color and let it inherit from its parent, just delete the value from the input field. Hovering a box highlights its lines, hovering a line highlights the boxes it connects.
 >
 > To better understand this, select the `neon` variant and modify the different heading colors. There, colors for the headings `h2`, `h3` and `h4` are explicitly set. `h5` is not set and inherits its value from `h4`. `h6` is also not set and inherits its value from `h5`.
 >
