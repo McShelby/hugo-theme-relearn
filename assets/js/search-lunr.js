@@ -125,22 +125,25 @@ Each array item needs the following layout:
         { len: 8, typos: 1 },
         { len: 4, typos: 0 },
       ];
-      return [
-        word + '^100',
-        word + '*^10',
-        '*' + word + '^10',
-        word +
-          '~' +
-          typos.reduce(function (a, c, i) {
-            return word.length < c.len ? c : a;
-          }).typos +
-          '^1',
-      ];
+      var patterns = [word + '^100', word + '*^10', '*' + word + '^10'];
+      // typos are only of interest for a word that isn't found as written;
+      // otherwise similar words bury the hits that were asked for
+      if (!lunrIndex.search(patterns.join(' ')).length) {
+        patterns.push(
+          word +
+            '~' +
+            typos.reduce(function (a, c, i) {
+              return word.length < c.len ? c : a;
+            }).typos +
+            '^1'
+        );
+      }
+      return patterns;
     }
 
     // Find the item in our index corresponding to the Lunr one to have more info
     // Remove Lunr special search characters: https://lunrjs.com/guides/searching.html
-    if (!window.lunr) {
+    if (!window.lunr || !lunrIndex) {
       return [];
     }
     term = term.replace(/[*:^~+-]/g, ' ');
