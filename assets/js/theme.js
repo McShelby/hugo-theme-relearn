@@ -1591,9 +1591,10 @@ function toggleNav() {
 
 function navEscapeHandler(event) {
   if (event.key == 'Escape') {
-    var wasOpen = document.querySelector('body').classList.contains('sidebar-flyout');
-    closeNav();
-    if (wasOpen) {
+    // without an open sidebar there is nothing to close, and the focus stays
+    // where it is
+    if (document.querySelector('body').classList.contains('sidebar-flyout')) {
+      closeNav();
       focusToggle(getNavToggles()[0]);
     }
   }
@@ -1617,10 +1618,9 @@ function openTopbarButtonFlyout(button) {
   button.classList.add('topbar-flyout');
   body.classList.add('topbar-flyout');
   setExpanded(getTopbarButtonToggles(button), true);
-  var a = button.querySelector('.topbar-content-wrapper a');
-  if (a) {
-    a.focus();
-  }
+  // the focus rests on the button, wherever the flyout was opened from; this
+  // announces its new state and has the flyout next in reach
+  focusToggle(getTopbarButtonToggles(button)[0]);
 }
 
 function closeTopbarButtonFlyout(button) {
@@ -1706,9 +1706,13 @@ function handleTopbarButtons() {
 
 function topbarFlyoutEscapeHandler(event) {
   if (event.key == 'Escape') {
+    // the target is where the key was pressed; closing moves the focus away
+    var target = event.target;
     var button = closeSomeTopbarButtonFlyout();
     if (button) {
-      focusToggle(getTopbarButtonToggles(button)[0]);
+      // who is in the flyout loses their place with it and goes back to the
+      // button; who has moved on elsewhere stays where they are
+      focusToggle(button.contains(target) ? getTopbarButtonToggles(button)[0] : target);
     }
   }
 }
