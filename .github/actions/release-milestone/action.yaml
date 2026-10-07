@@ -13,7 +13,7 @@ runs:
     # Pinned to main rather than looked up: a release only ever happens there,
     # as check-milestone reports `skipped` on every other branch.
     - name: Checkout infra
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         repository: ${{ github.repository }}-infra
         ref: main
@@ -35,33 +35,27 @@ runs:
 
     - name: Get current major version number
       id: majorvers
-      uses: ashley-taylor/regex-property-action@master
+      shell: bash
       env:
         MILESTONE: ${{ inputs.milestone }}
-      with:
-        value: ${{ env.MILESTONE }}
-        regex: (\d+)\.\d+\.\d+
-        replacement: "$1"
+      run: |
+        echo "value=$(sed -E 's/([0-9]+)\.[0-9]+\.[0-9]+/\1/' <<< "$MILESTONE")" >> "$GITHUB_OUTPUT"
 
     - name: Get current minor version number
       id: minorvers
-      uses: ashley-taylor/regex-property-action@master
+      shell: bash
       env:
         MILESTONE: ${{ inputs.milestone }}
-      with:
-        value: ${{ env.MILESTONE }}
-        regex: \d+\.(\d+)\.\d+
-        replacement: "$1"
+      run: |
+        echo "value=$(sed -E 's/[0-9]+\.([0-9]+)\.[0-9]+/\1/' <<< "$MILESTONE")" >> "$GITHUB_OUTPUT"
 
     - name: Get current patch version number
       id: patchvers
-      uses: ashley-taylor/regex-property-action@master
+      shell: bash
       env:
         MILESTONE: ${{ inputs.milestone }}
-      with:
-        value: ${{ env.MILESTONE }}
-        regex: \d+\.\d+\.(\d+)
-        replacement: "$1"
+      run: |
+        echo "value=$(sed -E 's/[0-9]+\.[0-9]+\.([0-9]+)/\1/' <<< "$MILESTONE")" >> "$GITHUB_OUTPUT"
 
     - name: Get current padded patch version number
       id: paddedpatchvers
@@ -78,13 +72,21 @@ runs:
       with:
         version: ${{ env.MILESTONE }}
 
+    # A milestone that is not open is left alone rather than failing the
+    # release, so a rerun after a partial release gets past this step.
     - name: Close milestone
-      uses: Akkjon/close-milestone@v2.1.0
+      shell: bash
       env:
         MILESTONE: ${{ inputs.milestone }}
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-      with:
-        milestone_name: ${{ env.MILESTONE }}
+        GH_TOKEN: ${{ inputs.github_token }}
+      run: |
+        NUMBER=$(gh api --paginate "repos/${GITHUB_REPOSITORY}/milestones" --jq ".[] | select(.title == \"$MILESTONE\") | .number")
+        if [ -n "$NUMBER" ]; then
+          gh api --silent --method PATCH "repos/${GITHUB_REPOSITORY}/milestones/$NUMBER" -f state=closed
+          echo "Closed milestone $MILESTONE (#$NUMBER)"
+        else
+          echo "No open milestone $MILESTONE found"
+        fi
 
     - name: Create temporary tag
       shell: bash
@@ -114,18 +116,28 @@ runs:
         echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n\n{{% pages display=\"content\" hidden=\"true\" %}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
 
     - name: Update releasenotes front matter
-      uses: surahmansada/file-regex-replace@v1
+      uses: actions/github-script@v9
+      env:
+        FILE: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
+        REGEX: '(\ntitle = ''Version )\d+\.\d+(''\n.*\nweight = -)\d+(\n)'
+        REPLACEMENT: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
       with:
-        regex: '(\ntitle = ''Version )\d+\.\d+(''\n.*\nweight = -)\d+(\n)'
-        replacement: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
-        include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
+        script: |
+          const fs = require('fs');
+          const { FILE, REGEX, REPLACEMENT } = process.env;
+          fs.writeFileSync(FILE, fs.readFileSync(FILE, 'utf8').replace(new RegExp(REGEX, 'g'), REPLACEMENT));
 
     - name: Update releasenotes heading
-      uses: surahmansada/file-regex-replace@v1
+      uses: actions/github-script@v9
+      env:
+        FILE: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
+        REGEX: '(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)'
+        REPLACEMENT: "$1\n\n## ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.majorvers.outputs.value }}-${{ steps.minorvers.outputs.value }}-0}\n\n$2"
       with:
-        regex: '(.)[\n\r\s]*[\n\r]+##\s+.*?[\n\r][\n\r\s]*(.)'
-        replacement: "$1\n\n## ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}.0 (${{ steps.date.outputs.time }}) {#${{ steps.majorvers.outputs.value }}-${{ steps.minorvers.outputs.value }}-0}\n\n$2"
-        include: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
+        script: |
+          const fs = require('fs');
+          const { FILE, REGEX, REPLACEMENT } = process.env;
+          fs.writeFileSync(FILE, fs.readFileSync(FILE, 'utf8').replace(new RegExp(REGEX, 'g'), REPLACEMENT));
 
     - name: Generate piratish releasenotes
       shell: bash
@@ -134,7 +146,7 @@ runs:
         echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
 
     - name: Setup node for gren
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
         node-version: '16'
 
@@ -159,27 +171,33 @@ runs:
 
     - name: Read changelog
       id: changelog_docs
-      uses: guibranco/github-file-reader-action-v2@latest
+      uses: guibranco/github-file-reader-action-v2@v2.3.95
       with:
         path: docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md
 
     - name: Write changelog to CHANGELOG.md
-      uses: surahmansada/file-regex-replace@v1
+      uses: actions/github-script@v9
+      env:
+        FILE: CHANGELOG.md
+        REGEX: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
+        REPLACEMENT: "${{ steps.changelog_docs.outputs.contents }}\n---\n\n$1\n$2"
       with:
-        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
-        replacement: "${{ steps.changelog_docs.outputs.contents }}\n---\n\n$1\n$2"
-        include: CHANGELOG.md
+        script: |
+          const fs = require('fs');
+          const { FILE, REGEX, REPLACEMENT } = process.env;
+          fs.writeFileSync(FILE, fs.readFileSync(FILE, 'utf8').replace(new RegExp(REGEX, 'g'), REPLACEMENT));
 
     # The version lives in infra's `.nvmrc`, so a working copy and CI cannot
     # drift apart.
     - name: Setup node for the generator
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
         node-version-file: infra/.nvmrc
 
     # `npm ci` installs all of infra, although the generator itself
     # only needs js-toml and nothing else. The packages are cheap; the browser
-    # Puppeteer's install script fetches for itself is not, so suppressed here     - name: Install generator dependencies
+    # Puppeteer's install script fetches for itself is not, so suppressed here
+    - name: Install generator dependencies
       shell: bash
       working-directory: infra
       run: npm ci --ignore-scripts
@@ -206,11 +224,15 @@ runs:
 
     - name: Set changelog for GitHub release
       id: changelog_github
-      uses: ashley-taylor/regex-property-action@master
+      uses: actions/github-script@v9
+      env:
+        VALUE: ${{ steps.changelog_docs.outputs.contents }}
+        REGEX: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
+        REPLACEMENT: "[★ What's new in this version ★](${{ steps.base.outputs.url }}introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
       with:
-        value: ${{ steps.changelog_docs.outputs.contents }}
-        regex: '(##\s+.*?[\n\r])[\n\r\s]*([\s\S]*)'
-        replacement: "[★ What's new in this version ★](${{ steps.base.outputs.url }}introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/)\n\n$2"
+        script: |
+          const { VALUE, REGEX, REPLACEMENT } = process.env;
+          core.setOutput('value', VALUE.replace(new RegExp(REGEX, 'g'), REPLACEMENT));
 
     # Nothing is staged first, and nothing needs to be. This action selects
     # what to commit by running `git status -- <file_pattern>`, reading the

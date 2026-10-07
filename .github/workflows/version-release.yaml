@@ -39,7 +39,7 @@ jobs:
       created: ${{ steps.create.outcome }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           # fetch-depth: 0   # Fetch all history for .GitInfo and .Lastmod - not necessary for this repo
@@ -87,7 +87,7 @@ jobs:
       # straight back to github.com/.../actions/runs/<run id>.
       - name: Upload the built site artifact
         continue-on-error: true
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ github.workflow }}-${{ github.run_number }}-${{ github.run_id }}
           path: ${{ runner.temp }}/site
@@ -113,7 +113,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.milestone }}
 
@@ -162,7 +162,7 @@ jobs:
       # same copy either way, and taking it from the tag says which bytes are
       # being vouched for.
       - name: Checkout release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.milestone }}
 
