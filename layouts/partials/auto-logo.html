@@ -10,6 +10,9 @@
 
 {{- $manualWrap := strings.Contains $title "\n" }}
 
+{{- /* next to a title the image is decorative, without one it has to name the link */}}
+{{- $alt := cond (gt (len $title) 0) "" site.Title }}
+
 {{- $direction := site.Params.logo.direction | default "row" }}
 
 {{- /* Build map of variant logos */}}
@@ -41,7 +44,7 @@
   {{- range $logoSrc, $variants := $logoGroups }}
     {{- $variantList := delimit $variants " " }}
           <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">
-{{ partial "shortcodes/image.html" (dict "page" site.Home "url" $logoSrc "attributes" $attributes) }}
+{{ partial "shortcodes/image.html" (dict "page" site.Home "url" $logoSrc "alt" $alt "attributes" $attributes) }}
           </span>
   {{- end }}
   {{- with $title }}

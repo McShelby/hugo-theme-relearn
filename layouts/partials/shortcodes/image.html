@@ -25,7 +25,7 @@
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
 {{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page "linkObject" $linkObject "attributes" $attributes)) }}
-{{- $attributes = merge $attributes (dict "alt" $alt "title" ($title | transform.HTMLEscape)) }}
+{{- $attributes = merge $attributes (dict "alt" ($alt | default $attributes.alt | default "") "title" ($title | transform.HTMLEscape)) }}
 {{- $classes := split $attributes.class " " }}
 {{- $isLightbox := in $classes "lightbox" }}
 {{- if $isLightbox -}}
@@ -53,6 +53,14 @@
     {{- $attrs := ""}}
     {{- range $k, $v := .attributes }}
       {{- if eq $k "content" }}
+      {{- else if eq $k "alt" }}
+        {{- /* an inlined SVG has no `alt`; it is named like an image or taken out
+          of the accessibility tree if it is decorative */}}
+        {{- if $v }}
+          {{- $attrs = printf "%s role=\"img\" aria-label=%q" $attrs $v | safeHTMLAttr }}
+        {{- else }}
+          {{- $attrs = printf "%s aria-hidden=\"true\"" $attrs | safeHTMLAttr }}
+        {{- end }}
       {{- else if $v }}
         {{- if eq (printf "%T" $v) "bool" }}
           {{- $attrs = printf "%s %s" $attrs $k | safeHTMLAttr }}
@@ -65,7 +73,9 @@
   {{- else -}}
     <img
       {{- range $k, $v := .attributes }}
-        {{- if $v }}
+        {{- /* an image without `alt` is announced by its file name; an empty one
+          marks it as decorative */}}
+        {{- if or $v (eq $k "alt") }}
           {{- if eq (printf "%T" $v) "bool" }}
             {{- printf " %s" $k | safeHTMLAttr }}
           {{- else }}
