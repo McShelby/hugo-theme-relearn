@@ -2980,21 +2980,25 @@ span.math:has(math[display='block'], .katex-display) {
 /* task list and its checkboxes */
 /*  move start of list to left to adjust for missing list-style */
 article :not(li) > ul > li:has(> input[type='checkbox']),
+article :not(li) > ul > li:has(> label > input[type='checkbox']),
 article :not(li) > ul > li:has(> span > input[type='checkbox']) {
   margin-inline-start: -1.5rem;
 }
 
-article ul > li:has(> input[type='checkbox']) {
+article ul > li:has(> input[type='checkbox']),
+article ul > li:has(> label > input[type='checkbox']) {
   list-style: none;
 }
 
 article ul > li:has(> input[type='checkbox'])::before,
+article ul > li:has(> label > input[type='checkbox'])::before,
 article ul > li:has(> span > input[type='checkbox'])::before {
   content: '\200B'; /* accessibilty for Safari https://developer.mozilla.org/en-US/docs/Web/CSS/list-style */
 }
 
 /* https://moderncss.dev/pure-css-custom-checkbox-style/ */
 article ul > li > input[type='checkbox'],
+article ul > li > label > input[type='checkbox'],
 article ul > li > span > input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
@@ -3013,6 +3017,7 @@ article ul > li > span > input[type='checkbox'] {
 }
 
 article ul > li > input[type='checkbox']::before,
+article ul > li > label > input[type='checkbox']::before,
 article ul > li > span > input[type='checkbox']::before {
   box-shadow: inset 1em 1em var(--INTERNAL-PRIMARY-color);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
@@ -3027,6 +3032,7 @@ article ul > li > span > input[type='checkbox']::before {
 }
 
 article ul > li > input[type='checkbox']:checked::before,
+article ul > li > label > input[type='checkbox']:checked::before,
 article ul > li > span > input[type='checkbox']:checked::before {
   transform: scale(1);
 }
