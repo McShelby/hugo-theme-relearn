@@ -129,9 +129,6 @@ content:
   - content: |
       Text only
 
-      > [!note]
-      > Because this content contains source code the copy-to-clipboard button will only be usable if `href` and `action` parameter are **not** set.
-
       ```c
       printf("Hello Code!");
       ```
