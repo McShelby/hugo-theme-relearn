@@ -28,7 +28,7 @@
 
   To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
 
-  As a side effect, the [keyboard shortcuts](configuration/publishing/accessibility#keyboard-shortcuts) of the theme are now documented as well.
+  As a side effect, the [keyboard shortcuts](configuration/publishing/shortcuts) of the theme are now documented as well.
 
 - {{% badge style="change" %}}Change{{% /badge %}} The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
 
@@ -86,6 +86,8 @@
 
   To use a different version of a library, store it in the `assets` directory of your site, where it replaces the shipped version. See the documentation of the [`mermaid`](shortcodes/mermaid#using-a-different-version-of-the-mermaid-library) and [`openapi`](shortcodes/openapi#using-a-different-version-of-the-swagger-ui-library) shortcodes.
 
+- {{% badge style="change" %}}Change{{% /badge %}} The [search](configuration/sidebar/search) with the Lunr engine now only looks for similarly written words if a word of your search term isn't found as written. Previously, such words were always included and could bury the hits you were asking for.
+
 ### New
 
 - {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) `contrast-light` and `contrast-dark` have colors chosen for high contrast.
@@ -106,7 +108,7 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} The [`openapi` shortcode](shortcodes/openapi) has a new `lang` parameter to set the language used for the reading direction of the Swagger UI and for the texts the theme adds to it. These texts are now translated.
 
-- {{% badge style="new" %}}New{{% /badge %}} The [`mermaid` shortcode's](shortcodes/mermaid#configuring-pan-and-zoom) graph can now be focused, panned and zoomed with the [keyboard](configuration/publishing/accessibility#keyboard-shortcuts).
+- {{% badge style="new" %}}New{{% /badge %}} The [`mermaid` shortcode's](shortcodes/mermaid#configuring-pan-and-zoom) graph can now be focused, panned and zoomed with the [keyboard](configuration/publishing/shortcuts).
 
   They now contain a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page itself.
 
