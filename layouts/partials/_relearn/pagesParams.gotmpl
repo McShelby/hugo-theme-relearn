@@ -3,7 +3,10 @@
 	`params.children` front matter of taxonomy and term pages, which wins over
 	the defaults for the page kind; like everywhere in the theme, an empty value
 	counts as unset while a value of only whitespace is set and resets the
-	parameter to empty, so `groupby=" "` switches grouping off; a `false` is set */}}
+	parameter to empty, so `groupby=" "` switches grouping off; a `false` is set;
+	taxonomy and term pages are grouped by first letter in columns only as long
+	as their front matter says nothing about the listing, any value there puts
+	them on the defaults of every other page */}}
 {{- $page := .page }}
 {{- /* the page the shortcode was called in, for warnings, if `pageref` pointed elsewhere */}}
 {{- $origin := .origin | default $page }}
@@ -12,8 +15,13 @@
 {{- $isTerm := eq $page.Kind "term" }}
 
 {{- $layers := slice $call ($page.Params.pages | default dict) }}
+{{- $isGrouped := and (or $isTaxonomy $isTerm) (not $page.Params.pages) }}
 {{- if or $isTaxonomy $isTerm }}
 	{{- with $page.Params.children }}
+		{{- /* the deprecated front matter kept the grouping unless it set another type */}}
+		{{- if and .type (ne (lower (printf "%v" .type)) "group") }}
+			{{- $isGrouped = false }}
+		{{- end }}
 		{{- $filepath := "[virtual file]" }}{{ with and $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
 		{{- warnf "%q: DEPRECATED front matter 'children' found, use 'pages' instead; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/children#migration" $filepath }}
 		{{- $layers = $layers | append (partial "_relearn/pagesLegacy.gotmpl" (dict "page" $page "params" .)) }}
@@ -21,15 +29,8 @@
 {{- end }}
 
 {{- /* taxonomy and term listings are synthesized and have no order of their
-	own; they follow `ordersectionsby` like every other listing but fall back to
-	the title shown instead of Hugo's order */}}
-{{- $orderby := "auto" }}
-{{- if or $isTaxonomy $isTerm }}
-	{{- $orderby = partial "_relearn/sortOrder.gotmpl" (dict "page" $page "by" "") }}
-	{{- if eq $orderby "default" }}
-		{{- $orderby = "linktitle" }}
-	{{- end }}
-{{- end }}
+	own; they are ordered by the title shown and ignore `ordersectionsby` */}}
+{{- $orderby := cond (or $isTaxonomy $isTerm) "linktitle" "auto" }}
 
 {{- $defaults := dict
 	"axis"         (cond $isTaxonomy "taxonomy" (cond $isTerm "term" "descendants"))
@@ -38,7 +39,7 @@
 	"hidden"       false
 	"flatten"      false
 	"where"        ""
-	"groupby"      (cond (or $isTaxonomy $isTerm) "linktitle | left 1 | upper" "")
+	"groupby"      (cond $isGrouped "linktitle | left 1 | upper" "")
 	"grouplabel"   ""
 	"grouporder"   "asc"
 	"orderby"      $orderby
@@ -77,7 +78,7 @@
 {{- /* normalize what may arrive as string from a shortcode call */}}
 {{- $display := trim (printf "%v" $p.display) " " | default "tree" }}
 {{- if eq $p.columns "" }}
-	{{- $p = merge $p (dict "columns" (cond (or $isTaxonomy $isTerm (eq $display "cards")) 3 1)) }}
+	{{- $p = merge $p (dict "columns" (cond (or $isGrouped (eq $display "cards")) 3 1)) }}
 {{- end }}
 {{- range $name := slice "levels" "limit" "headinglevel" "columns" }}
 	{{- /* a number that isn't one must not abort the build */}}

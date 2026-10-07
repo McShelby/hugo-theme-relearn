@@ -28,8 +28,14 @@
 	{{- $isListing := in (slice "taxonomy" "term") $page.Kind }}
 	{{- $orderby := $sort }}
 	{{- if eq $sort "auto" }}
-		{{- /* taxonomy and term listings get their `auto` from the kind default */}}
-		{{- $orderby = cond $isListing "" "auto" }}
+		{{- /* a synthesized listing has no order to keep, there an explicit `auto`
+			meant `ordersectionsby`, with Hugo's order being the title shown */}}
+		{{- if $isListing }}
+			{{- $orderby = partial "_relearn/sortOrder.gotmpl" (dict "page" $page "by" "") }}
+			{{- if eq $orderby "default" }}
+				{{- $orderby = "linktitle" }}
+			{{- end }}
+		{{- end }}
 	{{- else if eq $sort "default" }}
 		{{- /* the order of a synthesized listing was by the title shown */}}
 		{{- $orderby = cond $isListing "linktitle" "auto" }}
