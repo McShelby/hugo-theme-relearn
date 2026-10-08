@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+fddf14294dc2ccc5f7ab575ceea91ccd4720b2bb">
+    <meta name="generator" content="Relearn 9.1.0+0af4319b67236bb385def8054c0f6ca21b549f2f">
     <meta name="description" content="6.4.0 (2024-10-11) Change Change If you now display a single code block in a notice box, its margin and border will be removed so only the colored notice border is visible. New New It is now possible to have user-defined styles for all shortcodes that accept the style parameter. See the notice shortcode for configuration.
 New The resources shortcode has a new parameter expanded to make the resource list collapsible.">
     <meta name="author" content="Sören Weber">
@@ -52,7 +52,7 @@ New The resources shortcode has a new parameter expanded to make the resource li
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.86552cfd7ce3586995de6570acdaf66ab0d5730bae658a2d80f4b4883c27ad3e.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.7103ee019ebec32bc360ffbd4205d5c7b563c356666c724316f48f87bf36598c.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.fde31a3bc19a193360c646fd67b62d0fb98ae684449d1922b5ac0ed941277607.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
@@ -83,9 +83,14 @@ New The resources shortcode has a new parameter expanded to make the resource li
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
+        "Deleted_text_end": "End of deleted text",
+        "Deleted_text_start": "Start of deleted text",
         "Enlarge_graph": "Enlarge graph",
         "History_cleared": "History cleared",
+        "Inserted_text_end": "End of inserted text",
+        "Inserted_text_start": "Start of inserted text",
         "Link_copied_to_clipboard": "Link copied to clipboard!",
+        "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
         "Reset_view": "Reset view",
@@ -294,24 +299,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
 <p>The shortcode is deactivated by default and can be activated by setting</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-3e26f6402abbd8b556747b154155dfc5">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-3e26f6402abbd8b556747b154155dfc5">
+    <div class="tab-nav-title" id="R-tabs-title-d28a48a8b7c74ebe9a50e94a2f610d65">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-d28a48a8b7c74ebe9a50e94a2f610d65">
       <button
-        role="tab" id="R-tab-id-d13fd07cd6394e5f33b559d02871a60a-tab" aria-controls="R-tab-id-d13fd07cd6394e5f33b559d02871a60a" aria-selected="true"
+        role="tab" id="R-tab-id-498b0edd764bf40d565693784a0c1638-tab" aria-controls="R-tab-id-498b0edd764bf40d565693784a0c1638" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-13ff47744ba24ed15903ef9d8d079b12-tab" aria-controls="R-tab-id-13ff47744ba24ed15903ef9d8d079b12" aria-selected="false"
+        role="tab" id="R-tab-id-e3721fe9113fb9ef6470bbd5d75de4cb-tab" aria-controls="R-tab-id-e3721fe9113fb9ef6470bbd5d75de4cb" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-e18cdf983dff0caf38ecbf02c6a406bb-tab" aria-controls="R-tab-id-e18cdf983dff0caf38ecbf02c6a406bb" aria-selected="false"
+        role="tab" id="R-tab-id-7b2b66bbcb38baeb5cdf34387cd9a19a-tab" aria-controls="R-tab-id-7b2b66bbcb38baeb5cdf34387cd9a19a" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -321,7 +326,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d13fd07cd6394e5f33b559d02871a60a" role="tabpanel" aria-labelledby="R-tab-id-d13fd07cd6394e5f33b559d02871a60a-tab"
+      id="R-tab-id-498b0edd764bf40d565693784a0c1638" role="tabpanel" aria-labelledby="R-tab-id-498b0edd764bf40d565693784a0c1638-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -330,7 +335,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-13ff47744ba24ed15903ef9d8d079b12" role="tabpanel" aria-labelledby="R-tab-id-13ff47744ba24ed15903ef9d8d079b12-tab"
+      id="R-tab-id-e3721fe9113fb9ef6470bbd5d75de4cb" role="tabpanel" aria-labelledby="R-tab-id-e3721fe9113fb9ef6470bbd5d75de4cb-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -339,7 +344,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-e18cdf983dff0caf38ecbf02c6a406bb" role="tabpanel" aria-labelledby="R-tab-id-e18cdf983dff0caf38ecbf02c6a406bb-tab"
+      id="R-tab-id-7b2b66bbcb38baeb5cdf34387cd9a19a" role="tabpanel" aria-labelledby="R-tab-id-7b2b66bbcb38baeb5cdf34387cd9a19a-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -416,7 +421,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.0ea079b11628fd708547d4e71da8a3ea8c9bffce8a0790cc33d7acc508d9c081.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.5753e9e9d0d53233f889e3e258c4c45d0dfd93d4b4251c2ad062b5731c69f1df.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

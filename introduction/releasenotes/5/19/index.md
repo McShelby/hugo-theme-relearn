@@ -6,7 +6,7 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} The [`highlight` shortcode](shortcodes/highlight) now accepts the new parameter `title`. This displays the code like a [single tab](shortcodes/tabs#single-tab). This is also available using Markdown codefences and makes it much easier to write nicer code samples.
 
-- {{% badge style="new" %}}New{{% /badge %}} The theme has added two new color variants `zen-light` and `zen-dark`. Check it out!
+- {{% badge style="new" %}}New{{% /badge %}} The theme has added two new color variants [`zen-light`](configuration/branding/colors?variant=zen-light#shipped-variants) and [`zen-dark`](configuration/branding/colors?variant=zen-dark#shipped-variants). Check it out!
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme now [dispatches the custom event](configuration/branding/colors#react-to-variant-switches-in-javascript) `themeVariantLoaded` on the `document` when the variant is fully loaded either initially or by switching the variant manually with the variant selector.
 

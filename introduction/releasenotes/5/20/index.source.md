@@ -30,7 +30,7 @@ weight = -20
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} The theme variants `Zen Light` and `Zen Dark` now add more contrast between menu, topbar and content by adding thin borders.
+- {{% badge style="new" %}}New{{% /badge %}} The theme variants [`Zen Light`](configuration/branding/colors?variant=zen-light#shipped-variants) and [`Zen Dark`](configuration/branding/colors?variant=zen-dark#shipped-variants) now add more contrast between menu, topbar and content by adding thin borders.
 
   Those borders are now configurable by using the CSS variables `--MAIN-TOPBAR-BORDER-color`, `--MENU-BORDER-color`, `--MENU-TOPBAR-BORDER-color`, `--MENU-TOPBAR-SEPARATOR-color`, `--MENU-HEADER-SEPARATOR-color` and `--MENU-SECTION-ACTIVE-CATEGORY-BORDER-color`.
 

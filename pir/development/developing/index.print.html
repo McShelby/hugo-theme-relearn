@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+fddf14294dc2ccc5f7ab575ceea91ccd4720b2bb">
+    <meta name="generator" content="Relearn 9.1.0+0af4319b67236bb385def8054c0f6ca21b549f2f">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How t&#39; set up, &#39;n how th&#39; theme &#39;n its tacklin&#39; be split">
     <meta name="author" content="Sören Weber">
@@ -52,7 +52,7 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.86552cfd7ce3586995de6570acdaf66ab0d5730bae658a2d80f4b4883c27ad3e.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.7103ee019ebec32bc360ffbd4205d5c7b563c356666c724316f48f87bf36598c.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.fde31a3bc19a193360c646fd67b62d0fb98ae684449d1922b5ac0ed941277607.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
@@ -83,9 +83,14 @@
         "Close_graph": "Close th' enlarrrged chart",
         "Copied_to_clipboard": "Text copied t' clipboard!",
         "Copy_to_clipboard": "Copy text t' clipboard",
+        "Deleted_text_end": "End o' text sent overboard",
+        "Deleted_text_start": "Start o' text sent overboard",
         "Enlarge_graph": "Enlarrrge th' chart",
         "History_cleared": "Historrry clearrred",
+        "Inserted_text_end": "End o' text hauled aboard",
+        "Inserted_text_start": "Start o' text hauled aboard",
         "Link_copied_to_clipboard": "Link copied t' clipboard!",
+        "N_matches_on_page": "{1} matches fer \"{0}\" on this here page",
         "N_results_found": "{1} rrresults found fer \"{0}\"",
         "No_results_found": "No rrresults found fer \"{0}\"",
         "Reset_view": "Rrreset view",
@@ -199,8 +204,8 @@
 </table>
 <p>Th' rule fer decid'n whar' someth'n belongs be a single quest'n: <strong>does somebody install'n th' theme need this file?</strong> If not, it belongs 'n th' infra repository - unless it can only act from th' theme repository. GitHub runs a workflow only 'n th' repository hold'n it, an' a git hook only fires on th' checkout it sits 'n, so those stay put, along wit' th' actions those workflows call.</p>
 
-<div role="note" aria-labelledby="R-box-label-abb970e7c66f3a542fc72462efce0530" class="box cstyle callout important">
-  <div id="R-box-label-abb970e7c66f3a542fc72462efce0530" class="box-label">
+<div role="note" aria-labelledby="R-box-label-0fe2a6fcb0be68a913a0e0e56d5f799b" class="box cstyle callout important">
+  <div id="R-box-label-0fe2a6fcb0be68a913a0e0e56d5f799b" class="box-label">
     <i class="fa-fw fas fa-bolt" aria-hidden="true"></i> 
     Whar' t' report
   </div>
@@ -222,8 +227,8 @@
 <p>That serves th' documentat'n ship, built wit' th' theme itself, so yer changes show up as ye save. Swap <code>docs</code> fer <code>exampleSite</code> t' work against th' simpler starting-point ship instead.</p>
 <p>This be enough fer most changes. If that be what ye came t' do, stop here.</p>
 
-<div role="note" aria-labelledby="R-box-label-a4b9cc707961ac8684514a83cedfc1fb" class="box cstyle callout note">
-  <div id="R-box-label-a4b9cc707961ac8684514a83cedfc1fb" class="box-label">
+<div role="note" aria-labelledby="R-box-label-a1566bba3b0ff7c0a4018dce30cb2498" class="box cstyle callout note">
+  <div id="R-box-label-a1566bba3b0ff7c0a4018dce30cb2498" class="box-label">
     <i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i> 
     Avast
   </div>
@@ -247,12 +252,12 @@
 <h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>Optional, an' independent o' which setup ye chose - th' hooks live 'n th' theme repository, 'n th' <code>.githooks</code> root folder. Documentat'n fer each hook be contained 'n each file.</p>
 <p>Th' <code>post-commit</code> hook updates th' version number on each commit, which be what makes a build from <code>main</code> distinguish'ble from a release when debugg'n user reports. Noth'n depends on ye hav'n it.</p>
-<div class="tab-panel" data-tab-group="R-tabs-803ce1b9fc1135eb952740a90dbf2dd5">
+<div class="tab-panel" data-tab-group="R-tabs-79cb147ebc7567b9b3cd7acc68276d8b">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-f5b1cfecf2875dd8f015e2edca938538-tab" aria-controls="R-tab-id-f5b1cfecf2875dd8f015e2edca938538" aria-selected="true"
+        role="tab" id="R-tab-id-cfcd9a45291e28686b75284358366bab-tab" aria-controls="R-tab-id-cfcd9a45291e28686b75284358366bab" aria-selected="true"
         data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -262,7 +267,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f5b1cfecf2875dd8f015e2edca938538" role="tabpanel" aria-labelledby="R-tab-id-f5b1cfecf2875dd8f015e2edca938538-tab"
+      id="R-tab-id-cfcd9a45291e28686b75284358366bab" role="tabpanel" aria-labelledby="R-tab-id-cfcd9a45291e28686b75284358366bab-tab"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -291,7 +296,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.0ea079b11628fd708547d4e71da8a3ea8c9bffce8a0790cc33d7acc508d9c081.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.5753e9e9d0d53233f889e3e258c4c45d0dfd93d4b4251c2ad062b5731c69f1df.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

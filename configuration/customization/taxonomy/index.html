@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+fddf14294dc2ccc5f7ab575ceea91ccd4720b2bb">
+    <meta name="generator" content="Relearn 9.1.0+0af4319b67236bb385def8054c0f6ca21b549f2f">
     <meta name="description" content="How to display custom taxonomies on your pages">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -50,8 +50,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.86552cfd7ce3586995de6570acdaf66ab0d5730bae658a2d80f4b4883c27ad3e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.ec6c6db3a15420b2b0ded4c21e40fa6fd1c7e3ccb976123a8c47a8f027e4fd43.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.7103ee019ebec32bc360ffbd4205d5c7b563c356666c724316f48f87bf36598c.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.6719b7b935c3a07ec0d9cb07953b92b1a5eb2f72baf27997f4b8cb43b4fcd4fc.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -81,9 +81,14 @@
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
+        "Deleted_text_end": "End of deleted text",
+        "Deleted_text_start": "Start of deleted text",
         "Enlarge_graph": "Enlarge graph",
         "History_cleared": "History cleared",
+        "Inserted_text_end": "End of inserted text",
+        "Inserted_text_start": "Start of inserted text",
         "Link_copied_to_clipboard": "Link copied to clipboard!",
+        "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
         "Reset_view": "Reset view",
@@ -314,7 +319,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/fddf14294dc2ccc5f7ab575ceea91ccd4720b2bb" title="Relearn 9.1.0&#43;fddf14294dc2ccc5f7ab575ceea91ccd4720b2bb"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/0af4319b67236bb385def8054c0f6ca21b549f2f" title="Relearn 9.1.0&#43;0af4319b67236bb385def8054c0f6ca21b549f2f"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -412,24 +417,24 @@
 <p>To add custom taxonomies, update your <code>hugo.toml</code> file. You also have to add the default taxonomies if you want to use them.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-cc2a0336f15870b54c5acf2aa10b40db">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-cc2a0336f15870b54c5acf2aa10b40db">
+    <div class="tab-nav-title" id="R-tabs-title-41b1212adcebd0d3700a44c17038e1c3">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-41b1212adcebd0d3700a44c17038e1c3">
       <button
-        role="tab" id="R-tab-id-d14d11400329ae29f2059866194478f5-tab" aria-controls="R-tab-id-d14d11400329ae29f2059866194478f5" aria-selected="true"
+        role="tab" id="R-tab-id-8c26d158cd9b1bab9e2fbf13f058f918-tab" aria-controls="R-tab-id-8c26d158cd9b1bab9e2fbf13f058f918" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-544a338ff1a2077e5f9c08b7237544f4-tab" aria-controls="R-tab-id-544a338ff1a2077e5f9c08b7237544f4" aria-selected="false"
+        role="tab" id="R-tab-id-1db84b7bb6da9418108e89d978783337-tab" aria-controls="R-tab-id-1db84b7bb6da9418108e89d978783337" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-1117f54d44bbdbaf0e3a75064b9713a8-tab" aria-controls="R-tab-id-1117f54d44bbdbaf0e3a75064b9713a8" aria-selected="false"
+        role="tab" id="R-tab-id-b9ebadec4a44f98a0b6875a2ede8c955-tab" aria-controls="R-tab-id-b9ebadec4a44f98a0b6875a2ede8c955" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -439,7 +444,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d14d11400329ae29f2059866194478f5" role="tabpanel" aria-labelledby="R-tab-id-d14d11400329ae29f2059866194478f5-tab"
+      id="R-tab-id-8c26d158cd9b1bab9e2fbf13f058f918" role="tabpanel" aria-labelledby="R-tab-id-8c26d158cd9b1bab9e2fbf13f058f918-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -450,7 +455,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-544a338ff1a2077e5f9c08b7237544f4" role="tabpanel" aria-labelledby="R-tab-id-544a338ff1a2077e5f9c08b7237544f4-tab"
+      id="R-tab-id-1db84b7bb6da9418108e89d978783337" role="tabpanel" aria-labelledby="R-tab-id-1db84b7bb6da9418108e89d978783337-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -461,7 +466,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1117f54d44bbdbaf0e3a75064b9713a8" role="tabpanel" aria-labelledby="R-tab-id-1117f54d44bbdbaf0e3a75064b9713a8-tab"
+      id="R-tab-id-b9ebadec4a44f98a0b6875a2ede8c955" role="tabpanel" aria-labelledby="R-tab-id-b9ebadec4a44f98a0b6875a2ede8c955-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -540,7 +545,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.0ea079b11628fd708547d4e71da8a3ea8c9bffce8a0790cc33d7acc508d9c081.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.5753e9e9d0d53233f889e3e258c4c45d0dfd93d4b4251c2ad062b5731c69f1df.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

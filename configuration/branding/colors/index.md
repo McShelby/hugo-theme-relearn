@@ -11,22 +11,22 @@ Once set up in `hugo.toml`, you can switch variants using the selector at the bo
 The theme ships with the following set of variants
 
 - Relearn
-  - Light: the classic Relearn default, coming with signature green, dark sidebar and light content area
-  - Dark: dark variant of Light, coming with signature green, dark sidebar and dark content area
-  - Bright: alternative of Light, coming with signature green, green sidebar and light content area
+  - [Light](configuration/branding/colors?variant=relearn-light#shipped-variants): the classic Relearn default, coming with signature green, dark sidebar and light content area
+  - [Dark](configuration/branding/colors?variant=relearn-dark#shipped-variants): dark variant of Light, coming with signature green, dark sidebar and dark content area
+  - [Bright](configuration/branding/colors?variant=relearn-bright#shipped-variants): alternative of Light, coming with signature green, green sidebar and light content area
 - Zen
-  - Light: a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
-  - Dark: dark variant of Light, coming with blue accents, dark sidebar and dark content area
+  - [Light](configuration/branding/colors?variant=zen-light#shipped-variants): a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
+  - [Dark](configuration/branding/colors?variant=zen-dark#shipped-variants): dark variant of Light, coming with blue accents, dark sidebar and dark content area
 - Contrast
-  - Light: [colors chosen for high contrast](configuration/publishing/accessibility), coming with black text on white, darker boxes and a matching syntax highlighting
-  - Dark: dark variant of Light, coming with white text on black, brighter boxes and a matching syntax highlighting
+  - [Light](configuration/branding/colors?variant=contrast-light#shipped-variants): [colors chosen for high contrast](configuration/publishing/accessibility), coming with black text on white, darker boxes and a matching syntax highlighting
+  - [Dark](configuration/branding/colors?variant=contrast-dark#shipped-variants): dark variant of Light, coming with white text on black, brighter boxes and a matching syntax highlighting
 - Experimental
-  - Neon: a variant that glows in the dark, gradient sidebar and dark content area
+  - [Neon](configuration/branding/colors?variant=neon#shipped-variants): a variant that glows in the dark, gradient sidebar and dark content area
 - Retro
-  - Learn: the default of the old Learn theme, coming with signature light purple, dark sidebar and light content area
-  - Blue: a blue variant of the old Learn theme, coming tinted in blue, dark sidebar and light content area
-  - Green: a green variant of the old Learn theme, coming tinted in green, dark sidebar and light content area
-  - Red: a red variant of the old Learn theme, coming tinted in red, dark sidebar and light content area
+  - [Learn](configuration/branding/colors?variant=learn#shipped-variants): the default of the old Learn theme, coming with signature light purple, dark sidebar and light content area
+  - [Blue](configuration/branding/colors?variant=blue#shipped-variants): a blue variant of the old Learn theme, coming tinted in blue, dark sidebar and light content area
+  - [Green](configuration/branding/colors?variant=green#shipped-variants): a green variant of the old Learn theme, coming tinted in green, dark sidebar and light content area
+  - [Red](configuration/branding/colors?variant=red#shipped-variants): a red variant of the old Learn theme, coming tinted in red, dark sidebar and light content area
 
 ## Changing the Variant
 
