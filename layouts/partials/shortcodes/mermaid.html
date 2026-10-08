@@ -41,6 +41,11 @@
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) "actionbar-wrapper" slice) " ")) }}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "align-%s" $align) slice) " ")) }}
 {{- $attributes = merge $attributes (dict "class" (delimit (append (index $attributes "class" | default slice) (printf "%s" (cond $zoom "zoomable" "")) slice) " ")) }}
+{{- /* the enlarged graph is named apart from the graph in the page, which keeps an `id` of its own;
+  it is named by its source, so a link to it holds between builds; its position
+  tells apart a graph that is used more than once */}}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (md5 (print (trim $content "\r\n\t ") " " (.ordinal | default 0))) .id }}
+{{- $attributes = merge $attributes (dict "data-lightbox-id" (printf "R-mermaid-%s" $id)) }}
 
 {{- with $page -}}
 <pre

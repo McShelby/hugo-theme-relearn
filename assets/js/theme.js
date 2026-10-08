@@ -247,6 +247,19 @@ function mermaidLightbox(box, show) {
   return button;
 }
 
+// whether the enlarged graph was opened from this page, which leaves a history
+// entry to return to; a page loaded with the graph already enlarged has none
+var mermaidLightboxOpenedHere = false;
+
+function openMermaidLightbox(box) {
+  mermaidLightbox(box, true);
+  if (box.id) {
+    // the enlarged graph has its own URL, so it can be linked to and is left by going back
+    mermaidLightboxOpenedHere = true;
+    window.history.pushState(window.history.state, '', '#' + box.id);
+  }
+}
+
 function closeMermaidLightbox() {
   var shown = document.querySelector('.mermaid.lightbox');
   if (!shown) {
@@ -254,6 +267,36 @@ function closeMermaidLightbox() {
   }
   // return to the button it was opened from
   var button = mermaidLightbox(shown, false);
+  button && button.focus();
+  if (!shown.id || window.location.hash != '#' + shown.id) {
+    return;
+  }
+  if (mermaidLightboxOpenedHere) {
+    // leave the lightbox the way we came instead of adding another history entry
+    window.history.back();
+  } else {
+    // going back would leave the page, so its entry is replaced instead
+    window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
+  }
+}
+
+function syncMermaidLightbox() {
+  // the graph named by the URL is the enlarged one; a graph that is not shown in
+  // the page, like in a collapsed expander, would cover it with nothing to see
+  var id = window.location.hash.slice(1);
+  var target = !isPrint && id ? document.getElementById(id) : null;
+  if (target && !target.matches('.mermaid-container > .mermaid.mermaid-render')) {
+    target = null;
+  }
+  var shown = document.querySelector('.mermaid.lightbox');
+  if (shown == target) {
+    return;
+  }
+  var button = shown && mermaidLightbox(shown, false);
+  if (target) {
+    // a graph not drawn yet takes the focus once it has its button
+    button = mermaidLightbox(target, true);
+  }
   button && button.focus();
 }
 
@@ -302,9 +345,19 @@ function mermaidPostRender(id) {
     var reset = '<span class="btn cstyle svg-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_view + '" aria-label="' + window.T_Reset_view + '"><i class="fa-fw fas fa-undo-alt" aria-hidden="true"></i></button></span>';
     var enlarge = '<span class="btn cstyle svg-lightbox-button action noborder notitle interactive"><button type="button" title="' + window.T_Enlarge_graph + '" aria-label="' + window.T_Enlarge_graph + '"><i class="fa-fw fas fa-expand" aria-hidden="true"></i></button></span>';
     parent.insertAdjacentHTML('beforeend', '<div class="actionbar">' + reset + enlarge + '</div>');
-    parent.querySelector('.svg-lightbox-button button').addEventListener('click', function () {
-      mermaidLightbox(parent, !parent.classList.contains('lightbox'));
+    var enlargeButton = parent.querySelector('.svg-lightbox-button button');
+    enlargeButton.addEventListener('click', function () {
+      if (parent.classList.contains('lightbox')) {
+        closeMermaidLightbox();
+      } else {
+        openMermaidLightbox(parent);
+      }
     });
+    if (parent.classList.contains('lightbox')) {
+      // enlarged by its URL before it was drawn
+      mermaidLightbox(parent, true);
+      enlargeButton.focus();
+    }
     // the keys the enlarged graph has no use for must not reach the page below it
     var keepKey = function (event) {
       if (parent.classList.contains('lightbox')) {
@@ -548,6 +601,11 @@ function initMermaid(update, attrs) {
       new_element.classList.add('mermaid-container');
       new_element.classList.remove('mermaid');
       new_element.classList.remove('actionbar-wrapper');
+      if (new_element.dataset.lightboxId) {
+        // the box is what is enlarged, so the URL of the enlarged graph names it
+        element.id = new_element.dataset.lightboxId;
+        delete new_element.dataset.lightboxId;
+      }
       element.classList.add('mermaid');
       if (hasActionbarWrapper) {
         element.classList.add('actionbar-wrapper');
@@ -609,6 +667,10 @@ function initMermaid(update, attrs) {
     // capturing, to be asked before anyone else
     document.addEventListener('keydown', mermaidLightboxKeyHandler, true);
     document.addEventListener('click', mermaidLightboxClickHandler, true);
+    window.addEventListener('hashchange', function () {
+      syncMermaidLightbox();
+      mermaidLightboxOpenedHere = !!document.querySelector('.mermaid.lightbox');
+    });
     window.addEventListener(
       'beforeprint',
       function () {
@@ -641,6 +703,10 @@ function initMermaid(update, attrs) {
     unmark();
   }
   var is_initialized = update ? update_func(attrs) : init_func(attrs);
+  if (!update) {
+    // the page may have been loaded with the URL of an enlarged graph
+    syncMermaidLightbox();
+  }
   if (is_initialized) {
     mermaid.initialize(Object.assign({ securityLevel: 'antiscript', startOnLoad: false }, window.relearn.mermaidConfig, { theme: attrs.theme }));
     drawMermaid();

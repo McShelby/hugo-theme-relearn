@@ -23,7 +23,14 @@
     {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "image" "msg" $msg) }}
   {{- end }}
 {{- end }}
-{{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
+{{- /* the enlarged image is named by where the image is, so a link to it holds
+  between builds however the author wrote its URL; an image that is no resource
+  only has that URL. Its position tells apart an image that is used more than once */}}
+{{- $idPath := .url }}
+{{- with $linkObject }}
+  {{- $idPath = .RelPermalink }}
+{{- end }}
+{{- $id := cond (or (eq .id nil) (eq .id "")) (md5 (print $idPath " " (.ordinal | default 0))) .id }}
 {{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page "linkObject" $linkObject "attributes" $attributes)) }}
 {{- $attributes = merge $attributes (dict "alt" ($alt | default $attributes.alt | default "") "title" ($title | transform.HTMLEscape)) }}
 {{- $classes := split $attributes.class " " }}

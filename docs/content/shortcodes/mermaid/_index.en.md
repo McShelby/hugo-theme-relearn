@@ -17,7 +17,7 @@ content: |
     Then --> Else
 {{% /multishortcode %}}
 
-Every graph has a button to show it in a lightbox. Press the button again, click beside the graph or press <kbd>ESC</kbd> to return to the page. In the lightbox, a graph is [panned and zoomed](#configuring-pan-and-zoom) the same way as on the page.
+Every graph has a button to show it in a lightbox. Press the button again, click beside the graph, press <kbd>ESC</kbd> or go back in your browser to return to the page. The enlarged graph has its own URL, so you can share a link to it, like you can for an enlarged image. In the lightbox, a graph is [panned and zoomed](#configuring-pan-and-zoom) the same way as on the page.
 
 ## Usage
 
