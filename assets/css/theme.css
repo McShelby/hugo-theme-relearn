@@ -2145,24 +2145,6 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
   display: none;
 }
 
-.include.hide-first-heading h1 ~ h2:first-of-type,
-.include.hide-first-heading h1 ~ h3:first-of-type,
-.include.hide-first-heading h2 ~ h3:first-of-type,
-.include.hide-first-heading h1 ~ h4:first-of-type,
-.include.hide-first-heading h2 ~ h4:first-of-type,
-.include.hide-first-heading h3 ~ h4:first-of-type,
-.include.hide-first-heading h1 ~ h5:first-of-type,
-.include.hide-first-heading h2 ~ h5:first-of-type,
-.include.hide-first-heading h3 ~ h5:first-of-type,
-.include.hide-first-heading h4 ~ h5:first-of-type,
-.include.hide-first-heading h1 ~ h6:first-of-type,
-.include.hide-first-heading h2 ~ h6:first-of-type,
-.include.hide-first-heading h3 ~ h6:first-of-type,
-.include.hide-first-heading h4 ~ h6:first-of-type,
-.include.hide-first-heading h5 ~ h6:first-of-type {
-  display: block;
-}
-
 /* Table of contents */
 
 .topbar-flyout #R-main-overlay {
@@ -2772,12 +2754,12 @@ span.math:has(math[display='block'], .katex-display) {
   position: absolute;
 }
 
-.include.hide-first-heading h1:first-of-type,
-.include.hide-first-heading h2:first-of-type,
-.include.hide-first-heading h3:first-of-type,
-.include.hide-first-heading h4:first-of-type,
-.include.hide-first-heading h5:first-of-type,
-.include.hide-first-heading h6:first-of-type,
+/* the hidden heading can not show a focus, so its anchor button must not take one */
+.include.hide-first-heading > :is(h1, h2, h3, h4, h5, h6):not(:is(h1, h2, h3, h4, h5, h6) ~ *) .anchor {
+  display: none;
+}
+
+.include.hide-first-heading > :is(h1, h2, h3, h4, h5, h6):not(:is(h1, h2, h3, h4, h5, h6) ~ *),
 .a11y-only {
   /* idea taken from https://www.filamentgroup.com/lab/a11y-form-labels.html */
   clip-path: polygon(0 0, 1px 0, 1px 1px, 0 1px);
