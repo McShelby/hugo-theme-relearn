@@ -99,7 +99,7 @@ weight = -2
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) `contrast-light` and `contrast-dark` have colors chosen for high contrast.
+- {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) [`contrast-light`](configuration/branding/colors?variant=contrast-light#shipped-variants) and [`contrast-dark`](configuration/branding/colors?variant=contrast-dark#shipped-variants) have colors chosen for high contrast.
 
 - {{% badge style="new" %}}New{{% /badge %}} A [color variant](configuration/branding/colors#linking-to-a-variant) can now be selected by a link with the new `variant` query parameter, like `/my-page?variant=relearn-dark`.
 
