@@ -2525,6 +2525,21 @@ function initIcons() {
   });
 }
 
+function initEdits() {
+  // a screen reader doesn't tell where inserted or deleted text starts and
+  // ends, so the stylesheet writes it around the text; being the same for
+  // all languages, it gets the texts from here
+  var texts = {
+    '--ins-start-text': window.T_Inserted_text_start,
+    '--ins-end-text': window.T_Inserted_text_end,
+    '--del-start-text': window.T_Deleted_text_start,
+    '--del-end-text': window.T_Deleted_text_end,
+  };
+  Object.keys(texts).forEach(function (name) {
+    document.documentElement.style.setProperty(name, JSON.stringify(' ' + texts[name] + ' '));
+  });
+}
+
 function ready(fn) {
   if (document.readyState == 'complete') {
     fn();
@@ -2557,6 +2572,7 @@ ready(function () {
   initExpand();
   initOverflowTitle();
   initScrollPositionSaver();
+  initEdits();
 });
 
 (function () {

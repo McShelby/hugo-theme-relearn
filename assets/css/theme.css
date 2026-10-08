@@ -1024,6 +1024,41 @@ article a:focus > img:only-child:empty {
   text-align: justify;
 }
 
+/* a single underline is how a link is told apart from the text around it, so
+   inserted text is underlined twice */
+ins {
+  text-decoration: underline double;
+}
+
+/* a screen reader doesn't tell where inserted or deleted text starts and
+   ends, so this is written around the text for it alone; the texts depend on
+   the language and are set by the script */
+ins::before,
+ins::after,
+del::before,
+del::after {
+  clip-path: polygon(0 0, 1px 0, 1px 1px, 0 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  width: 1px;
+}
+ins::before {
+  content: var(--ins-start-text);
+}
+ins::after {
+  content: var(--ins-end-text);
+}
+del::before {
+  content: var(--del-start-text);
+}
+del::after {
+  content: var(--del-end-text);
+}
+
 mark {
   background: transparent;
   background-image: linear-gradient(to right, color-mix(in srgb, var(--INTERNAL-ACCENT-color) 5%, transparent), color-mix(in srgb, var(--INTERNAL-ACCENT-color) 95%, transparent) 4%, color-mix(in srgb, var(--INTERNAL-ACCENT-color) 40%, transparent));
