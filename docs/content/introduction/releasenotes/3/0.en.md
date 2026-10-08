@@ -35,7 +35,7 @@ weight = 0
 
   To make this possible, we have introduced a lot more color variables you can use in [your color variants](configuration/branding/colors#theme-variant). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
-  To see what's now possible, see the new variants `relearn-dark` and `neon` that are coming with this release.
+  To see what's now possible, see the new variants [`relearn-dark`](configuration/branding/colors?variant=relearn-dark#shipped-variants) and [`neon`](configuration/branding/colors?variant=neon#shipped-variants) that are coming with this release.
 
 - {{% badge style="new" %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator](configuration/branding/generator). This feature will not work with Internet Explorer 11.
 
