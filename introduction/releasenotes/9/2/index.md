@@ -110,7 +110,7 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} The [`mermaid` shortcode's](shortcodes/mermaid#configuring-pan-and-zoom) graph can now be focused, panned and zoomed with the [keyboard](configuration/publishing/shortcuts).
 
-  They now contain a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page itself.
+  They now contain a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page itself. Like an enlarged image, the enlarged graph has its own URL.
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme writes no inline JavaScript anymore, so your site can be served with a strict [Content Security Policy](configuration/publishing/csp). On request, it also adds [subresource integrity](configuration/publishing/csp#subresource-integrity) hashes to its scripts and stylesheets. The [`button`](shortcodes/button#button-with-own-action) and [`card`](shortcodes/cards#card-with-own-action) shortcodes and [topbar buttons](configuration/customization/topbar#button) have a new `action` parameter to run your own code without inline JavaScript.
 
