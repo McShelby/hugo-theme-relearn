@@ -1427,6 +1427,13 @@ code {
   padding-right: 0.125em;
 }
 
+/* inline code in a link is a link first, so it is told apart from other
+   inline code the same way a link is told apart from the text around it; what
+   looks like a control of its own stays as it is */
+article :not(.btn, .card-title) > a:not(.term-link, .autocomplete-suggestion, .lightbox-link, .lightbox-close) code {
+  color: inherit;
+}
+
 pre:not(.mermaid) {
   background-color: var(--INTERNAL-CODE-BLOCK-BG-color);
   border-color: var(--INTERNAL-CODE-BLOCK-BORDER-color);
