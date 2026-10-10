@@ -112,6 +112,10 @@
 
   They now contain a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page itself. Like an enlarged image, the enlarged graph has its own URL.
 
+- {{% badge style="new" %}}New{{% /badge %}} The results of the dedicated search page can now be [printed](configuration/sidebar/search#printing-the-search-results), if your home page has print support activated. The new `search.page.outputs` option lets you decide this independently of your home page.
+
+- {{% badge style="new" %}}New{{% /badge %}} An entry of a Hugo menu can now be [continued by the tree of the page it links to](configuration/sidebar/menus#page-trees-in-hugo-menus) by setting `params.type='page'`. For a taxonomy page, this shows all of its terms without listing them in your menu definition.
+
 - {{% badge style="new" %}}New{{% /badge %}} The theme writes no inline JavaScript anymore, so your site can be served with a strict [Content Security Policy](configuration/publishing/csp). On request, it also adds [subresource integrity](configuration/publishing/csp#subresource-integrity) hashes to its scripts and stylesheets. The [`button`](shortcodes/button#button-with-own-action) and [`card`](shortcodes/cards#card-with-own-action) shortcodes and [topbar buttons](configuration/customization/topbar#button) have a new `action` parameter to run your own code without inline JavaScript.
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme now ships a machine-readable [SBOM](configuration/publishing/sbom) at `sbom.cdx.json`, listing every third-party resource it can publish with your site, each with a license, a digest of the files the theme ships and - where upstream publishes them - a version and a package URL.

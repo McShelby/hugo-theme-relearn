@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+4cb2e8292e779a94b0c9c2e73794110b5ec5936d">
+    <meta name="generator" content="Relearn 9.1.0+efedfeaf3e4561c4dea470039d6d011fafc79c8d">
     <meta name="description" content="What&#39;s new in this version">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="What&#39;s New :: Hugo Relearn Theme">
     <meta itemprop="description" content="What&#39;s new in this version">
-    <meta itemprop="wordCount" content="2857">
+    <meta itemprop="wordCount" content="2930">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation">
     <title>What&#39;s New :: Hugo Relearn Theme</title>
@@ -35,9 +35,9 @@
     <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.78b49c23f59ffb08554285843ed4c841484fe34c489058b2991edc027cdd47fc.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.9657edd589a1ca6962a3cf03df5aa17f16f2c67350aea0a84dddbd8d5698316f.js" defer></script>
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.8b28fd162bf46b639ad4864578cd9c760be25e09bb92fdd150e1df928bf01070.js" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.7da077d72c72c49caf5974d07092615586997d191035bc2800b3e88c495c4d72.js"
+      "indexFile": "searchindex.en.min.c00d178f27b18dbcf14fa0d3f7e871d64f572ed68dc527208be34c6051e95e8b.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -326,6 +326,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
 <p>They now contain a new button to show it in a lightbox, where it is panned and zoomed the same way as on the page itself. Like an enlarged image, the enlarged graph has its own URL.</p>
 </li>
 <li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The results of the dedicated search page can now be <a href="/hugo-theme-relearn/configuration/sidebar/search/index.html#printing-the-search-results">printed</a>, if your home page has print support activated. The new <code>search.page.outputs</code> option lets you decide this independently of your home page.</p>
+</li>
+<li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> An entry of a Hugo menu can now be <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#page-trees-in-hugo-menus">continued by the tree of the page it links to</a> by setting <code>params.type='page'</code>. For a taxonomy page, this shows all of its terms without listing them in your menu definition.</p>
+</li>
+<li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The theme writes no inline JavaScript anymore, so your site can be served with a strict <a href="/hugo-theme-relearn/configuration/publishing/csp/index.html">Content Security Policy</a>. On request, it also adds <a href="/hugo-theme-relearn/configuration/publishing/csp/index.html#subresource-integrity">subresource integrity</a> hashes to its scripts and stylesheets. The <a href="/hugo-theme-relearn/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> and <a href="/hugo-theme-relearn/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shortcodes and <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter to run your own code without inline JavaScript.</p>
 </li>
 <li>
@@ -343,12 +349,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id to each asset&rsquo;s URL, emptying a visitor&rsquo;s cache on each deployment even when no asset was different. If you referenced assets from your own partials, <code>assetbusting.gotmpl</code> is replaced by <code>asset.gotmpl</code>, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-97cebaa976f13e3f7e8f47abdcd51278">
+<div class="tab-panel" data-tab-group="R-tabs-904f9cb3a24389355fc68e322dc5ef4d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-5bd2519233d1dcd0e675db14f37938e0-tab" aria-controls="R-tab-id-5bd2519233d1dcd0e675db14f37938e0" aria-selected="true"
+        role="tab" id="R-tab-id-6732dff1f62d09941fcd147eddc0146c-tab" aria-controls="R-tab-id-6732dff1f62d09941fcd147eddc0146c" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -358,7 +364,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5bd2519233d1dcd0e675db14f37938e0" role="tabpanel" aria-labelledby="R-tab-id-5bd2519233d1dcd0e675db14f37938e0-tab"
+      id="R-tab-id-6732dff1f62d09941fcd147eddc0146c" role="tabpanel" aria-labelledby="R-tab-id-6732dff1f62d09941fcd147eddc0146c-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -405,21 +411,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-2879bae33571eadd5a93b93dc720275b-tab" aria-controls="R-tab-id-2879bae33571eadd5a93b93dc720275b" aria-selected="true"
+        role="tab" id="R-tab-id-e6a61e00b08197287d1313ae46b6916a-tab" aria-controls="R-tab-id-e6a61e00b08197287d1313ae46b6916a" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7b63cac626a032a4edd85ea33691eca1-tab" aria-controls="R-tab-id-7b63cac626a032a4edd85ea33691eca1" aria-selected="false"
+        role="tab" id="R-tab-id-b9295307a6cf503c0ae116f0302c985a-tab" aria-controls="R-tab-id-b9295307a6cf503c0ae116f0302c985a" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-1f30d01d34bb6a42645893733e2cda79-tab" aria-controls="R-tab-id-1f30d01d34bb6a42645893733e2cda79" aria-selected="false"
+        role="tab" id="R-tab-id-4e664d64b9ad39b5cf5de07a727dbe9d-tab" aria-controls="R-tab-id-4e664d64b9ad39b5cf5de07a727dbe9d" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -429,7 +435,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2879bae33571eadd5a93b93dc720275b" role="tabpanel" aria-labelledby="R-tab-id-2879bae33571eadd5a93b93dc720275b-tab"
+      id="R-tab-id-e6a61e00b08197287d1313ae46b6916a" role="tabpanel" aria-labelledby="R-tab-id-e6a61e00b08197287d1313ae46b6916a-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -437,7 +443,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
       </div>
     </div>
     <div
-      id="R-tab-id-7b63cac626a032a4edd85ea33691eca1" role="tabpanel" aria-labelledby="R-tab-id-7b63cac626a032a4edd85ea33691eca1-tab"
+      id="R-tab-id-b9295307a6cf503c0ae116f0302c985a" role="tabpanel" aria-labelledby="R-tab-id-b9295307a6cf503c0ae116f0302c985a-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -445,7 +451,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/index.html">changelo
       </div>
     </div>
     <div
-      id="R-tab-id-1f30d01d34bb6a42645893733e2cda79" role="tabpanel" aria-labelledby="R-tab-id-1f30d01d34bb6a42645893733e2cda79-tab"
+      id="R-tab-id-4e664d64b9ad39b5cf5de07a727dbe9d" role="tabpanel" aria-labelledby="R-tab-id-4e664d64b9ad39b5cf5de07a727dbe9d-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -956,24 +962,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/index.html">change
 <p>Remove the now obsolete <code>search</code> and <code>searchpage</code> output format from <code>[outputs.home]</code> in your <code>hugo.toml</code>, resulting in something similar to</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-7ee3841bb43f59353d843adb30379dff">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-7ee3841bb43f59353d843adb30379dff">
+    <div class="tab-nav-title" id="R-tabs-title-5060674a51c315ebf5fceb3faac91f09">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-5060674a51c315ebf5fceb3faac91f09">
       <button
-        role="tab" id="R-tab-id-868230dc91cfef89b9654cd04d4fd714-tab" aria-controls="R-tab-id-868230dc91cfef89b9654cd04d4fd714" aria-selected="true"
+        role="tab" id="R-tab-id-d6e02d21e5f97237b7247e2287ecf0a3-tab" aria-controls="R-tab-id-d6e02d21e5f97237b7247e2287ecf0a3" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-4ef621352e7f86ca4326d6c936a9ef2e-tab" aria-controls="R-tab-id-4ef621352e7f86ca4326d6c936a9ef2e" aria-selected="false"
+        role="tab" id="R-tab-id-711c3f0b7a6560fff7cd2218b69a36e5-tab" aria-controls="R-tab-id-711c3f0b7a6560fff7cd2218b69a36e5" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-a0054dfb10b3869701e800f2f28e330d-tab" aria-controls="R-tab-id-a0054dfb10b3869701e800f2f28e330d" aria-selected="false"
+        role="tab" id="R-tab-id-f5dbc1a0dabdb2fc4a72067becfe7159-tab" aria-controls="R-tab-id-f5dbc1a0dabdb2fc4a72067becfe7159" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -983,7 +989,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-868230dc91cfef89b9654cd04d4fd714" role="tabpanel" aria-labelledby="R-tab-id-868230dc91cfef89b9654cd04d4fd714-tab"
+      id="R-tab-id-d6e02d21e5f97237b7247e2287ecf0a3" role="tabpanel" aria-labelledby="R-tab-id-d6e02d21e5f97237b7247e2287ecf0a3-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -992,7 +998,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-4ef621352e7f86ca4326d6c936a9ef2e" role="tabpanel" aria-labelledby="R-tab-id-4ef621352e7f86ca4326d6c936a9ef2e-tab"
+      id="R-tab-id-711c3f0b7a6560fff7cd2218b69a36e5" role="tabpanel" aria-labelledby="R-tab-id-711c3f0b7a6560fff7cd2218b69a36e5-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1004,7 +1010,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-a0054dfb10b3869701e800f2f28e330d" role="tabpanel" aria-labelledby="R-tab-id-a0054dfb10b3869701e800f2f28e330d-tab"
+      id="R-tab-id-f5dbc1a0dabdb2fc4a72067becfe7159" role="tabpanel" aria-labelledby="R-tab-id-f5dbc1a0dabdb2fc4a72067becfe7159-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1172,24 +1178,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
 <p>The shortcode is deactivated by default and can be activated by setting</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-6adef9a546d366c50783b7d39f2a7d38">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-6adef9a546d366c50783b7d39f2a7d38">
+    <div class="tab-nav-title" id="R-tabs-title-4fcd515daec15b3019710949d97c90d9">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-4fcd515daec15b3019710949d97c90d9">
       <button
-        role="tab" id="R-tab-id-0b7cf8d060d0a6b9a0c851a83d89975d-tab" aria-controls="R-tab-id-0b7cf8d060d0a6b9a0c851a83d89975d" aria-selected="true"
+        role="tab" id="R-tab-id-93976ef7c0b1eda09daaaf8cf8ead43d-tab" aria-controls="R-tab-id-93976ef7c0b1eda09daaaf8cf8ead43d" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-9ce3f28f073c8a55dc3d9d11c867a7f2-tab" aria-controls="R-tab-id-9ce3f28f073c8a55dc3d9d11c867a7f2" aria-selected="false"
+        role="tab" id="R-tab-id-4b0c0634a6ac200ebcb1ed9b32d42185-tab" aria-controls="R-tab-id-4b0c0634a6ac200ebcb1ed9b32d42185" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-ad5c742409a114442819de518729c7f1-tab" aria-controls="R-tab-id-ad5c742409a114442819de518729c7f1" aria-selected="false"
+        role="tab" id="R-tab-id-36f52cd2fe164d58085c2099140d550d-tab" aria-controls="R-tab-id-36f52cd2fe164d58085c2099140d550d" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1199,7 +1205,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0b7cf8d060d0a6b9a0c851a83d89975d" role="tabpanel" aria-labelledby="R-tab-id-0b7cf8d060d0a6b9a0c851a83d89975d-tab"
+      id="R-tab-id-93976ef7c0b1eda09daaaf8cf8ead43d" role="tabpanel" aria-labelledby="R-tab-id-93976ef7c0b1eda09daaaf8cf8ead43d-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1208,7 +1214,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-9ce3f28f073c8a55dc3d9d11c867a7f2" role="tabpanel" aria-labelledby="R-tab-id-9ce3f28f073c8a55dc3d9d11c867a7f2-tab"
+      id="R-tab-id-4b0c0634a6ac200ebcb1ed9b32d42185" role="tabpanel" aria-labelledby="R-tab-id-4b0c0634a6ac200ebcb1ed9b32d42185-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1217,7 +1223,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/6/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-ad5c742409a114442819de518729c7f1" role="tabpanel" aria-labelledby="R-tab-id-ad5c742409a114442819de518729c7f1-tab"
+      id="R-tab-id-36f52cd2fe164d58085c2099140d550d" role="tabpanel" aria-labelledby="R-tab-id-36f52cd2fe164d58085c2099140d550d-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1435,24 +1441,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <p>Change your previous setting from</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-4719606cac35ab030333c21954b03a3d">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-4719606cac35ab030333c21954b03a3d">
+    <div class="tab-nav-title" id="R-tabs-title-4df279b4daa7f6470b80da8b1638fc6f">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-4df279b4daa7f6470b80da8b1638fc6f">
       <button
-        role="tab" id="R-tab-id-0d83f30ede9f1e6bd3b7b1579b5eaeab-tab" aria-controls="R-tab-id-0d83f30ede9f1e6bd3b7b1579b5eaeab" aria-selected="true"
+        role="tab" id="R-tab-id-5c11bce65a4b55f8eb05fe0bbdde6f2f-tab" aria-controls="R-tab-id-5c11bce65a4b55f8eb05fe0bbdde6f2f" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-739d7f12c74dd5a81ed5de9e9fbffe4d-tab" aria-controls="R-tab-id-739d7f12c74dd5a81ed5de9e9fbffe4d" aria-selected="false"
+        role="tab" id="R-tab-id-09d75f65ee59ff96d05b1d0d466ee0d4-tab" aria-controls="R-tab-id-09d75f65ee59ff96d05b1d0d466ee0d4" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-4bf4d1f6e6b20fa7d9bdc628c9a8f300-tab" aria-controls="R-tab-id-4bf4d1f6e6b20fa7d9bdc628c9a8f300" aria-selected="false"
+        role="tab" id="R-tab-id-e503f4de56ad13b4a8eaffd2b77f104f-tab" aria-controls="R-tab-id-e503f4de56ad13b4a8eaffd2b77f104f" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1462,7 +1468,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0d83f30ede9f1e6bd3b7b1579b5eaeab" role="tabpanel" aria-labelledby="R-tab-id-0d83f30ede9f1e6bd3b7b1579b5eaeab-tab"
+      id="R-tab-id-5c11bce65a4b55f8eb05fe0bbdde6f2f" role="tabpanel" aria-labelledby="R-tab-id-5c11bce65a4b55f8eb05fe0bbdde6f2f-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1471,7 +1477,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-739d7f12c74dd5a81ed5de9e9fbffe4d" role="tabpanel" aria-labelledby="R-tab-id-739d7f12c74dd5a81ed5de9e9fbffe4d-tab"
+      id="R-tab-id-09d75f65ee59ff96d05b1d0d466ee0d4" role="tabpanel" aria-labelledby="R-tab-id-09d75f65ee59ff96d05b1d0d466ee0d4-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1480,7 +1486,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-4bf4d1f6e6b20fa7d9bdc628c9a8f300" role="tabpanel" aria-labelledby="R-tab-id-4bf4d1f6e6b20fa7d9bdc628c9a8f300-tab"
+      id="R-tab-id-e503f4de56ad13b4a8eaffd2b77f104f" role="tabpanel" aria-labelledby="R-tab-id-e503f4de56ad13b4a8eaffd2b77f104f-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1496,24 +1502,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <p>to</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-42ad87bdd27f3c0b43f4f7ece4979f2a">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-42ad87bdd27f3c0b43f4f7ece4979f2a">
+    <div class="tab-nav-title" id="R-tabs-title-899cbaed95d027d20e0be733e2b28cf6">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-899cbaed95d027d20e0be733e2b28cf6">
       <button
-        role="tab" id="R-tab-id-b2d602e0dbe123dff63a56a3ae14615d-tab" aria-controls="R-tab-id-b2d602e0dbe123dff63a56a3ae14615d" aria-selected="true"
+        role="tab" id="R-tab-id-05575b9e4bdd1fe417fd519b6d660dbd-tab" aria-controls="R-tab-id-05575b9e4bdd1fe417fd519b6d660dbd" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-ec4efd4ff63ba7f9c442f92790032b7d-tab" aria-controls="R-tab-id-ec4efd4ff63ba7f9c442f92790032b7d" aria-selected="false"
+        role="tab" id="R-tab-id-f64d40f9304fd38ee54a520ce3866f2b-tab" aria-controls="R-tab-id-f64d40f9304fd38ee54a520ce3866f2b" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-499e9de6274a9e97de64e7532def4503-tab" aria-controls="R-tab-id-499e9de6274a9e97de64e7532def4503" aria-selected="false"
+        role="tab" id="R-tab-id-7abcdc4f52e22f7b36a74d7d260e354a-tab" aria-controls="R-tab-id-7abcdc4f52e22f7b36a74d7d260e354a" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1523,7 +1529,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b2d602e0dbe123dff63a56a3ae14615d" role="tabpanel" aria-labelledby="R-tab-id-b2d602e0dbe123dff63a56a3ae14615d-tab"
+      id="R-tab-id-05575b9e4bdd1fe417fd519b6d660dbd" role="tabpanel" aria-labelledby="R-tab-id-05575b9e4bdd1fe417fd519b6d660dbd-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1533,7 +1539,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-ec4efd4ff63ba7f9c442f92790032b7d" role="tabpanel" aria-labelledby="R-tab-id-ec4efd4ff63ba7f9c442f92790032b7d-tab"
+      id="R-tab-id-f64d40f9304fd38ee54a520ce3866f2b" role="tabpanel" aria-labelledby="R-tab-id-f64d40f9304fd38ee54a520ce3866f2b-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1543,7 +1549,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-499e9de6274a9e97de64e7532def4503" role="tabpanel" aria-labelledby="R-tab-id-499e9de6274a9e97de64e7532def4503-tab"
+      id="R-tab-id-7abcdc4f52e22f7b36a74d7d260e354a" role="tabpanel" aria-labelledby="R-tab-id-7abcdc4f52e22f7b36a74d7d260e354a-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1866,12 +1872,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Support for the great <a href="https://github.com/estruyf/vscode-front-matter" rel="external" target="_self">VSCode Front Matter CMS extension</a> which provides on-premise CMS capabilties to Hugo.</p>
 <p>The theme provides Front Matter CMS snippets for its shortcodes. Currently only English and German is supported. Put a reference into your <code>frontmatter.json</code> like this</p>
-<div class="tab-panel" data-tab-group="R-tabs-1bfa40a8ba318db73db0b313a8fc890c">
+<div class="tab-panel" data-tab-group="R-tabs-6efa3a518191ac4259a587e828877368">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-017265ea93f2b05724f727656155a967-tab" aria-controls="R-tab-id-017265ea93f2b05724f727656155a967" aria-selected="true"
+        role="tab" id="R-tab-id-13240ea24c35991c277189bd64fa0812-tab" aria-controls="R-tab-id-13240ea24c35991c277189bd64fa0812" aria-selected="true"
         data-tab-item="R-tab-42a431011ae2471d003574e031c3356a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -1881,7 +1887,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-017265ea93f2b05724f727656155a967" role="tabpanel" aria-labelledby="R-tab-id-017265ea93f2b05724f727656155a967-tab"
+      id="R-tab-id-13240ea24c35991c277189bd64fa0812" role="tabpanel" aria-labelledby="R-tab-id-13240ea24c35991c277189bd64fa0812-tab"
       data-tab-item="R-tab-42a431011ae2471d003574e031c3356a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1910,12 +1916,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The theme removed the popular <a href="https://jquery.com" rel="external" target="_self">jQuery</a> library from its distribution.</p>
 <p>In case you made changes to the theme that are depending on this library you can place a copy of jQuery into your <code>static/js</code> directory and load it from your own <code>layouts/partials/custom-header.html</code> like this:</p>
-<div class="tab-panel" data-tab-group="R-tabs-6675bc72c77f6581ed41f2f688756c6d">
+<div class="tab-panel" data-tab-group="R-tabs-0c4221755248331cb076681e856100af">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-b9343feeccfe71c5444c21dc643cd7ac-tab" aria-controls="R-tab-id-b9343feeccfe71c5444c21dc643cd7ac" aria-selected="true"
+        role="tab" id="R-tab-id-9209ea8cf9f523b5c1b2442407caa0dc-tab" aria-controls="R-tab-id-9209ea8cf9f523b5c1b2442407caa0dc" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -1925,7 +1931,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b9343feeccfe71c5444c21dc643cd7ac" role="tabpanel" aria-labelledby="R-tab-id-b9343feeccfe71c5444c21dc643cd7ac-tab"
+      id="R-tab-id-9209ea8cf9f523b5c1b2442407caa0dc" role="tabpanel" aria-labelledby="R-tab-id-9209ea8cf9f523b5c1b2442407caa0dc-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1986,21 +1992,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-2dbd3af1836d9cc9a5f3c27834efc8ce-tab" aria-controls="R-tab-id-2dbd3af1836d9cc9a5f3c27834efc8ce" aria-selected="true"
+        role="tab" id="R-tab-id-871331ec421dee3322525bb2afaed577-tab" aria-controls="R-tab-id-871331ec421dee3322525bb2afaed577" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-ef0145a470b49cfa75617e19f5eb89ee-tab" aria-controls="R-tab-id-ef0145a470b49cfa75617e19f5eb89ee" aria-selected="false"
+        role="tab" id="R-tab-id-dbc552be299706ec66f6e11fecf01d30-tab" aria-controls="R-tab-id-dbc552be299706ec66f6e11fecf01d30" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-b3b079e7406ca676bb7324529f63d480-tab" aria-controls="R-tab-id-b3b079e7406ca676bb7324529f63d480" aria-selected="false"
+        role="tab" id="R-tab-id-cd6f8484d650ec114d8ff7c855e22406-tab" aria-controls="R-tab-id-cd6f8484d650ec114d8ff7c855e22406" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -2010,7 +2016,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2dbd3af1836d9cc9a5f3c27834efc8ce" role="tabpanel" aria-labelledby="R-tab-id-2dbd3af1836d9cc9a5f3c27834efc8ce-tab"
+      id="R-tab-id-871331ec421dee3322525bb2afaed577" role="tabpanel" aria-labelledby="R-tab-id-871331ec421dee3322525bb2afaed577-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2025,7 +2031,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-ef0145a470b49cfa75617e19f5eb89ee" role="tabpanel" aria-labelledby="R-tab-id-ef0145a470b49cfa75617e19f5eb89ee-tab"
+      id="R-tab-id-dbc552be299706ec66f6e11fecf01d30" role="tabpanel" aria-labelledby="R-tab-id-dbc552be299706ec66f6e11fecf01d30-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2039,7 +2045,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-b3b079e7406ca676bb7324529f63d480" role="tabpanel" aria-labelledby="R-tab-id-b3b079e7406ca676bb7324529f63d480-tab"
+      id="R-tab-id-cd6f8484d650ec114d8ff7c855e22406" role="tabpanel" aria-labelledby="R-tab-id-cd6f8484d650ec114d8ff7c855e22406-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2063,21 +2069,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-5912bec1a87a81dfc23d05de2635c263-tab" aria-controls="R-tab-id-5912bec1a87a81dfc23d05de2635c263" aria-selected="true"
+        role="tab" id="R-tab-id-89a7756d5a81f1c692a4ccc5feea77fa-tab" aria-controls="R-tab-id-89a7756d5a81f1c692a4ccc5feea77fa" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-e42abe0a68246c4f7085539e53319d14-tab" aria-controls="R-tab-id-e42abe0a68246c4f7085539e53319d14" aria-selected="false"
+        role="tab" id="R-tab-id-d549bf3f06406b8e975386096a3265a7-tab" aria-controls="R-tab-id-d549bf3f06406b8e975386096a3265a7" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7ec5a78325f94ec809efb83f7d551fb6-tab" aria-controls="R-tab-id-7ec5a78325f94ec809efb83f7d551fb6" aria-selected="false"
+        role="tab" id="R-tab-id-c12d9e73e5d3f2b33ddf9742e5b04e92-tab" aria-controls="R-tab-id-c12d9e73e5d3f2b33ddf9742e5b04e92" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -2087,7 +2093,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5912bec1a87a81dfc23d05de2635c263" role="tabpanel" aria-labelledby="R-tab-id-5912bec1a87a81dfc23d05de2635c263-tab"
+      id="R-tab-id-89a7756d5a81f1c692a4ccc5feea77fa" role="tabpanel" aria-labelledby="R-tab-id-89a7756d5a81f1c692a4ccc5feea77fa-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2100,7 +2106,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-e42abe0a68246c4f7085539e53319d14" role="tabpanel" aria-labelledby="R-tab-id-e42abe0a68246c4f7085539e53319d14-tab"
+      id="R-tab-id-d549bf3f06406b8e975386096a3265a7" role="tabpanel" aria-labelledby="R-tab-id-d549bf3f06406b8e975386096a3265a7-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2113,7 +2119,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-7ec5a78325f94ec809efb83f7d551fb6" role="tabpanel" aria-labelledby="R-tab-id-7ec5a78325f94ec809efb83f7d551fb6-tab"
+      id="R-tab-id-c12d9e73e5d3f2b33ddf9742e5b04e92" role="tabpanel" aria-labelledby="R-tab-id-c12d9e73e5d3f2b33ddf9742e5b04e92-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2134,21 +2140,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-7dca933aea1da44b27ed01c6948ed529-tab" aria-controls="R-tab-id-7dca933aea1da44b27ed01c6948ed529" aria-selected="true"
+        role="tab" id="R-tab-id-2f443497c35b2e095393e8d92be920e5-tab" aria-controls="R-tab-id-2f443497c35b2e095393e8d92be920e5" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-dfe2ae84c27a9ca1229c9e3ba78e0df2-tab" aria-controls="R-tab-id-dfe2ae84c27a9ca1229c9e3ba78e0df2" aria-selected="false"
+        role="tab" id="R-tab-id-57dc0265b7f443c15937acfe3c477781-tab" aria-controls="R-tab-id-57dc0265b7f443c15937acfe3c477781" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-9d8c885bcfa9a1b50e5cf1da4a8e6c50-tab" aria-controls="R-tab-id-9d8c885bcfa9a1b50e5cf1da4a8e6c50" aria-selected="false"
+        role="tab" id="R-tab-id-698afd097283ef5b1a1d2cfb1c7e4243-tab" aria-controls="R-tab-id-698afd097283ef5b1a1d2cfb1c7e4243" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -2158,7 +2164,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7dca933aea1da44b27ed01c6948ed529" role="tabpanel" aria-labelledby="R-tab-id-7dca933aea1da44b27ed01c6948ed529-tab"
+      id="R-tab-id-2f443497c35b2e095393e8d92be920e5" role="tabpanel" aria-labelledby="R-tab-id-2f443497c35b2e095393e8d92be920e5-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2168,7 +2174,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-dfe2ae84c27a9ca1229c9e3ba78e0df2" role="tabpanel" aria-labelledby="R-tab-id-dfe2ae84c27a9ca1229c9e3ba78e0df2-tab"
+      id="R-tab-id-57dc0265b7f443c15937acfe3c477781" role="tabpanel" aria-labelledby="R-tab-id-57dc0265b7f443c15937acfe3c477781-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2178,7 +2184,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-9d8c885bcfa9a1b50e5cf1da4a8e6c50" role="tabpanel" aria-labelledby="R-tab-id-9d8c885bcfa9a1b50e5cf1da4a8e6c50-tab"
+      id="R-tab-id-698afd097283ef5b1a1d2cfb1c7e4243" role="tabpanel" aria-labelledby="R-tab-id-698afd097283ef5b1a1d2cfb1c7e4243-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2348,24 +2354,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
 <p>You can revert this behavior by overwriting the <code>print</code> output format setting in your <code>hugo.toml</code>to:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-c7f00d17984179aeaaa20dac13f0f446">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-c7f00d17984179aeaaa20dac13f0f446">
+    <div class="tab-nav-title" id="R-tabs-title-e6066f3a6ce7fb0d9b7afac7e1f80653">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-e6066f3a6ce7fb0d9b7afac7e1f80653">
       <button
-        role="tab" id="R-tab-id-45675585ef4022ffe500fe7e9228d9d6-tab" aria-controls="R-tab-id-45675585ef4022ffe500fe7e9228d9d6" aria-selected="true"
+        role="tab" id="R-tab-id-65f902114a7199c65a55433bc805d78f-tab" aria-controls="R-tab-id-65f902114a7199c65a55433bc805d78f" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-b46e7a30fdac6ee38cfe8c6954baf082-tab" aria-controls="R-tab-id-b46e7a30fdac6ee38cfe8c6954baf082" aria-selected="false"
+        role="tab" id="R-tab-id-1104fa73b990e91d3b79dff7292abdc3-tab" aria-controls="R-tab-id-1104fa73b990e91d3b79dff7292abdc3" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-fca75f00c8284dff257b25a5de150334-tab" aria-controls="R-tab-id-fca75f00c8284dff257b25a5de150334" aria-selected="false"
+        role="tab" id="R-tab-id-5712cfefa4b203e3b7d4edbbb82d1727-tab" aria-controls="R-tab-id-5712cfefa4b203e3b7d4edbbb82d1727" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -2375,7 +2381,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-45675585ef4022ffe500fe7e9228d9d6" role="tabpanel" aria-labelledby="R-tab-id-45675585ef4022ffe500fe7e9228d9d6-tab"
+      id="R-tab-id-65f902114a7199c65a55433bc805d78f" role="tabpanel" aria-labelledby="R-tab-id-65f902114a7199c65a55433bc805d78f-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2390,7 +2396,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-b46e7a30fdac6ee38cfe8c6954baf082" role="tabpanel" aria-labelledby="R-tab-id-b46e7a30fdac6ee38cfe8c6954baf082-tab"
+      id="R-tab-id-1104fa73b990e91d3b79dff7292abdc3" role="tabpanel" aria-labelledby="R-tab-id-1104fa73b990e91d3b79dff7292abdc3-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2405,7 +2411,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/5/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-fca75f00c8284dff257b25a5de150334" role="tabpanel" aria-labelledby="R-tab-id-fca75f00c8284dff257b25a5de150334-tab"
+      id="R-tab-id-5712cfefa4b203e3b7d4edbbb82d1727" role="tabpanel" aria-labelledby="R-tab-id-5712cfefa4b203e3b7d4edbbb82d1727-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">

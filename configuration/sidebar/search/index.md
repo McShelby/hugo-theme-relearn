@@ -111,6 +111,27 @@ For example, if you set `search.page.type = 'custom_search_layout'`, you would n
 
 This allows you to maintain the search functionality while adapting its appearance to match your specific design requirements.
 
+## Printing the Search Results
+
+If your home page has [print support](configuration/sitemanagement/outputformats#print-support) activated, your readers can print their search results as well. The search page then shows the print button, and the printed page lists the results for the current search term without the search form.
+
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The dedicated search page is not part of your content, so the `outputs` of your `hugo.toml` or of a front matter don't apply to it. If you want to decide independently of your home page, set its output formats with `search.page.outputs`.
+
+To never offer printing the search results:
+
+{{< multiconfig file=hugo section=params >}}
+search.page.outputs = [ 'html' ]
+{{< /multiconfig >}}
+
+To always offer it:
+
+{{< multiconfig file=hugo section=params >}}
+search.page.outputs = [ 'html', 'print' ]
+{{< /multiconfig >}}
+
+> [!note]
+> As long as the option is not set, the print version of the search page is always written to your site, as the theme can not tell at that point whether your home page can be printed. It is just not offered to your readers if it can't.
+
 ## Migration from Relearn 7
 
 In previous versions of the theme, search configuration used flat parameters. The current version uses a more structured approach with a `search` namespace.

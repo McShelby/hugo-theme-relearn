@@ -1,0 +1,4 @@
++++
+title = 'Fruits (hidden)'
++++
+{{< piratify >}}

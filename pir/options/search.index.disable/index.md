@@ -1,0 +1,2 @@
+# Option :: Search.index.disable
+

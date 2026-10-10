@@ -1,0 +1,3 @@
+# Categorrry :: Explanation
+
+{{< piratify >}}

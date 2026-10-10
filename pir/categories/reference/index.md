@@ -1,0 +1,3 @@
+# Categorrry :: Reference
+
+{{< piratify >}}
