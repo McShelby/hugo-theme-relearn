@@ -3,7 +3,22 @@
 
 {{- define "partials/inline/article-walker" }}
   {{- $html := "" }}
-  {{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+  {{- $pages := slice }}
+  {{- if eq .Kind "taxonomy" }}
+    {{- /* a taxonomy comes with its terms, in the order of its list, which is
+      by the title a term is shown with; a term with its own content file may
+      lack one */}}
+    {{- $entries := slice }}
+    {{- range .Pages }}
+      {{- $entries = $entries | append (dict "title" (lower (partial "title.gotmpl" (dict "page" . "linkTitle" true))) "page" .) }}
+    {{- end }}
+    {{- range sort $entries "title" }}
+      {{- $pages = $pages | append .page }}
+    {{- end }}
+  {{- else if ne .Kind "term" }}
+    {{- /* a term lists its pages but doesn't come with their content */}}
+    {{- $pages = partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+  {{- end }}
   {{- range $pages }}
     {{- if not (partialCached "_relearn/pageIsHidden.gotmpl" . .Path) }}
       {{- $html = printf "%s%s" $html (partialCached "inline/article-walker" . .Path) }}
@@ -17,7 +32,11 @@
   {{- end }}
 
   {{- $article := "" }}
-  {{- if .Title }}
+  {{- if eq .Kind "taxonomy" }}
+    {{- $article = partial "bodys/taxonomy.html" . }}
+  {{- else if eq .Kind "term" }}
+    {{- $article = partial "bodys/term.html" . }}
+  {{- else if .Title }}
 	  {{- $article = .Render "article" }}
   {{- end }}
   {{- if len $html }}
