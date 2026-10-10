@@ -146,6 +146,16 @@
     var hint = document.querySelector('.searchhint');
     hint.innerText = '';
     results.textContent = '';
+    // the print version searches for the term it is given with its URL
+    var print = document.querySelector('.topbar-button-print a');
+    if (print) {
+      var printUrl = new URL(print.href);
+      printUrl.searchParams.delete('search-by');
+      if (value.length) {
+        printUrl.searchParams.set('search-by', value);
+      }
+      print.href = printUrl;
+    }
     (async function () {
       var a = await window.relearn.search.adapter.search(value);
       if (a.length) {

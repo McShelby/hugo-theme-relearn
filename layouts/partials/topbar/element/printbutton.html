@@ -5,7 +5,15 @@
 	{{- $format := .OutputFormats.Get "print" }}
 	{{- $show := and $format (not (.Param "disablePrintButton")) }}
 	{{- if $show }}
-		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+		{{- if eq . (site.GetPage "_relearn_searchpage") }}
+			{{- /* of the pages of the theme itself only the search page can be
+				printed; without explicit outputs it follows the home page */}}
+			{{- if not (and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.page) site.Params.search.page.outputs) }}
+				{{- $show = site.Home.OutputFormats.Get "print" }}
+			{{- end }}
+		{{- else }}
+			{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+		{{- end }}
 	{{- end }}
 	{{- if $show }}
 		{{- $href := printf "%s?format=print" .Path }}

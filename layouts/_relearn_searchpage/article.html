@@ -5,7 +5,8 @@
   </header>
 {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
 
-<search>
+{{- /* the print version shows what was searched for, but nothing is to be operated there */}}
+<search{{ if eq (.Store.Get "relearnOutputFormat") "print" }} inert{{ end }}>
   <form>
     <div class="searchform">
       <input data-search-input id="R-search-by-detail" class="search-by" name="search-by" type="search" aria-label="{{ T "Search" }}" placeholder="{{ T "Search-placeholder" }}">
