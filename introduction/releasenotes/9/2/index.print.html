@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+efedfeaf3e4561c4dea470039d6d011fafc79c8d">
+    <meta name="generator" content="Relearn 9.1.0+ef1cfdcdad6f86d00c23d6931afa2a947bffef16">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.2.0 (XXXX-XX-XX) Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
 All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
@@ -38,7 +38,7 @@ All that history left its marks, and the source code still carries a lot of it a
 Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
 What you should do now
 No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
-    <meta itemprop="wordCount" content="1703">
+    <meta itemprop="wordCount" content="1744">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.2 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/2/index.html" rel="alternate" hreflang="x-default">
@@ -53,7 +53,7 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.c00d178f27b18dbcf14fa0d3f7e871d64f572ed68dc527208be34c6051e95e8b.js"
+      "indexFile": "searchindex.en.min.b68d22c696a5a054bcf87a96bec51326a83bc57ba7d1da490c9fd7f026801078.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -65,7 +65,7 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.a7e99b370c6d7e749e131c9beb294008f75161c43421495336ab9ea44d55506c.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.8cd3fb0d94b35d653c73be5b6192808bb4d4b49792cbf9c092307d30edc9487f.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.fde31a3bc19a193360c646fd67b62d0fb98ae684449d1922b5ac0ed941277607.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
@@ -265,6 +265,10 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The front matter <code>params.pages</code> replaces <code>params.children</code> and is now honored on every page, not only on taxonomy and term pages. Together with Hugo&rsquo;s <code>cascade</code>, you can give all listings of a subtree the same look.</p>
 <p>The former <code>params.children</code> is still honored as long as the <code>children</code> shortcode exists, but using it now prints a warning.</p>
+</li>
+<li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> How the logo and title are arranged is now set with the new <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#setting-layout-of-title--logo"><code>logo.layout</code></a> option.</p>
+<p>The <code>logo.direction</code> option is deprecated. It still works, but the theme warns you if you use it. Replace <code>direction='row'</code> by <code>layout='sidebar-row'</code> and <code>direction='column'</code> by <code>layout='sidebar-column'</code>.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The elements of the topbar, like its buttons, are now <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#defining-topbar-elements">configured</a> with the <code>topbarstart</code>, <code>topbarmiddle</code>, <code>topbarend</code> and <code>topbarmore</code> options, the same way as the sidebar menus. The breadcrumb is now an element of the new <em>middle</em> area. You can set them in your <code>hugo.toml</code> or in the front matter of your pages.</p>

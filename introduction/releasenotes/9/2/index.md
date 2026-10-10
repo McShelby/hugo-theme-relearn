@@ -68,6 +68,10 @@
 
   The former `params.children` is still honored as long as the `children` shortcode exists, but using it now prints a warning.
 
+- {{% badge style="change" %}}Change{{% /badge %}} How the logo and title are arranged is now set with the new [`logo.layout`](configuration/branding/logo#setting-layout-of-title--logo) option.
+
+  The `logo.direction` option is deprecated. It still works, but the theme warns you if you use it. Replace `direction='row'` by `layout='sidebar-row'` and `direction='column'` by `layout='sidebar-column'`.
+
 - {{% badge style="change" %}}Change{{% /badge %}} The elements of the topbar, like its buttons, are now [configured](configuration/customization/topbar#defining-topbar-elements) with the `topbarstart`, `topbarmiddle`, `topbarend` and `topbarmore` options, the same way as the sidebar menus. The breadcrumb is now an element of the new _middle_ area. You can set them in your `hugo.toml` or in the front matter of your pages.
 
   Redefining an area by a template in `layouts/partials/topbar/area` and calling the theme's templates in `layouts/partials/topbar/button` is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in `layouts/partials/topbar/element`. See the [migration instructions](configuration/customization/topbar#migration-for-relearn-9).
