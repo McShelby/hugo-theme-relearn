@@ -1,6 +1,6 @@
 # Version 9.2
 
-## 9.2.0 (XXXX-XX-XX) {#9-2-0}
+## 9.2.0 (2026-10-10) {#9-2-0}
 
 > [!primary]+ Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage
 >
