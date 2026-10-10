@@ -64,18 +64,18 @@ The logo inherits its colors from the menu header by default. You can customize 
 
 The `--LOGO-LINK-color` variable sets the color of the logo link text, while `--LOGO-LINK-HOVER-color` sets the color when hovering over the logo.
 
-### Setting Direction of Title & Logo
+### Setting Layout of Title & Logo
 
-You can control the layout direction of the logo and title:
+You can control how the logo and title are arranged:
 
 {{< multiconfig file=hugo section=params >}}
-logo = { direction = 'column' }
+logo = { layout = 'sidebar-column' }
 {{< /multiconfig >}}
 
 Valid values are:
 
-- `row` (default) - Logo and title side by side
-- `column` - Logo above title
+- `sidebar-row` (default) - Logo and title side by side at the top of the menu
+- `sidebar-column` - Logo above title at the top of the menu
 
 ## Changing the Logo
 

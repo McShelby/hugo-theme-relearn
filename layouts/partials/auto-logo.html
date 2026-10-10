@@ -13,11 +13,12 @@
 {{- /* next to a title the image is decorative, without one it has to name the link */}}
 {{- $alt := cond (gt (len $title) 0) "" site.Title }}
 
-{{- $direction := site.Params.logo.direction | default "row" }}
+{{- $themevariantsdata := partialCached "_relearn/themeVariants.gotmpl" site.Home }}
+{{- $layout := $themevariantsdata.logolayout }}
 
 {{- /* Build map of variant logos */}}
 {{- $logoMap := dict }}
-{{- $themevariants := (partialCached "_relearn/themeVariants.gotmpl" site.Home).variants }}
+{{- $themevariants := $themevariantsdata.variants }}
 {{- range $themevariants }}
   {{- if and (isset . "logo") (not (isset . "auto")) }}
     {{- $logoMap = merge $logoMap (dict .identifier (dict "src" .logo.src "variant" .identifier)) }}
@@ -40,7 +41,7 @@
 
 {{- /* Render logo container with all variants */}}
 {{- if or $logoGroups $title }}
-        <a id="R-logo" class="R-default direction-{{ $direction }}{{ if $manualWrap }} manual-wrap{{ end }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
+        <a id="R-logo" class="R-default layout-{{ $layout }}{{ if $manualWrap }} manual-wrap{{ end }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
   {{- range $logoSrc, $variants := $logoGroups }}
     {{- $variantList := delimit $variants " " }}
           <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">

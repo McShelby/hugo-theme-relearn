@@ -31,6 +31,23 @@ Logo Detection:
 {{- end }}
 
 {{- /*
+Logo Layout Detection:
+- Detect where logo and title are placed and how they are arranged there from
+  site.Params.logo.layout
+*/}}
+{{- $defaultLogoLayout := "" }}
+{{- with site.Params.logo }}
+	{{- $defaultLogoLayout = .layout | default "" }}
+	{{- with .direction }}
+		{{- warnf "DEPRECATED option 'logo.direction=%s' found, use 'logo.layout=sidebar-%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" . . }}
+		{{- if not $defaultLogoLayout }}
+			{{- $defaultLogoLayout = printf "sidebar-%s" . }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- $defaultLogoLayout = $defaultLogoLayout | default "sidebar-row" }}
+
+{{- /*
 Unification run:
 - convert from old forms to slice of dicts
 - add default name property
@@ -319,7 +336,7 @@ Write yet non-dynamic stuff
 	{{- $url := .RelPermalink }}
 {{- end }}
 
-{{- return (dict "variants" $themevariants "css" $css "integrity" $integrity) }}
+{{- return (dict "variants" $themevariants "logolayout" $defaultLogoLayout "css" $css "integrity" $integrity) }}
 
 {{- define "partials/inline/get-theme-details" }}
 	{{- $themevariant := .themevariant }}
