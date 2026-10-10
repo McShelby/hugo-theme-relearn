@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.1.0+0af4319b67236bb385def8054c0f6ca21b549f2f">
+    <meta name="generator" content="Relearn 9.1.0+4cb2e8292e779a94b0c9c2e73794110b5ec5936d">
     <meta name="description" content="6.4.1 (2024-10-11) Fixes [bug] highlight: remove additional newlines from code if copied from cursor selection #925 6.4.0 (2024-09-12) Enhancements [feature] notice: support user defined box styles #913 [feature] frontmatter: add expanded parameter for shortcodes #911 [feature] resources: add expanded parameter #908 [feature][change] notice: collapse borders if single code block is displayed #906 Fixes [bug] include: don’t erroneously remove headings if hidefirstheading=true #914 Maintenance [task] build: add link for migration into changelog #915 [task] shortcodes: fix whitespace issues #907 6.3.0 (2024-09-03) Enhancements [feature] theme: support Obsidian styled alerts #903 [feature] notice: add expander to box title #901 Fixes [bug] children: fix sort parameter #898 [bug] mermaid: classDiagram breaks when using «interface» #895 [bug] toc: don’t show toc button if empty #893 Maintenance [task] mermaid: update to 11.1.0 #904 [task][change] expand: rename open parameter to expanded #902 [task] i18n: update Arabic translation #900 6.2.0 (2024-08-26) Enhancements [feature][change] anchor: add option to scroll into view #886 [feature] theme: support for GitHub styled alerts #885 Fixes [bug] arrownav: avoid rude event handling for form elements #887 Maintenance [task] 404: move styles to separate file #889 6.1.1 (2024-08-02) Fixes [bug] link: link resolving stopped working in certain configurations #882 6.1.0 (2024-08-02) Enhancements [feature][change] assetbuster: use asset buster for all resources #875 [feature] theme: sync to Hugo changes for PublishDate #872 [feature] theme: allow errorlevel override on page level #870 [feature] relref: provide shortcodes to lift certain restrictions #864 [feature] openapi: adjust to Hugo’s build-in link render hook #860 [feature][change] include: adjust to Hugo’s build-in link render hook #859 Fixes [bug] variant: auto variant references potentially wrong chroma style #873 [bug] schema: sync to Hugo changes for LanguageCode #866 [bug] taxonomy: simplify code #852 [bug] alias: index.html has displays error in content #851 Maintenance [task] icon: update Font Awesome to 6.6.0 #881 [task] math: update MathJax to 3.2.2 #880 [task] openapi: update swagger-ui to 5.17.14 #879 [task] mermaid: update to 10.9.1 #878 [task] theme: remove special cases for LanguageCode #861 [task] link: adjust to Hugo’s build-in code #858 [task] image: adjust to Hugo’s build-in code #857 [task] opengraph: sync to Hugo’s implementation #856 [task] i18n: improve file naming #848 6.0.0 (2024-04-27) Enhancements [feature][breaking] theme: unify description #845 [feature] schema: add schema support in meta data #844 [feature] include: use Hugo’s resources #835 [feature] math: allow to work with Hugo’s passthrough configuration #832 [feature] i18n: add Romanian translation #828 [feature][breaking] menu: remove menuTitle frontmatter #714 [feature][breaking] theme: end support for Internet Explorer 11 #584 Fixes [bug] frontmatter: move frontmatter config for docs out of root #843 [bug] images: color outline using primary color #838 [bug][breaking] variant: avoid Hugo permission errors on build #831 [bug] theme: unwanted paragraph break with AsciiDoc #829 Maintenance [task][breaking] swagger: remove shortcode #847 [task][breaking] search: remove JSON outputformat for search index #846 [task] theme: sync to Hugo’s implementation #841 [task][change] fontawesome: update to 6.5.2 #834">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -32,9 +32,9 @@
     <link href="/hugo-theme-relearn/introduction/changelog/6/index.source.md" rel="alternate" type="text/markdown" title="Version 6 :: Hugo Relearn Theme">
     <link href="/hugo-theme-relearn/images/logo.d30ab0425821f45713322a73c1eeb192e311689b03371519abbe061a24d1201e.svg" rel="icon" type="image/svg+xml">
     <link href="/hugo-theme-relearn/css/auto-complete/auto-complete.min.78b49c23f59ffb08554285843ed4c841484fe34c489058b2991edc027cdd47fc.css" rel="stylesheet">
-    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.31ad245050e868e7ddfebbababe4274a9d4a5fddfc3815b9529de991170d1c2e.js" defer></script>
+    <script src="/hugo-theme-relearn/js/auto-complete/auto-complete.min.9657edd589a1ca6962a3cf03df5aa17f16f2c67350aea0a84dddbd8d5698316f.js" defer></script>
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
-    <script src="/hugo-theme-relearn/js/search.min.bf943812c9de778f5420eb962af7493f30ff82505b051e3265be72c31221a38c.js" defer></script>
+    <script src="/hugo-theme-relearn/js/search.min.8b28fd162bf46b639ad4864578cd9c760be25e09bb92fdd150e1df928bf01070.js" defer></script>
     <script type="application/json" id="R-search-config">{
       "indexFile": "searchindex.en.min.7da077d72c72c49caf5974d07092615586997d191035bc2800b3e88c495c4d72.js"
     }</script>
@@ -48,7 +48,7 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.7103ee019ebec32bc360ffbd4205d5c7b563c356666c724316f48f87bf36598c.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/theme.min.a7e99b370c6d7e749e131c9beb294008f75161c43421495336ab9ea44d55506c.css" rel="stylesheet">
     <link href="/hugo-theme-relearn/css/format-print.min.fde31a3bc19a193360c646fd67b62d0fb98ae684449d1922b5ac0ed941277607.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
@@ -350,7 +350,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.5753e9e9d0d53233f889e3e258c4c45d0dfd93d4b4251c2ad062b5731c69f1df.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.f66b851115ea46f239f782bd19e65c09786103c8cb054f72664b912bc561d1c8.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
