@@ -3187,7 +3187,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
   position: relative;
 }
 
-#R-sidebar ul.collapsible-menu > li > input {
+#R-sidebar ul.collapsible-menu > li > label > input {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
@@ -3195,21 +3195,23 @@ article ul > li > span > input[type='checkbox']:checked::before {
   /* nothing to see but the focus outline: a square around the chevron, in the
      middle of the height of the entry */
   height: 1rem;
+  inset-inline-start: 0;
   margin-bottom: 0;
   margin-inline-end: 0;
   margin-inline-start: -0.075rem;
   margin-top: 0.25rem;
   position: absolute;
+  top: 0;
   width: 1rem;
   z-index: 1;
 }
-#R-sidebar ul.space.collapsible-menu li > input {
+#R-sidebar ul.space.collapsible-menu li > label > input {
   margin-top: 0.375rem;
 }
-#R-sidebar ul.morespace.collapsible-menu li > input {
+#R-sidebar ul.morespace.collapsible-menu li > label > input {
   margin-top: 0.5rem;
 }
-#R-sidebar ul.collapsible-menu.enlarge > li > input {
+#R-sidebar ul.collapsible-menu.enlarge > li > label > input {
   margin-top: 0.75rem;
 }
 
@@ -3288,7 +3290,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
    entry as that row grows; it hangs on the lower edge of the row, so it moves
    along with the entries it pushes down */
 
-#R-sidebar ul.collapsible-menu > li:has(> input) {
+#R-sidebar ul.collapsible-menu > li:has(> label > input) {
   /* while it grows, the row of the submenu is shorter than the room the entry
      has for it; what is left must neither stretch the row of the entry itself
      nor end up below the submenu */
@@ -3299,7 +3301,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
   transition: grid-template-rows 0.175s ease;
 }
 
-#R-sidebar ul.collapsible-menu > li > input + label ~ ul {
+#R-sidebar ul.collapsible-menu > li > label:has(> input) ~ ul {
   align-self: end;
   display: block;
   min-height: 0;
@@ -3315,7 +3317,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
 
 /* closed menu */
 
-#R-sidebar ul.collapsible-menu > li > input:not(:checked) + label ~ ul {
+#R-sidebar ul.collapsible-menu > li > label:has(> input:not(:checked)) ~ ul {
   /* the submenu reaches out of the row at the top, so it is cut off from there
      by as much as the row is short of it; never to the sides, where the active
      entry leaves the submenu */
@@ -3334,14 +3336,14 @@ article ul > li > span > input[type='checkbox']:checked::before {
     visibility 0s 0.175s;
   visibility: hidden;
 }
-#R-sidebar #R-homelinks ul.collapsible-menu > li > input:not(:checked) + label ~ ul {
+#R-sidebar #R-homelinks ul.collapsible-menu > li > label:has(> input:not(:checked)) ~ ul {
   margin-bottom: 0;
   margin-top: 0;
 }
 
 /* the closed chevron keeps a bit of distance to the border of the browser; in
    RTL it is the mirroring that takes it to the other side of its box */
-#R-sidebar ul.collapsible-menu > li > input + label > .fa-chevron-right {
+#R-sidebar ul.collapsible-menu > li > label:has(> input) > .fa-chevron-right {
   display: inline-block;
   text-align: right;
   transition: transform 0.175s ease;
@@ -3349,11 +3351,11 @@ article ul > li > span > input[type='checkbox']:checked::before {
 
 /* open menu  */
 
-#R-sidebar ul.collapsible-menu > li:has(> input:checked) {
+#R-sidebar ul.collapsible-menu > li:has(> label > input:checked) {
   grid-template-rows: auto 1fr;
 }
 
-#R-sidebar ul.collapsible-menu > li > input:checked + label ~ ul {
+#R-sidebar ul.collapsible-menu > li > label:has(> input:checked) ~ ul {
   /* there is room for the focus outline of the entries at its edges, just a
      bit at the top, as that much shows above the row while rolling out; its
      visibility stays inherited, as it may sit in a closed menu */
@@ -3367,7 +3369,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
 
 /* the chevron is not in the middle of the box we rotate, so it is taken down
    by the rotation and we bring it back up */
-#R-sidebar ul.collapsible-menu > li > input:checked + label > .fa-chevron-right {
+#R-sidebar ul.collapsible-menu > li > label:has(> input:checked) > .fa-chevron-right {
   transform: translateY(-0.125em) rotate(90deg);
 }
 
@@ -3375,10 +3377,10 @@ article ul > li > span > input[type='checkbox']:checked::before {
    as well, so the chevron turns instead of flipping over; pointing down, it
    looks the same mirrored or not */
 
-html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input + label > i.fa-chevron-right {
+html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > label:has(> input) > i.fa-chevron-right {
   transform: scaleX(-1) translateY(0) rotate(0deg);
 }
-html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > input:checked + label > i.fa-chevron-right {
+html[dir='rtl'] #R-sidebar ul.collapsible-menu > li > label:has(> input:checked) > i.fa-chevron-right {
   transform: scaleX(-1) translateY(-0.125em) rotate(90deg);
 }
 

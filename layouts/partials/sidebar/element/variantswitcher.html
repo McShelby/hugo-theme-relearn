@@ -16,12 +16,11 @@
                 <i class="{{ $icon }}" aria-hidden="true"></i>
                 <span>&nbsp;</span>
                 <div class="control-style">
-                  <label class="a11y-only" for="R-select-variant">{{ T "Theme" }}</label>
-                  <select id="R-select-variant">
+                  <select aria-label="{{ T "Theme" }}">
                     {{- $firstvariant := true }}
                     {{- range $themevariants }}
                       {{- $themevariant := . }}
-                    <option id="R-select-variant-{{ $themevariant.identifier }}" value="{{ $themevariant.identifier }}"{{- if $firstvariant }} selected{{ end }}>{{ $themevariant.name }}</option>
+                    <option value="{{ $themevariant.identifier }}"{{- if $firstvariant }} selected{{ end }}>{{ $themevariant.name }}</option>
                       {{- $firstvariant = false }}
                     {{- end }}
                   </select>

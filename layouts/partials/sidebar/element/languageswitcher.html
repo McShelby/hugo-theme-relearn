@@ -10,11 +10,10 @@
                 <i class="{{ $icon }}" aria-hidden="true"></i>
                 <span>&nbsp;</span>
                 <div class="control-style">
-                  <label class="a11y-only" for="R-select-language">{{ T "Language" }}</label>
-                  <select id="R-select-language">
+                  <select aria-label="{{ T "Language" }}">
                     {{- $pageLang := .page.Language.Lang }}
                     {{- range .page.AllTranslations }}
-                    <option id="R-select-language-{{ .Language.Lang }}" value="{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.Locale }}"{{ if eq $pageLang .Language.Lang }} selected data-selected{{ end }}>{{ .Language.Label }}</option>
+                    <option value="{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.Locale }}"{{ if eq $pageLang .Language.Lang }} selected data-selected{{ end }}>{{ .Language.Label }}</option>
                     {{- end }}
                   </select>
                 </div>

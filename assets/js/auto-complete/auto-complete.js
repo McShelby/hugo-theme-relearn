@@ -15,6 +15,10 @@
             - on UP, preventDefault to keep cursor in position
         McShelby/hugo-theme-relearn#1258
             - tell assistive technology about the combobox, its list, its options and their state
+        McShelby/hugo-theme-relearn#1304
+            - name the list by the aria-label of the input, if it has one
+            - number the lists, so their ids don't depend on the id of the input
+            - insert the list into the closest ancestor of the input matching selectorToInsert
 
     Copyright (c) 2014 Simon Steinberger / Pixabay
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
@@ -23,6 +27,7 @@
 
 var autoComplete = (function(){
     // "use strict";
+    var instances = 0;
     function autoComplete(options){
         if (!document.querySelector) return;
 
@@ -78,9 +83,10 @@ var autoComplete = (function(){
             that.last_val = '';
 
             // the input and its suggestions are a combobox and its list
-            that.sc.id = (that.id || 'autocomplete') + '-suggestions';
+            that.sc.id = 'autocomplete-' + (++instances) + '-suggestions';
             that.sc.setAttribute('role', 'listbox');
-            if (that.labels && that.labels.length) that.sc.setAttribute('aria-label', that.labels[0].textContent.replace(/^\s+|\s+$/g, ''));
+            var label = that.getAttribute('aria-label') || (that.labels && that.labels.length ? that.labels[0].textContent.replace(/^\s+|\s+$/g, '') : '');
+            if (label) that.sc.setAttribute('aria-label', label);
             that.setAttribute('role', 'combobox');
             that.setAttribute('aria-autocomplete', 'list');
             that.setAttribute('aria-controls', that.sc.id);
@@ -102,8 +108,9 @@ var autoComplete = (function(){
             };
 
 			var parentElement;
-            if (typeof o.selectorToInsert === "string" && document.querySelector(o.selectorToInsert) instanceof HTMLElement) {
-				parentElement = document.querySelector(o.selectorToInsert);
+            if (typeof o.selectorToInsert === "string") {
+                var insertInto = that.closest(o.selectorToInsert) || document.querySelector(o.selectorToInsert);
+                if (insertInto instanceof HTMLElement) parentElement = insertInto;
 			}
 			that.updateSC = function(resize, next){
                 var rect = that.getBoundingClientRect();
@@ -140,8 +147,8 @@ var autoComplete = (function(){
             }
             addEvent(window, 'resize', that.updateSC);
 
-            if (typeof o.selectorToInsert === "string" && document.querySelector(o.selectorToInsert) instanceof HTMLElement) {
-                document.querySelector(o.selectorToInsert).appendChild(that.sc);
+            if (parentElement) {
+                parentElement.appendChild(that.sc);
             } else {
                 document.body.appendChild(that.sc);
             }
@@ -296,11 +303,7 @@ var autoComplete = (function(){
                 else
                     that.removeAttribute('autocomplete');
                 try {
-                    if (o.selectorToInsert && document.querySelector(o.selectorToInsert).contains(that.sc)) {
-                        document.querySelector(o.selectorToInsert).removeChild(that.sc);
-                    } else {
-                        document.body.removeChild(that.sc);
-                    }
+                    that.sc.parentNode.removeChild(that.sc);
                 } catch (error) {
                     console.log('Destroying error: can\'t find target selector', error);
                     throw error;

@@ -194,33 +194,35 @@
       window.history.replaceState(state, '');
     }
 
-    var status = null;
-    new autoComplete({
-      /* selector for the search box element */
-      selectorToInsert: 'search:has(.searchbox)',
-      selector: '#R-search-by',
-      /* source is the callback to perform the search */
-      source: async function (term, response) {
-        let a = await window.relearn.search.adapter.search(term);
-        response(a);
-        if (status) {
-          status.innerText = resolvePlaceholders(a.length ? window.T_N_results_found : window.T_No_results_found, [term, a.length]);
-        }
-      },
-      /* renderItem displays individual search results */
-      renderItem: function (item, _term) {
-        return renderItem(item).outerHTML;
-      },
-      /* onSelect callback fires when a search suggestion is chosen */
-      onSelect: function (e, term, item) {
-        location.href = item.getAttribute('href');
-        e.preventDefault();
-      },
+    // each search box gets its own suggestions and its own status
+    document.querySelectorAll('.searchbox input.search-by').forEach(function (box) {
+      var status = null;
+      new autoComplete({
+        /* selector for the search box element */
+        selectorToInsert: 'search:has(.searchbox)',
+        selector: box,
+        /* source is the callback to perform the search */
+        source: async function (term, response) {
+          let a = await window.relearn.search.adapter.search(term);
+          response(a);
+          if (status) {
+            status.innerText = resolvePlaceholders(a.length ? window.T_N_results_found : window.T_No_results_found, [term, a.length]);
+          }
+        },
+        /* renderItem displays individual search results */
+        renderItem: function (item, _term) {
+          return renderItem(item).outerHTML;
+        },
+        /* onSelect callback fires when a search suggestion is chosen */
+        onSelect: function (e, term, item) {
+          location.href = item.getAttribute('href');
+          e.preventDefault();
+        },
+      });
+      if (box.sc) {
+        status = initStatus(box.sc);
+      }
     });
-    var box = document.querySelector('#R-search-by');
-    if (box && box.sc) {
-      status = initStatus(box.sc);
-    }
   }
 
   function initSearch() {

@@ -1578,7 +1578,7 @@ function printShortcutHandler(event) {
 }
 
 function showSearch() {
-  var s = document.querySelector('#R-search-by');
+  var s = document.querySelector('.searchbox input.search-by');
   if (!s) {
     return;
   }
@@ -2112,7 +2112,7 @@ function handleHistoryClearer() {
 function handleLanguageSwitcher() {
   document.querySelectorAll('.R-languageswitcher select').forEach(function (select) {
     select.addEventListener('change', function (event) {
-      const url = this.options[`R-select-language-${this.value}`].dataset.url;
+      const url = this.selectedOptions[0].dataset.url;
       this.value = this.querySelector('[data-selected]')?.value ?? select.value;
       window.location = url;
     });
@@ -2133,7 +2133,7 @@ function handleVariantSwitcher() {
 function handleVersionSwitcher() {
   document.querySelectorAll('.R-versionswitcher select').forEach(function (select) {
     select.addEventListener('change', function (event) {
-      const option = this.options[`R-select-version-${this.value}`];
+      const option = this.selectedOptions[0];
       const url = option.dataset.url ?? (option.dataset.abs == 'true' ? '' : window.relearn.relBaseUri) + option.dataset.uri + window.relearn.path;
       this.value = this.querySelector('[data-selected]')?.value ?? select.value;
       window.location = url;
@@ -2801,7 +2801,6 @@ function initVersionIndex(index) {
     index.forEach(function (version) {
       // Create new option element
       var option = document.createElement('option');
-      option.id = 'R-select-version-' + version.value;
       option.value = version.value;
       option.dataset.abs = version.isAbs;
       option.dataset.uri = version.baseURL;

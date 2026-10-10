@@ -11,15 +11,14 @@
                 <i class="{{ $icon }}" aria-hidden="true"></i>
                 <span>&nbsp;</span>
                 <div class="control-style">
-                  <label class="a11y-only" for="R-select-version">{{ T "Version" }}</label>
-                  <select id="R-select-version">
+                  <select aria-label="{{ T "Version" }}">
                     {{- if $pageVersions }}
                     {{- range $pageVersions }}
-                    <option id="R-select-version-{{ .identifier | anchorize }}" value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-url="{{ .url }}"{{ if .isCurrent }} selected data-selected{{ end }}>{{ .title }}</option>
+                    <option value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-url="{{ .url }}"{{ if .isCurrent }} selected data-selected{{ end }}>{{ .title }}</option>
                     {{- end }}
                     {{- else }}
                     {{- range $versions }}
-                    <option id="R-select-version-{{ .identifier | anchorize }}" value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-abs="{{ .isAbs }}" data-uri="{{ .baseURL }}"{{ if eq $pageVersion .identifier }} selected data-selected{{ end }}>{{ .title }}</option>
+                    <option value="{{ .identifier | anchorize }}" data-identifier="{{ .identifier }}" data-abs="{{ .isAbs }}" data-uri="{{ .baseURL }}"{{ if eq $pageVersion .identifier }} selected data-selected{{ end }}>{{ .title }}</option>
                     {{- end }}
                     {{- end }}
                   </select>
