@@ -74,7 +74,7 @@
   {{- end }}
   {{- $entries := "" }}
   {{- with $rootObject }}
-    {{- $entries = partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+    {{- $entries = partial "inline/page-entries" . }}
   {{- end }}
   {{- with and $entries $title }}
           <div class="nav-title padding">{{ . }}</div>
@@ -103,6 +103,19 @@
           </ul>
         </div>
 {{- end }}
+{{- define "partials/inline/page-entries" }}
+  {{- $entries := slice }}
+  {{- if eq .Kind "taxonomy" }}
+    {{- /* a taxonomy shows its terms as its page lists them, so the previous
+      and next buttons walk them in the order of the menu */}}
+    {{- range partialCached "_relearn/pagesEntries.gotmpl" . .Path }}
+      {{- $entries = $entries | append .Page.Page }}
+    {{- end }}
+  {{- else }}
+    {{- $entries = partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+  {{- end }}
+  {{- return $entries }}
+{{- end }}
 {{- define "partials/inline/page-walker" }}
   {{- $currentNode := .currentnode }}
   {{- $showvisitedlinks := .showvisitedlinks }}
@@ -116,7 +129,7 @@
     {{- /* a term ends the tree: the pages it lists have their place elsewhere */}}
     {{- $entries := slice }}
     {{- if ne .Kind "term" }}
-      {{- $entries = partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
+      {{- $entries = partial "inline/page-entries" . }}
     {{- end }}
     {{- $hasVisibleChildren := false }}
     {{- range $entries }}
