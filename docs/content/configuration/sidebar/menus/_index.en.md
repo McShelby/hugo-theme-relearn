@@ -151,6 +151,24 @@ The following example will not generate clickable menu entries for the `Parent 1
   url = 'https://example.com/2'
 {{< /multiconfig >}}
 
+## Page Trees in Hugo Menus
+
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} An entry of a Hugo menu usually ends where your menu definition ends. If you set `params.type='page'` for an entry with a `pageRef`, the entry is continued by the tree of the page it links to, the same way a [page menu](#page-menu) starting at that page would show it.
+
+This saves you from repeating your page structure in your menu definition. The entry keeps its own title, `pre` and `post`.
+
+If the entry links to a taxonomy page, its terms are shown below it. A term ends the tree, as the pages it lists have their place elsewhere in your menus.
+
+The following example shows all tags of your site below the `Tags` entry.
+
+{{< multiconfig file=hugo >}}
+[[menu.shortcuts]]
+  name = 'Tags'
+  pageRef = '/tags'
+  [menu.shortcuts.params]
+    type = 'page'
+{{< /multiconfig >}}
+
 ## Predefined Shortcuts Menu
 
 By default, the theme supports one additional Hugo menu below the page menu in the sidebar named `shortcuts`. You only need to configure it in your `hugo.toml` to appear in your sidebar. For example:
