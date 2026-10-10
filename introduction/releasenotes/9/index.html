@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.2.0">
+    <meta name="generator" content="Relearn 9.2.0+a9b397c5d13bccbd206ef42c15e37966e99cda51">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.2.0 (2026-10-10) Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
 All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
@@ -271,10 +271,10 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
             <li class="" data-nav-id="/hugo-theme-relearn/more/credits/index.html"><a class="padding" href="/hugo-theme-relearn/more/credits/index.html"><i class='fa-fw fas fa-bullhorn'></i> Credits<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/tags/index.html"><a class="padding" href="/hugo-theme-relearn/tags/index.html"><i class="fa-fw fas fa-tags"></i> Tags<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/categories/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Categories</span></label><a class="padding default-animation" href="/hugo-theme-relearn/categories/index.html"><i class="fa-fw fas fa-layer-group"></i> Categories<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
-            <li class="" data-nav-id="/hugo-theme-relearn/categories/tutorial/index.html"><a class="padding" href="/hugo-theme-relearn/categories/tutorial/index.html">Tutorial<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/categories/howto/index.html"><a class="padding" href="/hugo-theme-relearn/categories/howto/index.html">Howto<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/categories/explanation/index.html"><a class="padding" href="/hugo-theme-relearn/categories/explanation/index.html">Explanation<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/categories/reference/index.html"><a class="padding" href="/hugo-theme-relearn/categories/reference/index.html">Reference<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/categories/howto/index.html"><a class="padding" href="/hugo-theme-relearn/categories/howto/index.html">Howto<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/categories/reference/index.html"><a class="padding" href="/hugo-theme-relearn/categories/reference/index.html">Reference<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/categories/tutorial/index.html"><a class="padding" href="/hugo-theme-relearn/categories/tutorial/index.html">Tutorial<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li>
           </ul>
         </div>
         <div id="R-footer-margin" class="default-animation"></div>
@@ -336,7 +336,7 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/releases/tag/9.2.0" title="Relearn 9.2.0"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/a9b397c5d13bccbd206ef42c15e37966e99cda51" title="Relearn 9.2.0&#43;a9b397c5d13bccbd206ef42c15e37966e99cda51"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.167.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -588,12 +588,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id to each asset&rsquo;s URL, emptying a visitor&rsquo;s cache on each deployment even when no asset was different. If you referenced assets from your own partials, <code>assetbusting.gotmpl</code> is replaced by <code>asset.gotmpl</code>, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-4362c95212ae64b203fc660d71207e59">
+<div class="tab-panel" data-tab-group="R-tabs-33609893716de89bab9a24ccd2c21f05">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-895c1f5880a2624b269ab280c09d39e1-tab" aria-controls="R-tab-id-895c1f5880a2624b269ab280c09d39e1" aria-selected="true"
+        role="tab" id="R-tab-id-14eeb908f9ff41e7d5c3e739287fdc15-tab" aria-controls="R-tab-id-14eeb908f9ff41e7d5c3e739287fdc15" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -603,7 +603,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-895c1f5880a2624b269ab280c09d39e1" role="tabpanel" aria-labelledby="R-tab-id-895c1f5880a2624b269ab280c09d39e1-tab"
+      id="R-tab-id-14eeb908f9ff41e7d5c3e739287fdc15" role="tabpanel" aria-labelledby="R-tab-id-14eeb908f9ff41e7d5c3e739287fdc15-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -650,21 +650,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-2b25132f02308e403f38e0e4dbd727cd-tab" aria-controls="R-tab-id-2b25132f02308e403f38e0e4dbd727cd" aria-selected="true"
+        role="tab" id="R-tab-id-5d3156baaff5e43b2b37d4c4680c8370-tab" aria-controls="R-tab-id-5d3156baaff5e43b2b37d4c4680c8370" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-160ee7f36262acc177739d8fe1d87e67-tab" aria-controls="R-tab-id-160ee7f36262acc177739d8fe1d87e67" aria-selected="false"
+        role="tab" id="R-tab-id-39c7c2efbd52a6e4fb8fcfed541517b1-tab" aria-controls="R-tab-id-39c7c2efbd52a6e4fb8fcfed541517b1" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-fb420924fefe4390c7e179c6db57aebb-tab" aria-controls="R-tab-id-fb420924fefe4390c7e179c6db57aebb" aria-selected="false"
+        role="tab" id="R-tab-id-b9936dccd4df4fa39beef4707266fed1-tab" aria-controls="R-tab-id-b9936dccd4df4fa39beef4707266fed1" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -674,7 +674,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2b25132f02308e403f38e0e4dbd727cd" role="tabpanel" aria-labelledby="R-tab-id-2b25132f02308e403f38e0e4dbd727cd-tab"
+      id="R-tab-id-5d3156baaff5e43b2b37d4c4680c8370" role="tabpanel" aria-labelledby="R-tab-id-5d3156baaff5e43b2b37d4c4680c8370-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -682,7 +682,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-160ee7f36262acc177739d8fe1d87e67" role="tabpanel" aria-labelledby="R-tab-id-160ee7f36262acc177739d8fe1d87e67-tab"
+      id="R-tab-id-39c7c2efbd52a6e4fb8fcfed541517b1" role="tabpanel" aria-labelledby="R-tab-id-39c7c2efbd52a6e4fb8fcfed541517b1-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -690,7 +690,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-fb420924fefe4390c7e179c6db57aebb" role="tabpanel" aria-labelledby="R-tab-id-fb420924fefe4390c7e179c6db57aebb-tab"
+      id="R-tab-id-b9936dccd4df4fa39beef4707266fed1" role="tabpanel" aria-labelledby="R-tab-id-b9936dccd4df4fa39beef4707266fed1-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
