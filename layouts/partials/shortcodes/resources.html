@@ -42,16 +42,19 @@
   "sort"     $sort
   "pattern"  $pattern
 ) }}
-{{- partial "shortcodes/callout.html" (dict
-  "page"     $page
-  "class"    "attachments"
-  "color"    $color
-  "content"  ($content | $page.RenderString)
-  "expanded" $expanded
-  "icon"     $icon
-  "style"    $style
-  "title"    $title
-) }}
+{{- /* a box without any resource to list is not shown at all */}}
+{{- if $content }}
+  {{- partial "shortcodes/callout.html" (dict
+    "page"     $page
+    "class"    "attachments"
+    "color"    $color
+    "content"  ($content | $page.RenderString)
+    "expanded" $expanded
+    "icon"     $icon
+    "style"    $style
+    "title"    $title
+  ) }}
+{{- end }}
 
 {{- define "partials/inline/resource-list" }}
   {{- $sort := .sort }}
