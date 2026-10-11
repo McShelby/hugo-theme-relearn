@@ -1,5 +1,15 @@
 # Changelog
 
+## 9.2.1 (2026-10-11)
+
+### Fixes
+
+- [**bug**] pages: ignore front matter if pageref is given [#1313](https://github.com/McShelby/hugo-theme-relearn/issues/1313)
+- [**bug**] resources: only print if at least one is found [#1312](https://github.com/McShelby/hugo-theme-relearn/issues/1312)
+- [**bug**] menu: align order of continued taxonomy terms with prev/next [#1311](https://github.com/McShelby/hugo-theme-relearn/issues/1311)
+
+---
+
 ## 9.2.0 (2026-10-10)
 
 ### Enhancements
