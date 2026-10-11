@@ -31,7 +31,7 @@ The query assembles the pages as a internal tree structure, similar to the menu.
 
 | Name           | Default           | Notes       |
 |----------------|-------------------|-------------|
-| **pageref**    | _&lt;empty&gt;_   | A reference to the page whose pages are listed and whose front matter is read, like `/shortcodes/pages/fruits` or relative to the current page like `fruits`.<br><br>If set and it doesn't resolve to a page, the build fails. If not set, the current page is used or, if called as partial, the page given in `page`. |
+| **pageref**    | _&lt;empty&gt;_   | A reference to the page whose pages are listed, like `/shortcodes/pages/fruits` or relative to the current page like `fruits`.<br><br>If set and it doesn't resolve to a page, the build fails. If not set, the current page is used or, if called as partial, the page given in `page`. |
 | **axis**       | see notes         | Along which axis the pages are collected, seen from the page.<br><br>- `descendants`: the children of the page, and with `levels` above `1` their descendants down to that many levels<br>- `siblings`: the other children of the page's parent<br>- `ancestors`: the parent, its parent and so on, up to `levels` levels<br>- `taxonomy`: the terms of a taxonomy page<br>- `term`: the pages of a term page<br><br>Defaults to `taxonomy` on taxonomy pages, `term` on term pages and `descendants` everywhere else. |
 | **levels**     | `1`               | For `axis=descendants`, how many levels to go down, for `axis=ancestors`, how many levels to go up. For example, `axis=ancestors` with `levels=1` lists just the parent. To get all of them, set this to a high number, eg. `999`. |
 | **flatten**    | `false`           | When `true`, lists all collected pages as one list instead of a tree. Without `orderby` the pages keep the order of the tree, a parent before the pages below it; with `orderby` all pages are ordered together, and with `groupby` each page is grouped on its own. |
@@ -70,7 +70,7 @@ To use this shortcode you need to enable block attributes in your `hugo.toml`.
 
 ### Front Matter
 
-Every parameter but `pageref` can also be set in the front matter of the page whose pages are listed, as `params.pages.<name>`, eg. `params.pages.display`. The front matter adds to the parameters given to the shortcode. If a parameter is given in both, the shortcode wins. If you want to reset a parameter set elsewhere to no value, set it to a string containing only whitespace like `" "`.
+Every parameter but `pageref` can also be set in the front matter of the page the shortcode is called in, as `params.pages.<name>`, eg. `params.pages.display`. The front matter adds to the parameters given to the shortcode. If a parameter is given in both, the shortcode wins. If the shortcode is called with `pageref`, no front matter is read, neither that of the calling page nor that of the referenced one. If you want to reset a parameter set elsewhere to no value, set it to a string containing only whitespace like `" "`.
 
 Taxonomy and term pages are grouped by the first letter and shown in columns only as long as their front matter sets no `pages` parameter at all. Once it sets any, `groupby` and `columns` default to the same values as everywhere else, so you only get what you ask for.
 
