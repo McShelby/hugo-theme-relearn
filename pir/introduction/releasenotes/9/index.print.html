@@ -4,40 +4,160 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.2.0+9ab34ff5e0dc540332a993799b39c03922e71b42">
+    <meta name="generator" content="Relearn 9.2.1">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="Heads-up fer th&#39; upcom&#39;n 10.0.0 version, th&#39; Decade Release – Clear&#39;n Out Ten Years o&#39; Baggage Th&#39; Relearrrn theme has come a long way. Its predecessor, th&#39; Learrrn theme, was started more than ten years ago, an&#39; Relearrrn was forked from it over five years ago. Since then, a lot has been added t&#39; th&#39; theme, an&#39; Cap&#39;n Hugo itself has evolved tremendously.
-All that history left its marks, an&#39; th&#39; source code still carries a lot o&#39; it along: options an&#39; features that have long been replaced an&#39; forgotten but be kept alive fer compatibility, an&#39; remnants whose only remain&#39;n job be t&#39; print a warning. In other places, th&#39; theme got there first, an&#39; Cap&#39;n Hugo later added similar functionality o&#39; its own, often under a different name. Today it be hard t&#39; argue why th&#39; theme should do th&#39;ns differently from Cap&#39;n Hugo, an&#39; two terms fer th&#39; same th&#39;n (like menuTitle vs. linkTitle, or th&#39; expand shortcode vs. details) only cause confusion.
-Version 10.0.0 be about clean&#39;n this up. It removes everyth&#39;n that currently triggers a DEPRECATED or UNSUPPORTED message dur&#39;n a build. That covers deprecated features that still work as well as th&#39; hints fer features that were already dropped.
-What ye should do now
-No messages, no work: if yer ship builds on th&#39; latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from th&#39; theme, ye can update t&#39; 10.0.0 without chang&#39;n anyth&#39;n. Messages? Fix them now: each message names th&#39; replacement an&#39; links t&#39; th&#39; release notes describ&#39;n th&#39; migrat&#39;n. Don’t wait: wit&#39; 10.0.0, these messages be gone. Old usages will simply stop work&#39;n, either silently or wit&#39; a build error.">
+    <meta name="description" content="9.2.0 (2026-10-11) Cap&#39;n Hugo 0.166.0 0.166.0 This release requires a newer Cap&#39;n Hugo version. Change Change Accessibility be now a supported feature o&#39; th&#39; theme.
+Wit&#39; th&#39; new option link.underline=true, links &#39;n yer rrrambl&#39;n be underlined, so they be told apart from th&#39; text around them by more than their color.
+T&#39; make accessibility happen, there were numerous changes, affect&#39;n all parts o&#39; th&#39; theme includ&#39;n th&#39; DOM.
+As a side effect, th&#39; keyboard shortcuts o&#39; th&#39; theme be now documented as well.
+Change Th&#39; elements o&#39; yer rrrambl&#39;n, like tables, callouts, tabs, code blocks, blockquotes, Merrrmaid diagrams an&#39; images, now have rounded corners.
+For images, this be th&#39; new image effect rounded, which be enabled by default. If ye want t&#39; restore th&#39; previous look o&#39; yer images, set imageEffects.rounded=false &#39;n yer hugo.toml.
+Change Marrrkdown tables can now merge cells, us&#39;n th&#39; rules o&#39; Marrrkdown Preview Enhanced. A cell contain&#39;n only &gt; merges into th&#39; cell t&#39; its right, a cell contain&#39;n only ^ into th&#39; cell above.
+If one o&#39; yer tables already has such a cell an&#39; should show th&#39; character itself, escape it wit&#39; two backslashes, like \\&gt;.
+Change Th&#39; new planks shortcode lists planks o&#39; yer ship. Besides th&#39; layouts known from th&#39; now deprecated children shortcode, it can list descendants, sibl&#39;ns or ancestors, filter them an&#39; group an&#39; order them by any field or front matter parameter o&#39; a plank.
+Th&#39; children shortcode still works but issues a deprecat&#39;n warning fer each use, nam&#39;n th&#39; planks call that replaces it. See th&#39; migrat&#39;n instruct&#39;ns.
+Wit&#39; type=group, th&#39; children shortcode no longer shows a multi-column layout. If ye want t&#39; restore th&#39; previous behavior, replace it wit&#39; th&#39; planks shortcode an&#39; columns=3.
+Change Th&#39; new callout shortcode replaces th&#39; now deprecated notice shortcode, match&#39;n th&#39; name o&#39; th&#39; Marrrkdown callouts it shares its boxes wit&#39;. Th&#39; parameters be unchanged.
+Th&#39; notice shortcode still works but issues a deprecat&#39;n warning fer each use. Rename yer calls t&#39; callout. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Hugo’s built-in details shortcode replaces th&#39; now deprecated expand shortcode, so yer rrrambl&#39;n stays portable t&#39; other themes.
+Th&#39; expand shortcode still works but issues a deprecat&#39;n warning fer each use. Th&#39; parameters o&#39; th&#39; details shortcode be named differently, so a call can not just be renamed. See th&#39; migrat&#39;n instruct&#39;ns.
+If ye already use th&#39; details shortcode, it now behaves like th&#39; one built into Cap&#39;n Hugo. Its rrrambl&#39;n be rendered as Marrrkdown if called wit&#39; {{&lt; details &gt;}}, an&#39; th&#39; title parameter be honored. If yer rrrambl&#39;n be HTML or contains other shorrrtcodes, set th&#39; new raw=true parameter t&#39; have it written as it be.
+Change Th&#39; math shortcode now renders yer formulae us&#39;n Hugo’s built-in KaTeX while yer ship be built, instead o&#39; th&#39; MathJax library &#39;n th&#39; browser.
+Th&#39; theme finds yer formulae by th&#39; delimiters o&#39; Hugo’s Passthrough configurat&#39;n. If yer ship doesn’t have it yet, add it, otherwise formulae marked by these delimiters be not rendered. Wit&#39; th&#39; codefence, shortcode an&#39; partial rules, rrrambl&#39;n without delimiters be rendered as one formula regardless.
+By default, formulae be written as MathML an&#39; displayed by th&#39; browser. If ye prefer th&#39; look o&#39; KaTeX, which be th&#39; same &#39;n every browser, set math.output=&#39;htmlAndMathml&#39;.
+Th&#39; options mathJaxInitialize an&#39; customMathJaxURL be gone. Instead, ye can set any KaTeX option &#39;n math. If ye defined yer own macros, move them t&#39; math.macros.
+KaTeX doesn’t know every command o&#39; MathJax. A formula it can not render be written as its source an&#39; reported as a warning &#39;n yer build.
+Change Th&#39; front matter params.pages replaces params.children an&#39; be now honored on every plank, not only on taxonomy an&#39; term planks. Together wit&#39; Hugo’s cascade, ye can give all list&#39;ns o&#39; a subtree th&#39; same look.
+Th&#39; former params.children be still honored as long as th&#39; children shortcode exists, but us&#39;n it now prints a warning.
+Change How th&#39; logo an&#39; title be arranged be now set wit&#39; th&#39; new logo.layout option.
+Th&#39; logo.direct&#39;n option be deprecated. It still works, but th&#39; theme warns ye if ye use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; an&#39; direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
+Change Th&#39; elements o&#39; th&#39; topbar, like its buttons, be now configured wit&#39; th&#39; topbarstart, topbarmiddle, topbarend an&#39; topbarmore options, th&#39; same way as th&#39; sidebar menus. Th&#39; breadcrumb be now an element o&#39; th&#39; new middle area. Ye can set them &#39;n yer hugo.toml or &#39;n th&#39; front matter o&#39; yer planks.
+Redefin&#39;n an area by a template &#39;n layouts/partials/topbar/area an&#39; call&#39;n th&#39; theme’s templates &#39;n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak&#39;n precedence over th&#39; options, an&#39; th&#39; button templates can still be called, but th&#39; theme warns ye if ye use them. Th&#39; elements now live &#39;n layouts/partials/topbar/element. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Version&#39;n now builds on Hugo’s versions. All versions o&#39; yer ship be generated &#39;n one build o&#39; one project, an&#39; th&#39; version switcher links directly t&#39; th&#39; same plank &#39;n th&#39; other versions.
+Links can point t&#39; a plank &#39;n another version o&#39; yer ship wit&#39; th&#39; new version query parameter, like /my-page?version=v1.0.0.
+Th&#39; options versions, version an&#39; versionIndexURL be deprecated. They still work as long as ye have not configured Hugo’s versions, but th&#39; theme warns ye if ye use them. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Links into another language written wit&#39; a language prefix like /pir/my-page be deprecated, an&#39; wit&#39; them th&#39; option enableLegacyLanguageLinks. They still work if th&#39; option be set, but th&#39; theme warns ye fer each such link. Use th&#39; lang query parameter instead, like /my-page?lang=pir.
+Change Th&#39; front matter pre an&#39; post, renamed &#39;n 5.0.0, now issue a deprecat&#39;n warning. Use menuPre an&#39; menuPost instead.
+Change Th&#39; options customMermaidURL an&#39; customOpenapiURL be deprecated. They still work, but th&#39; theme warns ye if ye use them.
+T&#39; use a different version o&#39; a library, store it &#39;n th&#39; assets directory o&#39; yer ship, whar&#39; it replaces th&#39; shipped version. See th&#39; documentat&#39;n o&#39; th&#39; mermaid an&#39; openapi shorrrtcodes.
+Change Th&#39; search wit&#39; th&#39; Lunr engine now only looks fer similarly written words if a word o&#39; yer search term isn’t found as written. Previously, such words were always included an&#39; could bury th&#39; hits ye were ask&#39;n fer.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 9 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta name="twitter:description" content="Heads-up fer th&#39; upcom&#39;n 10.0.0 version, th&#39; Decade Release – Clear&#39;n Out Ten Years o&#39; Baggage Th&#39; Relearrrn theme has come a long way. Its predecessor, th&#39; Learrrn theme, was started more than ten years ago, an&#39; Relearrrn was forked from it over five years ago. Since then, a lot has been added t&#39; th&#39; theme, an&#39; Cap&#39;n Hugo itself has evolved tremendously.
-All that history left its marks, an&#39; th&#39; source code still carries a lot o&#39; it along: options an&#39; features that have long been replaced an&#39; forgotten but be kept alive fer compatibility, an&#39; remnants whose only remain&#39;n job be t&#39; print a warning. In other places, th&#39; theme got there first, an&#39; Cap&#39;n Hugo later added similar functionality o&#39; its own, often under a different name. Today it be hard t&#39; argue why th&#39; theme should do th&#39;ns differently from Cap&#39;n Hugo, an&#39; two terms fer th&#39; same th&#39;n (like menuTitle vs. linkTitle, or th&#39; expand shortcode vs. details) only cause confusion.
-Version 10.0.0 be about clean&#39;n this up. It removes everyth&#39;n that currently triggers a DEPRECATED or UNSUPPORTED message dur&#39;n a build. That covers deprecated features that still work as well as th&#39; hints fer features that were already dropped.
-What ye should do now
-No messages, no work: if yer ship builds on th&#39; latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from th&#39; theme, ye can update t&#39; 10.0.0 without chang&#39;n anyth&#39;n. Messages? Fix them now: each message names th&#39; replacement an&#39; links t&#39; th&#39; release notes describ&#39;n th&#39; migrat&#39;n. Don’t wait: wit&#39; 10.0.0, these messages be gone. Old usages will simply stop work&#39;n, either silently or wit&#39; a build error.">
+    <meta name="twitter:description" content="9.2.0 (2026-10-11) Cap&#39;n Hugo 0.166.0 0.166.0 This release requires a newer Cap&#39;n Hugo version. Change Change Accessibility be now a supported feature o&#39; th&#39; theme.
+Wit&#39; th&#39; new option link.underline=true, links &#39;n yer rrrambl&#39;n be underlined, so they be told apart from th&#39; text around them by more than their color.
+T&#39; make accessibility happen, there were numerous changes, affect&#39;n all parts o&#39; th&#39; theme includ&#39;n th&#39; DOM.
+As a side effect, th&#39; keyboard shortcuts o&#39; th&#39; theme be now documented as well.
+Change Th&#39; elements o&#39; yer rrrambl&#39;n, like tables, callouts, tabs, code blocks, blockquotes, Merrrmaid diagrams an&#39; images, now have rounded corners.
+For images, this be th&#39; new image effect rounded, which be enabled by default. If ye want t&#39; restore th&#39; previous look o&#39; yer images, set imageEffects.rounded=false &#39;n yer hugo.toml.
+Change Marrrkdown tables can now merge cells, us&#39;n th&#39; rules o&#39; Marrrkdown Preview Enhanced. A cell contain&#39;n only &gt; merges into th&#39; cell t&#39; its right, a cell contain&#39;n only ^ into th&#39; cell above.
+If one o&#39; yer tables already has such a cell an&#39; should show th&#39; character itself, escape it wit&#39; two backslashes, like \\&gt;.
+Change Th&#39; new planks shortcode lists planks o&#39; yer ship. Besides th&#39; layouts known from th&#39; now deprecated children shortcode, it can list descendants, sibl&#39;ns or ancestors, filter them an&#39; group an&#39; order them by any field or front matter parameter o&#39; a plank.
+Th&#39; children shortcode still works but issues a deprecat&#39;n warning fer each use, nam&#39;n th&#39; planks call that replaces it. See th&#39; migrat&#39;n instruct&#39;ns.
+Wit&#39; type=group, th&#39; children shortcode no longer shows a multi-column layout. If ye want t&#39; restore th&#39; previous behavior, replace it wit&#39; th&#39; planks shortcode an&#39; columns=3.
+Change Th&#39; new callout shortcode replaces th&#39; now deprecated notice shortcode, match&#39;n th&#39; name o&#39; th&#39; Marrrkdown callouts it shares its boxes wit&#39;. Th&#39; parameters be unchanged.
+Th&#39; notice shortcode still works but issues a deprecat&#39;n warning fer each use. Rename yer calls t&#39; callout. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Hugo’s built-in details shortcode replaces th&#39; now deprecated expand shortcode, so yer rrrambl&#39;n stays portable t&#39; other themes.
+Th&#39; expand shortcode still works but issues a deprecat&#39;n warning fer each use. Th&#39; parameters o&#39; th&#39; details shortcode be named differently, so a call can not just be renamed. See th&#39; migrat&#39;n instruct&#39;ns.
+If ye already use th&#39; details shortcode, it now behaves like th&#39; one built into Cap&#39;n Hugo. Its rrrambl&#39;n be rendered as Marrrkdown if called wit&#39; {{&lt; details &gt;}}, an&#39; th&#39; title parameter be honored. If yer rrrambl&#39;n be HTML or contains other shorrrtcodes, set th&#39; new raw=true parameter t&#39; have it written as it be.
+Change Th&#39; math shortcode now renders yer formulae us&#39;n Hugo’s built-in KaTeX while yer ship be built, instead o&#39; th&#39; MathJax library &#39;n th&#39; browser.
+Th&#39; theme finds yer formulae by th&#39; delimiters o&#39; Hugo’s Passthrough configurat&#39;n. If yer ship doesn’t have it yet, add it, otherwise formulae marked by these delimiters be not rendered. Wit&#39; th&#39; codefence, shortcode an&#39; partial rules, rrrambl&#39;n without delimiters be rendered as one formula regardless.
+By default, formulae be written as MathML an&#39; displayed by th&#39; browser. If ye prefer th&#39; look o&#39; KaTeX, which be th&#39; same &#39;n every browser, set math.output=&#39;htmlAndMathml&#39;.
+Th&#39; options mathJaxInitialize an&#39; customMathJaxURL be gone. Instead, ye can set any KaTeX option &#39;n math. If ye defined yer own macros, move them t&#39; math.macros.
+KaTeX doesn’t know every command o&#39; MathJax. A formula it can not render be written as its source an&#39; reported as a warning &#39;n yer build.
+Change Th&#39; front matter params.pages replaces params.children an&#39; be now honored on every plank, not only on taxonomy an&#39; term planks. Together wit&#39; Hugo’s cascade, ye can give all list&#39;ns o&#39; a subtree th&#39; same look.
+Th&#39; former params.children be still honored as long as th&#39; children shortcode exists, but us&#39;n it now prints a warning.
+Change How th&#39; logo an&#39; title be arranged be now set wit&#39; th&#39; new logo.layout option.
+Th&#39; logo.direct&#39;n option be deprecated. It still works, but th&#39; theme warns ye if ye use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; an&#39; direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
+Change Th&#39; elements o&#39; th&#39; topbar, like its buttons, be now configured wit&#39; th&#39; topbarstart, topbarmiddle, topbarend an&#39; topbarmore options, th&#39; same way as th&#39; sidebar menus. Th&#39; breadcrumb be now an element o&#39; th&#39; new middle area. Ye can set them &#39;n yer hugo.toml or &#39;n th&#39; front matter o&#39; yer planks.
+Redefin&#39;n an area by a template &#39;n layouts/partials/topbar/area an&#39; call&#39;n th&#39; theme’s templates &#39;n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak&#39;n precedence over th&#39; options, an&#39; th&#39; button templates can still be called, but th&#39; theme warns ye if ye use them. Th&#39; elements now live &#39;n layouts/partials/topbar/element. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Version&#39;n now builds on Hugo’s versions. All versions o&#39; yer ship be generated &#39;n one build o&#39; one project, an&#39; th&#39; version switcher links directly t&#39; th&#39; same plank &#39;n th&#39; other versions.
+Links can point t&#39; a plank &#39;n another version o&#39; yer ship wit&#39; th&#39; new version query parameter, like /my-page?version=v1.0.0.
+Th&#39; options versions, version an&#39; versionIndexURL be deprecated. They still work as long as ye have not configured Hugo’s versions, but th&#39; theme warns ye if ye use them. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Links into another language written wit&#39; a language prefix like /pir/my-page be deprecated, an&#39; wit&#39; them th&#39; option enableLegacyLanguageLinks. They still work if th&#39; option be set, but th&#39; theme warns ye fer each such link. Use th&#39; lang query parameter instead, like /my-page?lang=pir.
+Change Th&#39; front matter pre an&#39; post, renamed &#39;n 5.0.0, now issue a deprecat&#39;n warning. Use menuPre an&#39; menuPost instead.
+Change Th&#39; options customMermaidURL an&#39; customOpenapiURL be deprecated. They still work, but th&#39; theme warns ye if ye use them.
+T&#39; use a different version o&#39; a library, store it &#39;n th&#39; assets directory o&#39; yer ship, whar&#39; it replaces th&#39; shipped version. See th&#39; documentat&#39;n o&#39; th&#39; mermaid an&#39; openapi shorrrtcodes.
+Change Th&#39; search wit&#39; th&#39; Lunr engine now only looks fer similarly written words if a word o&#39; yer search term isn’t found as written. Previously, such words were always included an&#39; could bury th&#39; hits ye were ask&#39;n fer.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/pir/introduction/releasenotes/9/index.html">
     <meta property="og:site_name" content="Cap&#39;n Hugo Relearrrn Theme">
     <meta property="og:title" content="Version 9 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta property="og:description" content="Heads-up fer th&#39; upcom&#39;n 10.0.0 version, th&#39; Decade Release – Clear&#39;n Out Ten Years o&#39; Baggage Th&#39; Relearrrn theme has come a long way. Its predecessor, th&#39; Learrrn theme, was started more than ten years ago, an&#39; Relearrrn was forked from it over five years ago. Since then, a lot has been added t&#39; th&#39; theme, an&#39; Cap&#39;n Hugo itself has evolved tremendously.
-All that history left its marks, an&#39; th&#39; source code still carries a lot o&#39; it along: options an&#39; features that have long been replaced an&#39; forgotten but be kept alive fer compatibility, an&#39; remnants whose only remain&#39;n job be t&#39; print a warning. In other places, th&#39; theme got there first, an&#39; Cap&#39;n Hugo later added similar functionality o&#39; its own, often under a different name. Today it be hard t&#39; argue why th&#39; theme should do th&#39;ns differently from Cap&#39;n Hugo, an&#39; two terms fer th&#39; same th&#39;n (like menuTitle vs. linkTitle, or th&#39; expand shortcode vs. details) only cause confusion.
-Version 10.0.0 be about clean&#39;n this up. It removes everyth&#39;n that currently triggers a DEPRECATED or UNSUPPORTED message dur&#39;n a build. That covers deprecated features that still work as well as th&#39; hints fer features that were already dropped.
-What ye should do now
-No messages, no work: if yer ship builds on th&#39; latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from th&#39; theme, ye can update t&#39; 10.0.0 without chang&#39;n anyth&#39;n. Messages? Fix them now: each message names th&#39; replacement an&#39; links t&#39; th&#39; release notes describ&#39;n th&#39; migrat&#39;n. Don’t wait: wit&#39; 10.0.0, these messages be gone. Old usages will simply stop work&#39;n, either silently or wit&#39; a build error.">
+    <meta property="og:description" content="9.2.0 (2026-10-11) Cap&#39;n Hugo 0.166.0 0.166.0 This release requires a newer Cap&#39;n Hugo version. Change Change Accessibility be now a supported feature o&#39; th&#39; theme.
+Wit&#39; th&#39; new option link.underline=true, links &#39;n yer rrrambl&#39;n be underlined, so they be told apart from th&#39; text around them by more than their color.
+T&#39; make accessibility happen, there were numerous changes, affect&#39;n all parts o&#39; th&#39; theme includ&#39;n th&#39; DOM.
+As a side effect, th&#39; keyboard shortcuts o&#39; th&#39; theme be now documented as well.
+Change Th&#39; elements o&#39; yer rrrambl&#39;n, like tables, callouts, tabs, code blocks, blockquotes, Merrrmaid diagrams an&#39; images, now have rounded corners.
+For images, this be th&#39; new image effect rounded, which be enabled by default. If ye want t&#39; restore th&#39; previous look o&#39; yer images, set imageEffects.rounded=false &#39;n yer hugo.toml.
+Change Marrrkdown tables can now merge cells, us&#39;n th&#39; rules o&#39; Marrrkdown Preview Enhanced. A cell contain&#39;n only &gt; merges into th&#39; cell t&#39; its right, a cell contain&#39;n only ^ into th&#39; cell above.
+If one o&#39; yer tables already has such a cell an&#39; should show th&#39; character itself, escape it wit&#39; two backslashes, like \\&gt;.
+Change Th&#39; new planks shortcode lists planks o&#39; yer ship. Besides th&#39; layouts known from th&#39; now deprecated children shortcode, it can list descendants, sibl&#39;ns or ancestors, filter them an&#39; group an&#39; order them by any field or front matter parameter o&#39; a plank.
+Th&#39; children shortcode still works but issues a deprecat&#39;n warning fer each use, nam&#39;n th&#39; planks call that replaces it. See th&#39; migrat&#39;n instruct&#39;ns.
+Wit&#39; type=group, th&#39; children shortcode no longer shows a multi-column layout. If ye want t&#39; restore th&#39; previous behavior, replace it wit&#39; th&#39; planks shortcode an&#39; columns=3.
+Change Th&#39; new callout shortcode replaces th&#39; now deprecated notice shortcode, match&#39;n th&#39; name o&#39; th&#39; Marrrkdown callouts it shares its boxes wit&#39;. Th&#39; parameters be unchanged.
+Th&#39; notice shortcode still works but issues a deprecat&#39;n warning fer each use. Rename yer calls t&#39; callout. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Hugo’s built-in details shortcode replaces th&#39; now deprecated expand shortcode, so yer rrrambl&#39;n stays portable t&#39; other themes.
+Th&#39; expand shortcode still works but issues a deprecat&#39;n warning fer each use. Th&#39; parameters o&#39; th&#39; details shortcode be named differently, so a call can not just be renamed. See th&#39; migrat&#39;n instruct&#39;ns.
+If ye already use th&#39; details shortcode, it now behaves like th&#39; one built into Cap&#39;n Hugo. Its rrrambl&#39;n be rendered as Marrrkdown if called wit&#39; {{&lt; details &gt;}}, an&#39; th&#39; title parameter be honored. If yer rrrambl&#39;n be HTML or contains other shorrrtcodes, set th&#39; new raw=true parameter t&#39; have it written as it be.
+Change Th&#39; math shortcode now renders yer formulae us&#39;n Hugo’s built-in KaTeX while yer ship be built, instead o&#39; th&#39; MathJax library &#39;n th&#39; browser.
+Th&#39; theme finds yer formulae by th&#39; delimiters o&#39; Hugo’s Passthrough configurat&#39;n. If yer ship doesn’t have it yet, add it, otherwise formulae marked by these delimiters be not rendered. Wit&#39; th&#39; codefence, shortcode an&#39; partial rules, rrrambl&#39;n without delimiters be rendered as one formula regardless.
+By default, formulae be written as MathML an&#39; displayed by th&#39; browser. If ye prefer th&#39; look o&#39; KaTeX, which be th&#39; same &#39;n every browser, set math.output=&#39;htmlAndMathml&#39;.
+Th&#39; options mathJaxInitialize an&#39; customMathJaxURL be gone. Instead, ye can set any KaTeX option &#39;n math. If ye defined yer own macros, move them t&#39; math.macros.
+KaTeX doesn’t know every command o&#39; MathJax. A formula it can not render be written as its source an&#39; reported as a warning &#39;n yer build.
+Change Th&#39; front matter params.pages replaces params.children an&#39; be now honored on every plank, not only on taxonomy an&#39; term planks. Together wit&#39; Hugo’s cascade, ye can give all list&#39;ns o&#39; a subtree th&#39; same look.
+Th&#39; former params.children be still honored as long as th&#39; children shortcode exists, but us&#39;n it now prints a warning.
+Change How th&#39; logo an&#39; title be arranged be now set wit&#39; th&#39; new logo.layout option.
+Th&#39; logo.direct&#39;n option be deprecated. It still works, but th&#39; theme warns ye if ye use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; an&#39; direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
+Change Th&#39; elements o&#39; th&#39; topbar, like its buttons, be now configured wit&#39; th&#39; topbarstart, topbarmiddle, topbarend an&#39; topbarmore options, th&#39; same way as th&#39; sidebar menus. Th&#39; breadcrumb be now an element o&#39; th&#39; new middle area. Ye can set them &#39;n yer hugo.toml or &#39;n th&#39; front matter o&#39; yer planks.
+Redefin&#39;n an area by a template &#39;n layouts/partials/topbar/area an&#39; call&#39;n th&#39; theme’s templates &#39;n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak&#39;n precedence over th&#39; options, an&#39; th&#39; button templates can still be called, but th&#39; theme warns ye if ye use them. Th&#39; elements now live &#39;n layouts/partials/topbar/element. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Version&#39;n now builds on Hugo’s versions. All versions o&#39; yer ship be generated &#39;n one build o&#39; one project, an&#39; th&#39; version switcher links directly t&#39; th&#39; same plank &#39;n th&#39; other versions.
+Links can point t&#39; a plank &#39;n another version o&#39; yer ship wit&#39; th&#39; new version query parameter, like /my-page?version=v1.0.0.
+Th&#39; options versions, version an&#39; versionIndexURL be deprecated. They still work as long as ye have not configured Hugo’s versions, but th&#39; theme warns ye if ye use them. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Links into another language written wit&#39; a language prefix like /pir/my-page be deprecated, an&#39; wit&#39; them th&#39; option enableLegacyLanguageLinks. They still work if th&#39; option be set, but th&#39; theme warns ye fer each such link. Use th&#39; lang query parameter instead, like /my-page?lang=pir.
+Change Th&#39; front matter pre an&#39; post, renamed &#39;n 5.0.0, now issue a deprecat&#39;n warning. Use menuPre an&#39; menuPost instead.
+Change Th&#39; options customMermaidURL an&#39; customOpenapiURL be deprecated. They still work, but th&#39; theme warns ye if ye use them.
+T&#39; use a different version o&#39; a library, store it &#39;n th&#39; assets directory o&#39; yer ship, whar&#39; it replaces th&#39; shipped version. See th&#39; documentat&#39;n o&#39; th&#39; mermaid an&#39; openapi shorrrtcodes.
+Change Th&#39; search wit&#39; th&#39; Lunr engine now only looks fer similarly written words if a word o&#39; yer search term isn’t found as written. Previously, such words were always included an&#39; could bury th&#39; hits ye were ask&#39;n fer.">
     <meta property="og:locale" content="art_x_pir">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 9 :: Cap&#39;n Hugo Relearrrn Theme">
-    <meta itemprop="description" content="Heads-up fer th&#39; upcom&#39;n 10.0.0 version, th&#39; Decade Release – Clear&#39;n Out Ten Years o&#39; Baggage Th&#39; Relearrrn theme has come a long way. Its predecessor, th&#39; Learrrn theme, was started more than ten years ago, an&#39; Relearrrn was forked from it over five years ago. Since then, a lot has been added t&#39; th&#39; theme, an&#39; Cap&#39;n Hugo itself has evolved tremendously.
-All that history left its marks, an&#39; th&#39; source code still carries a lot o&#39; it along: options an&#39; features that have long been replaced an&#39; forgotten but be kept alive fer compatibility, an&#39; remnants whose only remain&#39;n job be t&#39; print a warning. In other places, th&#39; theme got there first, an&#39; Cap&#39;n Hugo later added similar functionality o&#39; its own, often under a different name. Today it be hard t&#39; argue why th&#39; theme should do th&#39;ns differently from Cap&#39;n Hugo, an&#39; two terms fer th&#39; same th&#39;n (like menuTitle vs. linkTitle, or th&#39; expand shortcode vs. details) only cause confusion.
-Version 10.0.0 be about clean&#39;n this up. It removes everyth&#39;n that currently triggers a DEPRECATED or UNSUPPORTED message dur&#39;n a build. That covers deprecated features that still work as well as th&#39; hints fer features that were already dropped.
-What ye should do now
-No messages, no work: if yer ship builds on th&#39; latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from th&#39; theme, ye can update t&#39; 10.0.0 without chang&#39;n anyth&#39;n. Messages? Fix them now: each message names th&#39; replacement an&#39; links t&#39; th&#39; release notes describ&#39;n th&#39; migrat&#39;n. Don’t wait: wit&#39; 10.0.0, these messages be gone. Old usages will simply stop work&#39;n, either silently or wit&#39; a build error.">
-    <meta itemprop="wordCount" content="2966">
+    <meta itemprop="description" content="9.2.0 (2026-10-11) Cap&#39;n Hugo 0.166.0 0.166.0 This release requires a newer Cap&#39;n Hugo version. Change Change Accessibility be now a supported feature o&#39; th&#39; theme.
+Wit&#39; th&#39; new option link.underline=true, links &#39;n yer rrrambl&#39;n be underlined, so they be told apart from th&#39; text around them by more than their color.
+T&#39; make accessibility happen, there were numerous changes, affect&#39;n all parts o&#39; th&#39; theme includ&#39;n th&#39; DOM.
+As a side effect, th&#39; keyboard shortcuts o&#39; th&#39; theme be now documented as well.
+Change Th&#39; elements o&#39; yer rrrambl&#39;n, like tables, callouts, tabs, code blocks, blockquotes, Merrrmaid diagrams an&#39; images, now have rounded corners.
+For images, this be th&#39; new image effect rounded, which be enabled by default. If ye want t&#39; restore th&#39; previous look o&#39; yer images, set imageEffects.rounded=false &#39;n yer hugo.toml.
+Change Marrrkdown tables can now merge cells, us&#39;n th&#39; rules o&#39; Marrrkdown Preview Enhanced. A cell contain&#39;n only &gt; merges into th&#39; cell t&#39; its right, a cell contain&#39;n only ^ into th&#39; cell above.
+If one o&#39; yer tables already has such a cell an&#39; should show th&#39; character itself, escape it wit&#39; two backslashes, like \\&gt;.
+Change Th&#39; new planks shortcode lists planks o&#39; yer ship. Besides th&#39; layouts known from th&#39; now deprecated children shortcode, it can list descendants, sibl&#39;ns or ancestors, filter them an&#39; group an&#39; order them by any field or front matter parameter o&#39; a plank.
+Th&#39; children shortcode still works but issues a deprecat&#39;n warning fer each use, nam&#39;n th&#39; planks call that replaces it. See th&#39; migrat&#39;n instruct&#39;ns.
+Wit&#39; type=group, th&#39; children shortcode no longer shows a multi-column layout. If ye want t&#39; restore th&#39; previous behavior, replace it wit&#39; th&#39; planks shortcode an&#39; columns=3.
+Change Th&#39; new callout shortcode replaces th&#39; now deprecated notice shortcode, match&#39;n th&#39; name o&#39; th&#39; Marrrkdown callouts it shares its boxes wit&#39;. Th&#39; parameters be unchanged.
+Th&#39; notice shortcode still works but issues a deprecat&#39;n warning fer each use. Rename yer calls t&#39; callout. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Hugo’s built-in details shortcode replaces th&#39; now deprecated expand shortcode, so yer rrrambl&#39;n stays portable t&#39; other themes.
+Th&#39; expand shortcode still works but issues a deprecat&#39;n warning fer each use. Th&#39; parameters o&#39; th&#39; details shortcode be named differently, so a call can not just be renamed. See th&#39; migrat&#39;n instruct&#39;ns.
+If ye already use th&#39; details shortcode, it now behaves like th&#39; one built into Cap&#39;n Hugo. Its rrrambl&#39;n be rendered as Marrrkdown if called wit&#39; {{&lt; details &gt;}}, an&#39; th&#39; title parameter be honored. If yer rrrambl&#39;n be HTML or contains other shorrrtcodes, set th&#39; new raw=true parameter t&#39; have it written as it be.
+Change Th&#39; math shortcode now renders yer formulae us&#39;n Hugo’s built-in KaTeX while yer ship be built, instead o&#39; th&#39; MathJax library &#39;n th&#39; browser.
+Th&#39; theme finds yer formulae by th&#39; delimiters o&#39; Hugo’s Passthrough configurat&#39;n. If yer ship doesn’t have it yet, add it, otherwise formulae marked by these delimiters be not rendered. Wit&#39; th&#39; codefence, shortcode an&#39; partial rules, rrrambl&#39;n without delimiters be rendered as one formula regardless.
+By default, formulae be written as MathML an&#39; displayed by th&#39; browser. If ye prefer th&#39; look o&#39; KaTeX, which be th&#39; same &#39;n every browser, set math.output=&#39;htmlAndMathml&#39;.
+Th&#39; options mathJaxInitialize an&#39; customMathJaxURL be gone. Instead, ye can set any KaTeX option &#39;n math. If ye defined yer own macros, move them t&#39; math.macros.
+KaTeX doesn’t know every command o&#39; MathJax. A formula it can not render be written as its source an&#39; reported as a warning &#39;n yer build.
+Change Th&#39; front matter params.pages replaces params.children an&#39; be now honored on every plank, not only on taxonomy an&#39; term planks. Together wit&#39; Hugo’s cascade, ye can give all list&#39;ns o&#39; a subtree th&#39; same look.
+Th&#39; former params.children be still honored as long as th&#39; children shortcode exists, but us&#39;n it now prints a warning.
+Change How th&#39; logo an&#39; title be arranged be now set wit&#39; th&#39; new logo.layout option.
+Th&#39; logo.direct&#39;n option be deprecated. It still works, but th&#39; theme warns ye if ye use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; an&#39; direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
+Change Th&#39; elements o&#39; th&#39; topbar, like its buttons, be now configured wit&#39; th&#39; topbarstart, topbarmiddle, topbarend an&#39; topbarmore options, th&#39; same way as th&#39; sidebar menus. Th&#39; breadcrumb be now an element o&#39; th&#39; new middle area. Ye can set them &#39;n yer hugo.toml or &#39;n th&#39; front matter o&#39; yer planks.
+Redefin&#39;n an area by a template &#39;n layouts/partials/topbar/area an&#39; call&#39;n th&#39; theme’s templates &#39;n layouts/partials/topbar/button be deprecated. Such an area template still defines its area, tak&#39;n precedence over th&#39; options, an&#39; th&#39; button templates can still be called, but th&#39; theme warns ye if ye use them. Th&#39; elements now live &#39;n layouts/partials/topbar/element. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Version&#39;n now builds on Hugo’s versions. All versions o&#39; yer ship be generated &#39;n one build o&#39; one project, an&#39; th&#39; version switcher links directly t&#39; th&#39; same plank &#39;n th&#39; other versions.
+Links can point t&#39; a plank &#39;n another version o&#39; yer ship wit&#39; th&#39; new version query parameter, like /my-page?version=v1.0.0.
+Th&#39; options versions, version an&#39; versionIndexURL be deprecated. They still work as long as ye have not configured Hugo’s versions, but th&#39; theme warns ye if ye use them. See th&#39; migrat&#39;n instruct&#39;ns.
+Change Links into another language written wit&#39; a language prefix like /pir/my-page be deprecated, an&#39; wit&#39; them th&#39; option enableLegacyLanguageLinks. They still work if th&#39; option be set, but th&#39; theme warns ye fer each such link. Use th&#39; lang query parameter instead, like /my-page?lang=pir.
+Change Th&#39; front matter pre an&#39; post, renamed &#39;n 5.0.0, now issue a deprecat&#39;n warning. Use menuPre an&#39; menuPost instead.
+Change Th&#39; options customMermaidURL an&#39; customOpenapiURL be deprecated. They still work, but th&#39; theme warns ye if ye use them.
+T&#39; use a different version o&#39; a library, store it &#39;n th&#39; assets directory o&#39; yer ship, whar&#39; it replaces th&#39; shipped version. See th&#39; documentat&#39;n o&#39; th&#39; mermaid an&#39; openapi shorrrtcodes.
+Change Th&#39; search wit&#39; th&#39; Lunr engine now only looks fer similarly written words if a word o&#39; yer search term isn’t found as written. Previously, such words were always included an&#39; could bury th&#39; hits ye were ask&#39;n fer.">
+    <meta itemprop="wordCount" content="2687">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9 :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html" rel="alternate" hreflang="x-default">
@@ -53,7 +173,7 @@ No messages, no work: if yer ship builds on th&#39; latest 9.x release without D
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.943c6e730e26227f2846b4414a7b7aa78ab7b83e78063a259d36c4f4671ffb5c.js"
+      "indexFile": "searchindex.pir.min.48e300a7b92324844f408aecfa86f5365338b491dd8ef38646af89d362e5f60e.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -137,7 +257,7 @@ No messages, no work: if yer ship builds on th&#39; latest 9.x release without D
                 <div class="topbar-content-wrapper" tabindex="-1">
 <nav class="TableOfContents" aria-label="Table o&#39; Contents">
   <ul>
-    <li><a href="#9-2-0">9.2.0 (2026-10-10)</a>
+    <li><a href="#9-2-0">9.2.0 (2026-10-11)</a>
       <ul>
         <li><a href="#hugo-01660">Cap'n Hugo 0.166.0</a></li>
         <li><a href="#change">Change</a></li>
@@ -221,25 +341,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 </ul>
 <hr>
 
-
-<details open class="box cstyle callout primary expand">
-  <summary class="box-label">
-    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
-    Heads-up fer th' upcom'n 10.0.0 version, th' Decade Release – Clear'n Out Ten Years o' Baggage
-  </summary>
-  <div class="box-content">
-<p>Th' Relearrrn theme has come a long way. Its predecessor, th' Learrrn theme, was started more than ten years ago, an' Relearrrn was forked from it over five years ago. Since then, a lot has been added t' th' theme, an' Cap'n Hugo itself has evolved tremendously.</p>
-<p>All that history left its marks, an' th' source code still carries a lot o' it along: options an' features that have long been replaced an' forgotten but be kept alive fer compatibility, an' remnants whose only remain'n job be t' print a warning. In other places, th' theme got there first, an' Cap'n Hugo later added similar functionality o' its own, often under a different name. Today it be hard t' argue why th' theme should do th'ns differently from Cap'n Hugo, an' two terms fer th' same th'n (like <code>menuTitle</code> vs. <code>linkTitle</code>, or th' <code>expand</code> shortcode vs. <code>details</code>) only cause confusion.</p>
-<p>Version 10.0.0 be about clean'n this up. It removes everyth'n that currently triggers a <code>DEPRECATED</code> or <code>UNSUPPORTED</code> message dur'n a build. That covers deprecated features that still work as well as th' hints fer features that were already dropped.</p>
-<p><strong>What ye should do now</strong></p>
-<ul>
-<li><strong>No messages, no work:</strong> if yer ship builds on th' latest 9.x release without <code>DEPRECATED</code>, <code>UNSUPPORTED</code> or <code>WARNING</code> messages from th' theme, ye can update t' 10.0.0 without chang'n anyth'n.</li>
-<li><strong>Messages? Fix them now:</strong> each message names th' replacement an' links t' th' release notes describ'n th' migrat'n.</li>
-<li><strong>Don&rsquo;t wait:</strong> wit' 10.0.0, these messages be gone. Old usages will simply stop work'n, either silently or wit' a build error.</li>
-</ul>
-  </div>
-</details>
-<h2 id="9-2-0">9.2.0 (2026-10-10)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h2 id="9-2-0">9.2.0 (2026-10-11)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="hugo-01660">Cap'n Hugo 0.166.0<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li><span class="badge cstyle hugo badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-hackerrank" aria-hidden="true"></i></span><span class="badge-content">0.166.0</span></span> This release requires a newer Cap'n Hugo version.</li>
@@ -369,12 +471,12 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-d5d8730bb050079d3f65b7f89e7564cf">
+<div class="tab-panel" data-tab-group="R-tabs-37678984b8f91766671e57db2f93bfbf">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-a0324113c981834540bcea519749c48b-tab" aria-controls="R-tab-id-a0324113c981834540bcea519749c48b" aria-selected="true"
+        role="tab" id="R-tab-id-88be4e3c401a431bd1d9f30126077088-tab" aria-controls="R-tab-id-88be4e3c401a431bd1d9f30126077088" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -384,7 +486,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a0324113c981834540bcea519749c48b" role="tabpanel" aria-labelledby="R-tab-id-a0324113c981834540bcea519749c48b-tab"
+      id="R-tab-id-88be4e3c401a431bd1d9f30126077088" role="tabpanel" aria-labelledby="R-tab-id-88be4e3c401a431bd1d9f30126077088-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -431,21 +533,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-bcc62afcbb8f9dd9770154cee81943dd-tab" aria-controls="R-tab-id-bcc62afcbb8f9dd9770154cee81943dd" aria-selected="true"
+        role="tab" id="R-tab-id-f4853c790fab2b7955e2d96d6f58c855-tab" aria-controls="R-tab-id-f4853c790fab2b7955e2d96d6f58c855" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-5de37f09639e60a52b38ea91af266f61-tab" aria-controls="R-tab-id-5de37f09639e60a52b38ea91af266f61" aria-selected="false"
+        role="tab" id="R-tab-id-de624f037c9ea1d50f65ac772e35adc4-tab" aria-controls="R-tab-id-de624f037c9ea1d50f65ac772e35adc4" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-aaef87a549e67c46070fe7321c07c892-tab" aria-controls="R-tab-id-aaef87a549e67c46070fe7321c07c892" aria-selected="false"
+        role="tab" id="R-tab-id-ce5e13d65b86518b0988082b8e292fb5-tab" aria-controls="R-tab-id-ce5e13d65b86518b0988082b8e292fb5" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -455,7 +557,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-bcc62afcbb8f9dd9770154cee81943dd" role="tabpanel" aria-labelledby="R-tab-id-bcc62afcbb8f9dd9770154cee81943dd-tab"
+      id="R-tab-id-f4853c790fab2b7955e2d96d6f58c855" role="tabpanel" aria-labelledby="R-tab-id-f4853c790fab2b7955e2d96d6f58c855-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -463,7 +565,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-5de37f09639e60a52b38ea91af266f61" role="tabpanel" aria-labelledby="R-tab-id-5de37f09639e60a52b38ea91af266f61-tab"
+      id="R-tab-id-de624f037c9ea1d50f65ac772e35adc4" role="tabpanel" aria-labelledby="R-tab-id-de624f037c9ea1d50f65ac772e35adc4-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -471,7 +573,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/9/index.html">ch
       </div>
     </div>
     <div
-      id="R-tab-id-aaef87a549e67c46070fe7321c07c892" role="tabpanel" aria-labelledby="R-tab-id-aaef87a549e67c46070fe7321c07c892-tab"
+      id="R-tab-id-ce5e13d65b86518b0988082b8e292fb5" role="tabpanel" aria-labelledby="R-tab-id-ce5e13d65b86518b0988082b8e292fb5-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
