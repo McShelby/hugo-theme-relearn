@@ -145,10 +145,12 @@ runs:
         echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
         echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
 
-    - name: Setup node for gren
+    # The version lives in infra's `.nvmrc`, so a working copy and CI cannot
+    # drift apart.
+    - name: Setup node
       uses: actions/setup-node@v7
       with:
-        node-version: '16'
+        node-version-file: infra/.nvmrc
 
     - name: Generate english changelogs
       shell: bash
@@ -186,13 +188,6 @@ runs:
           const fs = require('fs');
           const { FILE, REGEX, REPLACEMENT } = process.env;
           fs.writeFileSync(FILE, fs.readFileSync(FILE, 'utf8').replace(new RegExp(REGEX, 'g'), REPLACEMENT));
-
-    # The version lives in infra's `.nvmrc`, so a working copy and CI cannot
-    # drift apart.
-    - name: Setup node for the generator
-      uses: actions/setup-node@v7
-      with:
-        node-version-file: infra/.nvmrc
 
     # `npm ci` installs all of infra, although the generator itself
     # only needs js-toml and nothing else. The packages are cheap; the browser
