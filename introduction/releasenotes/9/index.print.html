@@ -4,160 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.167.0">
-    <meta name="generator" content="Relearn 9.2.1+657eb0c78b6b304decd359529cc1ad815f57767c">
+    <meta name="generator" content="Relearn 9.2.1+be9a22b23ff9ef84ca2db33cd045d738915e5da6">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
-    <meta name="description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
-To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
-As a side effect, the keyboard shortcuts of the theme are now documented as well.
-Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
-Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
-If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
-Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
-The children shortcode still works but issues a deprecation warning for each use, naming the pages call that replaces it. See the migration instructions.
-With type=group, the children shortcode no longer shows a multi-column layout. If you want to restore the previous behavior, replace it with the pages shortcode and columns=3.
-Change The new callout shortcode replaces the now deprecated notice shortcode, matching the name of the Markdown callouts it shares its boxes with. The parameters are unchanged.
-The notice shortcode still works but issues a deprecation warning for each use. Rename your calls to callout. See the migration instructions.
-Change Hugo’s built-in details shortcode replaces the now deprecated expand shortcode, so your content stays portable to other themes.
-The expand shortcode still works but issues a deprecation warning for each use. The parameters of the details shortcode are named differently, so a call can not just be renamed. See the migration instructions.
-If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
-Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
-The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
-The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
-KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
-Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
-The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
-Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
-Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
-Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
-Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
-The options versions, version and versionIndexURL are deprecated. They still work as long as you have not configured Hugo’s versions, but the theme warns you if you use them. See the migration instructions.
-Change Links into another language written with a language prefix like /pir/my-page are deprecated, and with them the option enableLegacyLanguageLinks. They still work if the option is set, but the theme warns you for each such link. Use the lang query parameter instead, like /my-page?lang=pir.
-Change The front matter pre and post, renamed in 5.0.0, now issue a deprecation warning. Use menuPre and menuPost instead.
-Change The options customMermaidURL and customOpenapiURL are deprecated. They still work, but the theme warns you if you use them.
-To use a different version of a library, store it in the assets directory of your site, where it replaces the shipped version. See the documentation of the mermaid and openapi shortcodes.
-Change The search with the Lunr engine now only looks for similarly written words if a word of your search term isn’t found as written. Previously, such words were always included and could bury the hits you were asking for.">
+    <meta name="description" content="Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
+All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
+Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
+What you should do now
+No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 9 :: Hugo Relearn Theme">
-    <meta name="twitter:description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
-To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
-As a side effect, the keyboard shortcuts of the theme are now documented as well.
-Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
-Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
-If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
-Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
-The children shortcode still works but issues a deprecation warning for each use, naming the pages call that replaces it. See the migration instructions.
-With type=group, the children shortcode no longer shows a multi-column layout. If you want to restore the previous behavior, replace it with the pages shortcode and columns=3.
-Change The new callout shortcode replaces the now deprecated notice shortcode, matching the name of the Markdown callouts it shares its boxes with. The parameters are unchanged.
-The notice shortcode still works but issues a deprecation warning for each use. Rename your calls to callout. See the migration instructions.
-Change Hugo’s built-in details shortcode replaces the now deprecated expand shortcode, so your content stays portable to other themes.
-The expand shortcode still works but issues a deprecation warning for each use. The parameters of the details shortcode are named differently, so a call can not just be renamed. See the migration instructions.
-If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
-Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
-The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
-The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
-KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
-Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
-The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
-Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
-Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
-Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
-Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
-The options versions, version and versionIndexURL are deprecated. They still work as long as you have not configured Hugo’s versions, but the theme warns you if you use them. See the migration instructions.
-Change Links into another language written with a language prefix like /pir/my-page are deprecated, and with them the option enableLegacyLanguageLinks. They still work if the option is set, but the theme warns you for each such link. Use the lang query parameter instead, like /my-page?lang=pir.
-Change The front matter pre and post, renamed in 5.0.0, now issue a deprecation warning. Use menuPre and menuPost instead.
-Change The options customMermaidURL and customOpenapiURL are deprecated. They still work, but the theme warns you if you use them.
-To use a different version of a library, store it in the assets directory of your site, where it replaces the shipped version. See the documentation of the mermaid and openapi shortcodes.
-Change The search with the Lunr engine now only looks for similarly written words if a word of your search term isn’t found as written. Previously, such words were always included and could bury the hits you were asking for.">
+    <meta name="twitter:description" content="Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
+All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
+Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
+What you should do now
+No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 9 :: Hugo Relearn Theme">
-    <meta property="og:description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
-To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
-As a side effect, the keyboard shortcuts of the theme are now documented as well.
-Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
-Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
-If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
-Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
-The children shortcode still works but issues a deprecation warning for each use, naming the pages call that replaces it. See the migration instructions.
-With type=group, the children shortcode no longer shows a multi-column layout. If you want to restore the previous behavior, replace it with the pages shortcode and columns=3.
-Change The new callout shortcode replaces the now deprecated notice shortcode, matching the name of the Markdown callouts it shares its boxes with. The parameters are unchanged.
-The notice shortcode still works but issues a deprecation warning for each use. Rename your calls to callout. See the migration instructions.
-Change Hugo’s built-in details shortcode replaces the now deprecated expand shortcode, so your content stays portable to other themes.
-The expand shortcode still works but issues a deprecation warning for each use. The parameters of the details shortcode are named differently, so a call can not just be renamed. See the migration instructions.
-If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
-Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
-The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
-The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
-KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
-Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
-The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
-Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
-Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
-Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
-Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
-The options versions, version and versionIndexURL are deprecated. They still work as long as you have not configured Hugo’s versions, but the theme warns you if you use them. See the migration instructions.
-Change Links into another language written with a language prefix like /pir/my-page are deprecated, and with them the option enableLegacyLanguageLinks. They still work if the option is set, but the theme warns you for each such link. Use the lang query parameter instead, like /my-page?lang=pir.
-Change The front matter pre and post, renamed in 5.0.0, now issue a deprecation warning. Use menuPre and menuPost instead.
-Change The options customMermaidURL and customOpenapiURL are deprecated. They still work, but the theme warns you if you use them.
-To use a different version of a library, store it in the assets directory of your site, where it replaces the shipped version. See the documentation of the mermaid and openapi shortcodes.
-Change The search with the Lunr engine now only looks for similarly written words if a word of your search term isn’t found as written. Previously, such words were always included and could bury the hits you were asking for.">
+    <meta property="og:description" content="Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
+All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
+Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
+What you should do now
+No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 9 :: Hugo Relearn Theme">
-    <meta itemprop="description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
-To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
-As a side effect, the keyboard shortcuts of the theme are now documented as well.
-Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
-Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
-If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
-Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
-The children shortcode still works but issues a deprecation warning for each use, naming the pages call that replaces it. See the migration instructions.
-With type=group, the children shortcode no longer shows a multi-column layout. If you want to restore the previous behavior, replace it with the pages shortcode and columns=3.
-Change The new callout shortcode replaces the now deprecated notice shortcode, matching the name of the Markdown callouts it shares its boxes with. The parameters are unchanged.
-The notice shortcode still works but issues a deprecation warning for each use. Rename your calls to callout. See the migration instructions.
-Change Hugo’s built-in details shortcode replaces the now deprecated expand shortcode, so your content stays portable to other themes.
-The expand shortcode still works but issues a deprecation warning for each use. The parameters of the details shortcode are named differently, so a call can not just be renamed. See the migration instructions.
-If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
-Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
-The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
-The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
-KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
-Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
-The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
-Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
-Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
-Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
-Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
-The options versions, version and versionIndexURL are deprecated. They still work as long as you have not configured Hugo’s versions, but the theme warns you if you use them. See the migration instructions.
-Change Links into another language written with a language prefix like /pir/my-page are deprecated, and with them the option enableLegacyLanguageLinks. They still work if the option is set, but the theme warns you for each such link. Use the lang query parameter instead, like /my-page?lang=pir.
-Change The front matter pre and post, renamed in 5.0.0, now issue a deprecation warning. Use menuPre and menuPost instead.
-Change The options customMermaidURL and customOpenapiURL are deprecated. They still work, but the theme warns you if you use them.
-To use a different version of a library, store it in the assets directory of your site, where it replaces the shipped version. See the documentation of the mermaid and openapi shortcodes.
-Change The search with the Lunr engine now only looks for similarly written words if a word of your search term isn’t found as written. Previously, such words were always included and could bury the hits you were asking for.">
-    <meta itemprop="wordCount" content="2675">
+    <meta itemprop="description" content="Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
+All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
+Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
+What you should do now
+No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
+    <meta itemprop="wordCount" content="2951">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html" rel="alternate" hreflang="x-default">
@@ -173,7 +53,7 @@ Change The search with the Lunr engine now only looks for similarly written word
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.886dd2a3d261527bfd6337bca2c942519bd143f05be4f4c3250c8856ae79a4dd.js"
+      "indexFile": "searchindex.en.min.c5f93ac3a4ec142fd6a13f1fcfc9b0cf61f33d83222726737f72f63505a0038b.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -339,6 +219,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 </ul>
 <hr>
 
+
+<details open class="box cstyle callout primary expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage
+  </summary>
+  <div class="box-content">
+<p>The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.</p>
+<p>All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like <code>menuTitle</code> vs. <code>linkTitle</code>, or the <code>expand</code> shortcode vs. <code>details</code>) only cause confusion.</p>
+<p>Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a <code>DEPRECATED</code> or <code>UNSUPPORTED</code> message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.</p>
+<p><strong>What you should do now</strong></p>
+<ul>
+<li><strong>No messages, no work:</strong> if your site builds on the latest 9.x release without <code>DEPRECATED</code>, <code>UNSUPPORTED</code> or <code>WARNING</code> messages from the theme, you can update to 10.0.0 without changing anything.</li>
+<li><strong>Messages? Fix them now:</strong> each message names the replacement and links to the release notes describing the migration.</li>
+<li><strong>Don&rsquo;t wait:</strong> with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.</li>
+</ul>
+  </div>
+</details>
 <h2 id="9-2-0">9.2.0 (2026-10-11)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="hugo-01660">Hugo 0.166.0<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
@@ -469,12 +367,12 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id to each asset&rsquo;s URL, emptying a visitor&rsquo;s cache on each deployment even when no asset was different. If you referenced assets from your own partials, <code>assetbusting.gotmpl</code> is replaced by <code>asset.gotmpl</code>, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-5baf1d3d64f9a3a0e43dc2f158de3afb">
+<div class="tab-panel" data-tab-group="R-tabs-7fc6bf811bff25865f61673f73faac00">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-e7b9c9bf1d6d070e6229459c5396c3c9-tab" aria-controls="R-tab-id-e7b9c9bf1d6d070e6229459c5396c3c9" aria-selected="true"
+        role="tab" id="R-tab-id-551874fb228f78efb522937cb256cc77-tab" aria-controls="R-tab-id-551874fb228f78efb522937cb256cc77" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -484,7 +382,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e7b9c9bf1d6d070e6229459c5396c3c9" role="tabpanel" aria-labelledby="R-tab-id-e7b9c9bf1d6d070e6229459c5396c3c9-tab"
+      id="R-tab-id-551874fb228f78efb522937cb256cc77" role="tabpanel" aria-labelledby="R-tab-id-551874fb228f78efb522937cb256cc77-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -531,21 +429,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-a29425d59b57ac76f9d35cba719821a6-tab" aria-controls="R-tab-id-a29425d59b57ac76f9d35cba719821a6" aria-selected="true"
+        role="tab" id="R-tab-id-5a3e3737748e1ce1d40f8843ff275e0a-tab" aria-controls="R-tab-id-5a3e3737748e1ce1d40f8843ff275e0a" aria-selected="true"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7c6277dbda29b66e3e30fb5261306418-tab" aria-controls="R-tab-id-7c6277dbda29b66e3e30fb5261306418" aria-selected="false"
+        role="tab" id="R-tab-id-13a8f2127bb5c7ad854bf0e975505e17-tab" aria-controls="R-tab-id-13a8f2127bb5c7ad854bf0e975505e17" aria-selected="false"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-12a8115be38566daf0df4922e1e25b36-tab" aria-controls="R-tab-id-12a8115be38566daf0df4922e1e25b36" aria-selected="false"
+        role="tab" id="R-tab-id-1b8ea7fedc6ca52a956026b84dbbdb58-tab" aria-controls="R-tab-id-1b8ea7fedc6ca52a956026b84dbbdb58" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -555,7 +453,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a29425d59b57ac76f9d35cba719821a6" role="tabpanel" aria-labelledby="R-tab-id-a29425d59b57ac76f9d35cba719821a6-tab"
+      id="R-tab-id-5a3e3737748e1ce1d40f8843ff275e0a" role="tabpanel" aria-labelledby="R-tab-id-5a3e3737748e1ce1d40f8843ff275e0a-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -563,7 +461,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-7c6277dbda29b66e3e30fb5261306418" role="tabpanel" aria-labelledby="R-tab-id-7c6277dbda29b66e3e30fb5261306418-tab"
+      id="R-tab-id-13a8f2127bb5c7ad854bf0e975505e17" role="tabpanel" aria-labelledby="R-tab-id-13a8f2127bb5c7ad854bf0e975505e17-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -571,7 +469,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-12a8115be38566daf0df4922e1e25b36" role="tabpanel" aria-labelledby="R-tab-id-12a8115be38566daf0df4922e1e25b36-tab"
+      id="R-tab-id-1b8ea7fedc6ca52a956026b84dbbdb58" role="tabpanel" aria-labelledby="R-tab-id-1b8ea7fedc6ca52a956026b84dbbdb58-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
