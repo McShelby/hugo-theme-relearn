@@ -112,8 +112,19 @@ runs:
         MILESTONE: ${{ inputs.milestone }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
+        FILE: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
+      # A missing file is written as a whole. In an existing one only the front
+      # matter is overwritten, as its body may be written by hand, like an
+      # announcement above the list of versions.
       run: |
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n\n{{% pages display=\"content\" hidden=\"true\" %}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.en.md
+        FRONTMATTER="+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++"
+        if [ ! -f "$FILE" ]; then
+          echo -e "$FRONTMATTER\n\n{{% pages display=\"content\" hidden=\"true\" %}}" > "$FILE"
+        else
+          BODY=$(awk 'n >= 2; /^\+\+\+$/ { n++ }' "$FILE")
+          echo -e "$FRONTMATTER" > "$FILE"
+          echo "$BODY" >> "$FILE"
+        fi
 
     - name: Update releasenotes front matter
       uses: actions/github-script@v9
