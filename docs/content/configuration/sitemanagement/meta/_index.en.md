@@ -33,7 +33,7 @@ title = 'Hugo Relearn Theme'
 
 When your page is shared on social media, you can set a site-wide image to display with the link
 
-{{< multiconfig file=hugo >}}
+{{< multiconfig file=hugo section=params >}}
 images = [ 'images/hero.png' ]
 {{< /multiconfig >}}
 

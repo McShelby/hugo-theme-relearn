@@ -66,8 +66,9 @@ headingPre = '<i class="fab fa-github"></i> '
 
 See how to further [configure this information](configuration/content/meta) on a site-wide basis.
 
-{{< multiconfig fm=true section=params >}}
-LastModifierDisplayName = 'Santa Claus'
-LastModifierEmail = 'santa@example.com'
+{{< multiconfig fm=true >}}
 date = 2000-12-24T00:00:00-12:00
+[params]
+  LastModifierDisplayName = 'Santa Claus'
+  LastModifierEmail = 'santa@example.com'
 {{< /multiconfig >}}
