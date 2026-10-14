@@ -5,15 +5,12 @@
   Renders syntax-highlighted configuration data in TOML, YAML and JSON formats.
 
   @param {Page} [page] The page to render on.
-  @param {string} [content] Plain content to render.
-  @param {string} [config] The section of hugo.Data.docs.config to render.
-  @param {string} [dataKey] Only render specific section
+  @param {string} [content] The TOML content to render.
   @param {string} [file] The file name to display above the rendered code.
   @param {bool} [fm=false] If true, render the code as front matter.
-  @param {bool} [skipHeader=false] If false, omit top level key(s) when rendering a section of hugo.Data.docs.config.
-  @param {string} [section] The file name to display above the rendered code.
+  @param {string} [section] The dotted key to nest the content under.
 
-  Lines of plain content enclosed by the comments `# <mark>` and `# </mark>`
+  Lines of content enclosed by the comments `# <mark>` and `# </mark>`
   are highlighted in every format. The enclosed lines must be removable
   without leaving invalid TOML behind, as they are found by comparing the
   rendering of the content with and without them.
@@ -24,20 +21,12 @@
 {{- /* Get parameters. */}}
 {{- $page := .page }}
 {{- $content := .content }}
-{{- $config := .config }}
-{{- $dataKey := .dataKey }}
 {{- $file := .file }}
 {{- $fm := false }}
 {{- if in (slice "false" false 0) .fm }}
   {{- $fm = false }}
 {{- else if in (slice "true" true 1) .fm }}
   {{- $fm = true }}
-{{- end }}
-{{- $skipHeader := false }}
-{{- if in (slice "false" false 0) .skipHeader }}
-  {{- $skipHeader = false }}
-{{- else if in (slice "true" true 1) .skipHeader }}
-  {{- $skipHeader = true }}
 {{- end }}
 {{- $section := .section }}
 
@@ -46,39 +35,23 @@
 {{- $langs := slice "toml" "yaml" "json" }}
 
 {{- /* Render. */}}
-{{- $code := "" }}
-{{- if $config }}
-  {{- $file = $file | default "hugo" }}
-  {{- $sections := (split $config ".") }}
-  {{- $configSection := index hugo.Data.docs.config $sections }}
-  {{- $code = dict $sections $configSection }}
-  {{- if $skipHeader }}
-    {{- $code = $configSection }}
-  {{- end }}
-{{- else if $dataKey }}
-  {{- $file = $file | default $dataKey }}
-  {{- $sections := (split $dataKey ".") }}
-  {{- $code = index hugo.Data.docs $sections }}
-{{- else }}
-  {{- $code = $content }}
-{{- end }}
+{{- $code := $content }}
 {{- /* The content without its marked lines; equal to the content if nothing is marked. */}}
-{{- $base := $code }}
-{{- if not (or $config $dataKey) }}
-  {{- $base = $code | replaceRE `(?s)#[ \t]*<mark>.*?#[ \t]*</mark>[^\r\n]*(\r\n|\r|\n)?` "" }}
-{{- end }}
+{{- $base := $code | replaceRE `(?s)#[ \t]*<mark>.*?#[ \t]*</mark>[^\r\n]*(\r\n|\r|\n)?` "" }}
 {{- $marked := ne $base $code }}
 {{- /* Remove toml comments. */}}
 {{- $code = $code | replaceRE `#.*(\r\n|\r|\n)?` "" }}
 {{- $code = trim $code "\n\r\t " }}
+{{- /* Nest the parsed content, as prepending a header to its text would let
+  its own table headers escape the section. */}}
 {{- if and $section $code }}
-  {{- $code = printf "[%s]\n%s" $section $code }}
+  {{- $code = dict (split $section ".") (transform.Unmarshal $code) }}
 {{- end }}
 {{- if $marked }}
   {{- $base = $base | replaceRE `#.*(\r\n|\r|\n)?` "" }}
   {{- $base = trim $base "\n\r\t " }}
   {{- if and $section $base }}
-    {{- $base = printf "[%s]\n%s" $section $base }}
+    {{- $base = dict (split $section ".") (transform.Unmarshal $base) }}
   {{- end }}
 {{- end }}
 {{- $params := dict "page" $page "groupid" "config-code" }}
