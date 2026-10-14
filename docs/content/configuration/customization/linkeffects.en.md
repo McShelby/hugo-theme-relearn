@@ -14,7 +14,7 @@ If you don't configure anything in your `hugo.toml`, the link effects default to
 
 ## Default Values
 
-{{< multiconfig >}}
+{{< multiconfig file=hugo section=params >}}
 linkEffects.download = false
 linkEffects.target = false
 {{< /multiconfig >}}
@@ -30,11 +30,11 @@ linkEffects.target = '_blank'
 
 This would result in
 
-{{< multiconfig >}}
+{{< multiconfig file=hugo section=params >}}
 [linkEffects]
-linkEffects.bg-white = true
-linkEffects.download = false
-linkEffects.target = '_blank'
+bg-white = true
+download = false
+target = '_blank'
 {{< /multiconfig >}}
 
 ### Example
