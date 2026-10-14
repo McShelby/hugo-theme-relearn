@@ -25,7 +25,6 @@ linkEffects.target = '_blank'
 This would result in
 
 {{< multiconfig >}}
-[linkEffects]
 linkEffects.bg-white = true
 linkEffects.download = false
 linkEffects.target = '_blank'

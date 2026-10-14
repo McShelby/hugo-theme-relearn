@@ -6,7 +6,7 @@ In addition to [Hugo's standard front matter](https://gohugo.io/content-manageme
 
 Throughout the documentation, theme-specific front matter is marked with a {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} badge.
 
-Add theme front matter directly to the root of your page's front matter. For example:
+Add theme front matter to the `params` section of your page's front matter. For example:
 
 {{< multiconfig fm=true section=params >}}
 math = true

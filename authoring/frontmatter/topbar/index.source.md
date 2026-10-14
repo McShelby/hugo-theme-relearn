@@ -26,7 +26,7 @@ Your topbar contains the following elements. Some of them are configuarable:
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 disableToc = true
 {{< /multiconfig >}}
 
@@ -36,7 +36,7 @@ disableToc = true
 
 Further breadcrumbs settings can be found in the [content configuration section](configuration/content/titles).
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 disableBreadcrumb = true
 {{< /multiconfig >}}
 
@@ -46,7 +46,7 @@ disableBreadcrumb = true
 
 The value can contain the macro `${FilePath}` which will be replaced by the file path of your displayed page. If no `${FilePath}` is given in the value, the value is treated as if the `${FilePath}` was appended at the end of the value. This can be overridden in the pages front matter.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/${FilePath}'
 {{< /multiconfig >}}
 
@@ -56,7 +56,7 @@ The value can also contain the macro `${BaseDir}` which will be replaced by the 
 
 This is how you send the edit button to your local editor instead of a web service. For [Visual Studio Code](https://code.visualstudio.com):
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 editURL = 'vscode://file/${BaseDir}/${FilePath}'
 {{< /multiconfig >}}
 
@@ -67,7 +67,7 @@ editURL = 'vscode://file/${BaseDir}/${FilePath}'
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Markdown button if the [Markdown output format](configuration/sitemanagement/outputformats/#markdown-support) is active by setting `disableMarkdownButton=true`.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 disableMarkdownButton = true
 {{< /multiconfig >}}
 
@@ -75,7 +75,7 @@ disableMarkdownButton = true
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Source button if the [Source output format](configuration/sitemanagement/outputformats/#source-support) is active by setting `disableSourceButton=true`.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 disableSourceButton = true
 {{< /multiconfig >}}
 
@@ -83,7 +83,7 @@ disableSourceButton = true
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the print button if the [print output format](configuration/sitemanagement/outputformats/#print-support) is active by setting `disablePrintButton=true`.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 disablePrintButton = true
 {{< /multiconfig >}}
 
@@ -91,6 +91,6 @@ disablePrintButton = true
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
 
-{{< multiconfig >}}
+{{< multiconfig section=params >}}
 disableNextPrev = true
 {{< /multiconfig >}}

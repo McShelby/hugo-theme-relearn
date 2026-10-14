@@ -52,7 +52,7 @@
 
   Joined, the two are the location of the displayed page on your disk during build, which lets the edit button open your local editor instead of a web service.
 
-  {{< multiconfig >}}
+  {{< multiconfig section=params >}}
   editURL = 'vscode://file/${BaseDir}/${FilePath}'
   {{< /multiconfig >}}
 
