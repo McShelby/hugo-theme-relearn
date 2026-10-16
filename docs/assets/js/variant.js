@@ -716,7 +716,7 @@ var variants = {
                 variables: [
                   { name: 'CODE-BLOCK-color', default: '#000000', tooltip: 'fallback text color of block code; should be adjusted to your selected chroma style' },
                   { name: 'CODE-BLOCK-BG-color', default: '#f8f8f8', tooltip: 'fallback background color of block code; should be adjusted to your selected chroma style' },
-                  { name: 'CODE-BLOCK-BORDER-color', fallback: 'CODE-BLOCK-BG-color', tooltip: 'border color of block code' },
+                  { name: 'CODE-BLOCK-BORDER-color', fallback: 'BOX-NEUTRAL-color', tooltip: 'border color of block code' },
                 ],
               },
               {
@@ -765,7 +765,7 @@ var variants = {
               { name: 'BOX-TIP-color', fallback: 'BOX-GREEN-color', tooltip: 'background color of tip boxes' },
               { name: 'BOX-GREEN-TEXT-color', fallback: 'BOX-TEXT-color', tooltip: 'text color of green boxes' },
               { name: 'BOX-TIP-TEXT-color', fallback: 'BOX-GREEN-TEXT-color', tooltip: 'text color of tip boxes' },
-              { name: 'BOX-GREY-color', default: 'rgba(128, 128, 128, 1)', tooltip: 'background color of grey boxes' },
+              { name: 'BOX-GREY-color', default: 'rgba(160, 160, 160, 1)', tooltip: 'background color of grey boxes' },
               { name: 'BOX-NEUTRAL-color', fallback: 'BOX-GREY-color', tooltip: 'background color of neutral boxes' },
               { name: 'BOX-GREY-TEXT-color', fallback: 'BOX-TEXT-color', tooltip: 'text color of grey boxes' },
               { name: 'BOX-NEUTRAL-TEXT-color', fallback: 'BOX-GREY-TEXT-color', tooltip: 'text color of neutral boxes' },
