@@ -655,7 +655,6 @@ article .R-taxonomy.tags {
   --VARIABLE-TAGS-color: var(--INTERNAL-MAIN-BG-color);
   --VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);
   margin-left: 1rem;
-  margin-top: 1rem;
 }
 
 /* only a list given a style is a cstyle */
@@ -2089,6 +2088,12 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
     padding-bottom: 0;
     padding-top: 0;
   }
+}
+
+/* the header may be left without content, so it only takes room if it has
+   some; the partial's surrounding whitespace keeps :empty from matching */
+#R-body header.headline:has(*) {
+  margin-top: 1rem;
 }
 
 #R-body footer.footline {
