@@ -3652,10 +3652,15 @@ body a#R-logo:hover *:not(svg, svg *) {
   border-style: solid;
   border-width: 1px;
   display: none;
+  z-index: 10;
+}
+
+/* the shift sits on the container, as a tab panel nested first into a box would
+  reset the margin of its first tab content */
+#R-body .tab-content-container {
   /* if setting a border to 1px, a browser instead sets it to 1dppx which is not
     usable as a unit yet, so we have to calculate it ourself */
   margin-top: calc(var(--bpx1) * -1px);
-  z-index: 10;
 }
 
 #R-body .tab-content.active {
