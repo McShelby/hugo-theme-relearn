@@ -13,7 +13,6 @@ The theme ships with the following set of variants
 - Relearn
   - [Light](configuration/branding/colors?variant=relearn-light#shipped-variants): the classic Relearn default, coming with signature green, dark sidebar and light content area
   - [Dark](configuration/branding/colors?variant=relearn-dark#shipped-variants): dark variant of Light, coming with signature green, dark sidebar and dark content area
-  - [Bright](configuration/branding/colors?variant=relearn-bright#shipped-variants): alternative of Light, coming with signature green, green sidebar and light content area
 - Zen
   - [Light](configuration/branding/colors?variant=zen-light#shipped-variants): a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
   - [Dark](configuration/branding/colors?variant=zen-dark#shipped-variants): dark variant of Light, coming with blue accents, dark sidebar and dark content area
@@ -87,7 +86,7 @@ The theme offers an advanced way to configure theme variants and all of the aspe
 
 Like with the [multiple variants](#multiple-variants) option, you are defining your theme variants in an array but now in a table with suboptions.
 
-Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
+Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one variant.
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [ 'relearn-light', 'relearn-dark' ]
@@ -111,25 +110,83 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 | identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `assets/css/theme-<IDENTIFIER>.css`. |
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
 | auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
-| logo                  | _&lt;empty&gt;_ | [Override for the default logo](configuration/branding/logo#variant-specific-logos) |
+| params                | _&lt;empty&gt;_ | Values of the site's `params` that are overridden while this variant is active, see [below](#variant-parameters). |
 | hidden                | `false`         | If `true`, the variant will not be shown in the variant switcher but is still available for internal use (e.g. to override parameter when used as a sub-variant of an auto mode variant). |
+| print                 | see notes       | The [print variant](#theme-variant-print) of this variant. If not set, the one of the `themeVariantPrint` option is used. An auto mode variant ignores it and prints with the print variants of its light and dark variant. |
+
+#### Variant Parameters
+
+Some of the site's `params` can be given a different value for a variant by setting it in the variant's `params`. While the variant is active, it takes the place of the site's value.
+
+| Name                  | Notes       |
+|-----------------------|-------------|
+| logo                  | [Logo of the variant](configuration/branding/logo#variant-specific-logos), only its `src` |
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light' },
+	{ identifier = 'neon',         params = { logo = { src = '/images/logo-neon.svg' } } }
+]
+{{< /multiconfig >}}
+
+#### Dividers
+
+To group the entries of the variant switcher, put an entry `{ type = 'divider' }` between them. It draws a line in the variant switcher and is no variant itself.
+
+Give the divider a `name` to label the group following it, like `{ type = 'divider', name = 'Classic' }`. A named divider may also stand first to label the first group.
+
+Of consecutive dividers only the last one is kept. Trailing dividers are dropped, as are leading ones without a name.
 
 #### Example Configuration
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
+	{ type = 'divider',             name = 'Modern' },
 	{ identifier = 'relearn-auto',  name = 'Relearn Light/Dark', auto = [] },
 	{ identifier = 'relearn-light'  },
 	{ identifier = 'relearn-dark'   },
-	{ identifier = 'relearn-bright' },
+	{ type = 'divider'              },
 	{ identifier = 'zen-auto',      name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
 	{ identifier = 'zen-light'      },
 	{ identifier = 'zen-dark'       },
+	{ type = 'divider',             name = 'Classic' },
 	{ identifier = 'retro-auto',    name = 'Retro Learn/Neon', auto = [ 'learn', 'neon' ] },
 	{ identifier = 'neon'           },
 	{ identifier = 'learn'          }
 ]
 {{< /multiconfig >}}
+
+### Print Variant {#theme-variant-print}
+
+When a page is printed or shown as its [print version](configuration/sitemanagement/outputformats#print-support), it doesn't use the variant selected by the reader but a print variant. A print variant is an ordinary variant, preferably one with a light background, as most browsers don't print backgrounds.
+
+{{% badge style="option" %}}Option{{% /badge %}} Set `themeVariantPrint` to change the print variant of all variants. Default is `relearn-print`, a variant made for paper based on `relearn-light`.
+
+{{< multiconfig file=hugo section=params >}}
+themeVariantPrint = 'zen-light'
+{{< /multiconfig >}}
+
+With the [advanced configuration](#theme-variant-advanced), each variant can name its own print variant with the `print` parameter. An auto mode variant prints with the print variants of its light and dark variant, following the reader's OS setting.
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'my-auto',  auto = [ 'my-light', 'my-dark' ] },
+	{ identifier = 'my-light', print = 'my-light-print' },
+	{ identifier = 'my-dark',  print = 'my-dark-print' }
+]
+{{< /multiconfig >}}
+
+A print variant doesn't need to be part of `themeVariant`. If you list it, set it `hidden` to keep it out of the variant switcher.
+
+To print with the fonts of your variant but the colors of the default print variant, [import](#modifying-variants) the print variant and add your font settings:
+
+````css {title="assets/css/theme-my-dark-print.css"}
+@import "theme-relearn-print.css";
+
+:root {
+  --MAIN-font: "My Font", sans-serif; /* font of your dark variant */
+}
+````
 
 ## Advanced Topics
 

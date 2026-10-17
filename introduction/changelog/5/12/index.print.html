@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.2.1+746dc29d393b0160462b1f77b144f8051168fb61">
+    <meta name="generator" content="Relearn 9.2.1+7b0670039023b54e481ae7abb21568a56da46243">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="5.12.6 (2023-05-04) Enhancements [feature] theme: better HTML titles and breadcrumbs for search and tag pages #521 Fixes [bug] menu: avoid hiding of expander on hover when active item has children #520 [bug] menu: showVisitedLinks not working for some theme variants #518 [bug] theme: fix resource URLs for 404 page on subdirectories #515 5.12.5 (2023-03-28) Fixes [bug] expand: not properly exanded when used in bullet point list #508 5.12.4 (2023-03-24) Fixes [bug] theme: disableExplicitIndexURLs param is not working as expected #505 5.12.3 (2023-03-14) Fixes [bug] attachments: fix links if only one language is present #503 [bug] shortcodes: allow markdown for title and content #502 5.12.2 (2023-03-03) Fixes [bug] menu: fix state for alwaysopen=false &#43; collapsibleMenu=false #498 5.12.1 (2023-02-26) Enhancements [feature] variant: add relearn bright theme #493 Fixes [bug] generator: fix setting of colors #494 5.12.0 (2023-02-24) Enhancements [feature] frontmatter: support VSCode Front Matter extension #481 [feature] theme: make expand and image ids stable #477 [feature] variant: set scrollbar color to dark for dark variants #471 [feature] i18n: add full RTL support #470 [feature] piratify: fix some quirks, arrr #469 [feature][change] theme: optimization for huge screen sizes #466 Fixes [bug] i18n: write code ltr even for rtl languages #492 [bug] anchor: fix link in FF when served from file system #482 [bug] shortcodes: don’t break build and render for invalid parameters #480 [bug] nav: restore scroll position on browser back #476 [bug] variant: avoid style leak for auto style #473 Maintenance [task] build: add imagebot #485">
     <meta name="author" content="Sören Weber">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.30344df91aaf5da7890c2222b9fcb7867b40c0a8e4d4d8bd108a2a09a69495dd.js"
+      "indexFile": "searchindex.en.min.8f6ddb23452d0f5907b0af9e2d8f0d0b69d6ba6e840d1823cb081da2f6fed03c.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -49,8 +49,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.21f36ffd508ae5df5f9b4a66fb1de16ad14574ca52618cf8fa93de39bc0576e2.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.477d08fb705b0cbff80a35b2f73f071c4dada7efc4b6811fd5c7c77ebf6308f6.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.f8be142b24b9ff3491ad1903a68d7514f810caa28fd7f2f7a9473876cf13166d.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.c3473e7f35aea2125ad33970b31c57419c5ddbb33778271206f78095a011ffa6.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -61,7 +61,6 @@
         "relearn-auto",
         "relearn-dark",
         "relearn-light",
-        "relearn-bright",
         "zen-auto",
         "zen-dark",
         "zen-light",
@@ -94,7 +93,7 @@
         "View_reset": "View reset!"
       }
     }</script>
-    <script src="/hugo-theme-relearn/js/theme-head.min.8c8c3bb99b655d91386ff7fefb5fceeb088bff4bb82bcde54fbef7dacb3388cc.js"></script>
+    <script src="/hugo-theme-relearn/js/theme-head.min.5a8fc5380bfc2c9d6156c17237195cf8499a12e167dab94cf50c5a25f2fe922d.js"></script>
     <style>
        
       #R-body img.bg-white {
@@ -295,7 +294,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.f66b851115ea46f239f782bd19e65c09786103c8cb054f72664b912bc561d1c8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.e553fda13c6ba801712b7e0f36a9224f61bf9fdddd4de05013544048cb10ce09.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
