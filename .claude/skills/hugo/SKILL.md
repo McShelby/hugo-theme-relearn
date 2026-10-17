@@ -31,19 +31,19 @@ Run the webserver for testing changes.
 Run the Hugo's development webserver on a non-default port of 3131 and with a destination directory of its own.
 
 ```cmd
-cd <directory-of-content-directory> && hugo server -p 3131 -d public.agent
+cd <directory-of-content-directory> && hugo server -p 3131 -d public.agent --noBuildLock
 ```
 
 To run Hugo's webserver on the default port 1313 (which is often blocked)
 
 ```cmd
-cd <directory-of-content-directory> && hugo server -d public.agent
+cd <directory-of-content-directory> && hugo server -d public.agent --noBuildLock
 ```
 
 To only generate the website to the filesystem but don't serve it
 
 ```cmd
-cd <directory-of-content-directory> && hugo build -d public.agent
+cd <directory-of-content-directory> && hugo build -d public.agent --noBuildLock
 ```
 
 ### Parameters Help
@@ -60,6 +60,7 @@ hugo help
 - Access the site at [http://localhost:3131](http://localhost:3131)
 - The files that Hugo generates and afterwards serves are stored in `public.agent` of the working directory
 - Always pass `-d public.agent`: the default `public` is what the user's own webserver serves from disk, and files written there by another run show up in the user's browser
+- Always pass `--noBuildLock`: the user's own webserver holds `.hugo_build.lock` of the working directory for as long as it runs, and any other run waits for it without a word until it stops
 - Source Markdown files of `content/*` can be accessed as their output representation by `http://localhost:3131/*` or `public.agent/*`
 - Press Ctrl+C to stop the server
 - Watch stdout/stderr for build warnings and errors
@@ -71,7 +72,7 @@ hugo help
 For build validation, run a **one-shot build** that exits after completion:
 
 ```bash
-cd <directory-of-content-directory> && hugo build -d public.agent --printPathWarnings --printI18nWarnings --cleanDestinationDir --logLevel info 2>&1
+cd <directory-of-content-directory> && hugo build -d public.agent --noBuildLock --printPathWarnings --printI18nWarnings --cleanDestinationDir --logLevel info 2>&1
 ```
 
 `-p` is a `hugo server` option. `hugo build` serves nothing and has no port, so passing it there fails with `unknown shorthand flag: 'p'`.
