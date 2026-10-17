@@ -1,11 +1,24 @@
 {{- $allthemevariants := (partialCached "_relearn/themeVariants.gotmpl" site.Home).variants }}
 {{- $themevariants := slice }}
+{{- $variantcount := 0 }}
+{{- $divider := false }}
 {{- range $allthemevariants }}
-  {{- if not .hidden }}
+  {{- if eq .type "divider" }}
+    {{- /* of consecutive dividers only the last one is kept; trailing ones are
+      dropped and so are leading ones, unless they name the first group */}}
+    {{- if or .name (gt $variantcount 0) }}
+      {{- $divider = . }}
+    {{- end }}
+  {{- else if not .hidden }}
+    {{- with $divider }}
+      {{- $themevariants = $themevariants | append . }}
+    {{- end }}
+    {{- $divider = false }}
     {{- $themevariants = $themevariants | append . }}
+    {{- $variantcount = add $variantcount 1 }}
   {{- end }}
 {{- end }}
-{{- $showvariantswitch := gt (int (len $themevariants)) 1 }}
+{{- $showvariantswitch := gt $variantcount 1 }}
 {{- if $showvariantswitch }}
   {{- $icon := .element.icon | default "paint-brush" }}
   {{- if and $icon (not (findRE ".*?\\bfa-\\w.*?" $icon)) }}
@@ -18,10 +31,27 @@
                 <div class="control-style">
                   <select aria-label="{{ T "Theme" }}">
                     {{- $firstvariant := true }}
+                    {{- $ingroup := false }}
                     {{- range $themevariants }}
                       {{- $themevariant := . }}
-                    <option value="{{ $themevariant.identifier }}"{{- if $firstvariant }} selected{{ end }}>{{ $themevariant.name }}</option>
+                      {{- if eq $themevariant.type "divider" }}
+                        {{- if $ingroup }}
+                    </optgroup>
+                          {{- $ingroup = false }}
+                        {{- end }}
+                        {{- with $themevariant.name }}
+                    <optgroup label="{{ . }}">
+                          {{- $ingroup = true }}
+                        {{- else }}
+                    <hr>
+                        {{- end }}
+                        {{- continue }}
+                      {{- end }}
+                    {{ if $ingroup }}  {{ end }}<option value="{{ $themevariant.identifier }}"{{- if $firstvariant }} selected{{ end }}>{{ $themevariant.name }}</option>
                       {{- $firstvariant = false }}
+                    {{- end }}
+                    {{- if $ingroup }}
+                    </optgroup>
                     {{- end }}
                   </select>
                 </div>

@@ -19,7 +19,7 @@
     {{- $themeintegrity := $themevariantsdata.integrity }}
     {{- $themevariantids := slice }}
     {{- range $themevariants }}
-      {{- if not .hidden }}
+      {{- if not (or .hidden (eq .type "divider")) }}
         {{- $themevariantids = $themevariantids | append .identifier }}
       {{- end }}
     {{- end }}

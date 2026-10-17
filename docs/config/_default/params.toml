@@ -73,7 +73,10 @@ logo = { src = '/images/logo.svg?inlinecontent', layout = 'sidebar-row' }
 # layouts/partials/logo.html.
 # If the array has more than one entry, a variant selector
 # is shown in the lower part of the menu. The first entry in the array is the
-# default variant, used for first time visitors.
+# default variant, used for first time visitors. An entry
+# `{ type = 'divider' }` instead of a variant draws a line between the entries
+# of the variant selector. With a `name` set, it labels the group following it
+# instead.
 # The theme ships with the following variants: 'relearn-bright',
 # 'relearn-light', 'relearn-dark', 'zen-light', 'zen-dark', 'contrast-light',
 # 'contrast-dark', 'neon', 'learn',
@@ -82,19 +85,24 @@ logo = { src = '/images/logo.svg?inlinecontent', layout = 'sidebar-row' }
 # You can also define your own variants. See the docs how this works. Also,
 # the docs provide an interactive theme generator to help you with this task.
 themeVariant = [
+	{ type = 'divider',             name = 'Relearn' },
 	{ identifier = 'relearn-auto',  name = 'Relearn Light/Dark', auto = [ 'relearn-light', 'relearn-dark' ] },
 	{ identifier = 'relearn-dark'   },
 	{ identifier = 'relearn-light'  },
 	{ identifier = 'relearn-bright' },
+	{ type = 'divider',             name = 'Zen' },
 	{ identifier = 'zen-auto',      name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
 	{ identifier = 'zen-dark'       },
 	{ identifier = 'zen-light'      },
+	{ type = 'divider',             name = 'Contrast' },
 	{ identifier = 'contrast-auto', name = 'Contrast Light/Dark', auto = [ 'contrast-light', 'contrast-dark' ] },
 	{ identifier = 'contrast-dark'  },
 	{ identifier = 'contrast-light' },
+	{ type = 'divider',             name = 'Retro' },
 	{ identifier = 'retro-auto',    name = 'Retro Learn/Neon', auto = [ 'learn', 'neon' ] },
 	{ identifier = 'neon',          logo = { src = '/images/magic.gif' } },
 	{ identifier = 'learn'          },
+	{ type = 'divider',             name = 'Colors' },
 	{ identifier = 'blue'           },
 	{ identifier = 'green'          },
 	{ identifier = 'red'            }

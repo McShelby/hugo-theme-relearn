@@ -78,13 +78,24 @@ window.relearn.markVariant = function () {
         option.remove();
       }
     });
-    // a custom variant follows the ones of the markup, so it has to wait until the parser is done with those
+    // a custom variant follows the ones of the markup, so it has to wait until the parser is done with those;
+    // the custom variants are grouped of their own, a group that goes with the last of them
+    var group = select.querySelector('optgroup.R-custom-variants');
     if (select.nextSibling || document.readyState != 'loading') {
       Object.keys(customVariants).forEach((identifier) => {
         if (!Array.from(select.options).some((option) => option.value == identifier)) {
-          select.add(new Option(customVariants[identifier].name, identifier));
+          if (!group) {
+            group = document.createElement('optgroup');
+            group.className = 'R-custom-variants';
+            group.label = 'Custom';
+            select.appendChild(group);
+          }
+          group.appendChild(new Option(customVariants[identifier].name, identifier));
         }
       });
+    }
+    if (group && !group.children.length) {
+      group.remove();
     }
     select.value = variant;
   });

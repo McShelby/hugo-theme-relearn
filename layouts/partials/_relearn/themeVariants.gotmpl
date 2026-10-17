@@ -54,11 +54,16 @@ Unification run:
 - convert auto property to slice
 - remember default variants for auto mode
 - compute effective logo for non-auto variants
+- keep dividers only for the variant switcher
 */}}
 {{- $tempthemevariants := slice | append (site.Params.themeVariant | default "auto" ) }}
 {{- $themevariants := slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
 	{{- $themevariant := $tempthemevariant }}
+	{{- if and (reflect.IsMap $themevariant) (eq $themevariant.type "divider") }}
+		{{- $themevariants = $themevariants | append (dict "type" "divider" "name" ($themevariant.name | default "")) }}
+		{{- continue }}
+	{{- end }}
 	{{- if not (reflect.IsMap $themevariant) }}
 		{{- $themevariant = dict "identifier" $tempthemevariant }}
 	{{- end }}
@@ -97,6 +102,7 @@ Generator run:
 - fill up auto property with defaults
 - write variant & chroma CSS string of normal variants and for light and dark of auto variants
 - generate logo variant show/hide CSS
+- pass dividers through without CSS
 */}}
 {{- define "partials/inline/get-logo-css" }}
 	{{- $variant := . }}
@@ -113,6 +119,10 @@ Generator run:
 {{- $themevariants = slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
 	{{- $themevariant := $tempthemevariant }}
+	{{- if eq $themevariant.type "divider" }}
+		{{- $themevariants = $themevariants | append $themevariant }}
+		{{- continue }}
+	{{- end }}
 	{{- $hiddenVariants := slice }}
 	{{- if collections.IsSet $themevariant "auto" }}
 		{{- $light := index $themevariant.auto 0 | default (index $defaultautothemevariants 0) }}

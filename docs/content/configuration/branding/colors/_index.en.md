@@ -93,7 +93,7 @@ The theme offers an advanced way to configure theme variants and all of the aspe
 
 Like with the [multiple variants](#multiple-variants) option, you are defining your theme variants in an array but now in a table with suboptions.
 
-Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one entry.
+Again, in this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer if the array contains more than one variant.
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [ 'relearn-light', 'relearn-dark' ]
@@ -120,17 +120,28 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 | logo                  | _&lt;empty&gt;_ | [Override for the default logo](configuration/branding/logo#variant-specific-logos) |
 | hidden                | `false`         | If `true`, the variant will not be shown in the variant switcher but is still available for internal use (e.g. to override parameter when used as a sub-variant of an auto mode variant). |
 
+#### Dividers
+
+To group the entries of the variant switcher, put an entry `{ type = 'divider' }` between them. It draws a line in the variant switcher and is no variant itself.
+
+Give the divider a `name` to label the group following it, like `{ type = 'divider', name = 'Classic' }`. A named divider may also stand first to label the first group.
+
+Of consecutive dividers only the last one is kept. Trailing dividers are dropped, as are leading ones without a name.
+
 #### Example Configuration
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
+	{ type = 'divider',             name = 'Modern' },
 	{ identifier = 'relearn-auto',  name = 'Relearn Light/Dark', auto = [] },
 	{ identifier = 'relearn-light'  },
 	{ identifier = 'relearn-dark'   },
 	{ identifier = 'relearn-bright' },
+	{ type = 'divider'              },
 	{ identifier = 'zen-auto',      name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
 	{ identifier = 'zen-light'      },
 	{ identifier = 'zen-dark'       },
+	{ type = 'divider',             name = 'Classic' },
 	{ identifier = 'retro-auto',    name = 'Retro Learn/Neon', auto = [ 'learn', 'neon' ] },
 	{ identifier = 'neon'           },
 	{ identifier = 'learn'          }
