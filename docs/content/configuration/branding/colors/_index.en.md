@@ -116,8 +116,23 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 | identifier            | _&lt;empty&gt;_ | Must correspond to the name of a color variant either in your site's or the theme's directory in the form `assets/css/theme-<IDENTIFIER>.css`. |
 | name                  | see notes       | The name to be displayed in the variant selector. If not set, the identifier is used in a human readable form. |
 | auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
-| logo                  | _&lt;empty&gt;_ | [Override for the default logo](configuration/branding/logo#variant-specific-logos) |
+| params                | _&lt;empty&gt;_ | Values of the site's `params` that are overridden while this variant is active, see [below](#variant-parameters). |
 | hidden                | `false`         | If `true`, the variant will not be shown in the variant switcher but is still available for internal use (e.g. to override parameter when used as a sub-variant of an auto mode variant). |
+
+#### Variant Parameters
+
+Some of the site's `params` can be given a different value for a variant by setting it in the variant's `params`. While the variant is active, it takes the place of the site's value.
+
+| Name                  | Notes       |
+|-----------------------|-------------|
+| logo                  | [Logo of the variant](configuration/branding/logo#variant-specific-logos), only its `src` |
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = [
+	{ identifier = 'relearn-light' },
+	{ identifier = 'neon',         params = { logo = { src = '/images/logo-neon.svg' } } }
+]
+{{< /multiconfig >}}
 
 #### Dividers
 

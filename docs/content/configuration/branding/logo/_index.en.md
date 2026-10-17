@@ -109,24 +109,24 @@ The theme supports displaying different logos for different color variants. This
 
 Variant-specific logos take precedence over the global `logo.src` setting. If a variant doesn't specify a logo, the global logo setting will be used.
 
-To configure variant-specific logos, use the `logo` field within your `themeVariant` configuration:
+To configure variant-specific logos, set `logo` in the [`params` of the variant](configuration/branding/colors#variant-parameters) within your `themeVariant` configuration:
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
-  { identifier = 'relearn-light', logo = { src = '/images/logo-dark.svg' } },
-  { identifier = 'relearn-dark',  logo = { src = '/images/logo-light.svg' } },
-  { identifier = 'neon',          logo = { src = '/images/logo-neon.svg' } }
+  { identifier = 'relearn-light', params = { logo = { src = '/images/logo-dark.svg' } } },
+  { identifier = 'relearn-dark',  params = { logo = { src = '/images/logo-light.svg' } } },
+  { identifier = 'neon',          params = { logo = { src = '/images/logo-neon.svg' } } }
 ]
 {{< /multiconfig >}}
 
 The theme automatically switches between logos when the user selects a different variant. Logos with the same `src` are grouped together for performance optimization, reducing the number of images loaded.
 
-To disable the logo for a specific variant while keeping the default logo for others, set the variant's `src` to a whitespace string:
+To disable the logo for a specific variant while keeping the default logo for others, set `src` of the variant's `params.logo` to a whitespace string:
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
-  { identifier = 'relearn-light', logo = { src = ' ' } },  # No logo for this variant
-  { identifier = 'relearn-dark' }                          # Uses default logo
+  { identifier = 'relearn-light', params = { logo = { src = ' ' } } },  # No logo for this variant
+  { identifier = 'relearn-dark' }                                      # Uses default logo
 ]
 {{< /multiconfig >}}
 

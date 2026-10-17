@@ -51,6 +51,7 @@ Logo Layout Detection:
 Unification run:
 - convert from old forms to slice of dicts
 - add default name property
+- move deprecated root logo property into params
 - convert auto property to slice
 - remember default variants for auto mode
 - compute effective logo for non-auto variants
@@ -70,6 +71,14 @@ Unification run:
 	{{- if not $themevariant.name }}
 		{{- $themevariant = collections.Merge $themevariant (dict "name" ($themevariant.identifier | humanize | strings.Title)) }}
 	{{- end }}
+	{{- $variantparams := $themevariant.params | default dict }}
+	{{- if isset $themevariant "logo" }}
+		{{- warnf "DEPRECATED option 'logo' found for variant '%s', use 'params.logo' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-3-0" $themevariant.identifier }}
+		{{- if not (isset $variantparams "logo") }}
+			{{- $variantparams = collections.Merge $variantparams (dict "logo" $themevariant.logo) }}
+		{{- end }}
+	{{- end }}
+	{{- $themevariant = collections.Merge $themevariant (dict "params" $variantparams) }}
 	{{- if eq $themevariant.identifier "auto" }}
 		{{- $themevariant = collections.Merge $themevariant (dict "auto" ($themevariant.auto | default slice)) }}
 	{{- end }}
@@ -77,12 +86,11 @@ Unification run:
 		{{- $nonautothemevariants = $nonautothemevariants | append $themevariant.identifier }}
 		{{- $logo := dict }}
 		{{- $logoSrc := $defaultLogoSrc }}
-		{{- if isset $themevariant "logo" }}
-			{{- $logo := $themevariant.logo }}
-			{{- $themeLogoSrc := trim $themevariant.logo.src "\n\r\t " }}
+		{{- if isset $themevariant.params "logo" }}
+			{{- $themeLogoSrc := trim $themevariant.params.logo.src "\n\r\t " }}
 			{{- if $themeLogoSrc }}
 				{{- $logoSrc = $themeLogoSrc }}
-			{{- else if len $themevariant.logo.src }}
+			{{- else if len $themevariant.params.logo.src }}
 				{{- /* src was set to a string with whitespace only which means: no logo
 					an empty value instead means: take the default logo */}}
 				{{- $logoSrc = "" }}
