@@ -19,7 +19,6 @@ The theme ships with the following set of variants
 - Relearn
   - [Light](configuration/branding/colors?variant=relearn-light#shipped-variants): the classic Relearn default, coming with signature green, dark sidebar and light content area
   - [Dark](configuration/branding/colors?variant=relearn-dark#shipped-variants): dark variant of Light, coming with signature green, dark sidebar and dark content area
-  - [Bright](configuration/branding/colors?variant=relearn-bright#shipped-variants): alternative of Light, coming with signature green, green sidebar and light content area
 - Zen
   - [Light](configuration/branding/colors?variant=zen-light#shipped-variants): a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
   - [Dark](configuration/branding/colors?variant=zen-dark#shipped-variants): dark variant of Light, coming with blue accents, dark sidebar and dark content area
@@ -136,7 +135,6 @@ themeVariant = [
 	{ identifier = 'relearn-auto',  name = 'Relearn Light/Dark', auto = [] },
 	{ identifier = 'relearn-light'  },
 	{ identifier = 'relearn-dark'   },
-	{ identifier = 'relearn-bright' },
 	{ type = 'divider'              },
 	{ identifier = 'zen-auto',      name = 'Zen Light/Dark', auto = [ 'zen-light', 'zen-dark' ] },
 	{ identifier = 'zen-light'      },

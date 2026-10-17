@@ -351,6 +351,9 @@ Write yet non-dynamic stuff
 {{- define "partials/inline/get-theme-details" }}
 	{{- $themevariant := .themevariant }}
 	{{- $identifier := .identifier }}
+	{{- if eq $identifier "relearn-bright" }}
+		{{- warnf "DEPRECATED variant 'relearn-bright' found, to keep it copy 'theme-relearn-bright.css' into your site's 'assets/css' under a different name and use that instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-3-0" }}
+	{{- end }}
 	{{- $themecontent := "" }}
 	{{- with resources.Get (printf "/css/theme-%s.css" $identifier) }}
 		{{- $themecontent = replaceRE `([ \t]*)(:root)` "${1}&${2}" .Content }}
