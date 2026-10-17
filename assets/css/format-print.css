@@ -15,17 +15,8 @@
 html {
   font-size: 8.763pt;
 }
-body {
-  background-color: rgba(255, 255, 255, 1);
-}
-pre:not(.mermaid) {
-  border: 1px solid rgba(204, 204, 204, 1);
-}
 #R-body #R-topbar {
-  background-color: rgba(255, 255, 255, 1); /* avoid background bleeding*/
-  border-bottom: 1px solid rgba(221, 221, 221, 1);
   border-radius: 0;
-  color: rgba(119, 119, 119, 1);
   padding-left: 0; /* for print, we want to align with the footer to ease the layout */
   padding-right: 0;
 }
@@ -53,55 +44,30 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after,
   display: none;
 }
 
-#R-body h1,
-#R-body h2,
-#R-body .card-title,
-#R-body h3,
-#R-body .article-subheading,
-#R-body h4,
-#R-body h5,
-#R-body h6 {
-  /* better contrast for colored elements */
-  color: rgba(0, 0, 0, 1);
-}
-#R-body th,
-#R-body td,
-#R-body code,
-#R-body strong,
-#R-body b,
-#R-body li,
-#R-body dd,
-#R-body dt,
-#R-body p,
-#R-body a,
-#R-body button,
-#R-body .badge .badge-content,
-#R-body .box > .box-label {
-  /* better contrast for colored elements */
-  color: rgba(0, 0, 0, 1);
+blockquote::before,
+figure.quote::before {
+  background-color: var(--INTERNAL-MAIN-TEXT-color);
 }
 blockquote p,
 blockquote cite,
 #R-body figure.quote > figcaption {
   /* nothing is toned down, as that costs contrast */
+  color: var(--INTERNAL-MAIN-TEXT-color);
   opacity: 1;
-}
-blockquote::before,
-figure.quote::before {
-  background-color: rgba(0, 0, 0, 1);
 }
 #R-body .anchor {
   display: none;
 }
-#R-body pre:not(.mermaid),
-#R-body code {
-  background-color: rgba(255, 255, 255, 1);
-  border-color: rgba(221, 221, 221, 1);
-}
 
 hr {
-  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  border-bottom: 1px solid var(--INTERNAL-MAIN-TEXT-color);
 }
+#R-body pre:not(.mermaid) {
+  /* the variant's colors of block code win over the ones of its syntax highlighting style */
+  background-color: var(--INTERNAL-CODE-BLOCK-BG-color);
+  color: var(--INTERNAL-CODE-BLOCK-color);
+}
+
 #R-body #R-body-inner {
   overflow: visible; /* turn off scrolling, so the whole content is printed */
   /* reset paddings for chapters in screen */
@@ -109,7 +75,7 @@ hr {
 }
 
 #R-body #R-body-inner h1 {
-  border-bottom: 1px solid rgba(221, 221, 221, 1);
+  border-bottom: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
   font-size: 3.25rem;
   margin-bottom: 2rem;
   padding-bottom: 0.75rem;
@@ -127,8 +93,7 @@ hr {
 
 .footline {
   /* in print mode show footer line to signal reader the end of document */
-  border-top: 1px solid rgba(221, 221, 221, 1);
-  color: rgba(119, 119, 119, 1);
+  border-top: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
   margin-top: 1.5rem;
   padding-top: 0.75rem;
 }
@@ -154,9 +119,6 @@ h1 + .footline {
   /* the header is sticky which is not suitable for print; */
   position: initial;
 }
-#R-topbar > .topbar-wrapper {
-  background-color: initial;
-}
 #R-body .topbar-sidebar-divider {
   border-width: 0;
 }
@@ -170,27 +132,10 @@ mark.search {
 .mermaid.zoom:hover {
   border-color: transparent;
 }
-.box > .box-content {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.btn,
-#R-body .tab-nav-button {
-  color: rgba(0, 0, 0, 1);
-}
-#R-body .tab-nav-button.active {
-  border-bottom-color: rgba(255, 255, 255, 1);
-  color: rgba(0, 0, 0, 1);
-}
 #R-body .tab-nav-button.active > .tab-nav-text {
-  background-color: rgba(255, 255, 255, 1);
   /* a line covered exactly still shines through at its edge on paper, so the cover reaches beyond it */
   margin-bottom: -2px;
   padding-bottom: 2px;
-}
-#R-body .tab-content-text {
-  background-color: rgba(255, 255, 255, 1);
-  color: rgba(0, 0, 0, 1);
 }
 
 article:not(.card) {

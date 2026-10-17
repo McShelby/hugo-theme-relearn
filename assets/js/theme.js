@@ -675,9 +675,7 @@ function initMermaid(update, attrs) {
       'beforeprint',
       function () {
         isPrintPreview = true;
-        initMermaid(true, {
-          theme: getColorValue('PRINT-MERMAID-theme'),
-        });
+        initMermaid(true);
         // the print dialog will not wait for us, but a graph that never came into
         // view must at least be on its way instead of being left out entirely
         drawMermaidRest();
@@ -775,9 +773,9 @@ function initOpenapi(update, attrs) {
     });
   }
   function renderOpenAPI(oc) {
-    var print = isPrint || isPrintPreview ? 'PRINT-' : '';
-    var swagger_theme = getColorValue(print + 'OPENAPI-theme');
-    var swagger_code_theme = getColorValue(print + 'OPENAPI-CODE-theme');
+    var print = isPrint || isPrintPreview;
+    var swagger_theme = getColorValue('OPENAPI-theme');
+    var swagger_code_theme = getColorValue('OPENAPI-CODE-theme');
 
     const openapiId = 'relearn-swagger-ui';
     const openapiErrorClass = 'sc-openapi-error';
@@ -810,7 +808,7 @@ function initOpenapi(update, attrs) {
     if (previous.ui && !previous.print) {
       shown = previous.ui.getState().getIn(['layout', 'shown']);
     }
-    var current = { ui: null, print: !!print, shown: shown };
+    var current = { ui: null, print: print, shown: shown };
     openapiStates.set(oc, current);
     // the shortcode may ask for another language than the one of the page
     oc.dir = (oc.dataset.openapiDir ? oc.dataset.openapiDir == 'rtl' : isRtl) ? 'rtl' : 'ltr';

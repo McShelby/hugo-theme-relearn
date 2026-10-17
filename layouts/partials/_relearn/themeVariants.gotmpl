@@ -123,6 +123,21 @@ Generator run:
 {{- $defaultautothemevariants := slice }}
 {{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 0 | default (index $nonautothemevariants 0) | default "relearn-light") }}
 {{- $defaultautothemevariants = $defaultautothemevariants | append (index site.Params.themeVariantAuto 1 | default (index $nonautothemevariants 1) | default "relearn-dark") }}
+{{- /* the print variant of each non-auto variant: its own or else the site's default;
+	an auto variant prints with the ones of its light and dark variant */}}
+{{- $defaultprintthemevariant := site.Params.themeVariantPrint | default "relearn-print" }}
+{{- define "partials/inline/get-print-variant" }}
+	{{- $print := .default }}
+	{{- range .themevariants }}
+		{{- if and (ne .type "divider") (not (isset . "auto")) (eq .identifier $.identifier) }}
+			{{- $print = .print | default $print }}
+		{{- end }}
+	{{- end }}
+	{{- return $print }}
+{{- end }}
+{{- /* who prints with which print variant, for each color scheme or for both */}}
+{{- $printselectors := slice }}
+{{- $printfallbackselector := ":root" }}
 {{- $tempthemevariants = $themevariants }}
 {{- $themevariants = slice }}
 {{- range $tempthemevariant := $tempthemevariants }}
@@ -138,6 +153,18 @@ Generator run:
 		{{- $themevariant = collections.Merge $themevariant (dict "auto" (slice | append $light | append $dark)) }}
 		{{- $lightthemevariant := partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $light) }}
 		{{- $darkthemevariant := partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $dark) }}
+		{{- if not $themevariant.hidden }}
+			{{- $selector := print ":root[data-r-theme-variant='" $themevariant.identifier "']" }}
+			{{- $printfallbackselector = print $printfallbackselector ":not([data-r-theme-variant='" $themevariant.identifier "'])" }}
+			{{- $lightprint := partial "inline/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $light "default" $defaultprintthemevariant) }}
+			{{- $darkprint := partial "inline/get-print-variant" (dict "themevariants" $tempthemevariants "identifier" $dark "default" $defaultprintthemevariant) }}
+			{{- if eq $lightprint $darkprint }}
+				{{- $printselectors = $printselectors | append (dict "print" $lightprint "scheme" "" "selector" $selector) }}
+			{{- else }}
+				{{- $printselectors = $printselectors | append (dict "print" $lightprint "scheme" "light" "selector" $selector) }}
+				{{- $printselectors = $printselectors | append (dict "print" $darkprint "scheme" "dark" "selector" $selector) }}
+			{{- end }}
+		{{- end }}
 		{{- $formathtmlpre = print $formathtmlpre
 			":not([data-r-theme-variant='" $themevariant.identifier "'])"
 		}}
@@ -175,6 +202,10 @@ Generator run:
 		{{- end }}
 	{{- else }}
 		{{- $themevariant = partial "inline/get-theme-details" (dict "themevariant" $themevariant "identifier" $themevariant.identifier)}}
+		{{- if not $themevariant.hidden }}
+			{{- $printfallbackselector = print $printfallbackselector ":not([data-r-theme-variant='" $themevariant.identifier "'])" }}
+			{{- $printselectors = $printselectors | append (dict "print" ($themevariant.print | default $defaultprintthemevariant) "scheme" "" "selector" (print ":root[data-r-theme-variant='" $themevariant.identifier "']")) }}
+		{{- end }}
 		{{- $formathtmlpre = print $formathtmlpre
 			":not([data-r-theme-variant='" $themevariant.identifier "'])"
 		}}
@@ -197,9 +228,61 @@ Generator run:
 {{- end }}
 
 {{- /*
+Print run:
+- a page without a variant of ours, like one of the variant generator, prints with the site's default
+- add hidden entries for print variants not explicitly configured
+- write variant & chroma CSS string of each print variant for everyone printing with it
+*/}}
+{{- $printselectors = $printselectors | append (dict "print" $defaultprintthemevariant "scheme" "" "selector" $printfallbackselector) }}
+{{- $printthemevariants := slice }}
+{{- range $printselectors }}
+	{{- if not (in $printthemevariants .print) }}
+		{{- $printthemevariants = $printthemevariants | append .print }}
+	{{- end }}
+{{- end }}
+{{- range $printid := $printthemevariants }}
+	{{- $printExists := false }}
+	{{- range $themevariants }}
+		{{- if and (ne .type "divider") (not (isset . "auto")) (eq .identifier $printid) }}
+			{{- $printExists = true }}
+		{{- end }}
+	{{- end }}
+	{{- if not $printExists }}
+		{{- $themevariants = $themevariants | append (dict "identifier" $printid "hidden" true) }}
+	{{- end }}
+{{- end }}
+{{- $formatprint := "" }}
+{{- range $printid := $printthemevariants }}
+	{{- $printthemevariant := partial "inline/get-theme-details" (dict "themevariant" (dict) "identifier" $printid) }}
+	{{- range $scheme := slice "" "light" "dark" }}
+		{{- $selectors := slice }}
+		{{- range $printselectors }}
+			{{- if and (eq .print $printid) (eq .scheme $scheme) }}
+				{{- $selectors = $selectors | append .selector }}
+			{{- end }}
+		{{- end }}
+		{{- with $selectors }}
+			{{- $block := print
+				"\n" (delimit . ",\n") " {"
+				"\n" $printthemevariant.themecontent
+				"\n" $printthemevariant.chromacontent
+				"\n}"
+			}}
+			{{- if $scheme }}
+				{{- $block = print
+					"\n@media (prefers-color-scheme: " $scheme ") {"
+					$block
+					"\n}"
+				}}
+			{{- end }}
+			{{- $formatprint = print $formatprint $block }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+
+{{- /*
 - Read default stuff
 */}}
-{{- $defaultthemevariant := partial "inline/get-theme-details" (dict "themevariant" (dict) "identifier" "relearn-light") }}
 {{- $nucleuscontent := "" }}
 {{- with resources.Get "/css/nucleus.css" }}
 	{{- $nucleuscontent = .Content }}
@@ -308,8 +391,7 @@ Generator run:
 	$formathtml
 	"\n}"
 	"\n@media print {"
-	"\n" $defaultthemevariant.themecontent
-	"\n" $defaultthemevariant.chromacontent
+	$formatprint
 	"\n}"
 	"\n@media print {"
 	"\n" $printcontent
@@ -327,10 +409,7 @@ Generator run:
 - Write format-print.css
 */}}
 {{- $printcontent = print
-	":root[data-r-output-format='print'] {"
-	"\n" $defaultthemevariant.themecontent
-	"\n" $defaultthemevariant.chromacontent
-	"\n}"
+	(strings.TrimPrefix "\n" $formatprint)
 	"\n" $printcontent
 }}
 {{- $cssres := $printcontent | resources.FromString "css/format-print.css" }}

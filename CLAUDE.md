@@ -183,7 +183,7 @@ Theme supports custom output formats:
 
 **Color Variants:**
 - Multiple built-in variants in `assets/css/theme-*.css`
-- Variants: relearn-light, relearn-dark, relearn-bright, learn, neon, blue, green, red, zen-light, zen-dark, contrast-light, contrast-dark
+- Variants: relearn-light, relearn-dark, relearn-bright, learn, neon, blue, green, red, zen-light, zen-dark, contrast-light, contrast-dark, relearn-print (default print variant)
 - Users can switch variants via the topbar
 - Base theme variables in `assets/css/variables.css`
 
