@@ -43,6 +43,7 @@ You can change font settings with the following CSS variables
 :root {
     --LOGO-font: 'Georgia', serif;
     --LOGO-font-size: 2rem;
+    --LOGO-font-weight: 500;
 }
 </style>
 ````
