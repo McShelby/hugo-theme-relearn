@@ -3339,6 +3339,12 @@ body a#R-logo:hover *:not(svg, svg *) {
   font-size: 2em;
   flex-shrink: 1;
   min-width: 0;
+  /* centered next to the image by its capitals, not by the room its font
+     keeps above and below them, which a script font with its swashes makes
+     lopsided; what is trimmed of that room is given back evenly, so the title
+     keeps the full height of its lines, whatever their number */
+  padding-block: calc((1lh - 1cap) / 2);
+  text-box: trim-both cap alphabetic;
   text-align: start;
   text-wrap: auto;
   word-break: break-word;
@@ -3348,16 +3354,6 @@ body a#R-logo:hover *:not(svg, svg *) {
 }
 #R-logo.R-default.manual-wrap .logo-title {
   white-space: pre;
-}
-/* the title is centered next to the image by its capitals, not by the room its
-   font keeps above and below them, which a script font with its swashes makes
-   lopsided; what is trimmed of that room is given back evenly, so the title
-   takes the same space as before, whatever its number of lines */
-@supports (text-box: trim-both cap alphabetic) {
-  #R-logo.R-default .logo-title {
-    padding-block: calc((1lh - 1cap) / 2);
-    text-box: trim-both cap alphabetic;
-  }
 }
 
 /* a variant may come with a logo and a title font of its own, so switching it
