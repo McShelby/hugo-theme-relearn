@@ -12,7 +12,7 @@ Learn how to turn off the breadcrumbs completely and further [configure the topb
 
 {{% badge style="option" %}}Option{{% /badge %}} Set `disableRootBreadcrumb=true` to remove the root breadcrumb which often feels redundant. This will also apply to the breadcrumbs of the search results and taxonomy pages.
 
-{{% badge style="option" %}}Option{{% /badge %}} You can override the default breadcrumb separator by using `breadcrumbSeparator='/'`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages, and between the logo and the breadcrumbs of the [print version](configuration/sitemanagement/outputformats#print-support).
+{{% badge style="option" %}}Option{{% /badge %}} You can override the default breadcrumb separator by using `breadcrumbSeparator='/'`. This separator will also be used in the breadcrumbs of the search results and taxonomy pages.
 
 {{% badge style="option" %}}Option{{% /badge %}} By default the term pages of a taxonomy will display the breadcrumb for each page. Set `disableTermBreadcrumbs=true` to remove the breadcrumb if the term pages look to cluttered.
 

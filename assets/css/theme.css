@@ -1842,6 +1842,11 @@ html[dir='rtl'] .topbar-button-next i {
 .breadcrumbs li {
   display: inline-block;
 }
+.breadcrumbs li.topbar-breadcrumbs-divider {
+  /* only shown where the logo leads the topbar, on paper and in the print
+     version */
+  display: none;
+}
 
 #R-body a[aria-disabled='true'] {
   color: var(--INTERNAL-MAIN-TEXT-color);
@@ -3369,6 +3374,14 @@ body a#R-logo:hover *:not(svg, svg *) {
    search and would end up below the menu, so it is the box that is named */
 #R-header-wrapper > search > :is(form, .searchbox) {
   view-transition-name: R-search;
+}
+
+@media screen {
+  /* the copy of the logo the topbar of a page gets for the time it is printed
+     is meant for paper only */
+  :root:not([data-r-output-format='print']) #R-topbar > #R-logo {
+    display: none;
+  }
 }
 
 /* columnize content */

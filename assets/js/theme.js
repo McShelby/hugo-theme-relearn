@@ -2566,6 +2566,60 @@ function initEdits() {
   });
 }
 
+// the menu is not printed, so on paper its logo leads the topbar instead, like
+// in the print version; for the time of printing, the topbar gets a copy of it.
+// the copy keeps the identifier, as all the styles of the logo go by it, and the
+// screen never shows it, so nothing moves behind the print dialog
+function initPrintLogo() {
+  var logo = document.querySelector('#R-sidebar #R-logo');
+  var topbar = document.querySelector('#R-topbar');
+  if (!logo || !topbar) {
+    return;
+  }
+  var copyLogo = function () {
+    var copy = logo.cloneNode(true);
+    // the logo of the print variant may never have been shown, so its image
+    // was never loaded; it must not wait to be scrolled into view
+    copy.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+      img.loading = 'eager';
+    });
+    // an inlined SVG refers to its parts by their identifiers, and a reference
+    // goes to the first element of one, the original in the menu, which is not
+    // printed and paints nothing; so the parts of the copy get their own
+    var suffix = '-R-print';
+    var parts = copy.querySelectorAll('svg[id], svg [id]');
+    if (!parts.length) {
+      return copy;
+    }
+    var ids = Array.from(parts).map(function (e) {
+      var id = e.id;
+      e.id = id + suffix;
+      return id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    });
+    var reference = new RegExp('#(' + ids.join('|') + ')(?![\\w-])', 'g');
+    copy.querySelectorAll('svg, svg *').forEach(function (e) {
+      Array.from(e.attributes).forEach(function (a) {
+        var value = a.value.replace(reference, '#$1' + suffix);
+        if (value != a.value) {
+          a.value = value;
+        }
+      });
+      if (e.localName == 'style') {
+        e.textContent = e.textContent.replace(reference, '#$1' + suffix);
+      }
+    });
+    return copy;
+  };
+  var copy = null;
+  window.addEventListener('beforeprint', function () {
+    copy = copy || topbar.insertBefore(copyLogo(), topbar.firstChild);
+  });
+  window.addEventListener('afterprint', function () {
+    copy && copy.remove();
+    copy = null;
+  });
+}
+
 function ready(fn) {
   if (document.readyState == 'complete') {
     fn();
@@ -2599,6 +2653,7 @@ ready(function () {
   initOverflowTitle();
   initScrollPositionSaver();
   initEdits();
+  initPrintLogo();
 });
 
 (function () {

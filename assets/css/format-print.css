@@ -16,40 +16,48 @@ html {
   font-size: 8.763pt;
 }
 #R-body #R-topbar {
+  /* the logo leads the topbar outside of its wrapper, so it is the topbar
+     itself that carries the background */
+  background-color: var(--INTERNAL-TOPBAR-BG-color);
   border-radius: 0;
+  display: flex;
   padding-left: 0; /* for print, we want to align with the footer to ease the layout */
   padding-right: 0;
+}
+#R-body #R-topbar > .topbar-wrapper {
+  /* a background of its own would be painted over the border of the topbar,
+     unlike the logo next to it, and cover the line where rounded to the pixels
+     of the paper */
+  background: none;
+  flex: 1 1 0;
+  min-width: 0;
 }
 /* the menu is not printed, so its logo leads the topbar instead; it must never
    grow the topbar, so it has a fixed image height and a single line title,
    whatever layout and line breaks are set for the menu. it is shown in full,
    the breadcrumbs take what is left */
-#R-body #R-topbar {
-  display: flex;
-}
-#R-body #R-topbar > .topbar-wrapper {
-  flex: 1 1 0;
-  min-width: 0;
+#R-topbar > #R-logo {
+  align-self: center;
+  flex: none;
+  margin-block: 0;
 }
 #R-topbar > #R-logo.R-default {
-  flex: none;
   flex-direction: row;
   /* the text size of the topbar, so the title is as big as the breadcrumbs */
   font-size: inherit;
-  margin-block: 0;
   width: auto;
 }
 #R-topbar > #R-logo.R-default .logo-image {
-  height: 1.5rem;
   width: auto;
 }
-#R-topbar > #R-logo.R-default .logo-image > * {
+/* every image of the logo, also of a logo.html of the site's own */
+#R-topbar > #R-logo :is(img, svg):not(svg *) {
   /* the image effects of the content never reach the logo in the menu, so
      they must not here either */
   border: none;
   border-radius: 0;
   box-shadow: none;
-  height: 100%;
+  height: 1.5rem;
   max-width: none;
   width: auto;
 }
@@ -57,7 +65,18 @@ html {
   font-size: 1em;
   white-space: nowrap;
 }
-#R-body .topbar-breadcrumbs:has(> ol > .topbar-breadcrumbs-divider) {
+/* the breadcrumbs are centered by their capitals like the title, so both
+   stand on the same line where they share their font */
+#R-body .topbar-breadcrumbs {
+  padding-block: calc((1lh - 1cap) / 2);
+  text-box: trim-both cap alphabetic;
+}
+/* only where the breadcrumbs follow the logo; at the end of the topbar they
+   are apart from it */
+#R-topbar:has(> #R-logo) :is(.topbar-area-start, .topbar-area-middle) .breadcrumbs li.topbar-breadcrumbs-divider {
+  display: inline-block;
+}
+#R-topbar:has(> #R-logo) :is(.topbar-area-start, .topbar-area-middle) .topbar-breadcrumbs:has(> ol > .topbar-breadcrumbs-divider) {
   /* the divider towards the logo brings the spacing of the breadcrumbs */
   padding-inline-start: 0;
 }

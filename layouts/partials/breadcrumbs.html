@@ -27,6 +27,12 @@
 {{- range seq $len }}
   {{- $breadcrumbReversed = $breadcrumbReversed | append (index $breadcrumb (sub $len .)) }}
 {{- end }}
+{{- $separator := (printf "&nbsp;%s&nbsp;" (default ">" site.Params.breadcrumbSeparator)) | safeHTML }}
+{{- /* on paper the topbar leads with the logo, which the breadcrumbs are
+  divided from like their entries from each other, if they show any */}}
+{{- if and $.divider (gt $len (cond site.Params.disableRootBreadcrumb 1 0)) -}}
+              <li class="topbar-breadcrumbs-divider" aria-hidden="true">{{ $separator }}</li>
+{{- end }}
 {{- $depth := 0 }}
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e.page }}
@@ -41,6 +47,6 @@
   {{- $isLast := eq $url $lasturl }}
   {{- $link := and $url (not $isPage) }}
   {{- if or $.schema (not $class) -}}
-              <li{{ if $.schema }} itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"{{ end }} class="{{ $class | safeHTMLAttr }}"{{ if $isPage }} aria-current="page"{{ end }}>{{ if $link }}<a{{ if $.schema }} itemprop="item"{{ end }} href="{{ $url }}"{{ if $class }} tabindex="-1"{{ end }}>{{end}}<span{{ if $.schema }} itemprop="name"{{ end }}>{{ $title }}</span>{{ if $link }}</a>{{ end }}{{ if $.schema }}<meta itemprop="position" content="{{ $depth }}">{{ end }}{{ if not $isLast }}{{ (printf "&nbsp;%s&nbsp;" (default ">" site.Params.breadcrumbSeparator)) | safeHTML }}{{ end }}</li>
+              <li{{ if $.schema }} itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"{{ end }} class="{{ $class | safeHTMLAttr }}"{{ if $isPage }} aria-current="page"{{ end }}>{{ if $link }}<a{{ if $.schema }} itemprop="item"{{ end }} href="{{ $url }}"{{ if $class }} tabindex="-1"{{ end }}>{{end}}<span{{ if $.schema }} itemprop="name"{{ end }}>{{ $title }}</span>{{ if $link }}</a>{{ end }}{{ if $.schema }}<meta itemprop="position" content="{{ $depth }}">{{ end }}{{ if not $isLast }}{{ $separator }}{{ end }}</li>
   {{- end }}
 {{- end }}
