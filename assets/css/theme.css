@@ -3355,6 +3355,22 @@ body a#R-logo:hover *:not(svg, svg *) {
   }
 }
 
+/* a variant may come with a logo and a title font of its own, so switching it
+   may move the logo and what follows it. the page fades from one variant to
+   the other; what is named here is led from its old place and size to its new
+   one instead of fading out there and in here */
+#R-logo.R-default > .logo-image {
+  view-transition-name: R-logo-image;
+}
+#R-logo.R-default > .logo-title {
+  view-transition-name: R-logo-title;
+}
+/* a named element is a stacking context; the suggestions are a child of the
+   search and would end up below the menu, so it is the box that is named */
+#R-header-wrapper > search > :is(form, .searchbox) {
+  view-transition-name: R-search;
+}
+
 /* columnize content */
 
 @media screen and (max-width: 47.999rem) {
