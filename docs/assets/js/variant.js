@@ -191,6 +191,12 @@ var variants = {
   // CSS download
   // ------------------------------------------------------------------------
 
+  // the prefix of a custom variant is reserved for the ones made in the browser, so
+  // the downloaded file would fail the build under its name
+  getDownloadIdentifier: function (variant) {
+    return variant.startsWith(this.customvariantprefix) ? 'my-' + variant.substring(this.customvariantprefix.length) : variant;
+  },
+
   generateStylesheet: function (variant) {
     var style = null;
     if (!variant.startsWith(this.customvariantprefix)) {
@@ -214,7 +220,7 @@ var variants = {
     var style =
       ':root {\n' +
       '  /* ' +
-      variant +
+      this.getDownloadIdentifier(variant) +
       ' */\n' +
       this.variantvariables.reduce(
         function (a, e) {
@@ -343,7 +349,7 @@ var variants = {
     var style = this.generateStylesheet(variant);
     if (style) {
       console.log(style);
-      this.download(style, 'text/css', 'theme-' + variant + '.css');
+      this.download(style, 'text/css', 'theme-' + this.getDownloadIdentifier(variant) + '.css');
     }
   },
 
