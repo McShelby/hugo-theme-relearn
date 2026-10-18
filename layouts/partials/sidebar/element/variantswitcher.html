@@ -29,7 +29,10 @@
                 <i class="{{ $icon }}" aria-hidden="true"></i>
                 <span>&nbsp;</span>
                 <div class="control-style">
-                  <select aria-label="{{ T "Theme" }}">
+                  {{- /* the selection is restored from the storage by our head script; the
+                    browser must not put back the one the page was left with when it loads
+                    the page anew from the history, as the variant may have changed since */}}
+                  <select aria-label="{{ T "Theme" }}" autocomplete="off">
                     {{- $firstvariant := true }}
                     {{- $ingroup := false }}
                     {{- range $themevariants }}

@@ -37,9 +37,23 @@ document.querySelectorAll('link.R-async-style').forEach(function (link) {
   }
 });
 
+// a page the browser keeps in its back/forward cache comes back showing the colors it
+// was left with, before we are asked to bring it in line with the storage. a browser
+// that gets a message on this channel for one of its cached pages drops that page, so
+// going back loads it anew with what the storage holds by then; nobody listens to the
+// channel, the message itself does the job
+window.relearn.variantChannel = new BroadcastChannel(window.relearn.absBaseUri + '/variant');
+
+window.relearn.storeVariant = function (variant) {
+  window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+  window.relearn.variantChannel.postMessage(variant);
+};
+
+// the cached pages are dropped even if the variant stays the same, as the stylesheet
+// of a custom variant may have changed with it
 window.relearn.changeVariant = function (variant) {
   var oldVariant = document.documentElement.dataset.rThemeVariant;
-  window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+  window.relearn.storeVariant(variant);
   document.documentElement.dataset.rThemeVariant = variant;
   if (oldVariant != variant) {
     document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
@@ -112,7 +126,7 @@ window.relearn.adoptVariantParam = function () {
     return;
   }
   if (window.relearn.themevariants.includes(variant) || Object.hasOwn(window.relearn.customVariants(), variant)) {
-    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+    window.relearn.storeVariant(variant);
   }
   url.searchParams.delete('variant');
   window.history.replaceState(window.history.state, '', url);
@@ -122,7 +136,7 @@ window.relearn.initVariant = function () {
   var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
   if (!window.relearn.themevariants.includes(variant) && !Object.hasOwn(window.relearn.customVariants(), variant)) {
     variant = window.relearn.themevariants[0];
-    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+    window.relearn.storeVariant(variant);
   }
   document.documentElement.dataset.rThemeVariant = variant;
 };
@@ -143,10 +157,11 @@ window.relearn.adoptVariantParam();
 window.relearn.initVariant();
 
 // a page the browser kept alive in its back/forward cache comes back as it was left,
-// without running us again; what was selected or changed on another page since then
-// is in the storage, and we bring the page in line with it. the reader did not change
-// anything here, so the page has to come back as if freshly loaded: no fade and none
-// of the transitions the new colors start
+// without running us again. not every browser drops it on the message of our variant
+// channel; where it is restored nonetheless, what was selected or changed on another
+// page since then is in the storage, and we bring the page in line with it. the reader
+// did not change anything here, so the page has to come back as if freshly loaded: no
+// fade and none of the transitions the new colors start
 window.addEventListener('pageshow', function (event) {
   if (!event.persisted) {
     return;
