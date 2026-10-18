@@ -117,7 +117,6 @@ code and images */
 
 html {
   color-scheme: only var(--INTERNAL-BROWSER-theme);
-  font-size: 16px;
   height: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -176,6 +175,7 @@ dt {
 
 dd {
   display: list-item;
+  list-style: disc;
   margin-inline-start: 1.5rem;
 }
 
@@ -201,13 +201,13 @@ img {
 }
 
 small {
-  font-size: 0.925rem;
+  font-size: 0.925em;
 }
 
 /* sub- and superscripts must not stretch the line they sit in */
 sub,
 sup {
-  font-size: 0.8rem;
+  font-size: 0.8em;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
@@ -234,18 +234,18 @@ input {
   line-height: normal;
 }
 
+input:is([type='checkbox'], [type='radio']) {
+  margin-inline-end: 0.425rem;
+}
+
 /* the font taken from the page is never bold, but a group title should be */
 optgroup {
   font-weight: bold;
 }
 
 button {
-  border: inherit;
   cursor: pointer;
   padding: 0;
-  -webkit-user-select: none;
-  user-select: none;
-  white-space: nowrap;
 }
 button:disabled {
   cursor: default;
@@ -1380,8 +1380,7 @@ p:empty {
 
 #R-body table :is(th, td) > :nth-last-child(1 of :not(:empty)),
 #R-body table :is(th, td) > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body table th > div.highlight:last-child pre:not(.mermaid),
-#R-body table td > div:last-child pre:not(.mermaid),
+#R-body table :is(th, td) > div:last-child pre:not(.mermaid),
 #R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-last-child(1 of :not(:empty)),
 #R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > div:last-child pre:not(.mermaid) {
@@ -1538,6 +1537,9 @@ div.highlight > div:not(.actionbar) table {
 }
 div.highlight:not(.wrap-code) pre:not(.mermaid) code {
   white-space: pre;
+}
+div.highlight.wrap-code pre:not(.mermaid) code {
+  white-space: pre-wrap;
 }
 /* remove border from row cells if highlight shortcode was used in table lineno mode */
 div.highlight > div:not(.actionbar) td > pre:not(.mermaid) {
@@ -2576,8 +2578,12 @@ html[dir='rtl'] .menu-control span {
 
 .menu-control button {
   background-color: transparent;
+  border: none;
   overflow: hidden;
   text-align: start;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .clear {
@@ -2867,7 +2873,7 @@ article :not(li) > ul > li:has(> :is(label, span) > input[type='checkbox']) {
 }
 
 article ul > li:has(> input[type='checkbox']),
-article ul > li:has(> label > input[type='checkbox']) {
+article ul > li:has(> :is(label, span) > input[type='checkbox']) {
   list-style: none;
 }
 
@@ -3435,6 +3441,9 @@ body a#R-logo:hover *:not(svg, svg *) {
   font-weight: 300;
   line-height: 1.42857143;
   margin-inline-start: 0.6rem;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
 #R-body .tab-nav-button.active {
