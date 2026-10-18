@@ -123,6 +123,10 @@ html {
   text-size-adjust: 100%;
   --VARIABLE-LINK-color: var(--INTERNAL-MAIN-LINK-color);
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color);
+  --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color);
+  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
 }
 
 body {
@@ -421,9 +425,13 @@ button::-moz-focus-inner {
   position: relative;
   /* our colors for the scrollbar the browser draws on top of us; on a device with
      a mouse the rules below hide it again until the menu is hovered */
-  scrollbar-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-color) var(--INTERNAL-MENU-SCROLLBAR-TRACK-color);
+  scrollbar-color: var(--VARIABLE-SCROLLBAR-THUMB-color) var(--VARIABLE-SCROLLBAR-TRACK-color);
   transition: scrollbar-color 0.2s linear;
   z-index: 100;
+  --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-color);
+  --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-HOVER-color);
+  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-MENU-SCROLLBAR-TRACK-color);
+  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-MENU-SCROLLBAR-TRACK-HOVER-color);
 }
 
 @media (hover: hover) {
@@ -441,7 +449,7 @@ button::-moz-focus-inner {
        the hovered colors here, as they are the ones that make us stand out.
        the focus makes us show up for the keyboard, which never hovers us but
        scrolls us with the cursor keys once it is inside of the menu */
-    scrollbar-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MENU-SCROLLBAR-TRACK-HOVER-color);
+    scrollbar-color: var(--VARIABLE-SCROLLBAR-THUMB-HOVER-color) var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
   }
 }
 
@@ -499,7 +507,7 @@ button::-moz-focus-inner {
      over us, but stay in place and take no space of our own */
   align-self: flex-end;
   /* we are the track of the menu, the thumb below has colors of its own */
-  background-color: var(--INTERNAL-MENU-SCROLLBAR-TRACK-color);
+  background-color: var(--VARIABLE-SCROLLBAR-TRACK-color);
   flex-shrink: 0;
   margin-bottom: calc(-1 * var(--INTERNAL-SCROLLBAR-height, 0px));
   position: sticky;
@@ -543,12 +551,12 @@ button::-moz-focus-inner {
 
 .classic-scrollbars #R-scrollbar:hover {
   /* we tint and widen once the mouse reaches us, the thumb inside grows with us */
-  background-color: var(--INTERNAL-MENU-SCROLLBAR-TRACK-HOVER-color);
+  background-color: var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
   width: 15px;
 }
 
 .classic-scrollbars #R-scrollbar-thumb {
-  background-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-color);
+  background-color: var(--VARIABLE-SCROLLBAR-THUMB-color);
   border-radius: 6px;
   height: calc(var(--INTERNAL-SCROLLBAR-THUMB-size, 0) * 100%);
   inset-inline-end: 2px;
@@ -563,7 +571,7 @@ button::-moz-focus-inner {
 .classic-scrollbars #R-scrollbar:hover > #R-scrollbar-thumb,
 .classic-scrollbars #R-scrollbar-thumb.dragging {
   /* gain contrast once the mouse is over us */
-  background-color: var(--INTERNAL-MENU-SCROLLBAR-THUMB-HOVER-color);
+  background-color: var(--VARIABLE-SCROLLBAR-THUMB-HOVER-color);
   width: 11px;
 }
 
@@ -875,26 +883,29 @@ article .R-taxonomy.tags a.term-link:after {
   scrollbar-gutter: stable both-edges;
 }
 
-/* the browser draws the scrollbar of the content and we take whichever styling it
-   offers us: the standard property knows two colors but no state of its own, the
-   webkit pseudo elements give us a hover of the thumb itself; they are mutually
-   exclusive, as naming a scrollbar-color makes the pseudo elements be ignored */
+/* the browser draws the scrollbars of the content, of topbar popover areas and of
+   the search suggestions, and we take whichever styling it offers us: the standard
+   property knows two colors but no state of its own, the webkit pseudo elements
+   give us a hover of the thumb itself; they are mutually exclusive, as naming a
+   scrollbar-color makes the pseudo elements be ignored. the colors are the ones of
+   the area we are in, see the `--VARIABLE-SCROLLBAR-*` properties; the search
+   suggestions sit on the background of the content, so they keep its colors */
 @supports not selector(::-webkit-scrollbar) {
-  #R-body-inner {
-    scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+  :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions) {
+    scrollbar-color: var(--VARIABLE-SCROLLBAR-THUMB-color) var(--VARIABLE-SCROLLBAR-TRACK-color);
     transition: scrollbar-color 0.2s linear;
   }
 
   @media (hover: hover) {
-    #R-body-inner:hover {
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions):hover {
       /* the best we get here: the thumb reacts to us being hovered, not to itself */
-      scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
+      scrollbar-color: var(--VARIABLE-SCROLLBAR-THUMB-HOVER-color) var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
     }
   }
 }
 
 @supports selector(::-webkit-scrollbar) {
-  .classic-scrollbars #R-body-inner::-webkit-scrollbar {
+  .classic-scrollbars :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar {
     /* the rules below stay dead until this one is here: only styling the scrollbar
        itself makes Chrome draw its own instead of the platforms, and it then takes
        its thickness from us; where the browser has an overlay scrollbar it keeps
@@ -903,40 +914,40 @@ article .R-taxonomy.tags a.term-link:after {
     width: 15px;
   }
 
-  #R-body-inner::-webkit-scrollbar-button,
-  #R-body-inner::-webkit-scrollbar-corner {
+  :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-button,
+  :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-corner {
     /* drawing our own scrollbar also gets us the steppers of the platform, which
        none of the browsers overlay scrollbars has */
     display: none;
   }
 
-  #R-body-inner::-webkit-scrollbar-track {
-    background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+  :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-track {
+    background-color: var(--VARIABLE-SCROLLBAR-TRACK-color);
   }
 
-  #R-body-inner::-webkit-scrollbar-thumb {
+  :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-thumb {
     /* the thumb of a drawn scrollbar fills its full width with square corners, so
        we have to give it a slim, rounded and inset shape ourselves, like the one
        our menu rail gives its thumb; the transparent border does the insetting,
        the background must not reach into it */
     background-clip: padding-box;
-    background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color);
+    background-color: var(--VARIABLE-SCROLLBAR-THUMB-color);
     border: 4px solid transparent;
     border-radius: 8px;
   }
 
   @media (hover: hover) {
-    #R-body-inner:hover::-webkit-scrollbar-track {
-      background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions):hover::-webkit-scrollbar-track {
+      background-color: var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
     }
 
-    #R-body-inner::-webkit-scrollbar-thumb:hover {
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-thumb:hover {
       /* grows like the menu thumb does */
-      background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color);
+      background-color: var(--VARIABLE-SCROLLBAR-THUMB-HOVER-color);
       border-width: 2px;
     }
 
-    #R-body-inner:hover {
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions):hover {
       /* Safari does not recompute the rules above once we are hovered unless a
          custom property makes it; its value is never read */
       --fix: ;
@@ -948,13 +959,13 @@ article .R-taxonomy.tags a.term-link:after {
        thumb in the color of its track, so we name system colors like the menu
        rail does; the transparent border insetting the thumb is given a color of
        its own here, so it has to become the one of the track */
-    #R-body-inner::-webkit-scrollbar-track,
-    #R-body-inner:hover::-webkit-scrollbar-track {
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-track,
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions):hover::-webkit-scrollbar-track {
       background-color: Canvas;
     }
 
-    #R-body-inner::-webkit-scrollbar-thumb,
-    #R-body-inner::-webkit-scrollbar-thumb:hover {
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-thumb,
+    :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions)::-webkit-scrollbar-thumb:hover {
       background-color: CanvasText;
       border-color: Canvas;
     }
@@ -2191,78 +2202,10 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 0.5rem 1rem;
-}
-
-/* split in two for the same reason the scrollbar of the content is */
-@supports not selector(::-webkit-scrollbar) {
-  .topbar-content-wrapper {
-    scrollbar-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color) var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
-    transition: scrollbar-color 0.2s linear;
-  }
-
-  @media (hover: hover) {
-    .topbar-content-wrapper:hover {
-      /* the best we get here: the thumb reacts to us being hovered, not to itself */
-      scrollbar-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
-    }
-  }
-}
-
-@supports selector(::-webkit-scrollbar) {
-  .classic-scrollbars .topbar-content-wrapper::-webkit-scrollbar {
-    /* only styling the scrollbar itself makes the rules below apply at all, see
-       the scrollbar of the content for the why */
-    height: 15px;
-    width: 15px;
-  }
-
-  .topbar-content-wrapper::-webkit-scrollbar-button,
-  .topbar-content-wrapper::-webkit-scrollbar-corner {
-    display: none;
-  }
-
-  .topbar-content-wrapper::-webkit-scrollbar-track {
-    background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
-  }
-
-  .topbar-content-wrapper::-webkit-scrollbar-thumb {
-    background-clip: padding-box;
-    background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color);
-    border: 4px solid transparent;
-    border-radius: 8px;
-  }
-
-  @media (hover: hover) {
-    .topbar-content-wrapper:hover::-webkit-scrollbar-track {
-      background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
-    }
-
-    .topbar-content-wrapper::-webkit-scrollbar-thumb:hover {
-      /* grows like the menu thumb does */
-      background-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
-      border-width: 2px;
-    }
-
-    .topbar-content-wrapper:hover {
-      /* Safari does not recompute the rules above once we are hovered unless a
-         custom property makes it; its value is never read */
-      --fix: ;
-    }
-  }
-
-  @media (forced-colors: active) {
-    /* same as for the scrollbar of the content */
-    .topbar-content-wrapper::-webkit-scrollbar-track,
-    .topbar-content-wrapper:hover::-webkit-scrollbar-track {
-      background-color: Canvas;
-    }
-
-    .topbar-content-wrapper::-webkit-scrollbar-thumb,
-    .topbar-content-wrapper::-webkit-scrollbar-thumb:hover {
-      background-color: CanvasText;
-      border-color: Canvas;
-    }
-  }
+  --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color);
+  --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
+  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
+  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
 }
 
 #TableOfContents,
@@ -2797,79 +2740,6 @@ span.math:has(math[display='block'], .katex-display) {
   background-color: var(--INTERNAL-MAIN-BG-color);
   border: 0 solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
   box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.333);
-}
-
-/* the suggestions sit on the background of the content, so they take the colors
-   of its scrollbar; split in two for the same reason the scrollbar of the content is */
-@supports not selector(::-webkit-scrollbar) {
-  #R-sidebar .autocomplete-suggestions {
-    scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
-    transition: scrollbar-color 0.2s linear;
-  }
-
-  @media (hover: hover) {
-    #R-sidebar .autocomplete-suggestions:hover {
-      /* the best we get here: the thumb reacts to us being hovered, not to itself */
-      scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
-    }
-  }
-}
-
-@supports selector(::-webkit-scrollbar) {
-  .classic-scrollbars #R-sidebar .autocomplete-suggestions::-webkit-scrollbar {
-    /* only styling the scrollbar itself makes the rules below apply at all, see
-       the scrollbar of the content for the why */
-    height: 15px;
-    width: 15px;
-  }
-
-  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-button,
-  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-corner {
-    display: none;
-  }
-
-  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-track {
-    background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
-  }
-
-  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb {
-    background-clip: padding-box;
-    background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color);
-    border: 4px solid transparent;
-    border-radius: 8px;
-  }
-
-  @media (hover: hover) {
-    #R-sidebar .autocomplete-suggestions:hover::-webkit-scrollbar-track {
-      background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
-    }
-
-    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
-      /* grows like the menu thumb does */
-      background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color);
-      border-width: 2px;
-    }
-
-    #R-sidebar .autocomplete-suggestions:hover {
-      /* Safari does not recompute the rules above once we are hovered unless a
-         custom property makes it; its value is never read */
-      --fix: ;
-    }
-  }
-
-  @media (forced-colors: active) {
-    /* same as for the scrollbar of the content */
-    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-track,
-    #R-sidebar .autocomplete-suggestions:hover::-webkit-scrollbar-track {
-      background-color: Canvas;
-    }
-
-    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb,
-    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
-      background-color: CanvasText;
-      border-color: Canvas;
-    }
-  }
 }
 
 #R-sidebar .autocomplete-suggestion {
