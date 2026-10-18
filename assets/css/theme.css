@@ -2799,6 +2799,79 @@ span.math:has(math[display='block'], .katex-display) {
   box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.333);
 }
 
+/* the suggestions sit on the background of the content, so they take the colors
+   of its scrollbar; split in two for the same reason the scrollbar of the content is */
+@supports not selector(::-webkit-scrollbar) {
+  #R-sidebar .autocomplete-suggestions {
+    scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+    transition: scrollbar-color 0.2s linear;
+  }
+
+  @media (hover: hover) {
+    #R-sidebar .autocomplete-suggestions:hover {
+      /* the best we get here: the thumb reacts to us being hovered, not to itself */
+      scrollbar-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color) var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
+    }
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  .classic-scrollbars #R-sidebar .autocomplete-suggestions::-webkit-scrollbar {
+    /* only styling the scrollbar itself makes the rules below apply at all, see
+       the scrollbar of the content for the why */
+    height: 15px;
+    width: 15px;
+  }
+
+  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-button,
+  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-track {
+    background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+  }
+
+  #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color);
+    border: 4px solid transparent;
+    border-radius: 8px;
+  }
+
+  @media (hover: hover) {
+    #R-sidebar .autocomplete-suggestions:hover::-webkit-scrollbar-track {
+      background-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
+    }
+
+    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+      /* grows like the menu thumb does */
+      background-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color);
+      border-width: 2px;
+    }
+
+    #R-sidebar .autocomplete-suggestions:hover {
+      /* Safari does not recompute the rules above once we are hovered unless a
+         custom property makes it; its value is never read */
+      --fix: ;
+    }
+  }
+
+  @media (forced-colors: active) {
+    /* same as for the scrollbar of the content */
+    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-track,
+    #R-sidebar .autocomplete-suggestions:hover::-webkit-scrollbar-track {
+      background-color: Canvas;
+    }
+
+    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb,
+    #R-sidebar .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+      background-color: CanvasText;
+      border-color: Canvas;
+    }
+  }
+}
+
 #R-sidebar .autocomplete-suggestion {
   /* restore autocomplete default value for sidebar, because it is affected
   by coarse element styling */
