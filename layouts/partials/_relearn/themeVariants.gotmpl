@@ -271,9 +271,10 @@ Print run:
 		{{- $printthemevariants = $printthemevariants | append .print }}
 	{{- end }}
 {{- end }}
+{{- /* with the default logo, so auto-logo.html has one to print for them */}}
 {{- range $printthemevariants }}
 	{{- if not (partial "inline/get-variant" (dict "themevariants" $themevariants "identifier" .)) }}
-		{{- $themevariants = $themevariants | append (dict "identifier" . "hidden" true) }}
+		{{- $themevariants = $themevariants | append (dict "identifier" . "logo" (dict "src" $defaultLogoSrc) "hidden" true) }}
 	{{- end }}
 {{- end }}
 {{- $printvariablescontent := "" }}
@@ -297,7 +298,8 @@ Print run:
 	{{- $selector := .selector }}
 	{{- $scheme := .scheme }}
 	{{- $printthemevariant := index (where $printdetails "identifier" .print) 0 }}
-	{{- $printvariants = $printvariants | append (dict "key" (print $scheme ":" .print) "scheme" $scheme "selector" $selector "content" (print "\n" $printthemevariant.themecontent)) }}
+	{{- /* the print shows the logo of the print variant, as it is the one printed */}}
+	{{- $printvariants = $printvariants | append (dict "key" (print $scheme ":" .print) "scheme" $scheme "selector" $selector "content" (print "\n" $printthemevariant.themecontent (partial "inline/get-logo-css" .print))) }}
 	{{- /* the print variables are written without nesting, so their selectors keep
 		their own specificity, the one of the print variants written before them */}}
 	{{- $selectorroot := print $selector ":root" }}

@@ -1,5 +1,9 @@
 {{- /* the topbar of a page; its areas are filled by the topbar options */}}
       <header id="R-topbar" class="default-animation">
+        {{- if eq (.Store.Get "relearnOutputFormat") "print" }}
+          {{- /* the print version of a page has no menu, so its logo leads the topbar instead */}}
+          {{- partial "logo.html" . }}
+        {{- end }}
         <div class="topbar-wrapper default-animation">
           <div class="topbar-sidebar-divider default-animation"></div>
           <div class="topbar-area topbar-area-start" data-area="start">

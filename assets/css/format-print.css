@@ -20,6 +20,47 @@ html {
   padding-left: 0; /* for print, we want to align with the footer to ease the layout */
   padding-right: 0;
 }
+/* the menu is not printed, so its logo leads the topbar instead; it must never
+   grow the topbar, so it has a fixed image height and a single line title,
+   whatever layout and line breaks are set for the menu. it is shown in full,
+   the breadcrumbs take what is left */
+#R-body #R-topbar {
+  display: flex;
+}
+#R-body #R-topbar > .topbar-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+}
+#R-topbar > #R-logo.R-default {
+  flex: none;
+  flex-direction: row;
+  /* the text size of the topbar, so the title is as big as the breadcrumbs */
+  font-size: inherit;
+  margin-block: 0;
+  width: auto;
+}
+#R-topbar > #R-logo.R-default .logo-image {
+  height: 1.5rem;
+  width: auto;
+}
+#R-topbar > #R-logo.R-default .logo-image > * {
+  /* the image effects of the content never reach the logo in the menu, so
+     they must not here either */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  height: 100%;
+  max-width: none;
+  width: auto;
+}
+#R-topbar > #R-logo.R-default .logo-title {
+  font-size: 1em;
+  white-space: nowrap;
+}
+#R-body .topbar-breadcrumbs:has(> ol > .topbar-breadcrumbs-divider) {
+  /* the divider towards the logo brings the spacing of the breadcrumbs */
+  padding-inline-start: 0;
+}
 #R-body .topbar-button {
   /* we don't need the buttons while printing */
   /* we need !important to turn off JS topbar button handling setting element styles */
@@ -116,7 +157,9 @@ h1 + .footline {
   position: initial;
 }
 #R-body .topbar-sidebar-divider {
-  border-width: 0;
+  /* there is no menu to divide from; what is left of its pixel compensation
+     would widen the spacing between the logo and the breadcrumbs */
+  display: none;
 }
 article .R-taxonomy {
   display: none;
