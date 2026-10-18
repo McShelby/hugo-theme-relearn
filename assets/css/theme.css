@@ -157,10 +157,7 @@ ol {
   margin-top: 1rem;
   padding-inline-start: 1.5rem;
 }
-ul ul,
-ul ol,
-ol ul,
-ol ol {
+:is(ul, ol) :is(ul, ol) {
   margin-bottom: 0;
   margin-top: 0;
 }
@@ -183,9 +180,7 @@ a {
   text-decoration: none;
 }
 
-a:hover,
-a:active,
-a:focus {
+a:is(:hover, :active, :focus) {
   color: var(--VARIABLE-LINK-HOVER-color);
 }
 
@@ -798,10 +793,8 @@ article .R-taxonomy.tags a.term-link:after {
   z-index: 70;
 }
 
-#R-body svg,
-#R-body img,
-#R-body figure > figcaption > h4,
-#R-body figure > figcaption > p {
+#R-body :is(svg, img),
+#R-body figure > figcaption > :is(h4, p) {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -816,18 +809,15 @@ article .R-taxonomy.tags a.term-link:after {
   height: auto;
 }
 
-#R-body svg:not(.lightbox-image).left,
-#R-body img:not(.lightbox-image).left {
+#R-body :is(svg, img):not(.lightbox-image).left {
   margin-left: 0;
 }
 
-#R-body svg:not(.lightbox-image).right,
-#R-body img:not(.lightbox-image).right {
+#R-body :is(svg, img):not(.lightbox-image).right {
   margin-right: 0;
 }
 
-#R-body svg:not(.lightbox-image).border,
-#R-body img:not(.lightbox-image).border {
+#R-body :is(svg, img):not(.lightbox-image).border {
   background-clip: padding-box;
   border: 1px solid color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 10%, transparent);
   /* an image carries its own dimensions so a browser can reserve its space, and
@@ -836,13 +826,11 @@ article .R-taxonomy.tags a.term-link:after {
   box-sizing: content-box;
 }
 
-#R-body svg:not(.lightbox-image).rounded,
-#R-body img:not(.lightbox-image).rounded {
+#R-body :is(svg, img):not(.lightbox-image).rounded {
   border-radius: var(--block-radius);
 }
 
-#R-body svg:not(.lightbox-image).shadow,
-#R-body img:not(.lightbox-image).shadow {
+#R-body :is(svg, img):not(.lightbox-image).shadow {
   /* the shadow is tinted by the background and inverts its lightness, so it is dark on a light
      background and light on a dark one; a light one has to stand up to a bright image, so the
      darker the background the denser it is; its chroma is strengthened, as a tinted dark
@@ -855,8 +843,7 @@ article .R-taxonomy.tags a.term-link:after {
   box-shadow: 0 3px 12px light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.85) c h / 0.9), oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) calc(c * 6) h / calc(0.2 + 0.6 * (1 - l))));
 }
 
-#R-body svg:not(.lightbox-image).inline,
-#R-body img:not(.lightbox-image).inline {
+#R-body :is(svg, img):not(.lightbox-image).inline {
   display: inline;
   margin: 0;
   vertical-align: bottom;
@@ -999,27 +986,12 @@ article .R-taxonomy.tags a.term-link:after {
   text-decoration: none;
 }
 
-#R-topbar a:hover:empty,
-#R-topbar a:active:empty,
-#R-topbar a:focus:empty,
-#R-topbar a:hover :not(i),
-#R-topbar a:active :not(i),
-#R-topbar a:focus :not(i),
-#R-topbar button:hover :not(i),
-#R-topbar button:active :not(i),
-#R-topbar button:focus :not(i),
-#R-topbar .title:hover,
-#R-topbar .title:active,
-#R-topbar .title:focus,
-.topbar-content a:hover,
-.topbar-content a:active,
-.topbar-content a:focus,
-article a:hover,
-article a:active,
-article a:focus,
-article a:hover .copy-to-clipboard,
-article a:active .copy-to-clipboard,
-article a:focus .copy-to-clipboard {
+#R-topbar a:is(:hover, :active, :focus):empty,
+#R-topbar :is(a, button):is(:hover, :active, :focus) :not(i),
+#R-topbar .title:is(:hover, :active, :focus),
+.topbar-content a:is(:hover, :active, :focus),
+article a:is(:hover, :active, :focus),
+article a:is(:hover, :active, :focus) .copy-to-clipboard {
   text-decoration: underline;
 }
 /* no outline for the pointer; who uses the keyboard keeps the one of the
@@ -1027,24 +999,14 @@ article a:focus .copy-to-clipboard {
 .topbar-content a:focus:not(:focus-visible),
 article a:focus:not(:focus-visible),
 article a:focus:not(:focus-visible) .copy-to-clipboard,
-article a.lightbox-close:hover > svg:only-child:empty,
-article a.lightbox-close:active > svg:only-child:empty,
-article a.lightbox-close:focus > svg:only-child:empty,
-article a.lightbox-close:hover > img:only-child:empty,
-article a.lightbox-close:active > img:only-child:empty,
-article a.lightbox-close:focus > img:only-child:empty,
+article a.lightbox-close:is(:hover, :active, :focus) > :is(svg, img):only-child:empty,
 article .btn > button:focus:not(:focus-visible),
 /* these show the focus on what they hold or on what holds them */
 article a:focus:has(> :is(img, svg):only-child:empty),
 .card-container .card-title > :is(a, button):focus {
   outline: none;
 }
-article a:hover > svg:only-child:empty,
-article a:active > svg:only-child:empty,
-article a:focus > svg:only-child:empty,
-article a:hover > img:only-child:empty,
-article a:active > img:only-child:empty,
-article a:focus > img:only-child:empty {
+article a:is(:hover, :active, :focus) > :is(svg, img):only-child:empty {
   outline: 0.15rem solid var(--VARIABLE-LINK-HOVER-color);
 }
 
@@ -1101,10 +1063,8 @@ ins {
 /* a screen reader doesn't tell where inserted or deleted text starts and
    ends, so this is written around the text for it alone; the texts depend on
    the language and are set by the script */
-ins::before,
-ins::after,
-del::before,
-del::after {
+:is(ins, del)::before,
+:is(ins, del)::after {
   clip-path: polygon(0 0, 1px 0, 1px 1px, 0 1px);
   height: 1px;
   overflow: hidden;
@@ -1402,34 +1362,20 @@ p:empty {
 }
 
 /* in case of image render hook, Hugo may generate empty <p>s that we want to ignore as well, so a simple :first-child or :last-child is not enough */
-#R-body table th > :nth-child(1 of :not(:empty)),
-#R-body table th > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body table td > :nth-child(1 of :not(:empty)),
-#R-body table td > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body .box > .box-content > :nth-child(1 of :not(:empty)),
-#R-body .box > .box-content > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body .card-content > .card-content-text > :nth-child(1 of :not(:empty)),
-#R-body .card-content > .card-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body .tab-content > .tab-content-text > :nth-child(1 of :not(:empty)),
-#R-body .tab-content > .tab-content-text > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
+#R-body table :is(th, td) > :nth-child(1 of :not(:empty)),
+#R-body table :is(th, td) > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-child(1 of :not(:empty)),
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
   margin-top: 0;
 }
 
-#R-body table th > :nth-last-child(1 of :not(:empty)),
-#R-body table th > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body table :is(th, td) > :nth-last-child(1 of :not(:empty)),
+#R-body table :is(th, td) > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body table th > div.highlight:last-child pre:not(.mermaid),
-#R-body table td > :nth-last-child(1 of :not(:empty)),
-#R-body table td > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
 #R-body table td > div:last-child pre:not(.mermaid),
-#R-body .box > .box-content > :nth-last-child(1 of :not(:empty)),
-#R-body .box > .box-content > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body .box > .box-content > div:last-child pre:not(.mermaid),
-#R-body .card-content > .card-content-text > :nth-last-child(1 of :not(:empty)),
-#R-body .card-content > .card-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body .card-content > .card-content-text > div:last-child pre:not(.mermaid),
-#R-body .tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)),
-#R-body .tab-content > .tab-content-text > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
-#R-body .tab-content > .tab-content-text > div:last-child pre:not(.mermaid) {
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-last-child(1 of :not(:empty)),
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > div:last-child pre:not(.mermaid) {
   margin-bottom: 0;
 }
 
@@ -1440,36 +1386,18 @@ p:empty {
   text-overflow: ellipsis;
   text-wrap-mode: nowrap;
 }
-.pages-tree li > p + p,
-.pages-sections li > p + p,
-.pages-list li > p,
-.children-type-group li > p + p,
-.children-type-tree li > p + p,
-.children-type-flat li > p {
+:is(.pages-tree, .pages-sections, .children-type-group, .children-type-tree) li > p + p,
+:is(.pages-list, .children-type-flat) li > p {
   font-size: 0.859625rem;
   font-style: italic;
 }
 
-.pages-tree p,
-.pages-sections p,
-.pages-list p,
-.pages-headings p,
-.children-type-group p,
-.children-type-tree p,
-.children-type-flat p,
-.children-type-list p {
+:is(.pages-tree, .pages-sections, .pages-list, .pages-headings, .children-type-group, .children-type-tree, .children-type-flat, .children-type-list) p {
   margin-bottom: 0;
   margin-top: 0;
 }
 
-.pages-tree p + p,
-.pages-sections p + p,
-.pages-list p + p,
-.pages-headings p + p,
-.children-type-group p + p,
-.children-type-tree p + p,
-.children-type-flat p + p,
-.children-type-list p + p {
+:is(.pages-tree, .pages-sections, .pages-list, .pages-headings, .children-type-group, .children-type-tree, .children-type-flat, .children-type-list) p + p {
   margin-top: 0.125em;
 }
 
@@ -1681,16 +1609,13 @@ td {
 }
 
 /* the alignment of a Markdown table column, which render-table.html gives as a class */
-th.align-left,
-td.align-left {
+:is(th, td).align-left {
   text-align: left;
 }
-th.align-center,
-td.align-center {
+:is(th, td).align-center {
   text-align: center;
 }
-th.align-right,
-td.align-right {
+:is(th, td).align-right {
   text-align: right;
 }
 
@@ -2033,11 +1958,8 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   opacity: 1;
 }
 
-.actionbar-wrapper:hover .actionbar,
-.actionbar-wrapper:focus-within .actionbar,
-.actionbar:has(:hover),
-.actionbar:has(:active),
-.actionbar:has(:focus) {
+.actionbar-wrapper:is(:hover, :focus-within) .actionbar,
+.actionbar:has(:hover, :active, :focus) {
   opacity: 1;
 }
 
@@ -2065,9 +1987,7 @@ option {
 .expand:not([open]) > .box-label {
   border-radius: calc(var(--block-radius) - 1px);
 }
-.expand > .box-label:hover,
-.expand > .box-label:active,
-.expand > .box-label:focus {
+.expand > .box-label:is(:hover, :active, :focus) {
   text-decoration: underline;
 }
 
@@ -2601,9 +2521,7 @@ i.cstyle {
   background-color: transparent;
 }
 
-.btn.interactive > *:hover,
-.btn.interactive > *:active,
-.btn.interactive > *:focus {
+.btn.interactive > :is(:hover, :active, :focus) {
   background-color: var(--VARIABLE-BOX-BG-color);
   color: var(--VARIABLE-BOX-TEXT-color);
   text-decoration: none;
@@ -2640,30 +2558,17 @@ i.cstyle {
   }
 }
 .anchor:focus-within,
-h2:hover .anchor,
-h3:hover .anchor,
-h4:hover .anchor,
-h5:hover .anchor,
-h6:hover .anchor {
+:is(h2, h3, h4, h5, h6):hover .anchor {
   opacity: 1;
 }
 
 /* Redfines headers style */
 
-#R-body h1 + h2,
-#R-body h1 + h3,
-#R-body h1 + h4,
-#R-body h1 + h5,
-#R-body h1 + h6,
-#R-body h2 + h3,
-#R-body h2 + h4,
-#R-body h2 + h5,
-#R-body h2 + h6,
-#R-body h3 + h4,
-#R-body h3 + h5,
-#R-body h3 + h6,
-#R-body h4 + h5,
-#R-body h4 + h6,
+/* a heading right below a heading of a higher level */
+#R-body h1 + :is(h2, h3, h4, h5, h6),
+#R-body h2 + :is(h3, h4, h5, h6),
+#R-body h3 + :is(h4, h5, h6),
+#R-body h4 + :is(h5, h6),
 #R-body h5 + h6 {
   margin-top: 1rem;
 }
@@ -2951,9 +2856,7 @@ span.math:has(math[display='block'], .katex-display) {
 #R-html .autocomplete-suggestion .title > span {
   color: inherit;
 }
-#R-html .autocomplete-suggestion.selected .link,
-#R-html .autocomplete-suggestion:focus .link,
-#R-html .autocomplete-suggestion:hover .link {
+#R-html .autocomplete-suggestion:is(.selected, :focus, :hover) .link {
   color: inherit;
   text-decoration: underline;
 }
@@ -3016,8 +2919,7 @@ span.math:has(math[display='block'], .katex-display) {
 /* task list and its checkboxes */
 /*  move start of list to left to adjust for missing list-style */
 article :not(li) > ul > li:has(> input[type='checkbox']),
-article :not(li) > ul > li:has(> label > input[type='checkbox']),
-article :not(li) > ul > li:has(> span > input[type='checkbox']) {
+article :not(li) > ul > li:has(> :is(label, span) > input[type='checkbox']) {
   margin-inline-start: -1.5rem;
 }
 
@@ -3027,15 +2929,13 @@ article ul > li:has(> label > input[type='checkbox']) {
 }
 
 article ul > li:has(> input[type='checkbox'])::before,
-article ul > li:has(> label > input[type='checkbox'])::before,
-article ul > li:has(> span > input[type='checkbox'])::before {
+article ul > li:has(> :is(label, span) > input[type='checkbox'])::before {
   content: '\200B'; /* accessibilty for Safari https://developer.mozilla.org/en-US/docs/Web/CSS/list-style */
 }
 
 /* https://moderncss.dev/pure-css-custom-checkbox-style/ */
 article ul > li > input[type='checkbox'],
-article ul > li > label > input[type='checkbox'],
-article ul > li > span > input[type='checkbox'] {
+article ul > li > :is(label, span) > input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--INTERNAL-MAIN-BG-color); /* box background */
@@ -3052,8 +2952,7 @@ article ul > li > span > input[type='checkbox'] {
 }
 
 article ul > li > input[type='checkbox']::before,
-article ul > li > label > input[type='checkbox']::before,
-article ul > li > span > input[type='checkbox']::before {
+article ul > li > :is(label, span) > input[type='checkbox']::before {
   box-shadow: inset 1em 1em var(--INTERNAL-PRIMARY-color);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   content: '';
@@ -3067,8 +2966,7 @@ article ul > li > span > input[type='checkbox']::before {
 }
 
 article ul > li > input[type='checkbox']:checked::before,
-article ul > li > label > input[type='checkbox']:checked::before,
-article ul > li > span > input[type='checkbox']:checked::before {
+article ul > li > :is(label, span) > input[type='checkbox']:checked::before {
   transform: scale(1);
 }
 
@@ -3275,9 +3173,7 @@ article ul > li > span > input[type='checkbox']:checked::before {
   display: none;
 }
 
-#R-sidebar ul > li.parent > ul,
-#R-sidebar ul > li.active > ul,
-#R-sidebar ul > li.alwaysopen > ul {
+#R-sidebar ul > li:is(.parent, .active, .alwaysopen) > ul {
   display: block;
 }
 
@@ -3605,9 +3501,7 @@ body a#R-logo:hover *:not(svg, svg *) {
   color: var(--VARIABLE-BOX-TEXT-color);
   cursor: default;
 }
-#R-body .tab-nav-button:not(.active):hover,
-#R-body .tab-nav-button:not(.active):active,
-#R-body .tab-nav-button:not(.active):focus {
+#R-body .tab-nav-button:not(.active):is(:hover, :active, :focus) {
   color: var(--VARIABLE-LINK-HOVER-color);
 }
 
@@ -3628,9 +3522,7 @@ body a#R-logo:hover *:not(svg, svg *) {
     0.08ex 0 0 currentColor;
   -webkit-text-stroke-width: 0.09ex;
 }
-#R-body .tab-nav-button:not(.active):hover > .tab-nav-text,
-#R-body .tab-nav-button:not(.active):active > .tab-nav-text,
-#R-body .tab-nav-button:not(.active):focus > .tab-nav-text {
+#R-body .tab-nav-button:not(.active):is(:hover, :active, :focus) > .tab-nav-text {
   border-bottom-color: var(--VARIABLE-LINK-HOVER-color);
 }
 
@@ -3695,9 +3587,7 @@ body a#R-logo:hover *:not(svg, svg *) {
   --VARIABLE-BOX-BG-color: transparent;
 }
 
-#R-body .tab-panel-style.cstyle.initial.tab-nav-button.active,
-#R-body .tab-panel-style.cstyle.default.tab-nav-button.active,
-#R-body .tab-panel-style.cstyle.transparent.tab-nav-button.active {
+#R-body .tab-panel-style.cstyle:is(.initial, .default, .transparent).tab-nav-button.active {
   background-color: var(--VARIABLE-BOX-BG-color);
   border-left-color: var(--VARIABLE-BOX-color);
   border-right-color: var(--VARIABLE-BOX-color);
@@ -3708,9 +3598,7 @@ body a#R-logo:hover *:not(svg, svg *) {
   --VARIABLE-BOX-color: var(--INTERNAL-BOX-NEUTRAL-color);
 }
 
-#R-body .tab-panel-style.cstyle.initial.tab-content,
-#R-body .tab-panel-style.cstyle.default.tab-content,
-#R-body .tab-panel-style.cstyle.transparent.tab-content {
+#R-body .tab-panel-style.cstyle:is(.initial, .default, .transparent).tab-content {
   background-color: var(--VARIABLE-BOX-BG-color);
 }
 
@@ -3903,9 +3791,7 @@ article.notfound #shrug svg {
 .box.expand.cstyle.transparent > .box-label {
   color: var(--VARIABLE-LINK-color);
 }
-.box.expand.cstyle.transparent > .box-label:hover,
-.box.expand.cstyle.transparent > .box-label:active,
-.box.expand.cstyle.transparent > .box-label:focus {
+.box.expand.cstyle.transparent > .box-label:is(:hover, :active, :focus) {
   color: var(--VARIABLE-LINK-HOVER-color);
 }
 
