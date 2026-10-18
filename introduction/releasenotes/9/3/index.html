@@ -4,19 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.2.1+1b165a5a086cdcd81e5a88fa00a0dc491671ee30">
+    <meta name="generator" content="Relearn 9.2.1+3fe2f9658696508f034a84193cf12a087ee80a83">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.3.0 (XXXX-XX-XX) Change Change Level one headings, the section titles of the sidebar menu and the title of the openapi shortcode are no longer forced to uppercase but show as written. The uppercase look, inherited from the Learn theme, became iconic for this theme, but it is strongly opinionated and looks strange with many fonts, especially script and serif fonts.
 If you want to keep the iconic look for headings and the sidebar menu, add the following to your assets/css/custom.css:
-​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The borders of tables and the border of a zoomable Mermaid diagram, as well as the backgrounds of table headers and every second table row, now take their color from the theme variant variable BOX-NEUTRAL-color, which inherits from BOX-GREY-color. Formerly they were a fixed gray that could not be changed by a variant and was too faint in the high contrast variants. The same goes for the border of tabs with style=transparent.
+​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The greys of the theme now carry the tint of your theme variant.
+The borders and stripes of tables, the borders of a zoomable Mermaid diagram and of tabs with style=transparent, the shadows of cards and images, the hover of buttons, the titles of badges and the tracks of scrollbars now take their color from the variables BOX-NEUTRAL-color and BOX-GREY-color. BOX-NEUTRAL-color inherits from BOX-GREY-color. Formerly they were a fixed grey that could not be changed by a variant and was too faint in the high contrast variants.
 The border of code blocks, CODE-BLOCK-BORDER-color, now inherits from BOX-NEUTRAL-color instead of CODE-BLOCK-BG-color. The shipped variants were adjusted to this.
 If your own variant does not set CODE-BLOCK-BORDER-color, its code blocks now get a visible border in the neutral color. As code boxes take their color from it, the title and frame of callouts and tabs with style=code change as well. To restore the previous look, set CODE-BLOCK-BORDER-color in your variant to the value of CODE-BLOCK-BG-color, or set BOX-CODE-color to only change code boxes.
-If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, your tables, Mermaid diagrams and transparent tabs now show it as well.
+If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, all these greys now show it as well.
 Change The logo of a variant is now set in the new params of the variant, which holds the values that override the site’s params while the variant is active. Setting logo directly on the variant is deprecated and you’ll get a warning; it still works for now.
 Change { identifier = &#39;neon&#39;, logo = { src = &#39;/images/logo-neon.svg&#39; } } to { identifier = &#39;neon&#39;, params = { logo = { src = &#39;/images/logo-neon.svg&#39; } } }.
-Change Printing a page and its print version now use a print variant with colors made for paper on top, by default relearn-light. Formerly the print used a fixed look that no variant could change.
-You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant naming itself prints with its own fonts.
-The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or marked !important in your print variant.
+Change Printing a page and its print version now use a print variant, by default relearn-light, with the theme’s print variables made for paper on top of it. Formerly the print used a fixed look that no variant could change.
+Printed pages now also show the logo and title of your site.
+You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant that names itself as its print variant keeps its own fonts on paper.
+The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or mark them !important in your print variant.
 Change The color variant relearn-bright is deprecated and will be removed with the next major release. You’ll get a warning if you use it.
 To keep it, copy assets/css/theme-relearn-bright.css from the theme into your site’s assets/css directory under a different name, like theme-my-bright.css, and use that name in the themeVariant option.
 Change The color variant relearn has only been kept for compatibility since 3.0.0, where relearn-light replaced it. It will be removed with the next major release and you’ll now get a warning if you use it.
@@ -27,15 +29,17 @@ It is identical to relearn-light, use that name in the themeVariant option inste
     <meta name="twitter:title" content="Version 9.3 :: Hugo Relearn Theme">
     <meta name="twitter:description" content="9.3.0 (XXXX-XX-XX) Change Change Level one headings, the section titles of the sidebar menu and the title of the openapi shortcode are no longer forced to uppercase but show as written. The uppercase look, inherited from the Learn theme, became iconic for this theme, but it is strongly opinionated and looks strange with many fonts, especially script and serif fonts.
 If you want to keep the iconic look for headings and the sidebar menu, add the following to your assets/css/custom.css:
-​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The borders of tables and the border of a zoomable Mermaid diagram, as well as the backgrounds of table headers and every second table row, now take their color from the theme variant variable BOX-NEUTRAL-color, which inherits from BOX-GREY-color. Formerly they were a fixed gray that could not be changed by a variant and was too faint in the high contrast variants. The same goes for the border of tabs with style=transparent.
+​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The greys of the theme now carry the tint of your theme variant.
+The borders and stripes of tables, the borders of a zoomable Mermaid diagram and of tabs with style=transparent, the shadows of cards and images, the hover of buttons, the titles of badges and the tracks of scrollbars now take their color from the variables BOX-NEUTRAL-color and BOX-GREY-color. BOX-NEUTRAL-color inherits from BOX-GREY-color. Formerly they were a fixed grey that could not be changed by a variant and was too faint in the high contrast variants.
 The border of code blocks, CODE-BLOCK-BORDER-color, now inherits from BOX-NEUTRAL-color instead of CODE-BLOCK-BG-color. The shipped variants were adjusted to this.
 If your own variant does not set CODE-BLOCK-BORDER-color, its code blocks now get a visible border in the neutral color. As code boxes take their color from it, the title and frame of callouts and tabs with style=code change as well. To restore the previous look, set CODE-BLOCK-BORDER-color in your variant to the value of CODE-BLOCK-BG-color, or set BOX-CODE-color to only change code boxes.
-If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, your tables, Mermaid diagrams and transparent tabs now show it as well.
+If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, all these greys now show it as well.
 Change The logo of a variant is now set in the new params of the variant, which holds the values that override the site’s params while the variant is active. Setting logo directly on the variant is deprecated and you’ll get a warning; it still works for now.
 Change { identifier = &#39;neon&#39;, logo = { src = &#39;/images/logo-neon.svg&#39; } } to { identifier = &#39;neon&#39;, params = { logo = { src = &#39;/images/logo-neon.svg&#39; } } }.
-Change Printing a page and its print version now use a print variant with colors made for paper on top, by default relearn-light. Formerly the print used a fixed look that no variant could change.
-You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant naming itself prints with its own fonts.
-The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or marked !important in your print variant.
+Change Printing a page and its print version now use a print variant, by default relearn-light, with the theme’s print variables made for paper on top of it. Formerly the print used a fixed look that no variant could change.
+Printed pages now also show the logo and title of your site.
+You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant that names itself as its print variant keeps its own fonts on paper.
+The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or mark them !important in your print variant.
 Change The color variant relearn-bright is deprecated and will be removed with the next major release. You’ll get a warning if you use it.
 To keep it, copy assets/css/theme-relearn-bright.css from the theme into your site’s assets/css directory under a different name, like theme-my-bright.css, and use that name in the themeVariant option.
 Change The color variant relearn has only been kept for compatibility since 3.0.0, where relearn-light replaced it. It will be removed with the next major release and you’ll now get a warning if you use it.
@@ -45,15 +49,17 @@ It is identical to relearn-light, use that name in the themeVariant option inste
     <meta property="og:title" content="Version 9.3 :: Hugo Relearn Theme">
     <meta property="og:description" content="9.3.0 (XXXX-XX-XX) Change Change Level one headings, the section titles of the sidebar menu and the title of the openapi shortcode are no longer forced to uppercase but show as written. The uppercase look, inherited from the Learn theme, became iconic for this theme, but it is strongly opinionated and looks strange with many fonts, especially script and serif fonts.
 If you want to keep the iconic look for headings and the sidebar menu, add the following to your assets/css/custom.css:
-​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The borders of tables and the border of a zoomable Mermaid diagram, as well as the backgrounds of table headers and every second table row, now take their color from the theme variant variable BOX-NEUTRAL-color, which inherits from BOX-GREY-color. Formerly they were a fixed gray that could not be changed by a variant and was too faint in the high contrast variants. The same goes for the border of tabs with style=transparent.
+​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The greys of the theme now carry the tint of your theme variant.
+The borders and stripes of tables, the borders of a zoomable Mermaid diagram and of tabs with style=transparent, the shadows of cards and images, the hover of buttons, the titles of badges and the tracks of scrollbars now take their color from the variables BOX-NEUTRAL-color and BOX-GREY-color. BOX-NEUTRAL-color inherits from BOX-GREY-color. Formerly they were a fixed grey that could not be changed by a variant and was too faint in the high contrast variants.
 The border of code blocks, CODE-BLOCK-BORDER-color, now inherits from BOX-NEUTRAL-color instead of CODE-BLOCK-BG-color. The shipped variants were adjusted to this.
 If your own variant does not set CODE-BLOCK-BORDER-color, its code blocks now get a visible border in the neutral color. As code boxes take their color from it, the title and frame of callouts and tabs with style=code change as well. To restore the previous look, set CODE-BLOCK-BORDER-color in your variant to the value of CODE-BLOCK-BG-color, or set BOX-CODE-color to only change code boxes.
-If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, your tables, Mermaid diagrams and transparent tabs now show it as well.
+If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, all these greys now show it as well.
 Change The logo of a variant is now set in the new params of the variant, which holds the values that override the site’s params while the variant is active. Setting logo directly on the variant is deprecated and you’ll get a warning; it still works for now.
 Change { identifier = &#39;neon&#39;, logo = { src = &#39;/images/logo-neon.svg&#39; } } to { identifier = &#39;neon&#39;, params = { logo = { src = &#39;/images/logo-neon.svg&#39; } } }.
-Change Printing a page and its print version now use a print variant with colors made for paper on top, by default relearn-light. Formerly the print used a fixed look that no variant could change.
-You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant naming itself prints with its own fonts.
-The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or marked !important in your print variant.
+Change Printing a page and its print version now use a print variant, by default relearn-light, with the theme’s print variables made for paper on top of it. Formerly the print used a fixed look that no variant could change.
+Printed pages now also show the logo and title of your site.
+You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant that names itself as its print variant keeps its own fonts on paper.
+The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or mark them !important in your print variant.
 Change The color variant relearn-bright is deprecated and will be removed with the next major release. You’ll get a warning if you use it.
 To keep it, copy assets/css/theme-relearn-bright.css from the theme into your site’s assets/css directory under a different name, like theme-my-bright.css, and use that name in the themeVariant option.
 Change The color variant relearn has only been kept for compatibility since 3.0.0, where relearn-light replaced it. It will be removed with the next major release and you’ll now get a warning if you use it.
@@ -65,20 +71,22 @@ It is identical to relearn-light, use that name in the themeVariant option inste
     <meta itemprop="name" content="Version 9.3 :: Hugo Relearn Theme">
     <meta itemprop="description" content="9.3.0 (XXXX-XX-XX) Change Change Level one headings, the section titles of the sidebar menu and the title of the openapi shortcode are no longer forced to uppercase but show as written. The uppercase look, inherited from the Learn theme, became iconic for this theme, but it is strongly opinionated and looks strange with many fonts, especially script and serif fonts.
 If you want to keep the iconic look for headings and the sidebar menu, add the following to your assets/css/custom.css:
-​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The borders of tables and the border of a zoomable Mermaid diagram, as well as the backgrounds of table headers and every second table row, now take their color from the theme variant variable BOX-NEUTRAL-color, which inherits from BOX-GREY-color. Formerly they were a fixed gray that could not be changed by a variant and was too faint in the high contrast variants. The same goes for the border of tabs with style=transparent.
+​ assets/css/custom.css h1, #R-sidebar .nav-title { text-transform: uppercase; } Change The greys of the theme now carry the tint of your theme variant.
+The borders and stripes of tables, the borders of a zoomable Mermaid diagram and of tabs with style=transparent, the shadows of cards and images, the hover of buttons, the titles of badges and the tracks of scrollbars now take their color from the variables BOX-NEUTRAL-color and BOX-GREY-color. BOX-NEUTRAL-color inherits from BOX-GREY-color. Formerly they were a fixed grey that could not be changed by a variant and was too faint in the high contrast variants.
 The border of code blocks, CODE-BLOCK-BORDER-color, now inherits from BOX-NEUTRAL-color instead of CODE-BLOCK-BG-color. The shipped variants were adjusted to this.
 If your own variant does not set CODE-BLOCK-BORDER-color, its code blocks now get a visible border in the neutral color. As code boxes take their color from it, the title and frame of callouts and tabs with style=code change as well. To restore the previous look, set CODE-BLOCK-BORDER-color in your variant to the value of CODE-BLOCK-BG-color, or set BOX-CODE-color to only change code boxes.
-If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, your tables, Mermaid diagrams and transparent tabs now show it as well.
+If your variant sets BOX-NEUTRAL-color or BOX-GREY-color to a strong color, all these greys now show it as well.
 Change The logo of a variant is now set in the new params of the variant, which holds the values that override the site’s params while the variant is active. Setting logo directly on the variant is deprecated and you’ll get a warning; it still works for now.
 Change { identifier = &#39;neon&#39;, logo = { src = &#39;/images/logo-neon.svg&#39; } } to { identifier = &#39;neon&#39;, params = { logo = { src = &#39;/images/logo-neon.svg&#39; } } }.
-Change Printing a page and its print version now use a print variant with colors made for paper on top, by default relearn-light. Formerly the print used a fixed look that no variant could change.
-You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant naming itself prints with its own fonts.
-The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or marked !important in your print variant.
+Change Printing a page and its print version now use a print variant, by default relearn-light, with the theme’s print variables made for paper on top of it. Formerly the print used a fixed look that no variant could change.
+Printed pages now also show the logo and title of your site.
+You can choose the print variant of your site with the new themeVariantPrint option, or one for each variant with its new print parameter. A variant that names itself as its print variant keeps its own fonts on paper.
+The variables PRINT-MERMAID-theme, PRINT-OPENAPI-theme and PRINT-OPENAPI-CODE-theme were removed. If you’ve set them, set MERMAID-theme, OPENAPI-theme and OPENAPI-CODE-theme in your copy of the print variables instead, or mark them !important in your print variant.
 Change The color variant relearn-bright is deprecated and will be removed with the next major release. You’ll get a warning if you use it.
 To keep it, copy assets/css/theme-relearn-bright.css from the theme into your site’s assets/css directory under a different name, like theme-my-bright.css, and use that name in the themeVariant option.
 Change The color variant relearn has only been kept for compatibility since 3.0.0, where relearn-light replaced it. It will be removed with the next major release and you’ll now get a warning if you use it.
 It is identical to relearn-light, use that name in the themeVariant option instead.">
-    <meta itemprop="wordCount" content="714">
+    <meta itemprop="wordCount" content="749">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.3 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/3/index.html" rel="alternate" hreflang="x-default">
@@ -93,7 +101,7 @@ It is identical to relearn-light, use that name in the themeVariant option inste
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.44f514c223f9ab63d06ce8596705b91010ac9a07591b052cdd98912461f07d06.js"
+      "indexFile": "searchindex.en.min.242014c48007466947d4796387e6c276c3a4bab1ff58b5881d43e144649f0565.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -397,7 +405,7 @@ It is identical to relearn-light, use that name in the themeVariant option inste
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/1b165a5a086cdcd81e5a88fa00a0dc491671ee30" title="Relearn 9.2.1&#43;1b165a5a086cdcd81e5a88fa00a0dc491671ee30"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/3fe2f9658696508f034a84193cf12a087ee80a83" title="Relearn 9.2.1&#43;3fe2f9658696508f034a84193cf12a087ee80a83"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -489,12 +497,12 @@ It is identical to relearn-light, use that name in the themeVariant option inste
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Level one headings, the section titles of the sidebar menu and the title of the <a href="/hugo-theme-relearn/shortcodes/openapi/index.html"><code>openapi</code> shortcode</a> are no longer forced to uppercase but show as written. The uppercase look, inherited from the Learn theme, became iconic for this theme, but it is strongly opinionated and looks strange with many fonts, especially script and serif fonts.</p>
 <p>If you want to keep the iconic look for headings and the sidebar menu, add the following to your <a href="/hugo-theme-relearn/configuration/customization/extending/index.html#simple-solution"><code>assets/css/custom.css</code></a>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-99041dfd7170f464d1ad8c84f4af5b7c">
+<div class="tab-panel" data-tab-group="R-tabs-b7d3fbcc82d1ff41916d321b0ec2240e">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-a7a6f3509e7bcbc21d39ac2ec9748410-tab" aria-controls="R-tab-id-a7a6f3509e7bcbc21d39ac2ec9748410" aria-selected="true"
+        role="tab" id="R-tab-id-498a45301761b67d63a84ba74a5ef795-tab" aria-controls="R-tab-id-498a45301761b67d63a84ba74a5ef795" aria-selected="true"
         data-tab-item="R-tab-311a161192e4ffa168423a7a9943b548"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -504,7 +512,7 @@ It is identical to relearn-light, use that name in the themeVariant option inste
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a7a6f3509e7bcbc21d39ac2ec9748410" role="tabpanel" aria-labelledby="R-tab-id-a7a6f3509e7bcbc21d39ac2ec9748410-tab"
+      id="R-tab-id-498a45301761b67d63a84ba74a5ef795" role="tabpanel" aria-labelledby="R-tab-id-498a45301761b67d63a84ba74a5ef795-tab"
       data-tab-item="R-tab-311a161192e4ffa168423a7a9943b548"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -517,19 +525,21 @@ It is identical to relearn-light, use that name in the themeVariant option inste
   </div>
 </div></li>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The borders of tables and the border of a zoomable Mermaid diagram, as well as the backgrounds of table headers and every second table row, now take their color from the <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#modifying-variants">theme variant</a> variable <code>BOX-NEUTRAL-color</code>, which inherits from <code>BOX-GREY-color</code>. Formerly they were a fixed gray that could not be changed by a variant and was too faint in the high contrast variants. The same goes for the border of tabs with <code>style=transparent</code>.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The greys of the theme now carry the tint of your <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#modifying-variants">theme variant</a>.</p>
+<p>The borders and stripes of tables, the borders of a zoomable Mermaid diagram and of tabs with <code>style=transparent</code>, the shadows of cards and images, the hover of buttons, the titles of badges and the tracks of scrollbars now take their color from the variables <code>BOX-NEUTRAL-color</code> and <code>BOX-GREY-color</code>. <code>BOX-NEUTRAL-color</code> inherits from <code>BOX-GREY-color</code>. Formerly they were a fixed grey that could not be changed by a variant and was too faint in the high contrast variants.</p>
 <p>The border of code blocks, <code>CODE-BLOCK-BORDER-color</code>, now inherits from <code>BOX-NEUTRAL-color</code> instead of <code>CODE-BLOCK-BG-color</code>. The shipped variants were adjusted to this.</p>
 <p>If your own variant does not set <code>CODE-BLOCK-BORDER-color</code>, its code blocks now get a visible border in the neutral color. As code boxes take their color from it, the title and frame of callouts and tabs with <code>style=code</code> change as well. To restore the previous look, set <code>CODE-BLOCK-BORDER-color</code> in your variant to the value of <code>CODE-BLOCK-BG-color</code>, or set <code>BOX-CODE-color</code> to only change code boxes.</p>
-<p>If your variant sets <code>BOX-NEUTRAL-color</code> or <code>BOX-GREY-color</code> to a strong color, your tables, Mermaid diagrams and transparent tabs now show it as well.</p>
+<p>If your variant sets <code>BOX-NEUTRAL-color</code> or <code>BOX-GREY-color</code> to a strong color, all these greys now show it as well.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#variant-specific-logos">logo of a variant</a> is now set in the new <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#variant-parameters"><code>params</code> of the variant</a>, which holds the values that override the site&rsquo;s <code>params</code> while the variant is active. Setting <code>logo</code> directly on the variant is deprecated and you&rsquo;ll get a warning; it still works for now.</p>
 <p>Change <code>{ identifier = 'neon', logo = { src = '/images/logo-neon.svg' } }</code> to <code>{ identifier = 'neon', params = { logo = { src = '/images/logo-neon.svg' } } }</code>.</p>
 </li>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Printing a page and its print version now use a <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#theme-variant-print">print variant</a> with colors made for paper on top, by default <code>relearn-light</code>. Formerly the print used a fixed look that no variant could change.</p>
-<p>You can choose the print variant of your site with the new <code>themeVariantPrint</code> option, or one for each variant with its new <code>print</code> parameter. A variant naming itself prints with its own fonts.</p>
-<p>The variables <code>PRINT-MERMAID-theme</code>, <code>PRINT-OPENAPI-theme</code> and <code>PRINT-OPENAPI-CODE-theme</code> were removed. If you&rsquo;ve set them, set <code>MERMAID-theme</code>, <code>OPENAPI-theme</code> and <code>OPENAPI-CODE-theme</code> in your copy of the <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#theme-variant-print">print variables</a> instead, or marked <code>!important</code> in your print variant.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Printing a page and its print version now use a <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#theme-variant-print">print variant</a>, by default <code>relearn-light</code>, with the theme&rsquo;s print variables made for paper on top of it. Formerly the print used a fixed look that no variant could change.</p>
+<p>Printed pages now also show the logo and title of your site.</p>
+<p>You can choose the print variant of your site with the new <code>themeVariantPrint</code> option, or one for each variant with its new <code>print</code> parameter. A variant that names itself as its print variant keeps its own fonts on paper.</p>
+<p>The variables <code>PRINT-MERMAID-theme</code>, <code>PRINT-OPENAPI-theme</code> and <code>PRINT-OPENAPI-CODE-theme</code> were removed. If you&rsquo;ve set them, set <code>MERMAID-theme</code>, <code>OPENAPI-theme</code> and <code>OPENAPI-CODE-theme</code> in your copy of the <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#theme-variant-print">print variables</a> instead, or mark them <code>!important</code> in your print variant.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The color variant <code>relearn-bright</code> is deprecated and will be removed with the next major release. You&rsquo;ll get a warning if you use it.</p>
@@ -544,7 +554,7 @@ It is identical to relearn-light, use that name in the themeVariant option inste
 <ul>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The new <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#shipped-variants">color variants</a> <a href="/hugo-theme-relearn/configuration/branding/colors/index.html?variant=tome-light#shipped-variants"><code>tome-light</code></a> and <a href="/hugo-theme-relearn/configuration/branding/colors/index.html?variant=tome-dark#shipped-variants"><code>tome-dark</code></a> give your site the look of a book, with calligraphic titles. They are the first shipped variants with tinted instead of grey content backgrounds, and show how colors the theme derives, like shadows, follow such a tint. Use them as a starting point for your own tinted variant.</p>
-<p>Many of the changes in this release are due to support this variant.</p>
+<p>Many of the changes in this release were made to support this variant.</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The new color <code>yellow</code> can be used as <code>style</code> in <a href="/hugo-theme-relearn/shortcodes/callout/index.html#parameters">every shortcode taking one</a> and set with <code>BOX-YELLOW-color</code> in your <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#modifying-variants">theme variant</a>. Each shipped variant picks a yellow that is readable with its title and text colors.</p>
