@@ -144,27 +144,44 @@ window.relearn.initVariant();
 
 // a page the browser kept alive in its back/forward cache comes back as it was left,
 // without running us again; what was selected or changed on another page since then
-// is in the storage, and we bring the page in line with it
+// is in the storage, and we bring the page in line with it. the reader did not change
+// anything here, so the page has to come back as if freshly loaded: no fade and none
+// of the transitions the new colors start
 window.addEventListener('pageshow', function (event) {
   if (!event.persisted) {
     return;
   }
   var oldVariant = document.documentElement.dataset.rThemeVariant;
-  var update = function () {
-    window.relearn.applyCustomVariants();
-    window.relearn.initVariant();
-    window.relearn.markVariant();
-    var variant = document.documentElement.dataset.rThemeVariant;
-    if (oldVariant != variant) {
-      document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
-    }
-  };
-  // a page that keeps its variant has nothing to fade
-  if (window.localStorage.getItem(window.relearn.absBaseUri + '/variant') == oldVariant) {
-    update();
-  } else {
-    window.relearn.fadeVariant(update);
+  window.relearn.applyCustomVariants();
+  window.relearn.initVariant();
+  window.relearn.markVariant();
+  var variant = document.documentElement.dataset.rThemeVariant;
+  if (oldVariant != variant) {
+    document.dispatchEvent(new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }));
   }
+  window.relearn.finishTransitions();
+});
+
+// ends every running transition at once, so the page shows its final state right away;
+// asking for the animations brings the styles up to date first, so the transitions a
+// change just started are among them
+window.relearn.finishTransitions = function () {
+  document.getAnimations().forEach(function (animation) {
+    if (animation instanceof CSSTransition) {
+      animation.finish();
+    }
+  });
+};
+
+// a hidden page is not drawn, so what changed meanwhile - the window resized, say -
+// only starts its transitions once the page is shown again, long after the reader
+// caused it. the resize event and what it sets off are part of that first drawing,
+// before the frame callbacks run, so that is where we finish the transitions
+document.addEventListener('visibilitychange', function () {
+  if (document.visibilityState != 'visible') {
+    return;
+  }
+  window.requestAnimationFrame(window.relearn.finishTransitions);
 });
 
 // activates the tab `tabId` in every panel of `tabGroup` that has one. it only touches
