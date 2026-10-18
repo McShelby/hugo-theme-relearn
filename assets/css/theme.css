@@ -776,9 +776,14 @@ article .R-taxonomy.tags a.term-link:hover:after {
 #R-body img:not(.lightbox-image).shadow {
   /* the shadow is tinted by the background and inverts its lightness, so it is dark on a light
      background and light on a dark one; a light one has to stand up to a bright image, so the
-     darker the background the denser it is */
+     darker the background the denser it is; its chroma is strengthened, as a tinted dark
+     background holds too little of it to show in a light shadow, while a grey one has none to
+     strengthen; on a light background it takes the color of the neutral boxes instead, which
+     carries the tint of the variant, but never darker than a light grey, as some variants
+     darken their neutral boxes for contrast */
   box-shadow: 0 3px 12px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 20%, transparent);
   box-shadow: 0 3px 12px oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) c h / calc(0.2 + 0.6 * (1 - l)));
+  box-shadow: 0 3px 12px light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.85) c h / 0.9), oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) calc(c * 6) h / calc(0.2 + 0.6 * (1 - l))));
 }
 
 #R-body svg:not(.lightbox-image).inline,
@@ -3953,6 +3958,7 @@ article.notfound #shrug svg {
   /* the same shadow as for the `shadow` effect of an image */
   box-shadow: 0 3px 12px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 20%, transparent);
   box-shadow: 0 3px 12px oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) c h / calc(0.2 + 0.6 * (1 - l)));
+  box-shadow: 0 3px 12px light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.85) c h / 0.9), oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) calc(c * 6) h / calc(0.2 + 0.6 * (1 - l))));
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
   flex-direction: column;
