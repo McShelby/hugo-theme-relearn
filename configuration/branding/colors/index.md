@@ -163,7 +163,7 @@ themeVariant = [
 
 When a page is printed or shown as its [print version](configuration/sitemanagement/outputformats#print-support), it doesn't use the variant selected by the reader but its print variant, with the theme's print variables on top.
 
-The print variables set every color that depends on a light or dark background to values made for paper, with links, titles, code, boxes and the topbar with its logo in black on white. So the print shows the fonts of the print variant but the colors of paper. The print variables are in the theme's `assets/css/format-print-variables.css`. To change them for your site, copy the file into your site's `assets/css` directory and edit it. To keep a single value of a print variant on paper, mark it `!important` in the variant.
+The print variables set every color that depends on a light or dark background to values made for paper, with links, titles, code, boxes and the topbar in black on white. So the print shows the fonts of the print variant but the colors of paper. The print variables are in the theme's `assets/css/format-print-variables.css`. To change them for your site, copy the file into your site's `assets/css` directory and edit it. To keep a single value of a print variant on paper, mark it `!important` in the variant.
 
 ````css {title="assets/css/theme-my-light.css"}
 :root {

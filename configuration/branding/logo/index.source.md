@@ -78,7 +78,7 @@ Valid values are:
 - `sidebar-row` (default) - Logo and title side by side at the top of the menu
 - `sidebar-column` - Logo above title at the top of the menu
 
-The [print version](configuration/sitemanagement/outputformats#print-support) of a page has no menu, so it shows logo and title side by side in front of the breadcrumbs, whatever layout is set, divided from them by the [breadcrumb separator](configuration/content/titles#breadcrumbs). There, the logo image is shrunk to a fixed height and the title is shown on a single line, ignoring manual line breaks.
+When a page is printed or shown as its [print version](configuration/sitemanagement/outputformats#print-support), logo and title are formatted automatically.
 
 ## Changing the Logo
 
