@@ -121,7 +121,6 @@ html {
   height: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  width: 100%;
   --VARIABLE-LINK-color: var(--INTERNAL-MAIN-LINK-color);
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
 }
@@ -130,7 +129,6 @@ body {
   background-color: var(--INTERNAL-MAIN-BG-color);
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
-  flex-direction: row;
   font-size: 1.015625rem;
   font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-font-weight);
@@ -139,7 +137,6 @@ body {
   letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
   line-height: 1.574;
   margin: 0;
-  width: 100%;
 }
 
 b,
@@ -178,7 +175,6 @@ dt {
 
 dd {
   display: list-item;
-  list-style: disc;
   margin-inline-start: 1.5rem;
 }
 
@@ -290,7 +286,6 @@ button::-moz-focus-inner {
   inset-inline-start: 0.5rem;
   padding: 0.5rem 1rem;
   position: fixed;
-  text-decoration: none;
   top: 0.5rem;
   transform: translateY(calc(-100% - 1rem));
   z-index: 5000;
@@ -309,7 +304,6 @@ button::-moz-focus-inner {
   font-size: 0.953125rem;
   height: 100%;
   inset-inline-start: 0;
-  line-height: 1.574;
   min-height: 100%;
   /* clip instead of hidden: this must not become a scroll container itself, as
      a focused menu entry would scroll us instead of the menu */
@@ -318,10 +312,6 @@ button::-moz-focus-inner {
   min-width: var(--INTERNAL-MENU-L-width);
   max-width: var(--INTERNAL-MENU-L-width);
   width: var(--INTERNAL-MENU-L-width);
-}
-
-#R-sidebar a {
-  text-decoration: none;
 }
 
 #R-header-wrapper > * {
@@ -376,7 +366,6 @@ button::-moz-focus-inner {
   height: 1.5rem;
   justify-content: center;
   margin: auto 0;
-  padding: 0;
   top: 0;
   width: 1.5rem;
 }
@@ -398,7 +387,6 @@ button::-moz-focus-inner {
 }
 
 #R-sidebar .searchbox > button {
-  color: var(--INTERNAL-MENU-SEARCH-color);
   opacity: 0.75;
 }
 
@@ -408,7 +396,6 @@ button::-moz-focus-inner {
 }
 
 .searchbox input {
-  display: inline-block;
   width: 100%;
   height: 1.875rem;
   background: transparent;
@@ -417,14 +404,10 @@ button::-moz-focus-inner {
   padding-inline-end: 1.6rem;
   padding-inline-start: 1.8rem;
   padding-top: 0;
-  margin: 0;
   /* the box shows the focus instead */
   outline: none;
 }
 
-.searchbox input::-webkit-input-placeholder {
-  color: var(--INTERNAL-MENU-SEARCH-color);
-}
 .searchbox input::placeholder {
   color: var(--INTERNAL-MENU-SEARCH-color);
   opacity: 0.45;
@@ -619,14 +602,6 @@ button::-moz-focus-inner {
   margin: 0;
 }
 
-#R-sidebar ul li {
-  padding: 0;
-}
-
-#R-sidebar ul li.visited + span {
-  margin-inline-end: 1rem;
-}
-
 #R-sidebar ul li .read-icon {
   display: none;
   font-size: 0.8125rem;
@@ -806,10 +781,6 @@ article .R-taxonomy.tags a.term-link:after {
   width: 5px;
 }
 
-article .R-taxonomy.tags a.term-link:hover:after {
-  width: 5px;
-}
-
 #R-body {
   display: flex;
   flex-basis: 100%;
@@ -889,10 +860,6 @@ article .R-taxonomy.tags a.term-link:hover:after {
   display: inline;
   margin: 0;
   vertical-align: bottom;
-}
-
-#R-body figure > figcaption {
-  margin: 0;
 }
 
 #R-body figure > figcaption > h4 {
@@ -1369,10 +1336,6 @@ figure.quote > blockquote::before {
   text-align: end;
 }
 
-figure.quote > figcaption cite {
-  font-style: italic;
-}
-
 figure.quote > figcaption::before {
   content: '\2014\00a0';
 }
@@ -1396,8 +1359,8 @@ figure.quote > figcaption::before {
   font-weight: 500;
   padding: 0.2rem 0.6rem;
 }
-.box > .box-label::-webkit-details-marker,
-.box > .box-label::marker {
+/* Safari draws its marker even for a summary that is no list item */
+.box > .box-label::-webkit-details-marker {
   display: none;
 }
 
@@ -1497,8 +1460,6 @@ p:empty {
 .children-type-list p {
   margin-bottom: 0;
   margin-top: 0;
-  padding-bottom: 0;
-  padding-top: 0;
 }
 
 .pages-tree p + p,
@@ -1518,13 +1479,6 @@ p:empty {
 .children-type-list {
   list-style: none;
   padding-inline-start: 0;
-}
-
-.pages-list li,
-.pages-headings li,
-.children-type-flat li,
-.children-type-list li {
-  margin-inline-start: 0;
 }
 
 .pages-headings :is(h1, h2, h3, h4, h5, h6),
@@ -1584,10 +1538,7 @@ pre:not(.mermaid) code {
   background-color: inherit;
   border: 0;
   color: inherit;
-  -webkit-print-color-adjust: economy;
-  color-adjust: economy;
   font-size: 0.9375rem;
-  margin: 0;
   padding: 0;
 }
 
@@ -1648,14 +1599,8 @@ div.highlight > div:not(.actionbar) table {
   display: block;
   overflow: auto;
 }
-div.highlight:not(.wrap-code) pre:not(.mermaid) {
-  overflow: auto;
-}
 div.highlight:not(.wrap-code) pre:not(.mermaid) code {
   white-space: pre;
-}
-div.highlight.wrap-code pre:not(.mermaid) code {
-  white-space: pre-wrap;
 }
 /* remove border from row cells if highlight shortcode was used in table lineno mode */
 div.highlight > div:not(.actionbar) td > pre:not(.mermaid) {
@@ -1923,7 +1868,6 @@ html[dir='rtl'] .topbar-button-next i {
 }
 
 .topbar-breadcrumbs {
-  margin: 0;
   padding: 0 calc(0.9em - 2px);
 }
 @media screen and (max-width: 47.999rem) {
@@ -1957,10 +1901,6 @@ html[dir='rtl'] .topbar-button-next i {
   display: inline;
   margin: 0;
   padding: 0;
-}
-
-.breadcrumbs meta {
-  display: none;
 }
 
 .breadcrumbs li {
@@ -2007,9 +1947,6 @@ html[dir='rtl'] .topbar-button-next i {
       all 0.35s ease,
       visibility 0s;
   }
-  .mobile-support #navshow {
-    display: inline;
-  }
   .mobile-support #R-body {
     margin-inline-start: 0;
     min-width: 100%;
@@ -2045,7 +1982,6 @@ html[dir='rtl'] .topbar-button-next i {
 }
 
 span.copy-to-clipboard {
-  display: inline;
   position: relative;
 }
 
@@ -2112,18 +2048,11 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   }
 }
 
-.force-display {
-  display: block !important;
-}
-
 option {
   color: initial;
 }
 
 .expand {
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
-  outline: initial;
   position: relative;
 }
 
@@ -2418,11 +2347,6 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
   }
 }
 
-.topbar-content .topbar-button {
-  border-width: 0;
-  padding: 0.5rem 0;
-}
-
 #TableOfContents,
 .TableOfContents {
   font-size: 0.8125rem;
@@ -2464,14 +2388,9 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
 
 .list-tree li {
   color: var(--INTERNAL-MAIN-TEXT-color);
-  margin-bottom: 0;
-  margin-inline-end: 0;
   margin-inline-start: 0.5rem;
-  margin-top: 0;
-  padding-bottom: 0;
   padding-inline-end: 0.75rem;
   padding-inline-start: 1rem;
-  padding-top: 0;
   position: relative;
 }
 .list-tree > ul > li {
@@ -2489,7 +2408,6 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
 
 .list-tree li::before {
   border-top: 2px solid var(--INTERNAL-MAIN-TEXT-color);
-  height: 0;
   top: 0.75rem;
   width: 0.75rem;
 }
@@ -2500,7 +2418,6 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
   border-left: 2px solid var(--INTERNAL-MAIN-TEXT-color);
   height: 100%;
   top: -0.5rem;
-  width: 0;
 }
 
 .list-tree ul:last-child li:last-child:after {
@@ -2630,9 +2547,6 @@ i.cstyle {
 .btn > :where(button) {
   -webkit-appearance: none;
   appearance: none;
-  border-width: 0;
-  margin: 0;
-  padding: 0;
 }
 
 .btn > * {
@@ -2645,8 +2559,6 @@ i.cstyle {
   padding: 0.4em 0.5em;
   text-align: center;
   touch-action: manipulation;
-  -webkit-user-select: none;
-  user-select: none;
   white-space: nowrap;
 }
 
@@ -2738,15 +2650,6 @@ h6:hover .anchor {
 
 /* Redfines headers style */
 
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a,
-h6 a {
-  font-weight: inherit;
-}
-
 #R-body h1 + h2,
 #R-body h1 + h3,
 #R-body h1 + h4,
@@ -2781,8 +2684,6 @@ h6 a {
    through to it */
 .menu-control i,
 .menu-control span {
-  cursor: pointer;
-  display: block;
   float: left;
   pointer-events: none;
 }
@@ -2791,23 +2692,17 @@ html[dir='rtl'] .menu-control span {
   float: right;
 }
 
-.menu-control :hover,
-.menu-control i:hover,
-.menu-control span:hover {
-  cursor: pointer;
-}
-
 .menu-control select,
 .menu-control button {
   -webkit-appearance: none;
   appearance: none;
+  cursor: pointer;
   display: block;
   height: 1.33rem;
   /* shifting the box by what it is padded with keeps the text in place; the
      list of a select opens as wide as that box, so it reaches out to both
      sides to be as far from one edge of the menu as from the other */
   margin-inline: -2em -0.5em;
-  max-width: none;
   outline: none;
   padding-inline: 2em 0.5em;
   width: calc(100% + 2.5em);
@@ -2822,7 +2717,6 @@ html[dir='rtl'] .menu-control span {
   background-color: transparent;
   background-image: none;
   border: none;
-  box-shadow: none;
 }
 
 /* the browsers disagree on the background of the opened list once the select
@@ -2832,12 +2726,10 @@ html[dir='rtl'] .menu-control span {
   background-color: Canvas;
   color: CanvasText;
   padding: 0;
-  margin: 0;
 }
 
 .menu-control button {
   background-color: transparent;
-  cursor: pointer;
   overflow: hidden;
   text-align: start;
 }
@@ -2903,7 +2795,6 @@ span.math:has(math[display='block'], .katex-display) {
   /* prevent zooming on iOS */
   font-size: 12pt;
   inset-inline-start: -9999px;
-  margin: 0;
   padding: 0;
   position: absolute;
 }
@@ -2974,8 +2865,6 @@ span.math:has(math[display='block'], .katex-display) {
   border-radius: 4px;
   border: 2px solid rgba(134, 134, 134, 0.125);
   background: rgba(134, 134, 134, 0.125);
-  display: block;
-  margin: 0;
   margin-inline-end: 0.5rem;
   /* an input does not shrink below its natural width otherwise, so it would
      reach out of a narrow form */
@@ -2987,7 +2876,6 @@ span.math:has(math[display='block'], .katex-display) {
   outline: auto;
 }
 
-.searchform input::-webkit-input-placeholder,
 .searchform input::placeholder {
   color: rgba(134, 134, 134, 1);
   opacity: 0.666;
@@ -3158,7 +3046,6 @@ article ul > li > span > input[type='checkbox'] {
   display: inline-grid;
   font: inherit;
   height: 1.15em;
-  margin: 0;
   place-content: center;
   transform: translateY(-0.075em);
   width: 1.15em;
@@ -3304,13 +3191,10 @@ article ul > li > span > input[type='checkbox']:checked::before {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
-  display: inline-block;
   /* nothing to see but the focus outline: a square around the chevron, in the
      middle of the height of the entry */
   height: 1rem;
   inset-inline-start: 0;
-  margin-bottom: 0;
-  margin-inline-end: 0;
   margin-inline-start: -0.075rem;
   margin-top: 0.25rem;
   position: absolute;
@@ -3330,7 +3214,6 @@ article ul > li > span > input[type='checkbox']:checked::before {
 
 #R-sidebar ul.collapsible-menu > li > label {
   cursor: pointer;
-  display: inline-block;
   inset-inline-start: 0;
   padding-inline-start: 0.125rem;
   position: absolute;
@@ -3709,7 +3592,6 @@ body a#R-logo:hover *:not(svg, svg *) {
   background-color: transparent;
   border: 1px solid transparent;
   color: var(--VARIABLE-LINK-color);
-  display: block;
   font-size: 0.9rem;
   font-weight: 300;
   line-height: 1.42857143;
@@ -3744,14 +3626,7 @@ body a#R-logo:hover *:not(svg, svg *) {
   text-shadow:
     -0.08ex 0 0 currentColor,
     0.08ex 0 0 currentColor;
-}
-@supports (-webkit-text-stroke-width: 0.09ex) {
-  #R-body .tab-nav-button.active > .tab-nav-text {
-    text-shadow:
-      -0.08ex 0 0 currentColor,
-      0.08ex 0 0 currentColor;
-    -webkit-text-stroke-width: 0.09ex;
-  }
+  -webkit-text-stroke-width: 0.09ex;
 }
 #R-body .tab-nav-button:not(.active):hover > .tab-nav-text,
 #R-body .tab-nav-button:not(.active):active > .tab-nav-text,
@@ -3865,7 +3740,6 @@ body a#R-logo:hover *:not(svg, svg *) {
 }
 
 #R-header-topbar {
-  background-color: transparent;
   border-bottom-color: transparent;
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -3922,7 +3796,6 @@ body a#R-logo:hover *:not(svg, svg *) {
   background-color: var(--INTERNAL-MENU-HEADER-BORDER-color);
   color: var(--INTERNAL-MENU-HOME-LINK-color);
   overflow: hidden;
-  padding: 0;
 }
 
 #R-sidebar #R-homelinks ul {
@@ -4014,9 +3887,7 @@ article.notfound h2 {
 }
 article.notfound #shrug svg,
 article.notfound #shrug svg * {
-  color: #000000;
   color: var(--MAIN-TEXT-color);
-  fill: #000000 !important;
   fill: var(--MAIN-TEXT-color) !important;
 }
 article.notfound #shrug svg {
@@ -4119,7 +3990,6 @@ article.notfound #shrug svg {
 }
 
 .card-container .card-image {
-  background: transparent;
   height: 300px;
   order: -1;
   overflow: hidden;
@@ -4174,9 +4044,6 @@ article.notfound #shrug svg {
   appearance: none;
   background: none;
   border: 0;
-  cursor: pointer;
-  font: inherit;
-  padding: 0;
   text-align: inherit;
 }
 
