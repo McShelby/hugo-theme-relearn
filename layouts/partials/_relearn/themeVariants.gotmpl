@@ -430,12 +430,40 @@ Print run:
 			}}
 		{{- end }}
 	{{- end }}
+	{{- /* a font is only written, and its files only published, if some of our CSS
+		or the site's own asks for its family; so a font of a variant that is not
+		configured costs nothing */}}
+	{{- $customcontent := "" }}
+	{{- with resources.Get "/css/custom.css" }}
+		{{- $customcontent = .Content }}
+	{{- else }}
+		{{- with partial "_relearn/staticResource.gotmpl" "css/custom.css" }}
+			{{- $customcontent = .Content }}
+		{{- end }}
+	{{- end }}
+	{{- $fontusage := print $variablescontent $nucleuscontent .Content $formathtml $formatprint $htmlcontent $printcontent $customcontent }}
+	{{- $usedfontscontent := "" }}
+	{{- range findRE `(?s)@font-face\s*\{.*?\}` (replaceRE `(?s)/\*.*?\*/` "" $fontscontent) }}
+		{{- $fontface := . }}
+		{{- range findRESubmatch `font-family\s*:\s*['"]?([^'";]+?)['"]?\s*;` $fontface 1 }}
+			{{- if strings.Contains $fontusage (index . 1) }}
+				{{- $usedfontscontent = print $usedfontscontent "\n" $fontface }}
+				{{- range findRESubmatch `url\(\s*['"]?\.\./(fonts/[^'")]+)` $fontface }}
+					{{- with resources.Get (index . 1) }}
+						{{- /* the following code causes Hugo to generate our file in public */}}
+						{{- $url := .RelPermalink }}
+					{{- end }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
 	{{- $themecontent := print
 		$variablescontent
 		"\n\n" $nucleuscontent
 		"\n" .Content
 		$boxcontent
-		"\n" $fontscontent
+		$usedfontscontent
+		"\n"
 	}}
 	{{- $cssres := $themecontent | resources.FromString "css/theme.css" }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
@@ -496,13 +524,8 @@ Print run:
 {{- /*
 Write yet non-dynamic stuff
 - fontawesome
-- robotoflex
 */}}
 {{- range resources.Match "/fonts/fontawesome/**" }}
-	{{- /* the following code causes Hugo to generate our file in public */}}
-	{{- $url := .RelPermalink }}
-{{- end }}
-{{- range resources.Match "/fonts/robotoflex/**" }}
 	{{- /* the following code causes Hugo to generate our file in public */}}
 	{{- $url := .RelPermalink }}
 {{- end }}
