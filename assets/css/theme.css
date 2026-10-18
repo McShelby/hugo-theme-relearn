@@ -109,9 +109,18 @@ code and images */
   }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   color-scheme: only var(--INTERNAL-BROWSER-theme);
+  font-size: 16px;
   height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   width: 100%;
   --VARIABLE-LINK-color: var(--INTERNAL-MAIN-LINK-color);
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-MAIN-LINK-HOVER-color);
@@ -129,6 +138,7 @@ body {
   height: 100%;
   letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
   line-height: 1.574;
+  margin: 0;
   width: 100%;
 }
 
@@ -138,6 +148,24 @@ label,
 th,
 blockquote cite {
   font-weight: var(--INTERNAL-MAIN-BOLD-font-weight);
+}
+
+p {
+  margin: 1rem 0;
+}
+
+ul,
+ol {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-inline-start: 1.5rem;
+}
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 ul {
@@ -156,12 +184,80 @@ dd {
 
 a {
   color: var(--VARIABLE-LINK-color);
+  text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus {
   color: var(--VARIABLE-LINK-HOVER-color);
+}
+
+figure {
+  margin: 1rem 2.5rem;
+}
+
+iframe {
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+small {
+  font-size: 0.925rem;
+}
+
+/* sub- and superscripts must not stretch the line they sit in */
+sub,
+sup {
+  font-size: 0.8rem;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+/* form controls take the text of the page instead of the one of the browser */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+/* the font taken from the page is never bold, but a group title should be */
+optgroup {
+  font-weight: bold;
+}
+
+button {
+  border: inherit;
+  cursor: pointer;
+  padding: 0;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+}
+button:disabled {
+  cursor: default;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 .default-animation {
@@ -322,6 +418,8 @@ a:focus {
   padding-inline-start: 1.8rem;
   padding-top: 0;
   margin: 0;
+  /* the box shows the focus instead */
+  outline: none;
 }
 
 .searchbox input::-webkit-input-placeholder {
@@ -1223,6 +1321,7 @@ h6 {
    round the corners on its inner side */
 blockquote,
 figure.quote {
+  margin: 1.5rem 0;
   padding-inline-start: 1.45rem;
   position: relative;
 }
@@ -1248,16 +1347,13 @@ blockquote p {
 
 blockquote cite {
   display: block;
+  font-size: 0.925rem;
   opacity: 0.5;
   padding-top: 0.5rem;
   text-align: end;
 }
 
 /* a quote with its attribution; the bar moves to the figure to span both */
-figure.quote {
-  margin: 1.5rem 0;
-}
-
 figure.quote > blockquote {
   margin: 0;
   padding-inline-start: 0;
@@ -1274,8 +1370,6 @@ figure.quote > blockquote::before {
 }
 
 figure.quote > figcaption cite {
-  display: inline;
-  font-size: inherit;
   font-style: italic;
 }
 
@@ -1448,7 +1542,6 @@ samp {
   font-weight: var(--INTERNAL-CODE-font-weight);
   font-family: var(--INTERNAL-CODE-font);
   letter-spacing: var(--INTERNAL-CODE-letter-spacing);
-  vertical-align: baseline;
 }
 
 code {
@@ -1481,6 +1574,8 @@ pre:not(.mermaid) {
   -webkit-print-color-adjust: economy;
   color-adjust: economy;
   line-height: 1.15;
+  margin: 1.5rem 0;
+  overflow: auto;
   padding: 1rem;
   position: relative;
 }
@@ -1585,6 +1680,10 @@ div.highlight > div:not(.actionbar) td:not(:first-child):last-child pre:not(.mer
 
 hr {
   border-bottom: 4px solid rgba(134, 134, 134, 0.125);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin: 1.5rem 0;
 }
 #R-body hr {
   /* a radius too large is cut down to half the height, whatever that is, so the ends are round
@@ -1600,11 +1699,12 @@ table {
   background-color: var(--INTERNAL-MAIN-BG-color);
   /* a table of collapsed borders ignores a border radius; so its outer border is
      left out, its corners are cut off and the frame is drawn on top instead */
+  border-collapse: collapse;
   border-style: hidden;
   clip-path: inset(0 round var(--block-radius));
   margin-bottom: 1rem;
   margin-top: 1rem;
-  table-layout: auto;
+  width: 100%;
 }
 table::after {
   border: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
@@ -1615,6 +1715,10 @@ table::after {
   position: absolute;
   /* above the sticky header row */
   z-index: 111;
+}
+
+th {
+  text-align: start;
 }
 
 th,
@@ -2023,8 +2127,10 @@ option {
   position: relative;
 }
 
+/* a summary is a list item, whose marker would stand next to our own icon */
 .expand > .box-label {
   cursor: pointer;
+  display: block;
 }
 /* without its content, the label reaches the bottom of the box as well */
 .expand:not([open]) > .box-label {
@@ -2695,6 +2801,7 @@ html[dir='rtl'] .menu-control span {
 .menu-control button {
   -webkit-appearance: none;
   appearance: none;
+  display: block;
   height: 1.33rem;
   /* shifting the box by what it is padded with keeps the text in place; the
      list of a select opens as wide as that box, so it reaches out to both
@@ -2731,13 +2838,18 @@ html[dir='rtl'] .menu-control span {
 .menu-control button {
   background-color: transparent;
   cursor: pointer;
-  display: block;
   overflow: hidden;
   text-align: start;
 }
 
 .clear {
   clear: both;
+}
+
+/* Chrome and Safari give a search input a look of their own unless it is a plain text field */
+input[type='search'] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
 /* clears the 'X' from Chrome's search input */
@@ -2865,6 +2977,10 @@ span.math:has(math[display='block'], .katex-display) {
   display: block;
   margin: 0;
   margin-inline-end: 0.5rem;
+  /* an input does not shrink below its natural width otherwise, so it would
+     reach out of a narrow form */
+  min-width: 0;
+  padding: 0.425rem;
 }
 
 .searchform input:focus-visible {
@@ -3216,7 +3332,6 @@ article ul > li > span > input[type='checkbox']:checked::before {
   cursor: pointer;
   display: inline-block;
   inset-inline-start: 0;
-  margin-bottom: 0; /* nucleus */
   padding-inline-start: 0.125rem;
   position: absolute;
   width: 1rem;

@@ -358,10 +358,6 @@ Print run:
 {{- /*
 - Read default stuff
 */}}
-{{- $nucleuscontent := "" }}
-{{- with resources.Get "/css/nucleus.css" }}
-	{{- $nucleuscontent = .Content }}
-{{- end }}
 {{- $fontscontent := "" }}
 {{- with resources.Get "/css/fonts.css" }}
 	{{- $fontscontent = .Content }}
@@ -441,7 +437,7 @@ Print run:
 			{{- $customcontent = .Content }}
 		{{- end }}
 	{{- end }}
-	{{- $fontusage := print $variablescontent $nucleuscontent .Content $formathtml $formatprint $htmlcontent $printcontent $customcontent }}
+	{{- $fontusage := print $variablescontent .Content $formathtml $formatprint $htmlcontent $printcontent $customcontent }}
 	{{- $usedfontscontent := "" }}
 	{{- range findRE `(?s)@font-face\s*\{.*?\}` (replaceRE `(?s)/\*.*?\*/` "" $fontscontent) }}
 		{{- $fontface := . }}
@@ -459,8 +455,7 @@ Print run:
 	{{- end }}
 	{{- $themecontent := print
 		$variablescontent
-		"\n\n" $nucleuscontent
-		"\n" .Content
+		"\n\n" .Content
 		$boxcontent
 		$usedfontscontent
 		"\n"
