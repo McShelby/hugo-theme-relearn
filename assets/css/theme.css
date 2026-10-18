@@ -838,8 +838,6 @@ article .R-taxonomy.tags a.term-link:after {
      strengthen; on a light background it takes the color of the neutral boxes instead, which
      carries the tint of the variant, but never darker than a light grey, as some variants
      darken their neutral boxes for contrast */
-  box-shadow: 0 3px 12px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 20%, transparent);
-  box-shadow: 0 3px 12px oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) c h / calc(0.2 + 0.6 * (1 - l)));
   box-shadow: 0 3px 12px light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.85) c h / 0.9), oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) calc(c * 6) h / calc(0.2 + 0.6 * (1 - l))));
 }
 
@@ -1101,12 +1099,12 @@ mark {
 }
 
 kbd {
-  background-color: rgba(134, 134, 134, 0.166);
-  border-color: rgba(134, 134, 134, 0.5);
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
+  border-color: oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.5);
   border-radius: 0.25rem;
   border-style: solid;
   border-width: 1px;
-  box-shadow: 0 0.0625rem 0 0.0625rem rgba(134, 134, 134, 0.5);
+  box-shadow: 0 0.0625rem 0 0.0625rem oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.5);
   color: var(--INTERNAL-TEXT-color);
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
@@ -1135,7 +1133,7 @@ h1 {
 }
 
 #R-body-inner > .flex-block-wrapper article.narrow h1 {
-  border-bottom: 4px solid rgba(134, 134, 134, 0.125);
+  border-bottom: 4px solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 30%, transparent);
 }
 @media only screen and (min-width: 48rem) and (max-width: 59.999rem) {
   #R-body-inner > .flex-block-wrapper article h1 {
@@ -1254,7 +1252,7 @@ figure.quote {
 }
 blockquote::before,
 figure.quote::before {
-  background-color: rgba(134, 134, 134, 0.4);
+  background-color: oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.4);
   border-radius: 3px;
   bottom: 0;
   -webkit-print-color-adjust: exact;
@@ -1552,7 +1550,7 @@ div.highlight > div:not(.actionbar) td:not(:first-child):last-child pre:not(.mer
 }
 
 hr {
-  border-bottom: 4px solid rgba(134, 134, 134, 0.125);
+  border-bottom: 4px solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 30%, transparent);
   border-left: none;
   border-right: none;
   border-top: none;
@@ -1726,7 +1724,7 @@ tbody > tr:nth-child(even) > td {
 
 .topbar-button > .btn > button:disabled i,
 .topbar-button > .btn > span i {
-  color: rgba(134, 134, 134, 0.333);
+  color: oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.333);
 }
 
 .topbar-sidebar-divider {
@@ -1894,7 +1892,7 @@ html[dir='rtl'] .topbar-button-next i {
     overflow: hidden;
   }
   .mobile-support.sidebar-flyout #R-body-overlay {
-    background-color: rgba(134, 134, 134, 0.5);
+    background-color: oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.5);
     bottom: 0;
     cursor: pointer;
     height: 100vh;
@@ -2164,8 +2162,8 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
 
 .topbar-content {
   background: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
-  border: 0 solid rgba(134, 134, 134, 0.166);
-  box-shadow: 1px 2px 5px 1px rgba(134, 134, 134, 0.2);
+  border: 0 solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
+  box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.2);
   height: 0;
   opacity: 0;
   overflow: hidden;
@@ -2184,7 +2182,7 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
 }
 
 .topbar-content .topbar-content-wrapper {
-  background-color: rgba(134, 134, 134, 0.066);
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 16%, transparent);
 }
 
 .topbar-content-wrapper {
@@ -2768,8 +2766,8 @@ span.math:has(math[display='block'], .katex-display) {
 .searchform input {
   flex: 1 0 60%;
   border-radius: 4px;
-  border: 2px solid rgba(134, 134, 134, 0.125);
-  background: rgba(134, 134, 134, 0.125);
+  border: 2px solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 30%, transparent);
+  background: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 30%, transparent);
   margin-inline-end: 0.5rem;
   /* an input does not shrink below its natural width otherwise, so it would
      reach out of a narrow form */
@@ -2782,7 +2780,7 @@ span.math:has(math[display='block'], .katex-display) {
 }
 
 .searchform input::placeholder {
-  color: rgba(134, 134, 134, 1);
+  color: oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h);
   opacity: 0.666;
 }
 
@@ -2797,8 +2795,8 @@ span.math:has(math[display='block'], .katex-display) {
 
 #R-sidebar .autocomplete-suggestions {
   background-color: var(--INTERNAL-MAIN-BG-color);
-  border: 0 solid rgba(134, 134, 134, 0.166);
-  box-shadow: 1px 2px 5px 1px rgba(134, 134, 134, 0.333);
+  border: 0 solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
+  box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.333);
 }
 
 #R-sidebar .autocomplete-suggestion {
@@ -2846,11 +2844,11 @@ span.math:has(math[display='block'], .katex-display) {
 #R-html .autocomplete-suggestion.selected,
 #R-html .autocomplete-suggestion:focus {
   color: var(--VARIABLE-LINK-HOVER-color);
-  background-color: rgba(134, 134, 134, 0.133);
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 32%, transparent);
 }
 #R-html .autocomplete-suggestion:hover {
   color: var(--VARIABLE-LINK-HOVER-color);
-  background-color: rgba(134, 134, 134, 0.2);
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 48%, transparent);
 }
 #R-html .autocomplete-suggestion .link,
 #R-html .autocomplete-suggestion .title > span {
@@ -3828,8 +3826,6 @@ article.notfound #shrug svg {
   border: 1px solid color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 10%, transparent);
   border-radius: 12px;
   /* the same shadow as for the `shadow` effect of an image */
-  box-shadow: 0 3px 12px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 20%, transparent);
-  box-shadow: 0 3px 12px oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) c h / calc(0.2 + 0.6 * (1 - l)));
   box-shadow: 0 3px 12px light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.85) c h / 0.9), oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) calc(c * 6) h / calc(0.2 + 0.6 * (1 - l))));
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
