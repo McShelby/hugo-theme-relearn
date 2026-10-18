@@ -25,6 +25,9 @@ The theme ships with the following set of variants
 - Contrast
   - [Light](configuration/branding/colors?variant=contrast-light#shipped-variants): [colors chosen for high contrast](configuration/publishing/accessibility), coming with black text on white, darker boxes and a matching syntax highlighting
   - [Dark](configuration/branding/colors?variant=contrast-dark#shipped-variants): dark variant of Light, coming with white text on black, brighter boxes and a matching syntax highlighting
+- Tome
+  - [Light](configuration/branding/colors?variant=tome-light#shipped-variants): a book-like variant, coming with burgundy accents, calligraphic titles, warm paper tones and a glow around the page
+  - [Dark](configuration/branding/colors?variant=tome-dark#shipped-variants): dark variant of Light, coming with rose accents, calligraphic titles, dark leather tones and a glow around the page
 - Experimental
   - [Neon](configuration/branding/colors?variant=neon#shipped-variants): a variant that glows in the dark, gradient sidebar and dark content area
 - Retro
