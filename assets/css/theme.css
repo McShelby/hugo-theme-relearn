@@ -2828,13 +2828,15 @@ span.math:has(math[display='block'], .katex-display) {
 }
 
 .badge > .badge-title {
-  background-color: rgba(16, 16, 16, 1);
+  /* a dark grey on either background, darker than the page on a dark one; like
+     every fill taken from the color of the neutral boxes and its text from the one
+     of the grey boxes, so both carry the tint of the variant; on a light page the
+     text takes the color of the page, as no grey is white */
+  background-color: light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) 0.37 c h), oklch(from var(--INTERNAL-BOX-NEUTRAL-color) 0.14 c h));
   border-inline-end: 0;
   border-start-end-radius: 0;
   border-end-end-radius: 0;
-  color: rgba(240, 240, 240, 1);
-  filter: contrast(2);
-  opacity: 0.75;
+  color: light-dark(var(--INTERNAL-MAIN-BG-color), oklch(from var(--INTERNAL-BOX-GREY-color) 0.84 c h));
 }
 
 .badge i {
