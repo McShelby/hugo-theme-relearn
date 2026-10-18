@@ -47,4 +47,8 @@
 
   Many of the changes in this release are due to support this variant.
 
+- {{% badge style="new" %}}New{{% /badge %}} The new color `yellow` can be used as `style` in [every shortcode taking one](shortcodes/callout#parameters) and set with `BOX-YELLOW-color` in your [theme variant](configuration/branding/colors#modifying-variants). Each shipped variant picks a yellow that is readable with its title and text colors.
+
+  To keep it apart from yellow, `orange` - and with it the `note` severity - is now a true orange instead of an amber, and darker so its titles are readable as well.
+
 - {{% badge style="new" %}}New{{% /badge %}} The entries of the variant switcher can now be grouped by putting [dividers](configuration/branding/colors#dividers) into the `themeVariant` option. A divider with a name labels its group.

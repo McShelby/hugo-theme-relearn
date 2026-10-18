@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.2.1+71be0cdc8a3aad3c6be9222877a799f5655a237d">
+    <meta name="generator" content="Relearn 9.2.1+0e563e96497e663311740e21cdf815ae383f44c9">
     <meta name="description" content="8.3.0 (2025-11-27) Enhancements [feature][change] children: adjust image selection for cards #1169 [feature] toast: remove tooltip and replace it with toast #1166 [feature] anchor: use button implementation #1162 [feature] breadcrumbs: show title on mobile #1161 [feature] tree: accept native tree command output #1159 [feature] frontmatter: update snippets #1158 [feature] link: add checker for external links #964 Fixes [bug] anchor: don’t replace browser history with clicked anchor #1163 [bug] cards: description not showing if unsafe HTML is not allowed #1160 [bug] theme: fix invalid HTML #1156 Maintenance [task][dependencies] security: js-yaml #1168 [task] clipboard: use button implementation #1165 [task] mermaid: use button implementation #1164 [task] theme: switch to verified release commits #1157 [task] theme: remove .Scratch with .Store #948 8.2.0 (2025-11-01) Enhancements [feature] button: add more styling #1154 [feature] boxstyle: support style parameter as default for user defined styles #1149 [feature] i18n: add Danish translation #1148 [feature] topbar: introduce CSS color variables #863 Fixes [bug] mermaid: don’t ignore codefence zoom attribute #1150 Maintenance [task] build: make it build from any directory #1155 [task] code: regenerate chroma styles #1152 [task] test: switch to hvm #1151 8.1.1 (2025-10-05) Fixes [bug] cards: restore compat with Hugo 0.126.3 #1145 8.1.0 (2025-10-05) Enhancements [feature] tabs: improve a11y #1144 [feature] cards: create new card shortcode #1138 [feature][change] children: new presentation with cards #1124 Fixes [bug] history: fix checkmarks for canonifyURLs=true #1142 [bug] versioning: use consistent language in german translation #1139 [bug] version: translation text for “Version” is missing #1133 [bug] tabs: can’t toggle tabs with similar names #1132 Maintenance [task][change] linkeffects: make default externalLinkTarget behave like standard #1143 [task] alias: remove noindex #1137 8.0.1 (2025-09-11) Fixes [bug] search: improve readability of highlighted text #1125 [bug] search: fix searching of description with Orama engine #1115 Maintenance [task] task: fix release automation #1128 8.0.0 (2025-07-07) Enhancements [feature][change] theme: make H1 CSS inheritance reasonable #1111 [feature] search: mark each word of a multi word in-page search independently #1106 [feature] theme: optimize display of main heading on mobile #1100 [feature][change] theme: use Hugo’s default sort order if no ordersectionsby was set #1092 [feature][breaking] search: add more filtering options for results #407 Fixes [bug] breadcrumbs: fix spacing of separator #1108 [bug] openapi: fix duplicated baseURL for swagger-ui.css #1102 [bug] children: fix broken console warning #1099 [bug] clipboard: fix link when using special characters #1097 [bug] i18n: fix spelling mistake for spanish #1090 Maintenance [task] openapi: update swagger-ui to 5.26.1 #1114 [task] mermaid: update to 11.8.0 #1113 [task][breaking] theme: compatibility with Hugo 0.146.0 and newer #1086 [task] tree: simplify code #1085">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.731966bdfb8e9355f900e46495c4af83cc2d10c85383fad000c036a54ab56d96.js"
+      "indexFile": "searchindex.en.min.b5af3bb05084de917209914c6d2b20c75891e46b46900936185c176077e858bb.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -48,8 +48,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.598e24a283933c603cf5e0a527b87c9508d6dc3bd6c8b9163a3895669b3ba6da.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.548493579b7197099ceb27a0c9741636588a2c72de680b955e2e37062373cbef.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.3f92d08dc84dc75881c82517ed02aff1f52e34d6c7a90990fb33b21171829f9d.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.714c05917dfd9ead1c8a490ce103a600494342af212c5a0fe9e892475269582f.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -95,11 +95,15 @@
         "View_reset": "View reset!"
       }
     }</script>
-    <script src="/hugo-theme-relearn/js/theme-head.min.5a8fc5380bfc2c9d6156c17237195cf8499a12e167dab94cf50c5a25f2fe922d.js"></script>
+    <script src="/hugo-theme-relearn/js/theme-head.min.e211882b79ced279c90a6ed066196bd3c97afd4d29f276b49cd08db79736902e.js"></script>
     <style>
        
       #R-body img.bg-white {
         background-color: white;
+      }
+       
+      :root[data-r-theme-variant^='tome-'] .github-buttons {
+        filter: sepia(0.6) brightness(0.95);
       }
     </style>
   </head>
@@ -334,7 +338,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/71be0cdc8a3aad3c6be9222877a799f5655a237d" title="Relearn 9.2.1&#43;71be0cdc8a3aad3c6be9222877a799f5655a237d"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/0e563e96497e663311740e21cdf815ae383f44c9" title="Relearn 9.2.1&#43;0e563e96497e663311740e21cdf815ae383f44c9"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
