@@ -19,6 +19,9 @@ The theme ships with the following set of variants
 - Contrast
   - [Light](configuration/branding/colors?variant=contrast-light#shipped-variants): [colors chosen for high contrast](configuration/publishing/accessibility), coming with black text on white, darker boxes and a matching syntax highlighting
   - [Dark](configuration/branding/colors?variant=contrast-dark#shipped-variants): dark variant of Light, coming with white text on black, brighter boxes and a matching syntax highlighting
+- Tome
+  - [Light](configuration/branding/colors?variant=tome-light#shipped-variants): a book-like variant, coming with burgundy accents, calligraphic titles, warm paper tones and a glow around the page
+  - [Dark](configuration/branding/colors?variant=tome-dark#shipped-variants): dark variant of Light, coming with rose accents, calligraphic titles, dark leather tones and a glow around the page
 - Experimental
   - [Neon](configuration/branding/colors?variant=neon#shipped-variants): a variant that glows in the dark, gradient sidebar and dark content area
 - Retro
@@ -112,7 +115,7 @@ The `identifier` option is mandatory and equivalent to the string in the first e
 | auto                  | _&lt;empty&gt;_ | If set, the variant is treated as an [auto mode variant](#adjust-to-os-settings). It has the same behavior as the `themeVariantAuto` option. The first entry in the array is the color variant for light mode, the second for dark mode. Defining auto mode variants with the advanced options has the benefit that you can now have multiple auto mode variants instead of just one with the simple options. |
 | params                | _&lt;empty&gt;_ | Values of the site's `params` that are overridden while this variant is active, see [below](#variant-parameters). |
 | hidden                | `false`         | If `true`, the variant will not be shown in the variant switcher but is still available for internal use (e.g. to override parameter when used as a sub-variant of an auto mode variant). |
-| print                 | see notes       | The [print variant](#theme-variant-print) of this variant. If not set, the one of the `themeVariantPrint` option is used. An auto mode variant ignores it and prints with the print variants of its light and dark variant. |
+| print                 | see notes       | The [print variant](#theme-variant-print) used instead of this variant when printing. If not set, the one of the `themeVariantPrint` option is used. An auto mode variant ignores it and prints with the print variants of its light and dark variant. |
 
 #### Variant Parameters
 
@@ -158,33 +161,47 @@ themeVariant = [
 
 ### Print Variant {#theme-variant-print}
 
-When a page is printed or shown as its [print version](configuration/sitemanagement/outputformats#print-support), it doesn't use the variant selected by the reader but a print variant. A print variant is an ordinary variant, preferably one with a light background, as most browsers don't print backgrounds.
+When a page is printed or shown as its [print version](configuration/sitemanagement/outputformats#print-support), it doesn't use the variant selected by the reader but its print variant, with the theme's print variables on top.
 
-{{% badge style="option" %}}Option{{% /badge %}} Set `themeVariantPrint` to change the print variant of all variants. Default is `relearn-print`, a variant made for paper based on `relearn-light`.
+The print variables set every color that depends on a light or dark background to values made for paper, with links, titles, code, boxes and the topbar in black on white. So the print shows the fonts of the print variant but the colors of paper. The print variables are in the theme's `assets/css/format-print-variables.css`. To change them for your site, copy the file into your site's `assets/css` directory and edit it. To keep a single value of a print variant on paper, mark it `!important` in the variant.
+
+````css {title="assets/css/theme-my-light.css"}
+:root {
+  --MAIN-LINK-color: rgba( 0, 0, 255, 1 ) !important; /* blue links also on paper */
+}
+````
+
+{{% badge style="option" %}}Option{{% /badge %}} Set `themeVariantPrint` to the print variant of your site. Default is `relearn-light`.
 
 {{< multiconfig file=hugo section=params >}}
 themeVariantPrint = 'zen-light'
 {{< /multiconfig >}}
 
-With the [advanced configuration](#theme-variant-advanced), each variant can name its own print variant with the `print` parameter. An auto mode variant prints with the print variants of its light and dark variant, following the reader's OS setting.
+With the [advanced configuration](#theme-variant-advanced), each variant can name its own print variant with the `print` parameter, which wins over `themeVariantPrint`. A variant naming itself prints with its own fonts.
+
+If a print variant has a different print variant itself, by its `print` parameter or by `themeVariantPrint`, that one is used instead, and so on, until a variant names itself. If this comes back to a variant already visited, the build stops with an error. An auto mode variant prints with the print variants of its light and dark variant, following the reader's OS setting.
+
+In the following example, both variants print with the fonts of the light variant.
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
 	{ identifier = 'my-auto',  auto = [ 'my-light', 'my-dark' ] },
-	{ identifier = 'my-light', print = 'my-light-print' },
-	{ identifier = 'my-dark',  print = 'my-dark-print' }
+	{ identifier = 'my-light', print = 'my-light' },
+	{ identifier = 'my-dark',  print = 'my-light' }
 ]
 {{< /multiconfig >}}
 
 A print variant doesn't need to be part of `themeVariant`. If you list it, set it `hidden` to keep it out of the variant switcher.
 
-To print with the fonts of your variant but the colors of the default print variant, [import](#modifying-variants) the print variant and add your font settings:
+The style rules of a print variant apply to the print as well. If your variant contains style rules that are meant for the screen only, wrap them as follows. The print version of a page is shown on screen too, so `@media screen` alone is not enough.
 
-````css {title="assets/css/theme-my-dark-print.css"}
-@import "theme-relearn-print.css";
-
-:root {
-  --MAIN-font: "My Font", sans-serif; /* font of your dark variant */
+````css {title="assets/css/theme-my-dark.css"}
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    h1 {
+      text-shadow: 0 0 4px rgba( 255, 255, 255, 1 ); /* a glow, only for the screen */
+    }
+  }
 }
 ````
 
