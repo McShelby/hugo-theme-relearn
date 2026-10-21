@@ -887,7 +887,7 @@ article .R-taxonomy.tags a.term-link:after {
    the search suggestions, of the opened list of a select in the menu and of code
    boxes, and we take whichever styling it offers us: the standard property knows
    two colors but no state of its own, the webkit pseudo elements give us a hover
-   of the thumb itself; they are mutually exclusive, as naming a scrollbar-color
+   of the scrollbar itself; they are mutually exclusive, as naming a scrollbar-color
    makes the pseudo elements be ignored. the colors are the ones of the area we
    are in, see the `--VARIABLE-SCROLLBAR-*` properties; the search suggestions sit
    on the background of the content, so they keep its colors */
@@ -939,7 +939,8 @@ article .R-taxonomy.tags a.term-link:after {
     }
 
     @media (hover: hover) {
-      &:hover::-webkit-scrollbar-track {
+      &::-webkit-scrollbar-track:hover {
+        /* tints once the mouse reaches us, like the menu rail does */
         background-color: var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
       }
 
@@ -962,7 +963,7 @@ article .R-taxonomy.tags a.term-link:after {
          rail does; the transparent border insetting the thumb is given a color of
          its own here, so it has to become the one of the track */
       &::-webkit-scrollbar-track,
-      &:hover::-webkit-scrollbar-track {
+      &::-webkit-scrollbar-track:hover {
         background-color: Canvas;
       }
 
@@ -2578,11 +2579,12 @@ html[dir='rtl'] .menu-control span {
   border: none;
   /* the opened list pops up over the page like the overlays of the topbar do,
      so it takes their colors; as it is drawn apart from the page and can not
-     lay a see-through track over anything, its tracks are its background */
+     lay a see-through track over anything, its tracks are mixed into its
+     background */
   --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color);
   --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
-  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
-  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
+  --VARIABLE-SCROLLBAR-TRACK-color: color-mix(in srgb, var(--INTERNAL-TOPBAR-TEXT-color) 9%, var(--INTERNAL-TOPBAR-OVERLAY-BG-color));
+  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: color-mix(in srgb, var(--INTERNAL-TOPBAR-TEXT-color) 15%, var(--INTERNAL-TOPBAR-OVERLAY-BG-color));
 }
 
 /* the browsers disagree on the background of the opened list once the select
