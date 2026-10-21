@@ -10,6 +10,23 @@ code and images */
 :root {
   --block-radius: 6px;
 }
+/* the frame of what pops up over the page, like the overlays of the topbar */
+:root {
+  --overlay-border-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
+  --overlay-box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.2);
+}
+/* the shape of a tick, like the one of a checked task */
+:root {
+  --tick-clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+/* the scrollbars we draw ourselves: their thickness and the inset of their thumb,
+   which is smaller once the thumb is hovered, so it grows */
+:root {
+  --scrollbar-size: 15px;
+  --scrollbar-thumb-inset: 4px;
+  --scrollbar-thumb-hover-inset: 2px;
+  --scrollbar-thumb-radius: 8px;
+}
 @media (min-resolution: 105dpi) {
   :root {
     --dpr: 1.1;
@@ -905,6 +922,10 @@ article .R-taxonomy.tags a.term-link:after {
   }
 }
 
+/* the list of a select we style ourselves is a part of the select, not an
+   element; a browser that draws the list on its own does not know how to name
+   it and drops every rule that does, so each rule naming it comes on its own,
+   right after the one it follows */
 @supports selector(::-webkit-scrollbar) {
   :is(#R-body-inner, .topbar-content-wrapper, #R-sidebar .autocomplete-suggestions, .menu-control select, pre:not(.mermaid), div.highlight > div:not(.actionbar) table) {
     .classic-scrollbars &::-webkit-scrollbar {
@@ -912,8 +933,12 @@ article .R-taxonomy.tags a.term-link:after {
          itself makes Chrome draw its own instead of the platforms, and it then takes
          its thickness from us; where the browser has an overlay scrollbar it keeps
          drawing it and we let it, so this is the same width the classic one has */
-      height: 15px;
-      width: 15px;
+      height: var(--scrollbar-size);
+      width: var(--scrollbar-size);
+    }
+    .classic-scrollbars &::picker(select)::-webkit-scrollbar {
+      height: var(--scrollbar-size);
+      width: var(--scrollbar-size);
     }
 
     &::-webkit-scrollbar-button,
@@ -922,8 +947,15 @@ article .R-taxonomy.tags a.term-link:after {
          none of the browsers overlay scrollbars has */
       display: none;
     }
+    &::picker(select)::-webkit-scrollbar-button,
+    &::picker(select)::-webkit-scrollbar-corner {
+      display: none;
+    }
 
     &::-webkit-scrollbar-track {
+      background-color: var(--VARIABLE-SCROLLBAR-TRACK-color);
+    }
+    &::picker(select)::-webkit-scrollbar-track {
       background-color: var(--VARIABLE-SCROLLBAR-TRACK-color);
     }
 
@@ -934,8 +966,14 @@ article .R-taxonomy.tags a.term-link:after {
          the background must not reach into it */
       background-clip: padding-box;
       background-color: var(--VARIABLE-SCROLLBAR-THUMB-color);
-      border: 4px solid transparent;
-      border-radius: 8px;
+      border: var(--scrollbar-thumb-inset) solid transparent;
+      border-radius: var(--scrollbar-thumb-radius);
+    }
+    &::picker(select)::-webkit-scrollbar-thumb {
+      background-clip: padding-box;
+      background-color: var(--VARIABLE-SCROLLBAR-THUMB-color);
+      border: var(--scrollbar-thumb-inset) solid transparent;
+      border-radius: var(--scrollbar-thumb-radius);
     }
 
     @media (hover: hover) {
@@ -943,11 +981,18 @@ article .R-taxonomy.tags a.term-link:after {
         /* tints once the mouse reaches us, like the menu rail does */
         background-color: var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
       }
+      &::picker(select)::-webkit-scrollbar-track:hover {
+        background-color: var(--VARIABLE-SCROLLBAR-TRACK-HOVER-color);
+      }
 
       &::-webkit-scrollbar-thumb:hover {
         /* grows like the menu thumb does */
         background-color: var(--VARIABLE-SCROLLBAR-THUMB-HOVER-color);
-        border-width: 2px;
+        border-width: var(--scrollbar-thumb-hover-inset);
+      }
+      &::picker(select)::-webkit-scrollbar-thumb:hover {
+        background-color: var(--VARIABLE-SCROLLBAR-THUMB-HOVER-color);
+        border-width: var(--scrollbar-thumb-hover-inset);
       }
 
       &:hover {
@@ -966,9 +1011,18 @@ article .R-taxonomy.tags a.term-link:after {
       &::-webkit-scrollbar-track:hover {
         background-color: Canvas;
       }
+      &::picker(select)::-webkit-scrollbar-track,
+      &::picker(select)::-webkit-scrollbar-track:hover {
+        background-color: Canvas;
+      }
 
       &::-webkit-scrollbar-thumb,
       &::-webkit-scrollbar-thumb:hover {
+        background-color: CanvasText;
+        border-color: Canvas;
+      }
+      &::picker(select)::-webkit-scrollbar-thumb,
+      &::picker(select)::-webkit-scrollbar-thumb:hover {
         background-color: CanvasText;
         border-color: Canvas;
       }
@@ -2191,8 +2245,9 @@ html[dir='rtl'] .expand[open] > .box-label > i.expander-icon::before {
 
 .topbar-content {
   background: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
-  border: 0 solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
-  box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.2);
+  border: 0 solid var(--overlay-border-color);
+  border-radius: var(--block-radius);
+  box-shadow: var(--overlay-box-shadow);
   height: 0;
   opacity: 0;
   overflow: hidden;
@@ -2574,26 +2629,96 @@ html[dir='rtl'] .menu-control span {
 }
 
 .menu-control select {
-  background-color: transparent;
+  /* a browser that draws the list on its own frames the entries in the
+     background of the select, and falls back to its own one if that is
+     transparent; we hand it the one of the list, but the select itself only
+     paints it underneath its text, where the text covers it */
+  background-clip: text;
+  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
   background-image: none;
   border: none;
+  /* a select whose list we style ourselves lays out its content in a way of
+     its own; these are the values of the one the browser draws, so both look
+     the same */
+  min-block-size: 0;
+  overflow: clip;
+  padding-block: 0;
+  white-space: pre;
   /* the opened list pops up over the page like the overlays of the topbar do,
-     so it takes their colors; as it is drawn apart from the page and can not
-     lay a see-through track over anything, its tracks are mixed into its
-     background */
+     so it takes their colors */
   --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color);
   --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
-  --VARIABLE-SCROLLBAR-TRACK-color: color-mix(in srgb, var(--INTERNAL-TOPBAR-TEXT-color) 9%, var(--INTERNAL-TOPBAR-OVERLAY-BG-color));
-  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: color-mix(in srgb, var(--INTERNAL-TOPBAR-TEXT-color) 15%, var(--INTERNAL-TOPBAR-OVERLAY-BG-color));
+  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
+  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
 }
 
-/* the browsers disagree on the background of the opened list once the select
-   itself is transparent, so each entry brings its own pair of colors */
+/* where the browser lets us, we style the opened list ourselves; it is then
+   part of the page and takes all of our scrollbar styling. a browser that
+   draws the list on its own does not know how to name it and drops every rule
+   naming it, so it keeps showing its own list */
+.menu-control select,
+.menu-control select::picker(select) {
+  appearance: base-select;
+}
+
+.menu-control select::picker-icon {
+  /* the select the browser draws has no arrow either */
+  display: none;
+}
+
+.menu-control select::picker(select) {
+  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
+  border: 1px solid var(--overlay-border-color);
+  border-radius: var(--block-radius);
+  box-shadow: var(--overlay-box-shadow);
+  color: var(--INTERNAL-TOPBAR-TEXT-color);
+  padding: 0.25rem 0.5rem;
+  /* the menu names colors for its own scrollbar, which we inherit and which
+     would make the pseudo elements of ours be ignored */
+  scrollbar-color: auto;
+}
+
+/* the browsers disagree on the background of the opened list, so each entry
+   brings its own */
 .menu-control optgroup,
 .menu-control option {
   background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
-  color: var(--INTERNAL-TOPBAR-TEXT-color);
   padding: 0;
+}
+
+.menu-control optgroup {
+  color: var(--INTERNAL-TOPBAR-TEXT-color);
+}
+
+/* the entries are the links of the list, like the ones in the overlays of the
+   topbar; the chosen one is where we already are, so it is no link */
+.menu-control option {
+  color: var(--INTERNAL-TOPBAR-LINK-color);
+  /* the browser sets the entries of a group back to its own normal weight
+     instead of ours */
+  font-weight: var(--INTERNAL-MAIN-font-weight);
+}
+
+.menu-control option:hover {
+  color: var(--INTERNAL-TOPBAR-LINK-HOVER-color);
+  text-decoration: underline;
+}
+
+.menu-control option:checked {
+  color: var(--INTERNAL-TOPBAR-TEXT-color);
+  font-weight: var(--INTERNAL-MAIN-BOLD-font-weight);
+  text-decoration: none;
+}
+
+.menu-control option::checkmark {
+  /* the tick of a task list, without its box */
+  box-shadow: inset 1em 1em var(--INTERNAL-TOPBAR-TEXT-color);
+  clip-path: var(--tick-clip-path);
+  content: '';
+  height: 0.65em;
+  width: 0.65em;
+  /* Windows High Contrast Mode fallback must be last */
+  background-color: CanvasText;
 }
 
 .menu-control button {
@@ -2923,7 +3048,7 @@ article ul > li > :is(label, span) > input[type='checkbox'] {
 article ul > li > input[type='checkbox']::before,
 article ul > li > :is(label, span) > input[type='checkbox']::before {
   box-shadow: inset 1em 1em var(--INTERNAL-PRIMARY-color);
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  clip-path: var(--tick-clip-path);
   content: '';
   height: 0.65em;
   transform: scale(0);
