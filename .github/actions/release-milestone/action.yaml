@@ -117,11 +117,11 @@ runs:
       # matter is overwritten, as its body may be written by hand, like an
       # announcement above the list of versions.
       run: |
-        FRONTMATTER="+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++"
+        FRONTMATTER="---\nparams:\n  disableToc: false\n  hidden: true\n  minHugoVersion: 0.166.0\ntitle: Version ${{ steps.majorvers.outputs.value }}\ntype: releasenotes\nweight: -${{ steps.majorvers.outputs.value }}\n---"
         if [ ! -f "$FILE" ]; then
           echo -e "$FRONTMATTER\n\n{{% pages display=\"content\" hidden=\"true\" %}}" > "$FILE"
         else
-          BODY=$(awk 'n >= 2; /^\+\+\+$/ { n++ }' "$FILE")
+          BODY=$(awk 'n >= 2; /^---$/ { n++ }' "$FILE")
           echo -e "$FRONTMATTER" > "$FILE"
           echo "$BODY" >> "$FILE"
         fi
@@ -130,7 +130,7 @@ runs:
       uses: actions/github-script@v9
       env:
         FILE: docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.en.md
-        REGEX: '(\ntitle = ''Version )\d+\.\d+(''\n.*\nweight = -)\d+(\n)'
+        REGEX: '(\ntitle: Version )\d+\.\d+(\n.*\nweight: -)\d+(\n)'
         REPLACEMENT: "$1${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}$2${{ steps.minorvers.outputs.value }}$3"
       with:
         script: |
@@ -153,8 +153,8 @@ runs:
     - name: Generate piratish releasenotes
       shell: bash
       run: |
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'releasenotes'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n  minHugoVersion = '0.166.0'\n+++\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
+        echo -e "---\nparams:\n  disableToc: false\n  hidden: true\n  minHugoVersion: 0.166.0\ntitle: Version ${{ steps.majorvers.outputs.value }}\ntype: releasenotes\nweight: -${{ steps.majorvers.outputs.value }}\n---\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "---\nparams:\n  disableToc: false\n  hidden: true\n  minHugoVersion: 0.166.0\ntitle: Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\ntype: releasenotes\nweight: -${{ steps.minorvers.outputs.value }}\n---\n{{< piratify >}}" > docs/content/introduction/releasenotes/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}.pir.md
 
     # The version lives in infra's `.nvmrc`, so a working copy and CI cannot
     # drift apart.
@@ -171,16 +171,16 @@ runs:
         GREN_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: |
         mkdir -p docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n\n{{% pages display=\"content\" hidden=\"true\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.en.md
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n\n{{% pages display=\"content\" hidden=\"true\" orderby=\"auto desc\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
+        echo -e "---\nparams:\n  disableToc: false\n  hidden: true\ntitle: Version ${{ steps.majorvers.outputs.value }}\ntype: changelog\nweight: -${{ steps.majorvers.outputs.value }}\n---\n\n{{% pages display=\"content\" hidden=\"true\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.en.md
+        echo -e "---\nparams:\n  disableToc: false\n  hidden: true\ntitle: Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\ntype: changelog\nweight: -${{ steps.minorvers.outputs.value }}\n---\n\n{{% pages display=\"content\" hidden=\"true\" orderby=\"auto desc\" %}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.en.md
         npx github-release-notes@0.17.1 changelog --generate --changelog-filename docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.en.md --tags "$MILESTONE"
 
     - name: Generate piratish changelogs
       shell: bash
       run: |
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.majorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\ntitle = 'Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}'\ntype = 'changelog'\nweight = -${{ steps.minorvers.outputs.value }}\n\n[params]\n  disableToc = false\n  hidden = true\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
-        echo -e "+++\n+++\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
+        echo -e "---\nparams:\n  disableToc: false\n  hidden: true\ntitle: Version ${{ steps.majorvers.outputs.value }}\ntype: changelog\nweight: -${{ steps.majorvers.outputs.value }}\n---\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/_index.pir.md
+        echo -e "---\nparams:\n  disableToc: false\n  hidden: true\ntitle: Version ${{ steps.majorvers.outputs.value }}.${{ steps.minorvers.outputs.value }}\ntype: changelog\nweight: -${{ steps.minorvers.outputs.value }}\n---\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/_index.pir.md
+        echo -e "---\n---\n{{< piratify >}}" > docs/content/introduction/changelog/${{ steps.majorvers.outputs.value }}/${{ steps.minorvers.outputs.value }}/${{ steps.paddedpatchvers.outputs.value }}.pir.md
 
     - name: Read changelog
       id: changelog_docs

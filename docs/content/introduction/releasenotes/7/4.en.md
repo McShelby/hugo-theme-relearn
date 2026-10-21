@@ -1,13 +1,12 @@
-+++
-title = 'Version 7.4'
-type = 'releasenotes'
-weight = -4
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.126.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.126.0
+title: Version 7.4
+type: releasenotes
+weight: -4
+---
 
 ## 7.4.0 (2025-02-21) {#7-4-0}
 
@@ -19,7 +18,7 @@ weight = -4
 
   Now you have to set the query parameter `lang` to the language code, e.g. `/my-page?lang=pir`.
 
-  As this was previously undocumented, most projects will not be affected. If you still need the old behavior, you can set `enableLegacyLanguageLinks=true` in your `hugo.toml`.
+  As this was previously undocumented, most projects will not be affected. If you still need the old behavior, you can set `enableLegacyLanguageLinks` to `true` in your project configuration.
 
 - {{% badge style="change" %}}Change{{% /badge %}} The `target` parameter of the [`button` shortcode](shortcodes/button#parameters) was deprecated.
 
@@ -31,7 +30,7 @@ weight = -4
 
 - {{% badge style="new" %}}New{{% /badge %}} If [`link.errorlevel` is configured](authoring/frontmatter/linking/#enabling-link-and-image-link-warnings), now also page references will be checked for existence.
 
-- {{% badge style="new" %}}New{{% /badge %}} You can now [configure an ignore list](authoring/frontmatter/linking/#ignoring-false-negatives) of regular expressions for addresses that should be ignored if an errorlevel test fails. This is configured by setting `urlIgnoreCheck=[]` globally in your `hugo.toml` for all errorlevel checks.
+- {{% badge style="new" %}}New{{% /badge %}} You can now [configure an ignore list](authoring/frontmatter/linking/#ignoring-false-negatives) of regular expressions for addresses that should be ignored if an errorlevel test fails. This is configured by setting `urlIgnoreCheck` globally in your project configuration for all errorlevel checks.
 
   This helps to remove false negatives while still benefitting from the check for all other addresses.
 

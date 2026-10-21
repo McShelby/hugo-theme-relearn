@@ -1,9 +1,10 @@
-+++
-categories = ['howto', 'reference']
-description = 'Boxes to help you structure your page'
-title = 'Notice'
-
-[params]
-  hidden = true
-+++
+---
+categories:
+- howto
+- reference
+description: Boxes to help you structure your page
+params:
+  hidden: true
+title: Notice
+---
 {{< piratify >}}

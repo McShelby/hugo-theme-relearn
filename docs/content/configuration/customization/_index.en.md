@@ -1,11 +1,11 @@
-+++
-categories = ['reference']
-description = 'Customize files for advanced usage'
-title = 'Customization'
-weight = 5
-
-[params]
-  alwaysopen = false
-+++
+---
+categories:
+- reference
+description: Customize files for advanced usage
+params:
+  alwaysopen: false
+title: Customization
+weight: 5
+---
 
 {{% pages display="headings" description=true %}}

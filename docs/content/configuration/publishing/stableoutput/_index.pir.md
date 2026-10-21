@@ -1,8 +1,13 @@
-+++
-categories = ['howto']
-description = 'How to make your generated HTML output stable'
-options = ['disableAssetsBusting', 'disableGeneratorVersion', 'disableRandomIds', 'minify']
-title = 'Stable Output'
-weight = 4
-+++
+---
+categories:
+- howto
+description: How to make your generated HTML output stable
+options:
+- disableAssetsBusting
+- disableGeneratorVersion
+- disableRandomIds
+- minify
+title: Stable Output
+weight: 4
+---
 {{< piratify >}}

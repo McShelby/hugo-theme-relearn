@@ -1,8 +1,8 @@
-+++
-description = 'Where captains and crew collide in organized chaos'
-title = 'Midst Ship'
-weight = 2
-+++
+---
+description: Where captains and crew collide in organized chaos
+title: Midst Ship
+weight: 2
+---
 
 The heart of shipboard shenanigans, where the captain's dignified stride from their cabin inevitably collides with sailors rolling barrels across the deck.
 

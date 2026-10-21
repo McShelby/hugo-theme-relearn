@@ -1,10 +1,10 @@
-+++
-categories = ['reference']
-description = 'Configure all things sidebar'
-title = 'Sidebar'
-weight = 3
-
-[params]
-  alwaysopen = false
-+++
+---
+categories:
+- reference
+description: Configure all things sidebar
+params:
+  alwaysopen: false
+title: Sidebar
+weight: 3
+---
 {{< piratify >}}

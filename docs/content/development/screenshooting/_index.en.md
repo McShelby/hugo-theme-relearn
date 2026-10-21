@@ -1,9 +1,11 @@
-+++
-categories = ['explanation', 'howto']
-description = 'Recipe to create various documentation screenshots'
-title = 'Screenshooting'
-weight = 5
-+++
+---
+categories:
+- explanation
+- howto
+description: Recipe to create various documentation screenshots
+title: Screenshooting
+weight: 5
+---
 
 Sometimes screenshots need to be redone. This page explains how to create the different screenshots, tools and settings
 

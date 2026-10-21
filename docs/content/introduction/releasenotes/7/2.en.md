@@ -1,13 +1,12 @@
-+++
-title = 'Version 7.2'
-type = 'releasenotes'
-weight = -2
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.126.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.126.0
+title: Version 7.2
+type: releasenotes
+weight: -2
+---
 
 ## 7.2.0 (2024-12-10) {#7-2-0}
 
@@ -30,7 +29,7 @@ weight = -2
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} As a fallout of fixing the flashing issue, you can now minify the bundled stylesheets by setting the [`minify` parameter](configuration/publishing/stableoutput/#disabling-assets-minification) in your `hugo.toml`. Without configuring this parameter, the theme will minify the stylesheets for production (`hugo`) but not for development (`hugo server`).
+- {{% badge style="new" %}}New{{% /badge %}} As a fallout of fixing the flashing issue, you can now minify the bundled stylesheets by setting the [`minify` parameter](configuration/publishing/stableoutput/#disabling-assets-minification) in your project configuration. Without configuring this parameter, the theme will minify the stylesheets for production (`hugo`) but not for development (`hugo server`).
 
 - {{% badge style="new" %}}New{{% /badge %}} The [`notice` shortcode](shortcodes/callout) was improved for accessibility and comes with a [brand new parameter `groupid`](shortcodes/callout#expandable-content-area-with-groupid).
 

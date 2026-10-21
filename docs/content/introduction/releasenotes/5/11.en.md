@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.11'
-type = 'releasenotes'
-weight = -11
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.95.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.95.0
+title: Version 5.11
+type: releasenotes
+weight: -11
+---
 
 ## 5.11.0 (2023-02-07) {#5-11-0}
 
@@ -27,7 +26,7 @@ weight = -11
 
 - {{% badge style="change" %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting](configuration/branding/colors#adjust-to-os-settings).
 
-  This is also the new default setting if you haven't configured `themeVariant` in your `hugo.toml`.
+  This is also the new default setting if you haven't configured `themeVariant` in your project configuration.
 
   Additionally you can configure the variants to be taken for light/dark mode with the new `themeVariantAuto` parameter.
 

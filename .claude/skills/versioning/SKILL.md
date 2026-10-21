@@ -7,7 +7,7 @@ description: Guide for adding an archived version of the theme's documentation t
 
 ## Overview
 
-The docs can be built with archived versions of themselves, using Hugo's `versions` and the sites matrix of its mounts. The versions are declared in `hugo.toml` and put together by the mounts in `module.toml` of the docs' configuration.
+The docs can be built with archived versions of themselves, using Hugo's `versions` and the sites matrix of its mounts. The versions are declared in `hugo.yaml` and put together by the mounts in `module.yaml` of the docs' configuration.
 
 An archived version is not a copy of the docs of its release. It is stored as the difference to the version that followed it:
 
@@ -19,15 +19,15 @@ docs/
       README.md               # the README of that release
       content/                # only what differs from the next newer version
   config/_default/
-    hugo.toml                 # the versions
-    module.toml               # the mounts that put each version together
+    hugo.yaml                 # the versions
+    module.yaml               # the mounts that put each version together
 ```
 
 A version is named `<major>.<minor>` without a prefix, as Hugo publishes it to a subdirectory of that name and the version switcher shows it as it is.
 
 ## How a Version Is Put Together
 
-Each version has its own list of content mounts in `module.toml`, ordered from the version itself to the current content. For the same file, the mount listed first wins.
+Each version has its own list of content mounts in `module.yaml`, ordered from the version itself to the current content. For the same file, the mount listed first wins.
 
 - The mount of `versions/<major>/<minor>/content` comes first.
 - The mounts of every newer archived version follow, newest last.
@@ -83,8 +83,8 @@ If a patched file ends up equal to what the reference shows, don't store it.
 ### 4. README, Home and Config
 
 - Store the `README.md` of the release as `docs/versions/<major>/<minor>/README.md` if its links differ from those of the reference, together with a home page `content/_index.en.md` that includes it from there.
-- Add the version to `[versions]` in `hugo.toml`. If the docs have no archived version yet, also set `defaultContentVersion` to the current version and give the existing `content` mount a matrix of that version.
-- Add its mounts and filters to `module.toml` as described above.
+- Add the version to `versions` in `hugo.yaml`. If the docs have no archived version yet, also set `defaultContentVersion` to the current version and give the existing `content` mount a matrix of that version.
+- Add its mounts and filters to `module.yaml` as described above.
 - If the current version is the one being archived, change `defaultContentVersion` and the version of the unfiltered `content` mount to the new current version.
 
 ### 5. Build and Iterate

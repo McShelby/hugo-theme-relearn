@@ -1,10 +1,18 @@
-+++
-categories = ['howto']
-description = 'Configure search and the search form'
-options = ['search.adapter.params.additionalContentLanguage', 'search.disable', 'search.index.disable', 'search.index.URL', 'search.page.disable', 'search.page.outputs', 'search.page.URL']
-title = 'Search'
-weight = 3
-+++
+---
+categories:
+- howto
+description: Configure search and the search form
+options:
+- search.adapter.params.additionalContentLanguage
+- search.disable
+- search.index.disable
+- search.index.URL
+- search.page.disable
+- search.page.outputs
+- search.page.URL
+title: Search
+weight: 3
+---
 
 > [!note]
 > The search term will be [stored in the reader's browser](configuration/publishing/storedinformation) as long as it is present.
@@ -19,11 +27,11 @@ The theme offers three levels of search through the menu's search form:
 
 Each level requires the previous one to be enabled. If no search is configured, the search form won't appear.
 
-{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} All levels are enabled by default. Disable them in `hugo.toml`:
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} All levels are enabled by default. Disable them in your project configuration:
 
-- In-page search: `search.disable=true`
-- Search popup: `search.index.disable=true`
-- Dedicated search page: `search.page.disable=true`
+- In-page search: set `search.disable` to `true`
+- Search popup: set `search.index.disable` to `true`
+- Dedicated search page: set `search.page.disable` to `true`
 
 {{< multiconfig file=hugo section=params >}}
 search.disable = true
@@ -44,7 +52,7 @@ search.page.URL = 'omnisearch'
 {{< /multiconfig >}}
 
 > [!note]
-> You only need to change these if you have own content created for those URLs. This can happen with `uglyURLs=true` in `hugo.toml` and having a content file at `content/search.md`.
+> You only need to change these if you have own content created for those URLs. This can happen with `uglyURLs` set to `true` in your project configuration and having a content file at `content/search.md`.
 >
 > Check for duplicate URLs by running `hugo --printPathWarnings`.
 
@@ -99,7 +107,7 @@ search.index.template = '/custom_searchindex.js'
 
 By default, the theme uses `/_relearn_searchindex.js` to generate the search index. When you specify a custom value for `search.index.template`, the theme will look for the template file in your site's `assets` directory.
 
-For example, if you set `search.index.template = '/custom_searchindex.js'`, you would need to create a file at `assets/custom_searchindex.js` in your site to define the custom index generation logic.
+For example, if you set `search.index.template` to `/custom_searchindex.js`, you would need to create a file at `assets/custom_searchindex.js` in your site to define the custom index generation logic.
 
 This advanced option is useful if you need to modify how content is indexed or change the structure of the search index to work with custom search implementations.
 
@@ -111,9 +119,9 @@ This advanced option is useful if you need to modify how content is indexed or c
 search.page.type = 'custom_search_layout'
 {{< /multiconfig >}}
 
-By default, the theme uses `_relearn_searchpage` as the search content view. When you specify a custom value for `search.page.type=[YOUR-VIEWNAME]`, Hugo will look for a template file at `layouts/[YOUR-VIEWNAME]/article.html`.
+By default, the theme uses `_relearn_searchpage` as the search content view. When you set `search.page.type` to a custom value `[YOUR-VIEWNAME]`, Hugo will look for a template file at `layouts/[YOUR-VIEWNAME]/article.html`.
 
-For example, if you set `search.page.type = 'custom_search_layout'`, you would need to create a file at `layouts/custom_search_layout/article.html` in your site to define the custom layout.
+For example, if you set `search.page.type` to `custom_search_layout`, you would need to create a file at `layouts/custom_search_layout/article.html` in your site to define the custom layout.
 
 This allows you to maintain the search functionality while adapting its appearance to match your specific design requirements.
 
@@ -121,7 +129,7 @@ This allows you to maintain the search functionality while adapting its appearan
 
 If your home page has [print support](configuration/sitemanagement/outputformats#print-support) activated, your readers can print their search results as well. The search page then shows the print button, and the printed page lists the results for the current search term without the search form.
 
-{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The dedicated search page is not part of your content, so the `outputs` of your `hugo.toml` or of a front matter don't apply to it. If you want to decide independently of your home page, set its output formats with `search.page.outputs`.
+{{%badge style="cyan" icon="gears" title=" "%}}Option{{%/badge%}} The dedicated search page is not part of your content, so the `outputs` of your project configuration or of a front matter don't apply to it. If you want to decide independently of your home page, set its output formats with `search.page.outputs`.
 
 To never offer printing the search results:
 

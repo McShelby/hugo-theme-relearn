@@ -1,10 +1,13 @@
-+++
-categories = ['explanation', 'howto']
-description = 'Add further code to your site'
-options = ['relearn.dependencies']
-title = 'Adding Scripts'
-weight = 2
-+++
+---
+categories:
+- explanation
+- howto
+description: Add further code to your site
+options:
+- relearn.dependencies
+title: Adding Scripts
+weight: 2
+---
 
 A common question is how to add extra CSS styles or JavaScript to your site. This depends on what you need.
 
@@ -38,7 +41,7 @@ For example, to create a shortcode called `myshortcode` that needs the `jquery` 
     ...
     ````
 
-2. {{% badge style="option" %}}Option{{% /badge %}} Add this to your `hugo.toml`:
+2. {{% badge style="option" %}}Option{{% /badge %}} Add this to your project configuration:
 
     {{< multiconfig file=hugo section=params >}}
     [relearn.dependencies]
@@ -57,7 +60,7 @@ For example, to create a shortcode called `myshortcode` that needs the `jquery` 
 Important notes:
 
 - Character casing is relevant!
-- The `name` in `hugo.toml` must match the `Store` key used in the shortcode file, prefixed with a `has`.
+- The `name` in your project configuration must match the `Store` key used in the shortcode file, prefixed with a `has`.
 - The key of `relearn.dependencies` must match the loader file name.
 
 See the `math`, `mermaid`, and `openapi` shortcodes for examples.

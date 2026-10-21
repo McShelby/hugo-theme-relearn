@@ -1,9 +1,11 @@
-+++
-aliases = '/shortcodes/tab'
-categories = ['howto', 'reference']
-description = 'Show content in tabbed views'
-title = 'Tabs'
-+++
+---
+aliases: /shortcodes/tab
+categories:
+- howto
+- reference
+description: Show content in tabbed views
+title: Tabs
+---
 
 The `tabs` shortcode displays arbitrary content in an unlimited number of tabs.
 
@@ -317,7 +319,7 @@ content:
     content: "Get the theme from its repository."
   - icon: "gears"
     hint: "Configure"
-    content: "Set the options in your `hugo.toml`."
+    content: "Set the options in your project configuration."
 {{% /multishortcode %}}
 
 ### Understanding `style` and `color` Behavior

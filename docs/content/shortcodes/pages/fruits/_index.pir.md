@@ -1,8 +1,7 @@
-+++
-title = 'Fruits'
-
-[params]
-  alwaysopen = false
-  hidden = true
-+++
+---
+params:
+  alwaysopen: false
+  hidden: true
+title: Fruits
+---
 {{< piratify >}}

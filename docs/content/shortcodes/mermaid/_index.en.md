@@ -1,10 +1,18 @@
-+++
-categories = ['howto', 'reference']
-description = 'Generate diagrams and flowcharts from text'
-frontmatter = ['mermaid.force', 'mermaidInitialize', 'mermaidZoom']
-options = ['mermaid.force', 'mermaidInitialize', 'mermaidZoom']
-title = 'Mermaid'
-+++
+---
+categories:
+- howto
+- reference
+description: Generate diagrams and flowcharts from text
+frontmatter:
+- mermaid.force
+- mermaidInitialize
+- mermaidZoom
+options:
+- mermaid.force
+- mermaidInitialize
+- mermaidZoom
+title: Mermaid
+---
 
 The `mermaid` shortcode generates diagrams and flowcharts from text using the [Mermaid](https://mermaidjs.github.io/) library.
 
@@ -44,7 +52,7 @@ content: |
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The generated graphs can be panned by dragging them and zoomed by using the mousewheel. On mobile devices you can use finger gestures. With the keyboard, a focused graph is panned by the cursor keys and zoomed by <kbd>+</kbd> and <kbd>-</kbd>, as listed with the other [keyboard shortcuts](configuration/publishing/shortcuts).
 
-By default this is disabled. Set `mermaidZoom=true` to enable it.
+By default this is disabled. Set `mermaidZoom` to `true` to enable it.
 
 Individual settings of a graphs [`zoom` parameter](#parameters) have precedence over the page's front matter and configuration options in that order.
 
@@ -79,7 +87,7 @@ In case you want to use a different version of the Mermaid library, store it as 
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} The Mermaid library will be loaded if the page contains an `mermaid` shortcode, Markdown codefence or the partial is called from your templates.
 
-You can force loading the Mermaid library if no shortcode, Markdown codefence or partial was called by setting `mermaid.force=true`. If a shortcode, Markdown codefence or partial was called, this option has no effect. This comes handy in case you are using scripting to render a graph.
+You can force loading the Mermaid library if no shortcode, Markdown codefence or partial was called by setting `mermaid.force` to `true`. If a shortcode, Markdown codefence or partial was called, this option has no effect. This comes handy in case you are using scripting to render a graph.
 
 {{< multiconfig section=params >}}
 mermaid.force = true

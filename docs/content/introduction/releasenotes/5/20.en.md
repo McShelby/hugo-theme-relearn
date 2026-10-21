@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.20'
-type = 'releasenotes'
-weight = -20
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.95.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.95.0
+title: Version 5.20
+type: releasenotes
+weight: -20
+---
 
 ## 5.20.0 (2023-08-26) {#5-20-0}
 
@@ -36,7 +35,7 @@ weight = -20
 
   For existing variants nothing has changed visually.
 
-- {{% badge style="new" %}}New{{% /badge %}} The default values for the [image effects](authoring/markdown#image-effects) are [now configurable](configuration/customization/imageeffects) for your whole site via `hugo.toml` or for each page through front matter.
+- {{% badge style="new" %}}New{{% /badge %}} The default values for the [image effects](authoring/markdown#image-effects) are [now configurable](configuration/customization/imageeffects) for your whole site via your project configuration or for each page through front matter.
 
 - {{% badge style="new" %}}New{{% /badge %}} This release fixes a long-standing bug where Mermaid graphs could not be displayed if they were initially hidden - like in collapsed `expand` or inactive `tabs`.
 

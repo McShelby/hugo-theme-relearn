@@ -1,9 +1,10 @@
-+++
-categories = ['howto']
-description = 'Changing the content area width'
-title = 'Width'
-weight = 1
-+++
+---
+categories:
+- howto
+description: Changing the content area width
+title: Width
+weight: 1
+---
 
 The theme adjusts the content width when you resize your browser.
 

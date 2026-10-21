@@ -1,7 +1,7 @@
-+++
-description = 'A luxurious 4x4 room, home to our beloved Captain Hugo, with a genuine fake window'
-title = "Captain's Cabin"
-+++
+---
+description: A luxurious 4x4 room, home to our beloved Captain Hugo, with a genuine fake window
+title: Captain's Cabin
+---
 
 Welcome to the legendary 4x4 quarters of Captain Hugo, where navigation charts double as wallpaper and yesterday's coffee cup might contain tomorrow's coordinates! The genuine fake window offers stunning views of wherever the captain thinks we are (he's been known to mistake the Mediterranean for the Caribbean on more than one occasion).
 

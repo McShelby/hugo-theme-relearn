@@ -1,13 +1,13 @@
-+++
-categories = ['reference']
-title = 'Shortcodes'
-type = 'chapter'
-weight = 4
-
-[params]
-  menuPre = "<i class='fa-fw fas fa-shapes'></i> "
-  ordersectionsby = 'title'
-+++
+---
+categories:
+- reference
+params:
+  menuPre: '<i class="fa-fw fas fa-shapes"></i> '
+  ordersectionsby: title
+title: Shortcodes
+type: chapter
+weight: 4
+---
 
 Hugo uses Markdown as its content format. However, there are a lot of things that Markdown doesn't support well. To overcome those limitations, Hugo created the concept of [shortcodes](https://gohugo.io/content-management/shortcodes/).
 

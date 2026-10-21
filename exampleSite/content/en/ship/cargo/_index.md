@@ -1,8 +1,8 @@
-+++
-description = 'Where organization meets chaos'
-title = 'Cargo'
-weight = 3
-+++
+---
+description: Where organization meets chaos
+title: Cargo
+weight: 3
+---
 
 Where organization meets chaos and inventory management is more of a suggestion than a rule. Our state-of-the-art cargo facilities are divided into three distinctly disorganized bays.
 

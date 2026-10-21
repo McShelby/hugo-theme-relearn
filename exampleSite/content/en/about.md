@@ -1,11 +1,10 @@
-+++
-description = 'About this Website'
-title = 'About'
-weight = 3
-
-[params]
-  menuPre = '<i class="fa-fw fas fa-info-circle"></i> '
-+++
+---
+description: About this Website
+title: About
+weight: 3
+params:
+  menuPre: '<i class="fa-fw fas fa-info-circle"></i> '
+---
 
 ## Face it
 
@@ -37,10 +36,11 @@ While minimal in configuration, this showcase contains an auto translation into 
 - `layouts/partials/toc.html`
 - `layouts/shortcodes/piratify.html`
 
-You will also have to add this to the `hugo.toml` to deactivate the translation:
+You will also have to add this to the `hugo.yaml` to deactivate the translation:
 
-````toml {title="hugo.toml"}
-disableLanguages = ['pir']
+````yaml {title="hugo.yaml"}
+disableLanguages:
+  - pir
 ````
 
 **or** remove all references to the Piratish language.

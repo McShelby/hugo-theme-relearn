@@ -1,11 +1,12 @@
-+++
-categories = ['howto', 'reference']
-description = 'List of files attached to a page'
-title = 'Attachments'
-
-[params]
-  hidden = 'true'
-+++
+---
+categories:
+- howto
+- reference
+description: List of files attached to a page
+params:
+  hidden: 'true'
+title: Attachments
+---
 
 > [!warning]
 > This shortcode is deprecated in favor of the new [`resources` shortcode](shortcodes/resources). See [migration instructions](#migration) below.

@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.6'
-type = 'releasenotes'
-weight = -6
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.95.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.95.0
+title: Version 5.6
+type: releasenotes
+weight: -6
+---
 
 ## 5.6.0 (2022-11-18) {#5-6-0}
 
@@ -15,7 +14,7 @@ weight = -6
 
 - {{% badge style="new" %}}New{{% /badge %}} This release introduces an additional dedicated search page. On this page, displayed search results have more space making it easier scanning through large number of results.
 
-  To activate this feature, you need to [configure it](configuration/sidebar/search) in your `hugo.toml` as a new outputformat `searchpage` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
+  To activate this feature, you need to [configure it](configuration/sidebar/search) in your project configuration as a new outputformat `searchpage` for the home page. If you don't configure it, no dedicated search page will be accessible and the theme works as before.
 
   You can access the search page by either clicking on the magnifier glass or pressing enter inside of the search box.
 
@@ -27,7 +26,7 @@ weight = -6
 
 - {{% badge style="new" %}}New{{% /badge %}} You are now able to turn off the generation of generator meta tags in your HTML head to hide the used versions of Hugo and this theme.
 
-  To [configure this](configuration/reference) in your `hugo.toml` make sure to set Hugo's `disableHugoGeneratorInject=true` **and** also `[params] disableGeneratorVersion=true`, otherwise Hugo will generate a meta tag into your home page automagically.
+  To [configure this](configuration/reference) in your project configuration make sure to set Hugo's `disableHugoGeneratorInject` to `true` **and** also `params.disableGeneratorVersion` to `true`, otherwise Hugo will generate a meta tag into your home page automagically.
 
 - {{% badge style="new" %}}New{{% /badge %}} Creation of your project gets a little bit faster with this release.
 

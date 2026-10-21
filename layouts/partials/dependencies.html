@@ -11,7 +11,7 @@
 	{{- end }}
 	{{- if and $wants }}
 		{{- if $v.location }}
-			{{- warnf "DEPRECATED parameter 'location' for dependency '%s' configured in your hugo.toml, query the 'location' parameter inside your dependency loader instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-27-0" $k }}
+			{{- warnf "DEPRECATED parameter 'location' for dependency '%s' configured in your project configuration, query the 'location' parameter inside your dependency loader instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-27-0" $k }}
 		{{- end }}
 		{{- if or (not $v.location) (eq $location $v.location) }}
 			{{- $dep := printf "dependencies/%s.html" $k }}

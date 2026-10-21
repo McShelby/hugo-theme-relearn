@@ -1,7 +1,7 @@
-+++
-description = 'Where our lookout pretends to spot land while actually napping'
-title = "Crow's Nest"
-+++
+---
+description: Where our lookout pretends to spot land while actually napping
+title: Crow's Nest
+---
 
 Our dedicated lookout has reported some rather peculiar sightings from his lofty perch. Between his frequent "strategic rest periods" and tea breaks, he's sworn on his mother's favorite teacup that he's witnessed the most extraordinary maritime phenomena ever documented.
 

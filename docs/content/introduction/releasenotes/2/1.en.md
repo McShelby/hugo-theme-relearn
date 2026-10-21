@@ -1,13 +1,12 @@
-+++
-title = 'Version 2.1'
-type = 'releasenotes'
-weight = -1
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.69.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.69.0
+title: Version 2.1
+type: releasenotes
+weight: -1
+---
 
 ## 2.1.0 (2021-09-07) {#2-1-0}
 
@@ -21,7 +20,7 @@ weight = -1
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages=true` in your `hugo.toml`.
+- {{% badge style="new" %}}New{{% /badge %}} Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages` to `true` in your project configuration.
 
 - {{% badge style="new" %}}New{{% /badge %}} If a search term is found in an `expand` shortcode, the expand will be opened.
 

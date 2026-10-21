@@ -1,13 +1,12 @@
-+++
-title = 'Version 7.0'
-type = 'releasenotes'
-weight = 0
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.126.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.126.0
+title: Version 7.0
+type: releasenotes
+weight: 0
+---
 
 ## 7.0.0 (2024-10-15) {#7-0-0}
 
@@ -37,7 +36,7 @@ weight = 0
 
 - {{% badge style="breaking" %}}Breaking{{% /badge %}} This release changes the way the search index and the dedicated search page are generated. This may require reconfiguration by you to still work as you have intended.
 
-  Remove the now obsolete `search` and `searchpage` output format from `[outputs.home]` in your `hugo.toml`, resulting in something similar to
+  Remove the now obsolete `search` and `searchpage` output format from `outputs.home` in your project configuration, resulting in something similar to
 
 	{{< multiconfig file=hugo >}}
 	[outputs]
@@ -46,7 +45,7 @@ weight = 0
 
   After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. [This can be reconfigured](configuration/sidebar/search#configure-search).
 
-  In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing `searchIndexURL` and `searchPageURL` respectively in your `hugo.toml`.
+  In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing `searchIndexURL` and `searchPageURL` respectively in your project configuration.
 
 ### Change
 
@@ -68,7 +67,7 @@ weight = 0
 
 - {{% badge style="change" %}}Change{{% /badge %}} The options and front matter to force loading a [math](shortcodes/math#force-loading-of-the-katex-stylesheet), [mermaid](shortcodes/mermaid#force-loading-of-the-mermaid-library) or [openapi](shortcodes/openapi#force-loading-of-the-swagger-ui-library) library has been changed.
 
-  Previously, you had to set the unintuitive `disableMathJax=false` to force load the math library in case of a passthrough configuration. This is replaced by the simpler `math=true` or `math.force=true` and is now in line with [Hugo's official documentation](https://gohugo.io/content-management/mathematics/#step-1).
+  Previously, you had to set the unintuitive `disableMathJax` to `false` to force load the math library in case of a passthrough configuration. This is replaced by the simpler `math` or `math.force` set to `true` and is now in line with [Hugo's official documentation](https://gohugo.io/content-management/mathematics/#step-1).
 
   You don't need to change anything yet but will receive warnings if the old settings are used.
 
@@ -76,7 +75,7 @@ weight = 0
 
   This is to avoid usage of the theme's branding throughout the web in non-modified installations.
 
-  In addition, the default text for the logo partial is now [taken from the `linkTitle` setting](configuration/branding/logo#changing-the-title) of your `hugo.toml`.
+  In addition, the default text for the logo partial is now [taken from the `linkTitle` setting](configuration/branding/logo#changing-the-title) of your project configuration.
 
 ### New
 

@@ -1,10 +1,14 @@
-+++
-categories = ['explanation', 'howto', 'reference']
-description = 'How to display custom taxonomies on your pages'
-tags = ['taxonomy']
-title = 'Taxonomies'
-weight = 8
-+++
+---
+categories:
+- explanation
+- howto
+- reference
+description: How to display custom taxonomies on your pages
+tags:
+- taxonomy
+title: Taxonomies
+weight: 8
+---
 
 This page explains how to show custom taxonomies on your pages.
 
@@ -21,7 +25,7 @@ Each item links to a page showing all articles with that term.
 
 ## Setting Up Custom Taxonomies
 
-To add custom taxonomies, update your `hugo.toml` file. You also have to add the default taxonomies if you want to use them.
+To add custom taxonomies, update your project configuration. You also have to add the default taxonomies if you want to use them.
 
 {{< multiconfig file=hugo >}}
 [taxonomies]

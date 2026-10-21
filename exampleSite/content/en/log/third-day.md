@@ -1,8 +1,8 @@
-+++
-description = 'Island Arrival'
-title = 'Day 3'
-weight = 3
-+++
+---
+description: Island Arrival
+title: Day 3
+weight: 3
+---
 
 ## Island Arrival
 

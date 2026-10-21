@@ -1,6 +1,6 @@
-+++
-linktitle = 'Purple Pulpo'
-title = 'The Purple Pulpo'
-type = 'home'
-+++
+---
+linktitle: Purple Pulpo
+title: The Purple Pulpo
+type: home
+---
 {{< piratify >}}

@@ -1,11 +1,12 @@
-+++
-description = 'This be a hidden demo child plank'
-tags = ['children', 'the hidden']
-title = 'plank 4 (hidden)'
-weight = 40
-
-[params]
-  alwaysopen = false
-  hidden = true
-+++
+---
+description: This be a hidden demo child plank
+params:
+  alwaysopen: false
+  hidden: true
+tags:
+- children
+- the hidden
+title: plank 4 (hidden)
+weight: 40
+---
 {{< piratify >}}

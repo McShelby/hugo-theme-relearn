@@ -1,10 +1,12 @@
-+++
-categories = ['tutorial']
-description = 'An interactive tool to generate color variant stylesheets'
-options = ['themeVariant']
-title = 'Stylesheet Generator'
-weight = 4
-+++
+---
+categories:
+- tutorial
+description: An interactive tool to generate color variant stylesheets
+options:
+- themeVariant
+title: Stylesheet Generator
+weight: 4
+---
 
 This interactive tool may help you to generate your own color variant stylesheet.
 
@@ -21,7 +23,7 @@ This interactive tool may help you to generate your own color variant stylesheet
 >
 > Once you are satisfied, you can download the new variants file and copy it into your site's `assets/css` directory.
 >
-> {{% badge style="option" %}}Option{{% /badge %}} Afterwards, you have to adjust the `themeVariant` option in your `hugo.toml` to your chosen file name. For example, if your new variants file is named `theme-my-zen-light.css`, you have to set `themeVariant='my-zen-light'` to use it.
+> {{% badge style="option" %}}Option{{% /badge %}} Afterwards, you have to adjust the `themeVariant` option in your project configuration to your chosen file name. For example, if your new variants file is named `theme-my-zen-light.css`, you have to set `themeVariant` to `my-zen-light` to use it.
 >
 > See the docs for [further configuration options](configuration/branding/colors).
 

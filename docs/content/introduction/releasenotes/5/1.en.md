@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.1'
-type = 'releasenotes'
-weight = -1
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.95.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.95.0
+title: Version 5.1
+type: releasenotes
+weight: -1
+---
 
 ## 5.1.0 (2022-07-15) {#5-1-0}
 
@@ -19,7 +18,7 @@ weight = -1
 
 - {{% badge style="change" %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
-  You can revert this behavior by overwriting the `print` output format setting in your `hugo.toml`to:
+  You can revert this behavior by overwriting the `print` output format setting in your project configuration to:
 
   {{< multiconfig file=hugo >}}
   [outputFormats]

@@ -1,13 +1,12 @@
-+++
-title = 'Version 2.9'
-type = 'releasenotes'
-weight = -9
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.81.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.81.0
+title: Version 2.9
+type: releasenotes
+weight: -9
+---
 
 ## 2.9.0 (2021-11-19) {#2-9-0}
 

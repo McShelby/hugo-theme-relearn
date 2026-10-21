@@ -1,8 +1,8 @@
-+++
-linktitle = 'Purple Pulpo'
-title = 'The Purple Pulpo'
-type = 'home'
-+++
+---
+linktitle: Purple Pulpo
+title: The Purple Pulpo
+type: home
+---
 
 ![The Purple Pulpo](images/logo.svg?inlinecontent&purple&width=25vh)
 

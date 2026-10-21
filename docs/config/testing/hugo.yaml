@@ -1,35 +1,35 @@
 # Configuration to test the showcase for changes in development
 # This configuration will not result in a functioning website.
 
-# To use run `hugo -e testing` or `hugo server -e testing` from the `exampleSite` directory
+# To use run `hugo -e testing` or `hugo server -e testing` from the `docs` directory
 
 # We disable this for testing; you must do so too
-# if you want to use the themes parameter disableGeneratorVersion=true;
+# if you want to use the themes parameter `disableGeneratorVersion` set to `true`;
 # otherwise Hugo will create a generator tag on your home page
-disableHugoGeneratorInject = true
+disableHugoGeneratorInject: true
 
 # We are pretty sure, to not have unintentionally untranslated titles;
 # it may happen in case when shortcodes want to set an automatic title
 # out of a given style setting (this is allowed to fail for non severity styles)
-# enableMissingTranslationPlaceholders = true
+# enableMissingTranslationPlaceholders: true
 
 # Audit your published site for problems
 # https://discourse.gohugo.io/t/audit-your-published-site-for-problems/35184/12
-[minify]
-  [minify.tdewolff]
-    [minify.tdewolff.html]
-      keepComments = true
+minify:
+  tdewolff:
+    html:
+      keepComments: true
 
-[params]
-  disableGeneratorVersion = true
-  disableAssetsBusting = true
-  disableRandomIds = true
-  minify = false
-  editURL = 'https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/${FilePath}'
+params:
+  disableGeneratorVersion: true
+  disableAssetsBusting: true
+  disableRandomIds: true
+  minify: false
+  editURL: https://github.com/McShelby/hugo-theme-relearn/edit/main/docs/content/${FilePath}
   # Checking external links reaches out to the network on every build, and a
   # cold cache - which is what CI always has - means every external URL in the
   # docs is fetched again. That makes an otherwise deterministic test run
   # depend on third-party sites being up, and turns link rot into a test
   # failure indistinguishable from a theme regression. Link checking still
   # happens in the default environment, where it belongs.
-  urlExternalCheck = false
+  urlExternalCheck: false

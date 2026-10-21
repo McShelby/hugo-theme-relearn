@@ -1,13 +1,12 @@
-+++
-title = 'Version 9.2'
-type = 'releasenotes'
-weight = -2
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.166.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.166.0
+title: Version 9.2
+type: releasenotes
+weight: -2
+---
 
 ## 9.2.0 (2026-10-11) {#9-2-0}
 
@@ -19,7 +18,7 @@ weight = -2
 
 - {{% badge style="change" %}}Change{{% /badge %}} [Accessibility](configuration/publishing/accessibility) is now a supported feature of the theme.
 
-  With the new option `link.underline=true`, links in your content are underlined, so they are told apart from the text around them by more than their color.
+  With the new option `link.underline` set to `true`, links in your content are underlined, so they are told apart from the text around them by more than their color.
 
   To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
 
@@ -27,7 +26,7 @@ weight = -2
 
 - {{% badge style="change" %}}Change{{% /badge %}} The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
 
-  For images, this is the new [image effect](authoring/linking/imageeffects) `rounded`, which is enabled by default. If you want to restore the previous look of your images, set `imageEffects.rounded=false` in your `hugo.toml`.
+  For images, this is the new [image effect](authoring/linking/imageeffects) `rounded`, which is enabled by default. If you want to restore the previous look of your images, set `imageEffects.rounded` to `false` in your project configuration.
 
 - {{% badge style="change" %}}Change{{% /badge %}} Markdown tables can now [merge cells](authoring/markdown#merged-cells), using the syntax of Markdown Preview Enhanced. A cell containing only `>` merges into the cell to its right, a cell containing only `^` into the cell above.
 
@@ -53,7 +52,7 @@ weight = -2
 
   The theme finds your formulae by the delimiters of Hugo's [Passthrough configuration](shortcodes/math#passthrough-configuration). If your site doesn't have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
 
-  By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set [`math.output='htmlAndMathml'`](shortcodes/math#output-of-the-formulae).
+  By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set [`math.output` to `htmlAndMathml`](shortcodes/math#output-of-the-formulae).
 
   The options `mathJaxInitialize` and `customMathJaxURL` are gone. Instead, you can set [any KaTeX option](shortcodes/math#providing-options-for-katex) in `math`. If you defined your own macros, move them to `math.macros`.
 
@@ -65,9 +64,9 @@ weight = -2
 
 - {{% badge style="change" %}}Change{{% /badge %}} How the logo and title are arranged is now set with the new [`logo.layout`](configuration/branding/logo#setting-layout-of-title--logo) option.
 
-  The `logo.direction` option is deprecated. It still works, but the theme warns you if you use it. Replace `direction='row'` by `layout='sidebar-row'` and `direction='column'` by `layout='sidebar-column'`.
+  The `logo.direction` option is deprecated. It still works, but the theme warns you if you use it. Replace `direction` set to `row` by `layout` set to `sidebar-row` and `direction` set to `column` by `layout` set to `sidebar-column`.
 
-- {{% badge style="change" %}}Change{{% /badge %}} The elements of the topbar, like its buttons, are now [configured](configuration/customization/topbar#defining-topbar-elements) with the `topbarstart`, `topbarmiddle`, `topbarend` and `topbarmore` options, the same way as the sidebar menus. The breadcrumb is now an element of the new _middle_ area. You can set them in your `hugo.toml` or in the front matter of your pages.
+- {{% badge style="change" %}}Change{{% /badge %}} The elements of the topbar, like its buttons, are now [configured](configuration/customization/topbar#defining-topbar-elements) with the `topbarstart`, `topbarmiddle`, `topbarend` and `topbarmore` options, the same way as the sidebar menus. The breadcrumb is now an element of the new _middle_ area. You can set them in your project configuration or in the front matter of your pages.
 
   Redefining an area by a template in `layouts/partials/topbar/area` and calling the theme's templates in `layouts/partials/topbar/button` is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in `layouts/partials/topbar/element`. See the [migration instructions](configuration/customization/topbar#migration-for-relearn-9).
 
@@ -113,7 +112,7 @@ weight = -2
 
 - {{% badge style="new" %}}New{{% /badge %}} The results of the dedicated search page can now be [printed](configuration/sidebar/search#printing-the-search-results), if your home page has print support activated. The new `search.page.outputs` option lets you decide this independently of your home page.
 
-- {{% badge style="new" %}}New{{% /badge %}} An entry of a Hugo menu can now be [continued by the tree of the page it links to](configuration/sidebar/menus#page-trees-in-hugo-menus) by setting `params.type='page'`. For a taxonomy page, this shows all of its terms without listing them in your menu definition.
+- {{% badge style="new" %}}New{{% /badge %}} An entry of a Hugo menu can now be [continued by the tree of the page it links to](configuration/sidebar/menus#page-trees-in-hugo-menus) by setting `params.type` to `page`. For a taxonomy page, this shows all of its terms without listing them in your menu definition.
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme writes no inline JavaScript anymore, so your site can be served with a strict [Content Security Policy](configuration/publishing/csp). On request, it also adds [subresource integrity](configuration/publishing/csp#subresource-integrity) hashes to its scripts and stylesheets. The [`button`](shortcodes/button#button-with-own-action) and [`card`](shortcodes/cards#card-with-own-action) shortcodes and [topbar buttons](configuration/customization/topbar#button) have a new `action` parameter to run your own code without inline JavaScript.
 

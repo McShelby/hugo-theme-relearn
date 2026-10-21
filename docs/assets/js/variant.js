@@ -749,9 +749,9 @@ var variants = {
             color: 'MAIN-BG-color',
             variables: [
               { name: 'BROWSER-theme', default: 'light', tooltip: 'name of the theme for controls drawn by the browser like form fields' },
-              { name: 'MERMAID-theme', default: 'default', tooltip: 'name of the default Mermaid theme for this variant, can be overridden in hugo.toml' },
-              { name: 'OPENAPI-theme', default: 'light', tooltip: 'name of the default OpenAPI theme for this variant, can be overridden in hugo.toml' },
-              { name: 'OPENAPI-CODE-theme', default: 'obsidian', tooltip: 'name of the default OpenAPI code theme for this variant, can be overridden in hugo.toml' },
+              { name: 'MERMAID-theme', default: 'default', tooltip: 'name of the default Mermaid theme for this variant, can be overridden in your project configuration' },
+              { name: 'OPENAPI-theme', default: 'light', tooltip: 'name of the default OpenAPI theme for this variant, can be overridden in your project configuration' },
+              { name: 'OPENAPI-CODE-theme', default: 'obsidian', tooltip: 'name of the default OpenAPI code theme for this variant, can be overridden in your project configuration' },
             ],
           },
           {

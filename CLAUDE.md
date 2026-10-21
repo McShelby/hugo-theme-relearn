@@ -168,7 +168,7 @@ test-hugo min
 - Examples: badge, button, card/cards, expand, icon, include, math, mermaid, notice, openapi, tab/tabs, tree
 
 **Dependencies System:**
-- Theme uses a dependency loading system defined in `hugo.toml` under `params.relearn.dependencies`
+- Theme uses a dependency loading system defined in `hugo.yaml` under `params.relearn.dependencies`
 - Dependencies: Math, Mermaid, OpenApi, Search, Theme
 - Loaded on-demand based on shortcode usage
 
@@ -177,7 +177,7 @@ test-hugo min
 Theme supports custom output formats:
 - **print** - Printable versions of pages
 - **source** - Markdown source view
-- Define in `hugo.toml` under `[outputFormats]`
+- Define in `hugo.yaml` under `outputFormats`
 
 ### Theming System
 
@@ -244,7 +244,7 @@ python3 .githooks/post-commit.py
 
 ## Important Files
 
-- **hugo.toml** - Theme configuration and module requirements
+- **hugo.yaml** - Theme configuration and module requirements
 - **theme.toml** - Theme metadata (name, features, Hugo version)
 - **go.mod** - Hugo module definition
 - **.prettierrc.json** / **.prettierignore** - Code formatting (Prettier)
@@ -255,13 +255,13 @@ python3 .githooks/post-commit.py
 
 ### Front Matter
 
-Standard front matter for content is in TOML format:
+Standard front matter for content is in YAML format:
 
-````toml
-+++
-title = "Page Title"
-weight = 10  # Ordering in sidebar
-+++
+````yaml
+---
+title: Page Title
+weight: 10  # Ordering in sidebar
+---
 ````
 
 ### Page Types
@@ -274,7 +274,7 @@ weight = 10  # Ordering in sidebar
 
 - Translation files in `i18n/*.toml`
 - Content organized by language code: `content/en/`, `content/de/`, etc.
-- Set `defaultContentLanguage` in hugo.toml
+- Set `defaultContentLanguage` in hugo.yaml
 
 ## Testing
 

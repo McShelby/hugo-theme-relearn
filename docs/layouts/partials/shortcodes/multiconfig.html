@@ -1,18 +1,18 @@
-
 {{- /*
   Heavily modified from https://github.com/gohugoio/hugoDocs/blob/master/_vendor/github.com/gohugoio/gohugoioTheme/layouts/shortcodes/code-toggle.html
 
-  Renders syntax-highlighted configuration data in TOML, YAML and JSON formats.
+  Renders syntax-highlighted configuration data in YAML, TOML and JSON formats.
 
   @param {Page} [page] The page to render on.
-  @param {string} [content] The TOML content to render.
+  @param {string} [content] The YAML, TOML or JSON content to render.
   @param {string} [file] The file name to display above the rendered code.
   @param {bool} [fm=false] If true, render the code as front matter.
   @param {string} [section] The dotted key to nest the content under.
 
-  Lines of content enclosed by the comments `# <mark>` and `# </mark>`
-  are highlighted in every format. The enclosed lines must be removable
-  without leaving invalid TOML behind, as they are found by comparing the
+  The format of the content is detected by Hugo. In YAML and TOML, lines of
+  content enclosed by the comments `# <mark>` and `# </mark>` are
+  highlighted in every format. The enclosed lines must be removable
+  without leaving invalid content behind, as they are found by comparing the
   rendering of the content with and without them.
 
   @returns {template.HTML}
@@ -31,27 +31,43 @@
 {{- $section := .section }}
 
 {{- /* Define constants. */}}
-{{- $delimiters := dict "toml" "+++" "yaml" "---" }}
-{{- $langs := slice "toml" "yaml" "json" }}
+{{- $delimiters := dict "yaml" "---" "toml" "+++" }}
+{{- $langs := slice "yaml" "toml" "json" }}
 
 {{- /* Render. */}}
 {{- $code := $content }}
+{{- /* JSON has no comments, so a `#` in it belongs to a string. */}}
+{{- $json := hasPrefix (trim $code "\n\r\t ") "{" }}
 {{- /* The content without its marked lines; equal to the content if nothing is marked. */}}
-{{- $base := $code | replaceRE `(?s)#[ \t]*<mark>.*?#[ \t]*</mark>[^\r\n]*(\r\n|\r|\n)?` "" }}
-{{- $marked := ne $base $code }}
-{{- /* Remove toml comments. */}}
-{{- $code = $code | replaceRE `#.*(\r\n|\r|\n)?` "" }}
-{{- $code = trim $code "\n\r\t " }}
-{{- /* Nest the parsed content, as prepending a header to its text would let
-  its own table headers escape the section. */}}
-{{- if and $section $code }}
-  {{- $code = dict (split $section ".") (transform.Unmarshal $code) }}
+{{- $base := $code }}
+{{- if not $json }}
+  {{- $base = $code | replaceRE `(?s)[ \t]*#[ \t]*<mark>.*?#[ \t]*</mark>[^\r\n]*(\r\n|\r|\n)?` "" }}
+  {{- /* Remove comments together with their indentation. */}}
+  {{- $code = $code | replaceRE `[ \t]*#.*(\r\n|\r|\n)?` "" }}
+{{- end }}
+{{- $marked := ne $base $content }}
+{{- /* Remove blank lines before the content and whitespace after it; the
+  indentation of the first line is kept, as YAML content may be indented as
+  a whole. */}}
+{{- $code = $code | replaceRE `^\s*(\r\n|\r|\n)|\s+$` "" }}
+{{- /* Parse the content here, as `transform.Remarshal` trims a string and
+  with it the indentation of the first line. Nest the parsed content, as
+  prepending a header to its text would let its own table headers escape the
+  section. */}}
+{{- if $code }}
+  {{- $code = transform.Unmarshal $code }}
+  {{- with $section }}
+    {{- $code = dict (split . ".") $code }}
+  {{- end }}
 {{- end }}
 {{- if $marked }}
-  {{- $base = $base | replaceRE `#.*(\r\n|\r|\n)?` "" }}
-  {{- $base = trim $base "\n\r\t " }}
-  {{- if and $section $base }}
-    {{- $base = dict (split $section ".") (transform.Unmarshal $base) }}
+  {{- $base = $base | replaceRE `[ \t]*#.*(\r\n|\r|\n)?` "" }}
+  {{- $base = $base | replaceRE `^\s*(\r\n|\r|\n)|\s+$` "" }}
+  {{- if $base }}
+    {{- $base = transform.Unmarshal $base }}
+    {{- with $section }}
+      {{- $base = dict (split . ".") $base }}
+    {{- end }}
   {{- end }}
 {{- end }}
 {{- $params := dict "page" $page "groupid" "config-code" }}
@@ -68,7 +84,7 @@
   {{- if and $marked $base }}
     {{- $hBase = $base | transform.Remarshal . }}
   {{- end }}
-  {{- if and $fm (in (slice "toml" "yaml") .) }}
+  {{- if and $fm (in (slice "yaml" "toml") .) }}
     {{- $placeHolder := (index $delimiters .) }}
     {{- $hCode = printf "%s\n%s%s\n" $placeHolder $hCode $placeHolder }}
     {{- $hBase = printf "%s\n%s%s\n" $placeHolder $hBase $placeHolder }}

@@ -1,13 +1,12 @@
-+++
-title = 'Version 6.0'
-type = 'releasenotes'
-weight = 0
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.121.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.121.0
+title: Version 6.0
+type: releasenotes
+weight: 0
+---
 
 ## 6.0.0 (2024-04-27) {#6-0-0}
 
@@ -25,15 +24,15 @@ weight = 0
 	--CODE-theme: monokai;
 	````
 
-- {{% badge style="breaking" %}}Breaking{{% /badge %}} The parameter `description` in your `hugo.toml` will now be ignored.
+- {{% badge style="breaking" %}}Breaking{{% /badge %}} The parameter `description` in your project configuration will now be ignored.
 
   With the newly introduced unified handling of descriptions throughout the theme, the only place the old parameter would have been used was your home page.
 
-  For migration, move the `description` parameter of your `hugo.toml` into the front matter section of your home page.
+  For migration, move the `description` parameter of your project configuration into the front matter section of your home page.
 
 - {{% badge style="breaking" %}}Breaking{{% /badge %}} Search support for the `json` outputformat [deprecated in 5.4.0](introduction/releasenotes/5#5-4-0) was removed.
 
-  Change it to `search` for the homepage in your `hugo.toml`. See the docs for [detailed configuration](configuration/sidebar/search).
+  Change it to `search` for the homepage in your project configuration. See the docs for [detailed configuration](configuration/sidebar/search).
 
 - {{% badge style="breaking" %}}Breaking{{% /badge %}} The front matter option `menuTitle` [deprecated in 5.24.0](introduction/releasenotes/5#5-24-0) was removed in favor for Hugo's own `linkTitle`.
 
@@ -51,11 +50,11 @@ weight = 0
 
 - {{% badge style="change" %}}Change{{% /badge %}} The [`children` shortcode](shortcodes/children) was fixed to adhere to its documentation, generating the description based on this rule: When no description or summary exists for the page, the first 70 words of the content is taken.
 
-  Previously, the summary erroneously was ignored which now can lead to different output if you set `description=true` as a parameter.
+  Previously, the summary erroneously was ignored which now can lead to different output if you set `description` to `true` as a parameter.
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path cannot be resolved.
+- {{% badge style="new" %}}New{{% /badge %}} The [`include` shortcode](shortcodes/include) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `include.errorlevel` to either `warning` or `error` in your project configuration if a path cannot be resolved.
 
 - {{% badge style="new" %}}New{{% /badge %}} Math is now usable without enclosing it in a shortcode or Markdown codefence by using Hugo's [passthrough configuration](shortcodes/math#passthrough-configuration).
 

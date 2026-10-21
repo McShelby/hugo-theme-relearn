@@ -1,9 +1,12 @@
-+++
-categories = ['howto', 'reference']
-description = 'Boxes to help you structure your page'
-options = ['boxStyle']
-title = 'Callout'
-+++
+---
+categories:
+- howto
+- reference
+description: Boxes to help you structure your page
+options:
+- boxStyle
+title: Callout
+---
 
 The `callout` shortcode shows boxes with configurable color, title and icon.
 
@@ -315,7 +318,7 @@ content: '```
 
 #### User-defined Style
 
-Self-defined styles can be [configured](#defining-own-styles) in your `hugo.toml` and used for every shortcode, that accepts a `style` parameter.
+Self-defined styles can be [configured](#defining-own-styles) in your project configuration and used for every shortcode, that accepts a `style` parameter.
 
 {{< multiconfig file=hugo section=params >}}
 boxStyle = [

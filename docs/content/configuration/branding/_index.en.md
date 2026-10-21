@@ -1,11 +1,11 @@
-+++
-categories = ['reference']
-description = 'Change colors and logos of your site'
-title = 'Branding'
-weight = 2
-
-[params]
-  alwaysopen = false
-+++
+---
+categories:
+- reference
+description: Change colors and logos of your site
+params:
+  alwaysopen: false
+title: Branding
+weight: 2
+---
 
 {{% pages display="headings" description=true %}}

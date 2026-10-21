@@ -1,10 +1,18 @@
-+++
-categories = ['howto', 'reference']
-description = 'Beautiful math and chemical formulae'
-frontmatter = ['math', 'math.force', 'math.output']
-options = ['math', 'math.force', 'math.output']
-title = 'Math'
-+++
+---
+categories:
+- howto
+- reference
+description: Beautiful math and chemical formulae
+frontmatter:
+- math
+- math.force
+- math.output
+options:
+- math
+- math.force
+- math.output
+title: Math
+---
 
 The `math` shortcode renders complex math and chemical formulae using [Hugo's built-in KaTeX](https://gohugo.io/functions/transform/tomath/).
 
@@ -64,9 +72,9 @@ A formula that KaTeX can not render is written as its source and reported as a w
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} If your [output](#output-of-the-formulae) needs the KaTeX stylesheet, it will be linked to your page if the page contains a `math` shortcode, Markdown codefence, Passthrough syntax or the partial is called from your templates.
 
-If you write KaTeX's HTML by other means, you can force linking the stylesheet by setting `math.force=true`. If a formula was rendered, the option has no effect.
+If you write KaTeX's HTML by other means, you can force linking the stylesheet by setting `math.force` to `true`. If a formula was rendered, the option has no effect.
 
-`math=true` does the same but can't be combined with other `math.*` options.
+Setting `math` to `true` does the same but can't be combined with other `math.*` options.
 
 {{< multiconfig section=params >}}
 math.force = true

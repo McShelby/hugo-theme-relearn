@@ -1,12 +1,13 @@
-+++
-categories = ['howto', 'reference']
-description = 'List resources contained in a page bundle'
-title = 'Resources'
-
-[[resources]]
-  name = 'MaybeTreasure.txt'
-  src = 'MaybeTreasure.en.txt'
-+++
+---
+categories:
+- howto
+- reference
+description: List resources contained in a page bundle
+resources:
+- name: MaybeTreasure.txt
+  src: MaybeTreasure.en.txt
+title: Resources
+---
 
 The `resources` shortcode displays links to resources contained in a [page bundle](https://gohugo.io/content-management/page-bundles/).
 
