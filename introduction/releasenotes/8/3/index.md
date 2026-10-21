@@ -16,7 +16,7 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme can now [check external links](authoring/frontmatter/linking#check-external-urls) for validity during build. No more stale links anymore.
 
-  To activate it set `urlExternalCheck=true` in the your `hugo.toml` `params` section.
+  To activate it set `urlExternalCheck` to `true` in the `params` section of your project configuration.
 
   The name of option `ignoreerror` was changed to `urlIgnoreError` in that matter. You can leave your config unchanged but will see warnings if you are using the deprecated name.
 

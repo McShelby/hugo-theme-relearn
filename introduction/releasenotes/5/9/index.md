@@ -45,7 +45,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} Absolute links prefixed with `http://` or `https://` are now opened in a separate browser tab.
 
-  You can revert back to the old behavior by defining `externalLinkTarget="_self"` in the `params` section of your `hugo.toml`.
+  You can revert back to the old behavior by setting `externalLinkTarget` to `_self` in the `params` section of your project configuration.
 
 ### New
 

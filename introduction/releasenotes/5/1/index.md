@@ -10,7 +10,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} Because the print preview URLs were non deterministic for normal pages in comparison to page bundles, this is now changed. Each print preview is now accessible by adding a `index.print.html` to the default URL.
 
-  You can revert this behavior by overwriting the `print` output format setting in your `hugo.toml`to:
+  You can revert this behavior by overwriting the `print` output format setting in your project configuration to:
 
   {{< multiconfig file=hugo >}}
   [outputFormats]

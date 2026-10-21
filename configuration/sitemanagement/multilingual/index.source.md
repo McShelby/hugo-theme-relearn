@@ -1,10 +1,12 @@
-+++
-categories = ['howto']
-description = 'How to set up a multilingual site'
-options = ['disableLanguageSwitchingButton']
-title = 'Multilingual'
-weight = 2
-+++
+---
+categories:
+- howto
+description: How to set up a multilingual site
+options:
+- disableLanguageSwitchingButton
+title: Multilingual
+weight: 2
+---
 
 The Relearn theme works with [Hugo's multilingual mode](https://gohugo.io/content-management/multilingual/).
 
@@ -43,7 +45,7 @@ It supports many languages, including right-to-left languages.
 
 Here's how to make your site multilingual using [translations by file name](https://gohugo.io/content-management/multilingual/#translation-by-file-name):
 
-1. Set up languages in your `hugo.toml` file:
+1. Set up languages in your project configuration:
 
     {{< multiconfig file=hugo >}}
     defaultContentLanguage = 'en'
@@ -83,14 +85,14 @@ Here's how to make your site multilingual using [translations by file name](http
     - themes | folder
       - hugo-theme-relearn | folder
         - ... | folder
-    - hugo.toml | file-alt | accent
+    - hugo.yaml | file-alt | accent
     ````
 
 ## Translation by Content Directory
 
 The theme also support [translations by content directory](https://gohugo.io/content-management/multilingual/#translation-by-content-directory) which can be configured in a similar way.
 
-1. Set up languages in your `hugo.toml` file:
+1. Set up languages in your project configuration:
 
     {{< multiconfig file=hugo >}}
     defaultContentLanguage = 'en'
@@ -137,7 +139,7 @@ The theme also support [translations by content directory](https://gohugo.io/con
       - themes | folder
         - hugo-theme-relearn | folder
           - ... | folder
-      - hugo.toml | file-alt | accent
+      - hugo.yaml | file-alt | accent
     ````
 
 
@@ -151,7 +153,7 @@ Check the [search configuration](configuration/sidebar/search#mixed-language-sup
 
 If you want to have more control, where the language switcher is positioned or you want to configure a different icon, see the [chapter on sidebar configuration](configuration/sidebar/menus#defining-sidebar-menus).
 
-To disable the language switcher set `disableLanguageSwitchingButton=true`
+To disable the language switcher set `disableLanguageSwitchingButton` to `true`
 
 {{< multiconfig file=hugo section=params >}}
 disableLanguageSwitchingButton = true

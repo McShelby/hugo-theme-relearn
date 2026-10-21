@@ -13,10 +13,10 @@ The _standard_ edition of Hugo is sufficient but you can also use the _extended_
 
 ## Create your Project
 
-Use Hugo's `new site` command to make a new website
+Use Hugo's `new site` command to make a new website with its project configuration in a `hugo.yaml` file
 
 ````shell
-hugo new site my-new-site
+hugo new site my-new-site --format yaml
 ````
 
 Then move into the new directory
@@ -33,7 +33,7 @@ Run all following commands from this directory.
 
 You can [download the theme as a .zip file](https://github.com/McShelby/hugo-theme-relearn/archive/main.zip) and unzip it into the `themes/hugo-theme-relearn` directory.
 
-Then add this at the top of your `hugo.toml`
+Then add this at the top of your project configuration
 
 {{< multiconfig file=hugo >}}
 theme = 'hugo-theme-relearn'
@@ -47,7 +47,7 @@ Install the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-mo
 hugo mod init example.com
 ````
 
-Then add this at the end of your `hugo.toml`
+Then add this at the end of your project configuration
 
 {{< multiconfig file=hugo >}}
 [module]
@@ -69,7 +69,7 @@ Add the theme as a Git submodule
 git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
 ````
 
-Then add this at the top of your `hugo.toml`
+Then add this at the top of your project configuration
 
 {{< multiconfig file=hugo >}}
 theme = 'hugo-theme-relearn'

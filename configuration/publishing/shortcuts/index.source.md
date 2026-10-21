@@ -1,9 +1,10 @@
-+++
-categories = ['reference']
-description = 'The keys your readers can use on your site'
-title = 'Keyboard Shortcuts'
-weight = 8
-+++
+---
+categories:
+- reference
+description: The keys your readers can use on your site
+title: Keyboard Shortcuts
+weight: 8
+---
 
 Besides the keys every browser knows, the theme brings shortcuts of its own. Those of a button are also shown in its tooltip.
 

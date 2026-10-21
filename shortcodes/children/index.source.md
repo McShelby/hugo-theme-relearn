@@ -1,14 +1,17 @@
-+++
-categories = ['howto', 'reference']
-description = 'List the child pages of a page'
-frontmatter = ['ordersectionsby']
-options = ['ordersectionsby']
-title = 'Children'
-
-[params]
-  alwaysopen = false
-  hidden = true
-+++
+---
+categories:
+- howto
+- reference
+description: List the child pages of a page
+frontmatter:
+- ordersectionsby
+options:
+- ordersectionsby
+params:
+  alwaysopen: false
+  hidden: true
+title: Children
+---
 
 > [!warning]
 > This shortcode is deprecated in favor of the new [`pages` shortcode](shortcodes/pages). See [migration instructions](#migration) below.

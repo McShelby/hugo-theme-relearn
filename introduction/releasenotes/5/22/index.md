@@ -18,11 +18,11 @@
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your `hugo.toml` inside of a page's front matter.
+- {{% badge style="new" %}}New{{% /badge %}} It is now possible to overwrite the setting for `collapsibleMenu` of your project configuration inside of a page's front matter.
 
 - {{% badge style="new" %}}New{{% /badge %}} If a Mermaid graph is zoomable a button to reset the view is now added to the upper right corner. The button is only shown once the mouse is moved over the graph.
 
-- {{% badge style="new" %}}New{{% /badge %}} It is now possible to remove the root breadcrumb by setting `disableRootBreadcrumb=true` in your `hugo.toml`.
+- {{% badge style="new" %}}New{{% /badge %}} It is now possible to remove the root breadcrumb by setting `disableRootBreadcrumb` to `true` in your project configuration.
 
 - {{% badge style="new" %}}New{{% /badge %}} The output of the dedicated search page now displays the result's breadcrumb.
 

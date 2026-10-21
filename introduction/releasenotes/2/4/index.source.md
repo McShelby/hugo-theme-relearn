@@ -1,13 +1,12 @@
-+++
-title = 'Version 2.4'
-type = 'releasenotes'
-weight = -4
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.81.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.81.0
+title: Version 2.4
+type: releasenotes
+weight: -4
+---
 
 ## 2.4.0 (2021-10-07) {#2-4-0}
 
@@ -17,9 +16,9 @@ weight = -4
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages=true` in your `hugo.toml`.
+- {{% badge style="new" %}}New{{% /badge %}} Hidden pages are displayed by default in their according tags page. You can now turn off this behavior by setting `disableTagHiddenPages` to `true` in your project configuration.
 
-- {{% badge style="new" %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your `hugo.toml`. Please see further [documentation](configuration/sidebar/menus#expand-state-of-submenus) for possible values and default behavior.
+- {{% badge style="new" %}}New{{% /badge %}} You can define the expansion state of your menus for the whole site by setting the `alwaysopen` option in your project configuration. Please see further [documentation](configuration/sidebar/menus#expand-state-of-submenus) for possible values and default behavior.
 
 - {{% badge style="new" %}}New{{% /badge %}} New front matter `ordersectionsby` option to change immediate children sorting in menu and `children` shortcode. Possible values are `title` or `weight`.
 

@@ -1,17 +1,36 @@
-+++
-categories = ['howto']
-description = 'Configure all things menus'
-frontmatter = ['alwaysopen', 'collapsibleMenu', 'linkTitle', 'menuPageRef', 'menuPost', 'menuPre', 'menuUrl', 'ordersectionsby', 'sidebarfootermenus', 'sidebarheadermenus', 'sidebarmenus']
-options = ['alwaysopen', 'collapsibleMenu', 'disableShortcutsTitle', 'ordersectionsby', 'sidebarfootermenus', 'sidebarheadermenus', 'sidebarmenus']
-title = 'Menus'
-weight = 4
-+++
+---
+categories:
+- howto
+description: Configure all things menus
+frontmatter:
+- alwaysopen
+- collapsibleMenu
+- linkTitle
+- menuPageRef
+- menuPost
+- menuPre
+- menuUrl
+- ordersectionsby
+- sidebarfootermenus
+- sidebarheadermenus
+- sidebarmenus
+options:
+- alwaysopen
+- collapsibleMenu
+- disableShortcutsTitle
+- ordersectionsby
+- sidebarfootermenus
+- sidebarheadermenus
+- sidebarmenus
+title: Menus
+weight: 4
+---
 
 The theme can build menu trees from [the structure of your page files](authoring/structure) or from [Hugo's build in menu feature](https://gohugo.io/content-management/menus/).
 
 ---
 
-- {{% badge style="option" %}}Option{{% /badge %}} Configuration options in your `hugo.toml` apply to all menus.
+- {{% badge style="option" %}}Option{{% /badge %}} Configuration options in your project configuration apply to all menus.
 
 - {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} In case of page structure menus, individual configuration is done via a page's front matter.
 
@@ -25,15 +44,15 @@ The theme can build menu trees from [the structure of your page files](authoring
 
 {{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.alwaysopen` instead.
 
-If `alwaysopen=false` for any given entry, its children will not be shown in the menu as long as it is not necessary for the sake of navigation.
+If `alwaysopen` is `false` for any given entry, its children will not be shown in the menu as long as it is not necessary for the sake of navigation.
 
 The theme generates the expand state based on the following rules:
 
 - all parent entries of the active page including their [visible](authoring/meta#hidden) siblings are shown regardless of any settings
 - immediate child entries of the active entry are shown regardless of any settings
-- if not overridden, all other first level entries behave like they would have been given `alwaysopen=false`
-- if not overridden, all other entries of levels besides the first behave like they would have been given `alwaysopen=true`
-- all [visible](authoring/meta#hidden) entries show their immediate child entries if `alwaysopen=true`; this proceeds recursively
+- if not overridden, all other first level entries behave like they would have been given `alwaysopen` set to `false`
+- if not overridden, all other entries of levels besides the first behave like they would have been given `alwaysopen` set to `true`
+- all [visible](authoring/meta#hidden) entries show their immediate child entries if `alwaysopen` is `true`; this proceeds recursively
 - all remaining entries are not shown
 
 {{< multiconfig section=params >}}
@@ -42,9 +61,9 @@ alwaysopen = false
 
 ## Expander for Submenus
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `collapsibleMenu=true` to show submenus as collapsible trees with a clickable expander.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `collapsibleMenu` to `true` to show submenus as collapsible trees with a clickable expander.
 
-{{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.collapsibleMenu=true` instead.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For Hugo menus, you have to set `params.collapsibleMenu` to `true` instead.
 
 {{< multiconfig section=params >}}
 collapsibleMenu = true
@@ -153,7 +172,7 @@ The following example will not generate clickable menu entries for the `Parent 1
 
 ## Page Trees in Hugo Menus
 
-{{% badge style="hugomenu" %}}Menu{{% /badge %}} An entry of a Hugo menu usually ends where your menu definition ends. If you set `params.type='page'` for an entry with a `pageRef`, the entry is continued by the tree of the page it links to, the same way a [page menu](#page-menu) starting at that page would show it.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} An entry of a Hugo menu usually ends where your menu definition ends. If you set `params.type` to `page` for an entry with a `pageRef`, the entry is continued by the tree of the page it links to, the same way a [page menu](#page-menu) starting at that page would show it.
 
 This saves you from repeating your page structure in your menu definition. The entry keeps its own title, `pre` and `post`.
 
@@ -171,7 +190,7 @@ The following example shows all tags of your site below the `Tags` entry.
 
 ## Predefined Shortcuts Menu
 
-By default, the theme supports one additional Hugo menu below the page menu in the sidebar named `shortcuts`. You only need to configure it in your `hugo.toml` to appear in your sidebar. For example:
+By default, the theme supports one additional Hugo menu below the page menu in the sidebar named `shortcuts`. You only need to configure it in your project configuration to appear in your sidebar. For example:
 
 {{< multiconfig file=hugo >}}
 [[menu.shortcuts]]
@@ -184,7 +203,7 @@ By default, the theme supports one additional Hugo menu below the page menu in t
 
 {{% badge style="option" %}}Option{{% /badge %}} By default, the predefined shortcut menu has a the title _More_ (in the English translation) displayed above it.
 
-You can disable this title with `disableShortcutsTitle=true`.
+You can disable this title by setting `disableShortcutsTitle` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableShortcutsTitle = true
@@ -199,7 +218,7 @@ other = "Other Great Stuff"
 
 ## Title for Arbitrary Menus
 
-Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableTitle=false` for each sidebar menu configuration](#defining-sidebar-menus).
+Each menu may have an optional title above its tree. This must be activated for each [menu by setting `disableTitle` to `false` for each sidebar menu configuration](#defining-sidebar-menus).
 
 {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} For page menus, set the `linkTitle` front matter for the root page of the menu. For example in the home page for the default sidebar menu. If no `linkTitle` was set, the title will be taken from your translation files by the key `<identifier>-menuTitle`, where `<identifier>` is the identifier of your sidebar menu configuration.
 
@@ -239,7 +258,7 @@ If you want to learn how to configure different Hugo menus for each language, [s
 
 As these options are arrays, you can define as many menus, as you like in each area. Each menu is displayed as a distinct block in their area. You can configure titles for each menu and dividers between multiple menus.
 
-If you don't set these options in your `hugo.toml`, the theme defaults as follows:
+If you don't set these options in your project configuration, the theme defaults as follows:
 
 - `sidebarheadermenus`:
   - a divider to separate from the logo (depending on the color configuration of the theme variant) if any of the following is configured
@@ -303,7 +322,7 @@ The Hugo menu generates a menu tree out of a Hugo menu definition with the same 
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
 | **type**              | _&lt;empty&gt;_ | `menu`, required  |
-| **identifier**        | _&lt;empty&gt;_ | The identifier of the menu definition in your `hugo.toml` |
+| **identifier**        | _&lt;empty&gt;_ | The identifier of the menu definition in your project configuration |
 | **main**              | `false`         | Whether to add additional spacing and larger text to the menu |
 | **disableTitle**      | `false`         | Whether to print a title above the menu; for the predefined `shortcuts` menu, accounts to the setting of `disableShortcutsTitle` |
 

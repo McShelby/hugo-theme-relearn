@@ -325,7 +325,7 @@ If what you show can also be hidden by other means than the button, your script 
 
 #### Button within a `form` Element
 
-To use native HTML elements in your Markdown, add this in your `hugo.toml`
+To use native HTML elements in your Markdown, add this in your project configuration
 
 {{< multiconfig file=hugo >}}
 [markup.goldmark.renderer]

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
+    <meta name="generator" content="Relearn 9.3.0+7eb48ba9132507b47ecce2f7dc9d84e8669e03b9">
     <meta name="description" content="Adding Custom Output Formats">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Output Formats :: Hugo Relearn Theme">
     <meta itemprop="description" content="Adding Custom Output Formats">
-    <meta itemprop="wordCount" content="1021">
+    <meta itemprop="wordCount" content="1022">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,Howto">
     <title>Output Formats :: Hugo Relearn Theme</title>
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.7ab8d63bceef614c25dfb04c52b907737ed1f39aa32b20f0372d6c95e673f126.js"
+      "indexFile": "searchindex.en.min.34b4115aa077f06f4b80afa781b237a89f2f5405b3d91f6e0940025f72d7362c.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -213,27 +213,27 @@
 <p>Therefore we add a new output format called <code>email</code> that outputs HTML and assembles a completely custom HTML document structure.</p>
 <ol>
 <li>
-<p>Add the output format to your <code>hugo.toml</code></p>
+<p>Add the output format to your project configuration</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-ebd3126679c19bd986d1fcfb06e05c3f">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-ebd3126679c19bd986d1fcfb06e05c3f">
+    <div class="tab-nav-title" id="R-tabs-title-1c0403ce7aa852e5c6405793278d3003">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-1c0403ce7aa852e5c6405793278d3003">
       <button
-        role="tab" id="R-tab-id-876cf60cc7b2af2963891674fe129f76-tab" aria-controls="R-tab-id-876cf60cc7b2af2963891674fe129f76" aria-selected="true"
-        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
-      >
-        <span class="tab-nav-text">toml</span>
-      </button>
-      <button
-        role="tab" id="R-tab-id-47ccf81805c73689ec8111e513683efb-tab" aria-controls="R-tab-id-47ccf81805c73689ec8111e513683efb" aria-selected="false"
+        role="tab" id="R-tab-id-a192a83b02343bd00969403625367643-tab" aria-controls="R-tab-id-a192a83b02343bd00969403625367643" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-49799e804ce9da00543e7d9a6adb8833-tab" aria-controls="R-tab-id-49799e804ce9da00543e7d9a6adb8833" aria-selected="false"
+        role="tab" id="R-tab-id-0583ad45cc6016de086762e336d11d96-tab" aria-controls="R-tab-id-0583ad45cc6016de086762e336d11d96" aria-selected="false"
+        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+      >
+        <span class="tab-nav-text">toml</span>
+      </button>
+      <button
+        role="tab" id="R-tab-id-5ab278f7320b2ce3c00414db6dd91935-tab" aria-controls="R-tab-id-5ab278f7320b2ce3c00414db6dd91935" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -243,29 +243,9 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-876cf60cc7b2af2963891674fe129f76" role="tabpanel" aria-labelledby="R-tab-id-876cf60cc7b2af2963891674fe129f76-tab"
-      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-      class="tab-content tab-panel-style cstyle code active codify">
-      <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputFormats</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">outputFormats</span><span class="p">.</span><span class="nx">email</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">baseName</span> <span class="p">=</span> <span class="s1">&#39;index.email&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">isHTML</span> <span class="p">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">mediaType</span> <span class="p">=</span> <span class="s1">&#39;text/html&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;email&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">noUgly</span> <span class="p">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">permalinkable</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;rss&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">page</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">section</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;rss&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span></span></span></code></pre></div>
-      </div>
-    </div>
-    <div
-      id="R-tab-id-47ccf81805c73689ec8111e513683efb" role="tabpanel" aria-labelledby="R-tab-id-47ccf81805c73689ec8111e513683efb-tab"
+      id="R-tab-id-a192a83b02343bd00969403625367643" role="tabpanel" aria-labelledby="R-tab-id-a192a83b02343bd00969403625367643-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-      class="tab-content tab-panel-style cstyle code codify">
+      class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">outputFormats</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">email</span><span class="p">:</span><span class="w">
@@ -290,7 +270,27 @@
       </div>
     </div>
     <div
-      id="R-tab-id-49799e804ce9da00543e7d9a6adb8833" role="tabpanel" aria-labelledby="R-tab-id-49799e804ce9da00543e7d9a6adb8833-tab"
+      id="R-tab-id-0583ad45cc6016de086762e336d11d96" role="tabpanel" aria-labelledby="R-tab-id-0583ad45cc6016de086762e336d11d96-tab"
+      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+      class="tab-content tab-panel-style cstyle code codify">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputFormats</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">outputFormats</span><span class="p">.</span><span class="nx">email</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">baseName</span> <span class="p">=</span> <span class="s1">&#39;index.email&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">isHTML</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mediaType</span> <span class="p">=</span> <span class="s1">&#39;text/html&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s1">&#39;email&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">noUgly</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">permalinkable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;rss&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">page</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">section</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;rss&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      id="R-tab-id-5ab278f7320b2ce3c00414db6dd91935" role="tabpanel" aria-labelledby="R-tab-id-5ab278f7320b2ce3c00414db6dd91935-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -329,12 +329,12 @@
 </li>
 <li>
 <p>Create a file <code>layouts/_default/baseof.email.html</code></p>
-<div class="tab-panel" data-tab-group="R-tabs-64c27f59a24dcfbaedf5b6a257b68526">
+<div class="tab-panel" data-tab-group="R-tabs-e73fbaae01789bc36fe0761cd2aefd25">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-c640a25d9bb86dc2660beb202dbec778-tab" aria-controls="R-tab-id-c640a25d9bb86dc2660beb202dbec778" aria-selected="true"
+        role="tab" id="R-tab-id-02ea4ead8482b0e737a6a6848cba42dd-tab" aria-controls="R-tab-id-02ea4ead8482b0e737a6a6848cba42dd" aria-selected="true"
         data-tab-item="R-tab-4613d3821b4d88aa486bb6efac122e4e"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -344,7 +344,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c640a25d9bb86dc2660beb202dbec778" role="tabpanel" aria-labelledby="R-tab-id-c640a25d9bb86dc2660beb202dbec778-tab"
+      id="R-tab-id-02ea4ead8482b0e737a6a6848cba42dd" role="tabpanel" aria-labelledby="R-tab-id-02ea4ead8482b0e737a6a6848cba42dd-tab"
       data-tab-item="R-tab-4613d3821b4d88aa486bb6efac122e4e"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -374,12 +374,12 @@
 <li>
 <p><em>Optional</em>: create a file <code>layouts/_default/article.email.html</code></p>
 <p>In our case, we want to display a disclaimer in front of every article. To do this we have to define the output of an article ourself and rely on the above <code>block</code> statement to call our template.</p>
-<div class="tab-panel" data-tab-group="R-tabs-a26b7d7672ab5436c0d0649e608b43cb">
+<div class="tab-panel" data-tab-group="R-tabs-6449aaa0a9806e2e601b55bee329b856">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-7245286b00faa18a492488d2a0c8d21c-tab" aria-controls="R-tab-id-7245286b00faa18a492488d2a0c8d21c" aria-selected="true"
+        role="tab" id="R-tab-id-0ed3e2cba5ad0a930101ae7f91bbbd11-tab" aria-controls="R-tab-id-0ed3e2cba5ad0a930101ae7f91bbbd11" aria-selected="true"
         data-tab-item="R-tab-03bc281e9fde36dbbdc0fc98affa0e69"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -389,7 +389,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7245286b00faa18a492488d2a0c8d21c" role="tabpanel" aria-labelledby="R-tab-id-7245286b00faa18a492488d2a0c8d21c-tab"
+      id="R-tab-id-0ed3e2cba5ad0a930101ae7f91bbbd11" role="tabpanel" aria-labelledby="R-tab-id-0ed3e2cba5ad0a930101ae7f91bbbd11-tab"
       data-tab-item="R-tab-03bc281e9fde36dbbdc0fc98affa0e69"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -406,12 +406,12 @@
 <li>
 <p><em>Optional</em>: create a file <code>layouts/_default/_markup_/render-image.email.html</code></p>
 <p>In our case, we want to convert each image into a base 64 encoded string to display it inline in the email without loading external assets.</p>
-<div class="tab-panel" data-tab-group="R-tabs-d197568989c33b88081c254f518558a0">
+<div class="tab-panel" data-tab-group="R-tabs-6ffcd0254858308d0cc1c65d73d71293">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-cac896e68d5bed8c745ae7a6b24439bf-tab" aria-controls="R-tab-id-cac896e68d5bed8c745ae7a6b24439bf" aria-selected="true"
+        role="tab" id="R-tab-id-8883553505238390fe548a9dbbe320e0-tab" aria-controls="R-tab-id-8883553505238390fe548a9dbbe320e0" aria-selected="true"
         data-tab-item="R-tab-0cbb66da3b45b492ea5d7912790a1f9f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -421,7 +421,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-cac896e68d5bed8c745ae7a6b24439bf" role="tabpanel" aria-labelledby="R-tab-id-cac896e68d5bed8c745ae7a6b24439bf-tab"
+      id="R-tab-id-8883553505238390fe548a9dbbe320e0" role="tabpanel" aria-labelledby="R-tab-id-8883553505238390fe548a9dbbe320e0-tab"
       data-tab-item="R-tab-0cbb66da3b45b492ea5d7912790a1f9f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -490,12 +490,12 @@
 <p>Move your files <code>layouts/partials/article.&lt;FORMAT&gt;.html</code> to <code>layouts/_default/article.&lt;FORMAT&gt;.html</code></p>
 <p>The files will most likely require further modifications as they now receive the page as it context (dot <code>.</code>) instead of the <code>.page</code> and <code>.content</code> parameter.</p>
 <p><strong>Old</strong>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-24fd0e0f2588b2c2918ee8d20cbceb73">
+<div class="tab-panel" data-tab-group="R-tabs-8b1c162412c93029efea9458e5847d28">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-48dc316f863999a4aed9d349bc821596-tab" aria-controls="R-tab-id-48dc316f863999a4aed9d349bc821596" aria-selected="true"
+        role="tab" id="R-tab-id-6693a2df517341145aaf8ef4f98032a8-tab" aria-controls="R-tab-id-6693a2df517341145aaf8ef4f98032a8" aria-selected="true"
         data-tab-item="R-tab-b1374606b5a0f03e531f69297c15aed4"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -505,7 +505,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-48dc316f863999a4aed9d349bc821596" role="tabpanel" aria-labelledby="R-tab-id-48dc316f863999a4aed9d349bc821596-tab"
+      id="R-tab-id-6693a2df517341145aaf8ef4f98032a8" role="tabpanel" aria-labelledby="R-tab-id-6693a2df517341145aaf8ef4f98032a8-tab"
       data-tab-item="R-tab-b1374606b5a0f03e531f69297c15aed4"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -529,12 +529,12 @@
     </div>
   </div>
 </div><p><strong>New</strong>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-107601821cfc993abd2164e70dcc091b">
+<div class="tab-panel" data-tab-group="R-tabs-b5dfa44b28b5c8c7ba734935b1925d58">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-fe51ce015883f0e93c2ceb36acf85bc6-tab" aria-controls="R-tab-id-fe51ce015883f0e93c2ceb36acf85bc6" aria-selected="true"
+        role="tab" id="R-tab-id-40ee0651ac49b469b7fa0d0ac1c78469-tab" aria-controls="R-tab-id-40ee0651ac49b469b7fa0d0ac1c78469" aria-selected="true"
         data-tab-item="R-tab-2295647ab25bb82d878fc5d13d72cd0a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -544,7 +544,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-fe51ce015883f0e93c2ceb36acf85bc6" role="tabpanel" aria-labelledby="R-tab-id-fe51ce015883f0e93c2ceb36acf85bc6-tab"
+      id="R-tab-id-40ee0651ac49b469b7fa0d0ac1c78469" role="tabpanel" aria-labelledby="R-tab-id-40ee0651ac49b469b7fa0d0ac1c78469-tab"
       data-tab-item="R-tab-2295647ab25bb82d878fc5d13d72cd0a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -570,12 +570,12 @@
 <li>
 <p>Merge your files <code>layouts/partials/header.&lt;FORMAT&gt;.html</code>, <code>layouts/partials/footer.&lt;FORMAT&gt;.html</code> to <code>layouts/_default/baseof.&lt;FORMAT&gt;.html</code></p>
 <p><strong>Old</strong>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-00f0da24a180fe9bbcccaec2c75d44ca">
+<div class="tab-panel" data-tab-group="R-tabs-d58db173a1008a232dafca04af7de046">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-fe85b42a10a8be087107186a4a33ccd3-tab" aria-controls="R-tab-id-fe85b42a10a8be087107186a4a33ccd3" aria-selected="true"
+        role="tab" id="R-tab-id-79bc66157ea6a7f89916888d926e1d94-tab" aria-controls="R-tab-id-79bc66157ea6a7f89916888d926e1d94" aria-selected="true"
         data-tab-item="R-tab-76770b9a2ec923de1d603838db2351fa"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -585,7 +585,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-fe85b42a10a8be087107186a4a33ccd3" role="tabpanel" aria-labelledby="R-tab-id-fe85b42a10a8be087107186a4a33ccd3-tab"
+      id="R-tab-id-79bc66157ea6a7f89916888d926e1d94" role="tabpanel" aria-labelledby="R-tab-id-79bc66157ea6a7f89916888d926e1d94-tab"
       data-tab-item="R-tab-76770b9a2ec923de1d603838db2351fa"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -606,12 +606,12 @@
       </div>
     </div>
   </div>
-</div><div class="tab-panel" data-tab-group="R-tabs-ed914524be8226c0af809a7409e7284d">
+</div><div class="tab-panel" data-tab-group="R-tabs-b2454c8170c8667bd126653482673e86">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-6f9afd576aa38b4a03b763476a88551a-tab" aria-controls="R-tab-id-6f9afd576aa38b4a03b763476a88551a" aria-selected="true"
+        role="tab" id="R-tab-id-21076157322fae516aafbc5f956f31be-tab" aria-controls="R-tab-id-21076157322fae516aafbc5f956f31be" aria-selected="true"
         data-tab-item="R-tab-39b14af803ebde2c5427c7b1dc76b2dd"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -621,7 +621,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6f9afd576aa38b4a03b763476a88551a" role="tabpanel" aria-labelledby="R-tab-id-6f9afd576aa38b4a03b763476a88551a-tab"
+      id="R-tab-id-21076157322fae516aafbc5f956f31be" role="tabpanel" aria-labelledby="R-tab-id-21076157322fae516aafbc5f956f31be-tab"
       data-tab-item="R-tab-39b14af803ebde2c5427c7b1dc76b2dd"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -634,12 +634,12 @@
 </div><p><strong>New</strong>:</p>
 <p>The upper part of the file is from your <code>header.&lt;FORMAT&gt;.html</code> and the lower part is from your <code>footer.&lt;FORMAT&gt;.html</code>.</p>
 <p>The marked line needs to be added, so your output format uses a potential <code>layouts/_default/article.&lt;FORMAT&gt;.html</code></p>
-<div class="tab-panel" data-tab-group="R-tabs-2393416529ddcf3323a047fb9d7ad080">
+<div class="tab-panel" data-tab-group="R-tabs-4a79cd1dcdd85f1c67a2199323854e8b">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-c922ed34f1ee08c7d3dcab9bb7213468-tab" aria-controls="R-tab-id-c922ed34f1ee08c7d3dcab9bb7213468" aria-selected="true"
+        role="tab" id="R-tab-id-4296885bd9475b740c043be0dca7f452-tab" aria-controls="R-tab-id-4296885bd9475b740c043be0dca7f452" aria-selected="true"
         data-tab-item="R-tab-9b88c4963b54dccfae4fc3f88dff45b0"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -649,7 +649,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c922ed34f1ee08c7d3dcab9bb7213468" role="tabpanel" aria-labelledby="R-tab-id-c922ed34f1ee08c7d3dcab9bb7213468-tab"
+      id="R-tab-id-4296885bd9475b740c043be0dca7f452" role="tabpanel" aria-labelledby="R-tab-id-4296885bd9475b740c043be0dca7f452-tab"
       data-tab-item="R-tab-9b88c4963b54dccfae4fc3f88dff45b0"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">

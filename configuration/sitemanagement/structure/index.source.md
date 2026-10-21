@@ -1,9 +1,10 @@
-+++
-categories = ['explanation']
-description = "Your site's directory structure"
-title = 'Directory Structure'
-weight = 1
-+++
+---
+categories:
+- explanation
+description: Your site's directory structure
+title: Directory Structure
+weight: 1
+---
 
 If you've followed the [Getting Started](introduction/quickstart) guide, your directory layout will look similar to this:
 
@@ -20,7 +21,7 @@ If you've followed the [Getting Started](introduction/quickstart) guide, your di
 - themes | folder
   - hugo-theme-relearn | folder
     - ... | folder
-- hugo.toml | file-alt | accent
+- hugo.yaml | file-alt | accent
 ````
 
 Hugo uses a [union file system](https://gohugo.io/getting-started/directory-structure/#union-file-system), which lets you combine multiple directories.

@@ -16,7 +16,7 @@ If you need to change this default behavior, create a new file `layouts/partials
 
 ## Changing the Title
 
-{{% badge style="option" %}}Option{{% /badge %}} The site `title` of your `hugo.toml` will be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite it by setting `params.linkTitle`.
+{{% badge style="option" %}}Option{{% /badge %}} The site `title` of your project configuration will be used for the text at the top of the sidebar. If you want to show a different text in the sidebar, you can overwrite it by setting `params.linkTitle`.
 
 If the title is to long to fit on a single line it is automatically wrapped.
 
@@ -88,7 +88,7 @@ The size of the logo will adapt automatically to an opinionated default. See bel
 
 ### Manual Configuration
 
-You can explicitly configure a logo in your site's `params.toml`. This will override automatic detection:
+You can explicitly configure a logo in the `params` of your project configuration. This will override automatic detection:
 
 {{< multiconfig file=hugo section=params >}}
 logo = { src = '/images/magic.gif' }

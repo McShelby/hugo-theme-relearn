@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.27'
-type = 'releasenotes'
-weight = -27
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.121.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.121.0
+title: Version 5.27
+type: releasenotes
+weight: -27
+---
 
 ## 5.27.0 (2024-04-07) {#5-27-0}
 
@@ -17,11 +16,11 @@ weight = -27
 
 ### Change
 
-- {{% badge style="change" %}}Change{{% /badge %}} If the theme is configured to generate warnings or errors during build by setting `image.errorlevel` to either `warning` or `error` in your `hugo.toml`, it will now also generate output if a link fragment is not found in the target page.
+- {{% badge style="change" %}}Change{{% /badge %}} If the theme is configured to generate warnings or errors during build by setting `image.errorlevel` to either `warning` or `error` in your project configuration, it will now also generate output if a link fragment is not found in the target page.
 
 - {{% badge style="change" %}}Change{{% /badge %}} The [dependency loader](configuration/customization/extending) was made more versatile.
 
-  The configuration in your `hugo.toml` does not require the `location` parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don't need to change anything, yet.
+  The configuration in your project configuration does not require the `location` parameter anymore. If you still use it, the theme will work as before but will generate a warning. So you don't need to change anything, yet.
 
   With the new mechanism, your dependency loader now receives an additional `location` parameter instead that you can query to inject your dependencies in the desired location.
 
@@ -29,7 +28,7 @@ weight = -27
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} Additional styling was added for the native HTML elements `<mark>` and `<kbd>`. To use them you must allow the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) in your `hugo.toml`. The [Markdown documentation](authoring/markdown#standard-and-extensions) was enhanced for this.
+- {{% badge style="new" %}}New{{% /badge %}} Additional styling was added for the native HTML elements `<mark>` and `<kbd>`. To use them you must allow the [usage of HTML](https://gohugo.io/getting-started/configuration-markup/#rendererunsafe) in your project configuration. The [Markdown documentation](authoring/markdown#standard-and-extensions) was enhanced for this.
 
 - {{% badge style="new" %}}New{{% /badge %}} You now can scroll forward and backward through all headings of a page by using <kbd>ALT</kbd> <kbd>🡑</kbd> and <kbd>ALT</kbd> <kbd>🡓</kbd>. This also works for the `PRINT` output format.
 

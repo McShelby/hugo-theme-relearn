@@ -52,7 +52,7 @@ Not all elements are displayed at every given time. This is configurable (see be
 
 As these options are arrays, you can define as many elements as you like in each area. The elements are displayed in the given order. Each element is identified by its `type` and may be given further parameters, depending on the element.
 
-If you don't set these options in your `hugo.toml`, the theme defaults to the following configuration. The _more_ area is empty by default; some elements are moved there depending on the screen width.
+If you don't set these options in your project configuration, the theme defaults to the following configuration. The _more_ area is empty by default; some elements are moved there depending on the screen width.
 
 {{< multiconfig section=params >}}
 topbarstart = [

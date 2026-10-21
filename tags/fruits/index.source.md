@@ -1,6 +1,6 @@
-+++
-title = 'Fruits (hidden)'
-+++
+---
+title: Fruits (hidden)
+---
 
 This lists all demo pages of the [`pages` shortcode](shortcodes/pages). They live in a hidden section, together with a hidden subsection and pages below it, so the listing shows how hidden pages appear on a term page.
 

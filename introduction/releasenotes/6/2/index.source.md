@@ -1,13 +1,12 @@
-+++
-title = 'Version 6.2'
-type = 'releasenotes'
-weight = -2
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.121.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.121.0
+title: Version 6.2
+type: releasenotes
+weight: -2
+---
 
 ## 6.2.0 (2024-08-26) {#6-2-0}
 
@@ -17,7 +16,7 @@ weight = -2
 
   If you now click on it, not only is the link copied to the clipboard (previous behavior) but also the heading scrolls to the top of the page.
 
-  If you dislike the new behavior, you can deactivate it by setting `disableAnchorScrolling=true` in your `hugo.toml`. See the [docs for further options](configuration/content/headings).
+  If you dislike the new behavior, you can deactivate it by setting `disableAnchorScrolling` to `true` in your project configuration. See the [docs for further options](configuration/content/headings).
 
 ### New
 

@@ -14,8 +14,8 @@
 
   Sadly, introducing usage of the shortcode in the taxonomy and term pages (see below) caused necessary breaking changes
 
-  - the shortcode now requires enabling block attributes in your `hugo.toml` by setting `markup.goldmark.parser.attribute.block=true`
-  - the call syntax for `type=card` now is `{{</* children */>}}` instead of `{{%/* children */%}}` if `goldmark.unsafe=false` is configured in your `hugo.toml` (which is the default)
+  - the shortcode now requires enabling block attributes in your project configuration by setting `markup.goldmark.parser.attribute.block` to `true`
+  - the call syntax for `type=card` now is `{{</* children */>}}` instead of `{{%/* children */%}}` if `markup.goldmark.renderer.unsafe` is set to `false` in your project configuration (which is the default)
 
   In addition the shortcode learned some new parameter for displaying breadcrumbs and setting a heading depth.
 

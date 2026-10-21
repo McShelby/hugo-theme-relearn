@@ -8,7 +8,7 @@
 
   If you now click on it, not only is the link copied to the clipboard (previous behavior) but also the heading scrolls to the top of the page.
 
-  If you dislike the new behavior, you can deactivate it by setting `disableAnchorScrolling=true` in your `hugo.toml`. See the [docs for further options](configuration/content/headings).
+  If you dislike the new behavior, you can deactivate it by setting `disableAnchorScrolling` to `true` in your project configuration. See the [docs for further options](configuration/content/headings).
 
 ### New
 

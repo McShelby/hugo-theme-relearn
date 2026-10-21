@@ -1,16 +1,19 @@
-+++
-categories = ['explanation', 'howto']
-description = 'How to extend link effects'
-options = ['linkEffects']
-title = 'Link Effects'
-weight = 3
-+++
+---
+categories:
+- explanation
+- howto
+description: How to extend link effects
+options:
+- linkEffects
+title: Link Effects
+weight: 3
+---
 
 This page shows you, how to configure custom [link effects](authoring/markdown#link-effects) on top of existing ones.
 
 This setting can also [be overridden by your front matter](authoring/linking/linkeffects).
 
-If you don't configure anything in your `hugo.toml`, the link effects default to
+If you don't configure anything in your project configuration, the link effects default to
 
 ## Default Values
 
@@ -21,7 +24,7 @@ linkEffects.target = false
 
 ## Configuration
 
-{{% badge style="option" %}}Option{{% /badge %}} You can change these settings in your `hugo.toml` and add arbitrary custom effects as boolean values (like `bg-white` in the below snippet).
+{{% badge style="option" %}}Option{{% /badge %}} You can change these settings in your project configuration and add arbitrary custom effects as boolean values (like `bg-white` in the below snippet).
 
 {{< multiconfig file=hugo section=params >}}
 linkEffects.bg-white = true

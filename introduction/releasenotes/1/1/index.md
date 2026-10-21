@@ -8,4 +8,4 @@
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} [`Mermaid`](shortcodes/mermaid#settings) config options can be set in `hugo.toml`.
+- {{% badge style="new" %}}New{{% /badge %}} [`Mermaid`](shortcodes/mermaid#settings) config options can be set in your project configuration.

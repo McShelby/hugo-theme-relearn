@@ -12,7 +12,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} Previously, if the [`tabs` shortcode](shortcodes/tabs) could not find a tab item because, the tabs ended up empty. Now the first tab is selected instead.
 
-- {{% badge style="change" %}}Change{{% /badge %}} The `landingPageURL` was removed from `hugo.toml`. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically and will point to the project's home page. If you want to support a different link, overwrite the `logo.html` partial.
+- {{% badge style="change" %}}Change{{% /badge %}} The `landingPageURL` was removed from the project configuration. You can safely remove this as well from your configuration as it is not used anymore. The theme will detect the landing page URL automatically and will point to the project's home page. If you want to support a different link, overwrite the `logo.html` partial.
 
 ### New
 

@@ -1,8 +1,10 @@
-+++
-categories = ['howto', 'reference']
-description = 'Display text as a tree'
-title = 'Tree'
-+++
+---
+categories:
+- howto
+- reference
+description: Display text as a tree
+title: Tree
+---
 
 The `tree` shortcode displays text as a tree with configurable icons and colors.
 

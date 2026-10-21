@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
+    <meta name="generator" content="Relearn 9.3.0+7eb48ba9132507b47ecce2f7dc9d84e8669e03b9">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="7.0.0 (2024-10-15) Hugo 0.126.0 0.126.0 This release requires a newer Hugo version. Breaking Breaking This release comes with significant changes in file naming of partials and how the theme works internally. This was done because the theme
 suffered from poor build performance for sites with 1000 or more pages reinvented the wheel instead of using available Hugo mechanisms What do I gain, you may ask. A significant performance boost during build! Usually, the build time has been cut at least in half for bigger sites. It is now possible to build even larger sites with 5000 or more pages. This was previously almost impossible due to rapidly increasing build time with the more pages you’ve introduced. For even bigger sites, the theme now has configurable performance optimizations - at the price of feature limitations.
@@ -12,9 +12,9 @@ If you haven’t done customizations to any partials, you can update right away.
 If you have customized your templates, in the best cases, you will get build warnings or even errors. In the worst cases, your build succeeds but the site will not work as intended by you.
 Specifically, you will have to adapt your site if you have
 self-defined output formats self-defined archetypes - now becoming page designs and using Hugo’s content view mechanism overwritten the header.html, menu.html or footer.html partials - needs sync with implementation changes overwritten prev/next topbar buttons - needs sync with implementation changes Breaking This release changes the way the search index and the dedicated search page are generated. This may require reconfiguration by you to still work as you have intended.
-Remove the now obsolete search and searchpage output format from [outputs.home] in your hugo.toml, resulting in something similar to
-hugo. toml yaml json [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] outputs: home: - html - rss - print { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
-In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your hugo.toml.">
+Remove the now obsolete search and searchpage output format from outputs.home in your project configuration, resulting in something similar to
+hugo. yaml toml json outputs: home: - html - rss - print [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
+In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your project configuration.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
@@ -25,9 +25,9 @@ If you haven’t done customizations to any partials, you can update right away.
 If you have customized your templates, in the best cases, you will get build warnings or even errors. In the worst cases, your build succeeds but the site will not work as intended by you.
 Specifically, you will have to adapt your site if you have
 self-defined output formats self-defined archetypes - now becoming page designs and using Hugo’s content view mechanism overwritten the header.html, menu.html or footer.html partials - needs sync with implementation changes overwritten prev/next topbar buttons - needs sync with implementation changes Breaking This release changes the way the search index and the dedicated search page are generated. This may require reconfiguration by you to still work as you have intended.
-Remove the now obsolete search and searchpage output format from [outputs.home] in your hugo.toml, resulting in something similar to
-hugo. toml yaml json [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] outputs: home: - html - rss - print { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
-In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your hugo.toml.">
+Remove the now obsolete search and searchpage output format from outputs.home in your project configuration, resulting in something similar to
+hugo. yaml toml json outputs: home: - html - rss - print [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
+In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your project configuration.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/0/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 7.0 :: Hugo Relearn Theme">
@@ -37,9 +37,9 @@ If you haven’t done customizations to any partials, you can update right away.
 If you have customized your templates, in the best cases, you will get build warnings or even errors. In the worst cases, your build succeeds but the site will not work as intended by you.
 Specifically, you will have to adapt your site if you have
 self-defined output formats self-defined archetypes - now becoming page designs and using Hugo’s content view mechanism overwritten the header.html, menu.html or footer.html partials - needs sync with implementation changes overwritten prev/next topbar buttons - needs sync with implementation changes Breaking This release changes the way the search index and the dedicated search page are generated. This may require reconfiguration by you to still work as you have intended.
-Remove the now obsolete search and searchpage output format from [outputs.home] in your hugo.toml, resulting in something similar to
-hugo. toml yaml json [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] outputs: home: - html - rss - print { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
-In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your hugo.toml.">
+Remove the now obsolete search and searchpage output format from outputs.home in your project configuration, resulting in something similar to
+hugo. yaml toml json outputs: home: - html - rss - print [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
+In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your project configuration.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
@@ -51,10 +51,10 @@ If you haven’t done customizations to any partials, you can update right away.
 If you have customized your templates, in the best cases, you will get build warnings or even errors. In the worst cases, your build succeeds but the site will not work as intended by you.
 Specifically, you will have to adapt your site if you have
 self-defined output formats self-defined archetypes - now becoming page designs and using Hugo’s content view mechanism overwritten the header.html, menu.html or footer.html partials - needs sync with implementation changes overwritten prev/next topbar buttons - needs sync with implementation changes Breaking This release changes the way the search index and the dedicated search page are generated. This may require reconfiguration by you to still work as you have intended.
-Remove the now obsolete search and searchpage output format from [outputs.home] in your hugo.toml, resulting in something similar to
-hugo. toml yaml json [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] outputs: home: - html - rss - print { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
-In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your hugo.toml.">
-    <meta itemprop="wordCount" content="847">
+Remove the now obsolete search and searchpage output format from outputs.home in your project configuration, resulting in something similar to
+hugo. yaml toml json outputs: home: - html - rss - print [outputs] home = [&#39;html&#39;, &#39;rss&#39;, &#39;print&#39;] { &#34;outputs&#34;: { &#34;home&#34;: [ &#34;html&#34;, &#34;rss&#34;, &#34;print&#34; ] } } After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. This can be reconfigured.
+In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing searchIndexURL and searchPageURL respectively in your project configuration.">
+    <meta itemprop="wordCount" content="855">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 7.0 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/0/index.html" rel="alternate" hreflang="x-default">
@@ -69,7 +69,7 @@ In addition, you are now able to overwrite the default file name of the search i
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.7ab8d63bceef614c25dfb04c52b907737ed1f39aa32b20f0372d6c95e673f126.js"
+      "indexFile": "searchindex.en.min.34b4115aa077f06f4b80afa781b237a89f2f5405b3d91f6e0940025f72d7362c.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -262,27 +262,27 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
 </li>
 <li>
 <p><span class="badge cstyle breaking badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-triangle" aria-hidden="true"></i></span><span class="badge-content">Breaking</span></span> This release changes the way the search index and the dedicated search page are generated. This may require reconfiguration by you to still work as you have intended.</p>
-<p>Remove the now obsolete <code>search</code> and <code>searchpage</code> output format from <code>[outputs.home]</code> in your <code>hugo.toml</code>, resulting in something similar to</p>
+<p>Remove the now obsolete <code>search</code> and <code>searchpage</code> output format from <code>outputs.home</code> in your project configuration, resulting in something similar to</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-0ad0727055bc06fb3d84d822d13e1ab4">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-0ad0727055bc06fb3d84d822d13e1ab4">
+    <div class="tab-nav-title" id="R-tabs-title-b1340f2273fc2afb4977a42a2b389dbf">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-b1340f2273fc2afb4977a42a2b389dbf">
       <button
-        role="tab" id="R-tab-id-f9dabe0e4b12821d6e994a3c1e79d206-tab" aria-controls="R-tab-id-f9dabe0e4b12821d6e994a3c1e79d206" aria-selected="true"
-        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
-      >
-        <span class="tab-nav-text">toml</span>
-      </button>
-      <button
-        role="tab" id="R-tab-id-95a9ff4d0e3fe8709cac8f000b83ef72-tab" aria-controls="R-tab-id-95a9ff4d0e3fe8709cac8f000b83ef72" aria-selected="false"
+        role="tab" id="R-tab-id-bbeb29cd44fa453cd01828417c83e6c8-tab" aria-controls="R-tab-id-bbeb29cd44fa453cd01828417c83e6c8" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-d77d737bb35bc01350e193cfa2123add-tab" aria-controls="R-tab-id-d77d737bb35bc01350e193cfa2123add" aria-selected="false"
+        role="tab" id="R-tab-id-6c6996771a4e8b2bf4ffa55940484dce-tab" aria-controls="R-tab-id-6c6996771a4e8b2bf4ffa55940484dce" aria-selected="false"
+        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+      >
+        <span class="tab-nav-text">toml</span>
+      </button>
+      <button
+        role="tab" id="R-tab-id-c29a64b4232d3bf6600cc5bca173f783-tab" aria-controls="R-tab-id-c29a64b4232d3bf6600cc5bca173f783" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -292,18 +292,9 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f9dabe0e4b12821d6e994a3c1e79d206" role="tabpanel" aria-labelledby="R-tab-id-f9dabe0e4b12821d6e994a3c1e79d206-tab"
-      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-      class="tab-content tab-panel-style cstyle code active codify">
-      <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;rss&#39;</span><span class="p">,</span> <span class="s1">&#39;print&#39;</span><span class="p">]</span></span></span></code></pre></div>
-      </div>
-    </div>
-    <div
-      id="R-tab-id-95a9ff4d0e3fe8709cac8f000b83ef72" role="tabpanel" aria-labelledby="R-tab-id-95a9ff4d0e3fe8709cac8f000b83ef72-tab"
+      id="R-tab-id-bbeb29cd44fa453cd01828417c83e6c8" role="tabpanel" aria-labelledby="R-tab-id-bbeb29cd44fa453cd01828417c83e6c8-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-      class="tab-content tab-panel-style cstyle code codify">
+      class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">outputs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">home</span><span class="p">:</span><span class="w">
@@ -313,7 +304,16 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-d77d737bb35bc01350e193cfa2123add" role="tabpanel" aria-labelledby="R-tab-id-d77d737bb35bc01350e193cfa2123add-tab"
+      id="R-tab-id-6c6996771a4e8b2bf4ffa55940484dce" role="tabpanel" aria-labelledby="R-tab-id-6c6996771a4e8b2bf4ffa55940484dce-tab"
+      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+      class="tab-content tab-panel-style cstyle code codify">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;rss&#39;</span><span class="p">,</span> <span class="s1">&#39;print&#39;</span><span class="p">]</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      id="R-tab-id-c29a64b4232d3bf6600cc5bca173f783" role="tabpanel" aria-labelledby="R-tab-id-c29a64b4232d3bf6600cc5bca173f783-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -331,7 +331,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
   </div>
 </div>
 <p>After that, your build will succeed but will may cause new defaults to be applied. With no further settings, in-page search, search popup and dedicated search page are all active by default. <a href="/hugo-theme-relearn/configuration/sidebar/search/index.html#configure-search">This can be reconfigured</a>.</p>
-<p>In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing <code>searchIndexURL</code> and <code>searchPageURL</code> respectively in your <code>hugo.toml</code>.</p>
+<p>In addition, you are now able to overwrite the default file name of the search index and the default page name of the dedicated search page by changing <code>searchIndexURL</code> and <code>searchPageURL</code> respectively in your project configuration.</p>
 </li>
 </ul>
 <h3 id="change">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
@@ -350,13 +350,13 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The options and front matter to force loading a <a href="/hugo-theme-relearn/shortcodes/math/index.html#force-loading-of-the-katex-stylesheet">math</a>, <a href="/hugo-theme-relearn/shortcodes/mermaid/index.html#force-loading-of-the-mermaid-library">mermaid</a> or <a href="/hugo-theme-relearn/shortcodes/openapi/index.html#force-loading-of-the-swagger-ui-library">openapi</a> library has been changed.</p>
-<p>Previously, you had to set the unintuitive <code>disableMathJax=false</code> to force load the math library in case of a passthrough configuration. This is replaced by the simpler <code>math=true</code> or <code>math.force=true</code> and is now in line with <a href="https://gohugo.io/content-management/mathematics/#step-1" rel="external" target="_self">Hugo&rsquo;s official documentation</a>.</p>
+<p>Previously, you had to set the unintuitive <code>disableMathJax</code> to <code>false</code> to force load the math library in case of a passthrough configuration. This is replaced by the simpler <code>math</code> or <code>math.force</code> set to <code>true</code> and is now in line with <a href="https://gohugo.io/content-management/mathematics/#step-1" rel="external" target="_self">Hugo&rsquo;s official documentation</a>.</p>
 <p>You don&rsquo;t need to change anything yet but will receive warnings if the old settings are used.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The default logo is not contained inside of the theme&rsquo;s logo partial anymore.</p>
 <p>This is to avoid usage of the theme&rsquo;s branding throughout the web in non-modified installations.</p>
-<p>In addition, the default text for the logo partial is now <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#changing-the-title">taken from the <code>linkTitle</code> setting</a> of your <code>hugo.toml</code>.</p>
+<p>In addition, the default text for the logo partial is now <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#changing-the-title">taken from the <code>linkTitle</code> setting</a> of your project configuration.</p>
 </li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>

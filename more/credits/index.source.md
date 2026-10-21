@@ -1,12 +1,10 @@
-+++
-title = 'Credits'
-
-[build]
-  list = 'never'
-
-[params]
-  menuPre = "<i class='fa-fw fas fa-bullhorn'></i> "
-+++
+---
+title: Credits
+build:
+  list: never
+params:
+  menuPre: '<i class="fa-fw fas fa-bullhorn"></i> '
+---
 
 ## Contributors
 

@@ -18,7 +18,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} The `externalLinkTarget` config option has changed its default from `_blank` to `_self` causing external links by default to be opened in the same tab.
 
-  If you want to get back to the previous behavior of opening external links in a new tab, set `externalLinkTarget='_blank'` in your `hugo.toml`.
+  If you want to get back to the previous behavior of opening external links in a new tab, set `externalLinkTarget` to `_blank` in your project configuration.
 
 ### New
 

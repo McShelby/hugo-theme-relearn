@@ -15,7 +15,7 @@ Each item links to a page showing all articles with that term.
 
 ## Setting Up Custom Taxonomies
 
-To add custom taxonomies, update your `hugo.toml` file. You also have to add the default taxonomies if you want to use them.
+To add custom taxonomies, update your project configuration. You also have to add the default taxonomies if you want to use them.
 
 {{< multiconfig file=hugo >}}
 [taxonomies]

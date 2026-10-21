@@ -1,17 +1,18 @@
-+++
-date = '2018-02-14'
-description = 'A hidden demo section with pages of its own'
-tags = ['fruits', 'the hidden']
-title = 'Citrus (hidden)'
-weight = 60
-
-[params]
-  alwaysopen = false
-  flavor = 'sour'
-  hidden = true
-  priority = 6
-  status = 'published'
-+++
+---
+date: '2018-02-14'
+description: A hidden demo section with pages of its own
+params:
+  alwaysopen: false
+  flavor: sour
+  hidden: true
+  priority: 6
+  status: published
+tags:
+- fruits
+- the hidden
+title: Citrus (hidden)
+weight: 60
+---
 
 ![Citrus (hidden)](featured.png)
 

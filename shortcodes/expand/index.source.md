@@ -1,11 +1,12 @@
-+++
-categories = ['howto', 'reference']
-description = 'Expandable/collapsible sections of text'
-title = 'Expand'
-
-[params]
-  hidden = true
-+++
+---
+categories:
+- howto
+- reference
+description: Expandable/collapsible sections of text
+params:
+  hidden: true
+title: Expand
+---
 
 > [!warning]
 > This shortcode is deprecated in favor of Hugo's [`details` shortcode](shortcodes/details). See [migration instructions](#migration) below.

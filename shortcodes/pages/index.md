@@ -52,7 +52,7 @@ The display renders the pages the query found, group by group if they were group
 
 ### Configuration
 
-To use this shortcode you need to enable block attributes in your `hugo.toml`.
+To use this shortcode you need to enable block attributes in your project configuration.
 
 {{< multiconfig file=hugo >}}
 [markup.goldmark.parser.attribute]
@@ -169,7 +169,7 @@ The `cards` display uses the [`cards` shortcode](shortcodes/cards) to show each 
 - the title of the page as card title
 - if `description=true` the summary
 
-The `cards` display writes HTML. If you have `goldmark.renderer.unsafe=false` (which is the default if you don't set it), you have to use `{{</* pages */>}}` instead of `{{%/* pages */%}}`.
+The `cards` display writes HTML. If you have `markup.goldmark.renderer.unsafe` set to `false` (which is the default if you don't set it), you have to use `{{</* pages */>}}` instead of `{{%/* pages */%}}`.
 
 ### Own Card Templates
 

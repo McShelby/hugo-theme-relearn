@@ -1,13 +1,12 @@
-+++
-title = 'Version 6.1'
-type = 'releasenotes'
-weight = -1
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.121.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.121.0
+title: Version 6.1
+type: releasenotes
+weight: -1
+---
 
 ## 6.1.0 (2024-08-02) {#6-1-0}
 
@@ -19,13 +18,13 @@ weight = -1
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} The [`openapi` shortcode](shortcodes/openapi) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `openapi.errorlevel` to either `warning` or `error` in your `hugo.toml` if a path cannot be resolved.
+- {{% badge style="new" %}}New{{% /badge %}} The [`openapi` shortcode](shortcodes/openapi) is now able to resolve links to resources as well as to files in the file system (the old behavior). You can configure to generate warnings or errors during build by setting `openapi.errorlevel` to either `warning` or `error` in your project configuration if a path cannot be resolved.
 
 - {{% badge style="new" %}}New{{% /badge %}} Shortcodes supporting an `errorlevel` configuration can now have overridden values in the [front matter](authoring/frontmatter/reference) section of each individual page.
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme now comes with its own overridden version of the `relref` shortcode.
 
-  While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may use it. In configurations using a `baseURL` with a subdirectory, and having `relativeURLs=false` (the default) Hugo's standard `relref` implementation was failing.
+  While the usage of `relref` is obsolete and discouraged by Hugo for a while, existing installations may use it. In configurations using a `baseURL` with a subdirectory, and having `relativeURLs` set to `false` (the default) Hugo's standard `relref` implementation was failing.
 
   The shortcode is deactivated by default and can be activated by setting
 
@@ -33,4 +32,4 @@ weight = -1
 	disableDefaultRelref = true
 	{{< /multiconfig >}}
 
-  in your `hugo.toml`. Only do this if your site fulfills **all of the above assumptions**.
+  in your project configuration. Only do this if your site fulfills **all of the above assumptions**.

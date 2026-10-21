@@ -18,7 +18,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} The theme is now capable to visually [adapt to your OS's light/dark mode setting](configuration/branding/colors#adjust-to-os-settings).
 
-  This is also the new default setting if you haven't configured `themeVariant` in your `hugo.toml`.
+  This is also the new default setting if you haven't configured `themeVariant` in your project configuration.
 
   Additionally you can configure the variants to be taken for light/dark mode with the new `themeVariantAuto` parameter.
 

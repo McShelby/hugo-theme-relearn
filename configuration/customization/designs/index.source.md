@@ -1,9 +1,11 @@
-+++
-categories = ['explanation', 'howto']
-description = 'Extending page designs'
-title = 'Page Designs'
-weight = 6
-+++
+---
+categories:
+- explanation
+- howto
+description: Extending page designs
+title: Page Designs
+weight: 6
+---
 
 Page designs are used to provide different layouts for a given output format. If you instead want to [provide a new output format](configuration/customization/outputformats), the theme got you covered as well.
 
@@ -22,7 +24,7 @@ A page design usually consists of
 
 Regardless of shipped or custom page designs, you are [using them in the same way](authoring/frontmatter/designs). Either by manually setting the `type` front matter to the value of the page design or by using an archetype during creation of a new page.
 
-If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type='default'` was set.
+If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type` was set to `default`.
 
 The Relearn theme ships with the page designs `home`, `chapter`, and `default` for the HTML output format.
 
@@ -60,11 +62,11 @@ Suppose you are writing a documentation site for some software. Each time a new 
 
 3. _Optional_: create an archetype file at `archetypes/releasenotes.md`
 
-    ````toml {title="archetypes/releasenotes.md"}
-    +++
-    title = "{{ replace .Name "-" " " | title }}"
-    type = "releasenotes"
-    +++
+    ````yaml {title="archetypes/releasenotes.md"}
+    ---
+    title: '{{ replace .Name "-" " " | title }}'
+    type: releasenotes
+    ---
 
     This is a new releasenote.
     ````

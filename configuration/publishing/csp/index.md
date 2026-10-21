@@ -10,7 +10,7 @@ This policy covers every feature of the theme except Mermaid
 Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:
 ````
 
-`style-src-attr 'unsafe-inline'` allows `style` attributes: the theme writes colors and image sizes given in your content as such, and Hugo colors highlighted code this way unless you [set `markup.highlight.noClasses=false`](configuration/branding/modules#change-syntax-highlighting). If none of this applies, you use no Mermaid and your [math output](shortcodes/math#output-of-the-formulae) is `mathml`, you can leave it out: Mermaid and the other math outputs write `style` attributes as well. Inline `<style>` elements stay forbidden; the theme writes none.
+`style-src-attr 'unsafe-inline'` allows `style` attributes: the theme writes colors and image sizes given in your content as such, and Hugo colors highlighted code this way unless you [set `markup.highlight.noClasses` to `false`](configuration/branding/modules#change-syntax-highlighting). If none of this applies, you use no Mermaid and your [math output](shortcodes/math#output-of-the-formulae) is `mathml`, you can leave it out: Mermaid and the other math outputs write `style` attributes as well. Inline `<style>` elements stay forbidden; the theme writes none.
 
 ## What Needs More
 
@@ -20,7 +20,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 
 ## Subresource Integrity
 
-Set `enableSubresourceIntegrity=true` to have the theme add an [integrity hash](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) to each script and stylesheet it links, including the search index and the stylesheets of the OpenAPI shortcode. A browser then refuses a file that changed after the build.
+Set `enableSubresourceIntegrity` to `true` to have the theme add an [integrity hash](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) to each script and stylesheet it links, including the search index and the stylesheets of the OpenAPI shortcode. A browser then refuses a file that changed after the build.
 
 {{< multiconfig file=hugo section=params >}}
 enableSubresourceIntegrity = true

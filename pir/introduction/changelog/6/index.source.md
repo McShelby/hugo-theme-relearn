@@ -1,9 +1,8 @@
-+++
-title = 'Version 6'
-type = 'changelog'
-weight = -6
-
-[params]
-  disableToc = false
-+++
+---
+params:
+  disableToc: false
+title: Version 6
+type: changelog
+weight: -6
+---
 {{< piratify >}}

@@ -310,7 +310,7 @@ content: '```
 
 #### User-defined Style
 
-Self-defined styles can be [configured](#defining-own-styles) in your `hugo.toml` and used for every shortcode, that accepts a `style` parameter.
+Self-defined styles can be [configured](#defining-own-styles) in your project configuration and used for every shortcode, that accepts a `style` parameter.
 
 {{< multiconfig file=hugo section=params >}}
 boxStyle = [

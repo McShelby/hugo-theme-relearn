@@ -1,16 +1,22 @@
-+++
-categories = ['howto']
-description = 'What page meta information are available'
-frontmatter = ['headingPost', 'headingPre', 'hidden', 'LastModifierDisplayName', 'LastModifierEmail']
-title = 'Meta Information'
-weight = 3
-+++
+---
+categories:
+- howto
+description: What page meta information are available
+frontmatter:
+- headingPost
+- headingPre
+- hidden
+- LastModifierDisplayName
+- LastModifierEmail
+title: Meta Information
+weight: 3
+---
 
 ## Page Title
 
 The `title` will be used in the heading and meta information of your HTML.
 
-A page without a title is [treated as if `hidden=true`](#hidden) has been set.
+A page without a title is [treated as if `hidden` was set to `true`](#hidden).
 
 {{< multiconfig fm=true >}}
 title = 'Example Title'
@@ -20,7 +26,7 @@ title = 'Example Title'
 
 The `description` is used for generating HTML meta information, in the [`pages`](shortcodes/pages) shortcode and in social media meta information.
 
-If not set, the set value of your site's hugo.toml is used for the HTML meta information and social media meta information. It appears empty for the [`pages`](shortcodes/pages) shortcode.
+If not set, the set value of your project configuration is used for the HTML meta information and social media meta information. It appears empty for the [`pages`](shortcodes/pages) shortcode.
 
 {{< multiconfig fm=true >}}
 description = 'Some lenghty example description'
@@ -36,9 +42,9 @@ images = [ 'images/hero.png' ]
 
 ## Hidden
 
-{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide your pages from the menu by setting `hidden=true`.
+{{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide your pages from the menu by setting `hidden` to `true`.
 
-{{% badge style="hugomenu" %}}Menu{{% /badge %}} For [Hugo menus](https://gohugo.io/content-management/menus/), you have to set `params.hidden=true` instead.
+{{% badge style="hugomenu" %}}Menu{{% /badge %}} For [Hugo menus](https://gohugo.io/content-management/menus/), you have to set `params.hidden` to `true` instead.
 
 [See how you can further configure visibility](configuration/content/hidden) throughout your site.
 

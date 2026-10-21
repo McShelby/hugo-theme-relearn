@@ -18,14 +18,14 @@ The default image effects shipped with the theme are
 
 One way to use them is to add them as URL query parameter to each individually linked image.
 
-This can become cumbersome to be done consistently for the whole site. Instead, you can [configure the defaults](configuration/customization/imageeffects) in your `hugo.toml` as well as overriding these defaults in a page's front matter.
+This can become cumbersome to be done consistently for the whole site. Instead, you can [configure the defaults](configuration/customization/imageeffects) in your project configuration as well as overriding these defaults in a page's front matter.
 
 ## Effect Priority
 
 Image effects are applied in the following priority order (lowest to highest):
 
 1. Built-in defaults
-2. Site-wide configuration in `hugo.toml`
+2. Site-wide configuration in your project configuration
 3. Page front matter configuration
 4. URL query parameters
 5. Template caller `attributes` parameter (highest priority)
@@ -34,7 +34,7 @@ Explicitly set URL query parameter will override the defaults set for a page or 
 
 If an effect accepts boolean values, only setting the parameter name without a value in the URL will set it to `true`.
 
-Without any settings in your `hugo.toml` `imageEffects` defaults to
+Without any settings in your project configuration, `imageEffects` defaults to
 
 {{< multiconfig >}}
 imageEffects.border = false

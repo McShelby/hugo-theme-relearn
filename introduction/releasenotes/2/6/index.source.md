@@ -1,16 +1,15 @@
-+++
-title = 'Version 2.6'
-type = 'releasenotes'
-weight = -6
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.81.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.81.0
+title: Version 2.6
+type: releasenotes
+weight: -6
+---
 
 ## 2.6.0 (2021-10-21) {#2-6-0}
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} Your site can now be served from a subdirectory if you set `baseURL` in your `hugo.toml`. See the [documentation](configuration/publishing/deployment) for a detailed example.
+- {{% badge style="new" %}}New{{% /badge %}} Your site can now be served from a subdirectory if you set `baseURL` in your project configuration. See the [documentation](configuration/publishing/deployment) for a detailed example.

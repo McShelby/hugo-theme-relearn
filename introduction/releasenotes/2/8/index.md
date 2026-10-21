@@ -10,4 +10,4 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} The theme now supports favicons served from `static/images/` named as `favicon` or `logo` in SVG, PNG or ICO format [out of the box](configuration/branding/logo#changing-the-favicon). An overridden partial `layouts/partials/favicon.html` may not be necessary anymore in most cases.
 
-- {{% badge style="new" %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your `hugo.toml`. For an example see [the example configuration](configuration/reference).
+- {{% badge style="new" %}}New{{% /badge %}} You can hide the table of contents menu for the whole site by setting the `disableToc` option in your project configuration. For an example see [the example configuration](configuration/reference).

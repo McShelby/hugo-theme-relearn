@@ -4,4 +4,4 @@
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} Your site can now be served from a subdirectory if you set `baseURL` in your `hugo.toml`. See the [documentation](configuration/publishing/deployment) for a detailed example.
+- {{% badge style="new" %}}New{{% /badge %}} Your site can now be served from a subdirectory if you set `baseURL` in your project configuration. See the [documentation](configuration/publishing/deployment) for a detailed example.

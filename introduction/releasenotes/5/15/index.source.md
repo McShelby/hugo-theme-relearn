@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.15'
-type = 'releasenotes'
-weight = -15
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.95.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.95.0
+title: Version 5.15
+type: releasenotes
+weight: -15
+---
 
 ## 5.15.0 (2023-05-29) {#5-15-0}
 

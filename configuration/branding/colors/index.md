@@ -1,10 +1,10 @@
 # Colors
 
-The Relearn theme offers color variants to change your site's appearance. Each color variant contains of a CSS file and optional settings in your `hugo.toml`.
+The Relearn theme offers color variants to change your site's appearance. Each color variant contains of a CSS file and optional settings in your project configuration.
 
 You can use the [shipped variants](#shipped-variants), [customize them](#modifying-variants), or create your own. The [interactive variant generator](configuration/branding/generator) can help you with this.
 
-Once set up in `hugo.toml`, you can switch variants using the selector at the bottom of the menu.
+Once set up in your project configuration, you can switch variants using the selector at the bottom of the menu.
 
 ## Shipped Variants
 
@@ -225,11 +225,11 @@ In case you like a shipped variant but only want to tweak some aspects, you have
 
 1. Copy and change
 
-    You can copy the shipped variant file from the theme's `themes/hugo-theme-relearn/assets/css` directory to the site's `assets/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards, you can use it in your `hugo.toml` by the chosen name.
+    You can copy the shipped variant file from the theme's `themes/hugo-theme-relearn/assets/css` directory to the site's `assets/css` directory and either store it with the same name or give it a new name. Edit the settings and save the new file. Afterwards, you can use it in your project configuration by the chosen name.
 
 2. Create and import
 
-    You can create a new variant file in the site's `assets/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards, you can use it in your `hugo.toml` by the chosen name.
+    You can create a new variant file in the site's `assets/css` directory and give it a new name. Import the shipped variant, add the settings you want to change and save the new file. Afterwards, you can use it in your project configuration by the chosen name.
 
     For example, you want to use the `relearn-light` variant but want to change the syntax highlighting schema to the one used in the `neon` variant. For that, create a new `assets/css/theme-my-branding.css` in your site's directory and add the following lines:
 
@@ -243,7 +243,7 @@ In case you like a shipped variant but only want to tweak some aspects, you have
     }
     ````
 
-    Afterwards, put this in your `hugo.toml` to use your new variant:
+    Afterwards, put this in your project configuration to use your new variant:
 
     {{< multiconfig file=hugo section=params >}}
     themeVariant = 'my-branding'

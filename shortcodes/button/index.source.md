@@ -1,8 +1,10 @@
-+++
-categories = ['howto', 'reference']
-description = 'Clickable buttons'
-title = 'Button'
-+++
+---
+categories:
+- howto
+- reference
+description: Clickable buttons
+title: Button
+---
 
 The `button` shortcode displays a clickable button with adjustable color, title and icon.
 
@@ -329,7 +331,7 @@ If what you show can also be hidden by other means than the button, your script 
 
 #### Button within a `form` Element
 
-To use native HTML elements in your Markdown, add this in your `hugo.toml`
+To use native HTML elements in your Markdown, add this in your project configuration
 
 {{< multiconfig file=hugo >}}
 [markup.goldmark.renderer]

@@ -4,9 +4,9 @@
 
 ### Change
 
-- {{% badge style="change" %}}Change{{% /badge %}} [With the proper settings](configuration/publishing/deployment) in your `hugo.toml` your page is now servable from the local file system using `file://` URLs.
+- {{% badge style="change" %}}Change{{% /badge %}} [With the proper settings](configuration/publishing/deployment) in your project configuration your page is now servable from the local file system using `file://` URLs.
 
-  Please note that the searchbox will only work for this if you reconfigure your outputformat for the home page in your `hugo.toml` from `json` to `search`. The now deprecated `json` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
+  Please note that the searchbox will only work for this if you reconfigure your outputformat for the home page in your project configuration from `json` to `search`. The now deprecated `json` outputformat still works as before, so there is no need to reconfigure your installation if it is only served from `http://` or `https://`.
 
 - {{% badge style="change" %}}Change{{% /badge %}} The [`button` shortcode](shortcodes/button) has a new parameter `target` to set the destination frame/window for the URL to open. If not given, it defaults to a new window/tab for external URLs or is not set at all for internal URLs. Previously even internal URLs where opened in a new window/tab.
 

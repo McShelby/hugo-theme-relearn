@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.17'
-type = 'releasenotes'
-weight = -17
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.95.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.95.0
+title: Version 5.17
+type: releasenotes
+weight: -17
+---
 
 ## 5.17.0 (2023-06-22) {#5-17-0}
 
@@ -17,7 +16,7 @@ weight = -17
 
   The copy-to-clipboard button for code blocks will now only be displayed if the reader hovers the code block.
 
-  If you dislike this new behavior you can turn it off and revert to the old behavior by adding `[params] disableHoverBlockCopyToClipBoard=true` to your `hugo.toml`.
+  If you dislike this new behavior you can turn it off and revert to the old behavior by setting `params.disableHoverBlockCopyToClipBoard` to `true` in your project configuration.
 
 ### New
 

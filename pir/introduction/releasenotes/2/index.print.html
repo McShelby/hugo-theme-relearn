@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
+    <meta name="generator" content="Relearn 9.3.0+7eb48ba9132507b47ecce2f7dc9d84e8669e03b9">
     <meta name="description" content="2.9.0 (2021-11-19) Break&#39;n Break&#39;n This release removes th&#39; themes implementat&#39;n o&#39; ref/relref &#39;n favor fer Hugo’s standard implementat&#39;n. This be because o&#39; inconsistencies wit&#39; th&#39; themes implementat&#39;n. In advantage, yer project becomes standard compliant an&#39; exchang&#39;n this theme &#39;n yer project t&#39; some other theme will be effortless.
 In a standard compliant form ye must not link t&#39; th&#39; *.md file but t&#39; its logical name. You’ll see, referenc&#39;n other planks becomes much easier. All three types result &#39;n th&#39; same reference:
 Type Non-Standard Standard Branch bundle configuration/reference/_index.md configuration/reference Leaf bundle configuration/reference/index.md configuration/reference Plank configuration/reference.md configuration/reference If you’ve linked from a plank o&#39; one language t&#39; a plank o&#39; another language, conversion be a bit more difficult but Cap&#39;n Hugo got ye covered as well.
@@ -52,7 +52,7 @@ Ye may see errors on th&#39; console after th&#39; update &#39;n th&#39; form o&
 ERROR 2021/11/19 22:29:10 [en] REF_NOT_FOUND: Ref &#34;configuration/reference/_index.md&#34;: &#34;hugo-theme-relearn\docs\content\_index.en.md:19:22&#34;: plank not found In this case, ye must apply one o&#39; two options:
 Start up a text editor wit&#39; regular expression support fer search an&#39; replace. Search fer (ref\s&#43;&#34;[^&#34;]*?)(?:/_index|/index)?(?:\.md)?(#[^&#34;]*?)?&#34; an&#39; replace it by $1$2&#34; &#39;n all *.md files. This be th&#39; recommended choice.
 Copy th&#39; old implementat&#39;n files theme/hugo-theme-relearn/layouts/shortcode/ref.html an&#39; theme/hugo-theme-relearn/layouts/shortcode/relref.html t&#39; yer own projects layouts/shortcode/ref.html an&#39; layouts/shortcode/relref.html respectively. This be not recommended as yer project will still rely on non-standard behavior afterwards.">
-    <meta itemprop="wordCount" content="1050">
+    <meta itemprop="wordCount" content="1067">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 2 :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/2/index.html" rel="alternate" hreflang="x-default">
@@ -68,7 +68,7 @@ Copy th&#39; old implementat&#39;n files theme/hugo-theme-relearn/layouts/shortc
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.8b75632e8db88e67bb1086ce317142436b0621c57069df9778c0ed7c7b726e81.js"
+      "indexFile": "searchindex.pir.min.23a35c6205be36ccedef0dcbca1601b6909c6f50b5777c6dc871b83997c7aaa2.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -345,7 +345,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Th' theme now supports favicons served from <code>static/images/</code> named as <code>favicon</code> or <code>logo</code> 'n SVG, PNG or ICO format <a href="/hugo-theme-relearn/pir/configuration/branding/logo/index.html#changing-the-favicon">out o' th' box</a>. An overridden partial <code>layouts/partials/favicon.html</code> may not be necessary anymore 'n most cases.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Ye can hide th' table o' contents menu fer th' whole ship by sett'n th' <code>disableToc</code> option 'n yer <code>hugo.toml</code>. For an example see <a href="/hugo-theme-relearn/pir/configuration/reference/index.html">th' example configurat'n</a>.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Ye can hide th' table o' contents menu fer th' whole ship by sett'n th' <code>disableToc</code> option 'n yer project configurat'n. For an example see <a href="/hugo-theme-relearn/pir/configuration/reference/index.html">th' example configurat'n</a>.</p>
 </li>
 </ul>
 <hr>
@@ -359,7 +359,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <h2 id="2-6-0">2.6.0 (2021-10-21)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="new-2">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Yer ship can now be served from a subdirectory if ye set <code>baseURL</code> 'n yer <code>hugo.toml</code>. See th' <a href="/hugo-theme-relearn/pir/configuration/publishing/deployment/index.html">documentat'n</a> fer a detailed example.
+<li><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Yer ship can now be served from a subdirectory if ye set <code>baseURL</code> 'n yer project configurat'n. See th' <a href="/hugo-theme-relearn/pir/configuration/publishing/deployment/index.html">documentat'n</a> fer a detailed example.
 </li>
 </ul>
 <hr>
@@ -378,10 +378,10 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <h3 id="new-3">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Hidden planks be displayed by default 'n their accord'n tags plank. Ye can now turn off this behavior by sett'n <code>disableTagHiddenPages=true</code> 'n yer <code>hugo.toml</code>.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Hidden planks be displayed by default 'n their accord'n tags plank. Ye can now turn off this behavior by sett'n <code>disableTagHiddenPages</code> t' <code>true</code> 'n yer project configurat'n.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Ye can define th' expansion state o' yer menus fer th' whole ship by sett'n th' <code>alwaysopen</code> option 'n yer <code>hugo.toml</code>. Please see further <a href="/hugo-theme-relearn/pir/configuration/sidebar/menus/index.html#expand-state-of-submenus">documentat'n</a> fer poss'ble values an' default behavior.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Ye can define th' expansion state o' yer menus fer th' whole ship by sett'n th' <code>alwaysopen</code> option 'n yer project configurat'n. Please see further <a href="/hugo-theme-relearn/pir/configuration/sidebar/menus/index.html#expand-state-of-submenus">documentat'n</a> fer poss'ble values an' default behavior.</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> New front matter <code>ordersectionsby</code> option t' change immediate children sort'n 'n menu an' <code>children</code> shortcode. Poss'ble values be <code>title</code> or <code>weight</code>.</p>
@@ -405,7 +405,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <h2 id="2-2-0">2.2.0 (2021-09-09)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="new-5">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Hidden planks be displayed by default 'n th' sitemap generated by Cap'n Hugo an' be therefore vis'ble fer search engine index'n. Ye can now turn off this behavior by sett'n <code>disableSeoHiddenPages=true</code> 'n yer <code>hugo.toml</code>.
+<li><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Hidden planks be displayed by default 'n th' sitemap generated by Cap'n Hugo an' be therefore vis'ble fer search engine index'n. Ye can now turn off this behavior by sett'n <code>disableSeoHiddenPages</code> t' <code>true</code> 'n yer project configurat'n.
 </li>
 </ul>
 <hr>
@@ -421,7 +421,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <h3 id="new-6">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Hidden planks be indexed fer th' ship search by default. Ye can now turn off this behavior by sett'n <code>disableSearchHiddenPages=true</code> 'n yer <code>hugo.toml</code>.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Hidden planks be indexed fer th' ship search by default. Ye can now turn off this behavior by sett'n <code>disableSearchHiddenPages</code> t' <code>true</code> 'n yer project configurat'n.</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> If a search term be found 'n an <code>expand</code> shortcode, th' expand will be opened.</p>
@@ -450,7 +450,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/2/index.html">ch
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> If hidden planks be accessed directly by typ'n their URL, they will be exposed 'n th' menu.</p>
 </li>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> A plank without a <code>title</code> will be treated as <code>hidden=true</code>.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> A plank without a <code>title</code> will be treated as if <code>hidden</code> was set t' <code>true</code>.</p>
 </li>
 </ul>
 <h3 id="new-7">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>

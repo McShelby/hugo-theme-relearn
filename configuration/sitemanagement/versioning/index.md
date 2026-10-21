@@ -10,12 +10,12 @@ If you want to have more control, where the version switcher is positioned or yo
 
 Assume, you have written a documentation for an app. At some point you are a releasing a new major version. This new version requires enhanced documentation while the older documentation must still be available for users of the older app version.
 
-Your content resides in the directory `content` of your project. The current URL of your site (the value set in `baseURL` in your `hugo.toml`) is `https://example.com/`. When done, the URL of the latest version of your site should not change. The archived version of your site should be available at the URL `https://example.com/v1.0.0/`.
+Your content resides in the directory `content` of your project. The current URL of your site (the value set in `baseURL` in your project configuration) is `https://example.com/`. When done, the URL of the latest version of your site should not change. The archived version of your site should be available at the URL `https://example.com/v1.0.0/`.
 
 To setup versioning, you have to do the following steps:
 
 1. Copy the directory `content` to a new directory `content-v1.0.0` for the archived version
-2. Prepare your `hugo.toml` for versioning.
+2. Prepare your project configuration for versioning.
     - add all available `versions`
     - add information, which of these versions is the latest by setting `defaultContentVersion` (here to `v2.0.0`)
     - mount each content directory to the version it belongs to
@@ -47,7 +47,7 @@ To setup versioning, you have to do the following steps:
 **A few things to note here:**
 
 - the version switcher shows the names of your versions as they are configured
-- the default version is generated to the root of your site, all other versions into a subdirectory named like the version; set Hugo's `defaultContentVersionInSubdir=true` if you want the default version in a subdirectory, too
+- the default version is generated to the root of your site, all other versions into a subdirectory named like the version; set Hugo's `defaultContentVersionInSubdir` to `true` if you want the default version in a subdirectory, too
 - once you define a mount, Hugo no longer applies its default mounts for that component; if your project has further mounts, keep them in the list
 - only content, layouts and static files can be mounted for a version; everything else, like your configuration and the theme, is shared by all versions
 - the source of a mount is not limited to your project and can also be a directory of a different checkout of your version control system
@@ -61,7 +61,7 @@ See Hugo's documentation for the [version configuration](https://gohugo.io/confi
 At some point, your version 2 of the app may be deprecated, too, as you've released a new version 3.
 
 1. Copy the directory `content` to a new directory `content-v2.0.0` for the new archived version
-2. Add the new version to your `hugo.toml`
+2. Add the new version to your project configuration
     - add the new version to the `versions`
     - change `defaultContentVersion` to the new version (here to `v3.0.0`)
     - change the mount of `content` to the new version and add a mount for the new archived version
@@ -163,7 +163,7 @@ Unlike the version switcher, such a link does not follow aliases. The page has t
 
 {{% badge style="option" %}}Option{{% /badge %}} If visitors navigate to an archived version of your site, they will see a versioning warning at the top of each page.
 
-You can disable it be setting the `disableVersioningWarning` option to `true` in your `hugo.toml`.
+You can disable it be setting the `disableVersioningWarning` option to `true` in your project configuration.
 
 {{< multiconfig file=hugo section=params >}}
 disableVersioningWarning = true
@@ -210,5 +210,5 @@ To migrate
 
 - bring the content of your separate projects into one project and mount it as shown in the [example above](#example-versioning-an-existing-nonversioned-site)
 - name Hugo's `versions` in a way that the subdirectories of your archived versions stay the same, so links from other sites into your archived versions don't break
-- remove `versions`, `version` and `versionIndexURL` from the `params` of your `hugo.toml`
+- remove `versions`, `version` and `versionIndexURL` from the `params` of your project configuration
 - deploy all versions from the one build and stop deploying your archived versions separately

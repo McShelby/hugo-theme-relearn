@@ -1,9 +1,11 @@
-+++
-categories = ['explanation', 'howto']
-description = 'Adding Custom Output Formats'
-title = 'Output Formats'
-weight = 7
-+++
+---
+categories:
+- explanation
+- howto
+description: Adding Custom Output Formats
+title: Output Formats
+weight: 7
+---
 
 Hugo can display your content in different [formats](https://gohugo.io/configuration/output-formats/) like HTML, JSON, Google AMP, etc. To do this, templates must be provided.
 
@@ -17,7 +19,7 @@ Suppose you want to be able to send your articles as HTML formatted emails. The 
 
 Therefore we add a new output format called `email` that outputs HTML and assembles a completely custom HTML document structure.
 
-1. Add the output format to your `hugo.toml`
+1. Add the output format to your project configuration
 
     {{< multiconfig file=hugo >}}
     [outputFormats]

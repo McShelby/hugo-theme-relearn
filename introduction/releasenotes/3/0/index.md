@@ -10,7 +10,7 @@
 
 - {{% badge style="breaking" %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
-  This change will only affect your installation if you've not set the `themeVariant` parameter in your `hugo.toml`. [If you still want to use the Learn color variant](configuration/branding/colors#theme-variant), you have to explicitly set `themeVariant="learn"` in your `hugo.toml`.
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your project configuration. [If you still want to use the Learn color variant](configuration/branding/colors#theme-variant), you have to explicitly set `themeVariant` to `learn` in your project configuration.
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it cannot be reconfigured as Internet Explorer does not support CSS variables.
 
@@ -30,6 +30,6 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator](configuration/branding/generator). This feature will not work with Internet Explorer 11.
 
-- {{% badge style="new" %}}New{{% /badge %}} You can now configure multiple color variants in your `hugo.toml`. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](configuration/branding/colors#multiple-variants) for configuration.
+- {{% badge style="new" %}}New{{% /badge %}} You can now configure multiple color variants in your project configuration. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](configuration/branding/colors#multiple-variants) for configuration.
 
   Note, that the new variant selector will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant selector will not be displayed with Internet Explorer 11.

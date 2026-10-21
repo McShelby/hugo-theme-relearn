@@ -1,12 +1,12 @@
 # Options Reference
 
-This page explains how to configure the Relearn theme in your `hugo.toml` file.
+This page explains how to configure the Relearn theme in your project configuration.
 
 In addition to [Hugo's standard options](https://gohugo.io/getting-started/configuration/#all-configuration-settings), the Relearn theme offers extra settings listed here.
 
 Throughout the documentation, theme-specific options are marked with a {{% badge style="option" %}}Option{{% /badge %}} badge.
 
-Add theme options to the `params` section of your `hugo.toml`. For example:
+Add theme options to the `params` section of your project configuration. For example:
 
 {{< multiconfig file=hugo section=params >}}
 math = true
@@ -21,12 +21,12 @@ math = true
 Here's a list of all available options with example values. Default values are described in the [annotated example](#annotated-configuration-options) below in each option's documentation.
 
 {{< multiconfig file=hugo section=params >}}
-{{% include "config/_default/params.toml" %}}
+{{% include "config/_default/params.yaml" %}}
 {{< /multiconfig >}}
 
 ## Annotated Configuration Options
 
-````toml {title="hugo.toml"}
-[params]
-{{% include "config/_default/params.toml" %}}
+````yaml {title="hugo.yaml"}
+params:
+{{% include "config/_default/params.yaml" %}}
 ````

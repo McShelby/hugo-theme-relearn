@@ -1,13 +1,12 @@
-+++
-title = 'Version 2.0'
-type = 'releasenotes'
-weight = 0
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.65.0'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.65.0
+title: Version 2.0
+type: releasenotes
+weight: 0
+---
 
 ## 2.0.0 (2021-08-28) {#2-0-0}
 
@@ -23,7 +22,7 @@ weight = 0
 
 - {{% badge style="change" %}}Change{{% /badge %}} If hidden pages are accessed directly by typing their URL, they will be exposed in the menu.
 
-- {{% badge style="change" %}}Change{{% /badge %}} A page without a `title` will be treated as `hidden=true`.
+- {{% badge style="change" %}}Change{{% /badge %}} A page without a `title` will be treated as if `hidden` was set to `true`.
 
 ### New
 

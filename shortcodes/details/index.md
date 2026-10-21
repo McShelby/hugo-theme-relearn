@@ -97,7 +97,7 @@ The content is rendered as Markdown on its own, apart from the rest of your page
 
 - A footnote defined inside of the content is listed inside of the section instead of at the end of your page, and a footnote defined outside of it can not be referenced.
 - A heading inside of the content doesn't show up in the table of contents.
-- With `goldmark.renderer.unsafe=false` (which is the default if you don't set it), HTML inside of the content is removed. This includes the HTML written by other shortcodes you call in there.
+- With `markup.goldmark.renderer.unsafe` set to `false` (which is the default if you don't set it), HTML inside of the content is removed. This includes the HTML written by other shortcodes you call in there.
 
 If the content is HTML already or contains other shortcodes, set `raw=true`. The content is then written as it is and no Markdown is rendered.
 
@@ -115,4 +115,4 @@ If the content is HTML already or contains other shortcodes, set `raw=true`. The
 
 Call the shortcode with `{{</* details */>}}` as shown on this page. This works regardless of your configuration.
 
-A call with `{{%/* details */%}}` writes its HTML into the Markdown of your page. With `goldmark.renderer.unsafe=false` the whole section is removed.
+A call with `{{%/* details */%}}` writes its HTML into the Markdown of your page. With `markup.goldmark.renderer.unsafe` set to `false` the whole section is removed.

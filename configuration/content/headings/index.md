@@ -2,11 +2,11 @@
 
 Headings can have anchor links that appear when you hover over them.
 
-You can change what happens when you click the anchor icon in your `hugo.toml` file. By default, all options are turned on. If you turn off all options, no anchor icon will show up when you hover.
+You can change what happens when you click the anchor icon in your project configuration. By default, all options are turned on. If you turn off all options, no anchor icon will show up when you hover.
 
 ## Copy Anchor Links
 
-{{% badge style="option" %}}Option{{% /badge %}} Set `disableAnchorCopy=true` to prevent copying the anchor link when you click the icon.
+{{% badge style="option" %}}Option{{% /badge %}} Set `disableAnchorCopy` to `true` to prevent copying the anchor link when you click the icon.
 
 {{< multiconfig file=hugo section=params >}}
 disableAnchorCopy = true
@@ -14,7 +14,7 @@ disableAnchorCopy = true
 
 ## Scroll to Heading
 
-{{% badge style="option" %}}Option{{% /badge %}} Set `disableAnchorScrolling=true` to stop the page from scrolling to the heading when you click the anchor icon.
+{{% badge style="option" %}}Option{{% /badge %}} Set `disableAnchorScrolling` to `true` to stop the page from scrolling to the heading when you click the anchor icon.
 
 {{< multiconfig file=hugo section=params >}}
 disableAnchorScrolling = true

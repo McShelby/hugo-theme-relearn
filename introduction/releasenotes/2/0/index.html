@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
+    <meta name="generator" content="Relearn 9.3.0+7eb48ba9132507b47ecce2f7dc9d84e8669e03b9">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="2.0.0 (2021-08-28) Change Change Syntax highlighting was switched to the built in Hugo mechanism. You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation
 Change In the predefined stylesheets there was a typo and --MENU-HOME-LINK-HOVERED-color must be changed to --MENU-HOME-LINK-HOVER-color. You don’t need to change anything in your custom color stylesheet as the old name will be used as a fallback.
 Change --MENU-HOME-LINK-color and --MENU-HOME-LINK-HOVER-color were missing in the documentation. You should add them to your custom stylesheets if you want to override the defaults.
 Change Arrow navigation and children shortcode were ignoring setting for ordersectionsby. This is now changed and may result in different sorting order of your sub pages.
 Change If hidden pages are accessed directly by typing their URL, they will be exposed in the menu.
-Change A page without a title will be treated as hidden=true.">
+Change A page without a title will be treated as if hidden was set to true.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
@@ -21,7 +21,7 @@ Change In the predefined stylesheets there was a typo and --MENU-HOME-LINK-HOVER
 Change --MENU-HOME-LINK-color and --MENU-HOME-LINK-HOVER-color were missing in the documentation. You should add them to your custom stylesheets if you want to override the defaults.
 Change Arrow navigation and children shortcode were ignoring setting for ordersectionsby. This is now changed and may result in different sorting order of your sub pages.
 Change If hidden pages are accessed directly by typing their URL, they will be exposed in the menu.
-Change A page without a title will be treated as hidden=true.">
+Change A page without a title will be treated as if hidden was set to true.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/2/0/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 2.0 :: Hugo Relearn Theme">
@@ -30,7 +30,7 @@ Change In the predefined stylesheets there was a typo and --MENU-HOME-LINK-HOVER
 Change --MENU-HOME-LINK-color and --MENU-HOME-LINK-HOVER-color were missing in the documentation. You should add them to your custom stylesheets if you want to override the defaults.
 Change Arrow navigation and children shortcode were ignoring setting for ordersectionsby. This is now changed and may result in different sorting order of your sub pages.
 Change If hidden pages are accessed directly by typing their URL, they will be exposed in the menu.
-Change A page without a title will be treated as hidden=true.">
+Change A page without a title will be treated as if hidden was set to true.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
@@ -41,8 +41,8 @@ Change In the predefined stylesheets there was a typo and --MENU-HOME-LINK-HOVER
 Change --MENU-HOME-LINK-color and --MENU-HOME-LINK-HOVER-color were missing in the documentation. You should add them to your custom stylesheets if you want to override the defaults.
 Change Arrow navigation and children shortcode were ignoring setting for ordersectionsby. This is now changed and may result in different sorting order of your sub pages.
 Change If hidden pages are accessed directly by typing their URL, they will be exposed in the menu.
-Change A page without a title will be treated as hidden=true.">
-    <meta itemprop="wordCount" content="213">
+Change A page without a title will be treated as if hidden was set to true.">
+    <meta itemprop="wordCount" content="218">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 2.0 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/2/0/index.html" rel="alternate" hreflang="x-default">
@@ -57,7 +57,7 @@ Change A page without a title will be treated as hidden=true.">
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.7ab8d63bceef614c25dfb04c52b907737ed1f39aa32b20f0372d6c95e673f126.js"
+      "indexFile": "searchindex.en.min.34b4115aa077f06f4b80afa781b237a89f2f5405b3d91f6e0940025f72d7362c.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -173,7 +173,7 @@ Change A page without a title will be treated as hidden=true.">
         <div id="R-scrollbar" aria-hidden="true"><div id="R-scrollbar-thumb"></div></div>
         <div class="R-sidebarmenu R-shortcutmenu-main default-animation">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="parent " data-nav-id="/hugo-theme-relearn/introduction/index.html"><label><input type="checkbox" checked><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Introduction</span></label><a class="padding default-animation" href="/hugo-theme-relearn/introduction/index.html"><i class='fa-fw fas fa-star'></i> Introduction<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
+            <li class="parent " data-nav-id="/hugo-theme-relearn/introduction/index.html"><label><input type="checkbox" checked><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Introduction</span></label><a class="padding default-animation" href="/hugo-theme-relearn/introduction/index.html"><i class="fa-fw fas fa-star"></i> Introduction<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/introduction/quickstart/index.html"><a class="padding" href="/hugo-theme-relearn/introduction/quickstart/index.html">Getting Started<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/introduction/upgrade/index.html"><a class="padding" href="/hugo-theme-relearn/introduction/upgrade/index.html">Upgrade<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="parent " data-nav-id="/hugo-theme-relearn/introduction/releasenotes/index.html"><label><input type="checkbox" checked><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu What&#39;s New</span></label><a class="padding default-animation" href="/hugo-theme-relearn/introduction/releasenotes/index.html">What&#39;s New<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
@@ -195,7 +195,7 @@ Change A page without a title will be treated as hidden=true.">
             <li class="" data-nav-id="/hugo-theme-relearn/introduction/changelog/3/index.html"><a class="padding" href="/hugo-theme-relearn/introduction/changelog/3/index.html">Version 3<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/introduction/changelog/2/index.html"><a class="padding" href="/hugo-theme-relearn/introduction/changelog/2/index.html">Version 2<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/introduction/changelog/1/index.html"><a class="padding" href="/hugo-theme-relearn/introduction/changelog/1/index.html">Version 1<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li></ul></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/configuration/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Configuration</span></label><a class="padding default-animation" href="/hugo-theme-relearn/configuration/index.html"><i class='fa-fw fas fa-gears'></i> Configuration<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
+            <li class="" data-nav-id="/hugo-theme-relearn/configuration/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Configuration</span></label><a class="padding default-animation" href="/hugo-theme-relearn/configuration/index.html"><i class="fa-fw fas fa-gears"></i> Configuration<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/configuration/sitemanagement/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Site Management</span></label><a class="padding default-animation" href="/hugo-theme-relearn/configuration/sitemanagement/index.html">Site Management<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/configuration/sitemanagement/structure/index.html"><a class="padding" href="/hugo-theme-relearn/configuration/sitemanagement/structure/index.html">Directory Structure<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/configuration/sitemanagement/multilingual/index.html"><a class="padding" href="/hugo-theme-relearn/configuration/sitemanagement/multilingual/index.html">Multilingual<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
@@ -238,7 +238,7 @@ Change A page without a title will be treated as hidden=true.">
             <li class="" data-nav-id="/hugo-theme-relearn/configuration/publishing/frontmattercms/index.html"><a class="padding" href="/hugo-theme-relearn/configuration/publishing/frontmattercms/index.html">VS Code Front Matter CMS<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/configuration/publishing/shortcuts/index.html"><a class="padding" href="/hugo-theme-relearn/configuration/publishing/shortcuts/index.html">Keyboard Shortcuts<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li>
             <li class="" data-nav-id="/hugo-theme-relearn/configuration/reference/index.html"><a class="padding" href="/hugo-theme-relearn/configuration/reference/index.html">Options Reference<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/authoring/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Authoring</span></label><a class="padding default-animation" href="/hugo-theme-relearn/authoring/index.html"><i class='fa-fw fab fa-markdown'></i> Authoring<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
+            <li class="" data-nav-id="/hugo-theme-relearn/authoring/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Authoring</span></label><a class="padding default-animation" href="/hugo-theme-relearn/authoring/index.html"><i class="fa-fw fab fa-markdown"></i> Authoring<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/authoring/structure/index.html"><a class="padding" href="/hugo-theme-relearn/authoring/structure/index.html">Directory Structure<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/authoring/frontmatter/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Front Matter</span></label><a class="padding default-animation" href="/hugo-theme-relearn/authoring/frontmatter/index.html">Front Matter<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/authoring/frontmatter/designs/index.html"><a class="padding" href="/hugo-theme-relearn/authoring/frontmatter/designs/index.html">Page Designs<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
@@ -253,7 +253,7 @@ Change A page without a title will be treated as hidden=true.">
             <li class="" data-nav-id="/hugo-theme-relearn/authoring/linking/linkeffects/index.html"><a class="padding" href="/hugo-theme-relearn/authoring/linking/linkeffects/index.html">Link Effects<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/authoring/linking/imageeffects/index.html"><a class="padding" href="/hugo-theme-relearn/authoring/linking/imageeffects/index.html">Image Effects<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li>
             <li class="" data-nav-id="/hugo-theme-relearn/authoring/taxterm/index.html"><a class="padding" href="/hugo-theme-relearn/authoring/taxterm/index.html">Taxonomy / Term Pages<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li></ul></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Shortcodes</span></label><a class="padding default-animation" href="/hugo-theme-relearn/shortcodes/index.html"><i class='fa-fw fas fa-shapes'></i> Shortcodes<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
+            <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Shortcodes</span></label><a class="padding default-animation" href="/hugo-theme-relearn/shortcodes/index.html"><i class="fa-fw fas fa-shapes"></i> Shortcodes<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/badge/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/badge/index.html">Badge<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/button/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/button/index.html">Button<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/shortcodes/callout/index.html"><a class="padding" href="/hugo-theme-relearn/shortcodes/callout/index.html">Callout<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
@@ -277,8 +277,8 @@ Change A page without a title will be treated as hidden=true.">
           <ul class="space collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/exampleSite/about/index.html"><a class="padding" href="/hugo-theme-relearn/exampleSite/about/index.html"><i class="fa-fw fas fa-anchor"></i> Example Site<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="https://github.com/McShelby/hugo-theme-relearn"><a class="padding" href="https://github.com/McShelby/hugo-theme-relearn" rel="external" target="_self"><i class="fa-fw fab fa-github"></i> GitHub Repo<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/showcase/index.html"><a class="padding" href="/hugo-theme-relearn/showcase/index.html"><i class='fa-fw fas fa-camera'></i> Showcases<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
-            <li class="" data-nav-id="/hugo-theme-relearn/more/credits/index.html"><a class="padding" href="/hugo-theme-relearn/more/credits/index.html"><i class='fa-fw fas fa-bullhorn'></i> Credits<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/showcase/index.html"><a class="padding" href="/hugo-theme-relearn/showcase/index.html"><i class="fa-fw fas fa-camera"></i> Showcases<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
+            <li class="" data-nav-id="/hugo-theme-relearn/more/credits/index.html"><a class="padding" href="/hugo-theme-relearn/more/credits/index.html"><i class="fa-fw fas fa-bullhorn"></i> Credits<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/tags/index.html"><a class="padding" href="/hugo-theme-relearn/tags/index.html"><i class="fa-fw fas fa-tags"></i> Tags<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
             <li class="" data-nav-id="/hugo-theme-relearn/categories/index.html"><label><input type="checkbox"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i><span class="a11y-only">Submenu Categories</span></label><a class="padding default-animation" href="/hugo-theme-relearn/categories/index.html"><i class="fa-fw fas fa-layer-group"></i> Categories<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a><ul class="collapsible-menu">
             <li class="" data-nav-id="/hugo-theme-relearn/categories/explanation/index.html"><a class="padding" href="/hugo-theme-relearn/categories/explanation/index.html">Explanation<i class="fa-fw fas fa-check read-icon" aria-hidden="true"></i></a></li>
@@ -360,7 +360,7 @@ Change A page without a title will be treated as hidden=true.">
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/7354bd9152a44606d4b7a84fc2830c51c4f817ca" title="Relearn 9.3.0&#43;7354bd9152a44606d4b7a84fc2830c51c4f817ca"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/7eb48ba9132507b47ecce2f7dc9d84e8669e03b9" title="Relearn 9.3.0&#43;7eb48ba9132507b47ecce2f7dc9d84e8669e03b9"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -467,7 +467,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/2/0/index.html">chan
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> If hidden pages are accessed directly by typing their URL, they will be exposed in the menu.</p>
 </li>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> A page without a <code>title</code> will be treated as <code>hidden=true</code>.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> A page without a <code>title</code> will be treated as if <code>hidden</code> was set to <code>true</code>.</p>
 </li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>

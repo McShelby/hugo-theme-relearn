@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
+    <meta name="generator" content="Relearn 9.3.0+7eb48ba9132507b47ecce2f7dc9d84e8669e03b9">
     <meta name="description" content="How to apply effects to your links">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Link Effects :: Cap&#39;n Hugo Relearrrn Theme">
     <meta itemprop="description" content="How to apply effects to your links">
-    <meta itemprop="wordCount" content="532">
+    <meta itemprop="wordCount" content="537">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,LinkEffects">
     <title>Link Effects :: Cap&#39;n Hugo Relearrrn Theme</title>
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.8b75632e8db88e67bb1086ce317142436b0621c57069df9778c0ed7c7b726e81.js"
+      "indexFile": "searchindex.pir.min.23a35c6205be36ccedef0dcbca1601b6909c6f50b5777c6dc871b83997c7aaa2.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -207,44 +207,44 @@
     </tr>
     <tr>
       <td>target</td>
-      <td>Whether t' show th' link 'n a separate browser tab.<br><br>- <code>false</code>: shown 'n th' same tab<br>- <em>&lt;string&gt;</em>: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target" rel="external" target="_self">a valid <code>a</code> <code>target</code> value</a><br><br>If th' URL be external an' <a href="/hugo-theme-relearn/pir/authoring/frontmatter/linking/index.html#opening-links"><code>externalLinkTarget</code> be set</a>, it replaces th' value o' th' link effect configured on th' same level (eg. 'n yer <code>hugo.toml</code> or 'n th' page&rsquo;s front matter). Nervertheless th' result'n value can still be overwritten by th' URL query parameter.</td>
+      <td>Whether t' show th' link 'n a separate browser tab.<br><br>- <code>false</code>: shown 'n th' same tab<br>- <em>&lt;string&gt;</em>: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target" rel="external" target="_self">a valid <code>a</code> <code>target</code> value</a><br><br>If th' URL be external an' <a href="/hugo-theme-relearn/pir/authoring/frontmatter/linking/index.html#opening-links"><code>externalLinkTarget</code> be set</a>, it replaces th' value o' th' link effect configured on th' same level (eg. 'n yer project configurat'n or 'n th' page&rsquo;s front matter). Nervertheless th' result'n value can still be overwritten by th' URL query parameter.</td>
     </tr>
   </tbody>
 </table>
 <p>One way t' use them be t' add them as URL query parameter t' each individual link.</p>
-<p>This can become cumbersome t' be done consistently fer th' whole ship. Instead, ye can <a href="/hugo-theme-relearn/pir/configuration/customization/linkeffects/index.html">configure th' defaults</a> 'n yer <code>hugo.toml</code> as well as overrid'n these defaults 'n a page&rsquo;s front matter.</p>
+<p>This can become cumbersome t' be done consistently fer th' whole ship. Instead, ye can <a href="/hugo-theme-relearn/pir/configuration/customization/linkeffects/index.html">configure th' defaults</a> 'n yer project configurat'n as well as overrid'n these defaults 'n a page&rsquo;s front matter.</p>
 <h2 id="effect-priority">Effect Priority<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>Link effects be applied 'n th' follow'n priority order (lowest t' highest):</p>
 <ol>
 <li>Built-in defaults</li>
-<li>Site-wide configurat'n 'n <code>hugo.toml</code></li>
+<li>Site-wide configurat'n 'n yer project configurat'n</li>
 <li>Plank front matter configurat'n</li>
 <li>URL query parameters</li>
 <li>Template caller <code>attributes</code> parameter (highest priority)</li>
 </ol>
 <p>Explicitly set URL query parameter will override th' defaults set fer a plank or yer ship. When call'n th' link partial directly from templates, effects passed via th' <code>attributes</code> parameter have th' highest priority an' will override all other sett'ns.</p>
 <p>If an effect accepts boolean values, only sett'n th' parameter name without a value 'n th' URL will set it t' <code>true</code>.</p>
-<p>Without any sett'ns 'n yer <code>hugo.toml</code> <code>linkEffects</code> defaults t'</p>
+<p>Without any sett'ns 'n yer project configurat'n, <code>linkEffects</code> defaults t'</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-d6d592545d095695538af40c1626e83c-tab" aria-controls="R-tab-id-d6d592545d095695538af40c1626e83c" aria-selected="true"
-        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
-      >
-        <span class="tab-nav-text">toml</span>
-      </button>
-      <button
-        role="tab" id="R-tab-id-c24b52e23c260a1845bc465e70802057-tab" aria-controls="R-tab-id-c24b52e23c260a1845bc465e70802057" aria-selected="false"
+        role="tab" id="R-tab-id-495e22f81b34b37256e91f7b486def29-tab" aria-controls="R-tab-id-495e22f81b34b37256e91f7b486def29" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-1f67443483a9a1a43a7c0865b0368ac6-tab" aria-controls="R-tab-id-1f67443483a9a1a43a7c0865b0368ac6" aria-selected="false"
+        role="tab" id="R-tab-id-f6661723e452cfc85f5971a38e8985c0-tab" aria-controls="R-tab-id-f6661723e452cfc85f5971a38e8985c0" aria-selected="false"
+        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+      >
+        <span class="tab-nav-text">toml</span>
+      </button>
+      <button
+        role="tab" id="R-tab-id-c2db09ecab515fcfe44eb7e6a2f10142-tab" aria-controls="R-tab-id-c2db09ecab515fcfe44eb7e6a2f10142" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -254,19 +254,9 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d6d592545d095695538af40c1626e83c" role="tabpanel" aria-labelledby="R-tab-id-d6d592545d095695538af40c1626e83c-tab"
-      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-      class="tab-content tab-panel-style cstyle code active codify">
-      <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">linkEffects</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">download</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">target</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
-      </div>
-    </div>
-    <div
-      id="R-tab-id-c24b52e23c260a1845bc465e70802057" role="tabpanel" aria-labelledby="R-tab-id-c24b52e23c260a1845bc465e70802057-tab"
+      id="R-tab-id-495e22f81b34b37256e91f7b486def29" role="tabpanel" aria-labelledby="R-tab-id-495e22f81b34b37256e91f7b486def29-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-      class="tab-content tab-panel-style cstyle code codify">
+      class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">linkEffects</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">download</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
@@ -274,7 +264,17 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1f67443483a9a1a43a7c0865b0368ac6" role="tabpanel" aria-labelledby="R-tab-id-1f67443483a9a1a43a7c0865b0368ac6-tab"
+      id="R-tab-id-f6661723e452cfc85f5971a38e8985c0" role="tabpanel" aria-labelledby="R-tab-id-f6661723e452cfc85f5971a38e8985c0-tab"
+      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+      class="tab-content tab-panel-style cstyle code codify">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">linkEffects</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">download</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">target</span> <span class="p">=</span> <span class="kc">false</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      id="R-tab-id-c2db09ecab515fcfe44eb7e6a2f10142" role="tabpanel" aria-labelledby="R-tab-id-c2db09ecab515fcfe44eb7e6a2f10142-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -294,21 +294,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-aeed895de84ec6dd5b11336ea8b716b5-tab" aria-controls="R-tab-id-aeed895de84ec6dd5b11336ea8b716b5" aria-selected="true"
-        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
-      >
-        <span class="tab-nav-text">toml</span>
-      </button>
-      <button
-        role="tab" id="R-tab-id-7821006eb5117a370af78f177e15347d-tab" aria-controls="R-tab-id-7821006eb5117a370af78f177e15347d" aria-selected="false"
+        role="tab" id="R-tab-id-0cf93eb683e29a38a6e221e73ffcafc4-tab" aria-controls="R-tab-id-0cf93eb683e29a38a6e221e73ffcafc4" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-f59f50b4afd6d65cba471719e0a18b87-tab" aria-controls="R-tab-id-f59f50b4afd6d65cba471719e0a18b87" aria-selected="false"
+        role="tab" id="R-tab-id-d020e40e6ac7988d9dbc148a7ff1f966-tab" aria-controls="R-tab-id-d020e40e6ac7988d9dbc148a7ff1f966" aria-selected="false"
+        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+      >
+        <span class="tab-nav-text">toml</span>
+      </button>
+      <button
+        role="tab" id="R-tab-id-fa7c44d0acf835b17b6679126fd88a4c-tab" aria-controls="R-tab-id-fa7c44d0acf835b17b6679126fd88a4c" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -318,21 +318,9 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-aeed895de84ec6dd5b11336ea8b716b5" role="tabpanel" aria-labelledby="R-tab-id-aeed895de84ec6dd5b11336ea8b716b5-tab"
-      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-      class="tab-content tab-panel-style cstyle code active codify">
-      <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">linkEffects</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">target</span> <span class="p">=</span> <span class="s1">&#39;_blank&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
-      </div>
-    </div>
-    <div
-      id="R-tab-id-7821006eb5117a370af78f177e15347d" role="tabpanel" aria-labelledby="R-tab-id-7821006eb5117a370af78f177e15347d-tab"
+      id="R-tab-id-0cf93eb683e29a38a6e221e73ffcafc4" role="tabpanel" aria-labelledby="R-tab-id-0cf93eb683e29a38a6e221e73ffcafc4-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-      class="tab-content tab-panel-style cstyle code codify">
+      class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
@@ -342,7 +330,19 @@
       </div>
     </div>
     <div
-      id="R-tab-id-f59f50b4afd6d65cba471719e0a18b87" role="tabpanel" aria-labelledby="R-tab-id-f59f50b4afd6d65cba471719e0a18b87-tab"
+      id="R-tab-id-d020e40e6ac7988d9dbc148a7ff1f966" role="tabpanel" aria-labelledby="R-tab-id-d020e40e6ac7988d9dbc148a7ff1f966-tab"
+      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+      class="tab-content tab-panel-style cstyle code codify">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="err">+++</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">linkEffects</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">target</span> <span class="p">=</span> <span class="s1">&#39;_blank&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">+++</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      id="R-tab-id-fa7c44d0acf835b17b6679126fd88a4c" role="tabpanel" aria-labelledby="R-tab-id-fa7c44d0acf835b17b6679126fd88a4c-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -358,12 +358,12 @@
   </div>
 </div>
 <p>Or by explicitly override sett'ns by URL query parameter</p>
-<div class="tab-panel" data-tab-group="R-tabs-e9c6869a4225eedd43636091974bd774">
+<div class="tab-panel" data-tab-group="R-tabs-f4bf4817e67ddfcc903ffc206f952adb">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-55871c23f5375ca036ddcf85f70bfc71-tab" aria-controls="R-tab-id-55871c23f5375ca036ddcf85f70bfc71" aria-selected="true"
+        role="tab" id="R-tab-id-df33f910fab585c9dbdf52e0ee4f28b0-tab" aria-controls="R-tab-id-df33f910fab585c9dbdf52e0ee4f28b0" aria-selected="true"
         data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -373,7 +373,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-55871c23f5375ca036ddcf85f70bfc71" role="tabpanel" aria-labelledby="R-tab-id-55871c23f5375ca036ddcf85f70bfc71-tab"
+      id="R-tab-id-df33f910fab585c9dbdf52e0ee4f28b0" role="tabpanel" aria-labelledby="R-tab-id-df33f910fab585c9dbdf52e0ee4f28b0-tab"
       data-tab-item="R-tab-e6b391a8d2c4d45902a23a8b6585703d"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -387,21 +387,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-fcb9fbcf29c5888e0c4e4da2dfc8ad53-tab" aria-controls="R-tab-id-fcb9fbcf29c5888e0c4e4da2dfc8ad53" aria-selected="true"
-        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
-      >
-        <span class="tab-nav-text">toml</span>
-      </button>
-      <button
-        role="tab" id="R-tab-id-58f2fb5e1ae22664fb436f7d538cedc3-tab" aria-controls="R-tab-id-58f2fb5e1ae22664fb436f7d538cedc3" aria-selected="false"
+        role="tab" id="R-tab-id-86a88c178f53b8b98df063bd8b29afec-tab" aria-controls="R-tab-id-86a88c178f53b8b98df063bd8b29afec" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+        class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-f71363b427ab7d484cf55c8322769dcf-tab" aria-controls="R-tab-id-f71363b427ab7d484cf55c8322769dcf" aria-selected="false"
+        role="tab" id="R-tab-id-9ddfab2dc7ff233c7e81bc007d02e1d8-tab" aria-controls="R-tab-id-9ddfab2dc7ff233c7e81bc007d02e1d8" aria-selected="false"
+        data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+        class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
+      >
+        <span class="tab-nav-text">toml</span>
+      </button>
+      <button
+        role="tab" id="R-tab-id-d7a67b85900f617f957cd88ad229b54a-tab" aria-controls="R-tab-id-d7a67b85900f617f957cd88ad229b54a" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -411,19 +411,9 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-fcb9fbcf29c5888e0c4e4da2dfc8ad53" role="tabpanel" aria-labelledby="R-tab-id-fcb9fbcf29c5888e0c4e4da2dfc8ad53-tab"
-      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
-      class="tab-content tab-panel-style cstyle code active codify">
-      <div class="tab-content-text">
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">linkEffects</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">download</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">target</span> <span class="p">=</span> <span class="s1">&#39;_self&#39;</span></span></span></code></pre></div>
-      </div>
-    </div>
-    <div
-      id="R-tab-id-58f2fb5e1ae22664fb436f7d538cedc3" role="tabpanel" aria-labelledby="R-tab-id-58f2fb5e1ae22664fb436f7d538cedc3-tab"
+      id="R-tab-id-86a88c178f53b8b98df063bd8b29afec" role="tabpanel" aria-labelledby="R-tab-id-86a88c178f53b8b98df063bd8b29afec-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
-      class="tab-content tab-panel-style cstyle code codify">
+      class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">linkEffects</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">download</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
@@ -431,7 +421,17 @@
       </div>
     </div>
     <div
-      id="R-tab-id-f71363b427ab7d484cf55c8322769dcf" role="tabpanel" aria-labelledby="R-tab-id-f71363b427ab7d484cf55c8322769dcf-tab"
+      id="R-tab-id-9ddfab2dc7ff233c7e81bc007d02e1d8" role="tabpanel" aria-labelledby="R-tab-id-9ddfab2dc7ff233c7e81bc007d02e1d8-tab"
+      data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
+      class="tab-content tab-panel-style cstyle code codify">
+      <div class="tab-content-text">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">linkEffects</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">download</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">target</span> <span class="p">=</span> <span class="s1">&#39;_self&#39;</span></span></span></code></pre></div>
+      </div>
+    </div>
+    <div
+      id="R-tab-id-d7a67b85900f617f957cd88ad229b54a" role="tabpanel" aria-labelledby="R-tab-id-d7a67b85900f617f957cd88ad229b54a-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -447,12 +447,12 @@
 </div>
 <h2 id="template-usage">Template Usage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>When call'n th' link partial directly from templates, ye can pass effect preferences via th' <code>attributes</code> parameter. Effect names can be prefixed wit' <code>no</code> t' dis'ble them.</p>
-<div class="tab-panel" data-tab-group="R-tabs-8cf4b6b0d3edb54a604b6c3294c6a7db">
+<div class="tab-panel" data-tab-group="R-tabs-5beba494e2d557ce099514d89a894277">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-e49cc876877b02fdf5768cc7f4b5b0b5-tab" aria-controls="R-tab-id-e49cc876877b02fdf5768cc7f4b5b0b5" aria-selected="true"
+        role="tab" id="R-tab-id-74cfbd284ff52f0b289ea292d886f5af-tab" aria-controls="R-tab-id-74cfbd284ff52f0b289ea292d886f5af" aria-selected="true"
         data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -462,7 +462,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e49cc876877b02fdf5768cc7f4b5b0b5" role="tabpanel" aria-labelledby="R-tab-id-e49cc876877b02fdf5768cc7f4b5b0b5-tab"
+      id="R-tab-id-74cfbd284ff52f0b289ea292d886f5af" role="tabpanel" aria-labelledby="R-tab-id-74cfbd284ff52f0b289ea292d886f5af-tab"
       data-tab-item="R-tab-278c491bdd8a53618c149c4ac790da34"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">

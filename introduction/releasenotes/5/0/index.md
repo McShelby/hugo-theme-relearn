@@ -16,9 +16,9 @@
 
   Your existing markdown files will still work like before and therefore you don't need to change anything after the upgrade. Nevertheless, it is recommended to adapt your existing markdown files to the new way as follows:
 
-  - for your home page, add the front matter parameter `archetype = "home"` and remove the leading heading
+  - for your home page, set the front matter parameter `archetype` to `home` and remove the leading heading
 
-  - for all files containing the deprecated front matter parameter `chapter = true`, replace it with `archetype = "chapter"` and remove the leading headings
+  - for all files containing the deprecated front matter parameter `chapter` set to `true`, replace it with `archetype` set to `chapter` and remove the leading headings
 
 - {{% badge style="change" %}}Change{{% /badge %}} The front matter options `pre` / `post` were renamed to `menuPre` / `menuPost`. The old options will still be used if the new options aren't set. Therefore you don't need to change anything after the upgrade.
 

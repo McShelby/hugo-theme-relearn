@@ -312,7 +312,7 @@ content:
     content: "Get the theme from its repository."
   - icon: "gears"
     hint: "Configure"
-    content: "Set the options in your `hugo.toml`."
+    content: "Set the options in your project configuration."
 {{% /multishortcode %}}
 
 ### Understanding `style` and `color` Behavior

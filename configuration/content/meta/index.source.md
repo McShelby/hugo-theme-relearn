@@ -1,10 +1,15 @@
-+++
-categories = ['howto']
-description = 'Display page meta information with your content'
-options = ['dateFormat', 'hideAuthorName', 'hideAuthorEmail', 'hideAuthorDate']
-title = 'Page Meta Information'
-weight = 3
-+++
+---
+categories:
+- howto
+description: Display page meta information with your content
+options:
+- dateFormat
+- hideAuthorName
+- hideAuthorEmail
+- hideAuthorDate
+title: Page Meta Information
+weight: 3
+---
 
 The theme supports a default display of page meta information in `layouts/partials/content-footer.html`.
 

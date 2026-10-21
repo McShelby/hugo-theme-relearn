@@ -1,9 +1,11 @@
-+++
-categories = ['howto', 'reference']
-description = 'Reference of CommonMark and Markdown extensions'
-title = 'Markdown Syntax'
-weight = 4
-+++
+---
+categories:
+- howto
+- reference
+description: Reference of CommonMark and Markdown extensions
+title: Markdown Syntax
+weight: 4
+---
 
 Let's face it: Writing content for the web is tiresome. WYSIWYG editors help alleviate this task, but they generally result in horrible code, or worse yet, ugly web pages.
 
@@ -28,7 +30,7 @@ John Gruber, the author of Markdown, puts it like this:
 
 ## Standard and Extensions
 
-If not otherwise noted, the shown examples adhere to the [CommonMark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your `hugo.toml` or are built into the theme:
+If not otherwise noted, the shown examples adhere to the [CommonMark](https://commonmark.org/help/) standard. In addition the theme supports the following extensions that [can be activated](https://gohugo.io/getting-started/configuration-markup/#goldmark) in your project configuration or are built into the theme:
 
 - {{% badge style="gfm" %}}GFM{{% /badge %}} Extension on top of standard Markdown adhering to [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
@@ -146,7 +148,7 @@ Blockquotes can also be nested.
 
 With `href` you can give the address the quotation is taken from. It turns the displayed author and source into a link and is written to the `cite` attribute of the quotation for machines to read. It is resolved like any other link, so it can also point to a page of your site.
 
-This requires `markup.goldmark.parser.attribute.block=true` in your `hugo.toml`. The attributes are ignored for the alerts and callouts below.
+This requires `markup.goldmark.parser.attribute.block` set to `true` in your project configuration. The attributes are ignored for the alerts and callouts below.
 
 ````md
 > Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula.
@@ -261,7 +263,7 @@ I am rendered with _italicized text_
 
 You can mark text in the predefined accent color of your stylesheet.
 
-{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your project configuration
 
 ````md
 ==Parts== of this text ==are marked!==
@@ -280,7 +282,7 @@ You can mark text in the predefined accent color of your stylesheet.
 
 You can mark text additions to existing text.
 
-{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your project configuration
 
 ````md
 The ++hot, new++ stuff
@@ -335,7 +337,7 @@ Three consecutive dots `...` are replaced by an ellipsis **...** entity.
 
 You can also use  subscript and superscript text. For more complex stuff, you can use the [`math` shortcode](shortcodes/math).
 
-{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your `hugo.toml`
+{{% badge style="hugo" %}}Hugo{{% /badge %}} You can [activate this through the _Hugo Extra Extension_](https://github.com/gohugoio/hugo-goldmark-extensions?tab=readme-ov-file#extras-extension) in your project configuration
 
 ````md
 How many liters H~2~O fit into 1dm^3^?
@@ -913,7 +915,7 @@ Add the query parameter `lightbox=false` to the image link to disable the lightb
 > ![Homercat](https://octodex.github.com/images/homercat.png?width=20vw&lightbox=false)
 
 > [!note]
-> If you want to wrap an image in a link and `lightbox=true` is your default setting, you have to explicitly disable the lightbox to avoid it to hijacking your link like:
+> If you want to wrap an image in a link and your default for `lightbox` is `true`, you have to explicitly disable the lightbox to avoid it to hijacking your link like:
 >
 > ````md
 > [![Homercat](https://octodex.github.com/images/homercat.png?lightbox=false)](https://octodex.github.com/#homercat)

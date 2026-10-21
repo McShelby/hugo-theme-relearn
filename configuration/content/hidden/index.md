@@ -12,7 +12,7 @@ By default, hidden pages are only hidden from human visitors. Search engines can
 
 ## Hide from Search
 
-{{% badge style="option" %}}Option{{% /badge %}} To remove hidden pages from search results, use `disableSearchHiddenPages=true`.
+{{% badge style="option" %}}Option{{% /badge %}} To remove hidden pages from search results, set `disableSearchHiddenPages` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableSearchHiddenPages = true
@@ -20,7 +20,7 @@ disableSearchHiddenPages = true
 
 ## Hide from Search Engines
 
-{{% badge style="option" %}}Option{{% /badge %}} To hide pages from search engines by removing them from the sitemap, RSS feed and [make them `nofollow`](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#directives), use `disableSeoHiddenPages=true`.
+{{% badge style="option" %}}Option{{% /badge %}} To hide pages from search engines by removing them from the sitemap, RSS feed and [make them `nofollow`](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#directives), set `disableSeoHiddenPages` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableSeoHiddenPages = true
@@ -28,7 +28,7 @@ disableSeoHiddenPages = true
 
 ## Hide from Taxonomies
 
-{{% badge style="option" %}}Option{{% /badge %}} To prevent hidden pages from appearing on taxonomy and term pages, use `disableTagHiddenPages=true`. If this makes a term's count zero, an empty term page will still be created but not linked.
+{{% badge style="option" %}}Option{{% /badge %}} To prevent hidden pages from appearing on taxonomy and term pages, set `disableTagHiddenPages` to `true`. If this makes a term's count zero, an empty term page will still be created but not linked.
 
 {{< multiconfig file=hugo section=params >}}
 disableTagHiddenPages = true

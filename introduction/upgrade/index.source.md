@@ -1,9 +1,10 @@
-+++
-categories = ['tutorial']
-description = 'How to upgrade your Relearn site'
-title = 'Upgrade'
-weight = 2
-+++
+---
+categories:
+- tutorial
+description: How to upgrade your Relearn site
+title: Upgrade
+weight: 2
+---
 
 Consider Hugo and the theme one unit. If you upgrade the theme, in many cases, you need also to upgrade Hugo and vice versa.
 

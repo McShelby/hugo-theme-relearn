@@ -4,4 +4,4 @@
 
 ### Change
 
-- {{% badge style="change" %}}Change{{% /badge %}} If you've set `collapsibleMenu = true` in your `hugo.toml`, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.
+- {{% badge style="change" %}}Change{{% /badge %}} If you've set `collapsibleMenu` to `true` in your project configuration, the menu will be expanded if a search term is found in a collapsed submenu. The menu will return to its initial collapse state once the search term does not match any submenus.

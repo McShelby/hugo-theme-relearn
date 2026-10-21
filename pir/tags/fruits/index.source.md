@@ -1,4 +1,4 @@
-+++
-title = 'Fruits (hidden)'
-+++
+---
+title: Fruits (hidden)
+---
 {{< piratify >}}

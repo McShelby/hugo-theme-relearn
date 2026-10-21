@@ -1,11 +1,17 @@
-+++
-aliases = '/shortcodes/swagger'
-categories = ['howto', 'reference']
-description = 'UI for your OpenAPI / Swagger specifications'
-frontmatter = ['openapi.errorlevel', 'openapi.force']
-options = ['openapi.errorlevel', 'openapi.force']
-title = 'OpenAPI'
-+++
+---
+aliases: /shortcodes/swagger
+categories:
+- howto
+- reference
+description: UI for your OpenAPI / Swagger specifications
+frontmatter:
+- openapi.errorlevel
+- openapi.force
+options:
+- openapi.errorlevel
+- openapi.force
+title: OpenAPI
+---
 
 The `openapi` shortcode displays your OpenAPI / Swagger specifications using the [Swagger UI](https://github.com/swagger-api/swagger-ui) library.
 
@@ -54,7 +60,7 @@ In case you want to use a different version of the Swagger UI library, store its
 
 {{% badge style=`option` %}}Option{{% /badge %}} {{% badge style=`frontmatter` %}}Front Matter{{% /badge %}} The Swagger UI library will be loaded if the page contains an `openapi` shortcode or codefence.
 
-You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force=true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
+You can force loading the Swagger UI library if no shortcode or codefence was used by setting `openapi.force` to `true`. If a shortcode or codefence was found, the option has no effect. This comes handy in case you are using scripting to render a spec.
 
 {{< multiconfig section=params >}}
 openapi.force = true

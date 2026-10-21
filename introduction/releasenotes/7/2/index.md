@@ -21,7 +21,7 @@
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} As a fallout of fixing the flashing issue, you can now minify the bundled stylesheets by setting the [`minify` parameter](configuration/publishing/stableoutput/#disabling-assets-minification) in your `hugo.toml`. Without configuring this parameter, the theme will minify the stylesheets for production (`hugo`) but not for development (`hugo server`).
+- {{% badge style="new" %}}New{{% /badge %}} As a fallout of fixing the flashing issue, you can now minify the bundled stylesheets by setting the [`minify` parameter](configuration/publishing/stableoutput/#disabling-assets-minification) in your project configuration. Without configuring this parameter, the theme will minify the stylesheets for production (`hugo`) but not for development (`hugo server`).
 
 - {{% badge style="new" %}}New{{% /badge %}} The [`notice` shortcode](shortcodes/callout) was improved for accessibility and comes with a [brand new parameter `groupid`](shortcodes/callout#expandable-content-area-with-groupid).
 

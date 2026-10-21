@@ -10,7 +10,7 @@
 
 - {{% badge style="change" %}}Change{{% /badge %}} In this release the Mermaid JavaScript library will only be loaded on demand if the page contains a Mermaid shortcode or is using Markdown codefences. This changes the behavior of `disableMermaid` config option as follows: If a Mermaid shortcode or Markdown codefence is found, the option will be ignored and Mermaid will be loaded regardlessly.
 
-  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or Markdown codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid=false` in your front matter to force the library to be loaded. See the [theme variant generator](configuration/branding/generator) of the docs for an example.
+  The option is still useful in case you are using scripting to set up your graph. In this case no shortcode or Markdown codefence is involved and the library is not loaded by default. In this case you can set `disableMermaid` to `false` in your front matter to force the library to be loaded. See the [theme variant generator](configuration/branding/generator) of the docs for an example.
 
 ### New
 

@@ -1,9 +1,11 @@
-+++
-aliases = '/shortcodes/card'
-categories = ['howto', 'reference']
-description = 'Show content in cards'
-title = 'Cards'
-+++
+---
+aliases: /shortcodes/card
+categories:
+- howto
+- reference
+description: Show content in cards
+title: Cards
+---
 
 The `cards` shortcode displays your content in a grouped set of cards.
 

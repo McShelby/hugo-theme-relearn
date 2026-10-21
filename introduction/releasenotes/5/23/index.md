@@ -4,7 +4,7 @@
 
 ### Change
 
-- {{% badge style="change" %}}Change{{% /badge %}} With {{% badge style="hugo" %}}0.120.0{{% /badge %}} the author settings move into the `[params]` array in your `hugo.toml`. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
+- {{% badge style="change" %}}Change{{% /badge %}} With {{% badge style="hugo" %}}0.120.0{{% /badge %}} the author settings move into the `params` of your project configuration. Because this collides with the previous way, the theme expected author information, it now adheres to Hugo standards and prints out a warning during built if something is wrong.
 
   Change your previous setting from
 
@@ -18,7 +18,7 @@
 	author.name = 'Hugo'
 	{{< /multiconfig >}}
 
-- {{% badge style="change" %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off in your `hugo.toml` by adding `disableTermBreadcrumbs=true`.
+- {{% badge style="change" %}}Change{{% /badge %}} Taxonomy [term pages](https://gohugo.io/content-management/taxonomies#add-custom-metadata-to-a-taxonomy-or-term) now add the breadcrumb for each listed page. If this gets too crowded for you, you can turn the breadcrumbs off by setting `disableTermBreadcrumbs` to `true` in your project configuration.
 
 ### New
 

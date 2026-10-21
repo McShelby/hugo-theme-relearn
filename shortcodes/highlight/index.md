@@ -38,7 +38,7 @@ The [`tab` shortcode](shortcodes/tabs#single-tab) is also capable of displaying 
 |-----------------------|--------- | -----------------|-------------|
 | **type**              | 1        | _&lt;empty&gt;_  | The language of the code to highlight. Choose from one of the [supported languages](https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages). Case-insensitive. |
 | **title**             |          | _&lt;empty&gt;_  | **Extension**. Arbitrary title for code. This displays the code like a [single tab](shortcodes/tabs#single-tab) if `hl_inline=false` (which is Hugo's default). |
-| **wrap**              |          | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your `hugo.toml` and overwritten via front matter. [See below](#setting-wrap-of-long-lines). |
+| **wrap**              |          | see notes        | **Extension**. When `true` the content may wrap on long lines otherwise it will be scrollable.<br><br>The default value can be set in your project configuration and overwritten via front matter. [See below](#setting-wrap-of-long-lines). |
 | **options**           | 2        | _&lt;empty&gt;_  | An optional, comma-separated list of zero or more [Hugo supported options](https://gohugo.io/functions/highlight/#options) as well as extension parameter from this table. |
 | _**&lt;option&gt;**_  |          | _&lt;empty&gt;_  | Any of [Hugo's supported options](https://gohugo.io/functions/highlight/#options). |
 | _**&lt;content&gt;**_ |          | _&lt;empty&gt;_  | Your code to highlight. |
@@ -61,7 +61,7 @@ If used together with wrapping of long lines, use this recommended settings. Oth
 
 {{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} By default, code will be wrapped if the line is not long enough.
 
-You can disable wrapping by setting `highlightWrap=false` or by setting the [`wrap` parameter](#parameters) individually for each code block.
+You can disable wrapping by setting `highlightWrap` to `false` or by setting the [`wrap` parameter](#parameters) individually for each code block.
 
 {{< multiconfig section=params >}}
 highlightWrap=false
@@ -71,7 +71,7 @@ highlightWrap=false
 
 {{% badge style="option" %}}Option{{% /badge %}} By default inline code has a button to copy the code to the clipboard.
 
-If you want to disable this feature, set `disableInlineCopyToClipBoard=true`.
+If you want to disable this feature, set `disableInlineCopyToClipBoard` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableInlineCopyToClipBoard = true
@@ -81,7 +81,7 @@ disableInlineCopyToClipBoard = true
 
 {{% badge style="option" %}}Option{{% /badge %}} By default block code has a button to copy the code to the clipboard that is only visible on hover.
 
-Set `disableHoverBlockCopyToClipBoard=true` to disable the hover effect and always show the button.
+Set `disableHoverBlockCopyToClipBoard` to `true` to disable the hover effect and always show the button.
 
 {{< multiconfig file=hugo section=params >}}
 disableHoverBlockCopyToClipBoard = true
@@ -95,7 +95,7 @@ You can configure the color style used for code blocks in your [color variants s
 
 ### Line Numbers with Starting Offset
 
-As mentioned above, line numbers in a `table` layout will shift if code is wrapping, so better use `inline`. To make things easier for you, set `lineNumbersInTable = false` in your `hugo.toml` and add `lineNos = true` when calling the shortcode instead of the specific values `table` or `inline`.
+As mentioned above, line numbers in a `table` layout will shift if code is wrapping, so better use `inline`. To make things easier for you, set `markup.highlight.lineNumbersInTable` to `false` in your project configuration and add `lineNos=true` when calling the shortcode instead of the specific values `table` or `inline`.
 
 {{% multishortcode name="highlight" %}}
 lineNos: "true"

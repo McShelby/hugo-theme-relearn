@@ -1,10 +1,10 @@
-+++
-categories = ['reference']
-description = 'All things front matter'
-title = 'Front Matter'
-weight = 2
-
-[params]
-  alwaysopen = false
-+++
+---
+categories:
+- reference
+description: All things front matter
+params:
+  alwaysopen: false
+title: Front Matter
+weight: 2
+---
 {{< piratify >}}

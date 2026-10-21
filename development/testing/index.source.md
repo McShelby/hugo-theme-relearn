@@ -1,9 +1,11 @@
-+++
-categories = ['explanation', 'howto']
-description = 'How to run and extend the automated test suite'
-title = 'Testing'
-weight = 3
-+++
+---
+categories:
+- explanation
+- howto
+description: How to run and extend the automated test suite
+title: Testing
+weight: 3
+---
 
 The test suite lives in the [infra repository](development/developing) and runs against a theme checkout. See [Developing](development/developing) for how the two are wired together.
 

@@ -1,9 +1,11 @@
-+++
-categories = ['explanation', 'howto']
-description = 'How to set up, and how the theme and its tooling are split'
-title = 'Developing'
-weight = 2
-+++
+---
+categories:
+- explanation
+- howto
+description: How to set up, and how the theme and its tooling are split
+title: Developing
+weight: 2
+---
 
 The theme is developed across two repositories.
 

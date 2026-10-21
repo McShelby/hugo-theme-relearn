@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
+    <meta name="generator" content="Relearn 9.3.0+7eb48ba9132507b47ecce2f7dc9d84e8669e03b9">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
+With the new option link.underline set to true, links in your content are underlined, so they are told apart from the text around them by more than their color.
 To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
 As a side effect, the keyboard shortcuts of the theme are now documented as well.
 Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
+For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded to false in your project configuration.
 Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
 If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
 Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
@@ -24,14 +24,14 @@ The expand shortcode still works but issues a deprecation warning for each use. 
 If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
 Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
 The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
+By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output to htmlAndMathml.
 The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
 KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
 Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
 The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
 Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
+The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction set to row by layout set to sidebar-row and direction set to column by layout set to sidebar-column.
+Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your project configuration or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
 Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
@@ -46,11 +46,11 @@ Change The search with the Lunr engine now only looks for similarly written word
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta name="twitter:title" content="Version 9.2 :: Hugo Relearn Theme">
     <meta name="twitter:description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
+With the new option link.underline set to true, links in your content are underlined, so they are told apart from the text around them by more than their color.
 To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
 As a side effect, the keyboard shortcuts of the theme are now documented as well.
 Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
+For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded to false in your project configuration.
 Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
 If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
 Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
@@ -63,14 +63,14 @@ The expand shortcode still works but issues a deprecation warning for each use. 
 If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
 Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
 The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
+By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output to htmlAndMathml.
 The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
 KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
 Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
 The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
 Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
+The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction set to row by layout set to sidebar-row and direction set to column by layout set to sidebar-column.
+Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your project configuration or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
 Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
@@ -84,11 +84,11 @@ Change The search with the Lunr engine now only looks for similarly written word
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 9.2 :: Hugo Relearn Theme">
     <meta property="og:description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
+With the new option link.underline set to true, links in your content are underlined, so they are told apart from the text around them by more than their color.
 To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
 As a side effect, the keyboard shortcuts of the theme are now documented as well.
 Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
+For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded to false in your project configuration.
 Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
 If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
 Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
@@ -101,14 +101,14 @@ The expand shortcode still works but issues a deprecation warning for each use. 
 If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
 Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
 The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
+By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output to htmlAndMathml.
 The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
 KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
 Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
 The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
 Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
+The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction set to row by layout set to sidebar-row and direction set to column by layout set to sidebar-column.
+Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your project configuration or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
 Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
@@ -124,11 +124,11 @@ Change The search with the Lunr engine now only looks for similarly written word
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Version 9.2 :: Hugo Relearn Theme">
     <meta itemprop="description" content="9.2.0 (2026-10-11) Hugo 0.166.0 0.166.0 This release requires a newer Hugo version. Change Change Accessibility is now a supported feature of the theme.
-With the new option link.underline=true, links in your content are underlined, so they are told apart from the text around them by more than their color.
+With the new option link.underline set to true, links in your content are underlined, so they are told apart from the text around them by more than their color.
 To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.
 As a side effect, the keyboard shortcuts of the theme are now documented as well.
 Change The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.
-For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded=false in your hugo.toml.
+For images, this is the new image effect rounded, which is enabled by default. If you want to restore the previous look of your images, set imageEffects.rounded to false in your project configuration.
 Change Markdown tables can now merge cells, using the syntax of Markdown Preview Enhanced. A cell containing only &gt; merges into the cell to its right, a cell containing only ^ into the cell above.
 If one of your tables already has such a cell and should show the character itself, escape it with two backslashes, like \\&gt;.
 Change The new pages shortcode lists pages of your site. Besides the layouts known from the now deprecated children shortcode, it can list descendants, siblings or ancestors, filter them and group and order them by any field or front matter parameter of a page.
@@ -141,14 +141,14 @@ The expand shortcode still works but issues a deprecation warning for each use. 
 If you already use the details shortcode, it now behaves like the one built into Hugo. Its content is rendered as Markdown if called with {{&lt; details &gt;}}, and the title parameter is honored. If your content is HTML or contains other shortcodes, set the new raw=true parameter to have it written as it is.
 Change The math shortcode now renders your formulae using Hugo’s built-in KaTeX while your site is built, instead of the MathJax library in the browser.
 The theme finds your formulae by the delimiters of Hugo’s Passthrough configuration. If your site doesn’t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.
-By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output=&#39;htmlAndMathml&#39;.
+By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set math.output to htmlAndMathml.
 The options mathJaxInitialize and customMathJaxURL are gone. Instead, you can set any KaTeX option in math. If you defined your own macros, move them to math.macros.
 KaTeX doesn’t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.
 Change The front matter params.pages replaces params.children and is now honored on every page, not only on taxonomy and term pages. Together with Hugo’s cascade, you can give all listings of a subtree the same look.
 The former params.children is still honored as long as the children shortcode exists, but using it now prints a warning.
 Change How the logo and title are arranged is now set with the new logo.layout option.
-The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction=&#39;row&#39; by layout=&#39;sidebar-row&#39; and direction=&#39;column&#39; by layout=&#39;sidebar-column&#39;.
-Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your hugo.toml or in the front matter of your pages.
+The logo.direction option is deprecated. It still works, but the theme warns you if you use it. Replace direction set to row by layout set to sidebar-row and direction set to column by layout set to sidebar-column.
+Change The elements of the topbar, like its buttons, are now configured with the topbarstart, topbarmiddle, topbarend and topbarmore options, the same way as the sidebar menus. The breadcrumb is now an element of the new middle area. You can set them in your project configuration or in the front matter of your pages.
 Redefining an area by a template in layouts/partials/topbar/area and calling the theme’s templates in layouts/partials/topbar/button is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in layouts/partials/topbar/element. See the migration instructions.
 Change Versioning now builds on Hugo’s versions. All versions of your site are generated in one build of one project, and the version switcher links directly to the same page in the other versions.
 Links can point to a page in another version of your site with the new version query parameter, like /my-page?version=v1.0.0.
@@ -158,7 +158,7 @@ Change The front matter pre and post, renamed in 5.0.0, now issue a deprecation 
 Change The options customMermaidURL and customOpenapiURL are deprecated. They still work, but the theme warns you if you use them.
 To use a different version of a library, store it in the assets directory of your site, where it replaces the shipped version. See the documentation of the mermaid and openapi shortcodes.
 Change The search with the Lunr engine now only looks for similarly written words if a word of your search term isn’t found as written. Previously, such words were always included and could bury the hits you were asking for.">
-    <meta itemprop="wordCount" content="1468">
+    <meta itemprop="wordCount" content="1491">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.2 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/2/index.html" rel="alternate" hreflang="x-default">
@@ -173,7 +173,7 @@ Change The search with the Lunr engine now only looks for similarly written word
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.7ab8d63bceef614c25dfb04c52b907737ed1f39aa32b20f0372d6c95e673f126.js"
+      "indexFile": "searchindex.en.min.34b4115aa077f06f4b80afa781b237a89f2f5405b3d91f6e0940025f72d7362c.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -348,13 +348,13 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/2/index.html">chan
 <ul>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> <a href="/hugo-theme-relearn/configuration/publishing/accessibility/index.html">Accessibility</a> is now a supported feature of the theme.</p>
-<p>With the new option <code>link.underline=true</code>, links in your content are underlined, so they are told apart from the text around them by more than their color.</p>
+<p>With the new option <code>link.underline</code> set to <code>true</code>, links in your content are underlined, so they are told apart from the text around them by more than their color.</p>
 <p>To make accessibility happen, there were numerous changes, affecting all parts of the theme including the DOM.</p>
 <p>As a side effect, the <a href="/hugo-theme-relearn/configuration/publishing/shortcuts/index.html">keyboard shortcuts</a> of the theme are now documented as well.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The elements of your content, like tables, callouts, tabs, code blocks, blockquotes, Mermaid diagrams and images, now have rounded corners.</p>
-<p>For images, this is the new <a href="/hugo-theme-relearn/authoring/linking/imageeffects/index.html">image effect</a> <code>rounded</code>, which is enabled by default. If you want to restore the previous look of your images, set <code>imageEffects.rounded=false</code> in your <code>hugo.toml</code>.</p>
+<p>For images, this is the new <a href="/hugo-theme-relearn/authoring/linking/imageeffects/index.html">image effect</a> <code>rounded</code>, which is enabled by default. If you want to restore the previous look of your images, set <code>imageEffects.rounded</code> to <code>false</code> in your project configuration.</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Markdown tables can now <a href="/hugo-theme-relearn/authoring/markdown/index.html#merged-cells">merge cells</a>, using the syntax of Markdown Preview Enhanced. A cell containing only <code>&gt;</code> merges into the cell to its right, a cell containing only <code>^</code> into the cell above.</p>
@@ -377,7 +377,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/2/index.html">chan
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The <a href="/hugo-theme-relearn/shortcodes/math/index.html"><code>math</code> shortcode</a> now renders your formulae using Hugo&rsquo;s built-in KaTeX while your site is built, instead of the MathJax library in the browser.</p>
 <p>The theme finds your formulae by the delimiters of Hugo&rsquo;s <a href="/hugo-theme-relearn/shortcodes/math/index.html#passthrough-configuration">Passthrough configuration</a>. If your site doesn&rsquo;t have it yet, add it, otherwise formulae marked by these delimiters are not rendered. With the codefence, shortcode and partial syntax, content without delimiters is rendered as one formula regardless.</p>
-<p>By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set <a href="/hugo-theme-relearn/shortcodes/math/index.html#output-of-the-formulae"><code>math.output='htmlAndMathml'</code></a>.</p>
+<p>By default, formulae are written as MathML and displayed by the browser. If you prefer the look of KaTeX, which is the same in every browser, set <a href="/hugo-theme-relearn/shortcodes/math/index.html#output-of-the-formulae"><code>math.output</code> to <code>htmlAndMathml</code></a>.</p>
 <p>The options <code>mathJaxInitialize</code> and <code>customMathJaxURL</code> are gone. Instead, you can set <a href="/hugo-theme-relearn/shortcodes/math/index.html#providing-options-for-katex">any KaTeX option</a> in <code>math</code>. If you defined your own macros, move them to <code>math.macros</code>.</p>
 <p>KaTeX doesn&rsquo;t know every command of MathJax. A formula it can not render is written as its source and reported as a warning in your build.</p>
 </li>
@@ -387,10 +387,10 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/2/index.html">chan
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> How the logo and title are arranged is now set with the new <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#setting-layout-of-title--logo"><code>logo.layout</code></a> option.</p>
-<p>The <code>logo.direction</code> option is deprecated. It still works, but the theme warns you if you use it. Replace <code>direction='row'</code> by <code>layout='sidebar-row'</code> and <code>direction='column'</code> by <code>layout='sidebar-column'</code>.</p>
+<p>The <code>logo.direction</code> option is deprecated. It still works, but the theme warns you if you use it. Replace <code>direction</code> set to <code>row</code> by <code>layout</code> set to <code>sidebar-row</code> and <code>direction</code> set to <code>column</code> by <code>layout</code> set to <code>sidebar-column</code>.</p>
 </li>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The elements of the topbar, like its buttons, are now <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#defining-topbar-elements">configured</a> with the <code>topbarstart</code>, <code>topbarmiddle</code>, <code>topbarend</code> and <code>topbarmore</code> options, the same way as the sidebar menus. The breadcrumb is now an element of the new <em>middle</em> area. You can set them in your <code>hugo.toml</code> or in the front matter of your pages.</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The elements of the topbar, like its buttons, are now <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#defining-topbar-elements">configured</a> with the <code>topbarstart</code>, <code>topbarmiddle</code>, <code>topbarend</code> and <code>topbarmore</code> options, the same way as the sidebar menus. The breadcrumb is now an element of the new <em>middle</em> area. You can set them in your project configuration or in the front matter of your pages.</p>
 <p>Redefining an area by a template in <code>layouts/partials/topbar/area</code> and calling the theme&rsquo;s templates in <code>layouts/partials/topbar/button</code> is deprecated. Such an area template still defines its area, taking precedence over the options, and the button templates can still be called, but the theme warns you if you use them. The elements now live in <code>layouts/partials/topbar/element</code>. See the <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#migration-for-relearn-9">migration instructions</a>.</p>
 </li>
 <li>
@@ -449,7 +449,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/2/index.html">chan
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The results of the dedicated search page can now be <a href="/hugo-theme-relearn/configuration/sidebar/search/index.html#printing-the-search-results">printed</a>, if your home page has print support activated. The new <code>search.page.outputs</code> option lets you decide this independently of your home page.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> An entry of a Hugo menu can now be <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#page-trees-in-hugo-menus">continued by the tree of the page it links to</a> by setting <code>params.type='page'</code>. For a taxonomy page, this shows all of its terms without listing them in your menu definition.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> An entry of a Hugo menu can now be <a href="/hugo-theme-relearn/configuration/sidebar/menus/index.html#page-trees-in-hugo-menus">continued by the tree of the page it links to</a> by setting <code>params.type</code> to <code>page</code>. For a taxonomy page, this shows all of its terms without listing them in your menu definition.</p>
 </li>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The theme writes no inline JavaScript anymore, so your site can be served with a strict <a href="/hugo-theme-relearn/configuration/publishing/csp/index.html">Content Security Policy</a>. On request, it also adds <a href="/hugo-theme-relearn/configuration/publishing/csp/index.html#subresource-integrity">subresource integrity</a> hashes to its scripts and stylesheets. The <a href="/hugo-theme-relearn/shortcodes/button/index.html#button-with-own-action"><code>button</code></a> and <a href="/hugo-theme-relearn/shortcodes/cards/index.html#card-with-own-action"><code>card</code></a> shortcodes and <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#button">topbar buttons</a> have a new <code>action</code> parameter to run your own code without inline JavaScript.</p>

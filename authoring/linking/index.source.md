@@ -1,11 +1,11 @@
-+++
-categories = ['reference']
-description = 'How to link your content'
-title = 'Linking'
-weight = 5
-
-[params]
-  alwaysopen = false
-+++
+---
+categories:
+- reference
+description: How to link your content
+params:
+  alwaysopen: false
+title: Linking
+weight: 5
+---
 
 {{% pages display="headings" description=true %}}

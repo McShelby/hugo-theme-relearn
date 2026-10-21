@@ -10,7 +10,7 @@ By default, the theme displays a home button between search form and navigation 
 
 ![Default Home Button](home_button_defaults.png?width=18.75rem)
 
-{{% badge style="option" %}}Option{{% /badge %}} To hide the Home button on the left menu, set `disableLandingPageButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} To hide the Home button on the left menu, set `disableLandingPageButton` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableLandingPageButton = true
@@ -39,7 +39,7 @@ For a free configuration of the header menus, see [configuration of the sidebar 
 
 ## History
 
-{{% badge style="option" %}}Option{{% /badge %}} Turn on `showVisitedLinks=true` to see checkmarks next to visited pages in the main menu. This also adds a history clearer button at the bottom of the menu to remove all checkmarks.
+{{% badge style="option" %}}Option{{% /badge %}} Set `showVisitedLinks` to `true` to see checkmarks next to visited pages in the main menu. This also adds a history clearer button at the bottom of the menu to remove all checkmarks.
 
 > [!note]
 > The visited pages will be [stored in the reader's browser](configuration/publishing/storedinformation).

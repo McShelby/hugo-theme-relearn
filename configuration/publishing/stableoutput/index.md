@@ -6,13 +6,13 @@
 
 This isn't a security risk and helps us support you better.
 
-To turn this off, set `disableGeneratorVersion=true`.
+To turn this off, set `disableGeneratorVersion` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableGeneratorVersion = true
 {{< /multiconfig >}}
 
-If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting-started/configuration/#disablehugogeneratorinject), use `disableHugoGeneratorInject=true`.
+If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting-started/configuration/#disablehugogeneratorinject), set `disableHugoGeneratorInject` to `true`.
 
 ## Disabling IDs for Referenced Assets
 
@@ -20,7 +20,7 @@ If you also want to turn off [Hugo's version meta tag](https://gohugo.io/getting
 
 As the hash only changes once the asset itself changes, a rebuild of unchanged content results in unchanged file names. You only need to switch this off if your setup can not deal with file names that change at all.
 
-To disable this, set `disableAssetsBusting=true`.
+To disable this, set `disableAssetsBusting` to `true`.
 
 {{< multiconfig file=hugo section=params >}}
 disableAssetsBusting = true
@@ -32,7 +32,7 @@ disableAssetsBusting = true
 
 This is necessary for the theme to work properly, but it can make comparing outputs between builds difficult.
 
-To turn this off, set `disableRandomIds=true`. Note, that this will result in a non-functional site!.
+To turn this off, set `disableRandomIds` to `true`. Note, that this will result in a non-functional site!.
 
 {{< multiconfig file=hugo section=params >}}
 disableRandomIds = true
@@ -40,7 +40,7 @@ disableRandomIds = true
 
 ## Disabling Assets Minification
 
-{{% badge style="option" %}}Option{{% /badge %}} If `minify=true`, further theme assets will be minified during build. If no value is set, the theme will avoid minification if you have started with `hugo server` and otherwise will minify.
+{{% badge style="option" %}}Option{{% /badge %}} If `minify` is set to `true`, further theme assets will be minified during build. If no value is set, the theme will avoid minification if you have started with `hugo server` and otherwise will minify.
 
 {{< multiconfig file=hugo section=params >}}
 minify = false

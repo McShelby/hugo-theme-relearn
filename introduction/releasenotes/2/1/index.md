@@ -12,7 +12,7 @@
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages=true` in your `hugo.toml`.
+- {{% badge style="new" %}}New{{% /badge %}} Hidden pages are indexed for the site search by default. You can now turn off this behavior by setting `disableSearchHiddenPages` to `true` in your project configuration.
 
 - {{% badge style="new" %}}New{{% /badge %}} If a search term is found in an `expand` shortcode, the expand will be opened.
 

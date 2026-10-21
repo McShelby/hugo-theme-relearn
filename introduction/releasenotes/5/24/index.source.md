@@ -1,13 +1,12 @@
-+++
-title = 'Version 5.24'
-type = 'releasenotes'
-weight = -24
-
-[params]
-  disableToc = false
-  hidden = true
-  minHugoVersion = '0.112.4'
-+++
+---
+params:
+  disableToc: false
+  hidden: true
+  minHugoVersion: 0.112.4
+title: Version 5.24
+type: releasenotes
+weight: -24
+---
 
 ## 5.24.0 (2024-02-28) {#5-24-0}
 
@@ -25,13 +24,13 @@ weight = -24
 
 ### New
 
-- {{% badge style="new" %}}New{{% /badge %}} If the theme cannot resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your `hugo.toml` respectively. By default this condition is silently ignored and the link is written as-is.
+- {{% badge style="new" %}}New{{% /badge %}} If the theme cannot resolve a link to a page or image, you can now generate warnings or errors during build by setting `link.errorlevel` or `image.errorlevel` to either `warning` or `error` in your project configuration respectively. By default this condition is silently ignored and the link is written as-is.
 
-  Please note that a page link will generate false negatives if `uglyURLs=true` and it references an ordinary page before {{% badge style="hugo" %}}0.123.0{{% /badge %}}.
+  Please note that a page link will generate false negatives if `uglyURLs` is set to `true` and it references an ordinary page before {{% badge style="hugo" %}}0.123.0{{% /badge %}}.
 
   Please note that an image link will generate false negatives if the file resides in your `static` directory.
 
-- {{% badge style="new" %}}New{{% /badge %}} You now can configure additional options for every theme variant in your `hugo.toml`. This allows for optional [advanced functionality](configuration/branding/colors#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
+- {{% badge style="new" %}}New{{% /badge %}} You now can configure additional options for every theme variant in your project configuration. This allows for optional [advanced functionality](configuration/branding/colors#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
   The advanced functionality allows you to set an explicit name for a theme variant and now allows for multiple auto mode variants that adjust to the light/dark preference of your OS settings.
 
@@ -47,7 +46,7 @@ weight = -24
 
 - {{% badge style="new" %}}New{{% /badge %}} The `editURL` config parameter is now [overwritable in your pages front matter](authoring/frontmatter/reference). In addition it received more versatility by letting you control where to put the file path into the URL. This is achieved by replacing the variable `${FilePath}` in your URL by the pages file path. You don't need to change anything in your existing configuration as the old way without the replacement variable still works.
 
-- {{% badge style="new" %}}New{{% /badge %}} The themes [config](configuration/reference) and [front matter](authoring/frontmatter/reference) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.toml`.
+- {{% badge style="new" %}}New{{% /badge %}} The themes [config](configuration/reference) and [front matter](authoring/frontmatter/reference) options received a comprehensive documentation update. In addition the theme switched from `config.toml` to `hugo.yaml`.
 
 - {{% badge style="new" %}}New{{% /badge %}} Restored compatibility with Hugo versions {{% badge style="hugo" %}}0.121.0{{% /badge %}} or higher for the [`highlight` shortcode](shortcodes/highlight). This does not change the minimum required Hugo version.
 

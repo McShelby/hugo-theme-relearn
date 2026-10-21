@@ -1,11 +1,12 @@
-+++
-categories = ['howto', 'reference']
-description = 'Boxes to help you structure your page'
-title = 'Notice'
-
-[params]
-  hidden = true
-+++
+---
+categories:
+- howto
+- reference
+description: Boxes to help you structure your page
+params:
+  hidden: true
+title: Notice
+---
 
 > [!warning]
 > This shortcode is deprecated in favor of the new [`callout` shortcode](shortcodes/callout). See [migration instructions](#migration) below.

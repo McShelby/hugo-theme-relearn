@@ -17,7 +17,7 @@ Your topbar contains the following elements. Some of them are configuarable:
 
 ## Table of Contents
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableToc=true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableToc` to `true` to hide the TOC button on all pages. If the button is hidden, also the keyboard shortcut is disabled. This can be overridden in a page's front matter.
 
 {{< multiconfig section=params >}}
 disableToc = true
@@ -25,7 +25,7 @@ disableToc = true
 
 ## Breadcrumbs
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableBreadcrumb=true` to hide the breadcrumb in the topbar.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableBreadcrumb` to `true` to hide the breadcrumb in the topbar.
 
 Further breadcrumbs settings can be found in the [content configuration section](configuration/content/titles).
 
@@ -58,7 +58,7 @@ editURL = 'vscode://file/${BaseDir}/${FilePath}'
 
 ## Markdown Button
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Markdown button if the [Markdown output format](configuration/sitemanagement/outputformats/#markdown-support) is active by setting `disableMarkdownButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Markdown button if the [Markdown output format](configuration/sitemanagement/outputformats/#markdown-support) is active by setting `disableMarkdownButton` to `true`.
 
 {{< multiconfig section=params >}}
 disableMarkdownButton = true
@@ -66,7 +66,7 @@ disableMarkdownButton = true
 
 ## Source Button
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Source button if the [Source output format](configuration/sitemanagement/outputformats/#source-support) is active by setting `disableSourceButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the Source button if the [Source output format](configuration/sitemanagement/outputformats/#source-support) is active by setting `disableSourceButton` to `true`.
 
 {{< multiconfig section=params >}}
 disableSourceButton = true
@@ -74,7 +74,7 @@ disableSourceButton = true
 
 ## Print Button
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the print button if the [print output format](configuration/sitemanagement/outputformats/#print-support) is active by setting `disablePrintButton=true`.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the print button if the [print output format](configuration/sitemanagement/outputformats/#print-support) is active by setting `disablePrintButton` to `true`.
 
 {{< multiconfig section=params >}}
 disablePrintButton = true
@@ -82,7 +82,7 @@ disablePrintButton = true
 
 ## Arrow Navigation
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev=true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} You can hide the previous/next buttons by setting `disableNextPrev` to `true`. If the buttons are hidden, also the keyboard shortcuts are disabled.
 
 {{< multiconfig section=params >}}
 disableNextPrev = true

@@ -15,7 +15,7 @@ If you've followed the [Getting Started](introduction/quickstart) guide, your di
 - themes | folder
   - hugo-theme-relearn | folder
     - ... | folder
-- hugo.toml | file-alt | accent
+- hugo.yaml | file-alt | accent
 ````
 
 Hugo uses a [union file system](https://gohugo.io/getting-started/directory-structure/#union-file-system), which lets you combine multiple directories.

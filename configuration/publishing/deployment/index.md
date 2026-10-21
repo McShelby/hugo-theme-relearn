@@ -10,7 +10,7 @@ No calls to 3rd party servers, no calling home, no tracking. Privacy friendly.
 
 If your server deployment has no special requirements, you can skip this section and use the [standard Hugo options](https://gohugo.io/content-management/urls/).
 
-For special requirements, the theme is capable of different scenarios, requiring the following mandatory settings in your `hugo.toml`. All settings not mentioned in the examples below can be set to your liking.
+For special requirements, the theme is capable of different scenarios, requiring the following mandatory settings in your project configuration. All settings not mentioned in the examples below can be set to your liking.
 
 ### Public Web Server from Root
 
@@ -28,7 +28,7 @@ relativeURLs = false
 If you are still using Hugo's `relref` shortcode (which you shouldn't), you will need [further configuration](configuration/content/linking#patching-the-relref-shortcode).
 
 > [!warning]
-> Don't use a `baseURL` with a subdirectory and `relativeURLs=true` together. [Hugo doesn't apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130) in this case. If you need both, generate your site twice with different settings into separate directories.
+> Don't use a `baseURL` with a subdirectory together with `relativeURLs` set to `true`. [Hugo doesn't apply the `baseURL` correctly](https://github.com/gohugoio/hugo/issues/12130) in this case. If you need both, generate your site twice with different settings into separate directories.
 
 ### Private Web Server (LAN)
 
@@ -53,4 +53,4 @@ relativeURLs = true
 {{< /multiconfig >}}
 
 > [!note]
-> Pages like `sitemap.xml` and `rss.xml`, and social media links will always use absolute URLs. They won't work with `relativeURLs=true`.
+> Pages like `sitemap.xml` and `rss.xml`, and social media links will always use absolute URLs. They won't work with `relativeURLs` set to `true`.

@@ -1,9 +1,10 @@
-+++
-categories = ['howto']
-description = 'How to vary layouts by using page designs'
-title = 'Page Designs'
-weight = 1
-+++
+---
+categories:
+- howto
+description: How to vary layouts by using page designs
+title: Page Designs
+weight: 1
+---
 
 Page designs are used to provide different layouts for your pages.
 
@@ -21,14 +22,14 @@ Regardless of shipped or custom page design, you are using them in the same way.
 	hugo new --kind chapter log/_index.md
     ````
 
-- If you are creating your Markdown files manually, you can achieve the same by just setting `type='chapter'` in the front matter to make your page displayed with the `chapter` page design.
+- If you are creating your Markdown files manually, you can achieve the same by just setting `type` to `chapter` in the front matter to make your page displayed with the `chapter` page design.
 
     {{< multiconfig fm=true file="log/_index.md" >}}
     title = "Captain's Log"
     type = "chapter"
     {{< /multiconfig >}}
 
-If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type='default'` was set.
+If no `type` is set in your front matter or the page design doesn't exist for a given output format, the page is treated as if `type` was set to `default`.
 
 ## Predefined Designs for the HTML Output Format
 

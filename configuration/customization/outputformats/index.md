@@ -12,7 +12,7 @@ Suppose you want to be able to send your articles as HTML formatted emails. The 
 
 Therefore we add a new output format called `email` that outputs HTML and assembles a completely custom HTML document structure.
 
-1. Add the output format to your `hugo.toml`
+1. Add the output format to your project configuration
 
     {{< multiconfig file=hugo >}}
     [outputFormats]
