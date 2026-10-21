@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.0">
+    <meta name="generator" content="Relearn 9.3.0+7354bd9152a44606d4b7a84fc2830c51c4f817ca">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="This chapter contains information only needed for development and maintaining the theme.">
     <meta name="author" content="Sören Weber">
@@ -38,7 +38,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.c181028f9e43f7c900b4f92550fe1c5cdb968a67bcbae9154b907dabd736c1e8.js"
+      "indexFile": "searchindex.en.min.7ab8d63bceef614c25dfb04c52b907737ed1f39aa32b20f0372d6c95e673f126.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -50,8 +50,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.013f374297181916303e3e33a85d4fe2f489bd4070c51c1d239f921a5acf9063.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.989919e65fd710d589d2497dfe84c8fcca80c2265f5c1b9a4f88f2cc292b43ea.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -380,8 +380,8 @@
 </table>
 <p>The rule for deciding where something belongs is a single question: <strong>does somebody installing the theme need this file?</strong> If not, it belongs in the infra repository - unless it can only act from the theme repository. GitHub runs a workflow only in the repository holding it, and a git hook only fires on the checkout it sits in, so those stay put, along with the actions those workflows call.</p>
 
-<div role="note" aria-labelledby="R-box-label-f06e8d9fa31851b3d15b827da43e3645" class="box cstyle callout important">
-  <div id="R-box-label-f06e8d9fa31851b3d15b827da43e3645" class="box-label">
+<div role="note" aria-labelledby="R-box-label-b9b4ea645a8b5d1b2ba2f05be825f010" class="box cstyle callout important">
+  <div id="R-box-label-b9b4ea645a8b5d1b2ba2f05be825f010" class="box-label">
     <i class="fa-fw fas fa-bolt" aria-hidden="true"></i> 
     Where to report
   </div>
@@ -403,8 +403,8 @@
 <p>That serves the documentation site, built with the theme itself, so your changes show up as you save. Swap <code>docs</code> for <code>exampleSite</code> to work against the simpler starting-point site instead.</p>
 <p>This is enough for most changes. If that is what you came to do, stop here.</p>
 
-<div role="note" aria-labelledby="R-box-label-6f9ae7ad965de336b0f77ce2eb8ab2d1" class="box cstyle callout note">
-  <div id="R-box-label-6f9ae7ad965de336b0f77ce2eb8ab2d1" class="box-label">
+<div role="note" aria-labelledby="R-box-label-cce52b447300f47560126af99b4946a3" class="box cstyle callout note">
+  <div id="R-box-label-cce52b447300f47560126af99b4946a3" class="box-label">
     <i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i> 
     Note
   </div>
@@ -428,12 +428,12 @@
 <h3 id="git-hooks">Git Hooks<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>Optional, and independent of which setup you chose - the hooks live in the theme repository, in the <code>.githooks</code> root folder. Documentation for each hook is contained in each file.</p>
 <p>The <code>post-commit</code> hook updates the version number on each commit, which is what makes a build from <code>main</code> distinguishable from a release when debugging user reports. Nothing depends on you having it.</p>
-<div class="tab-panel" data-tab-group="R-tabs-813db3902f5651ac8e248c7f6968909c">
+<div class="tab-panel" data-tab-group="R-tabs-66b16ee58c8c51e13c4a47f105db1040">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-5d7c27a14524d007ba4a76c6b36f9961-tab" aria-controls="R-tab-id-5d7c27a14524d007ba4a76c6b36f9961" aria-selected="true"
+        role="tab" id="R-tab-id-0482171f98967f7b91414cccb522cae3-tab" aria-controls="R-tab-id-0482171f98967f7b91414cccb522cae3" aria-selected="true"
         data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -443,7 +443,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5d7c27a14524d007ba4a76c6b36f9961" role="tabpanel" aria-labelledby="R-tab-id-5d7c27a14524d007ba4a76c6b36f9961-tab"
+      id="R-tab-id-0482171f98967f7b91414cccb522cae3" role="tabpanel" aria-labelledby="R-tab-id-0482171f98967f7b91414cccb522cae3-tab"
       data-tab-item="R-tab-f7180604fa78a35320b04d0d8432a023"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -622,8 +622,8 @@
 <p>A full regeneration also prunes: a stored result no case produces any more is deleted rather than left behind. A filtered run does not, having no way to know whether a result it did not build still exists.</p>
 <p>Commit the regenerated output together with the change that caused it, never as a commit of its own - otherwise the next person cannot tell which change produced which output.</p>
 
-<div role="note" aria-labelledby="R-box-label-8195ec42d8014b2126c56bf53a8a0b3b" class="box cstyle callout warning">
-  <div id="R-box-label-8195ec42d8014b2126c56bf53a8a0b3b" class="box-label">
+<div role="note" aria-labelledby="R-box-label-a740255e26fed4cc06c2a21f173d430c" class="box cstyle callout warning">
+  <div id="R-box-label-a740255e26fed4cc06c2a21f173d430c" class="box-label">
     <i class="fa-fw fas fa-exclamation-triangle" aria-hidden="true"></i> 
     Warning
   </div>
@@ -981,6 +981,7 @@
 <li><code>sbom.cdx.json</code> is attached to that release, so it can be downloaded by version</li>
 <li>a signed build provenance attestation is issued for the <code>sbom.cdx.json</code> at that tag, unless the signing service is unavailable - a release is never held up for it</li>
 <li>the <a href="https://mcshelby.github.io/hugo-theme-relearn/" rel="external" target="_self">official documentation</a> is built and deployed</li>
+<li>the <a href="/hugo-theme-relearn/development/testing/index.html">test suite</a>&rsquo;s baselines of the documentation&rsquo;s file set are regenerated and pushed to the infra repository, so the next scheduled test run passes, and the infra repository is tagged with the release&rsquo;s version; this needs the <code>INFRA_DEPLOY_KEY</code> secret holding the private half of a deploy key with write access to the infra repository</li>
 <li>the version number for the <code>&lt;meta generator&gt;</code> is updated to a temporary and committed (this helps to determine if users are running directly on the main branch or are using releases)</li>
 <li>a new milestone for the next patch release is created (this can later be renamed to a main release if necessary)</li>
 </ul>

@@ -152,6 +152,7 @@ After a successful run of the action
 - `sbom.cdx.json` is attached to that release, so it can be downloaded by version
 - a signed build provenance attestation is issued for the `sbom.cdx.json` at that tag, unless the signing service is unavailable - a release is never held up for it
 - the [official documentation](https://mcshelby.github.io/hugo-theme-relearn/) is built and deployed
+- the [test suite](development/testing)'s baselines of the documentation's file set are regenerated and pushed to the infra repository, so the next scheduled test run passes, and the infra repository is tagged with the release's version; this needs the `INFRA_DEPLOY_KEY` secret holding the private half of a deploy key with write access to the infra repository
 - the version number for the `<meta generator>` is updated to a temporary and committed (this helps to determine if users are running directly on the main branch or are using releases)
 - a new milestone for the next patch release is created (this can later be renamed to a main release if necessary)
 
