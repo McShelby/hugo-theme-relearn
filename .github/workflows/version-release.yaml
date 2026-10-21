@@ -147,6 +147,100 @@ jobs:
           echo "  gh release upload $MILESTONE sbom.cdx.json --clobber"
           exit 1
 
+  # The release commit adds changelog pages to the documentation and changes
+  # its search index, so the file listings infra holds for the documentation
+  # no longer match main. The suite ran before that commit existed, and nothing
+  # else would bring infra up to date before the next scheduled run fails.
+  #
+  # Only the cases whose baseline is the documentation's file set are
+  # regenerated. A full update would also accept whatever else drifted since
+  # the last run - a new Hugo release, say - without anyone reading the diff.
+  #
+  # `GITHUB_TOKEN` cannot write to another repository, so infra is reached with
+  # a deploy key that has write access there and nowhere else.
+  baseline:
+    name: Update infra baselines
+    needs: release
+    # `always()` for the reasons given at `attest` below.
+    if: ${{ always() && needs.release.outputs.created == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      # The tag, as at `asset`: exactly the tree that was released.
+      - name: Checkout release tag
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.inputs.milestone }}
+          path: theme
+
+      - name: Checkout infra
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository }}-infra
+          ref: main
+          path: infra
+          ssh-key: ${{ secrets.INFRA_DEPLOY_KEY }}
+
+      # The same Hugo the scheduled run uses, since that is the run the
+      # baseline has to satisfy.
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+
+      - name: Setup node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: infra/.nvmrc
+
+      # The browser Puppeteer's install script fetches is not needed to build.
+      - name: Install
+        shell: bash
+        working-directory: infra
+        run: npm ci --ignore-scripts
+
+      - name: Regenerate baselines
+        shell: bash
+        working-directory: infra
+        env:
+          RELEARN_THEME_DIR: ${{ github.workspace }}/theme
+          HUGO_BIN: hugo
+        run: |
+          npm run golden:update -- --hugo=latest --build=github
+          npm run golden:update -- --hugo=latest --build=theme-docs
+
+      # Infra is tagged with the release's version even if no baseline changed,
+      # so every release names the state of the suite it was tested against.
+      # Only the full version: nothing builds against infra by a floating tag.
+      - name: Push baselines
+        shell: bash
+        working-directory: infra
+        env:
+          MILESTONE: ${{ github.event.inputs.milestone }}
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add tests/expected/github tests/expected/theme-docs
+          if git diff --cached --quiet; then
+            echo "Baselines already match release $MILESTONE"
+          else
+            git commit --message "Release $MILESTONE"
+          fi
+          git tag --message "" "$MILESTONE"
+          if ! git push --atomic origin HEAD:main "refs/tags/$MILESTONE"; then
+            echo "::error::could not push the baselines for release $MILESTONE to infra"
+            echo "Check the INFRA_DEPLOY_KEY secret, then re-run this job, or update by hand"
+            echo "in the infra checkout with:"
+            echo "  npm run golden:update -- --build=github"
+            echo "  npm run golden:update -- --build=theme-docs"
+            echo "  git commit --message \"Release $MILESTONE\""
+            echo "  git tag --message \"\" \"$MILESTONE\""
+            echo "  git push --atomic origin main \"refs/tags/$MILESTONE\""
+            exit 1
+          fi
+
   attest:
     name: Attest SBOM
     needs: release
