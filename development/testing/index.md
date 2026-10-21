@@ -61,7 +61,7 @@ A run is more than a list of sites, hence these words:
 
 Most cases are one site, one configuration, one result. A case that varies an axis produces a result per combination. A case whose builds only mean something as a pair - a versioned site, or the docs and the exampleSite as GitHub Pages serves them - produces several builds sharing one result.
 
-Cases live in `tests/cases/<name>/case.toml` in the infra repository, and reading them is the quickest way to see what the suite covers.
+Cases live in `tests/cases/<name>/case.yaml` in the infra repository, and reading them is the quickest way to see what the suite covers.
 
 ## Shaping a Run
 
@@ -149,11 +149,11 @@ Everything lives in the infra repository.
 
 1. Create `tests/sites/<name>/` with a `config/_default/` and `content/`. Keep the configuration about the site - a title, output formats, content wiring. Nothing about reproducibility belongs there; that is what naming the `testing` environment does.
 2. Write the least content that demonstrates your case. Sites are meant to stay small - a readable diff is the whole point, and one needing hundreds of pages is testing the wrong thing.
-3. Add `tests/cases/<name>/case.toml`:
+3. Add `tests/cases/<name>/case.yaml`:
 
-   ````toml
-   site        = "<name>"
-   environment = "testing"
+   ````yaml
+   site: <name>
+   environment: testing
    ````
 
 4. Generate its expected output, and read it:
@@ -171,12 +171,15 @@ Some behaviour only differs by configuration - URL generation being the standing
 
 That is what an axis is for. Each value is a config directory under `tests/axes/<axis>/<value>/`, and a case lists the values it wants:
 
-````toml
-site        = "url-permutations"
-environment = "testing"
+````yaml
+site: url-permutations
+environment: testing
 
-[axes]
-  urls = ["relative", "absolute", "ugly"]
+axes:
+  urls:
+    - relative
+    - absolute
+    - ugly
 ````
 
 One content set, one result per mode, compared separately. Adding a further mode is a directory and one more name. An axis with a single value still applies - it just does not branch the tree, so nothing is nested that carries no information.
@@ -187,15 +190,14 @@ Some results are not one Hugo build. The published GitHub Pages site is the docs
 
 Such a case spells the sequence out, and its builds share one output tree:
 
-````toml
-[[builds]]
-  site        = "docs@theme"
-  environment = "github"
+````yaml
+builds:
+  - site: docs@theme
+    environment: github
 
-[[builds]]
-  site        = "exampleSite@theme"
-  environment = "github"
-  dest        = "exampleSite"
+  - site: exampleSite@theme
+    environment: github
+    dest: exampleSite
 ````
 
 `dest` says where in the shared tree a build writes. The builds run in the order written, and the result is compared once, as a whole.

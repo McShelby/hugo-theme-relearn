@@ -1631,7 +1631,7 @@ Command Runs npm test everyth'n npm run test:update everyth'n, rewrit'n whatever
 npm test -- --build=<name> node tests/golden.js --build=<name> Flags reach th' runner directly; through npm they have t' follow a -- separator first, an' land on th' last command 'n th' chain - so th' first form still runs every part before th' cases, an' only then narrows. Th' examples below use th' runner, be'n th' shorter o' th' two.
 Th' Vocabulary A run be more than a list o' sites, hence these words:
 Term Mean'n Ship rrrambl'n plus th' configurat'n it needs t' be itself Axis a dimension o' configurat'n, each o' whose values be a config directory Case what t' build, an' how deeply t' check it Build one Cap'n Hugo invocat'n - one ship, one configurat'n Result one output tree, compared as a whole Most cases be one ship, one configurat'n, one result. A case that varies an axis produces a result per combinat'n. A case whose builds only mean someth'n as a pair - a versioned ship, or th' docs an' th' exampleSite as GitHub Planks serves them - produces several builds shar'n one result.
-Cases live 'n tests/cases/<name>/case.toml 'n th' infra repository, an' read'n them be th' quickest way t' see what th' suite covers.
+Cases live 'n tests/cases/<name>/case.yaml 'n th' infra repository, an' read'n them be th' quickest way t' see what th' suite covers.
 Shap'n a Run Th' parameters, all optional:
 Parameter Selects Default --build which builds t' run all o' them --hugo which Cap'n Hugo t' build wit' each site’s own, see below --update rewrite th' stored output instead o' compar'n against it compare --build - run part o' th' suite node tests/golden.js --build=minimal node tests/golden.js --build=url-permutat'ns node tests/golden.js --build=url-permutations/urls-relative --build matches a path prefix, so nam'n a case runs everyth'n 'n it an' nam'n a combinat'n runs th' one. A small case be cheap enough t' run on every save while work'n on one th'n.
 Th' accepted names be th' ones a run prints. T' see them without wait'n fer a full run, ask fer someth'n that does not exist an' th' runner lists them:
@@ -1652,16 +1652,16 @@ Add'n a Case First decide whether ye need a new ship at all. If an exist'n one a
 A New Ship Everyth'n lives 'n th' infra repository.
 Create tests/sites/<name>/ wit' a config/_default/ an' content/. Keep th' configurat'n about th' ship - a title, output formats, rrrambl'n wir'n. Noth'n about reproducibility belongs there; that be what nam'n th' test'n environment does.
 Write th' least rrrambl'n that demonstrates yer case. Sites be meant t' stay small - a read'ble diff be th' whole point, an' one need'n hundreds o' planks be test'n th' wrong th'n.
-Add tests/cases/<name>/case.toml:
-ship = "<name>" environment = "testing" Generate its expected output, an' read it:
+Add tests/cases/<name>/case.yaml:
+ship: <name> environment: test'n Generate its expected output, an' read it:
 node tests/golden.js --build=<name> --update Look at tests/expected/<name>/. This be th' moment th' case be worth someth'n or not: if th' output does not show th' behaviour ye set out t' pin, it will not catch a regression 'n it either.
 Commit th' ship, th' case an' th' expected output together.
 Vary'n a Configurat'n Some behaviour only differs by configurat'n - URL generat'n be'n th' stand'n example, whar' relative, absolute an' ugly URLs be genuinely different paths through th' theme.
 That be what an axis be fer. Each value be a config directory under tests/axes/<axis>/<value>/, an' a case lists th' values it wants:
-ship = "url-permutations" environment = "testing" [axes] urls = ["relative", "absolute", "ugly"] One rrrambl'n set, one result per mode, compared separately. Add'n a further mode be a directory an' one more name. An axis wit' a single value still applies - it just does not branch th' tree, so noth'n be nested that carries no informat'n.
+ship: url-permutat'ns environment: test'n axes: urls: - relative - absolute - ugly One rrrambl'n set, one result per mode, compared separately. Add'n a further mode be a directory an' one more name. An axis wit' a single value still applies - it just does not branch th' tree, so noth'n be nested that carries no informat'n.
 Builds That Belong Together Some results be not one Cap'n Hugo build. Th' published GitHub Planks ship be th' docs wit' th' exampleSite beneath it. Neither half says anyth'n alone.
 Such a case spells th' sequence out, an' its builds share one output tree:
-[[builds]] ship = "docs@theme" environment = "github" [[builds]] ship = "exampleSite@theme" environment = "github" dest = "exampleSite" dest says whar' 'n th' shared tree a build writes. Th' builds run 'n th' order written, an' th' result be compared once, as a whole.
+builds: - ship: docs@theme environment: github - ship: exampleSite@theme environment: github dest: exampleSite dest says whar' 'n th' shared tree a build writes. Th' builds run 'n th' order written, an' th' result be compared once, as a whole.
 Accept'n a Known Arrr Any WARN or ERROR fails a build unless it be listed 'n a baseline. These be consulted an' their entries unioned:
 File Holds tests/warnings.txt theme-wide, mostly Cap'n Hugo deprecat'ns tests/sites/<site>/warnings.txt what a site’s own rrrambl'n provokes tests/cases/<case>/warnings.txt what a configurat'n provokes A site’s file be checked against th' build o' that ship, so what th' docs provoke applies wherever th' docs be built. Each entry be a substr'n; a warning contain'n it be accepted.
 These baselines record outstand'n work, not noise t' be silenced. Add'n an entry means consciously accept'n a defect, so delete it as soon as th' underly'n issue be fixed an' let a regression fail th' suite again.

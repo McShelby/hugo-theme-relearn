@@ -1631,7 +1631,7 @@ Command Runs npm test everything npm run test:update everything, rewriting whate
 npm test -- --build=<name> node tests/golden.js --build=<name> Flags reach the runner directly; through npm they have to follow a -- separator first, and land on the last command in the chain - so the first form still runs every part before the cases, and only then narrows. The examples below use the runner, being the shorter of the two.
 The Vocabulary A run is more than a list of sites, hence these words:
 Term Meaning Site content plus the configuration it needs to be itself Axis a dimension of configuration, each of whose values is a config directory Case what to build, and how deeply to check it Build one Hugo invocation - one site, one configuration Result one output tree, compared as a whole Most cases are one site, one configuration, one result. A case that varies an axis produces a result per combination. A case whose builds only mean something as a pair - a versioned site, or the docs and the exampleSite as GitHub Pages serves them - produces several builds sharing one result.
-Cases live in tests/cases/<name>/case.toml in the infra repository, and reading them is the quickest way to see what the suite covers.
+Cases live in tests/cases/<name>/case.yaml in the infra repository, and reading them is the quickest way to see what the suite covers.
 Shaping a Run The parameters, all optional:
 Parameter Selects Default --build which builds to run all of them --hugo which Hugo to build with each site’s own, see below --update rewrite the stored output instead of comparing against it compare --build - run part of the suite node tests/golden.js --build=minimal node tests/golden.js --build=url-permutations node tests/golden.js --build=url-permutations/urls-relative --build matches a path prefix, so naming a case runs everything in it and naming a combination runs the one. A small case is cheap enough to run on every save while working on one thing.
 The accepted names are the ones a run prints. To see them without waiting for a full run, ask for something that does not exist and the runner lists them:
@@ -1652,16 +1652,16 @@ Adding a Case First decide whether you need a new site at all. If an existing on
 A New Site Everything lives in the infra repository.
 Create tests/sites/<name>/ with a config/_default/ and content/. Keep the configuration about the site - a title, output formats, content wiring. Nothing about reproducibility belongs there; that is what naming the testing environment does.
 Write the least content that demonstrates your case. Sites are meant to stay small - a readable diff is the whole point, and one needing hundreds of pages is testing the wrong thing.
-Add tests/cases/<name>/case.toml:
-site = "<name>" environment = "testing" Generate its expected output, and read it:
+Add tests/cases/<name>/case.yaml:
+site: <name> environment: testing Generate its expected output, and read it:
 node tests/golden.js --build=<name> --update Look at tests/expected/<name>/. This is the moment the case is worth something or not: if the output does not show the behaviour you set out to pin, it will not catch a regression in it either.
 Commit the site, the case and the expected output together.
 Varying a Configuration Some behaviour only differs by configuration - URL generation being the standing example, where relative, absolute and ugly URLs are genuinely different paths through the theme.
 That is what an axis is for. Each value is a config directory under tests/axes/<axis>/<value>/, and a case lists the values it wants:
-site = "url-permutations" environment = "testing" [axes] urls = ["relative", "absolute", "ugly"] One content set, one result per mode, compared separately. Adding a further mode is a directory and one more name. An axis with a single value still applies - it just does not branch the tree, so nothing is nested that carries no information.
+site: url-permutations environment: testing axes: urls: - relative - absolute - ugly One content set, one result per mode, compared separately. Adding a further mode is a directory and one more name. An axis with a single value still applies - it just does not branch the tree, so nothing is nested that carries no information.
 Builds That Belong Together Some results are not one Hugo build. The published GitHub Pages site is the docs with the exampleSite beneath it. Neither half says anything alone.
 Such a case spells the sequence out, and its builds share one output tree:
-[[builds]] site = "docs@theme" environment = "github" [[builds]] site = "exampleSite@theme" environment = "github" dest = "exampleSite" dest says where in the shared tree a build writes. The builds run in the order written, and the result is compared once, as a whole.
+builds: - site: docs@theme environment: github - site: exampleSite@theme environment: github dest: exampleSite dest says where in the shared tree a build writes. The builds run in the order written, and the result is compared once, as a whole.
 Accepting a Known Warning Any WARN or ERROR fails a build unless it is listed in a baseline. These are consulted and their entries unioned:
 File Holds tests/warnings.txt theme-wide, mostly Hugo deprecations tests/sites/<site>/warnings.txt what a site’s own content provokes tests/cases/<case>/warnings.txt what a configuration provokes A site’s file is checked against the build of that site, so what the docs provoke applies wherever the docs are built. Each entry is a substring; a warning containing it is accepted.
 These baselines record outstanding work, not noise to be silenced. Adding an entry means consciously accepting a defect, so delete it as soon as the underlying issue is fixed and let a regression fail the suite again.
