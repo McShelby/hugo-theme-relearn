@@ -209,15 +209,21 @@ Theme supports custom output formats:
 
 ### Commit Message Format
 
-Use [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format.
+Use [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format: `type(scope): description #issue`, always with a scope. The git history before this rule puts the scope in the type's place; don't copy from it. Release commits are the only exception; the release workflow writes them as `Release <version>`.
 
-Common commit types:
-- **Common:** build, browser, chore, docs, shortcodes, theme
+A `fix` keeps the intended behavior; a change of behavior is a `feat`.
+
+Types: feat, fix, docs, refactor, perf, build, ci, chore
+
+Common scopes:
+- **Common:** browser, shortcodes, theme
 - **Features:** a11y, archetypes, alias, generator, i18n, mobile, print, rss, variant
-- **Structure:** favicon, search, menu, history, scrollbar, nav, toc, clipboard, syntaxhighlight, boxes
+- **Structure:** favicon, search, menu, history, scrollbar, nav, toc, clipboard, syntaxhighlight, boxes, table
 - **Shortcodes:** attachments, badge, button, callout, children, details, icon, include, math, mermaid, openapi, piratify, siteparam, tabs
 
-Example: `search: improve Orama integration for multilingual sites`
+Example: `feat(table): make columns sortable #1339`
+
+Issue titles are not conventional commits. They start with the affected part: `table: make columns sortable`, `docs: write commit messages with type and scope`.
 
 ### Development Principles
 
