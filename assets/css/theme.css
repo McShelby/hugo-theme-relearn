@@ -4176,3 +4176,17 @@ article.notfound #shrug svg {
   --VARIABLE-BOX-CAPTION-color: var(--VARIABLE-LINK-color);
   --VARIABLE-BOX-BG-color: var(--VARIABLE-LINK-color);
 }
+
+.btn.cstyle.action {
+  /* the resting square takes the color of the neutral boxes, but never lighter
+     than a dark grey on a dark page nor darker than a light grey on a light one,
+     as some variants accent their neutral boxes for contrast, which would leave
+     the icon too little of it */
+  --VARIABLE-BOX-color: light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.75) c h / 0.5), oklch(from var(--INTERNAL-BOX-NEUTRAL-color) min(l, 0.4) c h / 0.5));
+}
+
+div.highlight .btn.cstyle.action {
+  /* a code block may be dark on a light page or the other way round, so its
+     buttons take their square from its own text color, like its scrollbar */
+  --VARIABLE-BOX-color: color-mix(in srgb, var(--INTERNAL-CODE-BLOCK-color) 10%, transparent);
+}
