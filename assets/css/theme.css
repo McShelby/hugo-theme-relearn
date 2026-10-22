@@ -1699,6 +1699,148 @@ tbody > tr:nth-child(even) > td {
   background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 15%, transparent);
 }
 
+/* the actionbar sticks together with the header row, so the wrapper takes the
+   margins of the table to let both start at the same height; the wrapper must
+   never scroll on its own, or the header row sticks to it instead of the page */
+.sortable-table {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  /* as wide as a table too wide for the page, so the actionbar stays at its end */
+  min-width: 100%;
+  width: fit-content;
+}
+.sortable-table > table {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.sortable-table > .actionbar {
+  /* it takes no space, its buttons hang down over the end of the header row */
+  align-items: flex-start;
+  height: 0;
+  inset-inline-end: auto;
+  justify-content: flex-end;
+  /* it follows the table for the keyboard, but a sticky element only moves down from where it is */
+  order: -1;
+  padding-inline-end: 4px;
+  position: sticky;
+  /* stuck at the same height as the header row; the distance to the top is the
+     one of any other actionbar, moved by transform as a sticky offset only
+     applies once stuck */
+  top: -1px;
+  transform: translateY(4px);
+  /* above the frame of the table */
+  z-index: 112;
+}
+/* rows joined by merged cells are sorted as one, so they are striped as one */
+.sortable-table > table > tbody > tr > td {
+  background-color: transparent;
+}
+.sortable-table > table > tbody:nth-of-type(even) > tr > td {
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 15%, transparent);
+}
+/* the whole header cell is the button */
+.sortable-table th:has(> button) {
+  padding: 0;
+  /* the sort icons stay at the height of the reset button, also if another
+     header of the row spans more lines */
+  vertical-align: top;
+}
+/* a header that is no button looks like one that is, its first line at the
+   height of the caption beside a sort icon; the size of that icon is the one of
+   an action button, its font of 0.9em times its padding and icon of 1.95em plus
+   its border */
+.sortable-table th:not(:has(> button)) {
+  padding: calc(4px + (0.9em * 1.95 + 2px - 1lh) / 2) 0.5rem 4px;
+  vertical-align: top;
+}
+.sortable-table th > button {
+  /* the sort icon follows the caption, but stays in its first line once the
+     caption breaks into more, which is centered on it */
+  align-items: flex-start;
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  /* the square of the sort icon keeps the distance of a button in an actionbar
+     to the edges, the same as the reset button */
+  padding: 4px 0.5rem;
+  text-align: inherit;
+  width: 100%;
+}
+/* room for the reset button at the end of the header row, so it never covers a
+   sort icon: its distance to the edge, its width as an action button like above
+   and the gap of the actionbar */
+.sortable-table thead > tr:first-child > :last-child:not(:has(> button)),
+.sortable-table thead > tr:first-child > :last-child > button {
+  padding-inline-end: calc(4px + 0.9em * 1.95 + 2px + 4px);
+}
+.sortable-table .sort-indicator > .btn {
+  vertical-align: middle;
+}
+/* the alignment of the column moves caption and icon together; it is physical
+   like the class, the lines of the caption follow it by inheritance */
+.sortable-table th.align-left > button {
+  justify-content: left;
+}
+.sortable-table th.align-center > button {
+  justify-content: center;
+}
+.sortable-table th.align-right > button {
+  justify-content: right;
+}
+.sortable-table th > button:focus:not(:focus-visible) {
+  outline: none;
+}
+.sortable-table th > button:focus-visible {
+  /* inside of the cell, or the clipped corners of the table cut it off */
+  outline-offset: -2px;
+}
+.sortable-table .sort-caption {
+  padding-top: calc((0.9em * 1.95 + 2px - 1lh) / 2);
+}
+.sortable-table .sort-indicator {
+  flex: none;
+  margin-inline-start: 0.25rem;
+}
+/* the icon looks like an action button and is highlighted like one, but for
+   the whole cell, which is the button */
+.sortable-table th > button:is(:hover, :active, :focus) .sort-indicator > .btn > * {
+  background-color: var(--VARIABLE-BOX-BG-color);
+  color: var(--VARIABLE-BOX-TEXT-color);
+}
+/* the number of a sort key is shown in the half of the square its arrow leaves free */
+.sortable-table .sort-indicator > .btn > * {
+  position: relative;
+}
+.sortable-table .sort-rank {
+  font-size: 0.7em;
+  font-weight: bold;
+  inset-inline: 0;
+  line-height: 1;
+  position: absolute;
+  text-align: center;
+}
+.sortable-table .fa-sort-up + .sort-rank {
+  bottom: 0.45em;
+}
+.sortable-table .fa-sort-down + .sort-rank {
+  top: 0.45em;
+}
+.sort-reset-button.btn {
+  display: none;
+}
+.sort-reset-button.btn.sorted {
+  display: inline-block;
+}
+/* a sorted table shows that it can be reset, also when not hovered */
+.sortable-table > .actionbar:has(.sort-reset-button.sorted) {
+  opacity: 1;
+}
+
 /* Toast Notification System */
 #toast-container {
   align-items: center;

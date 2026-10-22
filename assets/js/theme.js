@@ -1948,6 +1948,169 @@ function initExpand() {
   });
 }
 
+function sortableTableCells(row) {
+  // the first row of a group is not reached by any cell from above, so its
+  // cells and their colspans make up all columns of the table
+  var cells = [];
+  Array.from(row.cells).forEach(function (cell) {
+    for (var i = 0; i < cell.colSpan; ++i) {
+      cells.push(cell);
+    }
+  });
+  return cells;
+}
+
+function sortableTableNumber(text) {
+  return /^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(text) ? Number(text) : NaN;
+}
+
+function initSortableTables() {
+  if (isPrint) {
+    return;
+  }
+  var collator = new Intl.Collator(document.documentElement.lang || undefined, { numeric: true, sensitivity: 'base' });
+  var compare = function (a, b) {
+    var na = sortableTableNumber(a);
+    var nb = sortableTableNumber(b);
+    if (!isNaN(na) && !isNaN(nb)) {
+      return na - nb;
+    }
+    return collator.compare(a, b);
+  };
+
+  document.querySelectorAll('.sortable-table > table').forEach(function (table) {
+    var wrapper = table.parentElement;
+    // the groups in their original order, each with the values of its first row
+    var groups = Array.from(table.tBodies).map(function (group, index) {
+      return {
+        group: group,
+        index: index,
+        values: sortableTableCells(group.rows[0]).map(function (cell) {
+          return cell.textContent.trim();
+        }),
+      };
+    });
+    // the sort keys, the latest click first; sorting by them from the original order
+    // gives the same as sorting the current order by each click in turn, as long as the
+    // sort keeps the order of equal values
+    var keys = [];
+
+    var caption = table.createCaption();
+    caption.classList.add('a11y-only');
+    caption.textContent = window.T_Sortable_columns;
+
+    var headers = Array.from(table.querySelectorAll('th[data-sort-col]')).map(function (th) {
+      var label = th.textContent.trim();
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.title = window.T_Change_sorting;
+      var text = document.createElement('span');
+      text.classList.add('sort-caption');
+      while (th.firstChild) {
+        text.appendChild(th.firstChild);
+      }
+      button.appendChild(text);
+      button.insertAdjacentHTML('beforeend', '<span class="sort-indicator" aria-hidden="true"><span class="btn cstyle action noborder notitle"><span><i class="fa-fw fas fa-sort"></i><span class="sort-rank"></span></span></span></span><span class="sort-state a11y-only"></span>');
+      th.appendChild(button);
+      return { th: th, button: button, col: parseInt(th.dataset.sortCol, 10), label: label };
+    });
+
+    // the actionbar is shown above the table but follows it for the keyboard, after the column headers
+    wrapper.insertAdjacentHTML('beforeend', '<div class="actionbar"><span class="btn cstyle sort-reset-button action noborder notitle interactive"><button type="button" title="' + window.T_Reset_sorting + '" aria-label="' + window.T_Reset_sorting + '"><i class="fa-fw fas fa-undo-alt" aria-hidden="true"></i></button></span></div>');
+    var reset = wrapper.querySelector('.sort-reset-button');
+
+    var update = function () {
+      groups
+        .slice()
+        .sort(function (a, b) {
+          for (var i = 0; i < keys.length; ++i) {
+            var va = a.values[keys[i].col] || '';
+            var vb = b.values[keys[i].col] || '';
+            // empty cells stay at the end, whatever the direction
+            if (!va != !vb) {
+              return va ? -1 : 1;
+            }
+            var result = compare(va, vb) * keys[i].dir;
+            if (result) {
+              return result;
+            }
+          }
+          return a.index - b.index;
+        })
+        .forEach(function (g) {
+          table.appendChild(g.group);
+        });
+
+      headers.forEach(function (header) {
+        var k = keys.findIndex(function (key) {
+          return key.col == header.col;
+        });
+        var key = keys[k];
+        var icon = header.button.querySelector('.sort-indicator i');
+        icon.classList.remove('fa-sort', 'fa-sort-up', 'fa-sort-down');
+        icon.classList.add(!key ? 'fa-sort' : key.dir > 0 ? 'fa-sort-up' : 'fa-sort-down');
+        // the rank only tells something once there is more than one key
+        header.button.querySelector('.sort-rank').textContent = key && keys.length > 1 ? k + 1 : '';
+        // only the primary key may carry aria-sort, the others are told in words
+        if (k == 0) {
+          header.th.setAttribute('aria-sort', key.dir > 0 ? 'ascending' : 'descending');
+        } else {
+          header.th.removeAttribute('aria-sort');
+        }
+        header.button.querySelector('.sort-state').textContent = k > 0 ? (key.dir > 0 ? window.T_Sort_key_ascending : window.T_Sort_key_descending).replace('{0}', k + 1) : '';
+      });
+      reset.classList.toggle('sorted', keys.length > 0);
+    };
+
+    headers.forEach(function (header) {
+      header.button.addEventListener('click', function () {
+        var k = keys.findIndex(function (key) {
+          return key.col == header.col;
+        });
+        // the primary key goes from ascending to descending to no longer sorting by it,
+        // any other column becomes the primary key
+        var message = '';
+        if (k == 0 && keys[0].dir > 0) {
+          keys[0].dir = -1;
+          message = window.T_Sorted_by_descending;
+        } else if (k == 0) {
+          keys.shift();
+          message = window.T_Unsorted_by;
+        } else {
+          if (k > 0) {
+            keys.splice(k, 1);
+          }
+          keys.unshift({ col: header.col, dir: 1 });
+          message = window.T_Sorted_by_ascending;
+        }
+        update();
+        // a function, as a replacement string would take `$&` and the like of a caption as patterns
+        showToast(
+          message.replace('{0}', function () {
+            return header.label;
+          })
+        );
+      });
+    });
+
+    reset.querySelector('button').addEventListener('click', function () {
+      var col = keys.length ? keys[0].col : -1;
+      var primary = headers.find(function (header) {
+        return header.col == col;
+      });
+      // asked before the button vanishes, which may take its focus right away
+      var focused = document.activeElement == this;
+      keys = [];
+      update();
+      // the focus the vanished button held goes to the column that was sorted by
+      if (primary && focused) {
+        primary.button.focus();
+      }
+      showToast(window.T_Sorting_reset);
+    });
+  });
+}
+
 function initOverflowTitle() {
   // truncation depends on the current width, so decide on each hover whether the tooltip is needed
   document.addEventListener('pointerover', function (event) {
@@ -2642,6 +2805,7 @@ ready(function () {
   initToc();
   initAnchorClipboard();
   initCodeClipboard();
+  initSortableTables();
   handleTabs();
   handleExpanders();
   handleTopbarButtons();

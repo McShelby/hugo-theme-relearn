@@ -3,6 +3,10 @@ categories:
 - howto
 - reference
 description: Reference of CommonMark and Markdown extensions
+frontmatter:
+- table.sortable
+options:
+- table.sortable
 title: Markdown Syntax
 weight: 4
 ---
@@ -654,6 +658,43 @@ A `>` in the last column or a `^` in the first row of the header or body has not
 > | layout | >      | directories that are merged with those of the theme. |
 > | static | ^      | ^           |
 > | ext    | \\>    | extension to be used for dest files. |
+
+### Sortable Columns
+
+{{% badge style="relearn" %}}Relearn{{% /badge %}} Give a table the class `sortable` to let your readers sort it by its columns. This requires [block attributes](https://gohugo.io/getting-started/configuration-markup/#parserattribute) to be enabled in your project configuration.
+
+Clicking a column header sorts by this column, clicking it again reverses the order, and a third click stops sorting by it. Clicking further headers sorts by those columns while keeping the previous order for equal values. The reset button brings back the original order.
+
+Rows joined by merged cells stay together and are sorted by the values of their first row. A column whose header spans multiple columns is not sortable.
+
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `table.sortable` to `true` to make all tables sortable. This can be overridden in a page's front matter.
+
+{{< multiconfig section=params >}}
+table.sortable = true
+{{< /multiconfig >}}
+
+A single table can still be excluded by the class `nosortable` or included by the class `sortable`, whatever the default is.
+
+````md
+| Option | Number | Description |
+|--------|--------|-------------|
+| data   | 3      | path to data files to supply the data that will be passed into templates. |
+| engine | 10     | engine to be used for processing templates. Handlebars is the default. |
+| ^      | 2      | also used for partials. |
+| layout | 1      | directories that are merged with those of the theme. |
+| ext    | 20     | extension to be used for dest files. |
+{.sortable}
+````
+
+> [!example]
+> | Option | Number | Description |
+> |--------|--------|-------------|
+> | data   | 3      | path to data files to supply the data that will be passed into templates. |
+> | engine | 10     | engine to be used for processing templates. Handlebars is the default. |
+> | ^      | 2      | also used for partials. |
+> | layout | 1      | directories that are merged with those of the theme. |
+> | ext    | 20     | extension to be used for dest files. |
+> {.sortable}
 
 ## Links
 

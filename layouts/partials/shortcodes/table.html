@@ -6,7 +6,13 @@
   - a `>` in the last column or a `^` in the first row of a section is literal
   - merging never crosses from the header into the body
   - `\>` and `\^` merge too, as Goldmark renders them the same as the unescaped markers; instead `\\>` and `\\^`
-    arrive as `\>` and `\^` and are shown as literal `>` and `^`, each further backslash pair keeps one backslash */}}
+    arrive as `\>` and `\^` and are shown as literal `>` and `^`, each further backslash pair keeps one backslash
+  A sortable table can be sorted by its columns in the browser:
+  - the option `table.sortable` of the project configuration sets the default, the page's front matter overrides it
+    and the class `sortable` or `nosortable` of the table overrides both; neither class is written, but `sortable` for a table that ends up sortable
+  - body rows joined by a rowspan, also through a chain of them, stay together in a `tbody` of their own and are sorted as one
+  - a column is sortable by the header cell of the last header row that covers only this column, unless the cell holds interactive content or no text
+  - a table with less than two of those `tbody` or without any sortable column is left as any other table */}}
 {{- define "relearn-table-cell-attributes" }}
   {{- with .Alignment }}
     {{- printf " class=%q" (printf "align-%s" .) | safeHTMLAttr }}
@@ -17,10 +23,38 @@
   {{- if gt .colspan 1 }}
     {{- printf " colspan=\"%d\"" .colspan | safeHTMLAttr }}
   {{- end }}
+  {{- if .sortable }}
+    {{- printf " data-sort-col=\"%d\"" .col | safeHTMLAttr }}
+  {{- end }}
 {{- end }}
+{{- $page := .page }}
 {{- $attributes := .attributes | default dict }}
 {{- $thead := .thead | default slice }}
 {{- $tbody := .tbody | default slice }}
+{{- $sortable := false }}
+{{- /* compared as text, as a value set by an environment variable arrives as one, where `false` would be true */}}
+{{- with site.Params.table }}
+  {{- if isset . "sortable" }}
+    {{- $sortable = eq (string .sortable) "true" }}
+  {{- end }}
+{{- end }}
+{{- with $page }}
+  {{- with .Params.table }}
+    {{- if isset . "sortable" }}
+      {{- $sortable = eq (string .sortable) "true" }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- $classes := slice }}
+{{- range split (index $attributes "class" | default "" | string) " " }}
+  {{- if eq . "sortable" }}
+    {{- $sortable = true }}
+  {{- else if eq . "nosortable" }}
+    {{- $sortable = false }}
+  {{- else if . }}
+    {{- $classes = $classes | append . }}
+  {{- end }}
+{{- end }}
 {{- $s := newScratch }}
 {{- range $section := slice (dict "name" "thead" "rows" $thead) (dict "name" "tbody" "rows" $tbody) }}
   {{- $rows := $section.rows }}
@@ -69,16 +103,45 @@
       {{- $box := $s.Get ($s.Get (printf "%s/owner/%d/%d" $section.name $r $c)) }}
       {{- if and (eq $box.minr $r) (eq $box.minc $c) }}
         {{- $content := index $rows $box.r $box.c }}
+        {{- $text := $s.Get (printf "%s/text/%d/%d" $section.name $box.r $box.c) | default $content.Text }}
+        {{- /* a header without text would leave its button without a name */}}
+        {{- $sortcol := and $sortable (eq $section.name "thead") (eq $box.maxr (sub (len $rows) 1)) (eq $box.minc $box.maxc) (trim (plainify (string $text)) " \t\r\n") (not (findRE `<(a|button|details|embed|iframe|input|label|select|textarea)[\s/>]` (string $text))) }}
+        {{- if $sortcol }}
+          {{- $s.Add "sortcols" 1 }}
+        {{- end }}
         {{- $s.Set (printf "%s/cell/%d/%d" $section.name $r $c) (dict
-          "Text" ($s.Get (printf "%s/text/%d/%d" $section.name $box.r $box.c) | default $content.Text)
+          "Text" $text
           "Alignment" $content.Alignment
           "rowspan" (add (sub $box.maxr $box.minr) 1)
           "colspan" (add (sub $box.maxc $box.minc) 1)
+          "sortable" $sortcol
+          "col" $c
         ) }}
+        {{- /* the last row the boxes starting in this row reach */}}
+        {{- $key := printf "%s/end/%d" $section.name $r }}
+        {{- $s.Set $key (math.Max ($s.Get $key | default $r) $box.maxr | int) }}
       {{- end }}
     {{- end }}
   {{- end }}
-{{- end -}}
+{{- end }}
+{{- /* rows joined by a box spanning them form a group; a group ends before the first row no box of it reaches */}}
+{{- $groups := 0 }}
+{{- $reach := -1 }}
+{{- range $r, $_ := $tbody }}
+  {{- if gt $r $reach }}
+    {{- $s.Set (printf "tbody/start/%d" $r) true }}
+    {{- $groups = add $groups 1 }}
+  {{- end }}
+  {{- $reach = math.Max $reach ($s.Get (printf "tbody/end/%d" $r) | default $r) | int }}
+{{- end }}
+{{- $sortable = and $sortable (gt $groups 1) ($s.Get "sortcols") }}
+{{- if $sortable }}
+  {{- $classes = $classes | append "sortable" }}
+{{- end }}
+{{- $attributes = merge $attributes (dict "class" (delimit $classes " ")) }}
+{{- if $sortable -}}
+<div class="sortable-table actionbar-wrapper">
+{{ end -}}
 <table
   {{- range $k, $v := $attributes }}
     {{- if $v }}
@@ -91,7 +154,7 @@
     {{- range $c, $_ := $row }}
       {{- with $s.Get (printf "thead/cell/%d/%d" $r $c) }}
       <th
-        {{- template "relearn-table-cell-attributes" . }}>
+        {{- template "relearn-table-cell-attributes" (merge . (dict "sortable" (and $sortable .sortable))) }}>
         {{- .Text -}}
       </th>
       {{- end }}
@@ -101,6 +164,10 @@
   </thead>
   <tbody>
   {{- range $r, $row := $tbody }}
+    {{- if and $sortable $r ($s.Get (printf "tbody/start/%d" $r)) }}
+  </tbody>
+  <tbody>
+    {{- end }}
     <tr>
     {{- range $c, $_ := $row }}
       {{- with $s.Get (printf "tbody/cell/%d/%d" $r $c) }}
@@ -114,3 +181,6 @@
   {{- end }}
   </tbody>
 </table>
+{{- if $sortable }}
+</div>
+{{- end }}
