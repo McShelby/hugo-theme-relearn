@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="description" content="Show content in tabbed views">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -49,8 +49,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.c78bd51b4d7a5c519fda64d6315fa76666231b839afcd47af1514bf1b741c0b3.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.3d4deda3f13d44b327d97e15a6d1e9dcbd480cd33ae00be9d16c78e7705cfc23.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -79,6 +79,7 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -92,7 +93,15 @@
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -339,7 +348,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/releases/tag/9.3.1" title="Relearn 9.3.1"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/de22d975c5c4364b3d51efbdba3416aec1c92c71" title="Relearn 9.3.1&#43;de22d975c5c4364b3d51efbdba3416aec1c92c71"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -430,26 +439,26 @@
 
 <p>The <code>tabs</code> shortcode displays arbitrary content in an unlimited number of tabs.</p>
 
-<div class="tab-panel" data-tab-group="R-tabs-8668cd271461a10d32e209115cc17b33">
+<div class="tab-panel" data-tab-group="R-tabs-9f208297c6cf476d688c29a41c31cacd">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-1fe597fca5fa34984f899b18f0bc48c2-tab" aria-controls="R-tab-id-1fe597fca5fa34984f899b18f0bc48c2" aria-selected="true"
+        role="tab" id="R-tab-id-2ffe5b249f43d5d24e30cf23d851f660-tab" aria-controls="R-tab-id-2ffe5b249f43d5d24e30cf23d851f660" aria-selected="true"
         data-tab-item="R-tab-a7f5f35426b927411fc9231b56382173"
         class="tab-nav-button tab-panel-style cstyle initial active" tabindex="0"
       >
         <span class="tab-nav-text">Python</span>
       </button>
       <button
-        role="tab" id="R-tab-id-918664aea2635edf2743fa90f2f6d207-tab" aria-controls="R-tab-id-918664aea2635edf2743fa90f2f6d207" aria-selected="false"
+        role="tab" id="R-tab-id-a1c6dffdee57b0b3093f31260deffd45-tab" aria-controls="R-tab-id-a1c6dffdee57b0b3093f31260deffd45" aria-selected="false"
         data-tab-item="R-tab-7024ff0860dec6ab1519a3f71c7d8779"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">Bash</span>
       </button>
       <button
-        role="tab" id="R-tab-id-84f554a666b04667c931665cc34b713f-tab" aria-controls="R-tab-id-84f554a666b04667c931665cc34b713f" aria-selected="false"
+        role="tab" id="R-tab-id-5be53b8e0e8674b1132c7e6f612f2a06-tab" aria-controls="R-tab-id-5be53b8e0e8674b1132c7e6f612f2a06" aria-selected="false"
         data-tab-item="R-tab-0d61f8370cad1d412f80b84d143e1257"
         class="tab-nav-button tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: fuchsia;" tabindex="-1"
       >
@@ -459,7 +468,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1fe597fca5fa34984f899b18f0bc48c2" role="tabpanel" aria-labelledby="R-tab-id-1fe597fca5fa34984f899b18f0bc48c2-tab"
+      id="R-tab-id-2ffe5b249f43d5d24e30cf23d851f660" role="tabpanel" aria-labelledby="R-tab-id-2ffe5b249f43d5d24e30cf23d851f660-tab"
       data-tab-item="R-tab-a7f5f35426b927411fc9231b56382173"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -467,7 +476,7 @@ The AI native programming language.
       </div>
     </div>
     <div
-      id="R-tab-id-918664aea2635edf2743fa90f2f6d207" role="tabpanel" aria-labelledby="R-tab-id-918664aea2635edf2743fa90f2f6d207-tab"
+      id="R-tab-id-a1c6dffdee57b0b3093f31260deffd45" role="tabpanel" aria-labelledby="R-tab-id-a1c6dffdee57b0b3093f31260deffd45-tab"
       data-tab-item="R-tab-7024ff0860dec6ab1519a3f71c7d8779"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -475,7 +484,7 @@ The AI native programming language.
       </div>
     </div>
     <div
-      id="R-tab-id-84f554a666b04667c931665cc34b713f" role="tabpanel" aria-labelledby="R-tab-id-84f554a666b04667c931665cc34b713f-tab"
+      id="R-tab-id-5be53b8e0e8674b1132c7e6f612f2a06" role="tabpanel" aria-labelledby="R-tab-id-5be53b8e0e8674b1132c7e6f612f2a06-tab"
       data-tab-item="R-tab-0d61f8370cad1d412f80b84d143e1257"
       class="tab-content tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: fuchsia;">
       <div class="tab-content-text">
@@ -491,14 +500,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-3a25ebeb5b98680bd0c316e4289eebf2-tab" aria-controls="R-tab-id-3a25ebeb5b98680bd0c316e4289eebf2" aria-selected="true"
+        role="tab" id="R-tab-id-2cf7db1c3fc91ee1ce426eaed71e925f-tab" aria-controls="R-tab-id-2cf7db1c3fc91ee1ce426eaed71e925f" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-cae4793f9d3a1260b35da76caa7e1105-tab" aria-controls="R-tab-id-cae4793f9d3a1260b35da76caa7e1105" aria-selected="false"
+        role="tab" id="R-tab-id-a9c7f171d29fb91133a4312b91c9099d-tab" aria-controls="R-tab-id-a9c7f171d29fb91133a4312b91c9099d" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -508,7 +517,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-3a25ebeb5b98680bd0c316e4289eebf2" role="tabpanel" aria-labelledby="R-tab-id-3a25ebeb5b98680bd0c316e4289eebf2-tab"
+      id="R-tab-id-2cf7db1c3fc91ee1ce426eaed71e925f" role="tabpanel" aria-labelledby="R-tab-id-2cf7db1c3fc91ee1ce426eaed71e925f-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -526,7 +535,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-cae4793f9d3a1260b35da76caa7e1105" role="tabpanel" aria-labelledby="R-tab-id-cae4793f9d3a1260b35da76caa7e1105-tab"
+      id="R-tab-id-a9c7f171d29fb91133a4312b91c9099d" role="tabpanel" aria-labelledby="R-tab-id-a9c7f171d29fb91133a4312b91c9099d-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -654,14 +663,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-0cdc944f872323254db0482d217718f1-tab" aria-controls="R-tab-id-0cdc944f872323254db0482d217718f1" aria-selected="true"
+        role="tab" id="R-tab-id-aad81a85e5850f7b95bb86d8856e6149-tab" aria-controls="R-tab-id-aad81a85e5850f7b95bb86d8856e6149" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-847298979b4b8bdc47bbea84aad0c17f-tab" aria-controls="R-tab-id-847298979b4b8bdc47bbea84aad0c17f" aria-selected="false"
+        role="tab" id="R-tab-id-74c8e930304eab36966d6ea4b42e235a-tab" aria-controls="R-tab-id-74c8e930304eab36966d6ea4b42e235a" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -671,7 +680,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0cdc944f872323254db0482d217718f1" role="tabpanel" aria-labelledby="R-tab-id-0cdc944f872323254db0482d217718f1-tab"
+      id="R-tab-id-aad81a85e5850f7b95bb86d8856e6149" role="tabpanel" aria-labelledby="R-tab-id-aad81a85e5850f7b95bb86d8856e6149-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -683,7 +692,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-847298979b4b8bdc47bbea84aad0c17f" role="tabpanel" aria-labelledby="R-tab-id-847298979b4b8bdc47bbea84aad0c17f-tab"
+      id="R-tab-id-74c8e930304eab36966d6ea4b42e235a" role="tabpanel" aria-labelledby="R-tab-id-74c8e930304eab36966d6ea4b42e235a-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -696,12 +705,12 @@ For the connoisseur of programming.
     </div>
   </div>
 </div>
-<div class="tab-panel" data-tab-group="R-tabs-bdee9f8874dd2256bdd875f389352374">
+<div class="tab-panel" data-tab-group="R-tabs-edfacb87a6e475e097e8505ca086e3a3">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-a9d94928288e8c10f632b9aa94c14a1a-tab" aria-controls="R-tab-id-a9d94928288e8c10f632b9aa94c14a1a" aria-selected="true"
+        role="tab" id="R-tab-id-24a557cdc48ae408b83aa57159e4ca4b-tab" aria-controls="R-tab-id-24a557cdc48ae408b83aa57159e4ca4b" aria-selected="true"
         data-tab-item="R-tab-4a8a08f09d37b73795649038408b5f33"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -711,7 +720,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a9d94928288e8c10f632b9aa94c14a1a" role="tabpanel" aria-labelledby="R-tab-id-a9d94928288e8c10f632b9aa94c14a1a-tab"
+      id="R-tab-id-24a557cdc48ae408b83aa57159e4ca4b" role="tabpanel" aria-labelledby="R-tab-id-24a557cdc48ae408b83aa57159e4ca4b-tab"
       data-tab-item="R-tab-4a8a08f09d37b73795649038408b5f33"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -726,8 +735,8 @@ For the connoisseur of programming.
 <p>See what happens to the tab views while you select different tabs.</p>
 <p>While pressing a tab of Group A switches all tab views of Group A in sync (if the tab is available), the tabs of Group B are left untouched.</p>
 
-<div role="note" aria-labelledby="R-box-label-f18927018f9c202d2612d4246cd005ce" class="box cstyle callout note">
-  <div id="R-box-label-f18927018f9c202d2612d4246cd005ce" class="box-label">
+<div role="note" aria-labelledby="R-box-label-64197adfd8a46ff151a207aab2f3bfea" class="box cstyle callout note">
+  <div id="R-box-label-64197adfd8a46ff151a207aab2f3bfea" class="box-label">
     <i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i> 
     Note
   </div>
@@ -742,14 +751,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-63cdf8ba61a3d882c02c3b0900028c16-tab" aria-controls="R-tab-id-63cdf8ba61a3d882c02c3b0900028c16" aria-selected="true"
+        role="tab" id="R-tab-id-8f10c822ebcc17292f40ad39d515da38-tab" aria-controls="R-tab-id-8f10c822ebcc17292f40ad39d515da38" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-03cad3aed2ddec7527276974ec7a1e68-tab" aria-controls="R-tab-id-03cad3aed2ddec7527276974ec7a1e68" aria-selected="false"
+        role="tab" id="R-tab-id-012f5e84b6ac67c3806a411cac10b178-tab" aria-controls="R-tab-id-012f5e84b6ac67c3806a411cac10b178" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -759,7 +768,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-63cdf8ba61a3d882c02c3b0900028c16" role="tabpanel" aria-labelledby="R-tab-id-63cdf8ba61a3d882c02c3b0900028c16-tab"
+      id="R-tab-id-8f10c822ebcc17292f40ad39d515da38" role="tabpanel" aria-labelledby="R-tab-id-8f10c822ebcc17292f40ad39d515da38-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -779,7 +788,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-03cad3aed2ddec7527276974ec7a1e68" role="tabpanel" aria-labelledby="R-tab-id-03cad3aed2ddec7527276974ec7a1e68-tab"
+      id="R-tab-id-012f5e84b6ac67c3806a411cac10b178" role="tabpanel" aria-labelledby="R-tab-id-012f5e84b6ac67c3806a411cac10b178-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -813,14 +822,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-dd73c1f889d4b180f4f7e66d84971297-tab" aria-controls="R-tab-id-dd73c1f889d4b180f4f7e66d84971297" aria-selected="true"
+        role="tab" id="R-tab-id-9c7e092a9dcc4c579fc65e39bd10907b-tab" aria-controls="R-tab-id-9c7e092a9dcc4c579fc65e39bd10907b" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-c432720fe70ccd69fb70ef41c76ecd9b-tab" aria-controls="R-tab-id-c432720fe70ccd69fb70ef41c76ecd9b" aria-selected="false"
+        role="tab" id="R-tab-id-1166cca6112f63c6c78c863a065d1472-tab" aria-controls="R-tab-id-1166cca6112f63c6c78c863a065d1472" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -830,7 +839,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-dd73c1f889d4b180f4f7e66d84971297" role="tabpanel" aria-labelledby="R-tab-id-dd73c1f889d4b180f4f7e66d84971297-tab"
+      id="R-tab-id-9c7e092a9dcc4c579fc65e39bd10907b" role="tabpanel" aria-labelledby="R-tab-id-9c7e092a9dcc4c579fc65e39bd10907b-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -849,7 +858,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-c432720fe70ccd69fb70ef41c76ecd9b" role="tabpanel" aria-labelledby="R-tab-id-c432720fe70ccd69fb70ef41c76ecd9b-tab"
+      id="R-tab-id-1166cca6112f63c6c78c863a065d1472" role="tabpanel" aria-labelledby="R-tab-id-1166cca6112f63c6c78c863a065d1472-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -879,14 +888,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-b4138c54b26d5d919281e2eb1056d833-tab" aria-controls="R-tab-id-b4138c54b26d5d919281e2eb1056d833" aria-selected="true"
+        role="tab" id="R-tab-id-833608de505fcb607ac7ac83d1fe6060-tab" aria-controls="R-tab-id-833608de505fcb607ac7ac83d1fe6060" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-de1927dca5a356e04a161f9c4b2263d0-tab" aria-controls="R-tab-id-de1927dca5a356e04a161f9c4b2263d0" aria-selected="false"
+        role="tab" id="R-tab-id-8409d15ab33dbf1e4f0479946d9d4318-tab" aria-controls="R-tab-id-8409d15ab33dbf1e4f0479946d9d4318" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -896,7 +905,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b4138c54b26d5d919281e2eb1056d833" role="tabpanel" aria-labelledby="R-tab-id-b4138c54b26d5d919281e2eb1056d833-tab"
+      id="R-tab-id-833608de505fcb607ac7ac83d1fe6060" role="tabpanel" aria-labelledby="R-tab-id-833608de505fcb607ac7ac83d1fe6060-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -915,7 +924,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-de1927dca5a356e04a161f9c4b2263d0" role="tabpanel" aria-labelledby="R-tab-id-de1927dca5a356e04a161f9c4b2263d0-tab"
+      id="R-tab-id-8409d15ab33dbf1e4f0479946d9d4318" role="tabpanel" aria-labelledby="R-tab-id-8409d15ab33dbf1e4f0479946d9d4318-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -942,24 +951,24 @@ For the connoisseur of programming.
 
 <div class="tab-panel" data-tab-group="R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-1674ca62a7d65aa9398910e5077baf25">Group A, Tabs 1</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-1674ca62a7d65aa9398910e5077baf25">
+    <div class="tab-nav-title" id="R-tabs-title-13831266f7024bf9f8964cd076a39c32">Group A, Tabs 1</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-13831266f7024bf9f8964cd076a39c32">
       <button
-        role="tab" id="R-tab-id-0661a710173ffdc565b9f1878017aa4c-tab" aria-controls="R-tab-id-0661a710173ffdc565b9f1878017aa4c" aria-selected="true"
+        role="tab" id="R-tab-id-73058ff140bfe059dae082223058169b-tab" aria-controls="R-tab-id-73058ff140bfe059dae082223058169b" aria-selected="true"
         data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">JSON</span>
       </button>
       <button
-        role="tab" id="R-tab-id-e8a5ebd4ec84d89e7457293b7de21115-tab" aria-controls="R-tab-id-e8a5ebd4ec84d89e7457293b7de21115" aria-selected="false"
+        role="tab" id="R-tab-id-87b8b51a33b06ee9a245fda2661e986b-tab" aria-controls="R-tab-id-87b8b51a33b06ee9a245fda2661e986b" aria-selected="false"
         data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text"><em><strong>XML</strong></em></span>
       </button>
       <button
-        role="tab" id="R-tab-id-eaea38b25ff74a130b5ad5422453a47d-tab" aria-controls="R-tab-id-eaea38b25ff74a130b5ad5422453a47d" aria-selected="false"
+        role="tab" id="R-tab-id-c31443cec22da79f7a5bd3c1c008d897-tab" aria-controls="R-tab-id-c31443cec22da79f7a5bd3c1c008d897" aria-selected="false"
         data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -969,7 +978,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0661a710173ffdc565b9f1878017aa4c" role="tabpanel" aria-labelledby="R-tab-id-0661a710173ffdc565b9f1878017aa4c-tab"
+      id="R-tab-id-73058ff140bfe059dae082223058169b" role="tabpanel" aria-labelledby="R-tab-id-73058ff140bfe059dae082223058169b-tab"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -977,7 +986,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-e8a5ebd4ec84d89e7457293b7de21115" role="tabpanel" aria-labelledby="R-tab-id-e8a5ebd4ec84d89e7457293b7de21115-tab"
+      id="R-tab-id-87b8b51a33b06ee9a245fda2661e986b" role="tabpanel" aria-labelledby="R-tab-id-87b8b51a33b06ee9a245fda2661e986b-tab"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -985,7 +994,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-eaea38b25ff74a130b5ad5422453a47d" role="tabpanel" aria-labelledby="R-tab-id-eaea38b25ff74a130b5ad5422453a47d-tab"
+      id="R-tab-id-c31443cec22da79f7a5bd3c1c008d897" role="tabpanel" aria-labelledby="R-tab-id-c31443cec22da79f7a5bd3c1c008d897-tab"
       data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -998,17 +1007,17 @@ For the connoisseur of programming.
 
 <div class="tab-panel" data-tab-group="R-tabs-d7195bd26e9e5eec6028c8a5454dfd0d">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-42811e3b09ffbeda2afa72b08c89028b">Group A, Tabs 2</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-42811e3b09ffbeda2afa72b08c89028b">
+    <div class="tab-nav-title" id="R-tabs-title-fa8e4d8bf0e38527b0fe8f4d879caf1c">Group A, Tabs 2</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-fa8e4d8bf0e38527b0fe8f4d879caf1c">
       <button
-        role="tab" id="R-tab-id-4b90aaa1716f5a3783054e3a5c04436d-tab" aria-controls="R-tab-id-4b90aaa1716f5a3783054e3a5c04436d" aria-selected="true"
+        role="tab" id="R-tab-id-55c7ef86407fc057362c938966320d94-tab" aria-controls="R-tab-id-55c7ef86407fc057362c938966320d94" aria-selected="true"
         data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">JSON</span>
       </button>
       <button
-        role="tab" id="R-tab-id-1105c53741aabd27742fc08bd3ea252c-tab" aria-controls="R-tab-id-1105c53741aabd27742fc08bd3ea252c" aria-selected="false"
+        role="tab" id="R-tab-id-0f7359ee76bbb2dce5f2e80dfcb9366b-tab" aria-controls="R-tab-id-0f7359ee76bbb2dce5f2e80dfcb9366b" aria-selected="false"
         data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1018,7 +1027,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4b90aaa1716f5a3783054e3a5c04436d" role="tabpanel" aria-labelledby="R-tab-id-4b90aaa1716f5a3783054e3a5c04436d-tab"
+      id="R-tab-id-55c7ef86407fc057362c938966320d94" role="tabpanel" aria-labelledby="R-tab-id-55c7ef86407fc057362c938966320d94-tab"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1026,7 +1035,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-1105c53741aabd27742fc08bd3ea252c" role="tabpanel" aria-labelledby="R-tab-id-1105c53741aabd27742fc08bd3ea252c-tab"
+      id="R-tab-id-0f7359ee76bbb2dce5f2e80dfcb9366b" role="tabpanel" aria-labelledby="R-tab-id-0f7359ee76bbb2dce5f2e80dfcb9366b-tab"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1038,17 +1047,17 @@ For the connoisseur of programming.
 
 <div class="tab-panel" data-tab-group="R-tabs-7fe8053a023f8e50e519830def56ae42">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-74ad4bbdc878916b5c4deb1ded90c163">Group B</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-74ad4bbdc878916b5c4deb1ded90c163">
+    <div class="tab-nav-title" id="R-tabs-title-5bc8d22aceae97dab06ade19f20d9ad7">Group B</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-5bc8d22aceae97dab06ade19f20d9ad7">
       <button
-        role="tab" id="R-tab-id-a07fa4a5ad7d7f36b04f8cc26432cb64-tab" aria-controls="R-tab-id-a07fa4a5ad7d7f36b04f8cc26432cb64" aria-selected="true"
+        role="tab" id="R-tab-id-5bbc32d87bb589334b6553c6643336e5-tab" aria-controls="R-tab-id-5bbc32d87bb589334b6553c6643336e5" aria-selected="true"
         data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">JSON</span>
       </button>
       <button
-        role="tab" id="R-tab-id-b7d5c182680008beb1c3866a9f079835-tab" aria-controls="R-tab-id-b7d5c182680008beb1c3866a9f079835" aria-selected="false"
+        role="tab" id="R-tab-id-f5fe74a9d1c8a2bf4aba794884bb7ce8-tab" aria-controls="R-tab-id-f5fe74a9d1c8a2bf4aba794884bb7ce8" aria-selected="false"
         data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1058,7 +1067,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a07fa4a5ad7d7f36b04f8cc26432cb64" role="tabpanel" aria-labelledby="R-tab-id-a07fa4a5ad7d7f36b04f8cc26432cb64-tab"
+      id="R-tab-id-5bbc32d87bb589334b6553c6643336e5" role="tabpanel" aria-labelledby="R-tab-id-5bbc32d87bb589334b6553c6643336e5-tab"
       data-tab-item="R-tab-0ecd11c1d7a287401d148a23bbd7a2f8"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1066,7 +1075,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-b7d5c182680008beb1c3866a9f079835" role="tabpanel" aria-labelledby="R-tab-id-b7d5c182680008beb1c3866a9f079835-tab"
+      id="R-tab-id-f5fe74a9d1c8a2bf4aba794884bb7ce8" role="tabpanel" aria-labelledby="R-tab-id-f5fe74a9d1c8a2bf4aba794884bb7ce8-tab"
       data-tab-item="R-tab-3501bb093d363810b671059b9cfed3f8"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1084,14 +1093,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-f540f5ec5b468f09cf9e4d46e712d28a-tab" aria-controls="R-tab-id-f540f5ec5b468f09cf9e4d46e712d28a" aria-selected="true"
+        role="tab" id="R-tab-id-cc75da2ae38a76baea26ecddf34ded97-tab" aria-controls="R-tab-id-cc75da2ae38a76baea26ecddf34ded97" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-c972f38d99d96d3a929a42f09cacbd75-tab" aria-controls="R-tab-id-c972f38d99d96d3a929a42f09cacbd75" aria-selected="false"
+        role="tab" id="R-tab-id-029b5ae8c8f71569c3ae49deaf47abdb-tab" aria-controls="R-tab-id-029b5ae8c8f71569c3ae49deaf47abdb" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1101,7 +1110,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f540f5ec5b468f09cf9e4d46e712d28a" role="tabpanel" aria-labelledby="R-tab-id-f540f5ec5b468f09cf9e4d46e712d28a-tab"
+      id="R-tab-id-cc75da2ae38a76baea26ecddf34ded97" role="tabpanel" aria-labelledby="R-tab-id-cc75da2ae38a76baea26ecddf34ded97-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1137,7 +1146,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-c972f38d99d96d3a929a42f09cacbd75" role="tabpanel" aria-labelledby="R-tab-id-c972f38d99d96d3a929a42f09cacbd75-tab"
+      id="R-tab-id-029b5ae8c8f71569c3ae49deaf47abdb" role="tabpanel" aria-labelledby="R-tab-id-029b5ae8c8f71569c3ae49deaf47abdb-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1195,17 +1204,17 @@ For the connoisseur of programming.
 
 <div class="tab-panel" data-tab-group="R-tabs-fad58de7366495db4650cfefac2fcd61">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-94dd51ee2861898b47c8f56d9c085b47"><i class="fa-fw fas fa-thumbtack" aria-hidden="true"></i> Rationale</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-94dd51ee2861898b47c8f56d9c085b47">
+    <div class="tab-nav-title" id="R-tabs-title-03b450c36f3ce6876b30fd42d3d1adc5"><i class="fa-fw fas fa-thumbtack" aria-hidden="true"></i> Rationale</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-03b450c36f3ce6876b30fd42d3d1adc5">
       <button
-        role="tab" id="R-tab-id-640bdb7842dc00f265a7a12274d1cc5d-tab" aria-controls="R-tab-id-640bdb7842dc00f265a7a12274d1cc5d" aria-selected="true"
+        role="tab" id="R-tab-id-b139c95d6efe7abc5bb0d60db86a5602-tab" aria-controls="R-tab-id-b139c95d6efe7abc5bb0d60db86a5602" aria-selected="true"
         data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
         class="tab-nav-button tab-panel-style cstyle primary active" tabindex="0"
       >
         <span class="tab-nav-text">Text</span>
       </button>
       <button
-        role="tab" id="R-tab-id-c1fb8913f81ba9ee78a9ce20cde5fa82-tab" aria-controls="R-tab-id-c1fb8913f81ba9ee78a9ce20cde5fa82" aria-selected="false"
+        role="tab" id="R-tab-id-406b879c5b6ba2f6bd8a3e1f3006f1ad-tab" aria-controls="R-tab-id-406b879c5b6ba2f6bd8a3e1f3006f1ad" aria-selected="false"
         data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
         class="tab-nav-button tab-panel-style cstyle default" style="--VARIABLE-BOX-color: darkorchid;" tabindex="-1"
       >
@@ -1215,7 +1224,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-640bdb7842dc00f265a7a12274d1cc5d" role="tabpanel" aria-labelledby="R-tab-id-640bdb7842dc00f265a7a12274d1cc5d-tab"
+      id="R-tab-id-b139c95d6efe7abc5bb0d60db86a5602" role="tabpanel" aria-labelledby="R-tab-id-b139c95d6efe7abc5bb0d60db86a5602-tab"
       data-tab-item="R-tab-9dffbf69ffba8bc38bc4e01abf4b1675"
       class="tab-content tab-panel-style cstyle primary active">
       <div class="tab-content-text">
@@ -1224,14 +1233,14 @@ For the connoisseur of programming.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-ca4d0a95876c54bfc5bc86a85de6bb2a-tab" aria-controls="R-tab-id-ca4d0a95876c54bfc5bc86a85de6bb2a" aria-selected="true"
+        role="tab" id="R-tab-id-92d6d62d27aa2058c3f8aa39a7eecf5f-tab" aria-controls="R-tab-id-92d6d62d27aa2058c3f8aa39a7eecf5f" aria-selected="true"
         data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
         class="tab-nav-button tab-panel-style cstyle initial active" tabindex="0"
       >
         <span class="tab-nav-text">python</span>
       </button>
       <button
-        role="tab" id="R-tab-id-3e4cdbb4b073e53b6092128fb796355c-tab" aria-controls="R-tab-id-3e4cdbb4b073e53b6092128fb796355c" aria-selected="false"
+        role="tab" id="R-tab-id-7557baa35e9ac6a51846807342fdbb6e-tab" aria-controls="R-tab-id-7557baa35e9ac6a51846807342fdbb6e" aria-selected="false"
         data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
         class="tab-nav-button tab-panel-style cstyle initial" tabindex="-1"
       >
@@ -1241,7 +1250,7 @@ For the connoisseur of programming.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ca4d0a95876c54bfc5bc86a85de6bb2a" role="tabpanel" aria-labelledby="R-tab-id-ca4d0a95876c54bfc5bc86a85de6bb2a-tab"
+      id="R-tab-id-92d6d62d27aa2058c3f8aa39a7eecf5f" role="tabpanel" aria-labelledby="R-tab-id-92d6d62d27aa2058c3f8aa39a7eecf5f-tab"
       data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1253,7 +1262,7 @@ For the connoisseur of programming.
       </div>
     </div>
     <div
-      id="R-tab-id-3e4cdbb4b073e53b6092128fb796355c" role="tabpanel" aria-labelledby="R-tab-id-3e4cdbb4b073e53b6092128fb796355c-tab"
+      id="R-tab-id-7557baa35e9ac6a51846807342fdbb6e" role="tabpanel" aria-labelledby="R-tab-id-7557baa35e9ac6a51846807342fdbb6e-tab"
       data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1265,7 +1274,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-c1fb8913f81ba9ee78a9ce20cde5fa82" role="tabpanel" aria-labelledby="R-tab-id-c1fb8913f81ba9ee78a9ce20cde5fa82-tab"
+      id="R-tab-id-406b879c5b6ba2f6bd8a3e1f3006f1ad" role="tabpanel" aria-labelledby="R-tab-id-406b879c5b6ba2f6bd8a3e1f3006f1ad-tab"
       data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
       class="tab-content tab-panel-style cstyle default" style="--VARIABLE-BOX-color: darkorchid;">
       <div class="tab-content-text">
@@ -1274,14 +1283,14 @@ Bash is for <strong>hackers</strong>.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-4268cef12146022869aa9ab0cd9d7638-tab" aria-controls="R-tab-id-4268cef12146022869aa9ab0cd9d7638" aria-selected="true"
+        role="tab" id="R-tab-id-1678c1c902e01ee95fc0e9aed1c30730-tab" aria-controls="R-tab-id-1678c1c902e01ee95fc0e9aed1c30730" aria-selected="true"
         data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">python</span>
       </button>
       <button
-        role="tab" id="R-tab-id-fc3a0dfbe5d75f37f42c81c85fc97924-tab" aria-controls="R-tab-id-fc3a0dfbe5d75f37f42c81c85fc97924" aria-selected="false"
+        role="tab" id="R-tab-id-925fd103c698355ab155ee887e1b442a-tab" aria-controls="R-tab-id-925fd103c698355ab155ee887e1b442a" aria-selected="false"
         data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1291,7 +1300,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4268cef12146022869aa9ab0cd9d7638" role="tabpanel" aria-labelledby="R-tab-id-4268cef12146022869aa9ab0cd9d7638-tab"
+      id="R-tab-id-1678c1c902e01ee95fc0e9aed1c30730" role="tabpanel" aria-labelledby="R-tab-id-1678c1c902e01ee95fc0e9aed1c30730-tab"
       data-tab-item="R-tab-23eeeb4347bdd26bfc6b7ee9a3b755dd"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1299,7 +1308,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-fc3a0dfbe5d75f37f42c81c85fc97924" role="tabpanel" aria-labelledby="R-tab-id-fc3a0dfbe5d75f37f42c81c85fc97924-tab"
+      id="R-tab-id-925fd103c698355ab155ee887e1b442a" role="tabpanel" aria-labelledby="R-tab-id-925fd103c698355ab155ee887e1b442a-tab"
       data-tab-item="R-tab-d574d4bb40c84861791a694a999cce69"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1319,14 +1328,14 @@ Bash is for <strong>hackers</strong>.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-6e489755a7cb7d79b42086102adbf028-tab" aria-controls="R-tab-id-6e489755a7cb7d79b42086102adbf028" aria-selected="true"
+        role="tab" id="R-tab-id-c5cb86eae4777b4c15be321d345dd770-tab" aria-controls="R-tab-id-c5cb86eae4777b4c15be321d345dd770" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-92af2bb03908b9e8709bc76daa71b8a5-tab" aria-controls="R-tab-id-92af2bb03908b9e8709bc76daa71b8a5" aria-selected="false"
+        role="tab" id="R-tab-id-75178ad4b8d9a3f271ed494c6bc97454-tab" aria-controls="R-tab-id-75178ad4b8d9a3f271ed494c6bc97454" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1336,7 +1345,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6e489755a7cb7d79b42086102adbf028" role="tabpanel" aria-labelledby="R-tab-id-6e489755a7cb7d79b42086102adbf028-tab"
+      id="R-tab-id-c5cb86eae4777b4c15be321d345dd770" role="tabpanel" aria-labelledby="R-tab-id-c5cb86eae4777b4c15be321d345dd770-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1348,7 +1357,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-92af2bb03908b9e8709bc76daa71b8a5" role="tabpanel" aria-labelledby="R-tab-id-92af2bb03908b9e8709bc76daa71b8a5-tab"
+      id="R-tab-id-75178ad4b8d9a3f271ed494c6bc97454" role="tabpanel" aria-labelledby="R-tab-id-75178ad4b8d9a3f271ed494c6bc97454-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1361,12 +1370,12 @@ Bash is for <strong>hackers</strong>.
     </div>
   </div>
 </div>
-<div class="tab-panel" data-tab-group="R-tabs-20756cc999ca3670450e8eb0a35a6e58">
+<div class="tab-panel" data-tab-group="R-tabs-76b4b228d4cdf70c8d2f0060e9644a74">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-744ac5ce5d02f69c5da68334adec5330-tab" aria-controls="R-tab-id-744ac5ce5d02f69c5da68334adec5330" aria-selected="true"
+        role="tab" id="R-tab-id-f0ff493163e30c9dc262ac6b09cb1abb-tab" aria-controls="R-tab-id-f0ff493163e30c9dc262ac6b09cb1abb" aria-selected="true"
         data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -1376,7 +1385,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-744ac5ce5d02f69c5da68334adec5330" role="tabpanel" aria-labelledby="R-tab-id-744ac5ce5d02f69c5da68334adec5330-tab"
+      id="R-tab-id-f0ff493163e30c9dc262ac6b09cb1abb" role="tabpanel" aria-labelledby="R-tab-id-f0ff493163e30c9dc262ac6b09cb1abb-tab"
       data-tab-item="R-tab-ca0dbad92a874b2f69b549293387925e"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1392,14 +1401,14 @@ Bash is for <strong>hackers</strong>.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-51419cc82588518256a0e8ec7eb86abc-tab" aria-controls="R-tab-id-51419cc82588518256a0e8ec7eb86abc" aria-selected="true"
+        role="tab" id="R-tab-id-2aa0db2a60b4bc0820df95d3bd93cbd9-tab" aria-controls="R-tab-id-2aa0db2a60b4bc0820df95d3bd93cbd9" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-607351d05e95a3ecb3a0850a3591c2bb-tab" aria-controls="R-tab-id-607351d05e95a3ecb3a0850a3591c2bb" aria-selected="false"
+        role="tab" id="R-tab-id-c43bdfcb52cc12e13b45c3d678528b71-tab" aria-controls="R-tab-id-c43bdfcb52cc12e13b45c3d678528b71" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1409,7 +1418,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-51419cc82588518256a0e8ec7eb86abc" role="tabpanel" aria-labelledby="R-tab-id-51419cc82588518256a0e8ec7eb86abc-tab"
+      id="R-tab-id-2aa0db2a60b4bc0820df95d3bd93cbd9" role="tabpanel" aria-labelledby="R-tab-id-2aa0db2a60b4bc0820df95d3bd93cbd9-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1422,7 +1431,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-607351d05e95a3ecb3a0850a3591c2bb" role="tabpanel" aria-labelledby="R-tab-id-607351d05e95a3ecb3a0850a3591c2bb-tab"
+      id="R-tab-id-c43bdfcb52cc12e13b45c3d678528b71" role="tabpanel" aria-labelledby="R-tab-id-c43bdfcb52cc12e13b45c3d678528b71-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1435,12 +1444,12 @@ Bash is for <strong>hackers</strong>.
     </div>
   </div>
 </div>
-<div class="tab-panel" data-tab-group="R-tabs-6e724fce5ce4cc3bada7852d7b86f64e">
+<div class="tab-panel" data-tab-group="R-tabs-f75a7f9b4b6331d0ace2fe71ed9cb93c">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-6240179a41f0448821b9dfe9d0f07f17-tab" aria-controls="R-tab-id-6240179a41f0448821b9dfe9d0f07f17" aria-selected="true"
+        role="tab" id="R-tab-id-01d4c8a0ea6cea85c9311146160bf1b8-tab" aria-controls="R-tab-id-01d4c8a0ea6cea85c9311146160bf1b8" aria-selected="true"
         data-tab-item="R-tab-699b4f79215d191584653efebf156e52"
         class="tab-nav-button tab-panel-style cstyle initial active" tabindex="0"
       >
@@ -1450,7 +1459,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-6240179a41f0448821b9dfe9d0f07f17" role="tabpanel" aria-labelledby="R-tab-id-6240179a41f0448821b9dfe9d0f07f17-tab"
+      id="R-tab-id-01d4c8a0ea6cea85c9311146160bf1b8" role="tabpanel" aria-labelledby="R-tab-id-01d4c8a0ea6cea85c9311146160bf1b8-tab"
       data-tab-item="R-tab-699b4f79215d191584653efebf156e52"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1468,14 +1477,14 @@ Bash is for <strong>hackers</strong>.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-746e1c03c11485150d1f57406915ff31-tab" aria-controls="R-tab-id-746e1c03c11485150d1f57406915ff31" aria-selected="true"
+        role="tab" id="R-tab-id-38c4921c0f6fdb1a1a00b22c9b0a7ea0-tab" aria-controls="R-tab-id-38c4921c0f6fdb1a1a00b22c9b0a7ea0" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-c7f611d1fdd2452b845cedee1f430ee9-tab" aria-controls="R-tab-id-c7f611d1fdd2452b845cedee1f430ee9" aria-selected="false"
+        role="tab" id="R-tab-id-e3e78a191be6bba5802cc6282aadf0bd-tab" aria-controls="R-tab-id-e3e78a191be6bba5802cc6282aadf0bd" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1485,7 +1494,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-746e1c03c11485150d1f57406915ff31" role="tabpanel" aria-labelledby="R-tab-id-746e1c03c11485150d1f57406915ff31-tab"
+      id="R-tab-id-38c4921c0f6fdb1a1a00b22c9b0a7ea0" role="tabpanel" aria-labelledby="R-tab-id-38c4921c0f6fdb1a1a00b22c9b0a7ea0-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1496,7 +1505,7 @@ Bash is for <strong>hackers</strong>.
       </div>
     </div>
     <div
-      id="R-tab-id-c7f611d1fdd2452b845cedee1f430ee9" role="tabpanel" aria-labelledby="R-tab-id-c7f611d1fdd2452b845cedee1f430ee9-tab"
+      id="R-tab-id-e3e78a191be6bba5802cc6282aadf0bd" role="tabpanel" aria-labelledby="R-tab-id-e3e78a191be6bba5802cc6282aadf0bd-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1519,19 +1528,19 @@ Bash is for <strong>hackers</strong>.
     </div>
   </div>
 </div>
-<div class="tab-panel" data-tab-group="R-tabs-fee095454616e7c43e3733fb44e17d66">
+<div class="tab-panel" data-tab-group="R-tabs-8b4c76f59cbbd7c6b9ef7c756f13e043">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-33a0864d5015163b5cf514b64b3c3ced-tab" aria-controls="R-tab-id-33a0864d5015163b5cf514b64b3c3ced" aria-selected="true" title="Download" aria-label="Download"
+        role="tab" id="R-tab-id-f1b238a9d48ff857c0199300525f25ae-tab" aria-controls="R-tab-id-f1b238a9d48ff857c0199300525f25ae" aria-selected="true" title="Download" aria-label="Download"
         data-tab-item="R-tab-ccd7d921d744c6e0a005c495249b5e15"
         class="tab-nav-button tab-panel-style cstyle initial active" tabindex="0"
       >
         <span class="tab-nav-text"><i class="fa-fw fas fa-download" aria-hidden="true"></i>&#8203;</span>
       </button>
       <button
-        role="tab" id="R-tab-id-72b3bdb7c3842ad62d9272b7171f34d6-tab" aria-controls="R-tab-id-72b3bdb7c3842ad62d9272b7171f34d6" aria-selected="false" title="Configure" aria-label="Configure"
+        role="tab" id="R-tab-id-fd33d152983dc93b03141862d5f74a87-tab" aria-controls="R-tab-id-fd33d152983dc93b03141862d5f74a87" aria-selected="false" title="Configure" aria-label="Configure"
         data-tab-item="R-tab-13d3ba3aeb443a6aa4d269527db219c6"
         class="tab-nav-button tab-panel-style cstyle initial" tabindex="-1"
       >
@@ -1541,7 +1550,7 @@ Bash is for <strong>hackers</strong>.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-33a0864d5015163b5cf514b64b3c3ced" role="tabpanel" aria-labelledby="R-tab-id-33a0864d5015163b5cf514b64b3c3ced-tab"
+      id="R-tab-id-f1b238a9d48ff857c0199300525f25ae" role="tabpanel" aria-labelledby="R-tab-id-f1b238a9d48ff857c0199300525f25ae-tab"
       data-tab-item="R-tab-ccd7d921d744c6e0a005c495249b5e15"
       class="tab-content tab-panel-style cstyle initial active">
       <div class="tab-content-text">
@@ -1549,7 +1558,7 @@ Get the theme from its repository.
       </div>
     </div>
     <div
-      id="R-tab-id-72b3bdb7c3842ad62d9272b7171f34d6" role="tabpanel" aria-labelledby="R-tab-id-72b3bdb7c3842ad62d9272b7171f34d6-tab"
+      id="R-tab-id-fd33d152983dc93b03141862d5f74a87" role="tabpanel" aria-labelledby="R-tab-id-fd33d152983dc93b03141862d5f74a87-tab"
       data-tab-item="R-tab-13d3ba3aeb443a6aa4d269527db219c6"
       class="tab-content tab-panel-style cstyle initial">
       <div class="tab-content-text">
@@ -1566,14 +1575,14 @@ Set the options in your project configuration.
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-4fba26754c8e612f117a7c0d5fb6b969-tab" aria-controls="R-tab-id-4fba26754c8e612f117a7c0d5fb6b969" aria-selected="true"
+        role="tab" id="R-tab-id-26c3ab43222b273bdac116a1e346c9af-tab" aria-controls="R-tab-id-26c3ab43222b273bdac116a1e346c9af" aria-selected="true"
         data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">Shortcode</span>
       </button>
       <button
-        role="tab" id="R-tab-id-f42302555475107d00135a5e1950920e-tab" aria-controls="R-tab-id-f42302555475107d00135a5e1950920e" aria-selected="false"
+        role="tab" id="R-tab-id-852999d7d747269478fbdbb9e1f0b33c-tab" aria-controls="R-tab-id-852999d7d747269478fbdbb9e1f0b33c" aria-selected="false"
         data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1583,7 +1592,7 @@ Set the options in your project configuration.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4fba26754c8e612f117a7c0d5fb6b969" role="tabpanel" aria-labelledby="R-tab-id-4fba26754c8e612f117a7c0d5fb6b969-tab"
+      id="R-tab-id-26c3ab43222b273bdac116a1e346c9af" role="tabpanel" aria-labelledby="R-tab-id-26c3ab43222b273bdac116a1e346c9af-tab"
       data-tab-item="R-tab-6feadb455c64759731e453380c52fbd9"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1617,7 +1626,7 @@ Set the options in your project configuration.
       </div>
     </div>
     <div
-      id="R-tab-id-f42302555475107d00135a5e1950920e" role="tabpanel" aria-labelledby="R-tab-id-f42302555475107d00135a5e1950920e-tab"
+      id="R-tab-id-852999d7d747269478fbdbb9e1f0b33c" role="tabpanel" aria-labelledby="R-tab-id-852999d7d747269478fbdbb9e1f0b33c-tab"
       data-tab-item="R-tab-44ffd38a6dea695cbe2b34efdcc6cf27"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1657,40 +1666,40 @@ Set the options in your project configuration.
     </div>
   </div>
 </div>
-<div class="tab-panel" data-tab-group="R-tabs-1d31c860f46b251a6417c7cc2231be96">
+<div class="tab-panel" data-tab-group="R-tabs-b3d518b4ce3e13be3f29f7f6fea6fe8c">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-09dee751346c29bbeeb24f90f52d926f-tab" aria-controls="R-tab-id-09dee751346c29bbeeb24f90f52d926f" aria-selected="true"
+        role="tab" id="R-tab-id-40925d1f9c2ac9acc5be63de3d411cf3-tab" aria-controls="R-tab-id-40925d1f9c2ac9acc5be63de3d411cf3" aria-selected="true"
         data-tab-item="R-tab-ff4917d1eb9a1d83d864f1909d5e9bab"
         class="tab-nav-button tab-panel-style cstyle blue active" tabindex="0"
       >
         <span class="tab-nav-text">just colored style</span>
       </button>
       <button
-        role="tab" id="R-tab-id-2e1032c1bfe993f9a4f167eb29e749a7-tab" aria-controls="R-tab-id-2e1032c1bfe993f9a4f167eb29e749a7" aria-selected="false"
+        role="tab" id="R-tab-id-855696c837c2e455bb0f12ecd906ac5d-tab" aria-controls="R-tab-id-855696c837c2e455bb0f12ecd906ac5d" aria-selected="false"
         data-tab-item="R-tab-6c45925b24aade031d63b7397c82b71b"
         class="tab-nav-button tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: blue;" tabindex="-1"
       >
         <span class="tab-nav-text">just color</span>
       </button>
       <button
-        role="tab" id="R-tab-id-82ad7144168bb83cdebde929cf123036-tab" aria-controls="R-tab-id-82ad7144168bb83cdebde929cf123036" aria-selected="false"
+        role="tab" id="R-tab-id-8861acf97f9a1477708fa9167c871a02-tab" aria-controls="R-tab-id-8861acf97f9a1477708fa9167c871a02" aria-selected="false"
         data-tab-item="R-tab-e705d2c767e548231f214413fefa448d"
         class="tab-nav-button tab-panel-style cstyle default" style="--VARIABLE-BOX-color: blue;" tabindex="-1"
       >
         <span class="tab-nav-text">default style and color</span>
       </button>
       <button
-        role="tab" id="R-tab-id-da739586a2e184ec557d7ef8162d4dbe-tab" aria-controls="R-tab-id-da739586a2e184ec557d7ef8162d4dbe" aria-selected="false"
+        role="tab" id="R-tab-id-99ab4be73f2e51a7e98bc7605d034bc7-tab" aria-controls="R-tab-id-99ab4be73f2e51a7e98bc7605d034bc7" aria-selected="false"
         data-tab-item="R-tab-a31be03e34ad44a369706414e9b55b69"
         class="tab-nav-button tab-panel-style cstyle info" tabindex="-1"
       >
         <span class="tab-nav-text"><i class="fa-fw fas fa-info-circle" aria-hidden="true"></i> just severity style</span>
       </button>
       <button
-        role="tab" id="R-tab-id-c5d4165b62b7b246a58067b6637a2d00-tab" aria-controls="R-tab-id-c5d4165b62b7b246a58067b6637a2d00" aria-selected="false"
+        role="tab" id="R-tab-id-202a73066d248d0c42124223be0ae088-tab" aria-controls="R-tab-id-202a73066d248d0c42124223be0ae088" aria-selected="false"
         data-tab-item="R-tab-1dd91ff914cc659fa23da7cfdf4b645e"
         class="tab-nav-button tab-panel-style cstyle info" style="--VARIABLE-BOX-color: blue;" tabindex="-1"
       >
@@ -1700,7 +1709,7 @@ Set the options in your project configuration.
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-09dee751346c29bbeeb24f90f52d926f" role="tabpanel" aria-labelledby="R-tab-id-09dee751346c29bbeeb24f90f52d926f-tab"
+      id="R-tab-id-40925d1f9c2ac9acc5be63de3d411cf3" role="tabpanel" aria-labelledby="R-tab-id-40925d1f9c2ac9acc5be63de3d411cf3-tab"
       data-tab-item="R-tab-ff4917d1eb9a1d83d864f1909d5e9bab"
       class="tab-content tab-panel-style cstyle blue active">
       <div class="tab-content-text">
@@ -1709,7 +1718,7 @@ Set the options in your project configuration.
       </div>
     </div>
     <div
-      id="R-tab-id-2e1032c1bfe993f9a4f167eb29e749a7" role="tabpanel" aria-labelledby="R-tab-id-2e1032c1bfe993f9a4f167eb29e749a7-tab"
+      id="R-tab-id-855696c837c2e455bb0f12ecd906ac5d" role="tabpanel" aria-labelledby="R-tab-id-855696c837c2e455bb0f12ecd906ac5d-tab"
       data-tab-item="R-tab-6c45925b24aade031d63b7397c82b71b"
       class="tab-content tab-panel-style cstyle filled" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -1718,7 +1727,7 @@ Set the options in your project configuration.
       </div>
     </div>
     <div
-      id="R-tab-id-82ad7144168bb83cdebde929cf123036" role="tabpanel" aria-labelledby="R-tab-id-82ad7144168bb83cdebde929cf123036-tab"
+      id="R-tab-id-8861acf97f9a1477708fa9167c871a02" role="tabpanel" aria-labelledby="R-tab-id-8861acf97f9a1477708fa9167c871a02-tab"
       data-tab-item="R-tab-e705d2c767e548231f214413fefa448d"
       class="tab-content tab-panel-style cstyle default" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -1727,7 +1736,7 @@ Set the options in your project configuration.
       </div>
     </div>
     <div
-      id="R-tab-id-da739586a2e184ec557d7ef8162d4dbe" role="tabpanel" aria-labelledby="R-tab-id-da739586a2e184ec557d7ef8162d4dbe-tab"
+      id="R-tab-id-99ab4be73f2e51a7e98bc7605d034bc7" role="tabpanel" aria-labelledby="R-tab-id-99ab4be73f2e51a7e98bc7605d034bc7-tab"
       data-tab-item="R-tab-a31be03e34ad44a369706414e9b55b69"
       class="tab-content tab-panel-style cstyle info">
       <div class="tab-content-text">
@@ -1736,7 +1745,7 @@ Set the options in your project configuration.
       </div>
     </div>
     <div
-      id="R-tab-id-c5d4165b62b7b246a58067b6637a2d00" role="tabpanel" aria-labelledby="R-tab-id-c5d4165b62b7b246a58067b6637a2d00-tab"
+      id="R-tab-id-202a73066d248d0c42124223be0ae088" role="tabpanel" aria-labelledby="R-tab-id-202a73066d248d0c42124223be0ae088-tab"
       data-tab-item="R-tab-1dd91ff914cc659fa23da7cfdf4b645e"
       class="tab-content tab-panel-style cstyle info" style="--VARIABLE-BOX-color: blue;">
       <div class="tab-content-text">
@@ -1760,7 +1769,7 @@ Set the options in your project configuration.
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

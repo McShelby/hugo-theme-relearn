@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="description" content="Add further code to your site">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -49,8 +49,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.c78bd51b4d7a5c519fda64d6315fa76666231b839afcd47af1514bf1b741c0b3.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-html.min.3d4deda3f13d44b327d97e15a6d1e9dcbd480cd33ae00be9d16c78e7705cfc23.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -79,6 +79,7 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -92,7 +93,15 @@
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -339,7 +348,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/releases/tag/9.3.1" title="Relearn 9.3.1"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/de22d975c5c4364b3d51efbdba3416aec1c92c71" title="Relearn 9.3.1&#43;de22d975c5c4364b3d51efbdba3416aec1c92c71"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.168.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -433,12 +442,12 @@
 <ol>
 <li>
 <p>Create the shortcode file <code>layouts/shortcodes/myshortcode.html</code> and add the folloging line somewhere:</p>
-<div class="tab-panel" data-tab-group="R-tabs-c2d696d90ebe6174c76a13be25663165">
+<div class="tab-panel" data-tab-group="R-tabs-37540d443a197964fbff996e13035fc2">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-342acafee651fd3d82024a270282fd76-tab" aria-controls="R-tab-id-342acafee651fd3d82024a270282fd76" aria-selected="true"
+        role="tab" id="R-tab-id-46ea003c383c522b45d939117f5f5721-tab" aria-controls="R-tab-id-46ea003c383c522b45d939117f5f5721" aria-selected="true"
         data-tab-item="R-tab-31e721a7ccc5f66eae91d9fa5d8f9749"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -448,7 +457,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-342acafee651fd3d82024a270282fd76" role="tabpanel" aria-labelledby="R-tab-id-342acafee651fd3d82024a270282fd76-tab"
+      id="R-tab-id-46ea003c383c522b45d939117f5f5721" role="tabpanel" aria-labelledby="R-tab-id-46ea003c383c522b45d939117f5f5721-tab"
       data-tab-item="R-tab-31e721a7ccc5f66eae91d9fa5d8f9749"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -463,24 +472,24 @@
 <p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears" aria-hidden="true"></i></span><span class="badge-content">Option</span></span> Add this to your project configuration:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-29602fff8376a76c61663ee87f16aa47">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-29602fff8376a76c61663ee87f16aa47">
+    <div class="tab-nav-title" id="R-tabs-title-ebf934953451513fdaa4a7c5b9aa3ea8">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-ebf934953451513fdaa4a7c5b9aa3ea8">
       <button
-        role="tab" id="R-tab-id-96b13b250894245ba34e6c2ca4deeb01-tab" aria-controls="R-tab-id-96b13b250894245ba34e6c2ca4deeb01" aria-selected="true"
+        role="tab" id="R-tab-id-ed5a36bdf32d20c8943f692a8c24832a-tab" aria-controls="R-tab-id-ed5a36bdf32d20c8943f692a8c24832a" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7b6edaff043c4f2810f254049f25b8d6-tab" aria-controls="R-tab-id-7b6edaff043c4f2810f254049f25b8d6" aria-selected="false"
+        role="tab" id="R-tab-id-bbcdc701788266f85a0286e919ba8831-tab" aria-controls="R-tab-id-bbcdc701788266f85a0286e919ba8831" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-300369d94e05363aed5bd39b033383d7-tab" aria-controls="R-tab-id-300369d94e05363aed5bd39b033383d7" aria-selected="false"
+        role="tab" id="R-tab-id-bdf5946a6dada36577cb9bdcfb53138f-tab" aria-controls="R-tab-id-bdf5946a6dada36577cb9bdcfb53138f" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -490,7 +499,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-96b13b250894245ba34e6c2ca4deeb01" role="tabpanel" aria-labelledby="R-tab-id-96b13b250894245ba34e6c2ca4deeb01-tab"
+      id="R-tab-id-ed5a36bdf32d20c8943f692a8c24832a" role="tabpanel" aria-labelledby="R-tab-id-ed5a36bdf32d20c8943f692a8c24832a-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -502,7 +511,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-7b6edaff043c4f2810f254049f25b8d6" role="tabpanel" aria-labelledby="R-tab-id-7b6edaff043c4f2810f254049f25b8d6-tab"
+      id="R-tab-id-bbcdc701788266f85a0286e919ba8831" role="tabpanel" aria-labelledby="R-tab-id-bbcdc701788266f85a0286e919ba8831-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -514,7 +523,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-300369d94e05363aed5bd39b033383d7" role="tabpanel" aria-labelledby="R-tab-id-300369d94e05363aed5bd39b033383d7-tab"
+      id="R-tab-id-bdf5946a6dada36577cb9bdcfb53138f" role="tabpanel" aria-labelledby="R-tab-id-bdf5946a6dada36577cb9bdcfb53138f-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -536,12 +545,12 @@
 </li>
 <li>
 <p>Create loader file <code>layouts/partials/dependencies/myshortcode.html</code>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-e9ae93124c7ecadb2ac6262525f3d106">
+<div class="tab-panel" data-tab-group="R-tabs-ee270b859df44c3e40070d1fb4051d5f">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-ee57af6310ec6f0177f15ab0e015a8e7-tab" aria-controls="R-tab-id-ee57af6310ec6f0177f15ab0e015a8e7" aria-selected="true"
+        role="tab" id="R-tab-id-9bfaa09f298a6d07a159f373bb4a778f-tab" aria-controls="R-tab-id-9bfaa09f298a6d07a159f373bb4a778f" aria-selected="true"
         data-tab-item="R-tab-bb68807f2cf61c80bffff0ad954c5a9f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -551,7 +560,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ee57af6310ec6f0177f15ab0e015a8e7" role="tabpanel" aria-labelledby="R-tab-id-ee57af6310ec6f0177f15ab0e015a8e7-tab"
+      id="R-tab-id-9bfaa09f298a6d07a159f373bb4a778f" role="tabpanel" aria-labelledby="R-tab-id-9bfaa09f298a6d07a159f373bb4a778f-tab"
       data-tab-item="R-tab-bb68807f2cf61c80bffff0ad954c5a9f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -571,8 +580,8 @@
 </ul>
 <p>See the <code>math</code>, <code>mermaid</code>, and <code>openapi</code> shortcodes for examples.</p>
 
-<div role="note" aria-labelledby="R-box-label-a07d5b3fe03ac2465bc9e8a1da8de4f2" class="box cstyle callout note">
-  <div id="R-box-label-a07d5b3fe03ac2465bc9e8a1da8de4f2" class="box-label">
+<div role="note" aria-labelledby="R-box-label-bd6e6f31196ccfb38bfa80ebeb3cb5d9" class="box cstyle callout note">
+  <div id="R-box-label-bd6e6f31196ccfb38bfa80ebeb3cb5d9" class="box-label">
     <i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i> 
     Note
   </div>
@@ -596,7 +605,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

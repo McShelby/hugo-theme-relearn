@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="description" content="How to extend the topbar">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -49,8 +49,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -79,6 +79,7 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -92,7 +93,15 @@
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -222,8 +231,8 @@
 <span class="lightbox-back" id="R-image-954988c130e752e4413431cc07d6e626" role="dialog" aria-modal="true" aria-label="topbar on mobile devices" tabindex="-1"><a href="#R-image-954988c130e752e4413431cc07d6e626-link" class="lightbox-close" aria-label="Close enlarged image"><img alt="topbar on mobile devices" class="bg-white border lazy lightbox rounded lightbox-image" loading="lazy" src="/hugo-theme-relearn/configuration/customization/topbar/topbar-closed.png"></a></span></p>
 <p>Nevertheless, your requirements may differ from this configuration. Luckily, the theme has you covered as the topbar, its elements, and the functionality behind these elements are fully configurable by you.</p>
 
-<div role="note" aria-labelledby="R-box-label-b9ab83ecbf204f04912c38b3bf9430cf" class="box cstyle callout tip">
-  <div id="R-box-label-b9ab83ecbf204f04912c38b3bf9430cf" class="box-label">
+<div role="note" aria-labelledby="R-box-label-c5cba015540037cab0c12444618ae434" class="box cstyle callout tip">
+  <div id="R-box-label-c5cba015540037cab0c12444618ae434" class="box-label">
     <i class="fa-fw fas fa-lightbulb" aria-hidden="true"></i> 
     Tip
   </div>
@@ -273,21 +282,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-0e2e1017736b2b14a1b64bacd1897111-tab" aria-controls="R-tab-id-0e2e1017736b2b14a1b64bacd1897111" aria-selected="true"
+        role="tab" id="R-tab-id-4362270c013e9b4bc2ea2a5c0ea6f340-tab" aria-controls="R-tab-id-4362270c013e9b4bc2ea2a5c0ea6f340" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-1b27b5f583c700d04b68c1a31d1d5893-tab" aria-controls="R-tab-id-1b27b5f583c700d04b68c1a31d1d5893" aria-selected="false"
+        role="tab" id="R-tab-id-19374ff3a370ea2b600f9bcfb6ea0997-tab" aria-controls="R-tab-id-19374ff3a370ea2b600f9bcfb6ea0997" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-bb5a09708b5d88f90ece8d7ba8767a6f-tab" aria-controls="R-tab-id-bb5a09708b5d88f90ece8d7ba8767a6f" aria-selected="false"
+        role="tab" id="R-tab-id-11d414197d169e74c6ba77fff378bb90-tab" aria-controls="R-tab-id-11d414197d169e74c6ba77fff378bb90" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -297,7 +306,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0e2e1017736b2b14a1b64bacd1897111" role="tabpanel" aria-labelledby="R-tab-id-0e2e1017736b2b14a1b64bacd1897111-tab"
+      id="R-tab-id-4362270c013e9b4bc2ea2a5c0ea6f340" role="tabpanel" aria-labelledby="R-tab-id-4362270c013e9b4bc2ea2a5c0ea6f340-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -319,7 +328,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1b27b5f583c700d04b68c1a31d1d5893" role="tabpanel" aria-labelledby="R-tab-id-1b27b5f583c700d04b68c1a31d1d5893-tab"
+      id="R-tab-id-19374ff3a370ea2b600f9bcfb6ea0997" role="tabpanel" aria-labelledby="R-tab-id-19374ff3a370ea2b600f9bcfb6ea0997-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -358,7 +367,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-bb5a09708b5d88f90ece8d7ba8767a6f" role="tabpanel" aria-labelledby="R-tab-id-bb5a09708b5d88f90ece8d7ba8767a6f-tab"
+      id="R-tab-id-11d414197d169e74c6ba77fff378bb90" role="tabpanel" aria-labelledby="R-tab-id-11d414197d169e74c6ba77fff378bb90-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -408,8 +417,8 @@
   </div>
 </div>
 
-<div role="note" aria-labelledby="R-box-label-aa14dc23422c06cbf1ef2ec4d68d11ef" class="box cstyle callout note">
-  <div id="R-box-label-aa14dc23422c06cbf1ef2ec4d68d11ef" class="box-label">
+<div role="note" aria-labelledby="R-box-label-8584a31c86b2d8f43dda872110880e60" class="box cstyle callout note">
+  <div id="R-box-label-8584a31c86b2d8f43dda872110880e60" class="box-label">
     <i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i> 
     Note
   </div>
@@ -429,21 +438,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-1d2aae147d76a9832e4db3e32dda0ee2-tab" aria-controls="R-tab-id-1d2aae147d76a9832e4db3e32dda0ee2" aria-selected="true"
+        role="tab" id="R-tab-id-e3bd171746541aad76cbb973de5a8505-tab" aria-controls="R-tab-id-e3bd171746541aad76cbb973de5a8505" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-8e9ad3897e23fb4610538490410f5980-tab" aria-controls="R-tab-id-8e9ad3897e23fb4610538490410f5980" aria-selected="false"
+        role="tab" id="R-tab-id-34436f45b331d7a697cb76df869233bf-tab" aria-controls="R-tab-id-34436f45b331d7a697cb76df869233bf" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7b631bc987c744b81fb4e75f193f4a2a-tab" aria-controls="R-tab-id-7b631bc987c744b81fb4e75f193f4a2a" aria-selected="false"
+        role="tab" id="R-tab-id-b44be6f98d25edddd57559f2ba1dfcc5-tab" aria-controls="R-tab-id-b44be6f98d25edddd57559f2ba1dfcc5" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -453,7 +462,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1d2aae147d76a9832e4db3e32dda0ee2" role="tabpanel" aria-labelledby="R-tab-id-1d2aae147d76a9832e4db3e32dda0ee2-tab"
+      id="R-tab-id-e3bd171746541aad76cbb973de5a8505" role="tabpanel" aria-labelledby="R-tab-id-e3bd171746541aad76cbb973de5a8505-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -466,7 +475,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-8e9ad3897e23fb4610538490410f5980" role="tabpanel" aria-labelledby="R-tab-id-8e9ad3897e23fb4610538490410f5980-tab"
+      id="R-tab-id-34436f45b331d7a697cb76df869233bf" role="tabpanel" aria-labelledby="R-tab-id-34436f45b331d7a697cb76df869233bf-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -480,7 +489,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-7b631bc987c744b81fb4e75f193f4a2a" role="tabpanel" aria-labelledby="R-tab-id-7b631bc987c744b81fb4e75f193f4a2a-tab"
+      id="R-tab-id-b44be6f98d25edddd57559f2ba1dfcc5" role="tabpanel" aria-labelledby="R-tab-id-b44be6f98d25edddd57559f2ba1dfcc5-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -525,24 +534,24 @@
 <p>Setting the <code>topbarend</code> Front Matter will overwrite all default elements of the <em>end</em> area. If you want to display the arrow navigation and the <em>more</em> button as well like in this example, you have to declare them with the Front Matter as given in the <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#defining-topbar-elements">default options</a>. The <em>start</em> area is not redefined and keeps its elements.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-8ecf2fbea93d6f4b176fb8926c986ae0">log/_index.md</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-8ecf2fbea93d6f4b176fb8926c986ae0">
+    <div class="tab-nav-title" id="R-tabs-title-01e22cf5ff6951ffe99f834bf71523d5">log/_index.md</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-01e22cf5ff6951ffe99f834bf71523d5">
       <button
-        role="tab" id="R-tab-id-3dcfc2d457c79dc017ddd6d3e78a856e-tab" aria-controls="R-tab-id-3dcfc2d457c79dc017ddd6d3e78a856e" aria-selected="true"
+        role="tab" id="R-tab-id-56f699e5905a822c1f3ceeca4ce6406d-tab" aria-controls="R-tab-id-56f699e5905a822c1f3ceeca4ce6406d" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-4e8c561a7c103e4831a5164dea9f8897-tab" aria-controls="R-tab-id-4e8c561a7c103e4831a5164dea9f8897" aria-selected="false"
+        role="tab" id="R-tab-id-5b1ce67b949a29cc7833a94655378893-tab" aria-controls="R-tab-id-5b1ce67b949a29cc7833a94655378893" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-4b305637e796e22cf930daba2888935d-tab" aria-controls="R-tab-id-4b305637e796e22cf930daba2888935d" aria-selected="false"
+        role="tab" id="R-tab-id-39344a08daaa0836b4a34b6e649e26e7-tab" aria-controls="R-tab-id-39344a08daaa0836b4a34b6e649e26e7" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -552,7 +561,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-3dcfc2d457c79dc017ddd6d3e78a856e" role="tabpanel" aria-labelledby="R-tab-id-3dcfc2d457c79dc017ddd6d3e78a856e-tab"
+      id="R-tab-id-56f699e5905a822c1f3ceeca4ce6406d" role="tabpanel" aria-labelledby="R-tab-id-56f699e5905a822c1f3ceeca4ce6406d-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -570,7 +579,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-4e8c561a7c103e4831a5164dea9f8897" role="tabpanel" aria-labelledby="R-tab-id-4e8c561a7c103e4831a5164dea9f8897-tab"
+      id="R-tab-id-5b1ce67b949a29cc7833a94655378893" role="tabpanel" aria-labelledby="R-tab-id-5b1ce67b949a29cc7833a94655378893-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -594,7 +603,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-4b305637e796e22cf930daba2888935d" role="tabpanel" aria-labelledby="R-tab-id-4b305637e796e22cf930daba2888935d-tab"
+      id="R-tab-id-39344a08daaa0836b4a34b6e649e26e7" role="tabpanel" aria-labelledby="R-tab-id-39344a08daaa0836b4a34b6e649e26e7-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -631,12 +640,12 @@
 <p>Besides the predefined elements, you can write your own. Store its template in <code>layouts/partials/topbar/element/&lt;TYPE&gt;.html</code> of your site and add it with <code>{ type = '&lt;TYPE&gt;' }</code> to one of the topbar areas.</p>
 <p>Your template receives every parameter of its configuration, and additionally the displayed page as <code>page</code>.</p>
 <p>The topbar manages what the <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#button">button</a> function writes: it shows, hides and moves it depending on the screen width. So use this function to display your element, even if it is not a plain button, putting what you want to show into the content of the button.</p>
-<div class="tab-panel" data-tab-group="R-tabs-e38b113bedd077f6777aa6c4d3ae8a17">
+<div class="tab-panel" data-tab-group="R-tabs-ce6d1ff111b655598ec12613b35d5190">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-f110589ea257b235a949dae96c071d5f-tab" aria-controls="R-tab-id-f110589ea257b235a949dae96c071d5f" aria-selected="true"
+        role="tab" id="R-tab-id-69913d3af06f1137874f778b601bed57-tab" aria-controls="R-tab-id-69913d3af06f1137874f778b601bed57" aria-selected="true"
         data-tab-item="R-tab-8123cbd59777401a44ff8d9325fb8000"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -646,7 +655,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f110589ea257b235a949dae96c071d5f" role="tabpanel" aria-labelledby="R-tab-id-f110589ea257b235a949dae96c071d5f-tab"
+      id="R-tab-id-69913d3af06f1137874f778b601bed57" role="tabpanel" aria-labelledby="R-tab-id-69913d3af06f1137874f778b601bed57-tab"
       data-tab-item="R-tab-8123cbd59777401a44ff8d9325fb8000"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -665,12 +674,12 @@
 </div><h2 id="defining-own-areas">Defining Own Areas<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>The <em>more</em> area is nothing special: the <a href="https://github.com/McShelby/hugo-theme-relearn/blob/main/layouts/partials/topbar/element/morebutton.html" rel="external" target="_self"><em>more</em> button</a> opens it by calling the <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#area-button">area-button</a> function with the area name <code>more</code>, and the option <code>topbarmore</code> fills it.</p>
 <p>You can add further areas the same way. Write your own element calling the area-button function with an area name <code>&lt;AREA&gt;</code>. Its area is filled by the option <code>topbar&lt;AREA&gt;</code>, which is configured like the options of the predefined areas and can be set in the front matter as well.</p>
-<div class="tab-panel" data-tab-group="R-tabs-8bdf723f9bf11fcee4b77d7ddb8f5321">
+<div class="tab-panel" data-tab-group="R-tabs-474c022386b509397dad11c4a862ff5d">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-d69a9d846a6f12619d0977fbe3b898ee-tab" aria-controls="R-tab-id-d69a9d846a6f12619d0977fbe3b898ee" aria-selected="true"
+        role="tab" id="R-tab-id-a6ac7aba49c9d895a9802ee77f110646-tab" aria-controls="R-tab-id-a6ac7aba49c9d895a9802ee77f110646" aria-selected="true"
         data-tab-item="R-tab-63114a5745cdb4b8ee8174d9cd9c1276"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -680,7 +689,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d69a9d846a6f12619d0977fbe3b898ee" role="tabpanel" aria-labelledby="R-tab-id-d69a9d846a6f12619d0977fbe3b898ee-tab"
+      id="R-tab-id-a6ac7aba49c9d895a9802ee77f110646" role="tabpanel" aria-labelledby="R-tab-id-a6ac7aba49c9d895a9802ee77f110646-tab"
       data-tab-item="R-tab-63114a5745cdb4b8ee8174d9cd9c1276"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -699,21 +708,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-d1c573f5be10fda122691be00eeb6e3a-tab" aria-controls="R-tab-id-d1c573f5be10fda122691be00eeb6e3a" aria-selected="true"
+        role="tab" id="R-tab-id-6808690b665161b394b6244907ff5666-tab" aria-controls="R-tab-id-6808690b665161b394b6244907ff5666" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7383739ae3eb007aed2c602299fff45a-tab" aria-controls="R-tab-id-7383739ae3eb007aed2c602299fff45a" aria-selected="false"
+        role="tab" id="R-tab-id-b5f9f08ea6379175a8baaabe574135d2-tab" aria-controls="R-tab-id-b5f9f08ea6379175a8baaabe574135d2" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-b1e9d7dc89e081889652c0bdd043bd84-tab" aria-controls="R-tab-id-b1e9d7dc89e081889652c0bdd043bd84" aria-selected="false"
+        role="tab" id="R-tab-id-b115a71a59a3590885dbd85e2a474432-tab" aria-controls="R-tab-id-b115a71a59a3590885dbd85e2a474432" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -723,7 +732,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d1c573f5be10fda122691be00eeb6e3a" role="tabpanel" aria-labelledby="R-tab-id-d1c573f5be10fda122691be00eeb6e3a-tab"
+      id="R-tab-id-6808690b665161b394b6244907ff5666" role="tabpanel" aria-labelledby="R-tab-id-6808690b665161b394b6244907ff5666-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -735,7 +744,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-7383739ae3eb007aed2c602299fff45a" role="tabpanel" aria-labelledby="R-tab-id-7383739ae3eb007aed2c602299fff45a-tab"
+      id="R-tab-id-b5f9f08ea6379175a8baaabe574135d2" role="tabpanel" aria-labelledby="R-tab-id-b5f9f08ea6379175a8baaabe574135d2-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -748,7 +757,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b1e9d7dc89e081889652c0bdd043bd84" role="tabpanel" aria-labelledby="R-tab-id-b1e9d7dc89e081889652c0bdd043bd84-tab"
+      id="R-tab-id-b115a71a59a3590885dbd85e2a474432" role="tabpanel" aria-labelledby="R-tab-id-b115a71a59a3590885dbd85e2a474432-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -773,24 +782,24 @@
 <p>As your template is free to call Hugo&rsquo;s <code>T</code> function, the tooltip is taken from your translation files.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-76d075b0d95ed7fb687c56dc73251184">i18n/en.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-76d075b0d95ed7fb687c56dc73251184">
+    <div class="tab-nav-title" id="R-tabs-title-95f6cc7d2bff21ce02ef16b5d38edf02">i18n/en.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-95f6cc7d2bff21ce02ef16b5d38edf02">
       <button
-        role="tab" id="R-tab-id-0ecfe42470c7ddbc595ebe8809cc1551-tab" aria-controls="R-tab-id-0ecfe42470c7ddbc595ebe8809cc1551" aria-selected="true"
+        role="tab" id="R-tab-id-9d8aebd9ec66e4714c0ea0387965223b-tab" aria-controls="R-tab-id-9d8aebd9ec66e4714c0ea0387965223b" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-d6adf75f1d1156132b93615e74a112d3-tab" aria-controls="R-tab-id-d6adf75f1d1156132b93615e74a112d3" aria-selected="false"
+        role="tab" id="R-tab-id-907788ef15123e5cefd62f8c1dd400f3-tab" aria-controls="R-tab-id-907788ef15123e5cefd62f8c1dd400f3" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-103d39fcf5f31ae9bc3847df6c189e5d-tab" aria-controls="R-tab-id-103d39fcf5f31ae9bc3847df6c189e5d" aria-selected="false"
+        role="tab" id="R-tab-id-df330f8e9092439bab6ee2add9aaa118-tab" aria-controls="R-tab-id-df330f8e9092439bab6ee2add9aaa118" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -800,7 +809,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-0ecfe42470c7ddbc595ebe8809cc1551" role="tabpanel" aria-labelledby="R-tab-id-0ecfe42470c7ddbc595ebe8809cc1551-tab"
+      id="R-tab-id-9d8aebd9ec66e4714c0ea0387965223b" role="tabpanel" aria-labelledby="R-tab-id-9d8aebd9ec66e4714c0ea0387965223b-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -809,7 +818,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-d6adf75f1d1156132b93615e74a112d3" role="tabpanel" aria-labelledby="R-tab-id-d6adf75f1d1156132b93615e74a112d3-tab"
+      id="R-tab-id-907788ef15123e5cefd62f8c1dd400f3" role="tabpanel" aria-labelledby="R-tab-id-907788ef15123e5cefd62f8c1dd400f3-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -818,7 +827,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-103d39fcf5f31ae9bc3847df6c189e5d" role="tabpanel" aria-labelledby="R-tab-id-103d39fcf5f31ae9bc3847df6c189e5d-tab"
+      id="R-tab-id-df330f8e9092439bab6ee2add9aaa118" role="tabpanel" aria-labelledby="R-tab-id-df330f8e9092439bab6ee2add9aaa118-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1152,12 +1161,12 @@
   </tbody>
 </table>
 <p>For example, this template</p>
-<div class="tab-panel" data-tab-group="R-tabs-aa2c6dd40bd1c13a1fab21ba8c7d221c">
+<div class="tab-panel" data-tab-group="R-tabs-5128b34ace5cdec7c3a5ba96c2bb2006">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-d4f4eb20c235a09dc15999a78ce9a56f-tab" aria-controls="R-tab-id-d4f4eb20c235a09dc15999a78ce9a56f" aria-selected="true"
+        role="tab" id="R-tab-id-e25dc8a52254e2746b7d8770e7e4afd3-tab" aria-controls="R-tab-id-e25dc8a52254e2746b7d8770e7e4afd3" aria-selected="true"
         data-tab-item="R-tab-b321b60f5f16787802c43222aea3af3e"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -1167,7 +1176,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-d4f4eb20c235a09dc15999a78ce9a56f" role="tabpanel" aria-labelledby="R-tab-id-d4f4eb20c235a09dc15999a78ce9a56f-tab"
+      id="R-tab-id-e25dc8a52254e2746b7d8770e7e4afd3" role="tabpanel" aria-labelledby="R-tab-id-e25dc8a52254e2746b7d8770e7e4afd3-tab"
       data-tab-item="R-tab-b321b60f5f16787802c43222aea3af3e"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1187,21 +1196,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-2cb13ac7b6a6197bcfd398828e399b29-tab" aria-controls="R-tab-id-2cb13ac7b6a6197bcfd398828e399b29" aria-selected="true"
+        role="tab" id="R-tab-id-acc2eb117c7cdedeebca698bfd7e3d6c-tab" aria-controls="R-tab-id-acc2eb117c7cdedeebca698bfd7e3d6c" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-affa0f5ae429ab9a1398d4ba85167743-tab" aria-controls="R-tab-id-affa0f5ae429ab9a1398d4ba85167743" aria-selected="false"
+        role="tab" id="R-tab-id-b8297e2792aaf0358eefc6ddee538c72-tab" aria-controls="R-tab-id-b8297e2792aaf0358eefc6ddee538c72" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-0bdbe891f7ffd811eb240afa8ed2f3c0-tab" aria-controls="R-tab-id-0bdbe891f7ffd811eb240afa8ed2f3c0" aria-selected="false"
+        role="tab" id="R-tab-id-d3319f1a7d3e3a2976bcc6a0cc39ce76-tab" aria-controls="R-tab-id-d3319f1a7d3e3a2976bcc6a0cc39ce76" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1211,7 +1220,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-2cb13ac7b6a6197bcfd398828e399b29" role="tabpanel" aria-labelledby="R-tab-id-2cb13ac7b6a6197bcfd398828e399b29-tab"
+      id="R-tab-id-acc2eb117c7cdedeebca698bfd7e3d6c" role="tabpanel" aria-labelledby="R-tab-id-acc2eb117c7cdedeebca698bfd7e3d6c-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1223,7 +1232,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-affa0f5ae429ab9a1398d4ba85167743" role="tabpanel" aria-labelledby="R-tab-id-affa0f5ae429ab9a1398d4ba85167743-tab"
+      id="R-tab-id-b8297e2792aaf0358eefc6ddee538c72" role="tabpanel" aria-labelledby="R-tab-id-b8297e2792aaf0358eefc6ddee538c72-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1237,7 +1246,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-0bdbe891f7ffd811eb240afa8ed2f3c0" role="tabpanel" aria-labelledby="R-tab-id-0bdbe891f7ffd811eb240afa8ed2f3c0-tab"
+      id="R-tab-id-d3319f1a7d3e3a2976bcc6a0cc39ce76" role="tabpanel" aria-labelledby="R-tab-id-d3319f1a7d3e3a2976bcc6a0cc39ce76-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1268,12 +1277,12 @@
 <h3 id="own-areas">Own Areas<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <p>If you have written your own button calling <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#area-button"><code>topbar/func/area-button.html</code></a> together with a template <code>layouts/partials/topbar/area/&lt;AREA&gt;.html</code> for its content, move your button to <code>layouts/partials/topbar/element</code> like your <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#own-buttons">other buttons</a> and replace the area template by the <a href="/hugo-theme-relearn/configuration/customization/topbar/index.html#defining-own-areas">option of its area</a>.</p>
 <p>For example, these templates</p>
-<div class="tab-panel" data-tab-group="R-tabs-b693a4b515ad6c05eece9b0a6108356e">
+<div class="tab-panel" data-tab-group="R-tabs-109918052062507ccc93e073d008c0fe">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-eefb3a3fe91219e09de573955bba4fcb-tab" aria-controls="R-tab-id-eefb3a3fe91219e09de573955bba4fcb" aria-selected="true"
+        role="tab" id="R-tab-id-333f7080a9ef1c14883d2c0eb45e084e-tab" aria-controls="R-tab-id-333f7080a9ef1c14883d2c0eb45e084e" aria-selected="true"
         data-tab-item="R-tab-798566f66a4a9f8924b74ad488043208"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -1283,7 +1292,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-eefb3a3fe91219e09de573955bba4fcb" role="tabpanel" aria-labelledby="R-tab-id-eefb3a3fe91219e09de573955bba4fcb-tab"
+      id="R-tab-id-333f7080a9ef1c14883d2c0eb45e084e" role="tabpanel" aria-labelledby="R-tab-id-333f7080a9ef1c14883d2c0eb45e084e-tab"
       data-tab-item="R-tab-798566f66a4a9f8924b74ad488043208"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1295,12 +1304,12 @@
       </div>
     </div>
   </div>
-</div><div class="tab-panel" data-tab-group="R-tabs-eb4fb7230c1db1406f9748c32057ebcb">
+</div><div class="tab-panel" data-tab-group="R-tabs-bb0a0b368104c4ce8a8baedb0e4eb486">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-4ad10eac5db066975dbc7e568f8590f7-tab" aria-controls="R-tab-id-4ad10eac5db066975dbc7e568f8590f7" aria-selected="true"
+        role="tab" id="R-tab-id-c40e540911c96e207a90e16330d98ffb-tab" aria-controls="R-tab-id-c40e540911c96e207a90e16330d98ffb" aria-selected="true"
         data-tab-item="R-tab-5c43d9bb2caa03104817f257b35da672"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -1310,7 +1319,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4ad10eac5db066975dbc7e568f8590f7" role="tabpanel" aria-labelledby="R-tab-id-4ad10eac5db066975dbc7e568f8590f7-tab"
+      id="R-tab-id-c40e540911c96e207a90e16330d98ffb" role="tabpanel" aria-labelledby="R-tab-id-c40e540911c96e207a90e16330d98ffb-tab"
       data-tab-item="R-tab-5c43d9bb2caa03104817f257b35da672"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1326,21 +1335,21 @@
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-e2e5bf55c65a636789b0f7a2d867a976-tab" aria-controls="R-tab-id-e2e5bf55c65a636789b0f7a2d867a976" aria-selected="true"
+        role="tab" id="R-tab-id-a48c620025e82afc2b47ebd85de93dfa-tab" aria-controls="R-tab-id-a48c620025e82afc2b47ebd85de93dfa" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-bca187e95d6117f2da5c0a21be8581f6-tab" aria-controls="R-tab-id-bca187e95d6117f2da5c0a21be8581f6" aria-selected="false"
+        role="tab" id="R-tab-id-a6170f4ba90e422a2fa38aa382843195-tab" aria-controls="R-tab-id-a6170f4ba90e422a2fa38aa382843195" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-c2f94e76a1962e1e475d32f8091b91e2-tab" aria-controls="R-tab-id-c2f94e76a1962e1e475d32f8091b91e2" aria-selected="false"
+        role="tab" id="R-tab-id-6ab150a2a15c7c4b323c3c9cba6d0ad2-tab" aria-controls="R-tab-id-6ab150a2a15c7c4b323c3c9cba6d0ad2" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1350,7 +1359,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e2e5bf55c65a636789b0f7a2d867a976" role="tabpanel" aria-labelledby="R-tab-id-e2e5bf55c65a636789b0f7a2d867a976-tab"
+      id="R-tab-id-a48c620025e82afc2b47ebd85de93dfa" role="tabpanel" aria-labelledby="R-tab-id-a48c620025e82afc2b47ebd85de93dfa-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1362,7 +1371,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-bca187e95d6117f2da5c0a21be8581f6" role="tabpanel" aria-labelledby="R-tab-id-bca187e95d6117f2da5c0a21be8581f6-tab"
+      id="R-tab-id-a6170f4ba90e422a2fa38aa382843195" role="tabpanel" aria-labelledby="R-tab-id-a6170f4ba90e422a2fa38aa382843195-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1375,7 +1384,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-c2f94e76a1962e1e475d32f8091b91e2" role="tabpanel" aria-labelledby="R-tab-id-c2f94e76a1962e1e475d32f8091b91e2-tab"
+      id="R-tab-id-6ab150a2a15c7c4b323c3c9cba6d0ad2" role="tabpanel" aria-labelledby="R-tab-id-6ab150a2a15c7c4b323c3c9cba6d0ad2-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1411,7 +1420,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

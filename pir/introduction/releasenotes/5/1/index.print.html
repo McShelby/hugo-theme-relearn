@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="5.1.0 (2022-07-15) Cap&#39;n Hugo 0.95.0 0.95.0 This release requires a newer Cap&#39;n Hugo version. Change Change Because th&#39; print preview URLs were non deterministic fer normal planks &#39;n comparison t&#39; plank bundles, this be now changed. Each print preview be now access&#39;ble by add&#39;n a index.print.html t&#39; th&#39; default URL.
 Ye can revert this behavior by overwrit&#39;n th&#39; print output format sett&#39;n &#39;n yer project configurat&#39;n t&#39;:
@@ -45,7 +45,7 @@ hugo. yaml toml json outputFormats: print: baseName: index isHTML: true mediaTyp
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.9152f7a5693257146d1bf86291e39328b591c267e39146cfbac557013210bc3a.js"
+      "indexFile": "searchindex.pir.min.0b8c97ec4d1e1d8338073ed5ea1b22e23537e4ab38f00ea707e7320a1cbba7e8.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -59,8 +59,8 @@ hugo. yaml toml json outputFormats: print: baseName: index isHTML: true mediaTyp
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -89,6 +89,7 @@ hugo. yaml toml json outputFormats: print: baseName: index isHTML: true mediaTyp
       ],
       "translations": {
         "Browser_unsupported_feature": "This browserrr doesn't supporrrt this featurrre",
+        "Change_sorting": "Change th' sortin'",
         "Close_graph": "Close th' enlarrrged chart",
         "Copied_to_clipboard": "Text copied t' clipboard!",
         "Copy_to_clipboard": "Copy text t' clipboard",
@@ -102,7 +103,15 @@ hugo. yaml toml json outputFormats: print: baseName: index isHTML: true mediaTyp
         "N_matches_on_page": "{1} matches fer \"{0}\" on this here page",
         "N_results_found": "{1} rrresults found fer \"{0}\"",
         "No_results_found": "No rrresults found fer \"{0}\"",
+        "Reset_sorting": "Reset th' sortin'",
         "Reset_view": "Rrreset view",
+        "Sort_key_ascending": "sorted at position {0}, risin'",
+        "Sort_key_descending": "sorted at position {0}, sinkin'",
+        "Sortable_columns": "Column headers wit' buttons can be sorted.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", risin'",
+        "Sorted_by_descending": "Sorted by \"{0}\", sinkin'",
+        "Sorting_reset": "Sortin' reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View rrreset!"
       }
     }</script>
@@ -224,24 +233,24 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/1/index.html">
 <p>Ye can revert this behavior by overwrit'n th' <code>print</code> output format sett'n 'n yer project configurat'n t':</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-7d4eeacc67a46656df03522c8e5f416a">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-7d4eeacc67a46656df03522c8e5f416a">
+    <div class="tab-nav-title" id="R-tabs-title-841949fe64d99707e09985970d7ff9c0">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-841949fe64d99707e09985970d7ff9c0">
       <button
-        role="tab" id="R-tab-id-20d8864ed931a3f9cd70d887966ef13c-tab" aria-controls="R-tab-id-20d8864ed931a3f9cd70d887966ef13c" aria-selected="true"
+        role="tab" id="R-tab-id-784ca6f254951b787861e5fb86f1a01e-tab" aria-controls="R-tab-id-784ca6f254951b787861e5fb86f1a01e" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-4e90b2446309a42022cedb326e96511a-tab" aria-controls="R-tab-id-4e90b2446309a42022cedb326e96511a" aria-selected="false"
+        role="tab" id="R-tab-id-9b8c25d76ce19ace989e4a10e2ca4e42-tab" aria-controls="R-tab-id-9b8c25d76ce19ace989e4a10e2ca4e42" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-d474d8df16bbf90c6718a5b01d36d88c-tab" aria-controls="R-tab-id-d474d8df16bbf90c6718a5b01d36d88c" aria-selected="false"
+        role="tab" id="R-tab-id-5761595edf13f3e058ed0afea8fc925d-tab" aria-controls="R-tab-id-5761595edf13f3e058ed0afea8fc925d" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -251,7 +260,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/1/index.html">
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-20d8864ed931a3f9cd70d887966ef13c" role="tabpanel" aria-labelledby="R-tab-id-20d8864ed931a3f9cd70d887966ef13c-tab"
+      id="R-tab-id-784ca6f254951b787861e5fb86f1a01e" role="tabpanel" aria-labelledby="R-tab-id-784ca6f254951b787861e5fb86f1a01e-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -266,7 +275,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/1/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-4e90b2446309a42022cedb326e96511a" role="tabpanel" aria-labelledby="R-tab-id-4e90b2446309a42022cedb326e96511a-tab"
+      id="R-tab-id-9b8c25d76ce19ace989e4a10e2ca4e42" role="tabpanel" aria-labelledby="R-tab-id-9b8c25d76ce19ace989e4a10e2ca4e42-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -281,7 +290,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/1/index.html">
       </div>
     </div>
     <div
-      id="R-tab-id-d474d8df16bbf90c6718a5b01d36d88c" role="tabpanel" aria-labelledby="R-tab-id-d474d8df16bbf90c6718a5b01d36d88c-tab"
+      id="R-tab-id-5761595edf13f3e058ed0afea8fc925d" role="tabpanel" aria-labelledby="R-tab-id-5761595edf13f3e058ed0afea8fc925d-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -311,7 +320,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/5/1/index.html">
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="7.0.0 (2024-10-15) Hugo 0.126.0 0.126.0 This release requires a newer Hugo version. Breaking Breaking This release comes with significant changes in file naming of partials and how the theme works internally. This was done because the theme
 suffered from poor build performance for sites with 1000 or more pages reinvented the wheel instead of using available Hugo mechanisms What do I gain, you may ask. A significant performance boost during build! Usually, the build time has been cut at least in half for bigger sites. It is now possible to build even larger sites with 5000 or more pages. This was previously almost impossible due to rapidly increasing build time with the more pages you’ve introduced. For even bigger sites, the theme now has configurable performance optimizations - at the price of feature limitations.
@@ -69,7 +69,7 @@ In addition, you are now able to overwrite the default file name of the search i
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -81,8 +81,8 @@ In addition, you are now able to overwrite the default file name of the search i
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -111,6 +111,7 @@ In addition, you are now able to overwrite the default file name of the search i
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -124,7 +125,15 @@ In addition, you are now able to overwrite the default file name of the search i
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -265,24 +274,24 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
 <p>Remove the now obsolete <code>search</code> and <code>searchpage</code> output format from <code>outputs.home</code> in your project configuration, resulting in something similar to</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-ab54da8b9705c5d7eaa226754c13c292">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-ab54da8b9705c5d7eaa226754c13c292">
+    <div class="tab-nav-title" id="R-tabs-title-6236356a238ef88abc4d6b005c5b2d97">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-6236356a238ef88abc4d6b005c5b2d97">
       <button
-        role="tab" id="R-tab-id-1c470c8f822c79e85440039683a404fb-tab" aria-controls="R-tab-id-1c470c8f822c79e85440039683a404fb" aria-selected="true"
+        role="tab" id="R-tab-id-dcbd6f9b64a82f00fd351143d1bc504f-tab" aria-controls="R-tab-id-dcbd6f9b64a82f00fd351143d1bc504f" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-a0f64cf8657f918ebc96fea1d9512053-tab" aria-controls="R-tab-id-a0f64cf8657f918ebc96fea1d9512053" aria-selected="false"
+        role="tab" id="R-tab-id-743831c75d3a122482933769c3f9212f-tab" aria-controls="R-tab-id-743831c75d3a122482933769c3f9212f" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-790776fc47da48e12539180d4896a574-tab" aria-controls="R-tab-id-790776fc47da48e12539180d4896a574" aria-selected="false"
+        role="tab" id="R-tab-id-9f399c063ef72aa4e5fa3cf1fb7d2cff-tab" aria-controls="R-tab-id-9f399c063ef72aa4e5fa3cf1fb7d2cff" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -292,7 +301,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1c470c8f822c79e85440039683a404fb" role="tabpanel" aria-labelledby="R-tab-id-1c470c8f822c79e85440039683a404fb-tab"
+      id="R-tab-id-dcbd6f9b64a82f00fd351143d1bc504f" role="tabpanel" aria-labelledby="R-tab-id-dcbd6f9b64a82f00fd351143d1bc504f-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -304,7 +313,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-a0f64cf8657f918ebc96fea1d9512053" role="tabpanel" aria-labelledby="R-tab-id-a0f64cf8657f918ebc96fea1d9512053-tab"
+      id="R-tab-id-743831c75d3a122482933769c3f9212f" role="tabpanel" aria-labelledby="R-tab-id-743831c75d3a122482933769c3f9212f-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -313,7 +322,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-790776fc47da48e12539180d4896a574" role="tabpanel" aria-labelledby="R-tab-id-790776fc47da48e12539180d4896a574-tab"
+      id="R-tab-id-9f399c063ef72aa4e5fa3cf1fb7d2cff" role="tabpanel" aria-labelledby="R-tab-id-9f399c063ef72aa4e5fa3cf1fb7d2cff-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -383,7 +392,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/7/0/index.html">chan
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

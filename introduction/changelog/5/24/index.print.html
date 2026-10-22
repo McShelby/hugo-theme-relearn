@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="5.24.3 (2024-02-28) Fixes [bug] theme: avoid crash on 404 if author settings want to warn #785 5.24.2 (2024-02-24) Enhancements [feature] image: adjust to Hugo 0.123 #777 Fixes [bug] link: resolve fragments #775 5.24.1 (2024-02-18) Enhancements [feature] link: make resolution reporting configurable #774 5.24.0 (2024-02-17) Enhancements [feature] theme: compatibility with Hugo 0.123 #771 [feature] topbar: support editURL in frontmatter #764 [feature] menu: use –MENU-S-width to adjust mobile flyout #761 [feature] figure: support built-in shortcode #746 [feature] theme: make heading a template #744 [feature] taxonomy: make arrow nav browse through terms #742 [feature] theme: switch from config.toml to hugo.toml #741 [feature] button: make non-interactive if used as mock #740 [feature][change] topbar: allow text for button #739 [feature] theme: run hugo demo site without warning #736 [feature] menu: make swipe handler passive #735 [feature] i18n: support standard Hugo options #733 [feature] a11y: show tab focus on images #730 [feature] a11y: improve discovering links on keyboard navigation #726 [feature][change] variant: increase contrast for light themes #722 [feature] theme: break build if minimum Hugo version is not matched #719 [feature] taxonomy: humanize term on missing term title #713 Fixes [bug] taxonomy: display translated title #772 [bug] highlight: fix codefence syntax in Hugo &gt;= 0.121.0 #749 [bug] link: fix links to pages containing dots in their name #748 [bug] image: get resource images if link is prefixed with ./ #747 [bug] theme: switch dependency colors on OS color scheme change #745 [bug] clipboard: fix O(n²) buttons #738 [bug] button: fix whitespacing in FF #737 [bug] i18n: fix warning messages for zh-CN #732 [bug] mermaid: fix zoom button #725 [bug] theme: fix JS errors on hugo --minifiy #724 [bug] include: fix whitespacing in codefences #723">
     <meta name="author" content="Sören Weber">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -49,8 +49,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -79,6 +79,7 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -92,7 +93,15 @@
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -278,7 +287,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

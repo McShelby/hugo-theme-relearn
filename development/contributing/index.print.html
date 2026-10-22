@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="What to know if you want to contribute">
     <meta name="author" content="Sören Weber">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Contributing :: Hugo Relearn Theme">
     <meta itemprop="description" content="What to know if you want to contribute">
-    <meta itemprop="wordCount" content="197">
+    <meta itemprop="wordCount" content="354">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation">
     <title>Contributing :: Hugo Relearn Theme</title>
@@ -38,7 +38,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -50,8 +50,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -80,6 +80,7 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -93,7 +94,15 @@
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -200,8 +209,53 @@
 <p>Remove reported issue from the browser&rsquo;s console.</p>
 <p>Check for unnecessary whitespace and correct indention of your resulting HTML.</p>
 <h2 id="conventional-commits">Conventional Commits<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
-<p>Write commit messages in the <a href="https://www.conventionalcommits.org/en/v1.0.0/" rel="external" target="_self">conventional commit</a> format.</p>
-<p>Following is an incomplete list of some of the used conventional commit types. Be creative.</p>
+<p>Write commit messages in the <a href="https://www.conventionalcommits.org/en/v1.0.0/" rel="external" target="_self">conventional commit</a> format: a type, the affected part of the theme as scope in parentheses and a short description, followed by the number of the related issue.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">feat(table): make columns sortable #1339</span></span></code></pre></div>
+<p>The scope is never left out. Release commits are the only exception; the release workflow writes them as <code>Release &lt;version&gt;</code>.</p>
+<p>The type tells what kind of change it is.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>feat</td>
+      <td>a new feature or a change of an existing one</td>
+    </tr>
+    <tr>
+      <td>fix</td>
+      <td>a bug fix that keeps the intended behavior</td>
+    </tr>
+    <tr>
+      <td>docs</td>
+      <td>a change to the documentation only</td>
+    </tr>
+    <tr>
+      <td>refactor</td>
+      <td>a change of the code that neither fixes nor adds</td>
+    </tr>
+    <tr>
+      <td>perf</td>
+      <td>a change that improves the build or page performance</td>
+    </tr>
+    <tr>
+      <td>build</td>
+      <td>a change of the build or the release process</td>
+    </tr>
+    <tr>
+      <td>ci</td>
+      <td>a change of the workflows</td>
+    </tr>
+    <tr>
+      <td>chore</td>
+      <td>anything else, like updating third-party files</td>
+    </tr>
+  </tbody>
+</table>
+<p>Following is an incomplete list of some of the used scopes. Be creative.</p>
 <table>
   <thead>
     <tr>
@@ -213,37 +267,37 @@
   </thead>
   <tbody>
     <tr>
-      <td>build</td>
+      <td>browser</td>
       <td>a11y</td>
       <td>favicon</td>
       <td>attachments</td>
     </tr>
     <tr>
-      <td>browser</td>
+      <td>shortcodes</td>
       <td>archetypes</td>
       <td>search</td>
       <td>badge</td>
     </tr>
     <tr>
-      <td>chore</td>
+      <td>theme</td>
       <td>alias</td>
       <td>menu</td>
       <td>button</td>
     </tr>
     <tr>
-      <td>docs</td>
+      <td></td>
       <td>generator</td>
       <td>history</td>
       <td>callout</td>
     </tr>
     <tr>
-      <td>shortcodes</td>
+      <td></td>
       <td>i18n</td>
       <td>scrollbar</td>
       <td>children</td>
     </tr>
     <tr>
-      <td>theme</td>
+      <td></td>
       <td>mobile</td>
       <td>nav</td>
       <td>details</td>
@@ -275,7 +329,7 @@
     <tr>
       <td></td>
       <td></td>
-      <td></td>
+      <td>table</td>
       <td>openapi</td>
     </tr>
     <tr>
@@ -298,6 +352,7 @@
     </tr>
   </tbody>
 </table>
+<p>Issue titles are not written in the conventional commit format. They start with the affected part, like <code>table: make columns sortable</code> or <code>docs: write commit messages with type and scope</code>.</p>
 
   <footer class="footline">
 <div class="R-taxonomy taxonomy-categories" title="Categories">
@@ -311,7 +366,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

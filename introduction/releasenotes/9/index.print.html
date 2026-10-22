@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="Heads-up for the upcoming 10.0.0 version, the Decade Release – Clearing Out Ten Years of Baggage The Relearn theme has come a long way. Its predecessor, the Learn theme, was started more than ten years ago, and Relearn was forked from it over five years ago. Since then, a lot has been added to the theme, and Hugo itself has evolved tremendously.
 All that history left its marks, and the source code still carries a lot of it along: options and features that have long been replaced and forgotten but are kept alive for compatibility, and remnants whose only remaining job is to print a warning. In other places, the theme got there first, and Hugo later added similar functionality of its own, often under a different name. Today it is hard to argue why the theme should do things differently from Hugo, and two terms for the same thing (like menuTitle vs. linkTitle, or the expand shortcode vs. details) only cause confusion.
@@ -37,7 +37,7 @@ All that history left its marks, and the source code still carries a lot of it a
 Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
 What you should do now
 No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error.">
-    <meta itemprop="wordCount" content="3734">
+    <meta itemprop="wordCount" content="3816">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/index.html" rel="alternate" hreflang="x-default">
@@ -53,7 +53,7 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -65,8 +65,8 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -95,6 +95,7 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -108,7 +109,15 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -150,32 +159,38 @@ No messages, no work: if your site builds on the latest 9.x release without DEPR
                 <div class="topbar-content-wrapper" tabindex="-1">
 <nav class="TableOfContents" aria-label="Table of Contents">
   <ul>
-    <li><a href="#9-3-0">9.3.0 (2026-10-21)</a>
+    <li><a href="#9-4-0">9.4.0 (XXXX-XX-XX)</a>
       <ul>
         <li><a href="#change">Change</a></li>
         <li><a href="#new">New</a></li>
       </ul>
     </li>
+    <li><a href="#9-3-0">9.3.0 (2026-10-21)</a>
+      <ul>
+        <li><a href="#change-1">Change</a></li>
+        <li><a href="#new-1">New</a></li>
+      </ul>
+    </li>
     <li><a href="#9-2-0">9.2.0 (2026-10-11)</a>
       <ul>
         <li><a href="#hugo-01660">Hugo 0.166.0</a></li>
-        <li><a href="#change-1">Change</a></li>
-        <li><a href="#new-1">New</a></li>
+        <li><a href="#change-2">Change</a></li>
+        <li><a href="#new-2">New</a></li>
       </ul>
     </li>
     <li><a href="#9-1-0">9.1.0 (2026-09-13)</a>
       <ul>
         <li><a href="#hugo-01650">Hugo 0.165.0</a></li>
-        <li><a href="#change-2">Change</a></li>
-        <li><a href="#new-2">New</a></li>
+        <li><a href="#change-3">Change</a></li>
+        <li><a href="#new-3">New</a></li>
       </ul>
     </li>
     <li><a href="#9-0-0">9.0.0 (2026-01-01)</a>
       <ul>
         <li><a href="#hugo">Hugo</a></li>
         <li><a href="#breaking">Breaking</a></li>
-        <li><a href="#change-3">Change</a></li>
-        <li><a href="#new-3">New</a></li>
+        <li><a href="#change-4">Change</a></li>
+        <li><a href="#new-4">New</a></li>
       </ul>
     </li>
   </ul>
@@ -258,18 +273,31 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 </ul>
   </div>
 </details>
-<h2 id="9-3-0">9.3.0 (2026-10-21)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h2 id="9-4-0">9.4.0 (XXXX-XX-XX)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="change">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<ul>
+<li><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The text of your content is now better readable.</li>
+</ul>
+<h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<ul>
+<li>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Your readers can now <a href="/hugo-theme-relearn/authoring/markdown/index.html#sortable-columns">sort a table</a> by its columns, also by several of them at once. Rows joined by merged cells stay together.</p>
+<p>Tables are not sortable by default. Give a single table the class <code>sortable</code>, or make all tables sortable with the new <code>table.sortable</code> option in your project configuration or a page&rsquo;s front matter. A single table can then be excluded by the class <code>nosortable</code>.</p>
+</li>
+</ul>
+<hr>
+<h2 id="9-3-0">9.3.0 (2026-10-21)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="change-1">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Level one headings, the section titles of the sidebar menu and the title of the <a href="/hugo-theme-relearn/shortcodes/openapi/index.html"><code>openapi</code> shortcode</a> are no longer forced to uppercase but show as written. The uppercase look, inherited from the Learn theme, became iconic for this theme, but it is strongly opinionated and looks strange with many fonts, especially script and serif fonts.</p>
 <p>If you want to keep the iconic look for headings and the sidebar menu, add the following to your <a href="/hugo-theme-relearn/configuration/customization/extending/index.html#simple-solution"><code>assets/css/custom.css</code></a>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-d54e883d7e4e8d161a8a04bdfe975c26">
+<div class="tab-panel" data-tab-group="R-tabs-8a834e91a4da03f83b542011b82bf749">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-9fec32965c70165fda9523a38a43531f-tab" aria-controls="R-tab-id-9fec32965c70165fda9523a38a43531f" aria-selected="true"
+        role="tab" id="R-tab-id-505893f158f686bcb7a3b0fb5be47b4b-tab" aria-controls="R-tab-id-505893f158f686bcb7a3b0fb5be47b4b" aria-selected="true"
         data-tab-item="R-tab-311a161192e4ffa168423a7a9943b548"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -279,7 +307,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9fec32965c70165fda9523a38a43531f" role="tabpanel" aria-labelledby="R-tab-id-9fec32965c70165fda9523a38a43531f-tab"
+      id="R-tab-id-505893f158f686bcb7a3b0fb5be47b4b" role="tabpanel" aria-labelledby="R-tab-id-505893f158f686bcb7a3b0fb5be47b4b-tab"
       data-tab-item="R-tab-311a161192e4ffa168423a7a9943b548"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -317,7 +345,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <p>It is identical to <code>relearn-light</code>, use that name in the <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#changing-the-variant"><code>themeVariant</code> option</a> instead.</p>
 </li>
 </ul>
-<h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="new-1">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The new <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#shipped-variants">color variants</a> <a href="/hugo-theme-relearn/configuration/branding/colors/index.html?variant=tome-light#shipped-variants"><code>tome-light</code></a> and <a href="/hugo-theme-relearn/configuration/branding/colors/index.html?variant=tome-dark#shipped-variants"><code>tome-dark</code></a> give your site the look of a book, with calligraphic titles. They are the first shipped variants with tinted instead of grey content backgrounds, and show how colors the theme derives, like shadows, follow such a tint. Use them as a starting point for your own tinted variant.</p>
@@ -337,7 +365,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <ul>
 <li><span class="badge cstyle hugo badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-hackerrank" aria-hidden="true"></i></span><span class="badge-content">0.166.0</span></span> This release requires a newer Hugo version.</li>
 </ul>
-<h3 id="change-1">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="change-2">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> <a href="/hugo-theme-relearn/configuration/publishing/accessibility/index.html">Accessibility</a> is now a supported feature of the theme.</p>
@@ -405,7 +433,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The <a href="/hugo-theme-relearn/configuration/sidebar/search/index.html">search</a> with the Lunr engine now only looks for similarly written words if a word of your search term isn&rsquo;t found as written. Previously, such words were always included and could bury the hits you were asking for.</p>
 </li>
 </ul>
-<h3 id="new-1">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="new-2">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The new <a href="/hugo-theme-relearn/configuration/branding/colors/index.html#shipped-variants">color variants</a> <a href="/hugo-theme-relearn/configuration/branding/colors/index.html?variant=contrast-light#shipped-variants"><code>contrast-light</code></a> and <a href="/hugo-theme-relearn/configuration/branding/colors/index.html?variant=contrast-dark#shipped-variants"><code>contrast-dark</code></a> have colors chosen for high contrast.</p>
@@ -457,17 +485,17 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <ul>
 <li><span class="badge cstyle hugo badge-with-title"><span class="badge-title"><i class="fa-fw fab fa-hackerrank" aria-hidden="true"></i></span><span class="badge-content">0.165.0</span></span> This release requires a newer Hugo version.</li>
 </ul>
-<h3 id="change-2">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="change-3">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets are now busted by their content instead of by the time of your build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id to each asset&rsquo;s URL, emptying a visitor&rsquo;s cache on each deployment even when no asset was different. If you referenced assets from your own partials, <code>assetbusting.gotmpl</code> is replaced by <code>asset.gotmpl</code>, which takes a resource and returns it ready to be linked. It is still honored but now issues a deprecation warning and will be removed with a future update of the theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-de82004a33c638c66b6f3fdeeae5a284">
+<div class="tab-panel" data-tab-group="R-tabs-d917ddce09febbe6ad0aadd2049a301e">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-08d0ca87d0844de904542609cae6ebd0-tab" aria-controls="R-tab-id-08d0ca87d0844de904542609cae6ebd0" aria-selected="true"
+        role="tab" id="R-tab-id-8bf750302e60322280d62158ea862be7-tab" aria-controls="R-tab-id-8bf750302e60322280d62158ea862be7" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -477,7 +505,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-08d0ca87d0844de904542609cae6ebd0" role="tabpanel" aria-labelledby="R-tab-id-08d0ca87d0844de904542609cae6ebd0-tab"
+      id="R-tab-id-8bf750302e60322280d62158ea862be7" role="tabpanel" aria-labelledby="R-tab-id-8bf750302e60322280d62158ea862be7-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -514,7 +542,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <p>Searching with the Lunr adapter now finds terms that consist of digits only, like part or standard numbers.</p>
 </li>
 </ul>
-<h3 id="new-2">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="new-3">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The <a href="/hugo-theme-relearn/authoring/frontmatter/topbar/index.html#edit-button"><code>editURL</code> option</a> has a new macro <code>${BaseDir}</code>, containing the directory <code>${FilePath}</code> is resolved against.</p>
@@ -524,21 +552,21 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-7e4f0fac2ca2c6a5628623f5254d3957-tab" aria-controls="R-tab-id-7e4f0fac2ca2c6a5628623f5254d3957" aria-selected="true"
+        role="tab" id="R-tab-id-641cf03552d6b64147103201f54b61b5-tab" aria-controls="R-tab-id-641cf03552d6b64147103201f54b61b5" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-2d6a325bbc010b3cd5bca30387ecfe25-tab" aria-controls="R-tab-id-2d6a325bbc010b3cd5bca30387ecfe25" aria-selected="false"
+        role="tab" id="R-tab-id-231c507646e4e306506edf966a983f1c-tab" aria-controls="R-tab-id-231c507646e4e306506edf966a983f1c" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-6736064293cb32f6554d86b71bd6a498-tab" aria-controls="R-tab-id-6736064293cb32f6554d86b71bd6a498" aria-selected="false"
+        role="tab" id="R-tab-id-b41d3a026c21f614e43d8f9f2953a6e4-tab" aria-controls="R-tab-id-b41d3a026c21f614e43d8f9f2953a6e4" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -548,7 +576,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-7e4f0fac2ca2c6a5628623f5254d3957" role="tabpanel" aria-labelledby="R-tab-id-7e4f0fac2ca2c6a5628623f5254d3957-tab"
+      id="R-tab-id-641cf03552d6b64147103201f54b61b5" role="tabpanel" aria-labelledby="R-tab-id-641cf03552d6b64147103201f54b61b5-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -557,7 +585,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-2d6a325bbc010b3cd5bca30387ecfe25" role="tabpanel" aria-labelledby="R-tab-id-2d6a325bbc010b3cd5bca30387ecfe25-tab"
+      id="R-tab-id-231c507646e4e306506edf966a983f1c" role="tabpanel" aria-labelledby="R-tab-id-231c507646e4e306506edf966a983f1c-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -566,7 +594,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
       </div>
     </div>
     <div
-      id="R-tab-id-6736064293cb32f6554d86b71bd6a498" role="tabpanel" aria-labelledby="R-tab-id-6736064293cb32f6554d86b71bd6a498-tab"
+      id="R-tab-id-b41d3a026c21f614e43d8f9f2953a6e4" role="tabpanel" aria-labelledby="R-tab-id-b41d3a026c21f614e43d8f9f2953a6e4-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -615,7 +643,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <p>In addition the shortcode learned some new parameter for displaying breadcrumbs and setting a heading depth.</p>
 </li>
 </ul>
-<h3 id="change-3">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="change-4">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> This release comes with a new way to <a href="/hugo-theme-relearn/configuration/branding/logo/index.html#changing-the-title">configure your logo image and title</a> in the menu sidebar.</p>
@@ -641,7 +669,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The <a href="/hugo-theme-relearn/shortcodes/details/index.html"><code>expand</code> shortcode</a> has changed its default text of <code>Expand me...</code> to <code>Details</code> to be in sync with Hugo&rsquo;s built-in <code>details</code> shortcode and the <code>details</code> HTML element.</p>
 </li>
 </ul>
-<h3 id="new-3">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<h3 id="new-4">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> The <a href="/hugo-theme-relearn/authoring/taxterm/index.html">taxonomy and term</a> pages are now internally using the <a href="/hugo-theme-relearn/shortcodes/children/index.html"><code>children</code> shortcode</a>. This makes it possible for you to set parameter of the children shortcode in your taxonomy/term pages front matter to change the layout.</p>
@@ -658,7 +686,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/9/index.html">change
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

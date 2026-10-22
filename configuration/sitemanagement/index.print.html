@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1">
+    <meta name="generator" content="Relearn 9.3.1+de22d975c5c4364b3d51efbdba3416aec1c92c71">
     <meta name="description" content="Get yourself familiar with the general structure of your website">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.80cc0e3c620840875da596f7cf5a880336333900be33f9b283d007d2e3d163fa.js"
+      "indexFile": "searchindex.en.min.effe3e0bc437ee3eaac7240ad1c8ff83c9dc93583229fb2a2e409c3f12f45d87.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -49,8 +49,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.3fe2f36fb6de8ba1534bb2f7193612364afcf4a2967e662c76e8e822a52d409e.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.d2635f62aebcc75abc20b9ba36cc8a0aab84f826b12b0a2dd4c43a1b363ff80c.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.c76ad5a71a2a083f4d26d358003091a07b1464fb3e4762def66446b4c8781f35.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.166fbd67518c5a21d5989c6d327e3b1fe64359878fe23d0ca5d50f84f911c73c.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -79,6 +79,7 @@
       ],
       "translations": {
         "Browser_unsupported_feature": "This browser doesn't support this feature",
+        "Change_sorting": "Change sorting",
         "Close_graph": "Close enlarged graph",
         "Copied_to_clipboard": "Text copied to clipboard!",
         "Copy_to_clipboard": "Copy text to clipboard",
@@ -92,7 +93,15 @@
         "N_matches_on_page": "{1} matches for \"{0}\" on this page",
         "N_results_found": "{1} results found for \"{0}\"",
         "No_results_found": "No results found for \"{0}\"",
+        "Reset_sorting": "Reset sorting",
         "Reset_view": "Reset view",
+        "Sort_key_ascending": "sorted at position {0}, ascending",
+        "Sort_key_descending": "sorted at position {0}, descending",
+        "Sortable_columns": "Column headers with buttons are sortable.",
+        "Sorted_by_ascending": "Sorted by \"{0}\", ascending",
+        "Sorted_by_descending": "Sorted by \"{0}\", descending",
+        "Sorting_reset": "Sorting reset!",
+        "Unsorted_by": "No longer sorted by \"{0}\"",
         "View_reset": "View reset!"
       }
     }</script>
@@ -266,8 +275,8 @@
 <p><a href="/hugo-theme-relearn/configuration/customization/partials/index.html">See this list</a>, to learn which files are allowed to be overridden by you.</p>
 <p>This makes it easy to customize the theme without changing files in the <code>themes</code> directory, making future theme updates simpler.</p>
 
-<div role="note" aria-labelledby="R-box-label-1f526228663bc03b3f448d52110242de" class="box cstyle callout warning">
-  <div id="R-box-label-1f526228663bc03b3f448d52110242de" class="box-label">
+<div role="note" aria-labelledby="R-box-label-57b06e312cc15f915c066933f9845c0a" class="box cstyle callout warning">
+  <div id="R-box-label-57b06e312cc15f915c066933f9845c0a" class="box-label">
     <i class="fa-fw fas fa-exclamation-triangle" aria-hidden="true"></i> 
     Warning
   </div>
@@ -339,24 +348,24 @@
 <p>Set up languages in your project configuration:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-5ffcd889e341c15bd687ca769278c7c1">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-5ffcd889e341c15bd687ca769278c7c1">
+    <div class="tab-nav-title" id="R-tabs-title-81dd86423437adf2c31014af426d405c">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-81dd86423437adf2c31014af426d405c">
       <button
-        role="tab" id="R-tab-id-eec7bc3fae7e0a06331dfafd2c94d37c-tab" aria-controls="R-tab-id-eec7bc3fae7e0a06331dfafd2c94d37c" aria-selected="true"
+        role="tab" id="R-tab-id-b682ecb76d32ca2388b648996dc518aa-tab" aria-controls="R-tab-id-b682ecb76d32ca2388b648996dc518aa" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-3b0ed3dba0f21331dd5ba63d89ea9e85-tab" aria-controls="R-tab-id-3b0ed3dba0f21331dd5ba63d89ea9e85" aria-selected="false"
+        role="tab" id="R-tab-id-b9503faedb0e8da5c42d4ea2eaf3e152-tab" aria-controls="R-tab-id-b9503faedb0e8da5c42d4ea2eaf3e152" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-7b55fe00b2e37a953c50ab80baef53b4-tab" aria-controls="R-tab-id-7b55fe00b2e37a953c50ab80baef53b4" aria-selected="false"
+        role="tab" id="R-tab-id-f63589e7f89d0152b33d239c43b5fd34-tab" aria-controls="R-tab-id-f63589e7f89d0152b33d239c43b5fd34" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -366,7 +375,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-eec7bc3fae7e0a06331dfafd2c94d37c" role="tabpanel" aria-labelledby="R-tab-id-eec7bc3fae7e0a06331dfafd2c94d37c-tab"
+      id="R-tab-id-b682ecb76d32ca2388b648996dc518aa" role="tabpanel" aria-labelledby="R-tab-id-b682ecb76d32ca2388b648996dc518aa-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -386,7 +395,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-3b0ed3dba0f21331dd5ba63d89ea9e85" role="tabpanel" aria-labelledby="R-tab-id-3b0ed3dba0f21331dd5ba63d89ea9e85-tab"
+      id="R-tab-id-b9503faedb0e8da5c42d4ea2eaf3e152" role="tabpanel" aria-labelledby="R-tab-id-b9503faedb0e8da5c42d4ea2eaf3e152-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -408,7 +417,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-7b55fe00b2e37a953c50ab80baef53b4" role="tabpanel" aria-labelledby="R-tab-id-7b55fe00b2e37a953c50ab80baef53b4-tab"
+      id="R-tab-id-f63589e7f89d0152b33d239c43b5fd34" role="tabpanel" aria-labelledby="R-tab-id-f63589e7f89d0152b33d239c43b5fd34-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -479,24 +488,24 @@
 <p>Set up languages in your project configuration:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-2f7e8eb70adc9fa1df57c514b4256e53">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-2f7e8eb70adc9fa1df57c514b4256e53">
+    <div class="tab-nav-title" id="R-tabs-title-e7da5d3314c1017dbea95850e21aa8d4">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-e7da5d3314c1017dbea95850e21aa8d4">
       <button
-        role="tab" id="R-tab-id-4b9b199faf318b36a25e717fa313d828-tab" aria-controls="R-tab-id-4b9b199faf318b36a25e717fa313d828" aria-selected="true"
+        role="tab" id="R-tab-id-b8d5af2eb210e21e995192ba1097d463-tab" aria-controls="R-tab-id-b8d5af2eb210e21e995192ba1097d463" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-67076ff116c267537b5196be7aad77c3-tab" aria-controls="R-tab-id-67076ff116c267537b5196be7aad77c3" aria-selected="false"
+        role="tab" id="R-tab-id-25e1b7b903dfb13d78d4ff4300cf081d-tab" aria-controls="R-tab-id-25e1b7b903dfb13d78d4ff4300cf081d" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-6176dd4f06b1b6664764ef9423620bd1-tab" aria-controls="R-tab-id-6176dd4f06b1b6664764ef9423620bd1" aria-selected="false"
+        role="tab" id="R-tab-id-236407c5649994f9358fe1de3c3bdb06-tab" aria-controls="R-tab-id-236407c5649994f9358fe1de3c3bdb06" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -506,7 +515,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-4b9b199faf318b36a25e717fa313d828" role="tabpanel" aria-labelledby="R-tab-id-4b9b199faf318b36a25e717fa313d828-tab"
+      id="R-tab-id-b8d5af2eb210e21e995192ba1097d463" role="tabpanel" aria-labelledby="R-tab-id-b8d5af2eb210e21e995192ba1097d463-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -528,7 +537,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-67076ff116c267537b5196be7aad77c3" role="tabpanel" aria-labelledby="R-tab-id-67076ff116c267537b5196be7aad77c3-tab"
+      id="R-tab-id-25e1b7b903dfb13d78d4ff4300cf081d" role="tabpanel" aria-labelledby="R-tab-id-25e1b7b903dfb13d78d4ff4300cf081d-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -552,7 +561,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-6176dd4f06b1b6664764ef9423620bd1" role="tabpanel" aria-labelledby="R-tab-id-6176dd4f06b1b6664764ef9423620bd1-tab"
+      id="R-tab-id-236407c5649994f9358fe1de3c3bdb06" role="tabpanel" aria-labelledby="R-tab-id-236407c5649994f9358fe1de3c3bdb06-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -641,24 +650,24 @@
 <p>To disable the language switcher set <code>disableLanguageSwitchingButton</code> to <code>true</code></p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-72b09b0b12b34202e0b39e88508da7ce">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-72b09b0b12b34202e0b39e88508da7ce">
+    <div class="tab-nav-title" id="R-tabs-title-1394690000e90e9a2539a7a58d197492">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-1394690000e90e9a2539a7a58d197492">
       <button
-        role="tab" id="R-tab-id-c9886172b43494ba464bc8d961d0fc15-tab" aria-controls="R-tab-id-c9886172b43494ba464bc8d961d0fc15" aria-selected="true"
+        role="tab" id="R-tab-id-8d7093f85d1cb792709f871c087a6446-tab" aria-controls="R-tab-id-8d7093f85d1cb792709f871c087a6446" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-b6d2fc68431b3cbba169a60b1d5d890a-tab" aria-controls="R-tab-id-b6d2fc68431b3cbba169a60b1d5d890a" aria-selected="false"
+        role="tab" id="R-tab-id-ee73cb49d78d5f61b95626bdce20e8c4-tab" aria-controls="R-tab-id-ee73cb49d78d5f61b95626bdce20e8c4" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-fcef0be098eb3a2fbd5cb3db24f7c6b0-tab" aria-controls="R-tab-id-fcef0be098eb3a2fbd5cb3db24f7c6b0" aria-selected="false"
+        role="tab" id="R-tab-id-73ce24e5296499b4d7d4f238aed5d2e5-tab" aria-controls="R-tab-id-73ce24e5296499b4d7d4f238aed5d2e5" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -668,7 +677,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-c9886172b43494ba464bc8d961d0fc15" role="tabpanel" aria-labelledby="R-tab-id-c9886172b43494ba464bc8d961d0fc15-tab"
+      id="R-tab-id-8d7093f85d1cb792709f871c087a6446" role="tabpanel" aria-labelledby="R-tab-id-8d7093f85d1cb792709f871c087a6446-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -677,7 +686,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b6d2fc68431b3cbba169a60b1d5d890a" role="tabpanel" aria-labelledby="R-tab-id-b6d2fc68431b3cbba169a60b1d5d890a-tab"
+      id="R-tab-id-ee73cb49d78d5f61b95626bdce20e8c4" role="tabpanel" aria-labelledby="R-tab-id-ee73cb49d78d5f61b95626bdce20e8c4-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -686,7 +695,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-fcef0be098eb3a2fbd5cb3db24f7c6b0" role="tabpanel" aria-labelledby="R-tab-id-fcef0be098eb3a2fbd5cb3db24f7c6b0-tab"
+      id="R-tab-id-73ce24e5296499b4d7d4f238aed5d2e5" role="tabpanel" aria-labelledby="R-tab-id-73ce24e5296499b4d7d4f238aed5d2e5-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -736,24 +745,24 @@
 <p>After the modifications the config file looks like:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-dc37d4eecf0e5c2fec5306d9ba7e8c0d">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-dc37d4eecf0e5c2fec5306d9ba7e8c0d">
+    <div class="tab-nav-title" id="R-tabs-title-129f4bbcbb542a8892a901caac5962b7">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-129f4bbcbb542a8892a901caac5962b7">
       <button
-        role="tab" id="R-tab-id-04d7ca1f2258ffb0983964e7510a5a97-tab" aria-controls="R-tab-id-04d7ca1f2258ffb0983964e7510a5a97" aria-selected="true"
+        role="tab" id="R-tab-id-25e4106cc8baec9c2f48b5f29470c67b-tab" aria-controls="R-tab-id-25e4106cc8baec9c2f48b5f29470c67b" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-87d02ab93e4e3b17b9c5062f2604fa6d-tab" aria-controls="R-tab-id-87d02ab93e4e3b17b9c5062f2604fa6d" aria-selected="false"
+        role="tab" id="R-tab-id-5405ac868b7352da88a62fd27d4ae333-tab" aria-controls="R-tab-id-5405ac868b7352da88a62fd27d4ae333" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-21ca6c78e08dd1dfe8e3918a32c88ffc-tab" aria-controls="R-tab-id-21ca6c78e08dd1dfe8e3918a32c88ffc" aria-selected="false"
+        role="tab" id="R-tab-id-c8c7aba6b8826cd772fc058745dd3bfe-tab" aria-controls="R-tab-id-c8c7aba6b8826cd772fc058745dd3bfe" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -763,7 +772,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-04d7ca1f2258ffb0983964e7510a5a97" role="tabpanel" aria-labelledby="R-tab-id-04d7ca1f2258ffb0983964e7510a5a97-tab"
+      id="R-tab-id-25e4106cc8baec9c2f48b5f29470c67b" role="tabpanel" aria-labelledby="R-tab-id-25e4106cc8baec9c2f48b5f29470c67b-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -789,7 +798,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-87d02ab93e4e3b17b9c5062f2604fa6d" role="tabpanel" aria-labelledby="R-tab-id-87d02ab93e4e3b17b9c5062f2604fa6d-tab"
+      id="R-tab-id-5405ac868b7352da88a62fd27d4ae333" role="tabpanel" aria-labelledby="R-tab-id-5405ac868b7352da88a62fd27d4ae333-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -819,7 +828,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-21ca6c78e08dd1dfe8e3918a32c88ffc" role="tabpanel" aria-labelledby="R-tab-id-21ca6c78e08dd1dfe8e3918a32c88ffc-tab"
+      id="R-tab-id-c8c7aba6b8826cd772fc058745dd3bfe" role="tabpanel" aria-labelledby="R-tab-id-c8c7aba6b8826cd772fc058745dd3bfe-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -896,24 +905,24 @@
 <p>After the modifications the config file looks like:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-81094c06bc35ee584fc7f67483e91d7e">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-81094c06bc35ee584fc7f67483e91d7e">
+    <div class="tab-nav-title" id="R-tabs-title-66cfb09aff2ecb1cadeadc7889b6642e">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-66cfb09aff2ecb1cadeadc7889b6642e">
       <button
-        role="tab" id="R-tab-id-47d49ccae6605be4bba73ba7ae0dbd58-tab" aria-controls="R-tab-id-47d49ccae6605be4bba73ba7ae0dbd58" aria-selected="true"
+        role="tab" id="R-tab-id-5250e5157cc7b0a2a6dc37c5fd813da4-tab" aria-controls="R-tab-id-5250e5157cc7b0a2a6dc37c5fd813da4" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-dda94fe35ad3318f05fb9d1e2a232b05-tab" aria-controls="R-tab-id-dda94fe35ad3318f05fb9d1e2a232b05" aria-selected="false"
+        role="tab" id="R-tab-id-5c683167f4c4e7b014a0cd5721f170fd-tab" aria-controls="R-tab-id-5c683167f4c4e7b014a0cd5721f170fd" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-45a6e33e6e4ecf6f69a1e9f5854ef1f7-tab" aria-controls="R-tab-id-45a6e33e6e4ecf6f69a1e9f5854ef1f7" aria-selected="false"
+        role="tab" id="R-tab-id-1313049a968e26aae5a9b759f349f870-tab" aria-controls="R-tab-id-1313049a968e26aae5a9b759f349f870" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -923,7 +932,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-47d49ccae6605be4bba73ba7ae0dbd58" role="tabpanel" aria-labelledby="R-tab-id-47d49ccae6605be4bba73ba7ae0dbd58-tab"
+      id="R-tab-id-5250e5157cc7b0a2a6dc37c5fd813da4" role="tabpanel" aria-labelledby="R-tab-id-5250e5157cc7b0a2a6dc37c5fd813da4-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -956,7 +965,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-dda94fe35ad3318f05fb9d1e2a232b05" role="tabpanel" aria-labelledby="R-tab-id-dda94fe35ad3318f05fb9d1e2a232b05-tab"
+      id="R-tab-id-5c683167f4c4e7b014a0cd5721f170fd" role="tabpanel" aria-labelledby="R-tab-id-5c683167f4c4e7b014a0cd5721f170fd-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -995,7 +1004,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-45a6e33e6e4ecf6f69a1e9f5854ef1f7" role="tabpanel" aria-labelledby="R-tab-id-45a6e33e6e4ecf6f69a1e9f5854ef1f7-tab"
+      id="R-tab-id-1313049a968e26aae5a9b759f349f870" role="tabpanel" aria-labelledby="R-tab-id-1313049a968e26aae5a9b759f349f870-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1064,24 +1073,24 @@
 <p>The configuration is the same, with one further mount at the end that adds the shared content to the archived version. The added lines are highlighted:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-964f17bd334ac724a42a2b190049bffa">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-964f17bd334ac724a42a2b190049bffa">
+    <div class="tab-nav-title" id="R-tabs-title-2dab702d75d51c681651e51cd7a64cce">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-2dab702d75d51c681651e51cd7a64cce">
       <button
-        role="tab" id="R-tab-id-9e24db8e1d5ef8721e3f879695be0a3a-tab" aria-controls="R-tab-id-9e24db8e1d5ef8721e3f879695be0a3a" aria-selected="true"
+        role="tab" id="R-tab-id-fcac40fbf8d6ca05d526ccb1cad7ccb8-tab" aria-controls="R-tab-id-fcac40fbf8d6ca05d526ccb1cad7ccb8" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-3f148a66713afae53967c91f06dac00b-tab" aria-controls="R-tab-id-3f148a66713afae53967c91f06dac00b" aria-selected="false"
+        role="tab" id="R-tab-id-b470443853f9264a3519db325eb171e7-tab" aria-controls="R-tab-id-b470443853f9264a3519db325eb171e7" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-466a9144018a5ddb14fb740ae7b6bc50-tab" aria-controls="R-tab-id-466a9144018a5ddb14fb740ae7b6bc50" aria-selected="false"
+        role="tab" id="R-tab-id-72fff3c3dc4a14b4d1179d5c674a83a6-tab" aria-controls="R-tab-id-72fff3c3dc4a14b4d1179d5c674a83a6" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1091,7 +1100,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-9e24db8e1d5ef8721e3f879695be0a3a" role="tabpanel" aria-labelledby="R-tab-id-9e24db8e1d5ef8721e3f879695be0a3a-tab"
+      id="R-tab-id-fcac40fbf8d6ca05d526ccb1cad7ccb8" role="tabpanel" aria-labelledby="R-tab-id-fcac40fbf8d6ca05d526ccb1cad7ccb8-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1125,7 +1134,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-3f148a66713afae53967c91f06dac00b" role="tabpanel" aria-labelledby="R-tab-id-3f148a66713afae53967c91f06dac00b-tab"
+      id="R-tab-id-b470443853f9264a3519db325eb171e7" role="tabpanel" aria-labelledby="R-tab-id-b470443853f9264a3519db325eb171e7-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1164,7 +1173,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-466a9144018a5ddb14fb740ae7b6bc50" role="tabpanel" aria-labelledby="R-tab-id-466a9144018a5ddb14fb740ae7b6bc50-tab"
+      id="R-tab-id-72fff3c3dc4a14b4d1179d5c674a83a6" role="tabpanel" aria-labelledby="R-tab-id-72fff3c3dc4a14b4d1179d5c674a83a6-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1231,24 +1240,24 @@
 <p>If a page moved between two versions, the version switcher can not find it by its path. Add the former path to the <a href="https://gohugo.io/content-management/urls/#aliases" rel="external" target="_self"><code>aliases</code></a> front matter of the page in the newer version, which you may have done anyway to keep old links working.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-f2ba5844323eca51daa2e12c85d3cfb1">content/publishing/gdpr/_index.md</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-f2ba5844323eca51daa2e12c85d3cfb1">
+    <div class="tab-nav-title" id="R-tabs-title-677abd6f85d859ae5edee9a1a285befb">content/publishing/gdpr/_index.md</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-677abd6f85d859ae5edee9a1a285befb">
       <button
-        role="tab" id="R-tab-id-f715d19254027170a4b6cb17a6b5bb20-tab" aria-controls="R-tab-id-f715d19254027170a4b6cb17a6b5bb20" aria-selected="true"
+        role="tab" id="R-tab-id-fd96535797f9a975f0c840fbbcc53a16-tab" aria-controls="R-tab-id-fd96535797f9a975f0c840fbbcc53a16" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-33e6e286e6c9114a76dadfaaf5e752ad-tab" aria-controls="R-tab-id-33e6e286e6c9114a76dadfaaf5e752ad" aria-selected="false"
+        role="tab" id="R-tab-id-933021c84884719b5df6b098fe96b557-tab" aria-controls="R-tab-id-933021c84884719b5df6b098fe96b557" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-5b20ebdf285049ab02ea99d02ee818ba-tab" aria-controls="R-tab-id-5b20ebdf285049ab02ea99d02ee818ba" aria-selected="false"
+        role="tab" id="R-tab-id-b4f000950fd27914f96870363dc26d42-tab" aria-controls="R-tab-id-b4f000950fd27914f96870363dc26d42" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1258,7 +1267,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f715d19254027170a4b6cb17a6b5bb20" role="tabpanel" aria-labelledby="R-tab-id-f715d19254027170a4b6cb17a6b5bb20-tab"
+      id="R-tab-id-fd96535797f9a975f0c840fbbcc53a16" role="tabpanel" aria-labelledby="R-tab-id-fd96535797f9a975f0c840fbbcc53a16-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1268,7 +1277,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-33e6e286e6c9114a76dadfaaf5e752ad" role="tabpanel" aria-labelledby="R-tab-id-33e6e286e6c9114a76dadfaaf5e752ad-tab"
+      id="R-tab-id-933021c84884719b5df6b098fe96b557" role="tabpanel" aria-labelledby="R-tab-id-933021c84884719b5df6b098fe96b557-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1278,7 +1287,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-5b20ebdf285049ab02ea99d02ee818ba" role="tabpanel" aria-labelledby="R-tab-id-5b20ebdf285049ab02ea99d02ee818ba-tab"
+      id="R-tab-id-b4f000950fd27914f96870363dc26d42" role="tabpanel" aria-labelledby="R-tab-id-b4f000950fd27914f96870363dc26d42-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1299,24 +1308,24 @@
 <p>You can disable it be setting the <code>disableVersioningWarning</code> option to <code>true</code> in your project configuration.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-e5cb722108c38104f5a3f5c76e28f57b">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-e5cb722108c38104f5a3f5c76e28f57b">
+    <div class="tab-nav-title" id="R-tabs-title-2ebd3ec06253f2a4798d9cdf6df9841c">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-2ebd3ec06253f2a4798d9cdf6df9841c">
       <button
-        role="tab" id="R-tab-id-abd7001b6887b1d540575712593544ac-tab" aria-controls="R-tab-id-abd7001b6887b1d540575712593544ac" aria-selected="true"
+        role="tab" id="R-tab-id-42facd51dd2c19ccd2d821972a965c3d-tab" aria-controls="R-tab-id-42facd51dd2c19ccd2d821972a965c3d" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-af1ccef03cbe0a64cd631c2e1cdefa52-tab" aria-controls="R-tab-id-af1ccef03cbe0a64cd631c2e1cdefa52" aria-selected="false"
+        role="tab" id="R-tab-id-fe6e1c8412b7da0a8c0b93ed1b6a7b9e-tab" aria-controls="R-tab-id-fe6e1c8412b7da0a8c0b93ed1b6a7b9e" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-570c567c3a4b8e5b09ab317a221f58d0-tab" aria-controls="R-tab-id-570c567c3a4b8e5b09ab317a221f58d0" aria-selected="false"
+        role="tab" id="R-tab-id-b7fda34c77693397db84ae08082dc065-tab" aria-controls="R-tab-id-b7fda34c77693397db84ae08082dc065" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1326,7 +1335,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-abd7001b6887b1d540575712593544ac" role="tabpanel" aria-labelledby="R-tab-id-abd7001b6887b1d540575712593544ac-tab"
+      id="R-tab-id-42facd51dd2c19ccd2d821972a965c3d" role="tabpanel" aria-labelledby="R-tab-id-42facd51dd2c19ccd2d821972a965c3d-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1335,7 +1344,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-af1ccef03cbe0a64cd631c2e1cdefa52" role="tabpanel" aria-labelledby="R-tab-id-af1ccef03cbe0a64cd631c2e1cdefa52-tab"
+      id="R-tab-id-fe6e1c8412b7da0a8c0b93ed1b6a7b9e" role="tabpanel" aria-labelledby="R-tab-id-fe6e1c8412b7da0a8c0b93ed1b6a7b9e-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1344,7 +1353,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-570c567c3a4b8e5b09ab317a221f58d0" role="tabpanel" aria-labelledby="R-tab-id-570c567c3a4b8e5b09ab317a221f58d0-tab"
+      id="R-tab-id-b7fda34c77693397db84ae08082dc065" role="tabpanel" aria-labelledby="R-tab-id-b7fda34c77693397db84ae08082dc065-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1413,24 +1422,24 @@
 <p><span class="badge cstyle option badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-gears" aria-hidden="true"></i></span><span class="badge-content">Option</span></span> The theme uses author details in various parts of your site, like RSS feeds and meta tags.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-cf815a78fec3fbcb5eabdee4fe336e92">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-cf815a78fec3fbcb5eabdee4fe336e92">
+    <div class="tab-nav-title" id="R-tabs-title-646fd6dac9b2cdfd737d26777286133f">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-646fd6dac9b2cdfd737d26777286133f">
       <button
-        role="tab" id="R-tab-id-84959dbb82616a19421f1a888c1d741f-tab" aria-controls="R-tab-id-84959dbb82616a19421f1a888c1d741f" aria-selected="true"
+        role="tab" id="R-tab-id-28a673f7e7902228ca9b65b9f0e9fde1-tab" aria-controls="R-tab-id-28a673f7e7902228ca9b65b9f0e9fde1" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-4759ff5db5354c15b861a07c1958838b-tab" aria-controls="R-tab-id-4759ff5db5354c15b861a07c1958838b" aria-selected="false"
+        role="tab" id="R-tab-id-0777ecb14ae751e5f3dcd5071a5a2e0e-tab" aria-controls="R-tab-id-0777ecb14ae751e5f3dcd5071a5a2e0e" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-cf61a96ea3c3cd2c28095dabbc22204e-tab" aria-controls="R-tab-id-cf61a96ea3c3cd2c28095dabbc22204e" aria-selected="false"
+        role="tab" id="R-tab-id-8558ca21bed4060e5ea002e39dc0ff34-tab" aria-controls="R-tab-id-8558ca21bed4060e5ea002e39dc0ff34" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1440,7 +1449,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-84959dbb82616a19421f1a888c1d741f" role="tabpanel" aria-labelledby="R-tab-id-84959dbb82616a19421f1a888c1d741f-tab"
+      id="R-tab-id-28a673f7e7902228ca9b65b9f0e9fde1" role="tabpanel" aria-labelledby="R-tab-id-28a673f7e7902228ca9b65b9f0e9fde1-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1451,7 +1460,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-4759ff5db5354c15b861a07c1958838b" role="tabpanel" aria-labelledby="R-tab-id-4759ff5db5354c15b861a07c1958838b-tab"
+      id="R-tab-id-0777ecb14ae751e5f3dcd5071a5a2e0e" role="tabpanel" aria-labelledby="R-tab-id-0777ecb14ae751e5f3dcd5071a5a2e0e-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1462,7 +1471,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-cf61a96ea3c3cd2c28095dabbc22204e" role="tabpanel" aria-labelledby="R-tab-id-cf61a96ea3c3cd2c28095dabbc22204e-tab"
+      id="R-tab-id-8558ca21bed4060e5ea002e39dc0ff34" role="tabpanel" aria-labelledby="R-tab-id-8558ca21bed4060e5ea002e39dc0ff34-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1482,24 +1491,24 @@
 <p>The <code>title</code> will be used in meta information of your HTML.</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-406f4c4e68b9aedf92382aad9d8585eb">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-406f4c4e68b9aedf92382aad9d8585eb">
+    <div class="tab-nav-title" id="R-tabs-title-f58256e089902f7524779a040dffd934">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-f58256e089902f7524779a040dffd934">
       <button
-        role="tab" id="R-tab-id-1582844cfe1461d7f83b8e8342f403d8-tab" aria-controls="R-tab-id-1582844cfe1461d7f83b8e8342f403d8" aria-selected="true"
+        role="tab" id="R-tab-id-524d8969bc1861ae58d860fc613feb33-tab" aria-controls="R-tab-id-524d8969bc1861ae58d860fc613feb33" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-02dc0b541288e067a62c1c697c67316c-tab" aria-controls="R-tab-id-02dc0b541288e067a62c1c697c67316c" aria-selected="false"
+        role="tab" id="R-tab-id-a8a6cedc4ca071fb9771d16ae6bb9e18-tab" aria-controls="R-tab-id-a8a6cedc4ca071fb9771d16ae6bb9e18" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-b3b9998c21861af9f1e7976700f42f12-tab" aria-controls="R-tab-id-b3b9998c21861af9f1e7976700f42f12" aria-selected="false"
+        role="tab" id="R-tab-id-48bf56ecd354a08970926c84e362b1ce-tab" aria-controls="R-tab-id-48bf56ecd354a08970926c84e362b1ce" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1509,7 +1518,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-1582844cfe1461d7f83b8e8342f403d8" role="tabpanel" aria-labelledby="R-tab-id-1582844cfe1461d7f83b8e8342f403d8-tab"
+      id="R-tab-id-524d8969bc1861ae58d860fc613feb33" role="tabpanel" aria-labelledby="R-tab-id-524d8969bc1861ae58d860fc613feb33-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1517,7 +1526,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-02dc0b541288e067a62c1c697c67316c" role="tabpanel" aria-labelledby="R-tab-id-02dc0b541288e067a62c1c697c67316c-tab"
+      id="R-tab-id-a8a6cedc4ca071fb9771d16ae6bb9e18" role="tabpanel" aria-labelledby="R-tab-id-a8a6cedc4ca071fb9771d16ae6bb9e18-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1525,7 +1534,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-b3b9998c21861af9f1e7976700f42f12" role="tabpanel" aria-labelledby="R-tab-id-b3b9998c21861af9f1e7976700f42f12-tab"
+      id="R-tab-id-48bf56ecd354a08970926c84e362b1ce" role="tabpanel" aria-labelledby="R-tab-id-48bf56ecd354a08970926c84e362b1ce-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1542,24 +1551,24 @@
 <p>When your page is shared on social media, you can set a site-wide image to display with the link</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-37b42dfb5c93bfc98e58c374b3affbd0">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-37b42dfb5c93bfc98e58c374b3affbd0">
+    <div class="tab-nav-title" id="R-tabs-title-1017eab7f15c4098d8f1aae36f749dad">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-1017eab7f15c4098d8f1aae36f749dad">
       <button
-        role="tab" id="R-tab-id-8d88e3ea1fb68a28f6764593fdabcdc8-tab" aria-controls="R-tab-id-8d88e3ea1fb68a28f6764593fdabcdc8" aria-selected="true"
+        role="tab" id="R-tab-id-c9ae101e476f646a94c89682afe559bc-tab" aria-controls="R-tab-id-c9ae101e476f646a94c89682afe559bc" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-1912e9bfc57103e68a661abce49a43eb-tab" aria-controls="R-tab-id-1912e9bfc57103e68a661abce49a43eb" aria-selected="false"
+        role="tab" id="R-tab-id-84788ad303ed0fea6a49c7e6b099faa4-tab" aria-controls="R-tab-id-84788ad303ed0fea6a49c7e6b099faa4" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-42319db19b6fd2e34d15f7357e8dfa77-tab" aria-controls="R-tab-id-42319db19b6fd2e34d15f7357e8dfa77" aria-selected="false"
+        role="tab" id="R-tab-id-e1701259c8ed51c04e38d42833390e03-tab" aria-controls="R-tab-id-e1701259c8ed51c04e38d42833390e03" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1569,7 +1578,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-8d88e3ea1fb68a28f6764593fdabcdc8" role="tabpanel" aria-labelledby="R-tab-id-8d88e3ea1fb68a28f6764593fdabcdc8-tab"
+      id="R-tab-id-c9ae101e476f646a94c89682afe559bc" role="tabpanel" aria-labelledby="R-tab-id-c9ae101e476f646a94c89682afe559bc-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1579,7 +1588,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-1912e9bfc57103e68a661abce49a43eb" role="tabpanel" aria-labelledby="R-tab-id-1912e9bfc57103e68a661abce49a43eb-tab"
+      id="R-tab-id-84788ad303ed0fea6a49c7e6b099faa4" role="tabpanel" aria-labelledby="R-tab-id-84788ad303ed0fea6a49c7e6b099faa4-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1588,7 +1597,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-42319db19b6fd2e34d15f7357e8dfa77" role="tabpanel" aria-labelledby="R-tab-id-42319db19b6fd2e34d15f7357e8dfa77-tab"
+      id="R-tab-id-e1701259c8ed51c04e38d42833390e03" role="tabpanel" aria-labelledby="R-tab-id-e1701259c8ed51c04e38d42833390e03-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1628,24 +1637,24 @@
 <p>Enable print support to print entire chapters or the whole site. Add the <code>print</code> output format to your home, section, and page in your project configuration:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-5168781cea94a9192095925e67553d70">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-5168781cea94a9192095925e67553d70">
+    <div class="tab-nav-title" id="R-tabs-title-5a1013e9ec723230bd73782d95672a60">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-5a1013e9ec723230bd73782d95672a60">
       <button
-        role="tab" id="R-tab-id-e6f6948f448bf7787e22c4d988fecf9e-tab" aria-controls="R-tab-id-e6f6948f448bf7787e22c4d988fecf9e" aria-selected="true"
+        role="tab" id="R-tab-id-c62adc0eafa7521b966c943bc0829351-tab" aria-controls="R-tab-id-c62adc0eafa7521b966c943bc0829351" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-8bdd3cd2266bc71db840bdff8dcc0fa2-tab" aria-controls="R-tab-id-8bdd3cd2266bc71db840bdff8dcc0fa2" aria-selected="false"
+        role="tab" id="R-tab-id-caab658236067037204ed818f0213810-tab" aria-controls="R-tab-id-caab658236067037204ed818f0213810" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-15dc069f7807735baafc1d4763247d79-tab" aria-controls="R-tab-id-15dc069f7807735baafc1d4763247d79" aria-selected="false"
+        role="tab" id="R-tab-id-7d45662edf12868583a9e40d01431a74-tab" aria-controls="R-tab-id-7d45662edf12868583a9e40d01431a74" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1655,7 +1664,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e6f6948f448bf7787e22c4d988fecf9e" role="tabpanel" aria-labelledby="R-tab-id-e6f6948f448bf7787e22c4d988fecf9e-tab"
+      id="R-tab-id-c62adc0eafa7521b966c943bc0829351" role="tabpanel" aria-labelledby="R-tab-id-c62adc0eafa7521b966c943bc0829351-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1674,7 +1683,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-8bdd3cd2266bc71db840bdff8dcc0fa2" role="tabpanel" aria-labelledby="R-tab-id-8bdd3cd2266bc71db840bdff8dcc0fa2-tab"
+      id="R-tab-id-caab658236067037204ed818f0213810" role="tabpanel" aria-labelledby="R-tab-id-caab658236067037204ed818f0213810-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1685,7 +1694,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-15dc069f7807735baafc1d4763247d79" role="tabpanel" aria-labelledby="R-tab-id-15dc069f7807735baafc1d4763247d79-tab"
+      id="R-tab-id-7d45662edf12868583a9e40d01431a74" role="tabpanel" aria-labelledby="R-tab-id-7d45662edf12868583a9e40d01431a74-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1714,24 +1723,24 @@
 <p>If you want to print the lists of your taxonomies and their terms as well, add it to these, too:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-055bffa44d962019e79b181a138727cd">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-055bffa44d962019e79b181a138727cd">
+    <div class="tab-nav-title" id="R-tabs-title-ed87d92df3caa1b15dcbb68331fcf40e">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-ed87d92df3caa1b15dcbb68331fcf40e">
       <button
-        role="tab" id="R-tab-id-ad5f7edb0202afead91e4da556100ace-tab" aria-controls="R-tab-id-ad5f7edb0202afead91e4da556100ace" aria-selected="true"
+        role="tab" id="R-tab-id-68753b51f6abde5a8bbea7d7946d4566-tab" aria-controls="R-tab-id-68753b51f6abde5a8bbea7d7946d4566" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-75dc62635553a4e0b4fb5ed8fa79770b-tab" aria-controls="R-tab-id-75dc62635553a4e0b4fb5ed8fa79770b" aria-selected="false"
+        role="tab" id="R-tab-id-ab47d95e7c434eae525e7bda741b3c07-tab" aria-controls="R-tab-id-ab47d95e7c434eae525e7bda741b3c07" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-dc1b2ea72c30673725f0f022ad8aa6d1-tab" aria-controls="R-tab-id-dc1b2ea72c30673725f0f022ad8aa6d1" aria-selected="false"
+        role="tab" id="R-tab-id-98cbc73042c238578a43804d229846cc-tab" aria-controls="R-tab-id-98cbc73042c238578a43804d229846cc" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1741,7 +1750,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-ad5f7edb0202afead91e4da556100ace" role="tabpanel" aria-labelledby="R-tab-id-ad5f7edb0202afead91e4da556100ace-tab"
+      id="R-tab-id-68753b51f6abde5a8bbea7d7946d4566" role="tabpanel" aria-labelledby="R-tab-id-68753b51f6abde5a8bbea7d7946d4566-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1757,7 +1766,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-75dc62635553a4e0b4fb5ed8fa79770b" role="tabpanel" aria-labelledby="R-tab-id-75dc62635553a4e0b4fb5ed8fa79770b-tab"
+      id="R-tab-id-ab47d95e7c434eae525e7bda741b3c07" role="tabpanel" aria-labelledby="R-tab-id-ab47d95e7c434eae525e7bda741b3c07-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1767,7 +1776,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-dc1b2ea72c30673725f0f022ad8aa6d1" role="tabpanel" aria-labelledby="R-tab-id-dc1b2ea72c30673725f0f022ad8aa6d1-tab"
+      id="R-tab-id-98cbc73042c238578a43804d229846cc" role="tabpanel" aria-labelledby="R-tab-id-98cbc73042c238578a43804d229846cc-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1795,24 +1804,24 @@
 <p>If you don&rsquo;t like the URLs, you can reconfigure <code>outputFormats.print</code> in your project configuration to something other than the default of:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-0b0af42e7c6d241919f17067bd5576d3">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-0b0af42e7c6d241919f17067bd5576d3">
+    <div class="tab-nav-title" id="R-tabs-title-0e74cdc18ce2ea06e9698a3864825aa1">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-0e74cdc18ce2ea06e9698a3864825aa1">
       <button
-        role="tab" id="R-tab-id-e1f3cc4e799011304ffe7a8b65dae5ef-tab" aria-controls="R-tab-id-e1f3cc4e799011304ffe7a8b65dae5ef" aria-selected="true"
+        role="tab" id="R-tab-id-1a1447f0285ce890ab53aa50dbebbea3-tab" aria-controls="R-tab-id-1a1447f0285ce890ab53aa50dbebbea3" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-26e1ddc627b2eea74e8ea1fb0d469f6c-tab" aria-controls="R-tab-id-26e1ddc627b2eea74e8ea1fb0d469f6c" aria-selected="false"
+        role="tab" id="R-tab-id-cbc219084c34be8413182a7553c3cb53-tab" aria-controls="R-tab-id-cbc219084c34be8413182a7553c3cb53" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-9cf2d8c0555c69270867229409217a56-tab" aria-controls="R-tab-id-9cf2d8c0555c69270867229409217a56" aria-selected="false"
+        role="tab" id="R-tab-id-a2124cef2c8736577322d20b19ac85bc-tab" aria-controls="R-tab-id-a2124cef2c8736577322d20b19ac85bc" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1822,7 +1831,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-e1f3cc4e799011304ffe7a8b65dae5ef" role="tabpanel" aria-labelledby="R-tab-id-e1f3cc4e799011304ffe7a8b65dae5ef-tab"
+      id="R-tab-id-1a1447f0285ce890ab53aa50dbebbea3" role="tabpanel" aria-labelledby="R-tab-id-1a1447f0285ce890ab53aa50dbebbea3-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1837,7 +1846,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-26e1ddc627b2eea74e8ea1fb0d469f6c" role="tabpanel" aria-labelledby="R-tab-id-26e1ddc627b2eea74e8ea1fb0d469f6c-tab"
+      id="R-tab-id-cbc219084c34be8413182a7553c3cb53" role="tabpanel" aria-labelledby="R-tab-id-cbc219084c34be8413182a7553c3cb53-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1852,7 +1861,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-9cf2d8c0555c69270867229409217a56" role="tabpanel" aria-labelledby="R-tab-id-9cf2d8c0555c69270867229409217a56-tab"
+      id="R-tab-id-a2124cef2c8736577322d20b19ac85bc" role="tabpanel" aria-labelledby="R-tab-id-a2124cef2c8736577322d20b19ac85bc-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1876,24 +1885,24 @@
 <p>Enable support to show the Markdown source of a page. Add the <code>markdown</code> output format to your home, section, and page in your project configuration:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-ffbef98c70e66b2917509c44f3336b16">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-ffbef98c70e66b2917509c44f3336b16">
+    <div class="tab-nav-title" id="R-tabs-title-c4b61440427f32da6312cfefe2b9cd72">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-c4b61440427f32da6312cfefe2b9cd72">
       <button
-        role="tab" id="R-tab-id-f3475af577288e9b5623f345ef44bd27-tab" aria-controls="R-tab-id-f3475af577288e9b5623f345ef44bd27" aria-selected="true"
+        role="tab" id="R-tab-id-e9935026194dbb207f1b5e96a7033110-tab" aria-controls="R-tab-id-e9935026194dbb207f1b5e96a7033110" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-d798cae6fda3dd64229bb4e8b797a2fb-tab" aria-controls="R-tab-id-d798cae6fda3dd64229bb4e8b797a2fb" aria-selected="false"
+        role="tab" id="R-tab-id-df54170d52e8478aeff40f431b3fc90f-tab" aria-controls="R-tab-id-df54170d52e8478aeff40f431b3fc90f" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-f0bb52915e521067e5746d3e6c72cbe7-tab" aria-controls="R-tab-id-f0bb52915e521067e5746d3e6c72cbe7" aria-selected="false"
+        role="tab" id="R-tab-id-118eca9b8dfc1317a0abe47a2b9ad682-tab" aria-controls="R-tab-id-118eca9b8dfc1317a0abe47a2b9ad682" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1903,7 +1912,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-f3475af577288e9b5623f345ef44bd27" role="tabpanel" aria-labelledby="R-tab-id-f3475af577288e9b5623f345ef44bd27-tab"
+      id="R-tab-id-e9935026194dbb207f1b5e96a7033110" role="tabpanel" aria-labelledby="R-tab-id-e9935026194dbb207f1b5e96a7033110-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -1922,7 +1931,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-d798cae6fda3dd64229bb4e8b797a2fb" role="tabpanel" aria-labelledby="R-tab-id-d798cae6fda3dd64229bb4e8b797a2fb-tab"
+      id="R-tab-id-df54170d52e8478aeff40f431b3fc90f" role="tabpanel" aria-labelledby="R-tab-id-df54170d52e8478aeff40f431b3fc90f-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1933,7 +1942,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-f0bb52915e521067e5746d3e6c72cbe7" role="tabpanel" aria-labelledby="R-tab-id-f0bb52915e521067e5746d3e6c72cbe7-tab"
+      id="R-tab-id-118eca9b8dfc1317a0abe47a2b9ad682" role="tabpanel" aria-labelledby="R-tab-id-118eca9b8dfc1317a0abe47a2b9ad682-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -1965,24 +1974,24 @@
 <p>Enable support to show the source code of a page if it was generated from a file. Add the <code>source</code> output format to your home, section, and page in your project configuration:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-e8d203e4f0d12c0ed5b8f9b7e1bf5518">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-e8d203e4f0d12c0ed5b8f9b7e1bf5518">
+    <div class="tab-nav-title" id="R-tabs-title-fcb6bc4e7dcc942f2494f682ef81496d">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-fcb6bc4e7dcc942f2494f682ef81496d">
       <button
-        role="tab" id="R-tab-id-5d13229fdba6f42c0bdda26a8ea75cfb-tab" aria-controls="R-tab-id-5d13229fdba6f42c0bdda26a8ea75cfb" aria-selected="true"
+        role="tab" id="R-tab-id-63433d80ffe8fdc55eee153abe49a0e4-tab" aria-controls="R-tab-id-63433d80ffe8fdc55eee153abe49a0e4" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-9f98f13031651691448f7172427d8c84-tab" aria-controls="R-tab-id-9f98f13031651691448f7172427d8c84" aria-selected="false"
+        role="tab" id="R-tab-id-bf2f7479794a30967d4b383fd4f0f48c-tab" aria-controls="R-tab-id-bf2f7479794a30967d4b383fd4f0f48c" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-50e790655a0cd27a0c623c17d7bc2742-tab" aria-controls="R-tab-id-50e790655a0cd27a0c623c17d7bc2742" aria-selected="false"
+        role="tab" id="R-tab-id-e76d58208293e8dfb90e28393eedfdd2-tab" aria-controls="R-tab-id-e76d58208293e8dfb90e28393eedfdd2" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -1992,7 +2001,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-5d13229fdba6f42c0bdda26a8ea75cfb" role="tabpanel" aria-labelledby="R-tab-id-5d13229fdba6f42c0bdda26a8ea75cfb-tab"
+      id="R-tab-id-63433d80ffe8fdc55eee153abe49a0e4" role="tabpanel" aria-labelledby="R-tab-id-63433d80ffe8fdc55eee153abe49a0e4-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2011,7 +2020,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-9f98f13031651691448f7172427d8c84" role="tabpanel" aria-labelledby="R-tab-id-9f98f13031651691448f7172427d8c84-tab"
+      id="R-tab-id-bf2f7479794a30967d4b383fd4f0f48c" role="tabpanel" aria-labelledby="R-tab-id-bf2f7479794a30967d4b383fd4f0f48c-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2022,7 +2031,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-50e790655a0cd27a0c623c17d7bc2742" role="tabpanel" aria-labelledby="R-tab-id-50e790655a0cd27a0c623c17d7bc2742-tab"
+      id="R-tab-id-e76d58208293e8dfb90e28393eedfdd2" role="tabpanel" aria-labelledby="R-tab-id-e76d58208293e8dfb90e28393eedfdd2-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2054,24 +2063,24 @@
 <p>If you don&rsquo;t like the URLs, you can reconfigure <code>outputFormats.source</code> in your project configuration to something other than the default of:</p>
 <div class="tab-panel" data-tab-group="R-tabs-c9edc9b3721ed1719443e64b6ad9a1a9">
   <div class="tab-nav">
-    <div class="tab-nav-title" id="R-tabs-title-6ad90c51ea969e67ad4e6d3f57803ac7">hugo.</div>
-    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-6ad90c51ea969e67ad4e6d3f57803ac7">
+    <div class="tab-nav-title" id="R-tabs-title-6a801860f3d66e2f721ed849af309124">hugo.</div>
+    <div class="tab-nav-list" role="tablist" aria-labelledby="R-tabs-title-6a801860f3d66e2f721ed849af309124">
       <button
-        role="tab" id="R-tab-id-a9736f4ea4cb1730a91477ba48eb62cd-tab" aria-controls="R-tab-id-a9736f4ea4cb1730a91477ba48eb62cd" aria-selected="true"
+        role="tab" id="R-tab-id-2b4cade8f9c0ee19fb90aa8a347e8d06-tab" aria-controls="R-tab-id-2b4cade8f9c0ee19fb90aa8a347e8d06" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-d07b8f3853535ad744ce333148fe8fac-tab" aria-controls="R-tab-id-d07b8f3853535ad744ce333148fe8fac" aria-selected="false"
+        role="tab" id="R-tab-id-4c74efac42d38bd2d2093c0ab6c40ece-tab" aria-controls="R-tab-id-4c74efac42d38bd2d2093c0ab6c40ece" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-093aeba44fe7b2e5c9d5c5f65c636c2d-tab" aria-controls="R-tab-id-093aeba44fe7b2e5c9d5c5f65c636c2d" aria-selected="false"
+        role="tab" id="R-tab-id-34114b71890b08700f19729427bc8c85-tab" aria-controls="R-tab-id-34114b71890b08700f19729427bc8c85" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -2081,7 +2090,7 @@
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a9736f4ea4cb1730a91477ba48eb62cd" role="tabpanel" aria-labelledby="R-tab-id-a9736f4ea4cb1730a91477ba48eb62cd-tab"
+      id="R-tab-id-2b4cade8f9c0ee19fb90aa8a347e8d06" role="tabpanel" aria-labelledby="R-tab-id-2b4cade8f9c0ee19fb90aa8a347e8d06-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -2096,7 +2105,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-d07b8f3853535ad744ce333148fe8fac" role="tabpanel" aria-labelledby="R-tab-id-d07b8f3853535ad744ce333148fe8fac-tab"
+      id="R-tab-id-4c74efac42d38bd2d2093c0ab6c40ece" role="tabpanel" aria-labelledby="R-tab-id-4c74efac42d38bd2d2093c0ab6c40ece-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2111,7 +2120,7 @@
       </div>
     </div>
     <div
-      id="R-tab-id-093aeba44fe7b2e5c9d5c5f65c636c2d" role="tabpanel" aria-labelledby="R-tab-id-093aeba44fe7b2e5c9d5c5f65c636c2d-tab"
+      id="R-tab-id-34114b71890b08700f19729427bc8c85" role="tabpanel" aria-labelledby="R-tab-id-34114b71890b08700f19729427bc8c85-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -2145,7 +2154,7 @@
         </div>
       </main>
     </div>
-    <script src="/hugo-theme-relearn/js/theme.min.8b4018397e55affad2942c1adecf57f98e047ea302d8c6e1c1bd75e6a2a843e8.js" defer></script>
+    <script src="/hugo-theme-relearn/js/theme.min.96b966188f27166ddab5db2863a58101dd099db40ab5513f97556f286504ff8a.js" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
