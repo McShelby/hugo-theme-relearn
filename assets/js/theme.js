@@ -1468,8 +1468,9 @@ function initMenuScrollbar() {
     if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || !SCROLL_KEYS.includes(event.key)) {
       return;
     }
-    if (event.target.matches('select, textarea, input:not([type="checkbox"])')) {
-      // these need the keys for themselves
+    if (event.target.matches('select, option, textarea, input:not([type="checkbox"])')) {
+      // these need the keys for themselves; the list of a select drawn by us
+      // gives the focus to its options
       return;
     }
     if (event.target.matches('[role="tab"]') && (event.key == 'Home' || event.key == 'End')) {
@@ -2302,6 +2303,34 @@ function handleVersionSwitcher() {
   });
 }
 
+function handleMenuSelectKeys() {
+  // a select drawn by us opens its list on the up/down keys, while the one the
+  // browser draws selects the neighbouring option right away; we do the latter
+  // for both, so all browsers behave alike
+  document.querySelectorAll('.menu-control select').forEach(function (select) {
+    select.addEventListener('keydown', function (event) {
+      if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey || (event.key != 'ArrowUp' && event.key != 'ArrowDown')) {
+        return;
+      }
+      if (select.matches(':open')) {
+        // inside of the open list the keys move between its options
+        return;
+      }
+      event.preventDefault();
+      var options = Array.from(select.options).filter(function (option) {
+        return !option.disabled;
+      });
+      var index = options.indexOf(select.selectedOptions[0]) + (event.key == 'ArrowUp' ? -1 : 1);
+      if (index < 0 || index >= options.length) {
+        return;
+      }
+      select.value = options[index].value;
+      select.dispatchEvent(new Event('input', { bubbles: true }));
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  });
+}
+
 window.addEventListener('popstate', function (event) {
   scrollToPositions();
 });
@@ -2796,6 +2825,7 @@ ready(function () {
   initArrowVerticalNav();
   initArrowHorizontalNav();
   handleHistoryClearer();
+  handleMenuSelectKeys();
   handleLanguageSwitcher();
   handleVariantSwitcher();
   handleVersionSwitcher();
