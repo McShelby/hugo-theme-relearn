@@ -211,9 +211,23 @@ Theme supports custom output formats:
 
 Use [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) format: `type(scope): description #issue`, always with a scope. The git history before this rule puts the scope in the type's place; don't copy from it. Release commits are the only exception; the release workflow writes them as `Release <version>`.
 
-A `fix` keeps the intended behavior; a change of behavior is a `feat`.
+Pick the type by asking these questions in order; the first one answered with yes gives the type:
 
-Types: feat, fix, docs, refactor, perf, build, ci, chore
+| Question | If Yes → Type |
+| --- | --- |
+| Reverts a previous commit? | revert |
+| Bug fix (incl. security dependency patches)? | fix |
+| New, changed, or removed behavior in API/UI? | feat |
+| Performance improvement? | perf |
+| Code restructuring without behavior change? | refactor |
+| Deployment, infrastructure, or backups? | ops |
+| CI pipeline config only? | ci |
+| Build tooling, dependencies, versions? | build |
+| Tests only? | test |
+| Documentation only? | docs |
+| Code formatting only (not CSS)? | style |
+| Anything else | chore |
+| *Breaks existing consumers?* | *add ! to any type* |
 
 Common scopes:
 - **Common:** browser, shortcodes, theme
