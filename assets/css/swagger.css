@@ -177,115 +177,55 @@
 :host(.sc-openapi-container) .swagger-ui .opblock .opblock-summary-description {
   color: var(--INTERNAL-MAIN-TEXT-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-post {
-  border-color: var(--INTERNAL-BOX-GREEN-color);
+/* each method takes the theme color closest to the one Swagger UI gives it, and
+   all parts of its block are drawn from that color alike for light and dark;
+   the id lets these win over the separate colors Swagger UI has for its dark
+   mode, however specific */
+#relearn-swagger-ui .opblock.opblock-get {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-BLUE-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-post .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-GREEN-color);
+#relearn-swagger-ui .opblock.opblock-post {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-GREEN-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-post .opblock-summary {
-  border-color: var(--INTERNAL-BOX-GREEN-color);
+#relearn-swagger-ui .opblock.opblock-put {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-ORANGE-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-post .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-GREEN-color);
+#relearn-swagger-ui .opblock.opblock-delete {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-RED-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-put {
-  border-color: var(--INTERNAL-BOX-ORANGE-color);
+#relearn-swagger-ui .opblock.opblock-patch {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-CYAN-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-put .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-ORANGE-color);
+#relearn-swagger-ui .opblock.opblock-head {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-PURPLE-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-put .opblock-summary {
-  border-color: var(--INTERNAL-BOX-ORANGE-color);
+#relearn-swagger-ui .opblock.opblock-options {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-YELLOW-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-put .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-ORANGE-color);
+#relearn-swagger-ui .opblock.opblock-query {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-MAGENTA-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-delete {
-  border-color: var(--INTERNAL-BOX-RED-color);
+#relearn-swagger-ui .opblock.opblock-deprecated {
+  --VARIABLE-BOX-color: var(--INTERNAL-BOX-GREY-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-delete .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-RED-color);
+#relearn-swagger-ui .opblock {
+  background-color: color-mix(in srgb, var(--VARIABLE-BOX-color) 10%, var(--INTERNAL-MAIN-BG-color));
+  border-color: var(--VARIABLE-BOX-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-delete .opblock-summary {
-  border-color: var(--INTERNAL-BOX-RED-color);
+#relearn-swagger-ui .opblock :is(.opblock-summary, .opblock-section-header, thead tr td, thead tr th, .opblock-body > .opblock-description-wrapper, .opblock-body > .opblock-title_normal) {
+  border-color: var(--VARIABLE-BOX-color);
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-delete .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-RED-color);
+#relearn-swagger-ui .opblock .opblock-section-header {
+  background-color: color-mix(in srgb, var(--VARIABLE-BOX-color) 20%, var(--INTERNAL-MAIN-BG-color));
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-get {
-  border-color: var(--INTERNAL-BOX-BLUE-color);
+#relearn-swagger-ui .opblock .opblock-summary-method {
+  background-color: var(--VARIABLE-BOX-color);
+  color: var(--INTERNAL-BOX-CAPTION-color);
+  text-shadow: none;
 }
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-get .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-BLUE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-get .opblock-summary {
-  border-color: var(--INTERNAL-BOX-BLUE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-get .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-BLUE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-patch {
-  border-color: var(--INTERNAL-BOX-CYAN-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-patch .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-CYAN-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-patch .opblock-summary {
-  border-color: var(--INTERNAL-BOX-CYAN-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-patch .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-CYAN-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-head {
-  border-color: var(--INTERNAL-BOX-PURPLE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-head .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-PURPLE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-head .opblock-summary {
-  border-color: var(--INTERNAL-BOX-PURPLE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-head .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-PURPLE-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-options {
-  border-color: var(--INTERNAL-BOX-YELLOW-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-options .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-YELLOW-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-options .opblock-summary {
-  border-color: var(--INTERNAL-BOX-YELLOW-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-options .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-YELLOW-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-query {
-  border-color: var(--INTERNAL-BOX-MAGENTA-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-query .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-MAGENTA-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-query .opblock-summary {
-  border-color: var(--INTERNAL-BOX-MAGENTA-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-query .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-MAGENTA-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-deprecated {
-  border-color: var(--INTERNAL-BOX-GREY-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-deprecated .opblock-summary-method {
-  background-color: var(--INTERNAL-BOX-GREY-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-deprecated .opblock-summary {
-  border-color: var(--INTERNAL-BOX-GREY-color);
-}
-:host(.sc-openapi-container) .swagger-ui .opblock.opblock-deprecated .tab-header .tab-item.active h4 span::after {
-  background-color: var(--INTERNAL-BOX-GREY-color);
-}
-:host(.sc-openapi-container) .swagger-ui .tab li {
+#relearn-swagger-ui .opblock .tab-header .tab-item :is(h4, .opblock-title) span::after {
+  background-color: var(--VARIABLE-BOX-color);
+}:host(.sc-openapi-container) .swagger-ui .tab li {
   color: var(--INTERNAL-MAIN-TEXT-color);
 }
 :host(.sc-openapi-container) .swagger-ui .opblock-description-wrapper,
