@@ -29,12 +29,49 @@
   padding-left: 0;
   padding-right: 0;
 }
+/* every heading takes the settings of its level, also where Swagger UI gives it
+   the weight of its text; the rules further down refine this for some places */
+:host(.sc-openapi-container) h1 {
+  color: var(--INTERNAL-MAIN-TITLES-H1-TEXT-color);
+  font-variation-settings: var(--INTERNAL-MAIN-TITLES-H1-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H1-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H1-font) !important;
+  letter-spacing: var(--INTERNAL-MAIN-TITLES-H1-letter-spacing);
+}
 :host(.sc-openapi-container) h2 {
   color: var(--INTERNAL-MAIN-TITLES-H2-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H2-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-TITLES-H2-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H2-font);
+  font-family: var(--INTERNAL-MAIN-TITLES-H2-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H2-letter-spacing);
+}
+:host(.sc-openapi-container) h3 {
+  color: var(--INTERNAL-MAIN-TITLES-H3-TEXT-color);
+  font-variation-settings: var(--INTERNAL-MAIN-TITLES-H3-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H3-font) !important;
+  letter-spacing: var(--INTERNAL-MAIN-TITLES-H3-letter-spacing);
+}
+:host(.sc-openapi-container) h4 {
+  color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
+  font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
+  letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
+}
+:host(.sc-openapi-container) h5 {
+  color: var(--INTERNAL-MAIN-TITLES-H5-TEXT-color);
+  font-variation-settings: var(--INTERNAL-MAIN-TITLES-H5-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H5-font) !important;
+  letter-spacing: var(--INTERNAL-MAIN-TITLES-H5-letter-spacing);
+}
+:host(.sc-openapi-container) h6 {
+  color: var(--INTERNAL-MAIN-TITLES-H6-TEXT-color);
+  font-variation-settings: var(--INTERNAL-MAIN-TITLES-H6-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H6-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H6-font) !important;
+  letter-spacing: var(--INTERNAL-MAIN-TITLES-H6-letter-spacing);
 }
 :host(.sc-openapi-container) svg {
   fill: var(--INTERNAL-MAIN-TEXT-color);
@@ -43,7 +80,7 @@
   color: var(--INTERNAL-MAIN-TITLES-H1-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H1-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-TITLES-H1-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H1-font);
+  font-family: var(--INTERNAL-MAIN-TITLES-H1-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H1-letter-spacing);
 }
 .relearn-expander {
@@ -93,10 +130,14 @@
 :host(.sc-openapi-container) ::-moz-selection {
   color: var(--INTERNAL-MAIN-TEXT-color) !important;
 }
-*:not(pre, pre *, code, .far, .fa, .glyphicon, [class*='vjs-'], .fab, .fa-github, .fas, .material-icons, .icofont, .typcn, mu, [class*='mu-'], .glyphicon, .icon) {
-  font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
+/* the font settings are inherited from the host, so the rules below can give an
+   element those of the theme's weight it stands for; form controls do not
+   inherit them on their own; the font has to beat the ones Swagger UI names
+   all over, so the headings name theirs as forcefully */
+*:not(pre, pre *, code, .curl, .far, .fa, .glyphicon, [class*='vjs-'], .fab, .fa-github, .fas, .material-icons, .icofont, .typcn, mu, [class*='mu-'], .glyphicon, .icon) {
+  font-variation-settings: inherit;
   font-family: var(--INTERNAL-MAIN-font) !important;
-  letter-spacing: var(--INTERNAL-MAIN-letter-spacing) !important;
+  letter-spacing: inherit;
   line-height: 1.574 !important;
 }
 :host(.sc-openapi-container) .swagger-ui {
@@ -124,8 +165,8 @@
 :host(.sc-openapi-container) .swagger-ui .opblock .opblock-section-header h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .opblock .opblock-summary-operation-id,
@@ -257,8 +298,8 @@
 :host(.sc-openapi-container) .swagger-ui .opblock-title_normal h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .opblock-description-wrapper p,
@@ -269,15 +310,15 @@
 :host(.sc-openapi-container) .swagger-ui .responses-inner h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .responses-inner h5 {
   color: var(--INTERNAL-MAIN-TITLES-H5-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H5-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H5-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H5-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H5-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .response-col_status {
@@ -299,8 +340,8 @@
 :host(.sc-openapi-container) .swagger-ui section h3 {
   color: var(--INTERNAL-MAIN-TITLES-H3-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H3-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H3-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H3-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H3-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .btn {
@@ -324,15 +365,15 @@
 :host(.sc-openapi-container) .swagger-ui .dialog-ux .modal-ux-content h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .dialog-ux .modal-ux-header h3 {
   color: var(--INTERNAL-MAIN-TITLES-H3-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H3-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H3-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H3-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H3-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .model {
@@ -341,15 +382,15 @@
 :host(.sc-openapi-container) .swagger-ui section.models h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui section.models h5 {
   color: var(--INTERNAL-MAIN-TITLES-H5-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H5-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H5-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H5-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H5-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .model-title {
@@ -379,37 +420,37 @@
 :host(.sc-openapi-container) .swagger-ui .info h1 {
   color: var(--INTERNAL-MAIN-TITLES-H1-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H1-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H1-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H1-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H1-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H1-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H1-letter-spacing);
   text-align: center;
 }
 :host(.sc-openapi-container) .swagger-ui .info h2 {
   color: var(--INTERNAL-MAIN-TITLES-H2-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H2-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H2-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H2-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H2-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H2-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H2-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .info h3 {
   color: var(--INTERNAL-MAIN-TITLES-H3-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H3-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H3-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H3-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H3-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H3-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .info h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .info h5 {
   color: var(--INTERNAL-MAIN-TITLES-H5-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H5-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H5-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H5-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H5-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H5-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .info a {
@@ -430,8 +471,8 @@
 :host(.sc-openapi-container) .swagger-ui .scopes h2 {
   color: var(--INTERNAL-MAIN-TITLES-H2-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H2-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H2-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H2-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H2-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H2-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H2-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .scopes h2 a {
@@ -440,8 +481,8 @@
 :host(.sc-openapi-container) .swagger-ui .errors-wrapper .errors h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 :host(.sc-openapi-container) .swagger-ui .errors-wrapper .errors small {
@@ -450,11 +491,37 @@
 :host(.sc-openapi-container) .swagger-ui .errors-wrapper hgroup h4 {
   color: var(--INTERNAL-MAIN-TITLES-H4-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-TITLES-H4-font-variation-settings);
-  !font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
-  font-family: var(--INTERNAL-MAIN-TITLES-H4-font);
+  font-weight: var(--INTERNAL-MAIN-TITLES-H4-font-weight);
+  font-family: var(--INTERNAL-MAIN-TITLES-H4-font) !important;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H4-letter-spacing);
 }
 
+/* Swagger UI weighs its text as normal, semibold and bold; these are the
+   normal, medium and bold text of the theme; the id lets them win over the
+   rules of Swagger UI, however specific, and leaves the ones below to win over
+   the ones above where an element matches more than one */
+#relearn-swagger-ui :where(.json-schema-2020-12-json-viewer__value, .json-schema-2020-12-keyword__value, .model .external-docs, table.model tr.description, .opblock-link, .opblock-tag small, .opblock-tag > div, .parameter__name):not(h1, h2, h3, h4, h5, h6) {
+  font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-font-weight);
+  letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
+}
+#relearn-swagger-ui :where(b, strong, label, select, table thead tr td, table thead tr th, .example__section-header, .examples__section-header, .examples__title, .examples-select__section-label, .json-schema-2020-12__title, .json-schema-2020-12-json-viewer__name, .json-schema-2020-12-keyword__name, .opblock .opblock-section-header > label, .opblock .opblock-summary-method, .opblock-link.shown, .parameter__name.required, .scheme-container .schemes > .schemes-server-container > label, .servers-title, .tab li.active, .topbar .download-url-wrapper .download-url-button, .topbar a, span.token-not-formatted, table.model tr.description td:first-child, table.model tr.external-docs td:first-child, table.model tr.property-row.required td:first-child):not(h1, h2, h3, h4, h5, h6),
+#relearn-swagger-ui :where(.json-schema-2020-12-property--required > .json-schema-2020-12:first-of-type > .json-schema-2020-12-head .json-schema-2020-12__title, .loading-container .loading)::after {
+  font-variation-settings: var(--INTERNAL-MAIN-BOLD-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-BOLD-font-weight);
+  letter-spacing: var(--INTERNAL-MAIN-BOLD-letter-spacing);
+}
+#relearn-swagger-ui :where(.auth-container .errors, .btn, .checkbox p, .download-contents, .info .base-url, .json-schema-2020-12__constraint, .json-schema-2020-12-json-viewer__value--warning, .json-schema-2020-12-keyword__value--warning, .json-schema-2020-12-property .json-schema-2020-12__title, .model, .model-deprecated-warning, .opblock .opblock-summary-operation-id, .opblock .opblock-summary-path, .opblock .opblock-summary-path__deprecated, .parameter__deprecated, .parameter__extension, .parameter__in, .parameter__type, .response__extension, .response-col_links .response-undocumented, .response-col_status .response-undocumented, .swagger-ui__skip-link:focus, table.headers td, textarea):not(h1, h2, h3, h4, h5, h6) {
+  font-variation-settings: var(--INTERNAL-MAIN-MEDIUM-font-variation-settings);
+  font-weight: var(--INTERNAL-MAIN-MEDIUM-font-weight);
+  letter-spacing: var(--INTERNAL-MAIN-MEDIUM-letter-spacing);
+}
+#relearn-swagger-ui :where(code, pre, textarea.curl) {
+  font-variation-settings: var(--INTERNAL-CODE-font-variation-settings);
+  font-weight: var(--INTERNAL-CODE-font-weight);
+  font-family: var(--INTERNAL-CODE-font);
+  letter-spacing: var(--INTERNAL-CODE-letter-spacing);
+}
 :host(.sc-openapi-container) .swagger-ui .model-box {
   /* swagger-ui 5.31 bugfix */
   background-color: transparent;
