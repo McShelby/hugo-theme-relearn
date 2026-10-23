@@ -50,7 +50,7 @@ The **NAME** can be followed by an optional pipe (`|`) to define an **ICON** and
 
   - by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`
   - by brand color: `primary`, `secondary`, `accent`
-  - by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`, `yellow`
+  - by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `purple`, `red`, `yellow`
   - by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`
   - you can also [define your own styles](shortcodes/callout#defining-own-styles).
 

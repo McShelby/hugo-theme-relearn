@@ -785,6 +785,8 @@ var variants = {
               { name: 'BOX-CAUTION-TEXT-color', fallback: 'BOX-MAGENTA-TEXT-color', tooltip: 'text color of info boxes' },
               { name: 'BOX-ORANGE-color', default: 'rgba(207, 110, 0, 1)', tooltip: 'background color of orange boxes' },
               { name: 'BOX-ORANGE-TEXT-color', fallback: 'BOX-TEXT-color', tooltip: 'text color of orange boxes' },
+              { name: 'BOX-PURPLE-color', default: 'rgba(150, 91, 248, 1)', tooltip: 'background color of purple boxes' },
+              { name: 'BOX-PURPLE-TEXT-color', fallback: 'BOX-TEXT-color', tooltip: 'text color of purple boxes' },
               { name: 'BOX-RED-color', default: 'rgba(224, 62, 62, 1)', tooltip: 'background color of red boxes' },
               { name: 'BOX-WARNING-color', fallback: 'BOX-RED-color', tooltip: 'background color of warning boxes' },
               { name: 'BOX-RED-TEXT-color', fallback: 'BOX-TEXT-color', tooltip: 'text color of red boxes' },
