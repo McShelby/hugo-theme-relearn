@@ -32,7 +32,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | **istoggle**          | `false`         | When `true`, the button announces to assistive technology that it shows and hides something. It starts as hidden and the theme changes the state with each click. Only used if **href** is JavaScript or **action** is set. See [example](#toggle-button). |
 | **borderless**        | `false`         | When `true`, no border will be shown around the button. |
 | **hint**              | _&lt;empty&gt;_ | Tooltip for the button. |
-| **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `red`, `yellow`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/callout#defining-own-styles). |
+| **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `purple`, `red`, `yellow`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/callout#defining-own-styles). |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
 | **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
@@ -82,7 +82,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 
 #### By Color
 
-{{% multishortcode name="button" format="%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" %}}
+{{% multishortcode name="button" format="%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" %}}
 - content: "Get Hugo"
   href: "https://gohugo.io/"
   style: "blue"
@@ -101,6 +101,9 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 - content: "Get Hugo"
   href: "https://gohugo.io/"
   style: "orange"
+- content: "Get Hugo"
+  href: "https://gohugo.io/"
+  style: "purple"
 - content: "Get Hugo"
   href: "https://gohugo.io/"
   style: "red"

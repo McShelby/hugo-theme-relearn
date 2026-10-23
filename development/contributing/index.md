@@ -30,18 +30,23 @@ feat(table): make columns sortable #1339
 
 The scope is never left out. Release commits are the only exception; the release workflow writes them as `Release <version>`.
 
-The type tells what kind of change it is.
+The type tells what kind of change it is. Ask the questions in order; the first one you answer with yes gives the type.
 
-| Type     | Usage                                                  |
-|----------|--------------------------------------------------------|
-| feat     | a new feature or a change of an existing one           |
-| fix      | a bug fix that keeps the intended behavior             |
-| docs     | a change to the documentation only                     |
-| refactor | a change of the code that neither fixes nor adds       |
-| perf     | a change that improves the build or page performance   |
-| build    | a change of the build or the release process           |
-| ci       | a change of the workflows                              |
-| chore    | anything else, like updating third-party files         |
+| Question                                             | If Yes → Type |
+|------------------------------------------------------|---------------|
+| Reverts a previous commit?                           | revert        |
+| Bug fix (incl. security dependency patches)?         | fix           |
+| New, changed, or removed behavior in API/UI?         | feat          |
+| Performance improvement?                             | perf          |
+| Code restructuring without behavior change?          | refactor      |
+| Deployment, infrastructure, or backups?              | ops           |
+| CI pipeline config only?                             | ci            |
+| Build tooling, dependencies, versions?               | build         |
+| Tests only?                                          | test          |
+| Documentation only?                                  | docs          |
+| Code formatting only (not CSS)?                      | style         |
+| Anything else                                        | chore         |
+| _Breaks existing consumers?_                         | _add `!` to any type_ |
 
 Following is an incomplete list of some of the used scopes. Be creative.
 
