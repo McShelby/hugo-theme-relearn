@@ -2778,6 +2778,9 @@ html[dir='rtl'] .menu-control span {
   cursor: pointer;
   display: block;
   height: 1.33rem;
+  /* the browser gives its controls a letter spacing of their own, while the
+     entries of the menu next to us have ours */
+  letter-spacing: inherit;
   /* shifting the box by what it is padded with keeps the text in place; the
      list of a select opens as wide as that box, so it reaches out to both
      sides to be as far from one edge of the menu as from the other */
@@ -2793,12 +2796,10 @@ html[dir='rtl'] .menu-control span {
 }
 
 .menu-control select {
-  /* a browser that draws the list on its own frames the entries in the
-     background of the select, and falls back to its own one if that is
-     transparent; we hand it the one of the list, but the select itself only
-     paints it underneath its text, where the text covers it */
+  /* the background of the select is only painted underneath its text, where
+     the text covers it; see below for why it has one at all */
   background-clip: text;
-  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
+  background-color: transparent;
   background-image: none;
   border: none;
   /* a select whose list we style ourselves lays out its content in a way of
@@ -2814,6 +2815,16 @@ html[dir='rtl'] .menu-control span {
   --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
   --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
   --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
+}
+
+/* a browser that draws the list on its own frames the entries in the
+   background of the select, and falls back to its own one if that is
+   transparent; it reads it once the select is open, so that is when we hand it
+   the one of the list. while closed, the background underneath the text would
+   lighten the edges of the letters and make them look bolder than the ones of
+   the menu next to it */
+.menu-control select:open {
+  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
 }
 
 /* where the browser lets us, we style the opened list ourselves; it is then
