@@ -97,14 +97,16 @@
 {{- $div := slice }}
 {{- range $k, $v := $attributes }}
   {{- if $v }}
-    {{- $div = $div | append (printf "%s=%q" $k $v | safeHTMLAttr) }}
+    {{- /* written into the highlighted code as text, so the template can not escape them */}}
+    {{- $div = $div | append (printf "%s=\"%s\"" $k (htmlEscape $v)) }}
   {{- end }}
 {{- end }}
 {{- $content = highlight $content $type $options }}
 {{- /* a code block is no stop for the tab key; a browser makes it one by itself once it scrolls */}}
 {{- $content = replace $content "<pre tabindex=\"0\"" "<pre" }}
 {{- $content = replaceRE "^([\\s\\n\\r]*)(<pre\\s+?[\\s\\S]*)$" "${1}<div class=\"highlight\">${2}</div>" $content }}
-{{- $content = replaceRE "(class=\")([^\"]*)\"" (printf "%s" (delimit $div " ")) $content 1 }}
+{{- /* a `$` in a value would otherwise be read as a reference to a group of the expression */}}
+{{- $content = replaceRE "(class=\")([^\"]*)\"" (replace (delimit $div " ") "$" "$$") $content 1 }}
 {{- if and $title (not $hl_inline) }}
   {{- partial "shortcodes/tab.html" (dict
     "page"  $page

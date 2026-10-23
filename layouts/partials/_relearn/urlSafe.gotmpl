@@ -1,0 +1,18 @@
+{{- /* the URL as given, unless it would run script; it is then replaced the way
+  Hugo's own templates replace a URL they refuse, whether or not the site lets
+  raw HTML through. Only script URLs are refused: every other scheme is
+  something browsers either use or block on their own, so it stays usable.
+  Called where a URL an author hands in enters, not for each link the theme
+  writes */}}
+{{- $url := .url }}
+{{- if ne (partial "_relearn/urlScriptCode.gotmpl" $url) false }}
+	{{- /* a caller knowing what the value is called, like a menu entry, names it that way */}}
+	{{- $msg := printf "%s is a script URL and was replaced; to run code use a button or card with this URL as 'href'" (.name | default (printf "%s '%s'" .param $url)) }}
+	{{- if not .name }}
+		{{- $filepath := "[virtual file]" }}{{ with and .page .page.File .page.File.Filename }}{{ $filepath = . }}{{ end }}
+		{{- $msg = printf "%q: %s" $filepath $msg }}
+	{{- end }}
+	{{- warnf "%s" $msg }}
+	{{- $url = "#ZgotmplZ" }}
+{{- end }}
+{{- return $url }}

@@ -51,8 +51,7 @@
   {{- end -}}
 <span
   {{- range $k, $v := $attributes }}
-    {{- if $v }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- if $v }} {{ $k | safeHTMLAttr }}="{{ $v }}"
     {{- end }}
   {{- end }}>{{ $html | safeHTML }}</span>
   {{- .Store.Set "hasMath" true }}

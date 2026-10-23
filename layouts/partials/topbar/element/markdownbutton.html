@@ -8,7 +8,7 @@
 		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
 	{{- end }}
 	{{- if $show }}
-		{{- $href := printf "%s?format=markdown" .Path }}
+		{{- $href := printf "%s?format=markdown" (partial "_relearn/pathToUrl.gotmpl" .Path) }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-markdown"

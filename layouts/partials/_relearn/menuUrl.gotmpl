@@ -1,0 +1,31 @@
+{{- /* where a menu entry leads, as the `pageRef` or `url` of an entry from the
+  configuration or a page's `menuPageRef` or `menuUrl` from front matter say;
+  checked and reported here, the report starting with what the caller names the
+  value by. A value that does not parse leads nowhere and is reported only for
+  that. The result does not depend on the page showing the menu, so callers
+  cache it */}}
+{{- $page := .page }}
+{{- $url := "" }}
+{{- if .ref }}
+	{{- $url = partial "_relearn/urlValid.gotmpl" (dict "url" .ref "page" $page "name" .refName) }}
+	{{- if $url }}
+		{{- with partial "_relearn/refObject.gotmpl" (dict "page" $page "objectRef" $url "refObject" .refObject) }}
+			{{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" $url "page" $page "linkObject" . "param" "link" "hideFilepath" $.hideFilepath) }}
+		{{- else }}
+			{{- $msg := printf "%s is not a page or a resource" $.refName }}
+			{{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $.ref "page" $page "param" "link" "msg" $msg) }}
+		{{- end }}
+	{{- end }}
+{{- else if .url }}
+	{{- $url = partial "_relearn/urlValid.gotmpl" (dict "url" (.url | relLangURL) "page" $page "name" .urlName) }}
+	{{- if $url }}
+		{{- $u := urls.Parse $url }}
+		{{- if $u.IsAbs }}
+			{{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" $page "type" "menu link") $u.String }}
+		{{- else }}
+			{{- $msg := printf "%s is a local URL; if it references a page or a resource use '%s' instead" .urlName .refParam }}
+			{{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "link" "msg" $msg) }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+{{- return partial "_relearn/urlSafe.gotmpl" (dict "url" $url "page" $page "name" (cond .ref .refName .urlName)) }}

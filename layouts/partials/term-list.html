@@ -19,7 +19,7 @@
 {{- end }}
 {{- $taxonomy_title := partial "title.gotmpl" (dict "page" $taxonomy_page) }}
 {{- with $term_pages }}
-<div class="R-taxonomy taxonomy-{{ $taxonomy }}{{ with $style }} cstyle {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ with $color }}{{ printf " style=\"--VARIABLE-TAGS-BG-color: %s;\"" . | safeHTMLAttr }}{{ end }}>
+<div class="R-taxonomy taxonomy-{{ $taxonomy }}{{ with $style }} cstyle {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ with $color }} style="--VARIABLE-TAGS-BG-color: {{ . | safeCSS }};"{{ end }}>
   {{- if $icon }}
   <i class="{{ $icon }}" aria-hidden="true"></i>
   {{- end }}

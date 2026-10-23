@@ -16,15 +16,13 @@
         <a
           {{- range $k, $v := .hrefattributes }}
             {{- if $v }}
-              {{- if eq (printf "%T" $v) "bool" }}
-                {{- printf " %s" $k | safeHTMLAttr }}
-              {{- else }}
-                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+              {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
               {{- end }}
             {{- end }}
           {{- end }}>
         {{- else if .href }}
-        <a href="{{ .href | safeJS }}">
+        <a href="{{ .href | safeURL }}">
         {{- end }}
         {{ $renderedtitle | safeHTML }}
         {{- if $isButton }}
@@ -49,17 +47,15 @@
       <a
           {{- range $k, $v := .hrefattributes }}
             {{- if $v }}
-              {{- if eq (printf "%T" $v) "bool" }}
-                {{- printf " %s" $k | safeHTMLAttr }}
-              {{- else }}
-                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+              {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
               {{- end }}
             {{- end }}
           {{- end }}>
         {{- else if and (not $renderedtitle) .href }}
-      <a href="{{ .href | safeJS }}">
+      <a href="{{ .href | safeURL }}">
         {{- end }}
-        <img src="{{ .image }}" alt="{{ .imagealt }}">
+        <img src="{{ .image | safeURL }}" alt="{{ .imagealt }}">
         {{- if and (not $renderedtitle) $isButton }}
       </button>
         {{- else if and (not $renderedtitle) (or .hrefattributes .href) }}

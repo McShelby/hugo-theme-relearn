@@ -10,14 +10,13 @@
   (partial "_relearn/linkObject.gotmpl" (dict "url" .file "page" $page "searchPage" false)) }}
 {{- if $linkObject }}
   {{- $content = $linkObject.Content }}
-{{- else }}
-  {{- if (fileExists .file) }}
-    {{- $content = .file | readFile }}
-  {{- else }}
-    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-    {{- $msg := printf "%q: include '%s' is not a page, a resource or a file" $filepath .file }}
-    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .file "page" $page "param" "include" "msg" $msg) }}
-  {{- end }}
+{{- else if (fileExists .file) }}
+  {{- $content = .file | readFile }}
+{{- else if partial "_relearn/urlValid.gotmpl" (dict "url" .file "page" $page) }}
+  {{- /* a value that does not parse is reported for that alone */}}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- $msg := printf "%q: include '%s' is not a page, a resource or a file" $filepath .file }}
+  {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .file "page" $page "param" "include" "msg" $msg) }}
 {{- end }}
 {{- $hideFirstHeading := .hidefirstheading | default false }}
 {{- if eq (printf "%T" $hideFirstHeading) "string" }}

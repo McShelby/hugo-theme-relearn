@@ -29,7 +29,7 @@
 {{- range $blocks }}
   {{- $page := .head.Page }}
 
-{{ strings.Repeat $.headinglevel "#" }} {{ if $page.RelPermalink }}[{{ .head.Label }}]({{ $page.Path }}){{ else }}{{ .head.Label }}{{ end }}
+{{ strings.Repeat $.headinglevel "#" }} {{ if $page.RelPermalink }}[{{ .head.Label }}]({{ partial "_relearn/pathToUrl.gotmpl" $page.Path }}){{ else }}{{ .head.Label }}{{ end }}
   {{- if $.description }}
     {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape) "\n\r\t " }}
     {{- with $description }}

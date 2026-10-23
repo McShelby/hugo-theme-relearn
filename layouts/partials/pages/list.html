@@ -2,7 +2,7 @@
 	entry's `Level` */}}
 {{- range .pages }}
   {{- $page := .Page }}
-- {{ if $page.RelPermalink }}[{{ .Label }}]({{ $page.Path }}){{ else }}{{ .Label }}{{ end }}
+- {{ if $page.RelPermalink }}[{{ .Label }}]({{ partial "_relearn/pathToUrl.gotmpl" $page.Path }}){{ else }}{{ .Label }}{{ end }}
   {{- if $.breadcrumb }}
     {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
     {{- with $breadcrumb }}

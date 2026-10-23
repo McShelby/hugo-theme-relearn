@@ -4,7 +4,8 @@
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
   {{- warnf "%q: DEPRECATED parameter 'context' for shortcode 'openapi' found, use 'page' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-18-0" $filepath }}
 {{- end }}
-{{- $u := urls.Parse .src }}
+{{- $url := partial "_relearn/urlValid.gotmpl" (dict "url" .src "page" $page) }}
+{{- $u := urls.Parse $url }}
 {{- $src := $u.String }}
 {{- $spec := "" }}
 {{- $lang := .lang | default $page.Language.Lang }}
@@ -21,7 +22,7 @@
 {{- $dir := $site.Language.Direction | default (index $i18n "Reading-direction") | default "ltr" }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (partial "_relearn/makeRandomMd5.gotmpl" $page) .id }}
 {{- if $u.IsAbs }}
-  {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .src "page" $page "type" "OpenAPI spec link") $u.String }}
+  {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" $page "type" "OpenAPI spec link") $u.String }}
 {{- else }}
   {{- $path := strings.TrimPrefix "./" $u.Path }}
   {{- with or
@@ -32,8 +33,8 @@
     {{- $spec = .Content }}
   {{- else }}
     {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-    {{- $msg := printf "%q: OpenAPI spec '%s' is not a resource" $filepath .src }}
-    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .src "page" $page "param" "openapi" "msg" $msg) }}
+    {{- $msg := printf "%q: OpenAPI spec '%s' is not a resource" $filepath $url }}
+    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $url "page" $page "param" "openapi" "msg" $msg) }}
   {{- end }}
 {{- end }}
 {{- with $page -}}

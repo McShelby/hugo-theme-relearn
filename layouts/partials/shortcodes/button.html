@@ -14,28 +14,19 @@
 {{- $isButton := false }}
 {{- $isLink := false }}
 {{- $href := (trim .href " ") | default "" }}
-{{- if or $type $action (strings.HasPrefix $href "javascript:") }}
+{{- $code := partial "_relearn/urlScriptCode.gotmpl" $href }}
+{{- $isScript := ne $code false }}
+{{- if or $type $action $isScript }}
   {{- $isButton = true }}
-  {{- $href = substr $href (len "javascript:") }}
+  {{- /* a button runs code; any other destination it has no use for */}}
+  {{- $href = cond $isScript $code "" }}
   {{- if not $type }}
     {{- $type = "button" }}
   {{- end }}
 {{- else if not $href }}
 {{- else }}
   {{- $isLink = true }}
-  {{- $u := urls.Parse .href }}
-  {{- if $u.IsAbs }}
-    {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .href "page" $page "type" "link") $u.String }}
-  {{- else }}
-    {{- $linkObject := partial "_relearn/linkObject.gotmpl" (dict "url" .href "page" $page) }}
-    {{- if $linkObject }}
-      {{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" .href "page" $page "linkObject" $linkObject "param" "link") }}
-    {{- else }}
-      {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-      {{- $msg := printf "%q: link '%s' is not a page or a resource" $filepath .href }}
-      {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .href "page" $page "param" "link" "msg" $msg) }}
-    {{- end }}
-  {{- end }}
+  {{- $href = (partial "_relearn/urlResolve.gotmpl" (dict "url" $href "page" $page "param" "link")).href }}
   {{- if and (isset . "target") (or (ne (printf "%T" .target) "string") (ne (trim .target " " ) "")) }}
     {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- warnf "%q: DEPRECATED parameter 'target' for shortcode 'button' found, use link effects instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/7/#7-4-0" $filepath }}
@@ -79,10 +70,6 @@
 {{- end }}
 {{- $params = dict "class" (delimit $classes " ") | merge $params }}
 
-{{- if $color }}
-  {{- $params = dict "style" (print "--VARIABLE-BOX-color: " $color ";") | merge $params }}
-{{- end }}
-
 {{- /* a button showing nothing but an icon is named by its hint */}}
 {{- if and $isLink $hint (not $title) }}
   {{- $attributes = merge $attributes (dict "aria-label" $hint) }}
@@ -91,20 +78,17 @@
 {{- with $page -}}
 <span
   {{- range $k, $v := $params }}
-    {{- if $v }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- if $v }} {{ $k | safeHTMLAttr }}="{{ $v }}"
     {{- end }}
-  {{- end }}>
+  {{- end }}{{ with $color }} style="--VARIABLE-BOX-color: {{ . | safeCSS }};"{{ end }}>
   {{- if $isButton -}}
   <button{{ with $action }} data-button-action="{{ . }}"{{ end }}{{ with $href }} onclick="{{ . | safeJS }}"{{ end }}{{ if gt (len $type) 0 }} type="{{ $type }}"{{ end }}{{ if $hint }} title="{{ $hint }}"{{ end }}{{ if and $hint (not $title) }} aria-label="{{ $hint }}"{{ end }}{{ if $istoggle }} aria-expanded="false"{{ end }}>
   {{- else if $isLink -}}
   <a
     {{- range $k, $v := $attributes }}
       {{- if $v }}
-        {{- if eq (printf "%T" $v) "bool" }}
-          {{- printf " %s" $k | safeHTMLAttr }}
-        {{- else }}
-          {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+        {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+        {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
         {{- end }}
       {{- end }}
     {{- end }}>

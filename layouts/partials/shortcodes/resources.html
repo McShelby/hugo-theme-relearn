@@ -11,7 +11,8 @@
   {{- $target := partial "_relearn/linkObject.gotmpl" (dict "url" . "page" $page "searchResource" false) }}
   {{- if and $target (eq $target.ResourceType "page") }}
     {{- $page = $target }}
-  {{- else }}
+  {{- else if partial "_relearn/urlValid.gotmpl" (dict "url" . "page" $page) }}
+    {{- /* a value that does not parse is reported for that alone */}}
     {{- errorf "%q: parameter 'pageref' %q for shortcode 'resources' is not a page" $filepath . }}
   {{- end }}
 {{- end }}
@@ -73,7 +74,7 @@
           {{- $unit = "Megabyte-symbol" }}
         {{- end }}
         {{- $unitsymbol := $unit | T }}
-- [{{.Name}}]({{.Name}}) ({{$size}} {{$unitsymbol}})
+- [{{.Name}}]({{ partial "_relearn/pathToUrl.gotmpl" .Name }}) ({{$size}} {{$unitsymbol}})
       {{- end }}
     {{- end }}
   {{- end }}

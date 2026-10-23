@@ -12,7 +12,7 @@
 		{{- $prevTitle := partial "title.gotmpl" (dict "page" $prev "outputFormat" "html") }}
 		{{- $href := "" }}
 		{{- with (and $prev $prev.Path) }}
-			{{- $href = . }}
+			{{- $href = partial "_relearn/pathToUrl.gotmpl" . }}
 		{{- end }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .

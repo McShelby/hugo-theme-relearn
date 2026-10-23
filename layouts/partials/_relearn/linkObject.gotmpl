@@ -1,5 +1,10 @@
 {{- $linkObject := "" }}
-{{- $u := urls.Parse .url }}
+{{- /* only looks up what a URL names; checking and reporting the URL is the job
+  of the caller where it enters, like urlResolve or menuUrl. One that does not
+  parse quietly names nothing */}}
+{{- $parsed := try (urls.Parse .url) }}
+{{- $rejected := $parsed.Err }}
+{{- $u := cond (not $rejected) $parsed.Value (urls.Parse "") }}
 {{- $path := strings.TrimPrefix "./" $u.Path }}
 {{- $searchLocal := .searchLocal | default true }}
 {{- $searchGlobal := .searchGlobal | default true }}
@@ -63,7 +68,7 @@
 		{{- end }}
 	{{- end }}
 {{- end }}
-{{- if $transSite }}
+{{- if and $transSite (not $rejected) }}
 	{{- if $path }}
 		{{- with or
 			(and $searchLocal $searchPage $transPage ($transPage.GetPage $path))

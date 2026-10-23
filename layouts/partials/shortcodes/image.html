@@ -8,21 +8,9 @@
 {{- $title := .title }}
 {{- $alt := .alt }}
 {{- $attributes := .attributes | default dict }}
-{{- $linkObject := "" }}
-{{- $u := urls.Parse .url }}
-{{- $src := $u.String }}
-{{- if $u.IsAbs }}
-  {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" .url "page" $page "type" "image") $u.String }}
-{{- else }}
-  {{- $linkObject = partial "_relearn/linkObject.gotmpl" (dict "url" .url "page" $page "searchPage" false) }}
-  {{- if $linkObject }}
-    {{- $src = partial "_relearn/decoratedLink.gotmpl" (dict "url" .url "page" $page "linkObject" $linkObject "param" "image") }}
-  {{- else }}
-    {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-    {{- $msg := printf "%q: image '%s' is not a resource" $filepath .url }}
-    {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" .url "page" $page "param" "image" "msg" $msg) }}
-  {{- end }}
-{{- end }}
+{{- $resolved := partial "_relearn/urlResolve.gotmpl" (dict "url" .url "page" $page "param" "image") }}
+{{- $linkObject := $resolved.linkObject }}
+{{- $src := $resolved.href }}
 {{- /* the enlarged image is named by where the image is, so a link to it holds
   between builds however the author wrote its URL; an image that is no resource
   only has that URL. Its position tells apart an image that is used more than once */}}
@@ -32,7 +20,7 @@
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (md5 (print $idPath " " (.ordinal | default 0))) .id }}
 {{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page "linkObject" $linkObject "attributes" $attributes)) }}
-{{- $attributes = merge $attributes (dict "title" ($title | transform.HTMLEscape)) }}
+{{- $attributes = merge $attributes (dict "title" $title) }}
 {{- /* an image without alt text is taken as decorative and gets an empty one;
   one the caller marks as not decorative, like the content of a figure, gets none */}}
 {{- $altText := $alt | default $attributes.alt | default "" }}
@@ -62,37 +50,40 @@
 {{- end }}
 
 {{- define "partials/inline/img" }}
-  {{- if .attributes.content }}
-    {{- $attrs := ""}}
+  {{- /* only the attribute names are declared safe; their values are plain text
+    and escaped by the template */}}
+  {{- $svg := "" }}
+  {{- with .attributes.content }}
+    {{- $svg = findRESubmatch `(?s)^<svg([^>]*)>(.*)$` . 1 }}
+  {{- end }}
+  {{- if $svg }}
+    {{- /* our attributes go in front of those the SVG brings along */ -}}
+    <svg
     {{- range $k, $v := .attributes }}
       {{- if eq $k "content" }}
       {{- else if eq $k "alt" }}
         {{- /* an inlined SVG has no `alt`; it is named like an image or taken out
           of the accessibility tree if it is decorative */}}
-        {{- if $v }}
-          {{- $attrs = printf "%s role=\"img\" aria-label=%q" $attrs $v | safeHTMLAttr }}
-        {{- else }}
-          {{- $attrs = printf "%s aria-hidden=\"true\"" $attrs | safeHTMLAttr }}
+        {{- if $v }} role="img" aria-label="{{ $v }}"
+        {{- else }} aria-hidden="true"
         {{- end }}
       {{- else if $v }}
-        {{- if eq (printf "%T" $v) "bool" }}
-          {{- $attrs = printf "%s %s" $attrs $k | safeHTMLAttr }}
-        {{- else }}
-          {{- $attrs = printf "%s %s=%q" $attrs $k $v | safeHTMLAttr }}
+        {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+        {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
         {{- end }}
       {{- end }}
     {{- end }}
-    {{- printf (.attributes.content | replaceRE "^<svg" (printf "<svg%s" $attrs)) | safeHTML }}
+    {{- index $svg 0 1 | safeHTMLAttr }}>{{ index $svg 0 2 | safeHTML }}
+  {{- else if .attributes.content }}
+    {{- .attributes.content | safeHTML }}
   {{- else -}}
     <img
       {{- range $k, $v := .attributes }}
         {{- /* an image without `alt` is announced by its file name; an empty one
           marks it as decorative */}}
         {{- if or $v (eq $k "alt") }}
-          {{- if eq (printf "%T" $v) "bool" }}
-            {{- printf " %s" $k | safeHTMLAttr }}
-          {{- else }}
-            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+          {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+          {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
           {{- end }}
         {{- end }}
       {{- end }}>

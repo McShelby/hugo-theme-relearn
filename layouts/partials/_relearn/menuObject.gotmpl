@@ -1,5 +1,6 @@
 {{- $linkObject := "" }}
 {{- with and . .menu }}
+	{{- /* only a lookup; the entry's value is checked and reported by menuUrl */}}
 	{{- $linkObject = partial "_relearn/refObject.gotmpl" (dict "page" $.page "objectRef" .PageRef "refObject" .Page "searchPage" $.searchPage "searchResource" $.searchResource) }}
 {{- end }}
 {{- return $linkObject }}

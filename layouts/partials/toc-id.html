@@ -8,7 +8,7 @@
   {{- $toc_pages := "" }}
   {{- range $groups }}
     {{- with .Label }}
-      {{- $toc_pages = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_pages (. | plainify | anchorize) . }}
+      {{- $toc_pages = printf "%s    <li><a href=\"#%s\">%s</a></li>\n" $toc_pages (. | plainify | anchorize) (. | htmlEscape) }}
     {{- end }}
   {{- end }}
   {{- $toc := trim (partial "toc.html" .) "\n\r\t " }}
@@ -20,7 +20,8 @@
     {{- $toc = replaceRE "^(<nav id=\"TableOfContents\">[\\s]*<ul>)[\\s]*<ul>[\\n\\r]*" "${1}\n" $toc }}
     {{- $toc = replaceRE "[\\s]*(</nav>)$" "\n  </ul>\n${1}" $toc }}
     {{- $toc = replaceRE "[ \\t]*</ul>[\\s]*(</ul>[\\s]*</nav>)$" "  ${1}" $toc }}
-    {{- $toc = replaceRE "([ \\t]*</ul>[\\s]*</nav>)$" (printf "%s${1}" $toc_pages) $toc }}
+    {{- /* a `$` in a label would otherwise be read as a reference to a group of the expression */}}
+    {{- $toc = replaceRE "([ \\t]*</ul>[\\s]*</nav>)$" (printf "%s${1}" (replace $toc_pages "$" "$$")) $toc }}
   {{- end }}
 {{ $toc | safeHTML }}
 {{- else }}

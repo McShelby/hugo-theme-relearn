@@ -50,8 +50,7 @@
 {{- with $page -}}
 <pre
   {{- range $k, $v := $attributes }}
-    {{- if $v }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- if $v }} {{ $k | safeHTMLAttr }}="{{ $v }}"
     {{- end }}
   {{- end }}>{{ $content | htmlEscape | safeHTML }}</pre>
 {{- .Store.Set "hasMermaid" true }}

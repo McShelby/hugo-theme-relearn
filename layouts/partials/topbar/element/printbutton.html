@@ -16,7 +16,7 @@
 		{{- end }}
 	{{- end }}
 	{{- if $show }}
-		{{- $href := printf "%s?format=print" .Path }}
+		{{- $href := printf "%s?format=print" (partial "_relearn/pathToUrl.gotmpl" .Path) }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-print"

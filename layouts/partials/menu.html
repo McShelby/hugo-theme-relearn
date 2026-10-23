@@ -57,9 +57,15 @@
   {{- $showvisitedlinks := .showvisitedlinks }}
         <div class="R-sidebarmenu R-shortcutmenu-{{ $config.identifier }} default-animation">
   {{- $rootObject := site.Home }}
-  {{- if $config.pageRef }}
-    {{- $rootObject = partial "_relearn/refObject.gotmpl" (dict "page" $currentNode "objectRef" $config.pageRef) }}
-    {{- if not $rootObject }}
+  {{- with $config.pageRef }}
+    {{- /* a value that does not parse is reported for that alone */}}
+    {{- $name := printf "config option 'pageRef' %q for 'sidebarmenus' %q" . $config.identifier }}
+    {{- $ref := partial "_relearn/urlValid.gotmpl" (dict "url" . "name" $name) }}
+    {{- $rootObject = "" }}
+    {{- with $ref }}
+      {{- $rootObject = partial "_relearn/refObject.gotmpl" (dict "page" $currentNode "objectRef" .) }}
+    {{- end }}
+    {{- if and $ref (not $rootObject) }}
       {{- $msg := printf "config option 'pageRef' %q for 'sidebarmenus' %q is not a page or a resource" $config.pageRef $config.identifier }}
       {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $config.pageRef "page" $currentNode "param" "link" "msg" $msg) }}
     {{- end }}
@@ -145,16 +151,9 @@
     {{- $title := $.title | default (partial "title.gotmpl" (dict "page" . "linkTitle" true)) }}
     {{- $url := partial "permalink.gotmpl" (dict "to" .) }}
     {{- $isCrosslink := false }}
-    {{- if .Params.menuPageRef }}
+    {{- if or .Params.menuPageRef .Params.menuUrl }}
       {{- $isCrosslink = true }}
-      {{- $url = .Params.menuPageRef }}
-      {{- $linkObject := partial "_relearn/refObject.gotmpl" (dict "page" . "objectRef" .Params.menuPageRef) }}
-      {{- if $linkObject }}
-        {{- $url = partial "_relearn/decoratedLink.gotmpl" (dict "url" .Params.menuPageRef "page" . "linkObject" $linkObject "param" "link") }}
-      {{- end }}
-    {{- else if .Params.menuUrl }}
-      {{- $isCrosslink = true }}
-      {{- $url = .Params.menuUrl | relLangURL }}
+      {{- $url = partialCached "_relearn/menuCrosslink.gotmpl" . .Path }}
     {{- end }}
     {{- $pre := $.pre | default (partial "menu-pre.html" .) }}
     {{- $post := $.post | default (partial "menu-post.html" .) }}
@@ -172,10 +171,8 @@
         <a
           {{- range $k, $v := $attributes }}
             {{- if $v }}
-              {{- if eq (printf "%T" $v) "bool" }}
-                {{- printf " %s" $k | safeHTMLAttr }}
-              {{- else }}
-                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+              {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
               {{- end }}
             {{- end }}
           {{- end }}{{ if $isActive }} aria-current="page"{{ end }}>
@@ -204,10 +201,8 @@
         <a
           {{- range $k, $v := $attributes }}
             {{- if $v }}
-              {{- if eq (printf "%T" $v) "bool" }}
-                {{- printf " %s" $k | safeHTMLAttr }}
-              {{- else }}
-                {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+              {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+              {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
               {{- end }}
             {{- end }}
           {{- end }}{{ if $isActive }} aria-current="page"{{ end }}>
@@ -344,10 +339,8 @@
         <a
             {{- range $k, $v := $attributes }}
               {{- if $v }}
-                {{- if eq (printf "%T" $v) "bool" }}
-                  {{- printf " %s" $k | safeHTMLAttr }}
-                {{- else }}
-                  {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+                {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+                {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
                 {{- end }}
               {{- end }}
             {{- end }}{{ if $isActive }} aria-current="page"{{ end }}>
@@ -382,10 +375,8 @@
         <a
             {{- range $k, $v := $attributes }}
               {{- if $v }}
-                {{- if eq (printf "%T" $v) "bool" }}
-                  {{- printf " %s" $k | safeHTMLAttr }}
-                {{- else }}
-                  {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+                {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+                {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
                 {{- end }}
               {{- end }}
             {{- end }}{{ if $isActive }} aria-current="page"{{ end }}>

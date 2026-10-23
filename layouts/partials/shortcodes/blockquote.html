@@ -8,25 +8,14 @@
   work around it */}}
 {{- $cite := "" }}
 {{- with .href }}
-  {{- $u := urls.Parse . }}
-  {{- $cite = $u.String }}
-  {{- if $u.IsAbs }}
-    {{- partialCached "_relearn/urlExists.gotmpl" (dict "url" . "page" $page "type" "link") $u.String }}
-  {{- else }}
-    {{- $linkObject := partial "_relearn/linkObject.gotmpl" (dict "url" . "page" $page) }}
-    {{- if $linkObject }}
-      {{- $cite = partial "_relearn/decoratedLink.gotmpl" (dict "url" . "page" $page "linkObject" $linkObject "param" "link") }}
-    {{- else }}
-      {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
-      {{- $msg := printf "%q: link '%s' is not a page or a resource" $filepath . }}
-      {{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" . "page" $page "param" "link" "msg" $msg) }}
-    {{- end }}
-  {{- end }}
+  {{- /* already checked, so it is written with `safeURL`; the template alone would
+    only let `http`, `https` and `mailto` through */}}
+  {{- $cite = (partial "_relearn/urlResolve.gotmpl" (dict "url" . "page" $page "param" "link")).href }}
 {{- end }}
 {{- if or $author $source }}
 {{- /* the attribution must not be part of the quoted content, so it is the caption of a figure wrapping the quote; `cite` marks the title of a work, never a person */ -}}
 <figure class="quote">
-  <blockquote{{ with $cite }}{{ printf " cite=%q" . | safeHTMLAttr }}{{ end }}>
+  <blockquote{{ with $cite }} cite="{{ . | safeURL }}"{{ end }}>
 {{ $content | safeHTML }}</blockquote>
   <figcaption>
   {{- if $cite }}
@@ -34,10 +23,8 @@
     <a
     {{- range $k, $v := $attributes }}
       {{- if $v }}
-        {{- if eq (printf "%T" $v) "bool" }}
-          {{- printf " %s" $k | safeHTMLAttr }}
-        {{- else }}
-          {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+        {{- if eq (printf "%T" $v) "bool" }} {{ $k | safeHTMLAttr }}
+        {{- else }} {{ $k | safeHTMLAttr }}="{{ $v }}"
         {{- end }}
       {{- end }}
     {{- end }}>
@@ -47,6 +34,6 @@
   </figcaption>
 </figure>
 {{- else -}}
-<blockquote{{ with $cite }}{{ printf " cite=%q" . | safeHTMLAttr }}{{ end }}>
+<blockquote{{ with $cite }} cite="{{ . | safeURL }}"{{ end }}>
 {{ $content | safeHTML }}</blockquote>
 {{- end }}

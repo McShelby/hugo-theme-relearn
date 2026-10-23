@@ -99,7 +99,7 @@
       <button
         role="tab" id="{{ .id }}-tab" aria-controls="{{ .id }}" aria-selected="{{ cond (eq $idx 0) "true" "false" }}"{{ with .hint }} title="{{ . }}"{{ end }}{{ if and .hint (not .title) }} aria-label="{{ .hint }}"{{ end }}
         data-tab-item="{{ .itemid }}"
-        class="tab-nav-button tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" "" }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }} tabindex="{{ cond (eq $idx 0) "0" "-1" }}"
+        class="tab-nav-button tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" "" }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . | safeCSS }};"{{ end }} tabindex="{{ cond (eq $idx 0) "0" "-1" }}"
       >
         <span class="tab-nav-text">{{ if .icon }}<i class="{{ .icon }}" aria-hidden="true"></i>{{ end }}{{ if and .icon .title }} {{ end }}{{ .title | $page.RenderString }}{{ if (not .title) }}&#8203;{{ end }}</span>
       </button>
@@ -111,7 +111,7 @@
     <div
       id="{{ .id }}" role="tabpanel" aria-labelledby="{{ .id }}-tab"
       data-tab-item="{{ .itemid }}"
-      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}{{ if .code }} codify{{ end }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . }};"{{ end }}>
+      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}{{ if .code }} codify{{ end }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . | safeCSS }};"{{ end }}>
       <div class="tab-content-text">
 {{ .content | safeHTML }}
       </div>

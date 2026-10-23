@@ -20,7 +20,7 @@
   {{- $description := trim (or $page.Description $page.Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " }}
   {{- $cards = $cards | append (dict
     "content"  (cond $.description $description "")
-    "href"     $page.Path
+    "href"     (partial "_relearn/pathToUrl.gotmpl" $page.Path)
     "image"    $cardImage
     "title"    .Label
     "template" $.cardtemplate

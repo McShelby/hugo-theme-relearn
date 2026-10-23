@@ -6,7 +6,8 @@
   {{- if and $target (eq $target.ResourceType "page") }}
     {{- /* warnings keep naming the file the shortcode was called in */}}
     {{- $call = merge $call (dict "page" $target "origin" $call.page) }}
-  {{- else }}
+  {{- else if partial "_relearn/urlValid.gotmpl" (dict "url" . "page" $call.page) }}
+    {{- /* a value that does not parse is reported for that alone */}}
     {{- $filepath := "[virtual file]" }}{{ with and $call.page $call.page.File $call.page.File.Filename }}{{ $filepath = . }}{{ end }}
     {{- errorf "%q: parameter 'pageref' %q for shortcode 'pages' is not a page" $filepath . }}
   {{- end }}

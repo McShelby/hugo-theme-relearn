@@ -44,11 +44,6 @@
 {{- end }}
 {{- $params = dict "class" (delimit $classes " ") | merge $params }}
 
-{{- if $color }}
-  {{- $styles := split (index $params "style" | default "") ";" }}
-  {{- $styles = $styles | append (printf "--VARIABLE-BOX-color: %s" $color) }}
-  {{- $params = dict "style" (delimit $styles ";") | merge $params }}
-{{- end }}
 {{ if and $groupid $expander }}
   {{- $params = dict "name" $groupid | merge $params }}
 {{- end }}
@@ -65,10 +60,9 @@
   {{- if or $icon $title $hasContent -}}
 {{ if $expander }}<details{{ if $expanded }} open{{ end }}{{ else }}<div role="note"{{ with $labelid }} aria-labelledby="{{ . }}"{{ end }}{{ end }}
   {{- range $k, $v := $params }}
-    {{- if and $v (not (in (slice "open" "summary") $k)) }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- if and $v (not (in (slice "open" "summary") $k)) }} {{ $k | safeHTMLAttr }}="{{ $v }}"
     {{- end }}
-  {{- end }}>
+  {{- end }}{{ with $color }} style="--VARIABLE-BOX-color: {{ . | safeCSS }};"{{ end }}>
   {{ if $expander }}<summary{{ else }}<div{{ with $labelid }} id="{{ . }}"{{ end }}{{ end }} class="box-label{{ if and (not $expander) (not $icon) (not $title) }} a11y-only{{ end }}">{{ if $expander }}
     <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> {{ end }}{{ if $icon }}
     <i class="{{ $icon }}" aria-hidden="true"></i> {{ end }}{{ if $title }}

@@ -1,0 +1,39 @@
+{{- /* resolves a URL an author hands in, the same way for every shortcode taking
+  one: checks that it parses, finds the page or resource it names and decorates
+  the link to it, or reports it; an image only names a resource. A URL that does
+  not parse ends the build and is resolved no further, an empty one names the
+  page itself, one of nothing but spaces names nothing. Returns the URL as
+  checked, where it leads and what it names */}}
+{{- $page := .page }}
+{{- $param := .param }}
+{{- $isImage := eq $param "image" }}
+{{- $raw := .url | default "" }}
+{{- $given := trim $raw " " }}
+{{- $url := partial "_relearn/urlValid.gotmpl" (dict "url" $given "page" $page) }}
+{{- $href := "" }}
+{{- $linkObject := "" }}
+{{- $missing := false }}
+{{- if or $url (not $raw) }}
+	{{- $u := urls.Parse $url }}
+	{{- $href = $u.String }}
+	{{- if $u.IsAbs }}
+		{{- partialCached "_relearn/urlExists.gotmpl" (dict "url" $url "page" $page "type" $param) $u.String }}
+	{{- else }}
+		{{- $linkObject = partial "_relearn/linkObject.gotmpl" (dict "url" $url "page" $page "searchPage" (not $isImage)) }}
+		{{- $missing = not $linkObject }}
+	{{- end }}
+{{- else if not $given }}
+	{{- $missing = true }}
+{{- end }}
+{{- if $missing }}
+	{{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+	{{- $msg := printf "%q: %s '%s' is %s" $filepath $param $raw (cond $isImage "not a resource" "not a page or a resource") }}
+	{{- partial "_relearn/urlErrorReport.gotmpl" (dict "url" $raw "page" $page "param" $param "msg" $msg) }}
+{{- else if $linkObject }}
+	{{- $href = partial "_relearn/decoratedLink.gotmpl" (dict "url" $url "page" $page "linkObject" $linkObject "param" $param) }}
+{{- end }}
+{{- /* a link to a page or resource is a path of the site and needs no check */}}
+{{- if strings.Contains $href ":" }}
+	{{- $href = partial "_relearn/urlSafe.gotmpl" (dict "url" $href "page" $page "param" $param) }}
+{{- end }}
+{{- return dict "url" $url "href" $href "linkObject" $linkObject }}

@@ -3,7 +3,7 @@
 {{- range .pages }}
   {{- $page := .Page }}
   {{- $indent := strings.Repeat (sub .Level 1) "  " }}
-{{ $indent }}- {{ if $page.RelPermalink }}[{{ .Label }}]({{ $page.Path }}){{ else }}{{ .Label }}{{ end }}
+{{ $indent }}- {{ if $page.RelPermalink }}[{{ .Label }}]({{ partial "_relearn/pathToUrl.gotmpl" $page.Path }}){{ else }}{{ .Label }}{{ end }}
   {{- if $.breadcrumb }}
     {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape) "\n\r\t " }}
     {{- with $breadcrumb }}

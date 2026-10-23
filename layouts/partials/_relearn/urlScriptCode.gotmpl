@@ -1,0 +1,13 @@
+{{- /* the code a script URL runs, the text after the colon of its scheme, which
+  may be empty; `false` for every other URL. A browser takes a URL for a script
+  URL ignoring the case of the scheme, leading spaces and control characters,
+  and every tab and line break; a URL without a colon has no scheme to run,
+  which spares most URLs the rest */}}
+{{- $code := false }}
+{{- if strings.Contains (print .) ":" }}
+	{{- $url := print . | replaceRE `^[\x00-\x20]+` "" | replaceRE `[\t\n\r]` "" | lower }}
+	{{- if strings.HasPrefix $url "javascript:" }}
+		{{- $code = replaceRE `^[^:]*:` "" . }}
+	{{- end }}
+{{- end }}
+{{- return $code }}

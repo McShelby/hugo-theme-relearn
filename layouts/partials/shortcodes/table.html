@@ -144,8 +144,7 @@
 {{ end -}}
 <table
   {{- range $k, $v := $attributes }}
-    {{- if $v }}
-      {{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr }}
+    {{- if $v }} {{ $k | safeHTMLAttr }}="{{ $v }}"
     {{- end }}
   {{- end }}>
   <thead>

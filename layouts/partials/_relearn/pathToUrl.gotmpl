@@ -1,0 +1,14 @@
+{{- /* a path the theme takes from a page or a resource, written as a URL: each of
+  its segments percent-encoded, so a `%`, `#`, `?` or space in a term or file
+  name is no escape, fragment or query, and does not end a Markdown link; a
+  colon in its first segment would make that a scheme, so the path is then
+  marked as relative */}}
+{{- $segments := slice }}
+{{- range split . "/" }}
+	{{- $segments = $segments | append (urls.PathEscape .) }}
+{{- end }}
+{{- $url := delimit $segments "/" }}
+{{- if strings.Contains (index $segments 0) ":" }}
+	{{- $url = printf "./%s" $url }}
+{{- end }}
+{{- return $url }}

@@ -1,0 +1,22 @@
+{{- /* the URL as given if Hugo can parse it; a URL it can not parse, like one
+  holding a `%` that starts no escape, ends the build with a message naming
+  where it was written instead of with the template call that failed on it.
+  A caller knowing what the value is called, like a menu entry, names it that
+  way instead of by the file */}}
+{{- $url := .url }}
+{{- with try (urls.Parse $url) }}
+	{{- with .Err }}
+		{{- $err := replaceRE `^.*?error calling Parse: ` "" (printf "%s" .) }}
+		{{- $msg := printf "%s is no valid URL: %s" ($.name | default (printf "'%s'" $url)) $err }}
+		{{- if strings.Contains $err "invalid URL escape" }}
+			{{- $msg = printf "%s; write a literal '%%' as '%%25'" $msg }}
+		{{- end }}
+		{{- if not $.name }}
+			{{- $filepath := "[virtual file]" }}{{ with and $.page $.page.File $.page.File.Filename }}{{ $filepath = . }}{{ end }}
+			{{- $msg = printf "%q: %s" $filepath $msg }}
+		{{- end }}
+		{{- errorf "%s" $msg }}
+		{{- $url = "" }}
+	{{- end }}
+{{- end }}
+{{- return $url }}

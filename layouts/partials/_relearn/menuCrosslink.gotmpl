@@ -1,0 +1,13 @@
+{{- /* where a page's menu entry leads instead of to the page itself, as its front
+  matter's `menuPageRef` or `menuUrl` says; for the page's own redirect and for
+  every menu showing the entry */}}
+{{- $page := . }}
+{{- $filepath := "[virtual file]" }}{{ with and $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+{{- return partial "_relearn/menuUrl.gotmpl" (dict
+	"page"     $page
+	"ref"      $page.Params.menuPageRef
+	"url"      $page.Params.menuUrl
+	"refName"  (printf "%q: front matter 'menuPageRef' %q" $filepath $page.Params.menuPageRef)
+	"urlName"  (printf "%q: front matter 'menuUrl' %q" $filepath $page.Params.menuUrl)
+	"refParam" "menuPageRef"
+) }}

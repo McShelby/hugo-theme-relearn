@@ -1,9 +1,11 @@
 {{- $id := "" }}
+{{- /* the plain text still holds the backslashes escaping punctuation in Markdown */}}
+{{- $alt := .PlainText | replaceRE "\\\\([!-/:-@\\[-`{-~])" "$1" }}
 {{- partial "shortcodes/image.html" (dict
   "page" .Page
   "url" .Destination
   "title" .Title
-  "alt" .Text
+  "alt" $alt
   "id" $id
   "ordinal" .Ordinal
   "attributes" .Attributes

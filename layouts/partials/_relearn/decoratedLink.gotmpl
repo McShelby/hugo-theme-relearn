@@ -17,7 +17,7 @@
 			{{- $href = partial "permalink.gotmpl" (dict "to" $of) }}
 		{{- else }}
 			{{- $msg := printf "output format %q not found" $of }}
-			{{- partial "inline/print-error" (dict "url" .url "page" .page "param" .param "msg" $msg "linkObject" .linkObject "hideFilepath" $hideFilepath) }}
+			{{- partial "inline/decoratedLink/print-error" (dict "url" .url "page" .page "param" .param "msg" $msg "linkObject" .linkObject "hideFilepath" $hideFilepath) }}
 		{{- end }}
 	{{- end }}
 {{- end }}
@@ -27,7 +27,7 @@
 {{- with $u.Fragment }}
 	{{- $href = printf "%s#%s" $href . }}
 	{{- if $isPage }}
-		{{- partial "inline/validate-fragment.html" (dict "page" $.page "linkObject" $.linkObject "parsedURL" $u "url" $.url "param" $.param "hideFilepath" $hideFilepath) }}
+		{{- partial "inline/decoratedLink/validate-fragment.html" (dict "page" $.page "linkObject" $.linkObject "parsedURL" $u "url" $.url "param" $.param "hideFilepath" $hideFilepath) }}
 	{{- end }}
 {{- end }}
 {{- $href = replaceRE `&lang=\w*\b` "" $href }}
@@ -41,7 +41,7 @@
 {{- $href = replaceRE `\?format=\w*&\b` "?" $href }}
 {{- $href = replaceRE `\?format=\w*\b` "" $href }}
 {{- return $href }}
-{{- define "partials/inline/validate-fragment.html" }}
+{{- define "partials/inline/decoratedLink/validate-fragment.html" }}
 	{{- $u := .parsedURL }}
 	{{- with $u.Fragment }}
 		{{- if $.linkObject.Fragments.Identifiers.Contains . }}
@@ -52,11 +52,11 @@
 			{{- end }}
 		{{- else }}
 			{{- $msg := printf "heading ID %q not found" . }}
-			{{- partial "inline/print-error" (dict "url" $.url "page" $.page "param" $.param "msg" $msg "linkObject" $.linkObject "hideFilepath" $.hideFilepath) }}
+			{{- partial "inline/decoratedLink/print-error" (dict "url" $.url "page" $.page "param" $.param "msg" $msg "linkObject" $.linkObject "hideFilepath" $.hideFilepath) }}
 		{{- end }}
 	{{- end }}
 {{- end }}
-{{- define "partials/inline/print-error" }}
+{{- define "partials/inline/decoratedLink/print-error" }}
 	{{- $targetpath := "" }}
 	{{- with .linkObject.File }}
 		{{- $targetpath = .Path }}
