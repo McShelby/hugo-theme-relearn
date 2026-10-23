@@ -369,12 +369,20 @@
       URL: ''
 
       # Template for creation of the search index.
-      # Default: '/_relearn_searchindex.js'
+      # Default: '/_relearn_searchindex.json'
       # You can switch the template for generating the index by setting this
       # parameter to a differnt content view. If not set,
-      # `/_relearn_searchindex.js` is used. The template must have an
-      # implementation in `assets/[YOUR-INDEXTEMPLATE]`.
+      # `/_relearn_searchindex.json` is used. The template must have an
+      # implementation in `assets/[YOUR-INDEXTEMPLATE]` and return the index
+      # as JSON.
       template: ''
+
+      # Publish the search index as JSON.
+      # Default: false
+      # Besides the search index used by the search popup, a plain JSON file
+      # of the same data is written. Its URL is the one of the search index
+      # with the extension `.json`, for example `searchindex.en.json`.
+      json: true
 
     # Disable the dedicated search page.
     # Default: false

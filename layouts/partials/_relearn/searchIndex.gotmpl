@@ -2,17 +2,41 @@
 Generates the search index from the given template and returns it as an asset
 ready to be linked.
 
-Expects a dict of `url`, the target path of the generated index, and
-`template`, the resource to generate it from.
+Expects a dict of `url`, the target path of the generated index, `template`,
+the resource to generate it from, and `json`, whether the index is published
+as JSON next to it.
+
+The template returns the index as JSON; the linked asset wraps it into a
+script, as the browser can load a script even if the site is opened from the
+file system.
 
 It is meant to be called from a deferred template, which resolves a URL against
 the bare site; anything it worked out about the site root would be wrong for a
 site published below a subdirectory, so only the name of the result is of use and
 the page prepends its own path.
 */}}
-{{- $res := resources.Get .template | resources.ExecuteAsTemplate .url site.Home }}
-{{- /* execute the template here rather than lazily; without asset busting the
-  returned resource still holds it unexecuted, and `--templateMetricsHints`
-  executing it while hashing the return value deadlocks Hugo */}}
-{{- $_ := $res.Content }}
+{{- $url := .url }}
+{{- $tpl := resources.Get .template }}
+{{- if eq (path.Ext .template) ".js" }}
+  {{- warnf "DEPRECATED search index template '%s' returning JavaScript found, return only the JSON data from a '.json' template instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-4-0" .template }}
+  {{- if .json }}
+    {{- errorf "UNSUPPORTED option 'search.index.json' found together with search index template '%s' returning JavaScript, return only the JSON data from a '.json' template instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-4-0" .template }}
+  {{- end }}
+  {{- $res := $tpl | resources.ExecuteAsTemplate $url site.Home }}
+  {{- /* execute the template here rather than lazily; without asset busting the
+    returned resource still holds it unexecuted, and `--templateMetricsHints`
+    executing it while hashing the return value deadlocks Hugo */}}
+  {{- $_ := $res.Content }}
+  {{- return partial "asset.gotmpl" $res }}
+{{- end }}
+{{- $jsonUrl := path.Join (path.Dir $url) (print (path.BaseName $url) ".json") }}
+{{- $json := $tpl | resources.ExecuteAsTemplate $jsonUrl site.Home }}
+{{- if .json }}
+  {{- /* others read it by its name, which minifying would change; a copy keeps
+    that change, so only the content is taken */}}
+  {{- with partial "asset.gotmpl" (dict "res" $json "fingerprint" false) }}
+    {{- (resources.FromString $jsonUrl .Content).Publish }}
+  {{- end }}
+{{- end }}
+{{- $res := resources.FromString $url (print "var relearn_searchindex = " $json.Content) }}
 {{- return partial "asset.gotmpl" $res }}

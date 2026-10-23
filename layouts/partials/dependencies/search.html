@@ -13,9 +13,13 @@
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.index) site.Params.search.index }}
   {{- $searchIndexURL = .URL | default $searchIndexURL }}
 {{- end }}
-{{- $searchIndexTemplate := "/_relearn_searchindex.js" }}
+{{- $searchIndexTemplate := "/_relearn_searchindex.json" }}
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.index) site.Params.search.index }}
   {{- $searchIndexTemplate = .template | default $searchIndexTemplate }}
+{{- end }}
+{{- $searchIndexJSON := false }}
+{{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.index) site.Params.search.index.json }}
+  {{- $searchIndexJSON = . }}
 {{- end }}
 {{- $disableSearchPage := false }}
 {{- with and (reflect.IsMap site.Params.search) (reflect.IsMap site.Params.search.page) site.Params.search.page.disable }}
@@ -75,7 +79,7 @@
       {{- /* the index can only be generated once all pages are rendered, so the element is
         deferred; it is the same for every page and therefore generated once for all of
         them */}}
-      {{- with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate "dir" $indexDir))) }}
+      {{- with (templates.Defer (dict "key" (printf "R-searchindex-%s" $searchIndexUrl) "data" (dict "url" $searchIndexUrl "template" $searchIndexTemplate "json" $searchIndexJSON "dir" $indexDir))) }}
         {{- $dir := .dir }}
         {{- with partial "_relearn/searchIndex.gotmpl" . }}
           {{- $config := dict

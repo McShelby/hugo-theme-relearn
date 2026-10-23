@@ -194,7 +194,7 @@ Theme supports custom output formats:
 
 - Two search engines supported: Lunr and Orama
 - Search files in `assets/js/search*.js`
-- Search index generated at build time via `_relearn_searchindex.js`
+- Search index generated at build time via `_relearn_searchindex.json`
 
 ### JavaScript Architecture
 
