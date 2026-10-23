@@ -32,7 +32,13 @@
 {{- end }}
 {{- $id := cond (or (eq .id nil) (eq .id "")) (md5 (print $idPath " " (.ordinal | default 0))) .id }}
 {{- $attributes = merge $attributes (partial "_relearn/imageAttributes.gotmpl" (dict "url" $src "page" $page "linkObject" $linkObject "attributes" $attributes)) }}
-{{- $attributes = merge $attributes (dict "alt" ($alt | default $attributes.alt | default "") "title" ($title | transform.HTMLEscape)) }}
+{{- $attributes = merge $attributes (dict "title" ($title | transform.HTMLEscape)) }}
+{{- /* an image without alt text is taken as decorative and gets an empty one;
+  one the caller marks as not decorative, like the content of a figure, gets none */}}
+{{- $altText := $alt | default $attributes.alt | default "" }}
+{{- if or $altText (ne .decorative false) }}
+  {{- $attributes = merge $attributes (dict "alt" $altText) }}
+{{- end }}
 {{- $classes := split $attributes.class " " }}
 {{- $isLightbox := in $classes "lightbox" }}
 {{- if $isLightbox -}}

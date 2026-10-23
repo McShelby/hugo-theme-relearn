@@ -1,0 +1,51 @@
+{{- /* based on Hugo 0.168.0 figure.html; the image is drawn by the theme's image partial, so it gets the configured image effects */}}
+{{- $alt := .alt }}
+{{- if and (not $alt) .caption }}
+  {{- $alt = .caption | markdownify | plainify }}
+{{- end }}
+{{- $classes := slice }}
+{{- /* a link can not hold the link that enlarges the image */}}
+{{- if .link }}
+  {{- $classes = $classes | append "nolightbox" }}
+{{- end }}
+{{- if eq .loading "eager" }}
+  {{- $classes = $classes | append "nolazy" }}
+{{- end }}
+{{- $attributes := dict "class" (delimit $classes " ") }}
+{{- with .width }}
+  {{- $attributes = merge $attributes (dict "width" .) }}
+{{- end }}
+{{- with .height }}
+  {{- $attributes = merge $attributes (dict "height" .) }}
+{{- end -}}
+<figure{{ with .class }} class="{{ . }}"{{ end }}>
+{{- with .link -}}
+<a href="{{ . }}"{{ with $.target }} target="{{ . }}"{{ end }}{{ with $.rel }} rel="{{ . }}"{{ end }}>
+{{- end }}
+{{- partial "shortcodes/image.html" (dict
+  "page"       .page
+  "url"        .src
+  "alt"        $alt
+  "decorative" false
+  "ordinal"    (print "figure " (.ordinal | default 0))
+  "attributes" $attributes
+) }}
+{{- if .link }}</a>{{ end }}
+{{- if or .title .caption .attr -}}
+<figcaption>
+  {{- /* the title is no heading, as its level would have to fit wherever the
+    figure is placed; with the rest of the caption it names the figure */}}
+  {{- with .title -}}
+  <div class="figure-title">{{ . }}</div>
+  {{- end }}
+  {{- if or .caption .attr -}}
+  <p>
+    {{- .caption | markdownify }}
+    {{- with .attrlink }} <a href="{{ . }}">{{ end }}
+    {{- .attr | markdownify }}
+    {{- if .attrlink }}</a>{{ end -}}
+  </p>
+  {{- end -}}
+</figcaption>
+{{- end -}}
+</figure>
