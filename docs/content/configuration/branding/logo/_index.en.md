@@ -16,6 +16,25 @@ If your favicon is an SVG, PNG, or ICO, just drop your image in your site's `ass
 
 If you want to adjust your favicon according to your OS settings for light/dark mode, add the image files `assets/images/favicon-light.svg` and `assets/images/favicon-dark.svg` to your site's directory, respectively, corresponding to your file format. In case some of the files are missing, the theme falls back to `favicon.svg` for each missing file. All supplied favicons must be of the same file format.
 
+An SVG favicon can also adapt itself, so a single `favicon.svg` is enough. Draw everything that should adapt with `currentColor` and switch `color` with a `prefers-color-scheme` media query. This covers fills and strokes of all shapes alike, while parts with a color of their own keep it:
+
+````xml {title="assets/images/favicon.svg"}
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
+  <style>
+    svg:root { color: black; }
+    @media (prefers-color-scheme: dark) {
+      svg:root { color: white; }
+    }
+  </style>
+  <path d="..."/>
+  <circle cx="32" cy="32" r="8" fill="none" stroke="currentColor"/>
+</svg>
+````
+
+The `svg:root` selector restricts the rules to the SVG being displayed as an image of its own. If the same file is inlined into the page, for example as a [logo with the `inlinecontent` image effect](#coloring-svg-logos), the rules do not leak into the page's other SVGs and the theme colors the `currentColor` parts instead.
+
+Some browsers only pick up a changed OS setting for the favicon after a reload.
+
 If no favicon file is found, the theme will look up the alternative filename `logo` in the same location and will repeat the search for the list of supported file types.
 
 If you need to change this default behavior, create a new file `layouts/partials/favicon.html` in your site's directory and write something like this:
