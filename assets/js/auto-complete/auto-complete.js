@@ -19,6 +19,8 @@
             - name the list by the aria-label of the input, if it has one
             - number the lists, so their ids don't depend on the id of the input
             - insert the list into the closest ancestor of the input matching selectorToInsert
+        McShelby/hugo-theme-relearn#1355
+            - limit the height of the list to the visible part of the window below it
 
     Copyright (c) 2014 Simon Steinberger / Pixabay
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
@@ -132,7 +134,8 @@ var autoComplete = (function(){
                 if (!resize) {
                     that.sc.style.display = 'block';
                     that.setAttribute('aria-expanded', 'true');
-                    if (!that.sc.maxHeight) { that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight); }
+                    fit();
+                    that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight);
                     if (!that.sc.suggestionHeight) that.sc.suggestionHeight = that.sc.querySelector('.autocomplete-suggestion').offsetHeight;
                     if (that.sc.suggestionHeight)
                         if (!next) that.sc.scrollTop = 0;
@@ -144,8 +147,17 @@ var autoComplete = (function(){
                                 that.sc.scrollTop = selTop + scrTop;
                         }
                 }
+                else if (that.sc.style.display == 'block') fit();
             }
+            // the window may be partly covered, eg. by a virtual keyboard, so
+            // only the visible part of it below the list is free for the list
+            var fit = function(){
+                var viewport = window.visualViewport;
+                that.sc.style.setProperty('--autocomplete-visible-height', Math.floor(viewport.offsetTop + viewport.height - that.sc.getBoundingClientRect().top) + 'px');
+            };
             addEvent(window, 'resize', that.updateSC);
+            addEvent(window.visualViewport, 'resize', that.updateSC);
+            addEvent(window.visualViewport, 'scroll', that.updateSC);
 
             if (parentElement) {
                 parentElement.appendChild(that.sc);
@@ -294,6 +306,8 @@ var autoComplete = (function(){
             for (var i=0; i<elems.length; i++) {
                 var that = elems[i];
                 removeEvent(window, 'resize', that.updateSC);
+                removeEvent(window.visualViewport, 'resize', that.updateSC);
+                removeEvent(window.visualViewport, 'scroll', that.updateSC);
                 removeEvent(that, 'blur', that.blurHandler);
                 removeEvent(that, 'focus', that.focusHandler);
                 removeEvent(that, 'keydown', that.keydownHandler);
