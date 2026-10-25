@@ -4400,6 +4400,9 @@ article.notfound #shrug svg {
 
 div.highlight .btn.cstyle.action {
   /* a code block may be dark on a light page or the other way round, so its
-     buttons take their square from its own text color, like its scrollbar */
-  --VARIABLE-BOX-color: color-mix(in srgb, var(--INTERNAL-CODE-BLOCK-color) 10%, transparent);
+     buttons take the lightness of their square from its own text color laid
+     faintly over it, like its scrollbar; hue and chroma come from the neutral
+     boxes laid over it as a hovered topbar button does, so the square carries
+     the same tint */
+  --VARIABLE-BOX-color: color-mix(in oklch, oklch(from color-mix(in srgb, var(--INTERNAL-CODE-BLOCK-color) 9%, var(--INTERNAL-CODE-BLOCK-BG-color)) l none none), oklch(from color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 50%, var(--INTERNAL-CODE-BLOCK-BG-color)) none c h));
 }
