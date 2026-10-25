@@ -1221,13 +1221,13 @@ Th' standard edit'n o' Cap'n Hugo be sufficient but ye can also use th' extended
 Create yer Project Use Hugo’s new ship command t' make a new website wit' its project configurat'n 'n a hugo.yaml file
 hugo new ship my-new-site --format yaml Then move into th' new directory
 cd my-new-site Run all follow'n commands from this directory.
-Install th' Theme Download as a Zip File Ye can download th' theme as a .zip file an' unzip it into th' themes/hugo-theme-relearn directory.
+Install th' Theme Use a Downloaded Archive Download th' theme from GitHub an' extract it into th' themes/hugo-theme-relearn directory
+mkdir "themes/hugo-theme-relearn" curl -L https://github.com/McShelby/hugo-theme-relearn/archive/main.tar.gz | tar -xz --strip-components=1 -C "themes/hugo-theme-relearn" This doesn’t work 'n Windows PowerShell 5.1. Use cmd or PowerShell 7 instead.
 Then add this at th' top o' yer project configurat'n
-hugo. yaml toml json theme: hugo-theme-relearn theme = 'hugo-theme-relearn' { "theme": "hugo-theme-relearn" } Use Hugo’s Module System Install th' Relearrrn theme us'n Hugo’s module system
-hugo mod init example.com Then add this at th' end o' yer project configurat'n
-hugo. yaml toml json module: imports: - path: github.com/McShelby/hugo-theme-relearn [module] [[module.imports]] path = 'github.com/McShelby/hugo-theme-relearn' { "module": { "imports": [ { "path": "github.com/McShelby/hugo-theme-relearn" } ] } } Use as a Git Submodule If you’re us'n Git fer yer project, ye can create a repository now
-git init Add th' theme as a Git submodule
-git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn Then add this at th' top o' yer project configurat'n
+hugo. yaml toml json theme: hugo-theme-relearn theme = 'hugo-theme-relearn' { "theme": "hugo-theme-relearn" } Use Hugo’s Module System Install th' Relearrrn theme us'n Hugo’s module system, which requires Go t' be installed
+hugo mod init example.com Then add this at th' bottom o' yer project configurat'n
+hugo. yaml toml json module: imports: - path: github.com/McShelby/hugo-theme-relearn [module] [[module.imports]] path = 'github.com/McShelby/hugo-theme-relearn' { "module": { "imports": [ { "path": "github.com/McShelby/hugo-theme-relearn" } ] } } Use as a Git Submodule If ye want t' use Git fer yer project, create a repository an' add th' theme as a Git submodule
+git init -b main git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn Then add this at th' top o' yer project configurat'n
 hugo. yaml toml json theme: hugo-theme-relearn theme = 'hugo-theme-relearn' { "theme": "hugo-theme-relearn" } Create Rrrambl'n Yer Home Plank Start by mak'n a home plank
 hugo new --kind home _index.md Th' new home plank file content/_index.md has two parts: th' plank info (like title) at th' top, called front matter, an' th' plank rrrambl'n below.
 Yer First Chapter Plank Chapters be top-level planks that contain other planks. They have a special layout.
@@ -1513,7 +1513,7 @@ Semver Recent releases o' th' theme follow th' semver standard.
 Theme Repo Organizat'n Th' main branch o' th' source code repo contains all versions wit' th' development version at th' HEAD. This means, pull'n from th' main branch may give ye a beta version.
 As this be not suitable fer product'n, th' repository contains stable tags fer each released version 'n th' form o' 7.2.1.
 In addit'n, th' repository contains float'n tags fer
-th' latest patch level release o' a minor version 'n th' form o' 7.2.x th' latest minor level release o' a major version 'n th' form o' 7.x th' latest major version 'n th' form o' x Choose a tag that best fits yer needs.
+th' latest bugfix release o' a minor version 'n th' form o' 7.2.x th' latest feature release o' a major version 'n th' form o' 7.x th' latest stable release o' th' theme 'n th' form o' x Choose a tag that best fits yer needs.
 Plann'n th' Upgrade Depend'n on yer previously used version o' Cap'n Hugo an' th' theme, ye might need t' upgrade files o' yer project.
 Th' releasenotes announce theme related modificat'ns an' help ye identify'n spots 'n yer files that require changes.
 Also watch th' console dur'n build o' yer project, as it may show further warnings or errors wit' hints o' what’s wrong an' how t' fix it.
@@ -1522,14 +1522,15 @@ Say, ye be us'n Relearrrn 4.0.1 an' want t' upgrade yer project t' th' latest ve
 find out th' last theme release o' version 4 (which be 4.2.5) an' th' required Cap'n Hugo version (at least 0.93.0) an' upgrade run hugo server an' fix any errors find out th' last theme release o' version 5 (which be 5.27.0) an' th' required Cap'n Hugo version (at least 0.121.0) an' upgrade run hugo server an' fix any errors etc. until done This procedure may lead t' more work than updat'n 'n one single step, but it will be far easier t' make adapt'ns an' can be divided into smaller units o' work.
 Upgrade th' Theme Updat'n th' theme depends on th' way how you’ve installed it.
 Run all follow'n commands from th' root o' yer Cap'n Hugo project.
-Download as a Zip File Remove th' old version o' th' theme by remov'n th' themes/hugo-theme-relearn directory.
-Download th' .zip archive o' a certain version o' th' theme an' unzip it into th' themes/hugo-theme-relearn directory
-Eg. t' upgrade t' version 7.2.1 download from https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1
+Use a Downloaded Archive Download th' archive o' a certain version o' th' theme from GitHub an' extract it into th' themes/hugo-theme-relearn directory.
+Eg. t' upgrade t' version 7.2.1
+Remove th' old version o' th' theme by remov'n th' themes/hugo-theme-relearn directory.
+mkdir "themes/hugo-theme-relearn" curl -L https://github.com/McShelby/hugo-theme-relearn/archive/refs/tags/7.2.1.tar.gz | tar -xz --strip-components=1 -C "themes/hugo-theme-relearn" This doesn’t work 'n Windows PowerShell 5.1. Use cmd or PowerShell 7 instead.
 Use Hugo’s Module System Upgrade th' Relearrrn theme us'n Hugo’s module system t' a certain version.
 Eg. t' upgrade t' version 7.2.1
 hugo mod get -u github.com/McShelby/hugo-theme-relearn@7.2.1 Use as a Git Submodule Upgrade th' Relearrrn theme us'n Git t' a certain version.
 Eg. t' upgrade t' version 7.2.1
-git submodule update --depth 1 themes/hugo-theme-relearn git -C themes/hugo-theme-relearn fetch --tags --force git -C themes/hugo-theme-relearn checkout 7.2.1`,description:"How to upgrade your Relearn site",tags:[],title:"Upgrade",uri:"/hugo-theme-relearn/pir/introduction/upgrade/index.html"},{breadcrumb:"Configurrrat'n > Publishing",content:`Th' theme will store informat'n 'n th' reader’s browser. Those be essential informat'n an' be considered t' fall under th' except'n clause 'n DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3).
+git -C themes/hugo-theme-relearn fetch --depth 1 -f origin tag 7.2.1 git -C themes/hugo-theme-relearn checkout 7.2.1`,description:"How to upgrade your Relearn site",tags:[],title:"Upgrade",uri:"/hugo-theme-relearn/pir/introduction/upgrade/index.html"},{breadcrumb:"Configurrrat'n > Publishing",content:`Th' theme will store informat'n 'n th' reader’s browser. Those be essential informat'n an' be considered t' fall under th' except'n clause 'n DIRECTIVE 2002/58/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL, Art. 5(3).
 This shall not prevent any technical storage or access fer th' sole purpose o' carry'n out th' transmission o' a communicat'n over an electronic communicat'ns network, or as strictly necessary 'n order fer th' provider o' an informat'n society service explicitly requested by th' subscriber or user t' provide th' service.
 Stored Theme Informat'n Th' theme stores th' follow'n informat'n 'n localstorage or sessionstorage.
 Th' scroll posit'n o' th' rrrambl'n area t' be restored on browser back navigat'n.

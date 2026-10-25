@@ -18,9 +18,9 @@ As this is not suitable for production, the repository contains stable tags for 
 
 In addition, the repository contains floating tags for
 
-- the latest patch level release of a minor version in the form of `7.2.x`
-- the latest minor level release of a major version in the form of `7.x`
-- the latest major version in the form of `x`
+- the latest bugfix release of a minor version in the form of `7.2.x`
+- the latest feature release of a major version in the form of `7.x`
+- the latest stable release of the theme in the form of `x`
 
 Choose a tag that best fits your needs.
 
@@ -50,17 +50,24 @@ Updating the theme depends on the way [how you've installed it](introduction/qui
 
 Run all following commands from the root of your Hugo project.
 
-### Download as a Zip File
+### Use a Downloaded Archive
 
-Remove the old version of the theme by removing the `themes/hugo-theme-relearn` directory.
+Download the archive of a certain version of the theme from GitHub and extract it into the `themes/hugo-theme-relearn` directory.
 
-Download the .zip archive of a certain version of the theme and unzip it into the `themes/hugo-theme-relearn` directory
+Eg. to upgrade to version 7.2.1
 
-Eg. to upgrade to version 7.2.1 download from [https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1](https://github.com/McShelby/hugo-theme-relearn/releases/tag/7.2.1)
+**Remove the old version** of the theme by removing the `themes/hugo-theme-relearn` directory.
+
+````shell
+mkdir "themes/hugo-theme-relearn"
+curl -L https://github.com/McShelby/hugo-theme-relearn/archive/refs/tags/7.2.1.tar.gz | tar -xz --strip-components=1 -C "themes/hugo-theme-relearn"
+````
+
+This doesn't work in Windows PowerShell 5.1. Use `cmd` or PowerShell 7 instead.
 
 ### Use Hugo's Module System
 
-Upgrade the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#update-one-module) to a certain version.
+Upgrade the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#update) to a certain version.
 
 Eg. to upgrade to version 7.2.1
 
@@ -75,7 +82,6 @@ Upgrade the Relearn theme using [Git](https://git-scm.com/) to a certain version
 Eg. to upgrade to version 7.2.1
 
 ````shell
-git submodule update --depth 1 themes/hugo-theme-relearn
-git -C themes/hugo-theme-relearn fetch --tags --force
+git -C themes/hugo-theme-relearn fetch --depth 1 -f origin tag 7.2.1
 git -C themes/hugo-theme-relearn checkout 7.2.1
 ````

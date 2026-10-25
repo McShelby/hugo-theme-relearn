@@ -29,11 +29,18 @@ Run all following commands from this directory.
 
 ## Install the Theme
 
-### Download as a Zip File
+### Use a Downloaded Archive
 
-You can [download the theme as a .zip file](https://github.com/McShelby/hugo-theme-relearn/archive/main.zip) and unzip it into the `themes/hugo-theme-relearn` directory.
+Download the theme from GitHub and extract it into the `themes/hugo-theme-relearn` directory
 
-Then add this at the top of your project configuration
+````shell
+mkdir "themes/hugo-theme-relearn"
+curl -L https://github.com/McShelby/hugo-theme-relearn/archive/main.tar.gz | tar -xz --strip-components=1 -C "themes/hugo-theme-relearn"
+````
+
+This doesn't work in Windows PowerShell 5.1. Use `cmd` or PowerShell 7 instead.
+
+Then add this **at the top** of your project configuration
 
 {{< multiconfig file=hugo >}}
 theme = 'hugo-theme-relearn'
@@ -41,13 +48,13 @@ theme = 'hugo-theme-relearn'
 
 ### Use Hugo's Module System
 
-Install the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme)
+Install the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#import), which requires [Go](https://go.dev/dl/) to be installed
 
 ````shell
 hugo mod init example.com
 ````
 
-Then add this at the end of your project configuration
+Then add this **at the bottom** of your project configuration
 
 {{< multiconfig file=hugo >}}
 [module]
@@ -57,19 +64,14 @@ Then add this at the end of your project configuration
 
 ### Use as a Git Submodule
 
-If you're using [Git](https://git-scm.com/) for your project, you can create a repository now
+If you want to use [Git](https://git-scm.com/) for your project, create a repository and add the theme as a Git submodule
 
 ````shell
-git init
-````
-
-Add the theme as a Git submodule
-
-````shell
+git init -b main
 git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
 ````
 
-Then add this at the top of your project configuration
+Then add this **at the top** of your project configuration
 
 {{< multiconfig file=hugo >}}
 theme = 'hugo-theme-relearn'
