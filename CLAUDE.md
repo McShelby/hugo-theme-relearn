@@ -113,6 +113,18 @@ npm ci
 npm run fontversion
 ```
 
+### Font Weight Tool
+
+The vendored Roboto Flex has its weight axis shifted, so the theme's CSS can
+ask for 400/500/700 while the font draws what it drew for 300/400/700. Rerun
+it after every update of the font, before committing the files.
+
+```bash
+cd ../hugo-theme-relearn-infra
+npm ci
+npm run fontweight
+```
+
 ### Test Hugo Tool
 
 Builds any site with the theme in the `testing` environment and a chosen Hugo

@@ -107,6 +107,8 @@ Every third-party resource the project uses is declared in `docs/data/relearn/th
 
 A font is the exception that can be asked. It declares its own version inside the file, where subsetting and conversion both leave it, so `npm run fontversion` in the infra repository reads it back out of what you vendored rather than out of the page you downloaded from.
 
+Roboto Flex is vendored with its weight axis shifted, so the theme can ask for the common weights while the font keeps its light look. After updating its files, run `npm run fontweight` in the infra repository before committing them.
+
 The test suite fails when the declaration and the vendored tree disagree, in either direction: a directory holding files that no component claims, or a component claiming paths that no longer exist. Add a new dependency to the declaration or the build stays red.
 
 **`npm test` also fails when the committed `sbom.cdx.json` is not what the declaration currently renders**, so regenerating is a step of the change rather than an afterthought.
