@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.168.0">
-    <meta name="generator" content="Relearn 9.3.1+8272c29ebb78e3793f3b867230c5ba4cea29b7fe">
+    <meta name="generator" content="Relearn 9.3.1+05fe3d88343d6e060da770ba0e2931508aff99a7">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="What to know as a maintainer">
     <meta name="author" content="Sören Weber">
@@ -21,7 +21,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="Maintaining :: Hugo Relearn Theme">
     <meta itemprop="description" content="What to know as a maintainer">
-    <meta itemprop="wordCount" content="1443">
+    <meta itemprop="wordCount" content="1483">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation,Howto">
     <title>Maintaining :: Hugo Relearn Theme</title>
@@ -38,7 +38,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.3e8206e42b90d901398012430e240a3a82f255b202afcb0b9b0d90bac80628a1.js"
+      "indexFile": "searchindex.en.min.9917858a5c07f3e8f8262338b10c413497580bbe07f928888a89816e4ff53eda.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -50,8 +50,8 @@
       ]
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
-    <link href="/hugo-theme-relearn/css/theme.min.03317e2bea7b06a56b950a200038205d0e8f2632465d1d14bc71c66bf6d209d8.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.de5a5cb7b90cfd265670dd31bbf1964c9c5ec9ad782270fba9143c89aca38e84.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/theme.min.906b0d5c879ed0d1ec3746c8cf45a0392681573f07515b02367f6bb16f17625c.css" rel="stylesheet">
+    <link href="/hugo-theme-relearn/css/format-print.min.54e295afb02765776f6e05d3a5b2076ff2f00800531d1db8f139fa068608a60a.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -394,6 +394,7 @@
 <p>Every third-party resource the project uses is declared in <code>docs/data/relearn/thirdparty.toml</code>. That file is the single source of truth behind the <a href="/hugo-theme-relearn/more/credits/index.html">credits</a> page, the <a href="/hugo-theme-relearn/configuration/publishing/sbom/index.html">SBOM</a> at <code>sbom.cdx.json</code>, and several checks in the test suite.</p>
 <p><strong>When you vendor an update, change its <code>version</code> in the same commit that changes the files.</strong> A version is knowable at the moment of vendoring and at no other time. Some of these bundles carry no version string at all, and the ones that do disagree about where to put it. Nothing can check it, which is why every component carries a digest of its files as well: a component that changed on disk without changing its <code>version</code> still shows up in the diff of <code>sbom.cdx.json</code>.</p>
 <p>A font is the exception that can be asked. It declares its own version inside the file, where subsetting and conversion both leave it, so <code>npm run fontversion</code> in the infra repository reads it back out of what you vendored rather than out of the page you downloaded from.</p>
+<p>Roboto Flex is vendored with its weight axis shifted, so the theme can ask for the common weights while the font keeps its light look. After updating its files, run <code>npm run fontweight</code> in the infra repository before committing them.</p>
 <p>The test suite fails when the declaration and the vendored tree disagree, in either direction: a directory holding files that no component claims, or a component claiming paths that no longer exist. Add a new dependency to the declaration or the build stays red.</p>
 <p><strong><code>npm test</code> also fails when the committed <code>sbom.cdx.json</code> is not what the declaration currently renders</strong>, so regenerating is a step of the change rather than an afterthought.</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ../hugo-theme-relearn-infra

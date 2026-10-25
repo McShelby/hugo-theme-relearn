@@ -14,6 +14,8 @@ weight: -4
 
 - {{% badge style="change" %}}Change{{% /badge %}} The text of your content is now better readable.
 
+  If you have changed the font, your text is now shown in the weights most fonts offer: 400 for normal, 500 for medium and 700 for bold text, where it was 300 and 400 for normal and medium text before. If you have set font weights for the theme's own font, check them, as the same values now result in lighter text.
+
 - {{% badge style="change" %}}Change{{% /badge %}} The theme now escapes all values you pass to it before writing them into your pages.
 
   Like Hugo's own templates, the theme now removes `javascript:` URLs from links, images and menu entries and warns about each one during the build. This applies even if your project configuration allows raw HTML. [Buttons](shortcodes/button) and [cards](shortcodes/cards) with a `javascript:` URL as `href` still run that code.

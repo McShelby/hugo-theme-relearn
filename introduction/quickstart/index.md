@@ -46,6 +46,21 @@ Then add this **at the top** of your project configuration
 theme = 'hugo-theme-relearn'
 {{< /multiconfig >}}
 
+### Use as a Git Submodule
+
+If you want to use [Git](https://git-scm.com/) for your project, create a repository and add the theme as a Git submodule
+
+````shell
+git init -b main
+git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
+````
+
+Then add this **at the top** of your project configuration
+
+{{< multiconfig file=hugo >}}
+theme = 'hugo-theme-relearn'
+{{< /multiconfig >}}
+
 ### Use Hugo's Module System
 
 Install the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#import), which requires [Go](https://go.dev/dl/) to be installed
@@ -60,21 +75,6 @@ Then add this **at the bottom** of your project configuration
 [module]
   [[module.imports]]
     path = 'github.com/McShelby/hugo-theme-relearn'
-{{< /multiconfig >}}
-
-### Use as a Git Submodule
-
-If you want to use [Git](https://git-scm.com/) for your project, create a repository and add the theme as a Git submodule
-
-````shell
-git init -b main
-git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn
-````
-
-Then add this **at the top** of your project configuration
-
-{{< multiconfig file=hugo >}}
-theme = 'hugo-theme-relearn'
 {{< /multiconfig >}}
 
 ## Create Content

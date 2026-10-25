@@ -65,16 +65,6 @@ curl -L https://github.com/McShelby/hugo-theme-relearn/archive/refs/tags/7.2.1.t
 
 This doesn't work in Windows PowerShell 5.1. Use `cmd` or PowerShell 7 instead.
 
-### Use Hugo's Module System
-
-Upgrade the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#update) to a certain version.
-
-Eg. to upgrade to version 7.2.1
-
-````shell
-hugo mod get -u github.com/McShelby/hugo-theme-relearn@7.2.1
-````
-
 ### Use as a Git Submodule
 
 Upgrade the Relearn theme using [Git](https://git-scm.com/) to a certain version.
@@ -84,4 +74,14 @@ Eg. to upgrade to version 7.2.1
 ````shell
 git -C themes/hugo-theme-relearn fetch --depth 1 -f origin tag 7.2.1
 git -C themes/hugo-theme-relearn checkout 7.2.1
+````
+
+### Use Hugo's Module System
+
+Upgrade the Relearn theme using [Hugo's module system](https://gohugo.io/hugo-modules/use-modules/#update) to a certain version.
+
+Eg. to upgrade to version 7.2.1
+
+````shell
+hugo mod get -u github.com/McShelby/hugo-theme-relearn@7.2.1
 ````

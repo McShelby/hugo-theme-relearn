@@ -213,6 +213,7 @@ All that history left its marks, and the source code still carries a lot of it a
 Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
 What you should do now
 No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error. 9.4.0 (XXXX-XX-XX) Change Change The text of your content is now better readable.
+If you have changed the font, your text is now shown in the weights most fonts offer: 400 for normal, 500 for medium and 700 for bold text, where it was 300 and 400 for normal and medium text before. If you have set font weights for the theme’s own font, check them, as the same values now result in lighter text.
 Change The theme now escapes all values you pass to it before writing them into your pages.
 Like Hugo’s own templates, the theme now removes javascript: URLs from links, images and menu entries and warns about each one during the build. This applies even if your project configuration allows raw HTML. Buttons and cards with a javascript: URL as href still run that code.
 Change A custom search index template set by search.index.template now returns only the JSON data of the index, in a file ending in .json.
@@ -831,6 +832,7 @@ Now you have to set the query parameter lang to the language code, e.g. /my-page
 As this was previously undocumented, most projects will not be affected. If you still need the old behavior, you can set enableLegacyLanguageLinks to true in your project configuration.
 Change The target parameter of the button shortcode was deprecated.
 Use link effects on the href parameter instead. You don’t need to change anything as the old parameter still works but may generate warnings.`,tags:[],title:"Version 7.4",uri:"/hugo-theme-relearn/introduction/releasenotes/7/4/index.html"},{breadcrumb:"Introduction > What's New > Version 9",content:`9.4.0 (XXXX-XX-XX) Change Change The text of your content is now better readable.
+If you have changed the font, your text is now shown in the weights most fonts offer: 400 for normal, 500 for medium and 700 for bold text, where it was 300 and 400 for normal and medium text before. If you have set font weights for the theme’s own font, check them, as the same values now result in lighter text.
 Change The theme now escapes all values you pass to it before writing them into your pages.
 Like Hugo’s own templates, the theme now removes javascript: URLs from links, images and menu entries and warns about each one during the build. This applies even if your project configuration allows raw HTML. Buttons and cards with a javascript: URL as href still run that code.
 Change A custom search index template set by search.index.template now returns only the JSON data of the index, in a file ending in .json.
@@ -839,6 +841,7 @@ New New Your readers can now sort a table by its columns, also by several of the
 Tables are not sortable by default. Give a single table the class sortable, or make all tables sortable with the new table.sortable option in your project configuration or a page’s front matter. A single table can then be excluded by the class nosortable.
 New The search index can now be published as JSON for other tools to read by setting search.index.json to true in your project configuration.
 New The new color style purple can be used wherever a style is accepted, like in callouts. Your theme variant can set its color with the variables BOX-PURPLE-color and BOX-PURPLE-TEXT-color.`,description:`9.4.0 (XXXX-XX-XX) Change Change The text of your content is now better readable.
+If you have changed the font, your text is now shown in the weights most fonts offer: 400 for normal, 500 for medium and 700 for bold text, where it was 300 and 400 for normal and medium text before. If you have set font weights for the theme’s own font, check them, as the same values now result in lighter text.
 Change The theme now escapes all values you pass to it before writing them into your pages.
 Like Hugo’s own templates, the theme now removes javascript: URLs from links, images and menu entries and warns about each one during the build. This applies even if your project configuration allows raw HTML. Buttons and cards with a javascript: URL as href still run that code.
 Change A custom search index template set by search.index.template now returns only the JSON data of the index, in a file ending in .json.
@@ -1224,11 +1227,11 @@ cd my-new-site Run all following commands from this directory.
 Install the Theme Use a Downloaded Archive Download the theme from GitHub and extract it into the themes/hugo-theme-relearn directory
 mkdir "themes/hugo-theme-relearn" curl -L https://github.com/McShelby/hugo-theme-relearn/archive/main.tar.gz | tar -xz --strip-components=1 -C "themes/hugo-theme-relearn" This doesn’t work in Windows PowerShell 5.1. Use cmd or PowerShell 7 instead.
 Then add this at the top of your project configuration
+hugo. yaml toml json theme: hugo-theme-relearn theme = 'hugo-theme-relearn' { "theme": "hugo-theme-relearn" } Use as a Git Submodule If you want to use Git for your project, create a repository and add the theme as a Git submodule
+git init -b main git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn Then add this at the top of your project configuration
 hugo. yaml toml json theme: hugo-theme-relearn theme = 'hugo-theme-relearn' { "theme": "hugo-theme-relearn" } Use Hugo’s Module System Install the Relearn theme using Hugo’s module system, which requires Go to be installed
 hugo mod init example.com Then add this at the bottom of your project configuration
-hugo. yaml toml json module: imports: - path: github.com/McShelby/hugo-theme-relearn [module] [[module.imports]] path = 'github.com/McShelby/hugo-theme-relearn' { "module": { "imports": [ { "path": "github.com/McShelby/hugo-theme-relearn" } ] } } Use as a Git Submodule If you want to use Git for your project, create a repository and add the theme as a Git submodule
-git init -b main git submodule add --depth 1 https://github.com/McShelby/hugo-theme-relearn.git themes/hugo-theme-relearn Then add this at the top of your project configuration
-hugo. yaml toml json theme: hugo-theme-relearn theme = 'hugo-theme-relearn' { "theme": "hugo-theme-relearn" } Create Content Your Home Page Start by making a home page
+hugo. yaml toml json module: imports: - path: github.com/McShelby/hugo-theme-relearn [module] [[module.imports]] path = 'github.com/McShelby/hugo-theme-relearn' { "module": { "imports": [ { "path": "github.com/McShelby/hugo-theme-relearn" } ] } } Create Content Your Home Page Start by making a home page
 hugo new --kind home _index.md The new home page file content/_index.md has two parts: the page info (like title) at the top, called front matter, and the page content below.
 Your First Chapter Page Chapters are top-level pages that contain other pages. They have a special layout.
 Make your first chapter page
@@ -1526,11 +1529,11 @@ Use a Downloaded Archive Download the archive of a certain version of the theme 
 Eg. to upgrade to version 7.2.1
 Remove the old version of the theme by removing the themes/hugo-theme-relearn directory.
 mkdir "themes/hugo-theme-relearn" curl -L https://github.com/McShelby/hugo-theme-relearn/archive/refs/tags/7.2.1.tar.gz | tar -xz --strip-components=1 -C "themes/hugo-theme-relearn" This doesn’t work in Windows PowerShell 5.1. Use cmd or PowerShell 7 instead.
-Use Hugo’s Module System Upgrade the Relearn theme using Hugo’s module system to a certain version.
+Use as a Git Submodule Upgrade the Relearn theme using Git to a certain version.
 Eg. to upgrade to version 7.2.1
-hugo mod get -u github.com/McShelby/hugo-theme-relearn@7.2.1 Use as a Git Submodule Upgrade the Relearn theme using Git to a certain version.
+git -C themes/hugo-theme-relearn fetch --depth 1 -f origin tag 7.2.1 git -C themes/hugo-theme-relearn checkout 7.2.1 Use Hugo’s Module System Upgrade the Relearn theme using Hugo’s module system to a certain version.
 Eg. to upgrade to version 7.2.1
-git -C themes/hugo-theme-relearn fetch --depth 1 -f origin tag 7.2.1 git -C themes/hugo-theme-relearn checkout 7.2.1`,description:"How to upgrade your Relearn site",tags:[],title:"Upgrade",uri:"/hugo-theme-relearn/introduction/upgrade/index.html"},{breadcrumb:"",content:`Learn how to create and organize your content pages.
+hugo mod get -u github.com/McShelby/hugo-theme-relearn@7.2.1`,description:"How to upgrade your Relearn site",tags:[],title:"Upgrade",uri:"/hugo-theme-relearn/introduction/upgrade/index.html"},{breadcrumb:"",content:`Learn how to create and organize your content pages.
 Directory Structure Your content's directory structure
 Front Matter All things front matter
 Meta Information What page meta information are available
@@ -1780,6 +1783,7 @@ Label Description blocked Depends on other issue to be fixed first idea A valuab
 Label Description asciidoc This is a topic related to processing of AsciiDoc browser This is a topic related to the browser but not the theme device This is a topic related to a certain device hugo This is a topic related to Hugo itself but not the theme mermaid This is a topic related to Mermaid itself but not the theme SBOM Every third-party resource the project uses is declared in docs/data/relearn/thirdparty.toml. That file is the single source of truth behind the credits page, the SBOM at sbom.cdx.json, and several checks in the test suite.
 When you vendor an update, change its version in the same commit that changes the files. A version is knowable at the moment of vendoring and at no other time. Some of these bundles carry no version string at all, and the ones that do disagree about where to put it. Nothing can check it, which is why every component carries a digest of its files as well: a component that changed on disk without changing its version still shows up in the diff of sbom.cdx.json.
 A font is the exception that can be asked. It declares its own version inside the file, where subsetting and conversion both leave it, so npm run fontversion in the infra repository reads it back out of what you vendored rather than out of the page you downloaded from.
+Roboto Flex is vendored with its weight axis shifted, so the theme can ask for the common weights while the font keeps its light look. After updating its files, run npm run fontweight in the infra repository before committing them.
 The test suite fails when the declaration and the vendored tree disagree, in either direction: a directory holding files that no component claims, or a component claiming paths that no longer exist. Add a new dependency to the declaration or the build stays red.
 npm test also fails when the committed sbom.cdx.json is not what the declaration currently renders, so regenerating is a step of the change rather than an afterthought.
 cd ../hugo-theme-relearn-infra npm ci npm run sbom:update The release workflow regenerates the file too, after it has stamped the new version - the document’s own version and timestamp come from layouts/partials/version.txt and CHANGELOG.md, which hold the values of the release being made only from that point on. Until then those two fields keep naming the previous release, while the components track whatever is vendored.
@@ -2045,6 +2049,7 @@ All that history left its marks, and the source code still carries a lot of it a
 Version 10.0.0 is about cleaning this up. It removes everything that currently triggers a DEPRECATED or UNSUPPORTED message during a build. That covers deprecated features that still work as well as the hints for features that were already dropped.
 What you should do now
 No messages, no work: if your site builds on the latest 9.x release without DEPRECATED, UNSUPPORTED or WARNING messages from the theme, you can update to 10.0.0 without changing anything. Messages? Fix them now: each message names the replacement and links to the release notes describing the migration. Don’t wait: with 10.0.0, these messages are gone. Old usages will simply stop working, either silently or with a build error. 9.4.0 (XXXX-XX-XX) Change Change The text of your content is now better readable.
+If you have changed the font, your text is now shown in the weights most fonts offer: 400 for normal, 500 for medium and 700 for bold text, where it was 300 and 400 for normal and medium text before. If you have set font weights for the theme’s own font, check them, as the same values now result in lighter text.
 Change The theme now escapes all values you pass to it before writing them into your pages.
 Like Hugo’s own templates, the theme now removes javascript: URLs from links, images and menu entries and warns about each one during the build. This applies even if your project configuration allows raw HTML. Buttons and cards with a javascript: URL as href still run that code.
 Change A custom search index template set by search.index.template now returns only the JSON data of the index, in a file ending in .json.
