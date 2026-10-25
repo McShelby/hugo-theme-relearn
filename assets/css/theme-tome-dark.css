@@ -1,15 +1,37 @@
-@import "theme-tome-light.css";
-
 :root {
   /* tome-dark */
   --PRIMARY-color: rgba( 210, 58, 85, 1 ); /* brand primary color */
   --PRIMARY-HOVER-color: rgba( 231, 85, 111, 1 ); /* brand primary hover color */
+  --SECONDARY-color: var( --PRIMARY-color ); /* brand secondary color */
+  --SECONDARY-HOVER-color: var( --PRIMARY-HOVER-color ); /* brand secondary hover color */
+  --ACCENT-color: rgba( 204, 150, 22, 1 ); /* brand accent color, used for search highlights */
+  --MENU-BORDER-color: var( --CODE-INLINE-BORDER-color ); /* border color between menu and content */
+  --MENU-TOPBAR-SEPARATOR-color: var( --CODE-INLINE-BORDER-color ); /* separator color between menu header and menu */
+  --MENU-HEADER-BG-color: var( --CODE-INLINE-BG-color ); /* background color of menu header */
+  --MENU-SEARCH-color: var( --PRIMARY-color ); /* text and icon color of search box */
+  --MENU-SEARCH-BG-color: var( --MAIN-BG-color ); /* background color of search box */
+  --MENU-SEARCH-BORDER-color: var( --CODE-INLINE-BORDER-color ); /* border color of search box */
+  --MENU-HOME-LINK-color: var( --MAIN-TEXT-color ); /* home button color if configured */
+  --MENU-HOME-LINK-HOVER-color: var( --PRIMARY-HOVER-color ); /* hovered home button color if configured */
+  --MENU-HOME-TOP-SEPARATOR-color: var( --CODE-INLINE-BORDER-color ); /* separator color between menu search box and home menu */
+  --MENU-HOME-SEPARATOR-color: var( --CODE-INLINE-BORDER-color ); /* separator color between home menus */
+  --MENU-HOME-BOTTOM-SEPARATOR-color: var( --CODE-INLINE-BORDER-color ); /* separator color between home menu and menu */
+  --MENU-SECTIONS-BG-color: var( --CODE-INLINE-BG-color ); /* background of the menu; this is NOT just a color value but can be a complete CSS background definition including gradients, etc. */
   --MENU-SECTIONS-ACTIVE-BG-color: rgba( 39, 39, 39, 0 ); /* background color of the active menu section */
+  --MENU-SECTIONS-LINK-color: var( --MAIN-TEXT-color ); /* link color of menu topics */
+  --MENU-SECTIONS-LINK-HOVER-color: var( --PRIMARY-HOVER-color ); /* hovered link color of menu topics */
+  --MENU-SECTION-ACTIVE-CATEGORY-color: var( --PRIMARY-color ); /* text color of the displayed menu topic */
+  --MENU-SECTION-SEPARATOR-color: var( --CODE-INLINE-BORDER-color ); /* separator color between menus */
+  --TOPBAR-BG-color: var( --CODE-INLINE-BG-color ); /* background color of topbar */
+  --TOPBAR-SEPARATOR-color: var( --CODE-INLINE-BORDER-color ); /* separator color of topbar */
+  --TOPBAR-OVERLAY-BG-color: var( --CODE-INLINE-BG-color ); /* background color of topbar overlays */
+  --MAIN-TOPBAR-BORDER-color: var( --CODE-INLINE-BORDER-color ); /* border color between topbar and content */
   --MAIN-BG-color: rgba( 36, 30, 20, 1 ); /* background color of content */
   --MAIN-TEXT-color: rgba( 204, 193, 175, 1 ); /* text color of content and titles */
+  --MAIN-TITLES-font: 'Great Vibes','Palatino Linotype', Palatino, 'Book Antiqua', 'URW Palladio L', 'P052', 'Goudy Old Style', Garamond, 'EB Garamond', Georgia, serif; /* font of titles */
   --CODE-theme: tome-dark; /* name of the chroma stylesheet file */
   --CODE-BLOCK-color: rgba( 253, 247, 237, 1 ); /* fallback text color of block code; should be adjusted to your selected chroma style */
-  --CODE-BLOCK-BG-color: rgba( 43, 36, 29, 1 ); /* fallback background color of block code; should be adjusted to your selected chroma style */
+  --CODE-BLOCK-BG-color: rgba( 46, 37, 29, 1 ); /* fallback background color of block code; should be adjusted to your selected chroma style */
   --CODE-INLINE-color: rgba( 214, 190, 150, 1 ); /* text color of inline code */
   --CODE-INLINE-BG-color: rgba( 46, 37, 29, 1 ); /* background color of inline code */
   --CODE-INLINE-BORDER-color: rgba( 92, 72, 50, 1 ); /* border color of inline code */
@@ -19,6 +41,7 @@
   --OPENAPI-CODE-theme: obsidian; /* name of the default OpenAPI code theme for this variant, can be overridden in your project configuration */
   --BOX-CAPTION-color: var( --MAIN-TEXT-color ); /* text color of colored box titles */
   --BOX-BG-color: rgba( 27, 23, 19, 1 ); /* background color of colored boxes */
+  --BOX-NEUTRAL-color: var( --CODE-INLINE-BORDER-color ); /* background color of neutral boxes */
   --BOX-BLUE-color: rgba( 82, 114, 160, 1 ); /* background color of blue boxes */
   --BOX-CYAN-color: rgba( 56, 132, 136, 1 ); /* background color of cyan boxes */
   --BOX-GREEN-color: rgba( 100, 128, 66, 1 ); /* background color of green boxes */
@@ -28,5 +51,26 @@
   --BOX-PURPLE-color: rgba( 115, 95, 158, 1 ); /* background color of purple boxes */
   --BOX-RED-color: rgba( 176, 70, 56, 1 ); /* background color of red boxes */
   --BOX-YELLOW-color: rgba( 153, 124, 32, 1 ); /* background color of yellow boxes */
+  --LOGO-font: var( --MAIN-TITLES-font ); /* font of the logo title */
+  --LOGO-font-weight: normal; /* font weight of the logo title; the title font comes in one weight only */
   --TOME-GLOW-color: rgba( 128, 64, 17, 1 ); /* color of the glow around the viewport */
+}
+
+/* the glow around the viewport is made for the screen, on paper it would frame
+   every page; a variant used for print brings its rules along, so this rule must
+   exclude both the print version of a page, which is shown on screen too, and
+   printing itself */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    body::after {
+      box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--TOME-GLOW-color) 70%, transparent),
+        inset 0 0 32px 6px color-mix(in srgb, var(--TOME-GLOW-color) 55%, transparent);
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: fixed;
+      z-index: 1000;
+    }
+  }
 }
