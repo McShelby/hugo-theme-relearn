@@ -2809,12 +2809,12 @@ html[dir='rtl'] .menu-control span {
   overflow: clip;
   padding-block: 0;
   white-space: pre;
-  /* the opened list pops up over the page like the overlays of the topbar do,
-     so it takes their colors */
-  --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-color);
-  --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-THUMB-HOVER-color);
-  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-color);
-  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-TOPBAR-SCROLLBAR-TRACK-HOVER-color);
+  /* the opened list pops up over the page like the search suggestions do, so
+     it takes their colors, which are the ones of the content */
+  --VARIABLE-SCROLLBAR-THUMB-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-color);
+  --VARIABLE-SCROLLBAR-THUMB-HOVER-color: var(--INTERNAL-MAIN-SCROLLBAR-THUMB-HOVER-color);
+  --VARIABLE-SCROLLBAR-TRACK-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-color);
+  --VARIABLE-SCROLLBAR-TRACK-HOVER-color: var(--INTERNAL-MAIN-SCROLLBAR-TRACK-HOVER-color);
 }
 
 /* a browser that draws the list on its own frames the entries in the
@@ -2824,7 +2824,7 @@ html[dir='rtl'] .menu-control span {
    lighten the edges of the letters and make them look bolder than the ones of
    the menu next to it */
 .menu-control select:open {
-  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
+  background-color: var(--INTERNAL-MAIN-BG-color);
 }
 
 /* where the browser lets us, we style the opened list ourselves; it is then
@@ -2842,11 +2842,11 @@ html[dir='rtl'] .menu-control span {
 }
 
 .menu-control select::picker(select) {
-  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
+  background-color: var(--INTERNAL-MAIN-BG-color);
   border: 1px solid var(--overlay-border-color);
   border-radius: var(--block-radius);
   box-shadow: var(--overlay-box-shadow);
-  color: var(--INTERNAL-TOPBAR-TEXT-color);
+  color: var(--INTERNAL-MAIN-TEXT-color);
   padding: 0.25rem 0.5rem;
   /* the menu names colors for its own scrollbar, which we inherit and which
      would make the pseudo elements of ours be ignored */
@@ -2857,31 +2857,41 @@ html[dir='rtl'] .menu-control span {
    brings its own */
 .menu-control optgroup,
 .menu-control option {
-  background-color: var(--INTERNAL-TOPBAR-OVERLAY-BG-color);
+  background-color: var(--INTERNAL-MAIN-BG-color);
   padding: 0;
 }
 
 .menu-control optgroup {
-  color: var(--INTERNAL-TOPBAR-TEXT-color);
+  color: var(--INTERNAL-MAIN-TEXT-color);
 }
 
-/* the entries are the links of the list, like the ones in the overlays of the
-   topbar; the chosen one is where we already are, so it is no link */
+/* the entries are the links of the list, like the search suggestions; the
+   chosen one is where we already are, so it is no link */
 .menu-control option {
-  color: var(--INTERNAL-TOPBAR-LINK-color);
+  /* the highlighted entry is a small element inside the list, like inline code
+     or a badge is inside the text, so it takes their corners */
+  border-radius: 3px;
+  color: var(--INTERNAL-MAIN-LINK-color);
   /* the entries of a group would inherit the font settings of its bold title */
   font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-MEDIUM-font-weight);
   letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
 }
 
+/* opening the list focuses the chosen entry, so it is marked from the start */
+.menu-control option:focus {
+  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 32%, transparent);
+}
+
 .menu-control option:hover {
-  color: var(--INTERNAL-TOPBAR-LINK-HOVER-color);
+  color: var(--INTERNAL-MAIN-LINK-HOVER-color);
+  background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 48%, transparent);
   text-decoration: underline;
 }
 
 .menu-control option:checked {
-  color: var(--INTERNAL-TOPBAR-TEXT-color);
+  color: var(--INTERNAL-MAIN-TEXT-color);
   font-variation-settings: var(--INTERNAL-MAIN-BOLD-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-BOLD-font-weight);
   letter-spacing: var(--INTERNAL-MAIN-BOLD-letter-spacing);
@@ -2890,10 +2900,13 @@ html[dir='rtl'] .menu-control span {
 
 .menu-control option::checkmark {
   /* the tick of a task list, without its box */
-  box-shadow: inset 1em 1em var(--INTERNAL-TOPBAR-TEXT-color);
+  box-shadow: inset 1em 1em var(--INTERNAL-MAIN-TEXT-color);
   clip-path: var(--tick-clip-path);
   content: '';
   height: 0.65em;
+  /* the browser keeps a gap of 0.5em between the tick and the text; the tick
+     moves into the middle of its slot while the text stays in place */
+  margin-inline: 0.25em -0.25em;
   width: 0.65em;
   /* Windows High Contrast Mode fallback must be last */
   background-color: CanvasText;
@@ -3068,6 +3081,8 @@ span.math:has(math[display='block'], .katex-display) {
 #R-sidebar .autocomplete-suggestions {
   background-color: var(--INTERNAL-MAIN-BG-color);
   border: 0 solid color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 40%, transparent);
+  /* it hangs from the search box, so only its lower corners are free */
+  border-radius: 0 0 var(--block-radius) var(--block-radius);
   box-shadow: 1px 2px 5px 1px oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.333);
 }
 
@@ -3083,6 +3098,10 @@ span.math:has(math[display='block'], .katex-display) {
 }
 
 #R-searchresults .autocomplete-suggestion {
+  /* a result stands in the content like a box, so its highlight takes the
+     corners of one; the suggestions of the search box fill their overlay
+     edge to edge and stay square */
+  border-radius: var(--block-radius);
   display: block;
   font-size: 1.3rem;
   font-variation-settings: var(--INTERNAL-MAIN-MEDIUM-font-variation-settings);
