@@ -6,11 +6,14 @@
     {{- range .GetTerms "tags" }}
       {{- $tags = $tags | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify) }}
     {{- end }}
+    {{- /* the `replaceRE` of `breadcrumb` removes the space `plainify` adds behind
+      each divider since Hugo 0.169; only required as long as the minimum Hugo
+      version is <= 0.168 */}}
     {{- $pages = $pages | append (dict
       "uri" (partial "permalink.gotmpl" (dict "to" .))
       "title" (partial "title.gotmpl" (dict "page" .) | plainify)
       "tags" $tags
-      "breadcrumb" (trim (partial "breadcrumbs.html" (dict "page" . "dirOnly" true) | plainify | htmlUnescape) "\n\r\t ")
+      "breadcrumb" (trim (partial "breadcrumbs.html" (dict "page" . "dirOnly" true) | plainify | htmlUnescape | replaceRE `\x{00A0} +` "\u00A0") "\n\r\t ")
       "description" (trim (or .Description .Summary | plainify | htmlUnescape | replaceRE `\r` " ") "\n\r\t " )
       "content" (trim (.Plain | htmlUnescape | replaceRE `\r` " ") "\n\r\t ")
     ) }}
