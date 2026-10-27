@@ -1,0 +1,22 @@
+{{- /*
+  Renders Markdown as syntax-highlighted code followed by its rendering.
+
+  @param {Page} [page] The page to render on.
+  @param {string} [content] The Markdown to show and render.
+  @param {string} [type=md] The language to highlight the code in.
+
+  The content is rendered as a document of its own, so its headings are not
+  part of the page's table of contents and its footnotes are listed right
+  after it.
+
+  @returns {template.HTML}
+*/}}
+
+{{- /* Get parameters. */}}
+{{- $page := .page }}
+{{- $content := trim .content "\n\r" }}
+{{- $type := .type | default "md" }}
+
+{{- /* Render. */}}
+{{- partial "shortcodes/highlight.html" (dict "page" $page "content" $content "type" $type) }}
+{{ $page.RenderString (dict "display" "block") $content }}
