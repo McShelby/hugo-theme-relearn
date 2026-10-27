@@ -156,18 +156,36 @@ title = "Captain's Log"
 
 Besides the predefined elements, you can write your own. Store its template in `layouts/partials/topbar/element/<TYPE>.html` of your site and add it with `{ type = '<TYPE>' }` to one of the topbar areas.
 
-Your template receives every parameter of its configuration, and additionally the displayed page as `page`.
+Your template receives
+
+- `page`: the displayed page
+- `config`: the area the element is written into, with its name as `area` and the configuration of all of its elements as `elements`
+- `element`: every parameter of the element's configuration
+
+For example, with the configuration `{ type = 'homebutton', label = 'Start' }` your template finds `Start` in `.element.label`.
+
+The parameters of the element's configuration are also given directly, like `.label`, for templates written before 9.5.0. This is deprecated and will be removed with 10.0.0.
 
 The topbar manages what the [button](#button) function writes: it shows, hides and moves it depending on the screen width. So use this function to display your element, even if it is not a plain button, putting what you want to show into the content of the button.
 
+The function only knows what your template passes to it. So pass on the [screen width parameters](#element-parameters) of your element's configuration, if you want them to be configurable.
+
 ````go {title="layouts/partials/topbar/element/homebutton.html"}
+{{- $element := .element }}
 {{- with .page }}
   {{- partial "topbar/func/button.html" (dict
     "page" .
     "class" "topbar-button-home"
     "href" (partial "permalink.gotmpl" (dict "to" site.Home))
     "icon" "home"
+    "title" ($element.label | default "Home")
     "hint" "Home"
+    "onwidths" ($element.onwidths | default "show")
+    "onwidthm" ($element.onwidthm | default "show")
+    "onwidthl" ($element.onwidthl | default "show")
+    "titleonwidths" $element.titleonwidths
+    "titleonwidthm" $element.titleonwidthm
+    "titleonwidthl" $element.titleonwidthl
   )}}
 {{- end }}
 ````
@@ -229,6 +247,21 @@ For each width class, you can configure one of the following actions:
 - `hide`: the button is removed
 - `area-XXX`: the button is moved from its given area into the area `XXX`; for example, this is used to move buttons to the _more_ area overlay in the mobile layout
 
+#### Screen Widths and Titles
+
+For the same width classes, you can configure whether the title of a button is displayed next to its icon with the `titleonwidths`, `titleonwidthm` and `titleonwidthl` parameters. The setting applies wherever the button is at that width, so a button moved into an overlay can show its title there while only its icon is shown in the topbar.
+
+- `show`: the title is displayed next to the icon
+- `hide`: only the icon is displayed
+
+The predefined buttons hide their titles by default. For example, to show the title of the _print_ button in the _more_ area on all screen widths:
+
+{{< multiconfig section=params >}}
+topbarmore = [
+  { type = 'printbutton', titleonwidths = 'show', titleonwidthm = 'show', titleonwidthl = 'show' }
+]
+{{< /multiconfig >}}
+
 #### Hiding and Disabling Stuff
 
 While hiding an element depending on the screen size can be configured with the above-described _hide_ action, you may want to hide the element on certain other conditions as well.
@@ -258,6 +291,9 @@ The _&lt;varying&gt;_ parameter values are different for each element and config
 | **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The element is displayed in its given area<br>- `hide`: The element is removed.<br>- `area-XXX`: The element is moved from its given area into the area `XXX`. |
 | **onwidthm**          | _&lt;varying&gt;_ | See above. |
 | **onwidthl**          | _&lt;varying&gt;_ | See above. |
+| **titleonwidths**     | `hide`            | Whether the title of the element is displayed if the site is displayed in the given width:<br><br>- `show`: The title is displayed next to the icon.<br>- `hide`: Only the icon is displayed. |
+| **titleonwidthm**     | `hide`            | See above. |
+| **titleonwidthl**     | `hide`            | See above. |
 
 ### Predefined Overlay Elements
 
@@ -272,6 +308,9 @@ The _&lt;varying&gt;_ parameter values are different for each element and config
 | **onwidths**          | _&lt;varying&gt;_ | The action that should be executed if the site is displayed in the given width:<br><br>- `show`: The element is displayed in its given area<br>- `hide`: The element is removed.<br>- `area-XXX`: The element is moved from its given area into the area `XXX`. |
 | **onwidthm**          | _&lt;varying&gt;_ | See above. |
 | **onwidthl**          | _&lt;varying&gt;_ | See above. |
+| **titleonwidths**     | `hide`            | Whether the title of the element is displayed if the site is displayed in the given width:<br><br>- `show`: The title is displayed next to the icon.<br>- `hide`: Only the icon is displayed. |
+| **titleonwidthm**     | `hide`            | See above. |
+| **titleonwidthl**     | `hide`            | See above. |
 
 ### Button
 
@@ -297,6 +336,9 @@ For displaying an area in the button's overlay, see [Area-Button](#area-button).
 | **onwidthl**          | `show`          | See above. |
 | **hint**              | _&lt;empty&gt;_ | Arbitrary text displayed in the tooltip. |
 | **title**             | _&lt;empty&gt;_ | Arbitrary text for the button. |
+| **titleonwidths**     | _&lt;varying&gt;_ | Whether the **title** is displayed if the site is displayed in the given width, wherever the button is at that width:<br><br>- `show`: The title is displayed next to the icon.<br>- `hide`: Only the icon is displayed.<br><br>If not set, the title is displayed if one is given. |
+| **titleonwidthm**     | _&lt;varying&gt;_ | See above. |
+| **titleonwidthl**     | _&lt;varying&gt;_ | See above. |
 | **content**           | _&lt;empty&gt;_ | Arbitrary HTML to put into the content overlay. This parameter may be empty. In this case, no overlay will be generated. |
 
 ### Area-Button
@@ -318,6 +360,9 @@ Call this from your own element templates if you want to implement a button with
 | **onwidthl**          | `show`          | See above. |
 | **hint**              | _&lt;empty&gt;_ | Arbitrary text displayed in the tooltip. |
 | **title**             | _&lt;empty&gt;_ | Arbitrary text for the button. |
+| **titleonwidths**     | _&lt;varying&gt;_ | Whether the **title** is displayed if the site is displayed in the given width, wherever the button is at that width:<br><br>- `show`: The title is displayed next to the icon.<br>- `hide`: Only the icon is displayed.<br><br>If not set, the title is displayed if one is given. |
+| **titleonwidthm**     | _&lt;varying&gt;_ | See above. |
+| **titleonwidthl**     | _&lt;varying&gt;_ | See above. |
 
 ## Migration for Relearn 9
 
@@ -374,9 +419,9 @@ If your template showed different buttons depending on the page, set the option 
 
 ### Own Buttons
 
-Move your button templates from `layouts/partials/topbar/button` to `layouts/partials/topbar/element`. Once the area template calling them is deleted, list them in the option by their file name. The templates themselves don't need to be changed.
+Move your button templates from `layouts/partials/topbar/button` to `layouts/partials/topbar/element`. Once the area template calling them is deleted, list them in the option by their file name.
 
-An element now receives all parameters of its entry and the displayed page as `page`, where your button previously received what your area template passed to it.
+An element receives the displayed page as `page` and the parameters of its entry as `element`, where your button previously received what your area template passed to it next to the page. So a template reading `.onwidths` should read `.element.onwidths`; reading the parameter directly still works until 10.0.0. A template only reading `.page` doesn't need to be changed.
 
 ### Overridden Buttons
 

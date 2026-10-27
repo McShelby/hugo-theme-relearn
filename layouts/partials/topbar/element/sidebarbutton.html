@@ -1,6 +1,10 @@
-{{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
-{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "hide" }}
-{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "hide" }}
+{{- $element := partial "_relearn/topbarElementParams.gotmpl" (dict "context" . "type" "sidebarbutton") }}
+{{- $onwidths := cond (isset $element "onwidths") $element.onwidths "show" }}
+{{- $onwidthm := cond (isset $element "onwidthm") $element.onwidthm "hide" }}
+{{- $onwidthl := cond (isset $element "onwidthl") $element.onwidthl "hide" }}
+{{- $titleonwidths := cond (isset $element "titleonwidths") $element.titleonwidths "hide" }}
+{{- $titleonwidthm := cond (isset $element "titleonwidthm") $element.titleonwidthm "hide" }}
+{{- $titleonwidthl := cond (isset $element "titleonwidthl") $element.titleonwidthl "hide" }}
 {{- with .page }}
 	{{- partial "topbar/func/button.html" (dict
 		"page" .
@@ -11,6 +15,10 @@
 		"onwidths" $onwidths
 		"onwidthm" $onwidthm
 		"onwidthl" $onwidthl
+		"titleonwidths" $titleonwidths
+		"titleonwidthm" $titleonwidthm
+		"titleonwidthl" $titleonwidthl
+		"title" (T "Navigation-toggle")
 		"hint" (printf "%s (CTRL+ALT+n)" (T "Navigation-toggle"))
 	)}}
 {{- end }}

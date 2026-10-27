@@ -1,6 +1,10 @@
-{{- $onwidths := cond (isset . "onwidths") .onwidths "area-more" }}
-{{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
-{{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
+{{- $element := partial "_relearn/topbarElementParams.gotmpl" (dict "context" . "type" "editbutton") }}
+{{- $onwidths := cond (isset $element "onwidths") $element.onwidths "area-more" }}
+{{- $onwidthm := cond (isset $element "onwidthm") $element.onwidthm "show" }}
+{{- $onwidthl := cond (isset $element "onwidthl") $element.onwidthl "show" }}
+{{- $titleonwidths := cond (isset $element "titleonwidths") $element.titleonwidths "hide" }}
+{{- $titleonwidthm := cond (isset $element "titleonwidthm") $element.titleonwidthm "hide" }}
+{{- $titleonwidthl := cond (isset $element "titleonwidthl") $element.titleonwidthl "hide" }}
 {{- with .page }}
 	{{- $show := .File }}
 	{{- if $show }}
@@ -33,6 +37,10 @@
 				"onwidths" $onwidths
 				"onwidthm" $onwidthm
 				"onwidthl" $onwidthl
+				"titleonwidths" $titleonwidths
+				"titleonwidthm" $titleonwidthm
+				"titleonwidthl" $titleonwidthl
+				"title" (T "Edit-this-page")
 				"hint" (printf "%s (CTRL+ALT+w)" (T "Edit-this-page"))
 			)}}
 		{{- end }}

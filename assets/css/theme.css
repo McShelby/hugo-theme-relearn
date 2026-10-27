@@ -1934,6 +1934,9 @@ tbody > tr:nth-child(even) > td {
 
 .topbar-button {
   display: inline-block;
+  /* a title may shrink to nothing for its animation, so the button must not
+     give in to its neighbours instead */
+  flex-shrink: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   position: relative;
@@ -1949,9 +1952,24 @@ tbody > tr:nth-child(even) > td {
   border-inline-start: 1px solid var(--INTERNAL-TOPBAR-SEPARATOR-color);
 }
 
+/* in an overlay, all buttons are as wide as the widest of them; the area
+   takes the width the buttons need with their titles as shown at the current
+   width, as a title's column could otherwise shrink to nothing */
+.topbar-content-wrapper > .topbar-area {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
 .topbar-content-wrapper > .topbar-area > .topbar-button {
   padding: 0.5rem 0;
   margin: -0.25rem;
+}
+.topbar-content-wrapper > .topbar-area > .topbar-button > .btn {
+  display: flex;
+}
+.topbar-content-wrapper > .topbar-area > .topbar-button > .btn > * {
+  flex-grow: 1;
+  text-align: start;
 }
 
 .topbar-button > .btn {
@@ -1962,9 +1980,51 @@ tbody > tr:nth-child(even) > td {
   --VARIABLE-LINK-HOVER-color: var(--INTERNAL-TOPBAR-BUTTON-HOVER-color);
 }
 
-.topbar-button > .btn > button:disabled i,
-.topbar-button > .btn > span i {
+.topbar-button > .btn > button:disabled :is(i, .title),
+.topbar-button > .btn > span :is(i, .title) {
   color: oklch(from var(--INTERNAL-BOX-GREY-color) calc(l * 0.94) c h / 0.333);
+}
+
+/* the title sits in a column of its own, so hiding it can shrink that column
+   to nothing over time; the columns are packed at the start, so the title
+   stays next to the icon and the shrinking column only covers its text; the
+   grid drops the space in front of the title, so the title brings its own */
+.topbar-button > .btn > * {
+  align-items: baseline;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: start;
+  transition:
+    grid-template-columns 0.35s ease,
+    padding 0.35s ease;
+}
+.topbar-button > .btn > * > .title {
+  /* even without an icon, the title keeps to its own column */
+  grid-column: 2;
+  min-width: 0;
+  overflow-x: clip;
+  transition: padding 0.35s ease;
+}
+.topbar-button > .btn > * > i + .title::before {
+  content: ' ';
+  /* an underline of the title does not reach into an inline-block */
+  display: inline-block;
+  white-space: pre;
+}
+
+/* a hidden title still names the button for assistive technology, while the
+   button is spaced like one without title; the width classes are the ones
+   theme.js moves the buttons by, so both change together */
+:where(.menu-s-width) .topbar-button[data-title-width-s='hide'] > .btn > *,
+:where(.menu-m-width) .topbar-button[data-title-width-m='hide'] > .btn > *,
+:where(.menu-l-width) .topbar-button[data-title-width-l='hide'] > .btn > * {
+  grid-template-columns: auto 0fr;
+  padding: 0.4em;
+}
+:where(.menu-s-width) .topbar-button[data-title-width-s='hide'] > .btn > * > .title,
+:where(.menu-m-width) .topbar-button[data-title-width-m='hide'] > .btn > * > .title,
+:where(.menu-l-width) .topbar-button[data-title-width-l='hide'] > .btn > * > .title {
+  padding-inline-start: 0;
 }
 
 .topbar-sidebar-divider {

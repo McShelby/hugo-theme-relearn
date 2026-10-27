@@ -8,11 +8,15 @@
 {{- $type := .type | default "" }}
 {{- $action := (trim .action " ") | default "" }}
 {{- $title := (trim .title " ") | default "" }}
+{{- $titleshow := cond (ne $title "") "show" "hide" }}
+{{- $titleonwidths := .titleonwidths | default $titleshow }}
+{{- $titleonwidthm := .titleonwidthm | default $titleshow }}
+{{- $titleonwidthl := .titleonwidthl | default $titleshow }}
 {{- $hint := (trim .hint " ") | default "" }}
 {{- $icon := (trim .icon " ") | default "" }}
 {{- $content := .content }}
 {{- $istoggle := .istoggle | default false }}
-            <div class="topbar-button {{ $class }} default-animation" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}">
+            <div class="topbar-button {{ $class }} default-animation" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}" data-title-width-s="{{ $titleonwidths }}" data-title-width-m="{{ $titleonwidthm }}" data-title-width-l="{{ $titleonwidthl }}">
 {{ partial "shortcodes/button.html" (dict
   "page" $page
   "action" $action

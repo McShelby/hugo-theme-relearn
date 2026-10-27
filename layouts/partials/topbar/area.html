@@ -7,13 +7,17 @@
 	{{- warnf "DEPRECATED area template 'layouts/partials/%s' found, remove it and configure its elements with the 'topbar%s' option instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" $legacy $area }}
 	{{- partial $legacy $page }}
 {{- else }}
-	{{- range partial "_relearn/topbarElements.gotmpl" (dict "page" $page "area" $area) }}
+	{{- $elements := partial "_relearn/topbarElements.gotmpl" (dict "page" $page "area" $area) }}
+	{{- $config := dict "area" $area "elements" $elements }}
+	{{- range $elements }}
 		{{- $type := .type | default "" }}
 		{{- $partial := printf "topbar/element/%s.html" $type }}
 		{{- if and $type (templates.Exists (printf "partials/%s" $partial)) }}
-			{{- /* the element receives all of its configuration; the page is added, as
-				an element can not be configured without knowing it */}}
-			{{- partial $partial (merge . (dict "page" $page)) }}
+			{{- /* like the elements of the sidebar menus, the element receives its
+				configuration apart from the page and the area it is written into;
+				until 10.0.0, its configuration is also given directly, as elements
+				written before 9.5.0 read it from there */}}
+			{{- partial $partial (merge . (dict "page" $page "config" $config "element" .)) }}
 		{{- else }}
 			{{- errorf "unknown element type '%s' found in parameter 'topbar%s'; use one of the theme's predefined elements or add your own element as 'layouts/partials/%s'; see https://mcshelby.github.io/hugo-theme-relearn/configuration/customization/topbar/#defining-own-elements" $type $area $partial }}
 		{{- end }}

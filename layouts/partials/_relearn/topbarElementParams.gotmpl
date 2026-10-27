@@ -1,0 +1,22 @@
+{{- $context := .context }}
+{{- $type := .type }}
+{{- $params := $context.element | default dict }}
+{{- /* a template written before 9.5.0 gives the parameters next to the page,
+	either without an element or overriding what the element was configured
+	with; these win until 10.0.0 */}}
+{{- $direct := dict }}
+{{- range $k, $v := $context }}
+	{{- if not (in (slice "page" "config" "element") $k) }}
+		{{- $direct = merge $direct (dict $k $v) }}
+	{{- end }}
+{{- end }}
+{{- $deprecated := false }}
+{{- range $k, $v := $direct }}
+	{{- if or (not (isset $params $k)) (ne (jsonify (index $params $k)) (jsonify $v)) }}
+		{{- $deprecated = true }}
+	{{- end }}
+{{- end }}
+{{- if $deprecated }}
+	{{- warnf "DEPRECATED partial 'topbar/element/%s.html' called with its parameters next to 'page', pass them as 'element' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $type }}
+{{- end }}
+{{- return (merge $params $direct) }}
