@@ -315,6 +315,14 @@ The custom menu allows you to define arbitrary HTML snippets wrapped inside of a
 
 An HTML element snippet of a custom menu has its own parameter. Self-defined snippets have further parameters that are passed to your snippet partial when called. Your snippets must be stored in `layouts/partials/sidebar/element` and the name of the snippet partial needs to be `<TYPE>.html` where `<TYPE>` is the type of the element.
 
+Your snippet receives
+
+- `page`: the displayed page
+- `config`: the configuration of the menu the element is written into, including all of its elements as `elements`
+- `element`: every parameter of the element's configuration
+
+For example, with the configuration `{ type = 'homelink', label = 'Start' }` your snippet finds `Start` in `.element.label`.
+
 | Name                  | Default         | Notes       |
 |-----------------------|-----------------|-------------|
 | **type**              | _&lt;empty&gt;_ | The theme ships with the following snippets:<br><br>- `languageswitcher`: will display the language switcher<br>- `variantswitcher`: will display the variant switcher<br>- `versionswitcher`: will display the version switcher<br>- `historyclearer`: will display a button to clear the history of visited links |
