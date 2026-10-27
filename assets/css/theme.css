@@ -246,6 +246,8 @@ select,
 textarea {
   color: inherit;
   font: inherit;
+  /* the font shorthand leaves the letter spacing to the browser */
+  letter-spacing: inherit;
   margin: 0;
 }
 
@@ -2164,6 +2166,7 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
   font-size: 0.934375em;
   font-variation-settings: var(--INTERNAL-CODE-font-variation-settings);
   font-weight: var(--INTERNAL-CODE-font-weight);
+  letter-spacing: var(--INTERNAL-CODE-letter-spacing);
   margin-inline-start: calc(-1 * (1.375em - var(--bpx1) * 0.125em));
   position: relative;
   z-index: 10;
@@ -2629,10 +2632,6 @@ i.cstyle {
   cursor: pointer;
 }
 
-.btn > button {
-  letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
-}
-
 .btn > span,
 .btn > a {
   display: block;
@@ -2778,9 +2777,6 @@ html[dir='rtl'] .menu-control span {
   cursor: pointer;
   display: block;
   height: 1.33rem;
-  /* the browser gives its controls a letter spacing of their own, while the
-     entries of the menu next to us have ours */
-  letter-spacing: inherit;
   /* shifting the box by what it is padded with keeps the text in place; the
      list of a select opens as wide as that box, so it reaches out to both
      sides to be as far from one edge of the menu as from the other */
@@ -2873,9 +2869,9 @@ html[dir='rtl'] .menu-control span {
   border-radius: 3px;
   color: var(--INTERNAL-MAIN-LINK-color);
   /* the entries of a group would inherit the font settings of its bold title */
-  font-variation-settings: var(--INTERNAL-MAIN-font-variation-settings);
+  font-variation-settings: var(--INTERNAL-MAIN-MEDIUM-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-MEDIUM-font-weight);
-  letter-spacing: var(--INTERNAL-MAIN-letter-spacing);
+  letter-spacing: var(--INTERNAL-MAIN-MEDIUM-letter-spacing);
 }
 
 /* opening the list focuses the chosen entry, so it is marked from the start */
@@ -3805,7 +3801,9 @@ body a#R-logo:hover *:not(svg, svg *) {
 
 #R-body .tab-nav-title {
   font-size: 0.9rem;
+  font-variation-settings: var(--INTERNAL-MAIN-MEDIUM-font-variation-settings);
   font-weight: var(--INTERNAL-MAIN-MEDIUM-font-weight);
+  letter-spacing: var(--INTERNAL-MAIN-MEDIUM-letter-spacing);
   line-height: 1.42857143;
   padding: 0.2rem 0;
   margin-inline-start: 0.6rem;
