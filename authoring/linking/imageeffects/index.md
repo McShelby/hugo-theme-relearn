@@ -16,6 +16,15 @@ The default image effects shipped with the theme are
 | rounded       | Rounds the corners of the image                                   |
 | shadow        | Draws a shadow around the image to make it appear hovered/glowing |
 
+Besides these, you can give the size of an image.
+
+| Name          | Description                                                       |
+| ------------- | ----------------------------------------------------------------- |
+| height        | The height of the image as a CSS value                            |
+| width         | The width of the image as a CSS value                             |
+
+If only one of them is given, the other one follows the image's aspect ratio. An image giving one of them ignores both of the defaults, so it is not stretched by a default width when asking for a height.
+
 One way to use them is to add them as URL query parameter to each individually linked image.
 
 This can become cumbersome to be done consistently for the whole site. Instead, you can [configure the defaults](configuration/customization/imageeffects) in your project configuration as well as overriding these defaults in a page's front matter.
@@ -39,11 +48,13 @@ Without any settings in your project configuration, `imageEffects` defaults to
 {{< multiconfig >}}
 imageEffects.border = false
 imageEffects.dataurl = false
+imageEffects.height = ""
 imageEffects.inlinecontent = false
 imageEffects.lazy = true
 imageEffects.lightbox = true
 imageEffects.rounded = true
 imageEffects.shadow = false
+imageEffects.width = ""
 {{< /multiconfig >}}
 
 {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} This can be overridden in a pages front matter for example by
@@ -63,11 +74,13 @@ The settings applied to the above image would be
 {{< multiconfig >}}
 imageEffects.border = true
 imageEffects.dataurl = false
+imageEffects.height = ""
 imageEffects.inlinecontent = false
 imageEffects.lazy = true
 imageEffects.lightbox = false
 imageEffects.rounded = true
 imageEffects.shadow = false
+imageEffects.width = ""
 {{< /multiconfig >}}
 
 ## Template Usage
