@@ -1,20 +1,26 @@
 {{- /* 1. set standard effects */}}
 {{- $effects := dict "border" false "dataurl" false "inlinecontent" false "lazy" true "lightbox" true "rounded" true "shadow" false "left" false "right" false "inline" false }}
 {{- $attributes := .attributes | default dict }}
+{{- /* the sizes are stacked like effects but are no classes; a level giving one
+	of them replaces both, so an image asking for a height is not stretched by a
+	width set for the whole page */}}
+{{- $height := "" }}
+{{- $width := "" }}
 
-{{- /* 2. stack configured site effects */}}
-{{- if .page.Site.Params.imageeffects }}
-	{{- $effects = merge $effects .page.Site.Params.imageeffects }}
-{{- end }}
-
-{{- /* 3. stack pages frontmatter effects */}}
-{{- if .page.Params.imageeffects }}
-	{{- $effects = merge $effects .page.Params.imageeffects }}
+{{- /* 2. stack configured site effects, 3. stack pages frontmatter effects */}}
+{{- range slice (.page.Site.Params.imageeffects | default dict) (.page.Params.imageeffects | default dict) }}
+	{{- range $k, $v := . }}
+		{{- if not (in (slice "height" "width") $k) }}
+			{{- $effects = merge $effects (dict $k $v) }}
+		{{- end }}
+	{{- end }}
+	{{- if or .height .width }}
+		{{- $height = .height | default "" }}
+		{{- $width = .width | default "" }}
+	{{- end }}
 {{- end }}
 
 {{- /* 4. stack URL query parameter */}}
-{{- $height := "" }}
-{{- $width := "" }}
 {{- $u := urls.Parse .url }}
 {{- if $u.RawQuery }}
 
@@ -58,11 +64,9 @@
 		{{- warnf "%q: DEPRECATED usage of 'featherlight' image CSS class found, use 'lightbox' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/5/#5-11-0" $filepath }}
 		{{- $attributes = merge $attributes (dict "lightbox" (ne ($u.Query.Get "featherlight") "false")) }}
 	{{- end }}
-	{{- with $u.Query.Get "height" }}
-		{{- $height = . }}
-	{{- end }}
-	{{- with $u.Query.Get "width" }}
-		{{- $width = . }}
+	{{- if or ($u.Query.Get "height") ($u.Query.Get "width") }}
+		{{- $height = $u.Query.Get "height" }}
+		{{- $width = $u.Query.Get "width" }}
 	{{- end }}
 {{- end }}
 
