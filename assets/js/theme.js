@@ -2851,6 +2851,7 @@ ready(function () {
 });
 
 (function () {
+  var html = document.documentElement;
   var body = document.querySelector('body');
   var topbar = document.querySelector('#R-topbar');
   function addTopbarButtonInfos() {
@@ -2923,9 +2924,9 @@ ready(function () {
       });
   }
   function moveTopbarButtons() {
-    var isS = body.classList.contains('menu-s-width');
-    var isM = body.classList.contains('menu-m-width');
-    var isL = body.classList.contains('menu-l-width');
+    var isS = html.classList.contains('menu-s-width');
+    var isM = html.classList.contains('menu-m-width');
+    var isL = html.classList.contains('menu-l-width');
     // move buttons once, width has a distinct value
     if (isS && !isM && !isL) {
       moveAreaTopbarButtons('s');
@@ -2966,7 +2967,7 @@ ready(function () {
     // the small layout puts the linked entries out of sight, where they must
     // not be a stop for the tab key but stay for screen readers; an entry
     // that is always out of sight is written that way and left alone
-    var isS = body.classList.contains('menu-s-width');
+    var isS = html.classList.contains('menu-s-width');
     topbar.querySelectorAll('.topbar-breadcrumbs li:not(.a11y-only) > a').forEach(function (a) {
       if (isS) {
         a.setAttribute('tabindex', '-1');
@@ -2975,34 +2976,17 @@ ready(function () {
       }
     });
   }
-  function setWidthS(e) {
-    body.classList[e.matches ? 'add' : 'remove']('menu-s-width');
-  }
-  function setWidthM(e) {
-    body.classList[e.matches ? 'add' : 'remove']('menu-m-width');
-  }
-  function setWidthL(e) {
-    body.classList[e.matches ? 'add' : 'remove']('menu-l-width');
-  }
-  function onWidthChange(setWidth, e) {
-    setWidth(e);
+  function onWidthChange() {
     moveTopbarButtons();
     adjustEmptyTopbarContents();
     adjustBreadcrumbTabstops();
     adjustNavInert();
   }
   if (topbar) {
-    var mqs = window.matchMedia('only screen and (max-width: 47.999rem)');
-    mqs.addEventListener('change', onWidthChange.bind(null, setWidthS));
-    var mqm = window.matchMedia('only screen and (min-width: 48rem) and (max-width: 59.999rem)');
-    mqm.addEventListener('change', onWidthChange.bind(null, setWidthM));
-    var mql = window.matchMedia('only screen and (min-width: 60rem)');
-    mql.addEventListener('change', onWidthChange.bind(null, setWidthL));
+    // theme-head.js keeps the width classes up to date
+    document.addEventListener('themeWidthChanged', onWidthChange);
 
     addTopbarButtonInfos();
-    setWidthS(mqs);
-    setWidthM(mqm);
-    setWidthL(mql);
     moveTopbarButtons();
     adjustEmptyTopbarContents();
     adjustBreadcrumbTabstops();

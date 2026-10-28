@@ -269,3 +269,26 @@ if (window.relearn.scrollbarSize) {
   // only in the first case the menu has to draw its scrollbar itself
   document.documentElement.classList.add('classic-scrollbars');
 }
+
+// the layout switches at the widths of the sidebar; stylesheets and scripts take
+// these classes instead of media queries of their own, so all agree on the width
+// and the layout is right with the first paint. once the classes are up to date, a
+// change is announced; it carries no data, as anyone who missed it reads the classes
+(function () {
+  var widths = {
+    s: '(width < 48rem)',
+    m: '(48rem <= width < 60rem)',
+    l: '(60rem <= width)',
+  };
+  Object.keys(widths).forEach(function (width) {
+    var mq = window.matchMedia(widths[width]);
+    var setWidth = function () {
+      document.documentElement.classList.toggle('menu-' + width + '-width', mq.matches);
+    };
+    setWidth();
+    mq.addEventListener('change', function () {
+      setWidth();
+      document.dispatchEvent(new CustomEvent('themeWidthChanged'));
+    });
+  });
+})();
