@@ -356,6 +356,55 @@ Print run:
 	{{- $formatprint = print $formatprint "\n" (replaceRE `([ \t]*):root` (print "${1}" (delimit $printvariablesselectors ",\n")) .) }}
 {{- end }}
 {{- $formatprint = print $formatprint (partial "inline/themeVariants/get-print-blocks" $printchromas) }}
+{{- /* the script draws Mermaid and OpenAPI for a print before the browser applies
+	the print variant, so their themes are also written readable on screen;
+	resolved like the print does it: the print variables win over the print
+	variant unless only the print variant marks its value `!important`, and
+	`initial` falls back to the theme's default */}}
+{{- define "partials/inline/themeVariants/get-print-theme" }}
+	{{- $value := "" }}
+	{{- range $name := .names }}
+		{{- $pattern := printf `[ \t]*--%s\s*:\s*([^;]*?)\s*;` $name }}
+		{{- $fromvariables := "" }}
+		{{- with findRESubmatch $pattern $.variables }}
+			{{- $fromvariables = index (index . (sub (len .) 1)) 1 }}
+		{{- end }}
+		{{- $fromvariant := "" }}
+		{{- with findRESubmatch $pattern $.variant }}
+			{{- $fromvariant = index (index . (sub (len .) 1)) 1 }}
+		{{- end }}
+		{{- $important := `\s*!\s*important$` }}
+		{{- $v := $fromvariables | default $fromvariant }}
+		{{- if and (findRE $important $fromvariant) (not (findRE $important $fromvariables)) }}
+			{{- $v = $fromvariant }}
+		{{- end }}
+		{{- $v = replaceRE $important "" $v }}
+		{{- if and $v (ne $v "initial") }}
+			{{- $value = $v }}
+			{{- break }}
+		{{- end }}
+	{{- end }}
+	{{- return $value }}
+{{- end }}
+{{- $printthemes := slice }}
+{{- range $printselector := $printselectors }}
+	{{- $printthemevariant := index (where $printdetails "identifier" .print) 0 }}
+	{{- $content := "" }}
+	{{- range slice
+		(dict "name" "MERMAID-theme" "names" (slice "MERMAID-theme"))
+		(dict "name" "OPENAPI-theme" "names" (slice "OPENAPI-theme" "SWAGGER-theme"))
+		(dict "name" "OPENAPI-CODE-theme" "names" (slice "OPENAPI-CODE-theme"))
+	}}
+		{{- $name := .name }}
+		{{- with partial "inline/themeVariants/get-print-theme" (dict "names" .names "variables" $printvariablescontent "variant" $printthemevariant.themecontent) }}
+			{{- $content = print $content "\n  --INTERNAL-PRINT-VARIANT-" $name ": " . ";" }}
+		{{- end }}
+	{{- end }}
+	{{- with $content }}
+		{{- $printthemes = $printthemes | append (dict "key" (print $printselector.scheme ":" .) "scheme" $printselector.scheme "selector" $printselector.selector "content" .) }}
+	{{- end }}
+{{- end }}
+{{- $printthemesblocks := partial "inline/themeVariants/get-print-blocks" $printthemes }}
 
 {{- /*
 - Read default stuff
@@ -495,6 +544,7 @@ Print run:
 	"\n@media print {"
 	"\n" $printcontent
 	"\n}"
+	$printthemesblocks
 	"\n" $htmlcontent
 }}
 {{- $cssres := $htmlcontent | resources.FromString "css/format-html.css" }}
@@ -509,6 +559,7 @@ Print run:
 */}}
 {{- $printcontent = print
 	(strings.TrimPrefix "\n" $formatprint)
+	$printthemesblocks
 	"\n" $printcontent
 }}
 {{- $cssres := $printcontent | resources.FromString "css/format-print.css" }}

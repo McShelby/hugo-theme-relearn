@@ -687,7 +687,10 @@ function initMermaid(update, attrs) {
       'beforeprint',
       function () {
         isPrintPreview = true;
-        initMermaid(true);
+        // the print variant only applies once the browser lays out the printout
+        initMermaid(true, {
+          theme: getColorValue('PRINT-MERMAID-theme'),
+        });
         // the print dialog will not wait for us, but a graph that never came into
         // view must at least be on its way instead of being left out entirely
         drawMermaidRest();
@@ -697,7 +700,11 @@ function initMermaid(update, attrs) {
       'afterprint',
       function () {
         isPrintPreview = false;
-        initMermaid(true);
+        // Firefox is still in print media during this event, so the colors of the
+        // screen are only there one task later
+        setTimeout(function () {
+          initMermaid(true);
+        }, 0);
       }.bind(this)
     );
   }
@@ -758,7 +765,11 @@ function initOpenapi(update, attrs) {
       'afterprint',
       function () {
         isPrintPreview = false;
-        initOpenapi(true);
+        // Firefox is still in print media during this event, so the colors of the
+        // screen are only there one task later
+        setTimeout(function () {
+          initOpenapi(true);
+        }, 0);
       }.bind(this)
     );
   }
@@ -786,8 +797,8 @@ function initOpenapi(update, attrs) {
   }
   function renderOpenAPI(oc) {
     var print = isPrint || isPrintPreview;
-    var swagger_theme = getColorValue('OPENAPI-theme');
-    var swagger_code_theme = getColorValue('OPENAPI-CODE-theme');
+    var swagger_theme = getColorValue(print ? 'PRINT-OPENAPI-theme' : 'OPENAPI-theme');
+    var swagger_code_theme = getColorValue(print ? 'PRINT-OPENAPI-CODE-theme' : 'OPENAPI-CODE-theme');
 
     const openapiId = 'relearn-swagger-ui';
     const openapiErrorClass = 'sc-openapi-error';
