@@ -444,14 +444,60 @@ function mermaidPostRender(id) {
 }
 
 // drawing a graph is by far the most expensive thing we do - a page full of them
-// freezes the browser for seconds if we draw them in one go - so we only draw
-// what the reader is about to see and hand the thread back between two of them
+// freezes the browser for seconds if we draw them in one go - so we draw what the
+// reader is about to see first and hand the thread back between two of them
 var mermaidObserver = null;
 var mermaidQueue = [];
 var mermaidIsDrawing = false;
 // hands the thread back between two graphs; unlike a timer, a message is not
 // throttled while the tab is hidden
 var mermaidChannel = null;
+var mermaidIds = 0;
+
+// draws a graph from the source kept beside it; what the graph shows stays until
+// the new drawing is done, as Firefox and Safari print the page as it is when
+// printing starts and would put a gap on paper instead
+function drawMermaidGraph(element) {
+  var code = element.parentElement.querySelector(':scope > .mermaid-code');
+  var source = code.textContent;
+  element.dataset.processed = 'true';
+  var id = 'mermaid-' + Date.now() + '-' + ++mermaidIds;
+  return mermaid.render(id, source).then(function (result) {
+    // the source was changed while we were drawing, e.g. as printing began or
+    // ended; its own drawing takes care of it and must not be overwritten
+    if (code.textContent != source) {
+      return;
+    }
+    element.innerHTML = result.svg;
+    mermaidPostRender(id);
+    if (result.bindFunctions) {
+      result.bindFunctions(element);
+    }
+  });
+}
+
+// draws the next graph and calls `then` once it is done; false if there is
+// nothing left to draw
+function drawMermaidNext(then) {
+  var element = mermaidQueue.shift();
+  while (element && element.dataset.processed) {
+    // somebody queued us twice, e.g. by printing while we came into view
+    element = mermaidQueue.shift();
+  }
+  if (!element) {
+    // the rest follows once what the reader sees is drawn; Firefox and Safari
+    // print only what is drawn by the time printing starts
+    element = document.querySelector('.mermaid.mermaid-render:not([data-processed])');
+  }
+  if (!element) {
+    return false;
+  }
+  drawMermaidGraph(element)
+    // a graph we can not draw must not stop the ones behind it
+    .catch(function () {})
+    .then(then);
+  return true;
+}
 
 function drawMermaidQueue() {
   if (mermaidIsDrawing) {
@@ -462,23 +508,10 @@ function drawMermaidQueue() {
     mermaidChannel = new MessageChannel();
   }
   var next = function () {
-    var element = mermaidQueue.shift();
-    while (element && element.dataset.processed) {
-      // somebody queued us twice, e.g. by printing while we came into view
-      element = mermaidQueue.shift();
-    }
-    if (!element) {
-      mermaidIsDrawing = false;
-      return;
-    }
-    mermaid
-      .run({ nodes: [element], postRenderCallback: mermaidPostRender, suppressErrors: true })
-      // a graph we can not draw must not stop the ones behind it
-      .catch(function () {})
-      .then(function () {
-        // hand the thread back, so the page stays usable while we work through the rest
-        mermaidChannel.port2.postMessage(null);
-      });
+    mermaidIsDrawing = drawMermaidNext(function () {
+      // hand the thread back, so the page stays usable while we work through the rest
+      mermaidChannel.port2.postMessage(null);
+    });
   };
   mermaidChannel.port1.onmessage = next;
   next();
@@ -490,11 +523,9 @@ function drawMermaidRest() {
   // the thread in between
   mermaidObserver && mermaidObserver.disconnect();
   mermaidQueue.length = 0;
-  mermaid.run({
-    querySelector: '.mermaid.mermaid-render:not([data-processed])',
-    postRenderCallback: mermaidPostRender,
-    suppressErrors: true,
-  });
+  (function next() {
+    drawMermaidNext(next);
+  })();
 }
 
 function drawMermaid() {
@@ -504,11 +535,8 @@ function drawMermaid() {
     return;
   }
   if (isPrint || !window.IntersectionObserver) {
-    // a page made for the printer is drawn completely, not as it comes into view;
-    // still one graph at a time, so the page stays usable while it is drawn
-    document.querySelectorAll('.mermaid.mermaid-render:not([data-processed])').forEach(function (element) {
-      mermaidQueue.push(element);
-    });
+    // a page made for the printer is drawn from top to bottom, not as it comes into
+    // view; still one graph at a time, so the page stays usable while it is drawn
     drawMermaidQueue();
     return;
   }
@@ -659,8 +687,8 @@ function initMermaid(update, attrs) {
 
       parse.yaml.theme = theme;
       var graph = encodeHTML(serializeGraph(parse));
+      // the graph keeps showing what it shows until it is drawn anew
       element.removeAttribute('data-processed');
-      element.innerHTML = graph;
       code.innerHTML = graph;
     });
     return is_initialized;
@@ -687,10 +715,13 @@ function initMermaid(update, attrs) {
       'beforeprint',
       function () {
         isPrintPreview = true;
-        // the print variant only applies once the browser lays out the printout
-        initMermaid(true, {
-          theme: getColorValue('PRINT-MERMAID-theme'),
-        });
+        // the print version already shows its graphs as they are printed
+        if (!isPrint) {
+          // the print variant only applies once the browser lays out the printout
+          initMermaid(true, {
+            theme: getColorValue('PRINT-MERMAID-theme'),
+          });
+        }
         // the print dialog will not wait for us, but a graph that never came into
         // view must at least be on its way instead of being left out entirely
         drawMermaidRest();
@@ -700,6 +731,9 @@ function initMermaid(update, attrs) {
       'afterprint',
       function () {
         isPrintPreview = false;
+        if (isPrint) {
+          return;
+        }
         // Firefox is still in print media during this event, so the colors of the
         // screen are only there one task later
         setTimeout(function () {
@@ -758,13 +792,20 @@ function initOpenapi(update, attrs) {
       'beforeprint',
       function () {
         isPrintPreview = true;
-        initOpenapi(true);
+        // the print version already shows its specs as they are printed; building
+        // them anew empties them, and Firefox and Safari print them empty
+        if (!isPrint) {
+          initOpenapi(true);
+        }
       }.bind(this)
     );
     window.addEventListener(
       'afterprint',
       function () {
         isPrintPreview = false;
+        if (isPrint) {
+          return;
+        }
         // Firefox is still in print media during this event, so the colors of the
         // screen are only there one task later
         setTimeout(function () {
@@ -822,7 +863,12 @@ function initOpenapi(update, attrs) {
       });
       new MutationObserver(scheduleMarkOpenapi).observe(root, { childList: true, subtree: true, characterData: true });
     }
-    root.replaceChildren();
+    // the spec shown so far stays until the new one can be built, as Firefox and
+    // Safari print the page as it is when printing starts and would put nothing on
+    // paper instead
+    var view = document.createElement('div');
+    view.hidden = true;
+    root.appendChild(view);
     // what the reader has opened is known by the instance we are about to replace
     // and is handed on to the new one; printing opens everything by itself and
     // keeps what was there before for the run after it
@@ -836,12 +882,19 @@ function initOpenapi(update, attrs) {
     // the shortcode may ask for another language than the one of the page
     oc.dir = (oc.dataset.openapiDir ? oc.dataset.openapiDir == 'rtl' : isRtl) ? 'rtl' : 'ltr';
     oc.classList.toggle('dark-mode', swagger_theme == 'dark');
-    Promise.all([loadStylesheet(root, config.dataset.openapiCssUrl, config.dataset.openapiCssIntegrity), loadStylesheet(root, config.dataset.swaggerCssUrl, config.dataset.swaggerCssIntegrity)])
-      .then(function (links) {
-        if (links[0].parentNode !== root) {
+    Promise.all([loadStylesheet(view, config.dataset.openapiCssUrl, config.dataset.openapiCssIntegrity), loadStylesheet(view, config.dataset.swaggerCssUrl, config.dataset.swaggerCssIntegrity)])
+      .then(function () {
+        if (openapiStates.get(oc) !== current) {
           // a later run has taken over the tree while the stylesheets were loading
+          view.remove();
           return;
         }
+        Array.from(root.children).forEach(function (child) {
+          if (child !== view) {
+            child.remove();
+          }
+        });
+        view.hidden = false;
         // the texts of the expanders are translated by the shortcode and set as
         // text, so they need no escaping
         [false, true].forEach(function (expand) {
@@ -850,11 +903,11 @@ function initOpenapi(update, attrs) {
           expander.href = '';
           expander.dataset.expand = expand;
           expander.textContent = expand ? oc.dataset.openapiExpandAll || 'Expand all' : oc.dataset.openapiCollapseAll || 'Collapse all';
-          root.appendChild(expander);
+          view.appendChild(expander);
         });
         var mount = document.createElement('div');
         mount.id = openapiId;
-        root.appendChild(mount);
+        view.appendChild(mount);
         var options = {
           defaultModelsExpandDepth: 2,
           defaultModelExpandDepth: 2,
@@ -2644,11 +2697,9 @@ function announceMarked(search, delay = 1000) {
     var count = document.querySelectorAll('#R-body-inner mark.search').length;
     if (count) {
       showToast(
-        window.T_N_matches_on_page
-          .replace('{1}', count)
-          .replace('{0}', function () {
-            return search;
-          })
+        window.T_N_matches_on_page.replace('{1}', count).replace('{0}', function () {
+          return search;
+        })
       );
     }
   }, delay);
