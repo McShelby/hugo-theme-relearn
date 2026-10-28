@@ -449,13 +449,19 @@ function mermaidPostRender(id) {
 var mermaidObserver = null;
 var mermaidQueue = [];
 var mermaidIsDrawing = false;
+// hands the thread back between two graphs; unlike a timer, a message is not
+// throttled while the tab is hidden
+var mermaidChannel = null;
 
 function drawMermaidQueue() {
   if (mermaidIsDrawing) {
     return;
   }
   mermaidIsDrawing = true;
-  (function next() {
+  if (!mermaidChannel) {
+    mermaidChannel = new MessageChannel();
+  }
+  var next = function () {
     var element = mermaidQueue.shift();
     while (element && element.dataset.processed) {
       // somebody queued us twice, e.g. by printing while we came into view
@@ -471,16 +477,17 @@ function drawMermaidQueue() {
       .catch(function () {})
       .then(function () {
         // hand the thread back, so the page stays usable while we work through the rest
-        setTimeout(next, 0);
+        mermaidChannel.port2.postMessage(null);
       });
-  })();
+  };
+  mermaidChannel.port1.onmessage = next;
+  next();
 }
 
 function drawMermaidRest() {
-  // everything that never came into view, e.g. because we are about to be printed;
-  // nobody scrolls a page that goes to the printer, so we draw it in one go instead
-  // of handing back the thread - a throttled timer must not make us end up on paper
-  // with half of our graphs missing
+  // everything not drawn yet, as we are about to be printed; the browser lays out
+  // the printout right after us, so we draw it in one go instead of handing back
+  // the thread in between
   mermaidObserver && mermaidObserver.disconnect();
   mermaidQueue.length = 0;
   mermaid.run({
@@ -497,7 +504,12 @@ function drawMermaid() {
     return;
   }
   if (isPrint || !window.IntersectionObserver) {
-    drawMermaidRest();
+    // a page made for the printer is drawn completely, not as it comes into view;
+    // still one graph at a time, so the page stays usable while it is drawn
+    document.querySelectorAll('.mermaid.mermaid-render:not([data-processed])').forEach(function (element) {
+      mermaidQueue.push(element);
+    });
+    drawMermaidQueue();
     return;
   }
   mermaidObserver && mermaidObserver.disconnect();
