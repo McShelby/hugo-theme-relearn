@@ -2227,8 +2227,11 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after {
 
 .inline-copy-to-clipboard-button.btn.cstyle > * > i {
   font-size: 0.859625em;
+  /* the icon is smaller than the code, so it sits on the baseline of the code instead of filling the line of the button */
+  height: auto;
   /* the icon must not stretch the line of the button */
   line-height: 1;
+  vertical-align: baseline;
   width: 1.375em;
 }
 
@@ -2704,14 +2707,20 @@ i.cstyle {
 }
 
 .btn > * > i.fa-fw {
-  /* fa-fw makes rectangles instead of squares, so we adjust back, hopefully no icon exceeds that area */
-  line-height: 1.15em;
-  width: 1.15em;
+  /* fa-fw makes rectangles instead of squares, so we adjust back to the height of the button's line, hopefully no icon exceeds that area; the icon fills that line instead of sitting on the text's baseline, and centers its glyph as a box without leading, as browsers round leading to the pixel, always off to the top */
+  align-items: center;
+  align-self: center;
+  display: inline-flex;
+  height: 1.1em;
+  justify-content: center;
+  line-height: normal;
+  vertical-align: top;
+  width: 1.1em;
 }
 
 .btn > * > i.fa-fw.fa-lg {
   /* fa-lg makes rectangles instead of squares, so we adjust back, hopefully no icon exceeds that area */
-  line-height: 1.375em;
+  height: 1.375em;
   width: 1.375em;
 }
 
@@ -2733,8 +2742,8 @@ i.cstyle {
   /* avoid breakage if no content is given */
   content: '\200b';
   display: block;
-  min-height: 1.15em;
-  min-width: 1.15em;
+  min-height: 1.1em;
+  min-width: 1.1em;
 }
 
 #R-body #R-body-inner .btn > *.highlight:after {
