@@ -23,7 +23,7 @@ It supports many languages, including right-to-left languages.
 > - Korean
 > - Persian
 > - Polish
-> - Portuguese
+> - European Portuguese
 > - Brazilian Portuguese
 > - Romanian
 > - Russian
