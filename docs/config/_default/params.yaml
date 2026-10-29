@@ -893,11 +893,14 @@
   # `mathml` is styled by the browser alone. `html` and `htmlAndMathml` look the
   # same in every browser but need the KaTeX stylesheet and fonts, which are
   # linked to pages containing math.
-  # Any other option of Hugo's `transform.ToMath` function can be set besides
-  # `output`, like `macros`, `throwOnError` or `strict`.
+  # Any other option of Hugo's `transform.ToMath` function can be set in
+  # `toMath` besides `output`, like `macros`, `throwOnError` or `strict`. Give
+  # `macros` as a list of name and definition pairs, as Hugo lowercases the
+  # names of a map.
   # This can be overridden in the page's frontmatter.
   math:
-    output: mathml
+    toMath:
+      output: mathml
 
     # Force load the KaTeX stylesheet on every page.
     # Default: false

@@ -6,11 +6,11 @@ description: Beaut'fl math and chemical formulae
 frontmatter:
 - math
 - math.force
-- math.output
+- math.toMath
 options:
 - math
 - math.force
-- math.output
+- math.toMath
 title: Math
 ---
 {{< piratify >}}

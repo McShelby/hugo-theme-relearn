@@ -234,7 +234,16 @@
     {{- $props := slice }}
 
     {{- if eq $definedFormat.name "markdown-passthrough" }}
-      {{- $codes = $codes | append (index $params "content") }}
+      {{- /* the content is given without delimiters, which only Passthrough syntax needs */}}
+      {{- $content = index $params "content" }}
+      {{- with index $definedProperties "markdown-passthrough" }}
+        {{- $delimiters := .block }}
+        {{- if eq (printf "%v" (index $params "displayMode")) "false" }}
+          {{- $delimiters = .inline }}
+        {{- end }}
+        {{- $content = printf "%s%s%s" (index $delimiters 0) (trim $content "\n\r") (index $delimiters 1) }}
+      {{- end }}
+      {{- $codes = $codes | append $content }}
 
     {{- else if eq $definedFormat.name "markdown-blockquote" }}
       {{- /* a shortcode whose parameters are named differently from the ones of a callout maps them, and may preset some */}}

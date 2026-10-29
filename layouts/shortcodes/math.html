@@ -1,6 +1,18 @@
 {{- $_hugo_config := `{ "version": 1 }` }}
+{{- $align := "" }}
+{{- $options := dict }}
+{{- if .IsNamedParams }}
+  {{- range $k, $v := .Params }}
+    {{- if eq $k "align" }}
+      {{- $align = $v }}
+    {{- else }}
+      {{- $options = $options | merge (dict $k $v) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
 {{- partial "shortcodes/math.html" (dict
   "page"    .Page
   "content" .Inner
-  "align"   (.Get "align")
+  "align"   $align
+  "options" $options
 ) }}

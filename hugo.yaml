@@ -47,6 +47,11 @@ params:
     dependencies:
       math:
         name: Math
+      # loaded by `math`, whose loader must run first; loaders run in the
+      # sorted order of the keys, not in the order written here, and `math`
+      # sorts first as it is a prefix of `mathkatex`
+      mathkatex:
+        name: MathKatex
       mermaid:
         name: Mermaid
       openapi:

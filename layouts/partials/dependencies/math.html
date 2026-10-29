@@ -11,19 +11,61 @@
         {{- warnf "UNSUPPORTED option '%s' found, math is rendered by KaTeX now, configure it with 'math' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-2-0" . }}
       {{- end }}
     {{- end }}
+    {{- with partial "inline/math-misplaced-options" (index $page.Params "math") }}
+      {{- range .deprecated }}
+        {{- if eq . "macros" }}
+          {{- warnf "%q: DEPRECATED front matter 'math.macros' found, use 'math.toMath.macros' as a list of name and definition pairs instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+        {{- else }}
+          {{- warnf "%q: DEPRECATED front matter 'math.%s' found, use 'math.toMath.%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath . . }}
+        {{- end }}
+      {{- end }}
+      {{- if .macrosMap }}
+        {{- warnf "%q: WARNING front matter 'math.toMath.macros' given as a map found, Hugo lowercases the names of your macros; give them as a list of name and definition pairs instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+      {{- end }}
+    {{- end }}
+    {{- if $page.IsHome }}
+      {{- with partial "inline/math-misplaced-options" (index site.Params "math") }}
+        {{- range .deprecated }}
+          {{- if eq . "macros" }}
+            {{- warnf "DEPRECATED option 'math.macros' found, use 'math.toMath.macros' as a list of name and definition pairs instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" }}
+          {{- else }}
+            {{- warnf "DEPRECATED option 'math.%s' found, use 'math.toMath.%s' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" . . }}
+          {{- end }}
+        {{- end }}
+        {{- if .macrosMap }}
+          {{- warnf "WARNING option 'math.toMath.macros' given as a map found, Hugo lowercases the names of your macros; give them as a list of name and definition pairs instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
   {{- end }}
 {{- else if eq $location "header" }}
   {{- with $page }}
     {{- $options := partial "_relearn/mathOptions.gotmpl" . }}
-    {{- /* MathML is styled by the browser; any other output needs KaTeX's stylesheet and fonts */}}
+    {{- /* MathML is styled by the browser; any other output needs KaTeX's
+      stylesheet and fonts, linked by the `mathkatex` dependency, which comes
+      after this one */}}
     {{- if ne $options.output "mathml" }}
-      {{- with partial "asset.gotmpl" "/fonts/katex/katex.min.css" }}
-    <link href="{{ .RelPermalink }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" . }}>
+      {{- .Store.Set "hasMathKatex" true }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- define "partials/inline/math-misplaced-options" }}
+  {{- /* options of `transform.ToMath` set directly in `math` instead of
+    `math.toMath`, and macros given as a map, whose names Hugo lowercased */}}
+  {{- $deprecated := slice }}
+  {{- $macrosMap := false }}
+  {{- if reflect.IsMap . }}
+    {{- range $k, $v := . }}
+      {{- if not (in (slice "force" "disable" "displaymode" "tomath") (lower $k)) }}
+        {{- $deprecated = $deprecated | append (lower $k) }}
       {{- end }}
-      {{- range resources.Match "/fonts/katex/fonts/**" }}
-        {{- /* the following code causes Hugo to generate our file in public */}}
-        {{- $url := .RelPermalink }}
+    {{- end }}
+    {{- with index . "tomath" }}
+      {{- if and (reflect.IsMap .) (reflect.IsMap (index . "macros")) }}
+        {{- $macrosMap = true }}
       {{- end }}
     {{- end }}
   {{- end }}
+  {{- return dict "deprecated" $deprecated "macrosMap" $macrosMap }}
 {{- end }}

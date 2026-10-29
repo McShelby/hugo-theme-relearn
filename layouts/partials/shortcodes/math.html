@@ -7,6 +7,29 @@
 {{- $content := trim .content "\n\r\t " }}
 {{- $type := .type }}
 {{- $align := .align }}
+{{- $codefence := .codefence }}
+
+{{- /* options of `transform.ToMath` for this formula, given in `options` or as
+  any other parameter */}}
+{{- $callOptions := dict }}
+{{- $display := true }}
+{{- $otherOptions := dict }}
+{{- range $k, $v := . }}
+  {{- if not (in (slice "page" "context" "content" "type" "align" "codefence" "attributes" "options") $k) }}
+    {{- $otherOptions = merge $otherOptions (dict $k $v) }}
+  {{- end }}
+{{- end }}
+{{- $givenOptions := dict }}
+{{- if reflect.IsMap .options }}
+  {{- $givenOptions = .options }}
+{{- end }}
+{{- range $k, $v := merge $givenOptions $otherOptions }}
+  {{- if eq (lower $k) "displaymode" }}
+    {{- $display = ne (printf "%v" $v) "false" }}
+  {{- else }}
+    {{- $callOptions = merge $callOptions (dict (lower $k) $v) }}
+  {{- end }}
+{{- end }}
 
 {{- /* separate shortcode attributes from rest */}}
 {{- $attributes := .attributes | default dict }}
@@ -30,7 +53,12 @@
 
 {{- with $page }}
   {{- $filepath := "[virtual file]" }}{{ with and .File .File.Filename }}{{ $filepath = . }}{{ end }}
-  {{- $options := partial "_relearn/mathOptions.gotmpl" . }}
+  {{- $options := merge (partial "_relearn/mathOptions.gotmpl" .) $callOptions }}
+  {{- if ne $options.output "mathml" }}
+    {{- /* the formula's own output may need the KaTeX stylesheet, which the
+      page's options alone don't tell */}}
+    {{- .Store.Set "hasMathKatex" true }}
+  {{- end }}
 
   {{- $html := "" }}
   {{- if $type }}
@@ -38,15 +66,31 @@
       counted, so the caller of `RenderString` below learns it was found */}}
     {{- $html = partial "inline/math-render" (dict "tex" $content "display" (eq $type "block") "options" $options "filepath" $filepath) }}
     {{- .Store.Add "relearnMathCount" 1 }}
+    {{- if eq $type "inline" }}
+      {{- .Store.Add "relearnMathInlineCount" 1 }}
+    {{- end }}
   {{- else }}
     {{- /* delimited formulae, possibly among text; Passthrough syntax finds
       them by the delimiters configured for Hugo and hands each one back to
       this partial; if it found none, the content is one formula without
-      delimiters */}}
+      delimiters; delimiters are deprecated and will be taken as part of the
+      formula with 10.0.0 */}}
     {{- $count := .Store.Get "relearnMathCount" | default 0 }}
+    {{- $inlineCount := .Store.Get "relearnMathInlineCount" | default 0 }}
     {{- $html = .RenderString $content }}
     {{- if eq $count (.Store.Get "relearnMathCount" | default 0) }}
-      {{- $html = partial "inline/math-render" (dict "tex" $content "display" true "options" $options "filepath" $filepath) }}
+      {{- $html = partial "inline/math-render" (dict "tex" $content "display" $display "options" $options "filepath" $filepath) }}
+    {{- else }}
+      {{- $inline := ne $inlineCount (.Store.Get "relearnMathInlineCount" | default 0) }}
+      {{- if and $codefence $inline }}
+        {{- warnf "%q: DEPRECATED delimiters in codefence 'math' found, remove them; a codefence always displays its formula as a block, for an inline formula use the 'math' shortcode with 'displayMode' set to 'false' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+      {{- else if $codefence }}
+        {{- warnf "%q: DEPRECATED delimiters in codefence 'math' found, remove them around your formula; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+      {{- else if $inline }}
+        {{- warnf "%q: DEPRECATED delimiters in shortcode 'math' found, remove them around your formula and set 'displayMode' to 'false' to keep it inline; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+      {{- else }}
+        {{- warnf "%q: DEPRECATED delimiters in shortcode 'math' found, remove them around your formula; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+      {{- end }}
     {{- end }}
   {{- end -}}
 <span
@@ -59,7 +103,7 @@
 
 {{- define "partials/inline/math-render" }}
   {{- $html := "" }}
-  {{- with try (transform.ToMath .tex (merge .options (dict "displayMode" .display))) }}
+  {{- with try (transform.ToMath .tex (merge .options (dict "displaymode" .display))) }}
     {{- with .Err }}
       {{- /* only KaTeX's own message is of use, not the template call wrapped around it */}}
       {{- $err := replaceRE `^.*?error calling ToMath: ` "" (printf "%s" .) }}

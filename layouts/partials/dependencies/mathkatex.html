@@ -1,0 +1,17 @@
+{{- $page := .page }}
+{{- $location := .location }}
+{{- if eq $location "header" }}
+  {{- with $page }}
+    {{- /* the stylesheet is controlled by the options of math alone, so turning
+      math off turns it off too, even if a formula asked for it */}}
+    {{- if ne (.Store.Get "needsMath") false }}
+      {{- with partial "asset.gotmpl" "/fonts/katex/katex.min.css" }}
+    <link href="{{ .RelPermalink }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" . }}>
+      {{- end }}
+      {{- range resources.Match "/fonts/katex/fonts/**" }}
+        {{- /* the following code causes Hugo to generate our file in public */}}
+        {{- $url := .RelPermalink }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

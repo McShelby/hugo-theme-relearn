@@ -1,24 +1,70 @@
 {{- /*
 Returns the options handed to `transform.ToMath` for the formulae of a page.
 
-They are read from the `math` map of the site's params, overwritten key by key
-by the `math` map of the page's front matter. `force` and `disable` belong to
-the dependency loader and are left out; so is `displayMode`, which every
-formula says for itself by its delimiters.
+They are read from the `math.toMath` map of the site's params, overwritten key
+by key by the one of the page's front matter. `displayMode` is left out, which
+every formula says for itself.
+
+Options set directly in `math` are deprecated but still read, each overwritten
+by the same option in `math.toMath` of the same level. `force` and `disable`
+belong to the dependency loader and are left out.
+
+Hugo lowercases the keys of params and so the names of macros; `macros` is
+therefore given as a list of name and definition pairs and turned into the map
+`transform.ToMath` expects. A map is still taken as it is. The macros of the
+page are added to the ones of the site, a macro of the same name replacing
+the site's. They are collected in a scratch, as `merge` takes names differing
+only in case for the same.
 
 `output` is always set and defaults to `mathml`, the only output that needs no
 stylesheet.
 */}}
 {{- $page := . }}
 {{- $options := dict }}
-{{- range slice (index site.Params "math") (index $page.Params "math") }}
-	{{- if reflect.IsMap . }}
-		{{- range $k, $v := . }}
-			{{- if not (in (slice "force" "disable" "displaymode") (lower $k)) }}
-				{{- $options = merge $options (dict (lower $k) $v) }}
+{{- $macros := newScratch }}
+{{- range $i, $math := slice (index site.Params "math") (index $page.Params "math") }}
+	{{- if reflect.IsMap $math }}
+		{{- $level := dict }}
+		{{- $levelMacros := "" }}
+		{{- range $k, $v := $math }}
+			{{- if eq (lower $k) "macros" }}
+				{{- $levelMacros = $v }}
+			{{- else if not (in (slice "force" "disable" "displaymode" "tomath") (lower $k)) }}
+				{{- $level = merge $level (dict (lower $k) $v) }}
 			{{- end }}
 		{{- end }}
+		{{- with index $math "tomath" }}
+			{{- if reflect.IsMap . }}
+				{{- range $k, $v := . }}
+					{{- if eq (lower $k) "macros" }}
+						{{- $levelMacros = $v }}
+					{{- else if ne (lower $k) "displaymode" }}
+						{{- $level = merge $level (dict (lower $k) $v) }}
+					{{- end }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+		{{- if reflect.IsMap $levelMacros }}
+			{{- range $name, $definition := $levelMacros }}
+				{{- $macros.SetInMap "macros" $name $definition }}
+			{{- end }}
+		{{- else if reflect.IsSlice $levelMacros }}
+			{{- range $levelMacros }}
+				{{- if and (reflect.IsSlice .) (eq (len .) 2) (eq (printf "%T" (index . 0)) "string") (eq (printf "%T" (index . 1)) "string") }}
+					{{- $macros.SetInMap "macros" (index . 0) (index . 1) }}
+				{{- else if $i }}
+					{{- $filepath := "[virtual file]" }}{{ with and $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+					{{- warnf "%q: WARNING front matter 'math.toMath.macros' with entry %q found, which is ignored as it is not a list of a name and a definition; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math/#providing-options-for-katex" $filepath (printf "%v" .) }}
+				{{- else }}
+					{{- warnf "WARNING option 'math.toMath.macros' with entry %q found, which is ignored as it is not a list of a name and a definition; see https://mcshelby.github.io/hugo-theme-relearn/shortcodes/math/#providing-options-for-katex" (printf "%v" .) }}
+				{{- end }}
+			{{- end }}
+		{{- end }}
+		{{- $options = merge $options $level }}
 	{{- end }}
+{{- end }}
+{{- with $macros.Get "macros" }}
+	{{- $options = merge $options (dict "macros" .) }}
 {{- end }}
 {{- $options = merge (dict "output" "mathml") $options }}
 {{- return $options }}
