@@ -24,7 +24,7 @@ To print params from a page's front matter and falling back to the site options,
 
 ### `editURL`
 
-{{% multishortcode name="siteparam" format="`editURL` value: %s" %}}
+{{% multishortcode name="siteparam" format="`editURL` value: `%s`" %}}
 name = "editURL"
 {{% /multishortcode %}}
 
