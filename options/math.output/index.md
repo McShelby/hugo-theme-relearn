@@ -1,2 +1,0 @@
-# Option :: Math.output
-

@@ -4,13 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.169.0">
-    <meta name="generator" content="Relearn 9.4.0+a58420a72b94f5ede8bf10cd13090b7fc7b71059">
+    <meta name="generator" content="Relearn 9.4.0+99c7b8ff584579fa49368dfbaa7debc34dd33fb7">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.5.0 (XXXX-XX-XX) Change Change Yer own topbar elements now receive th&#39; parameters o&#39; their configurat&#39;n as element, like th&#39; elements o&#39; th&#39; sidebar menus do. Th&#39; area they be written into be avail&#39;ble as config.
 If yer element template reads a parameter like .onwidths, change it t&#39; .element.onwidths. Read&#39;n th&#39; parameters directly still works but be deprecated an&#39; will stop work&#39;n wit&#39; 10.0.0. Templates only read&#39;n .page don’t need t&#39; be changed.
 If yer templates call one o&#39; th&#39; theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next t&#39; plank still work but issue a deprecat&#39;n warning.
 Change Th&#39; iconposit&#39;n parameter o&#39; th&#39; button shortcode be deprecated. Th&#39; ay&#39;con be always shown &#39;n front o&#39; th&#39; title.
-Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.">
+Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.
+Change Th&#39; math shortcode changes &#39;n preparat&#39;n fer 10.0.0. Each deprecated usage still works but issues a warning.
+Th&#39; shortcode, codefence an&#39; partial take yer formula without delimiters. Delimiters will be taken as part o&#39; yer formula wit&#39; 10.0.0. Remove th&#39; delimiters around yer formula. If they were inline delimiters, set th&#39; new displayMode option o&#39; th&#39; shortcode or partial t&#39; false t&#39; keep yer formula inline. A codefence always displays its formula as a block; fer an inline formula, use th&#39; shortcode instead.
+Th&#39; options o&#39; Hugo’s transform.ToMath funct&#39;n moved from math t&#39; math.toMath &#39;n yer project configurat&#39;n an&#39; front matter. Opt&#39;ns set directly &#39;n math, like math.output, will stop work&#39;n wit&#39; 10.0.0.
+Give math.toMath.macros as a list o&#39; name an&#39; definit&#39;n pairs. Cap&#39;n Hugo lowercases th&#39; names o&#39; a map, so a macro contain&#39;n uppercase letters can’t be used by its name. A map still works but issues a warning.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
@@ -19,7 +23,11 @@ Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will s
 If yer element template reads a parameter like .onwidths, change it t&#39; .element.onwidths. Read&#39;n th&#39; parameters directly still works but be deprecated an&#39; will stop work&#39;n wit&#39; 10.0.0. Templates only read&#39;n .page don’t need t&#39; be changed.
 If yer templates call one o&#39; th&#39; theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next t&#39; plank still work but issue a deprecat&#39;n warning.
 Change Th&#39; iconposit&#39;n parameter o&#39; th&#39; button shortcode be deprecated. Th&#39; ay&#39;con be always shown &#39;n front o&#39; th&#39; title.
-Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.">
+Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.
+Change Th&#39; math shortcode changes &#39;n preparat&#39;n fer 10.0.0. Each deprecated usage still works but issues a warning.
+Th&#39; shortcode, codefence an&#39; partial take yer formula without delimiters. Delimiters will be taken as part o&#39; yer formula wit&#39; 10.0.0. Remove th&#39; delimiters around yer formula. If they were inline delimiters, set th&#39; new displayMode option o&#39; th&#39; shortcode or partial t&#39; false t&#39; keep yer formula inline. A codefence always displays its formula as a block; fer an inline formula, use th&#39; shortcode instead.
+Th&#39; options o&#39; Hugo’s transform.ToMath funct&#39;n moved from math t&#39; math.toMath &#39;n yer project configurat&#39;n an&#39; front matter. Opt&#39;ns set directly &#39;n math, like math.output, will stop work&#39;n wit&#39; 10.0.0.
+Give math.toMath.macros as a list o&#39; name an&#39; definit&#39;n pairs. Cap&#39;n Hugo lowercases th&#39; names o&#39; a map, so a macro contain&#39;n uppercase letters can’t be used by its name. A map still works but issues a warning.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/pir/introduction/releasenotes/9/5/index.html">
     <meta property="og:site_name" content="Cap&#39;n Hugo Relearrrn Theme">
     <meta property="og:title" content="Version 9.5 :: Cap&#39;n Hugo Relearrrn Theme">
@@ -27,7 +35,11 @@ Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will s
 If yer element template reads a parameter like .onwidths, change it t&#39; .element.onwidths. Read&#39;n th&#39; parameters directly still works but be deprecated an&#39; will stop work&#39;n wit&#39; 10.0.0. Templates only read&#39;n .page don’t need t&#39; be changed.
 If yer templates call one o&#39; th&#39; theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next t&#39; plank still work but issue a deprecat&#39;n warning.
 Change Th&#39; iconposit&#39;n parameter o&#39; th&#39; button shortcode be deprecated. Th&#39; ay&#39;con be always shown &#39;n front o&#39; th&#39; title.
-Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.">
+Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.
+Change Th&#39; math shortcode changes &#39;n preparat&#39;n fer 10.0.0. Each deprecated usage still works but issues a warning.
+Th&#39; shortcode, codefence an&#39; partial take yer formula without delimiters. Delimiters will be taken as part o&#39; yer formula wit&#39; 10.0.0. Remove th&#39; delimiters around yer formula. If they were inline delimiters, set th&#39; new displayMode option o&#39; th&#39; shortcode or partial t&#39; false t&#39; keep yer formula inline. A codefence always displays its formula as a block; fer an inline formula, use th&#39; shortcode instead.
+Th&#39; options o&#39; Hugo’s transform.ToMath funct&#39;n moved from math t&#39; math.toMath &#39;n yer project configurat&#39;n an&#39; front matter. Opt&#39;ns set directly &#39;n math, like math.output, will stop work&#39;n wit&#39; 10.0.0.
+Give math.toMath.macros as a list o&#39; name an&#39; definit&#39;n pairs. Cap&#39;n Hugo lowercases th&#39; names o&#39; a map, so a macro contain&#39;n uppercase letters can’t be used by its name. A map still works but issues a warning.">
     <meta property="og:locale" content="art_x_pir">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
@@ -37,8 +49,12 @@ Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will s
 If yer element template reads a parameter like .onwidths, change it t&#39; .element.onwidths. Read&#39;n th&#39; parameters directly still works but be deprecated an&#39; will stop work&#39;n wit&#39; 10.0.0. Templates only read&#39;n .page don’t need t&#39; be changed.
 If yer templates call one o&#39; th&#39; theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next t&#39; plank still work but issue a deprecat&#39;n warning.
 Change Th&#39; iconposit&#39;n parameter o&#39; th&#39; button shortcode be deprecated. Th&#39; ay&#39;con be always shown &#39;n front o&#39; th&#39; title.
-Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.">
-    <meta itemprop="wordCount" content="208">
+Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will stop work&#39;n wit&#39; 10.0.0.
+Change Th&#39; math shortcode changes &#39;n preparat&#39;n fer 10.0.0. Each deprecated usage still works but issues a warning.
+Th&#39; shortcode, codefence an&#39; partial take yer formula without delimiters. Delimiters will be taken as part o&#39; yer formula wit&#39; 10.0.0. Remove th&#39; delimiters around yer formula. If they were inline delimiters, set th&#39; new displayMode option o&#39; th&#39; shortcode or partial t&#39; false t&#39; keep yer formula inline. A codefence always displays its formula as a block; fer an inline formula, use th&#39; shortcode instead.
+Th&#39; options o&#39; Hugo’s transform.ToMath funct&#39;n moved from math t&#39; math.toMath &#39;n yer project configurat&#39;n an&#39; front matter. Opt&#39;ns set directly &#39;n math, like math.output, will stop work&#39;n wit&#39; 10.0.0.
+Give math.toMath.macros as a list o&#39; name an&#39; definit&#39;n pairs. Cap&#39;n Hugo lowercases th&#39; names o&#39; a map, so a macro contain&#39;n uppercase letters can’t be used by its name. A map still works but issues a warning.">
+    <meta itemprop="wordCount" content="360">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.5 :: Cap&#39;n Hugo Relearrrn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/5/index.html" rel="alternate" hreflang="x-default">
@@ -53,7 +69,7 @@ Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will s
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.6b44e226622207f109401f1ad38cf06b9e575a86301020a39c87c69f8d8e9187.js"
+      "indexFile": "searchindex.pir.min.cda3f0c28d3ed04c5478a97d6a99f9eee76821eb6e0d35debcca28f7a520bbe7.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -368,7 +384,7 @@ Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will s
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/a58420a72b94f5ede8bf10cd13090b7fc7b71059" title="Relearn 9.4.0&#43;a58420a72b94f5ede8bf10cd13090b7fc7b71059"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.169.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/99c7b8ff584579fa49368dfbaa7debc34dd33fb7" title="Relearn 9.4.0&#43;99c7b8ff584579fa49368dfbaa7debc34dd33fb7"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.169.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -465,6 +481,12 @@ Th&#39; parameter still works but issues a deprecat&#39;n warning an&#39; will s
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Th' <code>iconposit'n</code> parameter o' th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html"><code>button</code> shortcode</a> be deprecated. Th' ay'con be always shown 'n front o' th' title.</p>
 <p>Th' parameter still works but issues a deprecat'n warning an' will stop work'n wit' 10.0.0.</p>
+</li>
+<li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/math/index.html"><code>math</code> shortcode</a> changes 'n preparat'n fer 10.0.0. Each deprecated usage still works but issues a warning.</p>
+<p>Th' shortcode, codefence an' partial take yer formula without delimiters. Delimiters will be taken as part o' yer formula wit' 10.0.0. Remove th' delimiters around yer formula. If they were inline delimiters, set th' new <code>displayMode</code> option o' th' shortcode or partial t' <code>false</code> t' keep yer formula inline. A codefence always displays its formula as a block; fer an inline formula, use th' shortcode instead.</p>
+<p>Th' options o' Hugo&rsquo;s <code>transform.ToMath</code> funct'n moved from <code>math</code> t' <a href="/hugo-theme-relearn/pir/shortcodes/math/index.html#providing-options-for-katex"><code>math.toMath</code></a> 'n yer project configurat'n an' front matter. Opt'ns set directly 'n <code>math</code>, like <code>math.output</code>, will stop work'n wit' 10.0.0.</p>
+<p>Give <code>math.toMath.macros</code> as a list o' name an' definit'n pairs. Cap'n Hugo lowercases th' names o' a map, so a macro contain'n uppercase letters can&rsquo;t be used by its name. A map still works but issues a warning.</p>
 </li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>

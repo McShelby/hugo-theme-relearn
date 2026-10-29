@@ -4,13 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.169.0">
-    <meta name="generator" content="Relearn 9.4.0+a58420a72b94f5ede8bf10cd13090b7fc7b71059">
+    <meta name="generator" content="Relearn 9.4.0+99c7b8ff584579fa49368dfbaa7debc34dd33fb7">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.5.0 (XXXX-XX-XX) Change Change Your own topbar elements now receive the parameters of their configuration as element, like the elements of the sidebar menus do. The area they are written into is available as config.
 If your element template reads a parameter like .onwidths, change it to .element.onwidths. Reading the parameters directly still works but is deprecated and will stop working with 10.0.0. Templates only reading .page don’t need to be changed.
 If your templates call one of the theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next to page still work but issue a deprecation warning.
 Change The iconposition parameter of the button shortcode is deprecated. The icon is always shown in front of the title.
-The parameter still works but issues a deprecation warning and will stop working with 10.0.0.">
+The parameter still works but issues a deprecation warning and will stop working with 10.0.0.
+Change The math shortcode changes in preparation for 10.0.0. Each deprecated usage still works but issues a warning.
+The shortcode, codefence and partial take your formula without delimiters. Delimiters will be taken as part of your formula with 10.0.0. Remove the delimiters around your formula. If they were inline delimiters, set the new displayMode option of the shortcode or partial to false to keep your formula inline. A codefence always displays its formula as a block; for an inline formula, use the shortcode instead.
+The options of Hugo’s transform.ToMath function moved from math to math.toMath in your project configuration and front matter. Options set directly in math, like math.output, will stop working with 10.0.0.
+Give math.toMath.macros as a list of name and definition pairs. Hugo lowercases the names of a map, so a macro containing uppercase letters can’t be used by its name. A map still works but issues a warning.">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
@@ -19,7 +23,11 @@ The parameter still works but issues a deprecation warning and will stop working
 If your element template reads a parameter like .onwidths, change it to .element.onwidths. Reading the parameters directly still works but is deprecated and will stop working with 10.0.0. Templates only reading .page don’t need to be changed.
 If your templates call one of the theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next to page still work but issue a deprecation warning.
 Change The iconposition parameter of the button shortcode is deprecated. The icon is always shown in front of the title.
-The parameter still works but issues a deprecation warning and will stop working with 10.0.0.">
+The parameter still works but issues a deprecation warning and will stop working with 10.0.0.
+Change The math shortcode changes in preparation for 10.0.0. Each deprecated usage still works but issues a warning.
+The shortcode, codefence and partial take your formula without delimiters. Delimiters will be taken as part of your formula with 10.0.0. Remove the delimiters around your formula. If they were inline delimiters, set the new displayMode option of the shortcode or partial to false to keep your formula inline. A codefence always displays its formula as a block; for an inline formula, use the shortcode instead.
+The options of Hugo’s transform.ToMath function moved from math to math.toMath in your project configuration and front matter. Options set directly in math, like math.output, will stop working with 10.0.0.
+Give math.toMath.macros as a list of name and definition pairs. Hugo lowercases the names of a map, so a macro containing uppercase letters can’t be used by its name. A map still works but issues a warning.">
     <meta property="og:url" content="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/5/index.html">
     <meta property="og:site_name" content="Hugo Relearn Theme">
     <meta property="og:title" content="Version 9.5 :: Hugo Relearn Theme">
@@ -27,7 +35,11 @@ The parameter still works but issues a deprecation warning and will stop working
 If your element template reads a parameter like .onwidths, change it to .element.onwidths. Reading the parameters directly still works but is deprecated and will stop working with 10.0.0. Templates only reading .page don’t need to be changed.
 If your templates call one of the theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next to page still work but issue a deprecation warning.
 Change The iconposition parameter of the button shortcode is deprecated. The icon is always shown in front of the title.
-The parameter still works but issues a deprecation warning and will stop working with 10.0.0.">
+The parameter still works but issues a deprecation warning and will stop working with 10.0.0.
+Change The math shortcode changes in preparation for 10.0.0. Each deprecated usage still works but issues a warning.
+The shortcode, codefence and partial take your formula without delimiters. Delimiters will be taken as part of your formula with 10.0.0. Remove the delimiters around your formula. If they were inline delimiters, set the new displayMode option of the shortcode or partial to false to keep your formula inline. A codefence always displays its formula as a block; for an inline formula, use the shortcode instead.
+The options of Hugo’s transform.ToMath function moved from math to math.toMath in your project configuration and front matter. Options set directly in math, like math.output, will stop working with 10.0.0.
+Give math.toMath.macros as a list of name and definition pairs. Hugo lowercases the names of a map, so a macro containing uppercase letters can’t be used by its name. A map still works but issues a warning.">
     <meta property="og:locale" content="en">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction">
@@ -37,8 +49,12 @@ The parameter still works but issues a deprecation warning and will stop working
 If your element template reads a parameter like .onwidths, change it to .element.onwidths. Reading the parameters directly still works but is deprecated and will stop working with 10.0.0. Templates only reading .page don’t need to be changed.
 If your templates call one of the theme’s elements like topbar/element/editbutton.html themselves, pass its parameters as element. Parameters given next to page still work but issue a deprecation warning.
 Change The iconposition parameter of the button shortcode is deprecated. The icon is always shown in front of the title.
-The parameter still works but issues a deprecation warning and will stop working with 10.0.0.">
-    <meta itemprop="wordCount" content="208">
+The parameter still works but issues a deprecation warning and will stop working with 10.0.0.
+Change The math shortcode changes in preparation for 10.0.0. Each deprecated usage still works but issues a warning.
+The shortcode, codefence and partial take your formula without delimiters. Delimiters will be taken as part of your formula with 10.0.0. Remove the delimiters around your formula. If they were inline delimiters, set the new displayMode option of the shortcode or partial to false to keep your formula inline. A codefence always displays its formula as a block; for an inline formula, use the shortcode instead.
+The options of Hugo’s transform.ToMath function moved from math to math.toMath in your project configuration and front matter. Options set directly in math, like math.output, will stop working with 10.0.0.
+Give math.toMath.macros as a list of name and definition pairs. Hugo lowercases the names of a map, so a macro containing uppercase letters can’t be used by its name. A map still works but issues a warning.">
+    <meta itemprop="wordCount" content="359">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <title>Version 9.5 :: Hugo Relearn Theme</title>
     <link href="https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/5/index.html" rel="alternate" hreflang="x-default">
@@ -53,7 +69,7 @@ The parameter still works but issues a deprecation warning and will stop working
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.8997d8800c4dd40ccea26a56c303f99d2877ab931e550bcf3436910c0a3f61d6.js"
+      "indexFile": "searchindex.en.min.7e3d1279bb955c0f68170f8859218cfcbb22a389f4be91301dab2fd3ed14cdb1.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -236,6 +252,12 @@ The parameter still works but issues a deprecation warning and will stop working
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The <code>iconposition</code> parameter of the <a href="/hugo-theme-relearn/shortcodes/button/index.html"><code>button</code> shortcode</a> is deprecated. The icon is always shown in front of the title.</p>
 <p>The parameter still works but issues a deprecation warning and will stop working with 10.0.0.</p>
+</li>
+<li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> The <a href="/hugo-theme-relearn/shortcodes/math/index.html"><code>math</code> shortcode</a> changes in preparation for 10.0.0. Each deprecated usage still works but issues a warning.</p>
+<p>The shortcode, codefence and partial take your formula without delimiters. Delimiters will be taken as part of your formula with 10.0.0. Remove the delimiters around your formula. If they were inline delimiters, set the new <code>displayMode</code> option of the shortcode or partial to <code>false</code> to keep your formula inline. A codefence always displays its formula as a block; for an inline formula, use the shortcode instead.</p>
+<p>The options of Hugo&rsquo;s <code>transform.ToMath</code> function moved from <code>math</code> to <a href="/hugo-theme-relearn/shortcodes/math/index.html#providing-options-for-katex"><code>math.toMath</code></a> in your project configuration and front matter. Options set directly in <code>math</code>, like <code>math.output</code>, will stop working with 10.0.0.</p>
+<p>Give <code>math.toMath.macros</code> as a list of name and definition pairs. Hugo lowercases the names of a map, so a macro containing uppercase letters can&rsquo;t be used by its name. A map still works but issues a warning.</p>
 </li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>

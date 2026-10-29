@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.169.0">
-    <meta name="generator" content="Relearn 9.4.0+a58420a72b94f5ede8bf10cd13090b7fc7b71059">
+    <meta name="generator" content="Relearn 9.4.0+99c7b8ff584579fa49368dfbaa7debc34dd33fb7">
     <meta name="description" content="What&#39;s new in this version">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
     <meta property="og:image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="name" content="What&#39;s New :: Cap&#39;n Hugo Relearrrn Theme">
     <meta itemprop="description" content="What&#39;s new in this version">
-    <meta itemprop="wordCount" content="4292">
+    <meta itemprop="wordCount" content="4444">
     <meta itemprop="image" content="https://mcshelby.github.io/hugo-theme-relearn/images/hero.png">
     <meta itemprop="keywords" content="Explanation">
     <title>What&#39;s New :: Cap&#39;n Hugo Relearrrn Theme</title>
@@ -37,7 +37,7 @@
     <script src="/hugo-theme-relearn/js/search-lunr.min.9897ffe790e716e8b90e4a9e200dce63c2603e69a9eec9bbdce6a483811ea180.js" defer></script>
     <script src="/hugo-theme-relearn/js/search.min.4bcf60afa00d9f5c3adf08ff55811ce4cc679bd6d4b5747d674667994ee1debb.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.6b44e226622207f109401f1ad38cf06b9e575a86301020a39c87c69f8d8e9187.js"
+      "indexFile": "searchindex.pir.min.cda3f0c28d3ed04c5478a97d6a99f9eee76821eb6e0d35debcca28f7a520bbe7.js"
     }</script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.min.75e90b6cec204a54a07060b42ec82f3816430c63ffd689d1e9771f469dc493dd.js" defer></script>
     <script src="/hugo-theme-relearn/js/lunr/lunr.stemmer.support.min.5ff7b6bd53462911fc1311c09f654085b748338aced249e719c0b16fda0b90fb.js" defer></script>
@@ -350,7 +350,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/a58420a72b94f5ede8bf10cd13090b7fc7b71059" title="Relearn 9.4.0&#43;a58420a72b94f5ede8bf10cd13090b7fc7b71059"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.169.0">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/99c7b8ff584579fa49368dfbaa7debc34dd33fb7" title="Relearn 9.4.0&#43;99c7b8ff584579fa49368dfbaa7debc34dd33fb7"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.169.0">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -505,6 +505,12 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Th' <code>iconposit'n</code> parameter o' th' <a href="/hugo-theme-relearn/pir/shortcodes/button/index.html"><code>button</code> shortcode</a> be deprecated. Th' ay'con be always shown 'n front o' th' title.</p>
 <p>Th' parameter still works but issues a deprecat'n warning an' will stop work'n wit' 10.0.0.</p>
 </li>
+<li>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Th' <a href="/hugo-theme-relearn/pir/shortcodes/math/index.html"><code>math</code> shortcode</a> changes 'n preparat'n fer 10.0.0. Each deprecated usage still works but issues a warning.</p>
+<p>Th' shortcode, codefence an' partial take yer formula without delimiters. Delimiters will be taken as part o' yer formula wit' 10.0.0. Remove th' delimiters around yer formula. If they were inline delimiters, set th' new <code>displayMode</code> option o' th' shortcode or partial t' <code>false</code> t' keep yer formula inline. A codefence always displays its formula as a block; fer an inline formula, use th' shortcode instead.</p>
+<p>Th' options o' Hugo&rsquo;s <code>transform.ToMath</code> funct'n moved from <code>math</code> t' <a href="/hugo-theme-relearn/pir/shortcodes/math/index.html#providing-options-for-katex"><code>math.toMath</code></a> 'n yer project configurat'n an' front matter. Opt'ns set directly 'n <code>math</code>, like <code>math.output</code>, will stop work'n wit' 10.0.0.</p>
+<p>Give <code>math.toMath.macros</code> as a list o' name an' definit'n pairs. Cap'n Hugo lowercases th' names o' a map, so a macro contain'n uppercase letters can&rsquo;t be used by its name. A map still works but issues a warning.</p>
+</li>
 </ul>
 <h3 id="new">New<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
@@ -552,12 +558,12 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Level one head'ns, th' section titles o' th' sidebar menu an' th' title o' th' <a href="/hugo-theme-relearn/pir/shortcodes/openapi/index.html"><code>openapi</code> shortcode</a> be no longer forced t' uppercase but show as written. Th' uppercase look, inherited from th' Learrrn theme, became iconic fer this theme, but it be strongly opinionated an' looks strange wit' many fonts, especially script an' serif fonts.</p>
 <p>If ye want t' keep th' iconic look fer head'ns an' th' sidebar menu, add th' follow'n t' yer <a href="/hugo-theme-relearn/pir/configuration/customization/extending/index.html#simple-solution"><code>assets/css/custom.css</code></a>:</p>
-<div class="tab-panel" data-tab-group="R-tabs-81bef38a80077c142167a31fda363c40">
+<div class="tab-panel" data-tab-group="R-tabs-1e7b7fa5e67397496faba8cc47bc14a3">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-b3641974db4e2d001404a1081e317441-tab" aria-controls="R-tab-id-b3641974db4e2d001404a1081e317441" aria-selected="true"
+        role="tab" id="R-tab-id-c5c6f08d3f268797a7d087c349ea3455-tab" aria-controls="R-tab-id-c5c6f08d3f268797a7d087c349ea3455" aria-selected="true"
         data-tab-item="R-tab-311a161192e4ffa168423a7a9943b548"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -567,7 +573,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-b3641974db4e2d001404a1081e317441" role="tabpanel" aria-labelledby="R-tab-id-b3641974db4e2d001404a1081e317441-tab"
+      id="R-tab-id-c5c6f08d3f268797a7d087c349ea3455" role="tabpanel" aria-labelledby="R-tab-id-c5c6f08d3f268797a7d087c349ea3455-tab"
       data-tab-item="R-tab-311a161192e4ffa168423a7a9943b548"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -750,12 +756,12 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Assets be now busted by their rrrambl'n instead o' by th' time o' yer build, so a visitor only refetches what actually changed.</p>
 <p>Formerly every build appended a new id t' each asset&rsquo;s URL, empty'n a visitor&rsquo;s cache on each deployment even when no asset was different. If ye referenced assets from yer own partials, <code>assetbust'n.gotmpl</code> be replaced by <code>asset.gotmpl</code>, which takes a resource an' returns it ready t' be linked. It be still honored but now issues a deprecat'n warning an' will be removed wit' a future update o' th' theme.</p>
-<div class="tab-panel" data-tab-group="R-tabs-cf6d91514aa9cf3a1ef2cbac2e6a5871">
+<div class="tab-panel" data-tab-group="R-tabs-e5d1d2cda9f3f463362e771d2688fc37">
   <div class="tab-nav">
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-a62097e34317972666e1d69f90f3625b-tab" aria-controls="R-tab-id-a62097e34317972666e1d69f90f3625b" aria-selected="true"
+        role="tab" id="R-tab-id-ada12b777cbd15c48b0edd226a116d52-tab" aria-controls="R-tab-id-ada12b777cbd15c48b0edd226a116d52" aria-selected="true"
         data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
@@ -765,7 +771,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-a62097e34317972666e1d69f90f3625b" role="tabpanel" aria-labelledby="R-tab-id-a62097e34317972666e1d69f90f3625b-tab"
+      id="R-tab-id-ada12b777cbd15c48b0edd226a116d52" role="tabpanel" aria-labelledby="R-tab-id-ada12b777cbd15c48b0edd226a116d52-tab"
       data-tab-item="R-tab-9d4cc6bb0d840c16e06ccc32f8403c2a"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -812,21 +818,21 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
     <div class="tab-nav-title">&#8203;</div>
     <div class="tab-nav-list" role="tablist">
       <button
-        role="tab" id="R-tab-id-05801a7292e58630bc27502bda4db1e9-tab" aria-controls="R-tab-id-05801a7292e58630bc27502bda4db1e9" aria-selected="true"
+        role="tab" id="R-tab-id-8f0c42b39202ae9abdd6a8c94c208499-tab" aria-controls="R-tab-id-8f0c42b39202ae9abdd6a8c94c208499" aria-selected="true"
         data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
         class="tab-nav-button tab-panel-style cstyle code active" tabindex="0"
       >
         <span class="tab-nav-text">yaml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-9d2911a4fef705d4abef36ff6e1965c8-tab" aria-controls="R-tab-id-9d2911a4fef705d4abef36ff6e1965c8" aria-selected="false"
+        role="tab" id="R-tab-id-1c39fade0708f8b05199474513ee9e17-tab" aria-controls="R-tab-id-1c39fade0708f8b05199474513ee9e17" aria-selected="false"
         data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
         <span class="tab-nav-text">toml</span>
       </button>
       <button
-        role="tab" id="R-tab-id-2207e9cf582a748831b88979715c56d6-tab" aria-controls="R-tab-id-2207e9cf582a748831b88979715c56d6" aria-selected="false"
+        role="tab" id="R-tab-id-a48dee1e378f14a3efb6e09ee4564d1f-tab" aria-controls="R-tab-id-a48dee1e378f14a3efb6e09ee4564d1f" aria-selected="false"
         data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
         class="tab-nav-button tab-panel-style cstyle code" tabindex="-1"
       >
@@ -836,7 +842,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
   </div>
   <div class="tab-content-container">
     <div
-      id="R-tab-id-05801a7292e58630bc27502bda4db1e9" role="tabpanel" aria-labelledby="R-tab-id-05801a7292e58630bc27502bda4db1e9-tab"
+      id="R-tab-id-8f0c42b39202ae9abdd6a8c94c208499" role="tabpanel" aria-labelledby="R-tab-id-8f0c42b39202ae9abdd6a8c94c208499-tab"
       data-tab-item="R-tab-6eedc03a68a69933c763e674f2d7c42f"
       class="tab-content tab-panel-style cstyle code active codify">
       <div class="tab-content-text">
@@ -845,7 +851,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-9d2911a4fef705d4abef36ff6e1965c8" role="tabpanel" aria-labelledby="R-tab-id-9d2911a4fef705d4abef36ff6e1965c8-tab"
+      id="R-tab-id-1c39fade0708f8b05199474513ee9e17" role="tabpanel" aria-labelledby="R-tab-id-1c39fade0708f8b05199474513ee9e17-tab"
       data-tab-item="R-tab-ec18ad9a83c312380533fa93ac6fc61c"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
@@ -854,7 +860,7 @@ See the <a href="/hugo-theme-relearn/pir/introduction/changelog/index.html">chan
       </div>
     </div>
     <div
-      id="R-tab-id-2207e9cf582a748831b88979715c56d6" role="tabpanel" aria-labelledby="R-tab-id-2207e9cf582a748831b88979715c56d6-tab"
+      id="R-tab-id-a48dee1e378f14a3efb6e09ee4564d1f" role="tabpanel" aria-labelledby="R-tab-id-a48dee1e378f14a3efb6e09ee4564d1f-tab"
       data-tab-item="R-tab-466deec76ecdf5fca6d38571f6324d54"
       class="tab-content tab-panel-style cstyle code codify">
       <div class="tab-content-text">
