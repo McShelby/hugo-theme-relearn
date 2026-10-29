@@ -46,6 +46,10 @@
 {{- $icon = $boxStyle.icon }}
 {{- $title = $boxStyle.title }}
 
+{{- if .iconposition }}
+  {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}
+  {{- warnf "%q: DEPRECATED parameter 'iconposition' or 'icon-position' for shortcode 'button' found, remove it as the icon is always shown in front of the title; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/9/#9-5-0" $filepath }}
+{{- end }}
 {{- $iconposition := .iconposition | default "left" }}
 
 {{- $params := dict }}
