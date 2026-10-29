@@ -1834,11 +1834,15 @@ tbody > tr:nth-child(even) > td {
   position: absolute;
   text-align: center;
 }
+/* the arrow is centered in the square, so the number is placed from its middle,
+   not from the edges, which move with the padding of the button; above the
+   arrow, the box of the number may reach into its half, as the part of the box
+   below the baseline stays empty */
 .sortable-table .fa-sort-up + .sort-rank {
-  bottom: 0.45em;
+  top: 50%;
 }
 .sortable-table .fa-sort-down + .sort-rank {
-  top: 0.45em;
+  bottom: calc(50% - 0.1em);
 }
 .sort-reset-button.btn {
   display: none;
