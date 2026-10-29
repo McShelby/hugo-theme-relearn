@@ -94,8 +94,8 @@ Passthrough syntax lets you write math without enclosing it in a shortcode or Ma
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
-          inline = [['\(', '\)'], ['$',  '$']]
-          block  = [['\[', '\]'], ['$$', '$$']]
+          inline = [['$',  '$']]
+          block  = [['$$', '$$']]
 {{< /multiconfig >}}
 
 [See the example](#examples) on how a Passthrough configurations makes using math really easy.
