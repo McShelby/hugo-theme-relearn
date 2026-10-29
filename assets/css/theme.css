@@ -1555,8 +1555,8 @@ div.highlight > div:not(.actionbar) {
 /* remove default style for usual markdown tables */
 div.highlight > div:not(.actionbar) table {
   background-color: transparent;
+  border-radius: 0;
   border-width: 0;
-  clip-path: none;
   margin: 0;
 }
 div.highlight > div:not(.actionbar) table::after {
@@ -1649,13 +1649,17 @@ hr {
 
 table {
   background-color: var(--INTERNAL-MAIN-BG-color);
-  /* a table of collapsed borders ignores a border radius; so its outer border is
-     left out, its corners are cut off and the frame is drawn on top instead */
-  border-collapse: collapse;
-  border-style: hidden;
-  clip-path: inset(0 round var(--block-radius));
+  /* Firefox paints the sticky header row over collapsed borders; so each cell
+     draws the borders at its end and bottom, the corners are cut off and the
+     frame is drawn on top, covering those along the edges of the table; the
+     corners are cut by overflow, as a clip path cuts off the frame at an edge
+     between two device pixels */
+  border-collapse: separate;
+  border-radius: var(--block-radius);
+  border-spacing: 0;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  overflow: clip;
   width: 100%;
 }
 table::after {
@@ -1676,13 +1680,15 @@ th {
 th,
 thead td {
   background-color: color-mix(in srgb, var(--INTERNAL-BOX-NEUTRAL-color) 30%, transparent);
-  border: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
+  border-bottom: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
+  border-inline-end: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
   padding: 0.5rem;
   print-color-adjust: exact;
 }
 
 td {
-  border: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
+  border-bottom: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
+  border-inline-end: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
   padding: 0.5rem;
 }
 
