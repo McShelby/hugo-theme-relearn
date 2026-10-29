@@ -10,6 +10,10 @@
 
   If your templates call one of the theme's elements like `topbar/element/editbutton.html` themselves, pass its parameters as `element`. Parameters given next to `page` still work but issue a deprecation warning.
 
+- {{% badge style="change" %}}Change{{% /badge %}} The `iconposition` parameter of the [`button` shortcode](shortcodes/button) is deprecated. The icon is always shown in front of the title.
+
+  The parameter still works but issues a deprecation warning and will stop working with 10.0.0.
+
 ### New
 
 - {{% badge style="new" %}}New{{% /badge %}} The [image effects](authoring/linking/imageeffects) `height` and `width` can now be set in your project configuration or a page's front matter, to give all images of your site or page a default size.

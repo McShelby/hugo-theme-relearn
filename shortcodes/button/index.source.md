@@ -40,8 +40,7 @@ The `button` shortcode displays a clickable button with adjustable color, title 
 | **hint**              | _&lt;empty&gt;_ | Tooltip for the button. |
 | **style**             | `transparent`   | The style scheme used for the button.<br><br>- by severity: `caution`, `important`, `info`, `note`, `tip`, `warning`<br>- by brand color: `primary`, `secondary`, `accent`<br>- by color: `blue`, `cyan`, `green`, `grey`, `magenta`, `orange`, `purple`, `red`, `yellow`<br>- by special color: `default`, `transparent`, `code`, `link`, `action`, `inline`<br><br>You can also [define your own styles](shortcodes/callout#defining-own-styles). |
 | **color**             | see notes       | The [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) to be used. If not set, the chosen color depends on the **style**. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching color for the severity<br>- for all other styles: the corresponding color |
-| **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) set to the left of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
-| **iconposition**      | `left`          | Places the icon to the `left` or `right` of the title. |
+| **icon**              | see notes       | [Font Awesome icon name](shortcodes/icon#finding-an-icon) shown in front of the title. Depending on the **style** there may be a default icon. Any given value will overwrite the default.<br><br>- for severity styles: a nice matching icon for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no icon for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 | _**&lt;content&gt;**_ | see notes       | Arbitrary text for the button title. Depending on the **style** there may be a default title. Any given value will overwrite the default.<br><br>- for severity styles: the matching title for the severity<br>- for all other styles: _&lt;empty&gt;_<br><br>If you want no title for a severity style, you have to set this parameter to `" "` (a non empty string filled with spaces) |
 
 ## Examples
@@ -193,21 +192,12 @@ Mouse-over the button to see the hint.
   hint: "Go to Hugo's homepage"
 {{% /multishortcode %}}  
 
-#### To the Left
+#### With Title
 
 {{% multishortcode name="button" format="%s" %}}
 - content: "Get Hugo"
   href: "https://gohugo.io/"
   icon: "download"
-{{% /multishortcode %}}
-
-#### To the Right
-
-{{% multishortcode name="button" format="%s" %}}
-- content: "Get Hugo"
-  href: "https://gohugo.io/"
-  icon: "download"
-  iconposition: "right"
 {{% /multishortcode %}}
 
 #### Override for Severity
