@@ -14,6 +14,12 @@ options:
 - topbarmiddle
 - topbarmore
 - topbarstart
+outputs:
+- html
+- rss
+- print
+- markdown
+- source
 title: Topbar
 weight: 5
 ---

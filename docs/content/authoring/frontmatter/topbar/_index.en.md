@@ -18,6 +18,12 @@ options:
 - disablePrintButton
 - disableToc
 - editURL
+outputs:
+- html
+- rss
+- print
+- markdown
+- source
 title: Topbar
 weight: 4
 ---
