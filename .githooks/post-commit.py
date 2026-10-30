@@ -28,7 +28,23 @@ import os
 import re
 import subprocess
 
+def is_special_git_operation():
+    git_dir = subprocess.check_output(['git', 'rev-parse', '--git-dir'], universal_newlines=True).strip()
+    indicators = [
+        os.path.join(git_dir, 'rebase-merge'),
+        os.path.join(git_dir, 'rebase-apply'),
+        os.path.join(git_dir, 'CHERRY_PICK_HEAD'),
+        os.path.join(git_dir, 'MERGE_HEAD'),
+        os.path.join(git_dir, 'BISECT_LOG'),
+        os.path.join(git_dir, 'REVERT_HEAD'),
+    ]
+    return any(os.path.exists(ind) for ind in indicators)
+
 def update_version(script_name, log_file, time, repo_name):
+    if is_special_git_operation():
+        print(f'{time}: {repo_name} - {script_name} - Skipping during rebase/cherry-pick/merge', file=open(log_file, "a"))
+        return
+
     # before 10.0.0, the theme keeps its partials in Hugo's old directory
     file_path = 'layouts/_partials/version.txt'
     if not os.path.exists(file_path):
