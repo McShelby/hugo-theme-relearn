@@ -537,7 +537,8 @@ var variants = {
       return content;
     }.bind(this);
 
-    var graph = 'flowchart LR\n' + generateSubgraph(this.structure, '  ') + this.variantvariables.reduce((a, e) => a + this.generateGraphVarGroupedEdge(e), '') + g_handler;
+    // ELK packs the nested subgraphs into a block too dense to read
+    var graph = '---\nconfig:\n  layout: dagre\n---\nflowchart LR\n' + generateSubgraph(this.structure, '  ') + this.variantvariables.reduce((a, e) => a + this.generateGraphVarGroupedEdge(e), '') + g_handler;
 
     console.log(graph);
     return graph;
@@ -749,7 +750,7 @@ var variants = {
             color: 'MAIN-BG-color',
             variables: [
               { name: 'BROWSER-theme', default: 'light', tooltip: 'name of the theme for controls drawn by the browser like form fields' },
-              { name: 'MERMAID-theme', default: 'default', tooltip: 'name of the default Mermaid theme for this variant, can be overridden in your project configuration' },
+              { name: 'MERMAID-theme', default: 'redux-color', tooltip: 'name of the default Mermaid theme for this variant, can be overridden in your project configuration' },
               { name: 'OPENAPI-theme', default: 'light', tooltip: 'name of the default OpenAPI theme for this variant, can be overridden in your project configuration' },
               { name: 'OPENAPI-CODE-theme', default: 'obsidian', tooltip: 'name of the default OpenAPI code theme for this variant, can be overridden in your project configuration' },
             ],
