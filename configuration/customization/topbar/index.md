@@ -158,7 +158,7 @@ The function only knows what your template passes to it. So pass on the [screen 
   {{- partial "topbar/func/button.html" (dict
     "page" .
     "class" "topbar-button-home"
-    "href" (partial "permalink.gotmpl" (dict "to" site.Home))
+    "linkObject" site.Home
     "icon" "home"
     "title" ($element.label | default "Home")
     "hint" "Home"
@@ -309,6 +309,7 @@ For displaying an area in the button's overlay, see [Area-Button](#area-button).
 | **page**              | _&lt;empty&gt;_ | Mandatory reference to the page. |
 | **class**             | _&lt;empty&gt;_ | Mandatory unique class name for this button. Displaying two buttons with the same value for **class** is undefined. |
 | **href**              | _&lt;empty&gt;_ | Either the destination URL for the button or JavaScript code to be executed on click.<br><br>- If starting with `javascript:` all following text will be executed in your browser<br>- Every other string will be interpreted as URL<br>- If empty and no **action** is set, the button will be displayed in a disabled state regardless of its **content** |
+| **linkObject**        | _&lt;empty&gt;_ | A page, a resource or an output format of a page the button links to, instead of an **href**. Prefer it if your template already holds the page, as its link is written without looking the page up again. If empty and neither **href** nor **action** is set, the button will be displayed in a disabled state regardless of its **content** |
 | **action**            | _&lt;empty&gt;_ | Name of the action to execute on click, handled by a script instead of inline JavaScript, so it works with a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP). If set, **href** is not needed.<br><br>- `toggle-flyout`: shows or hides the content overlay<br>- `toggle-nav`: shows or hides the sidebar menu<br>- any other name: execute your own code, see the [button shortcode](shortcodes/button#button-with-own-action) |
 | **istoggle**          | `false`         | If `true`, the button announces to assistive technology that it shows and hides something. Set it if your **action** is `toggle-flyout` or `toggle-nav`. For your own action, see the [button shortcode](shortcodes/button#toggle-button). |
 | **icon**              | _&lt;empty&gt;_ | [Font Awesome icon name](shortcodes/icon#finding-an-icon). |
