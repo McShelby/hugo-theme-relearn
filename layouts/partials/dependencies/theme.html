@@ -45,7 +45,7 @@
     {{- $versions := partialCached "_relearn/siteVersions.gotmpl" site.Home }}
     {{- if and $versions (le (len (site.Home.Rotate "version")) 1) }}
       {{- $versionIndexUrl = trim (or site.Params.versionIndexURL "versionindex.js") "/" }}
-      {{- $versionIndexUrl = path.Join (path.Dir $versionIndexUrl) (print (path.BaseName $versionIndexUrl) "." site.Language.Lang (path.Ext $versionIndexUrl)) }}
+      {{- $versionIndexUrl = path.Join (path.Dir $versionIndexUrl) (print (path.BaseName $versionIndexUrl) "." site.Language.Name (path.Ext $versionIndexUrl)) }}
       {{- if .IsHome }}
         {{- $templateres := resources.Get "/_relearn_versionindex.js" }}
         {{- $resultres := $templateres | resources.ExecuteAsTemplate $versionIndexUrl site.Home }}

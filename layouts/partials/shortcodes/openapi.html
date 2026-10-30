@@ -8,9 +8,9 @@
 {{- $u := urls.Parse $url }}
 {{- $src := $u.String }}
 {{- $spec := "" }}
-{{- $lang := .lang | default $page.Language.Lang }}
+{{- $lang := .lang | default $page.Language.Name }}
 {{- $site := $page.Site }}
-{{- with where hugo.Sites "Language.Lang" "eq" $lang }}
+{{- with where hugo.Sites "Language.Name" "eq" $lang }}
   {{- $site = index . 0 }}
 {{- else }}
   {{- $filepath := "[virtual file]" }}{{ with and $page $page.File $page.File.Filename }}{{ $filepath = . }}{{ end }}

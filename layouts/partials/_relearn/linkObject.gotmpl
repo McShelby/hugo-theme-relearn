@@ -19,7 +19,7 @@
 	{{- /* is it a legacy link into another translation? */}}
 	{{- if strings.HasPrefix $path "/" }}
 		{{- range hugo.Sites }}
-			{{- $lang = .Language.Lang }}
+			{{- $lang = .Language.Name }}
 			{{- $prefix := printf "/%s" $lang }}
 			{{- $suffix := strings.TrimPrefix $prefix $path | default "/" }}
 			{{- /* with the second check we check if the prefix was finished;
@@ -36,21 +36,21 @@
 		{{- end }}
 	{{- end }}
 	{{- if not $transSite }}
-		{{- $lang = $site.Language.Lang }}
+		{{- $lang = $site.Language.Name }}
 		{{- $transSite = $site }}
 		{{- $transPage = $page }}
 	{{- end }}
 {{- else if $lang }}
 	{{- /* the same site in another language of Hugo's sites matrix */}}
 	{{- range $site.Home.Rotate "language" }}
-		{{- if eq .Site.Language.Lang $lang }}
+		{{- if eq .Site.Language.Name $lang }}
 			{{- $transSite = .Site }}
 			{{- $transPage = $transSite.GetPage $page.Path }}
 			{{- break }}
 		{{- end }}
 	{{- end }}
 {{- else }}
-	{{- $lang = $site.Language.Lang }}
+	{{- $lang = $site.Language.Name }}
 	{{- $transSite = $site }}
 	{{- $transPage = $page }}
 {{- end }}

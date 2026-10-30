@@ -11,9 +11,9 @@
                 <span>&nbsp;</span>
                 <div class="control-style">
                   <select aria-label="{{ T "Language" }}">
-                    {{- $pageLang := .page.Language.Lang }}
+                    {{- $pageLang := .page.Language.Name }}
                     {{- range .page.AllTranslations }}
-                    <option value="{{ .Language.Lang }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.Locale }}"{{ if eq $pageLang .Language.Lang }} selected data-selected{{ end }}>{{ .Language.Label }}</option>
+                    <option value="{{ .Language.Name }}" data-url="{{ partial "permalink.gotmpl" (dict "to" .) }}" lang="{{ .Language.Locale }}"{{ if eq $pageLang .Language.Name }} selected data-selected{{ end }}>{{ .Language.Label }}</option>
                     {{- end }}
                   </select>
                 </div>
