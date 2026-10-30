@@ -2,8 +2,9 @@
 
 # Purpose:
 #
-# - updates the version file "layouts/partials/version.txt" with the latest
-#   available commit hash after committing
+# - updates the version file "layouts/_partials/version.txt" with the latest
+#   available commit hash after committing; before 10.0.0, the file is at
+#   "layouts/partials/version.txt"
 #
 # Installation:
 #
@@ -28,7 +29,10 @@ import re
 import subprocess
 
 def update_version(script_name, log_file, time, repo_name):
-    file_path = 'layouts/partials/version.txt'
+    # before 10.0.0, the theme keeps its partials in Hugo's old directory
+    file_path = 'layouts/_partials/version.txt'
+    if not os.path.exists(file_path):
+        file_path = 'layouts/partials/version.txt'
     try:
         f = open(file_path, 'r+')
     except OSError as e:
