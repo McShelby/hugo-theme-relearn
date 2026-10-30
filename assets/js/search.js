@@ -13,7 +13,33 @@
 
   window.relearn = window.relearn || {};
 
+  // the adapter tells it is ready by calling executeInitialSearch; until then a
+  // search waits instead of answering, as the suggestions keep what they got
+  var resolveSearchEngine;
+  var searchEngineReady = new Promise(function (resolve) {
+    resolveSearchEngine = resolve;
+  });
+
+  // the index may be large, so it is only loaded once a search is about to happen
+  var isSearchEngineRequested = false;
+  function requestSearchEngine() {
+    if (isSearchEngineRequested || !window.relearn.search || !window.relearn.search.adapter) {
+      return;
+    }
+    isSearchEngineRequested = true;
+    // the adapters expect the index URL and its integrity as globals; our data block
+    // is the same for every page, so it knows the index's path from the site's root
+    // and we put the page's own way up there in front of it
+    var config = JSON.parse(document.querySelector('#R-search-config').textContent);
+    window.relearn.index_js_url = window.relearn.relBasePath + '/' + config.indexFile;
+    window.relearn.index_js_integrity = config.indexIntegrity;
+    window.relearn.search.adapter.init();
+  }
+
   window.relearn.executeInitialSearch = function executeInitialSearch() {
+    if (window.relearn.isSearchEngineReady) {
+      resolveSearchEngine();
+    }
     if (window.relearn.isSearchInterfaceReady && window.relearn.isSearchEngineReady) {
       var input = document.querySelector('#R-search-by-detail');
       if (!input) {
@@ -157,6 +183,8 @@
       print.href = printUrl;
     }
     (async function () {
+      requestSearchEngine();
+      await searchEngineReady;
       var a = await window.relearn.search.adapter.search(value);
       if (a.length) {
         hint.innerText = resolvePlaceholders(window.T_N_results_found, [value, a.length]);
@@ -188,16 +216,11 @@
     if (!window.relearn.search || !window.relearn.search.adapter) {
       return;
     }
-    // the adapters expect the index URL and its integrity as globals; our data block
-    // is the same for every page, so it knows the index's path from the site's root
-    // and we put the page's own way up there in front of it
-    var config = JSON.parse(document.querySelector('#R-search-config').textContent);
-    window.relearn.index_js_url = window.relearn.relBasePath + '/' + config.indexFile;
-    window.relearn.index_js_integrity = config.indexIntegrity;
-    window.relearn.search.adapter.init();
 
     var input = document.querySelector('#R-search-by-detail');
     if (input) {
+      // the search page is there to show results, so it needs the index right away
+      requestSearchEngine();
       var state = window.history.state || {};
       state = Object.assign({}, typeof state === 'object' ? state : {});
       state.search = window.location.toString();
@@ -206,6 +229,9 @@
 
     // each search box gets its own suggestions and its own status
     document.querySelectorAll('.searchbox input.search-by').forEach(function (box) {
+      // a reader putting the focus into the box is about to search, so the index
+      // has its head start while the term is still typed
+      box.addEventListener('focus', requestSearchEngine, { once: true });
       var status = null;
       new autoComplete({
         /* selector for the search box element */
@@ -213,6 +239,8 @@
         selector: box,
         /* source is the callback to perform the search */
         source: async function (term, response) {
+          requestSearchEngine();
+          await searchEngineReady;
           let a = await window.relearn.search.adapter.search(term);
           response(a);
           if (status) {

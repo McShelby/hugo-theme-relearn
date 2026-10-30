@@ -6,7 +6,8 @@ The search adapter needs to provide the following functions that are called from
 
 ## init()
 
-Initialize the search engine and the search index
+Initialize the search engine and the search index; called once, not before a
+search is about to happen
 
 ### Parameters
 
