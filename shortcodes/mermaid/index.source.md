@@ -301,6 +301,28 @@ content: |
     test_entity - satisfies -> test_req
 {{% /multishortcode %}}
 
+### Use Case
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  usecase-beta
+  direction LR
+  actor Customer
+  actor Support
+  systemBoundary Storefront
+    Browse("Browse catalogue")
+    Checkout("Checkout")
+  end
+  systemBoundary Fulfilment
+    Track("Track delivery")
+  end
+  Customer --> Browse
+  Customer --> Checkout
+  Customer --> Track
+  Support --> Track
+  Checkout ..> : include Browse
+{{% /multishortcode %}}
+
 ### Git Graph
 
 {{% multishortcode name="mermaid" %}}
@@ -557,6 +579,22 @@ content: |
 
     max 100
     min 0
+{{% /multishortcode %}}
+
+### Event Modeling
+
+{{% multishortcode name="mermaid" %}}
+content: |
+  eventmodeling
+
+  tf 01 ui CartUI
+  tf 02 cmd AddItem { description: string }
+  tf 03 evt ItemAdded { description: string }
+
+  rf 04 evt External.InventoryChanged
+  tf 05 pcr InventoryProcessor
+  tf 06 cmd ChangeInventory
+  tf 07 evt Cart.InventoryChanged
 {{% /multishortcode %}}
 
 ### Treemap
