@@ -14,6 +14,7 @@
 {{- $isButton := false }}
 {{- $isLink := false }}
 {{- $href := (trim .href " ") | default "" }}
+{{- $linkObject := .linkObject }}
 {{- $code := partial "_relearn/urlScriptCode.gotmpl" $href }}
 {{- $isScript := ne $code false }}
 {{- if or $type $action $isScript }}
@@ -23,6 +24,11 @@
   {{- if not $type }}
     {{- $type = "button" }}
   {{- end }}
+{{- else if $linkObject }}
+  {{- /* a page, resource or output format the caller already holds needs no resolving */}}
+  {{- $isLink = true }}
+  {{- $href = partial "permalink.gotmpl" (dict "to" $linkObject) }}
+  {{- $attributes = merge $attributes (partial "_relearn/linkAttributes.gotmpl" (dict "url" $href "page" $page "attributes" (dict "title" $hint))) }}
 {{- else if not $href }}
 {{- else }}
   {{- $isLink = true }}

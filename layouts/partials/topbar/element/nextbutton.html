@@ -14,14 +14,10 @@
 		{{- end }}
         {{- $next := partial "_relearn/pageNext.gotmpl" . }}
 		{{- $nextTitle := partial "title.gotmpl" (dict "page" $next "outputFormat" "html") }}
-		{{- $href := "" }}
-		{{- with (and $next $next.Path) }}
-			{{- $href = partial "_relearn/pathToUrl.gotmpl" . }}
-		{{- end }}
 		{{- partial "topbar/func/button.html" (dict
 			"page" .
 			"class" "topbar-button-next"
-			"href" $href
+			"linkObject" $next
 			"icon" "chevron-right"
 			"onwidths" $onwidths
 			"onwidthm" $onwidthm

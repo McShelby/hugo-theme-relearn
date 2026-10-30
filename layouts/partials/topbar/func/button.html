@@ -1,6 +1,7 @@
 {{- $page := .page }}
 {{- $class := .class | default "" }}
 {{- $href := (trim .href " ") | default "" }}
+{{- $linkObject := .linkObject }}
 {{- $onempty := cond (isset . "onempty") .onempty "disable" }}
 {{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
@@ -22,6 +23,7 @@
   "action" $action
   "istoggle" $istoggle
   "href" $href
+  "linkObject" $linkObject
   "style" "link"
   "icon" $icon
   "borderless" true
