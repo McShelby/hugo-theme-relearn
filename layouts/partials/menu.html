@@ -76,7 +76,14 @@
       {{- $filepath := "[virtual file]" }}{{ with and $rootObject.File $rootObject.File.Filename }}{{ $filepath = . }}{{ end }}
       {{- warnf "%q: DEPRECATED front matter 'menuTitle' found, use 'linkTitle' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/6/#6-0-0" $filepath }}
     {{- end }}
-    {{- $title = $rootObject.Params.linkTitle | default $rootObject.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
+    {{- $linkTitle := "" }}
+    {{- if reflect.IsPage $rootObject }}
+      {{- /* only a link title of its own, not the title it falls back to */}}
+      {{- $linkTitle = cond (ne $rootObject.LinkTitle $rootObject.Title) $rootObject.LinkTitle "" }}
+    {{- else }}
+      {{- $linkTitle = $rootObject.Params.linkTitle }}
+    {{- end }}
+    {{- $title = $linkTitle | default $rootObject.Params.menuTitle | default (T (print $config.identifier "-menuTitle")) }}
   {{- end }}
   {{- $entries := "" }}
   {{- with $rootObject }}

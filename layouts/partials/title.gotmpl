@@ -13,9 +13,10 @@
 	{{- if eq .Kind "home" }}
 		{{- $title = $title | default $siteTitle }}
 	{{- else if eq .Kind "taxonomy" }}
-		{{- $title = default (default .Data.Plural (i18n .Data.Plural)) .Params.Title }}
-		{{- if $.linkTitle }}
-			{{- $title = default $title .Params.linkTitle }}
+		{{- /* only a taxonomy without a file of its own gets its title made up by Hugo */}}
+		{{- $title = default (default .Data.Plural (i18n .Data.Plural)) (and .File .Title) }}
+		{{- if and $.linkTitle (ne .LinkTitle .Title) }}
+			{{- $title = .LinkTitle }}
 		{{- end }}
 	{{- else if eq .Kind "term" }}
 		{{- $taxonomy_page := .Site.GetPage .Data.Plural }}
@@ -23,7 +24,7 @@
 		{{- /* a term page with its own content file may lack a title */}}
 		{{- $term_title := default (humanize .Data.Term | strings.Title) .Title }}
 		{{- if $.linkTitle }}
-			{{- $title = default $term_title .Params.linkTitle }}
+			{{- $title = cond (ne .LinkTitle .Title) .LinkTitle $term_title }}
 		{{- else if $.reverse }}
 			{{- $title = printf "%s %s %s" $term_title (default "::" .Site.Params.titleSeparator) $taxonomy_title }}
 		{{- else }}
