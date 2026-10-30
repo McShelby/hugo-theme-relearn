@@ -462,18 +462,28 @@ function drawMermaidGraph(element) {
   var source = code.textContent;
   element.dataset.processed = 'true';
   var id = 'mermaid-' + Date.now() + '-' + ++mermaidIds;
-  return mermaid.render(id, source).then(function (result) {
-    // the source was changed while we were drawing, e.g. as printing began or
-    // ended; its own drawing takes care of it and must not be overwritten
-    if (code.textContent != source) {
-      return;
-    }
-    element.innerHTML = result.svg;
-    mermaidPostRender(id);
-    if (result.bindFunctions) {
-      result.bindFunctions(element);
-    }
-  });
+  // some diagrams, like GANTT, take their width from the box they are drawn in;
+  // left to Mermaid, that box is put into the body, where it gets no width
+  var box = document.createElement('div');
+  box.style.cssText = 'position: absolute; top: 0; inset-inline-start: 0; visibility: hidden; width: ' + element.offsetWidth + 'px;';
+  document.body.appendChild(box);
+  return mermaid
+    .render(id, source, box)
+    .then(function (result) {
+      // the source was changed while we were drawing, e.g. as printing began or
+      // ended; its own drawing takes care of it and must not be overwritten
+      if (code.textContent != source) {
+        return;
+      }
+      element.innerHTML = result.svg;
+      mermaidPostRender(id);
+      if (result.bindFunctions) {
+        result.bindFunctions(element);
+      }
+    })
+    .finally(function () {
+      box.remove();
+    });
 }
 
 // draws the next graph and calls `then` once it is done; false if there is
