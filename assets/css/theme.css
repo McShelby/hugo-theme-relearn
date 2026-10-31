@@ -3454,12 +3454,15 @@ article ul > li > :is(label, span) > input[type='checkbox']:checked::before {
      middle of the height of the entry */
   height: 1rem;
   inset-inline-start: 0;
-  margin-inline-start: -0.075rem;
+  margin-inline-start: 0.25rem;
   margin-top: 0.25rem;
   position: absolute;
   top: 0;
   width: 1rem;
   z-index: 1;
+}
+#R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label > input {
+  margin-inline-start: -0.075rem;
 }
 #R-sidebar ul.space.collapsible-menu li > label > input {
   margin-top: 0.375rem;
@@ -3471,39 +3474,27 @@ article ul > li > :is(label, span) > input[type='checkbox']:checked::before {
   margin-top: 0.75rem;
 }
 
+/* the label is the area to click, wide enough to be a target of its own and
+   as high as the entry; it reaches into the indentation, which the outermost
+   level has none of, and its padding keeps the chevron and the underline of
+   the hover where they are */
 #R-sidebar ul.collapsible-menu > li > label {
   cursor: pointer;
   inset-inline-start: 0;
-  padding-inline-start: 0.125rem;
+  margin-inline-start: -0.325rem;
+  padding-inline-end: 0.175rem;
+  padding-inline-start: 0.45rem;
   position: absolute;
-  width: 1rem;
+  width: 1.5rem;
   z-index: 2;
+}
+#R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label {
+  margin-inline-start: 0;
+  padding-inline-end: 0.5rem;
+  padding-inline-start: 0.125rem;
 }
 #R-sidebar ul.collapsible-menu.enlarge > li > label {
   line-height: 2rem;
-}
-
-/* a bigger area to click than the label is, a square around the chevron as
-   well; it reaches into the indentation, which the outermost level has none of */
-#R-sidebar ul.collapsible-menu > li > label:before {
-  content: '';
-  height: 1.5rem;
-  inset-inline-start: -0.325rem;
-  position: absolute;
-  top: 0;
-  width: 1.5rem;
-}
-#R-sidebar ul.space.collapsible-menu li > label:before {
-  top: 0.125rem;
-}
-#R-sidebar ul.morespace.collapsible-menu li > label:before {
-  top: 0.25rem;
-}
-#R-sidebar ul.collapsible-menu.enlarge > li > label:before {
-  top: 0.5rem;
-}
-#R-sidebar .R-sidebarmenu > ul.collapsible-menu > li > label:before {
-  inset-inline-start: 0;
 }
 
 #R-sidebar ul.collapsible-menu > li > label:after {
