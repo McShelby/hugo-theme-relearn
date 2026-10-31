@@ -59,7 +59,7 @@ Each array item needs the following layout:
   let lunrIndex, pagesIndex;
 
   function init() {
-    var contentLangs = JSON.parse(document.querySelector('#R-search-lunr-config').textContent).contentLangs;
+    var contentLangs = window.relearn.search.config.contentLangs;
 
     function initIndex(index) {
       if (!window.lunr) {

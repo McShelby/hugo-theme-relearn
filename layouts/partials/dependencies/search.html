@@ -47,30 +47,61 @@
 {{- else if eq $location "header" }}
   {{- with $page }}
     {{- $searchIndexUrl := "" }}
-    {{- with partial "asset.gotmpl" "/css/auto-complete/auto-complete.css" }}
+    {{- /* every site of Hugo's sites matrix has an index and a search bundle of its
+      own; all of them are published into the same directory, and Hugo caches a
+      generated file by its name alone, so the name has to tell them apart */}}
+    {{- $searchSite := .Language.Name }}
+    {{- if gt (len (site.Home.Rotate "version")) 1 }}
+      {{- $searchSite = print $searchSite "." site.Version.Name }}
+    {{- end }}
+    {{- /* the stylesheets are joined into one bundle as well; it is the same for
+      every site */}}
+    {{- $cssparts := slice }}
+    {{- with partial "asset.gotmpl" (dict "res" "/css/auto-complete/auto-complete.css" "fingerprint" false) }}
+      {{- $cssparts = $cssparts | append . }}
+    {{- end }}
+    {{- with partial "asset.gotmpl" (dict "res" ($cssparts | resources.Concat "css/search.css") "minify" false) }}
     <link href="{{ .RelPermalink }}" rel="stylesheet"{{ partial "_relearn/integrityAttribute.gotmpl" . }}>
     {{- end }}
-    {{- with partial "asset.gotmpl" "/js/auto-complete/auto-complete.js" }}
-    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
-    {{- end }}
+    {{- /* the scripts are joined into one bundle; the adapter adds its own files and
+      settings to it */}}
+    {{- $bundle := newScratch }}
+    {{- $adapterres := "" }}
     {{- if not $disableSearchIndex }}
       {{- $searchIndexUrl = trim $searchIndexURL "/" }}
-      {{- /* every site of Hugo's sites matrix has an index of its own; all of them are
-        published into the same directory, so the name has to tell them apart */}}
-      {{- $searchIndexSite := .Language.Name }}
-      {{- if gt (len (site.Home.Rotate "version")) 1 }}
-        {{- $searchIndexSite = print $searchIndexSite "." site.Version.Name }}
-      {{- end }}
-      {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." $searchIndexSite (path.Ext $searchIndexUrl)) }}
-      {{- with partial "asset.gotmpl" (printf "/js/search-%s.js" $adapter) }}
-    <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
+      {{- $searchIndexUrl = path.Join (path.Dir $searchIndexUrl) (print (path.BaseName $searchIndexUrl) "." $searchSite (path.Ext $searchIndexUrl)) }}
+      {{- with partial "asset.gotmpl" (dict "res" (printf "/js/search-%s.js" $adapter) "fingerprint" false) }}
+        {{- $adapterres = . }}
       {{- else }}
+        {{- /* a module can't share a file with classic scripts */}}
         {{- with partial "asset.gotmpl" (printf "/js/search-%s.mjs" $adapter) }}
     <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} type="module" defer></script>
         {{- end }}
       {{- end }}
+      {{- $dep := printf "dependencies/search-%s.html" $adapter }}
+      {{- partial $dep (dict "page" $page "location" $location "bundle" $bundle) }}
     {{- end }}
-    {{- with partial "asset.gotmpl" "/js/search.js" }}
+    {{- $parts := slice }}
+    {{- with partial "asset.gotmpl" (dict "res" "/js/auto-complete/auto-complete.js" "fingerprint" false) }}
+      {{- $parts = $parts | append . }}
+    {{- end }}
+    {{- with $bundle.Get "config" }}
+      {{- $configjs := printf "window.relearn = window.relearn || {};\nwindow.relearn.search = window.relearn.search || {};\nwindow.relearn.search.config = %s;\n" (jsonify .) }}
+      {{- with partial "asset.gotmpl" (dict "res" (resources.FromString (printf "js/search-config.%s.js" $searchSite) $configjs) "fingerprint" false) }}
+        {{- $parts = $parts | append . }}
+      {{- end }}
+    {{- end }}
+    {{- with $adapterres }}
+      {{- $parts = $parts | append . }}
+    {{- end }}
+    {{- with $bundle.Get "parts" }}
+      {{- $parts = $parts | append . }}
+    {{- end }}
+    {{- with partial "asset.gotmpl" (dict "res" "/js/search.js" "fingerprint" false) }}
+      {{- $parts = $parts | append . }}
+    {{- end }}
+    {{- /* the parts are minified one by one, as some of them must not be */}}
+    {{- with partial "asset.gotmpl" (dict "res" ($parts | resources.Concat (printf "js/search.%s.js" $searchSite)) "minify" false) }}
     <script src="{{ .RelPermalink }}"{{ partial "_relearn/integrityAttribute.gotmpl" . }} defer></script>
     {{- end }}
     {{- if $searchIndexUrl }}
@@ -115,7 +146,8 @@
         {{ if $link }}</form>{{ end }}</search>
 {{- end }}
 
-{{- if not $disableSearchIndex }}
+{{- /* the header calls the adapter itself, as its files go into the bundle */}}
+{{- if and (not $disableSearchIndex) (ne $location "header") }}
   {{- $dep := printf "dependencies/search-%s.html" $adapter }}
   {{- partial $dep (dict "page" $page "location" $location) }}
 {{- end }}
