@@ -29,7 +29,9 @@ import re
 import subprocess
 
 def is_special_git_operation():
-    git_dir = subprocess.check_output(['git', 'rev-parse', '--git-dir'], universal_newlines=True).strip()
+    # in a worktree the path is absolute; git writes it in UTF-8, whatever the
+    # console uses
+    git_dir = subprocess.check_output(['git', 'rev-parse', '--git-dir'], encoding='utf-8').strip()
     indicators = [
         os.path.join(git_dir, 'rebase-merge'),
         os.path.join(git_dir, 'rebase-apply'),
