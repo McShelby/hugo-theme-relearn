@@ -1895,7 +1895,7 @@ function initToc() {
 
   // the content is out of reach as long as the sidebar lies above it, so the
   // sidebar is closed before the browser follows the link
-  var s = document.querySelector('#R-skip-link');
+  var s = document.querySelector('#R-skiplink');
   if (s) {
     s.addEventListener('click', closeNav);
   }
@@ -2697,7 +2697,7 @@ function announceMarked(search, delay = 1000) {
 }
 
 function initSearch() {
-  // sync input/escape between searchbox and searchdetail
+  // sync input/escape between searchbox and searchinput
   var inputs = document.querySelectorAll('input.search-by');
   inputs.forEach(function (e) {
     e.addEventListener('keydown', function (event) {

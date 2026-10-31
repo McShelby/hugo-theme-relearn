@@ -11,6 +11,12 @@
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
+  // the searchinput of the dedicated search page; its form may be copied into
+  // the content, but only the search page lists results
+  function getSearchinput() {
+    return document.querySelector('#R-searchresults') && document.querySelector('.searchform input.search-by');
+  }
+
   window.relearn = window.relearn || {};
 
   // the adapter tells it is ready by calling executeInitialSearch; until then a
@@ -41,7 +47,7 @@
       resolveSearchEngine();
     }
     if (window.relearn.isSearchInterfaceReady && window.relearn.isSearchEngineReady) {
-      var input = document.querySelector('#R-search-by-detail');
+      var input = getSearchinput();
       if (!input) {
         return;
       }
@@ -51,7 +57,7 @@
   };
 
   window.relearn.executeTriggeredSearch = function executeTriggeredSearch() {
-    var input = document.querySelector('#R-search-by-detail');
+    var input = getSearchinput();
     if (!input) {
       return;
     }
@@ -166,7 +172,7 @@
   }
 
   function executeSearch(value) {
-    var input = document.querySelector('#R-search-by-detail');
+    var input = getSearchinput();
 
     var results = document.querySelector('#R-searchresults');
     var hint = document.querySelector('.searchhint');
@@ -217,7 +223,7 @@
       return;
     }
 
-    var input = document.querySelector('#R-search-by-detail');
+    var input = getSearchinput();
     if (input) {
       // the search page is there to show results, so it needs the index right away
       requestSearchEngine();
@@ -266,7 +272,7 @@
   function initSearch() {
     window.addEventListener('popstate', executeHistorySearch);
 
-    var input = document.querySelector('#R-search-by-detail');
+    var input = getSearchinput();
     if (input) {
       // search in place instead of reloading the page with the term in its URL
       input.form.addEventListener('submit', function (event) {
@@ -274,7 +280,7 @@
         window.relearn.executeTriggeredSearch();
       });
       input.addEventListener('keydown', function (event) {
-        // if we are pressing ESC in the searchdetail our focus will
+        // if we are pressing ESC in the searchinput our focus will
         // be stolen by the other event handlers, so we have to refocus
         // here after a short while
         if (event.key == 'Escape') {
