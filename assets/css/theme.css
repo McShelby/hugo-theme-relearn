@@ -4194,10 +4194,8 @@ article.notfound #shrug svg {
 
 .card-container .card {
   background: var(--INTERNAL-BOX-BG-color);
-  border: 1px solid color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 10%, transparent);
+  border: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
   border-radius: 12px;
-  /* the same shadow as for the `shadow` effect of an image */
-  box-shadow: 0 3px 12px light-dark(oklch(from var(--INTERNAL-BOX-NEUTRAL-color) max(l, 0.85) c h / 0.9), oklch(from var(--INTERNAL-MAIN-BG-color) calc((1 - l) * 1.2) calc(c * 6) h / calc(0.2 + 0.6 * (1 - l))));
   color: var(--INTERNAL-MAIN-TEXT-color);
   display: flex;
   flex-direction: column;
@@ -4207,7 +4205,11 @@ article.notfound #shrug svg {
   overflow: hidden;
   overflow-wrap: break-word;
   position: relative;
-  transition: all 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
   word-break: break-word;
 }
 
@@ -4215,31 +4217,17 @@ article.notfound #shrug svg {
   outline: auto;
 }
 
-.card-container > .card.card-popout {
-  border: 1px solid color-mix(in srgb, var(--VARIABLE-LINK-color) 33%, transparent);
-}
-
-/* top handle */
-.card-container .card::before {
-  background: linear-gradient(90deg, var(--VARIABLE-LINK-color) 0%, color-mix(in srgb, var(--VARIABLE-LINK-color) 60%, white) 100%);
-  content: '';
-  height: 3px;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity 0.3s ease;
-}
-
 .card-container .card.card-popout:hover {
-  border-color: color-mix(in srgb, var(--VARIABLE-LINK-color) 40%, transparent);
-  box-shadow: 0 9px 24px color-mix(in srgb, var(--VARIABLE-LINK-color) 40%, transparent);
-  transform: translateY(-4px) translateX(4px);
+  background-color: color-mix(in srgb, var(--VARIABLE-LINK-color) 10%, var(--INTERNAL-BOX-BG-color));
+  border-color: var(--VARIABLE-LINK-color);
+  /* a grey shadow does not show on a dark background, one in the color of the
+     text shows on any */
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 33%, transparent);
+  transform: translateY(-2px);
 }
 
-.card-container .card.card-popout:hover::before {
-  opacity: 1;
+.card-container .card.card-popout:hover .card-title {
+  color: var(--VARIABLE-LINK-HOVER-color);
 }
 
 .card-container .card-image {
