@@ -26,14 +26,10 @@ var LINE_SCROLL = 40;
 // the keys a browser scrolls with
 var SCROLL_KEYS = [' ', 'PageUp', 'PageDown', 'End', 'Home', 'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown'];
 
-var elc = document.querySelector('#R-body-inner');
+var elc = document.querySelector('#R-main');
 
 function regexEscape(s) {
   return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-}
-
-function documentFocus() {
-  elc.focus();
 }
 
 let debounceTimeout;
@@ -1330,7 +1326,7 @@ function initArrowHorizontalNav() {
   // keyboard navigation
   // avoid prev/next navigation if we are not at the start/end of the
   // horizontal area
-  var el = document.querySelector('#R-body-inner');
+  var el = document.querySelector('#R-main');
   var scrollStart = 0;
   var scrollEnd = 0;
   document.addEventListener('keydown', function (event) {
@@ -1672,7 +1668,7 @@ function showSearch() {
     if (b.classList.contains('sidebar-flyout')) {
       closeNav();
     }
-    documentFocus();
+    s.blur();
   } else {
     if (!b.classList.contains('sidebar-flyout')) {
       openNav();
@@ -1728,7 +1724,6 @@ function closeNav() {
   b.classList.remove('sidebar-flyout');
   adjustNavInert();
   setExpanded(getNavToggles(), false);
-  documentFocus();
 }
 
 function toggleNav() {
@@ -1779,7 +1774,6 @@ function closeTopbarButtonFlyout(button) {
   button.classList.remove('topbar-flyout');
   body.classList.remove('topbar-flyout');
   setExpanded(getTopbarButtonToggles(button), false);
-  documentFocus();
 }
 
 function closeSomeTopbarButtonFlyout() {
@@ -1838,19 +1832,10 @@ function handleTopbarButtons() {
       return;
     }
     var action = button.dataset.buttonAction;
-    // closing hands the focus to the content, but who closes with the button
-    // itself stays on it
     if (action == 'toggle-nav') {
       toggleNav();
-      if (!document.querySelector('body').classList.contains('sidebar-flyout')) {
-        focusToggle(button);
-      }
     } else if (action == 'toggle-flyout') {
       toggleTopbarFlyout(button);
-      var parent = getTopbarButtonParent(button);
-      if (parent && !parent.classList.contains('topbar-flyout')) {
-        focusToggle(button);
-      }
     }
   });
 }
@@ -1908,15 +1893,11 @@ function initToc() {
     m.addEventListener('click', closeSomeTopbarButtonFlyout);
   }
 
-  // the link works without us, but would leave its fragment in the address bar;
-  // closing the sidebar hands the focus to the content, which is out of reach
-  // as long as the sidebar lies above it
+  // the content is out of reach as long as the sidebar lies above it, so the
+  // sidebar is closed before the browser follows the link
   var s = document.querySelector('#R-skip-link');
   if (s) {
-    s.addEventListener('click', function (event) {
-      event.preventDefault();
-      closeNav();
-    });
+    s.addEventListener('click', closeNav);
   }
 }
 
@@ -2486,7 +2467,7 @@ function mark() {
   }
 
   // mark some additional stuff as searchable
-  var bodyInnerLinks = document.querySelectorAll('#R-body-inner a:not(.lightbox-link):not(.btn):not(.lightbox-close)');
+  var bodyInnerLinks = document.querySelectorAll('#R-main a:not(.lightbox-link):not(.btn):not(.lightbox-close)');
   for (var i = 0; i < bodyInnerLinks.length; i++) {
     bodyInnerLinks[i].classList.add('highlight');
   }
@@ -2704,7 +2685,7 @@ function announceMarked(search, delay = 1000) {
   // typed; a loaded page needs less of a wait, just enough for a screen reader
   // to be done announcing it, as it drops what changes meanwhile
   announceMarkedTimer = setTimeout(function () {
-    var count = document.querySelectorAll('#R-body-inner mark.search').length;
+    var count = document.querySelectorAll('#R-main mark.search').length;
     if (count) {
       showToast(
         window.T_N_matches_on_page.replace('{1}', count).replace('{0}', function () {
@@ -2731,9 +2712,6 @@ function initSearch() {
         inputs.forEach(function (e) {
           e.value = '';
         });
-        if (!words || !words.length) {
-          documentFocus();
-        }
       }
     });
     e.addEventListener('input', function (event) {
