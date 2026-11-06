@@ -8,7 +8,7 @@ type: releasenotes
 weight: -5
 ---
 
-## 9.5.0 (XXXX-XX-XX) {#9-5-0}
+## 9.5.0 (2026-11-06) {#9-5-0}
 
 ### Change
 
