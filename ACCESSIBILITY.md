@@ -35,7 +35,7 @@ The automated tests of the theme don't check accessibility. If your contribution
 - **Zoom**: Your change keeps working in the mobile layout and with the page zoomed in, without content getting lost.
 - **Documentation**: What you write for the docs follows what is asked from every author [above](#what-is-up-to-you).
 
-See the [contribution guidelines](https://mcshelby.github.io/hugo-theme-relearn/development/contributing) for everything else.
+See the [contribution guidelines](https://github.com/McShelby/hugo-theme-relearn?tab=contributing-ov-file) for everything else.
 
 ## Reporting Accessibility Issues
 
