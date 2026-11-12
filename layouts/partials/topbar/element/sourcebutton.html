@@ -9,7 +9,7 @@
 	{{- $format := .OutputFormats.Get "source" }}
 	{{- $show := and $format (not (.Param "disableSourceButton")) }}
 	{{- if $show }}
-		{{- $show = and (not (partial "_relearn/pageIsSpecial.gotmpl" .)) .File .File.Filename }}
+		{{- $show = and (not (hasPrefix .Path "/_relearn")) .File .File.Filename }}
 	{{- end }}
 	{{- if $show }}
 		{{- partial "topbar/func/button.html" (dict

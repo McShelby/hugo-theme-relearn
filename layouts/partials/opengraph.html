@@ -17,7 +17,7 @@
     <meta property="og:locale" content="{{ replace . `-` `_` }}">
 {{- end }}
 
-{{- if and .IsPage (not (partial "_relearn/pageIsSpecial.gotmpl" .)) }}
+{{- if and .IsPage (not (hasPrefix .Path "/_relearn")) }}
     <meta property="og:type" content="article">
   {{- with .FirstSection }}
     <meta property="article:section" content="{{ partial "title.gotmpl" (dict "page" .) | plainify | htmlUnescape }}">

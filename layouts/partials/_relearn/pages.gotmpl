@@ -23,7 +23,7 @@
 
 {{- $filtered_pages := slice }}
 {{- range $pages }}
-	{{- if not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+	{{- if not (hasPrefix .Path "/_relearn") }}
 		{{- $filtered_pages = $filtered_pages | append . }}
 	{{- end }}
 {{- end }}

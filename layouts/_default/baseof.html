@@ -30,7 +30,7 @@
     {{- range .AlternativeOutputFormats }}
       {{- if eq .Rel "canonical" }}
     <link href="{{ partial "permalink.gotmpl" (dict "to" . "abs" true) }}" rel="{{ .Rel }}" type="{{ .MediaType.Type }}" title="{{ $title }}">
-      {{- else if not (partial "_relearn/pageIsSpecial.gotmpl" $page) }}
+      {{- else if not (hasPrefix $page.Path "/_relearn") }}
     <link href="{{ partial "permalink.gotmpl" (dict "to" .) }}" rel="{{ .Rel }}" type="{{ .MediaType.Type }}" title="{{ $title }}">
       {{- end }}
     {{- end }}

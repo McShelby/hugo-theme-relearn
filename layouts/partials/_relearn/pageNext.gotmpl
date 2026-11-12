@@ -115,7 +115,7 @@
 	{{- $nonheadless := "" }}
 	{{- $page := . }}
 	{{- $parent := .Parent }}
-	{{- if not (partial "_relearn/pageIsSpecial.gotmpl" $page) }}
+	{{- if not (hasPrefix $page.Path "/_relearn") }}
 		{{- with $parent }}
 			{{- $pages := partialCached "_relearn/pages.gotmpl" (dict "page" .) .Path }}
 			{{- range $pages }}

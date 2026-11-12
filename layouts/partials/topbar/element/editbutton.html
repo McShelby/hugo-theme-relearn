@@ -8,7 +8,7 @@
 {{- with .page }}
 	{{- $show := .File }}
 	{{- if $show }}
-		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+		{{- $show = not (hasPrefix .Path "/_relearn") }}
 	{{- end }}
 	{{- if $show }}
 		{{- $filePath := printf "%s%s" (strings.TrimLeft "/" (replace .File.Dir "\\" "/")) .File.LogicalName }}

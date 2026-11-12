@@ -9,7 +9,7 @@
 	{{- $format := .OutputFormats.Get "markdown" }}
 	{{- $show := and $format (not (.Param "disableMarkdownButton")) }}
 	{{- if $show }}
-		{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+		{{- $show = not (hasPrefix .Path "/_relearn") }}
 	{{- end }}
 	{{- if $show }}
 		{{- partial "topbar/func/button.html" (dict

@@ -12,7 +12,7 @@
 {{- range seq $depth }}
   {{- if $to }}
     {{- $title := partial "title.gotmpl" (dict "page" $to "linkTitle" true) }}
-    {{- if partial "_relearn/pageIsSpecial.gotmpl" $to }}
+    {{- if hasPrefix $to.Path "/_relearn" }}
       {{- break }}
     {{- else if or $title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}
       {{- $breadcrumb = $breadcrumb | append (dict "page" $to "title" $title) }}

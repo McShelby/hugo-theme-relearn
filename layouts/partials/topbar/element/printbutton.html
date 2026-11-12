@@ -16,7 +16,7 @@
 				{{- $show = site.Home.OutputFormats.Get "print" }}
 			{{- end }}
 		{{- else }}
-			{{- $show = not (partial "_relearn/pageIsSpecial.gotmpl" .) }}
+			{{- $show = not (hasPrefix .Path "/_relearn") }}
 		{{- end }}
 	{{- end }}
 	{{- if $show }}
