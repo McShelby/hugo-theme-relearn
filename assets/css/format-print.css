@@ -25,7 +25,9 @@ html {
   background-color: var(--INTERNAL-TOPBAR-BG-color);
   border-radius: 0;
   display: flex;
-  padding-left: 0; /* for print, we want to align with the footer to ease the layout */
+  /* inset like the content below by the padding of the main area */
+  margin-inline: 3.25rem;
+  padding-left: 0;
   padding-right: 0;
 }
 #R-body #R-topbar > .topbar-wrapper {
@@ -248,7 +250,9 @@ article:not(.card) {
 }
 
 #R-body #R-main .flex-block-wrapper {
-  max-width: calc(var(--INTERNAL-MAIN-MAX-width) - var(--INTERNAL-MENU-L-width) - 2 * 3.25rem);
+  /* the paper sets the width, so the content fills it in portrait and
+     landscape alike */
+  max-width: none;
   width: 100%;
 }
 
