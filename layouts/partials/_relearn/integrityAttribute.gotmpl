@@ -7,12 +7,14 @@ the preceding attribute:
 
 Takes the linked resource, or an integrity worked out before.
 */}}
-{{- $integrity := . }}
-{{- if ne (printf "%T" .) "string" }}
-	{{- $integrity = partial "_relearn/integrity.gotmpl" . }}
-{{- end }}
 {{- $attribute := "" }}
-{{- with $integrity }}
-	{{- $attribute = printf " integrity=%q" . }}
+{{- if site.Params.enableSubresourceIntegrity }}
+	{{- $integrity := . }}
+	{{- if ne (printf "%T" .) "string" }}
+		{{- $integrity = partial "_relearn/integrity.gotmpl" . }}
+	{{- end }}
+	{{- with $integrity }}
+		{{- $attribute = printf " integrity=%q" . }}
+	{{- end }}
 {{- end }}
 {{- return safeHTMLAttr $attribute }}
