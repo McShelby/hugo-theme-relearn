@@ -251,6 +251,33 @@ mark.search {
   padding-bottom: 2px;
 }
 
+/* a card is as tall as the tallest one of its row, and never cut off, as paper
+   can't scroll it */
+.card-container {
+  align-items: stretch;
+}
+.card-container .card {
+  break-inside: avoid;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+}
+@media print and (orientation: landscape) {
+  /* portrait paper is about as wide as the content of a screen, which the
+     number of columns is set for; landscape paper is half as wide again, so it
+     shows half as many columns again */
+  .card-columnize-1 {
+    --card-columns: 2;
+  }
+  .card-columnize-2 {
+    --card-columns: 3;
+  }
+  .card-columnize-3,
+  .card-columnize-4 {
+    --card-columns: 5;
+  }
+}
+
 article:not(.card) {
   break-before: page;
 }
