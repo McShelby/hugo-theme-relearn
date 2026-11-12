@@ -1433,19 +1433,20 @@ p:empty {
   display: none;
 }
 
-/* in case of image render hook, Hugo may generate empty <p>s that we want to ignore as well, so a simple :first-child or :last-child is not enough */
-#R-body table :is(th, td) > :nth-child(1 of :not(:empty)),
-#R-body table :is(th, td) > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)),
-#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-child(1 of :not(:empty)),
-#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-child(1 of :not(:empty)) :nth-child(1 of :not(:empty)) {
+/* a position counted among the siblings that pass a test, like :nth-child(1 of :not(:empty)), is checked on every element of the page
+   and has the browser restyle all siblings of each element added later - a drawn Mermaid graph adds thousands */
+#R-body table :is(th, td) > :first-child,
+#R-body table :is(th, td) > :first-child :first-child,
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :first-child,
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :first-child :first-child {
   margin-top: 0;
 }
 
-#R-body table :is(th, td) > :nth-last-child(1 of :not(:empty)),
-#R-body table :is(th, td) > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body table :is(th, td) > :last-child,
+#R-body table :is(th, td) > :last-child :last-child,
 #R-body table :is(th, td) > div:last-child pre:not(.mermaid),
-#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-last-child(1 of :not(:empty)),
-#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :nth-last-child(1 of :not(:empty)) :nth-last-child(1 of :not(:empty)),
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :last-child,
+#R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > :last-child :last-child,
 #R-body :is(.box > .box-content, .card-content > .card-content-text, .tab-content > .tab-content-text) > div:last-child pre:not(.mermaid) {
   margin-bottom: 0;
 }
