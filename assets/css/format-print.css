@@ -1,3 +1,7 @@
+:root {
+  --print-divider-color: color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 60%, var(--INTERNAL-MAIN-BG-color));
+}
+
 #R-skiplink,
 #R-sidebar {
   display: none;
@@ -106,7 +110,7 @@ code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after,
 
 blockquote::before,
 figure.quote::before {
-  background-color: var(--INTERNAL-MAIN-TEXT-color);
+  background-color: var(--print-divider-color);
 }
 blockquote p,
 blockquote cite,
@@ -119,8 +123,47 @@ blockquote cite,
   display: none;
 }
 
+/* a light grey line gets lost on paper, so every frame is drawn in the color
+   of the text; this includes the styles without a color of their own, which
+   fall back to the light grey of the neutral boxes, but not the grey and
+   neutral styles, whose color is the author's choice */
+table::after,
+kbd,
+#R-body :is(svg, img):not(.lightbox-image).border,
+.card-container .card,
+.box.cstyle:is(.default, .initial, .action),
+.btn.cstyle:is(.default, .initial, .transparent, .action) > * {
+  border-color: var(--INTERNAL-MAIN-TEXT-color);
+}
+/* what a tab fills, its background covers, so its color only shows as its
+   frame */
+#R-body .tab-panel-style.cstyle:is(.default, .initial, .transparent, .code),
+#R-body .tab-panel-style.cstyle.code.tab-nav-button:not(.active) {
+  --VARIABLE-BOX-color: var(--INTERNAL-MAIN-TEXT-color);
+}
+i.cstyle:is(.default, .initial, .action) {
+  color: var(--INTERNAL-MAIN-TEXT-color);
+}
+kbd {
+  box-shadow: 0 0.0625rem 0 0.0625rem var(--INTERNAL-MAIN-TEXT-color);
+}
+/* a line that only divides would weigh the page down in black, and it can't be
+   drawn thinner, as browsers round it up to a whole pixel; a dark grey still
+   prints dense enough not to get lost */
+#R-body #R-topbar,
+hr,
+th,
+thead td,
+td {
+  border-bottom-color: var(--print-divider-color);
+}
+th,
+thead td,
+td {
+  border-inline-end-color: var(--print-divider-color);
+}
 hr {
-  border-bottom: 1px solid var(--INTERNAL-MAIN-TEXT-color);
+  border-bottom-width: 1px;
 }
 #R-body pre:not(.mermaid) {
   /* the variant's colors of block code win over the ones of its syntax highlighting style */
@@ -135,7 +178,7 @@ hr {
 }
 
 #R-body #R-main h1 {
-  border-bottom: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
+  border-bottom: 1px solid var(--print-divider-color);
   font-size: 3.25rem;
   margin-bottom: 2rem;
   padding-bottom: 0.75rem;
@@ -149,7 +192,7 @@ hr {
 
 .footline {
   /* in print mode show footer line to signal reader the end of document */
-  border-top: 1px solid var(--INTERNAL-BOX-NEUTRAL-color);
+  border-top: 1px solid var(--print-divider-color);
   margin-top: 1.5rem;
   padding-top: 0.75rem;
 }
