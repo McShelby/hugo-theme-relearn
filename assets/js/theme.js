@@ -32,14 +32,6 @@ function regexEscape(s) {
   return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
-let debounceTimeout;
-function debounce(func, delay) {
-  return function (...args) {
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => func.apply(this, args), delay);
-  };
-}
-
 // Toast notification system
 function showToast(message) {
   if (!message) return;
@@ -2236,17 +2228,9 @@ function initScrollPositionSaver() {
     window.sessionStorage.setItem(scrollPositionKey, +elc.scrollTop);
   }
 
-  var ticking = false;
-  elc.addEventListener('scroll', function (event) {
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        // #996 GC is so damn slow that we need further throttling
-        debounce(savePosition, 200)();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
+  // #996 only where the scrolling has come to rest, as saving on every step is
+  // too slow for GC
+  elc.addEventListener('scrollend', savePosition);
 
   document.addEventListener('click', transferScrollToHistory);
   window.addEventListener('pagehide', transferScrollToHistory);
