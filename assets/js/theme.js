@@ -1698,10 +1698,10 @@ function adjustNavInert() {
   });
 }
 
-// an enlarged graph tells assistive technology that it is modal, so what lies
-// beside it is out of reach for the keyboard and screen readers, same as it is
-// for the mouse below its backdrop; the toasts stay, as they tell of what is
-// done inside. what someone else made inert is left alone
+// an enlarged graph or image tells assistive technology that it is modal, so
+// what lies beside it is out of reach for the keyboard and screen readers, same
+// as it is for the mouse below its backdrop; the toasts stay, as they tell of
+// what is done inside. what someone else made inert is left alone
 var lightboxes = {};
 var lightboxInerted = [];
 function setLightboxInert(kind, box) {
@@ -1994,26 +1994,29 @@ function initImage() {
         window.location.replace(close.getAttribute('href'));
         window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
       }
-      // return to the image it was opened from
+      // return to the image it was opened from, which is out of reach until the
+      // browser tells of the changed URL
+      setLightboxInert('image', null);
       opener && opener.focus();
     });
   });
 
   // the browser hands the focus to an enlarged image it navigates to, but not
   // to one it returns to through its history or still shows after a reload
-  var focusShown = function () {
+  var syncShown = function () {
     var shown = document.querySelector('.lightbox-back:target');
+    setLightboxInert('image', shown);
     shown && !shown.contains(document.activeElement) && shown.focus();
   };
   window.addEventListener('hashchange', function () {
     openedHere = !!document.querySelector('.lightbox-back:target');
-    focusShown();
+    syncShown();
   });
   // on a reload it only knows the target of the URL once the page is loaded
   if (document.readyState == 'complete') {
-    focusShown();
+    syncShown();
   } else {
-    window.addEventListener('load', focusShown);
+    window.addEventListener('load', syncShown);
   }
 
   // paper has no lightbox to open, so a printout must not carry a link to it
