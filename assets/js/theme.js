@@ -41,8 +41,6 @@ function showToast(message) {
 
   var toast = document.createElement('div');
   toast.className = 'toast';
-  toast.setAttribute('role', 'status');
-  toast.setAttribute('aria-atomic', 'true');
   toast.textContent = message;
 
   container.appendChild(toast);
