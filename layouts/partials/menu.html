@@ -103,7 +103,10 @@
     {{- range $entries }}
       {{- $isSubSelf := eq . $currentNode }}
       {{- $isSubAncestor := and (not $isSubSelf) (.IsAncestor $currentNode) }}
-      {{- $isSubHidden := or (.Params.hidden) (eq (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "") }}
+      {{- /* hidden without a title, as title.gotmpl tells it for the menu: only a
+        page lacking a link title has none, the others get one made up; written
+        out for each entry of every menu as a partial call is too costly */}}
+      {{- $isSubHidden := or (.Params.hidden) (and (not .LinkTitle) (not (in (slice "home" "taxonomy" "term") .Kind))) }}
       {{- $isSubCollapsible := .Params.collapsibleMenu | default site.Params.collapsibleMenu }}
       {{- if or $isSubSelf $isSubAncestor }}
         {{- partial "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) }}
@@ -148,7 +151,7 @@
     {{- range $entries }}
       {{- $isSubSelf := eq . $currentNode }}
       {{- $isSubAncestor := and (not $isSubSelf) (.IsAncestor $currentNode) }}
-      {{- $isSubHidden := or (.Params.hidden) (eq (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "") }}
+      {{- $isSubHidden := or (.Params.hidden) (and (not .LinkTitle) (not (in (slice "home" "taxonomy" "term") .Kind))) }}
       {{- if or $isSubAncestor $isSubSelf (not $isSubHidden) }}
         {{- $hasVisibleChildren = true }}
         {{- break }}
@@ -192,7 +195,7 @@
       {{- range $entries }}
         {{- $isSubSelf := eq . $currentNode }}
         {{- $isSubAncestor := and (not $isSubSelf) (.IsAncestor $currentNode) }}
-        {{- $isSubHidden := or (.Params.hidden) (eq (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "") }}
+        {{- $isSubHidden := or (.Params.hidden) (and (not .LinkTitle) (not (in (slice "home" "taxonomy" "term") .Kind))) }}
         {{- $isSubCollapsible := .Params.collapsibleMenu | default site.Params.collapsibleMenu }}
         {{- if or $isSubSelf $isSubAncestor }}
           {{- partial "inline/page-walker" (dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "alwaysopen" $defaultAlwaysopen "isSelf" $isSubSelf "isAncestor" $isSubAncestor "isHidden" $isSubHidden) }}
