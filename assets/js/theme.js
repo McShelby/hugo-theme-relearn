@@ -57,6 +57,14 @@ function showToast(message) {
 
 window.relearn.showToast = showToast;
 
+function initToast() {
+  // in the top layer the toasts show above an enlarged graph or image too; the
+  // container is shown for good, as a live region only tells of what changes
+  // once it is in the page
+  var container = document.querySelector('#toast-container');
+  container && container.showPopover();
+}
+
 // the latest hold is the one that keeps its element in place
 var holds = 0;
 
@@ -2925,6 +2933,7 @@ ready(function () {
   initScrollPositionSaver();
   initEdits();
   initPrintLogo();
+  initToast();
 });
 
 (function () {
