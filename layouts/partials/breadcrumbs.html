@@ -11,7 +11,7 @@
 {{- $breadcrumb := slice }}
 {{- range seq $depth }}
   {{- if $to }}
-    {{- $title := partial "title.gotmpl" (dict "page" $to "linkTitle" true) }}
+    {{- $title := partialCached "title.gotmpl" (dict "page" $to "linkTitle" true) $to.Path "linkTitle" }}
     {{- if hasPrefix $to.Path "/_relearn" }}
       {{- break }}
     {{- else if or $title (eq $to.Kind "taxonomy") (eq $to.Kind "term") }}

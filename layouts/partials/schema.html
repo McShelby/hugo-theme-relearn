@@ -36,17 +36,17 @@ Keywords precedence:
 */}}
 {{- $keywords := slice }}
 {{- range .GetTerms "keywords" }}
-  {{- $keywords = $keywords | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify | htmlUnescape) }}
+  {{- $keywords = $keywords | append (partialCached "title.gotmpl" (dict "page" .Page "linkTitle" true) .Page.Path "linkTitle" | plainify | htmlUnescape) }}
 {{- else }}
   {{- with .Keywords }}
     {{- $keywords = . }}
   {{- else }}
     {{- range .GetTerms "tags" }}
-      {{- $keywords = $keywords | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify | htmlUnescape) }}
+      {{- $keywords = $keywords | append (partialCached "title.gotmpl" (dict "page" .Page "linkTitle" true) .Page.Path "linkTitle" | plainify | htmlUnescape) }}
     {{- else }}
       {{- range $taxonomy, $_ := site.Taxonomies }}
         {{- range $.GetTerms $taxonomy }}
-          {{- $keywords = $keywords | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify | htmlUnescape) }}
+          {{- $keywords = $keywords | append (partialCached "title.gotmpl" (dict "page" .Page "linkTitle" true) .Page.Path "linkTitle" | plainify | htmlUnescape) }}
         {{- end }}
       {{- end }}
     {{- end }}

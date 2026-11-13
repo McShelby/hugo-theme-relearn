@@ -15,9 +15,9 @@
 {{- $taxonomy_page := $page.Site.GetPage $taxonomy }}
 {{- $term_pages := slice }}
 {{- range $page.GetTerms $taxonomy }}
-  {{- $term_pages = $term_pages | append (dict "Title" (partial "title.gotmpl" (dict "page" . "linkTitle" true)) "Term" . )}}
+  {{- $term_pages = $term_pages | append (dict "Title" (partialCached "title.gotmpl" (dict "page" . "linkTitle" true) .Path "linkTitle") "Term" . )}}
 {{- end }}
-{{- $taxonomy_title := partial "title.gotmpl" (dict "page" $taxonomy_page) }}
+{{- $taxonomy_title := partialCached "title.gotmpl" (dict "page" $taxonomy_page) $taxonomy_page.Path "title" }}
 {{- with $term_pages }}
 <div class="R-taxonomy taxonomy-{{ $taxonomy }}{{ with $style }} cstyle {{ . }}{{ end }}{{ with $class }} {{ . }}{{ end }}" title="{{ $taxonomy_title }}"{{ with $color }} style="--VARIABLE-TAGS-BG-color: {{ . | safeCSS }};"{{ end }}>
   {{- if $icon }}

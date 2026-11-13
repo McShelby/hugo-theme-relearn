@@ -1,6 +1,9 @@
 {{- /* menu.html tells from this which of its entries have no title and are
   hidden, without calling it; a change to when the result is empty is a change
   there too */}}
+{{- /* callers cache it by the page's path only where few pages are asked for
+  on every page, like terms and the sections of the breadcrumbs; cached for
+  every page it pushes the menu out of the 1000 entries partialCached keeps */}}
 {{- $title := "" }}
 {{- with .page }}
 	{{- $siteTitle := site.Title }}

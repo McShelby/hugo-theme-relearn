@@ -4,7 +4,7 @@
   {{- else if and .Title .RelPermalink (or (ne site.Params.disableSearchHiddenPages true) (not (partialCached "_relearn/pageIsHiddenSelfOrAncestor.gotmpl" (dict "page" . "to" site.Home) .Path site.Home.Path) ) ) }}
     {{- $tags := slice }}
     {{- range .GetTerms "tags" }}
-      {{- $tags = $tags | append (partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify) }}
+      {{- $tags = $tags | append (partialCached "title.gotmpl" (dict "page" .Page "linkTitle" true) .Page.Path "linkTitle" | plainify) }}
     {{- end }}
     {{- $parentPath := "" }}{{ with .Parent }}{{ $parentPath = .Path }}{{ end }}
     {{- $pages = $pages | append (dict

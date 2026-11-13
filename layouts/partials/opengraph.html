@@ -30,7 +30,7 @@
     <meta property="article:modified_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }}>
   {{- end }}
   {{- range .GetTerms "tags" | first 6 }}
-    <meta property="article:tag" content="{{ partial "title.gotmpl" (dict "page" .Page "linkTitle" true) | plainify | htmlUnescape }}">
+    <meta property="article:tag" content="{{ partialCached "title.gotmpl" (dict "page" .Page "linkTitle" true) .Page.Path "linkTitle" | plainify | htmlUnescape }}">
   {{- end }}
 {{- else }}
     <meta property="og:type" content="website">
