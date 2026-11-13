@@ -1010,7 +1010,7 @@ function writeTextToClipboardFallback(text) {
   fake.className = 'copy-to-clipboard-fake';
   // keep the element in the current viewport vertically, so focussing it
   // doesn't scroll the page
-  fake.style.top = (window.scrollY || document.documentElement.scrollTop) + 'px';
+  fake.style.top = window.scrollY + 'px';
   fake.setAttribute('readonly', '');
   fake.value = text;
   document.body.appendChild(fake);
