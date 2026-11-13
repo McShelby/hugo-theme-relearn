@@ -2234,7 +2234,6 @@ function initScrollPositionSaver() {
 
   document.addEventListener('click', transferScrollToHistory);
   window.addEventListener('pagehide', transferScrollToHistory);
-  window.addEventListener('beforeunload', transferScrollToHistory);
 }
 
 function transferScrollToHistory(event) {
