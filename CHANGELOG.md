@@ -1,5 +1,20 @@
 # Changelog
 
+## 9.5.1 (2026-11-13)
+
+### Fixes
+
+- [**bug**] print: use the width of the paper [#1389](https://github.com/McShelby/hugo-theme-relearn/issues/1389)
+- [**bug**] theme: build time regression since 9.3.0 [#1388](https://github.com/McShelby/hugo-theme-relearn/issues/1388)
+- [**bug**] print: draw lines and frames dark enough for paper [#1387](https://github.com/McShelby/hugo-theme-relearn/issues/1387)
+
+### Maintenance
+
+- [**task**] openapi: update swagger-ui to 5.35.0 [#1391](https://github.com/McShelby/hugo-theme-relearn/issues/1391)
+- [**task**] mermaid: draw large graphs without freezing the page [#1390](https://github.com/McShelby/hugo-theme-relearn/issues/1390)
+
+---
+
 ## 9.5.0 (2026-10-31)
 
 ### Enhancements
