@@ -4,9 +4,8 @@
   {{- $page := .Page }}
 - {{ if $page.RelPermalink }}[{{ .Label }}]({{ partial "_relearn/pathToUrl.gotmpl" $page.Path }}){{ else }}{{ .Label }}{{ end }}
   {{- if $.breadcrumb }}
-    {{- /* the `replaceRE` removes the space `plainify` adds behind each divider since
-      Hugo 0.169; only required as long as the minimum Hugo version is <= 0.168 */}}
-    {{- $breadcrumb := trim (partial "breadcrumbs.html" (dict "page" $page "dirOnly" true) | plainify | htmlUnescape | replaceRE `\x{00A0} +` "\u00A0") "\n\r\t " }}
+    {{- $parentPath := "" }}{{ with $page.Parent }}{{ $parentPath = .Path }}{{ end }}
+    {{- $breadcrumb := partialCached "_relearn/pageBreadcrumb.gotmpl" $page $parentPath }}
     {{- with $breadcrumb }}
 
     {{ . }}

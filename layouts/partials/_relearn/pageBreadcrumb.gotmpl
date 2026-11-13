@@ -1,0 +1,6 @@
+{{- /* the breadcrumbs leading to a page as plain text, without the page itself;
+  they only depend on the page's parent, so callers cache them by its path, as
+  a page list or the search index ask for the same section again and again */}}
+{{- /* the `replaceRE` removes the space `plainify` adds behind each divider since
+  Hugo 0.169; only required as long as the minimum Hugo version is <= 0.168 */}}
+{{- return trim (partial "breadcrumbs.html" (dict "page" . "dirOnly" true) | plainify | htmlUnescape | replaceRE `\x{00A0} +` " ") "\n\r\t " }}
