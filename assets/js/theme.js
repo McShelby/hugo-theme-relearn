@@ -223,6 +223,7 @@ function mermaidLightbox(box, show) {
     box.removeAttribute('role');
     box.removeAttribute('aria-modal');
   }
+  setLightboxInert('graph', show ? box : null);
   var button = box.querySelector('.svg-lightbox-button button');
   if (button) {
     var label = show ? window.T_Close_graph : window.T_Enlarge_graph;
@@ -1693,8 +1694,38 @@ function adjustNavInert() {
   var b = document.querySelector('body');
   var covered = b.classList.contains('menu-s-width') && b.classList.contains('sidebar-flyout');
   document.querySelectorAll('#R-body > :not(#R-body-overlay)').forEach(function (e) {
-    e.inert = covered;
+    e.inert = covered || lightboxInerted.includes(e);
   });
+}
+
+// an enlarged graph tells assistive technology that it is modal, so what lies
+// beside it is out of reach for the keyboard and screen readers, same as it is
+// for the mouse below its backdrop; the toasts stay, as they tell of what is
+// done inside. what someone else made inert is left alone
+var lightboxes = {};
+var lightboxInerted = [];
+function setLightboxInert(kind, box) {
+  lightboxes[kind] = box;
+  var inert = [];
+  Object.values(lightboxes).forEach(function (box) {
+    for (var e = box; e && e != document.body; e = e.parentElement) {
+      Array.from(e.parentElement.children).forEach(function (sibling) {
+        if (sibling != e && sibling.id != 'toast-container' && (!sibling.inert || lightboxInerted.includes(sibling))) {
+          inert.push(sibling);
+        }
+      });
+    }
+  });
+  lightboxInerted.forEach(function (e) {
+    if (!inert.includes(e)) {
+      e.inert = false;
+    }
+  });
+  inert.forEach(function (e) {
+    e.inert = true;
+  });
+  lightboxInerted = inert;
+  adjustNavInert();
 }
 
 function openNav() {
