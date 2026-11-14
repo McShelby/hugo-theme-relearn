@@ -28,11 +28,6 @@
   {{- $breadcrumbReversed = $breadcrumbReversed | append (index $breadcrumb (sub $len .)) }}
 {{- end }}
 {{- $separator := (printf "&nbsp;%s&nbsp;" (default ">" site.Params.breadcrumbSeparator)) | safeHTML }}
-{{- /* on paper the topbar leads with the logo, which the breadcrumbs are
-  divided from like their entries from each other, if they show any */}}
-{{- if and $.divider (gt $len (cond site.Params.disableRootBreadcrumb 1 0)) -}}
-              <li class="topbar-breadcrumbs-divider" aria-hidden="true">{{ $separator }}</li>
-{{- end }}
 {{- $depth := 0 }}
 {{- range $i, $e := $breadcrumbReversed }}
   {{- $to := $e.page }}

@@ -39,6 +39,19 @@
   {{- else if .Title }}
 	  {{- $article = .Render "article" }}
   {{- end }}
+  {{- /* every printed page starts with the breadcrumbs leading to it, which carry
+    its divider; they only depend on the page itself, so a page nested into its
+    parent's print is the same as printed on its own */}}
+  {{- with findRE `<article[^>]*>` $article 1 }}
+    {{- /* on paper they are the only hint where a page belongs, so they are
+      shown regardless of `disableBreadcrumb` */}}
+    {{- $breadcrumb := "" }}
+    {{- with $.Parent }}
+      {{- $breadcrumb = partialCached "_relearn/pageBreadcrumb.gotmpl" $ .Path }}
+    {{- end }}
+    {{- $tag := index . 0 }}
+    {{- $article = replace $article $tag (printf "%s\n  <div class=\"article-breadcrumbs\">%s</div>" $tag (htmlEscape $breadcrumb)) 1 }}
+  {{- end }}
   {{- if len $html }}
     {{- $title := partial "title.gotmpl" (dict "page" . "linkTitle" true) }}
     {{- $html = printf `%s

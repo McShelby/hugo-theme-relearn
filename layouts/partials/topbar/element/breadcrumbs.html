@@ -1,10 +1,14 @@
 {{- with .page }}
-	{{- $showBreadcrumb := (and (not .Params.disableBreadcrumb) (not site.Params.disableBreadcrumb)) }}
+	{{- /* in print the title of the first printed page is its heading, so its
+		breadcrumbs lead up to it; on paper they are the only hint where a page
+		belongs, so they are shown regardless of `disableBreadcrumb` */}}
+	{{- $isPrint := eq (.Store.Get "relearnOutputFormat") "print" }}
+	{{- $showBreadcrumb := or $isPrint (and (not .Params.disableBreadcrumb) (not site.Params.disableBreadcrumb)) }}
 	{{- if $showBreadcrumb }}
-		{{- $breadcrumb := partial "breadcrumbs.html" (dict "page" . "schema" true "divider" true) }}
+		{{- $breadcrumb := partial "breadcrumbs.html" (dict "page" . "schema" true "dirOnly" $isPrint) }}
 		{{- /* the `replaceRE` removes the space `plainify` adds behind each divider since
 			Hugo 0.169; only required as long as the minimum Hugo version is <= 0.168 */}}
-		{{- $breadcrumbTitle := trim ($breadcrumb | replaceRE `(?s)<li[^>]*class="(?:a11y-only|topbar-breadcrumbs-divider)"[^>]*>.*?</li>` "" | plainify | htmlUnescape | replaceRE `\x{00A0} +` "\u00A0") "\n\r\t " }}
+		{{- $breadcrumbTitle := trim ($breadcrumb | replaceRE `(?s)<li[^>]*class="a11y-only"[^>]*>.*?</li>` "" | plainify | htmlUnescape | replaceRE `\x{00A0} +` "\u00A0") "\n\r\t " }}
             <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="{{ T "Breadcrumbs" }}"{{ with $breadcrumbTitle }} data-overflow-title="{{ . }}"{{ end }}>
               <ol itemscope itemtype="http://schema.org/BreadcrumbList">
               {{- $breadcrumb }}

@@ -30,7 +30,7 @@ html {
   font-size: 8.763pt;
 }
 #R-body #R-topbar {
-  /* the logo leads the topbar outside of its wrapper, so it is the topbar
+  /* the logo closes the topbar outside of its wrapper, so it is the topbar
      itself that carries the background */
   background-color: var(--INTERNAL-TOPBAR-BG-color);
   border-radius: 0;
@@ -48,7 +48,7 @@ html {
   flex: 1 1 0;
   min-width: 0;
 }
-/* the menu is not printed, so its logo leads the topbar instead; it must never
+/* the menu is not printed, so its logo closes the topbar instead; it must never
    grow the topbar, so it has a fixed image height and a single line title,
    whatever layout and line breaks are set for the menu. it is shown in full,
    the breadcrumbs take what is left */
@@ -56,6 +56,7 @@ html {
   align-self: center;
   flex: none;
   margin-block: 0;
+  margin-inline-start: 1rem;
 }
 #R-topbar > #R-logo.R-default {
   flex-direction: row;
@@ -85,16 +86,9 @@ html {
    stand on the same line where they share their font */
 #R-body .topbar-breadcrumbs {
   padding-block: calc((1lh - 1cap) / 2);
-  text-box: trim-both cap alphabetic;
-}
-/* only where the breadcrumbs follow the logo; at the end of the topbar they
-   are apart from it */
-#R-topbar:has(> #R-logo) :is(.topbar-area-start, .topbar-area-middle) .breadcrumbs li.topbar-breadcrumbs-divider {
-  display: inline-block;
-}
-#R-topbar:has(> #R-logo) :is(.topbar-area-start, .topbar-area-middle) .topbar-breadcrumbs:has(> ol > .topbar-breadcrumbs-divider) {
-  /* the divider towards the logo brings the spacing of the breadcrumbs */
+  /* they start where the breadcrumbs of the following printed pages do */
   padding-inline-start: 0;
+  text-box: trim-both cap alphabetic;
 }
 #R-body .topbar-button {
   /* we don't need the buttons while printing */
@@ -174,8 +168,11 @@ thead td,
 td {
   border-inline-end-color: var(--print-divider-color);
 }
-hr {
+#R-body hr {
   border-bottom-width: 1px;
+  /* rounded, a line is smoothed instead of drawn on whole pixels, and so
+     comes out lighter than the other dividers of the same color */
+  border-radius: 0;
 }
 #R-body pre:not(.mermaid) {
   /* the variant's colors of block code win over the ones of its syntax highlighting style */
@@ -193,7 +190,12 @@ hr {
   border-bottom: 1px solid var(--print-divider-color);
   font-size: 3.25rem;
   margin-bottom: 2rem;
-  padding-bottom: 0.75rem;
+  /* each font places its letters elsewhere in the line, so the heading only
+     keeps its capitals to its baseline and sits centered between its dividers
+     by equal room above and below, whatever the font */
+  margin-top: 2.25rem;
+  padding-bottom: 2.25rem;
+  text-box: trim-both cap alphabetic;
 }
 
 /* Pages and children shortcode */
@@ -202,11 +204,29 @@ hr {
   font-size: 1rem;
 }
 
+/* each printed page starts with the breadcrumbs leading to it above a divider */
+.article-breadcrumbs {
+  border-bottom: 1px solid var(--print-divider-color);
+  padding-bottom: 0.75rem;
+}
+#R-main > .flex-block-wrapper > article:not(.card):first-of-type > .article-breadcrumbs {
+  /* the topbar shows them for the first printed page, next to the logo */
+  display: none;
+}
+
 .footline {
-  /* in print mode show footer line to signal reader the end of document */
-  border-top: 1px solid var(--print-divider-color);
   margin-top: 1.5rem;
-  padding-top: 0.75rem;
+}
+
+/* the dividers of the printed pages sit between them, so the last one adds a
+   divider of its own to close the printout; the pages of a section follow its
+   own page, nested into one section each, so the last is the article that is
+   the last one on each of these levels */
+:is(#R-main > .flex-block-wrapper, section) > article:not(.card):last-child:not(#R-main > .flex-block-wrapper section:not(:last-child) *)::after {
+  border-top: 1px solid var(--print-divider-color);
+  content: '';
+  display: block;
+  margin-top: 0.75rem;
 }
 
 h1 + .footline {
@@ -280,6 +300,9 @@ mark.search {
 
 article:not(.card) {
   break-before: page;
+  /* sets the next printed page apart where no paper does; at the end of a
+     sheet the margin is dropped */
+  margin-bottom: 4rem;
 }
 #R-main > .flex-block-wrapper > article:not(.card):first-of-type {
   /* keep the printed page on the same paper as the topbar */
@@ -299,5 +322,7 @@ article:not(.card) {
 }
 
 #R-body #R-main > .flex-block-wrapper article.narrow > .article-subheading {
-  margin-top: 0;
+  /* leads the heading, so it takes the room above it, the same way */
+  margin-top: 2.25rem;
+  text-box: trim-both cap alphabetic;
 }
