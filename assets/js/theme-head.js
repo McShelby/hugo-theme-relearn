@@ -37,6 +37,45 @@ document.querySelectorAll('link.R-async-style').forEach(function (link) {
   }
 });
 
+// an icon shows once its font has arrived; if that is only after the first paint,
+// the icons fade in instead of popping up. frame by frame we look whether an icon
+// font is still loading, so icons whose font is there in time are left alone; we
+// stop once the page has loaded, as hiding all icons for one added later would
+// blink those already shown
+(function () {
+  var root = document.documentElement;
+  var isLoaded = false;
+  window.addEventListener(
+    'load',
+    function () {
+      isLoaded = true;
+    },
+    { once: true }
+  );
+  var watch = function () {
+    var isLoading = Array.from(document.fonts).some(function (face) {
+      return /Font Awesome/.test(face.family) && face.status == 'loading';
+    });
+    if (isLoading) {
+      // they are not seen yet anyway, as the icon font holds them back
+      if (root.dataset.rIcons != 'loading') {
+        root.dataset.rIcons = 'loading';
+      }
+    } else if (root.dataset.rIcons == 'loading') {
+      // a font that failed is done, too; its icons were never to be seen
+      root.dataset.rIcons = 'fading';
+      setTimeout(function () {
+        delete root.dataset.rIcons;
+      }, 400);
+      return;
+    } else if (isLoaded) {
+      return;
+    }
+    requestAnimationFrame(watch);
+  };
+  requestAnimationFrame(watch);
+})();
+
 // a page the browser keeps in its back/forward cache comes back showing the colors it
 // was left with, before we are asked to bring it in line with the storage. a browser
 // that gets a message on this channel for one of its cached pages drops that page, so

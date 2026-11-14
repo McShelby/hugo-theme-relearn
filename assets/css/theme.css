@@ -282,6 +282,20 @@ button::-moz-focus-inner {
   transition: all 0.35s ease;
 }
 
+/* while their font is on its way after the first paint, the icons wait out of
+   sight, so they can fade in once it is there */
+:root[data-r-icons='loading'] [class*='fa-'] {
+  opacity: 0;
+}
+:root[data-r-icons='fading'] [class*='fa-'] {
+  animation: R-icons-fade-in 0.3s ease-out;
+}
+@keyframes R-icons-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 /* readers asking for less motion get none: what changes, changes at once */
 @media (prefers-reduced-motion: reduce) {
   *,
