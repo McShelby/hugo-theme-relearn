@@ -6,6 +6,15 @@
 {{- $onwidths := cond (isset . "onwidths") .onwidths "show" }}
 {{- $onwidthm := cond (isset . "onwidthm") .onwidthm "show" }}
 {{- $onwidthl := cond (isset . "onwidthl") .onwidthl "show" }}
+{{- /* moving a button into the area it is written into keeps it where it is,
+  same as showing it; said that way, the stylesheet knows that it stays before
+  the script has set up the topbar */}}
+{{- with and $page ($page.Store.Get "relearnTopbarArea") }}
+  {{- $own := printf "area-%s" . }}
+  {{- $onwidths = cond (eq $onwidths $own) "show" $onwidths }}
+  {{- $onwidthm = cond (eq $onwidthm $own) "show" $onwidthm }}
+  {{- $onwidthl = cond (eq $onwidthl $own) "show" $onwidthl }}
+{{- end }}
 {{- $type := .type | default "" }}
 {{- $action := (trim .action " ") | default "" }}
 {{- $title := (trim .title " ") | default "" }}
@@ -17,6 +26,10 @@
 {{- $icon := (trim .icon " ") | default "" }}
 {{- $content := .content }}
 {{- $istoggle := .istoggle | default false }}
+{{- /* a button to hide if its content is empty is left out right away instead of
+  waiting for the script to find out */}}
+{{- $isempty := not (trim (string ($content | default "")) " \n\r\t") }}
+{{- if not (and $content $isempty (eq $onempty "hide")) }}
             <div class="topbar-button {{ $class }} default-animation" data-content-empty="{{ $onempty }}" data-width-s="{{ $onwidths }}" data-width-m="{{ $onwidthm }}" data-width-l="{{ $onwidthl }}" data-title-width-s="{{ $titleonwidths }}" data-title-width-m="{{ $titleonwidthm }}" data-title-width-l="{{ $titleonwidthl }}">
 {{ partial "shortcodes/button.html" (dict
   "page" $page
@@ -39,3 +52,4 @@
               </div>
 {{- end }}
             </div>
+{{- end }}

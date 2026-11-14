@@ -1951,7 +1951,16 @@ tbody > tr:nth-child(even) > td {
   padding-right: 0.5rem;
   position: relative;
 }
-.topbar-button:not([data-origin]) {
+/* until theme.js has set up the topbar, a button waits out of sight only if the
+   script has something to decide about it: whether it moves at the current
+   width, or whether its area, holding no button that stays at this width, is
+   left empty */
+:where(.menu-s-width) .topbar-button:not([data-origin], [data-width-s='show']),
+:where(.menu-m-width) .topbar-button:not([data-origin], [data-width-m='show']),
+:where(.menu-l-width) .topbar-button:not([data-origin], [data-width-l='show']),
+:where(.menu-s-width) .topbar-button:not([data-origin])[data-content-empty='hide']:has(> .topbar-content > .topbar-content-wrapper > .topbar-area):not(:has(> .topbar-content > .topbar-content-wrapper > .topbar-area > .topbar-button[data-width-s='show'])),
+:where(.menu-m-width) .topbar-button:not([data-origin])[data-content-empty='hide']:has(> .topbar-content > .topbar-content-wrapper > .topbar-area):not(:has(> .topbar-content > .topbar-content-wrapper > .topbar-area > .topbar-button[data-width-m='show'])),
+:where(.menu-l-width) .topbar-button:not([data-origin])[data-content-empty='hide']:has(> .topbar-content > .topbar-content-wrapper > .topbar-area):not(:has(> .topbar-content > .topbar-content-wrapper > .topbar-area > .topbar-button[data-width-l='show'])) {
   display: none;
 }
 

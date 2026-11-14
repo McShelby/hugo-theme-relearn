@@ -1,6 +1,11 @@
 {{- $page := .page }}
 {{- $area := .area }}
 {{- $legacy := printf "topbar/area/%s.html" $area }}
+{{- /* the buttons of the elements learn the area they are written into from
+	here; an area of a button is written in the middle of its outer area, which
+	takes over again afterwards */}}
+{{- $outerArea := $page.Store.Get "relearnTopbarArea" }}
+{{- $page.Store.Set "relearnTopbarArea" $area }}
 {{- if templates.Exists (printf "partials/%s" $legacy) }}
 	{{- /* the theme ships no area templates, so this one is of the site and
 		written before areas were configurable; it still defines the area */}}
@@ -23,3 +28,4 @@
 		{{- end }}
 	{{- end }}
 {{- end }}
+{{- $page.Store.Set "relearnTopbarArea" $outerArea }}
