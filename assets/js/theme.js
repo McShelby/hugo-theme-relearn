@@ -138,6 +138,10 @@ function switchTab(tabGroup, tabId, button) {
   // the areas above the button move it with every step they take
   holdButton();
 
+  storeTabSelection(tabGroup, tabId);
+}
+
+function storeTabSelection(tabGroup, tabId) {
   // Store the selection to make it persistent
   if (window.localStorage) {
     var selectionsJSON = window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections');
@@ -161,6 +165,20 @@ function handleTabs() {
     }
     var tabPanel = button.closest('.tab-panel[data-tab-group]');
     tabPanel && switchTab(tabPanel.dataset.tabGroup, button.dataset.tabItem, button);
+  });
+
+  // the search of the browser found something in the hidden content of a tab, so
+  // the tab is selected; without growing into place, as the browser scrolls to
+  // the finding right away
+  document.addEventListener('beforematch', function (event) {
+    var content = event.target.closest('.tab-content[data-tab-item]');
+    var tabPanel = content && content.closest('.tab-panel[data-tab-group]');
+    if (!tabPanel || content != event.target) {
+      return;
+    }
+    window.relearn.selectTab(tabPanel.dataset.tabGroup, content.dataset.tabItem);
+    initMermaid(true);
+    storeTabSelection(tabPanel.dataset.tabGroup, content.dataset.tabItem);
   });
 
   // inside of a list of tabs the arrow keys move on to the neighbouring tab,

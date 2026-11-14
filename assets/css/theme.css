@@ -3881,13 +3881,9 @@ body a#R-logo:hover *:not(svg, svg *) {
   border-bottom-color: var(--VARIABLE-LINK-HOVER-color);
 }
 
+/* a hidden content is only emptied, so its frame is drawn by its text, which
+  goes along with it */
 #R-body .tab-content {
-  background-color: var(--VARIABLE-BOX-color);
-  border-color: var(--VARIABLE-BOX-color);
-  border-radius: var(--block-radius);
-  border-style: solid;
-  border-width: 1px;
-  display: none;
   z-index: 10;
 }
 
@@ -3899,13 +3895,12 @@ body a#R-logo:hover *:not(svg, svg *) {
   margin-top: calc(var(--bpx1) * -1px);
 }
 
-#R-body .tab-content.active {
-  display: block;
-}
-
 #R-body .tab-content-text {
   background-color: var(--VARIABLE-BOX-BG-color);
-  border-radius: calc(var(--block-radius) - 1px);
+  border-color: var(--VARIABLE-BOX-color);
+  border-radius: var(--block-radius);
+  border-style: solid;
+  border-width: 1px;
   color: var(--VARIABLE-BOX-TEXT-color);
   padding: 1rem;
 }
@@ -3924,12 +3919,12 @@ body a#R-logo:hover *:not(svg, svg *) {
 #R-body .tab-content-text > pre:not(.mermaid).pre-code:only-child {
   border-width: 0;
 }
-/* such a code block fills the tab, so it takes over its corners */
+/* such a code block fills the tab, so it takes over the inner corners of its frame */
 #R-body .tab-content-text > div.highlight:only-child,
 #R-body .tab-content-text > div.highlight:only-child > div:not(.actionbar),
 #R-body .tab-content-text > div.highlight:only-child > pre:not(.mermaid),
 #R-body .tab-content-text > pre:not(.mermaid).pre-code:only-child {
-  border-radius: inherit;
+  border-radius: calc(var(--block-radius) - 1px);
 }
 
 .tab-panel-style.cstyle.initial,
@@ -3951,10 +3946,6 @@ body a#R-logo:hover *:not(svg, svg *) {
 
 #R-body .tab-panel-style.cstyle.code.tab-nav-button:not(.active) {
   --VARIABLE-BOX-color: var(--INTERNAL-BOX-NEUTRAL-color);
-}
-
-#R-body .tab-panel-style.cstyle:is(.initial, .default, .transparent).tab-content {
-  background-color: var(--VARIABLE-BOX-BG-color);
 }
 
 /* bordering the menu and topbar */

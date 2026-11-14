@@ -215,8 +215,10 @@ window.relearn.selectTab = function (tabGroup, tabId) {
       .forEach(function (e) {
         var active = e.dataset.tabItem == tabId;
         e.classList.toggle('active', active);
-        // the state attributes belong to the tabs only, their contents carry none
         if (!e.classList.contains('tab-nav-button')) {
+          // a hidden content is still found by the search of the browser, which
+          // then selects its tab
+          e.hidden = active ? false : 'until-found';
           return;
         }
         // of all tabs of a panel only the selected one is a stop for the tab key,

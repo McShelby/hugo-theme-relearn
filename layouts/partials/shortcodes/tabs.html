@@ -111,7 +111,7 @@
     <div
       id="{{ .id }}" role="tabpanel" aria-labelledby="{{ .id }}-tab"
       data-tab-item="{{ .itemid }}"
-      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}{{ if .code }} codify{{ end }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . | safeCSS }};"{{ end }}>
+      class="tab-content tab-panel-style cstyle{{ with .style }} {{ . }}{{ end }}{{ cond (eq $idx 0) " active" ""}}{{ if .code }} codify{{ end }}"{{ with .color }} style="--VARIABLE-BOX-color: {{ . | safeCSS }};"{{ end }}{{ if ne $idx 0 }} hidden="until-found"{{ end }}>
       <div class="tab-content-text">
 {{ .content | safeHTML }}
       </div>
