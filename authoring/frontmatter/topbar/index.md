@@ -25,7 +25,7 @@ disableToc = true
 
 ## Breadcrumbs
 
-{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableBreadcrumb` to `true` to hide the breadcrumb in the topbar.
+{{% badge style="option" %}}Option{{% /badge %}} {{% badge style="frontmatter" %}}Front Matter{{% /badge %}} Set `disableBreadcrumb` to `true` to hide the breadcrumb in the topbar. Printed pages always show theirs.
 
 Further breadcrumbs settings can be found in the [content configuration section](configuration/content/titles).
 
