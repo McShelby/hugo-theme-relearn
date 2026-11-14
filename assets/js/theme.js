@@ -958,7 +958,7 @@ function initOpenapi(update, attrs) {
       .catch(function (error) {
         const ed = document.createElement('div');
         ed.classList.add('sc-alert', 'sc-alert-error', openapiErrorClass);
-        ed.innerHTML = error;
+        ed.textContent = error;
         root.replaceChildren();
         oc.insertAdjacentElement('beforebegin', ed);
       });
