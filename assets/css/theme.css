@@ -1201,9 +1201,13 @@ h1 {
   hyphens: auto;
   letter-spacing: var(--INTERNAL-MAIN-TITLES-H1-letter-spacing);
   margin: 0.85rem 0 1rem 0;
+  overflow: clip;
+  /* what a font draws beyond its box, like a swash, a slanted letter or a
+     glow, would be cut off; it may paint into the room around it, which leaves
+     the box as it is for what a site draws on it */
+  overflow-clip-margin: 0.5em;
   /* big titles cause a horizontal scrollbar - fixing this by wrapping text */
   overflow-wrap: break-word;
-  overflow-x: hidden;
   text-align: center;
   text-rendering: optimizeLegibility;
 }
@@ -1299,9 +1303,13 @@ h5,
 h6 {
   hyphens: auto;
   margin: 1.5rem 0 1rem 0;
+  overflow: clip;
+  /* what a font draws beyond its box, like a swash, a slanted letter or a
+     glow, would be cut off; it may paint into the room around it, which leaves
+     the box as it is for what a site draws on it */
+  overflow-clip-margin: 0.5em;
   /* big titles cause a horizontal scrollbar - fixing this by wrapping text */
   overflow-wrap: break-word;
-  overflow-x: hidden;
   text-rendering: optimizeLegibility;
 }
 
