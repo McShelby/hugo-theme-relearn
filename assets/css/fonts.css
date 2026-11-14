@@ -74,6 +74,43 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Roboto Flex Fallback, shown until Roboto Flex is loaded */
+/* - The fonts of the fallbacks in `--INTERNAL-MAIN-font`, scaled to the width
+     Roboto Flex has, so the text keeps its line breaks once Roboto Flex takes
+     over; regular for body text, bold for bold text */
+/* - `local()` knows no aliases, so the fonts a system draws for Helvetica
+     follow right after it: Arial on Windows, Nimbus Sans or Liberation Sans on
+     Linux; they all share the width of Helvetica */
+/* - Roboto Flex Fallback Roboto does the same with Roboto for Android, which
+     has none of those fonts */
+/* - After updating Roboto Flex or the widths the theme asks of it, measure the
+     width of a long line of body text and of bold text in each font and set
+     their ratios here */
+@font-face {
+  font-family: 'Roboto Flex Fallback';
+  font-weight: 400;
+  src: local('Helvetica'), local('Arial'), local('Nimbus Sans'), local('Liberation Sans'), local('Tahoma'), local('Geneva');
+  size-adjust: 102.9%;
+}
+@font-face {
+  font-family: 'Roboto Flex Fallback';
+  font-weight: 700;
+  src: local('Helvetica Bold'), local('Arial Bold'), local('Nimbus Sans Bold'), local('Liberation Sans Bold'), local('Tahoma Bold');
+  size-adjust: 104.8%;
+}
+@font-face {
+  font-family: 'Roboto Flex Fallback Roboto';
+  font-weight: 400;
+  src: local('Roboto');
+  size-adjust: 103%;
+}
+@font-face {
+  font-family: 'Roboto Flex Fallback Roboto';
+  font-weight: 700;
+  src: local('Roboto Bold');
+  size-adjust: 110.8%;
+}
+
 /* Great Vibes, used by the tome variants */
 /* - Download CSS https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap */
 /* - Download fonts of src attributes of resulting CSS and edit file names accordingly */
