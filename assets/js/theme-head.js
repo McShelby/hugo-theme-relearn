@@ -229,17 +229,36 @@ window.relearn.selectTab = function (tabGroup, tabId) {
   });
 };
 
+// shows the active entry in the middle of the menu; we move the menu ourselves:
+// `scrollIntoView` also makes the entry the point the tab key starts from, which
+// would lead past the skip link
+window.relearn.centerActiveMenuEntry = function () {
+  var e = document.querySelector('#R-content-wrapper li.active a');
+  if (e) {
+    var wrapper = document.querySelector('#R-content-wrapper');
+    var port = wrapper.getBoundingClientRect();
+    var box = e.getBoundingClientRect();
+    wrapper.scrollTop += box.top - port.top - (port.height - box.height) / 2;
+  }
+};
+
 // the markup preselects the first variant and the first tab of each panel, and both
 // are drawn while the parser is still busy. mutation callbacks run before the next
 // paint, so we correct them as soon as they appear; as they arrive piece by piece, we
-// keep at it until the document is parsed
+// keep at it until the document is parsed. the same goes for the menu, which starts
+// at its top and is complete once the page body follows it
 (function () {
   var tabSelections = JSON.parse(window.localStorage.getItem(window.relearn.absBaseUri + '/tab-selections') || '{}');
+  var isMenuComplete = false;
   var restoreSelections = function () {
     window.relearn.markVariant();
     Object.keys(tabSelections).forEach(function (tabGroup) {
       window.relearn.selectTab(tabGroup, tabSelections[tabGroup]);
     });
+    if (!isMenuComplete) {
+      isMenuComplete = !!document.querySelector('#R-body');
+      window.relearn.centerActiveMenuEntry();
+    }
   };
   var observer = new MutationObserver(restoreSelections);
   observer.observe(document.documentElement, { childList: true, subtree: true });

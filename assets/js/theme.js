@@ -2312,18 +2312,7 @@ function transferScrollToHistory(event) {
 }
 
 function scrollToPositions() {
-  // show active menu entry
-  window.setTimeout(function () {
-    // we move the menu ourselves: `scrollIntoView` also makes the entry the
-    // point the tab key starts from, which would lead past the skip link
-    var e = document.querySelector('#R-content-wrapper li.active a');
-    if (e) {
-      var wrapper = document.querySelector('#R-content-wrapper');
-      var port = wrapper.getBoundingClientRect();
-      var box = e.getBoundingClientRect();
-      wrapper.scrollTop += box.top - port.top - (port.height - box.height) / 2;
-    }
-  }, 10);
+  window.relearn.centerActiveMenuEntry();
 
   // scroll the content to point of interest;
   // if we have a scroll position saved, the user was here
