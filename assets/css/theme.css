@@ -3921,8 +3921,11 @@ body a#R-logo:hover *:not(svg, svg *) {
   margin-top: calc(var(--bpx1) * -1px);
 }
 
+/* the background is translucent and tints the color of the frame, which lies
+  beneath it on the same element */
 #R-body .tab-content-text {
-  background-color: var(--VARIABLE-BOX-BG-color);
+  background-color: var(--VARIABLE-BOX-color);
+  background-image: linear-gradient(var(--VARIABLE-BOX-BG-color), var(--VARIABLE-BOX-BG-color));
   border-color: var(--VARIABLE-BOX-color);
   border-radius: var(--block-radius);
   border-style: solid;
@@ -3968,6 +3971,10 @@ body a#R-logo:hover *:not(svg, svg *) {
   border-left-color: var(--VARIABLE-BOX-color);
   border-right-color: var(--VARIABLE-BOX-color);
   border-top-color: var(--VARIABLE-BOX-color);
+}
+
+#R-body .tab-panel-style.cstyle:is(.initial, .default, .transparent).tab-content > .tab-content-text {
+  background-color: var(--VARIABLE-BOX-BG-color);
 }
 
 #R-body .tab-panel-style.cstyle.code.tab-nav-button:not(.active) {
