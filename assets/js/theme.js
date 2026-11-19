@@ -2850,7 +2850,7 @@ function initEdits() {
   });
 }
 
-// the menu is not printed, so on paper its logo leads the topbar instead, like
+// the menu is not printed, so on paper its logo closes the topbar instead, like
 // in the print version; for the time of printing, the topbar gets a copy of it.
 // the copy keeps the identifier, as all the styles of the logo go by it, and the
 // screen never shows it, so nothing moves behind the print dialog
@@ -2896,7 +2896,7 @@ function initPrintLogo() {
   };
   var copy = null;
   window.addEventListener('beforeprint', function () {
-    copy = copy || topbar.insertBefore(copyLogo(), topbar.firstChild);
+    copy = copy || topbar.appendChild(copyLogo());
   });
   window.addEventListener('afterprint', function () {
     copy && copy.remove();
