@@ -30,7 +30,7 @@ html {
   font-size: 8.763pt;
 }
 #R-body #R-topbar {
-  /* the logo closes the topbar outside of its wrapper, so it is the topbar
+  /* the logo leads the topbar outside of its wrapper, so it is the topbar
      itself that carries the background */
   background-color: var(--INTERNAL-TOPBAR-BG-color);
   border-radius: 0;
@@ -48,7 +48,7 @@ html {
   flex: 1 1 0;
   min-width: 0;
 }
-/* the menu is not printed, so its logo closes the topbar instead; it must never
+/* the menu is not printed, so its logo leads the topbar instead; it must never
    grow the topbar, so it has a fixed image height and a single line title,
    whatever layout and line breaks are set for the menu. it is shown in full,
    the breadcrumbs take what is left */
@@ -56,7 +56,7 @@ html {
   align-self: center;
   flex: none;
   margin-block: 0;
-  margin-inline-start: 1rem;
+  margin-inline-end: 1rem;
 }
 #R-topbar > #R-logo.R-default {
   flex-direction: row;
@@ -86,8 +86,10 @@ html {
    stand on the same line where they share their font */
 #R-body .topbar-breadcrumbs {
   padding-block: calc((1lh - 1cap) / 2);
-  /* they start where the breadcrumbs of the following printed pages do */
-  padding-inline-start: 0;
+  /* they close the topbar at the edge of the content, the logo leading it at
+     the other one; the margin of the logo brings their spacing towards it */
+  padding-inline: 0;
+  text-align: end;
   text-box: trim-both cap alphabetic;
 }
 #R-body .topbar-button {
