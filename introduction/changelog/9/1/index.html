@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.170.1">
-    <meta name="generator" content="Relearn 9.5.2+82cbe8ec51f9a722a90611a3242a118b4023afb9">
+    <meta name="generator" content="Relearn 9.5.2+4ce97ef36a5e7aa3abe2844e4a657d09c5d09e20">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="9.1.0 (2026-09-13) Enhancements [feature] i18n: split pt into true pt and pt-BR #1260 [feature] edit: support filesystem edit paths #1252 [feature] theme: switch cache busting to fingerprint #1249 [feature] cards: improve a11y alt text in generated img tag #1203 Fixes [bug] dependencies: don’t ignore header dependencies of nested pages for print #1263 [bug] mermaid: defer drawing #1262 [bug] search: fix scrolling into view for menu items #1261 [bug] openapi: fix various issues #1254 [bug] image: support width/height to avoid layout shift #1251 [bug] theme: fix stray \r in windows build #1250 [bug] link: fix occasional crash in checker #1246 [bug] search: disarm internal _relearn page rendered in non-default languages #1245 [bug] search: fix Lunr searching for numbers only #1240 [bug] logo: fix added fill for inlined SVG #1236 [bug] logo: fix cut off title for scripts with diacritics #1233 [bug] theme: fix body width override #1223 [bug] clipboard: let it work over http connections #1222 [bug] i18n: nl change “Fooi” to “Tip” #1221 [bug] logo: not showing when auto variants are not set explicitly #1214 [bug] children: multi-line description does not look nice #1213 [bug] children: bad links for children with ampersand in their name #1212 [bug] children: sort doesn’t sort as documented #1198 [bug] taxonomy: fix term page url if term contains special chars #1197 Maintenance [task] mermaid: update to 11.17.2 #1257 [task] fontawesome: update to 7.3.1 #1256 [task] math: update MathJax to 4.1.3 #1255 [task] openapi: update swagger-ui to 5.32.15 #1253 [task] build: implement CI testing #1247 [task] menu: remove references for deprecated menuTitle #1225 [task] theme: remove recent Hugo deprecations #1219 [task] security: update dependency to address CVEs #1215 [task] scrollbar: remove PerfectScrollbar #1187">
     <meta name="author" content="Sören Weber">
@@ -35,11 +35,11 @@
     <link href="/hugo-theme-relearn/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/search.en.59a00d815c4b8482b720f386df03f0f3f848e06c31b89d0f8ca2adecdd176b80.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.72b348e782849bc49ab4e4a0ecbbac82dbad6e92e79569a4047ec0432604f678.js"
+      "indexFile": "searchindex.en.min.c52f2055ade6ea637235f1468fee2b15d8c4fbe0bdf440fa93a6d7a08d708b36.js"
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
     <link href="/hugo-theme-relearn/css/theme.min.0c4d6fe59e2ddceb2d52fd6bdb77c84c7ad1c5bf3c42c60b3265d18d7b204032.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-html.min.dddade65193c00a7dfebb0c8a3859ac47f57d59c886fd6097e19f63eeec4d824.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/format-html.min.54ecc457ad61086440e4ead0ff52ac6fcd0033c78eac6e61c47780a3b0d2593e.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -339,7 +339,7 @@
           </ul>
         </div>
 <div id="R-footer" class="default-animation"><span class="github-buttons"></span>
-<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/82cbe8ec51f9a722a90611a3242a118b4023afb9" title="Relearn 9.5.2&#43;82cbe8ec51f9a722a90611a3242a118b4023afb9"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.170.1">Hugo</a></p>
+<p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn/commit/4ce97ef36a5e7aa3abe2844e4a657d09c5d09e20" title="Relearn 9.5.2&#43;4ce97ef36a5e7aa3abe2844e4a657d09c5d09e20"><i class="fas fa-fw fa-heart"></i></a> by <a href="https://gohugo.io/" title="Hugo 0.170.1">Hugo</a></p>
 <script src="/hugo-theme-relearn/js/github-buttons-init.min.46d9f4ac9c492d6e152b83b335c9e5d127ec0f0b5fc282e1c3f588a4e42dd422.js"></script>
 <script async src="/hugo-theme-relearn/js/github-buttons/github-buttons.min.396875a4c3b16f1f090a5324972f068ebeee9dc3902a275b352dd4a74e99b648.js"></script></div>
       </nav>
@@ -423,44 +423,44 @@
 <h2 id="910-2026-09-13">9.1.0 (2026-09-13)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="enhancements">Enhancements<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>feature</strong>] i18n: split pt into true pt and pt-BR <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1260" rel="external" target="_self">#1260</a></li>
-<li>[<strong>feature</strong>] edit: support filesystem edit paths <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1252" rel="external" target="_self">#1252</a></li>
-<li>[<strong>feature</strong>] theme: switch cache busting to fingerprint <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1249" rel="external" target="_self">#1249</a></li>
-<li>[<strong>feature</strong>] cards: improve a11y alt text in generated img tag <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1203" rel="external" target="_self">#1203</a></li>
+<li>[<strong>feature</strong>] i18n: split pt into true pt and pt-BR <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1260" rel="external" target="_self">#1260</a></li>
+<li>[<strong>feature</strong>] edit: support filesystem edit paths <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1252" rel="external" target="_self">#1252</a></li>
+<li>[<strong>feature</strong>] theme: switch cache busting to fingerprint <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1249" rel="external" target="_self">#1249</a></li>
+<li>[<strong>feature</strong>] cards: improve a11y alt text in generated img tag <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1203" rel="external" target="_self">#1203</a></li>
 </ul>
 <h3 id="fixes">Fixes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>bug</strong>] dependencies: don&rsquo;t ignore header dependencies of nested pages for print <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1263" rel="external" target="_self">#1263</a></li>
-<li>[<strong>bug</strong>] mermaid: defer drawing <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1262" rel="external" target="_self">#1262</a></li>
-<li>[<strong>bug</strong>] search: fix scrolling into view for menu items <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1261" rel="external" target="_self">#1261</a></li>
-<li>[<strong>bug</strong>] openapi: fix various issues <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1254" rel="external" target="_self">#1254</a></li>
-<li>[<strong>bug</strong>] image: support width/height to avoid layout shift <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1251" rel="external" target="_self">#1251</a></li>
-<li>[<strong>bug</strong>] theme: fix stray \r in windows build <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1250" rel="external" target="_self">#1250</a></li>
-<li>[<strong>bug</strong>] link: fix occasional crash in checker <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1246" rel="external" target="_self">#1246</a></li>
-<li>[<strong>bug</strong>] search: disarm internal <code>_relearn</code> page rendered in non-default languages <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1245" rel="external" target="_self">#1245</a></li>
-<li>[<strong>bug</strong>] search: fix Lunr searching for numbers only <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1240" rel="external" target="_self">#1240</a></li>
-<li>[<strong>bug</strong>] logo: fix added fill for inlined SVG <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1236" rel="external" target="_self">#1236</a></li>
-<li>[<strong>bug</strong>] logo: fix cut off title for scripts with diacritics <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1233" rel="external" target="_self">#1233</a></li>
-<li>[<strong>bug</strong>] theme: fix body width override <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1223" rel="external" target="_self">#1223</a></li>
-<li>[<strong>bug</strong>] clipboard: let it work over http connections <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1222" rel="external" target="_self">#1222</a></li>
-<li>[<strong>bug</strong>] i18n: nl change &ldquo;Fooi&rdquo; to &ldquo;Tip&rdquo; <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1221" rel="external" target="_self">#1221</a></li>
-<li>[<strong>bug</strong>] logo: not showing when auto variants are not set explicitly <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1214" rel="external" target="_self">#1214</a></li>
-<li>[<strong>bug</strong>] children: multi-line description does not look nice <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1213" rel="external" target="_self">#1213</a></li>
-<li>[<strong>bug</strong>] children: bad links for children with ampersand in their name <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1212" rel="external" target="_self">#1212</a></li>
-<li>[<strong>bug</strong>] children: sort doesn&rsquo;t sort as documented <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1198" rel="external" target="_self">#1198</a></li>
-<li>[<strong>bug</strong>] taxonomy: fix term page url if term contains special chars <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1197" rel="external" target="_self">#1197</a></li>
+<li>[<strong>bug</strong>] dependencies: don&rsquo;t ignore header dependencies of nested pages for print <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1263" rel="external" target="_self">#1263</a></li>
+<li>[<strong>bug</strong>] mermaid: defer drawing <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1262" rel="external" target="_self">#1262</a></li>
+<li>[<strong>bug</strong>] search: fix scrolling into view for menu items <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1261" rel="external" target="_self">#1261</a></li>
+<li>[<strong>bug</strong>] openapi: fix various issues <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1254" rel="external" target="_self">#1254</a></li>
+<li>[<strong>bug</strong>] image: support width/height to avoid layout shift <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1251" rel="external" target="_self">#1251</a></li>
+<li>[<strong>bug</strong>] theme: fix stray \r in windows build <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1250" rel="external" target="_self">#1250</a></li>
+<li>[<strong>bug</strong>] link: fix occasional crash in checker <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1246" rel="external" target="_self">#1246</a></li>
+<li>[<strong>bug</strong>] search: disarm internal <code>_relearn</code> page rendered in non-default languages <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1245" rel="external" target="_self">#1245</a></li>
+<li>[<strong>bug</strong>] search: fix Lunr searching for numbers only <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1240" rel="external" target="_self">#1240</a></li>
+<li>[<strong>bug</strong>] logo: fix added fill for inlined SVG <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1236" rel="external" target="_self">#1236</a></li>
+<li>[<strong>bug</strong>] logo: fix cut off title for scripts with diacritics <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1233" rel="external" target="_self">#1233</a></li>
+<li>[<strong>bug</strong>] theme: fix body width override <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1223" rel="external" target="_self">#1223</a></li>
+<li>[<strong>bug</strong>] clipboard: let it work over http connections <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1222" rel="external" target="_self">#1222</a></li>
+<li>[<strong>bug</strong>] i18n: nl change &ldquo;Fooi&rdquo; to &ldquo;Tip&rdquo; <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1221" rel="external" target="_self">#1221</a></li>
+<li>[<strong>bug</strong>] logo: not showing when auto variants are not set explicitly <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1214" rel="external" target="_self">#1214</a></li>
+<li>[<strong>bug</strong>] children: multi-line description does not look nice <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1213" rel="external" target="_self">#1213</a></li>
+<li>[<strong>bug</strong>] children: bad links for children with ampersand in their name <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1212" rel="external" target="_self">#1212</a></li>
+<li>[<strong>bug</strong>] children: sort doesn&rsquo;t sort as documented <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1198" rel="external" target="_self">#1198</a></li>
+<li>[<strong>bug</strong>] taxonomy: fix term page url if term contains special chars <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1197" rel="external" target="_self">#1197</a></li>
 </ul>
 <h3 id="maintenance">Maintenance<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>task</strong>] mermaid: update to 11.17.2 <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1257" rel="external" target="_self">#1257</a></li>
-<li>[<strong>task</strong>] fontawesome: update to 7.3.1 <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1256" rel="external" target="_self">#1256</a></li>
-<li>[<strong>task</strong>] math: update MathJax to 4.1.3 <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1255" rel="external" target="_self">#1255</a></li>
-<li>[<strong>task</strong>] openapi: update swagger-ui to 5.32.15 <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1253" rel="external" target="_self">#1253</a></li>
-<li>[<strong>task</strong>] build: implement CI testing <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1247" rel="external" target="_self">#1247</a></li>
-<li>[<strong>task</strong>] menu: remove references for deprecated <code>menuTitle</code> <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1225" rel="external" target="_self">#1225</a></li>
-<li>[<strong>task</strong>] theme: remove recent Hugo deprecations <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1219" rel="external" target="_self">#1219</a></li>
-<li>[<strong>task</strong>] security: update dependency to address CVEs <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1215" rel="external" target="_self">#1215</a></li>
-<li>[<strong>task</strong>] scrollbar: remove PerfectScrollbar <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1187" rel="external" target="_self">#1187</a>
+<li>[<strong>task</strong>] mermaid: update to 11.17.2 <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1257" rel="external" target="_self">#1257</a></li>
+<li>[<strong>task</strong>] fontawesome: update to 7.3.1 <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1256" rel="external" target="_self">#1256</a></li>
+<li>[<strong>task</strong>] math: update MathJax to 4.1.3 <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1255" rel="external" target="_self">#1255</a></li>
+<li>[<strong>task</strong>] openapi: update swagger-ui to 5.32.15 <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1253" rel="external" target="_self">#1253</a></li>
+<li>[<strong>task</strong>] build: implement CI testing <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1247" rel="external" target="_self">#1247</a></li>
+<li>[<strong>task</strong>] menu: remove references for deprecated <code>menuTitle</code> <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1225" rel="external" target="_self">#1225</a></li>
+<li>[<strong>task</strong>] theme: remove recent Hugo deprecations <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1219" rel="external" target="_self">#1219</a></li>
+<li>[<strong>task</strong>] security: update dependency to address CVEs <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1215" rel="external" target="_self">#1215</a></li>
+<li>[<strong>task</strong>] scrollbar: remove PerfectScrollbar <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1187" rel="external" target="_self">#1187</a>
 </li>
 </ul>
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.170.1">
-    <meta name="generator" content="Relearn 9.5.2+82cbe8ec51f9a722a90611a3242a118b4023afb9">
+    <meta name="generator" content="Relearn 9.5.2+4ce97ef36a5e7aa3abe2844e4a657d09c5d09e20">
     <meta name="description" content="2.9.0 (2021-11-19) Breaking Breaking This release removes the themes implementation of ref/relref in favor for Hugo’s standard implementation. This is because of inconsistencies with the themes implementation. In advantage, your project becomes standard compliant and exchanging this theme in your project to some other theme will be effortless.
 In a standard compliant form you must not link to the *.md file but to its logical name. You’ll see, referencing other pages becomes much easier. All three types result in the same reference:
 Type Non-Standard Standard Branch bundle configuration/reference/_index.md configuration/reference Leaf bundle configuration/reference/index.md configuration/reference Page configuration/reference.md configuration/reference If you’ve linked from a page of one language to a page of another language, conversion is a bit more difficult but Hugo got you covered as well.
@@ -66,11 +66,11 @@ Copy the old implementation files theme/hugo-theme-relearn/layouts/shortcode/ref
     <link href="/hugo-theme-relearn/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/search.en.59a00d815c4b8482b720f386df03f0f3f848e06c31b89d0f8ca2adecdd176b80.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.72b348e782849bc49ab4e4a0ecbbac82dbad6e92e79569a4047ec0432604f678.js"
+      "indexFile": "searchindex.en.min.c52f2055ade6ea637235f1468fee2b15d8c4fbe0bdf440fa93a6d7a08d708b36.js"
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
     <link href="/hugo-theme-relearn/css/theme.min.0c4d6fe59e2ddceb2d52fd6bdb77c84c7ad1c5bf3c42c60b3265d18d7b204032.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.7f66d5c22f149a666b044d4dbbd5178a2ef714c2901f417379c6f294eed26338.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/format-print.min.8bd611cd420f9c45284e2753b17ecd7864ca96ccc03903cf57108ee491f0d1a7.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -314,8 +314,8 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/2/index.html">change
     </tr>
   </tbody>
 </table>
-<p>If you&rsquo;ve linked from a page of one language to a page of another language, conversion is a bit more difficult but <a href="https://gohugo.io/methods/shortcode/relref/#examples" rel="external" target="_self">Hugo got you covered</a> as well.</p>
-<p>Also, the old themes implementation allowed refs to non-existing content. This will cause Hugo&rsquo;s implementation to show the error below and abort the generation. If your project relies on this old behavior, you can <a href="https://gohugo.io/methods/shortcode/relref/#examples" rel="external" target="_self">reconfigure the error handling</a> of Hugo&rsquo;s implementation.</p>
+<p>If you&rsquo;ve linked from a page of one language to a page of another language, conversion is a bit more difficult but <a class="print-url" href="https://gohugo.io/methods/shortcode/relref/#examples" rel="external" target="_self">Hugo got you covered</a> as well.</p>
+<p>Also, the old themes implementation allowed refs to non-existing content. This will cause Hugo&rsquo;s implementation to show the error below and abort the generation. If your project relies on this old behavior, you can <a class="print-url" href="https://gohugo.io/methods/shortcode/relref/#examples" rel="external" target="_self">reconfigure the error handling</a> of Hugo&rsquo;s implementation.</p>
 <p>In the best case your usage of the old implementation is already standard compliant and you don&rsquo;t need to change anything. You&rsquo;ll notice this very easily once you&rsquo;ve started <code>hugo server</code> after an upgrade and no errors are written to the console.</p>
 <p>You may see errors on the console after the update in the form of</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ERROR 2021/11/19 22:29:10 <span class="o">[</span>en<span class="o">]</span> REF_NOT_FOUND: Ref <span class="s2">&#34;configuration/reference/_index.md&#34;</span>: <span class="s2">&#34;hugo-theme-relearn\docs\content\_index.en.md:19:22&#34;</span>: page not found</span></span></code></pre></div>
@@ -384,7 +384,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/2/index.html">change
 <p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> New front matter <code>ordersectionsby</code> option to change immediate children sorting in menu and <code>children</code> shortcode. Possible values are <code>title</code> or <code>weight</code>.</p>
 </li>
 <li>
-<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Alternate content of a page is now advertised in the HTML meta tags. See <a href="https://gohugo.io/templates/rss/#reference-your-rss-feed-in-head" rel="external" target="_self">Hugo documentation</a>.</p>
+<p><span class="badge cstyle new badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-plus-circle" aria-hidden="true"></i></span><span class="badge-content">New</span></span> Alternate content of a page is now advertised in the HTML meta tags. See <a class="print-url" href="https://gohugo.io/templates/rss/#reference-your-rss-feed-in-head" rel="external" target="_self">Hugo documentation</a>.</p>
 </li>
 </ul>
 <hr>
@@ -432,7 +432,7 @@ See the <a href="/hugo-theme-relearn/introduction/changelog/2/index.html">change
 <h3 id="change-4">Change<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
 <li>
-<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Syntax highlighting was switched to the <a href="https://gohugo.io/content-management/syntax-highlighting/" rel="external" target="_self">built in Hugo mechanism</a>. You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation</p>
+<p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> Syntax highlighting was switched to the <a class="print-url" href="https://gohugo.io/content-management/syntax-highlighting/" rel="external" target="_self">built in Hugo mechanism</a>. You may need to configure a new stylesheet or decide to roll you own as described on in the Hugo documentation</p>
 </li>
 <li>
 <p><span class="badge cstyle change badge-with-title"><span class="badge-title"><i class="fa-fw fas fa-exclamation-circle" aria-hidden="true"></i></span><span class="badge-content">Change</span></span> In the predefined stylesheets there was a typo and <code>--MENU-HOME-LINK-HOVERED-color</code> must be changed to <code>--MENU-HOME-LINK-HOVER-color</code>. You don&rsquo;t need to change anything in your custom color stylesheet as the old name will be used as a fallback.</p>

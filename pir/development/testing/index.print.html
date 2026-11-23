@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.170.1">
-    <meta name="generator" content="Relearn 9.5.2+82cbe8ec51f9a722a90611a3242a118b4023afb9">
+    <meta name="generator" content="Relearn 9.5.2+4ce97ef36a5e7aa3abe2844e4a657d09c5d09e20">
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <meta name="description" content="How t&#39; rrrun &#39;n extend th&#39; automated test suite">
     <meta name="author" content="Sören Weber">
@@ -36,11 +36,11 @@
     <link href="/hugo-theme-relearn/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/search.pir.510fdc7652ce2740728c9337cb531495d59c0a061cc5734f2b6e4b765c8f3b75.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.pir.min.77402dafadb36e87291019ab2ce739968f0011ceb32269a3d0b34af6f151878e.js"
+      "indexFile": "searchindex.pir.min.a83bfe9cb94cec42cdb519b2676f9315c960cf19433ceddb8ec08fa8c4e4550c.js"
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
     <link href="/hugo-theme-relearn/css/theme.min.0c4d6fe59e2ddceb2d52fd6bdb77c84c7ad1c5bf3c42c60b3265d18d7b204032.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.7f66d5c22f149a666b044d4dbbd5178a2ef714c2901f417379c6f294eed26338.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/format-print.min.8bd611cd420f9c45284e2753b17ecd7864ca96ccc03903cf57108ee491f0d1a7.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -209,9 +209,9 @@
 
 <p>Th' test suite lives 'n th' <a href="/hugo-theme-relearn/pir/development/developing/index.html">infra repository</a> an' runs against a theme checkout. See <a href="/hugo-theme-relearn/pir/development/developing/index.html">Develop'n</a> fer how th' two be wired together.</p>
 <h2 id="requirements">Requirements<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
-<p><strong>Node.js</strong> at th' version <code>.nvmrc</code> pins. Install it through a version manager - <a href="https://github.com/nvm-sh/nvm" rel="external" target="_self">nvm</a>, or <a href="https://github.com/coreybutler/nvm-windows" rel="external" target="_self">nvm-windows</a> - rather than as a system package, so th' version can follow th' project rather than th' machine. <code>nvm use</code> 'n th' infra checkout reads that file, an' so does CI, so th' two cannot drift.</p>
+<p><strong>Node.js</strong> at th' version <code>.nvmrc</code> pins. Install it through a version manager - <a class="print-url" href="https://github.com/nvm-sh/nvm" rel="external" target="_self">nvm</a>, or <a class="print-url" href="https://github.com/coreybutler/nvm-windows" rel="external" target="_self">nvm-windows</a> - rather than as a system package, so th' version can follow th' project rather than th' machine. <code>nvm use</code> 'n th' infra checkout reads that file, an' so does CI, so th' two cannot drift.</p>
 <p>Th' pin be not arbitrary. Before v26.8.1, Node&rsquo;s <code>fs.rmSync</code> silently removed noth'n on Windows when a path contained a non-ASCII character, which made &ldquo;replace this directory&rdquo; quietly mean &ldquo;merge into it&rdquo; - an' a suite whose whole job be compar'n directories cannot live wit' that.</p>
-<p><strong>Cap'n Hugo</strong> at least th' minimum th' theme declares 'n its <code>theme.toml</code>. Th' plain edit'n be enough, as th' theme uses no Sass. Install it th' same way, through <a href="https://github.com/jmooring/hvm" rel="external" target="_self">hvm</a>, which keeps several versions side by side - th' suite can then build against any o' them, includ'n th' declared minimum, rather than only th' one on yer <code>PATH</code>.</p>
+<p><strong>Cap'n Hugo</strong> at least th' minimum th' theme declares 'n its <code>theme.toml</code>. Th' plain edit'n be enough, as th' theme uses no Sass. Install it th' same way, through <a class="print-url" href="https://github.com/jmooring/hvm" rel="external" target="_self">hvm</a>, which keeps several versions side by side - th' suite can then build against any o' them, includ'n th' declared minimum, rather than only th' one on yer <code>PATH</code>.</p>
 <h2 id="running-the-tests">Runn'n th' Tests<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link t' clipboard" aria-label="Copy link t' clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>Check both repositories out side by side, then:</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> hugo-theme-relearn-infra
@@ -356,8 +356,8 @@
 <p>Commit th' regenerated output together wit' th' change that caused it, never as a commit o' its own - otherwise th' next person cannot tell which change produced which output.</p>
 
 
-<div role="note" aria-labelledby="R-box-label-b135f5a8137cf8d51e63ea9013b498b7" class="box cstyle callout warning">
-  <div id="R-box-label-b135f5a8137cf8d51e63ea9013b498b7" class="box-label">
+<div role="note" aria-labelledby="R-box-label-8c86996b03f859214f8b60a90297d2f3" class="box cstyle callout warning">
+  <div id="R-box-label-8c86996b03f859214f8b60a90297d2f3" class="box-label">
     <i class="fa-fw fas fa-exclamation-triangle" aria-hidden="true"></i> 
     Arrr
   </div>

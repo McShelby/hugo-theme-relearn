@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.170.1">
-    <meta name="generator" content="Relearn 9.5.2+82cbe8ec51f9a722a90611a3242a118b4023afb9">
+    <meta name="generator" content="Relearn 9.5.2+4ce97ef36a5e7aa3abe2844e4a657d09c5d09e20">
     <meta name="description" content="1.2.0 (2021-07-26) Enhancements [feature] theme: adjust copy-to-clipboard #29 [feature] attachments: adjust style between notice boxes and attachments #28 [feature] theme: adjust blockquote contrast #27 [feature] expand: add option to open on page load #25 [feature] expand: rework styling #24 [feature] attachments: sort output #23 [feature] notice: make restyling of notice boxes more robust #20 [feature] notice: fix contrast issues #19 [feature] notice: align box colors to common standards #18 [feature] notice: use distinct icons for notice box type #17 Fixes [bug] attachments: support i18n for attachment size #21 [bug] notice: support i18n for box labels #16 [bug] notice: support multiple blocks in one box #15 Maintenance [task] dependency: upgrade jquery to 3.6.0 #30 1.1.1 (2021-07-04) Maintenance [task] theme: prepare for new hugo theme registration #13 1.1.0 (2021-07-02) Enhancements [feature] mermaid: expose options in config.toml #4 Fixes [bug] mermaid: config option for CDN url not used #12 [bug] mermaid: only highlight text in HTML elements #10 [bug] mermaid: support pan &amp; zoom for graphs #9 [bug] mermaid: code fences not always rendered #6 [bug] mermaid: search term on load may bomb chart #5 Maintenance [task] mermaid: update to 8.10.2 #7 1.0.1 (2021-07-01) Maintenance [task] Prepare for hugo showcase #3 1.0.0 (2021-07-01) Maintenance [task] Fork project #1">
     <meta name="author" content="Sören Weber">
     <meta name="twitter:card" content="summary_large_image">
@@ -34,11 +34,11 @@
     <link href="/hugo-theme-relearn/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
     <script src="/hugo-theme-relearn/js/search.en.59a00d815c4b8482b720f386df03f0f3f848e06c31b89d0f8ca2adecdd176b80.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.en.min.72b348e782849bc49ab4e4a0ecbbac82dbad6e92e79569a4047ec0432604f678.js"
+      "indexFile": "searchindex.en.min.c52f2055ade6ea637235f1468fee2b15d8c4fbe0bdf440fa93a6d7a08d708b36.js"
     }</script>
     <link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/hugo-theme-relearn/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
     <link href="/hugo-theme-relearn/css/theme.min.0c4d6fe59e2ddceb2d52fd6bdb77c84c7ad1c5bf3c42c60b3265d18d7b204032.css" rel="stylesheet">
-    <link href="/hugo-theme-relearn/css/format-print.min.7f66d5c22f149a666b044d4dbbd5178a2ef714c2901f417379c6f294eed26338.css" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-theme-relearn/css/format-print.min.8bd611cd420f9c45284e2753b17ecd7864ca96ccc03903cf57108ee491f0d1a7.css" rel="stylesheet" id="R-format-style">
     <script type="application/json" id="R-theme-config">{
       "disableInlineCopyToClipboard": true,
       "enableBlockCodeWrap": true,
@@ -218,66 +218,66 @@
 <h2 id="120-2021-07-26">1.2.0 (2021-07-26)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="enhancements">Enhancements<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>feature</strong>] theme: adjust copy-to-clipboard <a href="https://github.com/McShelby/hugo-theme-relearn/issues/29" rel="external" target="_self">#29</a></li>
-<li>[<strong>feature</strong>] attachments: adjust style between notice boxes and attachments <a href="https://github.com/McShelby/hugo-theme-relearn/issues/28" rel="external" target="_self">#28</a></li>
-<li>[<strong>feature</strong>] theme: adjust blockquote contrast <a href="https://github.com/McShelby/hugo-theme-relearn/issues/27" rel="external" target="_self">#27</a></li>
-<li>[<strong>feature</strong>] expand: add option to open on page load <a href="https://github.com/McShelby/hugo-theme-relearn/issues/25" rel="external" target="_self">#25</a></li>
-<li>[<strong>feature</strong>] expand: rework styling <a href="https://github.com/McShelby/hugo-theme-relearn/issues/24" rel="external" target="_self">#24</a></li>
-<li>[<strong>feature</strong>] attachments: sort output <a href="https://github.com/McShelby/hugo-theme-relearn/issues/23" rel="external" target="_self">#23</a></li>
-<li>[<strong>feature</strong>] notice: make restyling of notice boxes more robust <a href="https://github.com/McShelby/hugo-theme-relearn/issues/20" rel="external" target="_self">#20</a></li>
-<li>[<strong>feature</strong>] notice: fix contrast issues <a href="https://github.com/McShelby/hugo-theme-relearn/issues/19" rel="external" target="_self">#19</a></li>
-<li>[<strong>feature</strong>] notice: align box colors to common standards <a href="https://github.com/McShelby/hugo-theme-relearn/issues/18" rel="external" target="_self">#18</a></li>
-<li>[<strong>feature</strong>] notice: use distinct icons for notice box type <a href="https://github.com/McShelby/hugo-theme-relearn/issues/17" rel="external" target="_self">#17</a></li>
+<li>[<strong>feature</strong>] theme: adjust copy-to-clipboard <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/29" rel="external" target="_self">#29</a></li>
+<li>[<strong>feature</strong>] attachments: adjust style between notice boxes and attachments <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/28" rel="external" target="_self">#28</a></li>
+<li>[<strong>feature</strong>] theme: adjust blockquote contrast <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/27" rel="external" target="_self">#27</a></li>
+<li>[<strong>feature</strong>] expand: add option to open on page load <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/25" rel="external" target="_self">#25</a></li>
+<li>[<strong>feature</strong>] expand: rework styling <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/24" rel="external" target="_self">#24</a></li>
+<li>[<strong>feature</strong>] attachments: sort output <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/23" rel="external" target="_self">#23</a></li>
+<li>[<strong>feature</strong>] notice: make restyling of notice boxes more robust <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/20" rel="external" target="_self">#20</a></li>
+<li>[<strong>feature</strong>] notice: fix contrast issues <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/19" rel="external" target="_self">#19</a></li>
+<li>[<strong>feature</strong>] notice: align box colors to common standards <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/18" rel="external" target="_self">#18</a></li>
+<li>[<strong>feature</strong>] notice: use distinct icons for notice box type <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/17" rel="external" target="_self">#17</a></li>
 </ul>
 <h3 id="fixes">Fixes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>bug</strong>] attachments: support i18n for attachment size <a href="https://github.com/McShelby/hugo-theme-relearn/issues/21" rel="external" target="_self">#21</a></li>
-<li>[<strong>bug</strong>] notice: support i18n for box labels <a href="https://github.com/McShelby/hugo-theme-relearn/issues/16" rel="external" target="_self">#16</a></li>
-<li>[<strong>bug</strong>] notice: support multiple blocks in one box <a href="https://github.com/McShelby/hugo-theme-relearn/issues/15" rel="external" target="_self">#15</a></li>
+<li>[<strong>bug</strong>] attachments: support i18n for attachment size <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/21" rel="external" target="_self">#21</a></li>
+<li>[<strong>bug</strong>] notice: support i18n for box labels <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/16" rel="external" target="_self">#16</a></li>
+<li>[<strong>bug</strong>] notice: support multiple blocks in one box <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/15" rel="external" target="_self">#15</a></li>
 </ul>
 <h3 id="maintenance">Maintenance<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>task</strong>] dependency: upgrade jquery to 3.6.0 <a href="https://github.com/McShelby/hugo-theme-relearn/issues/30" rel="external" target="_self">#30</a>
+<li>[<strong>task</strong>] dependency: upgrade jquery to 3.6.0 <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/30" rel="external" target="_self">#30</a>
 </li>
 </ul>
 <hr>
 <h2 id="111-2021-07-04">1.1.1 (2021-07-04)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="maintenance-1">Maintenance<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>task</strong>] theme: prepare for new hugo theme registration <a href="https://github.com/McShelby/hugo-theme-relearn/issues/13" rel="external" target="_self">#13</a>
+<li>[<strong>task</strong>] theme: prepare for new hugo theme registration <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/13" rel="external" target="_self">#13</a>
 </li>
 </ul>
 <hr>
 <h2 id="110-2021-07-02">1.1.0 (2021-07-02)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="enhancements-1">Enhancements<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>feature</strong>] mermaid: expose options in config.toml <a href="https://github.com/McShelby/hugo-theme-relearn/issues/4" rel="external" target="_self">#4</a></li>
+<li>[<strong>feature</strong>] mermaid: expose options in config.toml <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/4" rel="external" target="_self">#4</a></li>
 </ul>
 <h3 id="fixes-1">Fixes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>bug</strong>] mermaid: config option for CDN url not used <a href="https://github.com/McShelby/hugo-theme-relearn/issues/12" rel="external" target="_self">#12</a></li>
-<li>[<strong>bug</strong>] mermaid: only highlight text in HTML elements <a href="https://github.com/McShelby/hugo-theme-relearn/issues/10" rel="external" target="_self">#10</a></li>
-<li>[<strong>bug</strong>] mermaid: support pan &amp; zoom for graphs <a href="https://github.com/McShelby/hugo-theme-relearn/issues/9" rel="external" target="_self">#9</a></li>
-<li>[<strong>bug</strong>] mermaid: code fences not always rendered <a href="https://github.com/McShelby/hugo-theme-relearn/issues/6" rel="external" target="_self">#6</a></li>
-<li>[<strong>bug</strong>] mermaid: search term on load may bomb chart <a href="https://github.com/McShelby/hugo-theme-relearn/issues/5" rel="external" target="_self">#5</a></li>
+<li>[<strong>bug</strong>] mermaid: config option for CDN url not used <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/12" rel="external" target="_self">#12</a></li>
+<li>[<strong>bug</strong>] mermaid: only highlight text in HTML elements <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/10" rel="external" target="_self">#10</a></li>
+<li>[<strong>bug</strong>] mermaid: support pan &amp; zoom for graphs <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/9" rel="external" target="_self">#9</a></li>
+<li>[<strong>bug</strong>] mermaid: code fences not always rendered <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/6" rel="external" target="_self">#6</a></li>
+<li>[<strong>bug</strong>] mermaid: search term on load may bomb chart <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/5" rel="external" target="_self">#5</a></li>
 </ul>
 <h3 id="maintenance-2">Maintenance<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>task</strong>] mermaid: update to 8.10.2 <a href="https://github.com/McShelby/hugo-theme-relearn/issues/7" rel="external" target="_self">#7</a>
+<li>[<strong>task</strong>] mermaid: update to 8.10.2 <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/7" rel="external" target="_self">#7</a>
 </li>
 </ul>
 <hr>
 <h2 id="101-2021-07-01">1.0.1 (2021-07-01)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="maintenance-3">Maintenance<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>task</strong>] Prepare for hugo showcase <a href="https://github.com/McShelby/hugo-theme-relearn/issues/3" rel="external" target="_self">#3</a>
+<li>[<strong>task</strong>] Prepare for hugo showcase <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/3" rel="external" target="_self">#3</a>
 </li>
 </ul>
 <hr>
 <h2 id="100-2021-07-01">1.0.0 (2021-07-01)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <h3 id="maintenance-4">Maintenance<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard" aria-label="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
 <ul>
-<li>[<strong>task</strong>] Fork project <a href="https://github.com/McShelby/hugo-theme-relearn/issues/1" rel="external" target="_self">#1</a>
+<li>[<strong>task</strong>] Fork project <a class="print-url" href="https://github.com/McShelby/hugo-theme-relearn/issues/1" rel="external" target="_self">#1</a>
 </li>
 </ul>
 

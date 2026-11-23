@@ -29,6 +29,8 @@ The results of the dedicated search page [can be printed](configuration/sidebar/
 
 By default this adds a printer icon in the topbar but [can be deactived](authoring/frontmatter/topbar/#print-button). Clicking it switches to print preview, showing the page and its [visible subpages](configuration/content/hidden) in a printer-friendly format. Use your browser's print function to print or save as PDF.
 
+As paper can't follow a link, external links written in the Markdown of your content show their URL behind the link text, unless that text already is the URL.
+
 The URL won't be [configured ugly](https://gohugo.io/configuration/output-formats/) for [Hugo's URL handling](https://gohugo.io/content-management/urls/#ugly-urls), even with `uglyURLs` set to `true` in your project configuration. This is because each mime type can only have one suffix.
 
 If you don't like the URLs, you can reconfigure `outputFormats.print` in your project configuration to something other than the default of:
