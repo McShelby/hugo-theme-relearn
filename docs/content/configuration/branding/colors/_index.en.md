@@ -4,6 +4,7 @@ categories:
 - howto
 description: Learn how to customize your site's colors
 options:
+- forceDefaultThemeVariant
 - themeVariant
 - themeVariantPrint
 title: Colors
@@ -74,6 +75,17 @@ If you want to have more control, where the variant switcher is positioned or yo
 
 > [!note]
 > The selected theme variant will be [stored in the reader's browser](configuration/publishing/storedinformation).
+
+#### Force the Default Variant
+
+{{% badge style="option" %}}Option{{% /badge %}} Set `forceDefaultThemeVariant` to `true` to keep the reader's selection in the browser's [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) instead of its local storage. As long as there is no selection, the first variant of `themeVariant` is used. Default is `false`.
+
+{{< multiconfig file=hugo section=params >}}
+forceDefaultThemeVariant = true
+themeVariant = [ 'relearn-light', 'relearn-dark' ]
+{{< /multiconfig >}}
+
+If your site is opened from the file system, this option has no effect.
 
 #### Adjust to OS Settings
 

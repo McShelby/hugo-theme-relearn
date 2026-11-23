@@ -79,7 +79,7 @@ var variants = {
   // stores the custom variants and the variant to show from now on, and brings this page in line with them
   storeCustomVariants: function (customVariants, variant) {
     window.localStorage.setItem(window.relearn.absBaseUri + '/customvariants', JSON.stringify(customVariants));
-    window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+    window.relearn.variantStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
 
     // the theme replays the storage: the stylesheets and the entries in the variant switcher
     window.relearn.applyCustomVariants();
@@ -88,7 +88,7 @@ var variants = {
   },
 
   saveCustomVariant: function () {
-    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
+    var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
     var customvariant = variant;
     if (!variant.startsWith(this.customvariantprefix)) {
       customvariant = this.getCustomVariant(variant);
@@ -246,7 +246,7 @@ var variants = {
   // ------------------------------------------------------------------------
 
   changeColor: function (c) {
-    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
+    var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
     var customvariantbase = variant;
     var customvariant = variant;
     if (!variant.startsWith(this.customvariantprefix)) {
@@ -305,7 +305,7 @@ var variants = {
   },
 
   resetVariant: function () {
-    var customvariant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    var customvariant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant');
     if (!customvariant.startsWith(this.customvariantprefix)) {
       alert('There is nothing to be reset here as built-in variants can not be changed.');
       return;
@@ -332,7 +332,7 @@ var variants = {
     var variantList = customVariants.map((v) => '"' + v + '"').join(', ');
     if (confirm('Are you sure you want to reset all ' + customVariants.length + ' custom variant(s): ' + variantList + '?')) {
       // a built variant stays, a custom one makes way for the one it was made from
-      var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+      var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant');
       if (variant.startsWith(this.customvariantprefix)) {
         variant = this.getCustomVariantBase(variant);
         if (!variant || !window.relearn.themevariants.includes(variant)) {
@@ -345,7 +345,7 @@ var variants = {
   },
 
   getStylesheet: function () {
-    var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+    var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant');
     var style = this.generateStylesheet(variant);
     if (style) {
       console.log(style);

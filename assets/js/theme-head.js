@@ -83,8 +83,75 @@ document.querySelectorAll('link.R-async-style').forEach(function (link) {
 // channel, the message itself does the job
 window.relearn.variantChannel = new BroadcastChannel(window.relearn.absBaseUri + '/variant');
 
+// session cookies behind the interface of a `Storage`. only cookies of our own are
+// seen, so `clear` leaves those of the site alone. they are filed below the root of
+// the site and are not `Secure`, as that would refuse them outside of https
+window.relearn.cookieStorage = (function () {
+  var prefix = 'relearn-';
+  var path = new URL(window.relearn.absBaseUri + '/').pathname;
+  var own = prefix + encodeURIComponent(window.relearn.absBaseUri);
+  var name = function (key) {
+    return prefix + encodeURIComponent(key);
+  };
+  var entries = function () {
+    return document.cookie
+      .split('; ')
+      .filter(function (cookie) {
+        return cookie.startsWith(own);
+      })
+      .map(function (cookie) {
+        var index = cookie.indexOf('=');
+        return [decodeURIComponent(cookie.slice(prefix.length, index)), decodeURIComponent(cookie.slice(index + 1))];
+      });
+  };
+  return {
+    get length() {
+      return entries().length;
+    },
+    key: function (index) {
+      var entry = entries()[index];
+      return entry ? entry[0] : null;
+    },
+    getItem: function (key) {
+      var entry = entries().find(function (entry) {
+        return entry[0] === String(key);
+      });
+      return entry ? entry[1] : null;
+    },
+    setItem: function (key, value) {
+      document.cookie = name(key) + '=' + encodeURIComponent(value) + '; path=' + path + '; SameSite=Lax';
+    },
+    removeItem: function (key) {
+      document.cookie = name(key) + '=; path=' + path + '; SameSite=Lax; max-age=0';
+    },
+    clear: function () {
+      entries().forEach(function (entry) {
+        this.removeItem(entry[0]);
+      }, this);
+    },
+  };
+})();
+
+// with `forceDefaultThemeVariant` a selection is kept in the session storage; a
+// selection of an earlier visit stays untouched in the local storage, in case the
+// option is turned off again. the option does not apply to the file system: a browser
+// may treat each file as an origin of its own, so its local storage doesn't reach the
+// next page; there we prefer cookies if they can be read back, as not every browser
+// keeps them for files. those that do drop them with a restart, whatever their lifetime
+window.relearn.variantStorage = (function () {
+  if (window.location.protocol != 'file:') {
+    return window.relearn.forceDefaultThemeVariant ? window.sessionStorage : window.localStorage;
+  }
+  var cookies = window.relearn.cookieStorage;
+  var probe = window.relearn.absBaseUri + '/probe';
+  cookies.setItem(probe, '1');
+  var isSupported = cookies.getItem(probe) === '1';
+  cookies.removeItem(probe);
+  return isSupported ? cookies : window.localStorage;
+})();
+
 window.relearn.storeVariant = function (variant) {
-  window.localStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
+  window.relearn.variantStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
   window.relearn.variantChannel.postMessage(variant);
 };
 
@@ -122,7 +189,7 @@ window.relearn.applyCustomVariants = function () {
 };
 
 window.relearn.markVariant = function () {
-  var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant');
+  var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant');
   var customVariants = window.relearn.customVariants();
   document.querySelectorAll('.R-variantswitcher select').forEach((select) => {
     // an entry that is neither of the markup nor in the storage is a custom variant that is gone
@@ -172,10 +239,11 @@ window.relearn.adoptVariantParam = function () {
 };
 
 window.relearn.initVariant = function () {
-  var variant = window.localStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
+  var variant = window.relearn.variantStorage.getItem(window.relearn.absBaseUri + '/variant') ?? '';
   if (!window.relearn.themevariants.includes(variant) && !Object.hasOwn(window.relearn.customVariants(), variant)) {
+    // nobody selected this, so the cached pages have no reason to be dropped
     variant = window.relearn.themevariants[0];
-    window.relearn.storeVariant(variant);
+    window.relearn.variantStorage.setItem(window.relearn.absBaseUri + '/variant', variant);
   }
   document.documentElement.dataset.rThemeVariant = variant;
 };
