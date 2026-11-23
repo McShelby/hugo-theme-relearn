@@ -44,7 +44,7 @@
         <a id="R-logo" class="R-default layout-{{ $layout }}{{ if $manualWrap }} manual-wrap{{ end }}" href="{{ partial "permalink.gotmpl" (dict "to" site.Home) }}">
   {{- range $logoSrc, $variants := $logoGroups }}
     {{- $variantList := delimit $variants " " }}
-          <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}">
+          <span class="logo-image default-animation" data-r-logo-variant="{{ $variantList }}"{{ if intersect $variants $themevariantsdata.printvariants }} data-r-logo-print{{ end }}>
 {{ partial "shortcodes/image.html" (dict "page" site.Home "url" $logoSrc "alt" $alt "attributes" $attributes) }}
           </span>
   {{- end }}

@@ -2855,18 +2855,23 @@ function initEdits() {
 // the copy keeps the identifier, as all the styles of the logo go by it, and the
 // screen never shows it, so nothing moves behind the print dialog
 function initPrintLogo() {
-  var logo = document.querySelector('#R-sidebar #R-logo');
+  var logo = document.querySelector('#R-logo');
+  if (!logo) {
+    return;
+  }
+  // the browser prints right after `beforeprint` without waiting for an image,
+  // and the logo of the print variant may never have been shown, so that one is
+  // loaded ahead of time; the logos of the other variants are never printed
+  logo.querySelectorAll('img[loading="lazy"]:not([data-r-logo-variant]:not([data-r-logo-print]) img)').forEach(function (img) {
+    img.loading = 'eager';
+  });
+  // the print version already has the logo in its topbar
   var topbar = document.querySelector('#R-topbar');
-  if (!logo || !topbar) {
+  if (!topbar || !logo.closest('#R-sidebar')) {
     return;
   }
   var copyLogo = function () {
     var copy = logo.cloneNode(true);
-    // the logo of the print variant may never have been shown, so its image
-    // was never loaded; it must not wait to be scrolled into view
-    copy.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
-      img.loading = 'eager';
-    });
     // an inlined SVG refers to its parts by their identifiers, and a reference
     // goes to the first element of one, the original in the menu, which is not
     // printed and paints nothing; so the parts of the copy get their own
