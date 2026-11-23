@@ -11,9 +11,20 @@
 {{- range $k, $v := $htmlchars }}
   {{- $path = replace $path $k $v }}
 {{- end }}
+{{- /* paper can't follow a link, so an external one of the content gets its URL
+   printed, unless that is what it shows anyway or it has no text to follow */}}
+{{- $attributes := dict }}
+{{- $address := replaceRE `(?i)^https?://` "" $path }}
+{{- if ne $address $path }}
+  {{- $text := .Text | plainify | htmlUnescape | replaceRE `(?i)^https?://` "" }}
+  {{- if and $text (ne (strings.TrimSuffix "/" $text) (strings.TrimSuffix "/" $address)) }}
+    {{- $attributes = dict "class" "print-url" }}
+  {{- end }}
+{{- end }}
 {{- partial "shortcodes/link.html" (dict
   "page" .Page
   "url" $path
   "title" .Title
   "content" .Text
+  "attributes" $attributes
 ) }}

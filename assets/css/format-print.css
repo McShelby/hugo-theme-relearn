@@ -159,7 +159,6 @@ blockquote cite,
    of the text; this includes the styles without a color of their own, which
    fall back to the light grey of the neutral boxes, but not the grey and
    neutral styles, whose color is the author's choice */
-table::after,
 kbd,
 #R-body :is(svg, img):not(.lightbox-image).border,
 .card-container .card,
@@ -210,6 +209,16 @@ td {
   overflow: visible; /* turn off scrolling, so the whole content is printed */
   /* reset paddings for chapters in screen */
   padding: 0 3.25rem 4rem 3.25rem;
+}
+@media print {
+  /* the sheet ends the page anyway; room below a full one would take a blank
+     sheet of its own */
+  #R-body #R-main {
+    padding-bottom: 0;
+  }
+  #R-main > .flex-block-wrapper article:not(.card):last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 #R-body #R-main h1 {
@@ -274,6 +283,12 @@ h1 + .footline {
     put as HTML into markdown */
   text-decoration-line: underline;
 }
+/* paper can't follow a link, so the content tells where it leads; a heading or
+   a card has no room for it, and what surrounds the content is not marked */
+a.print-url:not(:is(h1, h2, h3, h4, h5, h6, .headline, .footline, .card) *)::after {
+  content: ' (' attr(href) ')';
+  overflow-wrap: anywhere;
+}
 #R-topbar {
   /* the header is sticky which is not suitable for print; */
   position: initial;
@@ -325,6 +340,191 @@ mark.search {
   .card-columnize-4 {
     --card-columns: 5;
   }
+}
+
+/* paper can't be clicked, so what is collapsed on screen is shown; nothing rolls
+   out, as the browser would print it halfway */
+.expand::details-content {
+  content-visibility: visible;
+  grid-template-rows: 1fr;
+  transition: none;
+}
+.expand > .box-content {
+  transition: none;
+}
+/* the same room as if it was opened; a transparent box has none below */
+#R-body .expand:not([open]) > .box-content {
+  padding-top: 1rem;
+}
+#R-body .expand:not([open], .transparent) > .box-content {
+  padding-bottom: 1rem;
+}
+#R-body .expand > .box-label > i.expander-icon::before {
+  transform: rotate(90deg);
+  transition: none;
+}
+
+/* what belongs together stays on one sheet as long as it fits on one; what is
+   longer breaks anyway, but leaves more than a line or two on either side */
+p,
+li,
+dd,
+blockquote {
+  orphans: 3;
+  widows: 3;
+}
+pre {
+  orphans: 4;
+  widows: 4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dt,
+caption,
+.tab-nav {
+  break-after: avoid;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+tr,
+figure:not(.quote),
+.mermaid {
+  break-inside: avoid;
+}
+/* callouts, tabs and quotes run on like the text around them, as moving them as
+   a whole could leave most of a sheet empty; only a single paragraph or a single
+   code block in them stays together; without specificity, so what is said about
+   long code below wins */
+:where(.box):has(> :where(.box-content) > :where(p, div.highlight, pre):only-child),
+:where(.tab-panel):has(> :where(.tab-content-container) > :where(.tab-content.active) > :where(.tab-content-text) > :where(p, div.highlight, pre):only-child),
+:where(blockquote):has(> :where(p):only-child),
+:where(figure.quote):has(> :where(blockquote) > :where(p):only-child) {
+  break-inside: avoid;
+}
+/* not every browser keeps a heading with what follows by the rule above; an
+   empty box hanging below it that takes no room but has to fit on the sheet
+   makes a heading without room for a few lines below it move on by itself */
+h2,
+h3,
+h4,
+h5,
+h6 {
+  --print-heading-room: 5rem;
+  display: flow-root;
+}
+:is(h2, h3, h4, h5, h6)::after {
+  content: '';
+  display: block;
+  height: var(--print-heading-room);
+  margin-bottom: calc(var(--print-heading-room) * -1);
+}
+/* the room has to hold the headings following directly as well */
+:is(h2, h3, h4, h5, h6):has(+ :is(h3, h4, h5, h6)) {
+  --print-heading-room: 9rem;
+}
+:is(h2, h3, h4, h5, h6):has(+ :is(h3, h4, h5, h6) + :is(h4, h5, h6)) {
+  --print-heading-room: 13rem;
+}
+/* and code, which only stays together if it is short, by its number of lines;
+   of long code it is its start with the handle of a tab */
+:is(h2, h3, h4, h5, h6):has(+ :is(div.highlight, .tab-panel)) {
+  --print-heading-room: 11rem;
+}
+:is(h2, h3, h4, h5, h6):has(+ :is(div.highlight, .tab-panel) pre > code > span:nth-child(5)) {
+  --print-heading-room: 18rem;
+}
+:is(h2, h3, h4, h5, h6):has(+ :is(div.highlight, .tab-panel) pre > code > span:nth-child(9)) {
+  --print-heading-room: 11rem;
+}
+
+/* moving long code as a whole would leave most of a sheet empty, so only short
+   code stays together; however Hugo is set to write it, highlighted code has a
+   span for each line, with classes or inline styles, and with line numbers also
+   in a table, whose single row must be able to break; code without highlighting
+   has no lines to count, but orphans and widows work for it */
+pre:not(:is(.box-content, .tab-content-text) pre):has(> code > span):not(:has(> code > span:nth-child(9))) {
+  break-inside: avoid;
+}
+:is(.box, .tab-panel):has(pre > code > span:nth-child(9), pre:not(.chroma, [style], .mermaid)) {
+  break-inside: auto;
+}
+div.highlight tr {
+  break-inside: auto;
+}
+/* each line is a box of its own, for which orphans and widows don't count */
+pre > code > span:nth-child(-n + 3) {
+  break-after: avoid;
+}
+pre > code > span:nth-last-child(-n + 3) {
+  break-before: avoid;
+}
+/* the room below the last line and the frame stay with it, or they would take
+   a sheet of their own if the code ends right at the end of a sheet */
+#R-body pre:not(.mermaid, td > pre):has(> code > span) {
+  padding-bottom: 0;
+}
+pre:not(td > pre) > code > span:last-child {
+  margin-bottom: -2px;
+  padding-bottom: calc(1rem + 2px);
+}
+
+/* a label or a tab stays with the start of what it belongs to */
+.box > .box-label {
+  break-after: avoid;
+}
+.tab-content-container,
+figure.quote > figcaption {
+  break-before: avoid;
+}
+/* inside of a frame too long for a sheet, what moves on to the next one would
+   leave the frame empty up to the end of the sheet; so it breaks where it is */
+:is(.box-content, .tab-content-text) :is(pre, blockquote, figure.quote, .box, .tab-panel) {
+  break-inside: auto;
+}
+
+/* the frame of a table spans the sheet up to its end, even if the next row moved
+   on to the next one; so each row draws its part of it, which ends with the row */
+table:not(div.highlight *)::after {
+  content: none;
+}
+#R-body table:not(div.highlight *) tr {
+  position: relative;
+  /* it doesn't stick on paper, so its offset would only shift it */
+  top: auto;
+}
+table:not(div.highlight *) tr::after {
+  border-inline: 1px solid var(--INTERNAL-MAIN-TEXT-color);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 111;
+}
+table:not(div.highlight *) > thead > tr:first-child::after,
+table:not(div.highlight *, :has(> thead)) > tbody:first-of-type > tr:first-child::after {
+  border-start-end-radius: var(--block-radius);
+  border-start-start-radius: var(--block-radius);
+  border-top: 1px solid var(--INTERNAL-MAIN-TEXT-color);
+}
+table:not(div.highlight *) > :is(thead, tbody):last-child > tr:last-child::after {
+  border-bottom: 1px solid var(--INTERNAL-MAIN-TEXT-color);
+  border-end-end-radius: var(--block-radius);
+  border-end-start-radius: var(--block-radius);
+}
+/* the header is repeated on each sheet, where the table doesn't round it */
+table:not(div.highlight *) > thead > tr:first-child > :first-child {
+  border-start-start-radius: var(--block-radius);
+}
+table:not(div.highlight *) > thead > tr:first-child > :last-child {
+  border-start-end-radius: var(--block-radius);
 }
 
 article:not(.card) {
