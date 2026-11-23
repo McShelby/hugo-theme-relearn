@@ -1718,7 +1718,7 @@ function getNavToggles() {
 // the overlay stays in reach, as a click on it closes the sidebar
 function adjustNavInert() {
   var b = document.querySelector('body');
-  var covered = b.classList.contains('menu-s-width') && b.classList.contains('sidebar-flyout');
+  var covered = document.documentElement.classList.contains('menu-s-width') && b.classList.contains('sidebar-flyout');
   document.querySelectorAll('#R-body > :not(#R-body-overlay)').forEach(function (e) {
     e.inert = covered || lightboxInerted.includes(e);
   });
@@ -1731,6 +1731,11 @@ function adjustNavInert() {
 var lightboxes = {};
 var lightboxInerted = [];
 function setLightboxInert(kind, box) {
+  // the open sidebar makes the page inert, the lightbox inside of it included,
+  // so only one of them can be open at a time
+  if (box && document.querySelector('body').classList.contains('sidebar-flyout')) {
+    closeNav();
+  }
   lightboxes[kind] = box;
   var inert = [];
   Object.values(lightboxes).forEach(function (box) {
@@ -1755,6 +1760,12 @@ function setLightboxInert(kind, box) {
 }
 
 function openNav() {
+  // the flyout only exists in the small layout of a page with a sidebar, and
+  // never above an enlarged graph or image
+  var hasFlyout = document.documentElement.classList.contains('menu-s-width') && document.querySelector('#R-sidebar');
+  if (!hasFlyout || Object.values(lightboxes).some(Boolean)) {
+    return;
+  }
   closeSomeTopbarButtonFlyout();
   var b = document.querySelector('body');
   b.classList.add('sidebar-flyout');
@@ -1768,9 +1779,14 @@ function openNav() {
 
 function closeNav() {
   var b = document.querySelector('body');
+  var wasOpen = b.classList.contains('sidebar-flyout');
   b.classList.remove('sidebar-flyout');
   adjustNavInert();
   setExpanded(getNavToggles(), false);
+  // the sidebar is about to be hidden, which would drop the focus resting in it
+  if (wasOpen && document.activeElement.closest('#R-sidebar')) {
+    focusToggle(getNavToggles()[0]);
+  }
 }
 
 function toggleNav() {
@@ -1946,10 +1962,20 @@ function initToc() {
   if (s) {
     s.addEventListener('click', closeNav);
   }
+  // the same goes for any other link of the sidebar to a place on this page
+  var sidebar = document.querySelector('#R-sidebar');
+  if (sidebar) {
+    sidebar.addEventListener('click', function (event) {
+      var a = event.target.closest('a[href]');
+      if (a && a.hash && a.pathname == window.location.pathname && a.search == window.location.search) {
+        closeNav();
+      }
+    });
+  }
 }
 
 function initSwipeHandler() {
-  if (!touchsupport) {
+  if (!touchsupport || !document.querySelector('#R-sidebar')) {
     return;
   }
 
