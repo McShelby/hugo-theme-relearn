@@ -335,6 +335,11 @@ if (window.relearn.scrollbarSize) {
 // and the layout is right with the first paint. once the classes are up to date, a
 // change is announced; it carries no data, as anyone who missed it reads the classes
 (function () {
+  // the print version of a page behaves like paper, which only gets narrower and
+  // has no layouts of its own for that
+  if (document.documentElement.dataset.rOutputFormat == 'print') {
+    return;
+  }
   var widths = {
     s: '(width < 48rem)',
     m: '(48rem <= width < 60rem)',

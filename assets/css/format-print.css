@@ -91,16 +91,40 @@ html {
   padding-inline: 0;
   text-align: end;
   text-box: trim-both cap alphabetic;
+  /* paper has no tooltip for what is cut off, so a long trail takes more lines */
+  overflow: visible;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+#R-body .topbar-breadcrumbs li {
+  display: inline;
+}
+/* the spaces around the separator don't break, so a line may end behind it */
+.topbar-breadcrumbs .breadcrumbs-separator::after {
+  content: '\200B';
+}
+/* the title of the page is its heading, so the breadcrumbs visibly lead up to
+   it; assistive technology still gets the whole trail, same as .a11y-only */
+.topbar-breadcrumbs li[aria-current='page'],
+.topbar-breadcrumbs li:has(+ li[aria-current='page']) > .breadcrumbs-separator {
+  clip-path: polygon(0 0, 1px 0, 1px 1px, 0 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  transform: translateY(-100%);
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  width: 1px;
+}
+/* a page without breadcrumbs on screen shows its title there instead */
+.topbar-breadcrumbs-screen {
+  display: none;
 }
 #R-body .topbar-button {
   /* we don't need the buttons while printing */
   /* we need !important to turn off JS topbar button handling setting element styles */
   display: none !important;
-}
-@media screen {
-  :where(.menu-s-width) #R-body .topbar-breadcrumbs {
-    visibility: visible;
-  }
 }
 
 code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after,
@@ -286,10 +310,11 @@ mark.search {
   max-height: none;
   min-height: 0;
 }
-@media print and (orientation: landscape) {
-  /* portrait paper is about as wide as the content of a screen, which the
-     number of columns is set for; landscape paper is half as wide again, so it
-     shows half as many columns again */
+@media print and (width >= 220mm) {
+  /* portrait A4 is about as wide as the content of a screen, which the number
+     of columns is set for; wider paper, in whatever orientation, shows half as
+     many columns again; the width leaves room for portrait sheets without
+     margins below it and landscape sheets with wide margins above it */
   .card-columnize-1 {
     --card-columns: 2;
   }
