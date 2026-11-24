@@ -1,0 +1,21 @@
+/* lets a glow shine in from the edges of the screen;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  --INTERNAL-PAGE-GLOWING-color: var(--PAGE-GLOWING-color, var(--INTERNAL-PRIMARY-color));
+
+  @media screen {
+    body::after {
+      box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--INTERNAL-PAGE-GLOWING-color) 70%, transparent),
+        inset 0 0 32px 6px color-mix(in srgb, var(--INTERNAL-PAGE-GLOWING-color) 55%, transparent);
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: fixed;
+      /* the fade between two variants leads the named parts of the page above the
+         rest of it; named too, the glow stays above them while it fades */
+      view-transition-name: R-page-glowing;
+      z-index: 1000;
+    }
+  }
+}

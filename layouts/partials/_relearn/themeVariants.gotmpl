@@ -495,12 +495,7 @@ Print run:
 		{{- range findRESubmatch `font-family\s*:\s*['"]?([^'";]+?)['"]?\s*;` $fontface 1 }}
 			{{- if strings.Contains $fontusage (index . 1) }}
 				{{- $usedfontscontent = print $usedfontscontent "\n" $fontface }}
-				{{- range findRESubmatch `url\(\s*['"]?\.\./(fonts/[^'")]+)` $fontface }}
-					{{- with resources.Get (index . 1) }}
-						{{- /* the following code causes Hugo to generate our file in public */}}
-						{{- $url := .RelPermalink }}
-					{{- end }}
-				{{- end }}
+				{{- partial "inline/themeVariants/publish-css-files" (dict "file" "fonts.css" "content" $fontface) }}
 			{{- end }}
 		{{- end }}
 	{{- end }}
@@ -597,17 +592,23 @@ Write yet non-dynamic stuff
 	{{- end }}
 	{{- $chroma := "" }}
 	{{- $chromacontent := "" }}
-	{{- range findRESubmatch `[ \t]*@import\s+[^$]*?chroma-([^.]*?)\.css` $themecontent }}
+	{{- /* an imported file is recognized by the start of its name, which follows a quote,
+		a parenthesis or a directory; the search stays within one statement */}}
+	{{- range findRESubmatch `[ \t]*@import\s+[^$;]*?[('"/\s]chroma-([^.]*?)\.css` $themecontent }}
 		{{- $chroma = index . 1 }}
 		{{- errorf "\"theme-%s.css\": UNSUPPORTED use of @import for chroma stylesheet, instead use '--CODE-theme: %s;'; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/6/#6-0-0" $identifier $chroma }}
 	{{- end }}
 	{{- $tempthemecontent := $themecontent }}
-	{{- range findRESubmatch `[ \t]*@import\s+[^$]*?theme-([^.]*?)\.css` $themecontent }}
+	{{- range findRESubmatch `[ \t]*@import\s+[^$;]*?[('"/\s]theme-([^.]*?)\.css` $themecontent }}
 		{{- $subidentifier := index . 1 }}
 		{{- $themevariant = partial "inline/themeVariants/get-theme-details" (dict "themevariant" $themevariant "identifier" $subidentifier) }}
-		{{- $tempthemecontent = replaceRE (printf `[ \t]*@import\s+[^$]*?theme-%s\.css["']?\s*\)?\s*;?` $subidentifier) $themevariant.themecontent $tempthemecontent 1 }}
+		{{- $tempthemecontent = replaceRE (printf `[ \t]*@import\s+[^$;]*?[('"/\s]theme-%s\.css["']?\s*\)?\s*;?` $subidentifier) $themevariant.themecontent $tempthemecontent 1 }}
 		{{- $chroma = $themevariant.chroma }}
 		{{- $chromacontent = $themevariant.chromacontent }}
+	{{- end }}
+	{{- range findRESubmatch `[ \t]*@import\s+[^$;]*?[('"/\s]effect-([^.]*?)\.css` $themecontent }}
+		{{- $effect := index . 1 }}
+		{{- $tempthemecontent = replaceRE (printf `[ \t]*@import\s+[^$;]*?[('"/\s]effect-%s\.css["']?\s*\)?\s*;?` $effect) (partial "inline/themeVariants/get-effect" $effect) $tempthemecontent 1 }}
 	{{- end }}
 	{{- $themecontent = replaceRE `(&\s*)+:root` "&:root" $tempthemecontent }}
 	{{- range findRESubmatch `[ \t]*--CODE-theme\s*:\s*([^;]*?)\s*;` $themecontent }}
@@ -623,6 +624,52 @@ Write yet non-dynamic stuff
 	{{- $themevariant = collections.Merge $themevariant (dict "chroma" $chroma) }}
 	{{- $themevariant = collections.Merge $themevariant (dict "chromacontent" $chromacontent) }}
 	{{- return $themevariant }}
+{{- end }}
+
+{{- /* publishes the files a stylesheet in `assets/css` names with `url()`; its rules
+	end up in a generated stylesheet in `css`, so a relative URL reaches the same file
+	from there and is left as it is. a URL naming no file, like `data:`, `https:` or
+	`var()`, is skipped; a root-relative URL, a query string or fragment and a file
+	that can't be found stop the build, as the browser could not reach the file from
+	every page */}}
+{{- define "partials/inline/themeVariants/publish-css-files" }}
+	{{- $file := .file }}
+	{{- range findRESubmatch `(?i)url\(\s*['"]?\s*([^'")\s]+)` (replaceRE `(?s)/\*.*?\*/` "" .content) }}
+		{{- $url := index . 1 }}
+		{{- if findRE `^(?i)(data:|[a-z][a-z0-9+.-]*:|//|#|var\()` $url 1 }}
+			{{- continue }}
+		{{- end }}
+		{{- if hasPrefix $url "/" }}
+			{{- errorf "\"%s\": UNSUPPORTED root-relative url(%s), instead give the path relative to \"assets/css\"" $file $url }}
+			{{- continue }}
+		{{- end }}
+		{{- if findRE `[?#]` $url 1 }}
+			{{- errorf "\"%s\": UNSUPPORTED query string or fragment in url(%s), instead give the plain path of the file" $file $url }}
+			{{- continue }}
+		{{- end }}
+		{{- with resources.Get (path.Join "css" $url) }}
+			{{- /* the following code causes Hugo to generate our file in public */}}
+			{{- $published := .RelPermalink }}
+		{{- else }}
+			{{- errorf "\"%s\": file of url(%s) not found relative to \"assets/css\"" $file $url }}
+		{{- end }}
+	{{- end }}
+	{{- return "" }}
+{{- end }}
+
+{{- define "partials/inline/themeVariants/get-effect" }}
+	{{- $effectcontent := "" }}
+	{{- with resources.Get (printf "/css/effect-%s.css" .) }}
+		{{- if findRE `@import\b` .Content 1 }}
+			{{- errorf "\"effect-%s.css\": UNSUPPORTED use of @import in an effect, instead import each effect in the variant" $ }}
+		{{- end }}
+		{{- $effectcontent = replaceRE `([ \t]*)(:root)` "${1}&${2}" .Content }}
+		{{- /* a file is only published if a configured effect asks for it */}}
+		{{- partial "inline/themeVariants/publish-css-files" (dict "file" (printf "effect-%s.css" $) "content" .Content) }}
+	{{- else }}
+		{{- errorf "\"effect-%s.css\": file not found in \"assets/css\"" . }}
+	{{- end }}
+	{{- return $effectcontent }}
 {{- end }}
 
 {{- define "partials/inline/themeVariants/get-chroma" }}

@@ -13,7 +13,7 @@ weight: 2
 
 The Relearn theme offers color variants to change your site's appearance. Each color variant contains of a CSS file and optional settings in your project configuration.
 
-You can use the [shipped variants](#shipped-variants), [customize them](#modifying-variants), or create your own. The [interactive variant generator](configuration/branding/generator) can help you with this.
+You can use the [shipped variants](#shipped-variants), [customize them](#modifying-variants), decorate them with [effects](#effects), or create your own. The [interactive variant generator](configuration/branding/generator) can help you with this.
 
 Once set up in your project configuration, you can switch variants using the selector at the bottom of the menu.
 
@@ -40,6 +40,34 @@ The theme ships with the following set of variants
   - [Blue](configuration/branding/colors?variant=blue#shipped-variants): a blue variant of the old Learn theme, coming tinted in blue, dark sidebar and light content area
   - [Green](configuration/branding/colors?variant=green#shipped-variants): a green variant of the old Learn theme, coming tinted in green, dark sidebar and light content area
   - [Red](configuration/branding/colors?variant=red#shipped-variants): a red variant of the old Learn theme, coming tinted in red, dark sidebar and light content area
+
+## Effects
+
+Effects decorate a variant beyond its colors. They are shown on screen only and don't apply to print.
+
+The theme ships with the following effects
+
+| Name             | Notes       |
+|------------------|-------------|
+| `text-glowing`   | Makes titles, menu entries and boxes glow. Set `--TEXT-GLOWING-color` for the color of the glow, default is the text color. Made for dark variants. |
+| `page-glowing`   | Lets a glow shine in from the edges of the screen. Set `--PAGE-GLOWING-color` for the color of the glow, default is the primary color. |
+| `backdrop-faded` | Fades the scene behind the content towards the background color, to keep the content readable on top of a scene. Set `--BACKDROP-FADED-color` for the color, default is the background color of the content. |
+| `backdrop-milky` | Lays milky glass over the scene behind the content, blurring it and fading it towards the background color. Set `--BACKDROP-MILKY-color` for the color, default is the background color of the content. |
+
+To use an effect, create your own variant that imports a variant and the effects you want, one after the other. Effects sharing the first part of their name, like `backdrop-faded` and `backdrop-milky`, can't be combined; choose one of them.
+
+````css {title="assets/css/theme-my-glow.css"}
+@import "theme-zen-dark.css";
+@import "effect-page-glowing.css";
+````
+
+Afterwards, put this in your project configuration to use your new variant:
+
+{{< multiconfig file=hugo section=params >}}
+themeVariant = 'my-glow'
+{{< /multiconfig >}}
+
+You can write your own effect as `assets/css/effect-<NAME>.css`. An effect can't import other files. Files it refers to with `url()` must be placed in your `assets` directory and given relative to the effect, like `url('../images/my-effect/snow.svg')`. Wrap its rules as shown for [screen-only rules](#theme-variant-print).
 
 ## Changing the Variant
 

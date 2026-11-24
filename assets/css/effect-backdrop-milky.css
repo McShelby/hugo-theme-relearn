@@ -1,0 +1,46 @@
+/* lays milky glass over the scene behind the content;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  --INTERNAL-BACKDROP-MILKY-color: var(--BACKDROP-MILKY-color, var(--INTERNAL-MAIN-BG-color));
+
+  @media screen {
+    #R-body .flex-block-wrapper {
+      position: relative;
+    }
+
+    #R-body .flex-block-wrapper::after {
+      --R-backdrop-milky-bottom: 3.5rem;
+      --R-backdrop-milky-fade: 8rem;
+      /* the rim the blur and the mask leave a line in, in whole device pixels */
+      --R-backdrop-milky-rim: calc(var(--bpx1) * 3px);
+      --R-backdrop-milky-side: 3rem;
+      /* eased at both ends, as a straight ramp shows where it starts and stops */
+      --R-backdrop-milky-mask: transparent var(--R-backdrop-milky-rim), rgba(0, 0, 0, 0.16) calc(var(--R-backdrop-milky-fade) * 0.25), rgba(0, 0, 0, 0.5) calc(var(--R-backdrop-milky-fade) * 0.5), rgba(0, 0, 0, 0.84) calc(var(--R-backdrop-milky-fade) * 0.75), #000 var(--R-backdrop-milky-fade), #000 calc(100% - var(--R-backdrop-milky-fade)), rgba(0, 0, 0, 0.84) calc(100% - var(--R-backdrop-milky-fade) * 0.75), rgba(0, 0, 0, 0.5) calc(100% - var(--R-backdrop-milky-fade) * 0.5), rgba(0, 0, 0, 0.16) calc(100% - var(--R-backdrop-milky-fade) * 0.25), transparent calc(100% - var(--R-backdrop-milky-rim));
+      backdrop-filter: blur(6px);
+      background-color: color-mix(in srgb, var(--INTERNAL-BACKDROP-MILKY-color) 72%, transparent);
+      bottom: calc(-1 * var(--R-backdrop-milky-bottom));
+      clip-path: inset(var(--R-backdrop-milky-rim));
+      content: '';
+      left: calc(-1 * var(--R-backdrop-milky-side));
+      mask-composite: intersect;
+      mask-image: linear-gradient(to right, var(--R-backdrop-milky-mask)), linear-gradient(to bottom, var(--R-backdrop-milky-mask));
+      pointer-events: none;
+      position: absolute;
+      right: calc(-1 * var(--R-backdrop-milky-side));
+      top: 0;
+      z-index: -1;
+    }
+
+    &.menu-m-width #R-body .flex-block-wrapper::after {
+      --R-backdrop-milky-bottom: 0.75rem;
+      --R-backdrop-milky-fade: 5rem;
+      --R-backdrop-milky-side: 1.75rem;
+    }
+
+    &.menu-s-width #R-body .flex-block-wrapper::after {
+      --R-backdrop-milky-bottom: 0.25rem;
+      --R-backdrop-milky-fade: 3rem;
+      --R-backdrop-milky-side: 1rem;
+    }
+  }
+}

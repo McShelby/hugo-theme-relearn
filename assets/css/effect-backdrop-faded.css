@@ -1,0 +1,45 @@
+/* fades the scene behind the content towards the background color;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  --INTERNAL-BACKDROP-FADED-color: var(--BACKDROP-FADED-color, var(--INTERNAL-MAIN-BG-color));
+
+  @media screen {
+    #R-body .flex-block-wrapper {
+      position: relative;
+    }
+
+    #R-body .flex-block-wrapper::after {
+      --R-backdrop-faded-bottom: 3.5rem;
+      --R-backdrop-faded-fade: 8rem;
+      /* the rim the mask leaves a line in on fractional display scales, in whole device pixels */
+      --R-backdrop-faded-rim: calc(var(--bpx1) * 3px);
+      --R-backdrop-faded-side: 3rem;
+      /* eased at both ends, as a straight ramp shows where it starts and stops */
+      --R-backdrop-faded-mask: transparent var(--R-backdrop-faded-rim), rgba(0, 0, 0, 0.16) calc(var(--R-backdrop-faded-fade) * 0.25), rgba(0, 0, 0, 0.5) calc(var(--R-backdrop-faded-fade) * 0.5), rgba(0, 0, 0, 0.84) calc(var(--R-backdrop-faded-fade) * 0.75), #000 var(--R-backdrop-faded-fade), #000 calc(100% - var(--R-backdrop-faded-fade)), rgba(0, 0, 0, 0.84) calc(100% - var(--R-backdrop-faded-fade) * 0.75), rgba(0, 0, 0, 0.5) calc(100% - var(--R-backdrop-faded-fade) * 0.5), rgba(0, 0, 0, 0.16) calc(100% - var(--R-backdrop-faded-fade) * 0.25), transparent calc(100% - var(--R-backdrop-faded-rim));
+      background-color: color-mix(in srgb, var(--INTERNAL-BACKDROP-FADED-color) 80%, transparent);
+      bottom: calc(-1 * var(--R-backdrop-faded-bottom));
+      clip-path: inset(var(--R-backdrop-faded-rim));
+      content: '';
+      left: calc(-1 * var(--R-backdrop-faded-side));
+      mask-composite: intersect;
+      mask-image: linear-gradient(to right, var(--R-backdrop-faded-mask)), linear-gradient(to bottom, var(--R-backdrop-faded-mask));
+      pointer-events: none;
+      position: absolute;
+      right: calc(-1 * var(--R-backdrop-faded-side));
+      top: 0;
+      z-index: -1;
+    }
+
+    &.menu-m-width #R-body .flex-block-wrapper::after {
+      --R-backdrop-faded-bottom: 0.75rem;
+      --R-backdrop-faded-fade: 5rem;
+      --R-backdrop-faded-side: 1.75rem;
+    }
+
+    &.menu-s-width #R-body .flex-block-wrapper::after {
+      --R-backdrop-faded-bottom: 0.25rem;
+      --R-backdrop-faded-fade: 3rem;
+      --R-backdrop-faded-side: 1rem;
+    }
+  }
+}
