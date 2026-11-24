@@ -28,18 +28,25 @@ The theme ships with the following set of variants
   - [Light](configuration/branding/colors?variant=zen-light#shipped-variants): a more relaxed white/grey variant, coming with blue accents, light sidebar and light content area
   - [Dark](configuration/branding/colors?variant=zen-dark#shipped-variants): dark variant of Light, coming with blue accents, dark sidebar and dark content area
 - Contrast
-  - [Light](configuration/branding/colors?variant=contrast-light#shipped-variants): [colors chosen for high contrast](configuration/publishing/accessibility), coming with black text on white, darker boxes and a matching syntax highlighting
-  - [Dark](configuration/branding/colors?variant=contrast-dark#shipped-variants): dark variant of Light, coming with white text on black, brighter boxes and a matching syntax highlighting
+  - [Light](configuration/branding/colors?variant=contrast-light#shipped-variants): [high contrast](configuration/publishing/accessibility), coming with black text on white
+  - [Dark](configuration/branding/colors?variant=contrast-dark#shipped-variants): dark variant of Light, coming with white text on black
+- Book
+  - [Light](configuration/branding/colors?variant=book-light#shipped-variants): a book-like variant, coming with burgundy accents, calligraphic titles and warm paper tones
+  - [Dark](configuration/branding/colors?variant=book-dark#shipped-variants): dark variant of Light, coming with garnet accents, calligraphic titles and dark leather tones
 - Tome
-  - [Light](configuration/branding/colors?variant=tome-light#shipped-variants): a book-like variant, coming with burgundy accents, calligraphic titles, warm paper tones and a glow around the page
-  - [Dark](configuration/branding/colors?variant=tome-dark#shipped-variants): dark variant of Light, coming with garnet accents, calligraphic titles, dark leather tones and a glow around the page
-- Experimental
-  - [Neon](configuration/branding/colors?variant=neon#shipped-variants): a variant that glows in the dark, gradient sidebar and dark content area
+  - [Light](configuration/branding/colors?variant=tome-light#shipped-variants): Book Light with a [glow around the page](#effects)
+  - [Dark](configuration/branding/colors?variant=tome-dark#shipped-variants): Book Dark with a [glow around the page](#effects)
+- Unicorn
+  - [Light](configuration/branding/colors?variant=unicorn-light#shipped-variants): a pastel gradient across sidebar and topbar, coming with magenta accents
+  - [Dark](configuration/branding/colors?variant=unicorn-dark#shipped-variants): dark variant of Light, coming with a vivid gradient
+- Glow
+  - [Powder](configuration/branding/colors?variant=powder#shipped-variants): Unicorn Light with a [glow around the page](#effects)
+  - [Neon](configuration/branding/colors?variant=neon#shipped-variants): Unicorn Dark with [glowing text](#effects)
 - Retro
-  - [Learn](configuration/branding/colors?variant=learn#shipped-variants): the default of the old Learn theme, coming with signature light purple, dark sidebar and light content area
-  - [Blue](configuration/branding/colors?variant=blue#shipped-variants): a blue variant of the old Learn theme, coming tinted in blue, dark sidebar and light content area
-  - [Green](configuration/branding/colors?variant=green#shipped-variants): a green variant of the old Learn theme, coming tinted in green, dark sidebar and light content area
-  - [Red](configuration/branding/colors?variant=red#shipped-variants): a red variant of the old Learn theme, coming tinted in red, dark sidebar and light content area
+  - [Learn](configuration/branding/colors?variant=learn#shipped-variants): the default of the old Learn theme, coming with signature light purple
+  - [Blue](configuration/branding/colors?variant=blue#shipped-variants): Learn tinted in blue
+  - [Green](configuration/branding/colors?variant=green#shipped-variants): Learn tinted in green
+  - [Red](configuration/branding/colors?variant=red#shipped-variants): Learn tinted in red
 
 ## Effects
 
@@ -66,6 +73,8 @@ Afterwards, put this in your project configuration to use your new variant:
 {{< multiconfig file=hugo section=params >}}
 themeVariant = 'my-glow'
 {{< /multiconfig >}}
+
+See the effects in action with [Powder](configuration/branding/colors?variant=powder#effects) of this documentation.
 
 You can write your own effect as `assets/css/effect-<NAME>.css`. An effect can't import other files. Files it refers to with `url()` must be placed in your `assets` directory and given relative to the effect, like `url('../images/my-effect/snow.svg')`. Wrap its rules as shown for [screen-only rules](#theme-variant-print).
 
