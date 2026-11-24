@@ -3794,6 +3794,12 @@ body a#R-logo:hover *:not(svg, svg *) {
 #R-header-wrapper > search > :is(form, .searchbox) {
   view-transition-name: R-search;
 }
+/* a variant may bring images of its own; they take their time to fade in or out */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 1s;
+}
 
 @media screen {
   /* the copy of the logo the topbar of a page gets for the time it is printed

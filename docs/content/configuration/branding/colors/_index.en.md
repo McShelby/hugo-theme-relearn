@@ -58,23 +58,25 @@ The theme ships with the following effects
 |------------------|-------------|
 | `text-glowing`   | Makes titles, menu entries and boxes glow. Set `--TEXT-GLOWING-color` for the color of the glow, default is the text color. Made for dark variants. |
 | `page-glowing`   | Lets a glow shine in from the edges of the screen. Set `--PAGE-GLOWING-color` for the color of the glow, default is the primary color. |
+| `season-winter`  | Decorates the page with a winter scene of snow, trees, lights and a lantern. |
 | `backdrop-faded` | Fades the scene behind the content towards the background color, to keep the content readable on top of a scene. Set `--BACKDROP-FADED-color` for the color, default is the background color of the content. |
 | `backdrop-milky` | Lays milky glass over the scene behind the content, blurring it and fading it towards the background color. Set `--BACKDROP-MILKY-color` for the color, default is the background color of the content. |
 
 To use an effect, create your own variant that imports a variant and the effects you want, one after the other. Effects sharing the first part of their name, like `backdrop-faded` and `backdrop-milky`, can't be combined; choose one of them.
 
-````css {title="assets/css/theme-my-glow.css"}
+````css {title="assets/css/theme-my-winter.css"}
 @import "theme-zen-dark.css";
-@import "effect-page-glowing.css";
+@import "effect-season-winter.css";
+@import "effect-backdrop-faded.css";
 ````
 
 Afterwards, put this in your project configuration to use your new variant:
 
 {{< multiconfig file=hugo section=params >}}
-themeVariant = 'my-glow'
+themeVariant = 'my-winter'
 {{< /multiconfig >}}
 
-See the effects in action with [Powder](configuration/branding/colors?variant=powder#effects) of this documentation.
+See the effects in action with [Powder](configuration/branding/colors?variant=powder#effects) or [Winter Tome Dark](configuration/branding/colors?variant=tome-dark-winter#effects) of this documentation.
 
 You can write your own effect as `assets/css/effect-<NAME>.css`. An effect can't import other files. Files it refers to with `url()` must be placed in your `assets` directory and given relative to the effect, like `url('../images/my-effect/snow.svg')`. Wrap its rules as shown for [screen-only rules](#theme-variant-print).
 

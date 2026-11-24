@@ -256,7 +256,40 @@ window.relearn.fadeVariant = function (update) {
     update();
     return;
   }
-  document.startViewTransition(update);
+  document.startViewTransition(function () {
+    update();
+    return window.relearn.backgroundImagesLoaded(1000);
+  });
+};
+
+// the new variant may draw background images the page did not show before, like the
+// scene of an effect; fading to them while they still load would let them pop up in
+// the middle of the fade, so the fade waits for them, but not longer than `timeout`
+// milliseconds. until then the page keeps showing the old variant
+window.relearn.backgroundImagesLoaded = function (timeout) {
+  var urls = new Set();
+  document.querySelectorAll('*').forEach(function (element) {
+    [null, '::before', '::after'].forEach(function (pseudo) {
+      var image = getComputedStyle(element, pseudo).backgroundImage;
+      if (image == 'none') {
+        return;
+      }
+      for (var match of image.matchAll(/url\(\s*(['"]?)(.*?)\1\s*\)/g)) {
+        urls.add(match[2]);
+      }
+    });
+  });
+  var loads = Array.from(urls).map(function (url) {
+    var image = new Image();
+    image.src = url;
+    return image.decode();
+  });
+  return Promise.race([
+    Promise.allSettled(loads),
+    new Promise(function (resolve) {
+      setTimeout(resolve, timeout);
+    }),
+  ]);
 };
 
 window.relearn.applyCustomVariants();

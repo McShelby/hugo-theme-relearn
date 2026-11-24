@@ -1,0 +1,170 @@
+/* decorates the page with a winter scene of snow, trees, lights and a lantern;
+   for the screen only, it does not apply to print */
+:root:not([data-r-output-format='print']) {
+  @media screen {
+    /* the images are drawn for left to right and mirrored for the other direction */
+    &[dir='rtl'] {
+      --R-season-winter-flip: scaleX(-1);
+    }
+
+    #R-header-wrapper {
+      position: relative;
+    }
+
+    #R-header-wrapper:has(#R-logo)::before {
+      background: url('season-winter/branch-corner.svg') top left / contain no-repeat;
+      content: '';
+      height: 90px;
+      inset-inline-start: -11px;
+      pointer-events: none;
+      position: absolute;
+      top: -12px;
+      transform: var(--R-season-winter-flip, none);
+      width: 102px;
+      z-index: 3;
+    }
+
+    #R-header-wrapper::after {
+      /* a warm glow rising from the separator below the search box: its lower edge is
+         hard, upwards and to the sides it fades out */
+      background: radial-gradient(ellipse 50% 100% at 50% 100%, rgba(249, 205, 122, 0.2), rgba(249, 205, 122, 0.11) 40%, rgba(249, 205, 122, 0.03) 75%, transparent);
+      bottom: -2px;
+      content: '';
+      height: 18px;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+    }
+
+    /* below the page, so an effect can place itself between the scene and the content;
+       an element of its own, as a background can not be mirrored */
+    body::before {
+      background-image: url('season-winter/snow.svg'), url('season-winter/trees.svg'), url('season-winter/snowdrifts.svg');
+      background-position:
+        center top,
+        right bottom,
+        center bottom;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-size:
+        cover,
+        min(34.8vw, 504px) auto,
+        100% clamp(120px, 22vh, 240px);
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      /* the page itself never scrolls; `fixed` would change how the text is smoothed */
+      position: absolute;
+      transform: var(--R-season-winter-flip, none);
+      /* the scene changes its size with the width of the screen */
+      transition: background-size 1s ease;
+      z-index: -1;
+    }
+
+    /* part of the topbar, to hang over it but below the flyouts it opens */
+    #R-topbar::after {
+      background-image: url('season-winter/garland.svg');
+      background-position: left top;
+      background-repeat: repeat-x;
+      background-size: 1463px 112px;
+      content: '';
+      height: 112px;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 8px;
+      transform: var(--R-season-winter-flip, none);
+      z-index: 100;
+    }
+
+    #R-body::after {
+      background: linear-gradient(180deg, rgba(255, 214, 136, 0.24), rgba(255, 226, 173, 0.09) 42%, transparent 84%);
+      content: '';
+      height: 128px;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    #R-sidebar {
+      isolation: isolate;
+    }
+
+    /* stands on the bottom of the sidebar, behind its menu */
+    #R-sidebar::after {
+      aspect-ratio: 300 / 177.75;
+      background: url('season-winter/lantern.svg') center bottom / 100% auto no-repeat;
+      bottom: 0;
+      content: '';
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      transform: var(--R-season-winter-flip, none);
+      z-index: -1;
+    }
+
+    #R-body .flex-block-wrapper {
+      position: relative;
+    }
+
+    #R-body .flex-block-wrapper::before {
+      aspect-ratio: 305 / 203;
+      background: url('season-winter/branch-star.svg') right top / contain no-repeat;
+      content: '';
+      inset-inline-end: -34px;
+      pointer-events: none;
+      position: absolute;
+      top: -33px;
+      transform: var(--R-season-winter-flip, none);
+      width: clamp(155px, 15vw, 240px);
+      z-index: 4;
+    }
+
+    @media (max-width: 1150px) {
+      body::before {
+        background-size:
+          cover,
+          318px auto,
+          100% 170px;
+      }
+
+      #R-body .flex-block-wrapper::before {
+        inset-inline-end: -12px;
+        top: -16px;
+        width: 155px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      #R-header-wrapper:has(#R-logo)::before {
+        height: 65px;
+        inset-inline-start: -7px;
+        top: -9px;
+        width: 70px;
+      }
+
+      #R-body::after {
+        display: none;
+      }
+
+      body::before {
+        background-size:
+          cover,
+          228px auto,
+          100% 140px;
+      }
+
+      #R-body .flex-block-wrapper::before {
+        inset-inline-end: -7px;
+        opacity: 0.7;
+        top: -15px;
+        width: 100px;
+      }
+    }
+  }
+}
