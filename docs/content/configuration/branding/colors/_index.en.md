@@ -64,7 +64,7 @@ Default is `auto`. So without `themeVariant`, your site [adjusts to the OS setti
 
 ### Force the Default Variant
 
-{{% badge style="option" %}}Option{{% /badge %}} Set `forceDefaultThemeVariant` to `true` to keep the reader's selection in the browser's [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) instead of its local storage. So every new visit starts with the first variant of `themeVariant`. Default is `false`.
+{{% badge style="option" %}}Option{{% /badge %}} Set `forceDefaultThemeVariant` to `true` to keep the reader's selection in the browser's [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) instead of its local storage, so every new visit starts with the first variant of `themeVariant` again, even if the reader selected another one before. Default is `false`.
 
 {{< multiconfig file=hugo section=params >}}
 forceDefaultThemeVariant = true
