@@ -252,13 +252,16 @@ See it in action with [Season Day/Night](configuration/branding/colors?variant=s
 
 ### Random Variant
 
-The theme ships with the script `themeVariantByRandom`, which chooses one of the variants of `themeVariant` without a `script` by chance, including hidden ones. As every script, it is asked on every page load, so each page may show another variant.
+The theme ships with the script `themeVariantByRandom`, which chooses one of the other variants of `themeVariant` by chance, including hidden and scripted ones. As every script, it is asked on every page load, so each page may show another variant.
+
+To choose only from some of them, list their identifiers in `themeVariantByRandomVariants` in the `params` of its variant.
 
 {{< multiconfig file=hugo section=params >}}
 themeVariant = [
 	{ identifier = 'relearn-light' },
 	{ identifier = 'zen-light' },
-	{ identifier = 'my-random', name = 'Random', script = 'themeVariantByRandom' }
+	{ identifier = 'tome-light' },
+	{ identifier = 'my-random', name = 'Random', script = 'themeVariantByRandom', params = { themeVariantByRandomVariants = [ 'relearn-light', 'zen-light' ] } }
 ]
 {{< /multiconfig >}}
 
