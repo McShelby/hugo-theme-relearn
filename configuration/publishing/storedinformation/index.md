@@ -6,7 +6,7 @@ The theme will store information in the reader's browser. Those are essential in
 
 ## Stored Theme Information
 
-The theme stores the following information in localstorage or sessionstorage.
+The theme stores the following information in localstorage or sessionstorage. If your site is opened from the file system, the selected theme variant is stored in a session cookie instead, if the browser supports this. Firefox forgets it when it is restarted.
 
 - The scroll position of the content area to be restored on browser back navigation.
 
@@ -26,7 +26,7 @@ The theme stores the following information in localstorage or sessionstorage.
 
 - The selected theme variant to carry over to the following presented pages.
 
-  This can be turned off by only having [one theme variant configured](configuration/branding/colors#single-variant).
+  This can be turned off by only having [one theme variant configured](configuration/branding/colors#changing-the-variant). With [`forceDefaultThemeVariant`](configuration/branding/colors#force-the-default-variant), it is stored in the sessionstorage.
 
 ## Stored Third Party Information
 

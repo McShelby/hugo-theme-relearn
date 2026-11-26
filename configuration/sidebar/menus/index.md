@@ -246,7 +246,7 @@ If you don't set these options in your project configuration, the theme defaults
 - `sidebarfootermenus`:
   - a divider to separate from the `sidebarmenus` if any of the following is configured
   - the language switcher if multilingual is [configured](configuration/sitemanagement/multilingual#turn-off-language-switching)
-  - the variant switcher if multiple variants are [configured](configuration/branding/colors/#multiple-variants)
+  - the variant switcher if multiple variants are [configured](configuration/branding/colors/#changing-the-variant)
   - the history clearer if you [configured](configuration/sidebar/headerfooter#history) to mark visited pages
 
 This comes down to the following pseudo default configuration.

@@ -22,7 +22,7 @@
 
   Please note that an image link will generate false negatives if the file resides in your `static` directory.
 
-- {{% badge style="new" %}}New{{% /badge %}} You now can configure additional options for every theme variant in your project configuration. This allows for optional [advanced functionality](configuration/branding/colors#theme-variant-advanced). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
+- {{% badge style="new" %}}New{{% /badge %}} You now can configure additional options for every theme variant in your project configuration. This allows for optional [advanced functionality](configuration/branding/colors#parameters). You don't need to change anything as the old configuration options will still work (but may generate warnings now).
 
   The advanced functionality allows you to set an explicit name for a theme variant and now allows for multiple auto mode variants that adjust to the light/dark preference of your OS settings.
 

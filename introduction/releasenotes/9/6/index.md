@@ -1,0 +1,19 @@
+# Version 9.6
+
+## 9.6.0 (XXXX-XX-XX) {#9-6-0}
+
+### Change
+
+- {{% badge style="change" %}}Change{{% /badge %}} The glow around the page of the [color variants](configuration/branding/colors#shipped-variants) [`tome-light`](configuration/branding/colors?variant=tome-light#shipped-variants) and [`tome-dark`](configuration/branding/colors?variant=tome-dark#shipped-variants) is now set with `--PAGE-GLOWING-color`. If your own variant sets `--TOME-GLOW-color`, rename it.
+
+- {{% badge style="change" %}}Change{{% /badge %}} The color variant [`neon`](configuration/branding/colors?variant=neon#shipped-variants) changes its look. Its sidebar gradient now spans the screen and continues into the topbar, fading out towards its end.
+
+### New
+
+- {{% badge style="new" %}}New{{% /badge %}} The new [color variants](configuration/branding/colors#shipped-variants) [`book-light`](configuration/branding/colors?variant=book-light#shipped-variants) and [`book-dark`](configuration/branding/colors?variant=book-dark#shipped-variants) bring the colors of Tome without its glow, [`unicorn-light`](configuration/branding/colors?variant=unicorn-light#shipped-variants) and [`unicorn-dark`](configuration/branding/colors?variant=unicorn-dark#shipped-variants) the colors of Neon without its glow. The new [`powder`](configuration/branding/colors?variant=powder#shipped-variants) is the light counterpart to Neon, Unicorn Light with a glow around the page.
+
+- {{% badge style="new" %}}New{{% /badge %}} [Effects](configuration/branding/colors#effects) decorate a variant beyond its colors. Import them into your own variant to combine a glow, a winter scene or a faded or milky backdrop with any variant.
+
+- {{% badge style="new" %}}New{{% /badge %}} A color variant can now be [chosen by a script](configuration/branding/colors#scripted-variants), for example by the current date or the time of day. The theme ships with scripts that choose a variant by the festivals and seasons of the current date, by the time of day or by chance.
+
+- {{% badge style="new" %}}New{{% /badge %}} With the new [`forceDefaultThemeVariant` option](configuration/branding/colors#force-the-default-variant), the reader's selection is kept in the browser's session storage instead of its local storage. As long as there is no selection, the first variant of `themeVariant` is used.

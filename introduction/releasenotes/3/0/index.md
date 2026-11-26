@@ -10,7 +10,7 @@
 
 - {{% badge style="breaking" %}}Breaking{{% /badge %}} We have changed the default colors from the original Learn theme (the purple menu header) to the Relearn defaults (the light green menu header) as used in the official documentation.
 
-  This change will only affect your installation if you've not set the `themeVariant` parameter in your project configuration. [If you still want to use the Learn color variant](configuration/branding/colors#theme-variant), you have to explicitly set `themeVariant` to `learn` in your project configuration.
+  This change will only affect your installation if you've not set the `themeVariant` parameter in your project configuration. [If you still want to use the Learn color variant](configuration/branding/colors#changing-the-variant), you have to explicitly set `themeVariant` to `learn` in your project configuration.
 
   Note, that this will also affect your site if viewed with Internet Explorer 11 but in this case it cannot be reconfigured as Internet Explorer does not support CSS variables.
 
@@ -24,12 +24,12 @@
 
 - {{% badge style="new" %}}New{{% /badge %}} With this release you are now capable to define your own _dark mode_ variants.
 
-  To make this possible, we have introduced a lot more color variables you can use in [your color variants](configuration/branding/colors#theme-variant). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
+  To make this possible, we have introduced a lot more color variables you can use in [your color variants](configuration/branding/colors#changing-the-variant). Your old variants will still work and don't need to be changed as appropriate fallback values are used by the theme. Nevertheless, the new colors allow for much more customization.
 
   To see what's now possible, see the new variants [`relearn-dark`](configuration/branding/colors?variant=relearn-dark#shipped-variants) and [`neon`](configuration/branding/colors?variant=neon#shipped-variants) that are coming with this release.
 
 - {{% badge style="new" %}}New{{% /badge %}} To make the creation of new variants easier for you, we've added a new interactive [theme variant generator](configuration/branding/generator). This feature will not work with Internet Explorer 11.
 
-- {{% badge style="new" %}}New{{% /badge %}} You can now configure multiple color variants in your project configuration. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](configuration/branding/colors#multiple-variants) for configuration.
+- {{% badge style="new" %}}New{{% /badge %}} You can now configure multiple color variants in your project configuration. In this case, the first variant is the default chosen on first view and a variant selector will be shown in the menu footer. See the [documentation](configuration/branding/colors#changing-the-variant) for configuration.
 
   Note, that the new variant selector will not work with Internet Explorer 11 as it does not support CSS variables. Therefore, the variant selector will not be displayed with Internet Explorer 11.
